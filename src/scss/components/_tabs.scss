@@ -1,0 +1,66 @@
+.md-tabs {
+  background: $cyan-500;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  .slide {
+    background: $yellow-a200;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transition: left .3s ease-out, width .3s ease;
+  }
+}
+
+@media only screen and (max-device-width: 480px) {
+  .md-tab {
+    min-width: 72px;
+  }
+}
+
+.md-tab {
+  height: 48px;
+  max-width: 264px;
+  min-width: 160px;
+  padding-left: 12px;
+  padding-right: 12px;
+
+  &.wrapped {
+    .md-tab-label {
+      font-size: #{12 / $md-font-size-base}em;
+    }
+  }
+
+  &.active {
+    .md-tab-label {
+      color: $white-base;
+    }
+  }
+
+  .ripple {
+    background: rgba($white-base, .3);
+  }
+}
+
+.md-tab-label {
+  align-items: center;
+  background: transparent;
+  color: rgba($white-base, .7);
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  text-transform: uppercase;
+  transition: color $md-transition-time;
+  user-select: none; // prevent accidental select when changing tabs
+  width: 100%;
+}

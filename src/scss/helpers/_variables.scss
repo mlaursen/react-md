@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 
 $pink-50: #fce4ec;
 $pink-100: #f8bbd0;
@@ -24,6 +24,9 @@ $indigo-900: #1a237e;
 
 $pink-a100: #ff80ab;
 $pink-a200: #ff4081;
+
+$cyan-500: #00bcd4;
+$yellow-a200: #ff0;
 
 $color-primary: $indigo-500 !default; // indigo
 $color-primary-hue-light: $indigo-100 !default;
@@ -56,6 +59,12 @@ $color-card: $white-base;
 $color-border: rgba(0, 0, 0, .1);
 
 $md-transition-time: .15s;
+
+$md-font-size-base: 14;
+$md-font-light: 300;
+$md-font-regular: 400;
+$md-font-medium: 500;
+$md-font-bold: 700;
 
 // =============================================
 // Buttons

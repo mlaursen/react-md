@@ -1,3 +1,30 @@
 * {
   box-sizing: border-box;
 }
+
+.hidden {
+  height: 0;
+  position: absolute;
+  width: 0;
+  z-index: -1;
+}
+
+
+.tab-enter,
+.tab-enter * {
+  opacity: .01;
+
+  &.tab-enter-active,
+  &.tab-enter-active * {
+    opacity: 1;
+    transition: opacity $md-transition-time;
+  }
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  } @else {
+    @return $number;
+  }
+}

@@ -1,12 +1,24 @@
 @import '../../src/scss/react-md';
 
 main {
+
+  > section {
+    padding: 4em;
+  }
+}
+
+.buttons-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 4em;
 
-  > .md-btn {
+  .md-btn {
     margin: 1em;
   }
+}
+
+.flex-column {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
