@@ -1,0 +1,35 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  background: $color-app-bar;
+  font-size: 14px;
+}
+
+
+h1 {
+  font-size: 8rem;
+}
+
+h2 {
+  font-size: 4rem;
+}
+
+h3 {
+  font-size: #{45 / 14}rem;
+}
+
+h4 {
+  font-size: #{34 / 14}rem;
+}
+
+h5 {
+  font-size: #{24 / 14}rem;
+}
+
+h6 {
+  font-size: #{20 / 14}rem;
+}
+
+

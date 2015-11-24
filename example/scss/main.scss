@@ -1,0 +1,12 @@
+@import '../../src/scss/react-md';
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 4em;
+
+  > .md-btn {
+    margin: 1em;
+  }
+}

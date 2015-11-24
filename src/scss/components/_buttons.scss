@@ -1,0 +1,145 @@
+.md-btn {
+  border: 0;
+  font-size: 14px;
+  font-weight: 500;
+  height: $md-btn-height;
+  outline: none;
+  overflow: hidden;
+  padding: $md-btn-padding 1em;
+  position: relative;
+  text-transform: uppercase;
+  transition: box-shadow $md-transition-time, background $md-transition-time;
+
+  &[disabled] {
+    background: $md-btn-hover-color;
+    color: $color-disabled;
+  }
+}
+
+.md-btn-default {
+  background: $color-background;
+  color: $color-text;
+
+  &:hover,
+  &:focus {
+    background: $md-btn-hover-color;
+  }
+
+  &:active {
+    background: $md-btn-pressed-color;
+  }
+
+  &.md-btn-raised {
+    border: 1px solid $color-border;
+  }
+
+  .ripple {
+    background: $md-btn-pressed-color;
+  }
+}
+
+.md-btn-primary,
+.md-btn-secondary {
+  color: $white-base;
+
+  .ripple {
+    background: rgba($white-base, .3);
+  }
+}
+
+.md-btn-primary:not(.md-btn-flat) {
+  background: $indigo-500;
+
+  &:hover,
+  &:focus {
+    background: $indigo-400;
+  }
+}
+
+.md-btn-secondary:not(.md-btn-flat) {
+  background: $pink-a200;
+
+  &:hover,
+  &:focus {
+    background: $pink-a100;
+  }
+}
+
+.md-btn-flat {
+  background: transparent;
+  min-width: $md-btn-flat-min-width;
+
+  &.md-btn-primary {
+    color: $indigo-500;
+
+    &:hover {
+      background: $indigo-50;
+    }
+
+    .ripple {
+      background: rgba($indigo-200, .3);
+    }
+  }
+
+  &.md-btn-secondary {
+    color: $pink-a200;
+
+    &:hover {
+      background: $pink-50;
+    }
+
+    .ripple {
+      background: rgba($pink-200, .3);
+    }
+  }
+}
+
+.md-btn-raised {
+  @include md-box-shadow(1);
+
+  border-radius: 2px;
+  min-width: $md-btn-raised-min-width;
+
+  &:active {
+    @include md-box-shadow(2);
+  }
+}
+
+.md-btn-floating {
+  @include md-box-shadow(3);
+
+  border-radius: 50%;
+  height: $md-btn-floating-action-size;
+  width: $md-btn-floating-action-size;
+
+  &.mini {
+    height: $md-btn-floating-action-size-mini;
+    width: $md-btn-floating-action-size-mini;
+  }
+
+  &:active {
+    @include md-box-shadow(4);
+  }
+
+  .material-icons {
+    display: block;
+  }
+}
+
+.ripple {
+  border-radius: 100%;
+  display: block;
+  position: absolute;
+  transform: scale(0);
+  transition: transform $md-btn-ripple-transition-time linear,
+    opacity $md-btn-ripple-transition-time linear;
+
+  &.active {
+    transform: scale(1.5);
+  }
+
+  &.leave {
+    opacity: 0;
+  }
+}
+

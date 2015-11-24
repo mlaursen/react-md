@@ -1,0 +1,24 @@
+@function top-shadow($depth) {
+  $elevation: nth(1 3 10 14 19, $depth);
+  $blur: nth(1.5 3 10 14 19, $depth);
+  $opacity: nth(.12 .16 .19 .25 .3, $depth);
+
+  @return 0 #{$elevation}px #{$blur}px 0 rgba(0, 0, 0, $opacity);
+}
+
+@function bottom-shadow($depth) {
+  $elevation: nth(1 3 6 10 15, $depth);
+  $blur: nth(1 3 3 5 6, $depth);
+  $opacity: nth(.24 .23 .23 .22 .22, $depth);
+
+  @return 0 #{$elevation}px #{$blur}px 0 rgba(0, 0, 0, $opacity);
+}
+
+@mixin md-box-shadow($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else {
+    box-shadow: bottom-shadow($depth), top-shadow($depth);
+  }
+}
+

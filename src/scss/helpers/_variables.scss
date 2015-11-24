@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+
+$pink-50: #fce4ec;
+$pink-100: #f8bbd0;
+$pink-200: #f48fb1;
+$pink-300: #f06292;
+$pink-400: #ec407a;
+$pink-500: #e91e63;
+$pink-600: #d81b60;
+$pink-700: #c2185b;
+$pink-800: #ad1457;
+$pink-900: #880e4f;
+
+$indigo-50: #e8eaf6;
+$indigo-100: #c5cae9;
+$indigo-200: #9fa8da;
+$indigo-300: #7986cb;
+$indigo-400: #5c6bc0;
+$indigo-500: #3f51b5;
+$indigo-600: #3949ab;
+$indigo-700: #303f9f;
+$indigo-800: #283593;
+$indigo-900: #1a237e;
+
+$pink-a100: #ff80ab;
+$pink-a200: #ff4081;
+
+$color-primary: $indigo-500 !default; // indigo
+$color-primary-hue-light: $indigo-100 !default;
+$color-primary-hue-bold: $indigo-700 !default;
+
+$color-secondary: $pink-a200 !default; // pink
+
+$black-base: #000;
+$white-base: #fff;
+
+$color-text: lighten($black-base, 23%);
+$color-text-secondary: lighten($black-base, 46%);
+$color-icons: $color-text-secondary; // alias
+$color-disabled: lighten($black-base, 62%);
+$color-hint-text: $color-disabled;
+$color-divider: lighten($black-base, 88%);
+
+$color-text-alt: $white-base;
+$color-text-secondary-alt: darken($white-base, 30%);
+$color-text-icons-alt: $color-text-secondary-alt;
+$color-disabled-alt: lighten($white-base, 70%);
+$color-hint-text-alt: $color-disabled-alt;
+$color-divider-alt: lighten($white-base, 88%);
+
+$color-status-bar: #e0e0e0;
+$color-app-bar: #f5f5f5;
+$color-background: #fafafa;
+$color-card: $white-base;
+
+$color-border: rgba(0, 0, 0, .1);
+
+$md-transition-time: .15s;
+
+// =============================================
+// Buttons
+$md-btn-hover-color: rgba(153, 153, 153, .2);
+$md-btn-pressed-color: rgba(153, 153, 153, .4);
+
+$md-btn-min-height: 48px;
+$md-btn-height: 36px;
+$md-btn-padding: ($md-btn-min-height - $md-btn-height) / 2;
+$md-btn-flat-min-width: 88px;
+
+$md-btn-raised-min-width: 64px;
+$md-btn-raised-resting-y: 2px;
+$md-btn-raised-pressed-y: 4px;
+
+$md-btn-floating-resting-y: 6px;
+$md-btn-floating-pressed-y: 12px;
+
+$md-btn-floating-action-size: 56px;
+$md-btn-floating-action-size-mini: 40px;
+
+$md-btn-ripple-transition-time: .3s;
