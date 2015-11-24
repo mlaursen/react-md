@@ -1,38 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 
-$pink-50: #fce4ec;
-$pink-100: #f8bbd0;
-$pink-200: #f48fb1;
-$pink-300: #f06292;
-$pink-400: #ec407a;
-$pink-500: #e91e63;
-$pink-600: #d81b60;
-$pink-700: #c2185b;
-$pink-800: #ad1457;
-$pink-900: #880e4f;
 
-$indigo-50: #e8eaf6;
-$indigo-100: #c5cae9;
-$indigo-200: #9fa8da;
-$indigo-300: #7986cb;
-$indigo-400: #5c6bc0;
-$indigo-500: #3f51b5;
-$indigo-600: #3949ab;
-$indigo-700: #303f9f;
-$indigo-800: #283593;
-$indigo-900: #1a237e;
+$color-primary: indigo !default; // indigo
+$color-primary-hue-light: 3 !default;
+$color-primary-hue-bold: 7 !default;
 
-$pink-a100: #ff80ab;
-$pink-a200: #ff4081;
-
-$cyan-500: #00bcd4;
-$yellow-a200: #ff0;
-
-$color-primary: $indigo-500 !default; // indigo
-$color-primary-hue-light: $indigo-100 !default;
-$color-primary-hue-bold: $indigo-700 !default;
-
-$color-secondary: $pink-a200 !default; // pink
+$color-secondary: pink !default;
+$color-secondary-hue: 2 !default;
 
 $black-base: #000;
 $white-base: #fff;
@@ -56,7 +30,7 @@ $color-app-bar: #f5f5f5;
 $color-background: #fafafa;
 $color-card: $white-base;
 
-$color-border: rgba(0, 0, 0, .1);
+$color-border: rgba($black-base, .1);
 
 $md-transition-time: .15s;
 

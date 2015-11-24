@@ -1,5 +1,5 @@
 .md-tabs {
-  background: $cyan-500;
+  background: get-md-color($color-primary);
   display: flex;
   list-style: none;
   margin: 0;
@@ -7,7 +7,7 @@
   position: relative;
 
   .slide {
-    background: $yellow-a200;
+    background: get-md-color($color-secondary, $color-secondary-hue, true);
     bottom: 0;
     content: '';
     display: block;

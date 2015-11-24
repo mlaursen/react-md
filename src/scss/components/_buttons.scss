@@ -48,20 +48,20 @@
 }
 
 .md-btn-primary:not(.md-btn-flat) {
-  background: $indigo-500;
+  background: get-md-color($color-primary);
 
   &:hover,
   &:focus {
-    background: $indigo-400;
+    background: get-md-color($color-primary, 4);
   }
 }
 
 .md-btn-secondary:not(.md-btn-flat) {
-  background: $pink-a200;
+  background: get-md-color($color-secondary, 2, true);
 
   &:hover,
   &:focus {
-    background: $pink-a100;
+    background: get-md-color($color-secondary, 1, true);
   }
 }
 
@@ -70,26 +70,26 @@
   min-width: $md-btn-flat-min-width;
 
   &.md-btn-primary {
-    color: $indigo-500;
+    color: get-md-color($color-primary);
 
     &:hover {
-      background: $indigo-50;
+      background: get-md-color($color-primary, 2);
     }
 
     .ripple {
-      background: rgba($indigo-200, .3);
+      background: rgba(get-md-color($color-primary, 3), .3);
     }
   }
 
   &.md-btn-secondary {
-    color: $pink-a200;
+    color: get-md-color($color-secondary, 4, true);
 
     &:hover {
-      background: $pink-50;
+      background: get-md-color($color-secondary, 1, true);
     }
 
     .ripple {
-      background: rgba($pink-200, .3);
+      background: rgba(get-md-color($color-secondary, 3), .3);
     }
   }
 }
