@@ -29,10 +29,13 @@ export default class Button extends Component {
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
     disabled: PropTypes.bool,
+    icon: PropTypes.string,
+    iconBefore: PropTypes.bool,
   }
 
   static defaultProps = {
     type: 'button',
+    iconBefore: true,
   }
 
   createRipple = (e) => {
@@ -98,13 +101,31 @@ export default class Button extends Component {
     this.setState({ ripples: this.state.ripples.slice(1, this.state.ripples.length) });
   }
 
+  renderChildren = () => {
+    const { icon, iconBefore, children } = this.props;
+    const materialIcon = <i className="material-icons md-24">{icon}</i>;
+    if(this.isKeyEnabled(Object.keys(this.props), 'floating')) {
+      return materialIcon;
+    } else if(icon) {
+      return (
+        <div className="icon-separator">
+          {iconBefore && materialIcon}
+          {children}
+          {!iconBefore && materialIcon}
+        </div>
+      );
+    } else {
+      return children;
+    }
+  }
+
   render() {
-    const { className, icon, children, ...props } = this.props;
+    const { className, ...props } = this.props;
     const btnClassName = classnames(this.getBtnClassName(), className);
+
     return (
       <button {...props} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} className={btnClassName}>
-        {icon && <i className="material-icons md-24">{icon}</i>}
-        {children}
+        {this.renderChildren()}
       </button>
     );
   }

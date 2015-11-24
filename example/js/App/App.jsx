@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { Button } from '../../../src/js/index';
+import { Button, FlatButton, RaisedButton, FloatingButton } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
@@ -13,23 +13,23 @@ export default class App extends Component {
   render() {
     return (
       <main>
-        <Button flat>normal</Button>
-        <Button flat disabled>disabled</Button>
-        <Button flat primary>primary</Button>
-        <Button flat primary disabled>primary disabled</Button>
-        <Button flat secondary>secondary</Button>
-        <Button flat secondary disabled>secondary disabled</Button>
+        <FlatButton>normal</FlatButton>
+        <FlatButton disabled>disabled</FlatButton>
+        <FlatButton primary icon="chat_bubble_outline">Talk</FlatButton>
+        <FlatButton primary disabled>primary disabled</FlatButton>
+        <FlatButton secondary icon="chat_bubble_outline" iconBefore={false}>Talk</FlatButton>
+        <FlatButton secondary disabled>secondary disabled</FlatButton>
 
-        <Button raised>raised</Button>
-        <Button raised disabled>raised</Button>
-        <Button raised primary>raised</Button>
-        <Button raised primary disabled>raised</Button>
-        <Button raised secondary>raised</Button>
-        <Button raised secondary disabled>raised</Button>
+        <RaisedButton>raised</RaisedButton>
+        <RaisedButton disabled>raised</RaisedButton>
+        <RaisedButton primary icon="chat_bubble_outline" iconBefore={false}>raised</RaisedButton>
+        <RaisedButton primary disabled>raised</RaisedButton>
+        <RaisedButton secondary icon="chat_bubble_outline">raised</RaisedButton>
+        <RaisedButton secondary disabled>raised</RaisedButton>
 
-        <Button floating icon="home" />
-        <Button floating primary icon="grade" />
-        <Button floating secondary icon="favorite" />
+        <FloatingButton icon="home" />
+        <FloatingButton primary icon="grade" />
+        <FloatingButton secondary icon="favorite" />
       </main>
     );
   }

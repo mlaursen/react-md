@@ -143,3 +143,16 @@
   }
 }
 
+.icon-separator {
+  display: table;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .material-icons + *,
+  * + .material-icons {
+    padding-left: .5em;
+  }
+}
