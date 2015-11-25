@@ -1,10 +1,32 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
 @import '../../src/scss/react-md';
 
-main {
 
-  > section {
-    padding: 4em;
+@media (min-width: 768px) {
+  main {
+    width: 720px;
   }
+
+  .card-section .md-card {
+    margin: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    width: 940px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    width: 1140px;
+  }
+}
+
+main {
+  margin: 0 auto;
+  padding: 1em;
 }
 
 .buttons-section {
@@ -21,4 +43,39 @@ main {
   align-items: center;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  margin: 3em;
+}
+
+.tabs-section {
+  margin: 0 auto;
+}
+
+.card-section {
+  .md-card {
+    margin: 1em;
+    min-width: 300px;
+  }
+}
+
+.forecast {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  .fa {
+    color: get-md-color(yellow);
+    font-size: 4rem;
+  }
+}
+
+.avatar-section {
+  .paper {
+    padding: 2em;
+  }
+
+  .md-avatar {
+    margin: 0 1em;
+  }
 }

@@ -448,16 +448,54 @@
     $deep-orange-accents
   );
 
-  $md-color-group: nth($md-colors, $color-index);
-  $md-accent-color-group: nth($md-accent-colors, $color-index);
 
   @if $accent {
+    $md-accent-color-group: nth($md-accent-colors, $color-index);
     @return nth($md-accent-color-group, $hue);
   } @else {
+    $md-color-group: nth($md-colors, $color-index);
     @return nth($md-color-group, $hue)
   }
 }
 
-// scss-lint:disable ColorKeyword ColorVariable
-@mixin color-scheme($primary: indigo, $hue-1: 2, $hue-2: 4, $hue-3: 7, $accent: pink, $accuent-hue: 1) {
+@mixin aspect-ratio($target: img, $width: 16, $height: 9) {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: ($height / $width) * 100%;
+    width: 100%;
+  }
+
+  > #{$target} {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@function get-google-font-url($family: $md-font-family, $weights...) {
+  $url: 'https://fonts.googleapis.com/css?family=#{$family}:';
+  @if length($weights) == 0 {
+    $weights: $md-font-weights;
+  }
+
+  @for $i from 1 through length($weights) {
+    $weight: nth($weights, $i);
+    $url: $url + $weight;
+
+    @if $i < length($weights) {
+      $url: $url + ',';
+    }
+  }
+
+  @return $url;
+}
+
+@function get-google-font-icons() {
+  @return 'https://fonts.googleapis.com/icon?family=Material+Icons';
 }

@@ -1,5 +1,5 @@
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: $md-font;
 }
 
 html {
@@ -62,6 +62,7 @@ h6,
 .md-title {
   font-size: #{20 / $md-font-size-base}em;
   font-weight: $md-font-medium;
+  line-height: #{24 / $md-font-size-base};
 }
 
 caption,
@@ -84,11 +85,15 @@ p,
 
 .md-subheading-1,
 .md-subheading-2 {
-  line-height: #{24 / $md-font-size-base};
+  font-size: #{16 / $md-font-size-base}em;
 }
 
 .md-subheading-1 {
-  font-size: #{16 / $md-font-size-base}em;
+  line-height: #{24 / $md-font-size-base};
+}
+
+.md-subheading-2 {
+  line-height: #{28 / $md-font-size-base};
 }
 
 h1,

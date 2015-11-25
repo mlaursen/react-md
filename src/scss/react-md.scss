@@ -1,5 +1,3 @@
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
-
 @import '../../node_modules/normalize-scss-vanilla/normalize';
 
 @import 'helpers/variables';
@@ -7,5 +5,19 @@
 @import 'helpers/mixins';
 @import 'helpers/typography';
 
+@if $include-md-font {
+  $font-url: get-google-font-url();
+  @import url($font-url);
+}
+
+@if $include-md-icons {
+  $font-url: get-google-font-icons();
+  @import url($font-url);
+}
+
+
+@import 'components/paper';
 @import 'components/buttons';
 @import 'components/tabs';
+@import 'components/avatar';
+@import 'components/cards';

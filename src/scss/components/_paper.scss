@@ -1,0 +1,10 @@
+.paper {
+  background: $color-card;
+  border-radius: 2px;
+}
+
+@for $i from 1 through 5 {
+  .paper-#{$i} {
+    @include md-box-shadow($i);
+  }
+}

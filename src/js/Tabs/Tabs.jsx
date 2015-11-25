@@ -4,8 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-const DEFAULT_WIDTH = 160;
-const DEFAULT_LEFT = 0;
+import { isPropEnabled } from '../utils/PropUtils';
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -14,10 +13,6 @@ export default class Tabs extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       activeTabIndex: 0,
-      slideStyle: {
-        width: DEFAULT_WIDTH,
-        left: DEFAULT_LEFT,
-      },
     };
     this.slide = null;
   }
@@ -33,6 +28,8 @@ export default class Tabs extends Component {
     transitionEnter: PropTypes.bool.isRequired,
     transitionLeave: PropTypes.bool.isRequired,
     transitionName: PropTypes.string.isRequired,
+    primary: PropTypes.bool,
+    secondary: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -100,9 +97,14 @@ export default class Tabs extends Component {
         },
       });
     });
+
+    const tabsClassName = classnames('md-tabs', {
+      'md-tabs-primary': isPropEnabled(this.props, 'primary'),
+      'md-tabs-secondary': isPropEnabled(this.props, 'secondary'),
+    });
     return (
       <CSSTransitionGroup {...props} className={classnames('md-tabs-container', className)}>
-        <ul className="md-tabs">
+        <ul className={tabsClassName}>
           {tabs}
           <span className="slide" ref="slide" />
         </ul>

@@ -1,7 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+$include-md-icons: true !default;
+$include-md-font: true !default;
 
-
-$color-primary: indigo !default; // indigo
+// scss-lint:disable ColorKeyword ColorVariable
+$color-primary: indigo !default;
 $color-primary-hue-light: 3 !default;
 $color-primary-hue-bold: 7 !default;
 
@@ -34,11 +35,15 @@ $color-border: rgba($black-base, .1);
 
 $md-transition-time: .15s;
 
+$md-font-family: Roboto !default;
+$md-font: '#{$md-font-family}', sans-serif !default;
 $md-font-size-base: 14;
 $md-font-light: 300;
 $md-font-regular: 400;
 $md-font-medium: 500;
 $md-font-bold: 700;
+
+$md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
 
 // =============================================
 // Buttons
@@ -61,3 +66,26 @@ $md-btn-floating-action-size: 56px;
 $md-btn-floating-action-size-mini: 40px;
 
 $md-btn-ripple-transition-time: .3s;
+
+
+// =============================================
+// Tabs
+$md-tab-height: 48px;
+$md-tab-max-width: 246px;
+$md-tab-min-width: 160px;
+$md-tab-padding: 12px;
+$md-tab-slide-height: 2px;
+$md-tab-slide-transition-time: $md-transition-time * 2 !default;
+
+// =============================================
+// Cards
+$md-card-padding: 16px;
+$md-card-padding-extra: 24px;
+$md-card-title-size: 24em / $md-font-size-base;
+$md-card-title-size-small: 16em / $md-font-size-base;
+
+$md-avatar-colors: (
+  (pink 6 false green 1 true)
+  (purple 6 false yellow 3 true)
+  (amber 6 false light-blue 4 true)
+);

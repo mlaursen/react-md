@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+import { isPropEnabled } from '../utils/PropUtils';
+
 const MD_BTN_TYPES = ['flat', 'raised', 'floating'];
 const MD_BTN_COLORS = ['default', 'primary', 'secondary'];
 
@@ -58,14 +60,10 @@ export default class Button extends Component {
     return ripple;
   }
 
-  isKeyEnabled = (keys, k) => {
-    return keys.indexOf(k) !== -1 && this.props[k] !== false;
-  }
-
   getBtnClassName = () => {
     const keys = Object.keys(this.props);
     let className = 'md-btn';
-    if(this.isKeyEnabled(keys, 'disabled')) {
+    if(isPropEnabled(this.props, 'disabled', keys)) {
       return className;
     }
 
@@ -74,10 +72,10 @@ export default class Button extends Component {
     let colorFound = false;
     let typeFound = false;
     keys.some(k => {
-      if(this.isKeyEnabled(MD_BTN_COLORS, k)) {
+      if(isPropEnabled(this.props, k, MD_BTN_COLORS)) {
         color = k;
         colorFound = true;
-      } else if(this.isKeyEnabled(MD_BTN_TYPES, k)) {
+      } else if(isPropEnabled(this.props, k, MD_BTN_TYPES)) {
         mdType = k;
         typeFound = true;
       }
@@ -104,7 +102,7 @@ export default class Button extends Component {
   renderChildren = () => {
     const { icon, iconBefore, children } = this.props;
     const materialIcon = <i className="material-icons md-24">{icon}</i>;
-    if(this.isKeyEnabled(Object.keys(this.props), 'floating')) {
+    if(isPropEnabled(this.props, 'floating')) {
       return materialIcon;
     } else if(icon) {
       return (
