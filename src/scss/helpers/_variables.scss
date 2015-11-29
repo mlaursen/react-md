@@ -34,6 +34,7 @@ $color-card: $white-base;
 $color-border: rgba($black-base, .1);
 
 $md-transition-time: .15s;
+$md-transition: cubic-bezier(.5, 1.8, .9, .8) !default;
 
 $md-font-family: Roboto !default;
 $md-font: '#{$md-font-family}', sans-serif !default;
@@ -66,6 +67,9 @@ $md-btn-floating-action-size: 56px;
 $md-btn-floating-action-size-mini: 40px;
 
 $md-btn-ripple-transition-time: .3s;
+
+$md-font-icon-size: 24px !default;
+$md-font-icon-btn-size: $md-font-icon-size * 2;
 
 
 // =============================================

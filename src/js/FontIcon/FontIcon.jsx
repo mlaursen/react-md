@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
 export default class FontIcon extends Component {
   constructor(props) {
@@ -9,11 +10,17 @@ export default class FontIcon extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    iconClassName: PropTypes.string.isRequired,
     children: PropTypes.node,
+    className: PropTypes.string,
+  }
+
+  static defaultProps = {
+    iconClassName: 'material-icons',
   }
 
   render() {
-    return <i className={`md-icon ${this.props.className}`}>{this.props.children}</i>;
+    const { iconClassName, className, children, ...props } = this.props;
+    return <i className={classnames('md-icon', iconClassName, className)} {...props}>{children}</i>;
   }
 }

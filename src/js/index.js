@@ -1,5 +1,5 @@
-import Button, { FlatButton, RaisedButton, FloatingButton } from './Button';
-export { Button, FlatButton, RaisedButton, FloatingButton };
+import Button, { FlatButton, RaisedButton, FloatingButton, IconButton } from './Button';
+export { Button, FlatButton, RaisedButton, FloatingButton, IconButton };
 
 export { Tabs, Tab } from './Tabs';
 

@@ -4,3 +4,4 @@ export default Button;
 export FlatButton from './FlatButton.jsx';
 export RaisedButton from './RaisedButton.jsx';
 export FloatingButton from './FloatingButton.jsx';
+export IconButton from './IconButton.jsx';

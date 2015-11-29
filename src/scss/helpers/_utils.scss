@@ -20,3 +20,19 @@
     transition: opacity $md-transition-time;
   }
 }
+
+.icon-separator,
+%icon-separator {
+  display: table;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .md-icon + *,
+  * + .md-icon {
+    padding-left: .5em;
+  }
+}
+

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import Button from './Button.jsx';
+import FontIcon from '../FontIcon';
 
 export default class FloatingButton extends Component {
   constructor(props) {
@@ -11,10 +12,17 @@ export default class FloatingButton extends Component {
   }
 
   static propTypes = {
-    icon: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    iconClassName: PropTypes.string,
+    children: PropTypes.string,
   }
 
   render() {
-    return <Button floating {...this.props} />;
+    const { iconClassName, children, ...props } = this.props;
+    return (
+      <Button floating {...props}>
+        <FontIcon iconClassName={iconClassName} children={children} />
+      </Button>
+    );
   }
 }

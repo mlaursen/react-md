@@ -1,63 +1,40 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
+import { rippleComponent } from '../utils/Wrappers';
 
-const MD_BTN_TYPES = ['flat', 'raised', 'floating'];
+const MD_BTN_TYPES = ['flat', 'raised', 'floating', 'icon'];
 const MD_BTN_COLORS = ['default', 'primary', 'secondary'];
 
 
-export default class Button extends Component {
+class Button extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      size: '88px',
-      ripples: [],
-    };
   }
 
   static propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
+    label: PropTypes.string,
     children: PropTypes.node,
     flat: PropTypes.bool,
     raised: PropTypes.bool,
     floating: PropTypes.bool,
+    icon: PropTypes.bool,
     type: PropTypes.string,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
     disabled: PropTypes.bool,
-    icon: PropTypes.string,
     iconBefore: PropTypes.bool,
   }
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
-  }
-
-  createRipple = (e) => {
-    const button = ReactDOM.findDOMNode(this);
-    const size = Math.max(button.offsetWidth, button.offsetHeight) + 'px';
-
-    const ripple = document.createElement('span');
-    ripple.classList.add('ripple');
-    ripple.style.width = size;
-    ripple.style.height = size;
-
-    button.insertBefore(ripple, button.firstChild);
-    const { pageX, pageY } = e;
-
-    setTimeout(() => {
-      ripple.style.left = `${pageX - button.offsetLeft - ripple.offsetWidth / 2}px`;
-      ripple.style.top = `${pageY - button.offsetTop - ripple.offsetHeight / 2}px`;
-      ripple.classList.add('active');
-    }, 1);
-    return ripple;
   }
 
   getBtnClassName = () => {
@@ -67,8 +44,8 @@ export default class Button extends Component {
       return className;
     }
 
-    let color = MD_BTN_COLORS[0];
-    let mdType = MD_BTN_TYPES[0];
+    let color = null;
+    let mdType = null;
     let colorFound = false;
     let typeFound = false;
     keys.some(k => {
@@ -81,50 +58,39 @@ export default class Button extends Component {
       }
       return colorFound && typeFound;
     });
-    return `${className} md-btn-${color} md-btn-${mdType}`;
-  }
-
-  handleMouseDown = (e) => {
-    const { ripples } = this.state;
-    ripples.push(this.createRipple(e));
-  }
-
-  handleMouseUp = () => {
-    const lastRipple = this.state.ripples[0];
-    lastRipple.classList.add('leave');
-    setTimeout(() => {
-      ReactDOM.findDOMNode(this).removeChild(lastRipple);
-    }, 300);
-
-    this.setState({ ripples: this.state.ripples.slice(1, this.state.ripples.length) });
+    return classnames(className, {
+      [`md-btn-${color}`]: color,
+      [`md-btn-${mdType}`]: mdType,
+    });
   }
 
   renderChildren = () => {
-    const { icon, iconBefore, children } = this.props;
-    const materialIcon = <i className="material-icons md-24">{icon}</i>;
+    const { children, iconBefore, label } = this.props;
     if(isPropEnabled(this.props, 'floating')) {
-      return materialIcon;
-    } else if(icon) {
+      return children;
+    } else if(children) {
       return (
         <div className="icon-separator">
-          {iconBefore && materialIcon}
-          {children}
-          {!iconBefore && materialIcon}
+          {iconBefore && children}
+          {label}
+          {!iconBefore && children}
         </div>
       );
     } else {
-      return children;
+      return label;
     }
   }
 
   render() {
-    const { className, ...props } = this.props;
+    const { className, iconBefore, label, children, ...props } = this.props;
     const btnClassName = classnames(this.getBtnClassName(), className);
 
     return (
-      <button {...props} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} className={btnClassName}>
+      <button {...props} className={btnClassName}>
         {this.renderChildren()}
       </button>
     );
   }
 }
+
+export default rippleComponent()(Button);

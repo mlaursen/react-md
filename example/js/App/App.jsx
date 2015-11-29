@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { FlatButton, RaisedButton, FloatingButton } from '../../../src/js/index';
+import { FlatButton, RaisedButton, FloatingButton, IconButton } from '../../../src/js/index';
 import { Tabs, Tab } from '../../../src/js/index';
 import { Paper } from '../../../src/js/index';
 import { Card, CardTitle, CardText, CardActions, CardMedia } from '../../../src/js/index';
@@ -25,25 +25,44 @@ export default class App extends Component {
     return (
       <main>
         <section className="buttons-section">
+          <Paper>
+            <IconButton>chat_bubble_outline</IconButton>
+            <IconButton>home</IconButton>
+            <IconButton>favorite</IconButton>
+          </Paper>
           <Paper className="flex-column">
             <h5>Flat Buttons</h5>
-            <FlatButton>normal</FlatButton>
-            <FlatButton primary icon="chat_bubble_outline">Talk</FlatButton>
-            <FlatButton secondary icon="chat_bubble_outline" iconBefore={false}>Talk</FlatButton>
+            <FlatButton default label="normal" />
+            <FlatButton primary label="Talk">
+              <FontIcon>chat_bubble_outline</FontIcon>
+            </FlatButton>
+            <FlatButton secondary label="Talk" iconBefore={false}>
+              <FontIcon>chat_bubble_outline</FontIcon>
+            </FlatButton>
             <FlatButton disabled>disabled</FlatButton>
           </Paper>
           <Paper className="flex-column">
             <h5>Raised Buttons</h5>
-            <RaisedButton>raised</RaisedButton>
-            <RaisedButton primary icon="chat_bubble_outline" iconBefore={false}>raised</RaisedButton>
-            <RaisedButton secondary icon="chat_bubble_outline">raised</RaisedButton>
+            <RaisedButton default>raised</RaisedButton>
+            <RaisedButton primary label="Spock" iconBefore={false}>
+              <FontIcon iconClassName="fa fa-hand-spock-o" />
+            </RaisedButton>
+            <RaisedButton secondary label="Paper">
+              <FontIcon iconClassName="fa fa-hand-paper-o" />
+            </RaisedButton>
             <RaisedButton disabled>raised</RaisedButton>
           </Paper>
           <Paper className="flex-column">
             <h5>Floating Buttons</h5>
-            <FloatingButton icon="home" />
-            <FloatingButton primary icon="grade" />
-            <FloatingButton secondary icon="favorite" />
+            <FloatingButton default>
+              home
+            </FloatingButton>
+            <FloatingButton primary>
+              grade
+            </FloatingButton>
+            <FloatingButton secondary>
+              favorite
+            </FloatingButton>
           </Paper>
         </section>
         <section className="tabs-section">
@@ -69,8 +88,8 @@ export default class App extends Component {
         <section className="avatar-section">
           <Paper>
             <Avatar src="http://lorempixel.com/120/120/people" alt="some image" />
-            <Avatar icon={<FontIcon className="fa fa-hand-spock-o" />} />
-            <Avatar icon={<FontIcon className="fa fa-rocket" />} random />
+            <Avatar icon={<FontIcon iconClassName="fa fa-hand-spock-o" />} />
+            <Avatar icon={<FontIcon iconClassName="fa fa-rocket" />} random />
             <Avatar>M</Avatar>
             <Avatar random>O</Avatar>
             <Avatar color={2}>X</Avatar>
