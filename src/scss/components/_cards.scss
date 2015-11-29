@@ -18,6 +18,11 @@
   .md-body-1,
   .md-body-2 {
     margin: 0;
+
+    &:nth-child(n+2) {
+      margin-bottom: .5em;
+      margin-top: .5em;
+    }
   }
 
   &:last-child {
@@ -113,4 +118,15 @@
   .md-btn {
     color: $white-base;
   }
+}
+
+.md-card-expander {
+  float: right;
+  padding: 8px;
+}
+
+.md-card-expander,
+.md-card-expander .ripple {
+  height: $md-btn-height;
+  width: $md-btn-height;
 }

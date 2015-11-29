@@ -1,17 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
+import CardExpander from './CardExpander.jsx';
 
 export default class CardActions extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  static contextTypes = {
+    isExpanded: PropTypes.bool.isRequired,
+    onExpandClick: PropTypes.func.isRequired,
+    iconClassName: PropTypes.string.isRequired,
+    iconChildren: PropTypes.string,
   }
 
   static propTypes = {
+    isExpander: PropTypes.bool,
     className: PropTypes.string,
     stacked: PropTypes.bool,
     children: PropTypes.node,
@@ -22,10 +24,11 @@ export default class CardActions extends Component {
   }
 
   render() {
-    const { className, children, ...props } = this.props;
+    const { className, children, isExpander, ...props } = this.props;
     return (
       <section {...props} className={classnames('md-card-actions', className, { 'md-card-actions-stacked': isPropEnabled(props, 'stacked') })}>
         {children}
+        {isExpander && <CardExpander />}
       </section>
     );
   }

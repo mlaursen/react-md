@@ -50,6 +50,7 @@
     "react": "^0.14.3",
     "react-addons-css-transition-group": "^0.14.3",
     "react-addons-pure-render-mixin": "^0.14.3",
+    "react-addons-transition-group": "^0.14.3",
     "react-dom": "^0.14.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

@@ -96,21 +96,25 @@ export default class App extends Component {
           </Paper>
         </section>
         <section className="card-section">
-          <Card>
+          <Card isExpandable={true}>
             <CardTitle avatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />} title="Title goes here" subtitle="Subtitle here" />
             <CardMedia overlay={<CardTitle title="Some nature shit" subtitle="So wow" />} forceAspect>
               <img src="http://lorempixel.com/600/337/nature" />
             </CardMedia>
-            <CardActions>
-              <FlatButton>Action 1</FlatButton>
-              <FlatButton>Action 2</FlatButton>
+            <CardActions isExpander={true}>
+              <FlatButton default>Action 1</FlatButton>
+              <FlatButton default>Action 2</FlatButton>
             </CardActions>
-            <CardText>
+            <CardText expandable={true}>
+              <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
+              <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
+              <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
+              <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
               <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
             </CardText>
           </Card>
           <Card>
-            <CardMedia forceAspect aspectRatio={{ x: 1, y: 1 }} overlay={<span><CardTitle title="Title goes here" subtitle="Subtitle goes here" /><CardActions><FlatButton>Action 1</FlatButton><FlatButton>Action 2</FlatButton></CardActions></span>}>
+            <CardMedia forceAspect aspectRatio={{ x: 1, y: 1 }} overlay={<span><CardTitle title="Title goes here" subtitle="Subtitle goes here" /><CardActions><FlatButton default>Action 1</FlatButton><FlatButton default>Action 2</FlatButton></CardActions></span>}>
               <img src="http://lorempixel.com/300/300/nature" />
             </CardMedia>
           </Card>
@@ -143,7 +147,7 @@ export default class App extends Component {
               </ul>
             </CardMedia>
             <CardActions>
-              <FlatButton>Full report</FlatButton>
+              <FlatButton default>Full report</FlatButton>
             </CardActions>
           </Card>
         </section>

@@ -12,7 +12,7 @@
   padding: $md-btn-padding 1em;
   position: relative;
   text-transform: uppercase;
-  transition: box-shadow $md-transition-time, background $md-transition-time;
+  transition: box-shadow $md-transition-time, background $md-transition-time, transform $md-transition-time;
 
   &[disabled] {
     background: $md-btn-hover-color;
