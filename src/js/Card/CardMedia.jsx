@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-
-import { isPropEnabled } from '../utils/PropUtils';
 
 export default class CardMedia extends Component {
   constructor(props) {
@@ -16,23 +15,22 @@ export default class CardMedia extends Component {
     overlay: PropTypes.node,
     children: PropTypes.node,
     forceAspect: PropTypes.bool,
-    aspectRatio: PropTypes.shape({
-      x: PropTypes.number.isRequired,
-      y: PropTypes.number.isRequired,
-    }),
-  }
-
-  static defaultProps = {
-    aspectRatio: {
-      x: 16,
-      y: 9,
+    aspectRatio: (props, propName) => {
+      if(!/[0-9]+:[0-9]+/.test(props[propName])) {
+        return new Error(`'${props[propName]}' is not a valid aspect ratio. It must be formatted as 'x:x'.`);
+      }
     },
   }
 
+  static defaultProps = {
+    forceAspect: true,
+    aspectRatio: '16:9',
+  }
+
   render() {
-    const { className, overlay, children, aspectRatio, ...props } = this.props;
+    const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;
     return (
-      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio.x}-${aspectRatio.y}`]: isPropEnabled(props, 'forceAspect') })}>
+      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio.replace(':', '-')}`]: forceAspect })}>
         {children}
         {overlay && <div className="md-card-media-overlay">{overlay}</div>}
       </section>

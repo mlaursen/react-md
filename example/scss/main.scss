@@ -52,10 +52,15 @@ main {
 }
 
 .card-section {
+
   .md-card {
     margin: 1em;
-    min-width: 300px;
-    width: 100%;
+  }
+
+  .card-grid {
+    .md-card {
+      width: 300px;
+    }
   }
 }
 

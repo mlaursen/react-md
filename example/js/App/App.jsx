@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { FlatButton, RaisedButton, FloatingButton, IconButton } from '../../../src/js/index';
 import { Tabs, Tab } from '../../../src/js/index';
 import { Paper } from '../../../src/js/index';
-import { Card, CardTitle, CardText, CardActions, CardMedia } from '../../../src/js/index';
+import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
 import { Avatar } from '../../../src/js/index';
 import { FontIcon } from '../../../src/js/index';
 
@@ -98,7 +98,7 @@ export default class App extends Component {
         <section className="card-section">
           <Card isExpandable={true}>
             <CardTitle avatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />} title="Title goes here" subtitle="Subtitle here" />
-            <CardMedia overlay={<CardTitle title="Some nature shit" subtitle="So wow" />} forceAspect>
+            <CardMedia overlay={<CardTitle title="Some nature shit" subtitle="So wow" />}>
               <img src="http://lorempixel.com/600/337/nature" />
             </CardMedia>
             <CardActions isExpander={true}>
@@ -113,11 +113,28 @@ export default class App extends Component {
               <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
             </CardText>
           </Card>
-          <Card>
-            <CardMedia forceAspect aspectRatio={{ x: 1, y: 1 }} overlay={<span><CardTitle title="Title goes here" subtitle="Subtitle goes here" /><CardActions><FlatButton default>Action 1</FlatButton><FlatButton default>Action 2</FlatButton></CardActions></span>}>
-              <img src="http://lorempixel.com/300/300/nature" />
-            </CardMedia>
-          </Card>
+          <div className="card-grid">
+            <Card>
+              <CardMedia aspectRatio="1:1" overlay={<CardActionOverlay title="Title goes here" subtitle="Subtitle goes here" actions={[{ children: 'Action 1' }, { children: 'Action 2' }]} />}>
+                <img src="http://lorempixel.com/300/300/nature" />
+              </CardMedia>
+            </Card>
+            <Card>
+              <CardMedia aspectRatio="1:1" overlay={<CardActionOverlay title="Title goes here" subtitle="Subtitle goes here" actions={[{ children: 'Action 1' }, { children: 'Action 2' }]} />}>
+                <img src="http://lorempixel.com/300/300/nature" />
+              </CardMedia>
+            </Card>
+            <Card>
+              <CardMedia aspectRatio="1:1" overlay={<CardActionOverlay title="Title goes here" subtitle="Subtitle goes here" actions={[{ children: 'Action 1' }, { children: 'Action 2' }]} />}>
+                <img src="http://lorempixel.com/300/300/nature" />
+              </CardMedia>
+            </Card>
+            <Card>
+              <CardMedia aspectRatio="1:1" overlay={<CardActionOverlay title="Title goes here" subtitle="Subtitle goes here" actions={[{ children: 'Action 1' }, { children: 'Action 2' }]} />}>
+                <img src="http://lorempixel.com/300/300/nature" />
+              </CardMedia>
+            </Card>
+          </div>
           <Card className="weather-card">
             <CardTitle title="San Francisco" subtitle="Mon, 12:30 PM, Mostly sunny" />
             <CardText className="forecast">

@@ -8,3 +8,4 @@ export CardTitle from './CardTitle.jsx';
 export CardMedia from './CardMedia.jsx';
 export CardActions from './CardActions.jsx';
 export CardText from './CardText.jsx';
+export CardActionOverlay from './CardActionOverlay.jsx';
