@@ -458,6 +458,18 @@
   }
 }
 
+@mixin absolute-center($top: true, $left: false) {
+  @if $top {
+    top: 50%;
+  }
+
+  @if $left {
+    left: 50%;
+  }
+
+  transform: translate3d(if($left, -50%, 0), if($top, -50%, 0), 0);
+}
+
 @mixin aspect-ratio($target: img, $width: 16, $height: 9) {
   position: relative;
 

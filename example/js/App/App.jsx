@@ -7,6 +7,7 @@ import { Paper } from '../../../src/js/index';
 import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
 import { Avatar } from '../../../src/js/index';
 import { FontIcon } from '../../../src/js/index';
+import { Checkbox, Radio, RadioGroup } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
@@ -167,6 +168,16 @@ export default class App extends Component {
               <FlatButton default>Full report</FlatButton>
             </CardActions>
           </Card>
+        </section>
+        <section>
+          <Checkbox />
+          <Checkbox isInitiallyChecked={true} />
+          <Checkbox disabled />
+          <RadioGroup stacked>
+            <Radio name="woop" value="A" label="Click Me, A" />
+            <Radio name="woop" value="B" label="Click Me, B" />
+            <Radio name="woop" value="C" label="Click Me, C" />
+          </RadioGroup>
         </section>
       </main>
     );

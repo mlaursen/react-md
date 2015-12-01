@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import watch from 'gulp-watch';
 import gutil from 'gulp-util';
 import eslint from 'gulp-eslint';
 import sourcemaps from 'gulp-sourcemaps';
@@ -146,6 +147,10 @@ gulp.task('serve', ['dist:example'], () => {
     },
   });
 
-  gulp.watch('./+(src|example)/**/*.+(js|jsx)', ['scripts-watch:example']);
-  gulp.watch('./+(src|example)/**/*.scss', ['styles-watch:example']);
+  watch('./+(src|example)/**/*.+(js|jsx)', () => {
+    gulp.start('scripts-watch:example');
+  });
+  watch('./+(src|example)/**/*.scss', () => {
+    gulp.start('styles-watch:example');
+  });
 });

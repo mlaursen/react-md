@@ -13,3 +13,5 @@ export { FontIcon };
 
 import Avatar from './Avatar';
 export { Avatar };
+
+export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
