@@ -1,0 +1,13 @@
+.md-toolbar {
+  @include md-box-shadow(1);
+}
+
+.md-toolbar-primary {
+  background: get-md-color($color-primary);
+  color: $white-base;
+}
+
+.md-toolbar-secondary {
+  background: get-md-color($color-secondary);
+  color: $white-base;
+}

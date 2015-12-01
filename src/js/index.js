@@ -3,15 +3,14 @@ export { Button, FlatButton, RaisedButton, FloatingButton, IconButton };
 
 export { Tabs, Tab } from './Tabs';
 
-import Paper from './Paper';
-export { Paper };
+export Paper from './Paper';
 
 export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from './Card';
 
-import FontIcon from './FontIcon';
-export { FontIcon };
+export FontIcon from './FontIcon';
 
-import Avatar from './Avatar';
-export { Avatar };
+export Avatar from './Avatar';
 
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
+
+export Toolbar from './Toolbar';
