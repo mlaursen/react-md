@@ -13,6 +13,7 @@ export default class Checkbox extends Component {
   static propTypes = {
     isInitiallyChecked: PropTypes.bool,
     onChange: PropTypes.func,
+    value: PropTypes.string,
   }
 
   render() {

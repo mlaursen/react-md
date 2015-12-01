@@ -28,17 +28,8 @@
   width: $md-font-icon-btn-size;
 
   .ripple {
-    background: $md-btn-hover-color;
-    height: $md-font-icon-btn-size;
     left: 0;
-    opacity: 1;
     top: 0;
-    transition: transform .3s, opacity .3s ease .15s;
-    width: $md-font-icon-btn-size;
-
-    &.active {
-      transform: scale(1);
-    }
   }
 }
 
@@ -85,23 +76,6 @@
 
   .material-icons {
     display: block;
-  }
-}
-
-.ripple {
-  border-radius: 100%;
-  display: block;
-  position: absolute;
-  transform: scale(0);
-  transition: transform $md-btn-ripple-transition-time,
-    opacity $md-btn-ripple-transition-time;
-
-  &.active {
-    transform: scale(1.5);
-  }
-
-  &.leave {
-    opacity: 0;
   }
 }
 

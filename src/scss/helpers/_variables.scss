@@ -93,3 +93,16 @@ $md-avatar-colors: (
   (purple 6 false yellow 3 true)
   (amber 6 false light-blue 4 true)
 );
+
+
+// =============================================
+// Selection Controls
+$md-control-container-size: $md-tab-height !default;
+
+$md-control-switch-background: rgba($black-base, .26) !default;
+$md-control-switch-ball-size: $md-font-icon-size !default;
+$md-control-switch-height: 16px !default;
+$md-control-switch-radius: $md-control-switch-height / 2 !default;
+
+$md-control-switch-offset: $md-control-switch-height / 4;
+$md-control-switch-width: $md-control-container-size + $md-control-switch-height - $md-control-switch-offset !default;

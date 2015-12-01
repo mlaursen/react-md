@@ -1,0 +1,29 @@
+.ripple {
+  border-radius: 100%;
+  display: block;
+  opacity: 1;
+  position: absolute;
+  transform: scale(0);
+  transition: transform $md-btn-ripple-transition-time,
+    opacity $md-btn-ripple-transition-time;
+
+  &.active {
+    transform: scale(1.5);
+  }
+
+  &.leave {
+    opacity: 0;
+  }
+
+  &.positioned {
+    background: $md-btn-hover-color;
+    height: $md-font-icon-btn-size;
+    transition: transform $md-btn-ripple-transition-time, opacity $md-btn-ripple-transition-time ease $md-transition-time;
+    width: $md-font-icon-btn-size;
+
+    &.active {
+      transform: scale(1);
+    }
+  }
+}
+

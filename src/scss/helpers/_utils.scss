@@ -40,3 +40,7 @@
   transform: rotateZ(180deg);
   transition: transform $md-transition-time;
 }
+
+%circle {
+  border-radius: 50%;
+}

@@ -22,6 +22,8 @@ export function createRipple(el, e, isPositioned = false, timeout = 15) {
   if(!isPositioned) {
     ripple.style.height = size;
     ripple.style.width = size;
+  } else {
+    ripple.classList.add('positioned');
   }
 
   el.insertBefore(ripple, el.firstChild);

@@ -7,7 +7,7 @@ import { Paper } from '../../../src/js/index';
 import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
 import { Avatar } from '../../../src/js/index';
 import { FontIcon } from '../../../src/js/index';
-import { Checkbox, Radio, RadioGroup } from '../../../src/js/index';
+import { Checkbox, Radio, RadioGroup, Switch } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
@@ -178,6 +178,8 @@ export default class App extends Component {
             <Radio name="woop" value="B" label="Click Me, B" />
             <Radio name="woop" value="C" label="Click Me, C" />
           </RadioGroup>
+          <Switch value="A" label="Enable A" />
+          <Switch value="B" label="Enable B" disabled />
         </section>
       </main>
     );

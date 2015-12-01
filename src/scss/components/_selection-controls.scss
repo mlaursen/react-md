@@ -1,0 +1,136 @@
+.md-control-container {
+  height: $md-control-container-size;
+  position: relative;
+  width: $md-control-container-size;
+}
+
+.stacked .md-control-label {
+  display: flex;
+}
+
+.md-control-input {
+  height: 0;
+  line-height: 0;
+  position: absolute;
+  width: 0;
+
+  &:checked {
+    + .md-checkbox,
+    + .md-radio,
+    + .md-switch:before {
+      background: get-md-color($color-primary);
+      border-color: get-md-color($color-primary);
+      color: $white-base;
+    }
+
+    + .md-radio {
+      box-shadow: inset 0 0 0 2px $white-base;
+    }
+
+    + .md-switch:before {
+      left: $md-control-switch-width - $md-control-switch-height - $md-control-switch-ball-size;
+    }
+
+    + .md-switch + .ripple {
+      left: 75%;
+    }
+  }
+}
+
+.md-control-label {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  user-select: none;
+
+  &.disabled {
+    .md-control {
+      border-color: rgba($black-base, .26);
+    }
+
+    .md-switch:before {
+      background: $color-divider;
+    }
+  }
+
+  .ripple {
+    @include absolute-center(true, true, scale(0));
+
+    background: $md-btn-hover-color;
+    height: $md-font-icon-btn-size;
+    width: $md-font-icon-btn-size;
+    z-index: 2;
+
+    &.active {
+      @include absolute-center(false, false, scale(1));
+
+      transition: transform $md-btn-ripple-transition-time, opacity $md-btn-ripple-transition-time ease $md-transition-time;
+    }
+  }
+}
+
+.md-control {
+  @include absolute-center(true, true);
+
+  position: absolute;
+}
+
+.md-checkbox,
+.md-radio {
+  border: 2px solid rgba($black-base, .54);
+  padding: #{$md-font-size-base / 2}px;
+  transition: background $md-transition-time, color $md-transition-time, border $md-transition-time;
+}
+
+
+.md-checkbox-label {
+  .md-control-input:checked + .md-checkbox:after {
+    content: '\2714';
+    font-size: #{$md-font-size-base}px;
+    left: 2px;
+    position: absolute;
+    top: -3px;
+  }
+}
+
+.md-checkbox {
+  border-radius: 2px;
+}
+
+.md-radio {
+  @extend %circle;
+}
+
+.md-switch-label {
+
+  .md-control-container {
+    width: $md-control-switch-width;
+  }
+
+  .ripple {
+    left: 25%;
+  }
+}
+
+.md-switch {
+  background: $md-control-switch-background;
+  border-radius: $md-control-switch-radius;
+  display: inline-block;
+  height: $md-control-switch-height;
+  position: relative;
+  width: $md-control-container-size - $md-control-switch-height / 2;
+
+  &:before {
+    @extend %circle;
+
+    background: $color-background;
+    box-shadow: 0 2px #{$md-control-switch-height / 2} rgba($black-base, .2);
+    content: '';
+    height: $md-control-switch-ball-size;
+    left: -$md-control-switch-offset;
+    position: absolute;
+    top: -$md-control-switch-offset;
+    transition: background $md-transition-time, background $md-transition-time, left $md-transition-time;
+    width: $md-control-switch-ball-size;
+  }
+}

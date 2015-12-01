@@ -458,7 +458,7 @@
   }
 }
 
-@mixin absolute-center($top: true, $left: false) {
+@mixin absolute-center($top: true, $left: false, $additional-transform: null) {
   @if $top {
     top: 50%;
   }
@@ -467,7 +467,7 @@
     left: 50%;
   }
 
-  transform: translate3d(if($left, -50%, 0), if($top, -50%, 0), 0);
+  transform: translate3d(if($left, -50%, 0), if($top, -50%, 0), 0) $additional-transform;
 }
 
 @mixin aspect-ratio($target: img, $width: 16, $height: 9) {

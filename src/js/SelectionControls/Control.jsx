@@ -9,7 +9,7 @@ export default class Control extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { checked: props.isInitiallyChecked, mouseDownTime: null };
+    this.state = { checked: props.isInitiallyChecked };
     this.timeout = null;
   }
 
@@ -54,7 +54,7 @@ export default class Control extends Component {
       return;
     }
 
-    this.setState({ focused: true, leaving: false, mouseDownTime: new Date() });
+    this.setState({ focused: true, leaving: false });
   }
 
   removeRipple = (e) => {
@@ -64,7 +64,7 @@ export default class Control extends Component {
 
     this.timeout = setTimeout(() => {
       this.timeout = null;
-      this.setState({ leaving: false, focused: false, mouseDownTime: null });
+      this.setState({ leaving: false, focused: false });
     }, this.props.rippleTimeout);
     this.setState({ leaving: true });
   }
@@ -81,7 +81,7 @@ export default class Control extends Component {
       <label className={labelClassName} onMouseDown={this.createRipple} onMouseUp={this.removeRipple}>
         {labelBefore && spanLabel}
         <div className="md-control-container">
-          <input type={type} checked={checked} {...props} onChange={this.toggleCheck} onKeyDown={this.removeRipple} onKeyUp={this.createRipple} />
+          <input type={type === 'switch' ? 'checkbox' : type} checked={checked} className="md-control-input" {...props} onChange={this.toggleCheck} onKeyDown={this.removeRipple} onKeyUp={this.createRipple} />
           <div className={`md-control md-${type}`} />
           <span className={classnames('ripple', { 'active': focused, 'leave': leaving })} />
         </div>
