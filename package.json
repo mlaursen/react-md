@@ -4,7 +4,7 @@
   "description": "React material design components",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sassdoc": "sassdoc ./src/scss/*"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "react-addons-pure-render-mixin": "^0.14.3",
     "react-addons-transition-group": "^0.14.3",
     "react-dom": "^0.14.3",
+    "sassdoc": "^2.1.18",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

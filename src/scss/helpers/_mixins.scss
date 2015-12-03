@@ -1,37 +1,108 @@
-@function top-shadow($depth) {
-  $elevation: nth(1 3 10 14 19, $depth);
-  $blur: nth(1.5 3 10 14 19, $depth);
-  $opacity: nth(.12 .16 .19 .25 .3, $depth);
-
-  @return 0 #{$elevation}px #{$blur}px 0 rgba(0, 0, 0, $opacity);
-}
-
-@function bottom-shadow($depth) {
-  $elevation: nth(1 3 6 10 15, $depth);
-  $blur: nth(1 3 3 5 6, $depth);
-  $opacity: nth(.24 .23 .23 .22 .22, $depth);
-
-  @return 0 #{$elevation}px #{$blur}px 0 rgba(0, 0, 0, $opacity);
-}
-
-@mixin md-box-shadow($depth) {
-  @if $depth < 1 {
-    box-shadow: none;
+/// Generates the box shadow for material design
+///
+/// @example scss - Basic Usage Sass
+///   .paper-1 {
+///     @include md-box-shadow(1);
+///   }
+///
+///   .paper-5 {
+///     @include md-box-shadow(5);
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .paper-1 {
+///     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14). 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+///   }
+///
+///   .paper-5 {
+///     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
+///   }
+///
+/// @link https://elements.polymer-project.org/elements/paper-card?view=demo:demo/index.html&active=paper-card
+/// @param {Number} elevation - The material design elevation. This should be a number from 0 - 5.
+@mixin md-box-shadow($elevation) {
+  @if $elevation < 0 or $elevation > 5 {
+    @warn 'The elevation must be a number from 0 - 5. elevation given was `#{$elevation}`';
   } @else {
-    box-shadow: bottom-shadow($depth), top-shadow($depth);
+    $top-shadow-color: get-md-color(black, .14);
+    $middle-shadow-color: get-md-color(black, .12);
+    $bottom-shadow-color: get-md-color(black, if($elevation == 1, .2, .4));
+    @if $elevation == 0 {
+      box-shadow: none;
+    } @else if $elevation == 1 {
+      box-shadow: 0 2px 2px 0 $top-shadow-color, 0 1px 5px 0 $middle-shadow-color, 0 3px 1px -2px $bottom-shadow-color;
+    } @else if $elevation == 2 {
+      box-shadow: 0 4px 5px 0 $top-shadow-color, 0 1px 10px 0 $middle-shadow-color, 0 2px 4px -1px $bottom-shadow-color;
+    } @else if $elevation == 3 {
+      box-shadow: 0 6px 10px 0 $top-shadow-color, 0 1px 18px 0 $middle-shadow-color, 0 3px 5px -1px $bottom-shadow-color;
+    } @else if $elevation == 4 {
+      box-shadow: 0 8px 10px 1px $top-shadow-color, 0 3px 14px 2px $middle-shadow-color, 0 5px 5px -3px $bottom-shadow-color;
+    } @else if $elevation == 5 {
+      box-shadow: 0 16px 24px 2px $top-shadow-color, 0 6px 30px 5px $middle-shadow-color, 0 8px 10px -5px $bottom-shadow-color;
+    }
   }
 }
 
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  } @else {
-    @return $number;
-  }
-}
-
+/// Get a material design color for the color palette.
+/// This will be able to find a primary or an accent color for all the colors on the material design color palette page.
+///
+/// The only exceptions are brown, grey, and blue-grey. These will only return their primary colors. Black and white will
+/// work as an rgba instead on their base colors where $hue is the opacity level.
+///
+/// @example scss - Basic Usage Sass
+///    .some-primary-bg {
+///      background: get-md-color(indigo);
+///    }
+///
+/// @example scss - Basic Usage CSS Output
+///    .some-primary-bg {
+///      background: #3F51B5;
+///    }
+///
+/// @example scss - Primary Color with Specific Hue Sass
+///   .some-bg {
+///     background: get-md-color(deep-purple, 3);
+///   }
+///
+/// @example scss - Primary Color with Specific Hue CSS Output
+///   .some-bg {
+///     background: #9fa8da;
+///   }
+///
+/// @example scss - Accent Color Sass
+///   .some-bg {
+///     background: get-md-color(teal, 2, true);
+///   }
+///
+/// @example scss - Accent Color CSS Output
+///   .some-bg {
+///     background: #64ffda;
+///   }
+///
+/// @example scss - Black color Sass
+///   .some-bg {
+///     background: get-md-color(black, .26);
+///   }
+///
+/// @example scss - Black Color CSS Output
+///   .some-bg {
+///     background: rgba(0, 0, 0, .26);
+///   }
+///
+/// @link https://www.google.com/design/spec/style/color.html#color-color-palette
+///
+/// @param {String} $color - One of the material design colors to look up. Should be one of (red pink purple deep-purple indigo blue light-blue cyan teal
+///     green light-green lime yellow amber orange deep-orange brown grey blue-grey).
+/// @param {Number} $hue [6] - This is the color mapping from the material design color palette page. This value should be in the range
+///     from 1 - 10 when this is a primary color. 1 would return the color with a strength of 50, while 2 - 10 would return a color with a strength of a multiple of 100.
+///     The value should be in the range from 1 - 4 when it is an accent color.
+///     Finally, the value should be a number from 0 - 1 when the color is black.
+/// @param {Bool} $accent [false] - Is this color an accent color?
+/// @return {String} the material design color code
 @function get-md-color($color, $hue: 6, $accent: false) {
-  // scss-lint:disable ColorKeyword ColorVariable
+  @if $color == black or $color == white {
+    @return rgba(if($color == black, $black-base, $white-base), if($hue > 1, 1, $hue));
+  }
   $colors: (red pink purple deep-purple indigo blue light-blue cyan teal green light-green lime yellow amber orange deep-orange brown grey blue-grey);
   $color-index: index($colors, $color);
 
@@ -470,6 +541,37 @@
   transform: translate3d(if($left, -50%, 0), if($top, -50%, 0), 0) $additional-transform;
 }
 
+/// Generates the css for keeping an aspect ratio for the target element.
+///
+/// @example scss - Basic Usage Sass
+///   .aspect-16-9 {
+///     @include aspect-ratio();
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .aspect-16-9 {
+///     position: relative;
+///   }
+///
+///   .aspect-16-9:before {
+///     content: '';
+///     display: block;
+///     padding-top: 56.25%;
+///     width: 100%;
+///   }
+///
+///   .aspect-16-9 > img {
+///     bottom: 0;
+///     left: 0;
+///     position: absolute;
+///     right: 0;
+///     top: 0;
+///     width: 100%;
+///   }
+///
+/// @param {String} $target [img] - The target to force the aspect ratio on
+/// @param {Number} $width [16] - The target width ratio
+/// @param {Number} $height [9] - The target height ratio
 @mixin aspect-ratio($target: img, $width: 16, $height: 9) {
   position: relative;
 
@@ -487,6 +589,15 @@
     right: 0;
     top: 0;
     width: 100%;
+  }
+}
+
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  } @else {
+    @return $number;
   }
 }
 
