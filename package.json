@@ -36,6 +36,7 @@
     "babelify": "^7.2.0",
     "browser-sync": "^2.10.0",
     "browserify": "^12.0.1",
+    "connect-history-api-fallback": "^1.1.0",
     "del": "^2.1.0",
     "eslint-plugin-react": "^3.10.0",
     "gulp": "^3.9.0",

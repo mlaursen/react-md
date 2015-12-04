@@ -1,5 +1,5 @@
 .md-icon {
-  font-size: 24px;
+  font-size: $md-font-icon-size;
 }
 
 .md-btn {
@@ -62,12 +62,12 @@
   @include md-box-shadow(2);
 
   border-radius: 50%;
-  height: $md-btn-floating-action-size;
-  width: $md-btn-floating-action-size;
+  height: $md-btn-fab-size;
+  width: $md-btn-fab-size;
 
   &.mini {
-    height: $md-btn-floating-action-size-mini;
-    width: $md-btn-floating-action-size-mini;
+    height: $md-btn-fab-size-mini;
+    width: $md-btn-fab-size-mini;
   }
 
   &:active {
@@ -79,6 +79,17 @@
   }
 }
 
+/// Make a material design default button
+/// This will generate the style for a flat, raised, and fab button
+///
+/// @group buttons
+/// @param {String} $color - The text color to use
+/// @param {String} $hover-focus-bg-color - The hover and focus color for the button
+/// @param {String} $active-bg-color - The color to use when active
+/// @param {String} $ripple-bg-color - The ripple background color
+/// @param {String} $raised-border-color [null] - The raised border color. If this value is set,
+///   raised and floating buttons will get a background of the white base and the raised buttonm
+///   with get a border with the border color
 @mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $ripple-bg-color, $raised-border-color: null) {
   .md-btn-default {
     color: $color;
@@ -109,6 +120,16 @@
   }
 }
 
+/// Make a material design button type
+///
+/// @group buttons
+/// @param {String} $type - The button type to make.
+/// @param {String} $color - The color to use for the button.
+/// @param {Number} $hover-hue - The hue for the hover color.
+/// @param {Number} $ripple-hue [null] - This is used to generate the flat button.
+/// @param {Number} $hue [6] - The color's hue for the button
+/// @param {String} $hover-color [$color] - The hover color for the button
+/// @param {String} $ripple-color [$color] - The ripple's color. It gets an opacity of .3 applied to it
 @mixin make-md-btn($type, $color, $hover-hue, $ripple-hue: null, $hue: 6, $hover-color: $color, $ripple-color: $color) {
   $secondary: $type == 'secondary';
 

@@ -15,6 +15,8 @@ import babelify from 'babelify';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
+import sassdoc from 'sassdoc';
+import historyAPIFallback from 'connect-history-api-fallback';
 
 const SRC = './src';
 const EXAMPLE_SRC = './example';
@@ -87,6 +89,12 @@ gulp.task('styles', () => {
 });
 
 
+gulp.task('sassdoc', () => {
+  return gulp.src(`${SRC}/${SCSS}/**/*.scss`).pipe(sassdoc());
+});
+gulp.task('sassdoc:watch', ['sassdoc'], browserSync.reload);
+
+
 gulp.task('lint', () => {
   return lint(SRC);
 });
@@ -152,5 +160,18 @@ gulp.task('serve', ['dist:example'], () => {
   });
   watch('./+(src|example)/**/*.scss', () => {
     gulp.start('styles-watch:example');
+  });
+});
+
+gulp.task('serve-sassdoc', ['sassdoc'], () => {
+  browserSync({
+    server: {
+      baseDir: './sassdoc',
+      middleware: [historyAPIFallback()],
+    },
+  });
+
+  watch(`${SRC}/${SCSS}/**/*.scss`, () => {
+    gulp.start('sassdoc:watch');
   });
 });
