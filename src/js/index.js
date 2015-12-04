@@ -14,3 +14,4 @@ export Avatar from './Avatar';
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 
 export Toolbar from './Toolbar';
+export Slider from './Slider';
