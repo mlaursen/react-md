@@ -45,11 +45,11 @@
 
   &.disabled {
     .md-control {
-      border-color: rgba($black-base, .26);
+      border-color: $color-disabled;
     }
 
     .md-switch:before {
-      background: $color-divider;
+      background: $color-disabled;
     }
   }
 
@@ -62,7 +62,7 @@
     z-index: 2;
 
     &.active {
-      @include absolute-center(false, false, scale(1));
+      @include absolute-center(true, true, scale(1));
 
       transition: transform $md-btn-ripple-transition-time, opacity $md-btn-ripple-transition-time ease $md-transition-time;
     }
@@ -89,7 +89,7 @@
     font-size: #{$md-font-size-base}px;
     left: 2px;
     position: absolute;
-    top: -3px;
+    top: -1px;
   }
 }
 

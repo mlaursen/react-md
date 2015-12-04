@@ -26,24 +26,24 @@ $white-base: #fff;
 /// The text color for light backgrounds
 /// @link https://www.google.com/design/spec/style/color.html#color-ui-color-application
 /// @group Color
-$color-text: rgba($black-base, .23);
+$color-text: rgba($black-base, .77);
 /// The Secondary text color on light backgrounds
 /// @group Color
-$color-text-secondary: rgba($black-base, .46);
+$color-text-secondary: rgba($black-base, .54);
 /// The color for icons on light backgrounds
 /// @alias color-text-secondary
 /// @group Color
 $color-icons: $color-text-secondary;
 /// The color for disabled text on light backgrounds
 /// @group Color
-$color-disabled: rgba($black-base, .62);
+$color-disabled: rgba($black-base, .38);
 /// The hint text color on light backgrounds
 /// @alias color-disabled
 /// @group Color
 $color-hint-text: $color-disabled;
 /// The divider color on light backgrounds
 /// @group Color
-$color-divider: rgba($black-base, .88);
+$color-divider: rgba($black-base, .12);
 
 /// The text color for dark backgrounds
 /// @group Color
@@ -51,21 +51,21 @@ $color-text-alt: $white-base;
 
 /// The secondary text color for dark backgrounds
 /// @group Color
-$color-text-secondary-alt: rgba($white-base, .30);
+$color-text-secondary-alt: rgba($white-base, .70);
 /// The icon color for dark backgrounds
 /// @alias color-text-secondary-alt
 /// @group Color
 $color-text-icons-alt: $color-text-secondary-alt;
 /// The disabled text color on dark backgrounds
 /// @group Color
-$color-disabled-alt: rgba($white-base, .70);
+$color-disabled-alt: rgba($white-base, .30);
 /// The hint text color on dark backgrounds
 /// @alias color-disabled-alt
 /// @group Color
 $color-hint-text-alt: $color-disabled-alt;
 /// The divider color on dark backgrounds
 /// @group Color
-$color-divider-alt: rgba($white-base, .88);
+$color-divider-alt: rgba($white-base, .12);
 
 /// The status bar color for light backgrounds
 /// @group Color
@@ -148,7 +148,7 @@ $md-btn-fab-size-mini: 40px;
 
 /// The default ripple transition time for buttons
 /// @group buttons
-$md-btn-ripple-transition-time: .3s !default;
+$md-btn-ripple-transition-time: $md-transition-time * 3 !default;
 
 /// The font icon size
 /// @group font-icon
