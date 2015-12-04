@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
