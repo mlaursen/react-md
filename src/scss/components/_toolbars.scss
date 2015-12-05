@@ -1,5 +1,7 @@
 .md-toolbar {
   @include md-box-shadow(1);
+
+  background: $color-app-bar;
 }
 
 .md-toolbar-primary {

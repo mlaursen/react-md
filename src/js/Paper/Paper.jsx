@@ -11,17 +11,17 @@ export default class Paper extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    paperHeight: PropTypes.number.isRequired,
+    zDepth: PropTypes.number.isRequired,
     children: PropTypes.node,
   }
 
   static defaultProps = {
-    paperHeight: 1,
+    zDepth: 1,
   }
 
   render() {
-    const { children, paperHeight, ...props } = this.props;
-    const className = classnames('paper', `paper-${paperHeight}`, props.className);
+    const { children, zDepth, ...props } = this.props;
+    const className = classnames('paper', `paper-${zDepth}`, props.className);
     return <div {...props} className={className}>{children}</div>;
   }
 }

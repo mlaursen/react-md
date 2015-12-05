@@ -154,10 +154,13 @@ $md-btn-ripple-transition-time: $md-transition-time * 3 !default;
 /// @group font-icon
 $md-font-icon-size: 24px !default;
 /// The font icon button size
-/// @#group buttons
+/// @group buttons
 /// @see md-font-icon-size
 $md-font-icon-btn-size: $md-font-icon-size * 2;
 
+
+/// The default padding used across the board
+$md-default-padding: 16px;
 
 // =============================================
 // Tabs
@@ -181,7 +184,7 @@ $md-tab-slide-transition-time: $md-transition-time * 2 !default;
 /// The default card padding
 /// @link https://www.google.com/design/spec/components/cards.html
 /// @group cards
-$md-card-padding: 16px;
+$md-card-padding: $md-default-padding;
 /// @group cards
 $md-card-padding-extra: 24px;
 /// @group cards
@@ -213,7 +216,7 @@ $md-control-switch-background: rgba($black-base, .26) !default;
 /// @group selection-controls
 $md-control-switch-ball-size: $md-font-icon-size !default;
 /// @group selection-controls
-$md-control-switch-height: 16px !default;
+$md-control-switch-height: $md-default-padding !default;
 /// @group selection-controls
 $md-control-switch-radius: $md-control-switch-height / 2 !default;
 

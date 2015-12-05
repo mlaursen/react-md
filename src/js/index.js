@@ -15,3 +15,4 @@ export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 
 export Toolbar from './Toolbar';
 export Slider from './Slider';
+export { List, ListItem, ListDivider } from './Lists';
