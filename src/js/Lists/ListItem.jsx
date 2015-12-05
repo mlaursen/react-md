@@ -22,22 +22,22 @@ class ListItem extends Component {
   }
 
   renderText = () => {
-    const { primaryText, secondaryText, leftIcon, leftAvatar, rightIcon } = this.props;
-    const tileTitle = <span key="tile-title" className="md-tile-title">{primaryText}</span>;
+    const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar } = this.props;
+    const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
 
     if(!leftIcon && !leftAvatar && !rightIcon) {
       return tileTitle;
     }
 
     const contentClassName = classnames('md-tile-content', {
-      'icon-left': !!leftIcon,
-      'avatar-left': !!leftAvatar,
-      'icon-right': !!rightIcon,
+      'icon-left': !!leftIcon || !!leftAvatar,
+      'icon-right': !!rightIcon || !!rightAvatar,
     });
     return (
       <div key="tile-content" className={contentClassName}>
         {tileTitle}
         {secondaryText && <div className="md-tile-secondary-text">{secondaryText}</div>}
+        {secondaryText2 && <div className="md-tile-secondary-text">{secondaryText2}</div>}
       </div>
     );
   }
@@ -56,10 +56,11 @@ class ListItem extends Component {
   }
 
   render() {
-    const { component, className, ...props } = this.props;
+    const { component, className, secondaryText, secondaryText2, ...props } = this.props;
+    console.log(secondaryText, secondaryText2);
     return React.createElement(component || 'li', {
       role: 'button',
-      className: classnames('md-list-tile', className),
+      className: classnames('md-list-tile', className, { 'md-list-3-lines': !!secondaryText && !!secondaryText2 }),
       ...props,
     }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { Paper, FontIcon, IconButton, List, ListItem, ListDivider, Toolbar } from '../../../src/js/index';
+import { Avatar, Paper, FontIcon, IconButton, List, ListItem, ListDivider, Toolbar } from '../../../src/js/index';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <section style={{ display: 'flex', alignItems: 'flex-start' }}>
+      <section style={{ display: 'flex', alignItems: 'flex-start', flexWrap: 'wrap' }}>
         <Paper zDepth={3} style={{ width: 256, margin: '1em' }}>
           <Toolbar primary>
             <IconButton>menu</IconButton>
@@ -38,6 +38,39 @@ export default class Dashboard extends Component {
             <ListItem leftIcon={<FontIcon>touch_app</FontIcon>} primaryText="Reminders" />
             <ListItem leftIcon={<FontIcon>delete</FontIcon>} primaryText="Trash" />
             <ListItem leftIcon={<FontIcon>report</FontIcon>} primaryText="Spam" />
+          </List>
+        </Paper>
+        <Paper zDepth={3} style={{ width: 256, margin: '1em' }}>
+          <Toolbar primary>
+            <IconButton>menu</IconButton>
+          </Toolbar>
+          <List>
+            <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Photos" secondaryText="Jan 9, 2014" />
+            <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Recipes" secondaryText="Jan 17, 2014" />
+            <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Work" secondaryText="Jan 28, 2014" />
+          </List>
+        </Paper>
+        <Paper zDepth={3} style={{ width: 256, margin: '1em' }}>
+          <Toolbar primary>
+            <IconButton>menu</IconButton>
+          </Toolbar>
+          <List>
+            <ListItem
+              leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+              primaryText="Brunch this weekend?"
+              secondaryText="Ali Connors"
+              secondaryText2="I'll be in your neighborhood sometime this week"
+            />
+            <ListItem
+              leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+              primaryText="Summer BBQ"
+              secondaryText="Ali Connors"
+            />
+            <ListItem
+              leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+              primaryText="Oui Oui"
+              secondaryText="Ali Connors"
+            />
           </List>
         </Paper>
       </section>

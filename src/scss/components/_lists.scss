@@ -54,12 +54,25 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
     @extend %md-tile-extra-margin-bottom;
   }
 
+  &.md-list-avatar {
+    height: 56px;
+  }
+
+  &.md-list-3-lines {
+    height: 88px;
+  }
+
   .ripple {
     background: rgba($black-base, .15);
+  }
+
+  > *:not(.md-tile-content) {
+    flex-shrink: 0;
   }
 }
 
 .md-tile-content {
+  overflow: hidden;
   padding-left: $md-tile-left-padding;
 
   &.icon-left {
@@ -67,6 +80,19 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   }
 }
 
-.md-tile-title {
+.md-tile-primary-text,
+.md-tile-secondary-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.md-tile-primary-text {
+  display: block;
   font-size: 16px;
+}
+
+.md-tile-secondary-text {
+  color: $color-text-secondary;
+  font-size: #{$md-font-size-base}px;
 }
