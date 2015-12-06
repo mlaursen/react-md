@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 import { Link } from 'react-router';
 
-import * as components from '..//components';
+import { fuzzyFilter } from '../../../src/js/utils/PropUtils';
+
+import * as components from '../components';
 const componentLinks = Object.keys(components).map(k => {
   const c = components[k];
   if(!c.name) {
@@ -15,35 +18,48 @@ const componentLinks = Object.keys(components).map(k => {
   };
 }).filter(c => !!c);
 
-import { FlatButton, RaisedButton, FloatingButton, IconButton } from '../../../src/js/index';
-import { Tabs, Tab } from '../../../src/js/index';
-import { Paper } from '../../../src/js/index';
-import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
-import { Avatar } from '../../../src/js/index';
-import { FontIcon } from '../../../src/js/index';
-import { Checkbox, Radio, RadioGroup, Switch } from '../../../src/js/index';
-import { Toolbar } from '../../../src/js/index';
+//import { FlatButton, RaisedButton, FloatingButton, IconButton } from '../../../src/js/index';
+//import { Tabs, Tab } from '../../../src/js/index';
+//import { Paper } from '../../../src/js/index';
+//import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
+//import { Avatar } from '../../../src/js/index';
+//import { FontIcon } from '../../../src/js/index';
+//import { Checkbox, Radio, RadioGroup, Switch } from '../../../src/js/index';
+//import { Toolbar } from '../../../src/js/index';
+
+import { AppBar, IconButton, List, ListItem } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { activeTabIndex: 0 };
+    this.state = { isNavOpen: true, filteredLinks: componentLinks };
   }
 
-  handleTabChange = (i, tab) => {
-    console.log('Clicked tab', tab);
-    this.setState({ activeTabIndex: i });
+  toggleSidebar = () => {
+    this.setState({ isNavOpen: !this.state.isNavOpen });
+  }
+
+  filterLinks = (e) => {
+    this.setState({ filteredLinks: fuzzyFilter(componentLinks, e.target.value, 'label') });
   }
 
   render() {
     return (
       <div>
-        <nav className="components-nav">
-          <ul className="md-list">
-            {componentLinks.map(cl => <Link key={cl.link} activeClassName="active" className="md-list-item" to={`/${cl.link}`}>{cl.label}</Link>)}
-          </ul>
+        <AppBar
+          title="react md"
+          leftNode={<IconButton onClick={this.toggleSidebar}>menu</IconButton>}
+          rightNode={<IconButton href="https://github.com/mlaursen/react-md" iconClassName="fa fa-github" />}
+        />
+        <nav className={classnames('md-sidebar', { 'active': this.state.isNavOpen })}>
+          <List>
+            <li key="filter" className="md-list-tile">
+              <input type="text" onChange={this.filterLinks} placeholder="Filter components" />
+            </li>
+            {this.state.filteredLinks.map(cl => <ListItem key={cl.link} activeClassName="active" to={`/${cl.link}`} component={Link} primaryText={cl.label} />)}
+          </List>
         </nav>
         <main>
           {this.props.children}

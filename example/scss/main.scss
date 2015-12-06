@@ -6,10 +6,6 @@
   main {
     width: 720px;
   }
-
-  .card-section .md-card {
-    margin: 0;
-  }
 }
 
 @media (min-width: 992px) {
@@ -24,8 +20,22 @@
   }
 }
 
+html,
+body,
+#app,
+#app > div {
+  height: 100%;
+}
+
+#app > div {
+  display: flex;
+}
+
+#app .md-sidebar {
+  position: initial;
+}
+
 main {
-  margin: 0 auto;
   padding: 1em;
 }
 
@@ -83,5 +93,18 @@ main {
 
   .md-avatar {
     margin: 0 1em;
+  }
+}
+
+.examples {
+  align-items: flex-start;
+  display: flex;
+  margin: 1em;
+}
+
+.examples-list {
+  .paper {
+    margin: 1em;
+    width: 256px;
   }
 }

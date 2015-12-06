@@ -20,19 +20,28 @@ class IconButton extends Component {
     onClick: PropTypes.func,
     tooltipPosition: PropTypes.string,
     tooltip: PropTypes.string,
+    href: PropTypes.string,
+  }
+
+  static defaultProps = {
+    type: 'button',
   }
 
   render() {
-    const { iconClassName, children, className, ...props } = this.props;
-    const btnProps = {
+    const { iconClassName, children, className, href, type, ...props } = this.props;
+    let btnProps = {
       ...props,
       className: classnames(className, 'md-btn', 'md-btn-icon'),
     };
-    return (
-      <button {...btnProps}>
-        <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
-      </button>
-    );
+
+    if(href) {
+      btnProps.href = href;
+    } else {
+      btnProps.type = type;
+    }
+    return React.createElement(href ? 'a' : 'button', btnProps, (
+      <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
+    ));
   }
 }
 

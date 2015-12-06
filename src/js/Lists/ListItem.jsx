@@ -57,7 +57,6 @@ class ListItem extends Component {
 
   render() {
     const { component, className, secondaryText, secondaryText2, ...props } = this.props;
-    console.log(secondaryText, secondaryText2);
     return React.createElement(component || 'li', {
       role: 'button',
       className: classnames('md-list-tile', className, { 'md-list-3-lines': !!secondaryText && !!secondaryText2 }),

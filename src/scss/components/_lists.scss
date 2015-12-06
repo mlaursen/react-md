@@ -16,6 +16,23 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   .md-divider.inset {
     margin-left: $md-list-tile-left-padding;
   }
+
+  .md-subheader {
+    color: $color-text-secondary;
+    font-family: $md-font;
+    font-weight: $md-font-medium;
+    height: 48px;
+    margin: 0;
+
+    &.alt {
+      color: get-md-color($color-primary);
+    }
+  }
+
+  a {
+    color: $color-text;
+    text-decoration: none;
+  }
 }
 
 %md-tile-extra-margin-top {
@@ -39,6 +56,10 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   position: relative;
   overflow: hidden;
   transition: background $md-transition-time;
+
+  &.active {
+    color: get-md-color($color-primary);
+  }
 
   &:hover {
     cursor: pointer;

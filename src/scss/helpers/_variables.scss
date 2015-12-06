@@ -224,3 +224,9 @@ $md-control-switch-radius: $md-control-switch-height / 2 !default;
 $md-control-switch-offset: $md-control-switch-height / 4;
 /// @group selection-controls
 $md-control-switch-width: $md-control-container-size + $md-control-switch-height - $md-control-switch-offset !default;
+
+
+// =============================================
+// App Bar
+/// @group app-bar
+$md-app-bar-height: 65px !default;

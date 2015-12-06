@@ -43,3 +43,20 @@ export function animate(el, increment, elapsedTime, transitionTime, styleName, s
   }
 }
 
+
+export function fuzzyFilter(items, word, key = null) {
+  if(!items || !items.length || !word) { return items; }
+
+  const lv = word.toLowerCase();
+  return items.filter(item => {
+    const li = (key ? item[key] : item).toLowerCase();
+    let lastFound = -1;
+    for(let i = 0; i < lv.length; i++) {
+      lastFound = li.indexOf(lv[i], lastFound + i);
+      if(lastFound === -1) {
+        return false;
+      }
+    }
+    return true;
+  });
+}

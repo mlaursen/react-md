@@ -4,6 +4,7 @@
   "description": "React material design components",
   "main": "dist/index.js",
   "scripts": {
+    "dist": "babel ./src/js --out-dir ./dist --source-maps --presets es2015,react,stage-0 --plugins babel-plugin-add-module-exports",
     "sassdoc": "sassdoc ./src/scss/*"
   },
   "repository": {
@@ -29,6 +30,7 @@
     "babel": "^6.1.18",
     "babel-core": "^6.2.1",
     "babel-eslint": "^4.1.5",
+    "babel-plugin-add-module-exports": "^0.1.1",
     "babel-plugin-transform-decorators": "^6.1.18",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
@@ -62,7 +64,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.0",
-    "normalize-scss": "^4.0.1",
     "normalize-scss-vanilla": "^1.0.1"
   }
 }

@@ -1,0 +1,14 @@
+.md-sidebar {
+  @extend .paper;
+  @extend .paper-2;
+
+  height: 100%;
+  position: fixed;
+  transition: width $md-transition-time;
+  width: 0;
+  z-index: 2;
+
+  &.active {
+    width: 256px;
+  }
+}

@@ -17,17 +17,12 @@ h6 {
 }
 
 
-h1,
 .md-display-4 {
   font-size: #{112 / $md-font-size-base}em;
   font-weight: $md-font-light;
 }
 
 
-h2,
-h3,
-h4,
-h5,
 .md-display-3,
 .md-display-2,
 .md-display-1,
@@ -35,30 +30,25 @@ h5,
   font-weight: $md-font-regular;
 }
 
-h2,
 .md-display-3 {
   font-size: #{56 / $md-font-size-base}em;
 }
 
-h3,
 .md-display-2 {
   font-size: #{45 / $md-font-size-base}em;
   line-height: #{48 / $md-font-size-base};
 }
 
-h4,
 .md-display-1 {
   font-size: #{34 / $md-font-size-base}em;
   line-height: #{40 / $md-font-size-base};
 }
 
-h5,
 .md-headline {
   font-size: #{24 / $md-font-size-base}em;
   line-height: #{32 / $md-font-size-base};
 }
 
-h6,
 .md-title {
   font-size: #{20 / $md-font-size-base}em;
   font-weight: $md-font-medium;
@@ -96,10 +86,6 @@ p,
   line-height: #{28 / $md-font-size-base};
 }
 
-h1,
-h2,
-h3,
-h4,
 caption,
 .md-display-4,
 .md-display-3,
@@ -109,8 +95,6 @@ caption,
   color: rgba($black-base, .54);
 }
 
-h5,
-h6,
 p,
 .md-headline,
 .md-title,

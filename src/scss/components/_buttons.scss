@@ -22,9 +22,11 @@
 
 .md-btn-icon {
   background: transparent;
+  color: inherit;
   font-size: 0;
   height: $md-font-icon-btn-size;
   padding: $md-font-icon-btn-size / 4;
+  text-decoration: none;
   width: $md-font-icon-btn-size;
 
   .ripple {

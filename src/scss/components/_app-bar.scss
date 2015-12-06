@@ -1,0 +1,26 @@
+.md-app-bar,
+.md-app-bar-left {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.md-app-bar {
+  height: $md-app-bar-height;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 4;
+}
+
+.md-app-bar-title {
+  color: $white-base;
+  display: inline-block;
+  font-size: $md-font-icon-size;
+  font-weight: $md-font-regular;
+  margin: 0;
+}
+
+.md-app-bar ~ * {
+  padding-top: $md-app-bar-height;
+}
