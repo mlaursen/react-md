@@ -27,7 +27,7 @@ const componentLinks = Object.keys(components).map(k => {
 //import { Checkbox, Radio, RadioGroup, Switch } from '../../../src/js/index';
 //import { Toolbar } from '../../../src/js/index';
 
-import { AppBar, IconButton, List, ListItem } from '../../../src/js/index';
+import { AppBar, IconButton, List, ListItem, Sidebar } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
@@ -47,20 +47,23 @@ export default class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="react-md">
         <AppBar
           title="react md"
           leftNode={<IconButton onClick={this.toggleSidebar}>menu</IconButton>}
           rightNode={<IconButton href="https://github.com/mlaursen/react-md" iconClassName="fa fa-github" />}
         />
-        <nav className={classnames('md-sidebar', { 'active': this.state.isNavOpen })}>
-          <List>
-            <li key="filter" className="md-list-tile">
-              <input type="text" onChange={this.filterLinks} placeholder="Filter components" />
-            </li>
-            {this.state.filteredLinks.map(cl => <ListItem key={cl.link} activeClassName="active" to={`/${cl.link}`} component={Link} primaryText={cl.label} />)}
-          </List>
-        </nav>
+        <Sidebar
+          isOpen={this.state.isNavOpen}
+          items={this.state.filteredLinks.map(fl => ({
+            component: Link,
+            activeClassName: 'active',
+            to: `/${fl.link}`,
+            primaryText: fl.label,
+            key: fl.link,
+          }))}
+          header={<header><input type="text" onChange={this.filterLinks} /></header>}
+         />
         <main>
           {this.props.children}
           {/*

@@ -8,6 +8,7 @@ export Dividers from './Dividers';
 export GridLists from './GridLists';
 export Lists from './Lists';
 export Menus from './Menus';
+export Papers from './Papers';
 export Pickers from './Pickers';
 export SelectionControls from './SelectionControls';
 export Sliders from './Sliders';
