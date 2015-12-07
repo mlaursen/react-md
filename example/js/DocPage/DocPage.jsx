@@ -16,28 +16,32 @@ export default class DocPage extends Component {
     imports: PropTypes.arrayOf(PropTypes.string).isRequired,
     defaultImport: PropTypes.string,
     examples: PropTypes.arrayOf(PropTypes.object),
-    component: PropTypes.func.isRequired,
-    propsDesc: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      desc: PropTypes.string.isRequired,
-    })),
+    sectionName: PropTypes.string,
+    components: PropTypes.arrayOf(PropTypes.shape({
+      component: PropTypes.func.isRequired,
+      details: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        desc: PropTypes.string.isRequired,
+        propType: PropTypes.string,
+      })).isRequired,
+    })).isRequired,
   }
 
   render() {
-    const { imports, defaultImport, examples, component, propsDesc } = this.props;
-    const componentName = component.name;
-    const cssClassName = componentName.split('(?=[A-Z])').map(s => s.toLowerCase()).join('-');
+    const { imports, defaultImport, examples, components, sectionName } = this.props;
+    const docSectionName = sectionName || components[0].component.name;
+    const cssClassName = docSectionName.split('(?=[A-Z])').map(s => s.toLowerCase()).join('-');
 
     return (
       <div className={`react-md-doc react-md-${cssClassName}`}>
         <h1 className="md-display-2">
-          {componentName}
-          <a className="react-md-source" href={`https://github.com/mlaursen/tree/master/src/js/${componentName}`}>Source code <span className="fa fa-github" /></a>
+          {docSectionName}
+          <a className="react-md-source" href={`https://github.com/mlaursen/tree/master/src/js/${docSectionName}`}>Source code <span className="fa fa-github" /></a>
         </h1>
-        <DocCode imports={imports} defaultImport={defaultImport || componentName} />
+        <DocCode imports={imports} defaultImport={defaultImport || docSectionName} />
         <h4 className="md-display-1">Examples</h4>
         <DocExamples examples={examples} className={cssClassName} />
-        <DocProps propsDesc={propsDesc} component={component} />
+        {components.map(component => <DocProps key={component.component.name} {...component} />)}
       </div>
     );
   }

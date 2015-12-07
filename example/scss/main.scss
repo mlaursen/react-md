@@ -29,6 +29,10 @@ main {
   }
 }
 
+.react-md-props-card {
+  width: 100%;
+}
+
 .examples {
   align-items: flex-start;
   display: flex;
@@ -48,9 +52,6 @@ main {
     }
   }
 
-  .md-card {
-    width: 100%;
-  }
 }
 
 .buttons-section {

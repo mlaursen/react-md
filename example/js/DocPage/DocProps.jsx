@@ -12,9 +12,10 @@ export default class DocProps extends Component {
 
   static propTypes = {
     component: PropTypes.func.isRequired,
-    propsDesc: PropTypes.arrayOf(PropTypes.shape({
+    details: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       desc: PropTypes.string.isRequired,
+      propType: PropTypes.string,
     })).isRequired,
     allRemaining: PropTypes.bool,
   }
@@ -41,7 +42,7 @@ export default class DocProps extends Component {
   }
 
   render() {
-    const { component, propsDesc, allRemaining } = this.props;
+    const { component, details, allRemaining } = this.props;
     const { propTypes, defaultProps } = component;
 
     let extraProps = [];
@@ -65,7 +66,7 @@ export default class DocProps extends Component {
       });
     }
 
-    let items = propsDesc.concat(extraProps).map(settings => {
+    let items = details.concat(extraProps).map(settings => {
       const { name, propType, isRequired, desc } = settings;
       const defaultValue = defaultProps[name];
       return (
@@ -83,7 +84,7 @@ export default class DocProps extends Component {
     });
 
     return (
-      <Card>
+      <Card className="react-md-props-card">
         <CardText>
           <table className="md-data-table">
             <thead>
