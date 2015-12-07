@@ -51,10 +51,10 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   align-items: center;
   display: flex;
   height: 48px;
+  overflow: hidden;
   padding: $md-default-padding;
   padding-bottom: 20px;
   position: relative;
-  overflow: hidden;
   transition: background $md-transition-time;
 
   &.active {
@@ -62,8 +62,8 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   }
 
   &:hover {
-    cursor: pointer;
     background-color: $color-divider;
+    cursor: pointer;
   }
 
   &:first-child {

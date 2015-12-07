@@ -14,10 +14,12 @@ class ListItem extends Component {
   static propTypes = {
     primaryText: PropTypes.string.isRequired,
     secondaryText: PropTypes.node,
+    secondaryText2: PropTypes.node,
     className: PropTypes.string,
     leftIcon: PropTypes.node,
     leftAvatar: PropTypes.node,
     rightIcon: PropTypes.node,
+    rightAvatar: PropTypes.node,
     component: PropTypes.func,
   }
 
