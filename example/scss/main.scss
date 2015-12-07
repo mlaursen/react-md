@@ -1,42 +1,56 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css';
 @import '../../src/scss/react-md';
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
 
-@media (min-width: 768px) {
-  main {
-    width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  main {
-    width: 940px;
-  }
-}
-
-@media (min-width: 1200px) {
-  main {
-    width: 1140px;
-  }
-}
-
-html,
-body,
-#app,
-#app > div {
+html {
   height: 100%;
 }
 
-#app > div {
+body {
+  min-height: 100%;
+}
+
+.react-md {
   display: flex;
 }
 
-#app .md-sidebar {
-  position: initial;
+main {
+  flex-grow: 1;
 }
 
-main {
-  padding: 1em;
+.react-md-source {
+  color: inherit;
+  font-size: #{$md-font-size-base}px;
+  margin-left: 2em;
+
+  .fa-github {
+    padding-left: .5em;
+  }
+}
+
+.examples {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+
+.react-md-paper {
+  .paper-examples {
+    > div {
+      align-items: center;
+      display: flex;
+      height: 300px;
+      justify-content: center;
+      margin: 1em;
+      width: 300px;
+    }
+  }
+
+  .md-card {
+    width: 100%;
+  }
 }
 
 .buttons-section {
@@ -46,31 +60,6 @@ main {
 
   .md-btn {
     margin: 1em;
-  }
-}
-
-.flex-column {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin: 3em;
-}
-
-.tabs-section {
-  margin: 0 auto;
-}
-
-.card-section {
-
-  .md-card {
-    margin: 1em;
-  }
-
-  .card-grid {
-    .md-card {
-      width: 300px;
-    }
   }
 }
 
@@ -96,15 +85,67 @@ main {
   }
 }
 
-.examples {
-  align-items: flex-start;
-  display: flex;
-  margin: 1em;
-}
-
 .examples-list {
   .paper {
     margin: 1em;
     width: 256px;
+  }
+}
+
+
+.react-md-doc{
+  margin: 2em;
+  margin-top: 0;
+}
+
+.react-md-code {
+  @include make-paper(2);
+
+  display: block;
+  font: 'Source Code Pro', monospace;
+  padding: 1em;
+}
+
+.react-md-code-block,
+.react-md-code-block * {
+  font-family: 'Source Code Pro', monospace;
+  margin: 0;
+  line-height: 1.4563;
+}
+
+.react-md-code-block {
+
+  &.code-comment-block:not(:first-child) {
+    &:before {
+      content: '';
+      display: block;
+      height: 1em;
+    }
+  }
+
+  .code-comment {
+    color: $color-text-secondary;
+
+    &:before {
+      content: '// ';
+    }
+  }
+}
+
+.prop-type {
+  color: rgba($black-base, .54);
+  padding-right: 1em
+}
+
+.prop-desc {
+  margin: 0;
+  margin-top: .5em;
+}
+
+.prop-required {
+  &:before {
+    color: rgba($black-base, .54);
+    content: '(isRequired)';
+    padding-left: .5em;
   }
 }
