@@ -21,7 +21,7 @@ export default class Paper extends Component {
 
   render() {
     const { children, zDepth, ...props } = this.props;
-    const className = classnames('paper', `paper-${zDepth}`, props.className);
+    const className = classnames(`paper-${zDepth}`, props.className);
     return <div {...props} className={className}>{children}</div>;
   }
 }
