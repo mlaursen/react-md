@@ -1,14 +1,51 @@
-.md-sidebar {
-  @extend .paper;
-  @extend .paper-2;
-
-  height: 100%;
+@mixin make-sidebar-fixed() {
+  height: 100vh;
   position: fixed;
-  transition: width $md-transition-time;
-  width: 0;
   z-index: 2;
+}
 
-  &.active {
-    width: 256px;
+@mixin make-sidebar-responsive($min-width, $width: $md-sidebar-open-width, $fixed: false) {
+  @media screen and (min-width: $min-width) {
+    .md-sidebar-container.md-sidebar-responsive {
+      @if $fixed == true {
+        @include make-sidebar-fixed();
+      }
+
+      .md-sidebar.active {
+        width: $width;
+      }
+    }
   }
 }
+
+@include make-sidebar-responsive(360px, calc(100vw - #{$md-font-icon-btn-size}), true);
+@include make-sidebar-responsive(361px);
+
+.md-sidebar-container {
+  @extend %full-height;
+
+  display: inline-block;
+
+  &.md-sidebar-responsive {
+    display: flex;
+    height: initial;
+    position: initial;
+  }
+
+  &.fixed {
+    @include make-sidebar-fixed();
+  }
+}
+
+.md-sidebar {
+  @include make-paper(2);
+
+  overflow: hidden;
+  transition: width $md-transition-time;
+  width: 0;
+
+  &.active {
+    width: $md-sidebar-open-width;
+  }
+}
+

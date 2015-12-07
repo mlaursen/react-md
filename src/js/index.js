@@ -17,3 +17,4 @@ export Toolbar from './Toolbar';
 export Slider from './Slider';
 export { List, ListItem, ListDivider } from './Lists';
 export AppBar from './AppBar';
+export Sidebar from './Sidebar';
