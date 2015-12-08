@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import { Link } from 'react-router';
@@ -18,23 +18,16 @@ const componentLinks = Object.keys(components).map(k => {
   };
 }).filter(c => !!c);
 
-//import { FlatButton, RaisedButton, FloatingButton, IconButton } from '../../../src/js/index';
-//import { Tabs, Tab } from '../../../src/js/index';
-//import { Paper } from '../../../src/js/index';
-//import { Card, CardTitle, CardText, CardActions, CardMedia, CardActionOverlay } from '../../../src/js/index';
-//import { Avatar } from '../../../src/js/index';
-//import { FontIcon } from '../../../src/js/index';
-//import { Checkbox, Radio, RadioGroup, Switch } from '../../../src/js/index';
-//import { Toolbar } from '../../../src/js/index';
-
 import { AppBar, IconButton, List, ListItem, Sidebar } from '../../../src/js/index';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = { isNavOpen: true, filteredLinks: componentLinks };
+  }
+
+  static propTypes = {
+    location: PropTypes.object, // from react-router
   }
 
   toggleSidebar = () => {
@@ -46,6 +39,7 @@ export default class App extends Component {
   }
 
   render() {
+    const pathname = this.props.location.pathname;
     return (
       <div className="react-md">
         <AppBar
@@ -57,7 +51,7 @@ export default class App extends Component {
           isOpen={this.state.isNavOpen}
           items={this.state.filteredLinks.map(fl => ({
             component: Link,
-            activeClassName: 'active',
+            className: `/${fl.link}` === pathname ? 'active' : null,
             to: `/${fl.link}`,
             primaryText: fl.label,
             key: fl.link,

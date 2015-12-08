@@ -152,6 +152,7 @@ gulp.task('serve', ['dist:example'], () => {
   browserSync({
     server: {
       baseDir: EXAMPLE_DIST,
+      middleware: [historyAPIFallback()],
     },
   });
 
