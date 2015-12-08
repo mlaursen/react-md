@@ -72,4 +72,4 @@
   width: 100%;
 }
 
-@include make-md-tabs(primary, $md-primary-color, $color-secondary, 2);
+@include make-md-tabs(primary, $md-primary-color, $md-secondary-color, 2);
