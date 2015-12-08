@@ -7,7 +7,7 @@
 .md-card {
   @include md-box-shadow(2);
 
-  background: $color-card;
+  background: $md-card-color;
   display: inline-block;
 }
 

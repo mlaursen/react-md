@@ -1,7 +1,7 @@
 // scss-lint:disable ColorKeyword ColorVariable
 .md-avatar {
   background: get-md-color(grey, 5);
-  border: 1px solid $color-border;
+  border: 1px solid $md-border-color;
   border-radius: 50%;
   color: $white-base;
   display: inline-block;

@@ -33,17 +33,17 @@ $md-secondary-text-color: rgba($black-base, .54);
 /// The color for icons on light backgrounds
 /// @alias md-secondary-text-color
 /// @group Color
-$color-icons: $md-secondary-text-color;
+$md-icon-color: $md-secondary-text-color;
 /// The color for disabled text on light backgrounds
 /// @group Color
-$color-disabled: rgba($black-base, .38);
+$md-disabled-color: rgba($black-base, .38);
 /// The hint text color on light backgrounds
-/// @alias color-disabled
+/// @alias md-disabled-color
 /// @group Color
-$color-hint-text: $color-disabled;
+$md-hint-text-color: $md-disabled-color;
 /// The divider color on light backgrounds
 /// @group Color
-$color-divider: rgba($black-base, .12);
+$md-divider-color: rgba($black-base, .12);
 
 /// The text color for dark backgrounds
 /// @group Color
@@ -55,34 +55,34 @@ $md-secondary-text-color-alt: rgba($white-base, .70);
 /// The icon color for dark backgrounds
 /// @alias md-secondary-text-color-alt
 /// @group Color
-$md-text-color-icons-alt: $md-secondary-text-color-alt;
+$md-icon-color-alt: $md-secondary-text-color-alt;
 /// The disabled text color on dark backgrounds
 /// @group Color
-$color-disabled-alt: rgba($white-base, .30);
+$md-disabled-color-alt: rgba($white-base, .30);
 /// The hint text color on dark backgrounds
-/// @alias color-disabled-alt
+/// @alias md-disabled-color-alt
 /// @group Color
-$color-hint-text-alt: $color-disabled-alt;
+$md-hint-text-color-alt: $md-disabled-color-alt;
 /// The divider color on dark backgrounds
 /// @group Color
-$color-divider-alt: rgba($white-base, .12);
+$md-divider-color-alt: rgba($white-base, .12);
 
 /// The status bar color for light backgrounds
 /// @group Color
-$color-status-bar: #e0e0e0;
+$md-status-bar-color: #e0e0e0;
 /// The app bar color for light backgrounds
 /// @group Color
-$color-app-bar: #f5f5f5;
+$md-app-bar-color: #f5f5f5;
 /// The main content background color on light backgrounds
 /// @group Color
-$color-background: #fafafa;
+$md-background-color: #fafafa;
 /// The card background color on light backgrounds
 /// @group Color
-$color-card: $white-base;
+$md-card-color: $white-base;
 
 /// The default border color on light backgrounds
 /// @group Color
-$color-border: rgba($black-base, .1);
+$md-border-color: rgba($black-base, .1);
 
 /// The default transition time
 /// @group transitions

@@ -16,7 +16,7 @@
 
   &[disabled] {
     background: $md-btn-hover-color;
-    color: $color-disabled;
+    color: $md-disabled-color;
   }
 }
 
@@ -162,7 +162,7 @@
   }
 }
 
-@include make-md-btn-default($md-text-color, $md-btn-hover-color, $md-btn-pressed-color, $md-btn-pressed-color, $color-border);
+@include make-md-btn-default($md-text-color, $md-btn-hover-color, $md-btn-pressed-color, $md-btn-pressed-color, $md-border-color);
 @include make-md-btn(primary, $md-primary-color, 2, 4);
 @include make-md-btn(primary, $md-primary-color, 5);
 @include make-md-btn(secondary, $md-secondary-color, 1, 2, 4);

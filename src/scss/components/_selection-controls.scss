@@ -45,15 +45,15 @@
 
   &.disabled {
     .label {
-      color: $color-disabled;
+      color: $md-disabled-color;
     }
 
     .md-control {
-      border-color: $color-status-bar;
+      border-color: $md-status-bar-color;
     }
 
     .md-switch:before {
-      background: $color-status-bar;
+      background: $md-status-bar-color;
     }
   }
 
@@ -127,7 +127,7 @@
   &:before {
     @extend %circle;
 
-    background: $color-background;
+    background: $md-background-color;
     box-shadow: 0 2px #{$md-control-switch-height / 2} rgba($black-base, .2);
     content: '';
     height: $md-control-switch-ball-size;
