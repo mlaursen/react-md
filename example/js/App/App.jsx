@@ -41,12 +41,24 @@ import { AppBar, IconButton, Sidebar } from '../../../src/js/index';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isNavOpen: true, filteredLinks: componentLinks };
+    this.state = { isNavOpen: props.location.pathname !== '/', filteredLinks: componentLinks };
   }
 
   static propTypes = {
     children: PropTypes.node,
     location: PropTypes.object, // from react-router
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(this.props.location.pathname === nextProps.location.pathname) {
+      return;
+    }
+
+    if(nextProps.location.pathname === '/' && nextState.isNavOpen) {
+      this.setState({ isNavOpen: false });
+    } else if(nextProps.location.pathname !== '/' && !nextState.isNavOpen){
+      this.setState({ isNavOpen: true });
+    }
   }
 
   toggleSidebar = () => {
@@ -73,6 +85,7 @@ export default class App extends Component {
       <div className="react-md">
         <AppBar
           title="react md"
+          className="react-md-app-bar"
           leftNode={<IconButton onClick={this.toggleSidebar}>menu</IconButton>}
           rightNode={<IconButton href="https://github.com/mlaursen/react-md" iconClassName="fa fa-github" />}
         />
@@ -80,29 +93,9 @@ export default class App extends Component {
           isOpen={this.state.isNavOpen}
           items={mainLinks.map(this.toRouterLink).concat(sublinks).concat(this.state.filteredLinks.map(this.toRouterLink))}
         />
-        <main>
+        <main className={this.props.location.pathname === '/' ? 'react-md-home-container' : null}>
           {this.props.children}
           {/*
-          <section className="toolbar">
-            <Paper>
-              <Toolbar>
-                <IconButton>menu</IconButton>
-              </Toolbar>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet eget lectus eu congue. Nam finibus urna eget nisl aliquam, in dictum ligula feugiat. Donec mollis ligula purus, et interdum velit bibendum eget. Aliquam magna diam, tristique eu libero nec, sagittis finibus sapien. Cras a ex ultricies, faucibus elit sagittis, maximus nisi. Donec quis arcu sapien. Aenean risus nibh, varius sed porttitor a, ornare nec leo. Sed vitae lacus in ipsum varius sagittis. Ut in quam cursus, ullamcorper sapien posuere, laoreet elit. Suspendisse interdum, risus ut ultricies scelerisque, nibh est commodo leo, sed tristique nisl odio et turpis. Fusce pellentesque nunc nec arcu feugiat accumsan. Praesent mauris sem, eleifend sit amet tortor in, cursus vehicula arcu. Curabitur convallis sit amet nunc ac feugiat. Sed at risus id diam porta pretium id vel felis. Donec nec dui id nisl hendrerit laoreet eu id odio.</p>
-            </Paper>
-            <Paper>
-              <Toolbar primary>
-                <IconButton>menu</IconButton>
-              </Toolbar>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet eget lectus eu congue. Nam finibus urna eget nisl aliquam, in dictum ligula feugiat. Donec mollis ligula purus, et interdum velit bibendum eget. Aliquam magna diam, tristique eu libero nec, sagittis finibus sapien. Cras a ex ultricies, faucibus elit sagittis, maximus nisi. Donec quis arcu sapien. Aenean risus nibh, varius sed porttitor a, ornare nec leo. Sed vitae lacus in ipsum varius sagittis. Ut in quam cursus, ullamcorper sapien posuere, laoreet elit. Suspendisse interdum, risus ut ultricies scelerisque, nibh est commodo leo, sed tristique nisl odio et turpis. Fusce pellentesque nunc nec arcu feugiat accumsan. Praesent mauris sem, eleifend sit amet tortor in, cursus vehicula arcu. Curabitur convallis sit amet nunc ac feugiat. Sed at risus id diam porta pretium id vel felis. Donec nec dui id nisl hendrerit laoreet eu id odio.</p>
-            </Paper>
-            <Paper>
-              <Toolbar secondary>
-                <IconButton>menu</IconButton>
-              </Toolbar>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet eget lectus eu congue. Nam finibus urna eget nisl aliquam, in dictum ligula feugiat. Donec mollis ligula purus, et interdum velit bibendum eget. Aliquam magna diam, tristique eu libero nec, sagittis finibus sapien. Cras a ex ultricies, faucibus elit sagittis, maximus nisi. Donec quis arcu sapien. Aenean risus nibh, varius sed porttitor a, ornare nec leo. Sed vitae lacus in ipsum varius sagittis. Ut in quam cursus, ullamcorper sapien posuere, laoreet elit. Suspendisse interdum, risus ut ultricies scelerisque, nibh est commodo leo, sed tristique nisl odio et turpis. Fusce pellentesque nunc nec arcu feugiat accumsan. Praesent mauris sem, eleifend sit amet tortor in, cursus vehicula arcu. Curabitur convallis sit amet nunc ac feugiat. Sed at risus id diam porta pretium id vel felis. Donec nec dui id nisl hendrerit laoreet eu id odio.</p>
-            </Paper>
-          </section>
           <section className="buttons-section">
             <Paper>
               <IconButton>chat_bubble_outline</IconButton>
@@ -143,26 +136,6 @@ export default class App extends Component {
                 favorite
               </FloatingButton>
             </Paper>
-          </section>
-          <section className="tabs-section">
-            <h5>Tabs - Unmanaged</h5>
-            <Tabs>
-              <Tab label="Tab 1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet eget lectus eu congue. Nam finibus urna eget nisl aliquam, in dictum ligula feugiat. Donec mollis ligula purus, et interdum velit bibendum eget. Aliquam magna diam, tristique eu libero nec, sagittis finibus sapien. Cras a ex ultricies, faucibus elit sagittis, maximus nisi. Donec quis arcu sapien. Aenean risus nibh, varius sed porttitor a, ornare nec leo. Sed vitae lacus in ipsum varius sagittis. Ut in quam cursus, ullamcorper sapien posuere, laoreet elit. Suspendisse interdum, risus ut ultricies scelerisque, nibh est commodo leo, sed tristique nisl odio et turpis. Fusce pellentesque nunc nec arcu feugiat accumsan. Praesent mauris sem, eleifend sit amet tortor in, cursus vehicula arcu. Curabitur convallis sit amet nunc ac feugiat. Sed at risus id diam porta pretium id vel felis. Donec nec dui id nisl hendrerit laoreet eu id odio.</p>
-              </Tab>
-              <Tab label="Tab 2">
-                <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
-              </Tab>
-            </Tabs>
-            <h5>Tabs - Externally Managed</h5>
-            <Tabs activeTabIndex={this.state.activeTabIndex} onTabChange={this.handleTabChange} primary>
-              <Tab label="Tab 1 with a ridiculously long title that woops">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet eget lectus eu congue. Nam finibus urna eget nisl aliquam, in dictum ligula feugiat. Donec mollis ligula purus, et interdum velit bibendum eget. Aliquam magna diam, tristique eu libero nec, sagittis finibus sapien. Cras a ex ultricies, faucibus elit sagittis, maximus nisi. Donec quis arcu sapien. Aenean risus nibh, varius sed porttitor a, ornare nec leo. Sed vitae lacus in ipsum varius sagittis. Ut in quam cursus, ullamcorper sapien posuere, laoreet elit. Suspendisse interdum, risus ut ultricies scelerisque, nibh est commodo leo, sed tristique nisl odio et turpis. Fusce pellentesque nunc nec arcu feugiat accumsan. Praesent mauris sem, eleifend sit amet tortor in, cursus vehicula arcu. Curabitur convallis sit amet nunc ac feugiat. Sed at risus id diam porta pretium id vel felis. Donec nec dui id nisl hendrerit laoreet eu id odio.</p>
-              </Tab>
-              <Tab label="Tab 2">
-                <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
-              </Tab>
-            </Tabs>
           </section>
           <section className="avatar-section">
             <Paper>
@@ -246,18 +219,6 @@ export default class App extends Component {
                 <FlatButton default>Full report</FlatButton>
               </CardActions>
             </Card>
-          </section>
-          <section>
-            <Checkbox />
-            <Checkbox isInitiallyChecked={true} />
-            <Checkbox disabled />
-            <RadioGroup stacked>
-              <Radio name="woop" value="A" label="Click Me, A" />
-              <Radio name="woop" value="B" label="Click Me, B" />
-              <Radio name="woop" value="C" label="Click Me, C" />
-            </RadioGroup>
-            <Switch value="A" label="Enable A" />
-            <Switch value="B" label="Enable B" disabled />
           </section>
           */}
         </main>

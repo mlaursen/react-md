@@ -3,11 +3,11 @@ import { Route, IndexRoute } from 'react-router';
 import * as components from './components';
 
 import App from './App';
-import Dashboard from './Dashboard';
+import Home from './Home';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Dashboard} />
+    <IndexRoute component={Home} />
     {Object.keys(components).map(k => {
       const component = components[k];
       if(!component.name) {

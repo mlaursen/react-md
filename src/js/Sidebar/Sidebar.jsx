@@ -25,6 +25,7 @@ export default class Sidebar extends Component {
     })),
     header: PropTypes.node,
     children: PropTypes.node,
+    className: PropTypes.string,
   }
 
   static defaultProps = {
@@ -32,9 +33,9 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const { isOpen, header, overlay, items, responsive, children, ...props } = this.props;
+    const { isOpen, header, overlay, items, responsive, className, children, ...props } = this.props;
     return (
-      <div className={classnames('md-sidebar-container', { 'fixed': isPropEnabled(props, 'fixed'), 'md-sidebar-responsive': responsive })} {...props}>
+      <div className={classnames('md-sidebar-container', className, { 'fixed': isPropEnabled(props, 'fixed'), 'md-sidebar-responsive': responsive })} {...props}>
         <nav className={classnames('md-sidebar', { 'active': isOpen })}>
           {header}
           <List>

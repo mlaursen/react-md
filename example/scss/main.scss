@@ -182,3 +182,40 @@ main {
   }
 }
 
+
+// ================================================
+// Home
+.react-md-app-bar {
+  transition: box-shadow $md-transition-time * 2;
+
+  &.no-shadow {
+    box-shadow: none;
+  }
+}
+
+.react-md-home-container {
+  margin: 0;
+}
+
+.react-md-banner {
+  align-items: center;
+  background: get-md-color($md-primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 600px;
+  padding: 2em;
+
+  .md-title {
+    max-width: 450px;
+  }
+
+  .md-btn {
+    margin-top: 2em;
+  }
+
+  .md-title,
+  .md-display-2 {
+    color: $white-base;
+  }
+}
