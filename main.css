@@ -649,12 +649,14 @@ p,
 .md-list .md-subheader {
   color: rgba(0, 0, 0, 0.54);
   font-family: "Roboto", sans-serif;
+  font-size: 14px;
   font-weight: 500;
   height: 48px;
   margin: 0;
+  padding: 16px;
 }
 
-.md-list .md-subheader.alt {
+.md-list .md-subheader.md-primary-subheader {
   color: #3f51b5;
 }
 
@@ -1358,6 +1360,10 @@ p,
   z-index: 4;
 }
 
+.md-app-bar ~ * {
+  padding-top: 65px;
+}
+
 .md-app-bar-title {
   color: #fff;
   display: inline-block;
@@ -1366,11 +1372,14 @@ p,
   margin: 0;
 }
 
-.md-app-bar ~ * {
-  padding-top: 65px;
+.md-app-bar-left .md-btn-icon,
+.md-app-bar-right .md-btn-icon {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 56px;
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 0) {
   .md-sidebar-container.md-sidebar-responsive {
     height: 100vh;
     position: fixed;
@@ -1381,7 +1390,12 @@ p,
   }
 }
 
-@media screen and (min-width: 361px) {
+@media screen and (min-width: 600px) {
+  .md-sidebar-container.md-sidebar-responsive {
+    height: initial;
+    min-height: 100vh;
+    position: initial;
+  }
   .md-sidebar-container.md-sidebar-responsive .md-sidebar.active {
     width: 256px;
   }
@@ -1395,9 +1409,6 @@ p,
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: initial;
-  position: initial;
-  min-height: 100vh;
 }
 
 .md-sidebar-container.fixed {
@@ -1415,6 +1426,11 @@ p,
 
 .md-sidebar.active {
   width: 256px;
+}
+
+.md-sidebar .md-avatar {
+  height: 24px;
+  width: 24px;
 }
 
 .md-data-table {
@@ -1468,6 +1484,8 @@ main {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  margin: 2em;
+  overflow-x: hidden;
 }
 
 .react-md-source {
@@ -1519,28 +1537,28 @@ main {
 }
 
 .react-md-doc {
-  margin: 2em;
   margin-top: 0;
 }
 
 .react-md-code {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   display: block;
-  font-family: 'Source Code Pro', monospace;
+  overflow-x: auto;
   padding: 1em;
 }
 
 .react-md-inline-code {
   display: inline-block;
-  font-family: 'Source Code Pro', monospace;
   margin: 0;
 }
 
 .react-md-code-block,
 .react-md-code-block * {
+  display: block;
   font-family: 'Source Code Pro', monospace;
-  margin: 0;
   line-height: 1.4563;
+  margin: 0;
+  white-space: pre;
 }
 
 .react-md-code-block.code-comment-block:not(:first-child):before {
@@ -1574,6 +1592,12 @@ main {
 
 .selection-controls-examples {
   display: block;
+}
+
+.list-examples .paper-1 {
+  margin: 1em;
+  max-width: 256px;
+  min-width: 256px;
 }
 
 .buttons-section {
@@ -1623,6 +1647,49 @@ main {
 .examples-list .paper {
   margin: 1em;
   width: 256px;
+}
+
+.react-md-app-bar {
+  transition: box-shadow 0.3s;
+}
+
+.react-md-app-bar.no-shadow {
+  box-shadow: none;
+}
+
+.react-md-home-container {
+  margin: 0;
+}
+
+.react-md-banner {
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #3f51b5;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 600px;
+  padding: 2em;
+}
+
+.react-md-banner .md-title {
+  max-width: 450px;
+}
+
+.react-md-banner .md-btn {
+  margin-top: 2em;
+}
+
+.react-md-banner .md-title,
+.react-md-banner .md-display-2 {
+  color: #fff;
 }
 
 /*# sourceMappingURL=main.css.map */
