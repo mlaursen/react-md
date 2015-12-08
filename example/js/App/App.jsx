@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { fuzzyFilter } from '../../../src/js/utils/PropUtils';
+import { FontIcon, Avatar } from '../../../src/js';
 
 import * as components from '../components';
 const componentLinks = Object.keys(components).map(k => {
@@ -17,10 +18,25 @@ const componentLinks = Object.keys(components).map(k => {
     label: name.join(' '),
   };
 }).filter(c => !!c);
+const mainLinks = [{ link: '', label: 'Home', leftIcon: <FontIcon>home</FontIcon> }];
+
+
+const OutsideLink = ({ children, className, ...props }) => <a href="sassdoc" className={`md-list-tile ${className}`} {...props}>{children}</a>;
+const sublinks = [{
+  component: OutsideLink,
+  primaryText: 'SASS Doc',
+  key: 'sassdoc',
+  leftIcon: <Avatar src="http://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="Sass icon" />,
+}, {
+  divider: true,
+  key: 'main-divider',
+}, {
+  subheader: true,
+  primaryText: 'Components',
+  key: components,
+}];
 
 import { AppBar, IconButton, Sidebar } from '../../../src/js/index';
-
-const OutsideLink = ({ children}) => <a href="sassdoc" className="md-list-tile">{children}</a>;
 
 export default class App extends Component {
   constructor(props) {
@@ -41,8 +57,18 @@ export default class App extends Component {
     this.setState({ filteredLinks: fuzzyFilter(componentLinks, e.target.value, 'label') });
   }
 
+  toRouterLink = ({ link, label, ...props }) => {
+    return {
+      component: Link,
+      className: `/${link}` === this.props.location.pathname ? 'active' : null,
+      to: `/${link}`,
+      primaryText: label,
+      key: link,
+      ...props,
+    };
+  }
+
   render() {
-    const pathname = this.props.location.pathname;
     return (
       <div className="react-md">
         <AppBar
@@ -52,19 +78,8 @@ export default class App extends Component {
         />
         <Sidebar
           isOpen={this.state.isNavOpen}
-          items={[{
-            component: OutsideLink,
-            primaryText: 'SASS Doc',
-            key: 'sassdoc',
-          }].concat(this.state.filteredLinks.map(fl => ({
-            component: Link,
-            className: `/${fl.link}` === pathname ? 'active' : null,
-            to: `/${fl.link}`,
-            primaryText: fl.label,
-            key: fl.link,
-          })))}
-          header={<header><input type="text" onChange={this.filterLinks} /></header>}
-         />
+          items={mainLinks.map(this.toRouterLink).concat(sublinks).concat(this.state.filteredLinks.map(this.toRouterLink))}
+        />
         <main>
           {this.props.children}
           {/*

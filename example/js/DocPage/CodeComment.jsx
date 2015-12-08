@@ -15,7 +15,7 @@ export default class CodeComment extends Component {
   render() {
     return (
       <span className="react-md-code-block code-comment-block">
-        <pre className="code-comment">{this.props.comment}</pre>
+        <span className="code-comment">{this.props.comment}</span>
       </span>
     );
   }

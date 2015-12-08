@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { List, ListItem, ListDivider } from '../Lists';
+import { List, ListItem, ListDivider, ListSubheader } from '../Lists';
 import { isPropEnabled } from '../utils/PropUtils';
 
 export default class Sidebar extends Component {
@@ -19,10 +19,12 @@ export default class Sidebar extends Component {
     responsive: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.shape({
       divider: PropTypes.bool,
+      subheader: PropTypes.bool,
       component: PropTypes.func,
-      primaryText: PropTypes.string.isRequired,
+      primaryText: PropTypes.string,
     })),
     header: PropTypes.node,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -30,13 +32,21 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const { isOpen, header, overlay, items, responsive, ...props } = this.props;
+    const { isOpen, header, overlay, items, responsive, children, ...props } = this.props;
     return (
       <div className={classnames('md-sidebar-container', { 'fixed': isPropEnabled(props, 'fixed'), 'md-sidebar-responsive': responsive })} {...props}>
         <nav className={classnames('md-sidebar', { 'active': isOpen })}>
           {header}
           <List>
-            {items.map(item => item.divider ? <ListDivider {...item} /> : <ListItem {...item} />)}
+            {items.map(item => {
+              if(item.divider) {
+                return <ListDivider {...item} />;
+              } else if(item.subheader) {
+                return <ListSubheader {...item} />;
+              } else {
+                return <ListItem {...item} />;
+              }
+            })}
           </List>
         </nav>
       </div>

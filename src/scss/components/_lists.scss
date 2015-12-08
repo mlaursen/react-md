@@ -20,11 +20,13 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   .md-subheader {
     color: $md-secondary-text-color;
     font-family: $md-font;
+    font-size: #{$md-font-size-base}px;
     font-weight: $md-font-medium;
     height: 48px;
     margin: 0;
+    padding: $md-default-padding;
 
-    &.alt {
+    &.md-primary-subheader {
       color: get-md-color($md-primary-color);
     }
   }

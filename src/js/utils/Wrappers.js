@@ -91,6 +91,8 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
         rippleLeaveTimeout: 300,
       }
 
+      static displayName = `${Component.displayName || Component.name}Ripple`
+
       handleMouseDown = (e) => {
         const { ripples } = this.state;
         if(rippleLimit && ripples.length >= rippleLimit) {

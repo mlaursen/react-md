@@ -11,6 +11,10 @@
   position: fixed;
   width: 100%;
   z-index: 4;
+
+  ~ * {
+    padding-top: $md-app-bar-height;
+  }
 }
 
 .md-app-bar-title {
@@ -21,6 +25,11 @@
   margin: 0;
 }
 
-.md-app-bar ~ * {
-  padding-top: $md-app-bar-height;
+.md-app-bar-left,
+.md-app-bar-right {
+  .md-btn-icon {
+    padding-left: $md-default-padding;
+    padding-right: $md-default-padding;
+    width: $md-font-icon-size + $md-default-padding * 2;
+  }
 }

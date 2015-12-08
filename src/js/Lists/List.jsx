@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
+import ListSubheader from './ListSubheader.jsx';
 
 export default class List extends Component {
   constructor(props) {
@@ -15,16 +16,16 @@ export default class List extends Component {
     ordered: PropTypes.bool,
     className: PropTypes.string,
     subheader: PropTypes.string,
-    altSubheader: PropTypes.bool,
+    primarySubheader: PropTypes.bool,
     children: PropTypes.node,
     textOnly: PropTypes.bool,
   }
 
   render() {
-    const { className, subheader, altSubheader, children, ...props } = this.props;
+    const { className, subheader, children, ...props } = this.props;
     let allChildren = children;
     if(subheader) {
-      allChildren = [<li key="subheader"><h5 className={classnames('md-subheader', { 'alt': altSubheader })}>{subheader}</h5></li>].concat(children);
+      allChildren = [<ListSubheader primary={isPropEnabled(props, 'primarySubheader')}>{subheader}</ListSubheader>].concat(children);
     }
 
     return React.createElement(isPropEnabled(props, 'ordered') ? 'ol' : 'ul', {

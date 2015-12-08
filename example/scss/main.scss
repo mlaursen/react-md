@@ -17,6 +17,8 @@ body {
 
 main {
   flex-grow: 1;
+  margin: 2em;
+  overflow-x: hidden;
 }
 
 
@@ -52,7 +54,7 @@ main {
 
 .prop-type {
   color: rgba($black-base, .54);
-  padding-right: 1em
+  padding-right: 1em;
 }
 
 .prop-desc {
@@ -69,7 +71,6 @@ main {
 }
 
 .react-md-doc {
-  margin: 2em;
   margin-top: 0;
 }
 
@@ -77,21 +78,22 @@ main {
   @include make-paper(2);
 
   display: block;
-  font-family: 'Source Code Pro', monospace;
+  overflow-x: auto;
   padding: 1em;
 }
 
 .react-md-inline-code {
   display: inline-block;
-  font-family: 'Source Code Pro', monospace;
   margin: 0;
 }
 
 .react-md-code-block,
 .react-md-code-block * {
+  display: block;
   font-family: 'Source Code Pro', monospace;
-  margin: 0;
   line-height: 1.4563;
+  margin: 0;
+  white-space: pre;
 }
 
 .react-md-code-block {
@@ -133,7 +135,11 @@ main {
   display: block;
 }
 
-
+.list-examples .paper-1 {
+  margin: 1em;
+  max-width: 256px;
+  min-width: 256px;
+}
 
 
 

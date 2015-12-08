@@ -76,7 +76,7 @@ export default class DocProps extends Component {
 
     let items = details.concat(extraProps).map(settings => {
       const { name, propType, isRequired, desc } = settings;
-      const defaultValue = defaultProps ? defaultProps[name] : undefined; //eslint-disable: undefined
+      const defaultValue = defaultProps ? defaultProps[name] : undefined; // eslint-disable-line no-undefined
       return (
         <tr key={name}>
           <td className="react-md-prop-name">{name}</td>
@@ -98,7 +98,12 @@ export default class DocProps extends Component {
         <CardText>
           <table className="md-data-table">
             <thead>
-              <tr><th className="md-data-table-header" colSpan="2">Prop Types {multiple && `- ${component.name.split(/(?=[A-Z])/).join(' ')}`}</th></tr>
+              <tr>
+                <th className="md-data-table-header" colSpan="2">
+                  Prop Types
+                  {multiple && `- ${(component.displayName || component.name).replace('Ripple', '').split(/(?=[A-Z])/).join(' ')}`}
+                </th>
+              </tr>
               <tr>
                 <th>Prop Name</th>
                 <th>Description</th>

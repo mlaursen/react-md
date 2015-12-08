@@ -9,6 +9,10 @@
     .md-sidebar-container.md-sidebar-responsive {
       @if $fixed == true {
         @include make-sidebar-fixed();
+      } @else {
+        height: initial;
+        min-height: 100vh;
+        position: initial;
       }
 
       .md-sidebar.active {
@@ -18,8 +22,8 @@
   }
 }
 
-@include make-sidebar-responsive(360px, calc(100vw - #{$md-font-icon-btn-size}), true);
-@include make-sidebar-responsive(361px);
+@include make-sidebar-responsive(0, calc(100vw - #{$md-font-icon-btn-size}), true);
+@include make-sidebar-responsive(600px);
 
 .md-sidebar-container {
   @extend %full-height;
@@ -28,9 +32,6 @@
 
   &.md-sidebar-responsive {
     display: flex;
-    height: initial;
-    position: initial;
-    min-height: 100vh;
   }
 
   &.fixed {
@@ -47,6 +48,11 @@
 
   &.active {
     width: $md-sidebar-open-width;
+  }
+
+  .md-avatar {
+    height: $md-font-icon-size;
+    width: $md-font-icon-size;
   }
 }
 

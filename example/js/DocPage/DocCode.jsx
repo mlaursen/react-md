@@ -22,12 +22,12 @@ export default class DocCode extends Component {
       <code className="react-md-code">
         <CodeComment comment="Import statements" />
         {imports.map(name => {
-          return <pre key={`whole-${name}`} className="react-md-code-block">{`import { ${name} } from 'react-md';`}</pre>;
+          return <span key={`whole-${name}`} className="react-md-code-block">{`import { ${name} } from 'react-md';`}</span>;
         })}
         <CodeComment comment="Or from the component folder..." />
         {imports.map(name => {
           const isDefault = name === defaultImport;
-          return <pre key={`specific-${name}`} className="react-md-code-block">{`import ${!isDefault ? '{ ' : ''}${name}${!isDefault ? ' }' : ''} from 'react-md/${defaultImport}';`}</pre>;
+          return <span key={`specific-${name}`} className="react-md-code-block">{`import ${!isDefault ? '{ ' : ''}${name}${!isDefault ? ' }' : ''} from 'react-md/${defaultImport}';`}</span>;
         })}
       </code>
     );
