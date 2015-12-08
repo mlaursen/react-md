@@ -18,6 +18,7 @@ export default class RadioGroup extends Component {
     children: PropTypes.arrayOf(PropTypes.node),
     component: PropTypes.string,
     stacked: PropTypes.bool,
+    onChange: PropTypes.func,
   }
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class RadioGroup extends Component {
   }
 
   handleChange = (e) => {
+    this.props.onChange && this.props.onChange(e, e.target.value);
     this.setState({ value: e.target.value });
   }
 

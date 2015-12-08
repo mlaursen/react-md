@@ -54,6 +54,7 @@ export default class Card extends Component {
     return (
       <TransitionGroup component="div" {...props} className={classnames('md-card', className)}>
         {React.Children.map(children, (child, i) => {
+          if(!child) { return child; }
           if(expanderIndex < 0 && isPropEnabled(child.props, 'isExpander')) {
             expanderIndex = i;
           }

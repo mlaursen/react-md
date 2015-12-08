@@ -46,6 +46,10 @@ main {
   margin: 1em;
 }
 
+.react-md-prop-name {
+  vertical-align: top;
+}
+
 .prop-type {
   color: rgba($black-base, .54);
   padding-right: 1em
@@ -64,7 +68,7 @@ main {
   }
 }
 
-.react-md-doc{
+.react-md-doc {
   margin: 2em;
   margin-top: 0;
 }
@@ -73,8 +77,14 @@ main {
   @include make-paper(2);
 
   display: block;
-  font: 'Source Code Pro', monospace;
+  font-family: 'Source Code Pro', monospace;
   padding: 1em;
+}
+
+.react-md-inline-code {
+  display: inline-block;
+  font-family: 'Source Code Pro', monospace;
+  margin: 0;
 }
 
 .react-md-code-block,
@@ -95,7 +105,7 @@ main {
   }
 
   .code-comment {
-    color: $md-secondary-color;
+    color: $md-secondary-text-color;
 
     &:before {
       content: '// ';
