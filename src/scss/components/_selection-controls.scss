@@ -18,8 +18,8 @@
     + .md-checkbox,
     + .md-radio,
     + .md-switch:before {
-      background: get-md-color($color-primary);
-      border-color: get-md-color($color-primary);
+      background: get-md-color($md-primary-color);
+      border-color: get-md-color($md-primary-color);
       color: $white-base;
     }
 

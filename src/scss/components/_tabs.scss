@@ -1,6 +1,6 @@
 @mixin make-md-tabs($name, $color, $slide-color, $slide-hue, $hue: 6, $slide-secondary: true) {
   .md-tabs-#{$name} {
-    background: get-md-color($color-primary, $hue);
+    background: get-md-color($md-primary-color, $hue);
 
     .slide {
       background: get-md-color($slide-color, $slide-hue, $slide-secondary);
@@ -24,7 +24,7 @@
   position: relative;
 
   .slide {
-    background: get-md-color($color-primary);
+    background: get-md-color($md-primary-color);
     bottom: 0;
     content: '';
     display: block;
@@ -50,7 +50,7 @@
 
   &.active {
     .md-tab-label {
-      color: get-md-color($color-primary);
+      color: get-md-color($md-primary-color);
     }
   }
 }
@@ -72,4 +72,4 @@
   width: 100%;
 }
 
-@include make-md-tabs(primary, $color-primary, $color-secondary, 2);
+@include make-md-tabs(primary, $md-primary-color, $color-secondary, 2);

@@ -25,7 +25,7 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
     margin: 0;
 
     &.alt {
-      color: get-md-color($color-primary);
+      color: get-md-color($md-primary-color);
     }
   }
 
@@ -58,7 +58,7 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   transition: background $md-transition-time;
 
   &.active {
-    color: get-md-color($color-primary);
+    color: get-md-color($md-primary-color);
   }
 
   &:hover {

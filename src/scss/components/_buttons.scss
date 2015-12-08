@@ -163,7 +163,7 @@
 }
 
 @include make-md-btn-default($color-text, $md-btn-hover-color, $md-btn-pressed-color, $md-btn-pressed-color, $color-border);
-@include make-md-btn(primary, $color-primary, 2, 4);
-@include make-md-btn(primary, $color-primary, 5);
+@include make-md-btn(primary, $md-primary-color, 2, 4);
+@include make-md-btn(primary, $md-primary-color, 5);
 @include make-md-btn(secondary, $color-secondary, 1, 2, 4);
 @include make-md-btn(secondary, $color-secondary, 1, null, 2);
