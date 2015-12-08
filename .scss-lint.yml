@@ -1,5 +1,0 @@
-linters:
-  ColorKeyword:
-    enabled: false
-  ColorVariable:
-    enabled: false
