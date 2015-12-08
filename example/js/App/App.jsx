@@ -96,47 +96,6 @@ export default class App extends Component {
         <main className={this.props.location.pathname === '/' ? 'react-md-home-container' : null}>
           {this.props.children}
           {/*
-          <section className="buttons-section">
-            <Paper>
-              <IconButton>chat_bubble_outline</IconButton>
-              <IconButton>home</IconButton>
-              <IconButton>favorite</IconButton>
-            </Paper>
-            <Paper className="flex-column">
-              <h5>Flat Buttons</h5>
-              <FlatButton default label="normal" />
-              <FlatButton primary label="Talk">
-                <FontIcon>chat_bubble_outline</FontIcon>
-              </FlatButton>
-              <FlatButton secondary label="Talk" iconBefore={false}>
-                <FontIcon>chat_bubble_outline</FontIcon>
-              </FlatButton>
-              <FlatButton disabled>disabled</FlatButton>
-            </Paper>
-            <Paper className="flex-column">
-              <h5>Raised Buttons</h5>
-              <RaisedButton default>raised</RaisedButton>
-              <RaisedButton primary label="Spock" iconBefore={false}>
-                <FontIcon iconClassName="fa fa-hand-spock-o" />
-              </RaisedButton>
-              <RaisedButton secondary label="Paper">
-                <FontIcon iconClassName="fa fa-hand-paper-o" />
-              </RaisedButton>
-              <RaisedButton disabled>raised</RaisedButton>
-            </Paper>
-            <Paper className="flex-column">
-              <h5>Floating Buttons</h5>
-              <FloatingButton default>
-                home
-              </FloatingButton>
-              <FloatingButton primary>
-                grade
-              </FloatingButton>
-              <FloatingButton secondary>
-                favorite
-              </FloatingButton>
-            </Paper>
-          </section>
           <section className="avatar-section">
             <Paper>
               <Avatar src="http://lorempixel.com/120/120/people" alt="some image" />

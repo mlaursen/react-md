@@ -21,6 +21,7 @@ class IconButton extends Component {
     tooltipPosition: PropTypes.string,
     tooltip: PropTypes.string,
     href: PropTypes.string,
+    type: PropTypes.string,
   }
 
   static defaultProps = {

@@ -25,7 +25,7 @@ export default class List extends Component {
     const { className, subheader, children, ...props } = this.props;
     let allChildren = children;
     if(subheader) {
-      allChildren = [<ListSubheader primary={isPropEnabled(props, 'primarySubheader')}>{subheader}</ListSubheader>].concat(children);
+      allChildren = [<ListSubheader primary={isPropEnabled(props, 'primarySubheader')} primaryText={subheader} />].concat(children);
     }
 
     return React.createElement(isPropEnabled(props, 'ordered') ? 'ol' : 'ul', {

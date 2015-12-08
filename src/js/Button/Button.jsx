@@ -41,7 +41,7 @@ class Button extends Component {
     const keys = Object.keys(this.props);
     let className = 'md-btn';
     if(isPropEnabled(this.props, 'disabled', keys)) {
-      return className;
+      return className + (isPropEnabled(this.props, 'floating', keys) ? ' md-btn-floating' : '');
     }
 
     let color = null;

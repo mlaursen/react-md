@@ -28,8 +28,13 @@
 .md-app-bar-left,
 .md-app-bar-right {
   .md-btn-icon {
+    $width: $md-font-icon-size + $md-default-padding * 2;
     padding-left: $md-default-padding;
     padding-right: $md-default-padding;
-    width: $md-font-icon-size + $md-default-padding * 2;
+    width: $width;
+
+    .ripple {
+      left: ($width - $md-font-icon-btn-size) / 2;
+    }
   }
 }

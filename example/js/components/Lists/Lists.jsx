@@ -16,6 +16,7 @@ export default class Lists extends Component {
     return (
       <DocPage
         imports={['List', 'ListItem', 'ListDivider']}
+        sectionName="Lists"
         defaultImport="List"
         examples={[
           <ListOutline>
@@ -40,7 +41,7 @@ export default class Lists extends Component {
             </List>
           </ListOutline>,
           <ListOutline secondary={true}>
-            <List subheader="Files" altSubheader={true}>
+            <List subheader="Files" primarySubheader={true}>
               <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Photos" secondaryText="Jan 9, 2014" />
               <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Recipes" secondaryText="Jan 17, 2014" />
               <ListItem leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />} primaryText="Work" secondaryText="Jan 28, 2014" />

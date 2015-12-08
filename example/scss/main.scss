@@ -135,12 +135,30 @@ main {
   display: block;
 }
 
-.list-examples .paper-1 {
+.lists-examples .paper-1 {
   margin: 1em;
   max-width: 256px;
-  min-width: 256px;
+  width: 100%;
 }
 
+.react-md-buttons {
+  .buttons-examples {
+    padding: 0;
+  }
+
+  .md-card-title {
+    display: none;
+  }
+
+  .md-tabs-container {
+    width: 100%;
+  }
+
+  .md-tab-content .md-btn {
+    display: block;
+    margin: 1em;
+  }
+}
 
 
 .buttons-section {

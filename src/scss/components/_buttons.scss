@@ -76,6 +76,11 @@
     @include md-box-shadow(3);
   }
 
+  &[disabled] {
+    background: none;
+    box-shadow: none;
+  }
+
   .material-icons {
     display: block;
   }
@@ -142,7 +147,7 @@
 
         &:hover,
         &:focus {
-          background: get-md-color($hover-color, $hover-hue, $secondary);
+          background: rgba(get-md-color($hover-color, $hover-hue, $secondary), .4);
         }
 
         .ripple {

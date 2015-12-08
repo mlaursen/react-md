@@ -18,17 +18,21 @@ export default class DocCode extends Component {
 
   render() {
     const { imports, defaultImport } = this.props;
+    let di = null;
+    imports.some(i => {
+      if(i === defaultImport) { di = i; }
+      return i === defaultImport;
+    });
     return (
       <code className="react-md-code">
         <CodeComment comment="Import statements" />
-        {imports.map(name => {
-          return <span key={`whole-${name}`} className="react-md-code-block">{`import { ${name} } from 'react-md';`}</span>;
-        })}
+        <span key="imports" className="react-md-code-block">
+          {`import { ${imports.join(', ')} } from 'react-md';`}
+        </span>
         <CodeComment comment="Or from the component folder..." />
-        {imports.map(name => {
-          const isDefault = name === defaultImport;
-          return <span key={`specific-${name}`} className="react-md-code-block">{`import ${!isDefault ? '{ ' : ''}${name}${!isDefault ? ' }' : ''} from 'react-md/${defaultImport}';`}</span>;
-        })}
+        <span key="folder-imports" className="react-md-code-block">
+          {`import${di ? (' ' + di + ',') : ''} { ${imports.filter(i => i !== di).join(', ')} } from 'react-md/${defaultImport}';`}
+        </span>
       </code>
     );
   }
