@@ -29,11 +29,11 @@ $white-base: #fff;
 $md-text-color: rgba($black-base, .77);
 /// The Secondary text color on light backgrounds
 /// @group Color
-$md-text-color-secondary: rgba($black-base, .54);
+$md-secondary-text-color: rgba($black-base, .54);
 /// The color for icons on light backgrounds
-/// @alias md-text-color-secondary
+/// @alias md-secondary-text-color
 /// @group Color
-$color-icons: $md-text-color-secondary;
+$color-icons: $md-secondary-text-color;
 /// The color for disabled text on light backgrounds
 /// @group Color
 $color-disabled: rgba($black-base, .38);
@@ -51,11 +51,11 @@ $md-text-color-alt: $white-base;
 
 /// The secondary text color for dark backgrounds
 /// @group Color
-$md-text-color-secondary-alt: rgba($white-base, .70);
+$md-secondary-text-color-alt: rgba($white-base, .70);
 /// The icon color for dark backgrounds
-/// @alias md-text-color-secondary-alt
+/// @alias md-secondary-text-color-alt
 /// @group Color
-$md-text-color-icons-alt: $md-text-color-secondary-alt;
+$md-text-color-icons-alt: $md-secondary-text-color-alt;
 /// The disabled text color on dark backgrounds
 /// @group Color
 $color-disabled-alt: rgba($white-base, .30);

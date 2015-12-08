@@ -18,7 +18,7 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   }
 
   .md-subheader {
-    color: $md-text-color-secondary;
+    color: $md-secondary-text-color;
     font-family: $md-font;
     font-weight: $md-font-medium;
     height: 48px;
@@ -114,6 +114,6 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
 }
 
 .md-tile-secondary-text {
-  color: $md-text-color-secondary;
+  color: $md-secondary-text-color;
   font-size: #{$md-font-size-base}px;
 }
