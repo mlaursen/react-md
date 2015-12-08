@@ -22,12 +22,12 @@ export default class Tabs extends Component {
     activeTabIndex: PropTypes.number,
     className: PropTypes.string,
     onTabChange: PropTypes.func,
-    component: PropTypes.string.isRequired,
-    transitionEnterTimeout: PropTypes.number.isRequired,
-    transitionLeaveTimeout: PropTypes.number.isRequired,
-    transitionEnter: PropTypes.bool.isRequired,
-    transitionLeave: PropTypes.bool.isRequired,
-    transitionName: PropTypes.string.isRequired,
+    component: PropTypes.string,
+    transitionEnterTimeout: PropTypes.number,
+    transitionLeaveTimeout: PropTypes.number,
+    transitionEnter: PropTypes.bool,
+    transitionLeave: PropTypes.bool,
+    transitionName: PropTypes.string,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
   }
@@ -43,12 +43,14 @@ export default class Tabs extends Component {
 
   componentDidMount() {
     this.slide = ReactDOM.findDOMNode(this.refs.slide);
-    Array.from(ReactDOM.findDOMNode(this).querySelectorAll('.md-tab')).some(tab => {
+    const tabs = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab');
+    for(let i = 0; i < tabs.length; i++) {
+      const tab = tabs[i];
       if(tab.classList.contains('active')) {
         this.slide.style.width = `${tab.offsetWidth}px`;
-        return true;
+        return;
       }
-    });
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -71,9 +73,8 @@ export default class Tabs extends Component {
   }
 
   handleTabChange = (i, tab) => {
-    if(this.props.onTabChange) {
-      this.props.onTabChange(i, tab);
-    } else {
+    this.props.onTabChange && this.props.onTabChange(i, tab);
+    if(!this.props.activeTabIndex) {
       this.setState({ activeTabIndex: i });
     }
   }

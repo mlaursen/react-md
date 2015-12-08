@@ -20,10 +20,8 @@ export default class DocExamples extends Component {
     return (
       <Card className="react-md-doc-card">
         <CardTitle title="Examples" />
-        <CardText>
-          <section className={classnames('examples', `${this.props.className}-examples`)}>
-            {React.Children.map(this.props.examples, (child, i) => child.key ? child : React.cloneElement(child, { key: i }))}
-          </section>
+        <CardText className={`examples ${this.props.className}-examples`}>
+          {React.Children.map(this.props.examples, (child, i) => child.key ? child : React.cloneElement(child, { key: i }))}
         </CardText>
       </Card>
     );

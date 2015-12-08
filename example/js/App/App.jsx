@@ -12,9 +12,11 @@ const componentLinks = Object.keys(components).map(k => {
     return;
   }
 
+  const name = c.name.replace('Doc', '').split(/(?=[A-Z])/);
+
   return {
-    link: c.name.split(/(?=[A-Z])/).map(c => c.toLowerCase()).join('-'),
-    label: c.name.split(/(?=[A-Z])/).join(' '),
+    link: name.map(c => c.toLowerCase()).join('-'),
+    label: name.join(' '),
   };
 }).filter(c => !!c);
 

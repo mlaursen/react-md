@@ -13,7 +13,7 @@ export default (
       if(!component.name) {
         return;
       }
-      const path = component.name.split(/(?=[A-Z])/).map(c => c.toLowerCase()).join('-');
+      const path = component.name.replace('Doc', '').split(/(?=[A-Z])/).map(c => c.toLowerCase()).join('-');
       return <Route key={path} path={path} component={component} />;
     })}
   </Route>

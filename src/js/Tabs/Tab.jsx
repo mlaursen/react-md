@@ -16,7 +16,6 @@ export default class Tab extends Component {
       checked: PropTypes.bool.isRequired,
       requestChange: PropTypes.func.isRequired,
     }),
-    children: PropTypes.node,
     className: PropTypes.string,
   }
 
