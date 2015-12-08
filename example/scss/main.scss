@@ -19,6 +19,11 @@ main {
   flex-grow: 1;
 }
 
+
+
+
+// React doc setup
+
 .react-md-source {
   color: inherit;
   font-size: #{$md-font-size-base}px;
@@ -29,7 +34,8 @@ main {
   }
 }
 
-.react-md-props-card {
+.react-md-doc-card {
+  margin: 1em 0;
   width: 100%;
 }
 
@@ -40,59 +46,23 @@ main {
   margin: 1em;
 }
 
-.react-md-paper {
-  .paper-examples {
-    > div {
-      align-items: center;
-      display: flex;
-      height: 300px;
-      justify-content: center;
-      margin: 1em;
-      width: 300px;
-    }
-  }
-
+.prop-type {
+  color: rgba($black-base, .54);
+  padding-right: 1em
 }
 
-.buttons-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  .md-btn {
-    margin: 1em;
-  }
+.prop-desc {
+  margin: 0;
+  margin-top: .5em;
 }
 
-.forecast {
-  align-items: center;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-
-  .fa {
-    color: get-md-color(yellow);
-    font-size: 4rem;
+.prop-required {
+  &:before {
+    color: rgba($black-base, .54);
+    content: '(isRequired)';
+    padding-left: .5em;
   }
 }
-
-.avatar-section {
-  .paper {
-    padding: 2em;
-  }
-
-  .md-avatar {
-    margin: 0 1em;
-  }
-}
-
-.examples-list {
-  .paper {
-    margin: 1em;
-    width: 256px;
-  }
-}
-
 
 .react-md-doc{
   margin: 2em;
@@ -133,20 +103,66 @@ main {
   }
 }
 
-.prop-type {
-  color: rgba($black-base, .54);
-  padding-right: 1em
-}
 
-.prop-desc {
-  margin: 0;
-  margin-top: .5em;
-}
 
-.prop-required {
-  &:before {
-    color: rgba($black-base, .54);
-    content: '(isRequired)';
-    padding-left: .5em;
+
+// Examples
+.paper-examples {
+  > div {
+    align-items: center;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+    margin: 1em;
+    width: 300px;
   }
 }
+
+
+.selection-controls-examples {
+  display: block;
+}
+
+
+
+
+
+.buttons-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .md-btn {
+    margin: 1em;
+  }
+}
+
+.forecast {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  .fa {
+    color: get-md-color(yellow);
+    font-size: 4rem;
+  }
+}
+
+.avatar-section {
+  .paper {
+    padding: 2em;
+  }
+
+  .md-avatar {
+    margin: 0 1em;
+  }
+}
+
+.examples-list {
+  .paper {
+    margin: 1em;
+    width: 256px;
+  }
+}
+

@@ -84,7 +84,7 @@ export default class DocProps extends Component {
     });
 
     return (
-      <Card className="react-md-props-card">
+      <Card className="react-md-doc-card">
         <CardText>
           <table className="md-data-table">
             <thead>

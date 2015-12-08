@@ -44,12 +44,16 @@
   user-select: none;
 
   &.disabled {
+    .label {
+      color: $color-disabled;
+    }
+
     .md-control {
-      border-color: $color-disabled;
+      border-color: $color-status-bar;
     }
 
     .md-switch:before {
-      background: $color-disabled;
+      background: $color-status-bar;
     }
   }
 

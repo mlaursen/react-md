@@ -16,10 +16,16 @@ export default class SelectionControls extends Component {
       <DocPage
         imports={['Switch', 'Checkbox', 'RadioGroup', 'Radio']}
         examples={[
-          <Checkbox label="Default" />,
-          <Checkbox label="Initially checked" isInitiallyChecked={true} />,
-          <Checkbox label="Disabled" disabled />,
-          <Switch />
+          <div>
+            <Checkbox label="Default" />
+            <Checkbox label="Initially checked" isInitiallyChecked={true} />
+            <Checkbox label="Disabled" disabled />
+          </div>,
+          <div>
+            <Switch label="Some switch" />
+            <Switch label="Initially checked" isInitiallyChecked={true} />
+            <Switch label="Disabled" disabled />
+          </div>,
         ]}
         components={[{
           component: Switch,

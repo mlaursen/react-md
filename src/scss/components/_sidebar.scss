@@ -30,6 +30,7 @@
     display: flex;
     height: initial;
     position: initial;
+    min-height: 100vh;
   }
 
   &.fixed {
