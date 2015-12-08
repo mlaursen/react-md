@@ -947,7 +947,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _react2.default.createElement(
   _reactRouter.Route,
-  { path: '/', component: _App2.default },
+  { path: '/react-md/', component: _App2.default },
   _react2.default.createElement(_reactRouter.IndexRoute, { component: _Dashboard2.default }),
   Object.keys(components).map(function (k) {
     var component = components[k];
