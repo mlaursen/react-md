@@ -16,6 +16,8 @@ import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import sassdoc from 'sassdoc';
+import ghpages from 'gulp-gh-pages';
+import replace from 'gulp-replace';
 import historyAPIFallback from 'connect-history-api-fallback';
 
 const SRC = './src';
@@ -90,7 +92,7 @@ gulp.task('styles', () => {
 
 
 gulp.task('sassdoc', () => {
-  return gulp.src(`${SRC}/${SCSS}/**/*.scss`).pipe(sassdoc());
+  return gulp.src(`${SRC}/${SCSS}/**/*.scss`).pipe(sassdoc({ dest: `${EXAMPLE_DIST}/sassdoc` }));
 });
 gulp.task('sassdoc:watch', ['sassdoc'], browserSync.reload);
 
@@ -124,8 +126,7 @@ function bundle(isProd) {
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('./'))
-    .pipe(isProd ? uglify() : gutil.noop())
-    .pipe(isProd ? rename({ suffix: '.min' }) : gutil.noop())
+    .pipe(replace(/BASE_ROUTER_PATH/g, isProd ? 'react-md/' : ''))
     .pipe(gulp.dest(EXAMPLE_DIST));
 }
 
@@ -147,7 +148,7 @@ gulp.task('scripts:example', ['lint:example'], () => {
 });
 gulp.task('scripts-watch:example', ['scripts:example'], browserSync.reload);
 
-gulp.task('dist:example', ['styles:example', 'scripts:example', 'statics:example']);
+gulp.task('dist:example', ['styles:example', 'scripts:example', 'statics:example', 'sassdoc']);
 gulp.task('serve', ['dist:example'], () => {
   browserSync({
     server: {
@@ -162,6 +163,14 @@ gulp.task('serve', ['dist:example'], () => {
   watch('./+(src|example)/**/*.scss', () => {
     gulp.start('styles-watch:example');
   });
+});
+
+gulp.task('scripts:deploy', () => {
+  return bundle(true);
+});
+
+gulp.task('deploy', ['scripts:deploy', 'styles:example', 'statics:example', 'sassdoc'], () => {
+  return gulp.src(`${EXAMPLE_DIST}/**/*`).pipe(ghpages());
 });
 
 gulp.task('serve-sassdoc', ['sassdoc'], () => {

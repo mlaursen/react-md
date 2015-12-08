@@ -22,6 +22,8 @@ const componentLinks = Object.keys(components).map(k => {
 
 import { AppBar, IconButton, List, ListItem, Sidebar } from '../../../src/js/index';
 
+const OutsideLink = ({ children}) => <a href="sassdoc" className="md-list-tile">{children}</a>;
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -51,13 +53,17 @@ export default class App extends Component {
         />
         <Sidebar
           isOpen={this.state.isNavOpen}
-          items={this.state.filteredLinks.map(fl => ({
+          items={[{
+            component: OutsideLink,
+            primaryText: 'SASS Doc',
+            key: 'sassdoc',
+          }].concat(this.state.filteredLinks.map(fl => ({
             component: Link,
-            className: `/${fl.link}` === pathname ? 'active' : null,
-            to: `/${fl.link}`,
+            className: `/BASE_ROUTER_PATH${fl.link}` === pathname ? 'active' : null,
+            to: `/BASE_ROUTER_PATH${fl.link}`,
             primaryText: fl.label,
             key: fl.link,
-          }))}
+          })))}
           header={<header><input type="text" onChange={this.filterLinks} /></header>}
          />
         <main>
