@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 import { Link } from 'react-router';
 
 import { fuzzyFilter } from '../../../src/js/utils/PropUtils';
@@ -20,7 +18,7 @@ const componentLinks = Object.keys(components).map(k => {
   };
 }).filter(c => !!c);
 
-import { AppBar, IconButton, List, ListItem, Sidebar } from '../../../src/js/index';
+import { AppBar, IconButton, Sidebar } from '../../../src/js/index';
 
 const OutsideLink = ({ children}) => <a href="sassdoc" className="md-list-tile">{children}</a>;
 
@@ -31,6 +29,7 @@ export default class App extends Component {
   }
 
   static propTypes = {
+    children: PropTypes.node,
     location: PropTypes.object, // from react-router
   }
 
@@ -59,8 +58,8 @@ export default class App extends Component {
             key: 'sassdoc',
           }].concat(this.state.filteredLinks.map(fl => ({
             component: Link,
-            className: `/BASE_ROUTER_PATH${fl.link}` === pathname ? 'active' : null,
-            to: `/BASE_ROUTER_PATH${fl.link}`,
+            className: `/${fl.link}` === pathname ? 'active' : null,
+            to: `/${fl.link}`,
             primaryText: fl.label,
             key: fl.link,
           })))}

@@ -6,7 +6,7 @@ import App from './App';
 import Dashboard from './Dashboard';
 
 export default (
-  <Route path="/BASE_ROUTER_PATH" component={App}>
+  <Route path="/" component={App}>
     <IndexRoute component={Dashboard} />
     {Object.keys(components).map(k => {
       const component = components[k];

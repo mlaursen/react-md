@@ -17,7 +17,6 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import sassdoc from 'sassdoc';
 import ghpages from 'gulp-gh-pages';
-import replace from 'gulp-replace';
 import historyAPIFallback from 'connect-history-api-fallback';
 
 const SRC = './src';
@@ -126,7 +125,6 @@ function bundle(isProd) {
     .pipe(buffer())
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(sourcemaps.write('./'))
-    .pipe(replace(/BASE_ROUTER_PATH/g, isProd ? 'react-md/' : ''))
     .pipe(gulp.dest(EXAMPLE_DIST));
 }
 
