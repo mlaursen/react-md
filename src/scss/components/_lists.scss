@@ -18,7 +18,7 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   }
 
   .md-subheader {
-    color: $color-text-secondary;
+    color: $md-text-color-secondary;
     font-family: $md-font;
     font-weight: $md-font-medium;
     height: 48px;
@@ -30,7 +30,7 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   }
 
   a {
-    color: $color-text;
+    color: $md-text-color;
     text-decoration: none;
   }
 }
@@ -114,6 +114,6 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
 }
 
 .md-tile-secondary-text {
-  color: $color-text-secondary;
+  color: $md-text-color-secondary;
   font-size: #{$md-font-size-base}px;
 }
