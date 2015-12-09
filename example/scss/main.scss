@@ -171,6 +171,20 @@ main {
   }
 }
 
+.avatar-examples {
+  display: block;
+
+  .md-avatar {
+    margin-right: 1.5em;
+  }
+
+  > div {
+    align-items: center;
+    display: flex;
+    margin: 1em 0;
+  }
+}
+
 .forecast {
   align-items: center;
   display: flex;

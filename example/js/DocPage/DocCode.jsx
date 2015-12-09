@@ -18,11 +18,19 @@ export default class DocCode extends Component {
 
   render() {
     const { imports, defaultImport } = this.props;
-    let di = null;
+    let di = '';
     imports.some(i => {
       if(i === defaultImport) { di = i; }
       return i === defaultImport;
     });
+
+    let remainingImports = imports.filter(i => i !== di).join(', ');
+    if(di) { di = ' ' + di; }
+
+    if(remainingImports.length) {
+      if(di) { di += ','; }
+      remainingImports = ` { ${remainingImports} }`;
+    }
     return (
       <code className="react-md-code">
         <CodeComment comment="Import statements" />
@@ -31,7 +39,7 @@ export default class DocCode extends Component {
         </span>
         <CodeComment comment="Or from the component folder..." />
         <span key="folder-imports" className="react-md-code-block">
-          {`import${di ? (' ' + di + ',') : ''} { ${imports.filter(i => i !== di).join(', ')} } from 'react-md/${defaultImport}';`}
+          {`import${di}${remainingImports} from 'react-md/${defaultImport}';`}
         </span>
       </code>
     );

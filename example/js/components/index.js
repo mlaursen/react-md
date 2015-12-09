@@ -1,3 +1,4 @@
+export Avatars from './Avatars';
 export BottomSheets from './BottomSheets';
 export Buttons from './Buttons';
 export Cards from './Cards';
