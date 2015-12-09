@@ -736,6 +736,8 @@ var _reactAddonsPureRenderMixin2 = _interopRequireDefault(_reactAddonsPureRender
 
 var _js = require('../../../src/js');
 
+var _utils = require('../utils');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -764,7 +766,7 @@ var Home = (function (_Component) {
 
     _this.viewDemo = function () {
       setTimeout(function () {
-        _this.props.history.pushState(null, '/buttons');
+        _this.props.history.pushState(null, '/' + _utils.componentLinks[0].link);
       }, 150);
     };
 
@@ -825,7 +827,7 @@ Home.propTypes = {
   history: _react.PropTypes.object };
 exports.default = Home;
 
-},{"../../../src/js":309,"react":263,"react-addons-pure-render-mixin":71}],10:[function(require,module,exports){
+},{"../../../src/js":309,"../utils":44,"react":263,"react-addons-pure-render-mixin":71}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
