@@ -53,6 +53,7 @@
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
     "history": "^1.13.1",
+    "normalize-scss-vanilla": "^1.0.1",
     "react": "^0.14.3",
     "react-addons-css-transition-group": "^0.14.3",
     "react-addons-pure-render-mixin": "^0.14.3",

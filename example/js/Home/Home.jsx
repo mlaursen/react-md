@@ -3,6 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { RaisedButton } from '../../../src/js';
 
+import { componentLinks } from '../utils';
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +39,7 @@ export default class Home extends Component {
   }
 
   viewDemo = () => {
-    setTimeout(() => { this.props.history.pushState(null, '/buttons'); }, 150);
+    setTimeout(() => { this.props.history.pushState(null, `/${componentLinks[0].link}`); }, 150);
   }
 
   render() {
