@@ -2,41 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { fuzzyFilter } from '../../../src/js/utils/PropUtils';
-import { FontIcon, Avatar } from '../../../src/js';
-
-import * as components from '../components';
-const componentLinks = Object.keys(components).map(k => {
-  const c = components[k];
-  if(!c.name) {
-    return;
-  }
-
-  const name = c.name.replace('Doc', '').split(/(?=[A-Z])/);
-
-  return {
-    link: name.map(c => c.toLowerCase()).join('-'),
-    label: name.join(' '),
-  };
-}).filter(c => !!c);
-const mainLinks = [{ link: '', label: 'Home', leftIcon: <FontIcon>home</FontIcon> }];
-
-
-const OutsideLink = ({ children, className, ...props }) => <a href="sassdoc" className={`md-list-tile ${className}`} {...props}>{children}</a>;
-const sublinks = [{
-  component: OutsideLink,
-  primaryText: 'SASS Doc',
-  key: 'sassdoc',
-  leftIcon: <Avatar src="http://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="Sass icon" />,
-}, {
-  divider: true,
-  key: 'main-divider',
-}, {
-  subheader: true,
-  primaryText: 'Components',
-  key: components,
-}];
-
 import { AppBar, IconButton, Sidebar } from '../../../src/js/index';
+
+import { componentLinks, mainLinks, sublinks } from '../utils';
 
 export default class App extends Component {
   constructor(props) {
@@ -75,7 +43,7 @@ export default class App extends Component {
       className: `/${link}` === this.props.location.pathname ? 'active' : null,
       to: `/${link}`,
       primaryText: label,
-      key: link,
+      key: link || 'home-link',
       ...props,
     };
   }
@@ -96,16 +64,6 @@ export default class App extends Component {
         <main className={this.props.location.pathname === '/' ? 'react-md-home-container' : null}>
           {this.props.children}
           {/*
-          <section className="avatar-section">
-            <Paper>
-              <Avatar src="http://lorempixel.com/120/120/people" alt="some image" />
-              <Avatar icon={<FontIcon iconClassName="fa fa-hand-spock-o" />} />
-              <Avatar icon={<FontIcon iconClassName="fa fa-rocket" />} random />
-              <Avatar>M</Avatar>
-              <Avatar random>O</Avatar>
-              <Avatar color={2}>X</Avatar>
-            </Paper>
-          </section>
           <section className="card-section">
             <Card isExpandable={true}>
               <CardTitle avatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />} title="Title goes here" subtitle="Subtitle here" />

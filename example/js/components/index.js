@@ -6,6 +6,7 @@ export Chips from './Chips';
 export DataTables from './DataTables';
 export Dialogs from './Dialogs';
 export Dividers from './Dividers';
+export FontIcons from './FontIcons';
 export GridLists from './GridLists';
 export Lists from './Lists';
 export Menus from './Menus';
