@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Button from './Button.jsx';
+import Button from './Button';
 import FontIcon from '../FontIcon';
 
 export default class FloatingButton extends Component {

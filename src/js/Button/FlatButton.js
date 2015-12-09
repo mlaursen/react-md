@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Control from './Control.jsx';
+import Button from './Button';
 
-export default class Checkbox extends Component {
+export default class FlatButton extends Component {
   constructor(props) {
     super(props);
 
@@ -11,12 +11,15 @@ export default class Checkbox extends Component {
   }
 
   static propTypes = {
-    isInitiallyChecked: PropTypes.bool,
-    onChange: PropTypes.func,
-    value: PropTypes.string,
+    icon: PropTypes.string,
+    iconBefore: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    iconBefore: true,
   }
 
   render() {
-    return <Control type="checkbox" {...this.props} />;
+    return <Button flat {...this.props} />;
   }
 }

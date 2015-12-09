@@ -1,2 +1,2 @@
-import Toolbar from './Toolbar.jsx';
+import Toolbar from './Toolbar';
 export default Toolbar;

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
-import CardExpander from './CardExpander.jsx';
+import CardExpander from './CardExpander';
 
 export default class CardActions extends Component {
   static contextTypes = {

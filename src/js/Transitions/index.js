@@ -1,2 +1,2 @@
-import Height from './Height.jsx';
+import Height from './Height';
 export default Height;

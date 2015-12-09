@@ -1,2 +1,2 @@
-import FontIcon from './FontIcon.jsx';
+import FontIcon from './FontIcon';
 export default FontIcon;

@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
-import ListSubheader from './ListSubheader.jsx';
+import ListSubheader from './ListSubheader';
 
 export default class List extends Component {
   constructor(props) {

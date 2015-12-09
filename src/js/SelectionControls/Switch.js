@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Button from './Button.jsx';
+import Control from './Control';
 
-export default class RaisedButton extends Component {
+export default class Switch extends Component {
   constructor(props) {
     super(props);
 
@@ -11,16 +11,12 @@ export default class RaisedButton extends Component {
   }
 
   static propTypes = {
-    icon: PropTypes.string,
-    iconBefore: PropTypes.bool,
+    isInitiallyChecked: PropTypes.bool,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
   }
-
-  static defaultProps = {
-    iconBefore: true,
-  }
-
 
   render() {
-    return <Button raised {...this.props} />;
+    return <Control type="switch" {...this.props} />;
   }
 }

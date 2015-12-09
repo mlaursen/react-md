@@ -1,11 +1,11 @@
-import Card from './Card.jsx';
+import Card from './Card';
 export default Card;
 
 export { Card };
 
-export CardHeader from './CardHeader.jsx';
-export CardTitle from './CardTitle.jsx';
-export CardMedia from './CardMedia.jsx';
-export CardActions from './CardActions.jsx';
-export CardText from './CardText.jsx';
-export CardActionOverlay from './CardActionOverlay.jsx';
+export CardHeader from './CardHeader';
+export CardTitle from './CardTitle';
+export CardMedia from './CardMedia';
+export CardActions from './CardActions';
+export CardText from './CardText';
+export CardActionOverlay from './CardActionOverlay';

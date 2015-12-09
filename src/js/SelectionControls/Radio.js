@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Control from './Control.jsx';
+import Control from './Control';
 
-export default class Switch extends Component {
+export default class Radio extends Component {
   constructor(props) {
     super(props);
 
@@ -11,12 +11,12 @@ export default class Switch extends Component {
   }
 
   static propTypes = {
-    isInitiallyChecked: PropTypes.bool,
+    name: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string,
   }
 
   render() {
-    return <Control type="switch" {...this.props} />;
+    return <Control type="radio" {...this.props} />;
   }
 }

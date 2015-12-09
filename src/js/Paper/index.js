@@ -1,2 +1,2 @@
-import Paper from './Paper.jsx';
+import Paper from './Paper';
 export default Paper;

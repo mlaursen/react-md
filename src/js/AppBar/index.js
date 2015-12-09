@@ -1,2 +1,2 @@
-import AppBar from './AppBar.jsx';
+import AppBar from './AppBar';
 export default AppBar;

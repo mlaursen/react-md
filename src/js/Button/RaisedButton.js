@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Control from './Control.jsx';
+import Button from './Button';
 
-export default class Radio extends Component {
+export default class RaisedButton extends Component {
   constructor(props) {
     super(props);
 
@@ -11,12 +11,16 @@ export default class Radio extends Component {
   }
 
   static propTypes = {
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.string,
+    icon: PropTypes.string,
+    iconBefore: PropTypes.bool,
   }
 
+  static defaultProps = {
+    iconBefore: true,
+  }
+
+
   render() {
-    return <Control type="radio" {...this.props} />;
+    return <Button raised {...this.props} />;
   }
 }

@@ -1,7 +1,7 @@
-import Button from './Button.jsx';
+import Button from './Button';
 export default Button;
 
-export FlatButton from './FlatButton.jsx';
-export RaisedButton from './RaisedButton.jsx';
-export FloatingButton from './FloatingButton.jsx';
-export IconButton from './IconButton.jsx';
+export FlatButton from './FlatButton';
+export RaisedButton from './RaisedButton';
+export FloatingButton from './FloatingButton';
+export IconButton from './IconButton';
