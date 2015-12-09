@@ -77,7 +77,7 @@ function scripts(isProd) {
 
 
 gulp.task('clean', (callback) => {
-  return del([DIST, EXAMPLE_DIST], callback);
+  return del(EXAMPLE_DIST, callback);
 });
 
 

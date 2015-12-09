@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/js/Tabs/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;QAAO,IAAI;QACJ,GAAG","file":"index.js","sourcesContent":["export Tabs from './Tabs';\nexport Tab from './Tab';\n"]}
