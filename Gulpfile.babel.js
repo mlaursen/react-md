@@ -17,7 +17,6 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import sassdoc from 'sassdoc';
 import ghpages from 'gulp-gh-pages';
-import historyAPIFallback from 'connect-history-api-fallback';
 
 const SRC = './src';
 const EXAMPLE_SRC = './example';
@@ -137,11 +136,7 @@ gulp.task('styles:example', () => {
 });
 gulp.task('styles-watch:example', ['styles:example']);
 
-gulp.task('lint:example', () => {
-  return lint(EXAMPLE_SRC);
-});
-
-gulp.task('scripts:example', ['lint:example'], () => {
+gulp.task('scripts:example', () => {
   return bundle(false);
 });
 gulp.task('scripts-watch:example', ['scripts:example'], browserSync.reload);
@@ -151,7 +146,6 @@ gulp.task('serve', ['dist:example'], () => {
   browserSync({
     server: {
       baseDir: EXAMPLE_DIST,
-      middleware: [historyAPIFallback()],
     },
   });
 
@@ -169,17 +163,4 @@ gulp.task('scripts:deploy', () => {
 
 gulp.task('deploy', ['scripts:deploy', 'styles:example', 'statics:example', 'sassdoc'], () => {
   return gulp.src(`${EXAMPLE_DIST}/**/*`).pipe(ghpages());
-});
-
-gulp.task('serve-sassdoc', ['sassdoc'], () => {
-  browserSync({
-    server: {
-      baseDir: './sassdoc',
-      middleware: [historyAPIFallback()],
-    },
-  });
-
-  watch(`${SRC}/${SCSS}/**/*.scss`, () => {
-    gulp.start('sassdoc:watch');
-  });
 });
