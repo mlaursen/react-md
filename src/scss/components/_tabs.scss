@@ -55,6 +55,10 @@
   }
 }
 
+.md-tab-radio {
+  @extend %hidden;
+}
+
 .md-tab-label {
   align-items: center;
   background: transparent;

@@ -25,7 +25,7 @@ export default class Tab extends Component {
       <li className={classnames('md-tab', className, { 'active': valueLink.checked, 'wrapped': this.state.wrapped })} {...props}>
         <label className="md-tab-label">
           {label}
-          <input type="radio" className="hidden" name="md-tabs" valueLink={valueLink} />
+          <input type="radio" className="md-tab-radio" name="md-tabs" valueLink={valueLink} />
         </label>
       </li>
     );

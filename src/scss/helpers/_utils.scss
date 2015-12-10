@@ -1,8 +1,5 @@
-* {
-  box-sizing: border-box;
-}
 
-.hidden {
+%hidden {
   height: 0;
   position: absolute;
   width: 0;

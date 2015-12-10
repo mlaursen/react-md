@@ -81,7 +81,15 @@ export default class Control extends Component {
       <label className={labelClassName} onMouseDown={this.createRipple} onMouseUp={this.removeRipple}>
         {labelBefore && spanLabel}
         <div className="md-control-container">
-          <input type={type === 'switch' ? 'checkbox' : type} checked={checked} className="md-control-input" {...props} onChange={this.toggleCheck} onKeyDown={this.removeRipple} onKeyUp={this.createRipple} />
+          <input
+            type={type === 'switch' ? 'checkbox' : type}
+            checked={checked}
+            className="md-control-input"
+            {...props}
+            onChange={this.toggleCheck}
+            onKeyDown={this.removeRipple}
+            onKeyUp={this.createRipple}
+          />
           <div className={`md-control md-${type}`} />
           <span className={classnames('ripple', { 'active': focused, 'leave': leaving })} />
         </div>

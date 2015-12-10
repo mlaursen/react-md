@@ -1,7 +1,6 @@
 @mixin make-sidebar-fixed() {
   height: 100vh;
   position: fixed;
-  z-index: 2;
 }
 
 @mixin make-sidebar-responsive($min-width, $width: $md-sidebar-open-width, $fixed: false) {
@@ -9,10 +8,15 @@
     .md-sidebar-container.md-sidebar-responsive {
       @if $fixed == true {
         @include make-sidebar-fixed();
+
       } @else {
         height: initial;
         min-height: 100vh;
         position: initial;
+
+        .md-overlay {
+          display: none;
+        }
       }
 
       .md-sidebar.active {
@@ -45,6 +49,7 @@
   overflow: hidden;
   transition: width $md-transition-time;
   width: 0;
+  z-index: 5;
 
   &.active {
     width: $md-sidebar-open-width;

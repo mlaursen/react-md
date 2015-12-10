@@ -156,7 +156,7 @@ main {
     width: 100%;
   }
 
-  .md-tab-content .md-btn {
+  .md-tab-content .md-btn:not(.md-btn-icon) {
     display: block;
     margin: 1em;
   }
@@ -187,15 +187,48 @@ main {
   }
 }
 
+
+.react-md-card {
+  
+  .react-md-doc-card:nth-of-type(1) {
+    background: none;
+    box-shadow: none;
+
+    > .md-card-title {
+      padding: 1em 0;
+    }
+
+    .expandable-card {
+      max-width: 350px;
+    }
+  }
+
+  .card-examples {
+    padding: 0;
+  }
+}
+
 .forecast {
   align-items: center;
+  color: $md-secondary-text-color;
   display: flex;
   flex-wrap: nowrap;
+  font-size: 4em;
   justify-content: space-between;
 
   .fa {
     color: get-md-color(yellow);
-    font-size: 4rem;
+  }
+
+  .md-title {
+    color: inherit;
+    display: inline-block;
+    font-weight: normal;
+    line-height: 1;
+  }
+
+  sup {
+    top: -.65em;
   }
 }
 

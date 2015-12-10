@@ -4,14 +4,31 @@
   }
 }
 
+@media only screen and (min-width: 727px) {
+  .md-card {
+    min-width: 350px;
+  }
+}
+
 .md-card {
   @include md-box-shadow(2);
 
   background: $md-card-color;
   display: inline-block;
+
+  .md-list-tile {
+    color: inherit;
+    font-size: inherit;
+    padding-left: 0;
+
+    &:hover {
+      background: initial;
+    }
+  }
 }
 
 .md-card-text {
+  color: $md-secondary-text-color;
   padding: $md-card-padding;
 
   p,

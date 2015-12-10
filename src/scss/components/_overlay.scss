@@ -1,0 +1,31 @@
+
+.md-overlay {
+  background: rgba($black-base, .2);
+  height: 100%;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.md-overlay-enter {
+  opacity: 0;
+
+  &.md-overlay-enter-active {
+    opacity: 1;
+    transition: opacity $md-transition-time;
+  }
+}
+
+.md-overlay-leave {
+  opacity: 1;
+
+  &.md-overlay-leave-active {
+    opacity: 0;
+    transition: opacity $md-transition-time;
+  }
+}
+
