@@ -397,11 +397,7 @@ th {
   padding: 0;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.hidden {
+.md-tab-radio {
   height: 0;
   position: absolute;
   width: 0;
@@ -452,7 +448,9 @@ th {
 }
 
 * {
+  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -552,6 +550,36 @@ p,
 [class^='md-subheading'],
 [class^='md-body'] {
   color: rgba(0, 0, 0, 0.77);
+}
+
+.md-overlay {
+  background: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.md-overlay-enter {
+  opacity: 0;
+}
+
+.md-overlay-enter.md-overlay-enter-active {
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.md-overlay-leave {
+  opacity: 1;
+}
+
+.md-overlay-leave.md-overlay-leave-active {
+  opacity: 0;
+  transition: opacity 0.15s;
 }
 
 .paper-0, .paper-1, .paper-2, .paper-3, .paper-4, .paper-5, .md-sidebar, .react-md-code {
@@ -768,7 +796,7 @@ p,
 .md-btn-icon {
   background: transparent;
   color: inherit;
-  font-size: 0;
+  font-size: 24px;
   height: 48px;
   padding: 12px;
   text-decoration: none;
@@ -787,7 +815,7 @@ p,
 
 .md-btn-primary:not(.md-btn-flat) .ripple,
 .md-btn-secondary:not(.md-btn-flat) .ripple {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .md-btn-flat {
@@ -826,7 +854,7 @@ p,
   box-shadow: none;
 }
 
-.md-btn-floating .material-icons {
+.md-btn-floating .md-icon {
   display: block;
 }
 
@@ -842,16 +870,17 @@ p,
   background: rgba(153, 153, 153, 0.4);
 }
 
-.md-btn-default.md-btn-raised, .md-btn-default.md-btn-floating {
+.md-btn-default .ripple {
+  background: rgba(153, 153, 153, 0.4);
+}
+
+.md-btn-raised,
+.md-btn-floating {
   background: #fff;
 }
 
-.md-btn-default.md-btn-raised {
+.md-btn-raised {
   border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.md-btn-default .ripple {
-  background: rgba(153, 153, 153, 0.4);
 }
 
 .md-btn-primary.md-btn-flat {
@@ -1026,13 +1055,30 @@ p,
   }
 }
 
+@media only screen and (min-width: 727px) {
+  .md-card {
+    min-width: 350px;
+  }
+}
+
 .md-card {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   background: #fff;
   display: inline-block;
 }
 
+.md-card .md-list-tile {
+  color: inherit;
+  font-size: inherit;
+  padding-left: 0;
+}
+
+.md-card .md-list-tile:hover {
+  background: initial;
+}
+
 .md-card-text {
+  color: rgba(0, 0, 0, 0.54);
   padding: 16px;
 }
 
@@ -1257,6 +1303,7 @@ p,
           transform: translate3d(-50%, -50%, 0) scale(0);
   background: rgba(153, 153, 153, 0.2);
   height: 48px;
+  transition: none;
   width: 48px;
   z-index: 2;
 }
@@ -1393,7 +1440,6 @@ p,
   .md-sidebar-container.md-sidebar-responsive {
     height: 100vh;
     position: fixed;
-    z-index: 2;
   }
   .md-sidebar-container.md-sidebar-responsive .md-sidebar.active {
     width: calc(100vw - 48px);
@@ -1405,6 +1451,9 @@ p,
     height: initial;
     min-height: 100vh;
     position: initial;
+  }
+  .md-sidebar-container.md-sidebar-responsive .md-overlay {
+    display: none;
   }
   .md-sidebar-container.md-sidebar-responsive .md-sidebar.active {
     width: 256px;
@@ -1424,7 +1473,6 @@ p,
 .md-sidebar-container.fixed {
   height: 100vh;
   position: fixed;
-  z-index: 2;
 }
 
 .md-sidebar {
@@ -1432,6 +1480,7 @@ p,
   overflow: hidden;
   transition: width 0.15s;
   width: 0;
+  z-index: 5;
 }
 
 .md-sidebar.active {
@@ -1623,7 +1672,7 @@ main {
   width: 100%;
 }
 
-.react-md-buttons .md-tab-content .md-btn {
+.react-md-buttons .md-tab-content .md-btn:not(.md-btn-icon) {
   display: block;
   margin: 1em;
 }
@@ -1662,16 +1711,35 @@ main {
   margin: 1em 0;
 }
 
+.react-md-card .react-md-doc-card:nth-of-type(1) {
+  background: none;
+  box-shadow: none;
+}
+
+.react-md-card .react-md-doc-card:nth-of-type(1) > .md-card-title {
+  padding: 1em 0;
+}
+
+.react-md-card .react-md-doc-card:nth-of-type(1) .expandable-card {
+  max-width: 350px;
+}
+
+.react-md-card .card-examples {
+  padding: 0;
+}
+
 .forecast {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  color: rgba(0, 0, 0, 0.54);
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-flex-wrap: nowrap;
       -ms-flex-wrap: nowrap;
           flex-wrap: nowrap;
+  font-size: 4em;
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -1679,7 +1747,17 @@ main {
 
 .forecast .fa {
   color: #ffeb3b;
-  font-size: 4rem;
+}
+
+.forecast .md-title {
+  color: inherit;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.forecast sup {
+  top: -.65em;
 }
 
 .avatar-section .paper {
