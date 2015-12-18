@@ -33,6 +33,7 @@
   @extend %full-height;
 
   display: inline-block;
+  z-index: $md-sidebar-z-index;
 
   &.md-sidebar-responsive {
     display: flex;

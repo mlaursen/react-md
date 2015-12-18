@@ -12,6 +12,8 @@ export default class Tabs extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       activeTabIndex: 0,
+      touchStart: 0,
+      distance: 0,
     };
     this.slide = null;
     this.tabsContent = React.Children.map(props.children, (child, i) => (
@@ -42,8 +44,9 @@ export default class Tabs extends Component {
 
     this.updateSlider();
     const contents = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab-content');
+    const transform = `translate3d(-${activeTabIndex * this.getContainerWidth()}px, 0, 0)`;
     for(let i = 0; i < contents.length; i++) {
-      contents[i].style.transform = `translate3d(-${activeTabIndex * this.getContainerWidth()}px, 0, 0)`;
+      contents[i].style.transform = transform;
     }
   }
 
@@ -68,6 +71,34 @@ export default class Tabs extends Component {
     }
   }
 
+  handleTouchStart = (e) => {
+    this.setState({ touchStart: e.changedTouches[0].pageX });
+  }
+
+  handleTouchMove = (e) => {
+    this.moveTabs(e.changedTouches[0], 20);
+  }
+
+  handleTouchEnd = (e) => {
+    this.setState({ distance: this.moveTabs(e.changedTouches[0]) });
+  }
+
+  moveTabs = ({ pageX }, threshold = 0) => {
+    let distance = this.state.distance + (pageX - this.state.touchStart);
+    const tabs = Array.prototype.slice.call(this.refs.tabs.querySelectorAll('.md-tab'));
+    const maxWidth = tabs.reduce((prev, curr) => prev + curr.clientWidth, 0) + threshold - this.refs.tabs.clientWidth;
+    if(distance > 0) {
+      distance = Math.min(distance, threshold);
+    } else {
+      distance = Math.max(distance, -maxWidth);
+    }
+
+    const transform = `translate3d(${distance}px, 0, 0)`;
+    this.slide.style.transform = transform;
+    tabs.forEach(tab => tab.style.transform = transform);
+    return distance;
+  }
+
   render() {
     const { children, className, ...props } = this.props;
     const activeTabIndex = this.getActiveTabIndex();
@@ -88,7 +119,13 @@ export default class Tabs extends Component {
     });
     return (
       <div {...props} className={classnames('md-tabs-container', className)}>
-        <ul className={tabsClassName}>
+        <ul
+          className={tabsClassName}
+          ref="tabs"
+          onTouchStart={this.handleTouchStart}
+          onTouchMove={this.handleTouchMove}
+          onTouchEnd={this.handleTouchEnd}
+          >
           {tabs}
           <span className="slide" ref="slide" />
         </ul>
