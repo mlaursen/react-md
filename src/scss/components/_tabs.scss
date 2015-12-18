@@ -76,4 +76,16 @@
   width: 100%;
 }
 
+.md-tab-content-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.md-tab-content {
+  display: inline-block;
+  transition: transform $md-tab-slide-transition-time;
+  vertical-align: top;
+  white-space: normal;
+}
+
 @include make-md-tabs(primary, $md-primary-color, $md-secondary-color, 2);

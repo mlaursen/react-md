@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { Tabs, Tab } from '../../../../src/js';
@@ -9,6 +9,11 @@ export default class TabsDoc extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { activeTabIndex: 2 };
+  }
+
+  handleTabChange = (i) => {
+    this.setState({ activeTabIndex: i });
   }
 
   render() {
@@ -23,6 +28,14 @@ export default class TabsDoc extends Component {
             </Tab>
             <Tab label="Tab 2">
               <p>Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</p>
+            </Tab>
+          </Tabs>,
+          <Tabs secondary activeTabIndex={this.state.activeTabIndex} onTabChange={this.handleTabChange}>
+            <Tab label="Some Tab that has a Long Label">
+            </Tab>
+            <Tab label="Another Tab that has a Long Label">
+            </Tab>
+            <Tab label="Woop Woop">
             </Tab>
           </Tabs>,
         ]}
@@ -52,30 +65,6 @@ export default class TabsDoc extends Component {
             name: 'onTabChange',
             propType: 'f',
             desc: 'A function that is called when a tab is clicked. Called with `this.props.onTabChange(tabIndex, tabComponent)`',
-          }, {
-            name: 'component',
-            propType: 's',
-            desc: 'The component to render the tabs as.',
-          }, {
-            name: 'transitionName',
-            propType: 's',
-            desc: 'The transition name for when the tab content changes.',
-          }, {
-            name: 'transitionEnter',
-            propType: 'b',
-            desc: 'Boolean if the tabs should animate on enter.',
-          }, {
-            name: 'transitionLeave',
-            propType: 'b',
-            desc: 'Boolean if the tabs should animate on leave.',
-          }, {
-            name: 'transitionEnterTimeout',
-            propType: 'nu',
-            desc: 'The transition enter timeout for when the tabs change.',
-          }, {
-            name: 'transitionLeaveTimeout',
-            propType: 'nu',
-            desc: 'The transition leave timeout for when the tabs change.',
           }],
         }, {
           component: Tab,

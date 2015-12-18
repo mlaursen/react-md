@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
@@ -15,6 +14,9 @@ export default class Tabs extends Component {
       activeTabIndex: 0,
     };
     this.slide = null;
+    this.tabsContent = React.Children.map(props.children, (child, i) => (
+      <div className="md-tab-content" ref={`tabContent${i}`} key={`tab-content-${i}`}>{child.props.children}</div>
+    ));
   }
 
   static propTypes = {
@@ -22,35 +24,13 @@ export default class Tabs extends Component {
     activeTabIndex: PropTypes.number,
     className: PropTypes.string,
     onTabChange: PropTypes.func,
-    component: PropTypes.string,
-    transitionEnterTimeout: PropTypes.number,
-    transitionLeaveTimeout: PropTypes.number,
-    transitionEnter: PropTypes.bool,
-    transitionLeave: PropTypes.bool,
-    transitionName: PropTypes.string,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
   }
 
-  static defaultProps = {
-    transitionEnterTimeout: 150,
-    transitionLeaveTimeout: 0,
-    transitionEnter: true,
-    transitionLeave: false,
-    transitionName: 'tab',
-    component: 'div',
-  }
-
   componentDidMount() {
     this.slide = ReactDOM.findDOMNode(this.refs.slide);
-    const tabs = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab');
-    for(let i = 0; i < tabs.length; i++) {
-      const tab = tabs[i];
-      if(tab.classList.contains('active')) {
-        this.slide.style.width = `${tab.offsetWidth}px`;
-        return;
-      }
-    }
+    this.updateSlider();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -59,13 +39,22 @@ export default class Tabs extends Component {
     if(prevTabIndex === activeTabIndex) {
       return;
     }
-    const tab = this.getActiveTab();
-    this.slide.style.width = `${tab.offsetWidth}px`;
-    this.slide.style.left = `${tab.offsetLeft}px`;
+
+    this.updateSlider();
+    const contents = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab-content');
+    for(let i = 0; i < contents.length; i++) {
+      contents[i].style.transform = `translate3d(-${activeTabIndex * this.getContainerWidth()}px, 0, 0)`;
+    }
   }
 
-  getActiveTab = () => {
-    return ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
+  getContainerWidth = () => {
+    return ReactDOM.findDOMNode(this).offsetWidth;
+  }
+
+  updateSlider = () => {
+    const { offsetWidth, offsetLeft } = ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
+    this.slide.style.width = `${offsetWidth}px`;
+    this.slide.style.left = `${offsetLeft}px`;
   }
 
   getActiveTabIndex = ({ props, state } = this) => {
@@ -83,17 +72,11 @@ export default class Tabs extends Component {
     const { children, className, ...props } = this.props;
     const activeTabIndex = this.getActiveTabIndex();
 
-    let tabContent = null;
     const tabs = React.Children.map(children, (tab, i) => {
-      const isActive = i === activeTabIndex;
-      if(isActive) {
-        tabContent = <div className="md-tab-content" key={i}>{tab.props.children}</div>;
-      }
-
       return React.cloneElement(tab, {
         key: i,
         valueLink: {
-          checked: isActive,
+          checked: i === activeTabIndex,
           requestChange: this.handleTabChange.bind(this, i, tab),
         },
       });
@@ -104,13 +87,15 @@ export default class Tabs extends Component {
       'md-tabs-secondary': isPropEnabled(this.props, 'secondary'),
     });
     return (
-      <CSSTransitionGroup {...props} className={classnames('md-tabs-container', className)}>
+      <div {...props} className={classnames('md-tabs-container', className)}>
         <ul className={tabsClassName}>
           {tabs}
           <span className="slide" ref="slide" />
         </ul>
-        {tabContent}
-      </CSSTransitionGroup>
+        <div className="md-tab-content-container">
+          {this.tabsContent}
+        </div>
+      </div>
     );
   }
 }

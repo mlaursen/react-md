@@ -189,7 +189,7 @@ main {
 
 
 .react-md-card {
-  
+
   .react-md-doc-card:nth-of-type(1) {
     background: none;
     box-shadow: none;
@@ -247,6 +247,10 @@ main {
     margin: 1em;
     width: 256px;
   }
+}
+
+.tabs-examples .md-tab-content > p {
+  padding: 1em;
 }
 
 
