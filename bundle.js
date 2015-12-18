@@ -1114,7 +1114,6 @@ var Buttons = (function (_Component) {
       return _react2.default.createElement(_DocPage2.default, {
         imports: ['Button', 'FlatButton', 'RaisedButton', 'FloatingButton'],
         sectionName: 'Buttons',
-        defaultImport: 'Button',
         examples: [_react2.default.createElement(
           _js.Tabs,
           { primary: true },
@@ -32390,7 +32389,7 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _Button = require('../Button');
+var _ = require('../');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32418,7 +32417,7 @@ var CardExpander = (function (_Component) {
       var iconClassName = _context.iconClassName;
       var iconChildren = _context.iconChildren;
 
-      return _react2.default.createElement(_Button.IconButton, { className: (0, _classnames2.default)('md-card-expander', { 'flipped': isExpanded }), onClick: onExpandClick, iconClassName: iconClassName, children: iconChildren });
+      return _react2.default.createElement(_.IconButton, { className: (0, _classnames2.default)('md-card-expander', { 'flipped': isExpanded }), onClick: onExpandClick, iconClassName: iconClassName, children: iconChildren });
     }
   }]);
 
@@ -32433,7 +32432,7 @@ CardExpander.contextTypes = {
 };
 exports.default = CardExpander;
 
-},{"../Button":465,"classnames":236,"react":455}],470:[function(require,module,exports){
+},{"../":501,"classnames":236,"react":455}],470:[function(require,module,exports){
 "use strict";
 
 },{}],471:[function(require,module,exports){
@@ -34161,7 +34160,6 @@ var Tab = (function (_Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tab).call(this, props));
 
     _this.shouldComponentUpdate = _reactAddonsPureRenderMixin2.default.shouldComponentUpdate.bind(_this);
-    _this.state = { wrapped: props.label.length > 33 };
     return _this;
   }
 
@@ -34177,7 +34175,7 @@ var Tab = (function (_Component) {
 
       return _react2.default.createElement(
         'li',
-        _extends({ className: (0, _classnames2.default)('md-tab', className, { 'active': valueLink.checked, 'wrapped': this.state.wrapped }) }, props),
+        _extends({ className: (0, _classnames2.default)('md-tab', className, { 'active': valueLink.checked, 'wrapped': label.length > 33 }) }, props),
         _react2.default.createElement(
           'label',
           { className: 'md-tab-label' },
@@ -34252,7 +34250,9 @@ var Tabs = (function (_Component) {
 
     _this.shouldComponentUpdate = _reactAddonsPureRenderMixin2.default.shouldComponentUpdate.bind(_this);
     _this.state = {
-      activeTabIndex: 0
+      activeTabIndex: 0,
+      touchStart: 0,
+      distance: 0
     };
     _this.slide = null;
     _this.tabsContent = _react2.default.Children.map(props.children, function (child, i) {
@@ -34282,8 +34282,9 @@ var Tabs = (function (_Component) {
 
       this.updateSlider();
       var contents = _reactDom2.default.findDOMNode(this).querySelectorAll('.md-tab-content');
+      var transform = 'translate3d(-' + activeTabIndex * this.getContainerWidth() + 'px, 0, 0)';
       for (var i = 0; i < contents.length; i++) {
-        contents[i].style.transform = 'translate3d(-' + activeTabIndex * this.getContainerWidth() + 'px, 0, 0)';
+        contents[i].style.transform = transform;
       }
     }
   }, {
@@ -34318,7 +34319,13 @@ var Tabs = (function (_Component) {
         _extends({}, props, { className: (0, _classnames2.default)('md-tabs-container', className) }),
         _react2.default.createElement(
           'ul',
-          { className: tabsClassName },
+          {
+            className: tabsClassName,
+            ref: 'tabs',
+            onTouchStart: this.handleTouchStart,
+            onTouchMove: this.handleTouchMove,
+            onTouchEnd: this.handleTouchEnd
+          },
           tabs,
           _react2.default.createElement('span', { className: 'slide', ref: 'slide' })
         ),
@@ -34374,6 +34381,41 @@ var _initialiseProps = function _initialiseProps() {
     if (!_this3.props.activeTabIndex) {
       _this3.setState({ activeTabIndex: i });
     }
+  };
+
+  this.handleTouchStart = function (e) {
+    _this3.setState({ touchStart: e.changedTouches[0].pageX });
+  };
+
+  this.handleTouchMove = function (e) {
+    _this3.moveTabs(e.changedTouches[0], 20);
+  };
+
+  this.handleTouchEnd = function (e) {
+    _this3.setState({ distance: _this3.moveTabs(e.changedTouches[0]) });
+  };
+
+  this.moveTabs = function (_ref2) {
+    var pageX = _ref2.pageX;
+    var threshold = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+
+    var distance = _this3.state.distance + (pageX - _this3.state.touchStart);
+    var tabs = Array.prototype.slice.call(_this3.refs.tabs.querySelectorAll('.md-tab'));
+    var maxWidth = tabs.reduce(function (prev, curr) {
+      return prev + curr.clientWidth;
+    }, 0) + threshold - _this3.refs.tabs.clientWidth;
+    if (distance > 0) {
+      distance = Math.min(distance, threshold);
+    } else {
+      distance = Math.max(distance, -maxWidth);
+    }
+
+    var transform = 'translate3d(' + distance + 'px, 0, 0)';
+    _this3.slide.style.transform = transform;
+    tabs.forEach(function (tab) {
+      return tab.style.transform = transform;
+    });
+    return distance;
   };
 };
 
@@ -34761,9 +34803,9 @@ Object.defineProperty(exports, 'ListSubheader', {
 
 require('babel-polyfill');
 
-var _Button = require('./Button');
+var _Buttons = require('./Buttons');
 
-var _Button2 = _interopRequireDefault(_Button);
+var _Buttons2 = _interopRequireDefault(_Buttons);
 
 var _Paper2 = require('./Paper');
 
@@ -34795,11 +34837,11 @@ var _Sidebar3 = _interopRequireDefault(_Sidebar2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Button = _Button2.default;
-exports.FlatButton = _Button.FlatButton;
-exports.RaisedButton = _Button.RaisedButton;
-exports.FloatingButton = _Button.FloatingButton;
-exports.IconButton = _Button.IconButton;
+exports.Button = _Buttons2.default;
+exports.FlatButton = _Buttons.FlatButton;
+exports.RaisedButton = _Buttons.RaisedButton;
+exports.FloatingButton = _Buttons.FloatingButton;
+exports.IconButton = _Buttons.IconButton;
 exports.Paper = _Paper3.default;
 exports.FontIcon = _FontIcon3.default;
 exports.Avatar = _Avatar3.default;
@@ -34808,7 +34850,7 @@ exports.Slider = _Slider3.default;
 exports.AppBar = _AppBar3.default;
 exports.Sidebar = _Sidebar3.default;
 
-},{"./AppBar":457,"./Avatar":459,"./Button":465,"./Card":474,"./FontIcon":476,"./Lists":481,"./Paper":483,"./SelectionControls":489,"./Sidebar":491,"./Slider":493,"./Tabs":496,"./Toolbar":498,"babel-polyfill":46}],502:[function(require,module,exports){
+},{"./AppBar":457,"./Avatar":459,"./Buttons":465,"./Card":474,"./FontIcon":476,"./Lists":481,"./Paper":483,"./SelectionControls":489,"./Sidebar":491,"./Slider":493,"./Tabs":496,"./Toolbar":498,"babel-polyfill":46}],502:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

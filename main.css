@@ -993,11 +993,12 @@ p,
 
 .md-tab-content {
   display: inline-block;
-  transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
   vertical-align: top;
   white-space: normal;
+  width: 100%;
 }
 
 .md-tabs-primary {
@@ -1079,16 +1080,6 @@ p,
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   background: #fff;
   display: inline-block;
-}
-
-.md-card .md-list-tile {
-  color: inherit;
-  font-size: inherit;
-  padding-left: 0;
-}
-
-.md-card .md-list-tile:hover {
-  background: initial;
 }
 
 .md-card-text {
@@ -1363,7 +1354,8 @@ p,
   width: 60px;
 }
 
-.md-switch-label .ripple {
+.md-switch-label .ripple,
+.md-switch-label .ripple.active {
   left: 25%;
 }
 
@@ -1423,7 +1415,7 @@ p,
           justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 4;
+  z-index: 6;
 }
 
 .md-app-bar ~ * {
@@ -1476,6 +1468,7 @@ p,
 
 .md-sidebar-container {
   display: inline-block;
+  z-index: 5;
 }
 
 .md-sidebar-container.md-sidebar-responsive {
