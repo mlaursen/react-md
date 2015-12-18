@@ -986,6 +986,20 @@ p,
   width: 100%;
 }
 
+.md-tab-content-container {
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+
+.md-tab-content {
+  display: inline-block;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  vertical-align: top;
+  white-space: normal;
+}
+
 .md-tabs-primary {
   background: #3f51b5;
 }
@@ -1771,6 +1785,10 @@ main {
 .examples-list .paper {
   margin: 1em;
   width: 256px;
+}
+
+.tabs-examples .md-tab-content > p {
+  padding: 1em;
 }
 
 .react-md-app-bar {

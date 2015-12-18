@@ -2248,7 +2248,12 @@ var TabsDoc = (function (_Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TabsDoc).call(this, props));
 
+    _this.handleTabChange = function (i) {
+      _this.setState({ activeTabIndex: i });
+    };
+
     _this.shouldComponentUpdate = _reactAddonsPureRenderMixin2.default.shouldComponentUpdate.bind(_this);
+    _this.state = { activeTabIndex: 2 };
     return _this;
   }
 
@@ -2279,6 +2284,12 @@ var TabsDoc = (function (_Component) {
               'Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.'
             )
           )
+        ), _react2.default.createElement(
+          _js.Tabs,
+          { secondary: true, activeTabIndex: this.state.activeTabIndex, onTabChange: this.handleTabChange },
+          _react2.default.createElement(_js.Tab, { label: 'Some Tab that has a Long Label' }),
+          _react2.default.createElement(_js.Tab, { label: 'Another Tab that has a Long Label' }),
+          _react2.default.createElement(_js.Tab, { label: 'Woop Woop' })
         )],
         components: [{
           component: _js.Tabs,
@@ -2304,30 +2315,6 @@ var TabsDoc = (function (_Component) {
             name: 'onTabChange',
             propType: 'f',
             desc: 'A function that is called when a tab is clicked. Called with `this.props.onTabChange(tabIndex, tabComponent)`'
-          }, {
-            name: 'component',
-            propType: 's',
-            desc: 'The component to render the tabs as.'
-          }, {
-            name: 'transitionName',
-            propType: 's',
-            desc: 'The transition name for when the tab content changes.'
-          }, {
-            name: 'transitionEnter',
-            propType: 'b',
-            desc: 'Boolean if the tabs should animate on enter.'
-          }, {
-            name: 'transitionLeave',
-            propType: 'b',
-            desc: 'Boolean if the tabs should animate on leave.'
-          }, {
-            name: 'transitionEnterTimeout',
-            propType: 'nu',
-            desc: 'The transition enter timeout for when the tabs change.'
-          }, {
-            name: 'transitionLeaveTimeout',
-            propType: 'nu',
-            desc: 'The transition leave timeout for when the tabs change.'
           }]
         }, {
           component: _js.Tab,
@@ -34237,10 +34224,6 @@ var _reactAddonsPureRenderMixin = require('react-addons-pure-render-mixin');
 
 var _reactAddonsPureRenderMixin2 = _interopRequireDefault(_reactAddonsPureRenderMixin);
 
-var _reactAddonsCssTransitionGroup = require('react-addons-css-transition-group');
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -34272,6 +34255,13 @@ var Tabs = (function (_Component) {
       activeTabIndex: 0
     };
     _this.slide = null;
+    _this.tabsContent = _react2.default.Children.map(props.children, function (child, i) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'md-tab-content', ref: 'tabContent' + i, key: 'tab-content-' + i },
+        child.props.children
+      );
+    });
     return _this;
   }
 
@@ -34279,14 +34269,7 @@ var Tabs = (function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.slide = _reactDom2.default.findDOMNode(this.refs.slide);
-      var tabs = _reactDom2.default.findDOMNode(this).querySelectorAll('.md-tab');
-      for (var i = 0; i < tabs.length; i++) {
-        var tab = tabs[i];
-        if (tab.classList.contains('active')) {
-          this.slide.style.width = tab.offsetWidth + 'px';
-          return;
-        }
-      }
+      this.updateSlider();
     }
   }, {
     key: 'componentDidUpdate',
@@ -34296,9 +34279,12 @@ var Tabs = (function (_Component) {
       if (prevTabIndex === activeTabIndex) {
         return;
       }
-      var tab = this.getActiveTab();
-      this.slide.style.width = tab.offsetWidth + 'px';
-      this.slide.style.left = tab.offsetLeft + 'px';
+
+      this.updateSlider();
+      var contents = _reactDom2.default.findDOMNode(this).querySelectorAll('.md-tab-content');
+      for (var i = 0; i < contents.length; i++) {
+        contents[i].style.transform = 'translate3d(-' + activeTabIndex * this.getContainerWidth() + 'px, 0, 0)';
+      }
     }
   }, {
     key: 'render',
@@ -34313,21 +34299,11 @@ var Tabs = (function (_Component) {
 
       var activeTabIndex = this.getActiveTabIndex();
 
-      var tabContent = null;
       var tabs = _react2.default.Children.map(children, function (tab, i) {
-        var isActive = i === activeTabIndex;
-        if (isActive) {
-          tabContent = _react2.default.createElement(
-            'div',
-            { className: 'md-tab-content', key: i },
-            tab.props.children
-          );
-        }
-
         return _react2.default.cloneElement(tab, {
           key: i,
           valueLink: {
-            checked: isActive,
+            checked: i === activeTabIndex,
             requestChange: _this2.handleTabChange.bind(_this2, i, tab)
           }
         });
@@ -34338,7 +34314,7 @@ var Tabs = (function (_Component) {
         'md-tabs-secondary': (0, _PropUtils.isPropEnabled)(this.props, 'secondary')
       });
       return _react2.default.createElement(
-        _reactAddonsCssTransitionGroup2.default,
+        'div',
         _extends({}, props, { className: (0, _classnames2.default)('md-tabs-container', className) }),
         _react2.default.createElement(
           'ul',
@@ -34346,7 +34322,11 @@ var Tabs = (function (_Component) {
           tabs,
           _react2.default.createElement('span', { className: 'slide', ref: 'slide' })
         ),
-        tabContent
+        _react2.default.createElement(
+          'div',
+          { className: 'md-tab-content-container' },
+          this.tabsContent
+        )
       );
     }
   }]);
@@ -34359,29 +34339,25 @@ Tabs.propTypes = {
   activeTabIndex: _react.PropTypes.number,
   className: _react.PropTypes.string,
   onTabChange: _react.PropTypes.func,
-  component: _react.PropTypes.string,
-  transitionEnterTimeout: _react.PropTypes.number,
-  transitionLeaveTimeout: _react.PropTypes.number,
-  transitionEnter: _react.PropTypes.bool,
-  transitionLeave: _react.PropTypes.bool,
-  transitionName: _react.PropTypes.string,
   primary: _react.PropTypes.bool,
   secondary: _react.PropTypes.bool
-};
-Tabs.defaultProps = {
-  transitionEnterTimeout: 150,
-  transitionLeaveTimeout: 0,
-  transitionEnter: true,
-  transitionLeave: false,
-  transitionName: 'tab',
-  component: 'div'
 };
 
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.getActiveTab = function () {
-    return _reactDom2.default.findDOMNode(_this3).querySelector('.md-tab.active');
+  this.getContainerWidth = function () {
+    return _reactDom2.default.findDOMNode(_this3).offsetWidth;
+  };
+
+  this.updateSlider = function () {
+    var _ReactDOM$findDOMNode = _reactDom2.default.findDOMNode(_this3).querySelector('.md-tab.active');
+
+    var offsetWidth = _ReactDOM$findDOMNode.offsetWidth;
+    var offsetLeft = _ReactDOM$findDOMNode.offsetLeft;
+
+    _this3.slide.style.width = offsetWidth + 'px';
+    _this3.slide.style.left = offsetLeft + 'px';
   };
 
   this.getActiveTabIndex = function () {
@@ -34403,7 +34379,7 @@ var _initialiseProps = function _initialiseProps() {
 
 exports.default = Tabs;
 
-},{"../utils/PropUtils":502,"classnames":236,"react":455,"react-addons-css-transition-group":262,"react-addons-pure-render-mixin":263,"react-dom":265}],496:[function(require,module,exports){
+},{"../utils/PropUtils":502,"classnames":236,"react":455,"react-addons-pure-render-mixin":263,"react-dom":265}],496:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
