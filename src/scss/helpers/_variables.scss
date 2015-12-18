@@ -89,7 +89,7 @@ $md-border-color: rgba($black-base, .1);
 $md-transition-time: .15s !default;
 /// The default bouncy transition
 /// @group transitions
-$md-transition: cubic-bezier(.5, 1.8, .9, .8) !default;
+$md-transition-bounce: cubic-bezier(.5, 1.8, .9, .8) !default;
 
 /// The font family for the application
 /// @group typography
@@ -161,6 +161,14 @@ $md-font-icon-btn-size: $md-font-icon-size * 2;
 
 /// The default padding used across the board
 $md-default-padding: 16px;
+
+
+///
+$md-selection-controls-ripple-z-index: 2 !default;
+$md-overlay-z-index: 3 !default;
+$md-sidebar-z-index: 5 !default;
+$md-app-bar-z-index: 6 !default;
+
 
 // =============================================
 // Tabs

@@ -64,7 +64,7 @@
     height: $md-font-icon-btn-size;
     transition: none;
     width: $md-font-icon-btn-size;
-    z-index: 2;
+    z-index: $md-selection-controls-ripple-z-index;
 
     &.active {
       @include absolute-center(true, true, scale(1));
@@ -112,7 +112,8 @@
     width: $md-control-switch-width;
   }
 
-  .ripple {
+  .ripple,
+  .ripple.active {
     left: 25%;
   }
 }

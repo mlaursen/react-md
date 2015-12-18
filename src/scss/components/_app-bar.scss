@@ -10,7 +10,7 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  z-index: 4;
+  z-index: $md-app-bar-z-index;
 
   ~ * {
     padding-top: $md-app-bar-height;

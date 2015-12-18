@@ -15,16 +15,6 @@
 
   background: $md-card-color;
   display: inline-block;
-
-  .md-list-tile {
-    color: inherit;
-    font-size: inherit;
-    padding-left: 0;
-
-    &:hover {
-      background: initial;
-    }
-  }
 }
 
 .md-card-text {

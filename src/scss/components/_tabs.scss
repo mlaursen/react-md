@@ -83,9 +83,10 @@
 
 .md-tab-content {
   display: inline-block;
-  transition: transform $md-tab-slide-transition-time;
+  transition: transform $md-tab-slide-transition-time ease-in-out;
   vertical-align: top;
   white-space: normal;
+  width: 100%;
 }
 
 @include make-md-tabs(primary, $md-primary-color, $md-secondary-color, 2);

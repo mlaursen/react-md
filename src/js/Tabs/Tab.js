@@ -7,7 +7,6 @@ export default class Tab extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { wrapped: props.label.length > 33 };
   }
 
   static propTypes = {
@@ -22,7 +21,7 @@ export default class Tab extends Component {
   render() {
     const { label, className, valueLink, ...props } = this.props;
     return (
-      <li className={classnames('md-tab', className, { 'active': valueLink.checked, 'wrapped': this.state.wrapped })} {...props}>
+      <li className={classnames('md-tab', className, { 'active': valueLink.checked, 'wrapped': label.length > 33 })} {...props}>
         <label className="md-tab-label">
           {label}
           <input type="radio" className="md-tab-radio" name="md-tabs" valueLink={valueLink} />
