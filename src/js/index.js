@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 
-import Button, { FlatButton, RaisedButton, FloatingButton, IconButton } from './Button';
+import Button, { FlatButton, RaisedButton, FloatingButton, IconButton } from './Buttons';
 export { Button, FlatButton, RaisedButton, FloatingButton, IconButton };
 
 export { Tabs, Tab } from './Tabs';

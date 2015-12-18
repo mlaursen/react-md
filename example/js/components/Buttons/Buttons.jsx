@@ -45,7 +45,6 @@ export default class Buttons extends Component {
       <DocPage
         imports={['Button', 'FlatButton', 'RaisedButton', 'FloatingButton']}
         sectionName="Buttons"
-        defaultImport="Button"
         examples={[
           <Tabs primary>
             <Tab label="Flat Buttons">

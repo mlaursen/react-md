@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { IconButton } from '../Button';
+import { IconButton } from '../';
 export default class CardExpander extends Component {
   static contextTypes = {
     isExpanded: PropTypes.bool.isRequired,
