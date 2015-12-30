@@ -20,3 +20,4 @@ export Slider from './Slider';
 export { List, ListItem, ListDivider, ListSubheader } from './Lists';
 export AppBar from './AppBar';
 export Sidebar from './Sidebar';
+export Snackbar from './Snackbar';

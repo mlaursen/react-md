@@ -117,6 +117,8 @@ $md-font-bold: 700;
 /// @group typography
 $md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
 
+$md-height: 48px;
+
 // =============================================
 // Buttons
 /// The default color base for buttons
@@ -130,7 +132,7 @@ $md-btn-pressed-color: rgba($md-btn-color-base, .4);
 
 /// @link https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons
 /// @group buttons
-$md-btn-min-height: 48px;
+$md-btn-min-height: $md-height;
 /// @group buttons
 $md-btn-height: 36px;
 /// @group buttons
@@ -175,7 +177,7 @@ $md-app-bar-z-index: 6 !default;
 /// The tab height
 /// @link https://www.google.com/design/spec/components/tabs.html#tabs-specs
 /// @group tabs
-$md-tab-height: 48px;
+$md-tab-height: $md-height;
 /// @group tabs
 $md-tab-max-width: 246px;
 /// @group tabs
@@ -243,3 +245,17 @@ $md-app-bar-height: 65px !default;
 // =============================================
 // Sidebar
 $md-sidebar-open-width: 256px !default;
+
+
+// =============================================
+// Sidebar
+$md-snackbar-bg-color: #323232;
+$md-snackbar-height: $md-height;
+$md-snackbar-multiline-height: 80px;
+$md-snackbar-lr-padding: 24px;
+$md-snackbar-tb-padding: 14px;
+$md-snackbar-action-left-margin: 48px;
+
+$md-snackbar-desktop-min-width: 288px;
+$md-snackbar-desktop-max-width: 568px;
+$md-snackbar-desktop-border-radius: 2px;

@@ -1,0 +1,90 @@
+@media only screen and (min-width: 0px) and (max-width: 599px) {
+  .md-snackbar {
+    left: 0;
+    right: 0;
+  }
+
+  .snackbar-enter,
+  .snackbar-leave.snackbar-leave-active {
+    transform: scaleY(0);
+  }
+
+
+  .snackbar-enter.snackbar-enter-active,
+  .snackbar-leave {
+    transform: scaleY(1);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .md-snackbar {
+    border-radius: $md-snackbar-desktop-border-radius;
+    left: 50%;
+    max-width: $md-snackbar-desktop-max-width;
+    min-width: $md-snackbar-desktop-min-width;
+    transform: translateX(-50%);
+  }
+
+  .snackbar-enter,
+  .snackbar-leave.snackbar-leave-active {
+    transform: translateX(-50%) scaleY(0);
+  }
+
+
+  .snackbar-enter.snackbar-enter-active,
+  .snackbar-leave {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+.md-snackbar {
+  align-items: center;
+  background: $md-snackbar-bg-color;
+  bottom: 0;
+  display: flex;
+  height: $md-snackbar-height;
+  justify-content: space-between;
+  padding: $md-snackbar-tb-padding $md-snackbar-lr-padding;
+  position: fixed;
+
+  &.multiline {
+    height: $md-snackbar-multiline-height;
+  }
+
+  p {
+    color: $white-base;
+    margin: 0;
+  }
+
+  .md-btn-flat {
+    color: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
+    margin-left: $md-snackbar-action-left-margin;
+    min-width: initial;
+    overflow: visible;
+    padding: 0;
+  }
+}
+
+.snackbar-enter-active:not(:only-child),
+.snackbar-enter-active:not(:only-child) * {
+  transition-delay: $md-transition-time * 3;
+}
+
+.snackbar-enter-active,
+.snackbar-leave-active {
+  transform-origin: 0 100%;
+  transition: transform $md-transition-time * 2;
+}
+
+.snackbar-enter {
+  * {
+    opacity: .01;
+  }
+
+  &.snackbar-enter-active {
+    * {
+      opacity: 1;
+      transition: opacity $md-transition-time * 3 ease;
+    }
+  }
+}
