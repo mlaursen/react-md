@@ -17,6 +17,7 @@ export default class TextFields extends Component {
         imports={['TextField']}
         examples={[
           <TextField label="Hello world!" />,
+          <TextField label="I am required" required />,
           <TextField label="I am disabled" disabled />,
           <TextField label="Single line" singleLine />,
           <TextField label="I am a single line disabled" singleLine disabled />,

@@ -65,11 +65,14 @@
 
   color: $md-hint-text-color;
   cursor: text;
-  transition: bottom $md-transition-time, font-size $md-transition-time;
+  transition: bottom $md-transition-time, font-size $md-transition-time, color $md-transition-time;
 
   &.active {
+    font-size: $md-text-field-active-font-size;
+  }
+
+  &.focus {
     color: get-md-color($md-primary-color);
-    font-size: 12px;
   }
 }
 

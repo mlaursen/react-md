@@ -26,6 +26,7 @@ export default class TextField extends Component {
     lineDirection: PropTypes.oneOf(['left', 'right', 'center']),
     singleLine: PropTypes.bool,
     type: PropTypes.string,
+    required: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -60,7 +61,13 @@ export default class TextField extends Component {
     return (
       <label className={classnames('md-text-field-container', className, { 'single-line': isSingleLine })}>
         {!isSingleLine &&
-        <span className={classnames('md-text-field-label', { 'active': active || !!this.getValue() })}>{label}</span>
+        <span
+          className={classnames('md-text-field-label', {
+            'active': active || !!this.getValue(),
+            'focus': active,
+          })}>
+          {label}
+        </span>
         }
         <input
           {...props}
