@@ -1,0 +1,121 @@
+@media only screen and (min-width: 0px) {
+  .md-text-field-container {
+    height: $md-text-field-height;
+
+    &.single-line {
+      height: $md-text-field-sl-height;
+
+      .md-text-field-label.active {
+        bottom: $md-text-field-sl-height - $md-text-field-dense-font-size - $md-text-field-dense-padding;
+      }
+    }
+  }
+
+  .md-text-field,
+  .md-text-field-label {
+    bottom: $md-text-field-padding;
+    font-size: $md-text-field-font-size;
+  }
+
+  .md-text-field-label.active {
+    bottom: $md-text-field-height - $md-text-field-padding - $md-text-field-font-size;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .md-text-field-container {
+    height: $md-text-field-dense-height;
+
+    &.single-line {
+      height: $md-text-field-sl-dense-height;
+
+      .md-text-field-label.active {
+        bottom: $md-text-field-sl-dense-height - $md-text-field-dense-font-size - $md-text-field-dense-padding;
+      }
+    }
+  }
+
+  .md-text-field,
+  .md-text-field-label {
+    bottom: $md-text-field-dense-padding;
+    font-size: $md-text-field-dense-font-size;
+  }
+
+  .md-text-field-label.active {
+    bottom: $md-text-field-dense-height - $md-text-field-dense-font-size - $md-text-field-dense-padding;
+  }
+
+  .md-text-field-divider {
+    bottom: $md-text-field-dense-divider-padding;
+  }
+}
+
+%md-tf-part {
+  position: absolute;
+  width: 100%;
+}
+
+.md-text-field-container {
+  position: relative;
+  width: 100%;
+}
+
+.md-text-field-label {
+  @extend %md-tf-part;
+
+  color: $md-hint-text-color;
+  cursor: text;
+  transition: bottom $md-transition-time, font-size $md-transition-time;
+
+  &.active {
+    color: get-md-color($md-primary-color);
+    font-size: 12px;
+  }
+}
+
+.md-text-field {
+  @extend %md-tf-part;
+
+  background: none;
+  border: 0;
+  color: $md-text-color;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+.md-text-field-divider {
+  @extend %md-tf-part;
+
+  background: $md-border-color;
+  height: 1px;
+
+  &.from-left:after {
+    left: 0;
+  }
+
+  &.from-right:after {
+    right: 0;
+  }
+
+  &.from-center:after {
+    margin: auto;
+  }
+
+  &:after {
+    background: get-md-color($md-primary-color);
+    content: '';
+    display: block;
+    height: $md-text-field-divider-height;
+    transition: width $md-transition-time;
+    visibility: hidden;
+    width: 0;
+  }
+
+  &.active:after {
+    visibility: visible;
+    width: 100%;
+  }
+}
