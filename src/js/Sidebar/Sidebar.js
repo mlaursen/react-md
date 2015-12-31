@@ -61,6 +61,7 @@ export default class Sidebar extends Component {
               }
             })}
           </List>
+          {children}
         </nav>
         {isOverlayVisible &&
           <div className="md-overlay" />
