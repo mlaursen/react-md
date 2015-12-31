@@ -37,12 +37,14 @@ export default class TextField extends Component {
     helpOnFocus: PropTypes.bool,
     rows: PropTypes.number,
     placeholder: PropTypes.string,
+    floatingLabel: PropTypes.bool,
   }
 
   static defaultProps = {
     initialValue: '',
     lineDirection: 'left',
     type: 'text',
+    floatingLabel: true,
   }
 
   handleFocus = () => {
@@ -75,9 +77,8 @@ export default class TextField extends Component {
   }
 
   render() {
-    const { className, label, lineDirection, maxLength, helpText, errorText, rows, placeholder, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, placeholder, ...props } = this.props;
     const { active } = this.state;
-    const isSingleLine = isPropEnabled(props, 'singleLine');
     const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
@@ -85,10 +86,11 @@ export default class TextField extends Component {
     return (
       <div
         className={classnames('md-text-field-container', className, {
-          'single-line': isSingleLine,
+          'single-line': !isTextArea,
+          'no-label': !floatingLabel,
         })}>
         <label className="md-text-field-label-container">
-          {!isSingleLine && !isTextArea &&
+          {floatingLabel && !isTextArea &&
           <TextFieldLabel
             label={label}
             active={active}
@@ -117,7 +119,7 @@ export default class TextField extends Component {
               onKeyDown={this.handleKeyDown}
               value={this.getValueLink().value}
               onChange={this.handleChange}
-              placeholder={isSingleLine ? label : placeholder}
+              placeholder={!floatingLabel ? label : placeholder}
             />
           }
           <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
