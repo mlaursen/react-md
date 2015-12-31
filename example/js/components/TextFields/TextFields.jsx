@@ -16,12 +16,13 @@ export default class TextFields extends Component {
       <DocPage
         imports={['TextField']}
         examples={[
-          <TextField label="Hello world!" maxLength={50} />,
+          <TextField label="Title" />,
+          <TextField label="Title" helpText="I am help text that appears only on focus." helpOnFocus maxLength={20} />,
+          <TextField label="Title" errorText="This is an example of some error message. It should automatically wrap lines as well. It just keeps going and going and going." />,
+          <TextField label="Position" singleLine helpText="I am a single line with help text." />,
           <TextField label="I am required" required />,
           <TextField label="I am disabled" disabled />,
-          <TextField label="Single line" singleLine />,
           <TextField label="I am a single line disabled" singleLine disabled />,
-          <TextField label="Title" errorMessage="This is an example of some error message. It should automatically wrap lines as well. It just keeps going and going and going." />,
         ]}
         components={[{
           component: TextField,

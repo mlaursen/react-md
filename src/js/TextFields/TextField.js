@@ -3,6 +3,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
+import TextFieldInfo from './TextFieldInfo';
+import TextFieldLabel from './TextFieldLabel';
+import TextFieldDivider from './TextFieldDivider';
 
 export default class TextField extends Component {
   constructor(props) {
@@ -28,12 +31,14 @@ export default class TextField extends Component {
     type: PropTypes.string,
     required: PropTypes.bool,
     maxLength: PropTypes.number,
-    errorMessage: PropTypes.string,
+    errorText: PropTypes.string,
+    helpText: PropTypes.string,
+    helpOnFocus: PropTypes.bool,
   }
 
   static defaultProps = {
     initialValue: '',
-    lineDirection: 'center',
+    lineDirection: 'left',
     type: 'text',
   }
 
@@ -57,10 +62,12 @@ export default class TextField extends Component {
   }
 
   render() {
-    const { className, label, lineDirection, maxLength, errorMessage, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, helpText, errorText, ...props } = this.props;
     const { active } = this.state;
     const isSingleLine = isPropEnabled(props, 'singleLine');
-    const isError = !!errorMessage || (!!maxLength && this.getValue().length > maxLength);
+    const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
+    const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
+    const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
     return (
       <div
         className={classnames('md-text-field-container', className, {
@@ -68,14 +75,13 @@ export default class TextField extends Component {
         })}>
         <label className="md-text-field-label-container">
           {!isSingleLine &&
-          <span
-            className={classnames('md-text-field-label', {
-              'active': active || !!this.getValue(),
-              'focus': active,
-              'error': isError,
-            })}>
-            {label}
-          </span>
+          <TextFieldLabel
+            label={label}
+            active={active}
+            isError={isError}
+            value={this.getValue()}
+            required={isPropEnabled(props, 'required')}
+          />
           }
           <input
             {...props}
@@ -85,22 +91,17 @@ export default class TextField extends Component {
             valueLink={this.getValueLink()}
             placeholder={isSingleLine ? label : ''}
           />
-          <div
-            className={classnames('md-text-field-divider', `from-${lineDirection}`, {
-              'active': active,
-              'error': isError,
-            })}
-          />
+          <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
         </label>
-        {(errorMessage || maxLength) &&
-        <div className={classnames('md-text-field-info', { 'error': isError })}>
-          {errorMessage}
-          {maxLength &&
-          <span className="md-text-field-count">
-            {this.getValue().length + ' / ' + maxLength}
-          </span>
-          }
-        </div>
+        {isInfoDisplayed &&
+          <TextFieldInfo
+            value={this.getValue()}
+            isError={isError}
+            text={errorText || helpText}
+            maxLength={maxLength}
+            isHelpOnFocus={isHelpOnFocus}
+            active={active}
+          />
         }
       </div>
     );
