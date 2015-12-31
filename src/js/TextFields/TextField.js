@@ -6,6 +6,7 @@ import { isPropEnabled } from '../utils/PropUtils';
 import TextFieldInfo from './TextFieldInfo';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldDivider from './TextFieldDivider';
+import { ESC } from '../constants/keyCodes';
 
 export default class TextField extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class TextField extends Component {
     label: PropTypes.string.isRequired,
     className: PropTypes.string,
     valueLink: PropTypes.shape({
-      value: PropTypes.string,
+      value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired,
     }),
     initialValue: PropTypes.string,
@@ -63,6 +64,16 @@ export default class TextField extends Component {
     return this.getValueLink().value;
   }
 
+  handleChange = (e) => {
+    this.getValueLink().requestChange(e.target.value);
+  }
+
+  handleKeyDown = (e) => {
+    if((e.which || e.keyCode) === ESC) {
+      this.getValueLink().requestChange('');
+    }
+  }
+
   render() {
     const { className, label, lineDirection, maxLength, helpText, errorText, rows, placeholder, ...props } = this.props;
     const { active } = this.state;
@@ -93,7 +104,9 @@ export default class TextField extends Component {
               className={classnames('md-text-field', { 'active': active })}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
-              valueLink={this.getValueLink()}
+              onKeyDown={this.handleKeyDown}
+              value={this.getValueLink().value}
+              onChange={this.handleChange}
               placeholder={placeholder}
             /> :
             <input
@@ -101,7 +114,9 @@ export default class TextField extends Component {
               className={classnames('md-text-field', { 'active': active })}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
-              valueLink={this.getValueLink()}
+              onKeyDown={this.handleKeyDown}
+              value={this.getValueLink().value}
+              onChange={this.handleChange}
               placeholder={isSingleLine ? label : placeholder}
             />
           }
