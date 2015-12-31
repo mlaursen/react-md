@@ -1,5 +1,5 @@
 @media only screen and (min-width: 0px) {
-  .md-text-field-container {
+  .md-text-field-label-container {
     height: $md-text-field-height;
 
     &.single-line {
@@ -23,7 +23,7 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .md-text-field-container {
+  .md-text-field-label-container {
     height: $md-text-field-dense-height;
 
     &.single-line {
@@ -50,38 +50,45 @@
   }
 }
 
-%md-tf-part {
-  position: absolute;
-  width: 100%;
+.md-text-field-label.error,
+.md-text-field-info.error {
+  color: get-md-color(red);
 }
 
 .md-text-field-container {
+  @extend %full-width;
+}
+
+.md-text-field-label-container {
+  display: block;
   position: relative;
-  width: 100%;
+  @extend %full-width;
 }
 
 .md-text-field-label {
-  @extend %md-tf-part;
+  @extend %full-width;
 
   color: $md-hint-text-color;
   cursor: text;
+  position: absolute;
   transition: bottom $md-transition-time, font-size $md-transition-time, color $md-transition-time;
 
   &.active {
     font-size: $md-text-field-active-font-size;
   }
 
-  &.focus {
+  &.focus:not(.error) {
     color: get-md-color($md-primary-color);
   }
 }
 
 .md-text-field {
-  @extend %md-tf-part;
+  @extend %full-width;
 
   background: none;
   border: 0;
   color: $md-text-color;
+  position: absolute;
 
   &:focus {
     outline: none;
@@ -90,10 +97,11 @@
 
 
 .md-text-field-divider {
-  @extend %md-tf-part;
+  @extend %full-width;
 
   background: $md-border-color;
   height: 1px;
+  position: absolute;
 
   &.from-left:after {
     left: 0;
@@ -118,7 +126,20 @@
   }
 
   &.active:after {
+    @extend %full-width;
+
     visibility: visible;
-    width: 100%;
   }
+
+  &.error:after {
+    background: get-md-color(red);
+  }
+}
+
+.md-text-field-info {
+  font-size: $md-text-field-info-font-size;
+}
+
+.md-text-field-count {
+  float: right;
 }

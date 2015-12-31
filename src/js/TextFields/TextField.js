@@ -27,6 +27,8 @@ export default class TextField extends Component {
     singleLine: PropTypes.bool,
     type: PropTypes.string,
     required: PropTypes.bool,
+    maxLength: PropTypes.number,
+    errorMessage: PropTypes.string,
   }
 
   static defaultProps = {
@@ -44,41 +46,63 @@ export default class TextField extends Component {
   }
 
   getValueLink = () => {
-    return typeof this.props.valueLink === 'object' ? this.props.valueLink : {
+    return typeof this.props.valueLink !== 'undefined' ? this.props.valueLink : {
       value: this.state.value,
       requestChange: (value) => { this.setState({ value }); },
     };
   }
 
   getValue = () => {
-    return typeof this.props.valueLink === 'object' ? this.props.valueLink.value : this.state.value;
+    return this.getValueLink().value;
   }
 
   render() {
-    const { className, label, lineDirection, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, errorMessage, ...props } = this.props;
     const { active } = this.state;
     const isSingleLine = isPropEnabled(props, 'singleLine');
+    const isError = !!errorMessage || (!!maxLength && this.getValue().length > maxLength);
     return (
-      <label className={classnames('md-text-field-container', className, { 'single-line': isSingleLine })}>
-        {!isSingleLine &&
-        <span
-          className={classnames('md-text-field-label', {
-            'active': active || !!this.getValue(),
-            'focus': active,
-          })}>
-          {label}
-        </span>
+      <div
+        className={classnames('md-text-field-container', className, {
+          'single-line': isSingleLine,
+        })}>
+        <label className="md-text-field-label-container">
+          {!isSingleLine &&
+          <span
+            className={classnames('md-text-field-label', {
+              'active': active || !!this.getValue(),
+              'focus': active,
+              'error': isError,
+            })}>
+            {label}
+          </span>
+          }
+          <input
+            {...props}
+            className={classnames('md-text-field', { 'active': active })}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            valueLink={this.getValueLink()}
+            placeholder={isSingleLine ? label : ''}
+          />
+          <div
+            className={classnames('md-text-field-divider', `from-${lineDirection}`, {
+              'active': active,
+              'error': isError,
+            })}
+          />
+        </label>
+        {(errorMessage || maxLength) &&
+        <div className={classnames('md-text-field-info', { 'error': isError })}>
+          {errorMessage}
+          {maxLength &&
+          <span className="md-text-field-count">
+            {this.getValue().length + ' / ' + maxLength}
+          </span>
+          }
+        </div>
         }
-        <input
-          {...props}
-          className={classnames('md-text-field', { 'active': active })}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          valueLink={this.getValueLink()}
-          placeholder={isSingleLine ? label : ''}
-        />
-        <div className={classnames('md-text-field-divider', `from-${lineDirection}`, { 'active': active })} />
-      </label>
+      </div>
     );
   }
 }
