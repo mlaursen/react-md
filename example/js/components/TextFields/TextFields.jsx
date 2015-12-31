@@ -23,6 +23,12 @@ export default class TextFields extends Component {
           <TextField label="I am required" required />,
           <TextField label="I am disabled" disabled />,
           <TextField label="I am a single line disabled" singleLine disabled />,
+          <TextField
+            label="Description"
+            placeholder="Enter some amazing description"
+            rows={2}
+            helpText="I am a multiline text field that has 2 rows."
+          />,
         ]}
         components={[{
           component: TextField,

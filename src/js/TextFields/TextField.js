@@ -34,6 +34,8 @@ export default class TextField extends Component {
     errorText: PropTypes.string,
     helpText: PropTypes.string,
     helpOnFocus: PropTypes.bool,
+    rows: PropTypes.number,
+    placeholder: PropTypes.string,
   }
 
   static defaultProps = {
@@ -62,19 +64,20 @@ export default class TextField extends Component {
   }
 
   render() {
-    const { className, label, lineDirection, maxLength, helpText, errorText, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, helpText, errorText, rows, placeholder, ...props } = this.props;
     const { active } = this.state;
     const isSingleLine = isPropEnabled(props, 'singleLine');
     const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
+    const isTextArea = typeof rows === 'number';
     return (
       <div
         className={classnames('md-text-field-container', className, {
           'single-line': isSingleLine,
         })}>
         <label className="md-text-field-label-container">
-          {!isSingleLine &&
+          {!isSingleLine && !isTextArea &&
           <TextFieldLabel
             label={label}
             active={active}
@@ -83,14 +86,25 @@ export default class TextField extends Component {
             required={isPropEnabled(props, 'required')}
           />
           }
-          <input
-            {...props}
-            className={classnames('md-text-field', { 'active': active })}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            valueLink={this.getValueLink()}
-            placeholder={isSingleLine ? label : ''}
-          />
+          {isTextArea ?
+            <textarea
+              {...props}
+              rows={rows}
+              className={classnames('md-text-field', { 'active': active })}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              valueLink={this.getValueLink()}
+              placeholder={placeholder}
+            /> :
+            <input
+              {...props}
+              className={classnames('md-text-field', { 'active': active })}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
+              valueLink={this.getValueLink()}
+              placeholder={isSingleLine ? label : placeholder}
+            />
+          }
           <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
         </label>
         {isInfoDisplayed &&

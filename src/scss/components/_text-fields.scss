@@ -60,9 +60,10 @@
 }
 
 .md-text-field-label-container {
+  @extend %full-width;
+
   display: block;
   position: relative;
-  @extend %full-width;
 }
 
 .md-text-field-label {
@@ -89,6 +90,7 @@
   border: 0;
   color: $md-text-color;
   position: absolute;
+  resize: none;
 
   &:focus {
     outline: none;
