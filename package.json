@@ -53,7 +53,7 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
-    "history": "1.13.x",
+    "history": "^1.17.0",
     "normalize-scss-vanilla": "^1.0.1",
     "react": "^0.14.3",
     "react-addons-css-transition-group": "^0.14.3",
