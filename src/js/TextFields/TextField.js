@@ -36,6 +36,7 @@ export default class TextField extends Component {
     helpText: PropTypes.string,
     helpOnFocus: PropTypes.bool,
     rows: PropTypes.number,
+    maxRows: PropTypes.number,
     placeholder: PropTypes.string,
     floatingLabel: PropTypes.bool,
   }
@@ -77,20 +78,22 @@ export default class TextField extends Component {
   }
 
   render() {
-    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, placeholder, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, ...props } = this.props;
     const { active } = this.state;
     const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
     const isTextArea = typeof rows === 'number';
+
     return (
       <div
         className={classnames('md-text-field-container', className, {
           'single-line': !isTextArea,
           'no-label': !floatingLabel,
+          'multi-line': isTextArea,
         })}>
         <label className="md-text-field-label-container">
-          {floatingLabel && !isTextArea &&
+          {floatingLabel && label &&
           <TextFieldLabel
             label={label}
             active={active}
@@ -102,6 +105,7 @@ export default class TextField extends Component {
           {isTextArea ?
             <textarea
               {...props}
+              ref="textarea"
               rows={rows}
               className={classnames('md-text-field', { 'active': active })}
               onFocus={this.handleFocus}

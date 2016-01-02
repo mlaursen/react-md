@@ -27,6 +27,7 @@ export default class TextFields extends Component {
             label="Description"
             placeholder="Enter some amazing description"
             rows={2}
+            maxRows={4}
             helpText="I am a multiline text field that has 2 rows."
           />,
         ]}
