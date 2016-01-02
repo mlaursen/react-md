@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import DocPage, { NEWLINE, PRE_START, PRE_END } from '../../DocPage';
 import { Snackbar, RaisedButton } from '../../../../src/js';
@@ -107,6 +108,7 @@ export default class Snackbars extends Component {
       <div>
         <DocPage
           imports={['Snackbar']}
+          code={code}
           examples={[
             <RaisedButton
               primary

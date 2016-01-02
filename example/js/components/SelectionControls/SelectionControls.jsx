@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { Switch, RadioGroup, Radio, Checkbox } from '../../../../src/js';
 import DocPage from '../../DocPage';
@@ -40,6 +41,7 @@ export default class SelectionControls extends Component {
     return (
       <DocPage
         imports={['Switch', 'Checkbox', 'RadioGroup', 'Radio']}
+        code={code}
         examples={[
           <div>
             <Checkbox label="Default" />

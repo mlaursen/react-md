@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { FontIcon } from '../../../../src/js';
 
@@ -16,6 +17,7 @@ export default class FontIcons extends Component {
     return (
       <DocPage
         imports={['FontIcon']}
+        code={code}
         examples={[
           <FontIcon>home</FontIcon>,
           <FontIcon iconClassName="fa fa-star-o" />,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import DocPage from '../../DocPage';
 
@@ -44,6 +45,7 @@ export default class Progress extends Component {
     return (
       <DocPage
         imports={['CircularProgress', 'LinearProgress']}
+        code={code}
         sectionName="Progress"
         examples={[
           <div>

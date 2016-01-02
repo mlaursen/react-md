@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import DocPage from '../../DocPage';
 import { TextField, FontIcon } from '../../../../src/js';
@@ -15,6 +16,7 @@ export default class TextFields extends Component {
     return (
       <DocPage
         imports={['TextField']}
+        code={code}
         examples={[
           <TextField label="Title" />,
           <TextField

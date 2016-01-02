@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { Tabs, Tab } from '../../../../src/js';
 import DocPage from '../../DocPage';
@@ -20,6 +21,7 @@ export default class TabsDoc extends Component {
     return (
       <DocPage
         imports={['Tabs', 'Tab']}
+        code={code}
         defaultImport="Tabs"
         examples={[
           <Tabs primary>
@@ -31,12 +33,9 @@ export default class TabsDoc extends Component {
             </Tab>
           </Tabs>,
           <Tabs secondary activeTabIndex={this.state.activeTabIndex} onTabChange={this.handleTabChange}>
-            <Tab label="Some Tab that has a Long Label">
-            </Tab>
-            <Tab label="Another Tab that has a Long Label">
-            </Tab>
-            <Tab label="Woop Woop">
-            </Tab>
+            <Tab label="Some Tab that has a Long Label" />
+            <Tab label="Another Tab that has a Long Label" />
+            <Tab label="Woop Woop" />
           </Tabs>,
         ]}
         components={[{

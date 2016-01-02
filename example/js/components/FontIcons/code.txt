@@ -1,0 +1,2 @@
+<FontIcon>home</FontIcon>
+<FontIcon iconClassName="fa fa-star-o" />

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { List, ListItem, ListDivider, ListSubheader, FontIcon, Avatar } from '../../../../src/js/index';
 import DocPage from '../../DocPage';
@@ -16,6 +17,7 @@ export default class Lists extends Component {
     return (
       <DocPage
         imports={['List', 'ListItem', 'ListDivider']}
+        code={code}
         sectionName="Lists"
         defaultImport="List"
         examples={[
