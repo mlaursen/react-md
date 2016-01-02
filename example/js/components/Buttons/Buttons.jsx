@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { FlatButton, RaisedButton, FloatingButton, IconButton, Tabs, Tab, FontIcon } from '../../../../src/js';
 
@@ -44,6 +45,7 @@ export default class Buttons extends Component {
     return (
       <DocPage
         imports={['Button', 'FlatButton', 'RaisedButton', 'FloatingButton']}
+        code={code}
         sectionName="Buttons"
         examples={[
           <Tabs primary>

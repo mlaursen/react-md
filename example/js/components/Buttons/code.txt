@@ -1,0 +1,26 @@
+<FlatButton default label="normal" />
+<FlatButton primary label="Talk">
+  <FontIcon>chat_bubble_outline</FontIcon>
+</FlatButton>
+<FlatButton secondary label="Talk" iconBefore={false}>
+  <FontIcon>chat_bubble_outline</FontIcon>
+</FlatButton>
+<FlatButton disabled>disabled</FlatButton>
+
+<RaisedButton default>raised</RaisedButton>
+<RaisedButton primary label="Spock" iconBefore={false}>
+  <FontIcon iconClassName="fa fa-hand-spock-o" />
+</RaisedButton>
+<RaisedButton secondary label="Paper">
+  <FontIcon iconClassName="fa fa-hand-paper-o" />
+</RaisedButton>
+<RaisedButton disabled>raised</RaisedButton>
+
+<FloatingButton default>home</FloatingButton>
+<FloatingButton primary>grade</FloatingButton>
+<FloatingButton secondary>favorite</FloatingButton>
+<FloatingButton primary disabled>favorite</FloatingButton>
+
+<IconButton>chat_bubble_outline</IconButton>
+<IconButton>home</IconButton>
+<IconButton>favorite</IconButton>

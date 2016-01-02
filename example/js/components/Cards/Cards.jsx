@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { Card, CardTitle, CardText, CardMedia, CardActions, FlatButton, Avatar, List, ListItem, FontIcon } from '../../../../src/js';
 
@@ -16,6 +17,7 @@ export default class Cards extends Component {
     return (
       <DocPage
         imports={['Card', 'CardTitle', 'CardText', 'CardMedia', 'CardActions']}
+        code={code}
         examples={[
           <Card isExpandable={true} className="expandable-card">
             <CardTitle avatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />} title="Title goes here" subtitle="Subtitle here" />

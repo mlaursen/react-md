@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import code from './code.txt';
 
 import { Avatar, FontIcon } from '../../../../src/js';
 
@@ -16,6 +17,7 @@ export default class Avatars extends Component {
     return (
       <DocPage
         imports={['Avatar']}
+        code={code}
         examples={[
           <div>
             <Avatar src="http://lorempixel.com/120/120/people" alt="some image" />
