@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { Card, CardText } from '../../../src/js/index';
+import { convertMarkdown } from './';
 
 export default class DocProps extends Component {
   constructor(props) {
@@ -87,7 +88,7 @@ export default class DocProps extends Component {
               {typeof defaultValue !== 'undefined' && <span className="prop-default">default: {defaultValue.toString()}</span>}
               {propType === 'ba' && <span className="prop-default">(This boolean can be enabled by just having the prop on the component)</span>}
             </div>
-            <p className="prop-desc">{desc}</p>
+            {convertMarkdown(desc)}
           </td>
         </tr>
       );
