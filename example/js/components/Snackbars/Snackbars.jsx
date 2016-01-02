@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import DocPage from '../../DocPage';
+import DocPage, { NEWLINE, PRE_START, PRE_END } from '../../DocPage';
 import { Snackbar, RaisedButton } from '../../../../src/js';
 
 let ghostbustersTheme;
@@ -122,7 +122,33 @@ export default class Snackbars extends Component {
           ]}
           components={[{
             component: Snackbar,
-            details: [],
+            details: [{
+              name: 'toasts',
+              propType: 'arrayOf({ text, key, action, onAppear })',
+              desc: `This is a queue of toasts to display to the user. After hte user interacts
+              with the toast or the ${PRE_START}autohideTimeout${PRE_END} time has happened, the
+              toast will be dismissed and the next one will be displayed.${NEWLINE}
+              The text is required for a toast. The action is either a string or an object with an
+              ${PRE_START}onClick${PRE_END} and a ${PRE_START}label${PRE_END}. The action will
+              automatically call ${PRE_START}dismiss()${PRE_END}. Finally, there is an optional
+              ${PRE_START}onAppear${PRE_END} function that is called when the toast is displayed.`,
+            }, {
+              name: 'autohide',
+              propType: 'ba',
+              desc: 'Boolean if the toast should dismiss automatically after a given time.',
+            }, {
+              name: 'autohideTimeout',
+              propType: 'nu',
+              desc: 'The time to wait before auto-dismissing the current toast.',
+            }, {
+              name: 'dismiss',
+              propType: 'f',
+              desc: 'A function to dimiss the first item from the queue',
+            }, {
+              name: 'multiline',
+              propType: 'ba',
+              desc: 'Boolean if the toast is more than one line.',
+            }],
           }]}
         />
         <div id="ghostbusters" />
