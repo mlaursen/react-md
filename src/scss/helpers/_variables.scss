@@ -292,3 +292,27 @@ $md-text-field-divider-height: 2px !default;
 $md-text-field-sl-height: $md-height;
 $md-text-field-sl-dense-height: 40px;
 $md-text-field-info-font-size: 12px;
+
+
+// =============================================
+// Progress
+$md-linear-progress-opacity: .3 !default;
+$md-linear-progress-height: 4px !default;
+$md-linear-progress-color: blue !default;
+$md-linear-progress-anim-time: 2.1s !default;
+$md-linear-progress-long-transition-func: cubic-bezier(.65, .815, .735, .395) !default;
+$md-linear-progress-short-transition-func: cubic-bezier(.165, .84, .44, 1) !default;
+$md-linear-progress-short-delay: 1.15s !default;
+
+$md-circular-progress-color-1: blue !default;
+$md-circular-progress-color-1-hue: 6 !default;
+$md-circular-progress-color-2: yellow !default;
+$md-circular-progress-color-2-hue: 6 !default;
+$md-circular-progress-color-3: red !default;
+$md-circular-progress-color-3-hue: 6 !default;
+$md-circular-progress-color-4: green !default;
+$md-circular-progress-color-4-hue: 6 !default;
+$md-circular-progress-duration: 1.4s !default;
+$md-circular-progress-transition-func: ease-in-out !default;
+$md-circular-progress-stroke-dashoffset: 187 !default;
+$md-circular-progress-determinate-dasharray: 187px !default;

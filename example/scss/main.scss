@@ -258,6 +258,15 @@ main {
   padding: 1em;
 }
 
+.progress-examples {
+  display: block;
+
+  .md-circular-progress {
+    display: inline-block;
+    margin: 1em;
+  }
+}
+
 
 // ================================================
 // Home

@@ -1,0 +1,151 @@
+@keyframes md-linear-indeterminate {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+
+@keyframes md-linear-indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+
+@keyframes md-circular-progress {
+  0% { transform: rotate(0deg); }
+
+  100% { transform: rotate(270deg); }
+}
+
+@keyframes md-circular-progress-colors {
+  0% {
+    stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
+  }
+
+  25% {
+    stroke: get-md-color($md-circular-progress-color-2, $md-circular-progress-color-2-hue);
+  }
+
+  50% {
+    stroke: get-md-color($md-circular-progress-color-3, $md-circular-progress-color-3-hue);
+  }
+
+  75% {
+    stroke: get-md-color($md-circular-progress-color-4, $md-circular-progress-color-4-hue);
+  }
+
+  100% {
+    stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
+  }
+}
+
+@keyframes md-circular-progress-dash {
+  0% {
+    stroke-dashoffset: $md-circular-progress-stroke-dashoffset;
+  }
+
+  50% {
+    stroke-dashoffset: $md-circular-progress-stroke-dashoffset / 4;
+    transform: rotate(135deg);
+  }
+
+  100% {
+    stroke-dashoffset: $md-circular-progress-stroke-dashoffset;
+    transform: rotate(450deg);
+  }
+}
+
+.md-linear-progress.determinate,
+.md-linear-progress-container {
+  display: block;
+  height: $md-linear-progress-height;
+}
+
+.md-linear-progress-container {
+  @extend %full-width;
+
+  background: rgba(get-md-color($md-linear-progress-color), $md-linear-progress-opacity);
+  margin: 1em 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.md-linear-progress {
+  background: get-md-color($md-linear-progress-color);
+
+  &.determinate {
+    position: absolute;
+    transition: width $md-transition-time;
+    z-index: 1;
+  }
+
+  &.indeterminate {
+    &:before,
+    &:after {
+      background: inherit;
+      bottom: 0;
+      content: '';
+      position: absolute;
+      top: 0;
+      will-change: left, right;
+      z-index: 1;
+    }
+
+    &:before {
+      animation: md-linear-indeterminate $md-linear-progress-anim-time $md-linear-progress-long-transition-func infinite;
+    }
+
+    &:after {
+      animation: md-linear-indeterminate-short $md-linear-progress-anim-time $md-linear-progress-short-transition-func infinite;
+      animation-delay: $md-linear-progress-short-delay;
+    }
+  }
+}
+
+.md-circular-progress {
+  display: block;
+
+  &.determinate {
+    .md-circular-progress-path {
+      stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
+      stroke-dasharray: $md-circular-progress-determinate-dasharray;
+    }
+  }
+
+  &.indeterminate {
+    animation: md-circular-progress $md-circular-progress-duration linear infinite;
+
+    .md-circular-progress-path {
+      animation: md-circular-progress-dash $md-circular-progress-duration $md-circular-progress-transition-func infinite,
+                 md-circular-progress-colors $md-circular-progress-duration * 4 $md-circular-progress-transition-func infinite;
+      stroke-dasharray: $md-circular-progress-stroke-dashoffset;
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+.md-circular-progress-path {
+  fill: none;
+  transform-origin: center;
+}

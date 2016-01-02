@@ -6,6 +6,7 @@ export { Tabs, Tab } from './Tabs';
 export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from './Card';
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 export { List, ListItem, ListDivider, ListSubheader } from './Lists';
+export { CircularProgress, LinearProgress } from './Progress';
 
 export AppBar from './AppBar';
 export Avatar from './Avatar';

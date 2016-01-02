@@ -12,6 +12,7 @@ export Lists from './Lists';
 export Menus from './Menus';
 export Papers from './Papers';
 export Pickers from './Pickers';
+export Progress from './Progress';
 export SelectionControls from './SelectionControls';
 export Sliders from './Sliders';
 export Snackbars from './Snackbars';
