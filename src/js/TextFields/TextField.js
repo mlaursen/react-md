@@ -39,6 +39,7 @@ export default class TextField extends Component {
     placeholder: PropTypes.string,
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
+    onChange: PropTypes.func,
   }
 
   static defaultProps = {
@@ -74,6 +75,9 @@ export default class TextField extends Component {
   }
 
   handleChange = (e) => {
+    if(this.props.onChange) {
+      this.props.onChange(e.target.value, e);
+    }
     this.getValueLink().requestChange(e.target.value);
 
     const { rows, maxRows } = this.props;
@@ -90,6 +94,9 @@ export default class TextField extends Component {
 
   handleKeyDown = (e) => {
     if((e.which || e.keyCode) === ESC) {
+      if(this.props.onChange) {
+        this.props.onChange('', e);
+      }
       this.getValueLink().requestChange('');
     }
   }
