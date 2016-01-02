@@ -6,6 +6,27 @@
   z-index: -1;
 }
 
+.opacity-enter,
+.opacity-enter *,
+.opacity-leave.opacity-leave-active,
+.opacity-leave.opacity-leave-active * {
+  opacity: .01;
+}
+
+.opacity-enter.opacity-enter-active,
+.opacity-enter.opacity-enter-acitve *,
+.opacity-leave,
+.opacity-leave * {
+  opacity: 1;
+}
+
+.opacity-enter.opacity-enter-active,
+.opacity-enter.opacity-enter-active *,
+.opacity-leave.opacity-leave-active,
+.opacity-leave.opacity-leave-active * {
+  transition: opacity $md-transition-time;
+}
+
 
 .tab-enter,
 .tab-enter * {
