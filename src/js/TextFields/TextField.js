@@ -13,7 +13,7 @@ export default class TextField extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { active: false };
+    this.state = { active: false, currentRows: props.rows };
     if(!props.valueLink) {
       this.state.value = props.initialValue;
     }
@@ -48,6 +48,12 @@ export default class TextField extends Component {
     floatingLabel: true,
   }
 
+  componentDidMount() {
+    if(this.props.rows) {
+      this.lineHeight = this.refs.textarea.offsetHeight / this.props.rows;
+    }
+  }
+
   handleFocus = () => {
     this.setState({ active: true });
   }
@@ -68,7 +74,19 @@ export default class TextField extends Component {
   }
 
   handleChange = (e) => {
-    this.getValueLink().requestChange(e.target.value);
+    const value = e.target.value;
+    this.getValueLink().requestChange(value);
+
+    const { rows, maxRows } = this.props;
+    if(!rows || !maxRows) { return; }
+
+    const { textarea } = this.refs;
+    const { offsetHeight, scrollHeight } = textarea;
+    let { currentRows } = this.state;
+    if(offsetHeight >= scrollHeight || currentRows >= maxRows) { return; }
+
+    currentRows++;
+    this.setState({ currentRows, height: currentRows * this.lineHeight });
   }
 
   handleKeyDown = (e) => {
@@ -79,11 +97,22 @@ export default class TextField extends Component {
 
   render() {
     const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, ...props } = this.props;
-    const { active } = this.state;
+    const { active, currentRows, height } = this.state;
     const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
     const isTextArea = typeof rows === 'number';
+
+    let style = {};
+    if(rows && maxRows) {
+      if(currentRows < maxRows) {
+        style.overflow = 'hidden';
+      }
+
+      if(height || this.lineHeight) {
+        style.height = `${height || this.lineHeight * rows}px`;
+      }
+    }
 
     return (
       <div
@@ -107,6 +136,7 @@ export default class TextField extends Component {
               {...props}
               ref="textarea"
               rows={rows}
+              style={style}
               className={classnames('md-text-field', { 'active': active })}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
