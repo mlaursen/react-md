@@ -74,16 +74,15 @@ export default class TextField extends Component {
   }
 
   handleChange = (e) => {
-    const value = e.target.value;
-    this.getValueLink().requestChange(value);
+    this.getValueLink().requestChange(e.target.value);
 
     const { rows, maxRows } = this.props;
     if(!rows || !maxRows) { return; }
 
     const { textarea } = this.refs;
     const { offsetHeight, scrollHeight } = textarea;
-    let { currentRows } = this.state;
-    if(offsetHeight >= scrollHeight || currentRows >= maxRows) { return; }
+    let { currentRows, height } = this.state;
+    if(scrollHeight <= (height || offsetHeight) || currentRows >= maxRows) { return; }
 
     currentRows++;
     this.setState({ currentRows, height: currentRows * this.lineHeight });
