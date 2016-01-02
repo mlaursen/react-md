@@ -53,7 +53,9 @@
     "gulp-uglify": "^1.5.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
+    "highlight.js": "^9.0.0",
     "history": "^1.17.0",
+    "marked": "^0.3.5",
     "normalize-scss-vanilla": "^1.0.1",
     "react": "^0.14.3",
     "react-addons-css-transition-group": "^0.14.3",
@@ -62,6 +64,7 @@
     "react-dom": "^0.14.3",
     "react-router": "^1.0.0",
     "sassdoc": "^2.1.18",
+    "stringify": "^3.2.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

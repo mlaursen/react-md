@@ -3,6 +3,9 @@
 @import '../../src/scss/react-md';
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
+@import 'home';
+@import 'documentation';
+@import 'markdown';
 
 html {
   height: 100%;
@@ -21,100 +24,6 @@ main {
   margin: 2em;
   margin-top: 0;
   overflow-x: hidden;
-}
-
-
-
-
-// React doc setup
-
-.react-md-source {
-  color: inherit;
-  font-size: #{$md-font-size-base}px;
-  margin-left: 2em;
-
-  .fa-github {
-    padding-left: .5em;
-  }
-}
-
-.react-md-doc-card {
-  background: $md-background-color;
-  margin: 1em 0;
-  width: 100%;
-}
-
-.examples {
-  align-items: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.react-md-prop-name {
-  vertical-align: top;
-}
-
-.prop-type {
-  color: rgba($black-base, .54);
-  padding-right: 1em;
-}
-
-.prop-desc {
-  margin: 0;
-  margin-top: .5em;
-}
-
-.prop-required {
-  &:before {
-    color: rgba($black-base, .54);
-    content: '(isRequired)';
-    padding-left: .5em;
-  }
-}
-
-.react-md-doc {
-  margin-top: 0;
-}
-
-.react-md-code {
-  @include make-paper(2);
-
-  display: block;
-  overflow-x: auto;
-  padding: 1em;
-}
-
-.react-md-inline-code {
-  display: inline-block;
-  margin: 0;
-}
-
-.react-md-code-block,
-.react-md-code-block * {
-  display: block;
-  font-family: 'Source Code Pro', monospace;
-  line-height: 1.4563;
-  margin: 0;
-  white-space: pre;
-}
-
-.react-md-code-block {
-
-  &.code-comment-block:not(:first-child) {
-    &:before {
-      content: '';
-      display: block;
-      height: 1em;
-    }
-  }
-
-  .code-comment {
-    color: $md-secondary-text-color;
-
-    &:before {
-      content: '// ';
-    }
-  }
 }
 
 
@@ -265,47 +174,4 @@ main {
     display: inline-block;
     margin: 1em;
   }
-}
-
-
-// ================================================
-// Home
-.react-md-app-bar {
-  transition: box-shadow $md-transition-time * 2;
-
-  &.no-shadow {
-    box-shadow: none;
-  }
-}
-
-.react-md-home-container {
-  margin: 0;
-}
-
-.react-md-banner {
-  align-items: center;
-  background: get-md-color($md-primary-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 600px;
-  padding: 2em;
-
-  .md-title {
-    max-width: 450px;
-  }
-
-  .md-btn {
-    margin-top: 2em;
-  }
-
-  .md-title,
-  .md-display-2 {
-    color: $white-base;
-  }
-}
-
-.pre {
-  font-family: 'Source Code Pro', monospace;
-  white-space: pre;
 }

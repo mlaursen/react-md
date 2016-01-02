@@ -4,6 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import DocCode from './DocCode.jsx';
 import DocExamples from './DocExamples.jsx';
 import DocProps from './DocProps.jsx';
+import DocExampleCode from './DocExampleCode.jsx';
 
 export default class DocPage extends Component {
   constructor(props) {
@@ -25,10 +26,11 @@ export default class DocPage extends Component {
         propType: PropTypes.string,
       })).isRequired,
     })).isRequired,
+    code: PropTypes.string.isRequired,
   }
 
   render() {
-    const { imports, defaultImport, examples, components, sectionName } = this.props;
+    const { imports, defaultImport, examples, components, sectionName, code } = this.props;
     let docSectionName = (sectionName || components[0].component.name).split(/(?=[A-Z])/);
     const cssClassName = docSectionName.map(s => s.toLowerCase()).join('-');
     const title = docSectionName.join(' ');
@@ -42,6 +44,7 @@ export default class DocPage extends Component {
         </h1>
         <DocCode imports={imports} defaultImport={defaultImport || docSectionName} />
         <DocExamples examples={examples} className={cssClassName} />
+        <DocExampleCode code={code} />
         {components.map(component => <DocProps key={component.component.name} {...component} multiple={components.length > 0} />)}
       </div>
     );

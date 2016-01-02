@@ -17,6 +17,7 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import sassdoc from 'sassdoc';
 import ghpages from 'gulp-gh-pages';
+import stringify from 'stringify';
 
 const SRC = './src';
 const EXAMPLE_SRC = './example';
@@ -114,6 +115,7 @@ function bundle(isProd) {
   const bundle = browserify(config.browserify);
   bundle.add(EXAMPLE_SRC + JS + '/index.js');
   bundle.transform(babelify);
+  bundle.transform(stringify(['.txt']));
 
   return bundle.bundle()
     .on('error', function(err) {

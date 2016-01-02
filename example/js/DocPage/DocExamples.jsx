@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 
 import { Card, CardTitle, CardText } from '../../../src/js';
 
