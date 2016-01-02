@@ -1,4 +1,22 @@
-@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-padding) {
+@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-padding, $icon-font-size) {
+  .md-text-field-container {
+    .md-icon {
+      font-size: $icon-font-size;
+
+      ~ .md-text-field-divider {
+        $margin: $icon-font-size + $md-text-field-dense-padding * 4;
+        margin-left: $margin;
+        width: calc(100% - #{$margin});
+      }
+
+      ~ .md-text-field {
+        $margin: $md-text-field-dense-padding * 2;
+        margin-left: $margin;
+        width: calc(100% - #{$margin * 2 + $icon-font-size});
+      }
+    }
+  }
+
   .md-text-field-container.single-line {
     .md-text-field-label-container {
       height: $fl-height;
@@ -26,6 +44,10 @@
       .md-text-field-label.active {
         bottom: $nl-height - $font-size - $padding;
       }
+    }
+
+    .md-icon {
+      padding: $padding;
     }
   }
 
@@ -59,7 +81,8 @@
     $md-text-field-sl-height,
     $md-text-field-font-size,
     $md-text-field-padding,
-    $md-text-field-divider-padding
+    $md-text-field-divider-padding,
+    $md-text-field-icon-font-size
   );
 }
 
@@ -69,12 +92,14 @@
     $md-text-field-sl-dense-height,
     $md-text-field-dense-font-size,
     $md-text-field-dense-padding,
-    $md-text-field-dense-divider-padding
+    $md-text-field-dense-divider-padding,
+    $md-text-field-dense-icon-font-size
   );
 }
 
 .md-text-field-label.error,
-.md-text-field-info.error {
+.md-text-field-info.error,
+.md-text-field-container .md-icon.error {
   color: get-md-color(red);
 }
 
@@ -87,6 +112,11 @@
     .md-text-field-divider {
       position: absolute;
     }
+  }
+
+  .md-icon.active {
+    color: get-md-color($md-primary-color);
+    transition: color $md-transition-time;
   }
 }
 

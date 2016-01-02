@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import DocPage from '../../DocPage';
-import { TextField } from '../../../../src/js';
+import { TextField, FontIcon } from '../../../../src/js';
 
 export default class TextFields extends Component {
   constructor(props) {
@@ -29,6 +29,12 @@ export default class TextFields extends Component {
             rows={2}
             maxRows={4}
             helpText="I am a multiline text field that has 2 rows."
+          />,
+          <TextField
+            label="Phone"
+            floatingLabel={false}
+            icon={<FontIcon>phone</FontIcon>}
+            type="phone"
           />,
         ]}
         components={[{

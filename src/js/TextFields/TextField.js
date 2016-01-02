@@ -39,6 +39,7 @@ export default class TextField extends Component {
     maxRows: PropTypes.number,
     placeholder: PropTypes.string,
     floatingLabel: PropTypes.bool,
+    icon: PropTypes.node,
   }
 
   static defaultProps = {
@@ -96,7 +97,7 @@ export default class TextField extends Component {
   }
 
   render() {
-    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, ...props } = this.props;
+    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, icon, ...props } = this.props;
     const { active, currentRows, height } = this.state;
     const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
@@ -122,6 +123,7 @@ export default class TextField extends Component {
           'multi-line': isTextArea,
         })}>
         <label className="md-text-field-label-container">
+          {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError })})}
           {floatingLabel && label &&
           <TextFieldLabel
             label={label}
