@@ -41,7 +41,7 @@ export default class DocPage extends Component {
       <div className={`react-md-doc react-md-${cssClassName}`}>
         <h1 className="md-display-2">{title}</h1>
         <DocCode imports={imports} defaultImport={defaultImport || docSectionName} />
-        <DocExamples examples={examples} className={cssClassName} />
+        {examples && <DocExamples examples={examples} className={cssClassName} />}
         <DocExampleCode code={code} href={href} />
         {components.map(component => <DocProps key={component.component.name} {...component} href={href} />)}
       </div>
