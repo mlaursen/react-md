@@ -112,6 +112,14 @@
     .md-text-field-divider {
       position: absolute;
     }
+
+    .md-text-field-label.active {
+      font-size: $md-text-field-active-font-size;
+    }
+  }
+
+  &.multi-line .md-text-field-label {
+    font-size: $md-text-field-active-font-size;
   }
 
   .md-icon.active {
@@ -133,10 +141,6 @@
   color: $md-hint-text-color;
   cursor: text;
   transition: bottom $md-transition-time, font-size $md-transition-time, color $md-transition-time;
-
-  &.active {
-    font-size: $md-text-field-active-font-size;
-  }
 
   &.focus:not(.error) {
     color: get-md-color($md-primary-color);

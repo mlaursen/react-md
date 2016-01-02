@@ -28,7 +28,6 @@ export default class TextField extends Component {
     }),
     initialValue: PropTypes.string,
     lineDirection: PropTypes.oneOf(['left', 'right', 'center']),
-    singleLine: PropTypes.bool,
     type: PropTypes.string,
     required: PropTypes.bool,
     maxLength: PropTypes.number,
