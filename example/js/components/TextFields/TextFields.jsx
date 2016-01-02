@@ -48,7 +48,7 @@ export default class TextFields extends Component {
             label="Description"
             placeholder="What are you thinking about today?"
             rows={2}
-            maxRows={10}
+            maxRows={-1}
             maxLength={1000}
           />,
         ]}
@@ -105,7 +105,7 @@ export default class TextFields extends Component {
             propType: 'nu',
             desc: `An optional number of max rows for the multiline text field.
             The text field's height will continue to grow until the number of rows equals the
-            max rows. Afterwards, the text field scrollbar will appear.`,
+            max rows. Afterwards, the text field scrollbar will appear. A value of '-1' will let the textarea grow infinitely.`,
           }, {
             name: 'placeholder',
             propType: 's',

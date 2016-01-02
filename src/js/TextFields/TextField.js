@@ -82,7 +82,7 @@ export default class TextField extends Component {
     const { textarea } = this.refs;
     const { offsetHeight, scrollHeight } = textarea;
     let { currentRows, height } = this.state;
-    if(scrollHeight <= (height || offsetHeight) || currentRows >= maxRows) { return; }
+    if(scrollHeight <= (height || offsetHeight) || (maxRows !== -1 && currentRows >= maxRows)) { return; }
 
     currentRows++;
     this.setState({ currentRows, height: currentRows * this.lineHeight });
@@ -104,7 +104,7 @@ export default class TextField extends Component {
 
     let style = {};
     if(rows && maxRows) {
-      if(currentRows < maxRows) {
+      if(currentRows < maxRows || maxRows === -1) {
         style.overflow = 'hidden';
       }
 
