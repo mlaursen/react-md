@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import { fuzzyFilter } from '../../../src/js/utils/PropUtils';
-import { AppBar, IconButton, Sidebar } from '../../../src/js/index';
+import { AppBar, IconButton, Sidebar, TextField } from '../../../src/js/index';
 
 import { componentLinks, mainLinks, sublinks } from '../utils';
 
@@ -33,8 +33,8 @@ export default class App extends Component {
     this.setState({ isNavOpen: !this.state.isNavOpen });
   }
 
-  filterLinks = (e) => {
-    this.setState({ filteredLinks: fuzzyFilter(componentLinks, e.target.value, 'label') });
+  filterLinks = (value) => {
+    this.setState({ filteredLinks: value ? fuzzyFilter(componentLinks, value, 'label') : componentLinks });
   }
 
   toRouterLink = ({ link, label, ...props }) => {
@@ -59,7 +59,11 @@ export default class App extends Component {
         />
         <Sidebar
           isOpen={this.state.isNavOpen}
-          items={mainLinks.map(this.toRouterLink).concat(sublinks).concat(this.state.filteredLinks.map(this.toRouterLink))}
+          items={mainLinks.map(this.toRouterLink).concat(sublinks).concat([{
+            key: 'filter',
+            textField: true,
+            component: <TextField onChange={this.filterLinks} label="Filter components" floatingLabel={false} />,
+          }]).concat(this.state.filteredLinks.map(this.toRouterLink))}
         />
         <main className={this.props.location.pathname === '/' ? 'react-md-home-container' : null}>
           {this.props.children}
