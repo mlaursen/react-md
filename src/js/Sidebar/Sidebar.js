@@ -53,6 +53,7 @@ export default class Sidebar extends Component {
         >
         <nav className={classnames('md-sidebar', { 'active': isOpen })}>
           {header}
+          {items &&
           <List>
             {items.map(item => {
               if(item.divider) {
@@ -66,6 +67,7 @@ export default class Sidebar extends Component {
               }
             })}
           </List>
+          }
           {children}
         </nav>
         {isOverlayVisible &&

@@ -12,6 +12,7 @@
   height: 0;
   line-height: 0;
   position: absolute;
+  visibility: hidden;
   width: 0;
 
   &:checked {
@@ -92,9 +93,9 @@
   .md-control-input:checked + .md-checkbox:after {
     content: '\2714';
     font-size: #{$md-font-size-base}px;
-    left: 2px;
+    left: 1.5px;
     position: absolute;
-    top: -1px;
+    top: -3px;
   }
 }
 
