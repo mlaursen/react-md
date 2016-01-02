@@ -20,12 +20,11 @@ export default class DocProps extends Component {
       propType: PropTypes.string,
     })).isRequired,
     allRemaining: PropTypes.bool,
-    multiple: PropTypes.bool,
+    href: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
     allRemaining: false,
-    multiple: false,
   }
 
   stringToPropType = (s) => {
@@ -49,7 +48,7 @@ export default class DocProps extends Component {
   }
 
   render() {
-    const { component, desc, details, allRemaining, multiple } = this.props;
+    const { component, desc, details, allRemaining, href } = this.props;
     const { propTypes, defaultProps } = component;
     const detailNames = details.map(d => d.name);
 
@@ -94,6 +93,7 @@ export default class DocProps extends Component {
       );
     });
 
+    const name = (component.displayName || component.name).replace('Ripple', '');
     return (
       <Card className="react-md-doc-card">
         <CardText>
@@ -101,8 +101,10 @@ export default class DocProps extends Component {
             <thead>
               <tr>
                 <th className="md-data-table-header" colSpan="2">
-                  Prop Types
-                  {multiple && `- ${(component.displayName || component.name).replace('Ripple', '').split(/(?=[A-Z])/).join(' ')}`}
+                  Prop Types - {`${name.split(/(?=[A-Z])/).join(' ')}`}
+                  <div>
+                    <a className="react-md-source" href={`${href}/${name}.js`}>Source code<span className="fa fa-github" /></a>
+                  </div>
                 </th>
               </tr>
               <tr>

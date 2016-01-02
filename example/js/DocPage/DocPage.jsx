@@ -35,17 +35,15 @@ export default class DocPage extends Component {
     const cssClassName = docSectionName.map(s => s.toLowerCase()).join('-');
     const title = docSectionName.join(' ');
     docSectionName = docSectionName.join('');
+    const href = `https://github.com/mlaursen/react-md/tree/master/src/js/${docSectionName}`;
 
     return (
       <div className={`react-md-doc react-md-${cssClassName}`}>
-        <h1 className="md-display-2">
-          {title}
-          <a className="react-md-source" href={`https://github.com/mlaursen/react-md/tree/master/src/js/${docSectionName}`}>Source code <span className="fa fa-github" /></a>
-        </h1>
+        <h1 className="md-display-2">{title}</h1>
         <DocCode imports={imports} defaultImport={defaultImport || docSectionName} />
         <DocExamples examples={examples} className={cssClassName} />
-        <DocExampleCode code={code} />
-        {components.map(component => <DocProps key={component.component.name} {...component} multiple={components.length > 0} />)}
+        <DocExampleCode code={code} href={href} />
+        {components.map(component => <DocProps key={component.component.name} {...component} href={href} />)}
       </div>
     );
   }
