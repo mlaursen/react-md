@@ -201,9 +201,16 @@
 }
 
 .md-text-field-info {
+  display: flex;
   font-size: $md-text-field-info-font-size;
+  justify-content: space-between;
+
+  &.count-only {
+    justify-content: flex-end;
+  }
 }
 
 .md-text-field-count {
-  float: right;
+  display: block;
+  flex-shrink: 0;
 }
