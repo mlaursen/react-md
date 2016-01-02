@@ -14,6 +14,7 @@ export Papers from './Papers';
 export Pickers from './Pickers';
 export Progress from './Progress';
 export SelectionControls from './SelectionControls';
+export Sidebar from './Sidebar';
 export Sliders from './Sliders';
 export Snackbars from './Snackbars';
 export Subheaders from './Subheaders';

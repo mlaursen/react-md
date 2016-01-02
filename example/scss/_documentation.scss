@@ -75,6 +75,10 @@
   display: block;
   overflow-x: auto;
   padding: 1em;
+
+  + .react-md-example-code {
+    margin-top: 1em;
+  }
 }
 
 .react-md-inline-code {
