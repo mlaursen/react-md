@@ -49,13 +49,20 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
   @extend %md-tile-extra-margin-top;
 }
 
+.md-list-item,
+.md-list-tile {
+  padding-left: $md-default-padding;
+  padding-right: $md-default-padding;
+}
+
 .md-list-tile {
   align-items: center;
   display: flex;
-  height: 48px;
+  height: $md-height;
   overflow: hidden;
-  padding: $md-default-padding;
   padding-bottom: 20px;
+  padding-top: $md-default-padding;
+
   position: relative;
   transition: background $md-transition-time;
 

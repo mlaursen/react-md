@@ -21,7 +21,10 @@ export default class Sidebar extends Component {
     items: PropTypes.arrayOf(PropTypes.shape({
       divider: PropTypes.bool,
       subheader: PropTypes.bool,
-      component: PropTypes.func,
+      component: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.object,
+      ]),
       primaryText: PropTypes.string,
     })),
     header: PropTypes.node,
@@ -56,6 +59,8 @@ export default class Sidebar extends Component {
                 return <ListDivider {...item} />;
               } else if(item.subheader) {
                 return <ListSubheader {...item} />;
+              } else if(item.textField) {
+                return <li className="md-list-item" key={item.key}>{item.component}</li>;
               } else {
                 return <ListItem {...item} />;
               }
