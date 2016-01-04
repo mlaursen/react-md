@@ -4,6 +4,7 @@ import code from './code.txt';
 
 import DocPage from '../../DocPage';
 import { TextField, FontIcon } from '../../../../src/js';
+import AppTextField from './AppTextField.jsx';
 
 export default class TextFields extends Component {
   constructor(props) {
@@ -53,6 +54,7 @@ export default class TextFields extends Component {
             maxRows={-1}
             maxLength={1000}
           />,
+          <AppTextField />,
         ]}
         components={[{
           component: TextField,

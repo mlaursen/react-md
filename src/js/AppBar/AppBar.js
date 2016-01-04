@@ -17,6 +17,7 @@ export default class AppBar extends Component {
     title: PropTypes.string,
     leftNode: PropTypes.node,
     rightNode: PropTypes.node,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -24,13 +25,14 @@ export default class AppBar extends Component {
   }
 
   render() {
-    const { primary, title, className, leftNode, rightNode } = this.props;
+    const { primary, title, className, leftNode, rightNode, children, ...props } = this.props;
     return (
-      <Toolbar primary={primary} className={classnames('md-app-bar', className)}>
+      <Toolbar primary={primary} className={classnames('md-app-bar', className)} {...props}>
         <div className="md-app-bar-left">
           {leftNode}
-          <h4 className="md-app-bar-title">{title}</h4>
+          {title && <h4 className="md-app-bar-title">{title}</h4>}
         </div>
+        {children}
         <div className="md-app-bar-right">
           {rightNode}
         </div>

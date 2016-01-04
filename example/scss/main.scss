@@ -96,11 +96,25 @@ main {
   }
 }
 
-.text-field-examples .md-text-field-container {
-  max-width: 300px;
-  padding: 1em 2em;
-}
+.text-field-examples {
 
+  > .md-text-field-container {
+    max-width: 300px;
+    padding: 1em 2em;
+  }
+
+  .md-toolbar.md-app-bar {
+    position: absolute;
+    top: 0;
+  }
+
+  .paper-1 {
+    height: 320px;
+    max-width: 300px;
+    position: relative;
+    width: 100%;
+  }
+}
 
 .react-md-card {
 

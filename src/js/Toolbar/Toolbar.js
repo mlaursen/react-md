@@ -25,7 +25,7 @@ export default class Toolbar extends Component {
       'md-toolbar-secondary': isPropEnabled(props, 'secondary'),
     });
     return (
-      <header className={fullClassName}>
+      <header className={fullClassName} {...props}>
         {children}
       </header>
     );
