@@ -34,7 +34,7 @@ export default class TextFields extends Component {
             label="Phone"
             floatingLabel={false}
             icon={<FontIcon>phone</FontIcon>}
-            type="phone"
+            type="tel"
           />,
           <TextField label="I am required" required />,
           <TextField label="I am disabled" disabled />,
