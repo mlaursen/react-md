@@ -75,6 +75,9 @@ export default class TextField extends Component {
   }
 
   handleChange = (e) => {
+    // Firefox calls handle change after escape while other browsers don't. Hacky fix
+    if(this.state.isEscape) { return; }
+
     if(this.props.onChange) {
       this.props.onChange(e.target.value, e);
     }
@@ -98,6 +101,9 @@ export default class TextField extends Component {
         this.props.onChange('', e);
       }
       this.getValueLink().requestChange('');
+      this.setState({ isEscape: true });
+    } else if(this.state.isEscape) {
+      this.setState({ isEscape: false });
     }
   }
 
