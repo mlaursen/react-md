@@ -5,7 +5,12 @@
 
   .md-text-field {
     color: $white-base;
+    height: 100%;
     padding-left: $md-default-padding;
+  }
+
+  .md-text-field-container.single-line .md-text-field {
+    bottom: 0;
   }
 
   .md-text-field-divider {
