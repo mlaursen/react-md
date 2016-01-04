@@ -19,9 +19,18 @@ body {
   display: flex;
 }
 
+@media only screen and (min-width: 600px) {
+  main {
+    margin: 2em;
+  }
+
+  .text-field-examples .paper-1 {
+    max-width: 300px;
+  }
+}
+
 main {
   flex-grow: 1;
-  margin: 2em;
   margin-top: 0;
   overflow-x: hidden;
 }
@@ -106,11 +115,11 @@ main {
   .md-toolbar.md-app-bar {
     position: absolute;
     top: 0;
+    z-index: 3;
   }
 
   .paper-1 {
     height: 320px;
-    max-width: 300px;
     position: relative;
     width: 100%;
   }
