@@ -27,12 +27,15 @@ export default class CircularProgress extends Component {
   render() {
     const { scale, className, value, determinateDashoffset } = this.props;
     const isDeterminate = typeof value === 'number';
-    let style;
+    let circleStyle, svgStyle;
     if(isDeterminate) {
       const rotate = `rotate(${ROATE_DISTANCE / 100 * value}deg)`;
-      style = {
+      circleStyle = {
         strokeDashoffset: determinateDashoffset - (determinateDashoffset / 100 * value),
+      };
+      svgStyle = {
         transform: rotate,
+        MozTransform: rotate,
         WebkitTransform: rotate,
       };
     }
@@ -46,12 +49,13 @@ export default class CircularProgress extends Component {
         height={scale * BASE_SIZE}
         viewBox="0 0 66 66"
         xmlns="http://www.w3.org/2000/svg"
+        style={svgStyle}
         >
         <circle
           className="md-circular-progress-path"
           strokeWidth="6"
           strokeLinecap="round"
-          style={style}
+          style={circleStyle}
           cx="33"
           cy="33"
           r="30"

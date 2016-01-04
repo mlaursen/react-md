@@ -35,7 +35,11 @@
 @keyframes md-circular-progress {
   0% { transform: rotate(0deg); }
 
-  100% { transform: rotate(270deg); }
+  50% { transform: rotate(135deg); }
+
+  75% { transform: rotate(450deg); }
+
+  100% { transform: rotate(720deg); }
 }
 
 @keyframes md-circular-progress-colors {
@@ -67,12 +71,10 @@
 
   50% {
     stroke-dashoffset: $md-circular-progress-stroke-dashoffset / 4;
-    transform: rotate(135deg);
   }
 
   100% {
     stroke-dashoffset: $md-circular-progress-stroke-dashoffset;
-    transform: rotate(450deg);
   }
 }
 
@@ -139,6 +141,7 @@
     .md-circular-progress-path {
       animation: md-circular-progress-dash $md-circular-progress-duration $md-circular-progress-transition-func infinite,
                  md-circular-progress-colors $md-circular-progress-duration * 4 $md-circular-progress-transition-func infinite;
+      stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
       stroke-dasharray: $md-circular-progress-stroke-dashoffset;
       stroke-dashoffset: 0;
     }
@@ -147,5 +150,4 @@
 
 .md-circular-progress-path {
   fill: none;
-  transform-origin: center;
 }
