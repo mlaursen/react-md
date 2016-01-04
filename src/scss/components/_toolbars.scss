@@ -2,11 +2,34 @@
   @include md-box-shadow(1);
 
   background: $md-app-bar-color;
+
+  .md-text-field {
+    color: $white-base;
+    padding-left: $md-default-padding;
+  }
+
+  .md-text-field-divider {
+    display: none;
+  }
 }
 
 .md-toolbar-primary {
   background: get-md-color($md-primary-color);
   color: $white-base;
+
+  .md-text-field {
+    // Style's the input to have the secondary color
+    &.chrome {
+      color: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 0 $white-base;
+
+      // scss-lint:disable NestingDepth
+      &::-webkit-input-placeholder {
+        -webkit-text-fill-color: initial;
+      }
+    }
+  }
 }
 
 .md-toolbar-secondary {

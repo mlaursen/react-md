@@ -17,6 +17,8 @@ export default class TextField extends Component {
     if(!props.valueLink) {
       this.state.value = props.initialValue;
     }
+
+    this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   }
 
   static propTypes = {
@@ -160,7 +162,7 @@ export default class TextField extends Component {
             /> :
             <input
               {...props}
-              className={classnames('md-text-field', { 'active': active })}
+              className={classnames('md-text-field', { 'active': active, 'chrome': this.isChrome })}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
