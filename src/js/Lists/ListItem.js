@@ -27,7 +27,7 @@ class ListItem extends Component {
     const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar } = this.props;
     const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
 
-    if(!leftIcon && !leftAvatar && !rightIcon) {
+    if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar) {
       return tileTitle;
     }
 
@@ -54,7 +54,10 @@ class ListItem extends Component {
   }
 
   renderRightChildren = () => {
-    return null;
+    const { rightIcon, rightAvatar } = this.props;
+    if(!rightIcon && !rightAvatar) { return null; }
+
+    return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
   }
 
   render() {
