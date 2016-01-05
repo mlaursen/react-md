@@ -316,3 +316,23 @@ $md-circular-progress-duration: 1.4s !default;
 $md-circular-progress-transition-func: ease-in-out !default;
 $md-circular-progress-stroke-dashoffset: 187 !default;
 $md-circular-progress-determinate-dasharray: 187px !default;
+
+
+// =============================================
+// Select Fields
+$md-select-field-padding-left: 24px;
+
+
+// =============================================
+// Lists
+$md-list-tile-left-padding: 72px;
+$md-tile-left-padding: $md-list-tile-left-padding - $md-default-padding;
+$md-list-tile-extra-margin: $md-default-padding / 2;
+
+// =============================================
+// Dropdowns
+/// Sets the max height of the dropdown to show 5 and 1/3 items
+/// @group dropdown
+$md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;
+$md-dropdown-z-index: 4 !default;
+

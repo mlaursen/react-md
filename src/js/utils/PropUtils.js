@@ -10,6 +10,10 @@ export function isPropEnabled(props, propName, keys = Object.keys(props)) {
   return keys.indexOf(propName) !== -1 && props[propName] !== false;
 }
 
+export function isObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
 export function easeInOut(currentTime, start, change, duration) {
   currentTime /= duration / 2;
   if(currentTime < 1) {

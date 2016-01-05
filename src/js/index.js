@@ -12,6 +12,7 @@ export AppBar from './AppBar';
 export Avatar from './Avatar';
 export FontIcon from './FontIcon';
 export Paper from './Paper';
+export SelectField from './SelectFields';
 export Slider from './Slider';
 export Sidebar from './Sidebar';
 export Snackbar from './Snackbar';

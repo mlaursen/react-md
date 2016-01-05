@@ -12,7 +12,7 @@ class ListItem extends Component {
   }
 
   static propTypes = {
-    primaryText: PropTypes.string.isRequired,
+    primaryText: PropTypes.node.isRequired,
     secondaryText: PropTypes.node,
     secondaryText2: PropTypes.node,
     className: PropTypes.string,
@@ -65,6 +65,8 @@ class ListItem extends Component {
     return React.createElement(component || 'li', {
       role: 'button',
       className: classnames('md-list-tile', className, { 'md-list-3-lines': !!secondaryText && !!secondaryText2 }),
+      tabIndex: 0,
+      onFocus: this.handleFocus,
       ...props,
     }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
   }

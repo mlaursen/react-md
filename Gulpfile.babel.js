@@ -130,7 +130,7 @@ function bundle(isProd) {
 }
 
 gulp.task('statics:example', () => {
-  gulp.src(`${EXAMPLE_SRC}/index.html`).pipe(gulp.dest(EXAMPLE_DIST));
+  gulp.src([`${EXAMPLE_SRC}/index.html`, `${EXAMPLE_SRC}/data/**/*.json`], { base: EXAMPLE_SRC }).pipe(gulp.dest(EXAMPLE_DIST));
 });
 
 gulp.task('styles:example', () => {

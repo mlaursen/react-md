@@ -28,12 +28,13 @@ export function createRipple(el, e, isPositioned = false, timeout = 15) {
 
   el.insertBefore(ripple, el.firstChild);
   const { pageX, pageY } = e;
+  const { left, top } = el.getBoundingClientRect();
 
   // Need a short delay after inserting into the page for some reason
   setTimeout(() => {
     if(!isPositioned) {
-      ripple.style.left = `${pageX - el.offsetLeft - ripple.offsetWidth / 2}px`;
-      ripple.style.top = `${pageY - el.offsetTop - ripple.offsetHeight / 2}px`;
+      ripple.style.left = `${pageX - left - ripple.offsetWidth / 2}px`;
+      ripple.style.top = `${pageY - top - ripple.offsetHeight / 2}px`;
     }
     ripple.classList.add('active');
   }, timeout);
@@ -104,6 +105,10 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
         this.setState({ mouseDownTime: new Date(), ripples: ripples });
       }
 
+      componentWillUnmount() {
+        this.timeout && clearTimeout(this.timeout);
+      }
+
       handleMouseUp = (e) => {
         const { onMouseUp, rippleEnterTimeout, rippleLeaveTimeout, onClick } = this.props;
         const { mouseDownTime, ripples } = this.state;
@@ -116,10 +121,10 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
         const ripple = ReactDOM.findDOMNode(this).querySelector('.ripple.active:not(.leave)');
         ripple && ripple.classList.add('leave');
         this.timeout = setTimeout(() => {
-          onClick && onClick(e);
           removeRipple(ReactDOM.findDOMNode(this), rippleLeaveTimeout);
           this.timeout = null;
           this.setState({ ripples: ripples.slice(1, ripples.length), mouseDownTime: null });
+          onClick && onClick(e);
         }, rippleEnterTimeout - (new Date() - mouseDownTime));
       }
 

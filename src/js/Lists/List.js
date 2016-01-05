@@ -30,6 +30,7 @@ export default class List extends Component {
 
     return React.createElement(isPropEnabled(props, 'ordered') ? 'ol' : 'ul', {
       className: classnames('md-list', className, { 'md-text-list': isPropEnabled(props, 'textOnly') }),
+      ...props,
     }, React.Children.map(allChildren, (child, i) => {
       if(i + 1 < children.length) {
         const nextChild = children[i + 1];

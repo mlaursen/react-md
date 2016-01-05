@@ -48,6 +48,31 @@
     vertical-align: middle;
   }
 
+  > *:not(.md-icon) {
+    width: 100%;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  .md-icon {
+    white-space: nowrap;
+    width: auto;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
   .md-icon + *,
   * + .md-icon {
     padding-left: .5em;
