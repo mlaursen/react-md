@@ -5,7 +5,8 @@ import DocPage from '../../DocPage';
 import code from './code.txt';
 
 import { SelectField, Toolbar, Paper } from '../../../../src/js';
-const FONTS = [{ label: 'Calibri' }, { label: 'Courier New' } , { label: 'Roboto' }, { label: 'Verdana' }];
+const FONTS = ['Calibri', 'Courier New', 'Roboto', 'Verdana'];
+const req = new XMLHttpRequest();
 
 export default class SelectFields extends Component {
   constructor(props) {
@@ -16,13 +17,14 @@ export default class SelectFields extends Component {
   }
 
   componentDidMount() {
-    const req = new XMLHttpRequest();
-    req.addEventListener('load', () => {
-      this.setState({ states: JSON.parse(req.responseText) });
-    });
+    req.addEventListener('load', this.setText);
 
     req.open('GET', 'data/states.json', true);
     req.send();
+  }
+
+  setText = () => {
+    this.setState({ states: JSON.parse(req.responseText) });
   }
 
   render() {
@@ -33,8 +35,8 @@ export default class SelectFields extends Component {
         examples={[
           <Paper>
             <Toolbar>
-              <SelectField menuItems={FONTS} itemValue="label" below />
-              <SelectField menuItems={[10, 11, 12, 14, 16, 22]} below />
+              <SelectField menuItems={FONTS} itemValue="label" below className="font-names" />
+              <SelectField menuItems={[10, 11, 12, 14, 16, 22]} below className="font-sizes" />
             </Toolbar>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sequitur disserendi ratio cognitioque naturae; Ergo, si semel tristior effectus est, hilara vita amissa est? Duo Reges: constructio interrete. Ergo ita: non posse honeste vivi, nisi honeste vivatur? Hoc est non modo cor non habere, sed ne palatum quidem. At quicum ioca seria, ut dicitur, quicum arcana, quicum occulta omnia? Cur id non ita fit? Hoc simile tandem est? Aliena dixit in physicis nec ea ipsa, quae tibi probarentur; At eum nihili facit;</p>
             <p>Tu quidem reddes; Iam doloris medicamenta illa Epicurea tamquam de narthecio proment: Si gravis, brevis; Quid turpius quam sapientis vitam ex insipientium sermone pendere? Idemne potest esse dies saepius, qui semel fuit? Item de contrariis, a quibus ad genera formasque generum venerunt. At iam decimum annum in spelunca iacet.</p>

@@ -11,7 +11,7 @@ import SelectFieldButton from './SelectFieldButton';
 const TILE_HEIGHT = 48;
 const LIST_MARGIN = 8;
 
-export default class SelectButton extends Component {
+export default class SelectField extends Component {
   constructor(props) {
     super(props);
 
@@ -58,7 +58,17 @@ export default class SelectButton extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(isPropEnabled(this.props, 'below') || this.state.isOpen === prevState.isOpen || !this.state.isOpen) { return; }
+    if(this.state.isOpen === prevState.isOpen) { return; }
+    if(!this.state.isOpen) {
+      document.removeEventListener('click', this.closeMenuListener);
+      this.closeMenuListener = null;
+    } else if(!this.closeMenuListener) {
+      this.closeMenuListener = this.handleClickOutside;
+      document.addEventListener('click', this.closeMenuListener);
+    }
+
+    if(isPropEnabled(this.props, 'below') || !this.state.isOpen) { return; }
+
     const menu = ReactDOM.findDOMNode(this).querySelector('.md-dropdown-menu');
     const items = Array.prototype.slice.call(menu.querySelectorAll('.md-list-tile'));
     const maxScrollDistance = menu.scrollHeight - menu.offsetHeight;
@@ -139,6 +149,17 @@ export default class SelectButton extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
+  handleClickOutside = (e) => {
+    const node = ReactDOM.findDOMNode(this);
+    let target = e.target;
+    while(target.parentNode) {
+      if(target === node) { return; }
+      target = target.parentNode;
+    }
+
+    this.setState({ isOpen: false });
+  }
+
   handleKeyUp = (item, i, e) => {
     const key = e.which || e.keyCode;
     if(key === 13 || key === 32) {
@@ -151,12 +172,14 @@ export default class SelectButton extends Component {
     const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, ...props } = this.props;
     const { focused, isOpen, selected } = this.state;
 
+    const isBelow = isPropEnabled(props, 'below');
     const displayLabel = this.getSelected(itemLabel);
     const displayValue = this.getSelected(itemValue);
     const fieldClassName= classnames('md-select-field', {
       'focus': focused || isOpen,
       'segmented': isPropEnabled(props, 'segmented'),
     });
+
     return (
       <div className={classnames('md-dropdown-container', className)} {...props}>
         <SelectFieldButton
@@ -167,6 +190,7 @@ export default class SelectButton extends Component {
           onClick={this.toggleMenu}
           className={fieldClassName}
           name={name}
+          isOpen={isOpen}
         />
         <CSSTransitionGroup
           transitionName="menu"
@@ -174,11 +198,7 @@ export default class SelectButton extends Component {
           transitionLeaveTimeout={300}
           >
           {isOpen &&
-          <List
-            className={classnames('md-dropdown-menu', {
-              'menu-below': isPropEnabled(props, 'below'),
-            })}
-            >
+          <List className={classnames('md-dropdown-menu', { 'menu-below': isBelow })}>
             {menuItems.map((item, i) => {
               return (
                 <ListItem

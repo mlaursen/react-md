@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 
 import { FontIcon } from '../../../src/js';
 
@@ -24,10 +23,11 @@ export default class SelectFieldButton extends Component {
       PropTypes.number,
     ]).isRequired,
     name: PropTypes.string,
+    isOpen: PropTypes.bool.isRequired,
   }
 
   render() {
-    const { label, name, value, ...props } = this.props;
+    const { label, name, value, isOpen, ...props } = this.props;
     return (
       <button
         type="button"
@@ -42,7 +42,7 @@ export default class SelectFieldButton extends Component {
         />
         <div className="icon-separator">
           {label}
-          <FontIcon>arrow_drop_down</FontIcon>
+          <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
         </div>
       </button>
     );

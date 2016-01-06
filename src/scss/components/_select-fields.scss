@@ -26,6 +26,22 @@
 
   &.focus {
     @include md-box-shadow(1);
+
+    outline: none;
+  }
+
+  .icon-separator {
+    > span {
+      padding-right: .5em;
+    }
+
+    .md-icon {
+      padding-left: 0;
+    }
+  }
+
+  .md-icon {
+    transition: transform $md-transition-time;
   }
 }
 
@@ -56,6 +72,7 @@
   z-index: $md-dropdown-z-index;
 
   &.menu-below {
+    border-top: 1px solid $md-border-color;
     top: 100%;
     transform-origin: 0 0;
   }
