@@ -15,7 +15,7 @@ export default class FloatingButton extends Component {
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     children: PropTypes.string,
-  }
+  };
 
   render() {
     const { iconClassName, children, ...props } = this.props;

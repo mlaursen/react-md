@@ -14,7 +14,7 @@ export default class Checkbox extends Component {
     isInitiallyChecked: PropTypes.bool,
     onChange: PropTypes.func,
     value: PropTypes.string,
-  }
+  };
 
   render() {
     return <Control type="checkbox" {...this.props} />;

@@ -42,14 +42,14 @@ export default class SelectField extends Component {
     menuBelow: PropTypes.bool,
     expandRight: PropTypes.bool,
     itemsVisible: PropTypes.number,
-  }
+  };
 
   static defaultProps = {
     itemLabel: 'label',
     itemValue: 'value',
     lineDirection: 'left',
     itemsVisible: 5,
-  }
+  };
 
   componentWillUpdate(nextProps) {
     if(typeof nextProps.value === 'undefined' && typeof this.state.selected === 'undefined' && nextProps.menuItems.length) {
@@ -121,17 +121,17 @@ export default class SelectField extends Component {
     } else {
       return selected;
     }
-  }
+  };
 
   handleFocus = (e) => {
     e.stopPropagation();
     e.preventDefault();
     this.setState({ focused: true });
-  }
+  };
 
   handleBlur = () => {
     this.setState({ focused: false });
-  }
+  };
 
   selectItem = (item, index) => {
     const { value, onChange } = this.props;
@@ -143,11 +143,11 @@ export default class SelectField extends Component {
     }
 
     this.setState(nextState);
-  }
+  };
 
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
 
   handleClickOutside = (e) => {
     const node = ReactDOM.findDOMNode(this);
@@ -158,7 +158,7 @@ export default class SelectField extends Component {
     }
 
     this.setState({ isOpen: false });
-  }
+  };
 
   handleKeyUp = (item, i, e) => {
     const key = e.which || e.keyCode;
@@ -166,7 +166,7 @@ export default class SelectField extends Component {
       this.selectItem(item, i);
       e.preventDefault();
     }
-  }
+  };
 
   render() {
     const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, ...props } = this.props;

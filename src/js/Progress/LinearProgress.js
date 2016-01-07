@@ -12,7 +12,7 @@ export default class LinearProgress extends Component {
   static propTypes = {
     className: PropTypes.string,
     value: PropTypes.number,
-  }
+  };
 
   render() {
     const { className, value } = this.props;

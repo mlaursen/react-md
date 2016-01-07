@@ -13,11 +13,11 @@ export default class Paper extends Component {
     className: PropTypes.string,
     zDepth: PropTypes.number.isRequired,
     children: PropTypes.node,
-  }
+  };
 
   static defaultProps = {
     zDepth: 1,
-  }
+  };
 
   render() {
     const { children, zDepth, ...props } = this.props;

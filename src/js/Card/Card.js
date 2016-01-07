@@ -20,18 +20,18 @@ export default class Card extends Component {
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.string,
     isInitialExpanded: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     isInitialExpanded: false,
-  }
+  };
 
   static childContextTypes = {
     onExpandClick: PropTypes.func,
     isExpanded: PropTypes.bool,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.string,
-  }
+  };
 
   getChildContext = () => {
     const iconClassName = 'material-icons' || this.props.iconClassName;
@@ -41,11 +41,11 @@ export default class Card extends Component {
       iconClassName,
       iconChildren: 'keyboard_arrow_down' || this.props.iconChildren,
     };
-  }
+  };
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
-  }
+  };
 
   render() {
     const { className, children, ...props } = this.props;

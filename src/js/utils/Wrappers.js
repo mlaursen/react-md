@@ -85,14 +85,18 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
         onClick: PropTypes.func,
         onMouseUp: PropTypes.func,
         onMouseDown: PropTypes.func,
-      }
+      };
 
       static defaultProps = {
         rippleEnterTimeout: 300,
         rippleLeaveTimeout: 300,
-      }
+      };
 
-      static displayName = `${Component.displayName || Component.name}Ripple`
+      static displayName = `${Component.displayName || Component.name}Ripple`;
+
+      componentWillUnmount() {
+        this.timeout && clearTimeout(this.timeout);
+      }
 
       handleMouseDown = (e) => {
         const { ripples } = this.state;
@@ -103,11 +107,7 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
         this.props.onMouseDown && this.props.onMouseDown(e);
         ripples.push(createRipple(ReactDOM.findDOMNode(this), e, isPositioned));
         this.setState({ mouseDownTime: new Date(), ripples: ripples });
-      }
-
-      componentWillUnmount() {
-        this.timeout && clearTimeout(this.timeout);
-      }
+      };
 
       handleMouseUp = (e) => {
         const { onMouseUp, rippleEnterTimeout, rippleLeaveTimeout, onClick } = this.props;
@@ -126,7 +126,7 @@ export function rippleComponent(isPositioned = false, rippleLimit = 0) {
           this.setState({ ripples: ripples.slice(1, ripples.length), mouseDownTime: null });
           onClick && onClick(e);
         }, rippleEnterTimeout - (new Date() - mouseDownTime));
-      }
+      };
 
       render() {
         return <Component {...this.props} onClick={null} onMouseUp={this.handleMouseUp} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart} onTouchEnd={this.handleTouchEnd} />;

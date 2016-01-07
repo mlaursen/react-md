@@ -14,7 +14,7 @@ export default class CardTitle extends Component {
     subtitle: PropTypes.string,
     className: PropTypes.string,
     avatar: PropTypes.node,
-  }
+  };
 
   render() {
     const { title, subtitle, avatar, className, ...props } = this.props;

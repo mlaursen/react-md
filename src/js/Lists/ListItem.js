@@ -21,7 +21,7 @@ class ListItem extends Component {
     rightIcon: PropTypes.node,
     rightAvatar: PropTypes.node,
     component: PropTypes.func,
-  }
+  };
 
   renderText = () => {
     const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar } = this.props;
@@ -42,7 +42,7 @@ class ListItem extends Component {
         {secondaryText2 && <div className="md-tile-secondary-text">{secondaryText2}</div>}
       </div>
     );
-  }
+  };
 
   renderLeftChildren = () => {
     const { leftIcon, leftAvatar } = this.props;
@@ -51,14 +51,14 @@ class ListItem extends Component {
     }
 
     return React.cloneElement(leftIcon || leftAvatar, { key: 'left-children' });
-  }
+  };
 
   renderRightChildren = () => {
     const { rightIcon, rightAvatar } = this.props;
     if(!rightIcon && !rightAvatar) { return null; }
 
     return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
-  }
+  };
 
   render() {
     const { component, className, secondaryText, secondaryText2, ...props } = this.props;

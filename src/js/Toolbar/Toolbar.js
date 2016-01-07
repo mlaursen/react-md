@@ -16,7 +16,7 @@ export default class Toolbar extends Component {
     children: PropTypes.node,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
-  }
+  };
 
   render() {
     const { className, children, ...props } = this.props;

@@ -13,11 +13,11 @@ export default class FlatButton extends Component {
   static propTypes = {
     icon: PropTypes.string,
     iconBefore: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     iconBefore: true,
-  }
+  };
 
   render() {
     return <Button flat {...this.props} />;

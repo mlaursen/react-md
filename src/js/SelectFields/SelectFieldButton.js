@@ -24,7 +24,7 @@ export default class SelectFieldButton extends Component {
     ]).isRequired,
     name: PropTypes.string,
     isOpen: PropTypes.bool.isRequired,
-  }
+  };
 
   render() {
     const { label, name, value, isOpen, ...props } = this.props;

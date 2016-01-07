@@ -12,7 +12,7 @@ export default class CardText extends Component {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
-  }
+  };
 
   render() {
     const { className, children, ...props } = this.props;

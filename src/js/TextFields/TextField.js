@@ -42,14 +42,14 @@ export default class TextField extends Component {
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
     onChange: PropTypes.func,
-  }
+  };
 
   static defaultProps = {
     initialValue: '',
     lineDirection: 'left',
     type: 'text',
     floatingLabel: true,
-  }
+  };
 
   componentDidMount() {
     if(this.props.rows) {
@@ -59,22 +59,22 @@ export default class TextField extends Component {
 
   handleFocus = () => {
     this.setState({ active: true });
-  }
+  };
 
   handleBlur = () => {
     this.setState({ active: false });
-  }
+  };
 
   getValueLink = () => {
     return typeof this.props.valueLink !== 'undefined' ? this.props.valueLink : {
       value: this.state.value,
       requestChange: (value) => { this.setState({ value }); },
     };
-  }
+  };
 
   getValue = () => {
     return this.getValueLink().value;
-  }
+  };
 
   handleChange = (e) => {
     // Firefox calls handle change after escape while other browsers don't. Hacky fix
@@ -95,7 +95,7 @@ export default class TextField extends Component {
 
     currentRows++;
     this.setState({ currentRows, height: currentRows * this.lineHeight });
-  }
+  };
 
   handleKeyDown = (e) => {
     if((e.which || e.keyCode) === ESC) {
@@ -107,7 +107,7 @@ export default class TextField extends Component {
     } else if(this.state.isEscape) {
       this.setState({ isEscape: false });
     }
-  }
+  };
 
   render() {
     const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, icon, ...props } = this.props;

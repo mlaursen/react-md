@@ -14,7 +14,7 @@ export default class EditableSelectField extends Component {
   static propTypes = {
     focused: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
-  }
+  };
 
   render() {
     const { focused, value, ...props } = this.props;

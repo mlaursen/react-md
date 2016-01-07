@@ -20,11 +20,11 @@ export default class Avatar extends Component {
     random: PropTypes.bool,
     color: PropTypes.number,
     maxColor: PropTypes.number,
-  }
+  };
 
   static defaultProps = {
     maxColor: 3,
-  }
+  };
 
   getColor = () => {
     const { color, maxColor } = this.props;
@@ -34,7 +34,7 @@ export default class Avatar extends Component {
 
     const i = color || (Math.floor(Math.random() * maxColor) + 1);
     return `md-avatar-color-${i}`;
-  }
+  };
 
   render() {
     const { className, src, alt, icon, children } = this.props;

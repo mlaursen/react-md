@@ -17,12 +17,12 @@ export default class CircularProgress extends Component {
     value: PropTypes.number,
     scale: PropTypes.number,
     determinateDashoffset: PropTypes.number,
-  }
+  };
 
   static defaultProps = {
     scale: 1,
     determinateDashoffset: 187,
-  }
+  };
 
   render() {
     const { scale, className, value, determinateDashoffset } = this.props;

@@ -13,12 +13,11 @@ export default class RaisedButton extends Component {
   static propTypes = {
     icon: PropTypes.string,
     iconBefore: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     iconBefore: true,
-  }
-
+  };
 
   render() {
     return <Button raised {...this.props} />;

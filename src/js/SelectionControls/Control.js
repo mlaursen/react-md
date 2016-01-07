@@ -24,13 +24,13 @@ export default class Control extends Component {
     value: PropTypes.string,
     label: PropTypes.string,
     labelBefore: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     isInitiallyChecked: false,
     rippleTimeout: 450,
     labelPosition: false,
-  }
+  };
 
   toggleCheck = (e) => {
     const { onChange, value } = this.props;
@@ -40,14 +40,14 @@ export default class Control extends Component {
       onChange && onChange(e);
       this.setState({ checked: !this.state.checked });
     }
-  }
+  };
 
   isNotProceedable = (e, up) => {
     const isMouse = e.type === `mouse${up ? 'up' : 'down'}` && e.button !== 2;
     const isKey = e.type === `key${up ? 'down' : 'up'}` && (e.which || e.keyCode) === 9;
 
     return isPropEnabled(this.props, 'disabled') || this.timeout !== null || (!isMouse && !isKey);
-  }
+  };
 
   createRipple = (e) => {
     if(this.isNotProceedable(e, false)) {
@@ -55,7 +55,7 @@ export default class Control extends Component {
     }
 
     this.setState({ focused: true, leaving: false });
-  }
+  };
 
   removeRipple = (e) => {
     if(this.isNotProceedable(e, true)) {
@@ -67,7 +67,7 @@ export default class Control extends Component {
       this.setState({ leaving: false, focused: false });
     }, this.props.rippleTimeout);
     this.setState({ leaving: true });
-  }
+  };
 
   render() {
     const { className, type, label, labelBefore, ...props } = this.props;

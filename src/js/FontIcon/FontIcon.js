@@ -13,11 +13,11 @@ export default class FontIcon extends Component {
     iconClassName: PropTypes.string.isRequired,
     children: PropTypes.node,
     className: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     iconClassName: 'material-icons',
-  }
+  };
 
   render() {
     const { iconClassName, className, children, ...props } = this.props;

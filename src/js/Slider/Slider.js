@@ -23,18 +23,18 @@ export default class Slider extends Component {
     snap: PropTypes.bool,
     sliderLeft: PropTypes.node,
     sliderRight: PropTypes.node,
-  }
+  };
 
   static defaultProps = {
     min: 0,
     max: 100,
-  }
+  };
 
   handleTrackClick = (e) => {
     if(e.button === LEFT_MOUSE) { return; }
 
     this.setState({ value: this.calculateBallMovedDistance(e) });
-  }
+  };
 
   render() {
     const { min, max, sliderLeft, sliderRight } = this.props;
@@ -75,14 +75,14 @@ export default class Slider extends Component {
     } else {
       return ((value - min) / (max - min)) * 100;
     }
-  }
+  };
 
   /**
    * Gets the current left position of the slider's track on the entire page
    */
   getTrackLeft = () => {
     return this.refs.track.getBoundingClientRect().left;
-  }
+  };
 
   calculateBallMovedDistance = (e) => {
     const { min, max, step } = this.props;
@@ -100,9 +100,9 @@ export default class Slider extends Component {
     } else {
       return ballMovedDistance;
     }
-  }
+  };
 
-  calculateStep = (ballMovedDistance) => {
-    const { min, max, step } = this.props;
-  }
+  calculateStep = (/*ballMovedDistance*/) => {
+    //const { min, max, step } = this.props;
+  };
 }

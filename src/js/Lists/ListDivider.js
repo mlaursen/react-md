@@ -14,7 +14,7 @@ export default class ListDivider extends Component {
   static propTypes = {
     className: PropTypes.string,
     inset: PropTypes.bool,
-  }
+  };
 
   render() {
     const { className, ...props } = this.props;

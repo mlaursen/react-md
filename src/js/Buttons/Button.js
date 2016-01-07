@@ -30,12 +30,12 @@ class Button extends Component {
     secondary: PropTypes.bool,
     disabled: PropTypes.bool,
     iconBefore: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
-  }
+  };
 
   getBtnClassName = () => {
     const keys = Object.keys(this.props);
@@ -62,7 +62,7 @@ class Button extends Component {
       [`md-btn-${color}`]: color,
       [`md-btn-${mdType}`]: mdType,
     });
-  }
+  };
 
   renderChildren = () => {
     const { children, iconBefore, label } = this.props;
@@ -79,7 +79,7 @@ class Button extends Component {
     } else {
       return label;
     }
-  }
+  };
 
   render() {
     const { className, iconBefore, label, children, ...props } = this.props;

@@ -15,7 +15,7 @@ export default class ListSubheader extends Component {
     className: PropTypes.string,
     primary: PropTypes.bool,
     primaryText: PropTypes.node,
-  }
+  };
 
   render() {
     const { className, primaryText, ...props } = this.props;

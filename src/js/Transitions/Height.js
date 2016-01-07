@@ -13,13 +13,13 @@ export default class Height extends Component {
     transitionEnterTimeout: PropTypes.number.isRequired,
     transitionLeaveTimeout: PropTypes.number.isRequired,
     increment: PropTypes.number.isRequired,
-  }
+  };
 
   static defaultProps = {
     transitionEnterTimeout: 450,
     transitionLeaveTimeout: 450,
     increment: 15,
-  }
+  };
 
   init = (done, isEnter = true) => {
     const el = ReactDOM.findDOMNode(this);
@@ -50,11 +50,11 @@ export default class Height extends Component {
         this.animatePadding(el, paddingTop, -this.linearIncrement(paddingTop, ptTime / increment), 'paddingTop', 0, ptTime, increment, done);
       });
     }
-  }
+  };
 
   linearIncrement = (value, time) => {
     return value / time;
-  }
+  };
 
   animatePadding = (el, padding, paddingIncrement, name, elapsedTime, transitionTime, increment, next) => {
     elapsedTime += increment;
@@ -68,11 +68,11 @@ export default class Height extends Component {
       el.style[name] = Math.floor(padding) + 'px';
       next();
     }
-  }
+  };
 
   componentWillEnter = (done) => {
     this.init(done, true);
-  }
+  };
 
   componentDidEnter = () => {
     const el = ReactDOM.findDOMNode(this);
@@ -80,11 +80,11 @@ export default class Height extends Component {
     el.style.paddingTop = null;
     el.style.paddingBottom = null;
     el.style.overflow = null;
-  }
+  };
 
   componentWillLeave = (done) => {
     this.init(done, false);
-  }
+  };
 
   render() {
     return this.props.children;

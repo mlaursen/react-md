@@ -22,11 +22,11 @@ class IconButton extends Component {
     tooltip: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
-  }
+  };
 
   static defaultProps = {
     type: 'button',
-  }
+  };
 
   render() {
     const { iconClassName, children, className, href, type, ...props } = this.props;

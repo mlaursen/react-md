@@ -19,7 +19,7 @@ export default class List extends Component {
     primarySubheader: PropTypes.bool,
     children: PropTypes.node,
     textOnly: PropTypes.bool,
-  }
+  };
 
   render() {
     const { className, subheader, children, ...props } = this.props;

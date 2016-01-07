@@ -19,12 +19,12 @@ export default class CardMedia extends Component {
         return new Error(`'${props[propName]}' is not a valid aspect ratio. It must be formatted as 'x:x'.`);
       }
     },
-  }
+  };
 
   static defaultProps = {
     forceAspect: true,
     aspectRatio: '16:9',
-  }
+  };
 
   render() {
     const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;

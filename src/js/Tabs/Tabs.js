@@ -28,7 +28,7 @@ export default class Tabs extends Component {
     onTabChange: PropTypes.func,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
-  }
+  };
 
   componentDidMount() {
     this.slide = ReactDOM.findDOMNode(this.refs.slide);
@@ -52,36 +52,36 @@ export default class Tabs extends Component {
 
   getContainerWidth = () => {
     return ReactDOM.findDOMNode(this).offsetWidth;
-  }
+  };
 
   updateSlider = () => {
     const { offsetWidth, offsetLeft } = ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
     this.slide.style.width = `${offsetWidth}px`;
     this.slide.style.left = `${offsetLeft}px`;
-  }
+  };
 
   getActiveTabIndex = ({ props, state } = this) => {
     return typeof props.activeTabIndex === 'number' ? props.activeTabIndex : state.activeTabIndex;
-  }
+  };
 
   handleTabChange = (i, tab) => {
     this.props.onTabChange && this.props.onTabChange(i, tab);
     if(!this.props.activeTabIndex) {
       this.setState({ activeTabIndex: i });
     }
-  }
+  };
 
   handleTouchStart = (e) => {
     this.setState({ touchStart: e.changedTouches[0].pageX });
-  }
+  };
 
   handleTouchMove = (e) => {
     this.moveTabs(e.changedTouches[0], 20);
-  }
+  };
 
   handleTouchEnd = (e) => {
     this.setState({ distance: this.moveTabs(e.changedTouches[0]) });
-  }
+  };
 
   moveTabs = ({ pageX }, threshold = 0) => {
     let distance = this.state.distance + (pageX - this.state.touchStart);
@@ -97,7 +97,7 @@ export default class Tabs extends Component {
     this.slide.style.transform = transform;
     tabs.forEach(tab => tab.style.transform = transform);
     return distance;
-  }
+  };
 
   render() {
     const { children, className, ...props } = this.props;

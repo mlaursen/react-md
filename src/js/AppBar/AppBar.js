@@ -18,11 +18,11 @@ export default class AppBar extends Component {
     leftNode: PropTypes.node,
     rightNode: PropTypes.node,
     children: PropTypes.node,
-  }
+  };
 
   static defaultProps = {
     primary: true,
-  }
+  };
 
   render() {
     const { primary, title, className, leftNode, rightNode, children, ...props } = this.props;

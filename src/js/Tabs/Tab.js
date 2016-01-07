@@ -16,7 +16,7 @@ export default class Tab extends Component {
       requestChange: PropTypes.func.isRequired,
     }),
     className: PropTypes.string,
-  }
+  };
 
   render() {
     const { label, className, valueLink, ...props } = this.props;

@@ -14,7 +14,7 @@ export default class Radio extends Component {
     name: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.string,
-  }
+  };
 
   render() {
     return <Control type="radio" {...this.props} />;

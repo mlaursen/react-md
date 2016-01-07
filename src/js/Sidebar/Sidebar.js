@@ -33,14 +33,14 @@ export default class Sidebar extends Component {
     transitionName: PropTypes.string,
     transitionEnterTimeout: PropTypes.number,
     transitionLeaveTimeout: PropTypes.number,
-  }
+  };
 
   static defaultProps = {
     responsive: true,
     transitionName: 'md-overlay',
     transitionEnterTimeout: 150,
     transitionLeaveTimeout: 150,
-  }
+  };
 
   render() {
     const { isOpen, header, overlay, items, responsive, className, children, ...props } = this.props;

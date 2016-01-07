@@ -14,7 +14,7 @@ export default class Switch extends Component {
     isInitiallyChecked: PropTypes.bool,
     onChange: PropTypes.func,
     value: PropTypes.string,
-  }
+  };
 
   render() {
     return <Control type="switch" {...this.props} />;

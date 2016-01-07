@@ -19,7 +19,7 @@ export default class CardActionOverlay extends Component {
       secondary: PropTypes.bool,
       children: PropTypes.node.isRequired,
     })),
-  }
+  };
 
   render() {
     const { title, subtitle, actions } = this.props;

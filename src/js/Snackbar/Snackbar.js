@@ -31,12 +31,12 @@ export default class Snackbar extends Component {
     autohideTimeout: PropTypes.number,
     dismiss: PropTypes.func.isRequired,
     multiline: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     autohide: true,
     autohideTimeout: 3000,
-  }
+  };
 
   componentDidUpdate(prevProps) {
     const { toasts, dismiss, autohide, autohideTimeout } = this.props;
@@ -55,7 +55,7 @@ export default class Snackbar extends Component {
 
   getToastActionProps = ({ action }) => {
     return typeof action === 'string' ? { label: action, onClick: this.props.dismiss } : action;
-  }
+  };
 
   render() {
     const { className, toasts } = this.props;
