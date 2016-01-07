@@ -41,7 +41,7 @@ export default class SelectFieldButton extends Component {
           value={value}
         />
         <div className="icon-separator">
-          {label}
+          <span className="text">{label}</span>
           <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
         </div>
       </button>

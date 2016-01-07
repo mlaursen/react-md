@@ -72,7 +72,7 @@ class Button extends Component {
       return (
         <div className="icon-separator">
           {iconBefore && children}
-          {label}
+          <span className="text">{label}</span>
           {!iconBefore && children}
         </div>
       );

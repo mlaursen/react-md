@@ -41,41 +41,19 @@
 
 .icon-separator,
 %icon-separator {
-  display: table;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  text-align: left;
 
-  > * {
-    display: table-cell;
-    vertical-align: middle;
+  > .text {
+    flex-grow: 1;
   }
 
-  > *:not(.md-icon) {
-    width: 100%;
-
-    &:first-child {
-      text-align: left;
-    }
-
-    &:last-child {
-      text-align: right;
-    }
-  }
-
-  .md-icon {
-    white-space: nowrap;
-    width: auto;
-
-    &:first-child {
-      text-align: left;
-    }
-
-    &:last-child {
-      text-align: right;
-    }
-  }
-
-  .md-icon + *,
-  * + .md-icon {
-    padding-left: .5em;
+  > .md-icon {
+    flex-grow: 0;
+    flex-shrink: 0;
   }
 }
 
