@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { Card, CardText, CardActions, FlatButton } from 'react-md';
+import { Card, CardText, CardTitle, CardActions, FlatButton } from 'react-md';
 import ExampleCode from './ExampleCode';
 
 const MIN_LINES = 14;
@@ -45,14 +45,12 @@ ${markdown}
       );
     }
     return (
-      <section className="example">
-        <h4>Examples</h4>
-        <Card>
-          <CardText>{children}</CardText>
-          <ExampleCode ref="code" markdown={jsMarkdown} {...this.state} />
-          {actions}
-        </Card>
-      </section>
+      <Card className="example full-width">
+        <CardTitle title="Examples" />
+        <CardText>{children}</CardText>
+        <ExampleCode ref="code" markdown={jsMarkdown} {...this.state} />
+        {actions}
+      </Card>
     );
   }
 }

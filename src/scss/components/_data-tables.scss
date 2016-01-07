@@ -3,6 +3,12 @@
   text-align: left;
   width: 100%;
 
+  &.striped {
+    tr {
+      border-bottom: 1px solid $md-border-color;
+    }
+  }
+
   .md-data-table-header {
     color: rgba($black-base, .82);
     font-size: #{20 / $md-font-size-base}em;
@@ -28,5 +34,13 @@
   td {
     color: rgba($black-base, .87);
     height: 48px;
+  }
+
+  tr {
+    transition: background $md-transition-time;
+
+    &:hover {
+      background: $md-divider-color;
+    }
   }
 }

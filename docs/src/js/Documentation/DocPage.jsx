@@ -44,9 +44,7 @@ export default class DocPage extends Component {
           <p>{children}</p>
         </header>
         {examples.map((example, i) => <Example key={`example-${i}`} {...example} />)}
-        <section className="prop-types">
-          {components.map((component, i) => <ComponentProperties key={`properties-${i}`} {...component} />)}
-        </section>
+        {components.map((component, i) => <ComponentProperties key={`properties-${i}`} {...component} sectionName={docSectionName} />)}
       </div>
     );
   }
