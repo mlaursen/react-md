@@ -1,4 +1,15 @@
+import 'babel-polyfill';
+import 'react-md-scss/react-md.scss';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Router from 'react-router';
+import createHashHistory from 'history/lib/createHashHistory';
 
-ReactDOM.render(<h1>Hello, World!</h1>, document.getElementById('app'));
+import routes from './Routes.jsx';
+
+ReactDOM.render((
+  <Router history={createHashHistory({ queryKey: false })}>
+    {routes}
+  </Router>
+), document.getElementById('app'));

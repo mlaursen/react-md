@@ -2,13 +2,14 @@
 /*eslint-env node*/
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const DEV_CONFIG = require('./webpack-dev.config.js');
 const buildFolder = path.resolve(__dirname, 'src/www');
+const js = path.resolve(__dirname, '../src/js');
+const scss = path.resolve(__dirname, '../src/scss');
 
 const env = {
   developent: NODE_ENV === 'developent' || typeof NODE_ENV === 'undefined',
@@ -25,25 +26,36 @@ let config = {
   module: {
     preLoaders: [{
       test: /\.(js|jsx)$/,
-      loader: 'eslint',
-      include: [path.resolve(__dirname, '../src/js')],
+      loader: 'eslint-loader',
+      include: [js],
       exclude: /node_modules/,
     }, {
       test: /\.scss$/,
       loader: 'sasslint',
-      include: [path.resolve(__dirname, '../src/scss')],
+      include: [scss],
       exclude: /node_modules/,
     }],
 
     loaders: [],
 
-    noParse: /\.min\.js/,
+    noParse: /\.min\.js$/,
   },
+
+  modulesDirectories: [
+    path.resolve(__dirname, 'node_modules'),
+    'node_modules',
+    js,
+    scss,
+  ],
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.txt'],
     alias: {
-      'react-md': path.resolve(__dirname, '../src/js'),
+      // Weird issue where I was getting 2 versions of react.
+      'react': path.resolve(__dirname, 'node_modules/react'),
+      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+      'react-md': js,
+      'react-md-scss': scss,
     },
   },
 
@@ -58,12 +70,18 @@ let config = {
       template: path.join(__dirname, 'src/www/index.html'),
     }),
   ],
+
+  eslint: {
+    configFile: '../.eslintrc',
+  },
 };
 
 const sassConfig = `outputStyle=${env.developent ? 'expanded&sourceMap=true' : 'compressed'}`;
 const jsLoader = `${env.developent ? 'react-hot!' : ''}babel`;
 if(env.developent) {
-  const DEV_URL = `http://${DEV_CONFIG.host || 'localhost'}:${DEV_CONFIG.port || 3000}`;
+  const host = DEV_CONFIG.host || 'localhost';
+  const port = DEV_CONFIG.port || 3000;
+  const DEV_URL = `http://${host}:${port}`;
   config.devtool = 'eval';
   config.entry = config.entry.concat([
     `webpack-dev-server/client?${DEV_URL}`,
@@ -75,6 +93,7 @@ if(env.developent) {
     contentBase: buildFolder,
     devtool: 'eval',
     hot: true,
+    port: port,
   };
 
   config.plugins = config.plugins.concat([
@@ -89,7 +108,7 @@ config.module.loaders = config.module.loaders.concat([{
   loader: jsLoader,
 }, {
   test: /\.scss$/,
-  loader: ExtractTextPlugin.extract(`style!css!autoprefixer?browsers=last 2 versions!sass?${sassConfig}`),
+  loader: `style!css!autoprefixer?browsers=last 2 versions!sass?${sassConfig}`,
 }]);
 
 module.exports = config;

@@ -1,0 +1,35 @@
+@import '~react-md-scss/helpers/variables';
+@import '~react-md-scss/helpers/mixins';
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
+
+code,
+pre {
+  margin: 0;
+}
+
+.markdown {
+  background: $md-background-color;
+  border-top: 1px solid $md-border-color;
+  overflow-y: auto;
+  padding: 1em;
+  transition: max-height $md-transition-time * 2;
+}
+
+.lang-js {
+  color: get-md-color(black);
+  font-family: 'Source Code Pro', monospace;
+  line-height: 1.453256;
+
+  .hljs-attr,
+  .hljs-keyword {
+    color: get-md-color(deep-orange, 10);
+  }
+
+  .hljs-class {
+    color: get-md-color(deep-purple, 10);
+  }
+
+  .hljs-string {
+    color: get-md-color(green, 10);
+  }
+}

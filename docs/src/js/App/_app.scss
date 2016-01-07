@@ -1,0 +1,29 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+@import '~normalize-scss-vanilla/normalize';
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+main {
+  flex-grow: 1;
+  margin-top: 0;
+  overflow-x: hidden;
+}
+
+.react-md-docs {
+  display: flex;
+}
+
+.middle-align {
+  display: table;
+
+  > * {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

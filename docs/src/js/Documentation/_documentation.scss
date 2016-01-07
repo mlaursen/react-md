@@ -1,0 +1,31 @@
+@import '~react-md-scss/helpers/variables';
+
+@media only screen and (min-width: 600px) {
+  .documentation {
+    padding: 1em 2em;
+
+    .component-info {
+      padding: 1em 0;
+    }
+  }
+}
+
+main {
+  background: $white-base;
+}
+
+
+.component-info {
+  padding: 1em 2em;
+}
+
+.example {
+  .code-expander {
+    background: $md-background-color;
+    text-align: center;
+  }
+
+  > .md-card {
+    width: 100%;
+  }
+}
