@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+import { isPropEnabled } from '../utils/PropUtils';
+
 export default class RadioGroup extends Component {
   constructor(props) {
     super(props);
@@ -19,11 +21,11 @@ export default class RadioGroup extends Component {
     component: PropTypes.string,
     stacked: PropTypes.bool,
     onChange: PropTypes.func,
+    name: PropTypes.string,
   };
 
   static defaultProps = {
     component: 'span',
-    stacked: false,
   };
 
   handleChange = (e) => {
@@ -32,11 +34,11 @@ export default class RadioGroup extends Component {
   };
 
   render() {
-    const { component, className, children, stacked, ...props } = this.props;
+    const { component, className, children, name, ...props } = this.props;
     const fullProps = {
       ...props,
       className: classnames('md-radio-group', className, {
-        'stacked': stacked,
+        'stacked': isPropEnabled(props, 'stacked'),
       }),
     };
     return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {
@@ -44,6 +46,7 @@ export default class RadioGroup extends Component {
         key: i,
         checked: this.state.value === child.props.value,
         onChange: this.handleChange,
+        name: name || child.props.name,
       });
     }));
   }
