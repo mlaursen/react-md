@@ -1,6 +1,6 @@
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 @import '~normalize-scss-vanilla/normalize';
-@import '~react-md-scss/helpers/variables';
+@import '~react-md-scss/react-md';
 
 html {
   height: 100%;
@@ -53,4 +53,8 @@ main {
 .scrollable {
   height: calc(100vh - #{$md-app-bar-height + 182});
   overflow-y: auto;
+}
+
+.space-after:after {
+  content: ' ';
 }

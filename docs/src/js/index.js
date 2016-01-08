@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import 'react-md-scss/react-md.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
