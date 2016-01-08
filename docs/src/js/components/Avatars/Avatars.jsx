@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Avatar } from 'react-md';
 
-import DocPage from '../../Documentation';
+import DocPage from 'react-md-documentation';
 import AvatarsExamples from './AvatarsExamples';
 import AvatarsExamplesRaw from '!!raw!./AvatarsExamples';
 import './_avatars.scss';

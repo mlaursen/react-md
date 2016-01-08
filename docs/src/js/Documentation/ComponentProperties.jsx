@@ -15,6 +15,7 @@ export default class ComponentProperties extends Component {
 
   static propTypes = {
     sectionName: PropTypes.string.isRequired,
+    desc: PropTypes.string,
     component: PropTypes.func.isRequired,
     details: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -23,10 +24,6 @@ export default class ComponentProperties extends Component {
     })).isRequired,
     allRemaining: PropTypes.bool.isRequired,
     marked: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {
-    allRemaining: true,
   };
 
   stringToPropType = (s) => {
@@ -50,7 +47,7 @@ export default class ComponentProperties extends Component {
   };
 
   render() {
-    const { component, sectionName, details, allRemaining, marked } = this.props;
+    const { component, sectionName, details, allRemaining, marked, desc } = this.props;
     const name = (component.displayName || component.name).replace('Ripple', '');
     const { propTypes, defaultProps } = component;
     const detailNames = details.map(d => d.name);
@@ -108,7 +105,12 @@ export default class ComponentProperties extends Component {
             iconClassName="fa fa-github"
           />
         </CardTitle>
-        <CardText>
+        {desc &&
+          <CardText>
+            <p dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+          </CardText>
+        }
+        <CardText className="with-table">
           <table className="md-data-table full-width striped">
             <thead>
               <tr>

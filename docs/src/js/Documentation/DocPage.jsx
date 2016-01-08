@@ -22,6 +22,7 @@ export default class DocPage extends Component {
     })).isRequired,
     components: PropTypes.arrayOf(PropTypes.shape({
       component: PropTypes.func.isRequired,
+      desc: PropTypes.string,
       details: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         desc: PropTypes.string.isRequired,
@@ -29,6 +30,11 @@ export default class DocPage extends Component {
       })).isRequired,
     })).isRequired,
     children: PropTypes.node.isRequired,
+    allRemaining: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    allRemaining: true,
   };
 
   componentWillMount() {
@@ -46,7 +52,7 @@ export default class DocPage extends Component {
   }
 
   render() {
-    const { sectionName, examples, children, components } = this.props;
+    const { sectionName, examples, children, components, allRemaining } = this.props;
     let docSectionName = (sectionName || components[0].component.name).split(/(?=[A-Z])/);
     const cssSectionName = docSectionName.map(s => s.toLowerCase()).join('-');
     const title = docSectionName.join(' ');
@@ -65,6 +71,7 @@ export default class DocPage extends Component {
             key={`properties-${i}`}
             marked={marked}
             sectionName={docSectionName}
+            allRemaining={allRemaining}
             {...component}
           />
         ))}

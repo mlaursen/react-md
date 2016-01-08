@@ -15,21 +15,28 @@ pre {
   transition: max-height $md-transition-time * 2;
 }
 
+.lang-css,
 .lang-js {
   color: get-md-color(black);
   font-family: 'Source Code Pro', monospace;
   line-height: 1.453256;
 
+  .hljs-selector-class,
   .hljs-attr,
   .hljs-keyword {
     color: get-md-color(deep-orange, 10);
   }
 
+  .hljs-attribute,
   .hljs-class {
     color: get-md-color(deep-purple, 10);
   }
 
   .hljs-string {
     color: get-md-color(green, 10);
+  }
+
+  .hljs-comment {
+    color: $md-secondary-text-color;
   }
 }

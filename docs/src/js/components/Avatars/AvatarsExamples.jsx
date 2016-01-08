@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Avatar, FontIcon } from 'react-md';
+import Avatar from 'react-md/Avatar';
+// import { Avatar } from 'react-md';
+
+import FontIcon from 'react-md/FontIcon';
 
 export default class AvatarsExamples extends Component {
   constructor(props) {
