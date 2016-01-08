@@ -51,5 +51,6 @@ main {
 }
 
 .scrollable {
+  height: calc(100vh - #{$md-app-bar-height + 182});
   overflow-y: auto;
 }

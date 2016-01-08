@@ -9,7 +9,7 @@ import { AppBar, IconButton, Sidebar, List, ListItem, ListDivider, ListSubheader
 import './_app.scss';
 
 const componentLinks = Object.keys(components).map(k => {
-  if(!components[k]) { return; }
+  if(!components[k] || !components[k].name) { return; }
 
   const name = k.split(/(?=[A-Z])/);
   return {
