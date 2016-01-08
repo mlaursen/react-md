@@ -49,6 +49,14 @@
 
   > .text {
     flex-grow: 1;
+
+    &:first-child {
+      padding-right: .5em;
+    }
+
+    &:last-child {
+      padding-left: .5em;
+    }
   }
 
   > .md-icon {

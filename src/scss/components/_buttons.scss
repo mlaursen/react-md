@@ -15,13 +15,17 @@
   transition: box-shadow $md-transition-time, background $md-transition-time, transform $md-transition-time;
 
   &[disabled] {
-    background: $md-btn-hover-color;
     color: $md-disabled-color;
+
+    &:not(.md-btn-icon) {
+      background: $md-btn-hover-color;
+    }
   }
 }
 
 .md-btn-icon {
   background: transparent;
+  border-radius: 50%;
   color: inherit;
   font-size: $md-font-icon-size;
   height: $md-font-icon-btn-size;
@@ -32,6 +36,10 @@
   .ripple {
     left: 0;
     top: 0;
+  }
+
+  &:focus {
+    background: $md-btn-hover-color;
   }
 }
 
