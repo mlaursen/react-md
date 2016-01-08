@@ -37,10 +37,6 @@
     left: 0;
     top: 0;
   }
-
-  &:focus {
-    background: $md-btn-hover-color;
-  }
 }
 
 .md-btn-primary:not(.md-btn-flat),

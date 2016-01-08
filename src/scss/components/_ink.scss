@@ -1,0 +1,16 @@
+.md-ink {
+  background: rgba($black-base, .12);
+  border-radius: 100%;
+  display: block;
+  position: absolute;
+  transform: scale(0);
+}
+
+.md-ink-enter {
+  transform: scale(0);
+
+  &.md-ink-enter-active {
+    transform: scale(1);
+    transition: transform $md-transition-time;
+  }
+}

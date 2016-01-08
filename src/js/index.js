@@ -11,6 +11,7 @@ export { CircularProgress, LinearProgress } from './Progress';
 export AppBar from './AppBar';
 export Avatar from './Avatar';
 export FontIcon from './FontIcon';
+export Ink from './Ink';
 export Paper from './Paper';
 export SelectField from './SelectFields';
 export Slider from './Slider';
