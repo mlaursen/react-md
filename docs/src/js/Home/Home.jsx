@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { RaisedButton } from 'react-md';
 
-import { componentLinks } from '../utils';
-
 import './_home.scss';
+import * as components from '../components';
+
+const firstLink = Object.keys(components)[0].toLowerCase();
 
 export default class Home extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export default class Home extends Component {
   };
 
   viewDemo = () => {
-    this.props.history.pushState(null, `/${componentLinks[0].link}`);
+    this.props.history.pushState(null, `/${firstLink}`);
   };
 
   render() {

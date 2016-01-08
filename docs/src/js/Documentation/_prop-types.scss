@@ -1,7 +1,19 @@
+@import '~react-md-scss/helpers/variables';
+
 .prop-types {
   margin-top: 2em;
 
-  .md-card-title .titles {
-    flex-grow: 1;
+  .md-card-title {
+    padding-left: $md-card-padding-extra;
+
+    .titles {
+      flex-grow: 1;
+    }
+  }
+
+  .md-card-text {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
   }
 }

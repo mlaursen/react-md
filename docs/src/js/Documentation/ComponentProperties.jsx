@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Card, CardTitle, IconButton } from 'react-md';
+import { Card, CardTitle, CardText, IconButton } from 'react-md';
 
 import './_prop-types.scss';
 import { githubHref } from '../utils';
@@ -104,15 +104,19 @@ export default class ComponentProperties extends Component {
             iconClassName="fa fa-github"
             />
         </CardTitle>
-        <table className="md-data-table full-width striped">
-          <tbody>
-            <tr>
-              <th>Prop Name</th>
-              <th>Description</th>
-            </tr>
-            {items}
-          </tbody>
-        </table>
+        <CardText>
+          <table className="md-data-table full-width striped">
+            <thead>
+              <tr>
+                <th>Prop Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+            </tbody>
+          </table>
+        </CardText>
       </Card>
     );
   }
