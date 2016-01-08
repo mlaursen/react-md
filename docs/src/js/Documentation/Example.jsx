@@ -22,6 +22,7 @@ export default class Example extends Component {
   static propTypes = {
     markdown: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
+    marked: PropTypes.func.isRequired,
   };
 
   toggleExpanded = () => {
@@ -31,7 +32,7 @@ export default class Example extends Component {
   };
 
   render() {
-    const { children, markdown } = this.props;
+    const { children, markdown, marked } = this.props;
     const jsMarkdown = `\`\`\`js
 ${markdown}
     \`\`\``;
@@ -48,7 +49,7 @@ ${markdown}
       <Card className="example full-width">
         <CardTitle title="Examples" />
         <CardText>{children}</CardText>
-        <ExampleCode ref="code" markdown={jsMarkdown} {...this.state} />
+        <ExampleCode ref="code" marked={marked} markdown={jsMarkdown} {...this.state} />
         {actions}
       </Card>
     );

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 import { Card, CardTitle, CardText, IconButton } from 'react-md';
 
 import './_prop-types.scss';
 import { githubHref } from '../utils';
-import { convertMarkdown } from './';
 
 export default class ComponentProperties extends Component {
   constructor(props) {
@@ -22,10 +22,11 @@ export default class ComponentProperties extends Component {
       pt: PropTypes.string,
     })).isRequired,
     allRemaining: PropTypes.bool.isRequired,
+    marked: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    allRemaining: false,
+    allRemaining: true,
   };
 
   stringToPropType = (s) => {
@@ -49,7 +50,7 @@ export default class ComponentProperties extends Component {
   };
 
   render() {
-    const { component, sectionName, details, allRemaining } = this.props;
+    const { component, sectionName, details, allRemaining, marked } = this.props;
     const name = (component.displayName || component.name).replace('Ripple', '');
     const { propTypes, defaultProps } = component;
     const detailNames = details.map(d => d.name);
@@ -58,7 +59,7 @@ export default class ComponentProperties extends Component {
     if('className' in propTypes && detailNames.indexOf('className') === -1) {
       extraProps.push({
         name: 'className',
-        propType: 's',
+        pt: 's',
         desc: 'An additional classes you want to pass to the component.',
       });
     }
@@ -66,7 +67,7 @@ export default class ComponentProperties extends Component {
     if('children' in propTypes && detailNames.indexOf('children') === -1) {
       extraProps.push({
         name: 'children',
-        propType: 'no',
+        pt: 'no',
         desc: 'Any other children you want to pass to the component.',
       });
     }
@@ -81,17 +82,20 @@ export default class ComponentProperties extends Component {
     let items = details.concat(extraProps).map(settings => {
       const { name, pt, isRequired, desc } = settings;
       const defaultValue = defaultProps ? defaultProps[name] : undefined; // eslint-disable-line no-undefined
+      const isAnyOtherProps = name === 'any other props';
       return (
         <tr key={name}>
-          <td className="react-md-prop-name">{name}</td>
-          <td>
-            <div className="prop-info">
-              <span className="prop-type">{this.stringToPropType(pt)}</span>
+          <td className="prop-name">{name}</td>
+          <td className="prop-info">
+            {!isAnyOtherProps &&
+            <div>
+              {pt && <span className="prop-type">{this.stringToPropType(pt)}</span>}
               {isRequired && <span className="prop-required" />}
               {typeof defaultValue !== 'undefined' && <span className="prop-default">default: {defaultValue.toString()}</span>}
               {pt === 'ba' && <span className="prop-default">(This boolean can be enabled by just having the prop on the component)</span>}
             </div>
-            {convertMarkdown(desc)}
+            }
+            <div className={classnames({ 'prop-desc': !isAnyOtherProps })} dangerouslySetInnerHTML={{ __html: marked(desc) }} />
           </td>
         </tr>
       );
@@ -102,7 +106,7 @@ export default class ComponentProperties extends Component {
           <IconButton
             href={`${githubHref}/tree/master/src/js/${sectionName}/${name}.js`}
             iconClassName="fa fa-github"
-            />
+          />
         </CardTitle>
         <CardText>
           <table className="md-data-table full-width striped">

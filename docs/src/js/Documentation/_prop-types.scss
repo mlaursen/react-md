@@ -17,3 +17,31 @@
     padding-top: 0;
   }
 }
+
+.md-data-table {
+  .prop-name,
+  .prop-info {
+    height: initial;
+    padding-bottom: $md-default-padding;
+    padding-top: $md-default-padding;
+    vertical-align: top;
+  }
+}
+
+.prop-desc {
+  line-height: 1.5345;
+  margin-top: .5em;
+}
+
+.prop-type {
+  color: $md-secondary-text-color;
+  padding-right: 1em;
+}
+
+.prop-required {
+  &:before {
+    color: $md-secondary-text-color;
+    content: '(isRequired)';
+    padding-left: .5em;
+  }
+}

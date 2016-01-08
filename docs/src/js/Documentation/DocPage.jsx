@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import marked from 'marked';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
 import './_documentation.scss';
+import './_markdown.scss';
 
 export default class DocPage extends Component {
   constructor(props) {
@@ -29,6 +31,20 @@ export default class DocPage extends Component {
     children: PropTypes.node.isRequired,
   };
 
+  componentWillMount() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: (code, lang) => require('highlight.js').highlight(lang, code).value, // eslint-disable-line no-undef
+    });
+  }
+
   render() {
     const { sectionName, examples, children, components } = this.props;
     let docSectionName = (sectionName || components[0].component.name).split(/(?=[A-Z])/);
@@ -43,8 +59,15 @@ export default class DocPage extends Component {
           <hr />
           <p>{children}</p>
         </header>
-        {examples.map((example, i) => <Example key={`example-${i}`} {...example} />)}
-        {components.map((component, i) => <ComponentProperties key={`properties-${i}`} {...component} sectionName={docSectionName} />)}
+        {examples.map((example, i) => <Example key={`example-${i}`} {...example} marked={marked} />)}
+        {components.map((component, i) => (
+          <ComponentProperties
+            key={`properties-${i}`}
+            marked={marked}
+            sectionName={docSectionName}
+            {...component}
+          />
+        ))}
       </div>
     );
   }
