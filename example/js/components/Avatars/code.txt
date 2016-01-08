@@ -1,6 +1,0 @@
-<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />
-<Avatar icon={<FontIcon iconClassName="fa fa-hand-spock-o" />} />
-<Avatar icon={<FontIcon iconClassName="fa fa-rocket" />} random />
-<Avatar>M</Avatar>
-<Avatar random>O</Avatar>
-<Avatar color={2}>X</Avatar>
