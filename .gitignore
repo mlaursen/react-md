@@ -31,5 +31,3 @@ distExample
 sassdoc
 .publish
 
-docs/src/www
-!docs/src/www/index.html
