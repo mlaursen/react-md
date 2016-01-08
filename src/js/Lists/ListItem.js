@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { rippleComponent } from '../utils/Wrappers';
-
-class ListItem extends Component {
+export default class ListItem extends Component {
   constructor(props) {
     super(props);
 
@@ -74,4 +72,3 @@ class ListItem extends Component {
     }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
   }
 }
-export default rippleComponent()(ListItem);

@@ -3,9 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcon';
-import { rippleComponent } from '../utils/Wrappers';
 
-class IconButton extends Component {
+export default class IconButton extends Component {
   constructor(props) {
     super(props);
 
@@ -45,5 +44,3 @@ class IconButton extends Component {
     ));
   }
 }
-
-export default rippleComponent(true, 1)(IconButton);

@@ -3,13 +3,12 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
-import { rippleComponent } from '../utils/Wrappers';
 
 const MD_BTN_TYPES = ['flat', 'raised', 'floating', 'icon'];
 const MD_BTN_COLORS = ['default', 'primary', 'secondary'];
 
 
-class Button extends Component {
+export default class Button extends Component {
   constructor(props) {
     super(props);
 
@@ -92,5 +91,3 @@ class Button extends Component {
     );
   }
 }
-
-export default rippleComponent()(Button);
