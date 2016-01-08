@@ -22,6 +22,14 @@ main {
 .example {
   .code-expander {
     background: $md-background-color;
-    text-align: center;
+
+    .md-btn {
+      display: block;
+      margin: auto;
+    }
   }
+}
+
+.documentation > .md-card {
+  margin: 1em 0;
 }

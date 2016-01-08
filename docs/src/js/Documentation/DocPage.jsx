@@ -17,6 +17,7 @@ export default class DocPage extends Component {
   static propTypes = {
     sectionName: PropTypes.string,
     examples: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
       markdown: PropTypes.string.isRequired,
       children: PropTypes.node.isRequired,
     })).isRequired,
