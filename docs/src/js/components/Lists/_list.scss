@@ -1,0 +1,18 @@
+.documentation-list .paper-1 {
+  margin-bottom: 2em;
+}
+
+@media only screen and (min-width: 600px) {
+  .list-examples {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .documentation-list .paper-1 {
+    display: inline-block;
+    margin: 2em;
+    max-width: 300px;
+    width: 100%;
+  }
+}

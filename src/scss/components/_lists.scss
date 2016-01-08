@@ -90,6 +90,10 @@
 
   &.md-list-avatar {
     height: 56px;
+
+    ~ .md-divider.inset {
+      margin-left: 40px + $md-default-padding + ($md-tile-left-padding - $md-font-icon-size);
+    }
   }
 
   &.md-list-3-lines {

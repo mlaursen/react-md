@@ -99,7 +99,7 @@ export default class ComponentProperties extends Component {
     });
     return (
       <Card className="full-width prop-types">
-        <CardTitle title={`Prop Types - ${name.split(/(?=[A-Z])/).join(' ')}`}>
+        <CardTitle title={name.split(/(?=[A-Z])/).join(' ')}>
           <IconButton
             href={`${githubHref}/tree/master/src/js/${sectionName}/${name}.js`}
             iconClassName="fa fa-github"
