@@ -5,11 +5,11 @@
 /// @param {String} $color - The text color to use
 /// @param {String} $hover-focus-bg-color - The hover and focus color for the button
 /// @param {String} $active-bg-color - The color to use when active
-/// @param {String} $ripple-bg-color - The ripple background color
+/// @param {String} $md-ink-bg-color - The md-ink background color
 /// @param {String} $raised-border-color [null] - The raised border color. If this value is set,
 ///   raised and floating buttons will get a background of the white base and the raised buttonm
 ///   with get a border with the border color
-@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $ripple-bg-color, $raised-border-color: null) {
+@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) {
   .md-btn-default {
     color: $color;
 
@@ -22,8 +22,8 @@
       background: $active-bg-color;
     }
 
-    .ripple {
-      background: $ripple-bg-color;
+    .md-ink {
+      background: $md-ink-bg-color;
     }
   }
 
@@ -45,15 +45,15 @@
 /// @param {String} $type - The button type to make.
 /// @param {String} $color - The color to use for the button.
 /// @param {Number} $hover-hue - The hue for the hover color.
-/// @param {Number} $ripple-hue [null] - This is used to generate the flat button.
+/// @param {Number} $md-ink-hue [null] - This is used to generate the flat button.
 /// @param {Number} $hue [6] - The color's hue for the button
 /// @param {String} $hover-color [$color] - The hover color for the button
-/// @param {String} $ripple-color [$color] - The ripple's color. It gets an opacity of .3 applied to it
-@mixin make-md-btn($type, $color, $hover-hue, $ripple-hue: null, $hue: 6, $hover-color: $color, $ripple-color: $color) {
+/// @param {String} $md-ink-color [$color] - The md-ink's color. It gets an opacity of .3 applied to it
+@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) {
   $secondary: $type == 'secondary';
 
   .md-btn-#{$type} {
-    @if $ripple-hue != null {
+    @if $md-ink-hue != null {
       &.md-btn-flat {
         color: get-md-color($color, $hue, $secondary);
 
@@ -62,8 +62,8 @@
           background: rgba(get-md-color($hover-color, $hover-hue, $secondary), .4);
         }
 
-        .ripple {
-          background: rgba(get-md-color($ripple-color, $ripple-hue, $secondary), .3);
+        .md-ink {
+          background: rgba(get-md-color($md-ink-color, $md-ink-hue, $secondary), .3);
         }
       }
     } @else {

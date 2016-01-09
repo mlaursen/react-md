@@ -20,7 +20,9 @@
 
   &.active {
     transform: scale(2.5);
-    transition: opacity .6s, transform .6s;
+    transition-duration: $md-ink-animation-time;
+    transition-property: opacity, transform;
+    transition-timing-function: $md-ink-transition-func;
 
     &.leaving {
       opacity: 0;

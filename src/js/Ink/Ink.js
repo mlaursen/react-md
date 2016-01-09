@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { LEFT_MOUSE } from '../constants/keyCodes';
+const INK_TRANSITION_TIME = 600;
 
 export default class Ink extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ export default class Ink extends Component {
       let timeouts = Object.assign({}, this.state.timeouts);
       delete timeouts[timestamp];
       this.setState({ timeouts });
-    }, 600);
+    }, INK_TRANSITION_TIME);
 
     const timeouts = Object.assign({}, this.state.timeouts);
     timeouts[timestamp] = timeout;

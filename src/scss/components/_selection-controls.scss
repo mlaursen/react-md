@@ -31,10 +31,6 @@
     + .md-switch:before {
       left: $md-control-switch-width - $md-control-switch-height - $md-control-switch-ball-size;
     }
-
-    + .md-switch + .ripple {
-      left: 75%;
-    }
   }
 }
 
@@ -55,22 +51,6 @@
 
     .md-switch:before {
       background: $md-status-bar-color;
-    }
-  }
-
-  .ripple {
-    @include absolute-center(true, true, scale(0));
-
-    background: $md-btn-hover-color;
-    height: $md-font-icon-btn-size;
-    transition: none;
-    width: $md-font-icon-btn-size;
-    z-index: $md-selection-controls-ripple-z-index;
-
-    &.active {
-      @include absolute-center(true, true, scale(1));
-
-      transition: transform $md-btn-ripple-transition-time, opacity $md-btn-ripple-transition-time ease $md-transition-time;
     }
   }
 }
@@ -111,11 +91,6 @@
 
   .md-control-container {
     width: $md-control-switch-width;
-  }
-
-  .ripple,
-  .ripple.active {
-    left: 25%;
   }
 }
 

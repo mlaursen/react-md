@@ -35,9 +35,17 @@
       }
     }
   }
+
+  .md-ink {
+    background: rgba(get-md-color($md-secondary-color, $md-secondary-color-hue, true), .3);
+  }
 }
 
 .md-toolbar-secondary {
   background: get-md-color($md-secondary-color);
   color: $white-base;
+
+  .md-ink {
+    background: rgba(get-md-color($md-primary-color), .3);
+  }
 }

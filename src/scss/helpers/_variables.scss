@@ -148,9 +148,6 @@ $md-btn-fab-size: 56px;
 /// @group buttons-fab
 $md-btn-fab-size-mini: 40px;
 
-/// The default ripple transition time for buttons
-/// @group buttons
-$md-btn-ripple-transition-time: $md-transition-time * 3 !default;
 
 /// The font icon size
 /// @group font-icon
@@ -164,6 +161,9 @@ $md-font-icon-btn-size: $md-font-icon-size * 2;
 /// The default padding used across the board
 $md-default-padding: 16px;
 
+/// The default ink animation time
+$md-ink-animation-time: .6s !default;
+$md-ink-transition-func: linear !default;
 
 ///
 $md-selection-controls-ripple-z-index: 2 !default;
