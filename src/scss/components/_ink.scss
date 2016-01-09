@@ -1,36 +1,29 @@
-@keyframes md-ink-pulse {
-  0%,
-  100% {
-    transform: scale(.85);
-  }
-
-  50% {
-    transform: scale(.95);
-  }
-}
-
-
-.md-ink {
-  background: rgba($black-base, .12);
-  border-radius: 100%;
-  display: block;
+.md-ink-container {
+  border-radius: inherit;
+  height: 100%;
   left: 0;
+  overflow: hidden;
   position: absolute;
   top: 0;
-
-  &.pulse {
-    animation: md-ink-pulse 1s linear infinite;
-  }
+  width: 100%;
+  z-index: 1;
 }
 
-.md-ink-enter {
+.md-ink {
+  background: $md-divider-color;
+  border-radius: 50%;
+  display: block;
   opacity: 1;
+  position: absolute;
   transform: scale(0);
+  z-index: -1;
 
-  &.md-ink-enter-active {
-    opacity: 0;
+  &.active {
     transform: scale(2.5);
-    transition: transform $md-transition-time * 4, opacity $md-transition-time * 4;
+    transition: opacity .6s, transform .6s;
+
+    &.leaving {
+      opacity: 0;
+    }
   }
 }
-

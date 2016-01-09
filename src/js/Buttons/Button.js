@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils/PropUtils';
+import Ink from '../Ink';
 
 const MD_BTN_TYPES = ['flat', 'raised', 'floating', 'icon'];
 const MD_BTN_COLORS = ['default', 'primary', 'secondary'];
@@ -86,6 +87,7 @@ export default class Button extends Component {
 
     return (
       <button {...props} className={btnClassName}>
+        <Ink key="ink" />
         {this.renderChildren()}
       </button>
     );

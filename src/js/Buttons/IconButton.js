@@ -1,18 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcon';
-import { LEFT_CLICK } from '../constants/keyCodes';
+import Ink from '../Ink';
 
 export default class IconButton extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { ink: false, inkStyle: {} };
   }
 
   static propTypes = {
@@ -30,43 +27,11 @@ export default class IconButton extends Component {
     type: 'button',
   };
 
-  handleMouseDown = (e) => {
-    if(e.button !== LEFT_CLICK) { return ; }
-    let inkStyle = Object.assign({}, this.state.inkStyle);
-    const button = ReactDOM.findDOMNode(this);
-    const size = inkStyle.width || Math.max(button.offsetWidth, button.offsetHeight);
-    if(!inkStyle.width || !inkStyle.height) {
-      inkStyle.width = size;
-      inkStyle.height = size;
-    }
-
-    //inkStyle.top = e.pageY - button.offsetTop - size / 2;
-    //inkStyle.left = e.pageX - button.offsetLeft - size / 2;
-
-    this.inkTimeout = setTimeout(() => {
-      this.setState({ pulse: true });
-    }, 450);
-    this.setState({ ink: true, inkStyle, pulse: false });
-  };
-
-  handleMouseUp = (e) => {
-    if(e.button !== LEFT_CLICK) { return ; }
-    if(this.inkTimeout) {
-      clearTimeout(this.inkTimeout);
-    }
-    this.setState({ ink: false });
-  };
-
   render() {
     const { iconClassName, children, className, href, type, ...props } = this.props;
     let btnProps = {
       ...props,
-      onMouseDown: this.handleMouseDown,
-      onMouseUp: this.handleMouseUp,
       className: classnames(className, 'md-btn', 'md-btn-icon'),
-      transitionName: 'md-ink',
-      transitionEnterTimeout: 600,
-      transitionLeave: false,
     };
 
     if(href) {
@@ -74,13 +39,10 @@ export default class IconButton extends Component {
     } else {
       btnProps.type = type;
     }
-    const { inkStyle, ink, pulse } = this.state;
 
-    return (
-      <CSSTransitionGroup component={href ? 'a' : 'button'} {...btnProps}>
-        {ink && <span className={classnames('md-ink', { pulse })} key="ink" style={inkStyle} />}
-        <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>
-      </CSSTransitionGroup>
-    );
+    return React.createElement(href ? 'a' : 'button', btnProps, [
+      <Ink key="ink" />,
+      <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
+    ]);
   }
 }

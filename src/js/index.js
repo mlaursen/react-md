@@ -7,6 +7,7 @@ export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActi
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 export { List, ListItem, ListDivider, ListSubheader } from './Lists';
 export { CircularProgress, LinearProgress } from './Progress';
+export { InkSprite } from './Ink';
 
 export AppBar from './AppBar';
 export Avatar from './Avatar';
