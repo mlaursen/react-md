@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+import { isPropEnabled } from '../utils/PropUtils';
 import FontIcon from '../FontIcon';
 import Ink from '../Ink';
 
@@ -41,7 +42,7 @@ export default class IconButton extends Component {
     }
 
     return React.createElement(href ? 'a' : 'button', btnProps, [
-      <Ink key="ink" />,
+      <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} />,
       <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
     ]);
   }

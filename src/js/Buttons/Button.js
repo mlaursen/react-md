@@ -87,7 +87,7 @@ export default class Button extends Component {
 
     return (
       <button {...props} className={btnClassName}>
-        <Ink key="ink" />
+        <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} />
         {this.renderChildren()}
       </button>
     );

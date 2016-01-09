@@ -15,12 +15,12 @@ export default class Ink extends Component {
 
   static propTypes = {
     className: PropTypes.string,
+    disabled: PropTypes.bool,
   };
 
   componentWillUnmount() {
     const { timeouts } = this.state;
     Object.keys(timeouts).forEach(k => {
-      console.log(timeouts[k]);
       clearTimeout(timeouts[k]);
     });
   }
@@ -42,9 +42,7 @@ export default class Ink extends Component {
   };
 
   handleMouseDown = ({ pageX, pageY, button, ctrlKey, changedTouches }) => {
-    const { container } = this.refs;
-    const node = container.parentNode;
-    if(node.disabled || (!changedTouches && (button !== LEFT_MOUSE || ctrlKey))) { return; }
+    if(this.props.disabled || (!changedTouches && (button !== LEFT_MOUSE || ctrlKey))) { return; }
     if(changedTouches) {
       this.createInk(changedTouches[0].pageX, changedTouches[0].pageY);
     } else {
@@ -53,7 +51,7 @@ export default class Ink extends Component {
   };
 
   handleMouseUp = ({ button, ctrlKey, changedTouches }) => {
-    if(this.refs.container.parentNode.disabled || (button !== LEFT_MOUSE && !changedTouches) || ctrlKey) { return; }
+    if(this.props.disabled || (button !== LEFT_MOUSE && !changedTouches) || ctrlKey) { return; }
     const { ink, timestamp } = this.state;
 
     ink.classList.add('leaving');
