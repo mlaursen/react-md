@@ -1,16 +1,36 @@
+@keyframes md-ink-pulse {
+  0%,
+  100% {
+    transform: scale(.85);
+  }
+
+  50% {
+    transform: scale(.95);
+  }
+}
+
+
 .md-ink {
   background: rgba($black-base, .12);
   border-radius: 100%;
   display: block;
+  left: 0;
   position: absolute;
-  transform: scale(0);
+  top: 0;
+
+  &.pulse {
+    animation: md-ink-pulse 1s linear infinite;
+  }
 }
 
 .md-ink-enter {
+  opacity: 1;
   transform: scale(0);
 
   &.md-ink-enter-active {
-    transform: scale(1);
-    transition: transform $md-transition-time;
+    opacity: 0;
+    transform: scale(2.5);
+    transition: transform $md-transition-time * 4, opacity $md-transition-time * 4;
   }
 }
+
