@@ -6,7 +6,6 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
-const DEV_CONFIG = require('./webpack-dev.config.js');
 const buildFolder = path.resolve(__dirname, 'src/www');
 const js = path.resolve(__dirname, '../src/js');
 const scss = path.resolve(__dirname, '../src/scss');
@@ -80,8 +79,8 @@ let config = {
 const sassConfig = `outputStyle=${env.developent ? 'expanded&sourceMap=true' : 'compressed'}`;
 const jsLoader = `${env.developent ? 'react-hot!' : ''}babel`;
 if(env.developent) {
-  const host = DEV_CONFIG.host || 'localhost';
-  const port = DEV_CONFIG.port || 3000;
+  const host = 'localhost';
+  const port = 3000;
   const DEV_URL = `http://${host}:${port}`;
   config.devtool = 'eval';
   config.entry = config.entry.concat([

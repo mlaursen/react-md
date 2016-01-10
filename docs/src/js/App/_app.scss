@@ -2,16 +2,12 @@
 @import '~normalize-scss-vanilla/normalize';
 @import '~react-md-scss/react-md';
 
-@include host-material-icons-local();
-
-$file-names: 'Roboto-Light' 'Roboto-Regular' 'Roboto-Medium' 'Roboto-Bold';
-@for $i from 1 through length($md-font-weights) {
-  $weight: nth($md-font-weights, $i);
-  $file-name: '/fonts/roboto/#{nth($file-names, $i)}';
-  @include host-google-font-local(Roboto, normal, $weight, $file-name);
+@each $weight in $md-font-weights {
+  @include host-google-font(Roboto, $weight);
 }
 
-@include host-google-font-local('Source Code Pro', normal, normal, '/fonts/source-code-pro/SourceCodePro-Regular');
+@include host-google-font('Source Code Pro', 400);
+@include host-material-icons();
 
 html {
   height: 100%;

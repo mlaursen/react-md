@@ -32,4 +32,8 @@ main {
 
 .documentation > .md-card {
   margin: 1em 0;
+
+  > .md-card-text {
+    color: $black-base;
+  }
 }
