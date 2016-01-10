@@ -4,13 +4,13 @@
       font-size: $icon-font-size;
 
       ~ .md-text-field-divider {
-        $margin: $icon-font-size + $md-text-field-dense-padding * 4;
+        $margin: $icon-font-size + $padding * 4;
         margin-left: $margin;
         width: calc(100% - #{$margin});
       }
 
       ~ .md-text-field {
-        $margin: $md-text-field-dense-padding * 2;
+        $margin: $padding * 4;
         margin-left: $margin;
         width: calc(100% - #{$margin * 2 + $icon-font-size});
       }
@@ -75,6 +75,7 @@
   }
 }
 
+// scss-lint:disable SpaceAfterComma
 @media only screen and (min-width: 0px) {
   @include make-text-field(
     $md-text-field-height,
