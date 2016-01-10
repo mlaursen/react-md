@@ -1,0 +1,44 @@
+%hidden {
+  height: 0;
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  z-index: -1;
+}
+
+%icon-separator {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  text-align: left;
+
+  > .text {
+    flex-grow: 1;
+
+    &:first-child {
+      padding-right: .5em;
+    }
+
+    &:last-child {
+      padding-left: .5em;
+    }
+  }
+
+  > .md-icon {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+%circle {
+  border-radius: 50%;
+}
+
+%full-height {
+  min-height: 100%;
+}
+
+%full-width {
+  width: 100%;
+}

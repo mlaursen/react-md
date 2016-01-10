@@ -1,7 +1,10 @@
 @import 'helpers/variables';
-@import 'helpers/utils';
 @import 'helpers/mixins';
-@import 'helpers/typography';
+@import 'helpers/extenders';
+
+@import 'typography';
+@import 'utils';
+@import 'transitions';
 
 @import 'components/overlay';
 @import 'components/papers';
