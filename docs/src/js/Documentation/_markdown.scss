@@ -1,11 +1,11 @@
 @import '~react-md-scss/helpers/variables';
 @import '~react-md-scss/helpers/mixins';
-@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 
-code,
-pre {
-  margin: 0;
+%monospace {
+  font-family: 'Source Code Pro', monospace;
+  line-height: 1.453256;
 }
+
 
 .markdown {
   background: $md-background-color;
@@ -13,13 +13,22 @@ pre {
   overflow-y: auto;
   padding: 1em;
   transition: max-height $md-transition-time * 2;
+
+  code,
+  pre {
+    @extend %monospace;
+
+    margin: 0;
+
+    * {
+      @extend %monospace;
+    }
+  }
 }
 
 .lang-css,
 .lang-js {
   color: get-md-color(black);
-  font-family: 'Source Code Pro', monospace;
-  line-height: 1.453256;
 
   .hljs-selector-class,
   .hljs-attr,

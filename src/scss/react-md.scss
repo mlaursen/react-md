@@ -3,16 +3,6 @@
 @import 'helpers/mixins';
 @import 'helpers/typography';
 
-@if $include-md-font {
-  $font-url: get-google-font-url();
-  @import url($font-url);
-}
-
-@if $include-md-icons {
-  $font-url: get-google-font-icons();
-  @import url($font-url);
-}
-
 @import 'components/overlay';
 @import 'components/papers';
 @import 'components/ink';

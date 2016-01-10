@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+import Ink from '../Ink';
+
 export default class ListItem extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +71,6 @@ export default class ListItem extends Component {
       tabIndex: 0,
       onFocus: this.handleFocus,
       ...props,
-    }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
+    }, [<Ink key="ink" />, this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
   }
 }

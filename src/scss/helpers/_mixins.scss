@@ -481,6 +481,7 @@
   $blue-greys: ($blue-grey-50 $blue-grey-100 $blue-grey-200 $blue-grey-300 $blue-grey-400 $blue-grey-500 $blue-grey-600 $blue-grey-700 $blue-grey-800 $blue-grey-900);
 
 
+	// scss-lint:disable TrailingSemicolon
   $md-colors: (
     $reds
     $pinks
@@ -520,6 +521,7 @@
     $orange-accents
     $deep-orange-accents
   );
+	// scss-lint:enable TrailingSemicolon
 
 
   @if $accent {
@@ -623,4 +625,54 @@
 
 @function get-google-font-icons() {
   @return 'https://fonts.googleapis.com/icon?family=Material+Icons';
+}
+
+@mixin host-google-font-local($font, $style, $weight, $fonts-url: '/fonts/$font') {
+  @font-face {
+    font-family: '#{$font}';
+    font-style: $style;
+    font-weight: $weight;
+    src: local('#{$font}'), url($fonts-url + '.ttf') format('truetype');
+  }
+}
+
+@mixin host-material-icons-local($font-url: '/fonts/material-icons') {
+  $icon-link: $font-url + '/MaterialIcons-Regular';
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url($icon-link + '.eot');
+    // scss-lint:disable SpaceAfterComma
+    src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url($icon-link + '.woff2') format('woff2'),
+         url($icon-link + '.woff') format('woff'),
+         url($icon-link + '.ttf') format('truetype');
+    // scss-lint:enable SpaceAfterComma
+  }
+
+  .material-icons {
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Material Icons';
+    // Support for IE.
+    font-feature-settings: 'liga';
+    font-size: $md-font-icon-size;
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    height: 1em;
+    letter-spacing: normal;
+    line-height: 1;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    white-space: nowrap;
+    width: 1em;
+    word-wrap: normal;
+	}
 }

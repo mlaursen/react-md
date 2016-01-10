@@ -82,9 +82,7 @@ export default class App extends Component {
               <ListItem
                 component={Link}
                 to={`/${link}`}
-                className={classnames('md-list-tile', {
-                  'active': `/${link}` === pathname,
-                })}
+                className={classnames({ 'active': `/${link}` === pathname })}
                 key={link}
                 primaryText={label}
               />
