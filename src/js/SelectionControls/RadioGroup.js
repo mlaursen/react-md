@@ -37,9 +37,7 @@ export default class RadioGroup extends Component {
     const { component, className, children, name, ...props } = this.props;
     const fullProps = {
       ...props,
-      className: classnames('md-radio-group', className, {
-        'inline': isPropEnabled(props, 'inline'),
-      }),
+      className: classnames('md-radio-group', className),
     };
     return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {
       return React.cloneElement(child, {
@@ -47,6 +45,7 @@ export default class RadioGroup extends Component {
         checked: this.state.value === child.props.value,
         onChange: this.handleChange,
         name: name || child.props.name,
+        className: classnames({ 'inline': isPropEnabled(props, 'inline') }),
       });
     }));
   }

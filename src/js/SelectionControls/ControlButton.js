@@ -59,7 +59,7 @@ export default class Checkbox extends Component {
     const isDisabled = isPropEnabled(props, 'disabled');
 
     const checkboxLabel = label ? (
-      <label className={classnames('label', { 'disabled': isDisabled })}>
+      <label className="label">
         {label}
         <input
           ref="checkbox"
@@ -71,7 +71,7 @@ export default class Checkbox extends Component {
       </label>
     ) : null;
     return (
-      <div className={classnames('md-selection-control-container', className)} style={style}>
+      <div className={classnames('md-control-container', className, { 'disabled': isDisabled })} style={style}>
         {isLabelBefore && checkboxLabel}
         <IconButton
           disabled={isDisabled}

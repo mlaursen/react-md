@@ -51,6 +51,7 @@ export default class RadioExamples extends Component {
           <Radio value="stars" label="I want to use stars!" {...this.state} />
           <Radio value="info" label="I have some information to give.." {...this.state} />
           <Radio value="warning" label="I am going to warn you.. This probably isn't that helpful." {...this.state} />
+          <Radio disabled label="Help, I am disabled!" {...this.state} />
         </RadioGroup>
       </div>
     );

@@ -1,21 +1,50 @@
-.md-selection-control-container {
+@import '../helpers/all';
+
+.md-control-container {
   align-items: center;
   display: flex;
 
+  &:not(.disabled) {
+    cursor: pointer;
+  }
+
+  &.inline {
+    display: inline-flex;
+  }
+
   .label {
-    &:not(.disabled) {
-      cursor: pointer;
+    cursor: inherit;
+  }
+
+  &.disabled {
+    .label {
+      color: $md-disabled-color;
+      cursor: default;
     }
 
-    &.disabled {
-      color: $md-disabled-color;
+    .md-switch:before {
+      background: $md-status-bar-color;
     }
   }
 }
 
-.md-radio-group.inline .md-selection-control-container {
-  display: inline-flex;
+.md-control-input {
+  @extend %hidden;
+
+  &:checked + .md-switch {
+    &:before {
+      background: get-md-color($md-primary-color);
+      border-color: get-md-color($md-primary-color);
+      color: $white-base;
+      left: $md-switch-width - $md-switch-bar-height - $md-switch-ball-size;
+    }
+
+    .md-ink {
+      left: $md-switch-bar-height / 2;
+    }
+  }
 }
+
 
 .md-checkbox,
 .md-radio {
@@ -27,89 +56,46 @@
 }
 
 
-.md-control-container {
-  height: $md-control-container-size;
-  position: relative;
-  width: $md-control-container-size;
-}
-
-.stacked .md-control-label {
-  display: flex;
-}
-
-.md-control-input {
-  height: 0;
-  line-height: 0;
-  position: absolute;
-  visibility: hidden;
-  width: 0;
-
-  &:checked {
-    + .md-switch:before {
-      background: get-md-color($md-primary-color);
-      border-color: get-md-color($md-primary-color);
-      color: $white-base;
-    }
-
-    + .md-switch:before {
-      left: $md-control-switch-width - $md-control-switch-height - $md-control-switch-ball-size;
-    }
-  }
-}
-
-.md-control-label {
-  align-items: center;
-  cursor: pointer;
-  display: inline-flex;
-  user-select: none;
-
-  &.disabled {
-    .label {
-      color: $md-disabled-color;
-    }
-
-    .md-control {
-      border-color: $md-status-bar-color;
-    }
-
-    .md-switch:before {
-      background: $md-status-bar-color;
-    }
-  }
-}
-
-.md-control {
+.md-switch {
   @include absolute-center(true, true);
 
-  position: absolute;
-}
-
-.md-switch-label {
-
-  .md-control-container {
-    width: $md-control-switch-width;
-  }
-}
-
-.md-switch {
-  background: $md-control-switch-background;
-  border-radius: $md-control-switch-radius;
+  background: $md-switch-background;
+  border-radius: $md-switch-radius;
   display: inline-block;
-  height: $md-control-switch-height;
+  height: $md-switch-bar-height;
   position: relative;
-  width: $md-control-container-size - $md-control-switch-height / 2;
+  width: $md-switch-height - $md-switch-bar-height / 2;
 
   &:before {
     @extend %circle;
 
     background: $md-background-color;
-    box-shadow: 0 2px #{$md-control-switch-height / 2} rgba($black-base, .2);
+    box-shadow: 0 2px #{$md-switch-bar-height / 2} rgba($black-base, .2);
     content: '';
-    height: $md-control-switch-ball-size;
-    left: -$md-control-switch-offset;
+    height: $md-switch-ball-size;
+    left: -$md-switch-offset;
     position: absolute;
-    top: -$md-control-switch-offset;
+    top: -$md-switch-offset;
     transition: background $md-transition-time, background $md-transition-time, left $md-transition-time;
-    width: $md-control-switch-ball-size;
+    width: $md-switch-ball-size;
   }
+
+  .md-ink {
+    height: $md-height;
+    left: -$md-switch-bar-height;
+    top: -$md-switch-bar-height;
+    transition: left $md-transition-time;
+    width: $md-height;
+
+    &.active {
+      transform: scale(1.25);
+      transition: transform $md-ink-animation-time, opacity $md-ink-animation-time, left $md-transition-time;
+    }
+  }
+}
+
+.md-switch-container {
+  height: $md-switch-height;
+  position: relative;
+  width: $md-switch-width;
 }

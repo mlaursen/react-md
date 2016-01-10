@@ -5,7 +5,7 @@ export default function SwitchExamples() {
   return (
     <div>
       <Switch label="Some switch" />
-      <Switch label="Initially checked" isInitiallyChecked={true} />
+      <Switch label="Initially toggled" defaultToggled />
       <Switch label="Disabled" disabled />
     </div>
   );

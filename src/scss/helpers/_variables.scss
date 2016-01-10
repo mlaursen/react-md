@@ -219,21 +219,21 @@ $md-avatar-colors: (
 // Selection Controls
 /// @link https://www.google.com/design/spec/components/selection-controls.html
 /// @group selection-controls
-$md-control-container-size: $md-tab-height !default;
+$md-switch-height: $md-tab-height !default;
 
 /// @group selection-controls
-$md-control-switch-background: rgba($black-base, .26) !default;
+$md-switch-background: rgba($black-base, .26) !default;
 /// @group selection-controls
-$md-control-switch-ball-size: $md-font-icon-size !default;
+$md-switch-ball-size: $md-font-icon-size !default;
 /// @group selection-controls
-$md-control-switch-height: $md-default-padding !default;
+$md-switch-bar-height: $md-default-padding !default;
 /// @group selection-controls
-$md-control-switch-radius: $md-control-switch-height / 2 !default;
+$md-switch-radius: $md-switch-bar-height / 2 !default;
 
 /// @group selection-controls
-$md-control-switch-offset: $md-control-switch-height / 4;
+$md-switch-offset: $md-switch-bar-height / 4;
 /// @group selection-controls
-$md-control-switch-width: $md-control-container-size + $md-control-switch-height - $md-control-switch-offset !default;
+$md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset !default;
 
 
 // =============================================
