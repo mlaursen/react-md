@@ -35,15 +35,38 @@ export default class Ink extends Component {
     });
   }
 
+  calcR = (a, b) => {
+    return Math.sqrt((a * a) + (b * b));
+  };
+
   createInk = (pageX, pageY) => {
     const { container } = this.refs;
-    const node = container.parentNode;
-    const size = this.state.size || Math.max(node.offsetWidth, node.offsetHeight);
 
     let left = 0, top = 0;
+    let size;
     if(typeof pageX !== 'undefined' && typeof pageY !== 'undefined') {
-      left = pageX - node.offsetLeft - size / 2;
-      top = pageY - node.offsetTop - size / 2;
+      const rect = container.getBoundingClientRect();
+      const offset = {
+        left: rect.left + document.body.scrollLeft,
+        top: rect.top + document.body.scrollTop,
+      };
+
+      const x = pageX - offset.left;
+      const y = pageY - offset.top;
+      const { offsetWidth, offsetHeight } = container;
+      const r = Math.max(
+        this.calcR(x, y),
+        this.calcR(offsetWidth - x, y),
+        this.calcR(offsetWidth - x, offsetHeight - y),
+        this.calcR(x, offsetHeight - y)
+      );
+
+      left = x - r;
+      top = y - r;
+      size = r * 2;
+    } else {
+      const node = container.parentNode;
+      size = Math.max(node.offsetWidth, node.offsetHeight);
     }
 
     let ink = document.createElement('span');
@@ -52,7 +75,7 @@ export default class Ink extends Component {
     container.insertBefore(ink, container.firstChild);
 
     setTimeout(() => ink.classList.add('active'), 25);
-    this.setState({ size, ink, timestamp: Date.now() });
+    this.setState({ ink, timestamp: Date.now() });
   };
 
   handleMouseDown = ({ pageX, pageY, button, ctrlKey, changedTouches }) => {
