@@ -65,7 +65,7 @@ export default class IconButton extends Component {
 
     return React.createElement(href ? 'a' : 'button', btnProps, [
       <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} onClick={onClickInkMouseDown ? this.handleClick : null} focused={this.state.focused} />,
-      <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
+      children && children.type && children.type === FontIcon ? children : <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
     ]);
   }
 }

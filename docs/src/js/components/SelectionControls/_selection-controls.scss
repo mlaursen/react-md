@@ -3,3 +3,27 @@
 .favorite-checkbox .md-checkbox.active {
   color: get-md-color($md-secondary-color);
 }
+
+.custom-stars .md-radio {
+  color: get-md-color(deep-orange, 3);
+
+  &.active {
+    color: get-md-color(deep-orange, 8);
+  }
+}
+
+.custom-info .md-radio {
+  color: get-md-color(light-blue, 3);
+
+  &.active {
+    color: get-md-color(light-blue);
+  }
+}
+
+.custom-warning .md-radio {
+  color: get-md-color(red, 4);
+
+  &.active {
+    color: get-md-color(red, 7);
+  }
+}

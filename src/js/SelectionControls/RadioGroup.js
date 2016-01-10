@@ -28,9 +28,9 @@ export default class RadioGroup extends Component {
     component: 'div',
   };
 
-  handleChange = (e) => {
-    this.props.onChange && this.props.onChange(e, e.target.value);
-    this.setState({ value: e.target.value });
+  handleChange = (value, e) => {
+    this.props.onChange && this.props.onChange(value, e);
+    this.setState({ value });
   };
 
   render() {

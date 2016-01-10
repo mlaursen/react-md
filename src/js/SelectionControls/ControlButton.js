@@ -34,7 +34,7 @@ export default class Checkbox extends Component {
     const nextChecked = !(typeof checked === 'undefined' ? this.state.checked : checked);
     if(onChange) {
       if(type === 'radio') {
-        onChange(e);
+        onChange(value, e);
       } else if(typeof value === 'undefined') {
         onChange(nextChecked, e);
       } else {
@@ -42,6 +42,7 @@ export default class Checkbox extends Component {
       }
     }
 
+    typeof e.stopPropagation === 'function' && e.stopPropagation();
     if(typeof value === 'undefined') {
       this.setState({ checked: nextChecked });
     }
@@ -75,7 +76,7 @@ export default class Checkbox extends Component {
         <IconButton
           disabled={isDisabled}
           onClick={this.toggleCheck}
-          className={classnames('md-checkbox', { 'active': isChecked })}
+          className={classnames(`md-${props.type}`, { 'active': isChecked })}
           onClickInkMouseDown={true}
           >
           {isChecked ? checkedIcon : uncheckedIcon}

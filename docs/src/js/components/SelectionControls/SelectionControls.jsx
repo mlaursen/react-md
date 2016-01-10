@@ -49,6 +49,7 @@ export default class SelectionControls extends Component {
   render() {
     return (
       <DocPage
+        sectionName="Selection Controls"
         components={[{
           component: Checkbox,
           details: commonDetails,
