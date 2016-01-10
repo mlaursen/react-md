@@ -35,13 +35,13 @@ export default class Control extends Component {
   };
 
   handleMouseDown = (e) => {
-    if(!this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+    if(!isPropEnabled(this.props, 'disabled') && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.setState({ active: true, leaving: false });
     }
   };
 
   handleMouseUp = (e) => {
-    if(this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+    if(!isPropEnabled(this.props, 'disabled') && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.timeout = setTimeout(() => {
         this.timeout = null;
         this.setState({ active: false, leaving: false });

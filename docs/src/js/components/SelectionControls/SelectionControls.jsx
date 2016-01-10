@@ -18,10 +18,6 @@ const commonDetails = [{
   pt: 'ba',
   desc: 'Boolean if this component is disabled.',
 }, {
-  name: 'isInitiallyChecked',
-  pt: 'ba',
-  desc: 'Boolean if this component is initially checked',
-}, {
   name: 'onChange',
   pt: 'f',
   desc: 'Optional function to call on value change.',
@@ -33,11 +29,25 @@ const commonDetails = [{
   name: 'labelBefore',
   pt: 'ba',
   desc: 'Boolean if the label comes before the component.',
-}, {
-  name: 'rippleTimeout',
-  pt: 'nu',
-  desc: 'The timeout for the ripple on this component. These are controlled by css classes.',
 }];
+
+const controlDetails = commonDetails.concat([{
+  name: 'checkedIcon',
+  pt: 'no',
+  desc: 'The FontIcon to use when checked.',
+}, {
+  name: 'uncheckedIcon',
+  pt: 'no',
+  desc: 'The FontIcon to use when unchecked',
+}, {
+  name: 'defaultChecked',
+  pt: 'ba',
+  desc: 'Boolean if the component is checked by default.',
+}, {
+  name: 'style',
+  pt: 'o',
+  desc: 'Any additional styles you want to apply to the container',
+}]);
 
 export default class SelectionControls extends Component {
   constructor(props) {
@@ -52,7 +62,7 @@ export default class SelectionControls extends Component {
         sectionName="Selection Controls"
         components={[{
           component: Checkbox,
-          details: commonDetails,
+          details: controlDetails,
         }, {
           component: RadioGroup,
           details: [{
@@ -78,14 +88,18 @@ export default class SelectionControls extends Component {
           }],
         }, {
           component: Radio,
-          details: commonDetails.concat([{
+          details: controlDetails.concat([{
             name: 'name',
             pt: 's',
             desc: 'A name for the radio.',
           }]),
         }, {
           component: Switch,
-          details: commonDetails,
+          details: commonDetails.concat([{
+            name: 'defaultToggled',
+            pt: 'ba',
+            desc: 'Boolean if the switch is toggled by default',
+          }]),
         }]}
         examples={[{
           name: 'Checkbox',
