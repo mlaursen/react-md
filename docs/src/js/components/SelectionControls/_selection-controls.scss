@@ -1,0 +1,5 @@
+@import '~react-md-scss/helpers/all';
+
+.favorite-checkbox .md-checkbox.active {
+  color: get-md-color($md-secondary-color);
+}

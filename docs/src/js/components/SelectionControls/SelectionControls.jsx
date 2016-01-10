@@ -10,6 +10,8 @@ import RadioExamplesRaw from '!!raw!./RadioExamples';
 import SwitchExamples from './SwitchExamples';
 import SwitchExamplesRaw from '!!raw!./SwitchExamples';
 
+import './_selection-controls.scss';
+
 
 const commonDetails = [{
   name: 'disabled',

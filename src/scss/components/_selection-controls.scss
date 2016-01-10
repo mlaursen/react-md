@@ -1,3 +1,28 @@
+.md-selection-control-container {
+  align-items: center;
+  display: flex;
+
+  .label {
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+
+    &.disabled {
+      color: $md-disabled-color;
+    }
+  }
+}
+
+.md-checkbox,
+.md-radio {
+  transition: color $md-transition-time;
+
+  &.active {
+    color: get-md-color($md-primary-color);
+  }
+}
+
+
 .md-control-container {
   height: $md-control-container-size;
   position: relative;
@@ -16,7 +41,6 @@
   width: 0;
 
   &:checked {
-    + .md-checkbox,
     + .md-radio,
     + .md-switch:before {
       background: get-md-color($md-primary-color);
@@ -61,31 +85,13 @@
   position: absolute;
 }
 
-.md-checkbox,
 .md-radio {
+  @extend %circle;
   border: 2px solid rgba($black-base, .54);
   padding: #{$md-font-size-base / 2}px;
   transition: background $md-transition-time, color $md-transition-time, border $md-transition-time;
 }
 
-
-.md-checkbox-label {
-  .md-control-input:checked + .md-checkbox:after {
-    content: '\2714';
-    font-size: #{$md-font-size-base}px;
-    left: 1.5px;
-    position: absolute;
-    top: -3px;
-  }
-}
-
-.md-checkbox {
-  border-radius: 2px;
-}
-
-.md-radio {
-  @extend %circle;
-}
 
 .md-switch-label {
 
