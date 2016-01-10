@@ -17,7 +17,16 @@ export default class Ink extends Component {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
+    focused: PropTypes.bool,
   };
+
+  componentWillReceiveProps(nextProps) {
+    if(!this.props.focused && nextProps.focused) {
+      this.createInk();
+    } else if(!nextProps.focused && this.props.focused) {
+      this.handleMouseUp({ button: LEFT_MOUSE });
+    }
+  }
 
   componentWillUnmount() {
     const { timeouts } = this.state;
@@ -30,15 +39,19 @@ export default class Ink extends Component {
     const { container } = this.refs;
     const node = container.parentNode;
     const size = this.state.size || Math.max(node.offsetWidth, node.offsetHeight);
-    const left = pageX - node.offsetLeft - size / 2;
-    const top = pageY - node.offsetTop - size / 2;
+
+    let left = 0, top = 0;
+    if(typeof pageX !== 'undefined' && typeof pageY !== 'undefined') {
+      left = pageX - node.offsetLeft - size / 2;
+      top = pageY - node.offsetTop - size / 2;
+    }
 
     let ink = document.createElement('span');
     ink.classList.add('md-ink');
     ink.style.cssText = `left:${left}px;top:${top}px;width:${size}px;height:${size}px;`;
     container.insertBefore(ink, container.firstChild);
 
-    setTimeout(() => ink.classList.add('active'), 1);
+    setTimeout(() => ink.classList.add('active'), 25);
     this.setState({ size, ink, timestamp: Date.now() });
   };
 
