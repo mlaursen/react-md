@@ -1,29 +1,21 @@
 import React from 'react';
-import { List, ListItem, ListSubheader, ListDivider, FontIcon, Avatar, Paper, IconButton, Toolbar } from 'react-md';
-
-const FakePhone = ({ children, primary = false, secondary = false }) => {
-  return (
-    <Paper>
-      <Toolbar primary={primary} secondary={secondary}>
-        <IconButton>menu</IconButton>
-      </Toolbar>
-      {children}
-    </Paper>
-  );
-};
+import { List, ListItem, ListSubheader, ListDivider } from 'react-md/Lists';
+import FontIcon from 'react-md/FontIcon';
+import Avatar from 'react-md/Avatar';
+import Paper from 'react-md/Paper';
 
 export default function ListExamples() {
   return (
-    <div className="list-examples">
-      <FakePhone primary={true}>
-        <List>
+    <div className="paper-container">
+      <Paper>
+        <List textOnly>
           <ListItem primaryText="Inbox" />
           <ListItem primaryText="Starred" />
           <ListItem primaryText="Sent Mail" />
           <ListItem primaryText="Drafts" />
         </List>
-      </FakePhone>
-      <FakePhone secondary={true}>
+      </Paper>
+      <Paper>
         <List>
           <ListItem leftIcon={<FontIcon>inbox</FontIcon>} primaryText="Inbox" />
           <ListItem leftIcon={<FontIcon>access_time</FontIcon>} primaryText="Snoozed" />
@@ -35,8 +27,8 @@ export default function ListExamples() {
           <ListItem leftIcon={<FontIcon>delete</FontIcon>} primaryText="Trash" />
           <ListItem leftIcon={<FontIcon>report</FontIcon>} primaryText="Spam" />
         </List>
-      </FakePhone>
-      <FakePhone>
+      </Paper>
+      <Paper>
         <List subheader="Folders" primarySubheader={true}>
           <ListItem
             leftAvatar={<Avatar icon={<FontIcon>folder</FontIcon>} />}
@@ -56,8 +48,8 @@ export default function ListExamples() {
           <ListDivider inset />
           <ListSubheader primaryText="Files" />
         </List>
-      </FakePhone>
-      <FakePhone secondary={true}>
+      </Paper>
+      <Paper>
         <List>
           <ListItem
             leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
@@ -78,7 +70,7 @@ export default function ListExamples() {
             secondaryText2="recommendations? Have you ever been?"
           />
         </List>
-      </FakePhone>
+      </Paper>
     </div>
   );
 }

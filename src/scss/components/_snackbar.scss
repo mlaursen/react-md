@@ -46,6 +46,7 @@
   justify-content: space-between;
   padding: $md-snackbar-tb-padding $md-snackbar-lr-padding;
   position: fixed;
+  z-index: $md-snackbar-z-index;
 
   &.multiline {
     height: $md-snackbar-multiline-height;

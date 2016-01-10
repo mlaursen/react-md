@@ -12,7 +12,8 @@
   padding: $md-btn-padding 1em;
   position: relative;
   text-transform: uppercase;
-  transition: box-shadow $md-transition-time, background $md-transition-time, transform $md-transition-time;
+  transition-duration: $md-transition-time;
+  transition-property: box-shadow, background, transform;
 
   &[disabled] {
     color: $md-disabled-color;
@@ -82,6 +83,22 @@
 
   .md-icon {
     display: block;
+  }
+
+  &.fixed {
+    bottom: $md-default-padding;
+    position: fixed;
+    right: $md-default-padding;
+    transition-duration: $md-transition-time * 2;
+    transition-property: box-shadow, background, transform, bottom;
+
+    &.snackbar-adjust {
+      bottom: $md-default-padding + $md-snackbar-height;
+    }
+
+    &.snackbar-multiline-adjust {
+      bottom: $md-default-padding + $md-snackbar-multiline-height;
+    }
   }
 }
 

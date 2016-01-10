@@ -19,7 +19,7 @@ const fileSuffix = env.production ? '.min' : '';
 
 let config = {
   entry: [
-    './src/js/index.js',
+    './src/app/index.js',
   ],
 
   module: {
@@ -55,7 +55,7 @@ let config = {
       'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
       'react-md': js,
       'react-md-scss': scss,
-      'react-md-documentation': path.resolve(__dirname, 'src/js/Documentation'),
+      'react-md-documentation': path.resolve(__dirname, 'src/app/Documentation'),
     },
   },
 

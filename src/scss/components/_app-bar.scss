@@ -12,7 +12,7 @@
   width: 100%;
   z-index: $md-app-bar-z-index;
 
-  ~ * {
+  ~ *:not(.md-floating-btn):not(.fixed) {
     padding-top: $md-app-bar-height;
   }
 }

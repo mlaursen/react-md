@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
 
-import { FlatButton } from '../';
 import { isPropEnabled } from '../utils/PropUtils';
+import Toast from './Toast';
 
 export default class Snackbar extends Component {
   constructor(props) {
@@ -31,21 +30,32 @@ export default class Snackbar extends Component {
     autohideTimeout: PropTypes.number,
     dismiss: PropTypes.func.isRequired,
     multiline: PropTypes.bool,
+    fabTimeout: PropTypes.number,
   };
 
   static defaultProps = {
     autohide: true,
     autohideTimeout: 3000,
+    fabTimeout: 450,
   };
 
-  componentDidUpdate(prevProps) {
-    const { toasts, dismiss, autohide, autohideTimeout } = this.props;
+  componentWillReceiveProps({ toasts, dismiss, autohide, multiline, autohideTimeout, fabTimeout }) {
+    if(this.props.toasts.length === toasts.length) { return; }
     const [toast] = toasts;
-
     toast && toast.onAppear && toast.onAppear();
-    if(toasts === prevProps.toasts || !autohide || !toast || this.toastTimeout) {
-      return;
+
+    const fixedFAB = document.querySelector('.md-btn-floating.fixed');
+    if(fixedFAB) {
+      fixedFAB.classList.remove('snackbar-multiline-adjust');
+      fixedFAB.classList.remove('snackbar-adjust');
+      if(toast) {
+        setTimeout(() => {
+          fixedFAB.classList.add(`snackbar${multiline ? '-multiline' : ''}-adjust`);
+        }, this.props.toasts.length > 1 ? fabTimeout : 0);
+      }
     }
+
+    if(!toast || !autohide || this.toastTimeout) { return; }
 
     this.toastTimeout = setTimeout(() => {
       this.toastTimeout = null;
@@ -58,7 +68,7 @@ export default class Snackbar extends Component {
   };
 
   render() {
-    const { className, toasts } = this.props;
+    const { className, toasts, dismiss, ...props } = this.props;
     const [toast] = toasts;
     return (
       <CSSTransitionGroup
@@ -68,10 +78,14 @@ export default class Snackbar extends Component {
         transitionLeaveTimeout={450}
         >
         {toast &&
-        <section className={classnames('md-snackbar', className, { 'multiline': isPropEnabled(this.props, 'multiline') })} key={toast.key}>
-          <p>{toast.text}</p>
-          {toast.action && <FlatButton {...this.getToastActionProps(toast)} />}
-        </section>
+          <Toast
+            key={toast.key || Date.now()}
+            className={className}
+            toast={toast}
+            dismiss={dismiss}
+            multiline={isPropEnabled(props, 'multiline')}
+            {...props}
+          />
         }
       </CSSTransitionGroup>
     );

@@ -7,6 +7,7 @@
 }
 
 @include host-google-font('Source Code Pro', 400);
+//@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @include host-material-icons();
 
 html {
@@ -65,3 +66,22 @@ main {
 .space-after:after {
   content: ' ';
 }
+
+.paper-container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2em 0;
+
+  [class^='paper'] {
+    min-width: 360px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .paper-container [class^='paper'] {
+    margin: 2em;
+  }
+}
+

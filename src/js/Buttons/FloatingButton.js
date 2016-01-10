@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
+import { isPropEnabled } from '../utils/PropUtils';
 import Button from './Button';
 import FontIcon from '../FontIcon';
 
@@ -15,12 +17,13 @@ export default class FloatingButton extends Component {
     className: PropTypes.string,
     iconClassName: PropTypes.string,
     children: PropTypes.string,
+    fixed: PropTypes.bool,
   };
 
   render() {
-    const { iconClassName, children, ...props } = this.props;
+    const { iconClassName, children, className, ...props } = this.props;
     return (
-      <Button floating {...props}>
+      <Button floating {...props} className={classnames(className, { 'fixed': isPropEnabled(props, 'fixed') })}>
         <FontIcon iconClassName={iconClassName} children={children} />
       </Button>
     );

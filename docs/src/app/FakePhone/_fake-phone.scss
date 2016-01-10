@@ -1,0 +1,101 @@
+@import '~react-md-scss/helpers/all';
+
+.fake-phone-container .fake-phone {
+  margin-bottom: 2em;
+}
+
+
+.fake-phone {
+  position: relative;
+
+  .phone-content {
+    position: relative;
+  }
+
+  .md-app-bar {
+    position: absolute;
+    z-index: 2;
+  }
+
+  &.with-fixed-fab {
+    margin: 2em 0;
+    position: relative;
+
+  }
+
+  .md-snackbar {
+    border-radius: 0;
+    left: 0;
+    max-width: none;
+    position: absolute;
+    transform: none;
+    width: 100%;
+
+    &.snackbar-enter,
+    &.snackbar-leave.snackbar-leave-active {
+      transform: scaleY(0);
+    }
+
+    &.snackbar-enter.snackbar-enter-active,
+    .snackbar-leave {
+      transform: scaleY(1);
+    }
+  }
+
+  .md-btn-floating.fixed {
+    position: absolute;
+
+    &:not(.floating-active) {
+      bottom: $md-default-padding;
+    }
+  }
+}
+
+.phone-content {
+  min-height: 600px - 52px;
+  height: 100%;
+}
+
+.fake-phone-toolbar {
+  align-items: center;
+  background: #131212;
+  bottom: 0;
+  color: $white-base;
+  display: flex;
+  justify-content: space-around;
+  padding: 2px;
+  // scss-lint:disable ImportantRule
+  padding-top: 2px !important;
+  position: absolute;
+  width: 100%;
+
+  .md-ink {
+    background: rgba($white-base, .12);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .fake-phone-container {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .fake-phone {
+      display: inline-block;
+      margin: 2em;
+      max-width: 360px;
+      width: 100%;
+    }
+  }
+
+  .fake-phone.with-fixed-fab {
+    min-height: 600px;
+  }
+}
+
+@media only screen and (min-width: 0) and (max-width: 599px) {
+  .fake-phone.with-fixed-fab {
+    min-height: 460px;
+  }
+}

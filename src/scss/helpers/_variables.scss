@@ -119,6 +119,19 @@ $md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold
 
 $md-height: 48px;
 
+// Z Indexes
+/// @group overlay
+$md-overlay-z-index: 3 !default;
+/// @group dropdown
+$md-dropdown-z-index: 4 !default;
+/// @group sidebar
+$md-sidebar-z-index: 5 !default;
+/// @group app-bar
+$md-app-bar-z-index: 6 !default;
+/// @group snackbar
+$md-snackbar-z-index: 6 !default;
+
+
 // =============================================
 // Buttons
 /// The default color base for buttons
@@ -166,10 +179,6 @@ $md-ink-animation-time: .6s !default;
 $md-ink-transition-func: linear !default;
 
 ///
-$md-selection-controls-ripple-z-index: 2 !default;
-$md-overlay-z-index: 3 !default;
-$md-sidebar-z-index: 5 !default;
-$md-app-bar-z-index: 6 !default;
 
 
 // =============================================
@@ -334,5 +343,4 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
 /// Sets the max height of the dropdown to show 5 and 1/3 items
 /// @group dropdown
 $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;
-$md-dropdown-z-index: 4 !default;
 

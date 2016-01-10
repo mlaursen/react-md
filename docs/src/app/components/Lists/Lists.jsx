@@ -5,7 +5,6 @@ import { List, ListItem, ListSubheader, ListDivider } from 'react-md/Lists';
 import DocPage from 'react-md-documentation';
 import ListExamples from './ListExamples';
 import ListExamplesRaw from '!!raw!./ListExamples';
-import './_list.scss';
 
 export default class Lists extends Component {
   constructor(props) {
