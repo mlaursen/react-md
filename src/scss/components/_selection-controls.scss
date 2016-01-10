@@ -13,6 +13,10 @@
   }
 }
 
+.md-radio-group.inline .md-selection-control-container {
+  display: inline-flex;
+}
+
 .md-checkbox,
 .md-radio {
   transition: color $md-transition-time;
@@ -41,15 +45,10 @@
   width: 0;
 
   &:checked {
-    + .md-radio,
     + .md-switch:before {
       background: get-md-color($md-primary-color);
       border-color: get-md-color($md-primary-color);
       color: $white-base;
-    }
-
-    + .md-radio {
-      box-shadow: inset 0 0 0 2px $white-base;
     }
 
     + .md-switch:before {
@@ -84,14 +83,6 @@
 
   position: absolute;
 }
-
-.md-radio {
-  @extend %circle;
-  border: 2px solid rgba($black-base, .54);
-  padding: #{$md-font-size-base / 2}px;
-  transition: background $md-transition-time, color $md-transition-time, border $md-transition-time;
-}
-
 
 .md-switch-label {
 

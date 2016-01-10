@@ -10,22 +10,22 @@ export default class RadioGroup extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
-      value: props.initialValue || React.Children.toArray(props.children)[0].props.value,
+      value: props.defaultValue || React.Children.toArray(props.children)[0].props.value,
     };
   }
 
   static propTypes = {
-    initialValue: PropTypes.string,
+    defaultValue: PropTypes.string,
     className: PropTypes.string,
     children: PropTypes.arrayOf(PropTypes.node),
     component: PropTypes.string,
-    stacked: PropTypes.bool,
+    inline: PropTypes.bool,
     onChange: PropTypes.func,
     name: PropTypes.string,
   };
 
   static defaultProps = {
-    component: 'span',
+    component: 'div',
   };
 
   handleChange = (e) => {
@@ -38,7 +38,7 @@ export default class RadioGroup extends Component {
     const fullProps = {
       ...props,
       className: classnames('md-radio-group', className, {
-        'stacked': isPropEnabled(props, 'stacked'),
+        'inline': isPropEnabled(props, 'inline'),
       }),
     };
     return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {

@@ -1,22 +1,18 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from 'react';
 
-import Control from './Control';
+import ControlButton from './ControlButton';
+import FontIcon from '../FontIcon';
 
-export default class Radio extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
-  static propTypes = {
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.string,
-  };
-
-  render() {
-    return <Control type="radio" {...this.props} />;
-  }
+function Radio(props) {
+  return <ControlButton {...props} type="radio" />;
 }
+
+Radio.defaultProps = {
+  defaultChecked: false,
+  checkedIcon: <FontIcon>radio_button_checked</FontIcon>,
+  uncheckedIcon: <FontIcon>radio_button_unchecked</FontIcon>,
+};
+
+Radio.propTypes = ControlButton.propTypes;
+
+export default Radio;
