@@ -16,6 +16,7 @@ export default class Ink extends Component {
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
+    onClick: PropTypes.func,
   };
 
   componentWillUnmount() {
@@ -43,6 +44,8 @@ export default class Ink extends Component {
 
   handleMouseDown = ({ pageX, pageY, button, ctrlKey, changedTouches }) => {
     if(this.props.disabled || (!changedTouches && (button !== LEFT_MOUSE || ctrlKey))) { return; }
+
+    if(this.props.onClick) { this.props.onClick(); }
     if(changedTouches) {
       this.createInk(changedTouches[0].pageX, changedTouches[0].pageY);
     } else {

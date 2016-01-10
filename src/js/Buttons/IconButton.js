@@ -22,18 +22,24 @@ export default class IconButton extends Component {
     tooltip: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
+    onClickInkMouseDown: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'button',
+    onClickInkMouseDown: false,
   };
 
   render() {
-    const { iconClassName, children, className, href, type, ...props } = this.props;
+    const { iconClassName, children, className, href, type, onClick, onClickInkMouseDown, ...props } = this.props;
     let btnProps = {
       ...props,
       className: classnames(className, 'md-btn', 'md-btn-icon'),
     };
+
+    if(!onClickInkMouseDown) {
+      btnProps.onClick = onClick;
+    }
 
     if(href) {
       btnProps.href = href;
@@ -42,7 +48,7 @@ export default class IconButton extends Component {
     }
 
     return React.createElement(href ? 'a' : 'button', btnProps, [
-      <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} />,
+      <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} onClick={onClickInkMouseDown ? onClick : null} />,
       <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
     ]);
   }
