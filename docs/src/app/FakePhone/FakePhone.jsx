@@ -20,9 +20,9 @@ export default function FakePhone({ children, primary = false, secondary = false
         {children}
       </div>
       <div className="fake-phone-toolbar">
-        <IconButton iconClassName="fa fa-arrow-left" />
-        <IconButton iconClassName="fa fa-circle-o" />
-        <IconButton iconClassName="fa fa-square-o" />
+        <IconButton style={{ transform: 'rotate3d(0, 0, 1, 270deg)' }}>change_history</IconButton>
+        <IconButton>radio_button_unchecked</IconButton>
+        <IconButton>check_box_outline_blank</IconButton>
       </div>
     </Paper>
   );
