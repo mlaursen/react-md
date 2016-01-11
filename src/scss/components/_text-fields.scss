@@ -1,4 +1,15 @@
-@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-padding, $icon-font-size) {
+@import '../helpers/all';
+
+/// Creates a text field
+///
+/// @param {Number} $fl-height - The height of the text field with a floating label.
+/// @param {Number} $nl-height - The height of the text field without a floating label (single line).
+/// @param {String} $font-size - The font size for the text field.
+/// @param {String} $padding - The padding to be used on the text field and the label.
+/// @param {String} $divider-bottom - The distance the divider is from the bottom of the text field container.
+/// @param {String} $icon-font-size - The font size for the single line text field with an icon
+/// @param {String} $icon-divider-left - The left position for the text field divider when there is an icon.
+@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) {
   .md-text-field-container {
     .md-icon {
       font-size: $icon-font-size;
@@ -23,7 +34,7 @@
     }
 
     .md-text-field-divider {
-      bottom: $divider-padding;
+      bottom: $divider-bottom;
     }
 
     .md-text-field,
@@ -75,18 +86,20 @@
     $md-text-field-font-size,
     $md-text-field-padding,
     $md-text-field-divider-padding,
-    $md-text-field-icon-font-size
+    $md-text-field-icon-font-size,
+    $md-text-field-icon-divider-left
   );
 }
 
 @media only screen and (min-width: 600px) {
   @include make-text-field(
     $md-text-field-dense-height,
-    $md-text-field-sl-dense-height,
+    $md-text-field-dense-sl-height,
     $md-text-field-dense-font-size,
     $md-text-field-dense-padding,
     $md-text-field-dense-divider-padding,
-    $md-text-field-dense-icon-font-size
+    $md-text-field-dense-icon-font-size,
+    $md-text-field-dense-icon-divider-left
   );
 }
 
