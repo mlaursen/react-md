@@ -17,15 +17,17 @@ export default class CircularProgress extends Component {
     value: PropTypes.number,
     scale: PropTypes.number,
     determinateDashoffset: PropTypes.number,
+    centered: PropTypes.bool,
   };
 
   static defaultProps = {
     scale: 1,
     determinateDashoffset: 187,
+    centered: true,
   };
 
   render() {
-    const { scale, className, value, determinateDashoffset } = this.props;
+    const { scale, className, value, determinateDashoffset, centered } = this.props;
     const isDeterminate = typeof value === 'number';
     let circleStyle, svgStyle;
     if(isDeterminate) {
@@ -44,6 +46,7 @@ export default class CircularProgress extends Component {
         className={classnames('md-circular-progress', className, {
           'determinate': isDeterminate,
           'indeterminate': !isDeterminate,
+          'centered': centered,
         })}
         width={scale * BASE_SIZE}
         height={scale * BASE_SIZE}

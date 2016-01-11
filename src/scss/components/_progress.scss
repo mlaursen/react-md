@@ -127,6 +127,11 @@
 
 .md-circular-progress {
   display: block;
+  margin: 1em;
+
+  &.centered {
+    margin: 1em auto;
+  }
 
   &.determinate {
     .md-circular-progress-path {
@@ -139,6 +144,7 @@
     animation: md-circular-progress $md-circular-progress-duration linear infinite;
 
     .md-circular-progress-path {
+      // scss-lint:disable SpaceAfterComma
       animation: md-circular-progress-dash $md-circular-progress-duration $md-circular-progress-transition-func infinite,
                  md-circular-progress-colors $md-circular-progress-duration * 4 $md-circular-progress-transition-func infinite;
       stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
