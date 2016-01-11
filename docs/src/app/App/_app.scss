@@ -77,6 +77,14 @@ main {
   [class^='paper'] {
     min-width: 360px;
   }
+
+  .paper-example {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+  }
 }
 
 @media only screen and (min-width: 600px) {

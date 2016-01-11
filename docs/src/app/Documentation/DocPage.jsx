@@ -64,7 +64,7 @@ export default class DocPage extends Component {
         <header className="component-info">
           <h1 className="md-display-2">{title}</h1>
           <hr />
-          <p>{children}</p>
+          {typeof children === 'string' ? <p>{children}</p> : children}
         </header>
         {examples.map((example, i) => <Example key={`example-${i}`} {...example} marked={marked} />)}
         {components.map((component, i) => (
