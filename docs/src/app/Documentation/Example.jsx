@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { Card, CardText, CardTitle, CardActions, FlatButton } from 'react-md';
+import Card, { CardText, CardTitle, CardActions } from 'react-md/Cards';
+import { FlatButton } from 'react-md/Buttons';
 import ExampleCode from './ExampleCode';
 
 const MIN_LINES = 14;

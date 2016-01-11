@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import Button, { FlatButton, RaisedButton, FloatingButton, IconButton } from './Buttons';
 export { Button, FlatButton, RaisedButton, FloatingButton, IconButton };
 export { Tabs, Tab } from './Tabs';
-export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from './Card';
+export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from './Cards';
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 export { List, ListItem, ListDivider, ListSubheader } from './Lists';
 export { CircularProgress, LinearProgress } from './Progress';
