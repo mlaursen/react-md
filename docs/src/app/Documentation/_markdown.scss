@@ -6,13 +6,7 @@
 }
 
 
-.markdown {
-  background: $md-background-color;
-  border-top: 1px solid $md-border-color;
-  overflow-y: auto;
-  padding: 1em;
-  transition: max-height $md-transition-time * 2;
-
+.documentation {
   code,
   pre {
     @extend %monospace;
@@ -23,6 +17,14 @@
       @extend %monospace;
     }
   }
+}
+
+.markdown {
+  background: $md-background-color;
+  border-top: 1px solid $md-border-color;
+  overflow-y: auto;
+  padding: 1em;
+  transition: max-height $md-transition-time * 2;
 }
 
 .lang-css,
