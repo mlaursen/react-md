@@ -8,7 +8,7 @@ import { isPropEnabled, isObject } from '../utils/PropUtils';
 import { List, ListItem } from '../';
 import SelectFieldButton from './SelectFieldButton';
 
-const TILE_HEIGHT = 48;
+const TILE_HEIGHT = 40;
 const LIST_MARGIN = 8;
 
 export default class SelectField extends Component {
@@ -72,15 +72,13 @@ export default class SelectField extends Component {
     const menu = ReactDOM.findDOMNode(this).querySelector('.md-dropdown-menu');
     const items = Array.prototype.slice.call(menu.querySelectorAll('.md-list-tile'));
     const maxScrollDistance = menu.scrollHeight - menu.offsetHeight;
-    let index = 0, maxWidth = 0;
+    let index = 0;
     items.forEach((item, i) => {
       if(item.classList.contains('active')) {
         index = i;
       }
 
-      maxWidth = Math.max(maxWidth, item.offsetWidth);
     });
-    menu.style.width = `${maxWidth + 32}px`;
 
     const selected = items[index];
     const maxHeight = menu.offsetHeight - TILE_HEIGHT - LIST_MARGIN;
@@ -102,7 +100,8 @@ export default class SelectField extends Component {
       menu.scrollTop = scrollTop;
     }
 
-    menu.style.top = `-${top}px`;
+    // no idea why it is off by 6px
+    menu.style.top = `${-top + 6}px`;
     // Expands/shrinks menu to center of button
     menu.style.transformOrigin = `${x} ${top + TILE_HEIGHT / 2}px`;
   }

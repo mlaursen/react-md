@@ -40,6 +40,10 @@
     .snackbar-leave {
       transform: scaleY(1);
     }
+
+    .md-btn-flat {
+      margin-left: $md-snackbar-lr-padding;
+    }
   }
 
   .md-btn-floating.fixed {

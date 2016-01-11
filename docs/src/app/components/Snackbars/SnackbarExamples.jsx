@@ -82,45 +82,52 @@ export default class SnackbarExamples extends Component {
     const { toasts, phoneToasts } = this.state;
     const [toast] = toasts;
     const isToasting = !!toast;
-    const autohide = isToasting && (toast.action !== 'Ok' || toast.action !== connectionToast.action);
+    const autohide = isToasting && (toast.action === 'Ok' || toast.action === null);
     return (
-      <div className="fake-phone-container">
-        <div className="btn-group">
-          <h4 className="md-title">Desktop Notifications</h4>
-          <RaisedButton
-            primary
-            onClick={this.addToast.bind(this, 'Hello, World!', null)}
-            label="Toast hellow world!"
-          />
-          <RaisedButton
-            primary
-            onClick={this.addToast.bind(this, 'This is some long text to show the multiline feature of a toast. This requires an additional prop.', 'Ok')}
-            label="Toast multiple lines"
-          />
-          <RaisedButton primary onClick={this.addToasts} label="Chained toasts" />
-          <Snackbar
-            toasts={toasts}
-            dismiss={this.removeToast}
-            multiline={isToasting && toast.text.length > 60}
-            autohide={autohide}
-          />
+      <div>
+        <div className="fake-phone-container">
+          <div className="btn-group">
+            <h4 className="md-title">Desktop Notifications</h4>
+            <RaisedButton
+              primary
+              onClick={this.addToast.bind(this, 'Hello, World!', null)}
+              label="Toast hellow world!"
+            />
+            <RaisedButton
+              primary
+              onClick={this.addToast.bind(this, 'Something happened', 'Retry')}
+              label="Toast that requires action to dismiss"
+            />
+            <RaisedButton
+              primary
+              onClick={this.addToast.bind(this, 'This is some long text to show the multiline feature of a toast. This requires an additional prop.', 'Ok')}
+              label="Toast multiple lines"
+            />
+            <RaisedButton primary onClick={this.addToasts} label="Chained toasts" />
+          </div>
+          <FakePhone primary={true} className="with-fixed-fab">
+            <p style={{ padding: '1em' }}>Click the Floating Action Button to see toasts in a mobile device</p>
+            <FloatingButton
+              fixed
+              secondary
+              onClick={this.addPhoneToasts}
+              className={phoneToasts[0] ? 'floating-active' : null}
+              >
+              add
+            </FloatingButton>
+            <Snackbar
+              toasts={phoneToasts}
+              dismiss={this.removePhoneToast}
+              multiline={phoneToasts[0] && phoneToasts[0].text !== 'Archived'}
+            />
+          </FakePhone>
         </div>
-        <FakePhone primary={true} className="with-fixed-fab">
-          <p style={{ padding: '1em' }}>Click the Floating Action Button to see toasts in a mobile device</p>
-          <FloatingButton
-            fixed
-            secondary
-            onClick={this.addPhoneToasts}
-            className={phoneToasts[0] ? 'floating-active' : null}
-            >
-            add
-          </FloatingButton>
-          <Snackbar
-            toasts={phoneToasts}
-            dismiss={this.removePhoneToast}
-            multiline={phoneToasts[0] && phoneToasts[0].text !== 'Archived'}
-          />
-        </FakePhone>
+        <Snackbar
+          toasts={toasts}
+          dismiss={this.removeToast}
+          multiline={isToasting && toast.text.length > 60}
+          autohide={autohide}
+        />
       </div>
     );
   }
