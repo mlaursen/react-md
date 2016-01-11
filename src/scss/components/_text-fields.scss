@@ -10,7 +10,7 @@
       }
 
       ~ .md-text-field {
-        $margin: $padding * 4;
+        $margin: $padding * 2;
         margin-left: $margin;
         width: calc(100% - #{$margin * 2 + $icon-font-size});
       }
