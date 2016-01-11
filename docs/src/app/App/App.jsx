@@ -4,7 +4,10 @@ import classnames from 'classnames';
 
 import { githubHref, mainLinks } from '../utils';
 import * as components from '../components';
-import { AppBar, IconButton, Sidebar, List, ListItem, ListDivider, ListSubheader } from 'react-md';
+import AppBar from 'react-md/AppBar';
+import { IconButton } from 'react-md/Buttons';
+import Sidebar from 'react-md/Sidebar';
+import { List, ListItem, ListDivider, ListSubheader } from 'react-md/Lists';
 
 import './_app.scss';
 

@@ -7,14 +7,14 @@ import AppBar from 'react-md/AppBar';
 
 import './_fake-phone.scss';
 
-export default function FakePhone({ children, primary = false, secondary = false, className, ...props }) {
+export default function FakePhone({ children, primary = false, secondary = false, className, onMenuClick, onSearchClick, ...props }) {
   return (
     <Paper className={classnames('fake-phone', className)} {...props} zDepth={3}>
       <AppBar
         primary={primary}
         secondary={secondary}
-        leftNode={<IconButton>menu</IconButton>}
-        rightNode={<IconButton>search</IconButton>}
+        leftNode={<IconButton onClick={onMenuClick}>menu</IconButton>}
+        rightNode={<IconButton onClick={onSearchClick}>search</IconButton>}
       />
       <div className="phone-content">
         {children}

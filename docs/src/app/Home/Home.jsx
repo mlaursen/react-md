@@ -5,7 +5,7 @@ import { RaisedButton } from 'react-md';
 import './_home.scss';
 import * as components from '../components';
 
-const firstLink = Object.keys(components)[0].toLowerCase();
+const firstLink = Object.keys(components)[0].split(/(?=[A-Z])/).join('-').toLowerCase();
 
 export default class Home extends Component {
   constructor(props) {

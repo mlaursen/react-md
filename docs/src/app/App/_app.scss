@@ -67,6 +67,13 @@ main {
   content: ' ';
 }
 
+.documentation-paper .paper-example {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .paper-container {
   align-items: flex-start;
   display: flex;
@@ -79,10 +86,6 @@ main {
   }
 
   .paper-example {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     min-height: 300px;
   }
 }
