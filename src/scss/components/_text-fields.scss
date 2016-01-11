@@ -2,17 +2,13 @@
   .md-text-field-container {
     .md-icon {
       font-size: $icon-font-size;
+      padding: ($nl-height - $icon-font-size) / 2;
+      padding-right: $nl-height - $icon-font-size;
 
       ~ .md-text-field-divider {
-        $margin: $icon-font-size + $padding * 4;
-        margin-left: $margin;
-        width: calc(100% - #{$margin});
-      }
-
-      ~ .md-text-field {
-        $margin: $padding * 2;
-        margin-left: $margin;
-        width: calc(100% - #{$margin * 2 + $icon-font-size});
+        $left: $icon-font-size + (($nl-height - $icon-font-size) / 2) + ($nl-height - $icon-font-size);
+        left: $left;
+        width: calc(100% - #{$left});
       }
     }
   }
@@ -44,10 +40,6 @@
       .md-text-field-label.active {
         bottom: $nl-height - $font-size - $padding;
       }
-    }
-
-    .md-icon {
-      padding: $padding;
     }
   }
 
