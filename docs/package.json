@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm run browser:dev",
     "browser:dev": "webpack-dev-server --config webpack.config.js --progress --colors --inline",
+    "build:dev": "webpack --config webpack.config.js --progress --colors --inline",
     "build:prod": "NODE_ENV=production webpack --config webpack.config.js --progress --colors --inline",
     "build:prod:win": "set NODE_ENV=production&&webpack --config webpack.config.js --progress --colors --inline",
     "docs": "npm run build:prod && gh-pages -d src/www",

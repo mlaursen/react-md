@@ -2,13 +2,19 @@
 @import '~normalize-scss-vanilla/normalize';
 @import '~react-md-scss/react-md';
 
-@each $weight in $md-font-weights {
-  @include host-google-font(Roboto, $weight);
+$development: true;
+@if $development {
+  @each $weight in $md-font-weights {
+    @include host-google-font(Roboto, $weight);
+  }
+
+  @include host-google-font('Source Code Pro', 400);
+  @include host-material-icons();
+} @else {
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700|Source+Code+Pro);
+  @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 }
 
-@include host-google-font('Source Code Pro', 400);
-//@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@include host-material-icons();
 
 html {
   height: 100%;
