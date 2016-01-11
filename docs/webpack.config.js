@@ -3,7 +3,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const buildFolder = path.resolve(__dirname, 'src/www');
@@ -11,11 +10,11 @@ const js = path.resolve(__dirname, '../src/js');
 const scss = path.resolve(__dirname, '../src/scss');
 
 const env = {
-  developent: NODE_ENV === 'developent' || typeof NODE_ENV === 'undefined',
+  development: NODE_ENV === 'development' || typeof NODE_ENV === 'undefined',
   production: NODE_ENV === 'production',
 };
 
-const fileSuffix = env.production ? '.min' : '';
+//const fileSuffix = env.production ? '.min' : '';
 
 let config = {
   entry: [
@@ -61,24 +60,25 @@ let config = {
 
   output: {
     path: buildFolder,
-    filename: `bundle${fileSuffix}.js`,
+    filename: `bundle.js`,
+    //filename: `bundle${fileSuffix}.js`,
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      inject: false,
-      template: path.join(__dirname, 'src/www/index.html'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(NODE_ENV || 'development'),
+      },
     }),
   ],
-
   eslint: {
     configFile: '../.eslintrc',
   },
 };
 
-const sassConfig = `outputStyle=${env.developent ? 'expanded&sourceMap=true' : 'compressed'}`;
-const jsLoader = `${env.developent ? 'react-hot!' : ''}babel`;
-if(env.developent) {
+const sassConfig = `outputStyle=${env.development ? 'expanded&sourceMap=true' : 'compressed'}`;
+const jsLoader = `${env.development ? 'react-hot!' : ''}babel`;
+if(env.development) {
   const host = 'localhost';
   const port = 3000;
   const DEV_URL = `http://${host}:${port}`;
@@ -99,6 +99,17 @@ if(env.developent) {
   config.plugins = config.plugins.concat([
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: DEV_URL }),
+  ]);
+} else if(env.production) {
+  config.devtool = 'source-map';
+  config.plugins = config.plugins.concat([
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    // Prevents any page navigation for some reason. GOtta figure that out
+    //new webpack.optimize.UglifyJsPlugin({
+    //  compress: { warnings: false },
+    //  output: { comments: false },
+    //}),
   ]);
 }
 

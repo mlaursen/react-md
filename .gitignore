@@ -30,4 +30,5 @@ node_modules
 distExample
 sassdoc
 .publish
-
+dist
+docs/src/www/bundle*

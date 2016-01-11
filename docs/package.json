@@ -5,7 +5,10 @@
   "scripts": {
     "start": "npm run browser:dev",
     "browser:dev": "webpack-dev-server --config webpack.config.js --progress --colors --inline",
-    "build:prod": "NODE_ENV=production webpack --config webpack.config.js --progress --colors --inline"
+    "build:prod": "NODE_ENV=production webpack --config webpack.config.js --progress --colors --inline",
+    "build:prod:win": "set NODE_ENV=production&&webpack --config webpack.config.js --progress --colors --inline",
+    "docs": "npm run build:prod && gh-pages -d src/www",
+    "docs:win": "npm run build:prod:win && gh-pages -d src/www"
   },
   "repository": {
     "type": "git",
@@ -23,9 +26,9 @@
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gh-pages": "^0.8.0",
     "highlight.js": "^9.1.0",
     "history": "^1.17.0",
-    "html-webpack-plugin": "^1.7.0",
     "marked": "^0.3.5",
     "material-design-icons": "^2.1.3",
     "node-sass": "^3.4.2",
