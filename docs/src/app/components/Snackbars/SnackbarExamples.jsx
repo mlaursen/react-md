@@ -85,24 +85,28 @@ export default class SnackbarExamples extends Component {
     const autohide = isToasting && (toast.action !== 'Ok' || toast.action !== connectionToast.action);
     return (
       <div className="fake-phone-container">
-        <RaisedButton
-          primary
-          onClick={this.addToast.bind(this, 'Hello, World!', null)}
-          label="Toast hellow world!"
-        />
-        <RaisedButton
-          primary
-          onClick={this.addToast.bind(this, 'This is some long text to show the multiline feature of a toast. This requires an additional prop.', 'Ok')}
-          label="Toast multiple lines"
-        />
-        <RaisedButton primary onClick={this.addToasts} label="Chained toasts" />
-        <Snackbar
-          toasts={toasts}
-          dismiss={this.removeToast}
-          multiline={isToasting && toast.text.length > 60}
-          autohide={autohide}
-        />
+        <div className="btn-group">
+          <h4 className="md-title">Desktop Notifications</h4>
+          <RaisedButton
+            primary
+            onClick={this.addToast.bind(this, 'Hello, World!', null)}
+            label="Toast hellow world!"
+          />
+          <RaisedButton
+            primary
+            onClick={this.addToast.bind(this, 'This is some long text to show the multiline feature of a toast. This requires an additional prop.', 'Ok')}
+            label="Toast multiple lines"
+          />
+          <RaisedButton primary onClick={this.addToasts} label="Chained toasts" />
+          <Snackbar
+            toasts={toasts}
+            dismiss={this.removeToast}
+            multiline={isToasting && toast.text.length > 60}
+            autohide={autohide}
+          />
+        </div>
         <FakePhone primary={true} className="with-fixed-fab">
+          <p style={{ padding: '1em' }}>Click the Floating Action Button to see toasts in a mobile device</p>
           <FloatingButton
             fixed
             secondary
