@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-import { githubHref, mainLinks } from '../utils';
+import { githubHref } from '../utils';
 import * as components from '../components';
 import AppBar from 'react-md/AppBar';
+import Avatar from 'react-md/Avatar';
+import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
 import { List, ListItem, ListDivider, ListSubheader } from 'react-md/Lists';
@@ -67,15 +69,21 @@ export default class App extends Component {
         />
         <Sidebar isOpen={this.state.isOpen} className="main-sidebar">
           <List>
-            {mainLinks.map(({ link, ...props }) => (
-              <ListItem
-                component={Link}
-                className={`/${link}` === pathname ? 'active' : null}
-                to={`/${link}`}
-                key={link || 'home-link'}
-                {...props}
-              />
-            ))}
+            <ListItem
+              component={Link}
+              className={'/' === pathname ? 'active' : null}
+              to="/"
+              primaryText="Home"
+              key={'home-link'}
+              leftIcon={<FontIcon>home</FontIcon>}
+            />
+            <ListItem
+              component="a"
+              primaryText="SASS Doc"
+              href="/sassdoc"
+              key="sassdoc"
+              leftAvatar={<Avatar src="/imgs/sass-icon.png" alt="SASS Icon" />}
+            />
             <ListDivider />
             <ListSubheader primaryText="Components" />
           </List>

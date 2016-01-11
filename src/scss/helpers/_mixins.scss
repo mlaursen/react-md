@@ -150,11 +150,11 @@
 /// @return {String} - Updated string
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
-  
+
   @if $index {
     @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
-  
+
   @return $string;
 }
 
@@ -211,7 +211,7 @@
 ///
 /// @param {String} $font-name [Roboto] - The font name to create a font face for
 /// @param {Number} $font-weight [400] - The font weight of the google font
-/// @param {String{ $fonts-url - The url to your fonts.
+/// @param {String} $fonts-url - The url to your fonts.
 @mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url: null) {
   $full-font-name: str-replace($font-name, ' ') + get-font-suffix($font-weight);
 
@@ -245,7 +245,7 @@
 ///          url(/fonts/material-icons/MaterialIcons-Regular.woff') format('woff'),
 ///          url(/fonts/material-icons/MaterialIcons-Regular.ttf') format('truetype');
 ///   }
-/// 
+///
 ///   .material-icons {
 ///     direction: ltr;
 ///     display: inline-block;

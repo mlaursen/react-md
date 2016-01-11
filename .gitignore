@@ -32,3 +32,4 @@ sassdoc
 .publish
 dist
 docs/src/www/bundle*
+docs/src/www/sassdoc

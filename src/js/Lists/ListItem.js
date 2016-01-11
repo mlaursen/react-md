@@ -20,7 +20,14 @@ export default class ListItem extends Component {
     leftAvatar: PropTypes.node,
     rightIcon: PropTypes.node,
     rightAvatar: PropTypes.node,
-    component: PropTypes.func,
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+  };
+
+  static defaultProps = {
+    component: 'li',
   };
 
   renderText = () => {
@@ -62,7 +69,7 @@ export default class ListItem extends Component {
 
   render() {
     const { component, className, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, ...props } = this.props;
-    return React.createElement(component || 'li', {
+    return React.createElement(component, {
       role: 'button',
       className: classnames('md-list-tile', className, {
         'md-list-3-lines': !!secondaryText && !!secondaryText2,
