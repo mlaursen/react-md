@@ -43,6 +43,10 @@ export default class TextFields extends Component {
             pt: `one(['left', 'right', 'center'])`,
             desc: 'This is the direction that the underline will expand from when focused.',
           }, {
+            name: 'defaultValue',
+            pt: 's',
+            desc: 'The default value for the text field',
+          }, {
             name: 'type',
             pt: 's',
             desc: `This is the text field's type.`,

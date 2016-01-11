@@ -15,7 +15,7 @@ export default class TextField extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = { active: false, currentRows: props.rows };
     if(!props.valueLink) {
-      this.state.value = props.initialValue;
+      this.state.value = props.defaultValue;
     }
 
     this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
@@ -28,7 +28,7 @@ export default class TextField extends Component {
       value: PropTypes.string.isRequired,
       requestChange: PropTypes.func.isRequired,
     }),
-    initialValue: PropTypes.string,
+    defaultValue: PropTypes.string,
     lineDirection: PropTypes.oneOf(['left', 'right', 'center']),
     type: PropTypes.string,
     required: PropTypes.bool,
@@ -45,7 +45,7 @@ export default class TextField extends Component {
   };
 
   static defaultProps = {
-    initialValue: '',
+    defaultValue: '',
     lineDirection: 'left',
     type: 'text',
     floatingLabel: true,

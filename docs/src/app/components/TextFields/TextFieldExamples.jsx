@@ -24,6 +24,7 @@ export default class TextFieldExamples extends Component {
         />
         <TextField
           label="Title"
+          defaultValue="I am amazing"
           errorText="This is an example of some error message. It should automatically wrap lines as well. It just keeps going and going and going."
         />
         <TextField label="Position" floatingLabel={false} helpText="I am a single line with help text." />
