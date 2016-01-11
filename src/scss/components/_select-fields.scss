@@ -1,3 +1,31 @@
+@media only screen and (min-width: 0) and (max-width: 599px) {
+  .md-form .md-select-field,
+  .md-select-field.text-field-positioned {
+    font-size: $md-text-field-font-size;
+    height: $md-text-field-sl-height;
+    padding-bottom: $md-text-field-padding / 2;
+    padding-top: $md-text-field-padding / 2;
+
+    .md-divider {
+      bottom: $md-text-field-divider-padding;
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .md-form .md-select-field,
+  .md-select-field.text-field-positioned {
+    font-size: $md-text-field-dense-font-size;
+    height: $md-text-field-dense-sl-height;
+    padding-bottom: $md-text-field-dense-padding / 2;
+    padding-top: $md-text-field-dense-padding / 2;
+
+    .md-divider {
+      bottom: $md-text-field-dense-divider-padding;
+    }
+  }
+}
+
 .md-dropdown-container {
   color: $black-base;
   display: inline-block;
@@ -42,6 +70,11 @@
 
   .md-icon {
     transition: transform $md-transition-time;
+  }
+
+  .md-divider {
+    position: absolute;
+    width: calc(100% - #{$md-select-field-padding-left + $md-default-padding});
   }
 }
 

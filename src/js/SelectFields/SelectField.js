@@ -48,7 +48,7 @@ export default class SelectField extends Component {
     itemLabel: 'label',
     itemValue: 'value',
     lineDirection: 'left',
-    itemsVisible: 5,
+    itemsVisible: 6,
   };
 
   componentWillUpdate(nextProps) {
@@ -82,26 +82,26 @@ export default class SelectField extends Component {
 
     const selected = items[index];
     const maxHeight = menu.offsetHeight - TILE_HEIGHT - LIST_MARGIN;
+    const { itemsVisible } = this.props;
 
     const scrollTop = selected.offsetTop - TILE_HEIGHT - LIST_MARGIN;
     const scrollDiff = scrollTop - maxScrollDistance;
     const x = isPropEnabled(this.props, 'expandRight') ? '0px' : '100%';
 
-    let top = Math.min(selected.offsetTop, maxHeight);
+    let top = Math.min(selected.offsetTop - LIST_MARGIN + 12, maxHeight);
     if(index === items.length - 2) {
-      top = maxHeight - TILE_HEIGHT;
+      top = maxHeight - TILE_HEIGHT + LIST_MARGIN / 2;
     } else if(index > 0 && scrollDiff <= 0) {
-      top = TILE_HEIGHT + LIST_MARGIN;
-    } else if(index > 0 && items.length > this.props.itemsVisible && index < items.length - 2) {
-      top = top - (scrollTop - (scrollTop - maxScrollDistance));
+      top = TILE_HEIGHT + LIST_MARGIN + LIST_MARGIN / 2;
+    } else if(index > 0 && items.length > itemsVisible && index < items.length - 2) {
+      top = top - (items.length - 1 - index) * TILE_HEIGHT + LIST_MARGIN / 2;
     }
 
     if(scrollTop > 0) {
       menu.scrollTop = scrollTop;
     }
 
-    // no idea why it is off by 6px
-    menu.style.top = `${-top + 6}px`;
+    menu.style.top = `-${top}px`;
     // Expands/shrinks menu to center of button
     menu.style.transformOrigin = `${x} ${top + TILE_HEIGHT / 2}px`;
   }
