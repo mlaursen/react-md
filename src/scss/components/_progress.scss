@@ -122,6 +122,11 @@
       animation: md-linear-indeterminate-short $md-linear-progress-anim-time $md-linear-progress-short-transition-func infinite;
       animation-delay: $md-linear-progress-short-delay;
     }
+
+    &.query:before,
+    &.query:after {
+      animation-direction: reverse;
+    }
   }
 }
 
