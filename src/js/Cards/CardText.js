@@ -12,10 +12,18 @@ export default class CardText extends Component {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
+    component: PropTypes.string,
+  };
+
+  static defaultProps = {
+    component: 'section',
   };
 
   render() {
-    const { className, children, ...props } = this.props;
-    return <section className={classnames(className, 'md-card-text')}>{children}</section>;
+    const { component, className, children, ...props } = this.props;
+    return React.createElement(component, {
+      className: classnames('md-card-text', className),
+      ...props,
+    }, children);
   }
 }
