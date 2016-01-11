@@ -139,6 +139,8 @@
   }
 
   &.determinate {
+    transition: transform $md-transition-time;
+
     .md-circular-progress-path {
       stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
       stroke-dasharray: $md-circular-progress-determinate-dasharray;

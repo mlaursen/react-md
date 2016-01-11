@@ -1,0 +1,24 @@
+.documentation-progress .progress-section {
+  padding: 1em 0;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  .md-title {
+    margin: 1em 0;
+  }
+
+  .md-btn-raised {
+    display: block;
+    margin: auto;
+  }
+
+  .fake-content {
+    padding: 2em 0;
+  }
+}
