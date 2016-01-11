@@ -49,7 +49,7 @@ export default class Home extends Component {
         <section className="banner">
           <h1 className="md-display-2">react-md</h1>
           <h4 className="md-title">Material Design inspired React components built with sass</h4>
-          <RaisedButton onClick={this.viewDemo} secondary>Demo</RaisedButton>
+          <RaisedButton onClick={this.viewDemo} secondary label="Demo" />
         </section>
         <section className="about">
         </section>

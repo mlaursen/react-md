@@ -17,11 +17,11 @@
     flex-grow: 1;
 
     &:first-child {
-      padding-right: .5em;
+      padding-right: $md-default-padding;
     }
 
     &:last-child {
-      padding-left: .5em;
+      padding-left: $md-default-padding;
     }
   }
 

@@ -68,6 +68,8 @@ export default class Button extends Component {
     const { children, iconBefore, label } = this.props;
     if(isPropEnabled(this.props, 'floating')) {
       return children;
+    } else if(!children) {
+      return label;
     } else if(children) {
       return (
         <div className="icon-separator">
@@ -76,9 +78,8 @@ export default class Button extends Component {
           {!iconBefore && children}
         </div>
       );
-    } else {
-      return label;
     }
+    return label;
   };
 
   render() {
