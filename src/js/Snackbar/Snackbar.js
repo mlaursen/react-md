@@ -49,7 +49,7 @@ export default class Snackbar extends Component {
       fixedFAB.classList.remove('snackbar-multiline-adjust');
       fixedFAB.classList.remove('snackbar-adjust');
       if(toast) {
-        setTimeout(() => {
+        this.fabTimeout = setTimeout(() => {
           fixedFAB.classList.add(`snackbar${multiline ? '-multiline' : ''}-adjust`);
         }, this.props.toasts.length > 1 ? fabTimeout : 0);
       }
@@ -61,6 +61,11 @@ export default class Snackbar extends Component {
       this.toastTimeout = null;
       dismiss();
     }, autohideTimeout);
+  }
+
+  componentWillUnmount() {
+    this.toastTimeout && clearTimeout(this.toastTimeout);
+    this.fabTimeout && clearTimeout(this.fabTimeout);
   }
 
   getToastActionProps = ({ action }) => {
