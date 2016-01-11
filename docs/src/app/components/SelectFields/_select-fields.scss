@@ -1,0 +1,27 @@
+@import '~react-md-scss/helpers/all';
+
+@media only screen and (min-width: 0) and (max-width: 599px) {
+  .addr-inline {
+    padding-left: $md-text-field-icon-divider-left;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .addr-inline {
+    padding-left: $md-text-field-dense-icon-divider-left;
+  }
+}
+
+.addr-inline {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .md-text-field-container {
+    display: inline-block;
+  }
+
+  .zip {
+    max-width: 44px;
+  }
+}
