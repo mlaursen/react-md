@@ -136,7 +136,7 @@ export default class TextField extends Component {
           'multi-line': isTextArea,
         })}>
         <label className="md-text-field-label-container">
-          {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError })})}
+          {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError, 'hint': !active && !this.getValueLink().value })})}
           {floatingLabel && label &&
           <TextFieldLabel
             label={label}

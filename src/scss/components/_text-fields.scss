@@ -1,83 +1,5 @@
 @import '../helpers/all';
 
-/// Creates a text field
-///
-/// @param {Number} $fl-height - The height of the text field with a floating label.
-/// @param {Number} $nl-height - The height of the text field without a floating label (single line).
-/// @param {String} $font-size - The font size for the text field.
-/// @param {String} $padding - The padding to be used on the text field and the label.
-/// @param {String} $divider-bottom - The distance the divider is from the bottom of the text field container.
-/// @param {String} $icon-font-size - The font size for the single line text field with an icon
-/// @param {String} $icon-divider-left - The left position for the text field divider when there is an icon.
-@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) {
-  .md-text-field-container {
-    .md-icon {
-      font-size: $icon-font-size;
-      padding: ($nl-height - $icon-font-size) / 2;
-      padding-right: $nl-height - $icon-font-size;
-
-      ~ .md-text-field-divider {
-        $left: $icon-font-size + (($nl-height - $icon-font-size) / 2) + ($nl-height - $icon-font-size);
-        left: $left;
-        width: calc(100% - #{$left});
-      }
-    }
-  }
-
-  .md-text-field-container.single-line {
-    .md-text-field-label-container {
-      height: $fl-height;
-    }
-
-    .md-text-field-label.active {
-      bottom: $fl-height - $font-size - $padding;
-    }
-
-    .md-text-field-divider {
-      bottom: $divider-bottom;
-    }
-
-    .md-text-field,
-    .md-text-field-label {
-      bottom: $padding;
-    }
-
-
-    &.no-label {
-      .md-text-field-label-container {
-        height: $nl-height;
-      }
-
-      .md-text-field-label.active {
-        bottom: $nl-height - $font-size - $padding;
-      }
-    }
-  }
-
-  .md-text-field,
-  .md-text-field-label {
-    font-size: $font-size;
-  }
-
-  .md-text-field-container.multi-line {
-    padding-top: $padding;
-
-    .md-text-field-label {
-      display: block;
-      padding-bottom: $padding / 2;
-    }
-
-    .md-text-field {
-      transition: height $md-transition-time;
-    }
-
-    .md-text-field-divider {
-      margin-bottom: $padding / 2 - 1;
-      margin-top: $padding / 2 - 1;
-    }
-  }
-}
-
 // scss-lint:disable SpaceAfterComma
 @media only screen and (min-width: 0px) {
   @include make-text-field(
@@ -128,9 +50,17 @@
     font-size: $md-text-field-active-font-size;
   }
 
-  .md-icon.active {
-    color: get-md-color($md-primary-color);
+  .md-icon {
+    color: inherit;
     transition: color $md-transition-time;
+
+    &.active {
+      color: get-md-color($md-primary-color);
+    }
+
+    &.hint {
+      color: $md-secondary-text-color;
+    }
   }
 }
 
