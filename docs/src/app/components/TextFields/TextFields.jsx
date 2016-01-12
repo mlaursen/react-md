@@ -5,6 +5,8 @@ import { TextField } from 'react-md';
 import DocPage from 'react-md-documentation';
 import TextFieldExamples from './TextFieldExamples';
 import TextFieldExamplesRaw from '!!raw!./TextFieldExamples';
+import PhoneContactExample from '../../PhoneContactExample';
+import PhoneContactExampleRaw from '!!raw!../../PhoneContactExample/PhoneContactExample';
 import './_text-field.scss';
 
 export default class TextFields extends Component {
@@ -103,6 +105,9 @@ export default class TextFields extends Component {
         }]}
         allRemaining={false}
         examples={[{
+          markdown: PhoneContactExampleRaw,
+          children: <PhoneContactExample />,
+        }, {
           markdown: TextFieldExamplesRaw,
           children: <TextFieldExamples />,
         }]}

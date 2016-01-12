@@ -8,7 +8,6 @@ import { isPropEnabled, isObject } from '../utils/PropUtils';
 import { List, ListItem } from '../';
 import SelectFieldButton from './SelectFieldButton';
 
-const TILE_HEIGHT = 40;
 const LIST_MARGIN = 8;
 
 export default class SelectField extends Component {
@@ -18,7 +17,7 @@ export default class SelectField extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = { isOpen: false, focused: false };
     if(typeof props.value === 'undefined') {
-      this.state.selected = props.menuItems[0];
+      this.state.selected = props.defaultValue;
     }
   }
 
@@ -42,6 +41,8 @@ export default class SelectField extends Component {
     menuBelow: PropTypes.bool,
     expandRight: PropTypes.bool,
     itemsVisible: PropTypes.number,
+    textFieldPositioned: PropTypes.bool,
+    defaultValue: PropTypes.string,
   };
 
   static defaultProps = {
@@ -49,6 +50,7 @@ export default class SelectField extends Component {
     itemValue: 'value',
     lineDirection: 'left',
     itemsVisible: 6,
+    defaultValue: '',
   };
 
   componentWillUpdate(nextProps) {
@@ -77,24 +79,24 @@ export default class SelectField extends Component {
       if(item.classList.contains('active')) {
         index = i;
       }
-
     });
 
+    const tileHeight = items[0].offsetHeight - LIST_MARGIN;
     const selected = items[index];
-    const maxHeight = menu.offsetHeight - TILE_HEIGHT - LIST_MARGIN;
+    const maxHeight = menu.offsetHeight - tileHeight - LIST_MARGIN;
     const { itemsVisible } = this.props;
 
-    const scrollTop = selected.offsetTop - TILE_HEIGHT - LIST_MARGIN;
+    const scrollTop = selected.offsetTop - tileHeight - LIST_MARGIN;
     const scrollDiff = scrollTop - maxScrollDistance;
     const x = isPropEnabled(this.props, 'expandRight') ? '0px' : '100%';
 
     let top = Math.min(selected.offsetTop - LIST_MARGIN + 12, maxHeight);
-    if(index === items.length - 2) {
-      top = maxHeight - TILE_HEIGHT + LIST_MARGIN / 2;
+    if(items.length > 3 && index === items.length - 2) {
+      top = maxHeight - tileHeight + LIST_MARGIN / 2;
     } else if(index > 0 && scrollDiff <= 0) {
-      top = TILE_HEIGHT + LIST_MARGIN + LIST_MARGIN / 2;
+      top = tileHeight + LIST_MARGIN + LIST_MARGIN / 2;
     } else if(index > 0 && items.length > itemsVisible && index < items.length - 2) {
-      top = top - (items.length - 1 - index) * TILE_HEIGHT + LIST_MARGIN / 2;
+      top = top - (items.length - 1 - index) * tileHeight + LIST_MARGIN / 2;
     }
 
     if(scrollTop > 0) {
@@ -103,7 +105,7 @@ export default class SelectField extends Component {
 
     menu.style.top = `-${top}px`;
     // Expands/shrinks menu to center of button
-    menu.style.transformOrigin = `${x} ${top + TILE_HEIGHT / 2}px`;
+    menu.style.transformOrigin = `${x} ${top + tileHeight / 2}px`;
   }
 
   getSelected = (key) => {
@@ -168,7 +170,7 @@ export default class SelectField extends Component {
   };
 
   render() {
-    const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, ...props } = this.props;
+    const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, placeholder, ...props } = this.props;
     const { focused, isOpen, selected } = this.state;
 
     const isBelow = isPropEnabled(props, 'below');
@@ -177,6 +179,8 @@ export default class SelectField extends Component {
     const fieldClassName= classnames('md-select-field', {
       'focus': focused || isOpen,
       'segmented': isPropEnabled(props, 'segmented'),
+      'text-field-positioned': isPropEnabled(props, 'textFieldPositioned'),
+      'placeholder': displayLabel === '' && placeholder,
     });
 
     return (
@@ -184,7 +188,7 @@ export default class SelectField extends Component {
         <SelectFieldButton
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
-          label={displayLabel}
+          label={displayLabel || placeholder}
           value={displayValue}
           onClick={this.toggleMenu}
           className={fieldClassName}

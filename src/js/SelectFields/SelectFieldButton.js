@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import FontIcon from '../FontIcon';
 import Ink from '../Ink';
@@ -41,10 +42,16 @@ export default class SelectFieldButton extends Component {
           readOnly
           value={value}
         />
-        <div className="icon-separator">
-          <span className="text">{label}</span>
+        <CSSTransitionGroup
+          component="div"
+          transitionName="drop"
+          transitionEnterTimeout={450}
+          transitionLeave={false}
+          className="icon-separator"
+          >
+          <span key={label} className="text">{label}</span>
           <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
-        </div>
+        </CSSTransitionGroup>
         <hr className="md-divider" />
         <Ink key="ink" />
       </button>

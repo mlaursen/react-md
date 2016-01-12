@@ -33,6 +33,7 @@ export default function SelectFieldExamples() {
             />
             <SelectField
               dense
+              defaultValue={states[0].abbreviation}
               menuItems={states}
               itemLabel="abbreviation"
               itemValue="abbreviation"
@@ -48,6 +49,7 @@ export default function SelectFieldExamples() {
           <TextField
             label="Email"
             floatingLabel={false}
+            type="email"
             icon={<FontIcon>email</FontIcon>}
           />
         </CardText>

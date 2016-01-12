@@ -25,3 +25,20 @@
     max-width: 44px;
   }
 }
+
+.person-placeholder {
+  $pp-height: 180px;
+  $person-height: $md-font-size-base * 16.5px;
+  background: rgba($black-base, .08);
+  height: $pp-height;
+
+  .person {
+    bottom: -38px;
+    color: rgba($black-base, .10);
+    font-size: $person-height;
+    left: 50%;
+    padding: 0;
+    position: absolute;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
