@@ -1,8 +1,20 @@
 .md-divider {
-  background: rgba($black-base, .12);
+  background: $md-divider-color;
   border: 0;
   content: '';
   display: block;
-  height: 1px;
   margin: 0;
+
+  &:not(.vertical) {
+    height: 1px;
+  }
+
+  &.vertical {
+    height: 100%;
+    width: 1px;
+
+    &.inset {
+      height: $md-height - 8px;
+    }
+  }
 }

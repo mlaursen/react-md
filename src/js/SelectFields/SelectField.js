@@ -32,17 +32,20 @@ export default class SelectField extends Component {
     itemLabel: PropTypes.string,
     itemValue: PropTypes.string,
     placeholder: PropTypes.string,
-    value: PropTypes.string,
-    error: PropTypes.bool,
-    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
-    editable: PropTypes.bool,
-    segmented: PropTypes.bool,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     onChange: PropTypes.func,
-    menuBelow: PropTypes.bool,
     expandRight: PropTypes.bool,
     itemsVisible: PropTypes.number,
     textFieldPositioned: PropTypes.bool,
     defaultValue: PropTypes.string,
+    menuBelow: PropTypes.bool,
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+    editable: PropTypes.bool,
+    segmented: PropTypes.bool,
+    error: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -194,6 +197,7 @@ export default class SelectField extends Component {
           className={fieldClassName}
           name={name}
           isOpen={isOpen}
+          isBelow={isBelow}
         />
         <CSSTransitionGroup
           transitionName="menu"

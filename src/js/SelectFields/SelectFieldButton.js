@@ -26,10 +26,11 @@ export default class SelectFieldButton extends Component {
     ]).isRequired,
     name: PropTypes.string,
     isOpen: PropTypes.bool.isRequired,
+    isBelow: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { label, name, value, isOpen, ...props } = this.props;
+    const { label, name, value, isOpen, isBelow, ...props } = this.props;
     return (
       <button
         type="button"
@@ -52,7 +53,7 @@ export default class SelectFieldButton extends Component {
           <span key={label} className="text">{label}</span>
           <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
         </CSSTransitionGroup>
-        <hr className="md-divider" />
+        {!isBelow && <hr className="md-divider" />}
         <Ink key="ink" />
       </button>
     );

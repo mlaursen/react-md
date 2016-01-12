@@ -42,3 +42,14 @@
     transform: translate3d(-50%, 0, 0);
   }
 }
+
+.documentation-select-field {
+  .fake-text-editor {
+    align-items: center;
+    display: flex;
+  }
+
+  .font-names {
+    width: 185px;
+  }
+}
