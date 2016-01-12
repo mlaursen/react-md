@@ -119,16 +119,26 @@
   }
 }
 
+.menu-below {
+  &.menu-enter,
+  &.menu-leave.menu-leave-active {
+    transform: scaleY(0);
+  }
 
-.menu-below.menu-enter,
-.menu-below.menu-leave.menu-leave-active {
-  transform: scaleY(0);
+  &.menu-enter.menu-enter-active,
+  &.menu-leave {
+    transform: scaleY(1);
+  }
+
+  .drop-enter {
+    transform: translate3d(0, -6px, 0);
+
+    &.drop-enter-active {
+      transition-duration: $md-transition-time;
+    }
+  }
 }
 
-.menu-below.menu-enter.menu-enter-active,
-.menu-below.menu-leave {
-  transform: scaleY(1);
-}
 
 .menu-enter {
   transform: scale(0);

@@ -182,7 +182,7 @@
   } @else if $font-weight == 700 {
     @return '-Bold';
   } @else {
-    @warn 'The given font weight '#{$font-weight}' is not in the lookup';
+    @warn 'The given font weight "#{$font-weight}" is not in the lookup';
   }
 }
 

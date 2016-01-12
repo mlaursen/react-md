@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import classnames from 'classnames';
 
 import FontIcon from '../FontIcon';
 import Ink from '../Ink';
@@ -48,7 +49,7 @@ export default class SelectFieldButton extends Component {
           transitionName="drop"
           transitionEnterTimeout={450}
           transitionLeave={false}
-          className="icon-separator"
+          className={classnames('icon-separator', { 'menu-below': isBelow })}
           >
           <span key={label} className="text">{label}</span>
           <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
