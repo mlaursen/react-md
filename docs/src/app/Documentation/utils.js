@@ -1,30 +1,8 @@
-import React from 'react';
+export const splitOnCaps = s => s.split(/(?=[A-Z1-9])/);
 
-export const NEWLINE = '{newline}';
-export const PRE_START = '{{';
-export const PRE_END = '}}';
-
-function convertPre(text) {
-  let converted = [];
-  let start = text.indexOf(PRE_START);
-  let end = text.indexOf(PRE_END);
-  while(start !== -1 && end !== -1) {
-    converted.push(<span key={`text-${start}`}>{text.substring(0, start)}</span>);
-    converted.push(<span className="pre" key={`span-${start}`}>{text.substring(start + PRE_START.length, end)}</span>);
-    text = text.substring(end + PRE_END.length, text.length);
-    start = text.indexOf(PRE_START);
-    end = text.indexOf(PRE_END);
-  }
-  if(text.length) {
-    converted.push(<span key="remaining">{text}</span>);
-  }
-  return converted;
+function getString(s) {
+  return !(s instanceof Array) ? splitOnCaps(s) : s;
 }
 
-export function convertMarkdown(text) {
-  return text.split(NEWLINE).map((paragraph, i) => (
-    <p className="props-desc" key={`desc-${i}`}>
-      {convertPre(paragraph)}
-    </p>
-  ));
-}
+export const toDashedName = (s) => getString(s).map(s => s.toLowerCase()).join('-');
+export const toTitle = (s) => getString(s).join(' ');

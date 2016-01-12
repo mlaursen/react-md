@@ -37,3 +37,35 @@ main {
     color: $black-base;
   }
 }
+
+.doc-toc {
+  .md-list-subheader + .md-list {
+    margin-top: 0;
+    padding-left: 24px;
+  }
+
+  .md-list-tile:hover {
+    background: transparent;
+    cursor: initial;
+  }
+
+  .md-tile-primary-text:not(.nested-header) {
+    color: #3f51b5;
+    cursor: pointer;
+  }
+}
+
+.toc.md-list {
+  border-left: 6px solid #{get-md-color($md-primary-color)};
+  margin-top: 3em;
+
+  .md-list-subheader:first-child {
+    height: $md-height - 16px - 8px;
+    padding-top: 2px;
+  }
+
+  .md-list-tile:last-child {
+    height: $md-height - 16px;
+    padding-bottom: 2px;
+  }
+}

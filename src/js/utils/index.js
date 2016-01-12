@@ -1,7 +1,15 @@
 export function smoothScroll(el, duration, options = {}) {
   let { callback, toEl, stepAmt } = options;
   if(!stepAmt) { stepAmt = 15; }
-  const scrollHeight = toEl ? toEl.getBoundingClientRect().top : (el.scrollY || el.scrollTop);
+
+  if(toEl) {
+    // TODO: Implement smooth scroll to element
+    const toPos = toEl.getBoundingClientRect().top + document.body.scrollTop;
+    el.scrollTo(el.scrollX, toPos - 65 - 15); // 65 is app bar height
+    return;
+  }
+
+  const scrollHeight = el.scrollY || el.scrollTop;
   const scrollStep = Math.PI / (duration / stepAmt);
   const cosParam = scrollHeight / 2;
 

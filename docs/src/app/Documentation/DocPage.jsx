@@ -5,8 +5,10 @@ import classnames from 'classnames';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
+import TableOfContents from './TableOfContents';
 import './_documentation.scss';
 import './_markdown.scss';
+import { toDashedName, toTitle } from './utils';
 
 export default class DocPage extends Component {
   constructor(props) {
@@ -55,22 +57,25 @@ export default class DocPage extends Component {
 
   render() {
     const { sectionName, examples, children, components, allRemaining } = this.props;
-    let docSectionName = (sectionName || components[0].component.name).split(/(?=[A-Z])/);
-    const cssSectionName = docSectionName.map(s => s.toLowerCase()).join('-');
-    const title = docSectionName.join(' ');
-    docSectionName = docSectionName.join();
+    const docSectionName = (sectionName || components[0].component.name);
+    const cssSectionName = toDashedName(docSectionName);
+    const title = toTitle(docSectionName);
 
     return (
       <div className={`documentation documentation-${cssSectionName}`}>
         <header className="component-info">
           <h1 className="md-display-2">{title}</h1>
-          <hr />
+          <hr className="md-divider" />
           {typeof children === 'string' ? <p>{children}</p> : children}
+          {(examples.length > 1 || components.length > 1) &&
+            <TableOfContents components={components.map(({ component }) => component.displayName || component.name)} examples={examples.length} />
+          }
         </header>
         {examples.map(({ className, ...props }, i) => (
           <Example
             key={`example-${i}`}
             {...props}
+            id={`#examples-example-${i + 1}`}
             className={classnames(className, { [`example-${i + 1}`]: i > 0 })}
             marked={marked}
           />

@@ -5,6 +5,7 @@ import { Card, CardTitle, CardText, IconButton } from 'react-md';
 
 import './_prop-types.scss';
 import { githubHref } from '../utils';
+import { toDashedName, toTitle } from './utils';
 
 export default class ComponentProperties extends Component {
   constructor(props) {
@@ -98,8 +99,8 @@ export default class ComponentProperties extends Component {
       );
     });
     return (
-      <Card className="full-width prop-types">
-        <CardTitle title={name.split(/(?=[A-Z])/).join(' ')}>
+      <Card className="full-width prop-types" id={`#prop-types-${toDashedName(name)}`}>
+        <CardTitle title={toTitle(name)}>
           <IconButton
             href={`${githubHref}/tree/master/src/js/${sectionName}/${name}.js`}
             iconClassName="fa fa-github"
