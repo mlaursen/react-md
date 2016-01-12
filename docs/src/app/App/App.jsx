@@ -9,7 +9,8 @@ import Avatar from 'react-md/Avatar';
 import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
-import { List, ListItem, ListDivider, ListSubheader } from 'react-md/Lists';
+import { List, ListItem, ListSubheader } from 'react-md/Lists';
+import Divider from 'react-md/Divider';
 import { smoothScroll } from 'react-md/utils';
 
 import './_app.scss';
@@ -93,7 +94,7 @@ export default class App extends Component {
               key="sassdoc"
               leftAvatar={<Avatar src="/imgs/sass-icon.png" alt="SASS Icon" />}
             />
-            <ListDivider />
+            <Divider />
             <ListSubheader primaryText="Components" />
           </List>
           <List className="scrollable">

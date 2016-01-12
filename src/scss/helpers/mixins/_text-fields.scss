@@ -62,7 +62,6 @@
   }
 
   .md-text-field-container.multi-line {
-    padding-top: $padding;
 
     .md-text-field-label {
       display: block;
@@ -76,6 +75,12 @@
     .md-text-field-divider {
       margin-bottom: $padding / 2 - 1;
       margin-top: $padding / 2 - 1;
+    }
+  }
+
+  .md-text-field-container.full-width {
+    .md-text-field {
+      padding: $padding;
     }
   }
 }

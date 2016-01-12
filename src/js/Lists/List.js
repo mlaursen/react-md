@@ -34,7 +34,7 @@ export default class List extends Component {
     }, React.Children.map(allChildren, (child, i) => {
       if(i + 1 < children.length) {
         const nextChild = children[i + 1];
-        if(nextChild.type && nextChild.type.name === 'ListDivider') {
+        if(nextChild.type && nextChild.type.name === 'Divider') {
           return React.cloneElement(child, { className: classnames(child.props.className, 'extra-mb') });
         }
       }

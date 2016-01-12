@@ -42,6 +42,7 @@ export default class TextField extends Component {
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
     onChange: PropTypes.func,
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -116,6 +117,7 @@ export default class TextField extends Component {
     const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
     const isTextArea = typeof rows === 'number';
+    const isFullWidth = isPropEnabled(props, 'fullWidth');
 
     let style = {};
     if(rows && maxRows) {
@@ -131,9 +133,10 @@ export default class TextField extends Component {
     return (
       <div
         className={classnames('md-text-field-container', className, {
-          'single-line': !isTextArea,
+          'single-line': !isFullWidth && !isTextArea,
           'no-label': !floatingLabel,
           'multi-line': isTextArea,
+          'full-width': isFullWidth,
         })}>
         <label className="md-text-field-label-container">
           {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError, 'hint': !active && !this.getValueLink().value })})}
@@ -171,7 +174,9 @@ export default class TextField extends Component {
               placeholder={!floatingLabel ? label : placeholder}
             />
           }
-          <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
+          {!isFullWidth &&
+            <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
+          }
         </label>
         {isInfoDisplayed &&
           <TextFieldInfo

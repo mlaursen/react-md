@@ -3,7 +3,8 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { List, ListItem, ListDivider, ListSubheader } from '../Lists';
+import { List, ListItem, ListSubheader } from '../Lists';
+import Divider from '../Divider';
 import { isPropEnabled } from '../utils/PropUtils';
 
 export default class Sidebar extends Component {
@@ -57,7 +58,7 @@ export default class Sidebar extends Component {
           <List>
             {items.map(item => {
               if(item.divider) {
-                return <ListDivider {...item} />;
+                return <Divider {...item} />;
               } else if(item.subheader) {
                 return <ListSubheader {...item} />;
               } else if(item.textField) {

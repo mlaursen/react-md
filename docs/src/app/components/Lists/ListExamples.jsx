@@ -1,5 +1,6 @@
 import React from 'react';
-import { List, ListItem, ListSubheader, ListDivider } from 'react-md/Lists';
+import { List, ListItem, ListSubheader } from 'react-md/Lists';
+import Divider from 'react-md/Divider';
 import FontIcon from 'react-md/FontIcon';
 import Avatar from 'react-md/Avatar';
 import Paper from 'react-md/Paper';
@@ -20,7 +21,7 @@ export default function ListExamples() {
           <ListItem leftIcon={<FontIcon>inbox</FontIcon>} primaryText="Inbox" />
           <ListItem leftIcon={<FontIcon>access_time</FontIcon>} primaryText="Snoozed" />
           <ListItem leftIcon={<FontIcon>done</FontIcon>} primaryText="Done" />
-          <ListDivider />
+          <Divider />
           <ListItem leftIcon={<FontIcon>drafts</FontIcon>} primaryText="Drafts" />
           <ListItem leftIcon={<FontIcon>send</FontIcon>} primaryText="Sent" />
           <ListItem leftIcon={<FontIcon>touch_app</FontIcon>} primaryText="Reminders" />
@@ -45,7 +46,7 @@ export default function ListExamples() {
             primaryText="Work"
             secondaryText="Jan 28, 2014"
           />
-          <ListDivider inset />
+          <Divider inset />
           <ListSubheader primaryText="Files" />
         </List>
       </Paper>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { List, ListItem, ListSubheader, ListDivider } from 'react-md/Lists';
+import { List, ListItem, ListSubheader } from 'react-md/Lists';
 
 import DocPage from 'react-md-documentation';
 import ListExamples from './ListExamples';
@@ -29,7 +29,7 @@ export default class Lists extends Component {
           }, {
             name: 'children',
             pt: 'arrayOf(node)',
-            desc: `A list of ListItem, ListDivider, and ListSubheader to display in the list
+            desc: `A list of ListItem, Divider, and ListSubheader to display in the list
             component. This component adds additional css classes to style your list
             according to the material design specs for additional margin and other things.`,
           }, {
@@ -75,7 +75,7 @@ export default class Lists extends Component {
             of Link.`,
           }],
         }, {
-          component: ListDivider,
+          component: ListSubheader,
           details: [{
             name: 'primaryText',
             pt: 's',
@@ -84,13 +84,6 @@ export default class Lists extends Component {
             name: 'primary',
             pt: 'ba',
             desc: 'Boolean if the subheader should be styled with the primary color.',
-          }],
-        }, {
-          component: ListSubheader,
-          details: [{
-            name: 'inset',
-            pt: 'ba',
-            desc: 'Boolean if the divider is inset instead of full width',
           }],
         }]}
         examples={[{
