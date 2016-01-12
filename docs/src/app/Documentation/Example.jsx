@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
 import Card, { CardText, CardTitle, CardActions } from 'react-md/Cards';
 import { FlatButton } from 'react-md/Buttons';
@@ -25,6 +26,7 @@ export default class Example extends Component {
     children: PropTypes.node.isRequired,
     marked: PropTypes.func.isRequired,
     name: PropTypes.string,
+    className: PropTypes.string,
   };
 
   toggleExpanded = () => {
@@ -34,7 +36,7 @@ export default class Example extends Component {
   };
 
   render() {
-    const { children, markdown, marked, name } = this.props;
+    const { children, markdown, marked, name, className, ...props } = this.props;
     const jsMarkdown = `\`\`\`js
 ${markdown}
     \`\`\``;
@@ -48,7 +50,7 @@ ${markdown}
       );
     }
     return (
-      <Card className="example full-width">
+      <Card className={classnames('example', 'full-width', className)} {...props}>
         <CardTitle title={'Examples' + (name ? ' - ' + name : '')} />
         <CardText>{children}</CardText>
         <ExampleCode ref="code" marked={marked} markdown={jsMarkdown} {...this.state} />

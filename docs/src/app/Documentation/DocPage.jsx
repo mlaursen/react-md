@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import marked from 'marked';
+import classnames from 'classnames';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
@@ -66,7 +67,14 @@ export default class DocPage extends Component {
           <hr />
           {typeof children === 'string' ? <p>{children}</p> : children}
         </header>
-        {examples.map((example, i) => <Example key={`example-${i}`} {...example} marked={marked} />)}
+        {examples.map(({ className, ...props }, i) => (
+          <Example
+            key={`example-${i}`}
+            {...props}
+            className={classnames(className, { [`example-${i + 1}`]: i > 0 })}
+            marked={marked}
+          />
+        ))}
         {components.map((component, i) => (
           <ComponentProperties
             key={`properties-${i}`}
