@@ -7,7 +7,7 @@ import AppBar from 'react-md/AppBar';
 
 import './_fake-phone.scss';
 
-export default function FakePhone({ children, primary = false, secondary = false, className, onMenuClick, onSearchClick, iconLeft = 'menu', iconRight = 'search', title, ...props }) {
+export default function FakePhone({ children, primary = false, secondary = false, className, onMenuClick, onSearchClick, iconLeft = 'menu', iconRight = 'search', title, withTabs = false, ...props }) {
   return (
     <Paper className={classnames('fake-phone', className)} {...props} zDepth={3}>
       <AppBar
@@ -16,6 +16,7 @@ export default function FakePhone({ children, primary = false, secondary = false
         leftNode={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
         rightNode={<IconButton onClick={onSearchClick}>{iconRight}</IconButton>}
         title={title}
+        withTabs={withTabs}
       />
       <div className="phone-content">
         {children}

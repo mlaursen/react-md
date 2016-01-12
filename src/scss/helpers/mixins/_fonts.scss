@@ -1,0 +1,164 @@
+@function get-google-font-url($family: $md-font-family, $weights...) {
+  $url: 'https://fonts.googleapis.com/css?family=#{$family}:';
+  @if length($weights) == 0 {
+    $weights: $md-font-weights;
+  }
+
+  @for $i from 1 through length($weights) {
+    $weight: nth($weights, $i);
+    $url: $url + $weight;
+
+    @if $i < length($weights) {
+      $url: $url + ',';
+    }
+  }
+
+  @return $url;
+}
+
+@function get-google-font-icons() {
+  @return 'https://fonts.googleapis.com/icon?family=Material+Icons';
+}
+
+/// Converts a font weight into the google font suffix
+/// @param {Number} $font-weight - The font weight to convert
+/// @return {String} the font suffix
+@function get-font-suffix($font-weight) {
+  @if $font-weight == 300 {
+    @return '-Light';
+  } @else if $font-weight == 400 {
+    @return '-Regular';
+  } @else if $font-weight == 500 {
+    @return '-Medium';
+  } @else if $font-weight == 700 {
+    @return '-Bold';
+  } @else {
+    @warn 'The given font weight "#{$font-weight}" is not in the lookup';
+  }
+}
+
+/// Creates a font face for a locally hosted google font
+///
+/// @example scss - Basic Usage Sass
+///   @include host-google-font(Roboto, 400);
+///   @include host-google-font(Roboto, 500, my-special-fonts);
+///
+/// @example scss - Basic Usage CSS Output
+///   @font-face {
+///     font-family: 'Roboto';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: local('Roboto'),
+///          local('Roboto-Regular'),
+///          url(/fonts/roboto/Roboto-Regular.ttf) format('truetype');
+///   }
+///
+///   @font-face {
+///     font-family: 'Roboto';
+///     font-style: normal;
+///     font-weight: 500;
+///     src: local('Roboto'),
+///          local('Roboto-Medium'),
+///          url(my-sepcial-fonts/Roboto-Medium.ttf) format('truetype');
+///   }
+///
+/// @param {String} $font-name [Roboto] - The font name to create a font face for
+/// @param {Number} $font-weight [400] - The font weight of the google font
+/// @param {String} $fonts-url - The url to your fonts.
+@mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url: null) {
+  $full-font-name: str-replace($font-name, ' ') + get-font-suffix($font-weight);
+
+  $fonts-url: if($fonts-url == null, '/fonts/' + to-lower-case(str-replace($font-name, ' ', '-')), $fonts-url);
+  $fonts-url: if(char-at($fonts-url) != '/', $fonts-url + '/', $fonts-url);
+
+  @font-face {
+    font-family: quote($font-name);
+    font-style: normal;
+    font-weight: $font-weight;
+
+    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}), url($fonts-url + $full-font-name + '.ttf') format('truetype');
+  }
+}
+
+/// Hosts the material icon font library locally by declaring the font face
+/// and the .material-icons css class.
+///
+/// @example scss - Basic Usage Sass
+///   @include host-material-icons('/fonts/material-icons');
+///
+/// @example scss - Basic Usage CSS Output
+///   @font-face {
+///     font-family: 'Material Icons';
+///     font-style: normal;
+///     font-weight: 400;
+///     src: url(/fonts/material-icons/MaterialIcons-Regular.eot');
+///     src: local('Material Icons'),
+///          local('MaterialIcons-Regular'),
+///          url(/fonts/material-icons/MaterialIcons-Regular.woff2') format('woff2'),
+///          url(/fonts/material-icons/MaterialIcons-Regular.woff') format('woff'),
+///          url(/fonts/material-icons/MaterialIcons-Regular.ttf') format('truetype');
+///   }
+///
+///   .material-icons {
+///     direction: ltr;
+///     display: inline-block;
+///     font-family: 'Material Icons';
+///     // Support for IE.
+///     font-feature-settings: 'liga';
+///     font-size: $md-font-icon-size;
+///     // Support for Firefox.
+///     -moz-osx-font-smoothing: grayscale;
+///     // Support for all WebKit browsers.
+///     -webkit-font-smoothing: antialiased;
+///     font-style: normal;
+///     font-weight: normal;
+///     height: 1em;
+///     letter-spacing: normal;
+///     line-height: 1;
+///     // Support for Safari and Chrome.
+///     text-rendering: optimizeLegibility;
+///     text-transform: none;
+///     white-space: nowrap;
+///     width: 1em;
+///     word-wrap: normal;
+/// 	}
+///
+/// @param {String} $font-url ['/fonts/material-icons'] - The path to the material icons fonts
+@mixin host-material-icons($font-url: '/fonts/material-icons') {
+  $icon-link: $font-url + '/MaterialIcons-Regular';
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url($icon-link + '.eot');
+    // scss-lint:disable SpaceAfterComma
+    src: local('Material Icons'),
+         local('MaterialIcons-Regular'),
+         url($icon-link + '.woff2') format('woff2'),
+         url($icon-link + '.woff') format('woff'),
+         url($icon-link + '.ttf') format('truetype');
+    // scss-lint:enable SpaceAfterComma
+  }
+
+  .material-icons {
+    direction: ltr;
+    display: inline-block;
+    font-family: 'Material Icons';
+    // Support for IE.
+    font-feature-settings: 'liga';
+    font-size: $md-font-icon-size;
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+	}
+}

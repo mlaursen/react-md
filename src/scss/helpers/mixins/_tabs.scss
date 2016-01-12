@@ -1,0 +1,18 @@
+@mixin make-md-tabs($name, $color, $slide-color, $slide-hue, $hue: 6, $slide-secondary: true) {
+  .md-tabs-#{$name} {
+    background: get-md-color($md-primary-color, $hue);
+
+    .slide {
+      background: get-md-color($slide-color, $slide-hue, $slide-secondary);
+    }
+
+    .md-tab.active .md-tab-label {
+      color: $white-base;
+    }
+
+    .md-tab-label {
+      color: rgba($white-base, .7);
+    }
+  }
+}
+

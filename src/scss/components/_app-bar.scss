@@ -15,6 +15,10 @@
   ~ *:not(.md-floating-btn):not(.fixed) {
     padding-top: $md-app-bar-height;
   }
+
+  &.with-tabs {
+    box-shadow: none;
+  }
 }
 
 .md-app-bar-title {

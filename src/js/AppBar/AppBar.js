@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import Toolbar from '../Toolbar';
+import { isPropEnabled } from '../utils/PropUtils';
 
 export default class AppBar extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class AppBar extends Component {
     leftNode: PropTypes.node,
     rightNode: PropTypes.node,
     children: PropTypes.node,
+    withTabs: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -29,7 +31,14 @@ export default class AppBar extends Component {
   render() {
     const { primary, secondary, title, className, leftNode, rightNode, children, ...props } = this.props;
     return (
-      <Toolbar primary={primary} secondary={secondary} className={classnames('md-app-bar', className)} {...props}>
+      <Toolbar
+        primary={primary}
+        secondary={secondary}
+        className={classnames('md-app-bar', className, {
+          'with-tabs': isPropEnabled(props, 'withTabs'),
+        })}
+        {...props}
+        >
         <div className="md-app-bar-left">
           {leftNode}
           {title && <h4 className="md-app-bar-title">{title}</h4>}

@@ -1,0 +1,50 @@
+/// Generates the css for keeping an aspect ratio for the target element.
+///
+/// @example scss - Basic Usage Sass
+///   .aspect-16-9 {
+///     @include aspect-ratio();
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .aspect-16-9 {
+///     position: relative;
+///   }
+///
+///   .aspect-16-9:before {
+///     content: '';
+///     display: block;
+///     padding-top: 56.25%;
+///     width: 100%;
+///   }
+///
+///   .aspect-16-9 > img {
+///     bottom: 0;
+///     left: 0;
+///     position: absolute;
+///     right: 0;
+///     top: 0;
+///     width: 100%;
+///   }
+///
+/// @param {String} $target [img] - The target to force the aspect ratio on
+/// @param {Number} $width [16] - The target width ratio
+/// @param {Number} $height [9] - The target height ratio
+@mixin aspect-ratio($target: img, $width: 16, $height: 9) {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: ($height / $width) * 100%;
+    width: 100%;
+  }
+
+  > #{$target} {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
