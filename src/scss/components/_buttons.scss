@@ -102,6 +102,25 @@
   }
 }
 
+.fab-container {
+  position: relative;
+
+  .md-btn-floating {
+    bottom: -$md-btn-fab-size / 2;
+    position: absolute;
+    right: $md-default-padding;
+
+    &.mini {
+      bottom: -$md-btn-fab-size-mini / 2;
+    }
+  }
+
+  + * {
+    // 4px as box shadow size-ish
+    margin-top: $md-btn-fab-size / 2 + 4px;
+  }
+}
+
 @include make-md-btn-default($md-text-color, $md-btn-hover-color, $md-btn-pressed-color, $md-btn-pressed-color, $md-border-color);
 @include make-md-btn(primary, $md-primary-color, 2, 4);
 @include make-md-btn(primary, $md-primary-color, 5);
