@@ -10,6 +10,7 @@ import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
 import { List, ListItem, ListDivider, ListSubheader } from 'react-md/Lists';
+import { smoothScroll } from 'react-md/utils';
 
 import './_app.scss';
 
@@ -49,12 +50,20 @@ export default class App extends Component {
     if(!isRoot && !isOpen && !App.isMobile()) {
       this.setState({ isOpen: true });
     } else if(isRoot && isOpen || App.isMobile()) {
-      this.setState({ isOpen: false });
+      setTimeout(() => {
+        this.setState({ isOpen: false });
+      }, 150);
     }
   }
 
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  handleItemClick = (link) => {
+    if(this.props.location.pathname !== `/${link}`) {
+      smoothScroll(window, 450);
+    }
   };
 
   render() {
@@ -96,6 +105,7 @@ export default class App extends Component {
                 className={classnames({ 'active': `/${link}` === pathname })}
                 key={link}
                 primaryText={label}
+                onClick={this.handleItemClick.bind(this, link)}
               />
               );
             })}
