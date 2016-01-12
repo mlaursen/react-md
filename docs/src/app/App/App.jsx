@@ -11,7 +11,6 @@ import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
 import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Divider';
-import { smoothScroll } from 'react-md/utils';
 
 import './_app.scss';
 
@@ -63,7 +62,7 @@ export default class App extends Component {
 
   handleItemClick = (link) => {
     if(this.props.location.pathname !== link) {
-      smoothScroll(window, Math.min(Math.round(window.scrollY / 15), 300));
+      window.scrollTo(0, 0);
     }
   };
 

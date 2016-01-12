@@ -27,7 +27,6 @@ export default class TableOfContents extends Component {
         <a
           className="md-tile-primary-text"
           onClick={() => {
-            console.log('clicked', id);
             smoothScroll(window, 150, {
               toEl: document.getElementById(id),
             });
