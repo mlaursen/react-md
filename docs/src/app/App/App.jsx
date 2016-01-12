@@ -19,7 +19,7 @@ const componentLinks = Object.keys(components).map(k => {
 
   const name = k.split(/(?=[A-Z])/);
   return {
-    link: name.map(n => n.toLowerCase()).join('-'),
+    link: 'components/' + name.map(n => n.toLowerCase()).join('-'),
     label: name.join(' '),
   };
 }).filter(l => !!l);
@@ -61,8 +61,8 @@ export default class App extends Component {
   };
 
   handleItemClick = (link) => {
-    if(this.props.location.pathname !== `/${link}`) {
-      smoothScroll(window, 450);
+    if(this.props.location.pathname !== link) {
+      smoothScroll(window, Math.min(Math.round(window.scrollY / 15), 300));
     }
   };
 

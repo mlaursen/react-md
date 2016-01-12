@@ -4,6 +4,7 @@ import * as components from './components';
 
 import App from './App';
 import Home from './Home';
+import { toDashedName } from './Documentation/utils';
 
 export default (
   <Route path="/" component={App}>
@@ -13,8 +14,8 @@ export default (
       if(!component.name) {
         return;
       }
-      const path = component.name.replace('Doc', '').split(/(?=[A-Z])/).map(c => c.toLowerCase()).join('-');
-      return <Route key={path} path={path} component={component} />;
+      const path = toDashedName(component.name);
+      return <Route key={path} path={`components/${path}`} component={component} />;
     })}
   </Route>
 );
