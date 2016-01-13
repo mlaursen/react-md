@@ -5,7 +5,6 @@ import classnames from 'classnames';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
-import TableOfContents from './TableOfContents';
 import './_documentation.scss';
 import './_markdown.scss';
 import { toDashedName, toTitle } from './utils';
@@ -67,9 +66,6 @@ export default class DocPage extends Component {
           <h1 className="md-display-2">{title}</h1>
           <hr className="md-divider" />
           {typeof children === 'string' ? <p>{children}</p> : children}
-          {(examples.length > 1 || components.length > 1) &&
-            <TableOfContents components={components.map(({ component }) => component.displayName || component.name)} examples={examples.length} />
-          }
         </header>
         {examples.map(({ className, ...props }, i) => (
           <Example
