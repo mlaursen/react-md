@@ -43,7 +43,7 @@ export default class Ink extends Component {
     const { container } = this.refs;
 
     let left = 0, top = 0;
-    let size;
+    let size, x, y;
     if(typeof pageX !== 'undefined' && typeof pageY !== 'undefined') {
       const rect = container.getBoundingClientRect();
       const offset = {
@@ -51,23 +51,25 @@ export default class Ink extends Component {
         top: rect.top + document.body.scrollTop,
       };
 
-      const x = pageX - offset.left;
-      const y = pageY - offset.top;
-      const { offsetWidth, offsetHeight } = container;
-      const r = Math.max(
-        this.calcR(x, y),
-        this.calcR(offsetWidth - x, y),
-        this.calcR(offsetWidth - x, offsetHeight - y),
-        this.calcR(x, offsetHeight - y)
-      );
-
-      left = x - r;
-      top = y - r;
-      size = r * 2;
+      x = pageX - offset.left;
+      y = pageY - offset.top;
     } else {
       const node = container.parentNode;
-      size = Math.max(node.offsetWidth, node.offsetHeight);
+      x = node.offsetWidth / 2;
+      y = node.offsetHeight / 2;
     }
+
+    const { offsetWidth, offsetHeight } = container;
+    const r = Math.max(
+      this.calcR(x, y),
+      this.calcR(offsetWidth - x, y),
+      this.calcR(offsetWidth - x, offsetHeight - y),
+      this.calcR(x, offsetHeight - y)
+    );
+
+    left = x - r;
+    top = y - r;
+    size = r * 2;
 
     let ink = document.createElement('span');
     ink.classList.add('md-ink');
