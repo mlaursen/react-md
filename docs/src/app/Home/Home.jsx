@@ -27,7 +27,7 @@ export default class Home extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.updateAppBar);
-    this.appBar.classList.remove('home-page');
+    this.appBar.classList.remove('no-shadow');
   }
 
   updateAppBar = () => {
