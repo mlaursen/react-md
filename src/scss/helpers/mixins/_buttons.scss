@@ -1,3 +1,31 @@
+@mixin md-theme-buttons($color) {
+  &.md-raised-btn,
+  &.md-floating-btn {
+    background: $color;
+    color: $white-base;
+
+    &:hover {
+      background: rgba($color, .93);
+    }
+
+    .md-ink {
+      background: rgba($white-base, .05);
+    }
+  }
+
+  &.md-flat-btn {
+    color: $color;
+
+    &:hover {
+      background: rgba($color, .15);
+    }
+
+    .md-ink {
+      background: rgba($color, .22);
+    }
+  }
+}
+
 /// Make a material design default button
 /// This will generate the style for a flat, raised, and fab button
 ///

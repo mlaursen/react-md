@@ -50,7 +50,7 @@ export default class IconButton extends Component {
       onClick: this.handleClick,
       onKeyUp: this.handleKeyUp,
       onBlur: () => this.setState({ focused: false }),
-      className: classnames(className, 'md-btn', 'md-btn-icon'),
+      className: classnames(className, 'md-btn', 'md-icon-btn'),
     };
 
     if(onClickInkMouseDown) {

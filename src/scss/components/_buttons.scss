@@ -3,6 +3,7 @@
 }
 
 .md-btn {
+  background: transparent;
   border: 0;
   font-size: 14px;
   font-weight: 500;
@@ -15,16 +16,20 @@
   transition-duration: $md-transition-time;
   transition-property: box-shadow, background, transform;
 
+  &:hover:not([disabled]) {
+    background: $md-btn-hover-color;
+  }
+
   &[disabled] {
     color: $md-disabled-color;
 
-    &:not(.md-btn-icon) {
+    &:not(.md-icon-btn) {
       background: $md-btn-hover-color;
     }
   }
 }
 
-.md-btn-icon {
+.md-icon-btn {
   background: transparent;
   border-radius: 50%;
   color: inherit;
@@ -35,32 +40,24 @@
   width: $md-font-icon-btn-size;
 }
 
-.md-btn-primary:not(.md-btn-flat),
-.md-btn-secondary:not(.md-btn-flat) {
-  color: $white-base;
-
-  .md-ink {
-    background: rgba($white-base, .1);
-  }
-}
-
-.md-btn-flat {
+.md-flat-btn {
   background: transparent;
   min-width: $md-btn-flat-min-width;
 }
 
-.md-btn-raised {
+
+.md-raised-btn {
   @include md-box-shadow(1);
 
   border-radius: 2px;
   min-width: $md-btn-raised-min-width;
 
   &:active {
-    @include md-box-shadow(2);
+    @include md-box-shadow(3);
   }
 }
 
-.md-btn-floating {
+.md-floating-btn {
   @include md-box-shadow(2);
 
   border-radius: 50%;
@@ -73,7 +70,7 @@
   }
 
   &:active {
-    @include md-box-shadow(3);
+    @include md-box-shadow(4);
   }
 
   &[disabled] {
@@ -92,6 +89,7 @@
     transition-duration: $md-transition-time * 2;
     transition-property: box-shadow, background, transform, bottom;
 
+    // scss-lint:disable NestingDepth
     &.snackbar-adjust {
       bottom: $md-default-padding + $md-snackbar-height;
     }
@@ -120,9 +118,3 @@
     margin-top: $md-btn-fab-size / 2 + 4px;
   }
 }
-
-@include make-md-btn-default($md-text-color, $md-btn-hover-color, $md-btn-pressed-color, $md-btn-pressed-color, $md-border-color);
-@include make-md-btn(primary, $md-primary-color, 2, 4);
-@include make-md-btn(primary, $md-primary-color, 5);
-@include make-md-btn(secondary, $md-secondary-color, 1, 2, 4);
-@include make-md-btn(secondary, $md-secondary-color, 1, null, 2);
