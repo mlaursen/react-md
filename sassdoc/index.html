@@ -1,0 +1,797 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>React-md-docs - v0.0.1</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="React-md-docs - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>Documentation for react-md</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">React-md-docs - 0.0.1</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="app-bar"><a href="#app-bar">app-bar</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="app-bar-variable"><a href="#app-bar-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-app-bar-z-index" data-type="variable"><a href="#app-bar-variable-md-app-bar-z-index">md-app-bar-z-index</a></li><li class="sidebar__item sassdoc__item" data-name="md-app-bar-title-font-size" data-type="variable"><a href="#app-bar-variable-md-app-bar-title-font-size">md-app-bar-title-font-size</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="avatars"><a href="#avatars">avatars</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="avatars-variable"><a href="#avatars-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-avatar-colors" data-type="variable"><a href="#avatars-variable-md-avatar-colors">md-avatar-colors</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="buttons"><a href="#buttons">buttons</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="buttons-variable"><a href="#buttons-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-btn-color-base" data-type="variable"><a href="#buttons-variable-md-btn-color-base">md-btn-color-base</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-hover-color" data-type="variable"><a href="#buttons-variable-md-btn-hover-color">md-btn-hover-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-pressed-color" data-type="variable"><a href="#buttons-variable-md-btn-pressed-color">md-btn-pressed-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-min-height" data-type="variable"><a href="#buttons-variable-md-btn-min-height">md-btn-min-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-height" data-type="variable"><a href="#buttons-variable-md-btn-height">md-btn-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-padding" data-type="variable"><a href="#buttons-variable-md-btn-padding">md-btn-padding</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-icon-btn-size" data-type="variable"><a href="#buttons-variable-md-font-icon-btn-size">md-font-icon-btn-size</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="buttons-mixin"><a href="#buttons-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="make-md-btn-default" data-type="mixin"><a href="#buttons-mixin-make-md-btn-default">make-md-btn-default</a></li><li class="sidebar__item sassdoc__item" data-name="make-md-btn" data-type="mixin"><a href="#buttons-mixin-make-md-btn">make-md-btn</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="buttons-fab"><a href="#buttons-fab">buttons-fab</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="buttons-fab-variable"><a href="#buttons-fab-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-btn-fab-size" data-type="variable"><a href="#buttons-fab-variable-md-btn-fab-size">md-btn-fab-size</a></li><li class="sidebar__item sassdoc__item" data-name="md-btn-fab-size-mini" data-type="variable"><a href="#buttons-fab-variable-md-btn-fab-size-mini">md-btn-fab-size-mini</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="buttons-flat"><a href="#buttons-flat">buttons-flat</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="buttons-flat-variable"><a href="#buttons-flat-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-btn-flat-min-width" data-type="variable"><a href="#buttons-flat-variable-md-btn-flat-min-width">md-btn-flat-min-width</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="buttons-raised"><a href="#buttons-raised">buttons-raised</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="buttons-raised-variable"><a href="#buttons-raised-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-btn-raised-min-width" data-type="variable"><a href="#buttons-raised-variable-md-btn-raised-min-width">md-btn-raised-min-width</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="cards"><a href="#cards">cards</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="cards-variable"><a href="#cards-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-card-padding" data-type="variable"><a href="#cards-variable-md-card-padding">md-card-padding</a></li><li class="sidebar__item sassdoc__item" data-name="md-card-padding-extra" data-type="variable"><a href="#cards-variable-md-card-padding-extra">md-card-padding-extra</a></li><li class="sidebar__item sassdoc__item" data-name="md-card-title-size" data-type="variable"><a href="#cards-variable-md-card-title-size">md-card-title-size</a></li><li class="sidebar__item sassdoc__item" data-name="md-card-title-size-small" data-type="variable"><a href="#cards-variable-md-card-title-size-small">md-card-title-size-small</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="color"><a href="#color">color</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-variable"><a href="#color-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-primary-color" data-type="variable"><a href="#color-variable-md-primary-color">md-primary-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-primary-color-hue-light" data-type="variable"><a href="#color-variable-md-primary-color-hue-light">md-primary-color-hue-light</a></li><li class="sidebar__item sassdoc__item" data-name="md-primary-color-hue-bold" data-type="variable"><a href="#color-variable-md-primary-color-hue-bold">md-primary-color-hue-bold</a></li><li class="sidebar__item sassdoc__item" data-name="md-secondary-color" data-type="variable"><a href="#color-variable-md-secondary-color">md-secondary-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-secondary-color-hue" data-type="variable"><a href="#color-variable-md-secondary-color-hue">md-secondary-color-hue</a></li><li class="sidebar__item sassdoc__item" data-name="black-base" data-type="variable"><a href="#color-variable-black-base">black-base</a></li><li class="sidebar__item sassdoc__item" data-name="white-base" data-type="variable"><a href="#color-variable-white-base">white-base</a></li><li class="sidebar__item sassdoc__item" data-name="md-text-color" data-type="variable"><a href="#color-variable-md-text-color">md-text-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-secondary-text-color" data-type="variable"><a href="#color-variable-md-secondary-text-color">md-secondary-text-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-disabled-color" data-type="variable"><a href="#color-variable-md-disabled-color">md-disabled-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-divider-color" data-type="variable"><a href="#color-variable-md-divider-color">md-divider-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-text-color-alt" data-type="variable"><a href="#color-variable-md-text-color-alt">md-text-color-alt</a></li><li class="sidebar__item sassdoc__item" data-name="md-secondary-text-color-alt" data-type="variable"><a href="#color-variable-md-secondary-text-color-alt">md-secondary-text-color-alt</a></li><li class="sidebar__item sassdoc__item" data-name="md-disabled-color-alt" data-type="variable"><a href="#color-variable-md-disabled-color-alt">md-disabled-color-alt</a></li><li class="sidebar__item sassdoc__item" data-name="md-divider-color-alt" data-type="variable"><a href="#color-variable-md-divider-color-alt">md-divider-color-alt</a></li><li class="sidebar__item sassdoc__item" data-name="md-status-bar-color" data-type="variable"><a href="#color-variable-md-status-bar-color">md-status-bar-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-app-bar-color" data-type="variable"><a href="#color-variable-md-app-bar-color">md-app-bar-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-background-color" data-type="variable"><a href="#color-variable-md-background-color">md-background-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-card-color" data-type="variable"><a href="#color-variable-md-card-color">md-card-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-border-color" data-type="variable"><a href="#color-variable-md-border-color">md-border-color</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="dropdown"><a href="#dropdown">dropdown</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="dropdown-variable"><a href="#dropdown-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-dropdown-z-index" data-type="variable"><a href="#dropdown-variable-md-dropdown-z-index">md-dropdown-z-index</a></li><li class="sidebar__item sassdoc__item" data-name="md-dropdown-max-height" data-type="variable"><a href="#dropdown-variable-md-dropdown-max-height">md-dropdown-max-height</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="font-icon"><a href="#font-icon">font-icon</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="font-icon-variable"><a href="#font-icon-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-font-icon-size" data-type="variable"><a href="#font-icon-variable-md-font-icon-size">md-font-icon-size</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="overlay"><a href="#overlay">overlay</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="overlay-variable"><a href="#overlay-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-overlay-z-index" data-type="variable"><a href="#overlay-variable-md-overlay-z-index">md-overlay-z-index</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="selection-controls"><a href="#selection-controls">selection-controls</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="selection-controls-variable"><a href="#selection-controls-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-switch-height" data-type="variable"><a href="#selection-controls-variable-md-switch-height">md-switch-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-background" data-type="variable"><a href="#selection-controls-variable-md-switch-background">md-switch-background</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-ball-size" data-type="variable"><a href="#selection-controls-variable-md-switch-ball-size">md-switch-ball-size</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-bar-height" data-type="variable"><a href="#selection-controls-variable-md-switch-bar-height">md-switch-bar-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-radius" data-type="variable"><a href="#selection-controls-variable-md-switch-radius">md-switch-radius</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-offset" data-type="variable"><a href="#selection-controls-variable-md-switch-offset">md-switch-offset</a></li><li class="sidebar__item sassdoc__item" data-name="md-switch-width" data-type="variable"><a href="#selection-controls-variable-md-switch-width">md-switch-width</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="sidebar"><a href="#sidebar">sidebar</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="sidebar-variable"><a href="#sidebar-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-sidebar-z-index" data-type="variable"><a href="#sidebar-variable-md-sidebar-z-index">md-sidebar-z-index</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="snackbar"><a href="#snackbar">snackbar</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="snackbar-variable"><a href="#snackbar-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-snackbar-z-index" data-type="variable"><a href="#snackbar-variable-md-snackbar-z-index">md-snackbar-z-index</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-bg-color" data-type="variable"><a href="#snackbar-variable-md-snackbar-bg-color">md-snackbar-bg-color</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-height" data-type="variable"><a href="#snackbar-variable-md-snackbar-height">md-snackbar-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-multiline-height" data-type="variable"><a href="#snackbar-variable-md-snackbar-multiline-height">md-snackbar-multiline-height</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-lr-padding" data-type="variable"><a href="#snackbar-variable-md-snackbar-lr-padding">md-snackbar-lr-padding</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-tb-padding" data-type="variable"><a href="#snackbar-variable-md-snackbar-tb-padding">md-snackbar-tb-padding</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-action-left-margin" data-type="variable"><a href="#snackbar-variable-md-snackbar-action-left-margin">md-snackbar-action-left-margin</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-desktop-min-width" data-type="variable"><a href="#snackbar-variable-md-snackbar-desktop-min-width">md-snackbar-desktop-min-width</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-desktop-max-width" data-type="variable"><a href="#snackbar-variable-md-snackbar-desktop-max-width">md-snackbar-desktop-max-width</a></li><li class="sidebar__item sassdoc__item" data-name="md-snackbar-desktop-border-radius" data-type="variable"><a href="#snackbar-variable-md-snackbar-desktop-border-radius">md-snackbar-desktop-border-radius</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="transitions"><a href="#transitions">transitions</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="transitions-variable"><a href="#transitions-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-transition-time" data-type="variable"><a href="#transitions-variable-md-transition-time">md-transition-time</a></li><li class="sidebar__item sassdoc__item" data-name="md-transition-bounce" data-type="variable"><a href="#transitions-variable-md-transition-bounce">md-transition-bounce</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="typography"><a href="#typography">typography</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="typography-variable"><a href="#typography-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-font-family" data-type="variable"><a href="#typography-variable-md-font-family">md-font-family</a></li><li class="sidebar__item sassdoc__item" data-name="md-font" data-type="variable"><a href="#typography-variable-md-font">md-font</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-size-base" data-type="variable"><a href="#typography-variable-md-font-size-base">md-font-size-base</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-light" data-type="variable"><a href="#typography-variable-md-font-light">md-font-light</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-regular" data-type="variable"><a href="#typography-variable-md-font-regular">md-font-regular</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-medium" data-type="variable"><a href="#typography-variable-md-font-medium">md-font-medium</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-bold" data-type="variable"><a href="#typography-variable-md-font-bold">md-font-bold</a></li><li class="sidebar__item sassdoc__item" data-name="md-font-weights" data-type="variable"><a href="#typography-variable-md-font-weights">md-font-weights</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">General</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-mixin"><a href="#undefined-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="make-paper" data-type="mixin"><a href="#undefined-mixin-make-paper">make-paper</a></li><li class="sidebar__item sassdoc__item" data-name="md-box-shadow" data-type="mixin"><a href="#undefined-mixin-md-box-shadow">md-box-shadow</a></li><li class="sidebar__item sassdoc__item" data-name="aspect-ratio" data-type="mixin"><a href="#undefined-mixin-aspect-ratio">aspect-ratio</a></li><li class="sidebar__item sassdoc__item" data-name="host-google-font" data-type="mixin"><a href="#undefined-mixin-host-google-font">host-google-font</a></li><li class="sidebar__item sassdoc__item" data-name="host-material-icons" data-type="mixin"><a href="#undefined-mixin-host-material-icons">host-material-icons</a></li><li class="sidebar__item sassdoc__item" data-name="make-positioned-select-field" data-type="mixin"><a href="#undefined-mixin-make-positioned-select-field">make-positioned-select-field</a></li><li class="sidebar__item sassdoc__item" data-name="make-text-field" data-type="mixin"><a href="#undefined-mixin-make-text-field">make-text-field</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-function"><a href="#undefined-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="str-replace" data-type="function"><a href="#undefined-function-str-replace">str-replace</a></li><li class="sidebar__item sassdoc__item" data-name="char-at" data-type="function"><a href="#undefined-function-char-at">char-at</a></li><li class="sidebar__item sassdoc__item" data-name="get-md-color" data-type="function"><a href="#undefined-function-get-md-color">get-md-color</a></li><li class="sidebar__item sassdoc__item" data-name="get-font-suffix" data-type="function"><a href="#undefined-function-get-font-suffix">get-font-suffix</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-name="md-default-padding" data-type="variable"><a href="#undefined-variable-md-default-padding">md-default-padding</a></li><li class="sidebar__item sassdoc__item" data-name="md-ink-animation-time" data-type="variable"><a href="#undefined-variable-md-ink-animation-time">md-ink-animation-time</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="app-bar"><div class="container">app-bar</div></h1><section class="main__sub-section" id="app-bar-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="app-bar-variable-md-app-bar-z-index"><h3 class="item__heading"><a class="item__name" href="#variable-md-app-bar-z-index">md-app-bar-z-index</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-app-bar-z-index: 6 !default;</code></pre></div></section><section class="main__item container item" id="app-bar-variable-md-app-bar-title-font-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-app-bar-title-font-size">md-app-bar-title-font-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-app-bar-title-font-size: 18px !default;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="avatars"><div class="container">avatars</div></h1><section class="main__sub-section" id="avatars-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="avatars-variable-md-avatar-colors"><h3 class="item__heading"><a class="item__name" href="#variable-md-avatar-colors">md-avatar-colors</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-avatar-colors: (
+  (pink 6 false green 1 true)
+  (purple 6 false yellow 3 true)
+  (amber 6 false light-blue 4 true)
+) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default avatar colors</p></div><h3 class="item__sub-heading">Type</h3><p><code>{list}</code></p></section></section></section><section class="main__section"><h1 class="main__heading" id="buttons"><div class="container">buttons</div></h1><section class="main__sub-section" id="buttons-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="buttons-variable-md-btn-color-base"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-color-base">md-btn-color-base</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-color-base: #999;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default color base for buttons</p></div><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons">https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons</a></li></ul></section><section class="main__item container item" id="buttons-variable-md-btn-hover-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-hover-color">md-btn-hover-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-hover-color: rgba($md-btn-color-base, .2);</code></pre></div></section><section class="main__item container item" id="buttons-variable-md-btn-pressed-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-pressed-color">md-btn-pressed-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-pressed-color: rgba($md-btn-color-base, .4);</code></pre></div></section><section class="main__item container item" id="buttons-variable-md-btn-min-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-min-height">md-btn-min-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-min-height: $md-height;</code></pre></div><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons">https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons</a></li></ul></section><section class="main__item container item" id="buttons-variable-md-btn-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-height">md-btn-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-height: 36px;</code></pre></div></section><section class="main__item container item" id="buttons-variable-md-btn-padding"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-padding">md-btn-padding</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-padding: ($md-btn-min-height - $md-btn-height) / 2;</code></pre></div></section><section class="main__item container item" id="buttons-variable-md-font-icon-btn-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-icon-btn-size">md-font-icon-btn-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-icon-btn-size: $md-font-icon-size * 2;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The font icon button size</p></div><h3 class="item__sub-heading">See</h3><ul class="list-unstyled"><li><span class="item__cross-type">[variable]</span> <a href="#variable-md-font-icon-size"><code>md-font-icon-size</code></a></li></ul></section></section><section class="main__sub-section" id="buttons-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="buttons-mixin-make-md-btn-default"><h3 class="item__heading"><a class="item__name" href="#mixin-make-md-btn-default">make-md-btn-default</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) { 
+  .md-btn-default {
+    color: $color;
+
+    &amp;:hover,
+    &amp;:focus {
+      background: $hover-focus-bg-color;
+    }
+
+    &amp;:active {
+      background: $active-bg-color;
+    }
+
+    .md-ink {
+      background: $md-ink-bg-color;
+    }
+  }
+
+  @if $raised-border-color != null {
+    .md-btn-raised,
+    .md-btn-floating {
+      background: $white-base;
+    }
+
+    .md-btn-raised {
+      border: 1px solid $raised-border-color;
+    }
+  }
+ }" data-collapsed="@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) { ... }"><code>@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Make a material design default button This will generate the style for a flat, raised, and fab button</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>The text color to use</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover-focus-bg-color</code></th><td data-label="desc"><p>The hover and focus color for the button</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$active-bg-color</code></th><td data-label="desc"><p>The color to use when active</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$md-ink-bg-color</code></th><td data-label="desc"><p>The md-ink background color</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$raised-border-color</code></th><td data-label="desc"><p>The raised border color. If this value is set, raised and floating buttons will get a background of the white base and the raised buttonm with get a border with the border color</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-white-base"><code>white-base</code></a></li></ul></section><section class="main__item container item" id="buttons-mixin-make-md-btn"><h3 class="item__heading"><a class="item__name" href="#mixin-make-md-btn">make-md-btn</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) { 
+  $secondary: $type == &#39;secondary&#39;;
+
+  .md-btn-#{$type} {
+    @if $md-ink-hue != null {
+      &amp;.md-btn-flat {
+        color: get-md-color($color, $hue, $secondary);
+
+        &amp;:hover,
+        &amp;:focus {
+          background: rgba(get-md-color($hover-color, $hover-hue, $secondary), .4);
+        }
+
+        .md-ink {
+          background: rgba(get-md-color($md-ink-color, $md-ink-hue, $secondary), .3);
+        }
+      }
+    } @else {
+      &amp;:not(.md-btn-flat) {
+        background: get-md-color($color, $hue, $secondary);
+
+        &amp;:hover,
+        &amp;:focus {
+          background: get-md-color($hover-color, $hover-hue, $secondary);
+        }
+      }
+    }
+  }
+ }" data-collapsed="@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) { ... }"><code>@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Make a material design button type</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>The button type to make.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>The color to use for the button.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover-hue</code></th><td data-label="desc"><p>The hue for the hover color.</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$md-ink-hue</code></th><td data-label="desc"><p>This is used to generate the flat button.</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>null</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hue</code></th><td data-label="desc"><p>The color&#39;s hue for the button</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>6</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hover-color</code></th><td data-label="desc"><p>The hover color for the button</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>$color</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$md-ink-color</code></th><td data-label="desc"><p>The md-ink&#39;s color. It gets an opacity of .3 applied to it</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>$color</code></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-get-md-color"><code>get-md-color</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="buttons-fab"><div class="container">buttons-fab</div></h1><section class="main__sub-section" id="buttons-fab-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="buttons-fab-variable-md-btn-fab-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-fab-size">md-btn-fab-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-fab-size: 56px;</code></pre></div></section><section class="main__item container item" id="buttons-fab-variable-md-btn-fab-size-mini"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-fab-size-mini">md-btn-fab-size-mini</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-fab-size-mini: 40px;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="buttons-flat"><div class="container">buttons-flat</div></h1><section class="main__sub-section" id="buttons-flat-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="buttons-flat-variable-md-btn-flat-min-width"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-flat-min-width">md-btn-flat-min-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-flat-min-width: 88px;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="buttons-raised"><div class="container">buttons-raised</div></h1><section class="main__sub-section" id="buttons-raised-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="buttons-raised-variable-md-btn-raised-min-width"><h3 class="item__heading"><a class="item__name" href="#variable-md-btn-raised-min-width">md-btn-raised-min-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-btn-raised-min-width: 64px;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="cards"><div class="container">cards</div></h1><section class="main__sub-section" id="cards-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="cards-variable-md-card-padding"><h3 class="item__heading"><a class="item__name" href="#variable-md-card-padding">md-card-padding</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-card-padding: $md-default-padding;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default card padding</p></div><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/components/cards.html">https://www.google.com/design/spec/components/cards.html</a></li></ul></section><section class="main__item container item" id="cards-variable-md-card-padding-extra"><h3 class="item__heading"><a class="item__name" href="#variable-md-card-padding-extra">md-card-padding-extra</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-card-padding-extra: 24px;</code></pre></div></section><section class="main__item container item" id="cards-variable-md-card-title-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-card-title-size">md-card-title-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-card-title-size: 24em / $md-font-size-base;</code></pre></div></section><section class="main__item container item" id="cards-variable-md-card-title-size-small"><h3 class="item__heading"><a class="item__name" href="#variable-md-card-title-size-small">md-card-title-size-small</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-card-title-size-small: 16em / $md-font-size-base;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="color"><div class="container">color</div></h1><section class="main__sub-section" id="color-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="color-variable-md-primary-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-primary-color">md-primary-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-primary-color: indigo !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The primary color</p></div></section><section class="main__item container item" id="color-variable-md-primary-color-hue-light"><h3 class="item__heading"><a class="item__name" href="#variable-md-primary-color-hue-light">md-primary-color-hue-light</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-primary-color-hue-light: 3 !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The primary color lighter hue</p></div></section><section class="main__item container item" id="color-variable-md-primary-color-hue-bold"><h3 class="item__heading"><a class="item__name" href="#variable-md-primary-color-hue-bold">md-primary-color-hue-bold</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-primary-color-hue-bold: 7 !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The primary color darker hue</p></div></section><section class="main__item container item" id="color-variable-md-secondary-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-secondary-color">md-secondary-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-secondary-color: pink !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The secondary color</p></div></section><section class="main__item container item" id="color-variable-md-secondary-color-hue"><h3 class="item__heading"><a class="item__name" href="#variable-md-secondary-color-hue">md-secondary-color-hue</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-secondary-color-hue: 2 !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The secondary color accent hue</p></div></section><section class="main__item container item" id="color-variable-black-base"><h3 class="item__heading"><a class="item__name" href="#variable-black-base">black-base</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$black-base: #000;</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[function]</span> <a href="#function-get-md-color"><code>get-md-color</code></a></li></ul></section><section class="main__item container item" id="color-variable-white-base"><h3 class="item__heading"><a class="item__name" href="#variable-white-base">white-base</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$white-base: #fff;</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-make-md-btn-default"><code>make-md-btn-default</code></a></li><li><span class="item__cross-type">[function]</span> <a href="#function-get-md-color"><code>get-md-color</code></a></li></ul></section><section class="main__item container item" id="color-variable-md-text-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-text-color">md-text-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-text-color: rgba($black-base, .77);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The text color for light backgrounds</p></div><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/style/color.html#color-ui-color-application">https://www.google.com/design/spec/style/color.html#color-ui-color-application</a></li></ul></section><section class="main__item container item" id="color-variable-md-secondary-text-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-secondary-text-color">md-secondary-text-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-secondary-text-color: rgba($black-base, .54);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The Secondary text color on light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-disabled-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-disabled-color">md-disabled-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-disabled-color: rgba($black-base, .38);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The color for disabled text on light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-divider-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-divider-color">md-divider-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-divider-color: rgba($black-base, .12);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The divider color on light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-text-color-alt"><h3 class="item__heading"><a class="item__name" href="#variable-md-text-color-alt">md-text-color-alt</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-text-color-alt: $white-base;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The text color for dark backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-secondary-text-color-alt"><h3 class="item__heading"><a class="item__name" href="#variable-md-secondary-text-color-alt">md-secondary-text-color-alt</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-secondary-text-color-alt: rgba($white-base, .70);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The secondary text color for dark backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-disabled-color-alt"><h3 class="item__heading"><a class="item__name" href="#variable-md-disabled-color-alt">md-disabled-color-alt</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-disabled-color-alt: rgba($white-base, .30);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The disabled text color on dark backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-divider-color-alt"><h3 class="item__heading"><a class="item__name" href="#variable-md-divider-color-alt">md-divider-color-alt</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-divider-color-alt: rgba($white-base, .12);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The divider color on dark backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-status-bar-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-status-bar-color">md-status-bar-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-status-bar-color: #e0e0e0;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The status bar color for light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-app-bar-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-app-bar-color">md-app-bar-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-app-bar-color: #f5f5f5;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The app bar color for light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-background-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-background-color">md-background-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-background-color: #fafafa;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The main content background color on light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-card-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-card-color">md-card-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-card-color: $white-base;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The card background color on light backgrounds</p></div></section><section class="main__item container item" id="color-variable-md-border-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-border-color">md-border-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-border-color: rgba($black-base, .1);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default border color on light backgrounds</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="dropdown"><div class="container">dropdown</div></h1><section class="main__sub-section" id="dropdown-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="dropdown-variable-md-dropdown-z-index"><h3 class="item__heading"><a class="item__name" href="#variable-md-dropdown-z-index">md-dropdown-z-index</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-dropdown-z-index: 4 !default;</code></pre></div></section><section class="main__item container item" id="dropdown-variable-md-dropdown-max-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-dropdown-max-height">md-dropdown-max-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Sets the max height of the dropdown to show 5 and 1/3 items</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="font-icon"><div class="container">font-icon</div></h1><section class="main__sub-section" id="font-icon-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="font-icon-variable-md-font-icon-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-icon-size">md-font-icon-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-icon-size: 24px !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The font icon size</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-host-material-icons"><code>host-material-icons</code></a></li></ul></section></section></section><section class="main__section"><h1 class="main__heading" id="overlay"><div class="container">overlay</div></h1><section class="main__sub-section" id="overlay-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="overlay-variable-md-overlay-z-index"><h3 class="item__heading"><a class="item__name" href="#variable-md-overlay-z-index">md-overlay-z-index</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-overlay-z-index: 3 !default;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="selection-controls"><div class="container">selection-controls</div></h1><section class="main__sub-section" id="selection-controls-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="selection-controls-variable-md-switch-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-height">md-switch-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-height: $md-tab-height !default;</code></pre></div><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/components/selection-controls.html">https://www.google.com/design/spec/components/selection-controls.html</a></li></ul></section><section class="main__item container item" id="selection-controls-variable-md-switch-background"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-background">md-switch-background</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-background: rgba($black-base, .26) !default;</code></pre></div></section><section class="main__item container item" id="selection-controls-variable-md-switch-ball-size"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-ball-size">md-switch-ball-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-ball-size: $md-font-icon-size !default;</code></pre></div></section><section class="main__item container item" id="selection-controls-variable-md-switch-bar-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-bar-height">md-switch-bar-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-bar-height: $md-default-padding !default;</code></pre></div></section><section class="main__item container item" id="selection-controls-variable-md-switch-radius"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-radius">md-switch-radius</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-radius: $md-switch-bar-height / 2 !default;</code></pre></div></section><section class="main__item container item" id="selection-controls-variable-md-switch-offset"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-offset">md-switch-offset</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-offset: $md-switch-bar-height / 4;</code></pre></div></section><section class="main__item container item" id="selection-controls-variable-md-switch-width"><h3 class="item__heading"><a class="item__name" href="#variable-md-switch-width">md-switch-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset !default;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="sidebar"><div class="container">sidebar</div></h1><section class="main__sub-section" id="sidebar-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="sidebar-variable-md-sidebar-z-index"><h3 class="item__heading"><a class="item__name" href="#variable-md-sidebar-z-index">md-sidebar-z-index</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-sidebar-z-index: 5 !default;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="snackbar"><div class="container">snackbar</div></h1><section class="main__sub-section" id="snackbar-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="snackbar-variable-md-snackbar-z-index"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-z-index">md-snackbar-z-index</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-z-index: 6 !default;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-bg-color"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-bg-color">md-snackbar-bg-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-bg-color: #323232;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-height">md-snackbar-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-height: $md-height;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-multiline-height"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-multiline-height">md-snackbar-multiline-height</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-multiline-height: 80px;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-lr-padding"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-lr-padding">md-snackbar-lr-padding</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-lr-padding: 24px;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The left and right padding for the snackbar</p></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-tb-padding"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-tb-padding">md-snackbar-tb-padding</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-tb-padding: 14px;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The top and bottom badding for the snackbar</p></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-action-left-margin"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-action-left-margin">md-snackbar-action-left-margin</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-action-left-margin: 48px;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-desktop-min-width"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-desktop-min-width">md-snackbar-desktop-min-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-desktop-min-width: 288px;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-desktop-max-width"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-desktop-max-width">md-snackbar-desktop-max-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-desktop-max-width: 568px;</code></pre></div></section><section class="main__item container item" id="snackbar-variable-md-snackbar-desktop-border-radius"><h3 class="item__heading"><a class="item__name" href="#variable-md-snackbar-desktop-border-radius">md-snackbar-desktop-border-radius</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-snackbar-desktop-border-radius: 2px;</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="transitions"><div class="container">transitions</div></h1><section class="main__sub-section" id="transitions-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="transitions-variable-md-transition-time"><h3 class="item__heading"><a class="item__name" href="#variable-md-transition-time">md-transition-time</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-transition-time: .15s !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default transition time</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-make-paper"><code>make-paper</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-make-text-field"><code>make-text-field</code></a></li></ul></section><section class="main__item container item" id="transitions-variable-md-transition-bounce"><h3 class="item__heading"><a class="item__name" href="#variable-md-transition-bounce">md-transition-bounce</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-transition-bounce: cubic-bezier(.5, 1.8, .9, .8) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default bouncy transition</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="typography"><div class="container">typography</div></h1><section class="main__sub-section" id="typography-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="typography-variable-md-font-family"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-family">md-font-family</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-family: Roboto !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The font family for the application</p></div></section><section class="main__item container item" id="typography-variable-md-font"><h3 class="item__heading"><a class="item__name" href="#variable-md-font">md-font</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font: &#39;#{$md-font-family}&#39;, sans-serif !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The font used for the application</p></div></section><section class="main__item container item" id="typography-variable-md-font-size-base"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-size-base">md-font-size-base</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-size-base: 14;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The base font size</p></div></section><section class="main__item container item" id="typography-variable-md-font-light"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-light">md-font-light</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-light: 300;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The light text weight</p></div></section><section class="main__item container item" id="typography-variable-md-font-regular"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-regular">md-font-regular</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-regular: 400;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The regular text weight</p></div></section><section class="main__item container item" id="typography-variable-md-font-medium"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-medium">md-font-medium</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-medium: 500;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The medium text weight</p></div></section><section class="main__item container item" id="typography-variable-md-font-bold"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-bold">md-font-bold</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-bold: 700;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The bold text weight</p></div></section><section class="main__item container item" id="typography-variable-md-font-weights"><h3 class="item__heading"><a class="item__name" href="#variable-md-font-weights">md-font-weights</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>A list of all the text weights</p></div></section></section></section><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">General</div></h1><section class="main__sub-section" id="undefined-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="undefined-mixin-make-paper"><h3 class="item__heading"><a class="item__name" href="#mixin-make-paper">make-paper</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin make-paper($z-depth: 1) { 
+  @extend %paper;
+  @include md-box-shadow($z-depth);
+
+  @if $z-depth == 0 {
+    transition: box-shadow $md-transition-time * 3;
+
+    &amp;:hover {
+      @include md-box-shadow(3);
+    }
+  }
+ }" data-collapsed="@mixin make-paper($z-depth: 1) { ... }"><code>@mixin make-paper($z-depth: 1) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Makes paper at the specific z-depth</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$z-depth</code></th><td data-label="desc"><p>The zDepth for the card</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>1</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>   .paper-2 {
+     @include make-paper(2);
+   }
+
+If the depth is 0, a hover effect will be added to raise the card to z-depth of 3.</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[mixin]</span> <a href="#mixin-md-box-shadow"><code>md-box-shadow</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-md-transition-time"><code>md-transition-time</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-md-box-shadow"><h3 class="item__heading"><a class="item__name" href="#mixin-md-box-shadow">md-box-shadow</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin md-box-shadow($elevation) { 
+  @if $elevation &lt; 0 or $elevation &gt; 5 {
+    @warn &#39;The elevation must be a number from 0 - 5. elevation given was `#{$elevation}`&#39;;
+  } @else {
+    $top-shadow-color: get-md-color(black, .14);
+    $middle-shadow-color: get-md-color(black, .12);
+    $bottom-shadow-color: get-md-color(black, if($elevation == 1, .2, .4));
+    @if $elevation == 0 {
+      box-shadow: none;
+    } @else if $elevation == 1 {
+      box-shadow: 0 2px 2px 0 $top-shadow-color, 0 1px 5px 0 $middle-shadow-color, 0 3px 1px -2px $bottom-shadow-color;
+    } @else if $elevation == 2 {
+      box-shadow: 0 4px 5px 0 $top-shadow-color, 0 1px 10px 0 $middle-shadow-color, 0 2px 4px -1px $bottom-shadow-color;
+    } @else if $elevation == 3 {
+      box-shadow: 0 6px 10px 0 $top-shadow-color, 0 1px 18px 0 $middle-shadow-color, 0 3px 5px -1px $bottom-shadow-color;
+    } @else if $elevation == 4 {
+      box-shadow: 0 8px 10px 1px $top-shadow-color, 0 3px 14px 2px $middle-shadow-color, 0 5px 5px -3px $bottom-shadow-color;
+    } @else if $elevation == 5 {
+      box-shadow: 0 16px 24px 2px $top-shadow-color, 0 6px 30px 5px $middle-shadow-color, 0 8px 10px -5px $bottom-shadow-color;
+    }
+  }
+ }" data-collapsed="@mixin md-box-shadow($elevation) { ... }"><code>@mixin md-box-shadow($elevation) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates the box shadow for material design</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$elevation</code></th><td data-label="desc"><p>The material design elevation. This should be a number from 0 - 5.</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>.paper-1 {
+  @include md-box-shadow(1);
+}
+
+.paper-5 {
+  @include md-box-shadow(5);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic Usage CSS Output</p></div><pre class="example__code language-scss"><code>.paper-1 {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14). 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+}
+
+.paper-5 {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-get-md-color"><code>get-md-color</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-make-paper"><code>make-paper</code></a></li></ul><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://elements.polymer-project.org/elements/paper-card?view=demo:demo/index.html&amp;active=paper-card">https://elements.polymer-project.org/elements/paper-card?view=demo:demo/index.html&amp;active=paper-card</a></li></ul></section><section class="main__item container item" id="undefined-mixin-aspect-ratio"><h3 class="item__heading"><a class="item__name" href="#mixin-aspect-ratio">aspect-ratio</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin aspect-ratio($target: img, $width: 16, $height: 9) { 
+  position: relative;
+
+  &amp;:before {
+    content: &#39;&#39;;
+    display: block;
+    padding-top: ($height / $width) * 100%;
+    width: 100%;
+  }
+
+  &gt; #{$target} {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+ }" data-collapsed="@mixin aspect-ratio($target: img, $width: 16, $height: 9) { ... }"><code>@mixin aspect-ratio($target: img, $width: 16, $height: 9) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Generates the css for keeping an aspect ratio for the target element.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$target</code></th><td data-label="desc"><p>The target to force the aspect ratio on</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>img</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$width</code></th><td data-label="desc"><p>The target width ratio</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>16</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$height</code></th><td data-label="desc"><p>The target height ratio</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>9</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>.aspect-16-9 {
+  @include aspect-ratio();
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic Usage CSS Output</p></div><pre class="example__code language-scss"><code>.aspect-16-9 {
+  position: relative;
+}
+
+.aspect-16-9:before {
+  content: &#39;&#39;;
+  display: block;
+  padding-top: 56.25%;
+  width: 100%;
+}
+
+.aspect-16-9 &gt; img {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}</code></pre></div></section><section class="main__item container item" id="undefined-mixin-host-google-font"><h3 class="item__heading"><a class="item__name" href="#mixin-host-google-font">host-google-font</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url) { 
+  $full-font-name: str-replace($font-name, &#39; &#39;) + get-font-suffix($font-weight);
+
+  $fonts-url: if($fonts-url == null, &#39;/fonts/&#39; + to-lower-case(str-replace($font-name, &#39; &#39;, &#39;-&#39;)), $fonts-url);
+  $fonts-url: if(char-at($fonts-url) != &#39;/&#39;, $fonts-url + &#39;/&#39;, $fonts-url);
+
+  @font-face {
+    font-family: quote($font-name);
+    font-style: normal;
+    font-weight: $font-weight;
+
+    src: local(#{quote($font-name)}), local(#{quote($full-font-name)}), url($fonts-url + $full-font-name + &#39;.ttf&#39;) format(&#39;truetype&#39;);
+  }
+ }" data-collapsed="@mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url) { ... }"><code>@mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Creates a font face for a locally hosted google font</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-name</code></th><td data-label="desc"><p>The font name to create a font face for</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>Roboto</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-weight</code></th><td data-label="desc"><p>The font weight of the google font</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>400</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$fonts-url</code></th><td data-label="desc"><p>The url to your fonts.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>@include host-google-font(Roboto, 400);
+@include host-google-font(Roboto, 500, my-special-fonts);</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic Usage CSS Output</p></div><pre class="example__code language-scss"><code>@font-face {
+  font-family: &#39;Roboto&#39;;
+  font-style: normal;
+  font-weight: 400;
+  src: local(&#39;Roboto&#39;),
+       local(&#39;Roboto-Regular&#39;),
+       url(/fonts/roboto/Roboto-Regular.ttf) format(&#39;truetype&#39;);
+}
+
+@font-face {
+  font-family: &#39;Roboto&#39;;
+  font-style: normal;
+  font-weight: 500;
+  src: local(&#39;Roboto&#39;),
+       local(&#39;Roboto-Medium&#39;),
+       url(my-sepcial-fonts/Roboto-Medium.ttf) format(&#39;truetype&#39;);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-str-replace"><code>str-replace</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-get-font-suffix"><code>get-font-suffix</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[function]</span> <a href="#function-char-at"><code>char-at</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-host-material-icons"><h3 class="item__heading"><a class="item__name" href="#mixin-host-material-icons">host-material-icons</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin host-material-icons($font-url: &#39;/fonts/material-icons&#39;) { 
+  $icon-link: $font-url + &#39;/MaterialIcons-Regular&#39;;
+  @font-face {
+    font-family: &#39;Material Icons&#39;;
+    font-style: normal;
+    font-weight: 400;
+    src: url($icon-link + &#39;.eot&#39;);
+    // scss-lint:disable SpaceAfterComma
+    src: local(&#39;Material Icons&#39;),
+         local(&#39;MaterialIcons-Regular&#39;),
+         url($icon-link + &#39;.woff2&#39;) format(&#39;woff2&#39;),
+         url($icon-link + &#39;.woff&#39;) format(&#39;woff&#39;),
+         url($icon-link + &#39;.ttf&#39;) format(&#39;truetype&#39;);
+    // scss-lint:enable SpaceAfterComma
+  }
+
+  .material-icons {
+    direction: ltr;
+    display: inline-block;
+    font-family: &#39;Material Icons&#39;;
+    // Support for IE.
+    font-feature-settings: &#39;liga&#39;;
+    font-size: $md-font-icon-size;
+    // Support for Firefox.
+    -moz-osx-font-smoothing: grayscale;
+    // Support for all WebKit browsers.
+    -webkit-font-smoothing: antialiased;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    // Support for Safari and Chrome.
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+	}
+ }" data-collapsed="@mixin host-material-icons($font-url: &#39;/fonts/material-icons&#39;) { ... }"><code>@mixin host-material-icons($font-url: &#39;/fonts/material-icons&#39;) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Hosts the material icon font library locally by declaring the font face and the .material-icons css class.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-url</code></th><td data-label="desc"><p>The path to the material icons fonts</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>&#39;/fonts/material-icons&#39;</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>@include host-material-icons(&#39;/fonts/material-icons&#39;);</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic Usage CSS Output</p></div><pre class="example__code language-scss"><code> @font-face {
+   font-family: &#39;Material Icons&#39;;
+   font-style: normal;
+   font-weight: 400;
+   src: url(/fonts/material-icons/MaterialIcons-Regular.eot&#39;);
+   src: local(&#39;Material Icons&#39;),
+        local(&#39;MaterialIcons-Regular&#39;),
+        url(/fonts/material-icons/MaterialIcons-Regular.woff2&#39;) format(&#39;woff2&#39;),
+        url(/fonts/material-icons/MaterialIcons-Regular.woff&#39;) format(&#39;woff&#39;),
+        url(/fonts/material-icons/MaterialIcons-Regular.ttf&#39;) format(&#39;truetype&#39;);
+ }
+
+ .material-icons {
+   direction: ltr;
+   display: inline-block;
+   font-family: &#39;Material Icons&#39;;
+   // Support for IE.
+   font-feature-settings: &#39;liga&#39;;
+   font-size: $md-font-icon-size;
+   // Support for Firefox.
+   -moz-osx-font-smoothing: grayscale;
+   // Support for all WebKit browsers.
+   -webkit-font-smoothing: antialiased;
+   font-style: normal;
+   font-weight: normal;
+   height: 1em;
+   letter-spacing: normal;
+   line-height: 1;
+   // Support for Safari and Chrome.
+   text-rendering: optimizeLegibility;
+   text-transform: none;
+   white-space: nowrap;
+   width: 1em;
+   word-wrap: normal;
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-md-font-icon-size"><code>md-font-icon-size</code></a></li></ul></section><section class="main__item container item" id="undefined-mixin-make-positioned-select-field"><h3 class="item__heading"><a class="item__name" href="#mixin-make-positioned-select-field">make-positioned-select-field</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) { 
+  .md-form .md-select-field,
+  .md-select-field.text-field-positioned {
+    font-size: $font-size;
+    height: $height;
+    padding-bottom: $padding / 2;
+    padding-top: $padding / 2;
+
+    .md-divider {
+      bottom: $divider-bottom;
+    }
+  }
+ }" data-collapsed="@mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) { ... }"><code>@mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Makes a positioned text field</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-size</code></th><td data-label="desc"><p>The font size for the select field</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$height</code></th><td data-label="desc"><p>the height of the select field</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$padding</code></th><td data-label="desc"><p>The overall padding that should be used. It will be divided by 2</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$divider-bottom</code></th><td data-label="desc"><p>The bottom position of the divider in the select field</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table></section><section class="main__item container item" id="undefined-mixin-make-text-field"><h3 class="item__heading"><a class="item__name" href="#mixin-make-text-field">make-text-field</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) { 
+  .md-text-field-container {
+    .md-icon {
+      $left: $icon-font-size + (($nl-height - $icon-font-size) / 2) + ($nl-height - $icon-font-size);
+      font-size: $icon-font-size;
+      padding: ($nl-height - $icon-font-size) / 2;
+      padding-right: $nl-height - $icon-font-size;
+
+      ~ .md-text-field,
+      ~ .md-text-field-divider {
+        width: calc(100% - #{$left});
+      }
+
+      ~ .md-text-field-divider {
+        left: $left;
+      }
+    }
+  }
+
+  .md-text-field-container.single-line {
+    .md-text-field-label-container {
+      height: $fl-height;
+    }
+
+    .md-text-field-label.active {
+      bottom: $fl-height - $font-size - $padding;
+    }
+
+    .md-text-field-divider {
+      bottom: $divider-bottom;
+    }
+
+    .md-text-field,
+    .md-text-field-label {
+      bottom: $padding;
+    }
+
+
+    &amp;.no-label {
+      .md-text-field-label-container {
+        height: $nl-height;
+      }
+
+      .md-text-field-label.active {
+        bottom: $nl-height - $font-size - $padding;
+      }
+    }
+  }
+
+  .md-text-field,
+  .md-text-field-label {
+    font-size: $font-size;
+  }
+
+  .md-text-field-container.multi-line {
+
+    .md-text-field-label {
+      display: block;
+      padding-bottom: $padding / 2;
+    }
+
+    .md-text-field {
+      transition: height $md-transition-time;
+    }
+
+    .md-text-field-divider {
+      margin-bottom: $padding / 2 - 1;
+      margin-top: $padding / 2 - 1;
+    }
+  }
+
+  .md-text-field-container.full-width {
+    .md-text-field {
+      padding: $padding;
+    }
+  }
+ }" data-collapsed="@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) { ... }"><code>@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Creates a text field</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$fl-height</code></th><td data-label="desc"><p>The height of the text field with a floating label.</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$nl-height</code></th><td data-label="desc"><p>The height of the text field without a floating label (single line).</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-size</code></th><td data-label="desc"><p>The font size for the text field.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$padding</code></th><td data-label="desc"><p>The padding to be used on the text field and the label.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$divider-bottom</code></th><td data-label="desc"><p>The distance the divider is from the bottom of the text field container.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$icon-font-size</code></th><td data-label="desc"><p>The font size for the single line text field with an icon</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$icon-divider-left</code></th><td data-label="desc"><p>The left position for the text field divider when there is an icon.</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-md-transition-time"><code>md-transition-time</code></a></li></ul></section></section><section class="main__sub-section" id="undefined-function"><h2 class="main__heading--secondary"><div class="container">functions</div></h2><section class="main__item container item" id="undefined-function-str-replace"><h3 class="item__heading"><a class="item__name" href="#function-str-replace">str-replace</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function str-replace($string, $search, $replace) { 
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+ }" data-collapsed="@function str-replace($string, $search, $replace) { ... }"><code>@function str-replace($string, $search, $replace) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Replace <code>$search</code> with <code>$replace</code> in <code>$string</code></p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>Initial string</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$search</code></th><td data-label="desc"><p>Substring to replace</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$replace</code></th><td data-label="desc"><p>(&#39;&#39;) - New value</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>Updated string</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-host-google-font"><code>host-google-font</code></a></li></ul><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://css-tricks.com/snippets/sass/str-replace-function">https://css-tricks.com/snippets/sass/str-replace-function</a></li></ul><h3 class="item__sub-heading">Author</h3><ul class="list-unstyled"><li><p>Hugo Giraudel</p></li></ul></section><section class="main__item container item" id="undefined-function-char-at"><h3 class="item__heading"><a class="item__name" href="#function-char-at">char-at</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function char-at($string, $i: 0) { 
+  $index: if($i == 0, str-length($string), $i);
+  @return str-slice($string, $index, $index + 1);
+ }" data-collapsed="@function char-at($string, $i: 0) { ... }"><code>@function char-at($string, $i: 0) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Gets a character at the given index from a string. If the index 0, it gets the last character of the string.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$string</code></th><td data-label="desc"><p>The string to get a character from</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$i</code></th><td data-label="desc"><p>The index to get a character for</p></td><td data-label="type"><code>String</code></td><td data-label="default"><code>0</code></td></tr></tbody></table><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-host-google-font"><code>host-google-font</code></a></li></ul></section><section class="main__item container item" id="undefined-function-get-md-color"><h3 class="item__heading"><a class="item__name" href="#function-get-md-color">get-md-color</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function get-md-color($color, $hue: 6, $accent: false) { 
+  @if $color == black or $color == white {
+    @return rgba(if($color == black, $black-base, $white-base), if($hue &gt; 1, 1, $hue));
+  }
+
+  // scss-lint:disable TrailingSemicolon
+  $reds: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #ef9a9a,
+    300: #e57373,
+    400: #ef5350,
+    500: #f44336,
+    600: #e53935,
+    700: #d32f2f,
+    800: #c62828,
+    900: #b71c1c
+  );
+
+  $red-accents: (
+    100: #ffcdd2,
+    200: #ff5252,
+    400: #d50000,
+    700: #d50000
+  );
+
+
+  $pinks: (
+    50: #fce4ec,
+    100: #f8bbd0,
+    200: #f48fb1,
+    300: #f06292,
+    400: #ec407a,
+    500: #e91e63,
+    600: #d81b60,
+    700: #c2185b,
+    800: #ad1457,
+    900: #880e4f
+  );
+
+  $pink-accents: (
+    100: #ff80ab,
+    200: #ff4081,
+    400: #f50057,
+    700: #c51162
+  );
+
+  $purples: (
+    50: #f3e5f5,
+    100: #e1bee7,
+    200: #ce93d8,
+    300: #ba68c8,
+    400: #ab47bc,
+    500: #9c27b0,
+    600: #8e24aa,
+    700: #7b1fa2,
+    800: #6a1b9a,
+    900: #4a148c
+  );
+
+  $purple-accents: (
+    100: #ea80fc,
+    200: #e040fb,
+    400: #d500f9,
+    700: #a0f
+  );
+
+
+  $deep-purples: (
+    50: #ede7f6,
+    100: #d1c4e9,
+    200: #b39ddb,
+    300: #9575cd,
+    400: #7e57c2,
+    500: #673ab7,
+    600: #5e35b1,
+    700: #512da8,
+    800: #4527a0,
+    900: #311b92
+  );
+
+  $deep-purple-accents: (
+    100: #b388ff,
+    200: #7c4dff,
+    400: #651fff,
+    700: #6200ea
+  );
+
+
+  $indigos: (
+    50: #e8eaf6,
+    100: #c5cae9,
+    200: #9fa8da,
+    300: #7986cb,
+    400: #5c6bc0,
+    500: #3f51b5,
+    600: #3949ab,
+    700: #303f9f,
+    800: #283593,
+    900: #1a237e
+  );
+
+  $indigo-accents: (
+    100: #8c9eff,
+    200: #536dfe,
+    400: #3d5afe,
+    700: #304ffe
+  );
+
+
+  $blues: (
+    50: #e3f2fd,
+    100: #bbdefb,
+    200: #90caf9,
+    300: #64b5f6,
+    400: #42a5f5,
+    500: #2196f3,
+    600: #1e88e5,
+    700: #1976d2,
+    800: #1565c0,
+    900: #0d47a1
+  );
+
+  $blue-accents: (
+    100: #82b1ff,
+    200: #448aff,
+    400: #2979ff,
+    700: #2962ff
+  );
+
+
+  $light-blues: (
+    50: #e1f4fe,
+    100: #b3e5fc,
+    200: #81d4fa,
+    300: #4fc3f7,
+    400: #29b6f6,
+    500: #03a9f4,
+    600: #039be5,
+    700: #0288d1,
+    800: #0277bd,
+    900: #01579b
+  );
+
+  $light-blue-accents: (
+    100: #80d8ff,
+    200: #40c4ff,
+    400: #00b0ff,
+    700: #0091ea
+  );
+
+
+  $cyans: (
+    50: #e0f7fa,
+    100: #b2ebf2,
+    200: #80deea,
+    300: #4dd0e1,
+    400: #23c6da,
+    500: #00bcd4,
+    600: #00acc1,
+    700: #0097a7,
+    800: #00838f,
+    900: #006064,
+  );
+
+  $cyan-accents: (
+    100: #84ffff,
+    200: #18ffff,
+    400: #00e5ff,
+    700: #00b8d4,
+  );
+
+
+  $teals: (
+    50: #e0f2f1,
+    100: #b2dfdb,
+    200: #80cbc4,
+    300: #4db6ac,
+    400: #26a69a,
+    500: #009688,
+    600: #00897b,
+    700: #00796b,
+    800: #00695c,
+    900: #004d40,
+  );
+
+  $teal-accents: (
+    100: #a7ffeb,
+    200: #64ffda,
+    400: #1de9b6,
+    700: #00bfa5,
+  );
+
+
+  $greens: (
+    50: #e8f5e9,
+    100: #c8e6c9,
+    200: #a5d6a7,
+    300: #81c784,
+    400: #66bb6a,
+    500: #4caf50,
+    600: #43a047,
+    700: #388e3c,
+    800: #2e7d32,
+    900: #1b5e20,
+  );
+
+  $green-accents: (
+    100: #b9f6ca,
+    200: #69f0ae,
+    400: #00e676,
+    700: #00c853,
+  );
+
+
+  $light-greens: (
+    50: #f1f8e9,
+    100: #dcedc8,
+    200: #c5e1a5,
+    300: #aed581,
+    400: #9ccc65,
+    500: #8bc34a,
+    600: #7cb342,
+    700: #689f38,
+    800: #55bb2f,
+    900: #33691e,
+  );
+
+  $light-green-accents: (
+    100: #ccff90,
+    200: #b2ff59,
+    400: #76ff03,
+    700: #64dd17,
+  );
+
+
+  $limes: (
+    50: #f9fbe7,
+    100: #f0f4c3,
+    200: #e6ee9c,
+    300: #dce775,
+    400: #d4e157,
+    500: #cddc39,
+    600: #c0ca33,
+    700: #afb42b,
+    800: #9e9d24,
+    900: #827717,
+  );
+
+  $lime-accents: (
+    100: #f4ff81,
+    200: #eeff41,
+    400: #c6ff00,
+    700: #aeea00,
+  );
+
+
+  $yellows: (
+    50: #fffde7,
+    100: #fff9c4,
+    200: #fff59d,
+    300: #fff176,
+    400: #ffee58,
+    500: #ffeb3b,
+    600: #fdd835,
+    700: #fbc02d,
+    800: #f9a825,
+    900: #f57f17,
+  );
+
+  $yellow-accents: (
+    100: #ffff8d,
+    200: #ff0,
+    400: #ffea00,
+    700: #ffd600,
+  );
+
+
+  $ambers: (
+    50: #fff8e1,
+    100: #ffecb3,
+    200: #ffe082,
+    300: #ffd54f,
+    400: #ffca28,
+    500: #ffc107,
+    600: #ffb300,
+    700: #ffa000,
+    800: #ff8f00,
+    900: #ff6f00,
+  );
+
+  $amber-accents: (
+    100: #ffe57f,
+    200: #ffd740,
+    400: #ffc400,
+    700: #ffab00,
+  );
+
+
+  $oranges: (
+    50: #fff3e0,
+    100: #fff0b2,
+    200: #ffcc80,
+    300: #ffb74d,
+    400: #ffa726,
+    500: #ff9800,
+    600: #fb8c00,
+    700: #f57c00,
+    800: #ef6c00,
+    900: #e65100,
+  );
+
+  $orange-accents: (
+    100: #ffd180,
+    200: #ffab40,
+    400: #ff9100,
+    700: #ff6d00,
+  );
+
+
+  $deep-oranges: (
+    50: #fbe9e7,
+    100: #ffccbc,
+    200: #ffab91,
+    300: #ff8a65,
+    400: #ff7043,
+    500: #ff5722,
+    600: #f4511e,
+    700: #e64a19,
+    800: #d84315,
+    900: #bf360c,
+  );
+
+  $deep-orange-accents: (
+    100: #ff9e80,
+    200: #ff6e40,
+    400: #ff3d00,
+    700: #dd2c00,
+  );
+
+
+  $browns: (
+    50: #efebe9,
+    100: #d7ccc8,
+    200: #bcaaa4,
+    300: #a1887f,
+    400: #8d6e63,
+    500: #795548,
+    600: #6d4c41,
+    700: #5d4039,
+    800: #4e342e,
+    900: #3e2723,
+  );
+
+
+  $greys: (
+    50: #fafafa,
+    100: #f5f5f5,
+    200: #eee,
+    300: #e0e0e0,
+    400: #bdbdbd,
+    500: #9e9e9e,
+    600: #757575,
+    700: #616161,
+    800: #424242,
+    900: #212121,
+  );
+
+
+  $blue-greys: (
+    50: #eceff1,
+    100: #cfd8dc,
+    200: #b0bec5,
+    300: #90a4ae,
+    400: #78909c,
+    500: #607d8b,
+    600: #546e7a,
+    700: #455a64,
+    800: #37474f,
+    900: #263238,
+  );
+
+  @if $accent and ($color == brown or $color == grey or $color == blue-grey) {
+    @warn &#39;There is no accent color for `#{$color}`. Disabiling accent.&#39;;
+    $accent: false;
+  } @else if $accent and $hue &gt; 4 {
+    @warn &#39;The given hue `#{$hue}` is not available for the accent colors. Defaulting to accent 400&#39;;
+    $hue: 3;
+  } @else if $hue &gt; 10 {
+    @warn &#39;The given hue `#{$hue}` is not allowed for the primary colors. Defaulting to base color 500&#39;;
+    $hue: 6;
+  }
+
+  $hues: if($accent, 100 200 400 700, 50 100 200 300 400 500 600 700 800 900);
+  $hue: nth($hues, $hue);
+
+
+  $md-colors: (
+    red: if($accent, $red-accents, $reds),
+    pink: if($accent, $pink-accents, $pinks),
+    purple: if($accent, $purple-accents, $purples),
+    deep-purple: if($accent, $deep-purple-accents, $deep-purples),
+    indigo: if($accent, $indigo-accents, $indigos),
+    blue: if($accent, $blue-accents, $blues),
+    light-blue: if($accent, $light-blue-accents, $light-blues),
+    cyan: if($accent, $cyan-accents, $cyans),
+    teal: if($accent, $teal-accents, $teals),
+    green: if($accent, $green-accents, $greens),
+    light-green: if($accent, $light-green-accents, $light-greens),
+    lime: if($accent, $lime-accents, $limes),
+    yellow: if($accent, $yellow-accents, $yellows),
+    amber: if($accent, $amber-accents, $ambers),
+    orange: if($accent, $orange-accents, $oranges),
+    deep-orange: if($accent, $deep-orange-accents, $deep-oranges),
+    brown: $browns,
+    grey: $greys,
+    blue-grey: $blue-greys
+  );
+	// scss-lint:enable TrailingSemicolon
+
+  @return map-get(map-get($md-colors, $color), $hue);
+ }" data-collapsed="@function get-md-color($color, $hue: 6, $accent: false) { ... }"><code>@function get-md-color($color, $hue: 6, $accent: false) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Get a material design color for the color palette. This will be able to find a primary or an accent color for all the colors on the material design color palette page.</p><p>The only exceptions are brown, grey, and blue-grey. These will only return their primary colors. Black and white will work as an rgba instead on their base colors where $hue is the opacity level.</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$color</code></th><td data-label="desc"><p>One of the material design colors to look up. Should be one of (red pink purple deep-purple indigo blue light-blue cyan teal green light-green lime yellow amber orange deep-orange brown grey blue-grey).</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$hue</code></th><td data-label="desc"><p>This is the color mapping from the material design color palette page. This value should be in the range from 1 - 10 when this is a primary color. 1 would return the color with a strength of 50, while 2 - 10 would return a color with a strength of a multiple of 100. The value should be in the range from 1 - 4 when it is an accent color. Finally, the value should be a number from 0 - 1 when the color is black.</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>6</code></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$accent</code></th><td data-label="desc"><p>Is this color an accent color?</p></td><td data-label="type"><code>Bool</code></td><td data-label="default"><code>false</code></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>the material design color code</p></div><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Basic Usage Sass</p></div><pre class="example__code language-scss"><code>.some-primary-bg {
+  background: get-md-color(indigo);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Basic Usage CSS Output</p></div><pre class="example__code language-scss"><code>.some-primary-bg {
+  background: #3F51B5;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Primary Color with Specific Hue Sass</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: get-md-color(deep-purple, 3);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Primary Color with Specific Hue CSS Output</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: #9fa8da;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Accent Color Sass</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: get-md-color(teal, 2, true);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Accent Color CSS Output</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: #64ffda;
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Black color Sass</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: get-md-color(black, .26);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>Black Color CSS Output</p></div><pre class="example__code language-scss"><code>.some-bg {
+  background: rgba(0, 0, 0, .26);
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-black-base"><code>black-base</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#variable-white-base"><code>white-base</code></a></li></ul><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-make-md-btn"><code>make-md-btn</code></a></li><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-md-box-shadow"><code>md-box-shadow</code></a></li></ul><h3 class="item__sub-heading">Links</h3><ul class="list-unstyled"><li><a href="https://www.google.com/design/spec/style/color.html#color-color-palette">https://www.google.com/design/spec/style/color.html#color-color-palette</a></li></ul></section><section class="main__item container item" id="undefined-function-get-font-suffix"><h3 class="item__heading"><a class="item__name" href="#function-get-font-suffix">get-font-suffix</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@function get-font-suffix($font-weight) { 
+  @if $font-weight == 300 {
+    @return &#39;-Light&#39;;
+  } @else if $font-weight == 400 {
+    @return &#39;-Regular&#39;;
+  } @else if $font-weight == 500 {
+    @return &#39;-Medium&#39;;
+  } @else if $font-weight == 700 {
+    @return &#39;-Bold&#39;;
+  } @else {
+    @warn &#39;The given font weight &quot;#{$font-weight}&quot; is not in the lookup&#39;;
+  }
+ }" data-collapsed="@function get-font-suffix($font-weight) { ... }"><code>@function get-font-suffix($font-weight) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Converts a font weight into the google font suffix</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$font-weight</code></th><td data-label="desc"><p>The font weight to convert</p></td><td data-label="type"><code>Number</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>String</code> &mdash;<p>the font suffix</p></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#mixin-host-google-font"><code>host-google-font</code></a></li></ul></section></section><section class="main__sub-section" id="undefined-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="undefined-variable-md-default-padding"><h3 class="item__heading"><a class="item__name" href="#variable-md-default-padding">md-default-padding</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-default-padding: 16px;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default padding used across the board</p></div></section><section class="main__item container item" id="undefined-variable-md-ink-animation-time"><h3 class="item__heading"><a class="item__name" href="#variable-md-ink-animation-time">md-ink-animation-time</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$md-ink-animation-time: .6s !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>The default ink animation time</p></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><span class="project-info__name">React-md-docs</span><!-- Version --> <span class="project-info__version">- v0.0.1</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
