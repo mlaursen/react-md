@@ -27,7 +27,7 @@ export default class AppBar extends Component {
     if(!this.props.children) { return; }
 
     const tabs = ReactDOM.findDOMNode(this.refs.tabs);
-    if(tabs.classList.contains('tabs-centered')) { return; }
+    if(tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) { return; }
 
     const menuBtn = ReactDOM.findDOMNode(this).querySelector('.menu-btn');
     const menuMargin = parseInt(window.getComputedStyle(menuBtn, null).getPropertyValue('margin-left'));

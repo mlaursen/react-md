@@ -1,11 +1,11 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import AppBar, { ActionArea } from 'react-md/AppBar';
 import { IconButton } from 'react-md/Buttons';
 import { Tabs, Tab } from 'react-md/Tabs';
-import { loremIpsum, numstr } from '../utils';
+import { numstr } from '../utils';
 
-const AppWithTabs = ({ numTabs }) => {
+const AppWithTabs = ({ centered = false, scrollable = false, fixedWidth = false }) => {
   return (
     <AppBar
       primary
@@ -18,26 +18,18 @@ const AppWithTabs = ({ numTabs }) => {
         </ActionArea>
       )}
       >
-      <Tabs primary scrollable>
-        {Array.apply(null, new Array(numTabs)).map((_, i) => (
+      <Tabs primary centered={centered} scrollable={scrollable} fixedWidth={fixedWidth}>
+        {Array.apply(null, new Array(scrollable ? 9 : 3)).map((_, i) => (
         <Tab
           key={i}
-          label={`Tab ${numstr[i]}`}
+          label={`Item ${numstr[i]}`}
           >
-          {loremIpsum(Math.floor(Math.random() * 5) + 1)}
+          <div style={{ minHeight: '80px' }} />
         </Tab>
         ))}
       </Tabs>
     </AppBar>
   );
-};
-
-AppWithTabs.propTypes = {
-  numTabs: PropTypes.number,
-};
-
-AppWithTabs.defaultProps = {
-  numTabs: 3,
 };
 
 export default AppWithTabs;

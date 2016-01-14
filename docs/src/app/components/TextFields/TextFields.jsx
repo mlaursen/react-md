@@ -105,11 +105,11 @@ export default class TextFields extends Component {
         }]}
         allRemaining={false}
         examples={[{
-          markdown: PhoneContactExampleRaw,
-          children: <PhoneContactExample />,
-        }, {
           markdown: TextFieldExamplesRaw,
           children: <TextFieldExamples />,
+        }, {
+          markdown: PhoneContactExampleRaw,
+          children: <PhoneContactExample />,
         }]}
         >
         Text fields allow the user to input text, select text, and lookup data via auto-completion.

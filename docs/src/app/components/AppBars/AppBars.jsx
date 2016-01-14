@@ -8,6 +8,8 @@ import AppBarExamplesRaw from '!!raw!./AppBarExamples';
 import AppWithTabs from '../../AppWithTabs';
 import AppWithTabsRaw from '!!raw!../../AppWithTabs/AppWithTabs';
 
+import { isMobile } from 'react-md/utils';
+
 import './_app-bar.scss';
 
 export default class AppBars extends Component {
@@ -73,7 +75,7 @@ export default class AppBars extends Component {
           children: <AppBarExamples />,
         }, {
           markdown: AppWithTabsRaw,
-          children: <AppWithTabs numTabs={8} />,
+          children: <AppWithTabs fixedWidth={isMobile} />,
         }]}
         >
         Another version of the toolbar that has additional functionality built

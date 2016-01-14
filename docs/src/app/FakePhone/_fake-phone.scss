@@ -2,22 +2,20 @@
 
 .fake-phone-container .fake-phone {
   margin-bottom: 2em;
+
+  .md-app-bar-container {
+    position: static;
+
+    ~ *:not(.fixed) {
+      padding-top: initial;
+    }
+  }
 }
 
 
 .fake-phone {
   @include md-tab-mobile();
-
   position: relative;
-
-  .phone-content {
-    position: relative;
-  }
-
-  .md-app-bar:not(.with-tabs) {
-    position: absolute;
-    z-index: 2;
-  }
 
   &.with-fixed-fab {
     margin: 2em 0;

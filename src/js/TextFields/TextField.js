@@ -22,7 +22,7 @@ export default class TextField extends Component {
   }
 
   static propTypes = {
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     className: PropTypes.string,
     valueLink: PropTypes.shape({
       value: PropTypes.string.isRequired,
