@@ -1,3 +1,6 @@
+import classnames from 'classnames';
+
+
 export function smoothScroll(el, duration, options = {}) {
   let { callback, toEl, stepAmt } = options;
   if(!stepAmt) { stepAmt = 15; }
@@ -42,4 +45,32 @@ export function smoothScroll(el, duration, options = {}) {
   }
 
   requestAnimationFrame(step);
+}
+
+/**
+ * Checks if a prop is enabled on a component by checking if the key exists
+ * in the props and that key has not been set to false instead of undefined.
+ *
+ * @param {object} props the component's props
+ * @param {string} propName the prop name to check
+ * @param {array} keys? the keys to check. Defaults to the keys of props if ommitted
+ */
+export function isPropEnabled(props, propName, keys = Object.keys(props)) {
+  return keys.indexOf(propName) !== -1 && props[propName] !== false;
+}
+
+/**
+ * Checkis of the given thing is an object
+ * @param thing the thing to check
+ * @return true if the thing is an object
+ */
+export function isObject(thing) {
+  return Object.prototype.toString.call(thing) === '[object Object]';
+}
+
+export function mergeClassNames(props, ...classNames) {
+  return classnames(...classNames, props.className, {
+    'md-primary': isPropEnabled(props, 'primary'),
+    'md-secondary': isPropEnabled(props, 'secondary'),
+  });
 }

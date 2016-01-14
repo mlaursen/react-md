@@ -10,30 +10,35 @@ export default class Tab extends Component {
   }
 
   static propTypes = {
-    label: PropTypes.string,
-    valueLink: PropTypes.shape({
-      checked: PropTypes.bool.isRequired,
-      requestChange: PropTypes.func.isRequired,
-    }),
     className: PropTypes.string,
+    checked: PropTypes.bool,
+    value: PropTypes.string,
+    label: PropTypes.string,
+    label2: PropTypes.string,
     icon: PropTypes.node,
+    onChange: PropTypes.func,
+    multiline: PropTypes.bool,
   };
 
   render() {
-    const { label, icon, className, valueLink, ...props } = this.props;
+    const { className, icon, label, label2, checked, value, onChange, ...props } = this.props;
     return (
       <li
-        className={classnames('md-tab', className, {
-          'active': valueLink.checked,
-          'wrapped': label.length > 33,
-          'with-icon': label && icon,
-        })}
+        className={classnames('md-tab', className, { 'active': checked })}
+        tabIndex={0}
         {...props}
         >
-        <label className="md-tab-label">
+        <label className={classnames('md-tab-label', { 'multiline': !!label && !!label2, 'with-icon': !!label && !!icon })}>
           {icon}
-          {label}
-          <input type="radio" className="md-tab-radio" name="md-tabs" valueLink={valueLink} />
+          {label && <div>{label}</div>}
+          {label2 && <div>{label2}</div>}
+          <input
+            type="radio"
+            className="md-tab-control"
+            checked={checked}
+            value={value}
+            onChange={onChange}
+          />
         </label>
       </li>
     );

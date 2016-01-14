@@ -1,13 +1,6 @@
 @import '~react-md-scss/helpers/all';
 
-.documentation-app-bar .app-bar-container {
-  height: $md-default-padding * 2 + $md-app-bar-height;
-  position: relative;
-
-  .app-bar-example {
-    position: absolute;
-    top: $md-default-padding;
-    width: calc(100% - #{$md-default-padding * 2});
-    z-index: 2;
-  }
+.documentation-app-bar .example .md-app-bar-container {
+  margin-bottom: 1em;
+  position: initial;
 }

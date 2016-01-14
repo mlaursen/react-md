@@ -1,0 +1,15 @@
+$primary: get-md-color($md-primary-color);
+$secondary: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
+$text: $white-base;
+$disabled-text: rgba($text, .7);
+
+.md-primary {
+  @include md-theme-app-bar($primary, $white-base);
+  @include md-theme-tabs($primary, $secondary, $text, $disabled-text);
+}
+
+.md-secondary {
+  $secondary: get-md-color($md-secondary-color);
+  @include md-theme-app-bar($secondary, $white-base);
+  @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
+}

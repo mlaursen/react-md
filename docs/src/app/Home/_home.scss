@@ -1,13 +1,5 @@
 @import '~react-md-scss/helpers/all';
 
-.react-md-docs-app-bar {
-  transition: box-shadow $md-transition-time;
-
-  &.no-shadow {
-    box-shadow: none;
-  }
-}
-
 .banner {
   align-items: center;
   background: get-md-color($md-primary-color);

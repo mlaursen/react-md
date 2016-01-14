@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -11,127 +11,197 @@ export default class Tabs extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
-      activeTabIndex: 0,
-      touchStart: 0,
-      distance: 0,
+      indicatorStyle: {
+        left: '0px',
+        width: '72px',
+      },
     };
-    this.slide = null;
-    this.tabsContent = React.Children.map(props.children, (child, i) => (
-      <div className="md-tab-content" ref={`tabContent${i}`} key={`tab-content-${i}`}>{child.props.children}</div>
-    ));
+
+    if(typeof props.value === 'undefined') {
+      const { label, value } = React.Children.toArray(props.children)[0].props;
+      this.state.value = props.defaultValue || (typeof value !== 'undefined' ? value : label);
+    }
+
+    if(isPropEnabled(props, 'slide')) {
+      this.state.tabsContent = this.getSlideTabContent(props);
+    } else {
+      this.state.tabsContent = this.getActiveTabContent(props, this.state);
+    }
   }
 
   static propTypes = {
-    children: PropTypes.node,
-    activeTabIndex: PropTypes.number,
     className: PropTypes.string,
-    onTabChange: PropTypes.func,
+    children: PropTypes.node,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
+    defaultValue: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    transitionName: PropTypes.string,
+    transitionEnter: PropTypes.bool,
+    transitionEnterTimeout: PropTypes.number,
+    transitionLeave: PropTypes.bool,
+    transitionLeaveTimeout: PropTypes.number,
+    fixedWidth: PropTypes.bool,
+    scrollable: PropTypes.bool,
+    centered: PropTypes.bool,
+    slide: PropTypes.bool,
+    tabsOffset: PropTypes.string,
+  };
+
+  static defaultProps = {
+    transitionName: 'opacity',
+    transitionEnterTimeout: 150,
+    transitionLeave: false,
   };
 
   componentDidMount() {
-    this.slide = ReactDOM.findDOMNode(this.refs.slide);
-    this.updateSlider();
+    this.updateIndicator();
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    if(this.props.children !== nextProps.children) {
+      let newNextState = {};
+      if(isPropEnabled(nextProps, 'slide')) {
+        newNextState.tabsContent = this.getSlideTabContent(nextProps);
+      } else {
+        newNextState.tabsContent = this.getActiveTabContent(nextProps, nextState);
+      }
+
+      this.setState(newNextState);
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if(!isPropEnabled(nextProps, 'slide') && this.getValue() !== this.getValue(nextProps, nextState)) {
+      nextState.tabsContent = this.getActiveTabContent(nextProps, nextState);
+      this.setState(nextState);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const prevTabIndex = this.getActiveTabIndex({ props: prevProps, state: prevState });
-    const activeTabIndex = this.getActiveTabIndex();
-    if(prevTabIndex === activeTabIndex) {
-      return;
-    }
+    const value = this.getValue();
+    const prevValue = this.getValue(prevProps, prevState);
+    if(value === prevValue) { return; }
 
-    this.updateSlider();
-    const contents = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab-content');
-    const transform = `translate3d(-${activeTabIndex * this.getContainerWidth()}px, 0, 0)`;
-    for(let i = 0; i < contents.length; i++) {
-      contents[i].style.transform = transform;
-    }
+    this.updateIndicator();
   }
 
-  getContainerWidth = () => {
-    return ReactDOM.findDOMNode(this).offsetWidth;
+  getValue = (props = this.props, state = this.state) => {
+    return (typeof props.value !== 'undefined' ? props : state).value;
   };
 
-  updateSlider = () => {
-    const { offsetWidth, offsetLeft } = ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
-    this.slide.style.width = `${offsetWidth}px`;
-    this.slide.style.left = `${offsetLeft}px`;
+  getSlideTabContent = ({ children } = this.props) => {
+    return React.Children.map(children, (tab, i) => {
+      return (
+        <div
+          className="md-tab-content"
+          key={`tab-content-${i}`}
+          >
+          {tab.props.children}
+        </div>
+      );
+    });
   };
 
-  getActiveTabIndex = ({ props, state } = this) => {
-    return typeof props.activeTabIndex === 'number' ? props.activeTabIndex : state.activeTabIndex;
+  getActiveTabContent = (props = this.props, state = this.state) => {
+    const value = this.getValue(props, state);
+    let content;
+    React.Children.toArray(props.children).some(({ props }) => {
+      const isActive = value === (props.value || props.label);
+      if(isActive) { content = props.children; }
+      return isActive;
+    });
+    return content;
   };
 
-  handleTabChange = (i, tab) => {
-    this.props.onTabChange && this.props.onTabChange(i, tab);
-    if(!this.props.activeTabIndex) {
-      this.setState({ activeTabIndex: i });
+  isTabChecked = ({ checked, label, value }) => {
+    if(typeof checked !== 'undefined') { return checked; }
+    const stateValue = this.state.value;
+
+    const tabValue = typeof value !== 'undefined' ? value : label;
+    return stateValue === tabValue;
+  };
+
+  handleTabChange = ({ value, label, onChange }) => {
+    let params = { label };
+    if(typeof value !== 'undefined') {
+      params.value = value;
+    }
+
+    if(onChange) {
+      onChange(...params);
+    }
+
+    if(this.props.onChange) {
+      this.props.onChange(...params);
+    }
+
+    if(typeof this.props.value === 'undefined') {
+      this.setState({ value: value || label });
     }
   };
 
-  handleTouchStart = (e) => {
-    this.setState({ touchStart: e.changedTouches[0].pageX });
-  };
-
-  handleTouchMove = (e) => {
-    this.moveTabs(e.changedTouches[0], 20);
-  };
-
-  handleTouchEnd = (e) => {
-    this.setState({ distance: this.moveTabs(e.changedTouches[0]) });
-  };
-
-  moveTabs = ({ pageX }, threshold = 0) => {
-    let distance = this.state.distance + (pageX - this.state.touchStart);
-    const tabs = Array.prototype.slice.call(this.refs.tabs.querySelectorAll('.md-tab'));
-    const maxWidth = tabs.reduce((prev, curr) => prev + curr.clientWidth, 0) + threshold - this.refs.tabs.clientWidth;
-    if(distance > 0) {
-      distance = Math.min(distance, threshold);
-    } else {
-      distance = Math.max(distance, -maxWidth);
-    }
-
-    const transform = `translate3d(${distance}px, 0, 0)`;
-    this.slide.style.transform = transform;
-    tabs.forEach(tab => tab.style.transform = transform);
-    return distance;
+  updateIndicator = () => {
+    const { offsetWidth, offsetLeft } = this.refs.tabs.querySelector('.md-tab.active');
+    this.setState({
+      indicatorStyle: {
+        left: `${offsetLeft}px`,
+        width: `${offsetWidth}px`,
+      },
+    });
   };
 
   render() {
-    const { children, className, ...props } = this.props;
-    const activeTabIndex = this.getActiveTabIndex();
+    const { indicatorStyle, tabsContent } = this.state;
+    const { className, children, tabsOffset, ...props } = this.props;
+    const { transitionName, transitionEnter, transitionEnterTimeout, transitionLeave, transitionLeaveTimeout, ...remainingProps } = props;
+
+    const isScrollable = isPropEnabled(remainingProps, 'scrollable');
 
     const tabs = React.Children.map(children, (tab, i) => {
       return React.cloneElement(tab, {
-        key: i,
-        valueLink: {
-          checked: i === activeTabIndex,
-          requestChange: this.handleTabChange.bind(this, i, tab),
-        },
+        key: tab.key || `tab-${i}`,
+        checked: this.isTabChecked(tab.props),
+        onChange: this.handleTabChange.bind(this, tab.props),
       });
     });
 
-    const tabsClassName = classnames('md-tabs', {
-      'md-tabs-primary': isPropEnabled(this.props, 'primary'),
-      'md-tabs-secondary': isPropEnabled(this.props, 'secondary'),
-    });
     return (
-      <div {...props} className={classnames('md-tabs-container', className)}>
-        <ul
-          className={tabsClassName}
-          ref="tabs"
-          onTouchStart={this.handleTouchStart}
-          onTouchMove={this.handleTouchMove}
-          onTouchEnd={this.handleTouchEnd}
+      <div className={classnames('md-tabs-container', className)} {...remainingProps}>
+        <header
+          className={classnames('md-tabs-scroll-container', {
+            'md-primary': isPropEnabled(remainingProps, 'primary'),
+            'md-secondary': isPropEnabled(remainingProps, 'secondary'),
+          })}
+          ref="scrollContainer"
           >
-          {tabs}
-          <span className="slide" ref="slide" />
-        </ul>
-        <div className="md-tab-content-container">
-          {this.tabsContent}
-        </div>
+          <ul
+            ref="tabs"
+            className={classnames('md-tabs', {
+              'fixed-width': isPropEnabled(remainingProps, 'fixedWidth'),
+              'tabs-scrollable': isScrollable,
+              'tabs-centered': !isScrollable && isPropEnabled(remainingProps, 'centered'),
+            })}
+            onTouchStart={this.handleTouchStart}
+            onTouchMove={this.handleTouchMove}
+            onTouchEnd={this.handleTouchEnd}
+            style={{ marginLeft: tabsOffset }}
+            >
+            {tabs}
+            <span className="md-tab-indicator" style={indicatorStyle} />
+          </ul>
+        </header>
+        <CSSTransitionGroup
+          className="md-tab-content-container"
+          transitionName={transitionName}
+          transitionEnter={transitionEnter}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeave={transitionLeave}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+          >
+          {tabsContent}
+        </CSSTransitionGroup>
       </div>
     );
   }

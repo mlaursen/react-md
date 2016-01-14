@@ -5,8 +5,8 @@ import { Tabs as TabsMD, Tab } from 'react-md/Tabs';
 import DocPage from 'react-md-documentation';
 import TabsExamples from './TabsExamples';
 import TabsExamplesRaw from '!!raw!./TabsExamples';
-import PhoneExample from './PhoneExample';
-import PhoneExampleRaw from '!!raw!./PhoneExample';
+//import PhoneExample from './PhoneExample';
+//import PhoneExampleRaw from '!!raw!./PhoneExample';
 //import './_tabs.scss';
 
 export default class Tabs extends Component {
@@ -62,10 +62,10 @@ export default class Tabs extends Component {
         examples={[{
           markdown: TabsExamplesRaw,
           children: <TabsExamples />,
-        }, {
+        }/*, {
           markdown: PhoneExampleRaw,
           children: <PhoneExample />,
-        }]}
+        }*/]}
         >
         Tabs make it easy to explore and switch between different views or functional aspects of an app or to browse categorized data sets.
       </DocPage>

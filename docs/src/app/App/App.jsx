@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import { githubHref } from '../utils';
 import * as components from '../components';
-import AppBar from 'react-md/AppBar';
+import AppBar, { ActionArea } from 'react-md/AppBar';
 import Avatar from 'react-md/Avatar';
 import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
@@ -71,10 +71,15 @@ export default class App extends Component {
     return (
       <div className="react-md-docs">
         <AppBar
+          primary
           title="react md"
           className="react-md-docs-app-bar"
-          leftNode={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
-          rightNode={<IconButton href={githubHref} iconClassName="fa fa-github" />}
+          menuButton={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
+          actionsRight={(
+            <ActionArea>
+              <IconButton href={githubHref} iconClassName="fa fa-github" />
+            </ActionArea>
+          )}
         />
         <Sidebar isOpen={this.state.isOpen} className="main-sidebar">
           <List>

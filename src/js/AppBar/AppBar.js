@@ -1,53 +1,56 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Toolbar from '../Toolbar';
-import { isPropEnabled } from '../utils/PropUtils';
+import { mergeClassNames } from '../utils';
 
 export default class AppBar extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = {};
   }
 
   static propTypes = {
     className: PropTypes.string,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
+    menuButton: PropTypes.node.isRequired,
     title: PropTypes.string,
-    leftNode: PropTypes.node,
-    rightNode: PropTypes.node,
     children: PropTypes.node,
-    withTabs: PropTypes.bool,
+    actionsRight: PropTypes.node,
   };
 
-  static defaultProps = {
-    primary: true,
-    secondary: false,
-  };
+  componentDidMount() {
+    if(!this.props.children) { return; }
+
+    const tabs = ReactDOM.findDOMNode(this.refs.tabs);
+    if(tabs.classList.contains('tabs-centered')) { return; }
+
+    const menuBtn = ReactDOM.findDOMNode(this).querySelector('.menu-btn');
+    const menuMargin = parseInt(window.getComputedStyle(menuBtn, null).getPropertyValue('margin-left'));
+    const offset = tabs.querySelector('.md-tab-label > div').offsetLeft;
+
+    /*eslint-disable react/no-did-mount-set-state*/
+    this.setState({
+      tabsOffset: `${menuMargin * 2 + menuBtn.offsetWidth - offset}px`,
+    });
+  }
 
   render() {
-    const { primary, secondary, title, className, leftNode, rightNode, children, ...props } = this.props;
+    const { menuButton, title, actionsRight, children, ...props } = this.props;
+    const { tabsOffset } = this.state;
     return (
-      <Toolbar
-        primary={primary}
-        secondary={secondary}
-        className={classnames('md-app-bar', className, {
-          'with-tabs': isPropEnabled(props, 'withTabs'),
-        })}
-        {...props}
-        >
-        <div className="md-app-bar-left">
-          {leftNode}
-          {title && <h4 className="md-app-bar-title">{title}</h4>}
-        </div>
-        {children}
-        <div className="md-app-bar-right">
-          {rightNode}
-        </div>
-      </Toolbar>
+      <div className={classnames('md-app-bar-container', { 'with-tabs': !!children })}>
+        <header {...props} className={mergeClassNames(props, 'md-app-bar')}>
+          {React.cloneElement(menuButton, { className: 'menu-btn' })}
+          {title && <h3 className="md-title">{title}</h3>}
+          {actionsRight}
+        </header>
+        {children && React.cloneElement(children, { ref: 'tabs', tabsOffset })}
+      </div>
     );
   }
 }

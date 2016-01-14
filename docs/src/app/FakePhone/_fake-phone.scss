@@ -6,13 +6,15 @@
 
 
 .fake-phone {
+  @include md-tab-mobile();
+
   position: relative;
 
   .phone-content {
     position: relative;
   }
 
-  .md-app-bar {
+  .md-app-bar:not(.with-tabs) {
     position: absolute;
     z-index: 2;
   }

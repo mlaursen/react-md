@@ -1,0 +1,26 @@
+@mixin md-theme-app-bar($color, $text-color) {
+  &.md-app-bar {
+    background: $color;
+    color: $text-color;
+  }
+}
+
+@mixin md-app-bar-mobile() {
+  .md-app-bar {
+    .menu-btn,
+    .action-area {
+      margin-left: $md-app-bar-mobile-margin;
+      margin-right: $md-app-bar-mobile-margin;
+    }
+  }
+}
+
+@mixin md-app-bar-desktop() {
+  .md-app-bar {
+    .menu-btn,
+    .action-area {
+      margin-left: $md-app-bar-deskop-margin;
+      margin-right: $md-app-bar-deskop-margin;
+    }
+  }
+}

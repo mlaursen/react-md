@@ -107,3 +107,19 @@ main {
   display: block;
   margin: 1em 0;
 }
+
+.desktop-examples .md-app-bar {
+  position: initial;
+}
+
+.react-md-docs-app-bar {
+  transition: box-shadow $md-transition-time;
+
+  &.no-shadow {
+    box-shadow: none;
+  }
+
+  .action-area .md-btn-icon {
+    display: inline-flex;
+  }
+}

@@ -1,18 +1,39 @@
-@mixin make-md-tabs($name, $color, $slide-color, $slide-hue, $hue: 6, $slide-secondary: true) {
-  .md-tabs-#{$name} {
-    background: get-md-color($md-primary-color, $hue);
+@mixin md-theme-tabs($primary-color, $secondary-color, $text-active-color, $text-inactive-color) {
+  &.md-tabs-scroll-container {
+    background: $primary-color;
 
-    .slide {
-      background: get-md-color($slide-color, $slide-hue, $slide-secondary);
+    .md-tab {
+      color: $text-inactive-color;
+
+      &.active {
+        color: $text-active-color;
+      }
     }
 
-    .md-tab.active .md-tab-label {
-      color: $white-base;
+    .md-tab-indicator {
+      background: $secondary-color;
     }
 
-    .md-tab-label {
-      color: rgba($white-base, .7);
+    .md-ink {
+      background: rgba($white-base, .15);
     }
   }
 }
 
+@mixin md-tab-mobile() {
+  .md-tab {
+    font-size: $md-tab-mobile-font-size;
+    min-width: $md-tab-mobile-min-width;
+  }
+}
+
+@mixin md-tab-desktop() {
+  .md-tab {
+    font-size: $md-tab-desktop-font-size;
+    min-width: $md-tab-desktop-min-width;
+  }
+
+  .md-tab-label {
+    padding: $md-tab-desktop-padding;
+  }
+}

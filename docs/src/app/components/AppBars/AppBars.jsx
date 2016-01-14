@@ -5,8 +5,8 @@ import AppBar from 'react-md/AppBar';
 import DocPage from 'react-md-documentation';
 import AppBarExamples from './AppBarExamples';
 import AppBarExamplesRaw from '!!raw!./AppBarExamples';
-import FakePhone from '../../FakePhone';
-import FakePhoneRaw from '!!raw!../../FakePhone/FakePhone';
+import AppWithTabs from '../../AppWithTabs';
+import AppWithTabsRaw from '!!raw!../../AppWithTabs/AppWithTabs';
 
 import './_app-bar.scss';
 
@@ -72,12 +72,8 @@ export default class AppBars extends Component {
           markdown: AppBarExamplesRaw,
           children: <AppBarExamples />,
         }, {
-          markdown: FakePhoneRaw,
-          children: (
-            <div className="fake-phone-container">
-              <FakePhone {...this.state} onMenuClick={this.next} />
-            </div>
-          ),
+          markdown: AppWithTabsRaw,
+          children: <AppWithTabs numTabs={8} />,
         }]}
         >
         Another version of the toolbar that has additional functionality built

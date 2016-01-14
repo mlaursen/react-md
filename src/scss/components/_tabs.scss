@@ -1,3 +1,15 @@
+@media only screen and (min-width: 0px) and (max-width: 599px) {
+  @include md-tab-mobile();
+}
+
+@media only screen and (min-width: 600px) {
+  @include md-tab-desktop();
+}
+
+.md-tabs-scroll-container {
+  overflow: hidden;
+}
+
 .md-tabs {
   display: flex;
   list-style: none;
@@ -5,82 +17,148 @@
   padding: 0;
   position: relative;
 
-  .slide {
-    background: get-md-color($md-primary-color);
-    bottom: 0;
-    content: '';
-    display: block;
-    height: $md-tab-slide-height;
-    left: 0;
-    position: absolute;
-    transition: left $md-tab-slide-transition-time ease-out, width $md-tab-slide-transition-time ease;
+  &.fixed-width {
+    .md-tab {
+      @extend %flex-equal-size;
+    }
   }
+
+  &.tabs-centered {
+    justify-content: center;
+  }
+}
+
+.md-tab-indicator {
+  background: get-md-color($md-primary-color);
+  bottom: 0;
+  content: '';
+  display: block;
+  height: $md-tab-indicator-height;
+  left: 0;
+  position: absolute;
+  transition-duration: $md-tab-indicator-transition-time;
+  transition-property: left, width;
 }
 
 .md-tab {
   color: $md-secondary-text-color;
-  height: $md-tab-height;
-  max-width: $md-tab-max-width;
-  min-width: $md-tab-min-width;
-  padding-left: $md-tab-padding;
-  padding-right: $md-tab-padding;
-
-  &.wrapped {
-    .md-tab-label {
-      font-size: #{12 / $md-font-size-base}em;
-    }
-  }
-
-  &.active {
-    .md-tab-label {
-      color: get-md-color($md-primary-color);
-    }
-  }
-
-  &.with-icon {
-    height: $md-tab-with-icon-height;
-
-    .md-tab-label {
-      flex-direction: column;
-    }
-  }
-
-  .md-icon {
-    padding-bottom: $md-tab-icon-padding-bottom;
-  }
-}
-
-.md-tab-radio {
-  @extend %hidden;
-}
-
-.md-tab-label {
-  align-items: center;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  font-size: 1rem;
+  flex-shrink: 0;
   font-weight: $md-font-medium;
-  height: 100%;
-  justify-content: center;
   text-align: center;
   text-transform: uppercase;
   transition: color $md-transition-time;
-  user-select: none; // prevent accidental select when changing tabs
-  width: 100%;
+
+  &.active {
+    color: get-md-color($md-primary-color);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
-.md-tab-content-container {
-  overflow-x: hidden;
-  white-space: nowrap;
+
+.md-tab-label {
+  align-items: center;
+  cursor: inherit;
+  display: flex;
+  flex-direction: column;
+  height: $md-tab-height;
+  justify-content: center;
+  max-width: $md-tab-max-width;
+  padding: $md-tab-padding;
+
+  &.multiline {
+    font-size: $md-tab-multiline-font-size;
+  }
+
+  &:not(.multiline) {
+    padding-bottom: $md-tab-single-line-padding-bottom;
+  }
+
+
+  &.with-icon {
+    height: $md-tab-height-icon;
+    padding-bottom: $md-tab-with-icon-padding-bottom;
+
+    .md-icon {
+      margin-bottom: $md-tab-icon-padding;
+    }
+  }
 }
 
-.md-tab-content {
-  display: inline-block;
-  transition: transform $md-tab-slide-transition-time ease-in-out;
-  vertical-align: top;
-  white-space: normal;
-  width: 100%;
+.md-tab-control {
+  @extend %hidden;
 }
 
-@include make-md-tabs(primary, $md-primary-color, $md-secondary-color, 2);
+//.md-tab {
+//  color: $md-secondary-text-color;
+//  height: $md-tab-height;
+//  max-width: $md-tab-max-width;
+//  min-width: $md-tab-min-width;
+//  padding-left: $md-tab-padding;
+//  padding-right: $md-tab-padding;
+//
+//  &.wrapped {
+//    .md-tab-label {
+//      font-size: #{12 / $md-font-size-base}em;
+//    }
+//  }
+//
+//  &.active {
+//    .md-tab-label {
+//      color: get-md-color($md-primary-color);
+//    }
+//  }
+//
+//  &.with-icon {
+//    height: $md-tab-with-icon-height;
+//
+//    .md-tab-label {
+//      flex-direction: column;
+//    }
+//  }
+//
+//  .md-icon {
+//    padding-bottom: $md-tab-icon-padding-bottom;
+//  }
+//}
+//
+//.md-tab-radio {
+//  @extend %hidden;
+//}
+//
+//.md-tab-label {
+//  align-items: center;
+//  background: transparent;
+//  cursor: pointer;
+//  display: flex;
+//  font-size: 1rem;
+//  font-weight: $md-font-medium;
+//  height: 100%;
+//  justify-content: center;
+//  text-align: center;
+//  text-transform: uppercase;
+//  transition: color $md-transition-time;
+//  user-select: none; // prevent accidental select when changing tabs
+//  width: 100%;
+//}
+//
+//.md-tab-content-container {
+//  overflow-x: hidden;
+//  white-space: nowrap;
+//}
+//
+//.md-tab-content {
+//  display: inline-block;
+//  transition: transform $md-tab-slide-transition-time ease-in-out;
+//  vertical-align: top;
+//  white-space: normal;
+//  width: 100%;
+//}
+//
+//@include make-md-tabs(primary, $md-primary-color, $md-secondary-color, 2);

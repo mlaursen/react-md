@@ -42,3 +42,8 @@
 %full-width {
   width: 100%;
 }
+
+%flex-equal-size {
+  flex-basis: 0;
+  flex-grow: 1;
+}

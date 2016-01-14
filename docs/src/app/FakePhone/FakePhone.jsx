@@ -13,10 +13,9 @@ export default function FakePhone({ children, primary = false, secondary = false
       <AppBar
         primary={primary}
         secondary={secondary}
-        leftNode={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
-        rightNode={<IconButton onClick={onSearchClick}>{iconRight}</IconButton>}
+        menuButton={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
+        actionsRight={<IconButton onClick={onSearchClick}>{iconRight}</IconButton>}
         title={title}
-        withTabs={withTabs}
       />
       <div className="phone-content">
         {children}

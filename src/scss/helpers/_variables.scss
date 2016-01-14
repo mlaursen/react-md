@@ -184,19 +184,40 @@ $md-ink-transition-func: linear !default;
 /// The tab height
 /// @link https://www.google.com/design/spec/components/tabs.html#tabs-specs
 /// @group tabs
+//$md-tab-height: $md-height;
+//$md-tab-with-icon-height: 72px;
+//$md-tab-icon-padding-bottom: 10px;
+///// @group tabs
+//$md-tab-max-width: 246px;
+///// @group tabs
+//$md-tab-min-width: 160px;
+///// @group tabs
+//$md-tab-padding: 12px;
+///// @group tabs
+//$md-tab-slide-height: 2px;
+///// @group tabs
+//$md-tab-slide-transition-time: $md-transition-time * 2 !default;
+
+// Fixed Tabs
 $md-tab-height: $md-height;
-$md-tab-with-icon-height: 72px;
-$md-tab-icon-padding-bottom: 10px;
-/// @group tabs
-$md-tab-max-width: 246px;
-/// @group tabs
-$md-tab-min-width: 160px;
-/// @group tabs
+$md-tab-height-icon: 72px;
+$md-tab-max-width: 264px;
+
+$md-tab-mobile-min-width: 72px;
+$md-tab-mobile-font-size: 14px;
+
+$md-tab-desktop-font-size: 13px;
+$md-tab-desktop-padding: 24px;
+$md-tab-desktop-min-width: 160px;
+
+$md-tab-indicator-height: 2px;
+$md-tab-icon-padding: 10px;
+$md-tab-with-icon-padding-bottom: 16px;
 $md-tab-padding: 12px;
-/// @group tabs
-$md-tab-slide-height: 2px;
-/// @group tabs
-$md-tab-slide-transition-time: $md-transition-time * 2 !default;
+$md-tab-single-line-padding-bottom: 20px;
+$md-tab-multiline-font-size: 12px;
+
+$md-tab-indicator-transition-time: $md-transition-time * 2 !default;
 
 // =============================================
 // Cards
@@ -248,7 +269,9 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 // =============================================
 // App Bar
 /// @group app-bar
-$md-app-bar-height: 65px !default;
+$md-app-bar-height: 64px !default;
+$md-app-bar-mobile-margin: 12px;
+$md-app-bar-deskop-margin: 12px;
 
 
 // =============================================

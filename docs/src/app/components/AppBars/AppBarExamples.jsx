@@ -1,5 +1,5 @@
 import React from 'react';
-import AppBar from 'react-md/AppBar';
+import AppBar, { ActionArea } from 'react-md/AppBar';
 import { IconButton } from 'react-md/Buttons';
 
 import { githubHref } from '../../utils';
@@ -8,10 +8,15 @@ export default function AppBarExamples() {
   return (
     <div className="app-bar-container">
       <AppBar
-        className="app-bar-example"
+        primary
+        className="react-md-docs-app-bar"
         title="react-md"
-        leftNode={<IconButton>menu</IconButton>}
-        rightNode={<IconButton href={githubHref} iconClassName="fa fa-github" />}
+        menuButton={<IconButton>menu</IconButton>}
+        actionsRight={(
+          <ActionArea>
+            <IconButton href={githubHref} iconClassName="fa fa-github" />
+          </ActionArea>
+        )}
       />
     </div>
   );
