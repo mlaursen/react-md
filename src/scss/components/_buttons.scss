@@ -16,10 +16,6 @@
   transition-duration: $md-transition-time;
   transition-property: box-shadow, background, transform;
 
-  &:hover:not([disabled]) {
-    background: $md-btn-hover-color;
-  }
-
   &[disabled] {
     color: $md-disabled-color;
 
@@ -28,6 +24,15 @@
     }
   }
 }
+
+.md-raised-btn,
+.md-floating-btn,
+.md-flat-btn {
+  &:hover {
+    background: $md-btn-hover-color;
+  }
+}
+
 
 .md-icon-btn {
   background: transparent;
@@ -53,7 +58,7 @@
   min-width: $md-btn-raised-min-width;
 
   &:active {
-    @include md-box-shadow(3);
+    @include md-box-shadow(4);
   }
 }
 
