@@ -1,50 +1,3 @@
-//.md-app-bar,
-//.md-app-bar-left {
-//  align-items: center;
-//  display: flex;
-//  flex-wrap: nowrap;
-//}
-//
-//.md-app-bar {
-//  height: $md-app-bar-height;
-//  justify-content: space-between;
-//  width: 100%;
-//  z-index: $md-app-bar-z-index;
-//
-//  &:not(.with-tabs) {
-//    position: fixed;
-//
-//    ~ *:not(.md-floating-btn):not(.fixed) {
-//      padding-top: $md-app-bar-height;
-//    }
-//  }
-//
-//  &.with-tabs {
-//    box-shadow: none;
-//  }
-//}
-//
-//.md-app-bar-title {
-//  color: $white-base;
-//  display: inline-block;
-//  font-size: $md-font-icon-size;
-//  font-weight: $md-font-regular;
-//  margin: 0;
-//}
-//
-//.md-app-bar-left,
-//.md-app-bar-right {
-//  .md-btn-icon {
-//    margin-left: $md-default-padding - $md-btn-padding;
-//    margin-right: $md-default-padding - $md-btn-padding;
-//  }
-//}
-//
-//.md-app-bar-left .md-btn-icon + .md-app-bar-title {
-//  margin-left: ($md-default-padding - $md-btn-padding) / 2;
-//}
-
-
 .md-app-bar-container {
   &:not(.with-tabs) {
     position: fixed;
@@ -53,6 +6,10 @@
 
     .md-app-bar {
       @include md-box-shadow(3);
+    }
+
+    ~ *:not(.fixed) {
+      padding-top: $md-app-bar-height;
     }
   }
 }
@@ -64,8 +21,8 @@
 
   .md-title {
     color: inherit;
-    font-size: 18px;
-    line-height: 64px;
+    font-size: $md-app-bar-title-font-size;
+    line-height: $md-app-bar-height;
   }
 
   .action-area {

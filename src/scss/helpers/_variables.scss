@@ -269,6 +269,7 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 // =============================================
 // App Bar
 /// @group app-bar
+$md-app-bar-title-font-size: 18px !default;
 $md-app-bar-height: 64px !default;
 $md-app-bar-mobile-margin: 12px;
 $md-app-bar-deskop-margin: 12px;

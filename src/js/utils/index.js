@@ -68,9 +68,25 @@ export function isObject(thing) {
   return Object.prototype.toString.call(thing) === '[object Object]';
 }
 
+/**
+ * Merges any given classnames along with adding md-primary, or
+ * md-secondary from the props
+ *
+ * @param {Object} props the prosp to get className and check for primary or secondary
+ * @param {...string} classNames any additional classnames to merge
+ * @return string
+ */
 export function mergeClassNames(props, ...classNames) {
   return classnames(...classNames, props.className, {
     'md-primary': isPropEnabled(props, 'primary'),
     'md-secondary': isPropEnabled(props, 'secondary'),
   });
 }
+
+/**
+ * Amzing media query to check if mobile..
+ * @return true if device width is between 0 and 599px
+ */
+export const isMobile = (() => {
+  return window.matchMedia('only screen and (min-width: 0px) and (max-width: 599px)').matches;
+})();

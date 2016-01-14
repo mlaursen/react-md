@@ -18,7 +18,7 @@ const AppWithTabs = ({ numTabs }) => {
         </ActionArea>
       )}
       >
-      <Tabs primary>
+      <Tabs primary scrollable>
         {Array.apply(null, new Array(numTabs)).map((_, i) => (
         <Tab
           key={i}

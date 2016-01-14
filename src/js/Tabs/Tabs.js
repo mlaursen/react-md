@@ -3,7 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
+import { isPropEnabled, isMobile } from '../utils';
+import FontIcon from '../FontIcon';
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -11,10 +12,7 @@ export default class Tabs extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
-      indicatorStyle: {
-        left: '0px',
-        width: '72px',
-      },
+      indicatorStyle: {},
     };
 
     if(typeof props.value === 'undefined') {
@@ -47,12 +45,17 @@ export default class Tabs extends Component {
     centered: PropTypes.bool,
     slide: PropTypes.bool,
     tabsOffset: PropTypes.string,
+    scrollIconLeft: PropTypes.node,
+    scrollIconRight: PropTypes.node,
   };
 
   static defaultProps = {
     transitionName: 'opacity',
     transitionEnterTimeout: 150,
     transitionLeave: false,
+    isMobile: isMobile,
+    scrollIconLeft: <FontIcon>chevron_left</FontIcon>,
+    scrollIconRight: <FontIcon>chevron_right</FontIcon>,
   };
 
   componentDidMount() {
@@ -154,7 +157,7 @@ export default class Tabs extends Component {
 
   render() {
     const { indicatorStyle, tabsContent } = this.state;
-    const { className, children, tabsOffset, ...props } = this.props;
+    const { className, children, tabsOffset, scrollIconLeft, scrollIconRight, ...props } = this.props;
     const { transitionName, transitionEnter, transitionEnterTimeout, transitionLeave, transitionLeaveTimeout, ...remainingProps } = props;
 
     const isScrollable = isPropEnabled(remainingProps, 'scrollable');

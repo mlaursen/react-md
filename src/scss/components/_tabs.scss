@@ -26,6 +26,10 @@
   &.tabs-centered {
     justify-content: center;
   }
+
+  &.tabs-scrollable {
+    margin-right: $md-font-icon-btn-size + $md-default-padding;
+  }
 }
 
 .md-tab-indicator {

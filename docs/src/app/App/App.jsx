@@ -11,6 +11,7 @@ import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
 import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Divider';
+import { isMobile } from 'react-md/utils';
 
 import './_app.scss';
 
@@ -29,7 +30,7 @@ export default class App extends Component {
     super(props);
 
     // Not home and not a media device
-    const isOpen = props.location.pathname !== '/' && !App.isMobile();
+    const isOpen = props.location.pathname !== '/' && !isMobile;
     this.state = { isOpen };
   }
 
@@ -38,18 +39,14 @@ export default class App extends Component {
     location: PropTypes.object, // from react-router
   };
 
-  static isMobile() {
-    return window.matchMedia('(max-width: 600px)').matches;
-  }
-
   componentWillUpdate({ location }, { isOpen }) {
     const { pathname } = this.props.location;
     if(pathname === location.pathname) { return; }
 
     const isRoot = location.pathname === '/';
-    if(!isRoot && !isOpen && !App.isMobile()) {
+    if(!isRoot && !isOpen && !isMobile) {
       this.setState({ isOpen: true });
-    } else if(isRoot && isOpen || App.isMobile()) {
+    } else if(isRoot && isOpen || isMobile) {
       setTimeout(() => {
         this.setState({ isOpen: false });
       }, 150);
