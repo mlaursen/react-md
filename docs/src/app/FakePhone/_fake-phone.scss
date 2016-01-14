@@ -15,7 +15,6 @@
 
 .fake-phone {
   @include md-tab-mobile();
-  position: relative;
 
   &.with-fixed-fab {
     margin: 2em 0;
@@ -77,6 +76,7 @@
   min-height: 600px - 52px;
   // height of toolbar
   padding-bottom: 52px + $md-default-padding;
+  position: relative;
 
   .md-dropdown-menu .md-tile-primary-text {
     font-size: $md-list-primary-text-font-size;
@@ -101,7 +101,6 @@
   padding: 2px;
   // scss-lint:disable ImportantRule
   padding-top: 2px !important;
-  position: absolute;
   width: 100%;
 
   .md-ink {

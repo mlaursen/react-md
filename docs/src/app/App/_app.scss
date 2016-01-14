@@ -116,7 +116,8 @@ main {
   transition: box-shadow $md-transition-time;
 
   &.no-shadow {
-    box-shadow: none;
+    // scss-lint:disable ImportantRule
+    box-shadow: none !important;
   }
 
   .action-area .md-btn-icon {
