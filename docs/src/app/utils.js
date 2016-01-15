@@ -24,3 +24,10 @@ export function loremIpsum(paras = 3) {
 }
 
 export const numstr = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+
+export const randomImage = ({ width, height, time } = {}) => {
+  width = !width ? 200 : width;
+  height = !height ? 200 : height;
+  time = typeof time === 'undefined' ? Date.now() : time;
+  return `https://unsplash.it/${width}/${height}/?random&time=${time}`;
+};

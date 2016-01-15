@@ -5,6 +5,8 @@ import FontIcon from 'react-md/FontIcon';
 import Avatar from 'react-md/Avatar';
 import Paper from 'react-md/Paper';
 
+import { randomImage } from '../../utils';
+
 export default function ListExamples() {
   return (
     <div className="paper-container">
@@ -53,19 +55,19 @@ export default function ListExamples() {
       <Paper>
         <List>
           <ListItem
-            leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+            leftAvatar={<Avatar src={randomImage({ width: 40, height: 40 })} alt="some image" />}
             primaryText="Brunch this weekend?"
             secondaryText="Ali Connors"
             secondaryText2="I'll be in your neighborhood sometime this week"
           />
           <ListItem
-            leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+            leftAvatar={<Avatar src={randomImage({ width: 40, height: 40 })} alt="some image" />}
             primaryText="Summer BBQ"
             secondaryText="to Alex, Scott, Jennifer"
             secondaryText2="Wish I could come, but I'm out of town this weekend."
           />
           <ListItem
-            leftAvatar={<Avatar src="http://lorempixel.com/120/120/people" alt="some image" />}
+            leftAvatar={<Avatar src={randomImage({ width: 40, height: 40 })} alt="some image" />}
             primaryText="Oui Oui"
             secondaryText="Sandra Adams - Do you have Paris"
             secondaryText2="recommendations? Have you ever been?"

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Avatar from 'react-md/Avatar';
-// import { Avatar } from 'react-md';
 
 import FontIcon from 'react-md/FontIcon';
+import { randomImage } from '../../utils';
 
 export default class AvatarsExamples extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class AvatarsExamples extends Component {
     return (
       <div>
         <div className="middle-align">
-          <Avatar src="http://lorempixel.com/120/120/people" alt="some image" />
+          <Avatar src={randomImage({ width: 40, height: 40 })} alt="some image" />
           <span>Avatar with an image.</span>
         </div>
         <div className="middle-align">

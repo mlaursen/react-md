@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Card, CardTitle, CardText, CardMedia, CardActions } from 'react-md/Cards';
+import { Card, CardTitle, CardText, CardMedia, CardActions, CardActionOverlay } from 'react-md/Cards';
 
 import DocPage from 'react-md-documentation';
 import ExpandableCard from './ExpandableCard';
@@ -109,6 +109,27 @@ export default class Cards extends Component {
             name: 'centered',
             pt: 'ba',
             desc: 'Boolean if the card actions should be centered versus \`space-between\`',
+          }],
+        }, {
+          component: CardActionOverlay,
+          desc: `This is a helper component for generating an overlay for a card
+          that has a \`'1-1'\` aspect ratio and has a title with actions.`,
+          details: [{
+            name: 'title',
+            pt: 's',
+            desc: 'The title to put in the action overlay.',
+          }, {
+            name: 'subtitle',
+            pt: 's',
+            desc: 'The subtitle to put in the overlay.',
+          }, {
+            name: 'children',
+            pt: 'no',
+            desc: 'Any children to render in the \`CardTitle\` Component.',
+          }, {
+            name: 'actions',
+            pt: 'arrayOf(\`FlatButton props\`)',
+            desc: 'An array of flat button props to generate flat buttons.',
           }],
         }]}
         examples={[{

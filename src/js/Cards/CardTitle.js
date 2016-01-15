@@ -27,8 +27,8 @@ export default class CardTitle extends Component {
       <div {...props} className={classnames('md-card-title', className, { 'title-large': !!avatar })}>
         {avatar}
         <div className="titles">
-          <h6 className="md-headline">{title}</h6>
-          {subtitle && <h6 className="md-subheader">{subtitle}</h6>}
+          <h2 className="md-headline">{title}</h2>
+          {subtitle && <h3 className="md-subheader">{subtitle}</h3>}
         </div>
         {children}
       </div>

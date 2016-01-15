@@ -3,6 +3,7 @@ import { Card, CardTitle, CardMedia, CardActions } from 'react-md/Cards';
 import { IconButton } from 'react-md/Buttons';
 
 import { isMobile } from 'react-md/utils';
+import { randomImage } from '../../utils';
 
 export default function CardListExample() {
   return (
@@ -13,7 +14,7 @@ export default function CardListExample() {
             aspectRatio={CardMedia.aspect.equal}
             overlay={<CardTitle title="title" />}
             >
-            <img src={`https://unsplash.it/200/200/?random&time=${i}`} />
+            <img src={randomImage({ time: i })} />
           </CardMedia>
           <CardActions centered>
             <IconButton>favorite</IconButton>

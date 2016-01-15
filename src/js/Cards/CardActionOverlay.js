@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { CardTitle, CardActions, FlatButton } from '../index';
+import CardTitle from './CardTitle';
+import CardActions from './CardActions';
+import { FlatButton } from '../Buttons';
 
 export default class CardActionOverlay extends Component {
   constructor(props) {
@@ -14,23 +16,18 @@ export default class CardActionOverlay extends Component {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     actions: PropTypes.arrayOf(PropTypes.shape({
-      default: PropTypes.bool,
-      primary: PropTypes.bool,
-      secondary: PropTypes.bool,
-      children: PropTypes.node.isRequired,
+      lable: PropTypes.string.isRequired,
     })),
+    children: PropTypes.node,
   };
 
   render() {
-    const { title, subtitle, actions } = this.props;
+    const { title, subtitle, actions, children } = this.props;
     return (
       <span>
-        <CardTitle title={title} subtitle={subtitle} />
+        <CardTitle title={title} subtitle={subtitle} children={children} />
         <CardActions>
-          {actions.map((actionProps, i) => {
-            const isDefault = !actionProps.primary && !actionProps.secondary;
-            return <FlatButton default={isDefault} key={i} {...actionProps} />;
-          })}
+          {actions.map((actionProps, i) => <FlatButton key={i} {...actionProps} />)}
         </CardActions>
       </span>
     );
