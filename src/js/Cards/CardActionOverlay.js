@@ -16,7 +16,7 @@ export default class CardActionOverlay extends Component {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     actions: PropTypes.arrayOf(PropTypes.shape({
-      lable: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
     })),
     children: PropTypes.node,
   };
