@@ -85,3 +85,38 @@
   }
 }
 
+/// Generates css for a text field on mobile devices
+///
+/// @example scss - Example Basic Usage SASS
+///   @media only screen and (min-width: 0px) and (max-width: 599px) {
+///     @include md-text-field-mobile();
+///   }
+@mixin md-text-field-mobile() {
+  @include make-text-field(
+    $md-text-field-mobile-height,
+    $md-text-field-mobile-sl-height,
+    $md-text-field-mobile-font-size,
+    $md-text-field-mobile-padding,
+    $md-text-field-mobile-divider-padding,
+    $md-text-field-mobile-icon-font-size,
+    $md-text-field-mobile-icon-divider-left
+  );
+}
+
+/// Generates css for a text field on desktop
+///
+/// @example scss - Example Basic Usage SASS
+///   @media only screen and (min-width: 600px) {
+///     @include md-text-field-desktop();
+///   }
+@mixin md-text-field-desktop() {
+  @include make-text-field(
+    $md-text-field-desktop-height,
+    $md-text-field-desktop-sl-height,
+    $md-text-field-desktop-font-size,
+    $md-text-field-desktop-padding,
+    $md-text-field-desktop-divider-padding,
+    $md-text-field-desktop-icon-font-size,
+    $md-text-field-desktop-icon-divider-left
+  );
+}

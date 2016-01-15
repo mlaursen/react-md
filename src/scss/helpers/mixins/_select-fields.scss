@@ -26,10 +26,10 @@
 ///   }
 @mixin md-select-field-mobile() {
   @include make-positioned-select-field(
-    $md-text-field-font-size,
-    $md-text-field-sl-height,
-    $md-text-field-padding,
-    $md-text-field-divider-padding
+    $md-text-field-mobile-font-size,
+    $md-text-field-mobile-sl-height,
+    $md-text-field-mobile-padding,
+    $md-text-field-mobile-divider-padding
   );
 }
 
@@ -41,9 +41,9 @@
 ///   }
 @mixin md-select-field-desktop() {
   @include make-positioned-select-field(
-    $md-text-field-dense-font-size,
-    $md-text-field-dense-sl-height,
-    $md-text-field-dense-padding,
-    $md-text-field-dense-divider-padding
+    $md-text-field-desktop-font-size,
+    $md-text-field-desktop-sl-height,
+    $md-text-field-desktop-padding,
+    $md-text-field-desktop-divider-padding
   );
 }

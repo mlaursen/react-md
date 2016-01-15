@@ -1,30 +1,3 @@
-@import '../helpers/all';
-
-// scss-lint:disable SpaceAfterComma
-@media only screen and (min-width: 0px) {
-  @include make-text-field(
-    $md-text-field-height,
-    $md-text-field-sl-height,
-    $md-text-field-font-size,
-    $md-text-field-padding,
-    $md-text-field-divider-padding,
-    $md-text-field-icon-font-size,
-    $md-text-field-icon-divider-left
-  );
-}
-
-@media only screen and (min-width: 600px) {
-  @include make-text-field(
-    $md-text-field-dense-height,
-    $md-text-field-dense-sl-height,
-    $md-text-field-dense-font-size,
-    $md-text-field-dense-padding,
-    $md-text-field-dense-divider-padding,
-    $md-text-field-dense-icon-font-size,
-    $md-text-field-dense-icon-divider-left
-  );
-}
-
 .md-text-field-label.error,
 .md-text-field-info.error,
 .md-text-field-container .md-icon.error {

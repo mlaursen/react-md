@@ -289,25 +289,25 @@ $md-snackbar-desktop-border-radius: 2px;
 
 // =============================================
 // Text Fields
-$md-text-field-height: 72px;
-$md-text-field-sl-height: $md-height;
-$md-text-field-padding: 16px;
-$md-text-field-divider-padding: 8px;
-$md-text-field-font-size: 16px;
-$md-text-field-active-font-size: 12px;
-$md-text-field-icon-font-size: $md-font-icon-size;
-$md-text-field-icon-divider-left: $md-text-field-icon-font-size + (($md-text-field-sl-height - $md-text-field-icon-font-size) / 2) + ($md-text-field-sl-height - $md-text-field-icon-font-size);
+$md-text-field-mobile-height: 72px;
+$md-text-field-mobile-sl-height: $md-height;
+$md-text-field-mobile-padding: 16px;
+$md-text-field-mobile-divider-padding: 8px;
+$md-text-field-mobile-font-size: 16px;
+$md-text-field-mobile-icon-font-size: $md-font-icon-size;
+$md-text-field-mobile-icon-divider-left: $md-text-field-mobile-icon-font-size + (($md-text-field-mobile-sl-height - $md-text-field-mobile-icon-font-size) / 2) + ($md-text-field-mobile-sl-height - $md-text-field-mobile-icon-font-size);
 
-$md-text-field-dense-height: 60px;
-$md-text-field-dense-sl-height: 40px;
-$md-text-field-dense-padding: 12px;
-$md-text-field-dense-divider-padding: 4px;
-$md-text-field-dense-font-size: 13px;
-$md-text-field-dense-icon-font-size: 20px;
-$md-text-field-dense-icon-divider-left: $md-text-field-dense-icon-font-size + (($md-text-field-dense-sl-height - $md-text-field-dense-icon-font-size) / 2) + ($md-text-field-dense-sl-height - $md-text-field-dense-icon-font-size);
+$md-text-field-desktop-height: 60px;
+$md-text-field-desktop-sl-height: 40px;
+$md-text-field-desktop-padding: 12px;
+$md-text-field-desktop-divider-padding: 4px;
+$md-text-field-desktop-font-size: 13px;
+$md-text-field-desktop-icon-font-size: 20px;
+$md-text-field-desktop-icon-divider-left: $md-text-field-desktop-icon-font-size + (($md-text-field-desktop-sl-height - $md-text-field-desktop-icon-font-size) / 2) + ($md-text-field-desktop-sl-height - $md-text-field-desktop-icon-font-size);
 
 $md-text-field-divider-height: 2px !default;
 $md-text-field-info-font-size: 12px;
+$md-text-field-active-font-size: 12px;
 
 
 // =============================================

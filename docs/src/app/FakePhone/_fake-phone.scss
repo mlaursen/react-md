@@ -56,13 +56,13 @@
 .phone-content {
   // scss-lint:disable SpaceAfterComma
   @include make-text-field(
-    $md-text-field-height,
-    $md-text-field-sl-height,
-    $md-text-field-font-size,
-    $md-text-field-padding,
-    $md-text-field-divider-padding,
-    $md-text-field-icon-font-size,
-    $md-text-field-icon-divider-left
+    $md-text-field-mobile-height,
+    $md-text-field-mobile-sl-height,
+    $md-text-field-mobile-font-size,
+    $md-text-field-mobile-padding,
+    $md-text-field-mobile-divider-padding,
+    $md-text-field-mobile-icon-font-size,
+    $md-text-field-mobile-icon-divider-left
   );
 
   @include md-select-field-mobile();
