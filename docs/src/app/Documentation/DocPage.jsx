@@ -72,7 +72,7 @@ export default class DocPage extends Component {
             key={`example-${i}`}
             {...props}
             id={`#examples-example-${i + 1}`}
-            className={classnames(className, { [`example-${i + 1}`]: i > 0 })}
+            className={classnames(className, `example-${i + 1}`)}
             marked={marked}
           />
         ))}

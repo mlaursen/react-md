@@ -52,12 +52,8 @@ main {
 }
 
 .middle-align {
-  display: table;
-
-  > * {
-    display: table-cell;
-    vertical-align: middle;
-  }
+  align-items: center;
+  display: flex;
 }
 
 .full-width {
