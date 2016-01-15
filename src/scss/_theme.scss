@@ -4,6 +4,7 @@ $text: $white-base;
 $disabled-text: rgba($text, .7);
 
 @include md-theme-text-fields($primary);
+@include md-theme-snackbars();
 
 .md-primary {
   @include md-theme-app-bars($primary, $white-base);

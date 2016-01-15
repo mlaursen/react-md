@@ -44,7 +44,7 @@ export default class Snackbar extends Component {
     const [toast] = toasts;
     toast && toast.onAppear && toast.onAppear();
 
-    const fixedFAB = document.querySelector('.md-btn-floating.fixed');
+    const fixedFAB = document.querySelector('.md-floating-btn.fixed');
     if(fixedFAB) {
       fixedFAB.classList.remove('snackbar-multiline-adjust');
       fixedFAB.classList.remove('snackbar-adjust');

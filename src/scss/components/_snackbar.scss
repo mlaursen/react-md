@@ -1,50 +1,3 @@
-@media only screen and (min-width: 0px) and (max-width: 599px) {
-  .md-snackbar {
-    left: 0;
-    right: 0;
-
-    .md-btn-flat {
-      margin-left: $md-snackbar-lr-padding;
-    }
-  }
-
-  .snackbar-enter,
-  .snackbar-leave.snackbar-leave-active {
-    transform: scaleY(0);
-  }
-
-
-  .snackbar-enter.snackbar-enter-active,
-  .snackbar-leave {
-    transform: scaleY(1);
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .md-snackbar {
-    border-radius: $md-snackbar-desktop-border-radius;
-    left: 50%;
-    max-width: $md-snackbar-desktop-max-width;
-    min-width: $md-snackbar-desktop-min-width;
-    transform: translateX(-50%);
-
-    .md-btn-flat {
-      margin-left: $md-snackbar-action-left-margin;
-    }
-  }
-
-  .snackbar-enter,
-  .snackbar-leave.snackbar-leave-active {
-    transform: translateX(-50%) scaleY(0);
-  }
-
-
-  .snackbar-enter.snackbar-enter-active,
-  .snackbar-leave {
-    transform: translateX(-50%) scaleY(1);
-  }
-}
-
 .md-snackbar {
   align-items: center;
   background: $md-snackbar-bg-color;
@@ -65,15 +18,10 @@
     margin: 0;
   }
 
-  .md-btn-flat {
-    color: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
+  .md-flat-btn {
     min-width: initial;
     overflow: visible;
     padding: 0;
-
-    .md-ink {
-      background: rgba($white-base, .12);
-    }
   }
 }
 

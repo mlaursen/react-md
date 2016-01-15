@@ -1,0 +1,56 @@
+@mixin md-snackbar-mobile() {
+  .md-snackbar {
+    left: 0;
+    right: 0;
+
+    .md-flat-btn {
+      margin-left: $md-snackbar-lr-padding;
+    }
+  }
+
+  .snackbar-enter,
+  .snackbar-leave.snackbar-leave-active {
+    transform: scaleY(0);
+  }
+
+
+  .snackbar-enter.snackbar-enter-active,
+  .snackbar-leave {
+    transform: scaleY(1);
+  }
+}
+
+@mixin md-snackbar-desktop() {
+  .md-snackbar {
+    border-radius: $md-snackbar-desktop-border-radius;
+    left: 50%;
+    max-width: $md-snackbar-desktop-max-width;
+    min-width: $md-snackbar-desktop-min-width;
+    transform: translateX(-50%);
+
+    .md-flat-btn {
+      margin-left: $md-snackbar-action-left-margin;
+    }
+  }
+
+  .snackbar-enter,
+  .snackbar-leave.snackbar-leave-active {
+    transform: translateX(-50%) scaleY(0);
+  }
+
+
+  .snackbar-enter.snackbar-enter-active,
+  .snackbar-leave {
+    transform: translateX(-50%) scaleY(1);
+  }
+}
+
+@mixin md-theme-snackbars($btn-color: get-md-color($md-secondary-color, $md-secondary-color-hue, true), $btn-ink-color: rgba($white-base, .12)) {
+  .md-snackbar .md-flat-btn {
+    color: $btn-color;
+
+    .md-ink {
+      background: $btn-ink-color;
+    }
+  }
+}
