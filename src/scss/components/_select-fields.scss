@@ -1,24 +1,3 @@
-@import '../helpers/all';
-
-// scss-lint:disable SpaceAfterComma
-@media only screen and (min-width: 0) and (max-width: 599px) {
-  @include make-positioned-select-field(
-    $md-text-field-font-size,
-    $md-text-field-sl-height,
-    $md-text-field-padding,
-    $md-text-field-divider-padding
-  );
-}
-
-@media only screen and (min-width: 600px) {
-  @include make-positioned-select-field(
-    $md-text-field-dense-font-size,
-    $md-text-field-dense-sl-height,
-    $md-text-field-dense-padding,
-    $md-text-field-dense-divider-padding
-  );
-}
-
 .md-dropdown-container {
   color: $black-base;
   display: inline-block;

@@ -1,9 +1,11 @@
 @media only screen and (min-width: 0px) and (max-width: 599px) {
   @include md-app-bar-mobile();
   @include md-tab-mobile();
+  @include md-select-field-mobile();
 }
 
 @media only screen and (min-width: 600px) {
   @include md-app-bar-desktop();
   @include md-tab-desktop();
+  @include md-select-field-desktop();
 }

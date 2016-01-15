@@ -17,3 +17,33 @@
     }
   }
 }
+
+/// Adds additional css to the select field for mobile devices
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 0px) and (max-width: 599px) {
+///     @include md-select-field-mobile();
+///   }
+@mixin md-select-field-mobile() {
+  @include make-positioned-select-field(
+    $md-text-field-font-size,
+    $md-text-field-sl-height,
+    $md-text-field-padding,
+    $md-text-field-divider-padding
+  );
+}
+
+/// Adds additional css to the select field for desktop
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 600px) {
+///     @include md-select-field-desktop();
+///   }
+@mixin md-select-field-desktop() {
+  @include make-positioned-select-field(
+    $md-text-field-dense-font-size,
+    $md-text-field-dense-sl-height,
+    $md-text-field-dense-padding,
+    $md-text-field-dense-divider-padding
+  );
+}

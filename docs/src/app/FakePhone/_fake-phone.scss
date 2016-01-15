@@ -65,12 +65,7 @@
     $md-text-field-icon-divider-left
   );
 
-  @include make-positioned-select-field(
-    $md-text-field-font-size,
-    $md-text-field-sl-height,
-    $md-text-field-padding,
-    $md-text-field-divider-padding
-  );
+  @include md-select-field-mobile();
 
   height: 100%;
   min-height: 600px - 52px;
