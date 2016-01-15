@@ -1,3 +1,36 @@
+/// Themes the tabs with the given colors
+/// @example scss - Example Basic Usage SASS
+///   .md-primary {
+///     $primary: get-md-color(cyan);
+///     $secondary: get-md-color(yellow, 3, true);
+///     @include md-theme-tabs($primary, $secondary, $white-base, rgba($white-base, .7);
+///    }
+///
+/// @example scss - Example Basic Usage CSS Output
+///   .md-primary.md-tabs-scroll-container {
+///     background: #00bcd4;
+///   }
+///
+///   .md-primary.md-tabs-scroll-container .md-tab {
+///     color: rgba(#fff, .7);
+///   }
+///
+///  .md-primary.md-tabs-scroll-container .md-tab.active {
+///    color: #fff;
+///  }
+///
+///  .md-primary.md-tabs-scroll-container .md-tab-indicator {
+///    background: #ffea00;
+///  }
+///
+///  .md-primary.md-tabs-scroll-container .md-ink {
+///    background: rgba(#fff, .15);
+///  }
+///
+/// @param {Color} $primary-color - The primary color to use for a tab
+/// @param {Color} $secondary-color - The secondary color to use for a tab
+/// @param {Color} $text-active-color - The tab active text color. This should be the white-base in most cases.
+/// @param {Color} $text-inactive-color - The tab inactive text color. This should be the white-base with a 70% opacity in most cases.
 @mixin md-theme-tabs($primary-color, $secondary-color, $text-active-color, $text-inactive-color) {
   &.md-tabs-scroll-container {
     background: $primary-color;
@@ -20,6 +53,12 @@
   }
 }
 
+/// Adds additional css for the material design tabs for a mobile device
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 0px) and (max-width: 599px) {
+///     @include md-tab-mobile();
+///   }
 @mixin md-tab-mobile() {
   .md-tab {
     font-size: $md-tab-mobile-font-size;
@@ -27,6 +66,12 @@
   }
 }
 
+/// Adds additional css for the material design tabs for a desktop
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 600px) {
+///     @include md-tab-desktop();
+///   }
 @mixin md-tab-desktop() {
   .md-tab {
     font-size: $md-tab-desktop-font-size;

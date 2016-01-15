@@ -1,3 +1,18 @@
+/// Themes the app bar to the given colors
+///
+/// @example scss- Example Basic Usage SASS
+///   .md-primary {
+///     @include md-theme-app-bar(get-md-color(indigo), $white-base);
+///   }
+///
+/// @example scss - Example Basic Usage CSS Output
+///   .md-primary.md-app-bar {
+///     background: #3f51b5;
+///     color: #fff;
+///    }
+///
+/// @param {Color} $color - The background colro for the app bar
+/// @param {Color} $text-color - The text color to use in the app bar
 @mixin md-theme-app-bar($color, $text-color) {
   &.md-app-bar {
     background: $color;
@@ -5,6 +20,12 @@
   }
 }
 
+/// Adds additional css to the app bar for mobile devices
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 0px) and (max-width: 599px) {
+///     @include md-app-bar-mobile();
+///   }
 @mixin md-app-bar-mobile() {
   .md-app-bar {
     .menu-btn,
@@ -15,6 +36,12 @@
   }
 }
 
+/// Adds additional css to the app bar for desktop
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 600px) {
+///     @include md-app-bar-desktop();
+///   }
 @mixin md-app-bar-desktop() {
   .md-app-bar {
     .menu-btn,
