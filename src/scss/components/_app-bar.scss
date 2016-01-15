@@ -31,11 +31,3 @@
     justify-content: flex-end;
   }
 }
-
-@media only screen and (min-width: 0px) and (max-width: 600px) {
-  @include md-app-bar-mobile();
-}
-
-@media only screen and (min-width: 600px) {
-  @include md-app-bar-desktop();
-}
