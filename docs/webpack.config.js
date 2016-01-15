@@ -80,7 +80,7 @@ const sassConfig = `outputStyle=${env.development ? 'expanded&sourceMap=true' : 
 const jsLoader = `${env.development ? 'react-hot!' : ''}babel`;
 if(env.development) {
   const host = 'localhost';
-  const port = 3000;
+  const port = 8080;
   const DEV_URL = `http://${host}:${port}`;
   config.devtool = 'eval';
   config.entry = config.entry.concat([
