@@ -39,10 +39,10 @@
   border-radius: 50%;
   color: inherit;
   font-size: $md-font-icon-size;
-  height: $md-font-icon-btn-size;
-  padding: $md-font-icon-btn-size / 4;
+  height: $md-icon-btn-size;
+  padding: $md-icon-btn-padding;
   text-decoration: none;
-  width: $md-font-icon-btn-size;
+  width: $md-icon-btn-size;
 }
 
 .md-flat-btn {

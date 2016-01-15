@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { IconButton } from '../';
+import { IconButton } from '../Buttons';
 
 export default class CardExpander extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
   }
 
   static contextTypes = {
@@ -18,6 +18,15 @@ export default class CardExpander extends Component {
   render() {
     const { isExpanded, onExpandClick, iconClassName, iconChildren } = this.context;
 
-    return <IconButton className={classnames('md-card-expander', { 'flipped': isExpanded })} onClick={onExpandClick} iconClassName={iconClassName} children={iconChildren} />;
+    return (
+      <IconButton
+        className={classnames('md-card-expander', {
+          'flipped': isExpanded,
+        })}
+        onClick={onExpandClick}
+        iconClassName={iconClassName}
+        children={iconChildren}
+      />
+    );
   }
 }

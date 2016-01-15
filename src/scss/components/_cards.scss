@@ -1,20 +1,17 @@
-@media only screen and (max-width: 726px) {
-  .md-card {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 727px) {
-  .md-card {
-    min-width: 350px;
-  }
-}
-
 .md-card {
-  @include md-box-shadow(2);
+  @include md-box-shadow(1);
 
   background: $md-card-color;
   display: inline-block;
+  width: 100%;
+
+  &.raise {
+    transition: box-shadow $md-transition-time * 2;
+
+    &:hover {
+      @include md-box-shadow(4);
+    }
+  }
 }
 
 .md-card-text {
@@ -45,7 +42,7 @@
   &.title-large {
     padding-top: $md-card-padding-extra;
 
-    .title {
+    .md-headline {
       font-size: $md-card-title-size-small;
     }
   }
@@ -64,27 +61,34 @@
     display: inline-block;
   }
 
-  .title {
+  .md-headline {
     font-size: $md-card-title-size;
+    font-weight: $md-font-medium;
     margin: 0;
   }
 
   // scss-lint:disable PlaceholderInExtend
-  .subtitle {
-    @extend .md-subheading-1;
-
+  .md-subheader {
     color: $md-secondary-text-color;
+    font-size: 16em / $md-font-size-base;
     font-weight: $md-font-regular;
   }
 }
 
 .md-card-actions {
-  padding: $md-card-padding / 2;
-
-  > .md-btn {
-    margin: 0 $md-card-padding / 2;
-  }
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $md-card-actions-padding;
 }
+
+.md-card-expander {
+  $size: $md-icon-btn-size - $md-card-padding / 2;
+  height: $size;
+  padding: $md-icon-btn-padding - ($md-icon-btn-size - $size) / 2;
+  width: $size;
+}
+
 
 .md-card-actions-stacked {
   > .md-btn {
@@ -115,26 +119,15 @@
   position: absolute;
   width: 100%;
 
-  .title {
+  .md-headline {
     color: $white-base;
   }
 
-  .subtitle {
+  .md-subheader {
     color: rgba($white-base, .7);
   }
 
   .md-btn {
     color: $white-base;
   }
-}
-
-.md-card-expander {
-  float: right;
-  padding: 8px;
-}
-
-.md-card-expander,
-.md-card-expander .md-ink {
-  height: $md-btn-height;
-  width: $md-btn-height;
 }

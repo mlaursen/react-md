@@ -165,10 +165,9 @@ $md-btn-fab-size-mini: 40px;
 /// The font icon size
 /// @group font-icon
 $md-font-icon-size: 24px !default;
-/// The font icon button size
-/// @group buttons
-/// @see md-font-icon-size
-$md-font-icon-btn-size: $md-font-icon-size * 2;
+
+$md-icon-btn-size: $md-font-icon-size * 2;
+$md-icon-btn-padding: $md-icon-btn-size / 4;
 
 
 /// The default padding used across the board
@@ -213,6 +212,7 @@ $md-card-padding-extra: 24px;
 $md-card-title-size: 24em / $md-font-size-base;
 /// @group cards
 $md-card-title-size-small: 16em / $md-font-size-base;
+$md-card-actions-padding: 8px;
 
 
 // =============================================

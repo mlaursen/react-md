@@ -22,11 +22,7 @@ main {
 .example {
   .code-expander {
     background: $md-background-color;
-
-    .md-btn {
-      display: block;
-      margin: auto;
-    }
+    justify-content: center;
   }
 }
 
