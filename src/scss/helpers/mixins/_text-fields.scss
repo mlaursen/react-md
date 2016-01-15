@@ -120,3 +120,67 @@
     $md-text-field-desktop-icon-divider-left
   );
 }
+
+/// Themes the text fields for the given color. This theme mixin does not use the "&." syntax.
+///
+/// @example scss - Example Usage SASS
+///   @include md-theme-text-fields(get-md-color($md-primary-color));
+///
+/// @example scss - Example Usage CSS Output
+///  .md-text-field-label.error,
+///  .md-text-field-info.error,
+///  .md-text-field-container .md-icon.error {
+///    color: #f44336;
+///  }
+///
+///  .md-text-field-divider.error:after {
+///    background: #f44336;
+///  }
+///
+///  .md-text-field-label,
+///  .md-text-field-container .md-icon.hint,
+///  .md-text-field-info {
+///    color: rgba(0, 0, 0, 0.54);
+///  }
+///
+///  .md-text-field-container .md-icon.active,
+///  .md-text-field-label.focus:not(.error) {
+///    color: #3f51b5;
+///  }
+///
+///  .md-text-field-divider:after {
+///    background: #3f51b5;
+///  }
+///
+/// @param {Color} $color [get-md-color($md-primary-color)] - The color to use for the active colors
+///        on the underline and icons.
+/// @param {Color} $hint-color [$md-secondary-text-color] - The color for inactive text field labels and icons
+///        and the hint text underneath the text fields.
+/// @param {Color} $error-color [get-md-color(red)] - The error color to use for the text field
+///        underlines, icons, floating labels and error message text when there is an error.
+@mixin md-theme-text-fields($color: get-md-color($md-primary-color), $hint-color: $md-secondary-text-color, $error-color: get-md-color(red)) {
+  .md-text-field-label.error,
+  .md-text-field-info.error,
+  .md-text-field-container .md-icon.error {
+    color: $error-color;
+  }
+
+  .md-text-field-divider.error:after {
+    background: $error-color;
+  }
+
+  .md-text-field-label,
+  .md-text-field-container .md-icon.hint,
+  .md-text-field-info {
+    color: $hint-color;
+  }
+
+  .md-text-field-container .md-icon.active,
+  .md-text-field-label.focus:not(.error) {
+    color: $color;
+  }
+
+  .md-text-field-divider:after {
+    background: $color;
+  }
+}

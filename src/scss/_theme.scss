@@ -3,8 +3,10 @@ $secondary: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
 $text: $white-base;
 $disabled-text: rgba($text, .7);
 
+@include md-theme-text-fields($primary);
+
 .md-primary {
-  @include md-theme-app-bar($primary, $white-base);
+  @include md-theme-app-bars($primary, $white-base);
   @include md-theme-buttons($primary);
   @include md-theme-tabs($primary, $secondary, $text, $disabled-text);
 }
@@ -12,6 +14,6 @@ $disabled-text: rgba($text, .7);
 .md-secondary {
   @include md-theme-buttons($secondary);
   $secondary: get-md-color($md-secondary-color);
-  @include md-theme-app-bar($secondary, $white-base);
+  @include md-theme-app-bars($secondary, $white-base);
   @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
 }

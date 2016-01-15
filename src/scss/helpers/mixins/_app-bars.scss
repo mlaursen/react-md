@@ -13,7 +13,7 @@
 ///
 /// @param {Color} $color - The background colro for the app bar
 /// @param {Color} $text-color - The text color to use in the app bar
-@mixin md-theme-app-bar($color, $text-color) {
+@mixin md-theme-app-bars($color, $text-color) {
   &.md-app-bar {
     background: $color;
     color: $text-color;
