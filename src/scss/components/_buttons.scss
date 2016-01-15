@@ -3,12 +3,11 @@
 }
 
 .md-btn {
-  background: transparent;
-  border: 0;
+  @extend %button-unstyled;
+
   font-size: 14px;
   font-weight: 500;
   height: $md-btn-height;
-  outline: none;
   overflow: hidden;
   padding: $md-btn-padding 1em;
   position: relative;

@@ -352,3 +352,12 @@ $md-list-primary-text-font-size: 16px;
 /// @group dropdown
 $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;
 
+// =============================================
+// Chips
+$md-chip-height: 32px;
+$md-chip-border-radius: $md-chip-height / 2;
+$md-chip-font-size: 13px;
+$md-chip-color: rgba($black-base, .87);
+$md-chip-remove-icon-color: rgba($black-base, .54);
+$md-chip-remove-icon-size: 24px;
+$md-chip-remove-icon-margin: 4px;

@@ -47,3 +47,12 @@
   flex-basis: 0;
   flex-grow: 1;
 }
+
+%button-unstyled {
+  background: transparent;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

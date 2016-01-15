@@ -11,6 +11,7 @@ export { InkSprite } from './Ink';
 
 export AppBar from './AppBar';
 export Avatar from './Avatar';
+export Chip from './Chip';
 export Divider from './Divider';
 export FontIcon from './FontIcon';
 export Paper from './Paper';
