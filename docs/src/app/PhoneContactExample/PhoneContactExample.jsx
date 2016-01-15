@@ -12,7 +12,7 @@ export default function PhoneContactExample() {
   return (
     <div className="fake-phone-container">
       <FakePhone primary={true} iconLeft="arrow_back" iconRight="check">
-        <section className="person-placeholder fab-container">
+        <section className="person-placeholder fab-container fab-right">
           <FontIcon className="person">person</FontIcon>
           <FloatingButton secondary>photo_camera</FloatingButton>
         </section>

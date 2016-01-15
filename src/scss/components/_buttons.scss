@@ -108,14 +108,21 @@
 .fab-container {
   position: relative;
 
-  .md-btn-floating {
+  .md-floating-btn {
     bottom: -$md-btn-fab-size / 2;
     position: absolute;
-    right: $md-default-padding;
 
     &.mini {
       bottom: -$md-btn-fab-size-mini / 2;
     }
+  }
+
+  &.fab-right .md-floating-btn {
+    right: $md-default-padding;
+  }
+
+  &.fab-left .md-floating-btn {
+    left: $md-default-padding;
   }
 
   + * {
