@@ -50,7 +50,7 @@ ${markdown}
       );
     }
     return (
-      <Card className={classnames('example', 'full-width', className)} {...props}>
+      <Card className={classnames('example', 'full-width', className)} {...props} raise={false}>
         <CardTitle title={'Examples' + (name ? ' - ' + name : '')} />
         <CardText>{children}</CardText>
         <ExampleCode ref="code" marked={marked} markdown={jsMarkdown} {...this.state} />

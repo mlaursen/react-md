@@ -89,7 +89,7 @@ export default class ComponentProperties extends Component {
             <div>
               {pt && <span className="prop-type">{this.stringToPropType(pt)}</span>}
               {isRequired && <span className="prop-required" />}
-              {typeof defaultValue !== 'undefined' && <span className="prop-default">default: {defaultValue.toString()}</span>}
+              {typeof defaultValue !== 'undefined' && <span className="prop-default">default: {defaultValue === null ? 'null' : defaultValue.toString()}</span>}
               {pt === 'ba' && <span className="prop-default">(This boolean can be enabled by just having the prop on the component)</span>}
             </div>
             }
@@ -99,7 +99,7 @@ export default class ComponentProperties extends Component {
       );
     });
     return (
-      <Card className="full-width prop-types" id={`#prop-types-${toDashedName(name)}`}>
+      <Card className="full-width prop-types" id={`#prop-types-${toDashedName(name)}`} raise={false}>
         <CardTitle title={toTitle(name)}>
           <IconButton
             href={`${githubHref}/tree/master/src/js/${sectionName}/${name}.js`}
@@ -108,7 +108,7 @@ export default class ComponentProperties extends Component {
         </CardTitle>
         {desc &&
           <CardText>
-            <p dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+            <p key="component-desc" dangerouslySetInnerHTML={{ __html: marked(desc) }} />
           </CardText>
         }
         <CardText className="with-table">
