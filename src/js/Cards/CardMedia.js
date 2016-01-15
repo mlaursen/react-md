@@ -9,27 +9,28 @@ export default class CardMedia extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
+  static aspect = {
+    equal: '1-1',
+    wide: '16-9',
+  };
+
   static propTypes = {
     className: PropTypes.string,
     overlay: PropTypes.node,
     children: PropTypes.node,
     forceAspect: PropTypes.bool,
-    aspectRatio: (props, propName) => {
-      if(!/[0-9]+:[0-9]+/.test(props[propName])) {
-        return new Error(`'${props[propName]}' is not a valid aspect ratio. It must be formatted as 'x:x'.`);
-      }
-    },
+    aspectRatio: PropTypes.oneOf([CardMedia.aspect.equal, CardMedia.aspect.wide]).isRequired,
   };
 
   static defaultProps = {
     forceAspect: true,
-    aspectRatio: '16:9',
+    aspectRatio: CardMedia.aspect.wide,
   };
 
   render() {
     const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;
     return (
-      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio.replace(':', '-')}`]: forceAspect })}>
+      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio}`]: forceAspect })}>
         {children}
         {overlay && <div className="md-card-media-overlay">{overlay}</div>}
       </section>

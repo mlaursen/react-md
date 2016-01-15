@@ -1,3 +1,16 @@
+.md-card-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .md-card {
+    margin: 4px;
+  }
+
+  &.equal-width {
+    @exted %flex-equal-size;
+  }
+}
+
 .md-card {
   @include md-box-shadow(1);
 
@@ -80,6 +93,14 @@
   display: flex;
   justify-content: space-between;
   padding: $md-card-actions-padding;
+
+  .action-area .md-icon-btn {
+    color: $md-secondary-text-color;
+  }
+
+  &.centered {
+    justify-content: center;
+  }
 }
 
 .md-card-expander {

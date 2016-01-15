@@ -17,11 +17,15 @@ export default class CardTitle extends Component {
     children: PropTypes.node,
   };
 
+  static defaultProps = {
+    avatar: null,
+  };
+
   render() {
     const { title, subtitle, avatar, className, children, ...props } = this.props;
     return (
       <div {...props} className={classnames('md-card-title', className, { 'title-large': !!avatar })}>
-        {avatar && avatar}
+        {avatar}
         <div className="titles">
           <h6 className="md-headline">{title}</h6>
           {subtitle && <h6 className="md-subheader">{subtitle}</h6>}

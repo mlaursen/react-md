@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import CardExpander from './CardExpander';
+import { isPropEnabled } from '../utils';
 
 export default class CardActions extends Component {
   constructor(props, context) {
@@ -19,12 +20,13 @@ export default class CardActions extends Component {
     isExpander: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
+    centered: PropTypes.bool,
   };
 
   render() {
     const { className, children, isExpander, ...props } = this.props;
     return (
-      <section {...props} className={classnames('md-card-actions', className)}>
+      <section {...props} className={classnames('md-card-actions', className, { 'centered': isPropEnabled(props, 'centered') })}>
         <div className="action-area">
           {children}
         </div>

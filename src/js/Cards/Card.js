@@ -20,10 +20,14 @@ export default class Card extends Component {
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.string,
     isInitialExpanded: PropTypes.bool,
+    raise: PropTypes.bool,
   };
 
   static defaultProps = {
+    raise: true,
     isInitialExpanded: false,
+    iconClassName: 'material-icons',
+    iconChildren: 'keyboard_arrow_down',
   };
 
   static childContextTypes = {
@@ -34,12 +38,12 @@ export default class Card extends Component {
   };
 
   getChildContext = () => {
-    const iconClassName = 'material-icons' || this.props.iconClassName;
+    const { iconClassName, iconChildren } = this.props;
     return {
       onExpandClick: this.handleExpandClick,
       isExpanded: this.state.expanded,
       iconClassName,
-      iconChildren: 'keyboard_arrow_down' || this.props.iconChildren,
+      iconChildren,
     };
   };
 
@@ -48,11 +52,17 @@ export default class Card extends Component {
   };
 
   render() {
-    const { className, children, ...props } = this.props;
+    const { className, children, raise, ...props } = this.props;
 
     let expanderIndex = -1;
     return (
-      <TransitionGroup component="div" {...props} className={classnames('md-card', className)}>
+      <TransitionGroup
+        component="div"
+        {...props}
+        className={classnames('md-card', className, {
+          'raise': raise,
+        })}
+        >
         {React.Children.map(children, (child, i) => {
           if(!child) { return child; }
           if(expanderIndex < 0 && isPropEnabled(child.props, 'isExpander')) {
