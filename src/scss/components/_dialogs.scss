@@ -1,0 +1,120 @@
+.md-dialog {
+  @include md-box-shadow(5);
+
+  background: $white-base;
+  margin: 0 auto;
+  transform: translateY(50vh) translateY(-50%);
+
+  &.simple {
+    min-width: $md-dialog-simple-min-width;
+  }
+
+  .md-title {
+    padding: $md-dialog-padding;
+    padding-bottom: $md-dialog-title-padding-bottom;
+  }
+
+  .md-flat-btn {
+    min-width: $md-dialog-flat-btn-min-width;
+    padding-left: $md-dialog-flat-btn-lr-padding;
+    padding-right: $md-dialog-flat-btn-lr-padding;
+
+    + .md-flat-btn {
+      margin-left: $md-dialog-flat-btn-lr-padding;
+    }
+  }
+
+  .md-title,
+  p {
+    margin: 0;
+  }
+}
+
+.md-dialog-container {
+  height: 100%;
+  left: 0;
+  padding: $md-dialog-min-page-margin;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: -1;
+
+  &.open {
+    visibility: visible;
+    z-index: $md-dialog-z-index;
+  }
+
+  .md-overlay {
+    background: $md-dialog-overlay-color;
+    z-index: -1;
+  }
+
+  .md-overlay-leave.md-overlay-leave-active {
+    transition-duration: $md-dialog-transition-time;
+  }
+}
+
+.md-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: $md-dialog-flat-btn-lr-padding;
+  padding-left: $md-dialog-padding;
+}
+
+.md-dialog-content {
+  color: $md-dialog-content-text-color;
+  padding: $md-dialog-padding;
+  padding-top: 0;
+
+  p {
+    color: inherit;
+  }
+
+  &.simple {
+    padding: 0;
+  }
+
+  .md-list {
+    color: $black-base;
+    padding-bottom: 8px;
+  }
+
+  .md-list-tile {
+    display: block;
+    height: initial;
+    padding-bottom: 16px;
+    padding-left: $md-dialog-padding;
+    padding-right: $md-dialog-padding;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .md-tile-primary-text {
+    white-space: initial;
+  }
+}
+
+.md-dialog-enter {
+  opacity: .01;
+  transform: translateY(50vh) translateY(-70%);
+
+  &.md-dialog-enter-active {
+    opacity: 1;
+    transform: translateY(50vh) translateY(-50%);
+    transition: transform $md-dialog-transition-time, opacity $md-transition-time;
+  }
+}
+
+.md-dialog-leave {
+  opacity: 1;
+  transform: translateY(50vh) translateY(-50%);
+
+  &.md-dialog-leave-active {
+    opacity: .01;
+    transform: translateY(50vh) translateY(-70%);
+    transition: transform $md-dialog-transition-time, opacity $md-transition-time;
+  }
+}
