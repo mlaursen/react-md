@@ -137,6 +137,7 @@ export default class TextField extends Component {
           'no-label': !floatingLabel,
           'multi-line': isTextArea,
           'full-width': isFullWidth,
+          'inline-counter': isFullWidth && !isTextArea && maxLength,
         })}>
         <label className="md-text-field-label-container">
           {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError, 'hint': !active && !this.getValueLink().value })})}
