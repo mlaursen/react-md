@@ -16,23 +16,27 @@ export default class DialogContainer extends Component {
 
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
+    close: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
     title: PropTypes.string,
-    actions: PropTypes.node,
+    actions: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
+    actionLeft: PropTypes.node,
+    actionRight: PropTypes.node,
     className: PropTypes.string,
     contentClassName: PropTypes.string,
+    containerClassName: PropTypes.string,
+    modal: PropTypes.bool,
+    style: PropTypes.object,
+    pageX: PropTypes.number,
+    pageY: PropTypes.number,
     transitionName: PropTypes.string.isRequired,
     transitionEnter: PropTypes.bool,
     transitionEnterTimeout: PropTypes.number,
     transitionLeave: PropTypes.bool,
     transitionLeaveTimeout: PropTypes.number,
-    children: PropTypes.node,
-    modal: PropTypes.bool,
-    close: PropTypes.func.isRequired,
-    actionLeft: PropTypes.node,
-    actionRight: PropTypes.node,
-    pageX: PropTypes.number,
-    pageY: PropTypes.number,
-    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -81,8 +85,9 @@ export default class DialogContainer extends Component {
       isOpen,
       title,
       children,
-      contentClassName,
       className,
+      contentClassName,
+      containerClassName,
       close,
       actionLeft,
       actionRight,
@@ -104,7 +109,7 @@ export default class DialogContainer extends Component {
         transitionEnterTimeout={transitionEnterTimeout}
         transisionLeave={transitionLeave}
         transitionLeaveTimeout={transitionLeaveTimeout}
-        className={classnames('md-dialog-container', {
+        className={classnames('md-dialog-container', containerClassName, {
           'open': isOpen || this.state.openClassName,
           'simple': isSimple,
           'dialog-centered': !isFullPage,

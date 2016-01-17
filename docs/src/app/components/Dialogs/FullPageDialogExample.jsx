@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IconButton, RaisedButton, FlatButton } from 'react-md/Buttons';
+import { ActionArea } from 'react-md/AppBar';
 import Dialog from 'react-md/Dialogs';
 import Divider from 'react-md/Divider';
 import TextField from 'react-md/TextFields';
@@ -33,7 +34,7 @@ export default class ModalDialogExample extends Component {
           isOpen={this.state.isOpen}
           title="New Event"
           actionLeft={<IconButton onClick={this.close}>close</IconButton>}
-          actionRight={<FlatButton label="save" onClick={this.close} />}
+          actionRight={<ActionArea><FlatButton label="save" onClick={this.close} /></ActionArea>}
           pageX={this.state.pageX}
           pageY={this.state.pageY}
           >

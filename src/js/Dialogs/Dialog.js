@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import AppBar, { ActionArea } from 'react-md/AppBar';
+import AppBar from 'react-md/AppBar';
 import Divider from 'react-md/Divider';
 
 const DIALOG_PADDING = 8;
@@ -77,7 +77,7 @@ export default class Dialog extends Component {
           primary
           menuButton={actionLeft}
           title={title}
-          actionsRight={<ActionArea>{actionRight}</ActionArea>}
+          actionsRight={actionRight}
         />
       );
     }
