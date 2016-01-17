@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IconButton, RaisedButton, FlatButton } from 'react-md/Buttons';
 import { ActionArea } from 'react-md/Toolbars';
 import Dialog from 'react-md/Dialogs';
-import Divider from 'react-md/Divider';
+import Divider from 'react-md/Dividers';
 import TextField from 'react-md/TextFields';
 
 export default class ModalDialogExample extends Component {

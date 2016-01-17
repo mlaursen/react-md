@@ -12,7 +12,7 @@ export { InkSprite } from './Ink';
 export Avatar from './Avatars';
 export Chip from './Chips';
 export Dialog from './Dialogs';
-export Divider from './Divider';
+export Divider from './Dividers';
 export FontIcon from './FontIcon';
 export Paper from './Paper';
 export SelectField from './SelectFields';

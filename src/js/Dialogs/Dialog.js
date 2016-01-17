@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import Toolbar from 'react-md/Toolbars';
-import Divider from 'react-md/Divider';
+import Divider from 'react-md/Dividers';
 
 const DIALOG_PADDING = 8;
 

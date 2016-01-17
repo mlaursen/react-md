@@ -4,8 +4,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { List, ListItem, ListSubheader } from '../Lists';
-import Divider from '../Divider';
-import { isPropEnabled } from '../utils/PropUtils';
+import Divider from '../Dividers';
+import { isPropEnabled } from '../utils';
 
 export default class Sidebar extends Component {
   constructor(props) {

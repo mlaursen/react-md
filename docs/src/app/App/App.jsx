@@ -10,7 +10,7 @@ import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
 import { List, ListItem, ListSubheader } from 'react-md/Lists';
-import Divider from 'react-md/Divider';
+import Divider from 'react-md/Dividers';
 import { isMobile } from 'react-md/utils';
 
 import './_app.scss';
