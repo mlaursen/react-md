@@ -10,7 +10,7 @@ export { CircularProgress, LinearProgress } from './Progress';
 export { InkSprite } from './Ink';
 
 export Avatar from './Avatars';
-export Chip from './Chip';
+export Chip from './Chips';
 export Dialog from './Dialogs';
 export Divider from './Divider';
 export FontIcon from './FontIcon';

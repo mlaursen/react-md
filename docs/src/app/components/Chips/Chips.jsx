@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Chip from 'react-md/Chip';
+import Chip from 'react-md/Chips';
 
 import DocPage from 'react-md-documentation';
 import ChipExamples from './ChipExamples';
