@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Avatar } from 'react-md';
+import Avatar from 'react-md/Avatars';
 
 import DocPage from 'react-md-documentation';
 import AvatarsExamples from './AvatarsExamples';

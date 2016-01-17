@@ -9,7 +9,7 @@ export { List, ListItem, ListSubheader } from './Lists';
 export { CircularProgress, LinearProgress } from './Progress';
 export { InkSprite } from './Ink';
 
-export Avatar from './Avatar';
+export Avatar from './Avatars';
 export Chip from './Chip';
 export Dialog from './Dialogs';
 export Divider from './Divider';

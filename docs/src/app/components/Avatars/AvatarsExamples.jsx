@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Avatar from 'react-md/Avatar';
+import Avatar from 'react-md/Avatars';
 
 import FontIcon from 'react-md/FontIcon';
 import { randomImage } from '../../utils';

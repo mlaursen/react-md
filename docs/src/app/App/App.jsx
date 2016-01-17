@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { githubHref } from '../utils';
 import * as components from '../components';
 import Toolbar, { ActionArea } from 'react-md/Toolbars';
-import Avatar from 'react-md/Avatar';
+import Avatar from 'react-md/Avatars';
 import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
 import Sidebar from 'react-md/Sidebar';
