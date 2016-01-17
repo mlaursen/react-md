@@ -44,6 +44,10 @@
       bottom: $padding;
     }
 
+    &:not(.no-label) .md-icon {
+      padding-top: $fl-height - $icon-font-size - $padding;
+    }
+
 
     &.no-label {
       .md-text-field-label-container {
