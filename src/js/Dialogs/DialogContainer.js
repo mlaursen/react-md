@@ -17,7 +17,7 @@ export default class DialogContainer extends Component {
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
     close: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     title: PropTypes.string,
     actions: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
