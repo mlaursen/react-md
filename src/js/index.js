@@ -13,7 +13,7 @@ export Avatar from './Avatars';
 export Chip from './Chips';
 export Dialog from './Dialogs';
 export Divider from './Dividers';
-export FontIcon from './FontIcon';
+export FontIcon from './FontIcons';
 export Paper from './Paper';
 export SelectField from './SelectFields';
 export Slider from './Slider';

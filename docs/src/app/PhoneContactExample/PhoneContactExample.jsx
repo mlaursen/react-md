@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import SelectField from 'react-md/SelectFields';
 import TextField from 'react-md/TextFields';
 import { FloatingButton } from 'react-md/Buttons';

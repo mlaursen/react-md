@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import { isPropEnabled, isMobile } from '../utils';
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcons';
 
 export default class Tabs extends Component {
   constructor(props) {

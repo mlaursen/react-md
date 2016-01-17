@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ControlButton from './ControlButton';
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcons';
 
 function Radio(props) {
   return <ControlButton {...props} type="radio" />;

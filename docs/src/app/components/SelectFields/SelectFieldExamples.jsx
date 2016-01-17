@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SelectField from 'react-md/SelectFields';
 import Card, { CardText, CardTitle } from 'react-md/Cards';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import TextField from 'react-md/TextFields';
 
 import states from './states';

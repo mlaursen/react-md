@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 import Button from './Button';
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcons';
 
 export default class FloatingButton extends Component {
   constructor(props) {

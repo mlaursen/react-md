@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { LinearProgress, CircularProgress } from 'react-md/Progress';
 import { RaisedButton } from 'react-md/Buttons';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import Snackbar from 'react-md/Snackbar';
 import { RadioGroup, Radio } from 'react-md/SelectionControls';
 

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcons';
 
 export default class Chip extends Component {
   constructor(props) {

@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import FontIcon from '../FontIcon';
+import FontIcon from '../FontIcons';
 import Ink from '../Ink';
 
 export default class SelectFieldButton extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Avatar from 'react-md/Avatars';
 
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import { randomImage } from '../../utils';
 
 export default class AvatarsExamples extends Component {

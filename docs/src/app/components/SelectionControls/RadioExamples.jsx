@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RadioGroup, Radio } from 'react-md/SelectionControls';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 
 const customRadios = {
   stars: {

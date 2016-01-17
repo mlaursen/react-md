@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import SelectField from 'react-md/SelectFields';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import Paper from 'react-md/Paper';
 import Toolbar from 'react-md/Toolbars';
 import { Radio, Checkbox } from 'react-md/SelectionControls';

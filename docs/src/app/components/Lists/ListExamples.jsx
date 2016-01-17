@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Dividers';
-import FontIcon from 'react-md/FontIcon';
+import FontIcon from 'react-md/FontIcons';
 import Avatar from 'react-md/Avatars';
 import Paper from 'react-md/Paper';
 
