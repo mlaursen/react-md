@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Toolbar from 'react-md/Toolbars';
+import Toolbar, { ActionArea } from 'react-md/Toolbars';
 
 import DocPage from 'react-md-documentation';
 import ToolbarExamples from './ToolbarExamples';
@@ -17,22 +17,7 @@ export default class Toolbars extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { primary: false, secondary: false };
   }
-
-  next = () => {
-    let nextState = Object.assign({}, this.state);
-    if(nextState.primary) {
-      nextState.primary = false;
-      nextState.secondary = true;
-    } else if(nextState.secondary) {
-      nextState.secondary = false;
-    } else {
-      nextState.primary = true;
-    }
-
-    this.setState(nextState);
-  };
 
   render() {
     return (
@@ -52,23 +37,29 @@ export default class Toolbars extends Component {
             pt: 's',
             desc: 'An Optional title to display in the left node.',
           }, {
-            name: 'leftNode',
+            name: 'menuButton',
             pt: 'no',
-            desc: `Any react node that you want to display to the farthest left
-            in the app bar. This **should** probably be an IconButton or a menu.
-            But it can be whatever.`,
+            desc: `Any \`IconButton\` that should be the button to the left of the title.`,
           }, {
-            name: 'rightNode',
+            name: 'actionsRight',
             pt: 'no',
-            desc: `Any react node that you want to display to the farthest right
-            in the app bar. This **should** probably be an IconButton or a menu.
-            But it can be whatever.`,
+            desc: `Any react node that you want to the right of the title. It is usually
+            helpful to wrap these actions in the \`ActionArea\` component.`,
           }, {
             name: 'children',
             pt: 'no',
-            desc: `Any children that you want to display in the center of the
-            app bar.`,
+            desc: `Any children that you want to display in the \`.md-toolbar-container\` on
+            the line after the \`menuButton\`, \`title\`, and \`actionsRight\`.`,
+          }, {
+            name: 'fixed',
+            pt: 'ba',
+            desc: `Boolean if the toolbar should be fixed.`,
           }],
+        }, {
+          component: ActionArea,
+          desc: `This is just and optional wrapper for the \`actionsRight\` in an app bar. It
+          is a flexbox that expands to remaining space and is right aligned.`,
+          details: [],
         }]}
         examples={[{
           markdown: ToolbarExamplesRaw,
@@ -78,8 +69,8 @@ export default class Toolbars extends Component {
           children: <ToolbarWithTabs fixedWidth={isMobile} />,
         }]}
         >
-        Another version of the toolbar that has additional functionality built
-        into it to help style and render components.
+        <p>A toolbar is a container that has an optional title and 1 to many actionable areas.</p>
+        <p>A toolbar has the functionality to automatically align tab children</p>
       </DocPage>
     );
   }
