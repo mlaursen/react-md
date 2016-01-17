@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
-import Ink from '../Ink';
+import Ink from '../Inks';
 
 export default class SelectFieldButton extends Component {
   constructor(props) {

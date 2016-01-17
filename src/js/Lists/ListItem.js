@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Ink from '../Ink';
+import Ink from '../Inks';
 
 export default class ListItem extends Component {
   constructor(props) {

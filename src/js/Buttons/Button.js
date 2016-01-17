@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import { isPropEnabled, mergeClassNames } from '../utils';
 import { TAB } from '../constants/keyCodes';
-import Ink from '../Ink';
+import Ink from '../Inks';
 
 export default class Button extends Component {
   constructor(props) {

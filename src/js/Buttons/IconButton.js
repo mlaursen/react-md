@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { isPropEnabled } from '../utils';
 import { TAB } from '../constants/keyCodes';
 import FontIcon from '../FontIcons';
-import Ink from '../Ink';
+import Ink from '../Inks';
 
 export default class IconButton extends Component {
   constructor(props) {

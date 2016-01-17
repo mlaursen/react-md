@@ -7,16 +7,16 @@ export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActi
 export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 export { List, ListItem, ListSubheader } from './Lists';
 export { CircularProgress, LinearProgress } from './Progress';
-export { InkSprite } from './Ink';
 
 export Avatar from './Avatars';
 export Chip from './Chips';
 export Dialog from './Dialogs';
 export Divider from './Dividers';
 export FontIcon from './FontIcons';
+export Ink from './Inks';
 export Paper from './Papers';
 export SelectField from './SelectFields';
-export Slider from './Slider';
+export Slider from './Sliders';
 export Sidebar from './Sidebar';
 export Snackbar from './Snackbar';
 export TextField from './TextFields';
