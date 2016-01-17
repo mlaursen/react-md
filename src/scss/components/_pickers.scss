@@ -1,5 +1,12 @@
 .md-date-picker {
-  width: 560px;
+  &.portrait {
+    @include md-date-picker-portrait();
+  }
+
+  &.landscape {
+    @include md-date-picker-landscape();
+  }
+
 }
 
 .md-date-picker-header {
@@ -49,23 +56,30 @@
 }
 
 .md-date-picker-calendar {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  min-height: 380px;
 }
 
+.md-dows,
 .md-calendar-month {
-  display: flex;
   flex-wrap: wrap;
   font-size: 13px;
   padding: 0 12px;
   text-align: center;
 
+  > * {
+    width: calc(100% / 7);
+  }
+}
+
+.md-dows {
+  display: flex;
+
   .dow {
     color: $md-secondary-text-color;
     margin: 0;
-  }
-
-  > * {
-    width: calc(100% / 7);
   }
 }
 
@@ -123,4 +137,11 @@
     width: 36px;
     z-index: 0;
   }
+}
+
+.swipe-container {
+  display: block;
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
 }

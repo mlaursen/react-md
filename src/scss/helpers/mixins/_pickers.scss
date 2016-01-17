@@ -1,11 +1,11 @@
-@mixin md-date-picker-mobile() {
-  .md-date-picker-date {
-    .md-display-1 {
-      display: inline-block;
+@mixin md-date-picker-portrait() {
+  width: 360px;
 
-      + .md-display-1 {
-        margin-left: 10px;
-      }
+  .md-display-1 {
+    display: inline-block;
+
+    + .md-display-1 {
+      margin-left: 10px;
     }
   }
 
@@ -14,11 +14,9 @@
   }
 }
 
-@mixin md-date-picker-desktop() {
-
-  .md-date-picker {
-    display: flex;
-  }
+@mixin md-date-picker-landscape() {
+  display: flex;
+  width: 560px;
 
   .md-date-picker-header {
     width: 200px;
@@ -30,5 +28,17 @@
 
   .md-calendar-container {
     flex-grow: 1;
+  }
+}
+
+@mixin md-date-picker-mobile() {
+  .md-date-picker:not(.landscape) {
+    @include md-date-picker-portrait();
+  }
+}
+
+@mixin md-date-picker-desktop() {
+  .md-date-picker:not(.portrait) {
+    @include md-date-picker-landscape();
   }
 }
