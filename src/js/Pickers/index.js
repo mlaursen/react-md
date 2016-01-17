@@ -1,2 +1,2 @@
-export DatePicker from './DatePicker';
+export DatePicker from './DatePickerContainer';
 export TimePicker from './TimePicker';
