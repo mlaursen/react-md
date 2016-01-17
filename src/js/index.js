@@ -17,6 +17,6 @@ export Ink from './Inks';
 export Paper from './Papers';
 export SelectField from './SelectFields';
 export Slider from './Sliders';
-export Sidebar from './Sidebar';
+export Sidebar from './Sidebars';
 export Snackbar from './Snackbars';
 export TextField from './TextFields';

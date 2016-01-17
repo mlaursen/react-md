@@ -8,7 +8,7 @@ import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import Avatar from 'react-md/Avatars';
 import FontIcon from 'react-md/FontIcons';
 import { IconButton } from 'react-md/Buttons';
-import Sidebar from 'react-md/Sidebar';
+import Sidebar from 'react-md/Sidebars';
 import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Dividers';
 import { isMobile } from 'react-md/utils';
