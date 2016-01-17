@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Paper from 'react-md/Paper';
+import Paper from 'react-md/Papers';
 
 import DocPage from 'react-md-documentation';
 import PaperExamples from './PaperExamples';

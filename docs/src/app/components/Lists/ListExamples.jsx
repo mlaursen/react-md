@@ -3,7 +3,7 @@ import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Dividers';
 import FontIcon from 'react-md/FontIcons';
 import Avatar from 'react-md/Avatars';
-import Paper from 'react-md/Paper';
+import Paper from 'react-md/Papers';
 
 import { randomImage } from '../../utils';
 

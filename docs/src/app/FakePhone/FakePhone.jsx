@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import Paper from 'react-md/Paper';
+import Paper from 'react-md/Papers';
 import { IconButton } from 'react-md/Buttons';
 import Toolbar, { ActionArea } from 'react-md/Toolbars';
 

@@ -4,7 +4,7 @@ import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import { IconButton } from 'react-md/Buttons';
 import { Tabs, Tab } from 'react-md/Tabs';
 import { numstr } from '../utils';
-import Paper from 'react-md/Paper';
+import Paper from 'react-md/Papers';
 
 const ToolbarWithTabs = ({ centered = false, scrollable = false, fixedWidth = false }) => {
   return (

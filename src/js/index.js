@@ -14,7 +14,7 @@ export Chip from './Chips';
 export Dialog from './Dialogs';
 export Divider from './Dividers';
 export FontIcon from './FontIcons';
-export Paper from './Paper';
+export Paper from './Papers';
 export SelectField from './SelectFields';
 export Slider from './Slider';
 export Sidebar from './Sidebar';

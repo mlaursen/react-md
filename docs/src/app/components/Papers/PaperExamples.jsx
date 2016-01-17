@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from 'react-md/Paper';
+import Paper from 'react-md/Papers';
 
 export default function PaperExamples() {
   return (
