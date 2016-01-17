@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { LinearProgress, CircularProgress } from 'react-md/Progress';
 import { RaisedButton } from 'react-md/Buttons';
 import FontIcon from 'react-md/FontIcons';
-import Snackbar from 'react-md/Snackbar';
+import Snackbar from 'react-md/Snackbars';
 import { RadioGroup, Radio } from 'react-md/SelectionControls';
 
 const fakeContent = [

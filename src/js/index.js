@@ -18,5 +18,5 @@ export Paper from './Papers';
 export SelectField from './SelectFields';
 export Slider from './Sliders';
 export Sidebar from './Sidebar';
-export Snackbar from './Snackbar';
+export Snackbar from './Snackbars';
 export TextField from './TextFields';
