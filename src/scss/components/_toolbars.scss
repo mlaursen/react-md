@@ -17,6 +17,8 @@
 }
 
 .md-toolbar {
+  @include md-box-shadow(1);
+
   align-items: center;
   display: flex;
   height: $md-toolbar-height;

@@ -37,9 +37,10 @@ export default class Toolbars extends Component {
             pt: 's',
             desc: 'An Optional title to display in the left node.',
           }, {
-            name: 'menuButton',
+            name: 'actionLeft',
             pt: 'no',
-            desc: `Any \`IconButton\` that should be the button to the left of the title.`,
+            desc: `Any action that should be the button to the left of the title.
+            In most cases, this *should* be an \`IconButton\`.`,
           }, {
             name: 'actionsRight',
             pt: 'no',
@@ -49,7 +50,7 @@ export default class Toolbars extends Component {
             name: 'children',
             pt: 'no',
             desc: `Any children that you want to display in the \`.md-toolbar-container\` on
-            the line after the \`menuButton\`, \`title\`, and \`actionsRight\`.`,
+            the line after the \`actionLeft\`, \`title\`, and \`actionsRight\`.`,
           }, {
             name: 'fixed',
             pt: 'ba',

@@ -28,7 +28,7 @@
 ///   }
 @mixin md-toolbar-mobile() {
   .md-toolbar {
-    .menu-btn,
+    .action-left,
     .action-area {
       margin-left: $md-toolbar-mobile-margin;
       margin-right: $md-toolbar-mobile-margin;
@@ -44,7 +44,7 @@
 ///   }
 @mixin md-toolbar-desktop() {
   .md-toolbar {
-    .menu-btn,
+    .action-left,
     .action-area {
       margin-left: $md-toolbar-deskop-margin;
       margin-right: $md-toolbar-deskop-margin;

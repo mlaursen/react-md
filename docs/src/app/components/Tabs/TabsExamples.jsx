@@ -11,7 +11,7 @@ const lorems = [
 const PrimaryToolbar = (props) => (
   <Toolbar
     primary
-    menuButton={<IconButton className="menu-btn">menu</IconButton>}
+    actionLeft={<IconButton className="menu-btn">menu</IconButton>}
     title="Page title"
     actionsRight={(
       <ActionArea>

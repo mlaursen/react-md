@@ -11,7 +11,7 @@ export default function ToolbarExamples() {
         primary
         className="react-md-docs-toolbar"
         title="react-md"
-        menuButton={<IconButton>menu</IconButton>}
+        actionLeft={<IconButton>menu</IconButton>}
         actionsRight={(
           <ActionArea>
             <IconButton href={githubHref} iconClassName="fa fa-github" />

@@ -75,7 +75,7 @@ export default class Dialog extends Component {
       header = (
         <Toolbar
           primary
-          menuButton={actionLeft}
+          actionLeft={actionLeft}
           title={title}
           actionsRight={actionRight}
         />

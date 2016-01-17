@@ -13,7 +13,7 @@ export default function FakePhone({ children, primary = false, secondary = false
       <Toolbar
         primary={primary}
         secondary={secondary}
-        menuButton={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
+        actionLeft={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
         actionsRight={<ActionArea><IconButton onClick={onSearchClick}>{iconRight}</IconButton></ActionArea>}
         title={title}
         >

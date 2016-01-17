@@ -72,7 +72,7 @@ export default class App extends Component {
           fixed
           title="react md"
           className="react-md-docs-toolbar"
-          menuButton={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
+          actionLeft={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
           actionsRight={(
             <ActionArea>
               <IconButton href={githubHref} iconClassName="fa fa-github" />
