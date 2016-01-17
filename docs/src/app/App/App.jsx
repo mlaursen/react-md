@@ -69,6 +69,7 @@ export default class App extends Component {
       <div className="react-md-docs">
         <Toolbar
           primary
+          fixed
           title="react md"
           className="react-md-docs-toolbar"
           menuButton={<IconButton onClick={this.toggleMenu}>menu</IconButton>}

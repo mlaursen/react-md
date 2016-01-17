@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { mergeClassNames } from '../utils';
+import { isPropEnabled, mergeClassNames } from '../utils';
 
 export default class Toolbar extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ export default class Toolbar extends Component {
     title: PropTypes.string,
     children: PropTypes.node,
     actionsRight: PropTypes.node,
+    fixed: PropTypes.bool,
   };
 
   componentDidMount() {
@@ -43,7 +44,7 @@ export default class Toolbar extends Component {
     const { menuButton, title, actionsRight, children, ...props } = this.props;
     const { tabsOffset } = this.state;
     return (
-      <div className={classnames('md-toolbar-container', { 'with-tabs': !!children })}>
+      <div className={classnames('md-toolbar-container', { fixed: isPropEnabled(props, 'fixed') })}>
         <header {...props} className={mergeClassNames(props, 'md-toolbar')}>
           {React.cloneElement(menuButton, { className: 'menu-btn' })}
           {title && <h3 className="md-title">{title}</h3>}

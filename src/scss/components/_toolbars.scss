@@ -1,5 +1,7 @@
 .md-toolbar-container {
-  &:not(.with-tabs) {
+  display: block;
+
+  &.fixed {
     position: fixed;
     width: 100%;
     z-index: $md-toolbar-z-index;

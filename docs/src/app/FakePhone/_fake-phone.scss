@@ -2,14 +2,6 @@
 
 .fake-phone-container .fake-phone {
   margin-bottom: 2em;
-
-  .md-toolbar-container {
-    position: static;
-
-    ~ *:not(.fixed) {
-      padding-top: initial;
-    }
-  }
 }
 
 
