@@ -1,7 +1,7 @@
 import { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
-import { animate } from '../utils/PropUtils';
+import { animate } from '../utils';
 
 export default class Height extends Component {
   constructor(props) {

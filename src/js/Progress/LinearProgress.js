@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 
 export default class LinearProgress extends Component {
   constructor(props) {

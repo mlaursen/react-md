@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 import TextFieldInfo from './TextFieldInfo';
 import TextFieldLabel from './TextFieldLabel';
 import TextFieldDivider from './TextFieldDivider';

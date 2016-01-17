@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 
 const Divider = (className, ...props) => (
   <hr

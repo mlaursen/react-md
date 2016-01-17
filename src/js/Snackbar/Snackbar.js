@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 import Toast from './Toast';
 
 export default class Snackbar extends Component {

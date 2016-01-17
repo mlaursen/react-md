@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled, isObject } from '../utils/PropUtils';
+import { isPropEnabled, isObject } from '../utils';
 import { List, ListItem } from '../';
 import SelectFieldButton from './SelectFieldButton';
 

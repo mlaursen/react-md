@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils/PropUtils';
+import { isPropEnabled } from '../utils';
 import { LEFT_MOUSE } from '../constants/keyCodes';
 
 export default class Control extends Component {
