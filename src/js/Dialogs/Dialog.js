@@ -1,104 +1,114 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
+import AppBar, { ActionArea } from 'react-md/AppBar';
+import Divider from 'react-md/Divider';
 
-import { isPropEnabled } from '../utils';
+const DIALOG_PADDING = 8;
 
 export default class Dialog extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { openClassName: props.isOpen };
+    this.state = { stacked: false };
   }
 
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    isSimple: PropTypes.bool.isRequired,
+    isFullPage: PropTypes.bool.isRequired,
+    transformOrigin: PropTypes.string,
     title: PropTypes.string,
     actions: PropTypes.node,
+    actionLeft: PropTypes.node,
+    actionRight: PropTypes.node,
     className: PropTypes.string,
-    transitionName: PropTypes.string.isRequired,
-    transitionEnter: PropTypes.bool,
-    transitionEnterTimeout: PropTypes.number,
-    transitionLeave: PropTypes.bool,
-    transitionLeaveTimeout: PropTypes.number,
+    contentClassName: PropTypes.string,
     children: PropTypes.node,
-    modal: PropTypes.bool,
-    close: PropTypes.func.isRequired,
+    style: PropTypes.object,
   };
 
-  static defaultProps = {
-    transitionName: 'md-dialog',
-    transitionEnter: true,
-    transitionEnterTimeout: 450,
-    transitionLeave: true,
-    transitionLeaveTimeout: 450,
-  };
+  componentDidMount() {
+    let state = {};
+    const { dialog, content } = this.refs;
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.isOpen && !nextProps.isOpen) {
-      this.setState({
-        openClassName: true,
-        timeout: setTimeout(() => {
-          this.setState({ openClassName: false, timeout: null });
-        }, nextProps.transitionLeaveTimeout),
-      });
+    if(content.scrollHeight > content.clientHeight) {
+      state.divided = true;
     }
+
+    if(this.props.actions) {
+      const maxButtonWidth = (dialog.offsetWidth - DIALOG_PADDING * 3) / 2;
+      const actions = dialog.querySelectorAll('.md-btn');
+      for(let action of actions) {
+        if(action.offsetWidth > maxButtonWidth) {
+          console.log('set');
+          state.stacked = true;
+          break;
+        }
+      }
+    }
+
+    this.setState(state); //eslint-disable-line react/no-did-mount-set-state
   }
 
   render() {
     const {
-      actions,
-      isOpen,
       title,
       children,
       className,
-      close,
-      transitionName,
-      transitionEnter,
-      transitionEnterTimeout,
-      transitionLeave,
-      transitionLeaveTimeout,
+      contentClassName,
+      actions,
+      actionLeft,
+      actionRight,
+      style,
+      transformOrigin,
+      isSimple,
+      isFullPage,
       ...props,
     } = this.props;
-    const isSimple = !actions;
+    const { stacked, divided } = this.state;
+
+    let header, footer;
+    if(!isFullPage && title) {
+      header = <h2 className="md-title">{title}</h2>;
+    } else if(isFullPage) {
+      header = (
+        <AppBar
+          primary
+          menuButton={actionLeft}
+          title={title}
+          actionsRight={<ActionArea>{actionRight}</ActionArea>}
+        />
+      );
+    }
+
+    if(actions) {
+      footer = <footer className={classnames('md-dialog-footer', { stacked })}>{actions}</footer>;
+    }
+
     return (
-      <CSSTransitionGroup
-        transitionName={transitionName}
-        transitionEnter={transitionEnter}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transisionLeave={transitionLeave}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-        className={classnames('md-dialog-container', { 'open': isOpen || this.state.openClassName, 'simple': isSimple })}
+      <div
+        ref="dialog"
+        className={classnames('md-dialog', className, {
+          'full-page': isFullPage,
+          'dialog-centered': !isFullPage,
+        })}
+        style={Object.assign({}, style, { transformOrigin })}
+        {...props}
         >
-        {isOpen &&
-        <div key="dialog" className={classnames('md-dialog', className)} {...props}>
-          {title && <h2 className="md-title">{title}</h2>}
-          <section className={classnames('md-dialog-content', { 'simple': isSimple })}>
-            {children}
-          </section>
-          {actions &&
-            <footer className="md-dialog-footer">
-              {actions}
-            </footer>
-          }
-        </div>
-        }
-        <CSSTransitionGroup
-          transitionName="md-overlay"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={450}
+        {header}
+        {header && divided && <Divider />}
+        <section
+          ref="content"
+          className={classnames('md-dialog-content', contentClassName, {
+            'simple': isSimple,
+          })}
           >
-          {isOpen &&
-            <div
-              key="overlay"
-              className="md-overlay"
-              onClick={isPropEnabled(props, 'modal') ? null : close}
-            />
-          }
-        </CSSTransitionGroup>
-      </CSSTransitionGroup>
+          {children}
+        </section>
+        {footer && divided && <Divider />}
+        {footer}
+      </div>
     );
   }
 }
