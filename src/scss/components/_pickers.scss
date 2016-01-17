@@ -1,0 +1,126 @@
+.md-date-picker {
+  width: 560px;
+}
+
+.md-date-picker-header {
+  background: get-md-color($md-primary-color);
+  flex-shrink: 0;
+  padding: $md-dialog-padding;
+  padding-bottom: $md-dialog-padding / 2;
+  padding-right: $md-height;
+
+  .md-subtitle {
+    color: inherit;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+  }
+
+  .md-display-1 {
+    font-weight: 500;
+    line-height: 1;
+  }
+}
+
+.md-date-picker-date,
+.md-date-picker-year {
+  @extend %button-unstyled;
+
+  color: rgba($white-base, .7);
+  padding: 0;
+  text-align: left;
+
+  &.active {
+    color: $white-base;
+  }
+}
+
+.md-date-picker-date {
+  display: block;
+}
+
+
+
+.md-date-picker-controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.md-date-picker-calendar {
+  flex-grow: 1;
+}
+
+.md-calendar-month {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  padding: 0 12px;
+  text-align: center;
+
+  .dow {
+    color: $md-secondary-text-color;
+    margin: 0;
+  }
+
+  > * {
+    width: calc(100% / 7);
+  }
+}
+
+.md-calendar-date,
+.md-calendar-date-placeholder {
+  padding: 12px 0;
+}
+
+.md-calendar-date {
+  @extend %button-unstyled;
+
+  color: $md-text-color;
+  position: relative;
+  transition: color $md-transition-time * 2;
+
+  .date {
+    position: relative;
+    z-index: 1;
+  }
+
+  &.today {
+    color: get-md-color($md-primary-color);
+    font-weight: bold;
+  }
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: $white-base;
+
+    &:after {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+  }
+
+  &.active:after {
+    background: get-md-color($md-primary-color);
+  }
+
+  &:focus:not(.active):after,
+  &:hover:not(.active):after {
+    background: get-md-color($md-primary-color, 5);
+  }
+
+  &:after {
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 36px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0);
+    transition: transform $md-transition-time * 2 $md-transition-bounce;
+    width: 36px;
+    z-index: 0;
+  }
+}

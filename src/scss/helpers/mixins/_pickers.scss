@@ -1,0 +1,34 @@
+@mixin md-date-picker-mobile() {
+  .md-date-picker-date {
+    .md-display-1 {
+      display: inline-block;
+
+      + .md-display-1 {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .md-date-picker-controls {
+    padding: 0 6px;
+  }
+}
+
+@mixin md-date-picker-desktop() {
+
+  .md-date-picker {
+    display: flex;
+  }
+
+  .md-date-picker-header {
+    width: 200px;
+  }
+
+  .md-date-picker-controls {
+    padding: 0 12px;
+  }
+
+  .md-calendar-container {
+    flex-grow: 1;
+  }
+}

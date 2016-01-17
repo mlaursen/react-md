@@ -2,11 +2,12 @@ import 'babel-polyfill';
 
 import Button, { FlatButton, RaisedButton, FloatingButton, IconButton } from './Buttons';
 export { Button, FlatButton, RaisedButton, FloatingButton, IconButton };
-export { Tabs, Tab } from './Tabs';
 export { Card, CardHeader, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from './Cards';
-export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 export { List, ListItem, ListSubheader } from './Lists';
+export { DatePicker, TimePicker } from './Pickers';
 export { CircularProgress, LinearProgress } from './Progress';
+export { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
+export { Tabs, Tab } from './Tabs';
 
 export Avatar from './Avatars';
 export Chip from './Chips';

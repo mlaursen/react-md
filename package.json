@@ -55,7 +55,8 @@
     "webpack": "^1.12.10"
   },
   "dependencies": {
-    "classnames": "^2.2.0"
+    "classnames": "^2.2.0",
+    "moment": "^2.11.1"
   },
   "peerDependencies": {
     "react": "^0.14.3",
