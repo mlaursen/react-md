@@ -5,7 +5,7 @@ import Card, { CardText, CardTitle } from 'react-md/Cards';
 import FontIcon from 'react-md/FontIcon';
 import Paper from 'react-md/Paper';
 import TextField from 'react-md/TextFields';
-import Toolbar from 'react-md/Toolbar';
+import Toolbar from 'react-md/Toolbars';
 import { Radio, Checkbox } from 'react-md/SelectionControls';
 
 import states from './states';

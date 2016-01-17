@@ -3,14 +3,14 @@ import classnames from 'classnames';
 
 import Paper from 'react-md/Paper';
 import { IconButton } from 'react-md/Buttons';
-import AppBar, { ActionArea } from 'react-md/AppBar';
+import Toolbar, { ActionArea } from 'react-md/Toolbars';
 
 import './_fake-phone.scss';
 
 export default function FakePhone({ children, primary = false, secondary = false, className, onMenuClick, onSearchClick, iconLeft = 'menu', iconRight = 'search', title, withTabs = false, ...props }) {
   return (
     <Paper className={classnames('fake-phone', className)} {...props} zDepth={3}>
-      <AppBar
+      <Toolbar
         primary={primary}
         secondary={secondary}
         menuButton={<IconButton onClick={onMenuClick}>{iconLeft}</IconButton>}
@@ -18,7 +18,7 @@ export default function FakePhone({ children, primary = false, secondary = false
         title={title}
         >
         {withTabs && children}
-      </AppBar>
+      </Toolbar>
       {!withTabs &&
       <div className="phone-content">
         {children}

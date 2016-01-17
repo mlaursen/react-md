@@ -1,50 +1,33 @@
-.md-toolbar {
-  @include md-box-shadow(1);
+.md-toolbar-container {
+  &:not(.with-tabs) {
+    position: fixed;
+    width: 100%;
+    z-index: $md-toolbar-z-index;
 
-  background: $md-app-bar-color;
+    .md-toolbar {
+      @include md-box-shadow(3);
+    }
 
-  .md-text-field {
-    color: $white-base;
-    height: 100%;
-    padding-left: $md-default-padding;
-  }
-
-  .md-text-field-container.single-line .md-text-field {
-    bottom: 0;
-  }
-
-  .md-text-field-divider {
-    display: none;
-  }
-}
-
-.md-toolbar-primary,
-.md-toolbar-secondary {
-  .md-ink {
-    background: rgba($white-base, .15);
-  }
-}
-
-.md-toolbar-primary {
-  background: get-md-color($md-primary-color);
-  color: $white-base;
-
-  .md-text-field {
-    // Style's the input to have the secondary color
-    &.chrome {
-      color: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 0 $white-base;
-
-      // scss-lint:disable NestingDepth
-      &::-webkit-input-placeholder {
-        -webkit-text-fill-color: initial;
-      }
+    ~ *:not(.fixed) {
+      padding-top: $md-toolbar-height;
     }
   }
 }
 
-.md-toolbar-secondary {
-  background: get-md-color($md-secondary-color);
-  color: $white-base;
+.md-toolbar {
+  align-items: center;
+  display: flex;
+  height: $md-toolbar-height;
+
+  .md-title {
+    color: inherit;
+    font-size: $md-toolbar-title-font-size;
+    line-height: $md-toolbar-height;
+  }
+
+  .action-area {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
 }

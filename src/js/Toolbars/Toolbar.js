@@ -5,7 +5,7 @@ import classnames from 'classnames';
 
 import { mergeClassNames } from '../utils';
 
-export default class AppBar extends Component {
+export default class Toolbar extends Component {
   constructor(props) {
     super(props);
 
@@ -43,8 +43,8 @@ export default class AppBar extends Component {
     const { menuButton, title, actionsRight, children, ...props } = this.props;
     const { tabsOffset } = this.state;
     return (
-      <div className={classnames('md-app-bar-container', { 'with-tabs': !!children })}>
-        <header {...props} className={mergeClassNames(props, 'md-app-bar')}>
+      <div className={classnames('md-toolbar-container', { 'with-tabs': !!children })}>
+        <header {...props} className={mergeClassNames(props, 'md-toolbar')}>
           {React.cloneElement(menuButton, { className: 'menu-btn' })}
           {title && <h3 className="md-title">{title}</h3>}
           {actionsRight}

@@ -61,7 +61,7 @@ main {
 }
 
 .scrollable {
-  height: calc(100vh - #{$md-app-bar-height + 182});
+  height: calc(100vh - #{$md-toolbar-height + 182});
   overflow-y: auto;
 }
 
@@ -104,11 +104,11 @@ main {
   margin: 1em 0;
 }
 
-.desktop-examples .md-app-bar {
+.desktop-examples .md-toolbar {
   position: initial;
 }
 
-.react-md-docs-app-bar {
+.react-md-docs-toolbar {
   transition: box-shadow $md-transition-time;
 
   &.no-shadow {

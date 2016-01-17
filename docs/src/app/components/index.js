@@ -1,4 +1,3 @@
-export AppBars from './AppBars';
 export Avatars from './Avatars';
 export BottomSheets from './BottomSheets';
 export Buttons from './Buttons';

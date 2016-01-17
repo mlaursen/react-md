@@ -1,15 +1,15 @@
 import React from 'react';
 
-import AppBar, { ActionArea } from 'react-md/AppBar';
+import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import { IconButton } from 'react-md/Buttons';
 import { Tabs, Tab } from 'react-md/Tabs';
 import { numstr } from '../utils';
 import Paper from 'react-md/Paper';
 
-const AppWithTabs = ({ centered = false, scrollable = false, fixedWidth = false }) => {
+const ToolbarWithTabs = ({ centered = false, scrollable = false, fixedWidth = false }) => {
   return (
     <Paper>
-      <AppBar
+      <Toolbar
         primary
         menuButton={<IconButton className="menu-btn">menu</IconButton>}
         title="Page title"
@@ -30,9 +30,9 @@ const AppWithTabs = ({ centered = false, scrollable = false, fixedWidth = false 
           </Tab>
           ))}
         </Tabs>
-      </AppBar>
+      </Toolbar>
     </Paper>
   );
 };
 
-export default AppWithTabs;
+export default ToolbarWithTabs;

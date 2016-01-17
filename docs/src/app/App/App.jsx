@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import { githubHref } from '../utils';
 import * as components from '../components';
-import AppBar, { ActionArea } from 'react-md/AppBar';
+import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import Avatar from 'react-md/Avatar';
 import FontIcon from 'react-md/FontIcon';
 import { IconButton } from 'react-md/Buttons';
@@ -67,10 +67,10 @@ export default class App extends Component {
     const pathname = this.props.location.pathname;
     return (
       <div className="react-md-docs">
-        <AppBar
+        <Toolbar
           primary
           title="react md"
-          className="react-md-docs-app-bar"
+          className="react-md-docs-toolbar"
           menuButton={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
           actionsRight={(
             <ActionArea>

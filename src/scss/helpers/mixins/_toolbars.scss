@@ -2,19 +2,19 @@
 ///
 /// @example scss- Example Basic Usage SASS
 ///   .md-primary {
-///     @include md-theme-app-bar(get-md-color(indigo), $white-base);
+///     @include md-theme-toolbar(get-md-color(indigo), $white-base);
 ///   }
 ///
 /// @example scss - Example Basic Usage CSS Output
-///   .md-primary.md-app-bar {
+///   .md-primary.md-toolbar {
 ///     background: #3f51b5;
 ///     color: #fff;
 ///    }
 ///
 /// @param {Color} $color - The background colro for the app bar
 /// @param {Color} $text-color - The text color to use in the app bar
-@mixin md-theme-app-bars($color, $text-color) {
-  &.md-app-bar {
+@mixin md-theme-toolbars($color, $text-color) {
+  &.md-toolbar {
     background: $color;
     color: $text-color;
   }
@@ -24,14 +24,14 @@
 ///
 /// @example scss - Example Usage SASS
 ///   @media only screen and (min-width: 0px) and (max-width: 599px) {
-///     @include md-app-bar-mobile();
+///     @include md-toolbar-mobile();
 ///   }
-@mixin md-app-bar-mobile() {
-  .md-app-bar {
+@mixin md-toolbar-mobile() {
+  .md-toolbar {
     .menu-btn,
     .action-area {
-      margin-left: $md-app-bar-mobile-margin;
-      margin-right: $md-app-bar-mobile-margin;
+      margin-left: $md-toolbar-mobile-margin;
+      margin-right: $md-toolbar-mobile-margin;
     }
   }
 }
@@ -40,14 +40,14 @@
 ///
 /// @example scss - Example Usage SASS
 ///   @media only screen and (min-width: 600px) {
-///     @include md-app-bar-desktop();
+///     @include md-toolbar-desktop();
 ///   }
-@mixin md-app-bar-desktop() {
-  .md-app-bar {
+@mixin md-toolbar-desktop() {
+  .md-toolbar {
     .menu-btn,
     .action-area {
-      margin-left: $md-app-bar-deskop-margin;
-      margin-right: $md-app-bar-deskop-margin;
+      margin-left: $md-toolbar-deskop-margin;
+      margin-right: $md-toolbar-deskop-margin;
     }
   }
 }

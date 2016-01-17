@@ -20,17 +20,17 @@ export default class Home extends Component {
   };
 
   componentDidMount() {
-    this.appBar = document.querySelector('.react-md-docs-app-bar');
+    this.appBar = document.querySelector('.react-md-docs-toolbar');
     this.appBar.classList.add('no-shadow');
-    window.addEventListener('scroll', this.updateAppBar);
+    window.addEventListener('scroll', this.updateToolbar);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.updateAppBar);
+    window.removeEventListener('scroll', this.updateToolbar);
     this.appBar.classList.remove('no-shadow');
   }
 
-  updateAppBar = () => {
+  updateToolbar = () => {
     const isEnabled = window.scrollY < 600;
     const isClassed = this.appBar.classList.contains('no-shadow');
     if(isEnabled && !isClassed) {

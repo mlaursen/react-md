@@ -7,7 +7,7 @@ $disabled-text: rgba($text, .7);
 @include md-theme-snackbars();
 
 .md-primary {
-  @include md-theme-app-bars($primary, $white-base);
+  @include md-theme-toolbars($primary, $white-base);
   @include md-theme-buttons($primary);
   @include md-theme-tabs($primary, $secondary, $text, $disabled-text);
 }
@@ -15,6 +15,6 @@ $disabled-text: rgba($text, .7);
 .md-secondary {
   @include md-theme-buttons($secondary);
   $secondary: get-md-color($md-secondary-color);
-  @include md-theme-app-bars($secondary, $white-base);
+  @include md-theme-toolbars($secondary, $white-base);
   @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
 }

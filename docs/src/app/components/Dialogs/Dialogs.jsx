@@ -68,7 +68,7 @@ export default class Dialogs extends Component {
             name: 'actionRight',
             pt: 'no',
             desc: `Any action(s) to place to the right of the title. It should normally
-            be placed in the \`ActionArea\` component from \`AppBar\`.`,
+            be placed in the \`ActionArea\` component from \`Toolbars\`.`,
           }, {
             name: 'className',
             pt: 's',

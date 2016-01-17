@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { IconButton, RaisedButton, FlatButton } from 'react-md/Buttons';
-import { ActionArea } from 'react-md/AppBar';
+import { ActionArea } from 'react-md/Toolbars';
 import Dialog from 'react-md/Dialogs';
 import Divider from 'react-md/Divider';
 import TextField from 'react-md/TextFields';

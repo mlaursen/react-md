@@ -1,26 +1,23 @@
 import React from 'react';
-import Toolbar from 'react-md/Toolbar';
-import Paper from 'react-md/Paper';
+import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import { IconButton } from 'react-md/Buttons';
+
+import { githubHref } from '../../utils';
 
 export default function ToolbarExamples() {
   return (
-    <div className="paper-container">
-      <Paper zDepth={2} className="paper-example">
-        <Toolbar>
-          <IconButton>menu</IconButton>
-        </Toolbar>
-      </Paper>
-      <Paper zDepth={2} className="paper-example">
-        <Toolbar primary>
-          <IconButton>menu</IconButton>
-        </Toolbar>
-      </Paper>
-      <Paper zDepth={2} className="paper-example">
-        <Toolbar secondary>
-          <IconButton>menu</IconButton>
-        </Toolbar>
-      </Paper>
+    <div className="toolbar-container">
+      <Toolbar
+        primary
+        className="react-md-docs-toolbar"
+        title="react-md"
+        menuButton={<IconButton>menu</IconButton>}
+        actionsRight={(
+          <ActionArea>
+            <IconButton href={githubHref} iconClassName="fa fa-github" />
+          </ActionArea>
+        )}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import AppBar from 'react-md/AppBar';
+import Toolbar from 'react-md/Toolbars';
 import Divider from 'react-md/Divider';
 
 const DIALOG_PADDING = 8;
@@ -73,7 +73,7 @@ export default class Dialog extends Component {
       header = <h2 className="md-title">{title}</h2>;
     } else if(isFullPage) {
       header = (
-        <AppBar
+        <Toolbar
           primary
           menuButton={actionLeft}
           title={title}

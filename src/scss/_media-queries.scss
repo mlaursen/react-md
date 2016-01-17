@@ -1,15 +1,15 @@
 @media only screen and (min-width: 0px) and (max-width: 599px) {
-  @include md-app-bar-mobile();
   @include md-select-field-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
   @include md-text-field-mobile();
+  @include md-toolbar-mobile();
 }
 
 @media only screen and (min-width: 600px) {
-  @include md-app-bar-desktop();
   @include md-select-field-desktop();
   @include md-snackbar-desktop();
   @include md-tab-desktop();
   @include md-text-field-desktop();
+  @include md-toolbar-desktop();
 }

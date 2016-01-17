@@ -67,18 +67,9 @@ $md-hint-text-color-alt: $md-disabled-color-alt;
 /// @group Color
 $md-divider-color-alt: rgba($white-base, .12);
 
-/// The status bar color for light backgrounds
-/// @group Color
-$md-status-bar-color: #e0e0e0;
-/// The app bar color for light backgrounds
-/// @group Color
-$md-app-bar-color: #f5f5f5;
 /// The main content background color on light backgrounds
 /// @group Color
 $md-background-color: #fafafa;
-/// The card background color on light backgrounds
-/// @group Color
-$md-card-color: $white-base;
 
 /// The default border color on light backgrounds
 /// @group Color
@@ -126,8 +117,8 @@ $md-overlay-z-index: 3 !default;
 $md-dropdown-z-index: 4 !default;
 /// @group sidebar
 $md-sidebar-z-index: 5 !default;
-/// @group app-bar
-$md-app-bar-z-index: 6 !default;
+/// @group toolbar
+$md-toolbar-z-index: 6 !default;
 /// @group snackbar
 $md-snackbar-z-index: 6 !default;
 
@@ -215,6 +206,7 @@ $md-card-title-size: 24em / $md-font-size-base;
 /// @group cards
 $md-card-title-size-small: 16em / $md-font-size-base;
 $md-card-actions-padding: 8px;
+$md-card-color: $white-base;
 
 
 // =============================================
@@ -251,12 +243,12 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 
 
 // =============================================
-// App Bar
-/// @group app-bar
-$md-app-bar-title-font-size: 18px !default;
-$md-app-bar-height: 64px !default;
-$md-app-bar-mobile-margin: 12px;
-$md-app-bar-deskop-margin: 12px;
+// Toolbar
+/// @group toolbar
+$md-toolbar-title-font-size: 18px !default;
+$md-toolbar-height: 64px !default;
+$md-toolbar-mobile-margin: 12px;
+$md-toolbar-deskop-margin: 12px;
 
 
 // =============================================
