@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 import moment from 'moment';
 
@@ -30,6 +31,7 @@ export default class CalendarDialog extends Component {
     onDateClick: PropTypes.func.isRequired,
     onYearClick: PropTypes.func.isRequired,
     onCalendarDateClick: PropTypes.func.isRequired,
+    slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
   };
 
   /**
@@ -103,6 +105,7 @@ export default class CalendarDialog extends Component {
       mode,
       onDateClick,
       onYearClick,
+      slideDir,
     } = this.props;
 
     const dows = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((dow, i) => (
@@ -127,15 +130,26 @@ export default class CalendarDialog extends Component {
           </button>
         </header>
         <section className="md-date-picker-calendar">
-          <header className="md-date-picker-controls">
-            <IconButton onClick={previousMonth}>{previousIcon}</IconButton>
-            <h4 className="md-subtitle">{currentMonth.format('MMMM YYYY')}</h4>
-            <IconButton onClick={nextMonth}>{nextIcon}</IconButton>
+          <header>
+            <div className="md-date-picker-controls">
+              <IconButton onClick={previousMonth}>{previousIcon}</IconButton>
+              <h4 className="md-subtitle">{currentMonth.format('MMMM YYYY')}</h4>
+              <IconButton onClick={nextMonth}>{nextIcon}</IconButton>
+            </div>
+            <div className="md-dows">
+              {dows}
+            </div>
           </header>
-          <section className="md-calendar-month">
-            {dows}
-            {days}
-          </section>
+          <CSSTransitionGroup
+            transitionName={`md-month-${slideDir}`}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+            className="swipe-container"
+            >
+            <section key={`month-${currentMonth.month()}`} className="md-calendar-month">
+              {days}
+            </section>
+          </CSSTransitionGroup>
           <footer className="md-dialog-footer md-date-picker-footer">
             <FlatButton primary onClick={close} label={cancelLabel} />
             <FlatButton primary onClick={selectDate} label={okLabel} />

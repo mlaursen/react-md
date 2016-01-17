@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 import moment from 'moment';
 
 import TextField from '../TextFields';
@@ -14,10 +15,11 @@ export default class DatePicker extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       isOpen: false,
-      value: moment(props.defaultValue),
+      value: props.defaultValue,
       currentMonth: moment(props.defaultValue),
       tempValue: moment(props.defaultValue),
       mode: 'date',
+      slideDir: 'left',
     };
   }
 
@@ -31,13 +33,13 @@ export default class DatePicker extends Component {
     defaultValue: PropTypes.instanceOf(Date),
     previousIcon: PropTypes.node.isRequired,
     nextIcon: PropTypes.node.isRequired,
+    mode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
   static defaultProps = {
     calendarIcon: <FontIcon>date_range</FontIcon>,
     cancelLabel: 'Cancel',
     okLabel: 'Ok',
-    defaultValue: new Date(),
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
   };
@@ -46,8 +48,8 @@ export default class DatePicker extends Component {
     this.setState({ isOpen: false });
   };
 
-  setDate = (value) => {
-    this.setState({ value });
+  setDate = () => {
+    this.setState({ value: this.state.tempValue.toDate(), isOpen: false });
   };
 
   setTempDate = (tempValue) => {
@@ -59,15 +61,16 @@ export default class DatePicker extends Component {
   };
 
   previousMonth = () => {
-    this.setState({ currentMonth: this.state.currentMonth.clone().subtract(1, 'M') });
+    this.setState({ currentMonth: this.state.currentMonth.clone().subtract(1, 'M'), slideDir: 'left' });
   };
 
   nextMonth = () => {
-    this.setState({ currentMonth: this.state.currentMonth.clone().add(1, 'M') });
+    this.setState({ currentMonth: this.state.currentMonth.clone().add(1, 'M'), slideDir: 'right' });
   };
 
   render() {
-    const { calendarIcon, label, floatingLabel, ...props } = this.props;
+    const { calendarIcon, label, floatingLabel, mode, ...props } = this.props;
+    const value = this.state.value && moment(this.state.value).format('MM/DD/YYYY');
     return (
       <div className="md-date-picker-container">
         <TextField
@@ -75,8 +78,7 @@ export default class DatePicker extends Component {
           onClick={() => this.setState({ isOpen: true })}
           label={label}
           floatingLabel={floatingLabel}
-          value={this.state.value}
-          onChange={(value) => this.setState({ value })}
+          value={value}
         />
         <CalendarDialog
           isOpen={this.state.isOpen}
@@ -90,6 +92,8 @@ export default class DatePicker extends Component {
           onYearClick={this.switchMode.bind(this, 'year')}
           previousMonth={this.previousMonth}
           nextMonth={this.nextMonth}
+          slideDir={this.state.slideDir}
+          className={classnames({ 'landscape': mode === 'landscape', 'portrait': mode === 'portrait' })}
           {...props}
         />
       </div>
