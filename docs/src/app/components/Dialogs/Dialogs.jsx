@@ -7,6 +7,8 @@ import SimpleDialogExample from './SimpleDialogExample';
 import SimpleDialogExampleRaw from '!!raw!./SimpleDialogExample';
 import ModalDialogExample from './ModalDialogExample';
 import ModalDialogExampleRaw from '!!raw!./ModalDialogExample';
+import FullPageDialogExample from './FullPageDialogExample';
+import FullPageDialogExampleRaw from '!!raw!./FullPageDialogExample';
 //import './_dialog.scss';
 
 export default class Dialogs extends Component {
@@ -29,11 +31,16 @@ export default class Dialogs extends Component {
         }, {
           markdown: ModalDialogExampleRaw,
           children: <ModalDialogExample />,
+        }, {
+          markdown: FullPageDialogExampleRaw,
+          children: <FullPageDialogExample />,
         }]}
         >
-        Dialogs contain text and UI controls focused on a specific task.
-        They inform users about critical information, require users to
-        make decisions, or involve multiple tasks.
+        <p>
+          Dialogs contain text and UI controls focused on a specific task.
+          They inform users about critical information, require users to
+          make decisions, or involve multiple tasks.
+        </p>
       </DocPage>
     );
   }

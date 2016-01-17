@@ -21,7 +21,7 @@ export default class SimpleDialogExample extends Component {
         <RaisedButton label="Open Simple Dialog" onClick={this.open} />
         <Dialog
           isOpen={this.state.isOpen}
-          title="Use Google's location service?"
+          title="Title"
           close={this.close}
           style={{ maxWidth: '320px' }}
           >
