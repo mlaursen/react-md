@@ -25,7 +25,7 @@ export default class Toolbar extends Component {
   };
 
   componentDidMount() {
-    if(!this.props.children) { return; }
+    if(!this.refs.tabs) { return; }
 
     const tabs = ReactDOM.findDOMNode(this.refs.tabs);
     if(tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) { return; }

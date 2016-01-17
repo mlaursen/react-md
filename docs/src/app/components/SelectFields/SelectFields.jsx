@@ -5,6 +5,8 @@ import SelectField from 'react-md/SelectFields';
 import DocPage from 'react-md-documentation';
 import SelectFieldExamples from './SelectFieldExamples';
 import SelectFieldExamplesRaw from '!!raw!./SelectFieldExamples';
+import FakeTextEditor from '../../FakeTextEditor';
+import FakeTextEditorRaw from '!!raw!../../FakeTextEditor';
 import './_select-fields.scss';
 
 export default class SelectFields extends Component {
@@ -89,6 +91,9 @@ export default class SelectFields extends Component {
         examples={[{
           markdown: SelectFieldExamplesRaw,
           children: <SelectFieldExamples />,
+        }, {
+          markdown: FakeTextEditorRaw,
+          children: <FakeTextEditor />,
         }]}
         >
         <p>

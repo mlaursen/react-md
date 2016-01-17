@@ -5,6 +5,8 @@ import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import DocPage from 'react-md-documentation';
 import ToolbarExamples from './ToolbarExamples';
 import ToolbarExamplesRaw from '!!raw!./ToolbarExamples';
+import FakeTextEditor from '../../FakeTextEditor';
+import FakeTextEditorRaw from '!!raw!../../FakeTextEditor';
 import ToolbarWithTabs from '../../ToolbarWithTabs';
 import ToolbarWithTabsRaw from '!!raw!../../ToolbarWithTabs/ToolbarWithTabs';
 
@@ -65,6 +67,9 @@ export default class Toolbars extends Component {
         examples={[{
           markdown: ToolbarExamplesRaw,
           children: <ToolbarExamples />,
+        }, {
+          markdown: FakeTextEditorRaw,
+          children: <FakeTextEditor />,
         }, {
           markdown: ToolbarWithTabsRaw,
           children: <ToolbarWithTabs fixedWidth={isMobile} />,
