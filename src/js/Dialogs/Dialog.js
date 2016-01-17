@@ -26,9 +26,11 @@ export default class Dialog extends Component {
     contentClassName: PropTypes.string,
     children: PropTypes.node,
     style: PropTypes.object,
+    onlyChildren: PropTypes.bool,
   };
 
   componentDidMount() {
+    if(this.props.onlyChildren) { return; }
     let state = {};
     const { dialog, content } = this.refs;
 
@@ -41,7 +43,6 @@ export default class Dialog extends Component {
       const actions = dialog.querySelectorAll('.md-btn');
       for(let action of actions) {
         if(action.offsetWidth > maxButtonWidth) {
-          console.log('set');
           state.stacked = true;
           break;
         }
@@ -64,12 +65,13 @@ export default class Dialog extends Component {
       transformOrigin,
       isSimple,
       isFullPage,
+      onlyChildren,
       ...props,
     } = this.props;
     const { stacked, divided } = this.state;
 
     let header, footer;
-    if(!isFullPage && title) {
+    if(!onlyChildren && !isFullPage && title) {
       header = <h2 className="md-title">{title}</h2>;
     } else if(isFullPage) {
       header = (
@@ -98,14 +100,17 @@ export default class Dialog extends Component {
         >
         {header}
         {header && divided && <Divider />}
-        <section
-          ref="content"
-          className={classnames('md-dialog-content', contentClassName, {
-            'simple': isSimple,
-          })}
-          >
-          {children}
-        </section>
+        {onlyChildren && children}
+        {!onlyChildren &&
+          <section
+            ref="content"
+            className={classnames('md-dialog-content', contentClassName, {
+              'simple': isSimple,
+            })}
+            >
+            {children}
+          </section>
+        }
         {footer && divided && <Divider />}
         {footer}
       </div>

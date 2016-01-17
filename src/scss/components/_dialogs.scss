@@ -13,6 +13,9 @@
   }
 
   &.dialog-centered {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     padding: $md-dialog-min-page-margin;
   }
 
@@ -36,8 +39,6 @@
   }
 
   &.dialog-centered {
-    margin: 0 auto;
-    transform: translateY(50vh) translateY(-50%);
 
     .md-title {
       padding: $md-dialog-padding;
@@ -142,13 +143,13 @@
   &.md-dialog-enter,
   &.md-dialog-leave.md-dialog-leave-active {
     opacity: 0;
-    transform: translateY(50vh) translateY(-70%);
+    transform: translate3d(0, $md-dialog-translate-distance, 0);
   }
 
   &.md-dialog-enter.md-dialog-enter-active,
   &.md-dialog-leave {
     opacity: 1;
-    transform: translateY(50vh) translateY(-50%);
+    transform: translate3d(0, 0, 0);
   }
 }
 

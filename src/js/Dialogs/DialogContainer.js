@@ -37,6 +37,7 @@ export default class DialogContainer extends Component {
     transitionEnterTimeout: PropTypes.number,
     transitionLeave: PropTypes.bool,
     transitionLeaveTimeout: PropTypes.number,
+    onlyChildren: PropTypes.bool,
   };
 
   static defaultProps = {
