@@ -13,10 +13,7 @@ export default class TextField extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { active: false, currentRows: props.rows };
-    if(!props.valueLink) {
-      this.state.value = props.defaultValue;
-    }
+    this.state = { active: false, currentRows: props.rows, value: props.defaultValue };
 
     this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   }
@@ -24,10 +21,6 @@ export default class TextField extends Component {
   static propTypes = {
     label: PropTypes.string,
     className: PropTypes.string,
-    valueLink: PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      requestChange: PropTypes.func.isRequired,
-    }),
     defaultValue: PropTypes.string,
     lineDirection: PropTypes.oneOf(['left', 'right', 'center']),
     type: PropTypes.string,
@@ -41,6 +34,10 @@ export default class TextField extends Component {
     placeholder: PropTypes.string,
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     onChange: PropTypes.func,
     fullWidth: PropTypes.bool,
   };
@@ -66,15 +63,8 @@ export default class TextField extends Component {
     this.setState({ active: false });
   };
 
-  getValueLink = () => {
-    return typeof this.props.valueLink !== 'undefined' ? this.props.valueLink : {
-      value: this.state.value,
-      requestChange: (value) => { this.setState({ value }); },
-    };
-  };
-
   getValue = () => {
-    return this.getValueLink().value;
+    return typeof this.props.value !== 'undefined' ? this.props.value : this.state.value;
   };
 
   handleChange = (e) => {
@@ -84,10 +74,14 @@ export default class TextField extends Component {
     if(this.props.onChange) {
       this.props.onChange(e.target.value, e);
     }
-    this.getValueLink().requestChange(e.target.value);
+
+    let state = { value: e.target.value };
 
     const { rows, maxRows } = this.props;
-    if(!rows || !maxRows) { return; }
+    if(!rows || !maxRows) {
+      this.setState(state);
+      return;
+    }
 
     const { textarea } = this.refs;
     const { offsetHeight, scrollHeight } = textarea;
@@ -95,7 +89,9 @@ export default class TextField extends Component {
     if(scrollHeight <= (height || offsetHeight) || (maxRows !== -1 && currentRows >= maxRows)) { return; }
 
     currentRows++;
-    this.setState({ currentRows, height: currentRows * this.lineHeight });
+    state.currentRows = currentRows;
+    state.height = currentRows * this.lineHeight;
+    this.setState(state);
   };
 
   handleKeyDown = (e) => {
@@ -103,8 +99,7 @@ export default class TextField extends Component {
       if(this.props.onChange) {
         this.props.onChange('', e);
       }
-      this.getValueLink().requestChange('');
-      this.setState({ isEscape: true });
+      this.setState({ value: '', isEscape: true });
     } else if(this.state.isEscape) {
       this.setState({ isEscape: false });
     }
@@ -130,6 +125,17 @@ export default class TextField extends Component {
       }
     }
 
+    let fontIcon;
+    if(icon) {
+      fontIcon = React.cloneElement(icon, {
+        className: classnames({
+          'active': active,
+          'error': isError,
+          'hint': !active && !this.getValue(),
+        }),
+      });
+    }
+
     return (
       <div
         className={classnames('md-text-field-container', className, {
@@ -140,7 +146,7 @@ export default class TextField extends Component {
           'inline-counter': isFullWidth && !isTextArea && maxLength,
         })}>
         <label className="md-text-field-label-container">
-          {icon && React.cloneElement(icon, { className: classnames({ 'active': active, 'error': isError, 'hint': !active && !this.getValueLink().value })})}
+          {fontIcon}
           {floatingLabel && label &&
           <TextFieldLabel
             label={label}
@@ -160,7 +166,7 @@ export default class TextField extends Component {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
-              value={this.getValueLink().value}
+              value={this.getValue()}
               onChange={this.handleChange}
               placeholder={placeholder}
             /> :
@@ -170,7 +176,7 @@ export default class TextField extends Component {
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
               onKeyDown={this.handleKeyDown}
-              value={this.getValueLink().value}
+              value={this.getValue()}
               onChange={this.handleChange}
               placeholder={!floatingLabel ? label : placeholder}
             />
