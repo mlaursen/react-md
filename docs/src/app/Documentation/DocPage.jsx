@@ -25,7 +25,10 @@ export default class DocPage extends Component {
     })).isRequired,
     components: PropTypes.arrayOf(PropTypes.shape({
       component: PropTypes.func.isRequired,
-      desc: PropTypes.string,
+      desc: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.arrayOf(PropTypes.string),
+      ]),
       details: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         desc: PropTypes.string.isRequired,

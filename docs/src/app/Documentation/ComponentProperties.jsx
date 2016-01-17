@@ -16,7 +16,10 @@ export default class ComponentProperties extends Component {
 
   static propTypes = {
     sectionName: PropTypes.string.isRequired,
-    desc: PropTypes.string,
+    desc: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     component: PropTypes.func.isRequired,
     details: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -98,6 +101,18 @@ export default class ComponentProperties extends Component {
         </tr>
       );
     });
+
+    let componentDescription;
+    if(desc) {
+      const descriptions = typeof desc === 'string' ? [desc] : desc;
+      componentDescription = (
+        <CardText>
+          {descriptions.map((desc, i) => (
+            <p key={`component-desc-${i}`} dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+          ))}
+        </CardText>
+      );
+    }
     return (
       <Card className="full-width prop-types" id={`#prop-types-${toDashedName(name)}`} raise={false}>
         <CardTitle title={toTitle(name)}>
@@ -106,11 +121,7 @@ export default class ComponentProperties extends Component {
             iconClassName="fa fa-github"
           />
         </CardTitle>
-        {desc &&
-          <CardText>
-            <p key="component-desc" dangerouslySetInnerHTML={{ __html: marked(desc) }} />
-          </CardText>
-        }
+        {componentDescription}
         <CardText className="with-table">
           <table className="md-data-table full-width striped">
             <thead>
