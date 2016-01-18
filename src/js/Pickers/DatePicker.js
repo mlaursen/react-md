@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import DatePickerHeader from './DatePickerHeader';
 import Calendar from './Calendar';
+import Years from './Years';
 
 const DatePicker = (props) => {
   const {
@@ -22,10 +23,16 @@ const DatePicker = (props) => {
         selectedDate={selectedDate}
         mode={mode}
       />
-      <Calendar
-        {...calendarProps}
-        selectedDate={selectedDate}
-      />
+      {mode === 'date' ?
+        <Calendar
+          {...calendarProps}
+          selectedDate={selectedDate}
+        /> :
+        <Years
+          {...calendarProps}
+          selectedDate={selectedDate}
+        />
+      }
     </div>
   );
 };
@@ -46,6 +53,7 @@ DatePicker.propTypes = {
   onDateClick: PropTypes.func.isRequired,
   onYearClick: PropTypes.func.isRequired,
   onCalendarDateClick: PropTypes.func.isRequired,
+  onCalendarYearClick: PropTypes.func.isRequired,
   slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
 };
 

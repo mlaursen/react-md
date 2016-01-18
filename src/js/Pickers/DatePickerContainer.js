@@ -62,6 +62,16 @@ export default class DatePicker extends Component {
     }
   };
 
+  setTempYear = (tempYear) => {
+    const { tempValue, currentMonth } = this.state;
+    if(tempValue.year() === tempYear) { return; }
+
+    this.setState({
+      tempValue: tempValue.clone().year(tempYear),
+      currentMonth: currentMonth.clone().year(tempYear),
+    });
+  };
+
   switchMode = (mode) => {
     this.setState({ mode });
   };
@@ -100,6 +110,7 @@ export default class DatePicker extends Component {
           selectedDate={this.state.tempValue}
           currentMonth={this.state.currentMonth}
           onCalendarDateClick={this.setTempDate}
+          onCalendarYearClick={this.setTempYear}
           mode={this.state.mode}
           onDateClick={this.switchMode.bind(this, 'date')}
           onYearClick={this.switchMode.bind(this, 'year')}

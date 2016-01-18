@@ -194,3 +194,38 @@
 .md-date-picker-footer {
   align-items: flex-end;
 }
+
+.md-year-picker {
+  width: 100%;
+}
+
+.md-year {
+  @extend %button-unstyled;
+
+  display: block;
+  font-size: 16px;
+  padding: 12px;
+  text-align: center;
+  transition-duration: $md-transition-time;
+  transition-property: color, font-size;
+  width: 100%;
+
+  &.active {
+    color: get-md-color($md-primary-color);
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  &:focus:not(.active) {
+    color: get-md-color($md-primary-color, 4);
+    font-size: 20px;
+  }
+}
+
+.md-years {
+  list-style: none;
+  margin: 0;
+  max-height: 380px - 52;
+  overflow-y: auto;
+  padding: 0;
+}
