@@ -83,7 +83,11 @@ export default class ComponentProperties extends Component {
 
     let items = details.concat(extraProps).map(settings => {
       const { name, pt, isRequired, desc } = settings;
-      const defaultValue = defaultProps ? defaultProps[name] : undefined; // eslint-disable-line no-undefined
+      let defaultValue;
+      if(pt !== 'f' && defaultProps && defaultProps[name]) {
+        defaultValue = defaultProps[name];
+      }
+
       const isAnyOtherProps = name === 'any other props';
       return (
         <tr key={name}>
