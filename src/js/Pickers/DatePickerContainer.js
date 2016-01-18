@@ -35,6 +35,7 @@ export default class DatePicker extends Component {
     nextIcon: PropTypes.node.isRequired,
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     inline: PropTypes.bool,
+    autoOk: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -54,7 +55,11 @@ export default class DatePicker extends Component {
   };
 
   setTempDate = (tempValue) => {
-    this.setState({ tempValue });
+    if(this.props.autoOk) {
+      this.setState({ value: tempValue.toDate(), isOpen: false });
+    } else {
+      this.setState({ tempValue });
+    }
   };
 
   switchMode = (mode) => {
