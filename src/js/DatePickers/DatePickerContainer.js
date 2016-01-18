@@ -41,6 +41,7 @@ export default class DatePickerContainer extends Component {
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
     initialYearsDisplayed: PropTypes.number,
+    formatDate: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -50,6 +51,7 @@ export default class DatePickerContainer extends Component {
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
     initialYearsDisplayed: 50,
+    formatDate: formatDate,
   };
 
   componentWillUpdate(nextProps, nextState) {
@@ -139,7 +141,7 @@ export default class DatePickerContainer extends Component {
   };
 
   render() {
-    const { calendarIcon, label, className, floatingLabel, inline, mode, ...props } = this.props;
+    const { calendarIcon, label, className, floatingLabel, formatDate, inline, mode, ...props } = this.props;
     const value = this.state.value && formatDate(this.state.value);
 
     const datePickerProps = {
@@ -162,6 +164,7 @@ export default class DatePickerContainer extends Component {
       onDateClick: this.switchMode.bind(this, 'date'),
       onYearClick: this.switchMode.bind(this, 'year'),
       slideDir: this.state.slideDir,
+      formatDate,
       ...props,
     };
     return (

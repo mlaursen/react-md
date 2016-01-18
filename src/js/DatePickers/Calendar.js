@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { IconButton } from '../Buttons';
 import Month from './Month';
 import DatePickerFooter from './DatePickerFooter';
-import { formatDate, isMonthBefore } from '../utils';
+import { isMonthBefore } from '../utils';
 
 const Calendar = (props) => {
   const {
@@ -22,6 +22,7 @@ const Calendar = (props) => {
     onCalendarDateClick,
     minDate,
     maxDate,
+    formatDate,
   } = props;
 
   const dows = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((dow, i) => (
@@ -55,6 +56,7 @@ const Calendar = (props) => {
           onCalendarDateClick={onCalendarDateClick}
           minDate={minDate}
           maxDate={maxDate}
+          formatDate={formatDate}
         />
       </CSSTransitionGroup>
       <DatePickerFooter
@@ -82,6 +84,7 @@ Calendar.propTypes = {
   slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
+  formatDate: PropTypes.func.isRequired,
 };
 
 export default Calendar;

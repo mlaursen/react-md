@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import { formatDate } from '../utils';
 
-const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, mode }) => {
+const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, formatDate, mode }) => {
   return (
     <header className="md-date-picker-header">
       <button
@@ -33,6 +32,7 @@ DatePickerHeader.propTypes = {
   onYearClick: PropTypes.func.isRequired,
   selectedDate: PropTypes.instanceOf(Date).isRequired,
   mode: PropTypes.oneOf(['date', 'year']).isRequired,
+  formatDate: PropTypes.func.isRequired,
 };
 
 export default DatePickerHeader;

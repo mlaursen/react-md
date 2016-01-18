@@ -30,6 +30,7 @@ const DatePicker = (props) => {
         selectedDate={selectedDate}
         mode={mode}
         currentMonth={props.currentMonth}
+        formatDate={calendarProps.formatDate}
       />
       {mode === 'date' ?
         <Calendar
@@ -67,6 +68,7 @@ DatePicker.propTypes = {
   slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
+  formatDate: PropTypes.func.isRequired,
 };
 
 export default DatePicker;

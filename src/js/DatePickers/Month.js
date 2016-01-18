@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { getDayOfWeek, addDate, stripTime, formatDate, getLastDay } from '../utils';
+import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils';
 
-const Month = ({ currentMonth, selectedDate, onCalendarDateClick, minDate, maxDate }) => {
+const Month = ({ currentMonth, selectedDate, onCalendarDateClick, minDate, maxDate, formatDate }) => {
   let days = [];
   let currentDate = stripTime(getDayOfWeek(new Date(currentMonth).setDate(1), 0));
   const endDate = stripTime(getDayOfWeek(getLastDay(currentMonth), 6));
@@ -51,6 +51,7 @@ Month.propTypes = {
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
   onCalendarDateClick: PropTypes.func.isRequired,
+  formatDate: PropTypes.func.isRequired,
 };
 
 export default Month;
