@@ -9,7 +9,7 @@ export default function DatePickerExamples() {
     <div>
       <DatePicker label="Select a date" floatingLabel={false} />
       <DatePicker label="Potrait mode" mode="portrait" />
-      <DatePicker label="Auto Ok" autoOk={true} />
+      <DatePicker label="Auto Ok" autoOk={true} defaultValue={new Date()} />
       <DatePicker
         label="Min and max dates"
         minDate={twoMonthsAgo}

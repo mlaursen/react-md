@@ -26,6 +26,7 @@ export default class ComponentProperties extends Component {
       name: PropTypes.string.isRequired,
       desc: PropTypes.string.isRequired,
       pt: PropTypes.string,
+      dv: PropTypes.string,
     })).isRequired,
     allRemaining: PropTypes.bool.isRequired,
     marked: PropTypes.func.isRequired,
@@ -82,9 +83,11 @@ export default class ComponentProperties extends Component {
     }
 
     let items = details.concat(extraProps).map(settings => {
-      const { name, pt, isRequired, desc } = settings;
+      const { name, pt, isRequired, desc, dv } = settings;
       let defaultValue;
-      if(pt !== 'f' && defaultProps && defaultProps[name]) {
+      if(dv) {
+        defaultValue = dv;
+      } else if(pt !== 'f' && defaultProps && defaultProps[name]) {
         defaultValue = defaultProps[name];
       }
 

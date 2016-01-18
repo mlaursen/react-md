@@ -42,6 +42,7 @@ export default class DatePickerContainer extends Component {
     maxDate: PropTypes.instanceOf(Date),
     initialYearsDisplayed: PropTypes.number,
     formatDate: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -141,7 +142,7 @@ export default class DatePickerContainer extends Component {
   };
 
   render() {
-    const { calendarIcon, label, className, floatingLabel, formatDate, inline, mode, ...props } = this.props;
+    const { calendarIcon, label, className, onChange, floatingLabel, formatDate, inline, mode, ...props } = this.props;
     const value = this.state.value && formatDate(this.state.value);
 
     const datePickerProps = {
@@ -175,6 +176,7 @@ export default class DatePickerContainer extends Component {
           label={label}
           floatingLabel={floatingLabel}
           value={value}
+          onChange={onChange}
         />
         {inline ?
           <CalendarInline {...datePickerProps} /> :
