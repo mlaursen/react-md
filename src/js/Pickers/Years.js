@@ -26,28 +26,19 @@ export default class Years extends Component {
     maxDate: PropTypes.instanceOf(Date),
   };
 
-  static defaultProps = {
-    initialYearsDisplayed: 20,
-  };
-
   componentDidMount() {
-    const { years } = this.refs;
-    const { offsetHeight, offsetTop } = years.querySelector('.md-year.active');
+    setTimeout(() => {
+      const { years } = this.refs;
+      const { offsetTop } = years.querySelector('.md-year.active');
 
-    years.scrollTop = offsetTop / 2 - offsetHeight;
+      years.scrollTop = years.scrollHeight - offsetTop;
+    }, 15); // need a better way. right on mount is off by 200px when switching modes
   }
 
   generateYears = ({ selectedDate, initialYearsDisplayed, minDate, maxDate }) => {
     const currentYear = selectedDate.getFullYear();
-    let startYear = parseInt(currentYear - initialYearsDisplayed / 2);
-    let endYear = parseInt(currentYear + initialYearsDisplayed / 2);
-    if(minDate) {
-      startYear = minDate.getFullYear();
-    }
-
-    if(maxDate) {
-      endYear = maxDate.getFullYear();
-    }
+    let startYear = minDate ? minDate.getFullYear() : parseInt(currentYear - initialYearsDisplayed / 2);
+    let endYear = maxDate ? maxDate.getFullYear() : parseInt(currentYear + initialYearsDisplayed / 2);
 
     let years = [];
     for(let i = startYear; i <= endYear; i++) {

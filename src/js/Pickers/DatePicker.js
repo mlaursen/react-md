@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import DatePickerHeader from './DatePickerHeader';
@@ -16,7 +17,13 @@ const DatePicker = (props) => {
   } = props;
 
   return (
-    <div className={classnames('md-date-picker', className)}>
+    <CSSTransitionGroup
+      component="div"
+      transitionName="opacity"
+      transitionEnterTimeout={150}
+      transitionLeave={false}
+      className={classnames('md-date-picker', className)}
+      >
       <DatePickerHeader
         onYearClick={onYearClick}
         onDateClick={onDateClick}
@@ -26,15 +33,17 @@ const DatePicker = (props) => {
       />
       {mode === 'date' ?
         <Calendar
+          key="calendar"
           {...calendarProps}
           selectedDate={selectedDate}
         /> :
         <Years
+          key="years"
           {...calendarProps}
           selectedDate={selectedDate}
         />
       }
-    </div>
+    </CSSTransitionGroup>
   );
 };
 

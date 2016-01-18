@@ -38,6 +38,7 @@ export default class DatePicker extends Component {
     autoOk: PropTypes.bool,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
+    initialYearsDisplayed: PropTypes.number,
   };
 
   static defaultProps = {
@@ -46,6 +47,7 @@ export default class DatePicker extends Component {
     okLabel: 'Ok',
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
+    initialYearsDisplayed: 50,
   };
 
   close = () => {
