@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { DatePicker } from 'react-md/Pickers';
+import DatePicker from 'react-md/DatePickers';
 
 import DocPage from 'react-md-documentation';
 import DatePickerExamples from './DatePickerExamples';
 import DatePickerExamplesRaw from '!!raw!./DatePickerExamples';
 //import './_picker.scss';
 
-export default class Pickers extends Component {
+export default class DatePickers extends Component {
   constructor(props) {
     super(props);
 

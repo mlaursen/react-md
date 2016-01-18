@@ -1,7 +1,10 @@
 import React from 'react';
-import { DatePicker } from 'react-md/Pickers';
+import DatePicker from 'react-md/DatePickers';
 
 export default function DatePickerExamples() {
+  const twoMonthsAgo = new Date(new Date().setMonth(new Date().getMonth() - 2));
+  const oneYearFuture = new Date(new Date().setYear(new Date().getFullYear() + 1));
+
   return (
     <div>
       <DatePicker label="Select a date" floatingLabel={false} />
@@ -9,8 +12,8 @@ export default function DatePickerExamples() {
       <DatePicker label="Auto Ok" autoOk={true} />
       <DatePicker
         label="Min and max dates"
-        minDate={new Date(new Date().setMonth(new Date().getMonth() - 2))}
-        maxDate={new Date(new Date().setYear(new Date().getFullYear() + 1))}
+        minDate={twoMonthsAgo}
+        maxDate={oneYearFuture}
       />
       <DatePicker inline={true} label="Inline" floatingLabel={false} />
       <DatePicker inline={true} label="Inline portrait" mode="portrait" floatingLabel={false} />
