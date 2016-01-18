@@ -109,23 +109,26 @@
     font-weight: bold;
   }
 
-  &:hover,
-  &:focus,
-  &.active {
-    color: $white-base;
-
-    &:after {
-      transform: translateX(-50%) translateY(-50%) scale(1);
-    }
-  }
-
   &.active:after {
     background: get-md-color($md-primary-color);
   }
 
-  &:focus:not(.active):after,
-  &:hover:not(.active):after {
-    background: get-md-color($md-primary-color, 5);
+  &:not([disabled]) {
+    &:hover,
+    &:focus,
+    &.active {
+      color: $white-base;
+
+      //scss-lint:disable NestingDepth
+      &:after {
+        transform: translateX(-50%) translateY(-50%) scale(1);
+      }
+    }
+
+    &:focus:not(.active):after,
+    &:hover:not(.active):after {
+      background: get-md-color($md-primary-color, 5);
+    }
   }
 
   &:after {
