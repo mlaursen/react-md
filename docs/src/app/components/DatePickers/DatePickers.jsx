@@ -17,7 +17,9 @@ export default class DatePickers extends Component {
   render() {
     return (
       <DocPage
+        sectionName="Date Pickers"
         components={[{
+          componentName: 'Date Picker',
           component: DatePicker,
           details: [],
         }]}

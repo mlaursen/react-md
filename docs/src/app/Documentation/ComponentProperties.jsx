@@ -20,6 +20,7 @@ export default class ComponentProperties extends Component {
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]),
+    componentName: PropTypes.string,
     component: PropTypes.func.isRequired,
     details: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -51,8 +52,8 @@ export default class ComponentProperties extends Component {
   };
 
   render() {
-    const { component, sectionName, details, allRemaining, marked, desc } = this.props;
-    const name = (component.displayName || component.name).replace('Ripple', '');
+    const { component, componentName, sectionName, details, allRemaining, marked, desc } = this.props;
+    const name = (component.displayName || component.name);
     const { propTypes, defaultProps } = component;
     const detailNames = details.map(d => d.name);
 
@@ -115,7 +116,7 @@ export default class ComponentProperties extends Component {
     }
     return (
       <Card className="full-width prop-types" id={`#prop-types-${toDashedName(name)}`} raise={false}>
-        <CardTitle title={toTitle(name)}>
+        <CardTitle title={toTitle(componentName || name)}>
           <IconButton
             href={`${githubHref}/tree/master/src/js/${sectionName}/${name}.js`}
             iconClassName="fa fa-github"
