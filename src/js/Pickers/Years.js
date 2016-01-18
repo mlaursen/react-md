@@ -15,13 +15,15 @@ export default class Years extends Component {
   }
 
   static propTypes = {
-    selectedDate: PropTypes.object.isRequired,
+    selectedDate: PropTypes.instanceOf(Date).isRequired,
     initialYearsDisplayed: PropTypes.number,
     onCalendarYearClick: PropTypes.func.isRequired,
     cancelLabel: PropTypes.string.isRequired,
     onCancelClick: PropTypes.func.isRequired,
     okLabel: PropTypes.string.isRequired,
     onOkClick: PropTypes.func.isRequired,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
   };
 
   static defaultProps = {
@@ -35,11 +37,23 @@ export default class Years extends Component {
     years.scrollTop = offsetTop / 2 - offsetHeight;
   }
 
-  generateYears = ({ selectedDate, initialYearsDisplayed }) => {
+  generateYears = ({ selectedDate, initialYearsDisplayed, minDate, maxDate }) => {
     const currentYear = selectedDate.getFullYear();
-    return Array.apply(null, new Array(initialYearsDisplayed)).map((_, i) => {
-      return currentYear - initialYearsDisplayed / 2 + i;
-    });
+    let startYear = parseInt(currentYear - initialYearsDisplayed / 2);
+    let endYear = parseInt(currentYear + initialYearsDisplayed / 2);
+    if(minDate) {
+      startYear = minDate.getFullYear();
+    }
+
+    if(maxDate) {
+      endYear = maxDate.getFullYear();
+    }
+
+    let years = [];
+    for(let i = startYear; i <= endYear; i++) {
+      years.push(i);
+    }
+    return years;
   };
 
   render() {

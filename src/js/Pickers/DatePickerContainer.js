@@ -67,10 +67,23 @@ export default class DatePicker extends Component {
   setTempYear = (tempYear) => {
     const { tempValue, currentMonth } = this.state;
     if(tempValue.getFullYear() === tempYear) { return; }
+    const { minDate, maxDate } = this.props;
+    let nextTemp = new Date(tempValue.setFullYear(tempYear));
+    let nextCurr = new Date(currentMonth.setFullYear(tempYear));
+
+    if(minDate && nextTemp < minDate) {
+      nextTemp = new Date(minDate);
+      nextCurr = new Date(minDate);
+    }
+
+    if(maxDate && nextTemp > maxDate) {
+      nextTemp = new Date(maxDate);
+      nextCurr = new Date(maxDate);
+    }
 
     this.setState({
-      tempValue: new Date(tempValue.setFullYear(tempYear)),
-      currentMonth: new Date(currentMonth.setFullYear(tempYear)),
+      tempValue: nextTemp,
+      currentMonth: nextCurr,
     });
   };
 
