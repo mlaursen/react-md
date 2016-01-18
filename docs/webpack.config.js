@@ -77,7 +77,6 @@ let config = {
 };
 
 const sassConfig = `outputStyle=${env.development ? 'expanded&sourceMap=true' : 'compressed'}`;
-const jsLoader = `${env.development ? 'react-hot!' : ''}babel`;
 if(env.development) {
   const host = 'localhost';
   const port = 8080;
@@ -100,6 +99,12 @@ if(env.development) {
     new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: DEV_URL }),
   ]);
+
+  config.module.loaders = config.module.loaders.concat([{
+    test: /\.jsx?$/,
+    exclude: /node_modules|react-md/,
+    loader: 'react-hot',
+  }]);
 } else if(env.production) {
   config.devtool = 'source-map';
   config.plugins = config.plugins.concat([
@@ -116,7 +121,7 @@ if(env.development) {
 config.module.loaders = config.module.loaders.concat([{
   test: /\.jsx?$/,
   exclude: /node_modules/,
-  loader: jsLoader,
+  loader: 'babel',
 }, {
   test: /\.scss$/,
   loader: `style!css!autoprefixer?browsers=last 2 versions!sass?${sassConfig}`,
