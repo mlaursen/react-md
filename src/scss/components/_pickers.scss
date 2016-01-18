@@ -100,6 +100,10 @@
     z-index: 1;
   }
 
+  &[disabled] {
+    color: $md-disabled-color;
+  }
+
   &.today {
     color: get-md-color($md-primary-color);
     font-weight: bold;

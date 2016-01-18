@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { getDayOfWeek, addDate, stripTime, formatDate, getLastDay } from '../utils';
 
-const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
+const Month = ({ currentMonth, selectedDate, onCalendarDateClick, minDate, maxDate }) => {
   let days = [];
   let currentDate = stripTime(getDayOfWeek(new Date(currentMonth).setDate(1), 0));
   const endDate = stripTime(getDayOfWeek(getLastDay(currentMonth), 6));
@@ -14,6 +14,8 @@ const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
     const key = formatDate(currentDate);
     let date;
     if(currentDate.getMonth() === currentMonth.getMonth()) {
+      const isMinDateDisabled = minDate && minDate.getTime() > currentDate.getTime();
+      const isMaxDateDisbaled = maxDate && maxDate.getTime() < currentDate.getTime();
       date = (
         <button
           type="button"
@@ -23,6 +25,7 @@ const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
             'active': currentDate.getTime() === activeDate.getTime(),
           })}
           onClick={onCalendarDateClick.bind(this, new Date(currentDate))}
+          disabled={isMinDateDisabled || isMaxDateDisbaled}
           >
           <span className="date">{formatDate(currentDate, { day: 'numeric' })}</span>
         </button>
@@ -43,8 +46,10 @@ const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
 };
 
 Month.propTypes = {
-  currentMonth: PropTypes.object.isRequired,
-  selectedDate: PropTypes.object.isRequired,
+  currentMonth: PropTypes.instanceOf(Date).isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
   onCalendarDateClick: PropTypes.func.isRequired,
 };
 

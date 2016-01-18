@@ -36,6 +36,8 @@ export default class DatePicker extends Component {
     mode: PropTypes.oneOf(['landscape', 'portrait']),
     inline: PropTypes.bool,
     autoOk: PropTypes.bool,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
   };
 
   static defaultProps = {

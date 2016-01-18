@@ -22,6 +22,7 @@ const DatePicker = (props) => {
         onDateClick={onDateClick}
         selectedDate={selectedDate}
         mode={mode}
+        currentMonth={props.currentMonth}
       />
       {mode === 'date' ?
         <Calendar
@@ -43,8 +44,8 @@ DatePicker.propTypes = {
   onPreviousClick: PropTypes.func.isRequired,
   nextIcon: PropTypes.node.isRequired,
   onNextClick: PropTypes.func.isRequired,
-  selectedDate: PropTypes.object.isRequired,
-  currentMonth: PropTypes.object.isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  currentMonth: PropTypes.instanceOf(Date).isRequired,
   onCancelClick: PropTypes.func.isRequired,
   cancelLabel: PropTypes.string.isRequired,
   onOkClick: PropTypes.func.isRequired,
@@ -55,6 +56,8 @@ DatePicker.propTypes = {
   onCalendarDateClick: PropTypes.func.isRequired,
   onCalendarYearClick: PropTypes.func.isRequired,
   slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
 };
 
 export default DatePicker;

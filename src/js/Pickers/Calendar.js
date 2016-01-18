@@ -4,7 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { IconButton } from '../Buttons';
 import Month from './Month';
 import DatePickerFooter from './DatePickerFooter';
-import { formatDate } from '../utils';
+import { formatDate, isMonthBefore } from '../utils';
 
 const Calendar = (props) => {
   const {
@@ -20,18 +20,23 @@ const Calendar = (props) => {
     onOkClick,
     selectedDate,
     onCalendarDateClick,
+    minDate,
+    maxDate,
   } = props;
 
   const dows = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((dow, i) => (
     <h4 className="dow" key={`dow-${dow}-${i}`}>{dow}</h4>
   ));
+
+  const isPreviousDisabled = isMonthBefore(minDate, currentMonth);
+  const isNextDisabled = isMonthBefore(currentMonth, maxDate);
   return (
     <section className="md-date-picker-calendar">
       <header>
         <div className="md-date-picker-controls">
-          <IconButton onClick={onPreviousClick}>{previousIcon}</IconButton>
+          <IconButton onClick={onPreviousClick} disabled={isPreviousDisabled}>{previousIcon}</IconButton>
           <h4 className="md-subtitle">{formatDate(currentMonth, { month: 'long', year: 'numeric' })}</h4>
-          <IconButton onClick={onNextClick}>{nextIcon}</IconButton>
+          <IconButton onClick={onNextClick} disabled={isNextDisabled}>{nextIcon}</IconButton>
         </div>
         <div className="md-dows">
           {dows}
@@ -48,6 +53,8 @@ const Calendar = (props) => {
           currentMonth={currentMonth}
           selectedDate={selectedDate}
           onCalendarDateClick={onCalendarDateClick}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       </CSSTransitionGroup>
       <DatePickerFooter
@@ -70,9 +77,11 @@ Calendar.propTypes = {
   okLabel: PropTypes.string.isRequired,
   onOkClick: PropTypes.func.isRequired,
   onCalendarDateClick: PropTypes.func.isRequired,
-  selectedDate: PropTypes.object.isRequired,
-  currentMonth: PropTypes.object.isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  currentMonth: PropTypes.instanceOf(Date).isRequired,
   slideDir: PropTypes.oneOf(['left', 'right']).isRequired,
+  minDate: PropTypes.instanceOf(Date),
+  maxDate: PropTypes.instanceOf(Date),
 };
 
 export default Calendar;

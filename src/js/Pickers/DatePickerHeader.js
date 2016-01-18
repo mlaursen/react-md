@@ -31,7 +31,7 @@ const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, mode }) => {
 DatePickerHeader.propTypes = {
   onDateClick: PropTypes.func.isRequired,
   onYearClick: PropTypes.func.isRequired,
-  selectedDate: PropTypes.object.isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
   mode: PropTypes.oneOf(['date', 'year']).isRequired,
 };
 
