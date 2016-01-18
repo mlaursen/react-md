@@ -1,0 +1,92 @@
+/**
+ * Removes all time from a date. Only keeps year, month, and date.
+ * @param {date} date the date to strip
+ * @return a new Date with the time stripped.
+ */
+export function stripTime(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+/**
+ * Gets the last day in a month
+ *
+ * @param {date} sourceDate the date to get the last day from.
+ * @return a new Date as the last day of the month.
+ */
+export function getLastDay(sourceDate) {
+  return new Date(sourceDate.getFullYear(), sourceDate.getMonth() + 1, 0);
+}
+
+
+/**
+ * Gets a day in the week. 0 = Sunday 6 = Saturday
+ *
+ * @param {date} sourceDate the date to find a relative day of wek from
+ * @param {number} dow the day of the week to find
+ * @return a new Date as the given day of week
+ */
+export function getDayOfWeek(sourceDate, dow = 0) {
+  const date = new Date(sourceDate);
+  const day = date.getDay();
+
+  const diff = date.getDate() - day + dow;
+  return new Date(date.setDate(diff));
+}
+
+/**
+ * Adds a given amount to a date.
+ *
+ * @param {date} sourceDate the date to add
+ * @param {number} amt the amount to add
+ * @param {string} part the date part to add to. ['D', 'M', 'Y']
+ * @return a new Date with the part added or the date if the part is not valid.
+ */
+export function addDate(sourceDate, amt, part) {
+  const date = new Date(sourceDate);
+
+  switch(part) {
+    case 'D':
+      return new Date(date.setDate(date.getDate() + amt));
+    case 'M':
+      return new Date(date.setMonth(date.getMonth() + amt));
+    case 'Y':
+      return new Date(date.setFullYear(date.getFullYear() + amt));
+    default:
+      return date;
+  }
+}
+
+/**
+ * Subtracts a given amount to a date.
+ *
+ * @param {date} sourceDate the date to subtract
+ * @param {number} amt the amount to subtract
+ * @param {string} part the date part to subtract to. ['D', 'M', 'Y']
+ * @return a new Date with the part subtracted or the date if the part is not valid.
+ */
+export function subtractDate(sourceDate, amt, part) {
+  return addDate(sourceDate, -amt, part);
+}
+
+/**
+ * Formats a date using Intl if it exists. Otherwise a
+ * TODO: impl some dateformatter
+ *
+ * will be used.
+ * Should really just do the Intl polyfill instead
+ *
+ * @param {date} date the date to format
+ * @param {object} options? the formatting options to use
+ * @param {string} locale? the locale to use. Defaults to the navigator language.
+ * @return a formatted date string
+ */
+export const formatDate = (date, options, locale = (navigator.language || navigator.userLanguage)) => {
+  if(typeof Intl === 'object' && typeof Intl.DateTimeFormat === 'function') {
+    return Intl.DateTimeFormat(locale, options).format(date);
+  }
+
+  const day = date.getDate();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};

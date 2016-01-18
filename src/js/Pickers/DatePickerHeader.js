@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import { formatDate } from '../utils';
 
 const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, mode }) => {
   return (
@@ -11,7 +12,7 @@ const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, mode }) => {
           'active': mode === 'year',
         })}
         >
-        <h6 className="md-subtitle">{selectedDate.format('YYYY')}</h6>
+        <h6 className="md-subtitle">{selectedDate.getFullYear()}</h6>
       </button>
       <button
         type="button"
@@ -20,8 +21,8 @@ const DatePickerHeader = ({ onYearClick, onDateClick, selectedDate, mode }) => {
           'active': mode === 'date',
         })}
         >
-        <h4 className="md-display-1">{selectedDate.format('ddd,')}</h4>
-        <h4 className="md-display-1">{selectedDate.format('MMM DD')}</h4>
+        <h4 className="md-display-1">{formatDate(selectedDate, { weekday: 'short' })},</h4>
+        <h4 className="md-display-1">{formatDate(selectedDate, { month: 'short', day: '2-digit' })}</h4>
       </button>
     </header>
   );

@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { IconButton } from '../Buttons';
 import Month from './Month';
 import DatePickerFooter from './DatePickerFooter';
+import { formatDate } from '../utils';
 
 const Calendar = (props) => {
   const {
@@ -29,7 +30,7 @@ const Calendar = (props) => {
       <header>
         <div className="md-date-picker-controls">
           <IconButton onClick={onPreviousClick}>{previousIcon}</IconButton>
-          <h4 className="md-subtitle">{currentMonth.format('MMMM YYYY')}</h4>
+          <h4 className="md-subtitle">{formatDate(currentMonth, { month: 'long', year: 'numeric' })}</h4>
           <IconButton onClick={onNextClick}>{nextIcon}</IconButton>
         </div>
         <div className="md-dows">
@@ -43,7 +44,7 @@ const Calendar = (props) => {
         className="swipe-container"
         >
         <Month
-          key={currentMonth.format('MM-DD-YYYY')}
+          key={formatDate(currentMonth)}
           currentMonth={currentMonth}
           selectedDate={selectedDate}
           onCalendarDateClick={onCalendarDateClick}

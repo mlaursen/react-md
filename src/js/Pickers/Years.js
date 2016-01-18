@@ -36,7 +36,7 @@ export default class Years extends Component {
   }
 
   generateYears = ({ selectedDate, initialYearsDisplayed }) => {
-    const currentYear = selectedDate.year();
+    const currentYear = selectedDate.getFullYear();
     return Array.apply(null, new Array(initialYearsDisplayed)).map((_, i) => {
       return currentYear - initialYearsDisplayed / 2 + i;
     });
@@ -44,7 +44,7 @@ export default class Years extends Component {
 
   render() {
     const { cancelLabel, onCancelClick, okLabel, onOkClick, selectedDate } = this.props;
-    const currentYear = selectedDate.year();
+    const currentYear = selectedDate.getFullYear();
     return (
       <section className="md-year-picker">
         <ol className="md-years" ref="years">

@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import moment from 'moment';
 
 import TextField from '../TextFields';
 import FontIcon from '../FontIcons';
 
+import { addDate, subtractDate, formatDate } from '../utils';
 import CalendarDialog from './CalendarDialog';
 
 export default class DatePicker extends Component {
@@ -16,8 +16,8 @@ export default class DatePicker extends Component {
     this.state = {
       isOpen: false,
       value: props.defaultValue,
-      currentMonth: moment(props.defaultValue),
-      tempValue: moment(props.defaultValue),
+      currentMonth: props.defaultValue ? new Date(props.defaultValue) : new Date(),
+      tempValue: props.defaultValue ? new Date(props.defaultValue) : new Date(),
       mode: 'date',
       slideDir: 'left',
     };
@@ -51,12 +51,12 @@ export default class DatePicker extends Component {
   };
 
   setDate = () => {
-    this.setState({ value: this.state.tempValue.toDate(), isOpen: false });
+    this.setState({ value: this.state.tempValue, isOpen: false });
   };
 
   setTempDate = (tempValue) => {
     if(this.props.autoOk) {
-      this.setState({ value: tempValue.toDate(), isOpen: false });
+      this.setState({ value: tempValue, isOpen: false });
     } else {
       this.setState({ tempValue });
     }
@@ -64,11 +64,11 @@ export default class DatePicker extends Component {
 
   setTempYear = (tempYear) => {
     const { tempValue, currentMonth } = this.state;
-    if(tempValue.year() === tempYear) { return; }
+    if(tempValue.getFullYear() === tempYear) { return; }
 
     this.setState({
-      tempValue: tempValue.clone().year(tempYear),
-      currentMonth: currentMonth.clone().year(tempYear),
+      tempValue: new Date(tempValue.setFullYear(tempYear)),
+      currentMonth: new Date(currentMonth.setFullYear(tempYear)),
     });
   };
 
@@ -77,16 +77,18 @@ export default class DatePicker extends Component {
   };
 
   previousMonth = () => {
-    this.setState({ currentMonth: this.state.currentMonth.clone().subtract(1, 'M'), slideDir: 'left' });
+    const currentMonth = subtractDate(this.state.currentMonth, 1, 'M');
+    this.setState({ currentMonth, slideDir: 'left' });
   };
 
   nextMonth = () => {
-    this.setState({ currentMonth: this.state.currentMonth.clone().add(1, 'M'), slideDir: 'right' });
+    const currentMonth = addDate(this.state.currentMonth, 1, 'M');
+    this.setState({ currentMonth, slideDir: 'right' });
   };
 
   render() {
     const { calendarIcon, label, floatingLabel, mode, ...props } = this.props;
-    const value = this.state.value && moment(this.state.value).format('MM/DD/YYYY');
+    const value = this.state.value && formatDate(this.state.value);
     return (
       <div className="md-date-picker-container">
         <TextField

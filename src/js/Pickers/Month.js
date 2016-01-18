@@ -1,47 +1,30 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
-import moment from 'moment';
 
-const stripTime = (date) => date.hour(0).minute(0).second(0).millisecond(0);
-
-/**
- * Jan 17 2016 -> Dec 27 2015
- * May 1 2016 -> May 1 2016 -- It starts on a Sunday
- *
- * Strips all time from the date and gets the current
- * date for the start of week.
- * @return A moment object with all time stripped
- */
-function getCalendarStart(date) {
-  return stripTime(date.clone().date(1).day(0));
-}
-
-function getCalendarEnd(date) {
-  return stripTime(date.clone().endOf('month').day(6));
-}
+import { getDayOfWeek, addDate, stripTime, formatDate, getLastDay } from '../utils';
 
 const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
   let days = [];
-  let currentDate = getCalendarStart(currentMonth);
-  const endDate = getCalendarEnd(currentMonth);
-  const activeDate = stripTime(selectedDate.clone());
-  const today = stripTime(moment());
+  let currentDate = stripTime(getDayOfWeek(new Date(currentMonth).setDate(1), 0));
+  const endDate = stripTime(getDayOfWeek(getLastDay(currentMonth), 6));
+  const activeDate = stripTime(new Date(selectedDate));
+  const today = stripTime(new Date());
 
-  while(currentDate.isSameOrBefore(endDate)) {
-    const key = currentDate.format('YYYY-MM-DD');
+  while(currentDate <= endDate) {
+    const key = formatDate(currentDate);
     let date;
-    if(currentDate.month() === currentMonth.month()) {
+    if(currentDate.getMonth() === currentMonth.getMonth()) {
       date = (
         <button
           type="button"
           key={key}
           className={classnames('md-calendar-date', {
-            'today': currentDate.isSame(today),
-            'active': currentDate.isSame(activeDate),
+            'today': currentDate.getTime() === today.getTime(),
+            'active': currentDate.getTime() === activeDate.getTime(),
           })}
-          onClick={onCalendarDateClick.bind(this, currentDate.clone())}
+          onClick={onCalendarDateClick.bind(this, new Date(currentDate))}
           >
-          <span className="date">{currentDate.format('D')}</span>
+          <span className="date">{formatDate(currentDate, { day: 'numeric' })}</span>
         </button>
       );
     } else {
@@ -49,7 +32,7 @@ const Month = ({ currentMonth, selectedDate, onCalendarDateClick }) => {
     }
 
     days.push(date);
-    currentDate = currentDate.add(1, 'd');
+    currentDate = addDate(currentDate, 1, 'D');
   }
 
   return (

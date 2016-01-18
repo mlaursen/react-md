@@ -142,3 +142,5 @@ export function fuzzyFilter(items, word, key = null) {
     return true;
   });
 }
+
+export * from './dates';
