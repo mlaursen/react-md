@@ -1,3 +1,7 @@
+.md-date-picker-container {
+  position: relative;
+}
+
 .md-date-picker {
   &.portrait {
     @include md-date-picker-portrait();
@@ -7,6 +11,14 @@
     @include md-date-picker-landscape();
   }
 
+  &.inline {
+    @include md-box-shadow(3);
+
+    background: $white-base;
+    left: 50px;
+    position: absolute;
+    z-index: 24;
+  }
 }
 
 .md-date-picker-header {

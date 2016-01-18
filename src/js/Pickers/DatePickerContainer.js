@@ -5,10 +5,12 @@ import classnames from 'classnames';
 import TextField from '../TextFields';
 import FontIcon from '../FontIcons';
 
+import { ESC } from '../constants/keyCodes';
 import { addDate, subtractDate, formatDate } from '../utils';
 import CalendarDialog from './CalendarDialog';
+import CalendarInline from './CalendarInline';
 
-export default class DatePicker extends Component {
+export default class DatePickerContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -48,6 +50,39 @@ export default class DatePicker extends Component {
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
     initialYearsDisplayed: 50,
+  };
+
+  componentWillUpdate(nextProps, nextState) {
+    if(this.state.isOpen && !nextState.isOpen) {
+      if(nextProps.inline) {
+        window.removeEventListener('click', this.closeOnOutside);
+      }
+
+      window.removeEventListener('keydown', this.closeOnEsc);
+    } else if(!this.state.isOpen && nextState.isOpen) {
+      if(nextProps.inline) {
+        window.addEventListener('click', this.closeOnOutside);
+      }
+
+      window.addEventListener('keydown', this.closeOnEsc);
+    }
+  }
+
+  closeOnEsc = (e) => {
+    if((e.which || e.keyCode) === ESC) {
+      this.close();
+    }
+  };
+
+  closeOnOutside = (e) => {
+    const { container } = this.refs;
+    let target = e.target;
+    while(target.parentNode) {
+      if(target === container) { return; }
+      target = target.parentNode;
+    }
+
+    this.close();
   };
 
   close = () => {
@@ -104,38 +139,44 @@ export default class DatePicker extends Component {
   };
 
   render() {
-    const { calendarIcon, label, floatingLabel, mode, ...props } = this.props;
+    const { calendarIcon, label, className, floatingLabel, inline, mode, ...props } = this.props;
     const value = this.state.value && formatDate(this.state.value);
+
+    const datePickerProps = {
+      isOpen: this.state.isOpen,
+      close: this.close,
+      className: classnames(className, {
+        'landscape': mode === 'landscape',
+        'portrait': mode === 'portrait',
+        'inline': inline,
+      }),
+      onPreviousClick: this.previousMonth,
+      onNextClick: this.nextMonth,
+      onCancelClick: this.close,
+      onOkClick: this.setDate,
+      selectedDate: this.state.tempValue,
+      currentMonth: this.state.currentMonth,
+      onCalendarDateClick: this.setTempDate,
+      onCalendarYearClick: this.setTempYear,
+      mode: this.state.mode,
+      onDateClick: this.switchMode.bind(this, 'date'),
+      onYearClick: this.switchMode.bind(this, 'year'),
+      slideDir: this.state.slideDir,
+      ...props,
+    };
     return (
-      <div className="md-date-picker-container">
+      <div className="md-date-picker-container" ref="container">
         <TextField
           icon={calendarIcon}
-          onClick={() => this.setState({ isOpen: true })}
+          onClick={() => this.setState({ isOpen: !this.state.isOpen })}
           label={label}
           floatingLabel={floatingLabel}
           value={value}
         />
-        <CalendarDialog
-          isOpen={this.state.isOpen}
-          close={this.close}
-          className={classnames({
-            'landscape': mode === 'landscape',
-            'portrait': mode === 'portrait',
-          })}
-          onPreviousClick={this.previousMonth}
-          onNextClick={this.nextMonth}
-          onCancelClick={this.close}
-          onOkClick={this.setDate}
-          selectedDate={this.state.tempValue}
-          currentMonth={this.state.currentMonth}
-          onCalendarDateClick={this.setTempDate}
-          onCalendarYearClick={this.setTempYear}
-          mode={this.state.mode}
-          onDateClick={this.switchMode.bind(this, 'date')}
-          onYearClick={this.switchMode.bind(this, 'year')}
-          slideDir={this.state.slideDir}
-          {...props}
-        />
+        {inline ?
+          <CalendarInline {...datePickerProps} /> :
+          <CalendarDialog {...datePickerProps} />
+        }
       </div>
     );
   }

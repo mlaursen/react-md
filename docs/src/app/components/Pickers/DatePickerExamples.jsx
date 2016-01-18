@@ -12,6 +12,8 @@ export default function DatePickerExamples() {
         minDate={new Date(new Date().setMonth(new Date().getMonth() - 2))}
         maxDate={new Date(new Date().setYear(new Date().getFullYear() + 1))}
       />
+      <DatePicker inline={true} label="Inline" floatingLabel={false} />
+      <DatePicker inline={true} label="Inline portrait" mode="portrait" floatingLabel={false} />
     </div>
   );
 }
