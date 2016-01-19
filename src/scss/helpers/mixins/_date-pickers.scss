@@ -1,0 +1,218 @@
+@mixin md-date-picker-portrait() {
+  height: $md-pickers-portrait-height;
+  width: $md-pickers-portrait-width;
+
+  .md-display-1 {
+    display: inline-block;
+
+    + .md-display-1 {
+      margin-left: 10px;
+    }
+  }
+
+  .md-date-picker-controls {
+    padding: 0 6px;
+  }
+
+  .md-years {
+    max-height: $md-pickers-portrait-height - 106px -52px;
+  }
+}
+
+@mixin md-date-picker-landscape() {
+  display: flex;
+  height: $md-pickers-landscape-height;
+  width: $md-pickers-landscape-width;
+
+  .md-date-picker-header {
+    width: $md-pickers-landscape-header-width;
+  }
+
+  .md-date-picker-controls {
+    padding: 0 12px;
+  }
+
+  .md-calendar-container {
+    flex-grow: 1;
+  }
+
+  .md-years {
+    max-height: $md-pickers-landscape-height - 52px;
+  }
+}
+
+@mixin md-pickers-portrait() {
+  width: $md-pickers-portrait-width;
+
+  &.date-picker {
+
+    .md-display-1 {
+      display: inline-block;
+    }
+  }
+
+  .md-picker-header {
+    height: $md-pickers-portrait-header-height;
+  }
+
+  .md-time-periods {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: $md-dialog-padding;
+  }
+
+  .md-picker-content {
+    height: $md-pickers-portrait-content-height;
+  }
+
+  .md-display-3 {
+    font-size: 4.8em;
+    line-height: 1;
+  }
+
+  .md-dows {
+    padding-bottom: $md-dialog-padding / 2;
+  }
+
+  .md-calendar-date-placeholder,
+  .md-calendar-date {
+    height: $md-date-picker-portrait-date-size;
+  }
+
+  .md-calendar-date:after {
+    height: $md-date-picker-portrait-ball-size;
+    width: $md-date-picker-portrait-ball-size;
+  }
+
+  .md-clock {
+    height: $md-clock-portrait-size;
+    width: $md-clock-portrait-size;
+  }
+}
+
+@mixin md-pickers-landscape() {
+  display: flex;
+  width: $md-pickers-landscape-width;
+
+  .md-picker-header {
+    width: $md-pickers-landscape-header-width;
+  }
+
+  .md-picker-content {
+    height: $md-pickers-landscape-content-height;
+    width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
+  }
+
+  &.time-picker .md-picker-header {
+    padding-top: $md-pickers-landscape-content-height / 3;
+  }
+
+  .md-calendar-date-placeholder,
+  .md-calendar-date {
+    height: $md-date-picker-landscape-date-size;
+  }
+
+  .md-calendar-date:after {
+    height: $md-date-picker-landscape-ball-size;
+    width: $md-date-picker-landscape-ball-size;
+  }
+
+  .md-clock {
+    height: $md-clock-landscape-size;
+    width: $md-clock-landscape-size;
+  }
+
+  .md-time-periods {
+    margin: 0 auto;
+    width: 35px;
+  }
+}
+
+
+@mixin md-date-picker-mobile() {
+  .md-picker:not(.landscape) {
+    @include md-pickers-portrait();
+  }
+}
+
+@mixin md-date-picker-desktop() {
+  .md-picker:not(.portrait) {
+    @include md-pickers-landscape();
+  }
+}
+
+/// Themes a date picker with the given colors
+///
+/// @example scss - Basic Usage SASS
+///   .my-primary-theme {
+///     @inlude md-theme-date-pickers(get-md-color(indigo), get-md-color(indigo, 5));
+///   }
+///
+/// @example scss - Basic Usage Output SCSS
+///   .my-primary-theme {
+///     .md-date-picker-header,
+///     .md-calendar-date.active:after {
+///       background: #3f51b5;
+///     }
+///
+///     .md-calendar-date.today,
+///     .md-year.active {
+///        color: #3f51b5;
+///     }
+///
+///     .md-date-picker-date,
+///     .md-date-picker-year {
+///       color: rgba(255, 255, 255, 0.7);
+///     }
+///
+///     .md-date-picker-date.active,
+///     .md-date-picker-year.active,
+///     .md-calendar-date:not([disabled]):hover,
+///     .md-calendar-date:not([disabled]):focus,
+///     .md-calendar-date:not([disabled]).active {
+///       color: #fff;
+///     }
+///
+///     .md-calendar-date:focus:not(.active):after,
+///     .md-calendar-date:hover:not(.active):after,
+///       background: #7986cb;
+///     }
+///
+///     .md-year:focus:not(.active) {
+///       color: #7986cb;
+///     }
+///
+/// @param {Color} $primary - The primary color to use.
+/// @param {Color} $hover-color - The hover color to use.
+@mixin md-theme-date-pickers($primary, $hover-color) {
+  .md-date-picker-header,
+  .md-calendar-date.active:after {
+    background: $primary;
+  }
+
+  .md-date-picker-date.active,
+  .md-date-picker-year.active,
+  .md-calendar-date:not([disabled]):hover,
+  .md-calendar-date:not([disabled]):focus,
+  .md-calendar-date:not([disabled]).active {
+    color: $white-base;
+  }
+
+  .md-date-picker-date,
+  .md-date-picker-year {
+    color: rgba($white-base, .7);
+  }
+
+  .md-calendar-date.today,
+  .md-year.active {
+    color: $primary;
+  }
+
+  .md-calendar-date:after {
+    background: $hover-color;
+  }
+
+  .md-year:focus:not(.active) {
+    color: $hover-color;
+  }
+}

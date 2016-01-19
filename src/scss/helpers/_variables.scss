@@ -369,3 +369,35 @@ $md-dialog-transition-time: $md-transition-time * 3 !default;
 $md-dialog-simple-min-width: 56px * 5;
 $md-dialog-min-page-margin: 24px 40px;
 $md-dialog-translate-distance: -30px !default;
+
+
+
+// =============================================
+// Date Pickers
+$md-pickers-portrait-content-height: 340px !default;
+$md-pickers-portrait-width: 320px !default;
+$md-pickers-portrait-header-height: 110px !default;
+$md-pickers-landscape-header-width: 180px !default;
+$md-pickers-landscape-content-height: 280px !default;
+$md-pickers-landscape-width: 560px !default;
+
+$md-date-picker-portrait-date-size: 44px !default;
+$md-date-picker-portrait-ball-size: 36px !default;
+$md-date-picker-landscape-date-size: 35px !default;
+$md-date-picker-landscape-ball-size: 32px !default;
+
+$md-clock-portrait-size: $md-pickers-portrait-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
+$md-clock-landscape-size: $md-pickers-landscape-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
+
+$md-pickers-portrait-height: 380px !default;
+$md-pickers-landscape-height: 340px !default;
+
+$md-date-picker-year-font-size: 16px !default;
+$md-date-picker-calendar-date-font-size: 13px !default;
+$md-date-picker-transition-time: $md-transition-time * 2 !default;
+$md-date-picker-date-padding: 12px !default;
+$md-date-picker-circle-size: 36px !default;
+
+$md-year-picker-font-size: 16px !default;
+$md-year-picker-focus-font-size: 20px !default;
+$md-year-picker-active-font-size: 24px !default;

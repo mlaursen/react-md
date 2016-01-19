@@ -12,6 +12,7 @@ export GridLists from './GridLists';
 export Lists from './Lists';
 export Menus from './Menus';
 export Papers from './Papers';
+export Pickers from './Pickers';
 export Progress from './Progress';
 export SelectionControls from './SelectionControls';
 export SelectFields from './SelectFields';
