@@ -8,15 +8,15 @@ export default function DatePickerExamples() {
   return (
     <div>
       <DatePicker label="Select a date" floatingLabel={false} />
-      <DatePicker label="Potrait mode" mode="portrait" />
-      <DatePicker label="Auto Ok" autoOk={true} defaultValue={new Date()} />
+      <DatePicker label="Potrait mode" displayMode="portrait" />
+      <DatePicker label="Auto Ok" autoOk={true} defaultValue={Intl.DateTimeFormat().format(new Date())} />
       <DatePicker
         label="Min and max dates"
         minDate={twoMonthsAgo}
         maxDate={oneYearFuture}
       />
       <DatePicker inline={true} label="Inline" floatingLabel={false} />
-      <DatePicker inline={true} label="Inline portrait" mode="portrait" floatingLabel={false} />
+      <DatePicker inline={true} label="Inline portrait" displayMode="portrait" floatingLabel={false} />
     </div>
   );
 }

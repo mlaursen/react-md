@@ -8,7 +8,6 @@ import { addDate, subtractDate } from '../utils';
 
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import DatePicker from './DatePicker';
 import FontIcon from '../FontIcons';
 import Height from '../Transitions';
 
@@ -37,6 +36,7 @@ export default class PickerContainer extends Component {
   }
 
   static propTypes = {
+    component: PropTypes.func.isRequired,
     defaultValue: PropTypes.string,
     initiallyOpen: PropTypes.bool,
     label: PropTypes.string,
@@ -58,9 +58,7 @@ export default class PickerContainer extends Component {
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
     autoOk: PropTypes.bool,
-    icon: PropTypes.bool,
-    calendarIcon: PropTypes.node.isRequired,
-    timeIcon: PropTypes.node.isRequired,
+    icon: PropTypes.node,
     type: PropTypes.oneOf(['date', 'time']),
     initialYearsDisplayed: PropTypes.number,
     inline: PropTypes.bool,
@@ -81,8 +79,6 @@ export default class PickerContainer extends Component {
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
     autoOk: false,
-    calendarIcon: <FontIcon>date_range</FontIcon>,
-    timeIcon: <FontIcon>access_time</FontIcon>,
   };
 
   componentWillUpdate(nextProps, nextState) {
@@ -206,7 +202,7 @@ export default class PickerContainer extends Component {
   };
 
   render() {
-    const { label, floatingLabel, value, onChange, icon, calendarIcon, timeIcon, type, inline, displayMode, ...props } = this.props;
+    const { label, floatingLabel, value, onChange, icon, type, inline, displayMode, component, ...props } = this.props;
     const { isOpen, ...state } = this.state;
     const pickerProps = {
       ...state,
@@ -221,15 +217,15 @@ export default class PickerContainer extends Component {
       onCalendarYearClick: this.setCalendarTempYear,
     };
 
-    let pickerIcon;
-    if(icon) {
-      pickerIcon = type === 'date' ? calendarIcon : timeIcon;
+    let picker;
+    if(isOpen) {
+      picker = React.createElement(component, pickerProps);
     }
 
     return (
       <div className="md-picker-container" ref="container">
         <TextField
-          icon={pickerIcon}
+          icon={icon}
           onClick={this.toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
@@ -240,12 +236,12 @@ export default class PickerContainer extends Component {
           <TransitionGroup>
             {isOpen &&
               <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>
-                <DatePicker {...pickerProps} />
+                {picker}
               </Height>
             }
           </TransitionGroup> :
           <Dialog isOpen={isOpen} close={this.close}>
-            {isOpen && <DatePicker {...pickerProps} />}
+            {isOpen && picker}
           </Dialog>
         }
       </div>

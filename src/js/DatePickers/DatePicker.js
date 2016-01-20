@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import PickerFooter from './PickerFooter';
+import { PickerFooter } from '../Pickers';
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerCalendar from './DatePickerCalendar';
 import YearPicker from './YearPicker';
