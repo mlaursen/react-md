@@ -68,28 +68,14 @@ export function subtractDate(sourceDate, amt, part) {
   return addDate(sourceDate, -amt, part);
 }
 
-/**
- * Formats a date using Intl if it exists. Otherwise a
- * TODO: impl some dateformatter
- *
- * will be used.
- * Should really just do the Intl polyfill instead
- *
- * @param {date} date the date to format
- * @param {object} options? the formatting options to use
- * @param {string} locale? the locale to use. Defaults to the navigator language.
- * @return a formatted date string
- */
-export const formatDate = (date, options, locale = (navigator.language || navigator.userLanguage)) => {
-  if(typeof Intl === 'object' && typeof Intl.DateTimeFormat === 'function') {
-    return Intl.DateTimeFormat(locale, options).format(date);
+export const DateTimeFormat = (() => {
+  if(typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
+    return Intl.DateTimeFormat;
   }
 
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
-};
+  // (locales, options)
+  return () => date => date;
+})();
 
 /**
  * Checks if a date is the month before another date without time

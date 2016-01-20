@@ -8,17 +8,7 @@ import { addDate, subtractDate } from '../utils';
 
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import FontIcon from '../FontIcons';
 import Height from '../Transitions';
-
-const DateTimeFormat = (() => {
-  if(typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
-    return Intl.DateTimeFormat;
-  }
-
-  // (locales, options)
-  return () => date => date;
-})();
 
 export default class PickerContainer extends Component {
   constructor(props) {
@@ -65,22 +55,6 @@ export default class PickerContainer extends Component {
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
-  static defaultProps = {
-    initiallyOpen: false,
-    initialYearsDisplayed: 100,
-    DateTimeFormat: DateTimeFormat,
-    locales: navigator.language,
-    okLabel: 'Ok',
-    okPrimary: true,
-    cancelLabel: 'Cancel',
-    cancelPrimary: true,
-    initialCalendarMode: 'calendar',
-    icon: true,
-    previousIcon: <FontIcon>chevron_left</FontIcon>,
-    nextIcon: <FontIcon>chevron_right</FontIcon>,
-    autoOk: false,
-  };
-
   componentWillUpdate(nextProps, nextState) {
     if(this.state.isOpen && !nextState.isOpen) {
       if(nextProps.inline) {
@@ -109,7 +83,7 @@ export default class PickerContainer extends Component {
 
   closeOnEsc = (e) => {
     if((e.which || e.keyCode) === ESC) {
-      this.close();
+      this.handleCancelClick();
     }
   };
 
@@ -136,10 +110,14 @@ export default class PickerContainer extends Component {
     const { DateTimeFormat, locales, onChange } = this.props;
     const value = DateTimeFormat(locales).format(this.state.calendarTempDate);
     if(typeof this.props.value !== 'undefined' && onChange) {
-      onChange(value, e);
+      onChange(value, new Date(this.state.calendarTempDate), e);
     }
 
     this.setState({ value, isOpen: false });
+  };
+
+  handleCancelClick = () => {
+    this.setState({ calendarTempDate: this.state.calendarDate, isOpen: false });
   };
 
   changeCalendarMode = (calendarMode) => {
@@ -164,7 +142,7 @@ export default class PickerContainer extends Component {
     if(autoOk) {
       const value = DateTimeFormat(locales).format(calendarTempDate);
       if(onChange && typeof this.props.value !== 'undefined') {
-        onChange(value);
+        onChange(value, new Date(calendarTempDate));
       }
 
       this.setState({
@@ -208,7 +186,7 @@ export default class PickerContainer extends Component {
       ...state,
       ...props,
       className: classnames('md-picker', displayMode, { inline, 'with-icon': inline && icon }),
-      onCancelClick: this.close,
+      onCancelClick: this.handleCancelClick,
       onOkClick: this.handleOkClick,
       changeCalendarMode: this.changeCalendarMode,
       onPreviousClick: this.previousMonth,
@@ -222,6 +200,11 @@ export default class PickerContainer extends Component {
       picker = React.createElement(component, pickerProps);
     }
 
+    let textFieldValue = typeof value === 'undefined' ? state.value : value;
+    if(isOpen && inline) {
+      textFieldValue = new props.DateTimeFormat(props.locale).format(state.calendarTempDate);
+    }
+
     return (
       <div className="md-picker-container" ref="container">
         <TextField
@@ -229,7 +212,7 @@ export default class PickerContainer extends Component {
           onClick={this.toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={typeof value === 'undefined' ? this.state.value : value}
+          value={textFieldValue}
           onChange={onChange}
         />
         {inline ?
