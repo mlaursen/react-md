@@ -1,2 +1,2 @@
-import TimePicker from './TimePicker';
+import TimePicker from './TimePickerContainer';
 export default TimePicker;

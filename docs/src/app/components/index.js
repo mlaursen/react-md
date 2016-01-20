@@ -21,5 +21,6 @@ export Snackbars from './Snackbars';
 export Subheaders from './Subheaders';
 export Tabs from './Tabs';
 export TextFields from './TextFields';
+export TimePickers from './TimePickers';
 export Toolbars from './Toolbars';
 export Tooltips from './Tooltips';

@@ -386,7 +386,7 @@ $md-date-picker-portrait-ball-size: 36px !default;
 $md-date-picker-landscape-date-size: 35px !default;
 $md-date-picker-landscape-ball-size: 32px !default;
 
-$md-clock-portrait-size: $md-pickers-portrait-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
+$md-clock-portrait-size: $md-pickers-portrait-width - $md-dialog-padding * 2 !default;
 $md-clock-landscape-size: $md-pickers-landscape-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
 
 $md-pickers-portrait-height: 380px !default;

@@ -1,46 +1,3 @@
-@mixin md-date-picker-portrait() {
-  height: $md-pickers-portrait-height;
-  width: $md-pickers-portrait-width;
-
-  .md-display-1 {
-    display: inline-block;
-
-    + .md-display-1 {
-      margin-left: 10px;
-    }
-  }
-
-  .md-date-picker-controls {
-    padding: 0 6px;
-  }
-
-  .md-years {
-    max-height: $md-pickers-portrait-height - 106px -52px;
-  }
-}
-
-@mixin md-date-picker-landscape() {
-  display: flex;
-  height: $md-pickers-landscape-height;
-  width: $md-pickers-landscape-width;
-
-  .md-date-picker-header {
-    width: $md-pickers-landscape-header-width;
-  }
-
-  .md-date-picker-controls {
-    padding: 0 12px;
-  }
-
-  .md-calendar-container {
-    flex-grow: 1;
-  }
-
-  .md-years {
-    max-height: $md-pickers-landscape-height - 52px;
-  }
-}
-
 @mixin md-pickers-portrait() {
   width: $md-pickers-portrait-width;
 
@@ -103,10 +60,6 @@
     width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
   }
 
-  &.time-picker .md-picker-header {
-    padding-top: $md-pickers-landscape-content-height / 3;
-  }
-
   .md-calendar-date-placeholder,
   .md-calendar-date {
     height: $md-date-picker-landscape-date-size;
@@ -117,14 +70,24 @@
     width: $md-date-picker-landscape-ball-size;
   }
 
+
+  &.time-picker .md-picker-header {
+    padding-top: $md-pickers-landscape-content-height / 3;
+  }
+
   .md-clock {
     height: $md-clock-landscape-size;
     width: $md-clock-landscape-size;
   }
 
   .md-time-periods {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: 2.5em;
     width: 35px;
+  }
+
+  .md-display-3 {
+    font-size: 3.25em;
   }
 }
 

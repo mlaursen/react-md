@@ -42,7 +42,7 @@ export default class PickerContainer extends Component {
     okPrimary: PropTypes.bool,
     cancelLabel: PropTypes.string.isRequired,
     cancelPrimary: PropTypes.bool,
-    initialCalendarMode: PropTypes.oneOf(['calendar', 'year']),
+    initialCalendarMode: PropTypes.oneOf(['calendar', 'year', 'hour', 'minute']),
     previousIcon: PropTypes.node.isRequired,
     nextIcon: PropTypes.node.isRequired,
     minDate: PropTypes.instanceOf(Date),
