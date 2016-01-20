@@ -4,7 +4,6 @@ export Buttons from './Buttons';
 export Cards from './Cards';
 export Chips from './Chips';
 export DataTables from './DataTables';
-export DatePickers from './DatePickers';
 export Dialogs from './Dialogs';
 export Dividers from './Dividers';
 export FontIcons from './FontIcons';

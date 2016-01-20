@@ -3,7 +3,18 @@ import React from 'react';
 import { DatePicker } from 'react-md/Pickers';
 
 export default function DatePickerExamples() {
-  return <DatePicker label="Select a date" />;
+  return (
+    <div>
+      <DatePicker label="Select a date" floatingLabel={false} type="date"/>
+      <DatePicker label="Select a date" floatingLabel={false} type="date" displayMode="portrait" />
+      <DatePicker label="Select a date" floatingLabel={false} type="date" inline={true} />
+      <DatePicker label="Select a date" floatingLabel={false} type="date" displayMode="portrait" inline={true} />
+      <DatePicker label="Select a time" floatingLabel={false} type="time"/>
+      <DatePicker label="Select a time" floatingLabel={false} type="time" displayMode="portrait" />
+      <DatePicker label="Select a time" floatingLabel={false} type="time" inline={true} />
+      <DatePicker label="Select a time" floatingLabel={false} type="time" displayMode="portrait" inline={true} />
+    </div>
+  );
   /*
   return (
     <div>

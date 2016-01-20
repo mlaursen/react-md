@@ -10,7 +10,6 @@ export { Tabs, Tab } from './Tabs';
 
 export Avatar from './Avatars';
 export Chip from './Chips';
-export DatePicker from './DatePickers';
 export Dialog from './Dialogs';
 export Divider from './Dividers';
 export FontIcon from './FontIcons';

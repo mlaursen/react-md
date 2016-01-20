@@ -1,11 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import TransitionGroup from 'react-addons-transition-group';
+import classnames from 'classnames';
+
+import { ESC } from '../constants/keyCodes';
+import { addDate, subtractDate } from '../utils';
 
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import DatePicker from './DatePicker';
 import FontIcon from '../FontIcons';
-import { addDate, subtractDate } from '../utils';
+import Height from '../Transitions';
 
 const DateTimeFormat = (() => {
   if(typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
@@ -58,6 +63,8 @@ export default class PickerContainer extends Component {
     timeIcon: PropTypes.node.isRequired,
     type: PropTypes.oneOf(['date', 'time']),
     initialYearsDisplayed: PropTypes.number,
+    inline: PropTypes.bool,
+    displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
   static defaultProps = {
@@ -76,6 +83,49 @@ export default class PickerContainer extends Component {
     autoOk: false,
     calendarIcon: <FontIcon>date_range</FontIcon>,
     timeIcon: <FontIcon>access_time</FontIcon>,
+  };
+
+  componentWillUpdate(nextProps, nextState) {
+    if(this.state.isOpen && !nextState.isOpen) {
+      if(nextProps.inline) {
+        window.removeEventListener('click', this.closeOnOutside);
+      }
+
+      window.removeEventListener('keydown', this.closeOnEsc);
+    } else if(!this.state.isOpen && nextState.isOpen) {
+      if(nextProps.inline) {
+        window.addEventListener('click', this.closeOnOutside);
+      }
+
+      window.addEventListener('keydown', this.closeOnEsc);
+    }
+  }
+
+  componentWillUnmount() {
+    if(this.state.isOpen) {
+      if(this.props.inline) {
+        window.removeEventListener('click', this.closeOnOutside);
+      }
+
+      window.removeEventListener('keydown', this.closeOnEsc);
+    }
+  }
+
+  closeOnEsc = (e) => {
+    if((e.which || e.keyCode) === ESC) {
+      this.close();
+    }
+  };
+
+  closeOnOutside = (e) => {
+    const { container } = this.refs;
+    let target = e.target;
+    while(target.parentNode) {
+      if(target === container) { return; }
+      target = target.parentNode;
+    }
+
+    this.close();
   };
 
   toggleOpen = () => {
@@ -156,11 +206,12 @@ export default class PickerContainer extends Component {
   };
 
   render() {
-    const { label, floatingLabel, value, onChange, icon, calendarIcon, timeIcon, type, ...props } = this.props;
+    const { label, floatingLabel, value, onChange, icon, calendarIcon, timeIcon, type, inline, displayMode, ...props } = this.props;
     const { isOpen, ...state } = this.state;
     const pickerProps = {
       ...state,
       ...props,
+      className: classnames('md-picker', displayMode, { inline, 'with-icon': inline && icon }),
       onCancelClick: this.close,
       onOkClick: this.handleOkClick,
       changeCalendarMode: this.changeCalendarMode,
@@ -176,7 +227,7 @@ export default class PickerContainer extends Component {
     }
 
     return (
-      <div className="md-picker-container">
+      <div className="md-picker-container" ref="container">
         <TextField
           icon={pickerIcon}
           onClick={this.toggleOpen}
@@ -185,9 +236,18 @@ export default class PickerContainer extends Component {
           value={typeof value === 'undefined' ? this.state.value : value}
           onChange={onChange}
         />
-        <Dialog isOpen={isOpen} close={this.close}>
-          {isOpen && <DatePicker {...pickerProps} />}
-        </Dialog>
+        {inline ?
+          <TransitionGroup>
+            {isOpen &&
+              <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>
+                <DatePicker {...pickerProps} />
+              </Height>
+            }
+          </TransitionGroup> :
+          <Dialog isOpen={isOpen} close={this.close}>
+            {isOpen && <DatePicker {...pickerProps} />}
+          </Dialog>
+        }
       </div>
     );
   }

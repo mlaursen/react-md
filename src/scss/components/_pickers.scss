@@ -1,4 +1,24 @@
+.md-picker-container {
+  position: relative;
+
+  .md-text-field:hover,
+  .md-text-field-label-container:hover {
+    cursor: pointer;
+  }
+}
+
 .md-picker {
+  &.inline {
+    @include md-box-shadow(3);
+
+    background: $white-base;
+    position: absolute;
+    z-index: 24;
+
+    &.with-icon {
+      left: 50px;
+    }
+  }
 
   &.portrait {
     @include md-pickers-portrait();
@@ -62,6 +82,9 @@
 
 
 
+.md-picker-content-container {
+  overflow: hidden;
+}
 
 
 .md-picker-content.clock {

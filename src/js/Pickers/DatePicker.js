@@ -14,7 +14,7 @@ export default class DatePicker extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
+    className: PropTypes.string.isRequired,
     okLabel: PropTypes.string.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
@@ -45,11 +45,12 @@ export default class DatePicker extends Component {
       calendarTempDate,
       calendarMode,
       changeCalendarMode,
+      className,
       ...props,
     } = this.props;
 
     return (
-      <div className="md-picker date-picker">
+      <div className={`${className} date-picker`}>
         <DatePickerHeader
           DateTimeFormat={DateTimeFormat}
           locales={locales}
