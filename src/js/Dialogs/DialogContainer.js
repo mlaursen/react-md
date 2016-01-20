@@ -49,8 +49,11 @@ export default class DialogContainer extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.pageX && nextProps.pageY && !this.props.isOpen && nextProps.isOpen) {
-      this.openFullPageDialog(nextProps);
+    if(!this.props.isOpen && nextProps.isOpen) {
+      document.body.classList.add('hide-overflow');
+      if(nextProps.pageX && nextProps.pageY) {
+        this.openFullPageDialog(nextProps);
+      }
     } else if(this.props.isOpen && !nextProps.isOpen) {
       document.body.classList.remove('hide-overflow');
       this.delayIsOpen(nextProps.transitionLeaveTimeout);
@@ -76,7 +79,6 @@ export default class DialogContainer extends Component {
   };
 
   openFullPageDialog = ({ pageX, pageY }) => {
-    document.body.classList.add('hide-overflow');
     this.setState({ transformOrigin: this.getTransformOrigin(pageX, pageY) });
   };
 
