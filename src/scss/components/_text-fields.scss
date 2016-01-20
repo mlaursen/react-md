@@ -58,6 +58,11 @@
   }
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 50px $white-base inset;
+}
+
 
 .md-text-field-divider {
   @extend %full-width;
