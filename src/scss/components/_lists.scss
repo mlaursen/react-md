@@ -93,7 +93,6 @@
 .md-tile-content {
   flex-grow: 1;
   overflow: hidden;
-  padding-left: $md-tile-left-padding;
 
   &.icon-left {
     padding-left: $md-tile-left-padding - $md-font-icon-size;
