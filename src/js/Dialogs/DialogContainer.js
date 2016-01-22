@@ -43,9 +43,9 @@ export default class DialogContainer extends Component {
   static defaultProps = {
     transitionName: 'md-dialog',
     transitionEnter: true,
-    transitionEnterTimeout: 450,
+    transitionEnterTimeout: 300,
     transitionLeave: true,
-    transitionLeaveTimeout: 450,
+    transitionLeaveTimeout: 300,
   };
 
   componentWillReceiveProps(nextProps) {
