@@ -25,6 +25,7 @@ export default class Menu extends Component {
 
   static propTypes = {
     className: PropTypes.string,
+    listClassName: PropTypes.string,
     children: PropTypes.node,
     toggle: PropTypes.node,
     isOpen: PropTypes.bool.isRequired,
@@ -96,7 +97,7 @@ export default class Menu extends Component {
   };
 
   render() {
-    const { className, children, toggle, isOpen, position, close, autoclose, ...props } = this.props;
+    const { className, listClassName, children, toggle, isOpen, position, close, autoclose, ...props } = this.props;
 
     return (
       <CSSTransitionGroup
@@ -111,7 +112,7 @@ export default class Menu extends Component {
         {toggle}
         {isOpen &&
           <List
-            className={classnames('md-menu', `md-transition-${position}`, {
+            className={classnames('md-menu', listClassName, `md-transition-${position}`, {
               'below': isPropEnabled(props, 'below'),
               'cascading': isPropEnabled(props, 'cascading'),
             })}

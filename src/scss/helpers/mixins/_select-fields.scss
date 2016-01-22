@@ -47,3 +47,9 @@
     $md-text-field-desktop-divider-padding
   );
 }
+
+@mixin md-theme-select-fields($primary) {
+  .md-select-field-menu .md-list-tile.active {
+    color: $primary;
+  }
+}

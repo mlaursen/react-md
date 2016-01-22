@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import { isPropEnabled, isObject } from '../utils';
-import { List, ListItem } from '../';
+import { ListItem } from '../';
 import SelectFieldButton from './SelectFieldButton';
+import Menu from '../Menus';
 
 const LIST_MARGIN = 8;
 
@@ -74,7 +74,7 @@ export default class SelectField extends Component {
 
     if(isPropEnabled(this.props, 'below') || !this.state.isOpen) { return; }
 
-    const menu = ReactDOM.findDOMNode(this).querySelector('.md-dropdown-menu');
+    const menu = ReactDOM.findDOMNode(this).querySelector('.md-menu');
     const items = Array.prototype.slice.call(menu.querySelectorAll('.md-list-tile'));
     const maxScrollDistance = menu.scrollHeight - menu.offsetHeight;
     let index = 0;
@@ -127,6 +127,14 @@ export default class SelectField extends Component {
     }
   };
 
+  isActive = (item, displayLabel) => {
+    if(typeof item === 'string' || typeof item === 'number') {
+      return item === displayLabel;
+    } else {
+      return item[this.props.itemLabel] === displayLabel;
+    }
+  };
+
   handleFocus = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -174,7 +182,7 @@ export default class SelectField extends Component {
 
   render() {
     const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, placeholder, ...props } = this.props;
-    const { focused, isOpen, selected } = this.state;
+    const { focused, isOpen } = this.state;
 
     const isBelow = isPropEnabled(props, 'below');
     const displayLabel = this.getSelected(itemLabel);
@@ -187,40 +195,37 @@ export default class SelectField extends Component {
     });
 
     return (
-      <div className={classnames('md-dropdown-container', className)} {...props}>
-        <SelectFieldButton
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          label={displayLabel || placeholder}
-          value={displayValue}
-          onClick={this.toggleMenu}
-          className={fieldClassName}
-          name={name}
-          isOpen={isOpen}
-          isBelow={isBelow}
-        />
-        <CSSTransitionGroup
-          transitionName="menu"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
-          >
-          {isOpen &&
-          <List className={classnames('md-dropdown-menu', { 'menu-below': isBelow })}>
-            {menuItems.map((item, i) => {
-              return (
-                <ListItem
-                  primaryText={isObject(item) ? item[itemLabel] : item}
-                  key={item.key || i}
-                  onClick={this.selectItem.bind(this, item, i)}
-                  onKeyUp={this.handleKeyUp.bind(this, item, i)}
-                  className={classnames({ 'active': item === value || item === selected })}
-                />
-              );
-            })}
-          </List>
-          }
-        </CSSTransitionGroup>
-      </div>
+      <Menu
+        listClassName="md-select-field-menu"
+        isOpen={isOpen}
+        close={this.close}
+        toggle={
+          <SelectFieldButton
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            label={displayLabel || placeholder}
+            value={displayValue}
+            onClick={this.toggleMenu}
+            className={fieldClassName}
+            name={name}
+            isOpen={isOpen}
+            isBelow={isBelow}
+          />
+        }
+        {...props}
+      >
+        {menuItems.map((item, i) => {
+          return (
+            <ListItem
+              primaryText={isObject(item) ? item[itemLabel] : item}
+              key={item.key || i}
+              onClick={this.selectItem.bind(this, item, i)}
+              onKeyUp={this.handleKeyUp.bind(this, item, i)}
+              className={classnames({ 'active': this.isActive(item, displayLabel) })}
+            />
+          );
+        })}
+      </Menu>
     );
   }
 }
