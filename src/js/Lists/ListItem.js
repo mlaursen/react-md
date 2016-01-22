@@ -3,12 +3,14 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import Ink from '../Inks';
+import { TAB } from '../constants/keyCodes';
 
 export default class ListItem extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { focused: false };
   }
 
   static propTypes = {
@@ -24,10 +26,25 @@ export default class ListItem extends Component {
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+    onKeyUp: PropTypes.func,
+    onBlur: PropTypes.func,
   };
 
   static defaultProps = {
     component: 'li',
+  };
+
+  handleKeyUp = (e) => {
+    if(this.props.onKeyUp) { this.props.onKeyUp(e); }
+
+    if((e.which || e.keyCode) === TAB) {
+      this.setState({ focused: true });
+    }
+  };
+
+  handleBlur = (e) => {
+    if(this.props.onBlur) { this.props.onBlur(e); }
+    this.setState({ focused: false });
   };
 
   renderText = () => {
@@ -70,14 +87,15 @@ export default class ListItem extends Component {
   render() {
     const { component, className, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, ...props } = this.props;
     return React.createElement(component, {
+      ...props,
       role: 'button',
       className: classnames('md-list-tile', className, {
         'md-list-3-lines': !!secondaryText && !!secondaryText2,
         'md-list-avatar': leftIcon || leftAvatar || rightIcon || rightAvatar,
       }),
       tabIndex: 0,
-      onFocus: this.handleFocus,
-      ...props,
-    }, [<Ink key="ink" />, this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
+      onKeyUp: this.handleKeyUp,
+      onBlur: this.handleBlur,
+    }, [<Ink key="ink" focused={this.state.focused} />, this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
   }
 }
