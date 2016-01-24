@@ -39,7 +39,7 @@ $md-secondary-hue: 2 !default;
 ```
 
 Or defining your own theme with the theme mixins.
-[Examples in \_theme.scss](../blob/master/src/scss/_theme.scss).
+[Examples in \_theme.scss](../master/src/scss/_theme.scss).
 
 ## Media queries
 
@@ -47,7 +47,7 @@ The default media queries for detecting if mobile are very simple. Anything belo
 If these do not work for you, you can use the correct mixins for making a component styled
 for mobile/desktop.
 
-See [the example \_media-queries.scss](../blob/master/src/scss/_media-queries.scss) source.
+See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) source.
 
 
 # Known Bugs/Works in Progress/Future Changes
@@ -59,7 +59,7 @@ See [the example \_media-queries.scss](../blob/master/src/scss/_media-queries.sc
 * Time pickers are not fully implemented. It shows an empty circle. So helpful!
 * The circular progress only changes color in IE instead of animating the stroke-width or whatever it is called.
 * Autocomplete
-* Data Tables -- there is some starter css for tables in [\_data-tables.scss](../blob/master/src/scss/components/_data-tables) but no components with functionality.
+* Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables) but no components with functionality.
 * Bottom sheets
 * Grid lists
 * Sliders
