@@ -15,7 +15,7 @@ export default class CheckboxExamples extends Component {
         <h4>todos</h4>
         <Checkbox defaultChecked={true} label="open checkbox documentation page" />
         <Checkbox label="read material design specs" />
-        <Checkbox disabled label="manage perfect cross-browser compatibility for all versions" />
+        <Checkbox disabled label="achieve 100% cross-browser compatibility" />
         <Checkbox
           label="Favorite this!"
           className="favorite-checkbox"
