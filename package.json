@@ -6,8 +6,7 @@
   "scripts": {
     "scripts:dist": "babel ./src/js --out-dir ./dist",
     "styles:dist": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
-    "dist": "npm run scripts:dist && npm run styles:dist",
-    "prepublish": "npm run dist"
+    "dist": "npm run scripts:dist && npm run styles:dist"
   },
   "repository": {
     "type": "git",
