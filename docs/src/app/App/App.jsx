@@ -89,12 +89,28 @@ export default class App extends Component {
               key={'home-link'}
               leftIcon={<FontIcon>home</FontIcon>}
             />
+            <Divider />
+            <ListSubheader primaryText="References" />
             <ListItem
               component="a"
               primaryText="SASS Doc"
-              href="/sassdoc"
+              href="/react-md/sassdoc"
               key="sassdoc"
-              leftAvatar={<Avatar src="/imgs/sass-icon.png" alt="SASS Icon" />}
+              leftAvatar={<Avatar src="http://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="SASS Icon" />}
+            />
+            <ListItem
+              component="a"
+              primaryText="React"
+              href="https://facebook.github.io/react/"
+              key="react"
+              leftAvatar={<Avatar src="https://facebook.github.io/react/img/logo.svg" alt="React logo" />}
+            />
+            <ListItem
+              component="a"
+              primaryText="Material Design"
+              href="https://www.google.com/design/spec/material-design/introduction.html"
+              key="material-design"
+              leftAvatar={<Avatar src="https://i.ytimg.com/vi/PAKCgvprpQ8/maxresdefault.jpg" alt="Google logo" />}
             />
             <Divider />
             <ListSubheader primaryText="Components" />

@@ -20,6 +20,11 @@ files are currently prefix-free.
 If you want to use the `DatePicker` or the `TimePicker` components, you m ust either include the [Intl polyfill](https://github.com/andyearnshaw/Intl.js/) or implement your own if you need to
 support browsers that do not have it implemented. [See caniuse](http://caniuse.com/#search=intl).
 
+This project was developed with the [Roboto font](https://www.google.com/fonts/specimen/Roboto) in mind. Make sure to include the font library locally or from the cdn (or some font equivalent).
+
+Finally, some form of font icon library should be included. The defaults for this project are using [material-icons](https://design.google.com/icons/), but any font library can be used. (Hopefully).
+There are some mixins for helping pull these font libraries in from a cdn or locally hosted.
+
 > Note: Most components are using the `PureRenderMixin`. So if a component isn't updating as expected, it is probably because you used updated an object or list prop without creating a new reference.
 
 ## Customizing the theme
@@ -62,6 +67,7 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 * Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables.scss) but no components with functionality.
 * Bottom sheets
 * Grid lists
+* Sidebar
 * Sliders
 * Steppers
 * Tooltips
