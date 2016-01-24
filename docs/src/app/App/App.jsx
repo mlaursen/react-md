@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
@@ -55,12 +56,6 @@ export default class App extends Component {
 
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
-  };
-
-  handleItemClick = (link) => {
-    if(this.props.location.pathname !== link) {
-      window.scrollTo(0, 0);
-    }
   };
 
   render() {
@@ -124,15 +119,20 @@ export default class App extends Component {
                 className={classnames({ 'active': `/${link}` === pathname })}
                 key={link}
                 primaryText={label}
-                onClick={this.handleItemClick.bind(this, link)}
               />
               );
             })}
           </List>
         </Sidebar>
-        <main className={classnames({ 'active': this.state.isOpen })}>
-          {this.props.children}
-        </main>
+        <CSSTransitionGroup
+          component="main"
+          transitionName="opacity"
+          transitionEnterTimeout={150}
+          transitionLeave={false}
+          className={classnames({ 'active': this.state.isOpen })}
+        >
+          {React.cloneElement(this.props.children, { key: pathname })}
+        </CSSTransitionGroup>
       </div>
     );
   }
