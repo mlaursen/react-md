@@ -34,7 +34,11 @@ let config = {
       exclude: /node_modules/,
     }],
 
-    loaders: [],
+    loaders: [{
+      test: /\.md$/,
+      exclude: /node_modules/,
+      loader: 'raw',
+    }],
 
     noParse: /\.min\.js$/,
   },
@@ -47,7 +51,7 @@ let config = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.txt'],
+    extensions: ['', '.js', '.jsx', '.scss', '.md'],
     alias: {
       // Weird issue where I was getting 2 versions of react.
       'react': path.resolve(__dirname, 'node_modules/react'),
@@ -103,7 +107,7 @@ if(env.development) {
   config.module.loaders = config.module.loaders.concat([{
     test: /\.jsx?$/,
     exclude: /node_modules|react-md/,
-    loader: 'react-hot',
+    loader: 'react-hot!babel',
   }]);
 } else if(env.production) {
   config.devtool = 'source-map';
