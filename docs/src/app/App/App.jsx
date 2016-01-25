@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-import { githubHref, hostPrefix } from '../utils';
+import { githubHref, hostPrefix, imgPrefix } from '../utils';
 import * as components from '../components';
 import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import Avatar from 'react-md/Avatars';
@@ -93,7 +93,7 @@ export default class App extends Component {
               primaryText="SASS Doc"
               href={`${hostPrefix}/sassdoc`}
               key="sassdoc"
-              leftAvatar={<Avatar src="http://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="SASS Icon" />}
+              leftAvatar={<Avatar src={`${imgPrefix}/sass-icon.png`} alt="SASS Icon" />}
             />
             <ListItem
               component="a"
