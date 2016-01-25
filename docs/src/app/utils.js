@@ -31,3 +31,6 @@ export const randomImage = ({ width, height, time } = {}) => {
   time = typeof time === 'undefined' ? Date.now() : time;
   return `https://unsplash.it/${width}/${height}/?random&time=${time}`;
 };
+
+export const hostPrefix = ''; // change to '/react-md' for production
+export const imgPrefix = hostPrefix + '/imgs';
