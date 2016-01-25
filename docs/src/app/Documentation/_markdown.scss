@@ -27,7 +27,9 @@
   transition: max-height $md-transition-time * 2;
 }
 
+
 .lang-css,
+.lang-scss,
 .lang-js {
   color: get-md-color(black);
 
@@ -37,6 +39,7 @@
     color: get-md-color(deep-orange, 10);
   }
 
+  .hljs-variable,
   .hljs-attribute,
   .hljs-class {
     color: get-md-color(deep-purple, 10);
@@ -48,5 +51,17 @@
 
   .hljs-comment {
     color: $md-text-color;
+  }
+
+}
+
+blockquote {
+  border-left: 4px solid $md-border-color;
+  margin-left: 0;
+  padding-left: 1.5em;
+
+  p {
+    color: $md-secondary-text-color;
+    margin: 0;
   }
 }
