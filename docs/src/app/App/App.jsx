@@ -146,7 +146,7 @@ export default class App extends Component {
             <Divider />
             <ListSubheader primaryText="Components" />
           </List>
-          <List className="scrollable">
+          <List>
             {componentLinks.map(({ link, label }) => {
               return (
               <ListItem

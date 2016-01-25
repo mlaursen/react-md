@@ -1,4 +1,3 @@
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 @import '~normalize-scss-vanilla/normalize';
 @import '~react-md-scss/react-md';
 
@@ -51,6 +50,12 @@ main {
   display: flex;
 }
 
+.main-sidebar > .md-sidebar {
+  max-height: calc(100vh - #{$md-toolbar-height});
+  min-height: initial;
+  overflow-y: auto;
+}
+
 .middle-align {
   align-items: center;
   display: flex;
@@ -58,11 +63,6 @@ main {
 
 .full-width {
   width: 100%;
-}
-
-.scrollable {
-  height: calc(100vh - #{$md-toolbar-height + 182});
-  overflow-y: auto;
 }
 
 .space-after:after {
