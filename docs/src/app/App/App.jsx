@@ -65,12 +65,27 @@ export default class App extends Component {
 
   render() {
     const pathname = this.props.location.pathname;
+    let pageTitle;
+    switch(pathname) {
+      case `/${GettingStarted.path}`:
+        pageTitle = 'Getting Started';
+        break;
+      case `/${Customization.path}`:
+        pageTitle = 'Customization';
+        break;
+      case '/':
+        pageTitle = 'react-md';
+        break;
+      default:
+        pageTitle = 'Components';
+    }
+
     return (
       <div className="react-md-docs">
         <Toolbar
           primary
           fixed
-          title="react md"
+          title={pageTitle}
           className="react-md-docs-toolbar"
           actionLeft={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
           actionsRight={(
