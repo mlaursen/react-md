@@ -73,6 +73,7 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 * Tooltips
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
 * Eventually add a way to use chips in text fields
+* Eventually update for dark themes
 
 > I will probably remove all references to valueLink to simplify some of the components.
 
