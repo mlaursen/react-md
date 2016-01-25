@@ -33,3 +33,12 @@
     font-size: 1.25em;
   }
 }
+
+.getting-started {
+  margin: 0 auto;
+
+  .md-card {
+    max-width: 355px;
+    text-decoration: none;
+  }
+}

@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { RaisedButton } from 'react-md';
+import { Link } from 'react-router';
 
 import './_home.scss';
 import * as components from '../components';
 import { toDashedName } from '../Documentation/utils';
+import { CardTitle, CardMedia } from 'react-md';
+import GettingStarted from '../GettingStarted';
+import Customization from '../Customization';
 
 const firstLink = 'components/' + toDashedName(Object.keys(components)[0]);
+import { imgPrefix } from '../utils';
 
 export default class Home extends Component {
   constructor(props) {
@@ -67,7 +72,27 @@ export default class Home extends Component {
             </p>
           </div>
         </section>
-        <section className="getting-started">
+        <section className="getting-started" style={{ marginBottom: '2em' }}>
+          <div className="md-card-list">
+            <Link to={GettingStarted.path} className="md-card raise">
+              <CardTitle title="Getting Started" />
+              <CardMedia aspectRatio={CardMedia.aspect.equal}>
+                <img src={`${imgPrefix}/getting-started.jpg`} alt="A person figure sitting at a desk looking at a laptop." />
+              </CardMedia>
+            </Link>
+            <Link to={Customization.path} className="md-card raise">
+              <CardTitle title="Customization" />
+              <CardMedia aspectRatio={CardMedia.aspect.equal}>
+                <img src={`${imgPrefix}/customization.jpg`} alt="A person figure painting on a canvas" />
+              </CardMedia>
+            </Link>
+            <Link to={`/${firstLink}`} className="md-card raise">
+              <CardTitle title="Components" />
+              <CardMedia aspectRatio={CardMedia.aspect.equal}>
+                <img src={`${imgPrefix}/components.jpg`} alt="Two person figures carrying a material item shaped like a pipe." />
+              </CardMedia>
+            </Link>
+          </div>
         </section>
       </div>
     );
