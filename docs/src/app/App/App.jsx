@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 
-import { githubHref } from '../utils';
+import { githubHref, hostPrefix } from '../utils';
 import * as components from '../components';
 import Toolbar, { ActionArea } from 'react-md/Toolbars';
 import Avatar from 'react-md/Avatars';
@@ -78,10 +77,10 @@ export default class App extends Component {
           <List>
             <ListItem
               component={Link}
-              className={'/' === pathname ? 'active' : null}
+              className={classnames({ 'active': '/' === pathname })}
               to="/"
               primaryText="Home"
-              key={'home-link'}
+              key="home-link"
               leftIcon={<FontIcon>home</FontIcon>}
             />
             <Divider />
@@ -89,7 +88,7 @@ export default class App extends Component {
             <ListItem
               component="a"
               primaryText="SASS Doc"
-              href="/react-md/sassdoc"
+              href={`${hostPrefix}/sassdoc`}
               key="sassdoc"
               leftAvatar={<Avatar src="http://sass-lang.com/assets/img/styleguide/seal-color-aef0354c.png" alt="SASS Icon" />}
             />
@@ -124,15 +123,9 @@ export default class App extends Component {
             })}
           </List>
         </Sidebar>
-        <CSSTransitionGroup
-          component="main"
-          transitionName="opacity"
-          transitionEnterTimeout={150}
-          transitionLeave={false}
-          className={classnames({ 'active': this.state.isOpen })}
-        >
+        <main className={classnames({ 'active': this.state.isOpen })}>
           {React.cloneElement(this.props.children, { key: pathname })}
-        </CSSTransitionGroup>
+        </main>
       </div>
     );
   }
