@@ -4,6 +4,7 @@ import * as components from './components';
 
 import App from './App';
 import GettingStarted from './GettingStarted';
+import Customization from './Customization';
 import Home from './Home';
 import { toDashedName } from './Documentation/utils';
 
@@ -11,6 +12,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route key="getting-started" path={GettingStarted.path} component={GettingStarted} />
+    <Route key="customization" path={Customization.path} component={Customization} />
     {Object.keys(components).map(k => {
       const component = components[k];
       if(!component.name) {

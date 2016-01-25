@@ -14,6 +14,7 @@ import Divider from 'react-md/Dividers';
 import { isMobile } from 'react-md/utils';
 
 import GettingStarted from '../GettingStarted';
+import Customization from '../Customization';
 
 import './_app.scss';
 import '../Documentation/_markdown.scss';
@@ -95,6 +96,14 @@ export default class App extends Component {
               primaryText="Getting Started"
               key="getting-started"
               leftIcon={<FontIcon>info_outline</FontIcon>}
+            />
+            <ListItem
+              component={Link}
+              className={classnames({ 'active': pathname === `/${Customization.path}` })}
+              to={`/${Customization.path}`}
+              primaryText="Customization"
+              key="customization"
+              leftIcon={<FontIcon>build</FontIcon>}
             />
             <Divider />
             <ListSubheader primaryText="References" />
