@@ -13,6 +13,8 @@ import { List, ListItem, ListSubheader } from 'react-md/Lists';
 import Divider from 'react-md/Dividers';
 import { isMobile } from 'react-md/utils';
 
+import GettingStarted from '../GettingStarted';
+
 import './_app.scss';
 import '../Documentation/_markdown.scss';
 import '../Documentation/_prop-types.scss';
@@ -85,6 +87,14 @@ export default class App extends Component {
               primaryText="Home"
               key="home-link"
               leftIcon={<FontIcon>home</FontIcon>}
+            />
+            <ListItem
+              component={Link}
+              className={classnames({ 'active': pathname === `/${GettingStarted.path}` })}
+              to={`/${GettingStarted.path}`}
+              primaryText="Getting Started"
+              key="getting-started"
+              leftIcon={<FontIcon>info_outline</FontIcon>}
             />
             <Divider />
             <ListSubheader primaryText="References" />
