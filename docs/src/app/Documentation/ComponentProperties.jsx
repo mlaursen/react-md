@@ -3,7 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import { Card, CardTitle, CardText, IconButton } from 'react-md';
 
-import './_prop-types.scss';
 import { githubHref } from '../utils';
 import { toDashedName, toTitle } from './utils';
 

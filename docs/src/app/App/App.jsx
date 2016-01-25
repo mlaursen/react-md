@@ -14,6 +14,9 @@ import Divider from 'react-md/Dividers';
 import { isMobile } from 'react-md/utils';
 
 import './_app.scss';
+import '../Documentation/_markdown.scss';
+import '../Documentation/_prop-types.scss';
+import '../Documentation/_documentation.scss';
 
 const componentLinks = Object.keys(components).map(k => {
   if(!components[k] || !components[k].name) { return; }

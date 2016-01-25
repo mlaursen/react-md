@@ -5,8 +5,6 @@ import classnames from 'classnames';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
-import './_documentation.scss';
-import './_markdown.scss';
 import { toDashedName, toTitle } from './utils';
 
 export default class DocPage extends Component {
