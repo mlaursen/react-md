@@ -53,6 +53,19 @@ export default class Home extends Component {
           <RaisedButton onClick={this.viewDemo} secondary label="Demo" />
         </section>
         <section className="about">
+          <div className="text-container">
+            <p>
+              This project was created because I learn by doing and I wanted to learn Material Design.
+              There are already some other projects out there that are a lot farther along, so
+              those might be a better choice for you. I do think the other projects are set up
+              on inline styling, which I am not a fan of personally.
+            </p>
+            <p>
+              The eventual goal of this project is to be able to quickly set up a material design
+              website by changing a few variables or using the given sass mixins/functions for
+              fine tuning.
+            </p>
+          </div>
         </section>
         <section className="getting-started">
         </section>

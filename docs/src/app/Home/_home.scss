@@ -22,3 +22,14 @@
     color: $white-base;
   }
 }
+
+.about {
+  background: get-md-color(grey, 2);
+  margin-bottom: 2em;
+  padding: 1em 0;
+
+  p {
+    color: $black-base;
+    font-size: 1.25em;
+  }
+}
