@@ -9,7 +9,7 @@
 .md-slider-track {
   display: block;
   height: $md-height;
-  padding: #{$md-height / 2 - 1} 0;
+  padding-top: $md-height - 10px;
   position: relative;
   width: 100%;
 
@@ -45,7 +45,7 @@
   height: 14px;
   left: -$md-slider-ball-size / 2;
   position: absolute;
-  top: $md-height / 2 - $md-slider-ball-size / 2;
+  top: $md-height - 10 - $md-slider-ball-size / 2;
   transition-duration: $md-transition-time;
   transition-property: transform, background, color, top;
   width: 14px;
@@ -97,7 +97,7 @@
     }
 
     &.active {
-      top: -$md-height / 2 + ($md-slider-ball-size / 2.5 + 7);
+      top: $md-slider-ball-size / 2;
       transform: scale(2);
 
       &:not(.valued):after {
