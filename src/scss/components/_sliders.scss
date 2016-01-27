@@ -1,5 +1,9 @@
 .md-slider-track-container {
   position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .md-slider {
@@ -71,7 +75,6 @@
   &.active {
     transform: scale(1.5);
   }
-
 
   &.discrete {
     border: 0;
