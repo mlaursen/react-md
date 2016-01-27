@@ -20,6 +20,8 @@ export default class IconButton extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
     onClick: PropTypes.func,
+    onBlur: PropTypes.func,
+    onKeyUp: PropTypes.func,
     tooltipPosition: PropTypes.string,
     tooltip: PropTypes.string,
     href: PropTypes.string,
@@ -33,6 +35,8 @@ export default class IconButton extends Component {
   };
 
   handleKeyUp = (e) => {
+    if(this.props.onKeyUp) { this.props.onKeyUp(e); }
+
     if((e.keyCode || e.which) === TAB) {
       this.setState({ focused: true });
     }
@@ -43,13 +47,19 @@ export default class IconButton extends Component {
     this.setState({ focused: false });
   };
 
+  handleBlur = (e) => {
+    if(this.props.onBlur) { this.props.onBlur(e); }
+
+    this.setState({ focused: false });
+  };
+
   render() {
     const { iconClassName, children, className, href, type, onClickInkMouseDown, ...props } = this.props;
     let btnProps = {
       ...props,
       onClick: this.handleClick,
       onKeyUp: this.handleKeyUp,
-      onBlur: () => this.setState({ focused: false }),
+      onBlur: this.handleBlur,
       className: classnames(className, 'md-btn', 'md-icon-btn'),
     };
 

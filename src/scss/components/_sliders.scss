@@ -1,0 +1,62 @@
+.md-slider-track-container {
+  position: relative;
+}
+
+.md-slider {
+  @extend %hidden;
+}
+
+.md-slider-track {
+  display: block;
+  height: $md-height;
+  padding: #{$md-height / 2 - 1} 0;
+  position: relative;
+  width: 100%;
+
+  &:before,
+  .md-track-fill {
+    height: 2px;
+    left: 0;
+    position: absolute;
+  }
+
+  &:before {
+    background: rgba($black-base, .26);
+    content: '';
+    right: 0;
+  }
+
+  .md-track-fill {
+    background: get-md-color($md-primary-color);
+    transition: width $md-transition-time;
+  }
+}
+
+.md-slider-thumb {
+  @extend %button-unstyled;
+
+  color: $md-secondary-text-color;
+  font-size: $md-slider-ball-size;
+  left: -$md-slider-ball-size / 2;
+  padding: 12px + $md-slider-ball-size / 3;
+  position: absolute;
+  top: 0;
+  transition-duration: $md-transition-time;
+  transition-property: left;
+  z-index: 3;
+
+  &.valued .md-icon {
+    background: get-md-color($md-primary-color);
+    border-radius: 50%;
+    color: get-md-color($md-primary-color);
+  }
+
+  &.active .md-icon {
+    transform: scale(1.5);
+  }
+
+  .md-icon {
+    background: $white-base;
+    transition: transform $md-transition-time;
+  }
+}

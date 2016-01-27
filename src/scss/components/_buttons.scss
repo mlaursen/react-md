@@ -42,6 +42,10 @@
   padding: $md-icon-btn-padding;
   text-decoration: none;
   width: $md-icon-btn-size;
+
+  .md-icon {
+    font-size: inherit;
+  }
 }
 
 .md-flat-btn {
