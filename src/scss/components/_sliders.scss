@@ -28,35 +28,104 @@
 
   .md-track-fill {
     background: get-md-color($md-primary-color);
-    transition: width $md-transition-time;
+
+    &.discrete,
+    &:not(.dragging) {
+      transition: width $md-transition-time;
+    }
   }
 }
 
 .md-slider-thumb {
   @extend %button-unstyled;
 
+  background: $white-base;
+  border-radius: 50%;
   color: $md-secondary-text-color;
-  font-size: $md-slider-ball-size;
+  height: 14px;
   left: -$md-slider-ball-size / 2;
-  padding: 12px + $md-slider-ball-size / 3;
   position: absolute;
-  top: 0;
+  top: $md-height / 2 - $md-slider-ball-size / 2;
   transition-duration: $md-transition-time;
-  transition-property: left;
+  transition-property: transform, background, color, top;
+  width: 14px;
   z-index: 3;
 
-  &.valued .md-icon {
-    background: get-md-color($md-primary-color);
-    border-radius: 50%;
-    color: get-md-color($md-primary-color);
+  &.discrete,
+  &:not(.dragging) {
+    transition-property: transform, background, color, top, left;
   }
 
-  &.active .md-icon {
+  &:not(.valued) {
+    border: 2px solid $md-secondary-text-color;
+  }
+
+  &.valued {
+    background: get-md-color($md-primary-color);
+
+    .md-ink {
+      background: rgba(get-md-color($md-primary-color), .16);
+    }
+  }
+
+  &.active {
     transform: scale(1.5);
   }
 
-  .md-icon {
-    background: $white-base;
-    transition: transform $md-transition-time;
+
+  &.discrete {
+    border: 0;
+
+    &:not(.valued) {
+      background: rgb(189, 189, 189);
+    }
+
+    &:after {
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid transparent;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      content: '';
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: 10px;
+      transition-duration: $md-transition-time;
+      transition-property: top, border-top-color;
+      width: 0;
+    }
+
+    &.active {
+      top: -$md-height / 2 + ($md-slider-ball-size / 2.5 + 7);
+      transform: scale(2);
+
+      &:not(.valued):after {
+        border-top-color: rgb(189, 189, 189);
+      }
+
+      &:after {
+        border-top-color: get-md-color($md-primary-color);
+      }
+    }
   }
+}
+
+.md-thumb-control {
+  @extend %button-unstyled;
+
+  color: $white-base;
+  font-size: 8px;
+  height: 100%;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+}
+
+.md-slider-discrete-value {
+  left: 50%;
+
+  position: absolute;
+  top: -1px;
+  transform: translateX(-50%) scale(.4);
 }

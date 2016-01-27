@@ -33,6 +33,7 @@ export default class Slider extends Component {
     max: PropTypes.number.isRequired,
     step: PropTypes.number,
     stepPrecision: PropTypes.number.isRequired,
+    discrete: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -55,12 +56,12 @@ export default class Slider extends Component {
     } else if(value === max) {
       return 100;
     } else {
-      return ((value - min) / (max - min)) * 100;
+      return Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
     }
   };
 
   calcLeft = (width) => {
-    return `calc(${width}% - 24px)`;
+    return `calc(${width}% - 7px)`;
   };
 
   handleSliderTrackClick = ({ clientX, changedTouches }) => {
@@ -93,6 +94,8 @@ export default class Slider extends Component {
       value = max;
     }
 
+    value = Math.min(max, Math.max(min, value));
+
     const width = this.calcValuePercent(value, min, max);
     this.setState({
       valued: value > min,
@@ -122,6 +125,8 @@ export default class Slider extends Component {
 
     document.addEventListener('mousemove', this.handleDragMove);
     document.addEventListener('mouseup', this.handleDragEnd);
+    document.addEventListener('touchmove', this.handleDragMove);
+    document.addEventListener('touchend', this.handleDragEnd);
 
     this.setState({ dragging: true });
   };
@@ -139,6 +144,8 @@ export default class Slider extends Component {
   handleDragEnd = () => {
     document.removeEventListener('mousemove', this.handleDragMove);
     document.removeEventListener('mouseup', this.handleDragEnd);
+    document.removeEventListener('touchmove', this.handleDragMove);
+    document.removeEventListener('touchend', this.handleDragEnd);
 
     this.setState({ dragging: false });
   };
@@ -188,8 +195,9 @@ export default class Slider extends Component {
 
   render() {
     const value = this.getValue();
-    const { active, valued, width, left } = this.state;
-    const { min, max } = this.props;
+    const { active, valued, width, left, dragging } = this.state;
+    const { min, max, step } = this.props;
+    const discrete = typeof step !== 'undefined';
     return (
       <div className="md-slider-container">
         <div className={classnames('md-slider-track-container', { 'active': active })}>
@@ -199,6 +207,9 @@ export default class Slider extends Component {
             valued={valued}
             width={width}
             left={left}
+            dragging={dragging}
+            value={value}
+            discrete={discrete}
             onClick={this.handleSliderTrackClick}
             onTouchStart={this.handleThumbStart}
             onMouseDown={this.handleThumbStart}

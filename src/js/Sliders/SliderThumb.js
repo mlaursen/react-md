@@ -1,17 +1,18 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { IconButton } from '../Buttons';
-
-const SliderThumb = ({ active, valued, left, ...props }) => {
+const SliderThumb = ({ active, value, valued, left, dragging, discrete, ...props }) => {
   return (
-    <IconButton
-      {...props}
+    <div
+      className={classnames('md-slider-thumb', { active, valued, dragging, discrete })}
       style={{ left }}
-      className={classnames('md-slider-thumb', { active, valued })}
     >
-      radio_button_unchecked
-    </IconButton>
+      <button {...props} className="md-thumb-control">
+        {discrete && active &&
+          <span className="md-slider-discrete-value">{value}</span>
+        }
+      </button>
+    </div>
   );
 };
 
@@ -22,6 +23,9 @@ SliderThumb.propTypes = {
   left: PropTypes.string,
   active: PropTypes.bool.isRequired,
   valued: PropTypes.bool.isRequired,
+  dragging: PropTypes.bool.isRequired,
+  value: PropTypes.number.isRequired,
+  discrete: PropTypes.bool,
 };
 
 export default SliderThumb;

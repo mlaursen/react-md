@@ -89,6 +89,7 @@ export default class Ink extends Component {
     } else {
       this.createInk(pageX, pageY);
     }
+    this.setState({ mouseLeave: false });
   };
 
   handleMouseUp = ({ button, ctrlKey, changedTouches }) => {
@@ -99,8 +100,9 @@ export default class Ink extends Component {
   };
 
   handleMouseLeave = () => {
-    if(this.props.disabled || !this.state.mouseDown) { return; }
+    if(this.props.disabled || !this.state.mouseDown || this.state.mouseLeave) { return; }
     this.removeInk();
+    this.setState({ mouseLeave: true });
   };
 
   removeInk = () => {
