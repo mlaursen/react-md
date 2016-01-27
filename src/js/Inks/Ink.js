@@ -77,7 +77,7 @@ export default class Ink extends Component {
     container.insertBefore(ink, container.firstChild);
 
     setTimeout(() => ink.classList.add('active'), 25);
-    this.setState({ ink, timestamp: Date.now() });
+    this.setState({ ink, timestamp: Date.now(), mouseLeave: false, mouseDown: true });
   };
 
   handleMouseDown = ({ pageX, pageY, button, ctrlKey, changedTouches }) => {
@@ -92,8 +92,20 @@ export default class Ink extends Component {
   };
 
   handleMouseUp = ({ button, ctrlKey, changedTouches }) => {
-    if(this.props.disabled || (button !== LEFT_MOUSE && !changedTouches) || ctrlKey) { return; }
+    const invalidKey = (button !== LEFT_MOUSE && !changedTouches) || ctrlKey;
+    if(this.props.disabled || invalidKey || this.state.mouseLeave) { return; }
+    this.removeInk();
+    this.setState({ mouseDown: false });
+  };
+
+  handleMouseLeave = () => {
+    if(this.props.disabled || !this.state.mouseDown) { return; }
+    this.removeInk();
+  };
+
+  removeInk = () => {
     const { ink, timestamp } = this.state;
+    if(!ink) { return; }
 
     ink.classList.add('leaving');
     const timeout = setTimeout(() => {
@@ -115,12 +127,13 @@ export default class Ink extends Component {
         onTouchStart: this.handleMouseDown,
         onTouchEnd: this.handleMouseUp,
         onTouchCancel: this.handleMouseUp,
-        onTouchLeave: this.handleMouseUp,
+        onTouchLeave: this.handleMouseLeave,
       };
     } else {
       return {
         onMouseDown: this.handleMouseDown,
         onMouseUp: this.handleMouseUp,
+        onMouseLeave: this.handleMouseLeave,
       };
     }
   };
