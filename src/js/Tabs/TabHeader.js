@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-const TabHeader = ({ indicatorStyle, children, className, scrollable, scrolling, fixedWidth, centered, ...props }) => {
+const TabHeader = ({ indicatorStyle, children, className, scrolling, fixedWidth, centered, ...props }) => {
   return (
     <header className={className}>
       <ul
         className={classnames('md-tabs', {
           'fixed-width': fixedWidth,
-          'tabs-scrollable': scrollable,
-          'tabs-centered': !scrollable && centered,
+          'tabs-centered': centered,
           scrolling,
         })}
         {...props}
@@ -29,6 +28,8 @@ TabHeader.propTypes = {
   onTouchMove: PropTypes.func.isRequired,
   style: PropTypes.object.isRequired,
   scrolling: PropTypes.bool.isRequired,
+  fixedWidth: PropTypes.bool.isRequired,
+  centered: PropTypes.bool.isRequired,
 };
 
 export default TabHeader;

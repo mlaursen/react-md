@@ -157,7 +157,6 @@ export default class Tabs extends Component {
     const { className, children, style, ...remainingProps } = this.props;
     const { headerStyle, indicatorStyle, tabScrolling } = this.state;
     const activeTabIndex = this.getActiveTabIndex(remainingProps, this.state);
-    const scrollable = isPropEnabled(remainingProps, 'scrollable');
     const fixedWidth = isPropEnabled(remainingProps, 'fixedWidth');
     const centered = isPropEnabled(remainingProps, 'centered');
 
@@ -184,7 +183,6 @@ export default class Tabs extends Component {
         <TabHeader
           className={mergeClassNames(remainingProps, 'md-tabs-scroll-container')}
           fixedWidth={fixedWidth}
-          scrollable={scrollable}
           centered={centered}
           scrolling={tabScrolling}
           onTouchStart={this.handleTabScrollStart}

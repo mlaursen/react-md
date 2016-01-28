@@ -46,13 +46,16 @@ export default class TabsDoc extends Component {
   render() {
     return (
       <div>
-        <div className="desktop-examples">
-          <PrimaryToolbar>
-            <Tabs primary scrollable>
-              {Array.apply(null, new Array(4)).map((_, i) => <Tab key={i} label={labels[i]} children={lorems[i % 2]} />)}
-            </Tabs>
-          </PrimaryToolbar>
-        </div>
+        <PrimaryToolbar>
+          <Tabs primary scrollable>
+            {Array.apply(null, new Array(4)).map((_, i) => <Tab key={i} label={labels[i]} children={lorems[i % 2]} />)}
+          </Tabs>
+        </PrimaryToolbar>
+        <PrimaryToolbar>
+          <Tabs primary>
+            {Array.apply(null, new Array(4)).map((_, i) => <Tab key={i} label={labels[i]} children={lorems[i % 2]} />)}
+          </Tabs>
+        </PrimaryToolbar>
       </div>
     );
   }
