@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled, isMobile } from '../utils';
-import FontIcon from '../FontIcons';
+import { mergeClassNames, isPropEnabled } from '../utils';
+import TabHeader from './TabHeader';
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -12,162 +12,61 @@ export default class Tabs extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
+      activeTabIndex: props.initialActiveTabIndex,
+      headerStyle: {},
       indicatorStyle: {},
-      touchDistance: 0,
+      tabMoveDistance: 0,
+      tabScrolling: false,
     };
-
-    if(typeof props.value === 'undefined') {
-      const { label, value } = React.Children.toArray(props.children)[0].props;
-      this.state.value = props.defaultValue || (typeof value !== 'undefined' ? value : label);
-    }
-
-    if(isPropEnabled(props, 'slide')) {
-      this.state.tabsContent = this.getSlideTabContent(props);
-    } else {
-      this.state.tabsContent = this.getActiveTabContent(props, this.state);
-    }
   }
 
   static propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
-    primary: PropTypes.bool,
-    secondary: PropTypes.bool,
-    defaultValue: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    initialActiveTabIndex: PropTypes.number,
+    activeTabIndex: PropTypes.number,
+    containerStyle: PropTypes.object,
+    style: PropTypes.object,
     onChange: PropTypes.func,
-    value: PropTypes.string,
-    transitionName: PropTypes.string,
-    transitionEnter: PropTypes.bool,
-    transitionEnterTimeout: PropTypes.number,
-    transitionLeave: PropTypes.bool,
-    transitionLeaveTimeout: PropTypes.number,
-    fixedWidth: PropTypes.bool,
-    scrollable: PropTypes.bool,
-    centered: PropTypes.bool,
-    slide: PropTypes.bool,
-    tabsOffset: PropTypes.string,
-    scrollIconLeft: PropTypes.node,
-    scrollIconRight: PropTypes.node,
   };
 
   static defaultProps = {
-    transitionName: 'opacity',
-    transitionEnterTimeout: 150,
-    transitionLeave: false,
-    isMobile: isMobile,
-    scrollIconLeft: <FontIcon>chevron_left</FontIcon>,
-    scrollIconRight: <FontIcon>chevron_right</FontIcon>,
+    initialActiveTabIndex: 0,
+    style: {},
   };
 
   componentDidMount() {
     this.updateIndicator();
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    if(this.props.children !== nextProps.children) {
-      let newNextState = {};
-      if(isPropEnabled(nextProps, 'slide')) {
-        newNextState.tabsContent = this.getSlideTabContent(nextProps);
-      } else {
-        newNextState.tabsContent = this.getActiveTabContent(nextProps, nextState);
-      }
-
-      this.setState(newNextState);
-    }
-  }
-
   componentWillUpdate(nextProps, nextState) {
-    if(!isPropEnabled(nextProps, 'slide') && this.getValue() !== this.getValue(nextProps, nextState)) {
-      nextState.tabsContent = this.getActiveTabContent(nextProps, nextState);
-      this.setState(nextState);
+    if(this.props.activeTabIndex !== nextProps.activeTabIndex || this.state.activeTabIndex !== nextState.activeTabIndex) {
+      const node = ReactDOM.findDOMNode(this);
+      const tabContainer = node.querySelector('.md-tabs-scroll-container');
+      const tabs = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab');
+      const active = tabs[this.getActiveTabIndex(nextProps, nextState)];
+      const containerWidth = tabContainer.offsetWidth - parseInt(nextProps.style.marginLeft);
+      const activePosition = active.offsetLeft + active.offsetWidth;
+      const { tabMoveDistance } = nextState;
+      if(activePosition > containerWidth + Math.abs(tabMoveDistance)) {
+        const newDistance = containerWidth - activePosition;
+        this.setState({
+          headerStyle: this.getHeaderStyle(newDistance),
+          tabMoveDistance: newDistance,
+        });
+      }
     }
   }
+
 
   componentDidUpdate(prevProps, prevState) {
-    const value = this.getValue();
-    const prevValue = this.getValue(prevProps, prevState);
-    if(value === prevValue) { return; }
-
-    this.updateIndicator();
+    if(prevProps.activeTabIndex !== this.props.activeTabIndex || this.state.activeTabIndex !== prevState.activeTabIndex) {
+      this.updateIndicator();
+    }
   }
 
-  handleTouchStart = ({ changedTouches }) => {
-    this.setState({ touchStart: changedTouches[0].pageX });
-  };
-
-  handleTouchMove = ({ changedTouches }) => {
-    const touchDistance = this.moveTabs(changedTouches[0], 20);
-    this.setState({
-      tabTransform: `translate3d(${touchDistance}px, 0, 0)`,
-    });
-  };
-
-  handleTouchEnd = ({ changedTouches }) => {
-    const touchDistance = this.moveTabs(changedTouches[0]);
-    this.setState({
-      touchDistance,
-      tabTransform: `translate3d(${touchDistance}px, 0, 0)`,
-    });
-  };
-
-  handleTabChange = ({ value, label, onChange }) => {
-    let params = { label };
-    if(typeof value !== 'undefined') {
-      params.value = value;
-    }
-
-    if(onChange) {
-      onChange(...params);
-    }
-
-    if(this.props.onChange) {
-      this.props.onChange(...params);
-    }
-
-    if(typeof this.props.value === 'undefined') {
-      this.setState({ value: value || label });
-    }
-  };
-
-
-  getValue = (props = this.props, state = this.state) => {
-    return (typeof props.value !== 'undefined' ? props : state).value;
-  };
-
-  getSlideTabContent = ({ children } = this.props) => {
-    return React.Children.map(children, (tab, i) => {
-      return (
-        <div
-          className="md-tab-content"
-          key={`tab-content-${i}`}
-          >
-          {tab.props.children}
-        </div>
-      );
-    });
-  };
-
-  getActiveTabContent = (props = this.props, state = this.state) => {
-    const value = this.getValue(props, state);
-    let content;
-    React.Children.toArray(props.children).some(({ props }) => {
-      const isActive = value === (props.value || props.label);
-      if(isActive) { content = props.children; }
-      return isActive;
-    });
-    return content;
-  };
-
-  isTabChecked = ({ checked, label, value }) => {
-    if(typeof checked !== 'undefined') { return checked; }
-    const stateValue = this.state.value;
-
-    const tabValue = typeof value !== 'undefined' ? value : label;
-    return stateValue === tabValue;
-  };
-
   updateIndicator = () => {
-    const { offsetWidth, offsetLeft } = this.refs.tabs.querySelector('.md-tab.active');
+    const { offsetWidth, offsetLeft } = ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
     this.setState({
       indicatorStyle: {
         left: `${offsetLeft}px`,
@@ -176,70 +75,114 @@ export default class Tabs extends Component {
     });
   };
 
-  moveTabs = ({ pageX }, threshold = 0) => {
-    let distance = this.state.touchDistance + (pageX - this.state.touchStart);
-    const tabs = Array.prototype.slice.call(this.refs.tabs.querySelectorAll('.md-tab'));
-    const maxWidth = tabs.reduce((prev, curr) => prev + curr.clientWidth, 0) + threshold - this.refs.tabs.clientWidth - parseInt(this.props.tabsOffset);
+  getActiveTabIndex = (props = this.props, state = this.state) => {
+    return typeof props.activeTabIndex === 'undefined' ? state.activeTabIndex : props.activeTabIndex;
+  };
 
-    if(distance > 0) {
+  calcTabMoveDistance = ({ pageX }, threshold = 0) => {
+    let distance = this.state.tabMoveDistance + (pageX - this.state.tabStartX);
+    const node = ReactDOM.findDOMNode(this);
+    const tabContainer = node.querySelector('.md-tabs-scroll-container');
+    const tabs = Array.prototype.slice.call(node.querySelectorAll('.md-tab'));
+    let maxWidth = tabs.reduce((prev, curr) => prev + curr.offsetWidth, 0) + threshold;
+    maxWidth -= (tabContainer.offsetWidth - parseInt(this.props.style.marginLeft));
+
+    if(distance > 0) { // moving content left
       distance = Math.min(distance, threshold);
-    } else {
+    } else { // moving content right
       distance = Math.max(distance, -maxWidth);
     }
 
     return distance;
   };
 
+  getHeaderStyle = (tabMoveDistance) => {
+    const transform = `translateX(${tabMoveDistance}px)`;
+    return {
+      WebkitTransform: transform,
+      MozTransform: transform,
+      transform,
+    };
+  };
+
+  handleTabChange = (tabIndex, tabOnChange, e) => {
+    const { activeTabIndex, onChange } = this.props;
+    if(tabOnChange) {
+      tabOnChange(tabIndex, e);
+    }
+
+    if(onChange) {
+      onChange(tabIndex, e);
+    }
+
+    if(typeof activeTabIndex === 'undefined') {
+      this.setState({ activeTabIndex: tabIndex });
+    }
+  };
+
+  handleTabScrollStart = ({ changedTouches }) => {
+    this.setState({
+      tabStartX: changedTouches[0].pageX,
+      tabScrolling: true,
+    });
+  };
+
+  handleTabScrollMove = ({ changedTouches }) => {
+    const tabMoveDistance = this.calcTabMoveDistance(changedTouches[0], 24);
+    this.setState({ headerStyle: this.getHeaderStyle(tabMoveDistance) });
+  };
+
+  handleTabScrollEnd = ({ changedTouches }) => {
+    const tabMoveDistance = this.calcTabMoveDistance(changedTouches[0], 0);
+    this.setState({
+      headerStyle: this.getHeaderStyle(tabMoveDistance),
+      tabMoveDistance,
+      tabScrolling: false,
+    });
+  };
+
   render() {
-    const { indicatorStyle, tabsContent, tabTransform } = this.state;
-    const { className, children, tabsOffset, scrollIconLeft, scrollIconRight, ...props } = this.props;
-    const { transitionName, transitionEnter, transitionEnterTimeout, transitionLeave, transitionLeaveTimeout, ...remainingProps } = props;
+    const { className, children, style, ...remainingProps } = this.props;
+    const { headerStyle, indicatorStyle, tabScrolling } = this.state;
+    const activeTabIndex = this.getActiveTabIndex(remainingProps, this.state);
+    const scrollable = isPropEnabled(remainingProps, 'scrollable');
+    const fixedWidth = isPropEnabled(remainingProps, 'fixedWidth');
+    const centered = isPropEnabled(remainingProps, 'centered');
 
-    const isScrollable = isPropEnabled(remainingProps, 'scrollable');
-
+    let tabsContent = [];
     const tabs = React.Children.map(children, (tab, i) => {
+      tabsContent.push(
+        <div className="md-tab-content" key={`content-${i}`}>
+          {tab.props.children}
+        </div>
+      );
+
       return React.cloneElement(tab, {
         key: tab.key || `tab-${i}`,
-        checked: this.isTabChecked(tab.props),
-        onChange: this.handleTabChange.bind(this, tab.props),
+        checked: i === activeTabIndex,
+        onChange: this.handleTabChange.bind(this, i, tab.props.onChange),
       });
     });
 
     return (
-      <div className={classnames('md-tabs-container', className)} {...remainingProps}>
-        <header
-          className={classnames('md-tabs-scroll-container', {
-            'md-primary': isPropEnabled(remainingProps, 'primary'),
-            'md-secondary': isPropEnabled(remainingProps, 'secondary'),
-          })}
-          ref="scrollContainer"
-          >
-          <ul
-            ref="tabs"
-            className={classnames('md-tabs', {
-              'fixed-width': isPropEnabled(remainingProps, 'fixedWidth'),
-              'tabs-scrollable': isScrollable,
-              'tabs-centered': !isScrollable && isPropEnabled(remainingProps, 'centered'),
-            })}
-            onTouchStart={this.handleTouchStart}
-            onTouchMove={this.handleTouchMove}
-            onTouchEnd={this.handleTouchEnd}
-            style={{ marginLeft: tabsOffset, transform: tabTransform }}
-            >
-            {tabs}
-            <span className="md-tab-indicator" style={indicatorStyle} />
-          </ul>
-        </header>
-        <CSSTransitionGroup
-          className="md-tab-content-container"
-          transitionName={transitionName}
-          transitionEnter={transitionEnter}
-          transitionEnterTimeout={transitionEnterTimeout}
-          transitionLeave={transitionLeave}
-          transitionLeaveTimeout={transitionLeaveTimeout}
-          >
-          {tabsContent}
-        </CSSTransitionGroup>
+      <div
+        className={classnames('md-tabs-container', className)}
+        {...remainingProps}
+      >
+        <TabHeader
+          className={mergeClassNames(remainingProps, 'md-tabs-scroll-container')}
+          fixedWidth={fixedWidth}
+          scrollable={scrollable}
+          centered={centered}
+          scrolling={tabScrolling}
+          onTouchStart={this.handleTabScrollStart}
+          onTouchMove={this.handleTabScrollMove}
+          onTouchEnd={this.handleTabScrollEnd}
+          style={Object.assign({}, style, headerStyle)}
+          indicatorStyle={indicatorStyle}
+        >
+          {tabs}
+        </TabHeader>
       </div>
     );
   }

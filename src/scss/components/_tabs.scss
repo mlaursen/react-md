@@ -8,6 +8,11 @@
   margin: 0;
   padding: 0;
   position: relative;
+  transition-property: transform;
+
+  &:not(.scrolling) {
+    transition-duration: $md-transition-time;
+  }
 
   &.fixed-width {
     .md-tab {
@@ -37,6 +42,8 @@
 }
 
 .md-tab {
+  @extend %button-unstyled;
+
   color: $md-secondary-text-color;
   flex-shrink: 0;
   font-weight: $md-font-medium;
@@ -89,4 +96,19 @@
 
 .md-tab-control {
   @extend %hidden;
+}
+
+.md-tab-content-container.swipeable {
+  overflow-x: hidden;
+  white-space: nowrap;
+
+  .md-tab-content {
+    display: inline-block;
+    padding-left: 12px;
+    padding-right: 12px;
+    transition-duration: $md-transition-time;
+    transition-property: transform;
+    vertical-align: top;
+    white-space: normal;
+  }
 }

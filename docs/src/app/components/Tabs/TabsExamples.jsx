@@ -49,7 +49,7 @@ export default class TabsDoc extends Component {
         <div className="desktop-examples">
           <PrimaryToolbar>
             <Tabs primary scrollable>
-              {Array.apply(null, new Array(10)).map((_, i) => <Tab key={i} label={labels[i]} children={lorems[i % 2]} />)}
+              {Array.apply(null, new Array(4)).map((_, i) => <Tab key={i} label={labels[i]} children={lorems[i % 2]} />)}
             </Tabs>
           </PrimaryToolbar>
         </div>

@@ -25,9 +25,9 @@ export default class Toolbar extends Component {
   };
 
   componentDidMount() {
-    if(!this.refs.tabs) { return; }
+    if(!this.refs.content) { return; }
 
-    const tabs = ReactDOM.findDOMNode(this.refs.tabs);
+    const tabs = ReactDOM.findDOMNode(this.refs.content);
     if(tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) { return; }
 
     const actionLeft = ReactDOM.findDOMNode(this).querySelector('.action-left');
@@ -56,12 +56,20 @@ export default class Toolbar extends Component {
         actionsRight && React.cloneElement(actionsRight, { key: 'actions-right' }),
       ];
     }
+
+    let content;
+    if(!childrenAsHeader && children) {
+      content = React.cloneElement(children, {
+        ref: 'content',
+        style: Object.assign({}, children.props.style, { marginLeft: tabsOffset }),
+      });
+    }
     return (
       <div className={classnames('md-toolbar-container', { fixed: isPropEnabled(props, 'fixed') })}>
         <header {...props} className={mergeClassNames(props, 'md-toolbar')}>
           {header}
         </header>
-        {!childrenAsHeader && children && React.cloneElement(children, { ref: 'tabs', tabsOffset })}
+        {content}
       </div>
     );
   }
