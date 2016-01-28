@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 import { mergeClassNames, isPropEnabled } from '../utils';
 import TabHeader from './TabHeader';
+import SwipeableView from '../SwipeableViews';
 
 export default class Tabs extends Component {
   constructor(props) {
@@ -141,6 +142,17 @@ export default class Tabs extends Component {
     });
   };
 
+  handleSwipeChange = (index) => {
+    const { activeTabIndex, onChange } = this.props;
+    if(onChange) {
+      onChange(index);
+    }
+
+    if(typeof activeTabIndex === 'undefined') {
+      this.setState({ activeTabIndex: index });
+    }
+  };
+
   render() {
     const { className, children, style, ...remainingProps } = this.props;
     const { headerStyle, indicatorStyle, tabScrolling } = this.state;
@@ -183,6 +195,13 @@ export default class Tabs extends Component {
         >
           {tabs}
         </TabHeader>
+        <SwipeableView
+          className="md-tab-content-container"
+          activeIndex={activeTabIndex}
+          onChange={this.handleSwipeChange}
+        >
+          {tabsContent}
+        </SwipeableView>
       </div>
     );
   }

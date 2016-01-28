@@ -98,17 +98,6 @@
   @extend %hidden;
 }
 
-.md-tab-content-container.swipeable {
-  overflow-x: hidden;
-  white-space: nowrap;
-
-  .md-tab-content {
-    display: inline-block;
-    padding-left: 12px;
-    padding-right: 12px;
-    transition-duration: $md-transition-time;
-    transition-property: transform;
-    vertical-align: top;
-    white-space: normal;
-  }
+.md-tab-content-container .md-swipeable-item:not(.swiping) {
+  transition-duration: $md-tab-indicator-transition-time;
 }
