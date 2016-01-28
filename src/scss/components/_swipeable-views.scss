@@ -1,0 +1,23 @@
+.md-swipeable-view {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.md-swipeable-item {
+  display: inline-block;
+  padding-left: 1em;
+  padding-right: 1em;
+  transition-property: transform;
+  vertical-align: top;
+  white-space: normal;
+
+  &:not(.swiping) {
+    transition-duration: $md-transition-time;
+  }
+
+  * {
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform: translateZ(0);
+  }
+}
