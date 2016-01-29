@@ -2740,7 +2740,7 @@
 	  return 'https://unsplash.it/' + width + '/' + height + '/?random&time=' + time;
 	};
 	
-	var hostPrefix = exports.hostPrefix = ''; // change to '/react-md' for production
+	var hostPrefix = exports.hostPrefix = '/react-md'; // change to '/react-md' for production
 	var imgPrefix = exports.imgPrefix = hostPrefix + '/imgs';
 
 /***/ },
