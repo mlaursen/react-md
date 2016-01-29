@@ -19,7 +19,43 @@ export default class Sliders extends Component {
       <DocPage
         components={[{
           component: Slider,
-          details: [],
+          details: [{
+            name: 'defaultValue',
+            pt: 'nu',
+            desc: 'The default value for the slider.',
+          }, {
+            name: 'value',
+            pt: 'nu',
+            desc: `An optional value to use for the slider if you want to control it.`,
+          }, {
+            name: 'onChange',
+            pt: 'f',
+            desc: `An optional function to call when the value has been changed by clicking
+            somehere on the slider, using the left/right arrow keys, or when the user stops
+            dragging the slider. The function is called with \`onChange(newValue, event)\``,
+          }, {
+            name: 'onDragChange',
+            pt: 'f',
+            desc: `An optional f unction to call when the value has been changed while
+            the user is dragging the slider. The function is called with \`onDragChange(newValue, event)\``,
+          }, {
+            name: 'min',
+            pt: 'nu',
+            desc: `The min value for the slider. This has only been tested with whole numbers between
+            0 and 100. No idea how reliable it is with decimals and numbers below 0.`,
+          }, {
+            name: 'max',
+            pt: 'nu',
+            desc: `The max value for the slider. This has only been tested with whole numbers above 0.`,
+          }, {
+            name: 'step',
+            pt: 'nu',
+            desc: `Any number to use for converting the slider into a discrete slider.`,
+          }, {
+            name: 'stepPrecision',
+            pt: 'nu',
+            desc: `Any precision to use when the step isn't a whole number. Haven't really tested it yet.`,
+          }],
         }]}
         examples={[{
           markdown: SliderExamplesRaw,

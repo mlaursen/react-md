@@ -33,7 +33,8 @@ export default class Slider extends Component {
     max: PropTypes.number.isRequired,
     step: PropTypes.number,
     stepPrecision: PropTypes.number.isRequired,
-    discrete: PropTypes.bool,
+    onChange: PropTypes.func,
+    onDragChange: PropTypes.func,
   };
 
   static defaultProps = {
@@ -64,8 +65,9 @@ export default class Slider extends Component {
     return `calc(${width}% - 7px)`;
   };
 
-  handleSliderTrackClick = ({ clientX, changedTouches }) => {
-    const { min, max, step } = this.props;
+  handleSliderTrackClick = (e) => {
+    let { clientX, changedTouches } = e;
+    const { min, max, step, onChange, onDragChange } = this.props;
     if(changedTouches) {
       clientX = changedTouches[0].clientX;
     }
@@ -95,6 +97,13 @@ export default class Slider extends Component {
     }
 
     value = Math.min(max, Math.max(min, value));
+    const { dragging } = this.state;
+    if(dragging && onDragChange) {
+      onDragChange(value, e);
+    } else if(!dragging && onChange) {
+      onChange(value, e);
+    }
+
 
     const width = this.calcValuePercent(value, min, max);
     this.setState({
@@ -141,11 +150,15 @@ export default class Slider extends Component {
     this.setState({ dragMoving: true });
   };
 
-  handleDragEnd = () => {
+  handleDragEnd = (e) => {
     document.removeEventListener('mousemove', this.handleDragMove);
     document.removeEventListener('mouseup', this.handleDragEnd);
     document.removeEventListener('touchmove', this.handleDragMove);
     document.removeEventListener('touchend', this.handleDragEnd);
+
+    if(this.props.onChange) {
+      this.props.onChange(this.state.value, e);
+    }
 
     this.setState({ dragging: false });
   };
@@ -154,7 +167,7 @@ export default class Slider extends Component {
     const key = e.which || e.keyCode;
     if(key !== LEFT && key !== RIGHT) { return; }
 
-    const { min, max, step } = this.props;
+    const { min, max, step, onChange } = this.props;
     const stepAmt = step || (max / (max - min));
     let value = this.getValue();
     if(key === LEFT) {
@@ -168,6 +181,9 @@ export default class Slider extends Component {
     }
 
     const width = this.calcValuePercent(value, min, max);
+    if(onChange) {
+      onChange(value, e);
+    }
 
     this.setState({
       value,
