@@ -3,7 +3,12 @@
 React material design - React components built with sass
 
 ```bash
-$ npn install -S react-md
+$ npn install -S react \
+                 react-dom \
+                 react-addons-transition-group \
+                 react-addons-css-transition-group \
+                 react-addons-pure-render-mixin \
+                 react-md
 ```
 
 ## Documentation
@@ -68,7 +73,6 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 * Bottom sheets
 * Grid lists
 * Sidebar
-* Sliders
 * Steppers
 * Tooltips
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
