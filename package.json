@@ -1,11 +1,11 @@
 {
   "name": "react-md",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "React material design components",
   "main": "./lib",
   "scripts": {
     "scripts:dist": "babel ./src/js --out-dir ./lib",
-    "styles:dist": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
+    "styles:dist": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
     "prebuild": "rimraf lib",
     "build": "npm run scripts:dist && npm run styles:dist"
   },

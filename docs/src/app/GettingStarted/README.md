@@ -15,7 +15,7 @@ To use this libarary, it is recommended to have previous experience using React
 components along with sass/css. In addition, you should use an autoprefixer to
 support multiple browsers. The sass files are currently prefix-free. If you are
 fine with the default colors and typography, you can use the already compiled
-css files in `dist/react-md.css`
+css files in `lib/react-md.css`
 
 If you want to use the `DatePicker` or the `TimePicker` components, you must either
 include the [Intl polyfill](https://github.com/andyearnshaw/Intl.js/) or implement
