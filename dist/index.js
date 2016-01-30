@@ -3,140 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Toolbar = exports.TimePicker = exports.TextField = exports.Snackbar = exports.Sidebar = exports.Slider = exports.SelectField = exports.Paper = exports.Ink = exports.FontIcon = exports.Divider = exports.Dialog = exports.Chip = exports.Avatar = exports.Tab = exports.Tabs = exports.Switch = exports.RadioGroup = exports.Radio = exports.Checkbox = exports.LinearProgress = exports.CircularProgress = exports.ListSubheader = exports.ListItem = exports.List = exports.CardActionOverlay = exports.CardText = exports.CardActions = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = exports.IconButton = exports.FloatingButton = exports.RaisedButton = exports.FlatButton = exports.Button = undefined;
-
-var _Cards = require('./Cards');
-
-Object.defineProperty(exports, 'Card', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.Card;
-  }
-});
-Object.defineProperty(exports, 'CardHeader', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardHeader;
-  }
-});
-Object.defineProperty(exports, 'CardTitle', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardTitle;
-  }
-});
-Object.defineProperty(exports, 'CardMedia', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardMedia;
-  }
-});
-Object.defineProperty(exports, 'CardActions', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardActions;
-  }
-});
-Object.defineProperty(exports, 'CardText', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardText;
-  }
-});
-Object.defineProperty(exports, 'CardActionOverlay', {
-  enumerable: true,
-  get: function get() {
-    return _Cards.CardActionOverlay;
-  }
-});
-
-var _Lists = require('./Lists');
-
-Object.defineProperty(exports, 'List', {
-  enumerable: true,
-  get: function get() {
-    return _Lists.List;
-  }
-});
-Object.defineProperty(exports, 'ListItem', {
-  enumerable: true,
-  get: function get() {
-    return _Lists.ListItem;
-  }
-});
-Object.defineProperty(exports, 'ListSubheader', {
-  enumerable: true,
-  get: function get() {
-    return _Lists.ListSubheader;
-  }
-});
-
-var _Progress = require('./Progress');
-
-Object.defineProperty(exports, 'CircularProgress', {
-  enumerable: true,
-  get: function get() {
-    return _Progress.CircularProgress;
-  }
-});
-Object.defineProperty(exports, 'LinearProgress', {
-  enumerable: true,
-  get: function get() {
-    return _Progress.LinearProgress;
-  }
-});
-
-var _SelectionControls = require('./SelectionControls');
-
-Object.defineProperty(exports, 'Checkbox', {
-  enumerable: true,
-  get: function get() {
-    return _SelectionControls.Checkbox;
-  }
-});
-Object.defineProperty(exports, 'Radio', {
-  enumerable: true,
-  get: function get() {
-    return _SelectionControls.Radio;
-  }
-});
-Object.defineProperty(exports, 'RadioGroup', {
-  enumerable: true,
-  get: function get() {
-    return _SelectionControls.RadioGroup;
-  }
-});
-Object.defineProperty(exports, 'Switch', {
-  enumerable: true,
-  get: function get() {
-    return _SelectionControls.Switch;
-  }
-});
-
-var _Tabs = require('./Tabs');
-
-Object.defineProperty(exports, 'Tabs', {
-  enumerable: true,
-  get: function get() {
-    return _Tabs.Tabs;
-  }
-});
-Object.defineProperty(exports, 'Tab', {
-  enumerable: true,
-  get: function get() {
-    return _Tabs.Tab;
-  }
-});
-
-require('babel-polyfill');
-
-var _Buttons = require('./Buttons');
-
-var _Buttons2 = _interopRequireDefault(_Buttons);
+exports.Toolbar = exports.Tabs = exports.Tab = exports.TextField = exports.Switch = exports.Snackbar = exports.Sidebar = exports.Slider = exports.RaisedButton = exports.RadioGroup = exports.Radio = exports.Paper = exports.ListSubheader = exports.ListItem = exports.List = exports.LinearProgress = exports.Ink = exports.IconButton = exports.FontIcon = exports.FloatingButton = exports.FlatButton = exports.Divider = exports.Dialog = exports.CircularProgress = exports.Chip = exports.Checkbox = exports.CardTitle = exports.CardText = exports.CardMedia = exports.CardHeader = exports.CardActionOverlay = exports.CardActions = exports.Card = exports.Avatar = undefined;
 
 var _Avatars = require('./Avatars');
 
 var _Avatars2 = _interopRequireDefault(_Avatars);
+
+var _Buttons = require('./Buttons');
+
+var _Cards = require('./Cards');
 
 var _Chips = require('./Chips');
 
@@ -158,9 +33,15 @@ var _Inks = require('./Inks');
 
 var _Inks2 = _interopRequireDefault(_Inks);
 
+var _Lists = require('./Lists');
+
 var _Papers = require('./Papers');
 
 var _Papers2 = _interopRequireDefault(_Papers);
+
+var _Progress = require('./Progress');
+
+var _SelectionControls = require('./SelectionControls');
 
 var _SelectFields = require('./SelectFields');
 
@@ -178,6 +59,8 @@ var _Snackbars = require('./Snackbars');
 
 var _Snackbars2 = _interopRequireDefault(_Snackbars);
 
+var _Tabs = require('./Tabs');
+
 var _TextFields = require('./TextFields');
 
 var _TextFields2 = _interopRequireDefault(_TextFields);
@@ -192,22 +75,75 @@ var _Toolbars2 = _interopRequireDefault(_Toolbars);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.Button = _Buttons2.default;
-exports.FlatButton = _Buttons.FlatButton;
-exports.RaisedButton = _Buttons.RaisedButton;
-exports.FloatingButton = _Buttons.FloatingButton;
-exports.IconButton = _Buttons.IconButton;
 exports.Avatar = _Avatars2.default;
+exports.Card = _Cards.Card;
+exports.CardActions = _Cards.CardActions;
+exports.CardActionOverlay = _Cards.CardActionOverlay;
+exports.CardHeader = _Cards.CardHeader;
+exports.CardMedia = _Cards.CardMedia;
+exports.CardText = _Cards.CardText;
+exports.CardTitle = _Cards.CardTitle;
+exports.Checkbox = _SelectionControls.Checkbox;
 exports.Chip = _Chips2.default;
+exports.CircularProgress = _Progress.CircularProgress;
 exports.Dialog = _Dialogs2.default;
 exports.Divider = _Dividers2.default;
+exports.FlatButton = _Buttons.FlatButton;
+exports.FloatingButton = _Buttons.FloatingButton;
 exports.FontIcon = _FontIcons2.default;
+exports.IconButton = _Buttons.IconButton;
 exports.Ink = _Inks2.default;
+exports.LinearProgress = _Progress.LinearProgress;
+exports.List = _Lists.List;
+exports.ListItem = _Lists.ListItem;
+exports.ListSubheader = _Lists.ListSubheader;
 exports.Paper = _Papers2.default;
-exports.SelectField = _SelectFields2.default;
+exports.Radio = _SelectionControls.Radio;
+exports.RadioGroup = _SelectionControls.RadioGroup;
+exports.RaisedButton = _Buttons.RaisedButton;
 exports.Slider = _Sliders2.default;
 exports.Sidebar = _Sidebars2.default;
 exports.Snackbar = _Snackbars2.default;
+exports.Switch = _SelectionControls.Switch;
 exports.TextField = _TextFields2.default;
-exports.TimePicker = _TimePickers2.default;
+exports.Tab = _Tabs.Tab;
+exports.Tabs = _Tabs.Tabs;
 exports.Toolbar = _Toolbars2.default;
+exports.default = {
+  Avatar: _Avatars2.default,
+  FlatButton: _Buttons.FlatButton,
+  RaisedButton: _Buttons.RaisedButton,
+  FloatingButton: _Buttons.FloatingButton,
+  IconButton: _Buttons.IconButton,
+  Card: _Cards.Card,
+  CardHeader: _Cards.CardHeader,
+  CardTitle: _Cards.CardTitle,
+  CardMedia: _Cards.CardMedia,
+  CardActions: _Cards.CardActions,
+  CardText: _Cards.CardText,
+  CardActionOverlay: _Cards.CardActionOverlay,
+  List: _Lists.List,
+  ListItem: _Lists.ListItem,
+  ListSubheader: _Lists.ListSubheader,
+  CircularProgress: _Progress.CircularProgress,
+  LinearProgress: _Progress.LinearProgress,
+  Checkbox: _SelectionControls.Checkbox,
+  RadioGroup: _SelectionControls.RadioGroup,
+  Radio: _SelectionControls.Radio,
+  Switch: _SelectionControls.Switch,
+  Tabs: _Tabs.Tabs,
+  Tab: _Tabs.Tab,
+  Chip: _Chips2.default,
+  Dialog: _Dialogs2.default,
+  Divider: _Dividers2.default,
+  FontIcon: _FontIcons2.default,
+  Ink: _Inks2.default,
+  Paper: _Papers2.default,
+  SelectField: _SelectFields2.default,
+  Slider: _Sliders2.default,
+  Sidebar: _Sidebars2.default,
+  Snackbar: _Snackbars2.default,
+  TextField: _TextFields2.default,
+  TimePicker: _TimePickers2.default,
+  Toolbar: _Toolbars2.default
+};

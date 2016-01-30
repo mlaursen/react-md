@@ -2,11 +2,12 @@
   "name": "react-md",
   "version": "0.0.4",
   "description": "React material design components",
-  "main": "dist/index.js",
+  "main": "./dist",
   "scripts": {
     "scripts:dist": "babel ./src/js --out-dir ./dist",
     "styles:dist": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
-    "dist": "npm run scripts:dist && npm run styles:dist"
+    "prebuild": "rimraf dist",
+    "build": "npm run scripts:dist && npm run styles:dist"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "react-addons-transition-group": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-hot-loader": "^1.3.0",
+    "rimraf": "^2.5.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.10"

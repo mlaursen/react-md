@@ -20,11 +20,11 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _Toolbars = require('react-md/Toolbars');
+var _Toolbars = require('../Toolbars');
 
 var _Toolbars2 = _interopRequireDefault(_Toolbars);
 
-var _Dividers = require('react-md/Dividers');
+var _Dividers = require('../Dividers');
 
 var _Dividers2 = _interopRequireDefault(_Dividers);
 
