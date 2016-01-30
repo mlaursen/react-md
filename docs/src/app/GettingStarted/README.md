@@ -54,7 +54,7 @@ Finally, use the components as normal.
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Card, CardTitle, CardText } from 'react-md/Cards';
+import { Card, CardTitle, CardText } from 'react-md/lib/Cards';
 
 const HelloWorld = () => {
   return (
