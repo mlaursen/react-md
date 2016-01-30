@@ -88,5 +88,5 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 ## Publishing
 
 ```bash
-$ npm build
+$ npm run build
 ```
