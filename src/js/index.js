@@ -21,3 +21,4 @@ export Sidebar from './Sidebars';
 export Snackbar from './Snackbars';
 export TextField from './TextFields';
 export TimePicker from './TimePickers';
+export Toolbar from './Toolbars';
