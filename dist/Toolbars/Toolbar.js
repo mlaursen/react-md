@@ -52,11 +52,11 @@ var Toolbar = function (_Component) {
   _createClass(Toolbar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      if (!this.refs.tabs) {
+      if (!this.refs.content) {
         return;
       }
 
-      var tabs = _reactDom2.default.findDOMNode(this.refs.tabs);
+      var tabs = _reactDom2.default.findDOMNode(this.refs.content);
       if (tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) {
         return;
       }
@@ -98,6 +98,14 @@ var Toolbar = function (_Component) {
           title
         ), actionsRight && _react2.default.cloneElement(actionsRight, { key: 'actions-right' })];
       }
+
+      var content = undefined;
+      if (!childrenAsHeader && children) {
+        content = _react2.default.cloneElement(children, {
+          ref: 'content',
+          style: Object.assign({}, children.props.style, { marginLeft: tabsOffset })
+        });
+      }
       return _react2.default.createElement(
         'div',
         { className: (0, _classnames2.default)('md-toolbar-container', { fixed: (0, _utils.isPropEnabled)(props, 'fixed') }) },
@@ -106,7 +114,7 @@ var Toolbar = function (_Component) {
           _extends({}, props, { className: (0, _utils.mergeClassNames)(props, 'md-toolbar') }),
           header
         ),
-        !childrenAsHeader && children && _react2.default.cloneElement(children, { ref: 'tabs', tabsOffset: tabsOffset })
+        content
       );
     }
   }]);

@@ -1,5 +1,5 @@
 /* line 1, ../src/scss/helpers/_extenders.scss */
-.md-control-input, .md-tab-control {
+.md-control-input, .md-slider, .md-tab-control {
   height: 0;
   position: absolute;
   visibility: hidden;
@@ -56,13 +56,13 @@
 
 /* line 51, ../src/scss/helpers/_extenders.scss */
 .md-btn, .md-chip,
-.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year {
+.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year, .md-slider-thumb, .md-thumb-control, .md-tab {
   background: transparent;
   border: 0;
 }
 /* line 55, ../src/scss/helpers/_extenders.scss */
 .md-btn:focus, .md-chip:focus,
-.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus {
+.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus, .md-slider-thumb:focus, .md-thumb-control:focus, .md-tab:focus {
   outline: none;
 }
 
@@ -828,50 +828,54 @@ p,
   text-decoration: none;
   width: 48px;
 }
+/* line 46, ../src/scss/components/_buttons.scss */
+.md-icon-btn .md-icon {
+  font-size: inherit;
+}
 
-/* line 47, ../src/scss/components/_buttons.scss */
+/* line 51, ../src/scss/components/_buttons.scss */
 .md-flat-btn {
   background: transparent;
   min-width: 88px;
 }
 
-/* line 53, ../src/scss/components/_buttons.scss */
+/* line 57, ../src/scss/components/_buttons.scss */
 .md-raised-btn {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   min-width: 64px;
 }
-/* line 59, ../src/scss/components/_buttons.scss */
+/* line 63, ../src/scss/components/_buttons.scss */
 .md-raised-btn:active {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
 
-/* line 64, ../src/scss/components/_buttons.scss */
+/* line 68, ../src/scss/components/_buttons.scss */
 .md-floating-btn {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   height: 56px;
   width: 56px;
 }
-/* line 71, ../src/scss/components/_buttons.scss */
+/* line 75, ../src/scss/components/_buttons.scss */
 .md-floating-btn.mini {
   height: 40px;
   width: 40px;
 }
-/* line 76, ../src/scss/components/_buttons.scss */
+/* line 80, ../src/scss/components/_buttons.scss */
 .md-floating-btn:active {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
-/* line 80, ../src/scss/components/_buttons.scss */
+/* line 84, ../src/scss/components/_buttons.scss */
 .md-floating-btn[disabled] {
   background: none;
   box-shadow: none;
 }
-/* line 85, ../src/scss/components/_buttons.scss */
+/* line 89, ../src/scss/components/_buttons.scss */
 .md-floating-btn .md-icon {
   display: block;
 }
-/* line 89, ../src/scss/components/_buttons.scss */
+/* line 93, ../src/scss/components/_buttons.scss */
 .md-floating-btn.fixed {
   bottom: 16px;
   position: fixed;
@@ -879,37 +883,37 @@ p,
   transition-duration: 0.3s;
   transition-property: box-shadow, background, transform, bottom;
 }
-/* line 97, ../src/scss/components/_buttons.scss */
+/* line 101, ../src/scss/components/_buttons.scss */
 .md-floating-btn.fixed.snackbar-adjust {
   bottom: 64px;
 }
-/* line 101, ../src/scss/components/_buttons.scss */
+/* line 105, ../src/scss/components/_buttons.scss */
 .md-floating-btn.fixed.snackbar-multiline-adjust {
   bottom: 96px;
 }
 
-/* line 107, ../src/scss/components/_buttons.scss */
+/* line 111, ../src/scss/components/_buttons.scss */
 .fab-container {
   position: relative;
 }
-/* line 110, ../src/scss/components/_buttons.scss */
+/* line 114, ../src/scss/components/_buttons.scss */
 .fab-container .md-floating-btn {
   bottom: -28px;
   position: absolute;
 }
-/* line 114, ../src/scss/components/_buttons.scss */
+/* line 118, ../src/scss/components/_buttons.scss */
 .fab-container .md-floating-btn.mini {
   bottom: -20px;
 }
-/* line 119, ../src/scss/components/_buttons.scss */
+/* line 123, ../src/scss/components/_buttons.scss */
 .fab-container.fab-right .md-floating-btn {
   right: 16px;
 }
-/* line 123, ../src/scss/components/_buttons.scss */
+/* line 127, ../src/scss/components/_buttons.scss */
 .fab-container.fab-left .md-floating-btn {
   left: 16px;
 }
-/* line 127, ../src/scss/components/_buttons.scss */
+/* line 131, ../src/scss/components/_buttons.scss */
 .fab-container + * {
   margin-top: 32px;
 }
@@ -2210,7 +2214,7 @@ p,
 }
 
 /* line 1, ../src/scss/helpers/_extenders.scss */
-.md-control-input, .md-tab-control {
+.md-control-input, .md-slider, .md-tab-control {
   height: 0;
   position: absolute;
   visibility: hidden;
@@ -2267,13 +2271,13 @@ p,
 
 /* line 51, ../src/scss/helpers/_extenders.scss */
 .md-btn, .md-chip,
-.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year {
+.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year, .md-slider-thumb, .md-thumb-control, .md-tab {
   background: transparent;
   border: 0;
 }
 /* line 55, ../src/scss/helpers/_extenders.scss */
 .md-btn:focus, .md-chip:focus,
-.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus {
+.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus, .md-slider-thumb:focus, .md-thumb-control:focus, .md-tab:focus {
   outline: none;
 }
 
@@ -2438,6 +2442,135 @@ p,
   width: 24px;
 }
 
+/* line 1, ../src/scss/components/_sliders.scss */
+.md-slider-track-container {
+  position: relative;
+}
+/* line 4, ../src/scss/components/_sliders.scss */
+.md-slider-track-container:hover {
+  cursor: pointer;
+}
+
+/* line 13, ../src/scss/components/_sliders.scss */
+.md-slider-track {
+  display: block;
+  height: 48px;
+  padding-top: 38px;
+  position: relative;
+  width: 100%;
+}
+/* line 20, ../src/scss/components/_sliders.scss */
+.md-slider-track:before,
+.md-slider-track .md-track-fill {
+  height: 2px;
+  left: 0;
+  position: absolute;
+}
+/* line 27, ../src/scss/components/_sliders.scss */
+.md-slider-track:before {
+  background: rgba(0, 0, 0, 0.26);
+  content: '';
+  right: 0;
+}
+/* line 33, ../src/scss/components/_sliders.scss */
+.md-slider-track .md-track-fill {
+  background: #3f51b5;
+}
+/* line 36, ../src/scss/components/_sliders.scss */
+.md-slider-track .md-track-fill.discrete, .md-slider-track .md-track-fill:not(.dragging) {
+  transition: width 0.15s;
+}
+
+/* line 43, ../src/scss/components/_sliders.scss */
+.md-slider-thumb {
+  background: #fff;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.54);
+  height: 14px;
+  left: -7px;
+  position: absolute;
+  top: 31px;
+  transition-duration: 0.15s;
+  transition-property: transform, background, color, top;
+  width: 14px;
+  z-index: 3;
+}
+/* line 58, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete, .md-slider-thumb:not(.dragging) {
+  transition-property: transform, background, color, top, left;
+}
+/* line 63, ../src/scss/components/_sliders.scss */
+.md-slider-thumb:not(.valued) {
+  border: 2px solid rgba(0, 0, 0, 0.54);
+}
+/* line 67, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.valued {
+  background: #3f51b5;
+}
+/* line 70, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.valued .md-ink {
+  background: rgba(63, 81, 181, 0.16);
+}
+/* line 75, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.active {
+  transform: scale(1.5);
+}
+/* line 79, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete {
+  border: 0;
+}
+/* line 82, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete:not(.valued) {
+  background: #bdbdbd;
+}
+/* line 86, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete:after {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  content: '';
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: 10px;
+  transition-duration: 0.15s;
+  transition-property: top, border-top-color;
+  width: 0;
+}
+/* line 102, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete.active {
+  top: 7px;
+  transform: scale(2);
+}
+/* line 106, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete.active:not(.valued):after {
+  border-top-color: #bdbdbd;
+}
+/* line 110, ../src/scss/components/_sliders.scss */
+.md-slider-thumb.discrete.active:after {
+  border-top-color: #3f51b5;
+}
+
+/* line 117, ../src/scss/components/_sliders.scss */
+.md-thumb-control {
+  color: #fff;
+  font-size: 8px;
+  height: 100%;
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+}
+
+/* line 128, ../src/scss/components/_sliders.scss */
+.md-slider-discrete-value {
+  left: 50%;
+  position: absolute;
+  top: -1px;
+  transform: translateX(-50%) scale(0.4);
+}
+
 /* line 1, ../src/scss/components/_snackbar.scss */
 .md-snackbar {
   align-items: center;
@@ -2489,6 +2622,32 @@ p,
   transition: opacity 0.45s ease;
 }
 
+/* line 1, ../src/scss/components/_swipeable-views.scss */
+.md-swipeable-view {
+  overflow-x: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* line 7, ../src/scss/components/_swipeable-views.scss */
+.md-swipeable-item {
+  display: inline-block;
+  padding-left: 1em;
+  padding-right: 1em;
+  transition-property: transform;
+  vertical-align: top;
+  white-space: normal;
+}
+/* line 15, ../src/scss/components/_swipeable-views.scss */
+.md-swipeable-item:not(.swiping) {
+  transition-duration: 0.15s;
+}
+/* line 19, ../src/scss/components/_swipeable-views.scss */
+.md-swipeable-item * {
+  -webkit-font-smoothing: subpixel-antialiased;
+  transform: translateZ(0);
+}
+
 /* line 1, ../src/scss/components/_tabs.scss */
 .md-tabs-scroll-container {
   overflow: hidden;
@@ -2501,17 +2660,18 @@ p,
   margin: 0;
   padding: 0;
   position: relative;
+  transition-property: transform;
 }
-/* line 18, ../src/scss/components/_tabs.scss */
+/* line 13, ../src/scss/components/_tabs.scss */
+.md-tabs:not(.scrolling) {
+  transition-duration: 0.15s;
+}
+/* line 23, ../src/scss/components/_tabs.scss */
 .md-tabs.tabs-centered {
   justify-content: center;
 }
-/* line 22, ../src/scss/components/_tabs.scss */
-.md-tabs.tabs-scrollable {
-  margin-right: 64px;
-}
 
-/* line 27, ../src/scss/components/_tabs.scss */
+/* line 28, ../src/scss/components/_tabs.scss */
 .md-tab-indicator {
   background: #3f51b5;
   bottom: 0;
@@ -2524,7 +2684,7 @@ p,
   transition-property: left, width;
 }
 
-/* line 39, ../src/scss/components/_tabs.scss */
+/* line 40, ../src/scss/components/_tabs.scss */
 .md-tab {
   color: rgba(0, 0, 0, 0.54);
   flex-shrink: 0;
@@ -2533,20 +2693,20 @@ p,
   text-transform: uppercase;
   transition: color 0.15s;
 }
-/* line 47, ../src/scss/components/_tabs.scss */
+/* line 50, ../src/scss/components/_tabs.scss */
 .md-tab.active {
   color: #3f51b5;
 }
-/* line 51, ../src/scss/components/_tabs.scss */
+/* line 54, ../src/scss/components/_tabs.scss */
 .md-tab:hover {
   cursor: pointer;
 }
-/* line 55, ../src/scss/components/_tabs.scss */
+/* line 58, ../src/scss/components/_tabs.scss */
 .md-tab:focus {
   outline: none;
 }
 
-/* line 61, ../src/scss/components/_tabs.scss */
+/* line 64, ../src/scss/components/_tabs.scss */
 .md-tab-label {
   align-items: center;
   cursor: inherit;
@@ -2557,22 +2717,27 @@ p,
   max-width: 264px;
   padding: 12px;
 }
-/* line 71, ../src/scss/components/_tabs.scss */
+/* line 74, ../src/scss/components/_tabs.scss */
 .md-tab-label.multiline {
   font-size: 12px;
 }
-/* line 75, ../src/scss/components/_tabs.scss */
+/* line 78, ../src/scss/components/_tabs.scss */
 .md-tab-label:not(.multiline) {
   padding-bottom: 20px;
 }
-/* line 80, ../src/scss/components/_tabs.scss */
+/* line 83, ../src/scss/components/_tabs.scss */
 .md-tab-label.with-icon {
   height: 72px;
   padding-bottom: 16px;
 }
-/* line 84, ../src/scss/components/_tabs.scss */
+/* line 87, ../src/scss/components/_tabs.scss */
 .md-tab-label.with-icon .md-icon {
   margin-bottom: 10px;
+}
+
+/* line 97, ../src/scss/components/_tabs.scss */
+.md-tab-content-container .md-swipeable-item:not(.swiping) {
+  transition-duration: 0.3s;
 }
 
 /* line 5, ../src/scss/components/_text-fields.scss */

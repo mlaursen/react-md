@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.TimePicker = exports.TextField = exports.Snackbar = exports.Sidebar = exports.Slider = exports.SelectField = exports.Paper = exports.Ink = exports.FontIcon = exports.Divider = exports.Dialog = exports.Chip = exports.Avatar = exports.Tab = exports.Tabs = exports.Switch = exports.RadioGroup = exports.Radio = exports.Checkbox = exports.LinearProgress = exports.CircularProgress = exports.ListSubheader = exports.ListItem = exports.List = exports.CardActionOverlay = exports.CardText = exports.CardActions = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = exports.IconButton = exports.FloatingButton = exports.RaisedButton = exports.FlatButton = exports.Button = undefined;
+exports.Toolbar = exports.TimePicker = exports.TextField = exports.Snackbar = exports.Sidebar = exports.Slider = exports.SelectField = exports.Paper = exports.Ink = exports.FontIcon = exports.Divider = exports.Dialog = exports.Chip = exports.Avatar = exports.Tab = exports.Tabs = exports.Switch = exports.RadioGroup = exports.Radio = exports.Checkbox = exports.LinearProgress = exports.CircularProgress = exports.ListSubheader = exports.ListItem = exports.List = exports.CardActionOverlay = exports.CardText = exports.CardActions = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = exports.IconButton = exports.FloatingButton = exports.RaisedButton = exports.FlatButton = exports.Button = undefined;
 
 var _Cards = require('./Cards');
 
@@ -186,6 +186,10 @@ var _TimePickers = require('./TimePickers');
 
 var _TimePickers2 = _interopRequireDefault(_TimePickers);
 
+var _Toolbars = require('./Toolbars');
+
+var _Toolbars2 = _interopRequireDefault(_Toolbars);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Button = _Buttons2.default;
@@ -206,3 +210,4 @@ exports.Sidebar = _Sidebars2.default;
 exports.Snackbar = _Snackbars2.default;
 exports.TextField = _TextFields2.default;
 exports.TimePicker = _TimePickers2.default;
+exports.Toolbar = _Toolbars2.default;

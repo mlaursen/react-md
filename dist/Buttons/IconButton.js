@@ -51,6 +51,10 @@ var IconButton = function (_Component) {
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(IconButton).call(this, props));
 
     _this.handleKeyUp = function (e) {
+      if (_this.props.onKeyUp) {
+        _this.props.onKeyUp(e);
+      }
+
       if ((e.keyCode || e.which) === _keyCodes.TAB) {
         _this.setState({ focused: true });
       }
@@ -58,6 +62,14 @@ var IconButton = function (_Component) {
 
     _this.handleClick = function (e) {
       _this.props.onClick && _this.props.onClick(e);
+      _this.setState({ focused: false });
+    };
+
+    _this.handleBlur = function (e) {
+      if (_this.props.onBlur) {
+        _this.props.onBlur(e);
+      }
+
       _this.setState({ focused: false });
     };
 
@@ -69,8 +81,6 @@ var IconButton = function (_Component) {
   _createClass(IconButton, [{
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var _props = this.props;
       var iconClassName = _props.iconClassName;
       var children = _props.children;
@@ -84,9 +94,7 @@ var IconButton = function (_Component) {
       var btnProps = _extends({}, props, {
         onClick: this.handleClick,
         onKeyUp: this.handleKeyUp,
-        onBlur: function onBlur() {
-          return _this2.setState({ focused: false });
-        },
+        onBlur: this.handleBlur,
         className: (0, _classnames2.default)(className, 'md-btn', 'md-icon-btn')
       });
 
@@ -116,6 +124,8 @@ IconButton.propTypes = {
   className: _react.PropTypes.string,
   children: _react.PropTypes.node,
   onClick: _react.PropTypes.func,
+  onBlur: _react.PropTypes.func,
+  onKeyUp: _react.PropTypes.func,
   tooltipPosition: _react.PropTypes.string,
   tooltip: _react.PropTypes.string,
   href: _react.PropTypes.string,

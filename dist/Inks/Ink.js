@@ -84,7 +84,7 @@ var Ink = function (_Component) {
       setTimeout(function () {
         return ink.classList.add('active');
       }, 25);
-      _this.setState({ ink: ink, timestamp: Date.now() });
+      _this.setState({ ink: ink, timestamp: Date.now(), mouseLeave: false, mouseDown: true });
     };
 
     _this.handleMouseDown = function (_ref) {
@@ -106,6 +106,7 @@ var Ink = function (_Component) {
       } else {
         _this.createInk(pageX, pageY);
       }
+      _this.setState({ mouseLeave: false });
     };
 
     _this.handleMouseUp = function (_ref2) {
@@ -113,12 +114,30 @@ var Ink = function (_Component) {
       var ctrlKey = _ref2.ctrlKey;
       var changedTouches = _ref2.changedTouches;
 
-      if (_this.props.disabled || button !== _keyCodes.LEFT_MOUSE && !changedTouches || ctrlKey) {
+      var invalidKey = button !== _keyCodes.LEFT_MOUSE && !changedTouches || ctrlKey;
+      if (_this.props.disabled || invalidKey || _this.state.mouseLeave) {
         return;
       }
+      _this.removeInk();
+      _this.setState({ mouseDown: false });
+    };
+
+    _this.handleMouseLeave = function () {
+      if (_this.props.disabled || !_this.state.mouseDown || _this.state.mouseLeave) {
+        return;
+      }
+      _this.removeInk();
+      _this.setState({ mouseLeave: true });
+    };
+
+    _this.removeInk = function () {
       var _this$state = _this.state;
       var ink = _this$state.ink;
       var timestamp = _this$state.timestamp;
+
+      if (!ink) {
+        return;
+      }
 
       ink.classList.add('leaving');
       var timeout = setTimeout(function () {
@@ -140,12 +159,13 @@ var Ink = function (_Component) {
           onTouchStart: _this.handleMouseDown,
           onTouchEnd: _this.handleMouseUp,
           onTouchCancel: _this.handleMouseUp,
-          onTouchLeave: _this.handleMouseUp
+          onTouchLeave: _this.handleMouseLeave
         };
       } else {
         return {
           onMouseDown: _this.handleMouseDown,
-          onMouseUp: _this.handleMouseUp
+          onMouseUp: _this.handleMouseUp,
+          onMouseLeave: _this.handleMouseLeave
         };
       }
     };
