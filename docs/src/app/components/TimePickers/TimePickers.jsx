@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import TimePicker from 'react-md/TimePickers';
+import TimePicker from 'react-md/lib/TimePickers';
 
 import DocPage from 'react-md-documentation';
 import TimePickerExamples from './TimePickerExamples';

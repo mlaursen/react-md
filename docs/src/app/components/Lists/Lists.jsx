@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { List, ListItem, ListSubheader } from 'react-md/Lists';
+import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
 
 import DocPage from 'react-md-documentation';
 import ListExamples from './ListExamples';

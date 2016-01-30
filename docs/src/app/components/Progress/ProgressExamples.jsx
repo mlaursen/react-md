@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import { LinearProgress, CircularProgress } from 'react-md/Progress';
-import { RaisedButton } from 'react-md/Buttons';
-import FontIcon from 'react-md/FontIcons';
-import Snackbar from 'react-md/Snackbars';
-import { RadioGroup, Radio } from 'react-md/SelectionControls';
+import { LinearProgress, CircularProgress } from 'react-md/lib/Progress';
+import { RaisedButton } from 'react-md/lib/Buttons';
+import FontIcon from 'react-md/lib/FontIcons';
+import Snackbar from 'react-md/lib/Snackbars';
+import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
 
 const fakeContent = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet et urna at dignissim. Phasellus hendrerit eleifend tincidunt. Donec id mi in neque fringilla posuere. Aliquam efficitur lectus eget est dapibus, congue efficitur ipsum sagittis. Nam malesuada nulla diam, quis blandit diam bibendum vel. Proin venenatis vel mi sit amet commodo. Cras luctus ultricies massa, at accumsan ipsum convallis sit amet. In ornare turpis non risus laoreet, sit amet cursus sem pellentesque. Ut sit amet tellus vitae enim cursus accumsan. Aenean ac molestie elit. Donec sed tellus imperdiet, tempor lectus vel, dignissim magna. Vivamus dolor metus, viverra sed condimentum vel, congue eget ante. In fringilla felis quis tortor vestibulum, id luctus erat imperdiet. Suspendisse eget nulla risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam tincidunt rhoncus leo et molestie.',

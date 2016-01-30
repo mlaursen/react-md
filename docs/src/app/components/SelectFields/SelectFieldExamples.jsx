@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import SelectField from 'react-md/SelectFields';
-import Card, { CardText, CardTitle } from 'react-md/Cards';
-import FontIcon from 'react-md/FontIcons';
-import TextField from 'react-md/TextFields';
+import SelectField from 'react-md/lib/SelectFields';
+import Card, { CardText, CardTitle } from 'react-md/lib/Cards';
+import FontIcon from 'react-md/lib/FontIcons';
+import TextField from 'react-md/lib/TextFields';
 
 import states from './states';
 

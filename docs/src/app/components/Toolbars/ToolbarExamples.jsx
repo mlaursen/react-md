@@ -1,6 +1,6 @@
 import React from 'react';
-import Toolbar, { ActionArea } from 'react-md/Toolbars';
-import { IconButton } from 'react-md/Buttons';
+import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
+import { IconButton } from 'react-md/lib/Buttons';
 
 import { githubHref } from '../../utils';
 

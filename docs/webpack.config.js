@@ -56,7 +56,7 @@ let config = {
       // Weird issue where I was getting 2 versions of react.
       'react': path.resolve(__dirname, 'node_modules/react'),
       'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-      'react-md': js,
+      'react-md/lib': js,
       'react-md-scss': scss,
       'react-md-documentation': path.resolve(__dirname, 'src/app/Documentation'),
     },

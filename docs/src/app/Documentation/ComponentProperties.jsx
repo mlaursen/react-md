@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import { Card, CardTitle, CardText, IconButton } from 'react-md';
+import { Card, CardTitle, CardText } from 'react-md/lib/Cards';
+import { IconButton } from 'react-md/lib/Buttons';
 
 import { githubHref } from '../utils';
 import { toDashedName, toTitle } from './utils';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from 'react-md/Cards';
-import Avatar from 'react-md/Avatars';
-import { FlatButton, IconButton } from 'react-md/Buttons';
+import { Card, CardTitle, CardMedia, CardActions, CardText, CardActionOverlay } from 'react-md/lib/Cards';
+import Avatar from 'react-md/lib/Avatars';
+import { FlatButton, IconButton } from 'react-md/lib/Buttons';
 
 import { loremIpsum, randomImage } from '../../utils';
 

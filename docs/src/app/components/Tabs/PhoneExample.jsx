@@ -1,6 +1,6 @@
 import React from 'react';
-import FontIcon from 'react-md/FontIcons';
-import { Tabs, Tab } from 'react-md/Tabs';
+import FontIcon from 'react-md/lib/FontIcons';
+import { Tabs, Tab } from 'react-md/lib/Tabs';
 
 import FakePhone from '../../FakePhone';
 

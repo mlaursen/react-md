@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-md/SelectionControls';
+import { Switch } from 'react-md/lib/SelectionControls';
 
 export default function SwitchExamples() {
   return (

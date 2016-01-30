@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { TextField } from 'react-md';
+import TextField from 'react-md/lib/TextFields';
 
 import DocPage from 'react-md-documentation';
 import TextFieldExamples from './TextFieldExamples';

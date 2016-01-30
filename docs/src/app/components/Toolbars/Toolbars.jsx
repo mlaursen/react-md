@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Toolbar, { ActionArea } from 'react-md/Toolbars';
+import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
 
 import DocPage from 'react-md-documentation';
 import ToolbarExamples from './ToolbarExamples';
@@ -10,7 +10,7 @@ import FakeTextEditorRaw from '!!raw!../../FakeTextEditor';
 import ToolbarWithTabs from '../../ToolbarWithTabs';
 import ToolbarWithTabsRaw from '!!raw!../../ToolbarWithTabs/ToolbarWithTabs';
 
-import { isMobile } from 'react-md/utils';
+import { isMobile } from 'react-md/lib/utils';
 
 import './_toolbar.scss';
 

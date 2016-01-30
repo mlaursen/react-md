@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import DatePicker from 'react-md/DatePickers';
+import DatePicker from 'react-md/lib/DatePickers';
 
 import DocPage from 'react-md-documentation';
 import DatePickerExamples from './DatePickerExamples';

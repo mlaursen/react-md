@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Slider from 'react-md/Sliders';
+import Slider from 'react-md/lib/Sliders';
 
 export default function SliderExamples() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatButton } from 'react-md/Buttons';
-import FontIcon from 'react-md/FontIcons';
+import { FlatButton } from 'react-md/lib/Buttons';
+import FontIcon from 'react-md/lib/FontIcons';
 
 export default function FlatButtonExamples() {
   return (

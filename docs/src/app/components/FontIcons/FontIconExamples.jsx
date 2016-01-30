@@ -1,5 +1,5 @@
 import React from 'react';
-import FontIcon from 'react-md/FontIcons';
+import FontIcon from 'react-md/lib/FontIcons';
 
 export default function FontIconExamples() {
   return (

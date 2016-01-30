@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Toolbar, { ActionArea } from 'react-md/Toolbars';
-import { IconButton } from 'react-md/Buttons';
-import { Tabs, Tab } from 'react-md/Tabs';
+import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
+import { IconButton } from 'react-md/lib/Buttons';
+import { Tabs, Tab } from 'react-md/lib/Tabs';
 import { numstr } from '../utils';
-import Paper from 'react-md/Papers';
+import Paper from 'react-md/lib/Papers';
 
 const ToolbarWithTabs = ({ centered = false, scrollable = false, fixedWidth = false }) => {
   return (

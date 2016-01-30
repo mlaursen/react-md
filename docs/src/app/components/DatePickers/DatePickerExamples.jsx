@@ -1,5 +1,5 @@
 import React from 'react';
-import DatePicker from 'react-md/DatePickers';
+import DatePicker from 'react-md/lib/DatePickers';
 
 export default function DatePickerExamples() {
   const twoMonthsAgo = new Date(new Date().setMonth(new Date().getMonth() - 2));

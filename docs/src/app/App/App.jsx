@@ -4,14 +4,14 @@ import classnames from 'classnames';
 
 import { githubHref, hostPrefix, imgPrefix } from '../utils';
 import * as components from '../components';
-import Toolbar, { ActionArea } from 'react-md/Toolbars';
-import Avatar from 'react-md/Avatars';
-import FontIcon from 'react-md/FontIcons';
-import { IconButton } from 'react-md/Buttons';
-import Sidebar from 'react-md/Sidebars';
-import { List, ListItem, ListSubheader } from 'react-md/Lists';
-import Divider from 'react-md/Dividers';
-import { isMobile } from 'react-md/utils';
+import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
+import Avatar from 'react-md/lib/Avatars';
+import FontIcon from 'react-md/lib/FontIcons';
+import { IconButton } from 'react-md/lib/Buttons';
+import Sidebar from 'react-md/lib/Sidebars';
+import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
+import Divider from 'react-md/lib/Dividers';
+import { isMobile } from 'react-md/lib/utils';
 
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';

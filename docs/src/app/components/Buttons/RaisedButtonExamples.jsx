@@ -1,6 +1,6 @@
 import React from 'react';
-import { RaisedButton } from 'react-md/Buttons';
-import FontIcon from 'react-md/FontIcons';
+import { RaisedButton } from 'react-md/lib/Buttons';
+import FontIcon from 'react-md/lib/FontIcons';
 
 export default function RaisedButtonExamples() {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Snackbar from 'react-md/Snackbars';
-import { RaisedButton, FloatingButton } from 'react-md/Buttons';
+import Snackbar from 'react-md/lib/Snackbars';
+import { RaisedButton, FloatingButton } from 'react-md/lib/Buttons';
 
 import FakePhone from '../../FakePhone';
 

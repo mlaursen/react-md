@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import SelectField from 'react-md/SelectFields';
+import SelectField from 'react-md/lib/SelectFields';
 
 import DocPage from 'react-md-documentation';
 import SelectFieldExamples from './SelectFieldExamples';

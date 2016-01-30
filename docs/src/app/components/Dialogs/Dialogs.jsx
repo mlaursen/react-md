@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Dialog from 'react-md/Dialogs';
+import Dialog from 'react-md/lib/Dialogs';
 
 import DocPage from 'react-md-documentation';
 import SimpleDialogExample from './SimpleDialogExample';

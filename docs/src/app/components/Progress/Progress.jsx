@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { LinearProgress, CircularProgress } from 'react-md/Progress';
+import { LinearProgress, CircularProgress } from 'react-md/lib/Progress';
 
 import DocPage from 'react-md-documentation';
 import ProgressExamples from './ProgressExamples';

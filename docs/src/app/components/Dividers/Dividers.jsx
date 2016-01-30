@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Divider from 'react-md/Dividers';
+import Divider from 'react-md/lib/Dividers';
 
 import DocPage from 'react-md-documentation';
 import DividerExamples from './DividerExamples';

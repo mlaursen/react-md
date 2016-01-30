@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { RaisedButton } from 'react-md';
 import { Link } from 'react-router';
+import { RaisedButton } from 'react-md/lib/Buttons';
+import { CardTitle, CardMedia } from 'react-md/lib/Cards';
 
 import './_home.scss';
 import * as components from '../components';
 import { toDashedName } from '../Documentation/utils';
-import { CardTitle, CardMedia } from 'react-md';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Checkbox, RadioGroup, Radio, Switch } from 'react-md/SelectionControls';
+import { Checkbox, RadioGroup, Radio, Switch } from 'react-md/lib/SelectionControls';
 
 import DocPage from 'react-md-documentation';
 import CheckboxExamples from './CheckboxExamples';

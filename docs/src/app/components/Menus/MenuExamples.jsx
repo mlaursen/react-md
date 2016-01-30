@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Menu from 'react-md/Menus';
-import { ListItem } from 'react-md/Lists';
+import Menu from 'react-md/lib/Menus';
+import { ListItem } from 'react-md/lib/Lists';
 
 const MenuExamples = () => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
-import { List, ListItem, ListSubheader } from 'react-md/Lists';
-import Divider from 'react-md/Dividers';
-import FontIcon from 'react-md/FontIcons';
-import Avatar from 'react-md/Avatars';
-import Paper from 'react-md/Papers';
+import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
+import Divider from 'react-md/lib/Dividers';
+import FontIcon from 'react-md/lib/FontIcons';
+import Avatar from 'react-md/lib/Avatars';
+import Paper from 'react-md/lib/Papers';
 
 import { randomImage } from '../../utils';
 

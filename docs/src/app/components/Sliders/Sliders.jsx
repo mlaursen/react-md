@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Slider from 'react-md/Sliders';
+import Slider from 'react-md/lib/Sliders';
 
 import DocPage from 'react-md-documentation';
 import SliderExamples from './SliderExamples';

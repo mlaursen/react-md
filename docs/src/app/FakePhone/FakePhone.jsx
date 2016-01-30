@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import Paper from 'react-md/Papers';
-import { IconButton } from 'react-md/Buttons';
-import Toolbar, { ActionArea } from 'react-md/Toolbars';
+import Paper from 'react-md/lib/Papers';
+import { IconButton } from 'react-md/lib/Buttons';
+import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
 
 import './_fake-phone.scss';
 

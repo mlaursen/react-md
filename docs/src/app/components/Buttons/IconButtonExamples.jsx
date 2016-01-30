@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton } from 'react-md/Buttons';
+import { IconButton } from 'react-md/lib/Buttons';
 
 import { githubHref } from '../../utils';
 

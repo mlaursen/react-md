@@ -1,6 +1,6 @@
 import React from 'react';
-import Chip from 'react-md/Chips';
-import Avatar from 'react-md/Avatars';
+import Chip from 'react-md/lib/Chips';
+import Avatar from 'react-md/lib/Avatars';
 
 export default function ChipExamples() {
   return (

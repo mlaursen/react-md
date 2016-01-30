@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Card, CardTitle, CardText, CardMedia, CardActions, CardActionOverlay } from 'react-md/Cards';
+import { Card, CardTitle, CardText, CardMedia, CardActions, CardActionOverlay } from 'react-md/lib/Cards';
 
 import DocPage from 'react-md-documentation';
 import ExpandableCard from './ExpandableCard';

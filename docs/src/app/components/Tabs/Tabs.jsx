@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { Tabs as TabsMD, Tab } from 'react-md/Tabs';
+import { Tabs as TabsMD, Tab } from 'react-md/lib/Tabs';
 
 import DocPage from 'react-md-documentation';
 import TabsExamples from './TabsExamples';

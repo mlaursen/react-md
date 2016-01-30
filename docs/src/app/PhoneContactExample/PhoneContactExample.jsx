@@ -1,8 +1,8 @@
 import React from 'react';
-import FontIcon from 'react-md/FontIcons';
-import SelectField from 'react-md/SelectFields';
-import TextField from 'react-md/TextFields';
-import { FloatingButton } from 'react-md/Buttons';
+import FontIcon from 'react-md/lib/FontIcons';
+import SelectField from 'react-md/lib/SelectFields';
+import TextField from 'react-md/lib/TextFields';
+import { FloatingButton } from 'react-md/lib/Buttons';
 
 import FakePhone from '../FakePhone';
 

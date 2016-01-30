@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import TextField from 'react-md/TextFields';
+import TextField from 'react-md/lib/TextFields';
 
-import FontIcon from 'react-md/FontIcons';
+import FontIcon from 'react-md/lib/FontIcons';
 
 export default class TextFieldExamples extends Component {
   constructor(props) {

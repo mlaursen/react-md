@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TimePicker from 'react-md/TimePickers';
+import TimePicker from 'react-md/lib/TimePickers';
 
 export default function TimePickerExamples() {
   return (

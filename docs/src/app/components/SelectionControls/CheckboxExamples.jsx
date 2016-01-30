@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Checkbox } from 'react-md/SelectionControls';
-import FontIcon from 'react-md/FontIcons';
+import { Checkbox } from 'react-md/lib/SelectionControls';
+import FontIcon from 'react-md/lib/FontIcons';
 
 export default class CheckboxExamples extends Component {
   constructor(props) {

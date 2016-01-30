@@ -1,8 +1,8 @@
 import React from 'react';
-import { Card, CardTitle, CardMedia, CardActions } from 'react-md/Cards';
-import { IconButton } from 'react-md/Buttons';
+import { Card, CardTitle, CardMedia, CardActions } from 'react-md/lib/Cards';
+import { IconButton } from 'react-md/lib/Buttons';
 
-import { isMobile } from 'react-md/utils';
+import { isMobile } from 'react-md/lib/utils';
 import { randomImage } from '../../utils';
 
 export default function CardListExample() {

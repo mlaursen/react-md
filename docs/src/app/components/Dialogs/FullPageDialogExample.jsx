@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { IconButton, RaisedButton, FlatButton } from 'react-md/Buttons';
-import { ActionArea } from 'react-md/Toolbars';
-import Dialog from 'react-md/Dialogs';
-import Divider from 'react-md/Dividers';
-import TextField from 'react-md/TextFields';
+import { IconButton, RaisedButton, FlatButton } from 'react-md/lib/Buttons';
+import { ActionArea } from 'react-md/lib/Toolbars';
+import Dialog from 'react-md/lib/Dialogs';
+import Divider from 'react-md/lib/Dividers';
+import TextField from 'react-md/lib/TextFields';
 
 export default class ModalDialogExample extends Component {
   constructor(props) {

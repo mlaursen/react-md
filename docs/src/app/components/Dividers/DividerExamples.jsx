@@ -1,7 +1,7 @@
 import React from 'react';
-import Divider from 'react-md/Dividers';
-import TextField from 'react-md/TextFields';
-import FontIcon from 'react-md/FontIcons';
+import Divider from 'react-md/lib/Dividers';
+import TextField from 'react-md/lib/TextFields';
+import FontIcon from 'react-md/lib/FontIcons';
 
 import FakePhone from '../../FakePhone';
 

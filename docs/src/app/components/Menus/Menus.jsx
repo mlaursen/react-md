@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Menu from 'react-md/Menus';
+import Menu from 'react-md/lib/Menus';
 
 import DocPage from 'react-md-documentation';
 import MenuExamples from './MenuExamples';

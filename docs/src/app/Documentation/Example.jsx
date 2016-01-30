@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Card, { CardText, CardTitle, CardActions } from 'react-md/Cards';
-import { FlatButton } from 'react-md/Buttons';
+import Card, { CardText, CardTitle, CardActions } from 'react-md/lib/Cards';
+import { FlatButton } from 'react-md/lib/Buttons';
 import ExampleCode from './ExampleCode';
 
 const MIN_LINES = 14;

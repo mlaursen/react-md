@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import FontIcon from 'react-md/FontIcons';
+import FontIcon from 'react-md/lib/FontIcons';
 
 import DocPage from 'react-md-documentation';
 import FontIconExamples from './FontIconExamples';

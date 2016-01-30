@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { RaisedButton } from 'react-md/Buttons';
-import { List, ListItem } from 'react-md/Lists';
-import Dialog from 'react-md/Dialogs';
+import { RaisedButton } from 'react-md/lib/Buttons';
+import { List, ListItem } from 'react-md/lib/Lists';
+import Dialog from 'react-md/lib/Dialogs';
 
 export default class SimpleDialogExample extends Component {
   constructor(props) {

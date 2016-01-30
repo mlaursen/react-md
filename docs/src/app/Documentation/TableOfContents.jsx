@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { List, ListSubheader } from 'react-md/Lists';
+import { List, ListSubheader } from 'react-md/lib/Lists';
 import { toDashedName, toTitle } from './utils';
-import { smoothScroll } from 'react-md/utils';
+import { smoothScroll } from 'react-md/lib/utils';
 
 export default class TableOfContents extends Component {
   constructor(props) {

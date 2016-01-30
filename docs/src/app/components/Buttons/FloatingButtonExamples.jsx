@@ -1,5 +1,5 @@
 import React from 'react';
-import { FloatingButton } from 'react-md/Buttons';
+import { FloatingButton } from 'react-md/lib/Buttons';
 
 export default function FloatingButtonExamples() {
   return (

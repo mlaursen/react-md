@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { FlatButton, IconButton, FloatingButton, RaisedButton } from 'react-md/Buttons';
+import { FlatButton, IconButton, FloatingButton, RaisedButton } from 'react-md/lib/Buttons';
 
 import DocPage from 'react-md-documentation';
 import FlatButtonExamples from './FlatButtonExamples';

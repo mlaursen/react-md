@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import Menu from 'react-md/Menus';
-import { FlatButton } from 'react-md/Buttons';
-import { ListItem } from 'react-md/Lists';
+import Menu from 'react-md/lib/Menus';
+import { FlatButton } from 'react-md/lib/Buttons';
+import { ListItem } from 'react-md/lib/Lists';
 
 export default class ControlledMenuExamples extends Component {
   constructor(props) {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import SelectField from 'react-md/SelectFields';
-import FontIcon from 'react-md/FontIcons';
-import Paper from 'react-md/Papers';
-import Toolbar from 'react-md/Toolbars';
-import { Radio, Checkbox } from 'react-md/SelectionControls';
+import SelectField from 'react-md/lib/SelectFields';
+import FontIcon from 'react-md/lib/FontIcons';
+import Paper from 'react-md/lib/Papers';
+import Toolbar from 'react-md/lib/Toolbars';
+import { Radio, Checkbox } from 'react-md/lib/SelectionControls';
 
 const FONTS = ['Calibri', 'Courier New', 'Roboto', 'Verdana'];
 const FONT_SIZES = [11, 12, 14, 16, 18, 22];

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import { RaisedButton, FlatButton } from 'react-md/Buttons';
-import Dialog from 'react-md/Dialogs';
-import { RadioGroup, Radio } from 'react-md/SelectionControls';
+import { RaisedButton, FlatButton } from 'react-md/lib/Buttons';
+import Dialog from 'react-md/lib/Dialogs';
+import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
 
 const contents = [
   <p key="location">
