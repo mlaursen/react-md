@@ -1,73 +1,53 @@
 .md-text-field-container {
-  @extend %full-width;
-
-  &.single-line {
-    .md-text-field,
-    .md-text-field-label,
-    .md-text-field-divider {
-      position: absolute;
-    }
-
-    .md-text-field-label.active {
-      font-size: $md-text-field-active-font-size;
-    }
-  }
-
-  &.multi-line .md-text-field-label {
-    font-size: $md-text-field-active-font-size;
-  }
-
-  .md-icon {
-    color: inherit;
-    transition: color $md-transition-time;
-  }
-
-  &.inline-counter {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding-right: 12px;
-  }
-}
-
-.md-text-field-label-container {
-  @extend %full-width;
-
-  display: block;
+  height: 72px;
   position: relative;
 }
 
-.md-text-field-label {
-  @extend %full-width;
-
-  cursor: text;
-  transition-duration: $md-transition-time;
-  transition-property: bottom, font-size, color;
-}
-
 .md-text-field {
-  @extend %full-width;
-
   background: none;
   border: 0;
-  color: $md-text-color;
+  font-size: 16px;
+  padding-bottom: 16px;
+  padding-top: 16 + 13 + 8px;
   resize: none;
 
   &:focus {
     outline: none;
   }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus {
+    box-shadow: 0 0 0 50px $white-base inset;
+  }
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  box-shadow: 0 0 0 50px $white-base inset;
+.md-text-divider,
+.md-floating-label {
+  position: absolute;
 }
 
+.md-text-field-icon,
+.md-floating-label {
+  color: $md-hint-text-color;
+}
 
-.md-text-field-divider {
+.md-floating-label {
+  font-size: 16px;
+  top: 16 + 13 + 8px;
+  transition-duration: $md-transition-time;
+  transition-property: font-size, color, top;
+
+  &.active {
+    font-size: 13px;
+    top: 16px;
+  }
+}
+
+.md-text-divider {
   @extend %full-width;
 
   background: $md-border-color;
+  bottom: 8px;
   height: 1px;
 
   &.from-left:after {
@@ -97,18 +77,117 @@ input:-webkit-autofill:focus {
     visibility: visible;
   }
 }
-
-.md-text-field-info {
-  display: flex;
-  font-size: $md-text-field-info-font-size;
-  justify-content: space-between;
-
-  &.count-only {
-    justify-content: flex-end;
-  }
-}
-
-.md-text-field-count {
-  display: block;
-  flex-shrink: 0;
-}
+//.md-text-field-container {
+//  @extend %full-width;
+//
+//  &.single-line {
+//    .md-text-field,
+//    .md-text-field-label,
+//    .md-text-field-divider {
+//      position: absolute;
+//    }
+//
+//    .md-text-field-label.active {
+//      font-size: $md-text-field-active-font-size;
+//    }
+//  }
+//
+//  &.multi-line .md-text-field-label {
+//    font-size: $md-text-field-active-font-size;
+//  }
+//
+//  .md-icon {
+//    color: inherit;
+//    transition: color $md-transition-time;
+//  }
+//
+//  &.inline-counter {
+//    align-items: center;
+//    display: flex;
+//    justify-content: space-between;
+//    padding-right: 12px;
+//  }
+//}
+//
+//.md-text-field-label-container {
+//  @extend %full-width;
+//
+//  display: block;
+//  position: relative;
+//}
+//
+//.md-text-field-label {
+//  @extend %full-width;
+//
+//  cursor: text;
+//  transition-duration: $md-transition-time;
+//  transition-property: bottom, font-size, color;
+//}
+//
+//.md-text-field {
+//  @extend %full-width;
+//
+//  background: none;
+//  border: 0;
+//  color: $md-text-color;
+//  resize: none;
+//
+//  &:focus {
+//    outline: none;
+//  }
+//}
+//
+//input:-webkit-autofill,
+//input:-webkit-autofill:focus {
+//  box-shadow: 0 0 0 50px $white-base inset;
+//}
+//
+//
+//.md-text-field-divider {
+//  @extend %full-width;
+//
+//  background: $md-border-color;
+//  height: 1px;
+//
+//  &.from-left:after {
+//    left: 0;
+//  }
+//
+//  &.from-right:after {
+//    right: 0;
+//  }
+//
+//  &.from-center:after {
+//    margin: auto;
+//  }
+//
+//  &:after {
+//    content: '';
+//    display: block;
+//    height: $md-text-field-divider-height;
+//    transition: width $md-transition-time;
+//    visibility: hidden;
+//    width: 0;
+//  }
+//
+//  &.active:after {
+//    @extend %full-width;
+//
+//    visibility: visible;
+//  }
+//}
+//
+//.md-text-field-info {
+//  display: flex;
+//  font-size: $md-text-field-info-font-size;
+//  justify-content: space-between;
+//
+//  &.count-only {
+//    justify-content: flex-end;
+//  }
+//}
+//
+//.md-text-field-count {
+//  display: block;
+//  flex-shrink: 0;
+//}

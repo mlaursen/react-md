@@ -3,199 +3,138 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils';
-import TextFieldInfo from './TextFieldInfo';
-import TextFieldLabel from './TextFieldLabel';
-import TextFieldDivider from './TextFieldDivider';
-import { ESC } from '../constants/keyCodes';
+import FloatingLabel from './FloatingLabel';
+import TextDivider from './TextDivider';
+
+const valueType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number,
+]);
 
 export default class TextField extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { active: false, currentRows: props.rows, value: props.defaultValue };
-
-    this.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    this.state = {
+      active: false,
+      currentRows: props.rows,
+      value: props.defaultValue,
+    };
   }
 
   static propTypes = {
-    label: PropTypes.string,
     className: PropTypes.string,
-    defaultValue: PropTypes.string,
-    lineDirection: PropTypes.oneOf(['left', 'right', 'center']),
-    type: PropTypes.string,
-    required: PropTypes.bool,
-    maxLength: PropTypes.number,
-    errorText: PropTypes.string,
-    helpText: PropTypes.string,
-    helpOnFocus: PropTypes.bool,
-    rows: PropTypes.number,
-    maxRows: PropTypes.number,
+    children: PropTypes.node,
+    type: PropTypes.string.isRequired,
+    label: PropTypes.string,
     placeholder: PropTypes.string,
+    value: valueType,
+    defaultValue: valueType,
+    rows: PropTypes.number,
+    errorText: PropTypes.string,
+    infoText: PropTypes.string,
+    maxLength: PropTypes.number,
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    fullWidth: PropTypes.bool,
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
   };
 
   static defaultProps = {
-    defaultValue: '',
-    lineDirection: 'left',
     type: 'text',
+    defaultValue: '',
     floatingLabel: true,
-  };
-
-  componentDidMount() {
-    if(this.props.rows) {
-      this.lineHeight = this.refs.textarea.offsetHeight / this.props.rows;
-    }
-  }
-
-  handleFocus = () => {
-    this.setState({ active: true });
-  };
-
-  handleBlur = () => {
-    this.setState({ active: false });
+    lineDirection: 'left',
   };
 
   getValue = () => {
-    return typeof this.props.value !== 'undefined' ? this.props.value : this.state.value;
+    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
+  };
+
+  handleFocus = (e) => {
+    if(this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+
+    this.setState({ active: true });
+  };
+
+  handleBlur = (e) => {
+    if(this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+
+    this.setState({ active: false });
   };
 
   handleChange = (e) => {
-    // Firefox calls handle change after escape while other browsers don't. Hacky fix
-    if(this.state.isEscape) { return; }
-
+    const { value } = e.target;
     if(this.props.onChange) {
-      this.props.onChange(e.target.value, e);
+      this.props.onChange(value, e);
     }
 
-    let state = { value: e.target.value };
+    if(typeof this.props.value !== 'undefined') { return; }
+    let state = { value };
 
-    const { rows, maxRows } = this.props;
-    if(!rows || !maxRows) {
-      this.setState(state);
-      return;
-    }
-
-    const { textarea } = this.refs;
-    const { offsetHeight, scrollHeight } = textarea;
-    let { currentRows, height } = this.state;
-    if(scrollHeight <= (height || offsetHeight) || (maxRows !== -1 && currentRows >= maxRows)) { return; }
-
-    currentRows++;
-    state.currentRows = currentRows;
-    state.height = currentRows * this.lineHeight;
     this.setState(state);
   };
 
-  handleKeyDown = (e) => {
-    if((e.which || e.keyCode) === ESC) {
-      if(this.props.onChange) {
-        this.props.onChange('', e);
-      }
-      this.setState({ value: '', isEscape: true });
-    } else if(this.state.isEscape) {
-      this.setState({ isEscape: false });
-    }
-  };
-
   render() {
-    const { className, label, lineDirection, maxLength, floatingLabel, helpText, errorText, rows, maxRows, placeholder, icon, ...props } = this.props;
-    const { active, currentRows, height } = this.state;
-    const isError = !!errorText || (!!maxLength && this.getValue().length > maxLength);
-    const isHelpOnFocus = isPropEnabled(props, 'helpOnFocus');
-    const isInfoDisplayed = errorText || maxLength || (helpText && (!isHelpOnFocus || active));
-    const isTextArea = typeof rows === 'number';
-    const isFullWidth = isPropEnabled(props, 'fullWidth');
-
-    let style = {};
-    if(rows && maxRows) {
-      if(currentRows < maxRows || maxRows === -1) {
-        style.overflow = 'hidden';
-      }
-
-      if(height || this.lineHeight) {
-        style.height = `${height || this.lineHeight * rows}px`;
-      }
-    }
+    const { className, label, placeholder, maxLength, errorText, floatingLabel, icon, lineDirection, ...props } = this.props;
+    const { active } = this.state;
+    const value = this.getValue();
+    const error = !!errorText || (!maxLength && value.length > maxLength);
+    const required = isPropEnabled(props, 'required');
 
     let fontIcon;
     if(icon) {
       fontIcon = React.cloneElement(icon, {
-        className: classnames({
-          'active': active,
-          'error': isError,
-          'hint': !active && !this.getValue(),
+        className: classnames('md-text-field-icon', {
+          active,
+          error,
+          'normal': !!value,
         }),
       });
     }
 
+    const textFieldProps = {
+      value,
+      ...props,
+      className: classnames('md-text-field', { active }),
+      onFocus: this.handleFocus,
+      onBlur: this.handleBlur,
+      onKeyDown: this.handleKeyDown,
+      onChange: this.handleChange,
+    };
+
     return (
-      <div
+      <label
         className={classnames('md-text-field-container', className, {
-          'single-line': !isFullWidth && !isTextArea,
-          'no-label': !floatingLabel,
-          'multi-line': isTextArea,
-          'full-width': isFullWidth,
-          'inline-counter': isFullWidth && !isTextArea && maxLength,
-        })}>
-        <label className="md-text-field-label-container">
-          {fontIcon}
-          {floatingLabel && label &&
-          <TextFieldLabel
-            label={label}
-            active={active}
-            isError={isError}
-            value={this.getValue()}
-            required={isPropEnabled(props, 'required')}
-          />
-          }
-          {isTextArea ?
-            <textarea
-              {...props}
-              ref="textarea"
-              rows={rows}
-              style={style}
-              className={classnames('md-text-field', { 'active': active })}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onKeyDown={this.handleKeyDown}
-              value={this.getValue()}
-              onChange={this.handleChange}
-              placeholder={placeholder}
-            /> :
-            <input
-              {...props}
-              className={classnames('md-text-field', { 'active': active, 'chrome': this.isChrome })}
-              onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
-              onKeyDown={this.handleKeyDown}
-              value={this.getValue()}
-              onChange={this.handleChange}
-              placeholder={!floatingLabel ? label : placeholder}
-            />
-          }
-          {!isFullWidth &&
-            <TextFieldDivider active={active} isError={isError} lineDirection={lineDirection} />
-          }
-        </label>
-        {isInfoDisplayed &&
-          <TextFieldInfo
-            value={this.getValue()}
-            isError={isError}
-            text={errorText || helpText}
-            maxLength={maxLength}
-            isHelpOnFocus={isHelpOnFocus}
-            active={active}
-          />
+        })}
+      >
+        {fontIcon}
+        {floatingLabel && label &&
+        <FloatingLabel
+          label={label}
+          active={active}
+          error={error}
+          required={required}
+          value={value}
+        />
         }
-      </div>
+        <input
+          {...textFieldProps}
+          placeholder={!floatingLabel ? label : placeholder}
+        />
+        <TextDivider
+          active={active}
+          error={error}
+          lineDirection={lineDirection}
+        />
+      </label>
     );
   }
 }
