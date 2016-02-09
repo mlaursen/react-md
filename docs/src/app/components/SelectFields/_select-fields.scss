@@ -2,13 +2,13 @@
 
 @media only screen and (min-width: 0) and (max-width: 599px) {
   .addr-inline {
-    padding-left: $md-text-field-mobile-icon-divider-left;
+    padding-left: 8px;
   }
 }
 
 @media only screen and (min-width: 600px) {
   .addr-inline {
-    padding-left: $md-text-field-desktop-icon-divider-left;
+    padding-left: 8px;
   }
 }
 

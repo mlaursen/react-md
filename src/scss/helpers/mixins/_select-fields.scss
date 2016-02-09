@@ -5,7 +5,6 @@
 /// @param {String} $padding - The overall padding that should be used. It will be divided by 2
 /// @param {String} $divider-bottom - The bottom position of the divider in the select field
 @mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) {
-  .md-form .md-select-field,
   .md-select-field.text-field-positioned {
     font-size: $font-size;
     height: $height;

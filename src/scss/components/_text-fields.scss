@@ -1,15 +1,26 @@
 .md-text-field-container {
-  height: 72px;
   position: relative;
+
+  &.single-line {
+
+    .md-text-field {
+      padding-top: 16px;
+    }
+  }
+}
+
+.md-text-field,
+.md-floating-label {
+  line-height: 1;
 }
 
 .md-text-field {
   background: none;
   border: 0;
-  font-size: 16px;
-  padding-bottom: 16px;
-  padding-top: 16 + 13 + 8px;
+  display: inline-block;
+  padding-top: $md-text-field-floating-label-top;
   resize: none;
+  vertical-align: top;
 
   &:focus {
     outline: none;
@@ -32,14 +43,12 @@
 }
 
 .md-floating-label {
-  font-size: 16px;
-  top: 16 + 13 + 8px;
+  top: $md-text-field-floating-label-top;
   transition-duration: $md-transition-time;
   transition-property: font-size, color, top;
 
   &.active {
-    font-size: 13px;
-    top: 16px;
+    font-size: $md-text-field-active-font-size;
   }
 }
 
@@ -47,7 +56,6 @@
   @extend %full-width;
 
   background: $md-border-color;
-  bottom: 8px;
   height: 1px;
 
   &.from-left:after {
@@ -67,15 +75,18 @@
     display: block;
     height: $md-text-field-divider-height;
     transition: width $md-transition-time;
-    visibility: hidden;
     width: 0;
   }
 
   &.active:after {
-    @extend %full-width;
-
-    visibility: visible;
+    width: 100%;
   }
+}
+
+.md-text-field-icon {
+  margin-right: $md-text-field-icon-margin;
+  transition-duration: $md-transition-time;
+  transition-property: color;
 }
 //.md-text-field-container {
 //  @extend %full-width;

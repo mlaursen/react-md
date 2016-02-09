@@ -1,48 +1,66 @@
+@mixin make-text-field-with-font-size($name, $font-size, $media-font-size, $fl-height, $sl-height) {
+  .#{$name} {
+    .md-floating-label,
+    .md-text-field {
+      font-size: $font-size;
+    }
+
+    .md-text-field {
+      height: $fl-height + ($font-size - $media-font-size);
+    }
+  }
+
+  .md-text-field-container.single-line.#{$name} .md-text-field {
+    height: $sl-height + ($font-size - $media-font-size);
+  }
+}
+
 /// Creates a text field
 ///
 /// @param {Number} $fl-height - The height of the text field with a floating label.
-/// @param {Number} $nl-height - The height of the text field without a floating label (single line).
+/// @param {Number} $sl-height - The height of the text field without a floating label (single line).
 /// @param {String} $font-size - The font size for the text field.
 /// @param {String} $padding - The padding to be used on the text field and the label.
-/// @param {String} $divider-bottom - The distance the divider is from the bottom of the text field container.
-/// @param {String} $icon-font-size - The font size for the single line text field with an icon
-/// @param {String} $icon-divider-left - The left position for the text field divider when there is an icon.
-@mixin make-text-field($fl-height, $nl-height, $font-size, $padding, $divider-bottom, $icon-font-size, $icon-divider-left) {
-  //.md-text-field-container {
-  //  .md-icon {
-  //    $left: $icon-font-size + (($nl-height - $icon-font-size) / 2) + ($nl-height - $icon-font-size);
-  //    font-size: $icon-font-size;
-  //    padding: ($nl-height - $icon-font-size) / 2;
-  //    padding-right: $nl-height - $icon-font-size;
+/// @param {String} $divider-padding - The padding to use for the text-field-divider at the bottom of the text field.
+@mixin make-text-field($fl-height, $sl-height, $font-size, $padding, $divider-padding) {
+  @include make-text-field-with-font-size(md-title-text-field, $md-text-field-title-font-size, $font-size, $fl-height, $sl-height);
 
-  //    ~ .md-text-field,
-  //    ~ .md-text-field-divider {
-  //      width: calc(100% - #{$left});
-  //    }
+  .md-text-field,
+  .md-floating-label {
+    font-size: $font-size;
+  }
 
-  //    ~ .md-text-field-divider {
-  //      left: $left;
-  //    }
-  //  }
-  //}
+  .md-text-field-container {
+    &.single-line .md-text-field {
+      height: $sl-height;
+    }
+  }
 
-  //.md-text-field-container.single-line {
-  //  .md-text-field-label-container {
-  //    height: $fl-height;
-  //  }
+  .md-text-field {
+    height: $fl-height;
+    padding-bottom: $padding;
+  }
 
-  //  .md-text-field-label.active {
-  //    bottom: $fl-height - $font-size - $padding;
-  //  }
+  .md-floating-label.active {
+    top: $padding;
+  }
 
-  //  .md-text-field-divider {
-  //    bottom: $divider-bottom;
-  //  }
+  $icon-padding: ($sl-height - $md-font-icon-size) / 2;
 
-  //  .md-text-field,
-  //  .md-text-field-label {
-  //    bottom: $padding;
-  //  }
+  .md-text-divider {
+    bottom: $divider-padding;
+
+    &.icon-offset {
+      $offset: $sl-height + $md-text-field-icon-margin;
+
+      left: $offset;
+      width: calc(100% - #{$offset});
+    }
+  }
+
+  .md-text-field-icon {
+    padding: $icon-padding;
+  }
 
   //  &:not(.no-label) .md-icon {
   //    padding-top: $fl-height - $icon-font-size - $padding;
@@ -101,9 +119,7 @@
     $md-text-field-mobile-sl-height,
     $md-text-field-mobile-font-size,
     $md-text-field-mobile-padding,
-    $md-text-field-mobile-divider-padding,
-    $md-text-field-mobile-icon-font-size,
-    $md-text-field-mobile-icon-divider-left
+    $md-text-field-mobile-divider-padding
   );
 }
 
@@ -119,9 +135,7 @@
     $md-text-field-desktop-sl-height,
     $md-text-field-desktop-font-size,
     $md-text-field-desktop-padding,
-    $md-text-field-desktop-divider-padding,
-    $md-text-field-desktop-icon-font-size,
-    $md-text-field-desktop-icon-divider-left
+    $md-text-field-desktop-divider-padding
   );
 }
 

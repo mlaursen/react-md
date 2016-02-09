@@ -113,6 +113,8 @@ export default class TextField extends Component {
     return (
       <label
         className={classnames('md-text-field-container', className, {
+          'single-line': !floatingLabel,
+          'multi-line': false,
         })}
       >
         {fontIcon}
@@ -130,6 +132,7 @@ export default class TextField extends Component {
           placeholder={!floatingLabel ? label : placeholder}
         />
         <TextDivider
+          icon={!!icon}
           active={active}
           error={error}
           lineDirection={lineDirection}

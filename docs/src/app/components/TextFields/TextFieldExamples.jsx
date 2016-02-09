@@ -14,7 +14,8 @@ export default class TextFieldExamples extends Component {
   render() {
     return (
       <div>
-        <TextField label="Title" />
+        <TextField label="Title" className="md-title-text-field" />
+        <TextField label="Title" className="md-title-text-field" floatingLabel={false} />
         <TextField
           label="Title"
           helpText="I am help text that appears only on focus."
