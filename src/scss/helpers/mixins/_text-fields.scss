@@ -7,11 +7,11 @@
 
     .md-text-field {
       height: $fl-height + ($font-size - $media-font-size);
-    }
-  }
 
-  .md-text-field-container.single-line.#{$name} .md-text-field {
-    height: $sl-height + ($font-size - $media-font-size);
+      &.single-line {
+        height: $sl-height + ($font-size - $media-font-size);
+      }
+    }
   }
 }
 
@@ -30,22 +30,31 @@
     font-size: $font-size;
   }
 
-  .md-text-field-container {
-    &.single-line .md-text-field {
-      height: $sl-height;
-    }
-  }
-
   .md-text-field {
     height: $fl-height;
     padding-bottom: $padding;
+
+    &.single-line {
+      height: $sl-height;
+      padding-top: $padding;
+    }
+
+    &.multi-line {
+      margin-bottom: $padding;
+    }
+
+    &.full-width {
+      padding: $padding + 4;
+
+      &:not(.multi-line) {
+        height: $fl-height - $padding;
+      }
+    }
   }
 
   .md-floating-label.active {
     top: $padding;
   }
-
-  $icon-padding: ($sl-height - $md-font-icon-size) / 2;
 
   .md-text-divider {
     bottom: $divider-padding;
@@ -59,52 +68,12 @@
   }
 
   .md-text-field-icon {
-    padding: $icon-padding;
+    padding: ($sl-height - $md-font-icon-size) / 2;
+
+    &.with-floating-label {
+      vertical-align: bottom;
+    }
   }
-
-  //  &:not(.no-label) .md-icon {
-  //    padding-top: $fl-height - $icon-font-size - $padding;
-  //  }
-
-
-  //  &.no-label {
-  //    .md-text-field-label-container {
-  //      height: $nl-height;
-  //    }
-
-  //    .md-text-field-label.active {
-  //      bottom: $nl-height - $font-size - $padding;
-  //    }
-  //  }
-  //}
-
-  //.md-text-field,
-  //.md-text-field-label {
-  //  font-size: $font-size;
-  //}
-
-  //.md-text-field-container.multi-line {
-
-  //  .md-text-field-label {
-  //    display: block;
-  //    padding-bottom: $padding / 2;
-  //  }
-
-  //  .md-text-field {
-  //    transition: height $md-transition-time;
-  //  }
-
-  //  .md-text-field-divider {
-  //    margin-bottom: $padding / 2 - 1;
-  //    margin-top: $padding / 2 - 1;
-  //  }
-  //}
-
-  //.md-text-field-container.full-width {
-  //  .md-text-field {
-  //    padding: $padding;
-  //  }
-  //}
 }
 
 /// Generates css for a text field on mobile devices
@@ -147,12 +116,12 @@
 /// @example scss - Example Usage CSS Output
 ///  .md-text-field-label,
 ///  .md-text-field-icon,
-///  .md-text-field-info {
+///  .md-text-field-message {
 ///    color: rgba(0, 0, 0, 0.54);
 ///  }
 ///
 ///  .md-floating-label.error,
-///  .md-text-field-info.error,
+///  .md-text-field-message.error,
 ///  .md-text-field-icon.error {
 ///    color: #f44336;
 ///  }
@@ -178,7 +147,7 @@
 ///        underlines, icons, floating labels and error message text when there is an error.
 @mixin md-theme-text-fields($color: get-md-color($md-primary-color), $hint-color: $md-secondary-text-color, $error-color: get-md-color(red)) {
   .md-floating-label,
-  .md-text-field-info,
+  .md-text-field-message,
   .md-text-field-icon {
     color: $hint-color;
 
