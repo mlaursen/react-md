@@ -44,10 +44,13 @@
     }
 
     &.full-width {
-      padding: $padding + 4;
+      padding-left: $padding + 4;
+      padding-right: $padding + 4;
 
       &:not(.multi-line) {
         height: $fl-height - $padding;
+        padding-bottom: $padding + 4;
+        padding-top: $padding + 4;
       }
     }
   }

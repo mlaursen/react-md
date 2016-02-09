@@ -42,6 +42,10 @@
     transition-duration: $md-transition-time;
     transition-property: height;
     width: 100%;
+
+    &.full-width {
+      margin: 0;
+    }
   }
 }
 

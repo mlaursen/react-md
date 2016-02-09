@@ -161,6 +161,7 @@ export default class TextField extends Component {
       value,
       className: classnames('md-text-field', {
         active,
+        'floating-label': floatingLabel,
         'single-line': !floatingLabel && !multiline,
         'multi-line': multiline,
         'full-width': fullWidth,
