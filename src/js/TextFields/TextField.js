@@ -111,33 +111,35 @@ export default class TextField extends Component {
     };
 
     return (
-      <label
+      <div
         className={classnames('md-text-field-container', className, {
           'single-line': !floatingLabel,
           'multi-line': false,
         })}
       >
-        {fontIcon}
-        {floatingLabel && label &&
-        <FloatingLabel
-          label={label}
-          active={active}
-          error={error}
-          required={required}
-          value={value}
-        />
-        }
-        <input
-          {...textFieldProps}
-          placeholder={!floatingLabel ? label : placeholder}
-        />
-        <TextDivider
-          icon={!!icon}
-          active={active}
-          error={error}
-          lineDirection={lineDirection}
-        />
-      </label>
+        <label>
+          {fontIcon}
+          {floatingLabel && label &&
+          <FloatingLabel
+            label={label}
+            active={active}
+            error={error}
+            required={required}
+            value={value}
+          />
+          }
+          <input
+            {...textFieldProps}
+            placeholder={!floatingLabel ? label : placeholder}
+          />
+          <TextDivider
+            icon={!!icon}
+            active={active}
+            error={error}
+            lineDirection={lineDirection}
+          />
+        </label>
+      </div>
     );
   }
 }

@@ -1,5 +1,7 @@
 .md-text-field-container {
+  display: inline-block;
   position: relative;
+  vertical-align: top;
 
   &.single-line {
 
@@ -37,8 +39,8 @@
   position: absolute;
 }
 
-.md-text-field-icon,
-.md-floating-label {
+.md-floating-label,
+.md-text-field-icon {
   color: $md-hint-text-color;
 }
 
