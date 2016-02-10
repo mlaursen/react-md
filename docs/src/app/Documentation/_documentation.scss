@@ -19,19 +19,18 @@ main {
   padding: 1em 2em;
 }
 
-.example {
-  .code-expander {
-    background: $md-background-color;
-    justify-content: center;
-  }
-}
-
 .documentation > .md-card {
   margin: 1em 0;
 
   > .md-card-text {
     color: $black-base;
   }
+}
+
+.markdown {
+  background: $md-background-color;
+  border-top: 1px solid $md-border-color;
+  overflow-y: auto;
 }
 
 .doc-toc {

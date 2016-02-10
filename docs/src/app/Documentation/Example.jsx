@@ -1,24 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Card, { CardText, CardTitle, CardActions } from 'react-md/lib/Cards';
-import { FlatButton } from 'react-md/lib/Buttons';
-import ExampleCode from './ExampleCode';
+import Card, { CardText, CardTitle } from 'react-md/lib/Cards';
 
-const MIN_LINES = 14;
-const DEFAULT_MAX_HEIGHT = Math.round(MIN_LINES * (14 * 1.453256)); // font-size and *random* line-height
 
 export default class Example extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      isExpanded: false,
-      maxHeight: DEFAULT_MAX_HEIGHT,
-    };
   }
 
   static propTypes = {
@@ -29,32 +20,19 @@ export default class Example extends Component {
     className: PropTypes.string,
   };
 
-  toggleExpanded = () => {
-    const { isExpanded } = this.state;
-    const maxHeight = isExpanded ? DEFAULT_MAX_HEIGHT : (ReactDOM.findDOMNode(this.refs.code).scrollHeight + 16);
-    this.setState({ isExpanded: !isExpanded, maxHeight });
-  };
-
   render() {
     const { children, markdown, marked, name, className, ...props } = this.props;
     const jsMarkdown = `\`\`\`js
 ${markdown}
     \`\`\``;
 
-    let actions;
-    if((jsMarkdown.match(/\n/g) || []).length > MIN_LINES) {
-      actions = (
-        <CardActions className="code-expander">
-          <FlatButton default onClick={this.toggleExpanded} label={`${this.state.isExpanded ? 'Retract' : 'Expand'} the example`} />
-        </CardActions>
-      );
-    }
     return (
-      <Card className={classnames('example', 'full-width', className)} {...props} raise={false}>
-        <CardTitle title={'Examples' + (name ? ' - ' + name : '')} />
+      <Card className={classnames('example', 'full-width', className)} {...props} raise={false} iconChildren="code">
+        <CardTitle title={'Examples' + (name ? ' - ' + name : '')} isExpander={true} />
+        <CardText expandable={true} className="markdown">
+          <section dangerouslySetInnerHTML={{ __html: marked(jsMarkdown) }} />
+        </CardText>
         <CardText>{children}</CardText>
-        <ExampleCode ref="code" marked={marked} markdown={jsMarkdown} {...this.state} />
-        {actions}
       </Card>
     );
   }

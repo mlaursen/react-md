@@ -24,8 +24,8 @@ export default function ExpandableCard() {
           subtitle="Subtitle"
         />
         <CardActions isExpander={true}>
-          <FlatButton>Action 1</FlatButton>
-          <FlatButton>Action 2</FlatButton>
+          <FlatButton label="Action 1" />
+          <FlatButton label="Action 1" />
         </CardActions>
         <CardText expandable={true}>
           {loremIpsum(4)}
@@ -36,7 +36,7 @@ export default function ExpandableCard() {
           aspectRatio={CardMedia.aspect.equal}
           overlay={(
             <CardActionOverlay
-              title="TItle goes here"
+              title="Title goes here"
               subtitle="Subtitle here"
               actions={[{ label: 'Action 1' }, { label: 'Action 2' }]}
             />
