@@ -69,7 +69,13 @@ export default class Card extends Component {
             expanderIndex = i;
           }
 
-          return (expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) ? null : <Height>{child}</Height>;
+          if(!child.props.expandable) {
+            return child;
+          } else if(expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) {
+            return null;
+          } else {
+            return <Height>{child}</Height>;
+          }
         })}
       </TransitionGroup>
     );

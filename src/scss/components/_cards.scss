@@ -104,6 +104,10 @@
   }
 }
 
+.card-expander {
+  justify-content: space-between;
+}
+
 .md-card-expander {
   $size: $md-icon-btn-size - $md-card-padding / 2;
   height: $size;
