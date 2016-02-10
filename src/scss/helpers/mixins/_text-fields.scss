@@ -5,7 +5,7 @@
       font-size: $font-size;
     }
 
-    .md-text-field {
+    .md-text-field:not(.multi-line) {
       height: $fl-height + ($font-size - $media-font-size);
 
       &.single-line {
@@ -31,8 +31,10 @@
   }
 
   .md-text-field {
-    height: $fl-height;
-    padding-bottom: $padding;
+    &:not(.multi-line) {
+      height: $fl-height;
+      padding-bottom: $padding;
+    }
 
     &.single-line {
       height: $sl-height;
@@ -49,8 +51,11 @@
 
       &:not(.multi-line) {
         height: $fl-height - $padding;
-        padding-bottom: $padding + 4;
-        padding-top: $padding + 4;
+      }
+
+      &.multi-line {
+        margin-bottom: $padding + 4;
+        margin-top: $padding + 4;
       }
     }
   }
