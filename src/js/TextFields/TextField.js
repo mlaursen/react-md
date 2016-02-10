@@ -38,6 +38,7 @@ export default class TextField extends Component {
     maxRows: PropTypes.number,
     errorText: PropTypes.string,
     helpText: PropTypes.string,
+    helpOnFocus: PropTypes.bool,
     maxLength: PropTypes.number,
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
@@ -125,7 +126,7 @@ export default class TextField extends Component {
     const { className, label, placeholder, maxLength, helpText, errorText, floatingLabel, icon, lineDirection, rows, maxRows, style, ...props } = this.props;
     const { active, currentRows, areaHeight } = this.state;
     const value = this.getValue();
-    const error = !!errorText || (!maxLength && value.length > maxLength);
+    const error = !!errorText || (maxLength && value.length > maxLength);
     const required = isPropEnabled(props, 'required');
     const helpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const multiline = typeof rows === 'number';
@@ -206,7 +207,8 @@ export default class TextField extends Component {
       <div
         className={classnames('md-text-field-container', className, {
           'full-width': fullWidth,
-          'with-message': !!textFieldMessage,
+          'single-line-full-width': fullWidth && !multiline,
+          'with-message': helpText || errorText,
         })}
       >
         <label className="md-text-field-label">

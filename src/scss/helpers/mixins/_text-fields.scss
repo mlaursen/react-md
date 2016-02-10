@@ -30,6 +30,11 @@
     font-size: $font-size;
   }
 
+  .md-text-field-container {
+    padding-left: $padding + 4;
+    padding-right: $padding + 4;
+  }
+
   .md-text-field {
     &:not(.multi-line) {
       height: $fl-height;
@@ -46,8 +51,6 @@
     }
 
     &.full-width {
-      padding-left: $padding + 4;
-      padding-right: $padding + 4;
 
       &:not(.multi-line) {
         height: $fl-height - $padding;

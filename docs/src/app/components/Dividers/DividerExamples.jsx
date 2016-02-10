@@ -32,13 +32,16 @@ export default function DividerExamples() {
           <TextField
             label="Subject"
             floatingLabel={false}
+            maxLength={80}
             fullWidth
           />
           <Divider />
           <TextField
             placeholder="Message"
-            rows={10}
+            rows={2}
+            maxRows={-1}
             fullWidth
+            maxLength={120}
           />
         </form>
       </FakePhone>

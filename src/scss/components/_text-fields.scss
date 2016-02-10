@@ -5,6 +5,19 @@
   &.with-message {
     width: $md-text-field-info-width;
   }
+
+  &.single-line-full-width {
+    align-items: center;
+    display: flex;
+
+    .md-text-field-label {
+      flex-grow: 1;
+    }
+
+    .md-text-field-message {
+      flex-shrink: 0;
+    }
+  }
 }
 
 .md-text-field-label {
