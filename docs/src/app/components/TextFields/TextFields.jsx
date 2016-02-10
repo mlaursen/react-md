@@ -21,25 +21,23 @@ export default class TextFields extends Component {
       <DocPage
         components={[{
           component: TextField,
-          desc: `If a user pressed the escape key, the text field will be cleared.
-          A text field is full width by default. If you want multiple inline, just set the style
-\`\`\`css
-.md-text-field-container {
-  display: inline-block;
-  max-width: $your-width;
-}
-\`\`\`
-          `,
           details: [{
             name: 'label',
             pt: 's',
             desc: `This will be the floating label, placeholder for the single line text field,
             or the label for the multiline text field.`,
           }, {
-            name: 'valueLink',
-            pt: 'shape({ value: string, requestChange: func })',
-            desc: `This is the optional valueLink to use for the text field. If a valueLink
-            is not given, the value and onChange will be handled by the component itself.`,
+            name: 'placeholder',
+            pt: 's',
+            desc: 'An optional placeholder for the text field.',
+          }, {
+            name: 'floatingLabel',
+            pt: 'ba',
+            desc: 'Boolean if the label is floating.',
+          }, {
+            name: 'icon',
+            pt: 'no',
+            desc: 'An optional icon to display before the text field.',
           }, {
             name: 'lineDirection',
             pt: `one(['left', 'right', 'center'])`,
@@ -86,18 +84,6 @@ export default class TextFields extends Component {
             desc: `An optional number of max rows for the multiline text field.
             The text field's height will continue to grow until the number of rows equals the
             max rows. Afterwards, the text field scrollbar will appear. A value of '-1' will let the textarea grow infinitely.`,
-          }, {
-            name: 'placeholder',
-            pt: 's',
-            desc: 'An optional placeholder for the text field.',
-          }, {
-            name: 'floatingLabel',
-            pt: 'ba',
-            desc: 'Boolean if the label is floating.',
-          }, {
-            name: 'icon',
-            pt: 'no',
-            desc: 'An optional icon to display before the text field.',
           }, {
             name: 'any remaining props',
             desc: 'Any of the remaining props will be passed into the input or textarea tag.',
