@@ -150,8 +150,6 @@ export default class App extends Component {
               key="typography"
               leftIcon={<FontIcon>text_fields</FontIcon>}
             />
-            <Divider />
-            <ListSubheader primaryText="References" />
             <ListItem
               component="a"
               primaryText="SASS Doc"
@@ -159,6 +157,21 @@ export default class App extends Component {
               key="sassdoc"
               leftAvatar={<Avatar src={`${imgPrefix}/sass-icon.png`} alt="SASS Icon" />}
             />
+            <Divider />
+            <ListSubheader primaryText="Components" />
+            {componentLinks.map(({ link, label }) => {
+              return (
+              <ListItem
+                component={Link}
+                to={`/${link}`}
+                className={classnames({ 'active': `/${link}` === pathname })}
+                key={link}
+                primaryText={label}
+              />
+              );
+            })}
+            <Divider />
+            <ListSubheader primaryText="References" />
             <ListItem
               component="a"
               primaryText="React"
@@ -173,21 +186,6 @@ export default class App extends Component {
               key="material-design"
               leftAvatar={<Avatar src="https://i.ytimg.com/vi/PAKCgvprpQ8/maxresdefault.jpg" alt="Google logo" />}
             />
-            <Divider />
-            <ListSubheader primaryText="Components" />
-          </List>
-          <List>
-            {componentLinks.map(({ link, label }) => {
-              return (
-              <ListItem
-                component={Link}
-                to={`/${link}`}
-                className={classnames({ 'active': `/${link}` === pathname })}
-                key={link}
-                primaryText={label}
-              />
-              );
-            })}
           </List>
         </Sidebar>
         <main className={classnames({ 'active': this.state.isOpen })}>
