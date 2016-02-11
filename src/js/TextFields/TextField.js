@@ -126,7 +126,7 @@ export default class TextField extends Component {
     const { className, label, placeholder, maxLength, helpText, errorText, floatingLabel, icon, lineDirection, rows, maxRows, style, ...props } = this.props;
     const { active, currentRows, areaHeight } = this.state;
     const value = this.getValue();
-    const error = !!errorText || (maxLength && value.length > maxLength);
+    const error = !!errorText || (!!maxLength && value.length > maxLength);
     const required = isPropEnabled(props, 'required');
     const helpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const multiline = typeof rows === 'number';
