@@ -138,16 +138,21 @@ main {
     @extend .md-display-1;
   }
 
-  &.documentation > pre {
+  h4 {
+    @extend .md-headline;
+  }
+
+  h5 {
+    @extend .md-title;
+  }
+
+  &.documentation > pre,
+  &.documentation > article > pre {
     margin-bottom: 10px;
   }
 
   p {
     @extend .md-body-1;
-  }
-
-  h4 {
-    @extend .md-title;
   }
 }
 

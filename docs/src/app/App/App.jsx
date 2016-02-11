@@ -92,6 +92,9 @@ export default class App extends Component {
       case `/${Customization.path}`:
         pageTitle = 'Customization';
         break;
+      case `/${Typography.path}`:
+        pageTitle = 'Typography';
+        break;
       case '/':
         pageTitle = 'react-md';
         break;
