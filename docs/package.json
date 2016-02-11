@@ -8,7 +8,7 @@
     "build:dev": "webpack --config webpack.config.js --progress --colors --inline",
     "build:prod": "NODE_ENV=production webpack --config webpack.config.js --progress --colors --inline",
     "build:prod:win": "set NODE_ENV=production&&webpack --config webpack.config.js --progress --colors --inline",
-    "sassdoc": "sassdoc ../src/scss -d ./src/www/sassdoc",
+    "sassdoc": "sassdoc ../src/scss --theme neat -d ./src/www/sassdoc",
     "sassdoc:watch": "watch 'npm run sassdoc' ../src/scss",
     "docs": "npm run build:prod && npm run sassdoc && gh-pages -d src/www",
     "docs:win": "npm run build:prod:win && npm run sassdoc && gh-pages -d src/www"
@@ -46,6 +46,7 @@
     "react-router": "^1.0.3",
     "sass-loader": "^3.1.2",
     "sassdoc": "^2.1.19",
+    "sassdoc-theme-neat": "0.0.2",
     "sasslint-loader": "0.0.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.10",
