@@ -21,6 +21,7 @@ export default class Dialogs extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Dialog,
           desc: [

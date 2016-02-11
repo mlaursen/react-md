@@ -19,6 +19,7 @@ export default class Cards extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Card,
           desc: `This component wraps all the card parts and adds expanding functionality

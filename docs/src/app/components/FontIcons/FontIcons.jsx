@@ -16,6 +16,7 @@ export default class FontIcons extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: FontIcon,
           details: [],

@@ -19,6 +19,7 @@ export default class SelectFields extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: SelectField,
           details: [{

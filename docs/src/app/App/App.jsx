@@ -1,9 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import marked from 'marked';
 import classnames from 'classnames';
-
-import { githubHref, hostPrefix, imgPrefix } from '../utils';
-import * as components from '../components';
+import { Link } from 'react-router';
 import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
 import Avatar from 'react-md/lib/Avatars';
 import FontIcon from 'react-md/lib/FontIcons';
@@ -13,13 +11,15 @@ import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
 import Divider from 'react-md/lib/Dividers';
 import { isMobile } from 'react-md/lib/utils';
 
-import GettingStarted from '../GettingStarted';
-import Customization from '../Customization';
-
 import './_app.scss';
 import '../Documentation/_markdown.scss';
 import '../Documentation/_prop-types.scss';
 import '../Documentation/_documentation.scss';
+
+import * as components from '../components';
+import { githubHref, hostPrefix, imgPrefix } from '../utils';
+import GettingStarted from '../GettingStarted';
+import Customization from '../Customization';
 
 const componentLinks = Object.keys(components).map(k => {
   if(!components[k] || !components[k].name) { return; }
@@ -45,6 +45,20 @@ export default class App extends Component {
     location: PropTypes.object, // from react-router
   };
 
+  componentWillMount() {
+    marked.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
+      smartLists: true,
+      smartypants: false,
+      highlight: (code, lang) => require('highlight.js').highlight(lang, code).value, // eslint-disable-line no-undef
+    });
+  }
+
   componentWillUpdate({ location }, { isOpen }) {
     const { pathname } = this.props.location;
     if(pathname === location.pathname) { return; }
@@ -61,6 +75,10 @@ export default class App extends Component {
 
   toggleMenu = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  listItemClassName = (path) => {
+    return classnames({ 'active': this.props.location.pathname === `/${path}` });
   };
 
   render() {
@@ -98,7 +116,7 @@ export default class App extends Component {
           <List>
             <ListItem
               component={Link}
-              className={classnames({ 'active': '/' === pathname })}
+              className={this.listItemClassName('')}
               to="/"
               primaryText="Home"
               key="home-link"
@@ -106,7 +124,7 @@ export default class App extends Component {
             />
             <ListItem
               component={Link}
-              className={classnames({ 'active': pathname === `/${GettingStarted.path}` })}
+              className={this.listItemClassName(GettingStarted.path)}
               to={`/${GettingStarted.path}`}
               primaryText="Getting Started"
               key="getting-started"
@@ -114,7 +132,7 @@ export default class App extends Component {
             />
             <ListItem
               component={Link}
-              className={classnames({ 'active': pathname === `/${Customization.path}` })}
+              className={this.listItemClassName(Customization.path)}
               to={`/${Customization.path}`}
               primaryText="Customization"
               key="customization"
@@ -161,7 +179,7 @@ export default class App extends Component {
           </List>
         </Sidebar>
         <main className={classnames({ 'active': this.state.isOpen })}>
-          {React.cloneElement(this.props.children, { key: pathname })}
+          {React.cloneElement(this.props.children, { key: pathname, marked })}
         </main>
       </div>
     );

@@ -24,6 +24,7 @@ export default class Toolbars extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Toolbar,
           details: [{

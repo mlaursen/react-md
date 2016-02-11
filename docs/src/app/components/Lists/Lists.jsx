@@ -16,6 +16,7 @@ export default class Lists extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: List,
           details: [{

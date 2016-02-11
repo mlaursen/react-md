@@ -17,6 +17,7 @@ export default class Sliders extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Slider,
           details: [{

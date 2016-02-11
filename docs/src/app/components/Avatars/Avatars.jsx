@@ -17,6 +17,7 @@ export default class Avatars extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Avatar,
           details: [{

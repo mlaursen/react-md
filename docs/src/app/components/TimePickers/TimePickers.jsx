@@ -17,6 +17,7 @@ export default class TimePickers extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: TimePicker,
           details: [],

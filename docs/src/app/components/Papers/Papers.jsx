@@ -16,6 +16,7 @@ export default class Papers extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Paper,
           details: [{

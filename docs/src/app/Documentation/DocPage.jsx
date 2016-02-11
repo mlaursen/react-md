@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import marked from 'marked';
 import classnames from 'classnames';
 
 import Example from './Example';
@@ -35,28 +34,15 @@ export default class DocPage extends Component {
     })).isRequired,
     children: PropTypes.node.isRequired,
     allRemaining: PropTypes.bool,
+    marked: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     allRemaining: true,
   };
 
-  componentWillMount() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: false,
-      pedantic: false,
-      sanitize: false,
-      smartLists: true,
-      smartypants: false,
-      highlight: (code, lang) => require('highlight.js').highlight(lang, code).value, // eslint-disable-line no-undef
-    });
-  }
-
   render() {
-    const { sectionName, examples, children, components, allRemaining } = this.props;
+    const { sectionName, examples, children, components, allRemaining, marked } = this.props;
     const docSectionName = (sectionName || components[0].component.name);
     const cssSectionName = toDashedName(docSectionName);
     const title = toTitle(docSectionName);

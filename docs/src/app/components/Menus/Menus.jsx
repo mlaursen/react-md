@@ -19,6 +19,7 @@ export default class Menus extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Menu,
           details: [],

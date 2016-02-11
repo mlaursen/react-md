@@ -19,6 +19,7 @@ export default class Tabs extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: TabsMD,
           desc: `This is a wrapper component for rendering tabs with specific content. The tabs

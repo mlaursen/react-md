@@ -18,6 +18,7 @@ export default class Progress extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         sectionName="Progress"
         components={[{
           component: LinearProgress,

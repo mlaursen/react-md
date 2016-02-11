@@ -19,6 +19,7 @@ export default class TextFields extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: TextField,
           details: [{

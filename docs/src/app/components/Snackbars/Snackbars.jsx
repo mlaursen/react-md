@@ -16,6 +16,7 @@ export default class Snackbars extends Component {
   render() {
     return (
       <DocPage
+        {...this.props}
         components={[{
           component: Snackbar,
           desc: `A snackbar takes a queue of toasts and displays them to the user one after

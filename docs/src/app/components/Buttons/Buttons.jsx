@@ -51,6 +51,7 @@ export default class Buttons extends Component {
   render() {
     return (
      <DocPage
+        {...this.props}
         sectionName="Buttons"
         components={[{
           component: FlatButton,
