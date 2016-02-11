@@ -20,6 +20,7 @@ import * as components from '../components';
 import { githubHref, hostPrefix, imgPrefix } from '../utils';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
+import Typography from '../Typography';
 
 const componentLinks = Object.keys(components).map(k => {
   if(!components[k] || !components[k].name) { return; }
@@ -137,6 +138,14 @@ export default class App extends Component {
               primaryText="Customization"
               key="customization"
               leftIcon={<FontIcon>build</FontIcon>}
+            />
+            <ListItem
+              component={Link}
+              className={this.listItemClassName(Typography.path)}
+              to={`/${Typography.path}`}
+              primaryText="Typography"
+              key="typography"
+              leftIcon={<FontIcon>text_fields</FontIcon>}
             />
             <Divider />
             <ListSubheader primaryText="References" />

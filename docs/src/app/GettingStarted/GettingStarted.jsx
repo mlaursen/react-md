@@ -1,9 +1,9 @@
 import React from 'react';
 
-import DisplayReadme from '../DisplayReadme';
+import Markdown from '../Markdown';
 import readme from './README.md';
 
-const GettingStarted = (props) => <DisplayReadme {...props} readme={readme} />;
+const GettingStarted = (props) => <Markdown {...props} markdown={readme} className="documentation text-container" />;
 GettingStarted.path = 'getting-started';
 
 export default GettingStarted;

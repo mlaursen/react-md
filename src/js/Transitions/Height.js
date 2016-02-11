@@ -16,8 +16,8 @@ export default class Height extends Component {
   };
 
   static defaultProps = {
-    transitionEnterTimeout: 450,
-    transitionLeaveTimeout: 450,
+    transitionEnterTimeout: 150,
+    transitionLeaveTimeout: 150,
     increment: 15,
   };
 

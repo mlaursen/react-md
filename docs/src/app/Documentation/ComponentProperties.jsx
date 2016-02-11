@@ -6,6 +6,7 @@ import { IconButton } from 'react-md/lib/Buttons';
 
 import { githubHref } from '../utils';
 import { toDashedName, toTitle } from './utils';
+import Markdown from '../Markdown';
 
 export default class ComponentProperties extends Component {
   constructor(props) {
@@ -104,7 +105,7 @@ export default class ComponentProperties extends Component {
               {pt === 'ba' && <span className="prop-default">(This boolean can be enabled by just having the prop on the component)</span>}
             </div>
             }
-            <div className={classnames({ 'prop-desc': !isAnyOtherProps })} dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+            <Markdown marked={marked} markdown={desc} className={classnames({ 'prop-desc': !isAnyOtherProps })} />
           </td>
         </tr>
       );
@@ -116,7 +117,7 @@ export default class ComponentProperties extends Component {
       componentDescription = (
         <CardText>
           {descriptions.map((desc, i) => (
-            <p key={`component-desc-${i}`} dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+            <Markdown marked={marked} markdown={desc} key={`component-desc-${i}`} />
           ))}
         </CardText>
       );

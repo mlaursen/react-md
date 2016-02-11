@@ -1,9 +1,9 @@
 import React from 'react';
 
-import DisplayReadme from '../DisplayReadme';
+import Markdown from '../Markdown';
 import readme from './README.md';
 
-const Customization = (props) => <DisplayReadme {...props} readme={readme} />;
+const Customization = (props) => <Markdown {...props} markdown={readme} className="documentation text-container" />;
 Customization.path = 'customization';
 
 export default Customization;
