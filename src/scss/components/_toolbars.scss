@@ -25,8 +25,9 @@
 
   .md-title {
     color: inherit;
-    font-size: $md-toolbar-title-font-size;
+    font-weight: $md-font-medium;
     line-height: $md-toolbar-height;
+    margin: 0;
   }
 
   .action-area {

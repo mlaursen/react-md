@@ -136,8 +136,14 @@ main {
   // scss-lint:disable PlaceholderInExtend
   h3 {
     @extend .md-display-1;
+  }
 
-    margin-top: 1em;
+  &.documentation > pre {
+    margin-bottom: 10px;
+  }
+
+  p {
+    @extend .md-body-1;
   }
 
   h4 {

@@ -1,5 +1,4 @@
-$include-md-icons: true !default;
-$include-md-font: true !default;
+$md-light-theme: true !default;
 
 /// The primary color
 /// @group Color
@@ -82,6 +81,27 @@ $md-transition-time: .15s !default;
 /// @group transitions
 $md-transition-bounce: cubic-bezier(.5, 1.8, .9, .8) !default;
 
+$md-height: 48px;
+
+// Z Indexes
+/// @group overlay
+$md-overlay-z-index: 3 !default;
+/// @group dropdown
+$md-dropdown-z-index: 4 !default;
+/// @group sidebar
+$md-sidebar-z-index: 5 !default;
+/// @group toolbar
+$md-toolbar-z-index: 6 !default;
+/// @group snackbar
+$md-snackbar-z-index: 6 !default;
+
+$md-dialog-z-index: 26 !default;
+
+
+
+
+// =============================================
+// Typography
 /// The font family for the application
 /// @group typography
 $md-font-family: Roboto !default;
@@ -103,26 +123,42 @@ $md-font-medium: 500;
 /// The bold text weight
 /// @group typography
 $md-font-bold: 700;
-
 /// A list of all the text weights
 /// @group typography
 $md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
 
-$md-height: 48px;
 
-// Z Indexes
-/// @group overlay
-$md-overlay-z-index: 3 !default;
-/// @group dropdown
-$md-dropdown-z-index: 4 !default;
-/// @group sidebar
-$md-sidebar-z-index: 5 !default;
-/// @group toolbar
-$md-toolbar-z-index: 6 !default;
-/// @group snackbar
-$md-snackbar-z-index: 6 !default;
 
-$md-dialog-z-index: 26 !default;
+$md-display-4-font-size: 112px;
+$md-display-4-line-height: 128px;
+
+$md-display-3-font-size: 56px;
+$md-display-3-line-height: 84px;
+
+$md-display-2-font-size: 45px;
+$md-display-2-line-height: 48px;
+
+$md-display-1-font-size: 34px;
+$md-display-1-line-height: 40px;
+
+$md-headline-font-size: 24px;
+$md-headline-line-height: 32px;
+
+$md-title-font-size: 20px;
+$md-title-line-height: 28px;
+
+$md-subheading-mobile-font-size: 16px;
+$md-subheading-desktop-font-size: 15px;
+$md-subheading-2-line-height: 28px;
+$md-subheading-1-line-height: 24px;
+
+$md-body-mobile-font-size: 14px;
+$md-body-desktop-font-size: 13px;
+$md-body-2-line-height: 24px;
+$md-body-1-line-height: 20px;
+
+$md-caption-font-size: 12px;
+$md-line-height: 20 / $md-font-size-base;
 
 
 // =============================================
@@ -245,7 +281,6 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 // =============================================
 // Toolbar
 /// @group toolbar
-$md-toolbar-title-font-size: 18px !default;
 $md-toolbar-height: 64px !default;
 $md-toolbar-mobile-margin: 12px;
 $md-toolbar-deskop-margin: 12px;

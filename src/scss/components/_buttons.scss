@@ -1,12 +1,6 @@
-.md-icon {
-  font-size: $md-font-icon-size;
-}
-
 .md-btn {
   @extend %button-unstyled;
 
-  font-size: 14px;
-  font-weight: 500;
   height: $md-btn-height;
   overflow: hidden;
   padding: $md-btn-padding 1em;

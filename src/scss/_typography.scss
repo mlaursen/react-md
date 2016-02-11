@@ -1,8 +1,13 @@
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
-  font-family: $md-font;
-  line-height: 20 / $md-font-size-base;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+* {
+  font-family: $md-font;
+  line-height: $md-line-height;
 }
 
 html {
@@ -10,83 +15,144 @@ html {
   font-size: #{$md-font-size-base}px;
 }
 
-.md-display-4,
-.md-display-3,
-.md-display-2,
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 .md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
 .md-headline,
 .md-title,
-.md-subheader {
+.md-subheading-1,
+.md-subheading-2,
+.md-body-1,
+.md-body-2,
+.md-caption {
   margin: 0;
 }
 
-
-.md-display-4 {
-  font-size: #{112 / $md-font-size-base}em;
-  font-weight: $md-font-light;
-}
-
-
-.md-display-3,
-.md-display-2,
 .md-display-1,
-.md-headline {
-  font-weight: $md-font-regular;
-}
-
-.md-display-3 {
-  font-size: #{56 / $md-font-size-base}em;
-}
-
-.md-display-2 {
-  font-size: #{45 / $md-font-size-base}em;
-  //line-height: #{48 / $md-font-size-base};
-}
-
-.md-display-1 {
-  font-size: #{34 / $md-font-size-base}em;
-  //line-height: #{40 / $md-font-size-base};
-}
-
-.md-headline {
-  font-size: #{24 / $md-font-size-base}em;
-  //line-height: #{32 / $md-font-size-base};
-}
-
+.md-display-2,
+.md-display-3,
+.md-display-4,
+.md-headline,
 .md-title {
-  font-size: #{20 / $md-font-size-base}em;
-  font-weight: $md-font-medium;
-  //line-height: #{24 / $md-font-size-base};
-  margin: 1em 0;
-}
-
-caption,
-.md-caption {
-  font-size: #{12 / $md-font-size-base}em;
-}
-
-p,
-.md-body-1 {
-  font-size: #{14 / $md-font-size-base}em;
-  font-weight: $md-font-regular;
-  line-height: #{20 / $md-font-size-base};
-}
-
-.md-body-2 {
-  font-size: #{14 / $md-font-size-base}em;
-  font-weight: $md-font-medium;
-  line-height: #{24 / $md-font-size-base};
+  margin-bottom: #{$md-font-size-base}px;
 }
 
 .md-subheading-1,
-.md-subheading-2 {
-  font-size: #{16 / $md-font-size-base}em;
+.md-subheading-2,
+.md-body-1,
+.md-body-2,
+.md-caption {
+  margin-bottom: 10px;
 }
 
-p,
+
+
+.md-display-3,
+.md-display-4,
+.md-title {
+  white-space: nowrap;
+}
+
+.md-display-1,
+.md-display-2,
+.md-display-3,
 .md-headline,
+.md-subheading-1,
+.md-subheading-2,
+.md-body-1,
+.md-caption {
+  font-weight: $md-font-regular;
+}
+
+.md-btn,
 .md-title,
-[class^='md-subheading'],
-[class^='md-body'] {
-  color: $md-text-color;
+.md-body-2 {
+  font-weight: $md-font-medium;
+}
+
+.md-display-4 {
+  @extend %md-secondary-text;
+  @extend %md-tracking--10;
+
+  font-size: $md-display-4-font-size;
+  font-weight: $md-font-light;
+  line-height: $md-display-4-line-height;
+}
+
+.md-display-3 {
+  @extend %md-secondary-text;
+  @extend %md-tracking--5;
+
+  font-size: $md-display-3-font-size;
+  line-height: $md-display-3-line-height;
+}
+
+.md-display-2 {
+  @extend %md-secondary-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-display-2-font-size;
+  line-height: $md-display-2-line-height;
+}
+
+.md-display-1 {
+  @extend %md-secondary-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-display-1-font-size;
+  line-height: $md-display-1-line-height;
+}
+
+.md-headline {
+  @extend %md-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-headline-font-size;
+  line-height: $md-headline-line-height;
+}
+
+.md-title {
+  @extend %md-text;
+  @extend %md-tracking-5;
+
+  font-size: $md-title-font-size;
+  line-height: $md-title-line-height;
+}
+
+.md-subheading-2 {
+  @extend %md-text;
+  @extend %md-tracking-10;
+
+  line-height: $md-subheading-2-line-height;
+}
+
+.md-subheading-1 {
+  @extend %md-tracking-10;
+  @extend %md-text;
+
+  line-height: $md-subheading-1-line-height;
+}
+
+.md-btn,
+.md-body-1,
+.md-btn-2 {
+  @extend %md-tracking-10;
+}
+
+.md-caption {
+  @extend %md-secondary-text;
+  @extend %md-tracking-20;
+
+  font-size: $md-caption-font-size;
+}
+
+.md-icon {
+  font-size: $md-font-icon-size;
 }
