@@ -6,6 +6,7 @@
   @include md-tab-mobile();
   @include md-text-field-mobile();
   @include md-toolbar-mobile();
+  @include md-tooltips-mobile();
 }
 
 @media only screen and (min-width: 600px) {
@@ -16,4 +17,5 @@
   @include md-tab-desktop();
   @include md-text-field-desktop();
   @include md-toolbar-desktop();
+  @include md-tooltips-desktop();
 }

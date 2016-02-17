@@ -18,6 +18,7 @@ import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
 import TimePicker from './TimePickers';
 import Toolbar from './Toolbars';
+import Tooltip from './Tooltips';
 
 export { Avatar };
 export { Card };
@@ -53,6 +54,7 @@ export { TextField };
 export { Tab };
 export { Tabs };
 export { Toolbar };
+export { Tooltip };
 
 export default {
   Avatar,
@@ -91,4 +93,5 @@ export default {
   TextField,
   TimePicker,
   Toolbar,
+  Tooltip,
 };

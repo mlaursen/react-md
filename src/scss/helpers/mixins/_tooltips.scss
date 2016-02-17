@@ -1,0 +1,27 @@
+@mixin md-tooltips-mobile() {
+  .md-tooltip {
+    height: $md-tooltip-mobile-height;
+    padding-left: $md-tooltip-mobile-lr-padding;
+    padding-right: $md-tooltip-mobile-lr-padding;
+    top: calc(100% + #{$md-tooltip-mobile-offset});
+  }
+
+  .md-tooltip-text {
+    font-size: $md-tooltip-mobile-font-size;
+    line-height: $md-tooltip-mobile-height;
+  }
+}
+
+@mixin md-tooltips-desktop() {
+  .md-tooltip {
+    height: $md-tooltip-desktop-height;
+    padding-left: $md-tooltip-desktop-lr-padding;
+    padding-right: $md-tooltip-desktop-lr-padding;
+    top: calc(100% + #{$md-tooltip-desktop-offset});
+  }
+
+  .md-tooltip-text {
+    font-size: $md-tooltip-desktop-font-size;
+    line-height: $md-tooltip-desktop-height;
+  }
+}

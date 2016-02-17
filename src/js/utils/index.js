@@ -143,4 +143,7 @@ export function fuzzyFilter(items, word, key = null) {
   });
 }
 
+export const focusableQueryStr = ['input', 'select', 'textarea', 'button'].map(e => `${e}:not([disabled])`).concat(['a[href]', 'area[href]', 'iframe', '[tabindex]', '[contentEditable=true]']).map(el => el + ':not([tabindex=\'-1\'])').join(',');
+export const getFirstFocusable = el => el.querySelector(focusableQueryStr);
+
 export * from './dates';

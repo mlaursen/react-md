@@ -1,0 +1,28 @@
+.md-tooltip-container {
+  display: inline-block;
+  position: relative;
+}
+
+*:hover + .md-tooltip,
+.md-tooltip.active {
+  opacity: .9;
+  transform: none;
+}
+
+.md-tooltip {
+  background: get-md-color(grey, 8);
+  opacity: 0;
+  position: absolute;
+  transform: translateY(-10px) scaleY(0);
+  transform-origin: 50% 0;
+  transition-duration: $md-transition-time;
+  transition-property: opacity, transform;
+  z-index: 22;
+}
+
+.md-tooltip-text {
+  color: $white-base;
+  display: block;
+  font-weight: $md-font-medium;
+  white-space: nowrap;
+}
