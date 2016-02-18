@@ -73,8 +73,12 @@
     padding: 0;
   }
 
-  .md-display-1 {
+  .md-display-1,
+  .md-display-3 {
     color: inherit;
+  }
+
+  .md-display-1 {
     font-weight: 500;
     text-align: left;
   }
