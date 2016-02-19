@@ -5,7 +5,7 @@ import Tooltip from 'react-md/lib/Tooltips';
 import DocPage from 'react-md-documentation';
 import TooltipExamples from './TooltipExamples';
 import TooltipExamplesRaw from '!!raw!./TooltipExamples';
-//import './_tooltip.scss';
+import './_tooltip.scss';
 
 export default class Tooltips extends Component {
   constructor(props) {

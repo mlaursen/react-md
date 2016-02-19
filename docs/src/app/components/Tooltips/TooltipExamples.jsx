@@ -12,7 +12,19 @@ const TooltipExamples = () => {
       </div>
       <div className="md-tooltip-container">
         <FontIcon>print</FontIcon>
+        <Tooltip text="Print" direction="top" />
+      </div>
+      <div className="md-tooltip-container">
+        <FontIcon>print</FontIcon>
+        <Tooltip text="Print" direction="right" />
+      </div>
+      <div className="md-tooltip-container">
+        <FontIcon>print</FontIcon>
         <Tooltip text="Print" />
+      </div>
+      <div className="md-tooltip-container">
+        <FontIcon>print</FontIcon>
+        <Tooltip text="Print" direction="left" />
       </div>
       <div className="md-tooltip-container">
         <a href="#">Some link</a>

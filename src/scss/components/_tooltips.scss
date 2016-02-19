@@ -13,11 +13,31 @@
   background: get-md-color(grey, 8);
   opacity: 0;
   position: absolute;
-  transform: translateY(-10px) scaleY(0);
-  transform-origin: 50% 0;
   transition-duration: $md-transition-time;
   transition-property: opacity, transform;
   z-index: 22;
+}
+
+.md-tooltip-top {
+  transform: translateY(10px) scaleY(0);
+  transform-origin: 50% 100%;
+}
+
+.md-tooltip-right {
+  top: 0;
+  transform: translateX(-10px) scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.md-tooltip-bottom {
+  transform: translateY(-10px) scaleY(0);
+  transform-origin: 50% 0;
+}
+
+.md-tooltip-left {
+  top: 0;
+  transform: translateX(10px) scaleX(0);
+  transform-origin: 100% 50%;
 }
 
 .md-tooltip-text {

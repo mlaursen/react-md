@@ -19,6 +19,11 @@ export default class Tooltip extends Component {
   static propTypes = {
     className: PropTypes.string,
     text: PropTypes.string.isRequired,
+    direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+  };
+
+  static defaultProps = {
+    direction: 'bottom',
   };
 
   componentDidMount() {
@@ -76,12 +81,12 @@ export default class Tooltip extends Component {
   };
 
   render() {
-    const { text, className, ...props } = this.props;
+    const { text, className, direction, ...props } = this.props;
     const { active } = this.state;
     return (
       <div
         ref="tooltip"
-        className={classnames('md-tooltip', className, { active })}
+        className={classnames('md-tooltip', className, `md-tooltip-${direction}`, { active })}
         {...props}
       >
         <span ref="text" className="md-tooltip-text" style={this.state.style}>{text}</span>
