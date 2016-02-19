@@ -36,6 +36,7 @@ export default class Tooltip extends Component {
     let parent = tooltip.parentNode;
     if(window.getComputedStyle(parent).getPropertyValue('position') === 'relative') {
       const el = getFirstFocusable(parent);
+      if(!el) { return; }
       el.addEventListener('keyup', this.handleFocusableKeydown);
       el.addEventListener('blur', this.handleFocusableBlur);
 
