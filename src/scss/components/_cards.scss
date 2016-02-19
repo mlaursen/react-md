@@ -81,11 +81,11 @@
     margin: 0;
   }
 
-  // scss-lint:disable PlaceholderInExtend
   .md-subheader {
     color: $md-secondary-text-color;
-    font-size: 16em / $md-font-size-base;
+    font-size: $md-card-title-size-small;
     font-weight: $md-font-regular;
+    margin: 0;
   }
 }
 

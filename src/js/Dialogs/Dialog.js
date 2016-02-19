@@ -72,7 +72,7 @@ export default class Dialog extends Component {
 
     let header, footer;
     if(!onlyChildren && !isFullPage && title) {
-      header = <h2 className="md-title">{title}</h2>;
+      header = <h1 className="md-title">{title}</h1>;
     } else if(isFullPage) {
       header = (
         <Toolbar

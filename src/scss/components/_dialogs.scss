@@ -68,6 +68,11 @@
   p {
     margin: 0;
   }
+
+  .md-title {
+    margin-bottom: 0;
+    white-space: initial;
+  }
 }
 
 .md-dialog-footer {
@@ -101,7 +106,7 @@
   }
 
   .md-list {
-    color: $black-base;
+    color: $md-text-color;
     padding-bottom: 8px;
   }
 
