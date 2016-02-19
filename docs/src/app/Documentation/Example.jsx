@@ -3,8 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import Card, { CardText, CardTitle } from 'react-md/lib/Cards';
-import Markdown from '../Markdown';
-
 
 export default class Example extends Component {
   constructor(props) {
@@ -30,9 +28,7 @@ ${markdown}
     return (
       <Card className={classnames('example', 'full-width', className)} {...props} raise={false} iconChildren="code">
         <CardTitle title={'Examples' + (name ? ' - ' + name : '')} isExpander={true} />
-        <CardText expandable={true} className="markdown">
-          <Markdown marked={marked} markdown={jsMarkdown} />
-        </CardText>
+        <CardText expandable={true} className="markdown" dangerouslySetInnerHTML={{ __html: marked(jsMarkdown)}} />
         <CardText>{children}</CardText>
       </Card>
     );
