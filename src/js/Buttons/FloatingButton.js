@@ -3,8 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils';
-import Button from './Button';
-import FontIcon from '../FontIcons';
+import IconButton from './IconButton';
 
 export default class FloatingButton extends Component {
   constructor(props) {
@@ -23,9 +22,15 @@ export default class FloatingButton extends Component {
   render() {
     const { iconClassName, children, className, ...props } = this.props;
     return (
-      <Button floating {...props} className={classnames(className, { 'fixed': isPropEnabled(props, 'fixed') })}>
-        <FontIcon iconClassName={iconClassName} children={children} />
-      </Button>
+      <IconButton
+        className={classnames('md-floating-btn', className, {
+          'fixed': isPropEnabled(props, 'fixed'),
+        })}
+        iconClassName={iconClassName}
+        {...props}
+      >
+        {children}
+      </IconButton>
     );
   }
 }
