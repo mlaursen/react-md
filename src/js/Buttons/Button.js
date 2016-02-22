@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 
 import { isPropEnabled, mergeClassNames } from '../utils';
 import { TAB } from '../constants/keyCodes';
@@ -69,19 +68,15 @@ export default class Button extends Component {
   render() {
     const { className, iconBefore, label, children, ...props } = this.props;
     const { focused } = this.state;
-    const isDisabled = isPropEnabled(props, 'disabled');
+    const disabled = isPropEnabled(props, 'disabled');
     return (
       <button
         {...props}
         onKeyUp={this.handleKeyUp}
         onBlur={this.handleBlur}
-        className={classnames(mergeClassNames(props, className, 'md-btn'), {
-          'md-floating-btn': isPropEnabled(props, 'floating'),
-          'md-flat-btn': !isDisabled && isPropEnabled(props, 'flat'),
-          'md-raised-btn': !isDisabled && isPropEnabled(props, 'raised'),
-        })}
+        className={mergeClassNames(props, 'md-btn', className)}
         >
-        <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} focused={focused} />
+        <Ink key="ink" disabled={disabled} focused={focused} />
         {this.renderChildren()}
       </button>
     );

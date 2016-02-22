@@ -49,13 +49,15 @@
 
 
 .md-raised-btn {
-  @include md-box-shadow(1);
-
   border-radius: 2px;
   min-width: $md-btn-raised-min-width;
 
-  &:active {
-    @include md-box-shadow(4);
+  &:not([disabled]) {
+    @include md-box-shadow(1);
+
+    &:active {
+      @include md-box-shadow(4);
+    }
   }
 }
 
@@ -91,7 +93,6 @@
     transition-duration: $md-transition-time * 2;
     transition-property: box-shadow, background, transform, bottom;
 
-    // scss-lint:disable NestingDepth
     &.snackbar-adjust {
       bottom: $md-default-padding + $md-snackbar-height;
     }

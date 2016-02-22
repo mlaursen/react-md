@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
 import Button from './Button';
 
@@ -11,6 +12,7 @@ export default class FlatButton extends Component {
   }
 
   static propTypes = {
+    className: PropTypes.string,
     icon: PropTypes.string,
     iconBefore: PropTypes.bool,
   };
@@ -20,6 +22,7 @@ export default class FlatButton extends Component {
   };
 
   render() {
-    return <Button flat {...this.props} />;
+    const { className, ...props } = this.props;
+    return <Button {...props} className={classnames('md-flat-btn', className)} />;
   }
 }
