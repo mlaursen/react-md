@@ -6,6 +6,7 @@ import { isPropEnabled } from '../utils';
 import { TAB } from '../constants/keyCodes';
 import FontIcon from '../FontIcons';
 import Ink from '../Inks';
+import Tooltip from '..//Tooltips';
 
 export default class IconButton extends Component {
   constructor(props) {
@@ -22,8 +23,9 @@ export default class IconButton extends Component {
     onClick: PropTypes.func,
     onBlur: PropTypes.func,
     onKeyUp: PropTypes.func,
-    tooltipPosition: PropTypes.string,
     tooltip: PropTypes.string,
+    tooltipClassName: PropTypes.string,
+    tooltipPosition: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
     onClickInkMouseDown: PropTypes.bool,
@@ -54,13 +56,13 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { iconClassName, children, className, href, type, onClickInkMouseDown, ...props } = this.props;
+    const { iconClassName, children, className, href, type, onClickInkMouseDown, tooltip, tooltipClassName, tooltipPosition, ...props } = this.props;
     let btnProps = {
       ...props,
       onClick: this.handleClick,
       onKeyUp: this.handleKeyUp,
       onBlur: this.handleBlur,
-      className: classnames(className, 'md-btn', 'md-icon-btn'),
+      className: classnames('md-btn', 'md-icon-btn', className),
     };
 
     if(onClickInkMouseDown) {
@@ -73,9 +75,18 @@ export default class IconButton extends Component {
       btnProps.type = type;
     }
 
-    return React.createElement(href ? 'a' : 'button', btnProps, [
+    const button = React.createElement(href ? 'a' : 'button', btnProps, [
       <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} onClick={onClickInkMouseDown ? this.handleClick : null} focused={this.state.focused} />,
       children && children.type && children.type === FontIcon ? children : <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
     ]);
+    if(tooltip) {
+      return (
+        <Tooltip text={tooltip} position={tooltipPosition} className={tooltipClassName}>
+          {button}
+        </Tooltip>
+      );
+    } else {
+      return button;
+    }
   }
 }
