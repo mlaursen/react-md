@@ -27,6 +27,8 @@ export default class Button extends Component {
     secondary: PropTypes.bool,
     disabled: PropTypes.bool,
     iconBefore: PropTypes.bool,
+    onKeyUp: PropTypes.func,
+    onBlur: PropTypes.func,
   };
 
   static defaultProps = {
@@ -35,12 +37,14 @@ export default class Button extends Component {
   };
 
   handleKeyUp = (e) => {
+    if(this.props.onKeyUp) { this.props.onKeyUp(e); }
     if((e.keyCode || e.which) === TAB) {
       this.setState({ focused: true });
     }
   };
 
-  handleBlur = () => {
+  handleBlur = (e) => {
+    if(this.props.onBlur) { this.props.onBlur(e); }
     this.setState({ focused: false });
   };
 
