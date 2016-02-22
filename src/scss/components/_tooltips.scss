@@ -3,12 +3,6 @@
   position: relative;
 }
 
-*:hover + .md-tooltip,
-.md-tooltip.active {
-  opacity: .9;
-  transform: none;
-}
-
 .md-tooltip {
   background: get-md-color(grey, 8);
   opacity: 0;
@@ -16,6 +10,11 @@
   transition-duration: $md-transition-time;
   transition-property: opacity, transform;
   z-index: 22;
+
+  &.active {
+    opacity: .9;
+    transform: none;
+  }
 }
 
 .md-tooltip-top {
@@ -24,7 +23,6 @@
 }
 
 .md-tooltip-right {
-  top: 0;
   transform: translateX(-10px) scaleX(0);
   transform-origin: 0 50%;
 }
@@ -35,7 +33,6 @@
 }
 
 .md-tooltip-left {
-  top: 0;
   transform: translateX(10px) scaleX(0);
   transform-origin: 100% 50%;
 }

@@ -1,33 +1,45 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
-import { getFirstFocusable } from '../utils';
 
 const DESKTOP_FONT_SIZE = 10;
 const MOBILE_FONT_SIZE = 14;
+const DESKTOP_MARGIN = 14;
+const MOBILE_MARGIN = 24;
+const TOP = 'top';
+const RIGHT = 'right';
+const BOTTOM = 'bottom';
+const LEFT = 'left';
 
 export default class Tooltip extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
+    this.state = {
+      mobile: false,
+      active: false,
+      timeout: null,
+    };
   }
 
   static propTypes = {
     className: PropTypes.string,
     text: PropTypes.string.isRequired,
-    direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+    position: PropTypes.oneOf([TOP, RIGHT, BOTTOM, LEFT]).isRequired,
+    children: PropTypes.element.isRequired,
+    delay: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
-    direction: 'bottom',
+    position: 'bottom',
+    delay: 0,
   };
 
   componentDidMount() {
-    this.checkParent();
     this.hackChromeMinimumFontSize();
     window.addEventListener('resize', this.hackChromeMinimumFontSize);
   }
@@ -36,26 +48,81 @@ export default class Tooltip extends Component {
     window.removeEventListener('resize', this.hackChromeMinimumFontSize);
   }
 
-  checkParent = () => {
+  calcPositioningStyle = () => {
+    const { position } = this.props;
+    const margin = this.state.mobile ? MOBILE_MARGIN : DESKTOP_MARGIN;
+    const control = ReactDOM.findDOMNode(this.refs.control);
+    const controlHeight = control.offsetHeight;
+    const controlWidth = control.offsetWidth;
     const { tooltip } = this.refs;
-    let parent = tooltip.parentNode;
-    if(window.getComputedStyle(parent).getPropertyValue('position') === 'relative') {
-      const el = getFirstFocusable(parent);
-      if(!el) { return; }
-      el.addEventListener('keyup', this.handleFocusableKeydown);
-      el.addEventListener('blur', this.handleFocusableBlur);
+    const tooltipWidth = tooltip.offsetWidth;
+    const tooltipHeight = tooltip.offsetHeight;
 
-      this.setState({ focusableEl: el });
+    let top, right, bottom, left;
+    if(position === TOP || position === BOTTOM) {
+      left = (controlWidth / 2) - (tooltipWidth / 2);
+    } else { // LEFT || RIGHT
+      top = (controlHeight / 2) - (tooltipHeight / 2);
+    }
+
+    switch(position) {
+      case TOP:
+        top = -(tooltipHeight + margin);
+        break;
+      case RIGHT:
+        left = controlWidth + margin;
+        break;
+      case BOTTOM:
+        top = margin + controlHeight;
+        break;
+      default:
+        left = -(tooltipWidth + margin);
+    }
+
+    return {
+      top,
+      right,
+      bottom,
+      left,
+    };
+  };
+
+  setActive = (key = 'active') => {
+    this.setState({
+      timeout: setTimeout(() => {
+        this.setState({
+          [key]: true,
+          style: this.calcPositioningStyle(),
+          timeout: null,
+        });
+      }, this.props.delay),
+    });
+  };
+
+  setInactive = (key = 'active') => {
+    if(this.state.timeout) {
+      clearTimeout(this.state.timeout);
+      this.setState({ timeout: null });
+    } else {
+      this.setState({ [key]: false });
     }
   };
 
-  handleFocusableKeydown = (e) => {
-    if((e.which || e.keyCode) !== TAB) { return; }
-    this.setState({ active: true });
+  handleMouseOver = () => {
+    this.setActive();
   };
 
-  handleFocusableBlur = () => {
-    this.setState({ active: false });
+  handleMouseLeave = () => {
+    this.setInactive();
+  };
+
+  handleKeyUp = (e) => {
+    if((e.which || e.keyCode) !== TAB) { return; }
+    this.setActive('tabActive');
+  };
+
+  handleBlur = () => {
+    this.setInactive('tabActive');
   };
 
   /**
@@ -68,28 +135,45 @@ export default class Tooltip extends Component {
   hackChromeMinimumFontSize = () => {
     const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
     const fontSize = parseInt(window.getComputedStyle(this.refs.text).getPropertyValue('font-size'));
-    if(!isChrome || fontSize === MOBILE_FONT_SIZE) { return; }
 
-    const transform = `scale(${DESKTOP_FONT_SIZE / fontSize})`;
-    this.setState({
-      style: {
+    const mobile = fontSize === MOBILE_FONT_SIZE;
+    const state = { mobile };
+    if(isChrome && !mobile) {
+      const transform = `scale(${DESKTOP_FONT_SIZE / fontSize})`;
+      state.textStyle = {
         transform,
         WebkitTransform: transform,
         transformOrigin: '51% 50%', // hack for non blurred text
-      },
-    });
+      };
+    }
+
+    this.setState(state);
   };
 
   render() {
-    const { text, className, direction, ...props } = this.props;
-    const { active } = this.state;
+    const { text, className, position, children, ...props } = this.props;
+    const { active, tabActive, style, textStyle } = this.state;
+
+    // classname doesn't join correctly for the button components..
+    const tooltipControl = React.Children.map(children, child => React.cloneElement(child, {
+      ref: 'control',
+      className: classnames(child.props.className, 'md-tooltip-control'),
+      onMouseOver: this.handleMouseOver,
+      onMouseLeave: this.handleMouseLeave,
+      onBlur: this.handleBlur,
+      onKeyUp: this.handleKeyUp,
+    }));
     return (
-      <div
-        ref="tooltip"
-        className={classnames('md-tooltip', className, `md-tooltip-${direction}`, { active })}
-        {...props}
-      >
-        <span ref="text" className="md-tooltip-text" style={this.state.style}>{text}</span>
+      <div className={classnames('md-tooltip-container', className)} {...props}>
+        {tooltipControl}
+        <div
+          ref="tooltip"
+          className={classnames('md-tooltip', `md-tooltip-${position}`, { 'active': active || tabActive })}
+          style={style}
+          aria-hidden={!active && !tabActive}
+        >
+          <span ref="text" className="md-tooltip-text" style={textStyle}>{text}</span>
+        </div>
       </div>
     );
   }

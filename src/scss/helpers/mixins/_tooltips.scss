@@ -5,24 +5,6 @@
     padding-right: $md-tooltip-mobile-lr-padding;
   }
 
-  $calc: calc(100% + #{$md-tooltip-mobile-offset});
-
-  .md-tooltip-top {
-    bottom: $calc;
-  }
-
-  .md-tooltip-right {
-    left: $calc;
-  }
-
-  .md-tooltip-bottom {
-    top: $calc;
-  }
-
-  .md-tooltip-left {
-    right: $calc;
-  }
-
   .md-tooltip-text {
     font-size: $md-tooltip-mobile-font-size;
     line-height: $md-tooltip-mobile-height;
@@ -34,24 +16,6 @@
     height: $md-tooltip-desktop-height;
     padding-left: $md-tooltip-desktop-lr-padding;
     padding-right: $md-tooltip-desktop-lr-padding;
-  }
-
-  $calc: calc(100% + #{$md-tooltip-desktop-offset});
-
-  .md-tooltip-top {
-    bottom: $calc;
-  }
-
-  .md-tooltip-right {
-    left: $calc;
-  }
-
-  .md-tooltip-bottom {
-    top: $calc;
-  }
-
-  .md-tooltip-left {
-    right: $calc;
   }
 
   .md-tooltip-text {
