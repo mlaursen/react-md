@@ -9,10 +9,6 @@ const DESKTOP_FONT_SIZE = 10;
 const MOBILE_FONT_SIZE = 14;
 const DESKTOP_MARGIN = 14;
 const MOBILE_MARGIN = 24;
-const TOP = 'top';
-const RIGHT = 'right';
-const BOTTOM = 'bottom';
-const LEFT = 'left';
 
 export default class Tooltip extends Component {
   constructor(props) {
@@ -26,10 +22,15 @@ export default class Tooltip extends Component {
     };
   }
 
+  static TOP = 'top';
+  static RIGHT = 'right';
+  static BOTTOM = 'bottom';
+  static LEFT = 'left';
+
   static propTypes = {
     className: PropTypes.string,
     text: PropTypes.string.isRequired,
-    position: PropTypes.oneOf([TOP, RIGHT, BOTTOM, LEFT]).isRequired,
+    position: PropTypes.oneOf([Tooltip.TOP, Tooltip.RIGHT, Tooltip.BOTTOM, Tooltip.LEFT]).isRequired,
     children: PropTypes.element.isRequired,
     delay: PropTypes.number.isRequired,
   };
@@ -59,20 +60,20 @@ export default class Tooltip extends Component {
     const tooltipHeight = tooltip.offsetHeight;
 
     let top, right, bottom, left;
-    if(position === TOP || position === BOTTOM) {
+    if(position === Tooltip.TOP || position === Tooltip.BOTTOM) {
       left = (controlWidth / 2) - (tooltipWidth / 2);
     } else { // LEFT || RIGHT
       top = (controlHeight / 2) - (tooltipHeight / 2);
     }
 
     switch(position) {
-      case TOP:
+      case Tooltip.TOP:
         top = -(tooltipHeight + margin);
         break;
-      case RIGHT:
+      case Tooltip.RIGHT:
         left = controlWidth + margin;
         break;
-      case BOTTOM:
+      case Tooltip.BOTTOM:
         top = margin + controlHeight;
         break;
       default:

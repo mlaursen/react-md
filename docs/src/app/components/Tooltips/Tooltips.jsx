@@ -20,7 +20,26 @@ export default class Tooltips extends Component {
         {...this.props}
         components={[{
           component: Tooltip,
-          details: [],
+          details: [{
+            name: 'children',
+            pt: 'element',
+            desc: `This should be a single element that is used to render the tooltip on tab
+            focus or hover. This component wil be modified with event handlers and the
+            \`className\` \`.md-tooltip-control\``,
+          }, {
+            name: 'text',
+            pt: 's',
+            desc: `The text to display in a tooltip.`,
+          }, {
+            name: 'position',
+            pt: `one('top', 'right', 'bottom', 'left')`,
+            desc: `The tooltip position relative to the child. You can also use
+            \`Tooltip.TOP\`, \`Tooltip.RIGHT\`, \`Tooltip.BOTTOM\`, \`Tooltip.LEFT\`.`,
+          }, {
+            name: 'delay',
+            pt: 'nu',
+            desc: `An optional delay for showing the tooltip on hover or tab focus.`,
+          }],
         }]}
         examples={[{
           markdown: TooltipExamplesRaw,

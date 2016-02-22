@@ -7,26 +7,26 @@ import Tooltip from 'react-md/lib/Tooltips';
 const TooltipExamples = () => {
   return (
     <div>
-      <div>
-        The tooltip component can be used by having a focusable element and the tooltip in a container. There is a helper <pre>.md-tooltip-container</pre>
-        which can be used. All you really need is some relative parent.
-      </div>
-      <Tooltip text="Print" position="top">
-        <FontIcon>print</FontIcon>
-      </Tooltip>
-      <Tooltip text="Print" position="right">
-        <FontIcon>print</FontIcon>
-      </Tooltip>
-      <Tooltip text="Print" position="bottom">
-        <FontIcon>print</FontIcon>
-      </Tooltip>
+      <section>
+        <p>Any component can be wrapped with the tooltip. Here is are some with the FontIcons.</p>
+        <Tooltip text="Print" position="top">
+          <FontIcon>print</FontIcon>
+        </Tooltip>
+        <Tooltip text="Print" position="right">
+          <FontIcon>print</FontIcon>
+        </Tooltip>
+        <Tooltip text="Print" position="bottom">
+          <FontIcon>print</FontIcon>
+        </Tooltip>
       <Tooltip text="Print" position="left">
         <FontIcon>print</FontIcon>
       </Tooltip>
-      <IconButton tooltip="Help! I need somebody">help</IconButton>
-      <Tooltip text="Add some new feature">
-        <FloatingButton>add</FloatingButton>
-      </Tooltip>
+      </section>
+      <section>
+        <p>You can use the tooltip prop on IconButtons and FloatingButtons.</p>
+        <IconButton tooltip="Help! I need somebody">help</IconButton>
+        <FloatingButton tooltip="Add some new feature" tooltipPosition={Tooltip.TOP}>add</FloatingButton>
+      </section>
     </div>
   );
 };
