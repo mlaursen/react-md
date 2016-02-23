@@ -108,7 +108,7 @@
 ///
 /// @example scss - Basic Usage SASS
 ///   .my-primary-theme {
-///     @inlude md-theme-date-pickers(get-md-color(indigo), get-md-color(indigo, 5));
+///     @inlude md-theme-date-pickers($md-indigo-500, $md-indigo-400);
 ///   }
 ///
 /// @example scss - Basic Usage Output SCSS
