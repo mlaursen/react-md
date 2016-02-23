@@ -2,7 +2,7 @@
 ///
 /// @example scss - Example Basic Usage SASS
 ///   .md-primary {
-///     @include md-theme-buttons(get-md-color(indigo));
+///     @include md-theme-buttons($md-primary-color);
 ///   }
 ///
 /// @example scss - Example Basic Usage CSS Output
@@ -45,9 +45,9 @@
 ///        If this value is set to null, it will use the default listed.
 /// @param {Color} $flat-ink-color [rgba($color, .22)] - The ink color for flat buttons.
 ///        If this value is set to null, it will use the default listed.
-@mixin md-theme-buttons($color, $text-color: $white-base, $hover-color: null, $ink-color: null, $flat-hover-color: null, $flat-ink-color: null) {
+@mixin md-theme-buttons($color, $text-color: $md-white-base, $hover-color: null, $ink-color: null, $flat-hover-color: null, $flat-ink-color: null) {
   $hover-color: if($hover-color == null, rgba($color, .95), $hover-color);
-  $ink-color: if($ink-color == null, rgba($white-base, .05), $ink-color);
+  $ink-color: if($ink-color == null, rgba($md-white-base, .05), $ink-color);
   $flat-hover-color: if($flat-hover-color == null, rgba($color, .15), $flat-hover-color);
   $flat-ink-color: if($flat-ink-color == null, rgba($color, .22), $flat-ink-color);
 
@@ -74,87 +74,6 @@
 
     .md-ink {
       background: $flat-ink-color;
-    }
-  }
-}
-
-/// Make a material design default button
-/// This will generate the style for a flat, raised, and fab button
-///
-/// @group buttons
-/// @param {String} $color - The text color to use
-/// @param {String} $hover-focus-bg-color - The hover and focus color for the button
-/// @param {String} $active-bg-color - The color to use when active
-/// @param {String} $md-ink-bg-color - The md-ink background color
-/// @param {String} $raised-border-color [null] - The raised border color. If this value is set,
-///   raised and floating buttons will get a background of the white base and the raised buttonm
-///   with get a border with the border color
-@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) {
-  .md-btn-default {
-    color: $color;
-
-    &:hover,
-    &:focus {
-      background: $hover-focus-bg-color;
-    }
-
-    &:active {
-      background: $active-bg-color;
-    }
-
-    .md-ink {
-      background: $md-ink-bg-color;
-    }
-  }
-
-  @if $raised-border-color != null {
-    .md-btn-raised,
-    .md-btn-floating {
-      background: $white-base;
-    }
-
-    .md-btn-raised {
-      border: 1px solid $raised-border-color;
-    }
-  }
-}
-
-/// Make a material design button type
-///
-/// @group buttons
-/// @param {String} $type - The button type to make.
-/// @param {String} $color - The color to use for the button.
-/// @param {Number} $hover-hue - The hue for the hover color.
-/// @param {Number} $md-ink-hue [null] - This is used to generate the flat button.
-/// @param {Number} $hue [6] - The color's hue for the button
-/// @param {String} $hover-color [$color] - The hover color for the button
-/// @param {String} $md-ink-color [$color] - The md-ink's color. It gets an opacity of .3 applied to it
-@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) {
-  $secondary: $type == 'secondary';
-
-  .md-btn-#{$type} {
-    @if $md-ink-hue != null {
-      &.md-btn-flat {
-        color: get-md-color($color, $hue, $secondary);
-
-        &:hover,
-        &:focus {
-          background: rgba(get-md-color($hover-color, $hover-hue, $secondary), .4);
-        }
-
-        .md-ink {
-          background: rgba(get-md-color($md-ink-color, $md-ink-hue, $secondary), .3);
-        }
-      }
-    } @else {
-      &:not(.md-btn-flat) {
-        background: get-md-color($color, $hue, $secondary);
-
-        &:hover,
-        &:focus {
-          background: get-md-color($hover-color, $hover-hue, $secondary);
-        }
-      }
     }
   }
 }
