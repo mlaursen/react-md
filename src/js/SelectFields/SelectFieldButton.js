@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
+import { isPropEnabled } from '../utils';
 import FontIcon from '../FontIcons';
 import Ink from '../Inks';
 
@@ -33,30 +34,31 @@ export default class SelectFieldButton extends Component {
   render() {
     const { label, name, value, isOpen, isBelow, ...props } = this.props;
     return (
-      <button
-        type="button"
-        {...props}
-        >
-        <input
-          type="hidden"
-          className="md-select-field-input"
-          name={name}
-          readOnly
-          value={value}
-        />
-        <CSSTransitionGroup
-          component="div"
-          transitionName="drop"
-          transitionEnterTimeout={450}
-          transitionLeave={false}
-          className={classnames('icon-separator', { 'menu-below': isBelow })}
+      <Ink disabled={isPropEnabled(props, 'disabled')}>
+        <button
+          type="button"
+          {...props}
           >
-          <span key={label} className="text">{label}</span>
-          <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
-        </CSSTransitionGroup>
-        {!isBelow && <hr className="md-divider" />}
-        <Ink key="ink" />
-      </button>
+          <input
+            type="hidden"
+            className="md-select-field-input"
+            name={name}
+            readOnly
+            value={value}
+          />
+          <CSSTransitionGroup
+            component="div"
+            transitionName="drop"
+            transitionEnterTimeout={450}
+            transitionLeave={false}
+            className={classnames('icon-separator', { 'menu-below': isBelow })}
+            >
+            <span key={label} className="text">{label}</span>
+            <FontIcon className={isOpen ? 'flipped' : ''}>arrow_drop_down</FontIcon>
+          </CSSTransitionGroup>
+          {!isBelow && <hr className="md-divider" />}
+        </button>
+      </Ink>
     );
   }
 }

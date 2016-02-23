@@ -57,11 +57,18 @@
     font-size: $md-list-primary-text-font-size;
   }
 
-  .contact-row {
-    display: flex;
+  .md-form > .md-text-field-container {
+    width: 100%;
+  }
 
-    .md-dropdown-container {
-      min-width: 129px;
+  .contact-row {
+    .md-text-field-container {
+      padding-right: 0;
+      width: 360px - 130px;
+    }
+
+    .md-select-field {
+      width: 130px;
     }
   }
 }
