@@ -42,28 +42,6 @@
   100% { transform: rotate(720deg); }
 }
 
-@keyframes md-circular-progress-colors {
-  0% {
-    stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
-  }
-
-  25% {
-    stroke: get-md-color($md-circular-progress-color-2, $md-circular-progress-color-2-hue);
-  }
-
-  50% {
-    stroke: get-md-color($md-circular-progress-color-3, $md-circular-progress-color-3-hue);
-  }
-
-  75% {
-    stroke: get-md-color($md-circular-progress-color-4, $md-circular-progress-color-4-hue);
-  }
-
-  100% {
-    stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
-  }
-}
-
 @keyframes md-circular-progress-dash {
   0% {
     stroke-dashoffset: $md-circular-progress-stroke-dashoffset;
@@ -87,14 +65,12 @@
 .md-linear-progress-container {
   @extend %full-width;
 
-  background: rgba(get-md-color($md-linear-progress-color), $md-linear-progress-opacity);
   margin: 1em 0;
   overflow: hidden;
   position: relative;
 }
 
 .md-linear-progress {
-  background: get-md-color($md-linear-progress-color);
 
   &.determinate {
     position: absolute;
@@ -142,7 +118,6 @@
     transition: transform $md-transition-time;
 
     .md-circular-progress-path {
-      stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
       stroke-dasharray: $md-circular-progress-determinate-dasharray;
     }
   }
@@ -151,10 +126,7 @@
     animation: md-circular-progress $md-circular-progress-duration linear infinite;
 
     .md-circular-progress-path {
-      // scss-lint:disable SpaceAfterComma
-      animation: md-circular-progress-dash $md-circular-progress-duration $md-circular-progress-transition-func infinite,
-                 md-circular-progress-colors $md-circular-progress-duration * 4 $md-circular-progress-transition-func infinite;
-      stroke: get-md-color($md-circular-progress-color-1, $md-circular-progress-color-1-hue);
+      animation: md-circular-progress-dash $md-circular-progress-duration $md-circular-progress-transition-func infinite;
       stroke-dasharray: $md-circular-progress-stroke-dashoffset;
       stroke-dashoffset: 0;
     }

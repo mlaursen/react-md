@@ -6,6 +6,7 @@ $disabled-text: rgba($text, .7);
 @include md-theme-text-fields($primary);
 @include md-theme-snackbars();
 @include md-theme-date-pickers($primary, get-md-color($md-primary-color, 5));
+@include md-theme-progress($md-blue-500, $md-blue-200);
 @include md-theme-select-fields($primary);
 @include md-theme-sliders($md-indigo-500);
 
