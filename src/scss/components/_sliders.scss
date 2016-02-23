@@ -25,14 +25,11 @@
   }
 
   &:before {
-    background: rgba($black-base, .26);
     content: '';
     right: 0;
   }
 
   .md-track-fill {
-    background: get-md-color($md-primary-color);
-
     &.discrete,
     &:not(.dragging) {
       transition: width $md-transition-time;
@@ -43,81 +40,60 @@
 .md-slider-thumb {
   @extend %button-unstyled;
 
-  background: $white-base;
   border-radius: 50%;
-  color: $md-secondary-text-color;
-  height: 14px;
+  height: $md-slider-ball-size;
   left: -$md-slider-ball-size / 2;
   position: absolute;
   top: $md-height - 10 - $md-slider-ball-size / 2;
   transition-duration: $md-transition-time;
   transition-property: transform, background, color, top;
-  width: 14px;
+  width: $md-slider-ball-size;
   z-index: 3;
+}
 
-  &.discrete,
-  &:not(.dragging) {
-    transition-property: transform, background, color, top, left;
-  }
+.md-continuous-slider-thumb,
+.md-slider-thumb:not(.dragging) {
+  transition-property: transform, background, color, top, left;
+}
 
-  &:not(.valued) {
-    border: 2px solid $md-secondary-text-color;
-  }
+.md-continuous-slider-thumb {
 
-  &.valued {
-    background: get-md-color($md-primary-color);
-
-    .md-ink {
-      background: rgba(get-md-color($md-primary-color), .16);
-    }
+  &.zeroed {
+    border: 2px solid;
   }
 
   &.active {
     transform: scale(1.5);
   }
+}
 
-  &.discrete {
-    border: 0;
+.md-discrete-slider-thumb {
+  &:after {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid transparent;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    content: '';
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    transition-duration: $md-transition-time;
+    transition-property: top, border-top-color;
+    width: 0;
+  }
 
-    &:not(.valued) {
-      background: rgb(189, 189, 189);
-    }
-
-    &:after {
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-top: 7px solid transparent;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      content: '';
-      height: 0;
-      left: 0;
-      position: absolute;
-      top: 10px;
-      transition-duration: $md-transition-time;
-      transition-property: top, border-top-color;
-      width: 0;
-    }
-
-    &.active {
-      top: $md-slider-ball-size / 2;
-      transform: scale(2);
-
-      &:not(.valued):after {
-        border-top-color: rgb(189, 189, 189);
-      }
-
-      &:after {
-        border-top-color: get-md-color($md-primary-color);
-      }
-    }
+  &.active {
+    top: $md-slider-ball-size / 2;
+    transform: scale(2);
   }
 }
 
 .md-thumb-control {
   @extend %button-unstyled;
 
-  color: $white-base;
+  color: $md-white-base;
   font-size: 8px;
   height: 100%;
   position: relative;

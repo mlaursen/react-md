@@ -4,7 +4,14 @@ import classnames from 'classnames';
 const SliderThumb = ({ active, value, valued, left, dragging, discrete, ...props }) => {
   return (
     <div
-      className={classnames('md-slider-thumb', { active, valued, dragging, discrete })}
+      className={classnames('md-slider-thumb', {
+        active,
+        valued,
+        dragging,
+        'zeroed': !valued,
+        'md-discrete-slider-thumb': discrete,
+        'md-continuous-slider-thumb': !discrete,
+      })}
       style={{ left }}
     >
       <button {...props} className="md-thumb-control">

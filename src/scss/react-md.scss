@@ -5,7 +5,6 @@
 @import 'typography';
 @import 'utils';
 @import 'transitions';
-@import 'theme';
 @import 'media-queries';
 
 @import 'components/avatars';
@@ -33,3 +32,5 @@
 @import 'components/text-fields';
 @import 'components/toolbars';
 @import 'components/tooltips';
+
+@import 'theme';

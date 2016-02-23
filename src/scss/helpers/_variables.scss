@@ -447,6 +447,12 @@ $md-year-picker-active-font-size: 24px !default;
 // Sliders
 $md-slider-ball-size: 14px;
 
+$md-slider-light-theme-off-color: rgba($md-black-base, .26);
+$md-slider-light-theme-focus-off-color: rgba($md-black-base, .38);
+$md-slider-light-theme-disabled-color: rgba($md-black-base, .26);
+
+$md-slider-dark-theme-off-color: rgba($md-white-base, .3);
+
 
 // =============================================
 // Tooltips
