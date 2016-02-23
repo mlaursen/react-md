@@ -62,19 +62,16 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 
 # Known Bugs/Works in Progress/Future Changes
 
-* Firefox does not like clickable elements inside of buttons, so the ink effect does not work in firefox.
-* Text fields are positioned absolutely in their container, so you must specify a max width or else they are always full width.. Woops.
 * Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
 * Hopefully update ListItem components to not require Line1 and Line2 crap.
 * Time pickers are not fully implemented. It shows an empty circle. So helpful!
-* The circular progress only changes color in IE instead of animating the stroke-width or whatever it is called.
+* The circular progress only does not animate the stroke-width or whatever it is called in IE.
 * Autocomplete
 * Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables.scss) but no components with functionality.
 * Bottom sheets
 * Grid lists
 * Sidebar
 * Steppers
-* Tooltips
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
 * Eventually add a way to use chips in text fields
 * Eventually update for dark themes
