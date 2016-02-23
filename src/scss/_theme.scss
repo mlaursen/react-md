@@ -2,7 +2,7 @@ $primary: $md-indigo-500;
 $secondary: $md-pink-a-200;
 
 @include md-theme-text-fields($primary);
-@include md-theme-snackbars();
+@include md-theme-snackbars($primary);
 @include md-theme-date-pickers($primary, $md-indigo-400);
 @include md-theme-lists($primary);
 @include md-theme-progress($md-blue-500, $md-blue-200);
@@ -11,7 +11,7 @@ $secondary: $md-pink-a-200;
 @include md-theme-sliders($md-indigo-500);
 
 .md-primary {
-  @include md-theme-toolbars($primary, $white-base);
+  @include md-theme-toolbars($primary, $md-white-base);
   @include md-theme-buttons($primary);
   @include md-theme-tabs($primary, $secondary);
 }
@@ -19,7 +19,7 @@ $secondary: $md-pink-a-200;
 .md-secondary {
   @include md-theme-buttons($secondary);
   $secondary: $md-pink-500;
-  @include md-theme-toolbars($secondary, $white-base);
+  @include md-theme-toolbars($secondary, $md-white-base);
   @include md-theme-tabs($secondary, $primary);
 }
 
