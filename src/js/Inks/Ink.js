@@ -86,7 +86,9 @@ export default class Ink extends Component {
     this.setState({ inks });
   };
 
-  handleMouseDown = (e) => {
+  handleMouseDown = (onMouseDown, e) => {
+    if(onMouseDown) { onMouseDown(e); }
+
     if(this.props.disabled || this.invalidClickEvent(e)) { return; }
     this.createInk(e.pageX, e.pageY);
     this.setState({
@@ -94,7 +96,8 @@ export default class Ink extends Component {
     });
   };
 
-  handleMouseLeave = () => {
+  handleMouseLeave = (onMouseLeave, e) => {
+    if(onMouseLeave) { onMouseLeave(e); }
     if(!this.props.disabled) {
       this.popInk();
       this.setState({
@@ -103,29 +106,34 @@ export default class Ink extends Component {
     }
   };
 
-  handleMouseUp = (e) => {
+  handleMouseUp = (onMouseUp, e) => {
+    if(onMouseUp) { onMouseUp(e); }
     if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
-  handleTouchStart = (e) => {
+  handleTouchStart = (onTouchStart, e) => {
+    if(onTouchStart) { onTouchStart(e); }
     if(this.props.disabled) { return; }
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
   };
 
-  handleTouchEnd = () => {
+  handleTouchEnd = (onTouchEnd, e) => {
+    if(onTouchEnd) { onTouchEnd(e); }
     if(this.props.disabled) { return; }
     this.popInk();
   };
 
-  handleKeyUp = (e) => {
+  handleKeyUp = (onKeyUp, e) => {
+    if(onKeyUp) { onKeyUp(e); }
     if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
       this.createInk();
     }
   };
 
-  handleBlur = () => {
+  handleBlur = (onBlur, e) => {
+    if(onBlur) { onBlur(e); }
     if(!this.props.disabled) {
       this.popInk();
     }
@@ -137,13 +145,14 @@ export default class Ink extends Component {
     const child = React.Children.only(children);
 
     return React.cloneElement(child, {
-      onKeyUp: this.handleKeyUp,
-      onBlur: this.handleBlur,
-      onMouseDown: this.handleMouseDown,
-      onMouseUp: this.handleMouseUp,
-      onMouseLeave: this.handleMouseLeave,
-      onTouchStart: this.handleTouchStart,
-      onTouchEnd: this.handleTouchEnd,
+      ...child.props,
+      onKeyUp: this.handleKeyUp.bind(this, child.props.onKeyUp),
+      onBlur: this.handleBlur.bind(this, child.props.onBlur),
+      onMouseDown: this.handleMouseDown.bind(this, child.props.onMouseDown),
+      onMouseUp: this.handleMouseUp.bind(this, child.props.onMouseUp),
+      onMouseLeave: this.handleMouseLeave.bind(this, child.props.onMouseLeave),
+      onTouchStart: this.handleTouchStart.bind(this, child.props.onTouchStart),
+      onTouchEnd: this.handleTouchEnd.bind(this, child.props.onTouchEnd),
     }, [(
       <TransitionGroup
         key="inks"
