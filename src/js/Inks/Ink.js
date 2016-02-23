@@ -1,55 +1,46 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import ReactDOM from 'react-dom';
+import TransitionGroup from 'react-addons-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
-import { LEFT_MOUSE } from '../constants/keyCodes';
-const INK_TRANSITION_TIME = 600;
+import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
+import InkTransition from './InkTransition';
+import { getOffset } from '../utils';
 
 export default class Ink extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { size: null, timeouts: {} };
+    this.state = {
+      inks: [],
+    };
   }
 
   static propTypes = {
     className: PropTypes.string,
+    children: PropTypes.node,
     disabled: PropTypes.bool,
-    onClick: PropTypes.func,
-    focused: PropTypes.bool,
+    onMouseUp: PropTypes.func,
+    onMouseDown: PropTypes.func,
   };
-
-  componentWillReceiveProps(nextProps) {
-    if(!this.props.focused && nextProps.focused) {
-      this.createInk();
-    } else if(!nextProps.focused && this.props.focused) {
-      this.handleMouseUp({ button: LEFT_MOUSE });
-    }
-  }
-
-  componentWillUnmount() {
-    const { timeouts } = this.state;
-    Object.keys(timeouts).forEach(k => {
-      clearTimeout(timeouts[k]);
-    });
-  }
 
   calcR = (a, b) => {
     return Math.sqrt((a * a) + (b * b));
   };
 
+  invalidClickEvent = ({ button, ctrlKey }) => {
+    return button !== LEFT_MOUSE || ctrlKey;
+  };
+
   createInk = (pageX, pageY) => {
-    const { container } = this.refs;
+    const container = ReactDOM.findDOMNode(this.refs.container);
 
     let left = 0, top = 0;
     let size, x, y;
     if(typeof pageX !== 'undefined' && typeof pageY !== 'undefined') {
-      const rect = container.getBoundingClientRect();
-      const offset = {
-        left: rect.left + document.body.scrollLeft,
-        top: rect.top + document.body.scrollTop,
-      };
+      const offset = getOffset(container);
 
       x = pageX - offset.left;
       y = pageY - offset.top;
@@ -71,83 +62,99 @@ export default class Ink extends Component {
     top = y - r;
     size = r * 2;
 
-    let ink = document.createElement('span');
-    ink.classList.add('md-ink');
-    ink.style.cssText = `left:${left}px;top:${top}px;width:${size}px;height:${size}px;`;
-    container.insertBefore(ink, container.firstChild);
-
-    setTimeout(() => ink.classList.add('active'), 25);
-    this.setState({ ink, timestamp: Date.now(), mouseLeave: false, mouseDown: true });
+    const ink = {
+      style: {
+        left,
+        top,
+        width: size,
+        height: size,
+      },
+      time: new Date(),
+    };
+    this.setState({
+      inks: [
+        ...this.state.inks,
+        ink,
+      ],
+    });
   };
 
-  handleMouseDown = ({ pageX, pageY, button, ctrlKey, changedTouches }) => {
-    if(this.props.disabled || (!changedTouches && (button !== LEFT_MOUSE || ctrlKey))) { return; }
-
-    if(this.props.onClick) { this.props.onClick(); }
-    if(changedTouches) {
-      this.createInk(changedTouches[0].pageX, changedTouches[0].pageY);
-    } else {
-      this.createInk(pageX, pageY);
-    }
-    this.setState({ mouseLeave: false });
+  popInk = () => {
+    if(!this.state.inks.length) { return; }
+    let inks = this.state.inks.slice();
+    inks.pop();
+    this.setState({ inks });
   };
 
-  handleMouseUp = ({ button, ctrlKey, changedTouches }) => {
-    const invalidKey = (button !== LEFT_MOUSE && !changedTouches) || ctrlKey;
-    if(this.props.disabled || invalidKey || this.state.mouseLeave) { return; }
-    this.removeInk();
-    this.setState({ mouseDown: false });
+  handleMouseDown = (e) => {
+    if(this.props.disabled || this.invalidClickEvent(e)) { return; }
+    this.createInk(e.pageX, e.pageY);
+    this.setState({
+      skipMouseUp: false,
+    });
   };
 
   handleMouseLeave = () => {
-    if(this.props.disabled || !this.state.mouseDown || this.state.mouseLeave) { return; }
-    this.removeInk();
-    this.setState({ mouseLeave: true });
+    if(!this.props.disabled) {
+      this.popInk();
+      this.setState({
+        skipMouseUp: true,
+      });
+    }
   };
 
-  removeInk = () => {
-    const { ink, timestamp } = this.state;
-    if(!ink) { return; }
-
-    ink.classList.add('leaving');
-    const timeout = setTimeout(() => {
-      this.refs.container.removeChild(ink);
-
-      let timeouts = Object.assign({}, this.state.timeouts);
-      delete timeouts[timestamp];
-      this.setState({ timeouts });
-    }, INK_TRANSITION_TIME);
-
-    const timeouts = Object.assign({}, this.state.timeouts);
-    timeouts[timestamp] = timeout;
-    this.setState({ timeouts });
+  handleMouseUp = (e) => {
+    if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
+    this.popInk();
   };
 
-  getEvents = () => {
-    if(typeof window !== 'undefined' && ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch)) {
-      return {
-        onTouchStart: this.handleMouseDown,
-        onTouchEnd: this.handleMouseUp,
-        onTouchCancel: this.handleMouseUp,
-        onTouchLeave: this.handleMouseLeave,
-      };
-    } else {
-      return {
-        onMouseDown: this.handleMouseDown,
-        onMouseUp: this.handleMouseUp,
-        onMouseLeave: this.handleMouseLeave,
-      };
+  handleTouchStart = (e) => {
+    if(this.props.disabled) { return; }
+    const { pageX, pageY } = e.changedTouches[0];
+    this.createInk(pageX, pageY);
+  };
+
+  handleTouchEnd = () => {
+    if(this.props.disabled) { return; }
+    this.popInk();
+  };
+
+  handleKeyUp = (e) => {
+    if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
+      this.createInk();
+    }
+  };
+
+  handleBlur = () => {
+    if(!this.props.disabled) {
+      this.popInk();
     }
   };
 
   render() {
-    const { className } = this.props;
-    return (
-      <div
+    const { className, children, ...props } = this.props;
+    if(!children) { return null; }
+    const child = React.Children.only(children);
+
+    return React.cloneElement(child, {
+      onKeyUp: this.handleKeyUp,
+      onBlur: this.handleBlur,
+      onMouseDown: this.handleMouseDown,
+      onMouseUp: this.handleMouseUp,
+      onMouseLeave: this.handleMouseLeave,
+      onTouchStart: this.handleTouchStart,
+      onTouchEnd: this.handleTouchEnd,
+    }, [(
+      <TransitionGroup
+        key="inks"
         ref="container"
         className={classnames('md-ink-container', className)}
-        {...this.getEvents()}
-      />
-    );
+      >
+        {this.state.inks.map(ink => (
+          <InkTransition key={ink.time.getTime()} {...ink} />
+        ))}
+      </TransitionGroup>),
+      child.props.children,
+    ]);
   }
 }

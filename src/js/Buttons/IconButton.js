@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { isPropEnabled, mergeClassNames } from '../utils';
-import { TAB } from '../constants/keyCodes';
 import FontIcon from '../FontIcons';
 import Ink from '../Inks';
 import Tooltip from '..//Tooltips';
@@ -12,7 +11,6 @@ export default class IconButton extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { focused: false };
   }
 
   static propTypes = {
@@ -20,8 +18,6 @@ export default class IconButton extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
     onClick: PropTypes.func,
-    onBlur: PropTypes.func,
-    onKeyUp: PropTypes.func,
     tooltip: PropTypes.string,
     tooltipClassName: PropTypes.string,
     tooltipPosition: PropTypes.string,
@@ -35,38 +31,12 @@ export default class IconButton extends Component {
     onClickInkMouseDown: false,
   };
 
-  handleKeyUp = (e) => {
-    if(this.props.onKeyUp) { this.props.onKeyUp(e); }
-
-    if((e.keyCode || e.which) === TAB) {
-      this.setState({ focused: true });
-    }
-  };
-
-  handleClick = (e) => {
-    this.props.onClick && this.props.onClick(e);
-    this.setState({ focused: false });
-  };
-
-  handleBlur = (e) => {
-    if(this.props.onBlur) { this.props.onBlur(e); }
-
-    this.setState({ focused: false });
-  };
-
   render() {
     const { iconClassName, children, className, href, type, onClickInkMouseDown, tooltip, tooltipClassName, tooltipPosition, ...props } = this.props;
     let btnProps = {
       ...props,
-      onClick: this.handleClick,
-      onKeyUp: this.handleKeyUp,
-      onBlur: this.handleBlur,
       className: mergeClassNames(props, 'md-btn', 'md-icon-btn', className),
     };
-
-    if(onClickInkMouseDown) {
-      btnProps.onClick = null;
-    }
 
     if(href) {
       btnProps.href = href;
@@ -74,18 +44,26 @@ export default class IconButton extends Component {
       btnProps.type = type;
     }
 
-    const button = React.createElement(href ? 'a' : 'button', btnProps, [
-      <Ink key="ink" disabled={isPropEnabled(props, 'disabled')} onClick={onClickInkMouseDown ? this.handleClick : null} focused={this.state.focused} />,
-      children && children.type && children.type === FontIcon ? children : <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>,
-    ]);
+    let displayedChildren = children;
+    if(!(children && children.type && children.type === FontIcon)) {
+      displayedChildren = <FontIcon iconClassName={iconClassName}>{children}</FontIcon>;
+    }
+
+    const disabled = isPropEnabled(props, 'disabled');
+    const wrappedButton = (
+      <Ink disabled={disabled}>
+        {React.createElement(href ? 'a' : 'button', btnProps, displayedChildren)}
+      </Ink>
+    );
+
     if(tooltip) {
       return (
         <Tooltip text={tooltip} position={tooltipPosition} className={tooltipClassName}>
-          {button}
+          {wrappedButton}
         </Tooltip>
       );
     } else {
-      return button;
+      return wrappedButton;
     }
   }
 }

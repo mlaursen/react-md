@@ -83,6 +83,19 @@ export function mergeClassNames(props, ...classNames) {
   });
 }
 
+function getScrollProp(key) {
+  // document.body is deprecated for some browsers
+  return Math.max(document.body[key], document.documentElement[key]);
+}
+
+export function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + getScrollProp('scrollLeft'),
+    top: rect.top + getScrollProp('scrollTop'),
+  };
+}
+
 /**
  * Amzing media query to check if mobile..
  * @return true if device width is between 0 and 599px

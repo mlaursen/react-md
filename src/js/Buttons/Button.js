@@ -67,18 +67,18 @@ export default class Button extends Component {
 
   render() {
     const { className, iconBefore, label, children, ...props } = this.props;
-    const { focused } = this.state;
     const disabled = isPropEnabled(props, 'disabled');
     return (
-      <button
-        {...props}
-        onKeyUp={this.handleKeyUp}
-        onBlur={this.handleBlur}
-        className={mergeClassNames(props, 'md-btn', className)}
-        >
-        <Ink key="ink" disabled={disabled} focused={focused} />
-        {this.renderChildren()}
-      </button>
+      <Ink disabled={disabled}>
+        <button
+          {...props}
+          onKeyUp={this.handleKeyUp}
+          onBlur={this.handleBlur}
+          className={mergeClassNames(props, 'md-btn', className)}
+          >
+          {this.renderChildren()}
+        </button>
+      </Ink>
     );
   }
 }
