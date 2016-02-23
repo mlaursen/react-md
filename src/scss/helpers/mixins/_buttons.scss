@@ -51,8 +51,8 @@
   $flat-hover-color: if($flat-hover-color == null, rgba($color, .15), $flat-hover-color);
   $flat-ink-color: if($flat-ink-color == null, rgba($color, .22), $flat-ink-color);
 
-  &.md-raised-btn,
-  &.md-floating-btn {
+  &.md-raised-btn:not([disabled]),
+  &.md-floating-btn:not([disabled]) {
     background: $color;
     color: $text-color;
 
@@ -65,7 +65,7 @@
     }
   }
 
-  &.md-flat-btn {
+  &.md-flat-btn:not([disabled]) {
     color: $color;
 
     &:hover {
