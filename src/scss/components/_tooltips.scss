@@ -4,7 +4,7 @@
 }
 
 .md-tooltip {
-  background: get-md-color(grey, 8);
+  background: $md-grey-700;
   opacity: 0;
   position: absolute;
   transition-duration: $md-transition-time;
@@ -38,7 +38,7 @@
 }
 
 .md-tooltip-text {
-  color: $white-base;
+  color: $md-white-base;
   display: block;
   font-weight: $md-font-medium;
   white-space: nowrap;
