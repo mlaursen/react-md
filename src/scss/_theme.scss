@@ -20,3 +20,11 @@ $disabled-text: rgba($text, .7);
   @include md-theme-toolbars($secondary, $white-base);
   @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
 }
+
+@each $item in $md-avatar-colors {
+  $bg-color: nth($item, 1);
+  $text-color: nth($item, 2);
+  $suffix: nth($item, 3);
+
+  @include md-theme-avatars-suffix($bg-color, $text-color, $suffix);
+}

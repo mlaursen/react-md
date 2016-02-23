@@ -36,8 +36,16 @@ export default class AvatarsExamples extends Component {
           <span>Avatar with a Letter and a random color.</span>
         </div>
         <div className="middle-align">
-          <Avatar color={2}>X</Avatar>
+          <Avatar suffix="color-1">X</Avatar>
+          <span>Avatar with a letter and avatar color 1.</span>
+        </div>
+        <div className="middle-align">
+          <Avatar suffix="color-2">X</Avatar>
           <span>Avatar with a letter and avatar color 2.</span>
+        </div>
+        <div className="middle-align">
+          <Avatar suffix="color-3">X</Avatar>
+          <span>Avatar with a letter and avatar color 3.</span>
         </div>
       </div>
     );

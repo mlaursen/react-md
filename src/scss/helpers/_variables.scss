@@ -1,3 +1,5 @@
+@import 'colors';
+
 $md-light-theme: true !default;
 
 /// The primary color
@@ -247,13 +249,16 @@ $md-card-color: $white-base;
 
 // =============================================
 // Avatars
+/// The default size for avatars
+/// @type String
+$md-avatar-size: 40px;
 /// The default avatar colors
 /// @type List
 /// @group avatars
 $md-avatar-colors: (
-  (pink 6 false green 1 true)
-  (purple 6 false yellow 3 true)
-  (amber 6 false light-blue 4 true)
+  ($md-pink-500 $md-green-a-100 color-1)
+  ($md-purple-500 $md-yellow-300 color-2)
+  ($md-amber-500 $md-light-blue-a-400 color-3)
 ) !default;
 
 

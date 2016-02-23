@@ -1,0 +1,19 @@
+/// Themes the avatar with the given colors
+/// @example scss - Basic Usage SASS
+///   @include md-theme-avatars-suffix($md-indigo-500, $md-white-base, color-1);
+///
+/// @example scss - Basic Usage CSS Output
+///   .md-avatar-color-1 {
+///     background: #3f51b5;
+///     color: #fff;
+///   }
+///
+/// @param {String} $bg-color - The background color to use for the avatar
+/// @param {String} $text-color - The text color to use in the avatar
+/// @param {String} $suffix - The class name suffix to use. Will be added to the end of .md-avatar-
+@mixin md-theme-avatars-suffix($bg-color, $text-color, $suffix) {
+  .md-avatar.md-avatar-#{$suffix} {
+    background: $bg-color;
+    color: $text-color;
+  }
+}

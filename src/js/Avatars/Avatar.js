@@ -18,22 +18,24 @@ export default class Avatar extends Component {
     icon: PropTypes.node,
     children: PropTypes.string,
     random: PropTypes.bool,
-    color: PropTypes.number,
-    maxColor: PropTypes.number,
+    suffixes: PropTypes.arrayOf(PropTypes.string),
+    suffix: PropTypes.string,
   };
 
   static defaultProps = {
-    maxColor: 3,
+    suffixes: ['color-1', 'color-2', 'color-3'],
   };
 
   getColor = () => {
-    const { color, maxColor } = this.props;
-    if(!isPropEnabled(this.props, 'random') && !color) {
+    const { suffix, suffixes } = this.props;
+    if(suffix) {
+      return `md-avatar-${suffix}`;
+    } else if(!!suffixes && !isPropEnabled(this.props, 'random')) {
       return null;
     }
 
-    const i = color || (Math.floor(Math.random() * maxColor) + 1);
-    return `md-avatar-color-${i}`;
+    const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
+    return `md-avatar-${suffixes[i]}`;
   };
 
   render() {

@@ -1,14 +1,13 @@
-// scss-lint:disable ColorKeyword ColorVariable
 .md-avatar {
-  background: get-md-color(grey, 5);
-  border: 1px solid $md-border-color;
+  background: $md-grey-500;
+  border: 1px solid if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
   border-radius: 50%;
-  color: $white-base;
+  color: $md-white-base;
   display: inline-block;
-  height: 40px;
+  height: $md-avatar-size;
   overflow: hidden;
   text-align: center;
-  width: 40px;
+  width: $md-avatar-size;
 }
 
 .md-img-avatar {
@@ -19,18 +18,8 @@
 .md-avatar-content {
   align-items: center;
   display: flex;
-  font-size: 24px;
+  font-size: $md-font-icon-size;
   height: 100%;
   justify-content: center;
   width: 100%;
-}
-
-
-@for $i from 1 through length($md-avatar-colors) {
-  $color: nth($md-avatar-colors, $i);
-
-  .md-avatar-color-#{$i} {
-    background: get-md-color(nth($color, 1), nth($color, 2), nth($color, 3));
-    color: get-md-color(nth($color, 4), nth($color, 5), nth($color, 6));
-  }
 }
