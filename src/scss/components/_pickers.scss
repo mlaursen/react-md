@@ -7,11 +7,25 @@
   }
 }
 
+.md-picker-control.active,
+.md-date-picker-date.active,
+.md-date-picker-year.active,
+.md-calendar-date:not([disabled]):hover,
+.md-calendar-date:not([disabled]):focus,
+.md-calendar-date:not([disabled]).active {
+  color: $md-dark-theme-text-color;
+}
+
+.md-picker-control,
+.md-date-picker-date,
+.md-date-picker-year {
+  color: $md-dark-theme-secondary-text-color;
+}
+
 .md-picker {
   &.inline {
     @include md-box-shadow(3);
 
-    background: $white-base;
     position: absolute;
     z-index: 24;
 
@@ -53,18 +67,11 @@
 }
 
 .md-picker-header {
-  background: get-md-color($md-primary-color);
   padding: $md-dialog-padding;
 }
 
 .md-picker-control {
   @extend %button-unstyled;
-
-  color: rgba($white-base, .7);
-
-  &.active {
-    color: $white-base;
-  }
 
   .md-subtitle {
     font-size: 16em / $md-font-size-base;
@@ -100,7 +107,6 @@
 
 .md-clock {
   $md-clock-size: $md-pickers-landscape-height - $md-dialog-padding - 52px;
-  background: get-md-color(grey, 4);
   border-radius: 50%;
   content: '';
   margin: auto;

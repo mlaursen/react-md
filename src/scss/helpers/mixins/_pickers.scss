@@ -147,23 +147,16 @@
 ///
 /// @param {Color} $primary - The primary color to use.
 /// @param {Color} $hover-color - The hover color to use.
-@mixin md-theme-date-pickers($primary, $hover-color) {
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if it is the light theme
+@mixin md-theme-date-pickers($primary, $hover-color, $light-theme: $md-light-theme) {
+  .md-picker.inline {
+    background: if($light-theme, $md-light-theme-card-color, $md-dark-theme-card-color);
+  }
+
+  .md-picker-header,
   .md-date-picker-header,
   .md-calendar-date.active:after {
     background: $primary;
-  }
-
-  .md-date-picker-date.active,
-  .md-date-picker-year.active,
-  .md-calendar-date:not([disabled]):hover,
-  .md-calendar-date:not([disabled]):focus,
-  .md-calendar-date:not([disabled]).active {
-    color: $white-base;
-  }
-
-  .md-date-picker-date,
-  .md-date-picker-year {
-    color: rgba($white-base, .7);
   }
 
   .md-calendar-date.today,
@@ -177,5 +170,9 @@
 
   .md-year:focus:not(.active) {
     color: $hover-color;
+  }
+
+  .md-clock {
+    background: if($light-theme, $md-grey-300, $md-grey-800);
   }
 }
