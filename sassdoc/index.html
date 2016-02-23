@@ -52,23 +52,6 @@
       
         
       
-        
-          <li class="title">
-  <a href="#mixin">
-    <h3 class="type-heading">mixins</h3>
-  </a>
-</li>
-
-
-  <li><a href="#make-md-btn-default">make-md-btn-default</a></li>
-
-  <li><a href="#make-md-btn">make-md-btn</a></li>
-
-
-        
-      
-      
-        
       
         
       
@@ -94,8 +77,6 @@
   <li><a href="#md-btn-padding">md-btn-padding</a></li>
 
 
-        
-      
         
       
     
@@ -206,59 +187,6 @@
 </li>
 
 
-  <li><a href="#md-primary-color">md-primary-color</a></li>
-
-  <li><a href="#md-primary-color-hue-light">md-primary-color-hue-light</a></li>
-
-  <li><a href="#md-primary-color-hue-bold">md-primary-color-hue-bold</a></li>
-
-  <li><a href="#md-secondary-color">md-secondary-color</a></li>
-
-  <li><a href="#md-secondary-color-hue">md-secondary-color-hue</a></li>
-
-  <li><a href="#black-base">black-base</a></li>
-
-  <li><a href="#white-base">white-base</a></li>
-
-  <li><a href="#md-text-color">md-text-color</a></li>
-
-  <li><a href="#md-secondary-text-color">md-secondary-text-color</a></li>
-
-  <li><a href="#md-disabled-color">md-disabled-color</a></li>
-
-  <li><a href="#md-divider-color">md-divider-color</a></li>
-
-  <li><a href="#md-text-color-alt">md-text-color-alt</a></li>
-
-  <li><a href="#md-secondary-text-color-alt">md-secondary-text-color-alt</a></li>
-
-  <li><a href="#md-disabled-color-alt">md-disabled-color-alt</a></li>
-
-  <li><a href="#md-divider-color-alt">md-divider-color-alt</a></li>
-
-  <li><a href="#md-background-color">md-background-color</a></li>
-
-  <li><a href="#md-border-color">md-border-color</a></li>
-
-
-        
-      
-    
-      
-        
-      
-      
-        
-      
-      
-        
-          <li class="title">
-  <a href="#variable">
-    <h3 class="type-heading">variables</h3>
-  </a>
-</li>
-
-
   <li><a href="#md-dropdown-z-index">md-dropdown-z-index</a></li>
 
   <li><a href="#md-dropdown-max-height">md-dropdown-max-height</a></li>
@@ -325,8 +253,6 @@
 
 
   <li><a href="#md-switch-height">md-switch-height</a></li>
-
-  <li><a href="#md-switch-background">md-switch-background</a></li>
 
   <li><a href="#md-switch-ball-size">md-switch-ball-size</a></li>
 
@@ -496,21 +422,27 @@
 
   <li><a href="#md-box-shadow">md-box-shadow</a></li>
 
+  <li><a href="#md-theme-avatars-suffix">md-theme-avatars-suffix</a></li>
+
   <li><a href="#md-theme-buttons">md-theme-buttons</a></li>
 
   <li><a href="#aspect-ratio">aspect-ratio</a></li>
 
-  <li><a href="#md-theme-date-pickers">md-theme-date-pickers</a></li>
-
   <li><a href="#host-google-font">host-google-font</a></li>
 
   <li><a href="#host-material-icons">host-material-icons</a></li>
+
+  <li><a href="#md-theme-date-pickers">md-theme-date-pickers</a></li>
+
+  <li><a href="#md-theme-progress">md-theme-progress</a></li>
 
   <li><a href="#make-positioned-select-field">make-positioned-select-field</a></li>
 
   <li><a href="#md-select-field-mobile">md-select-field-mobile</a></li>
 
   <li><a href="#md-select-field-desktop">md-select-field-desktop</a></li>
+
+  <li><a href="#md-theme-selection-controls">md-theme-selection-controls</a></li>
 
   <li><a href="#md-theme-tabs">md-theme-tabs</a></li>
 
@@ -543,6 +475,8 @@
         
       
         
+      
+        
           <li class="title">
   <a href="#function">
     <h3 class="type-heading">functions</h3>
@@ -561,10 +495,6 @@
 
         
       
-        
-      
-      
-        
       
         
       
@@ -576,11 +506,21 @@
 </li>
 
 
+  <li><a href="#md-red-50">md-red-50</a></li>
+
+  <li><a href="#md-icon-color">md-icon-color</a></li>
+
+  <li><a href="#md-hint-text-color">md-hint-text-color</a></li>
+
   <li><a href="#md-default-padding">md-default-padding</a></li>
 
   <li><a href="#md-ink-animation-time">md-ink-animation-time</a></li>
 
+  <li><a href="#md-avatar-size">md-avatar-size</a></li>
 
+
+        
+      
         
       
     
@@ -654,9 +594,9 @@
     <div class="declaration">
   
     <pre class="code language-scss"><code>$md-avatar-colors: (
-  (pink 6 false green 1 true)
-  (purple 6 false yellow 3 true)
-  (amber 6 false light-blue 4 true)
+  ($md-pink-500 $md-green-a-100 color-1)
+  ($md-purple-500 $md-yellow-300 color-2)
+  ($md-amber-500 $md-light-blue-a-400 color-3)
 ) !default;</code></pre>
 
   
@@ -716,546 +656,6 @@
       
         
       
-        
-          <h1 id="mixin" class="type-title">
-  <span data-role="content-wrapper">
-    mixins
-  </span>
-</h1>
-
-<section class="mixins">
-  
-    
-
-<article id="make-md-btn-default" data-name="make-md-btn-default" data-type="mixin" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#make-md-btn-default">
-      make-md-btn-default
-    </a>
-  </h2>
-
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-
-      
-        
-      
-    
-    <pre class="code language-scss"><code>@mixin make-md-btn-default($color, $hover-focus-bg-color, $active-bg-color, $md-ink-bg-color, $raised-border-color: null) { ... }</code></pre>
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>Make a material design default button
-This will generate the style for a flat, raised, and fab button</p>
-</p>
-
-
-      
-        
-        
-  <h3 class="sub-heading">Parameters</h3>
-  <dl class="parameters">
-  
-    <dt class="parameter">
-      <code class="name">$color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The text color to use</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$hover-focus-bg-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The hover and focus color for the button</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$active-bg-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The color to use when active</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$md-ink-bg-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The md-ink background color</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$raised-border-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="default-label">
-            Default:<code>null</code>
-          </span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The raised border color. If this value is set,
-  raised and floating buttons will get a background of the white base and the raised buttonm
-  with get a border with the border color</p>
-
-      </div>
-    </dd>
-  
-  </dl>
-  
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="make-md-btn" data-name="make-md-btn" data-type="mixin" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#make-md-btn">
-      make-md-btn
-    </a>
-  </h2>
-
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-        
-      
-
-      
-
-      
-        
-      
-    
-    <pre class="code language-scss"><code>@mixin make-md-btn($type, $color, $hover-hue, $md-ink-hue: null, $hue: 6, $hover-color: $color, $md-ink-color: $color) { ... }</code></pre>
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>Make a material design button type</p>
-</p>
-
-
-      
-        
-        
-  <h3 class="sub-heading">Parameters</h3>
-  <dl class="parameters">
-  
-    <dt class="parameter">
-      <code class="name">$type</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The button type to make.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The color to use for the button.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$hover-hue</code>
-      <ul class="meta">
-        <span class="type-label">Number</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The hue for the hover color.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$md-ink-hue</code>
-      <ul class="meta">
-        <span class="type-label">Number</span>
-        
-          <span class="default-label">
-            Default:<code>null</code>
-          </span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>This is used to generate the flat button.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$hue</code>
-      <ul class="meta">
-        <span class="type-label">Number</span>
-        
-          <span class="default-label">
-            Default:<code>6</code>
-          </span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The color&#39;s hue for the button</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$hover-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="default-label">
-            Default:<code>$color</code>
-          </span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The hover color for the button</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$md-ink-color</code>
-      <ul class="meta">
-        <span class="type-label">String</span>
-        
-          <span class="default-label">
-            Default:<code>$color</code>
-          </span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The md-ink&#39;s color. It gets an opacity of .3 applied to it</p>
-
-      </div>
-    </dd>
-  
-  </dl>
-  
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-</section>
-
-        
-      
-      
-        
       
         
       
@@ -1782,8 +1182,6 @@ This will generate the style for a flat, raised, and fab button</p>
   
 </section>
 
-        
-      
         
       
     
@@ -2395,7 +1793,7 @@ This will generate the style for a flat, raised, and fab button</p>
 
     <div class="declaration">
   
-    <pre class="code language-scss"><code>$md-card-title-size: 24em / $md-font-size-base;</code></pre>
+    <pre class="code language-scss"><code>$md-card-title-size: 24px;</code></pre>
 
   
 </div>
@@ -2475,7 +1873,7 @@ This will generate the style for a flat, raised, and fab button</p>
 
     <div class="declaration">
   
-    <pre class="code language-scss"><code>$md-card-title-size-small: 16em / $md-font-size-base;</code></pre>
+    <pre class="code language-scss"><code>$md-card-title-size-small: 14px;</code></pre>
 
   
 </div>
@@ -2485,1446 +1883,6 @@ This will generate the style for a flat, raised, and fab button</p>
       
         
         
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-</section>
-
-        
-      
-    
-      
-        
-      
-      
-        
-      
-      
-        
-          <h1 id="variable" class="type-title">
-  <span data-role="content-wrapper">
-    variables
-  </span>
-</h1>
-
-<section class="variables">
-  
-    
-
-<article id="md-primary-color" data-name="md-primary-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-primary-color">
-      md-primary-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-primary-color: indigo !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The primary color</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-primary-color-hue-light" data-name="md-primary-color-hue-light" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-primary-color-hue-light">
-      md-primary-color-hue-light
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-primary-color-hue-light: 3 !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The primary color lighter hue</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-primary-color-hue-bold" data-name="md-primary-color-hue-bold" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-primary-color-hue-bold">
-      md-primary-color-hue-bold
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-primary-color-hue-bold: 7 !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The primary color darker hue</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-secondary-color" data-name="md-secondary-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-secondary-color">
-      md-secondary-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-secondary-color: pink !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The secondary color</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-secondary-color-hue" data-name="md-secondary-color-hue" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-secondary-color-hue">
-      md-secondary-color-hue
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-secondary-color-hue: 2 !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The secondary color accent hue</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="black-base" data-name="black-base" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#black-base">
-      black-base
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$black-base: #000;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="white-base" data-name="white-base" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#white-base">
-      white-base
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$white-base: #fff;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-text-color" data-name="md-text-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-text-color">
-      md-text-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-text-color: rgba($black-base, .77);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The text color for light backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-  <h3 class="sub-heading">Links</h3>
-
-  <ul class="list-unstyled">
-  
-    <li>
-      <a href="https://www.google.com/design/spec/style/color.html#color-ui-color-application">
-        
-          https://www.google.com/design/spec/style/color.html#color-ui-color-application
-        
-      </a>
-    </li>
-  
-  </ul>
-
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-secondary-text-color" data-name="md-secondary-text-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-secondary-text-color">
-      md-secondary-text-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-secondary-text-color: rgba($black-base, .54);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The Secondary text color on light backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-disabled-color" data-name="md-disabled-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-disabled-color">
-      md-disabled-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-disabled-color: rgba($black-base, .38);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The color for disabled text on light backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-divider-color" data-name="md-divider-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-divider-color">
-      md-divider-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-divider-color: rgba($black-base, .12);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The divider color on light backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-text-color-alt" data-name="md-text-color-alt" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-text-color-alt">
-      md-text-color-alt
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-text-color-alt: $white-base;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The text color for dark backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-secondary-text-color-alt" data-name="md-secondary-text-color-alt" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-secondary-text-color-alt">
-      md-secondary-text-color-alt
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-secondary-text-color-alt: rgba($white-base, .70);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The secondary text color for dark backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-disabled-color-alt" data-name="md-disabled-color-alt" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-disabled-color-alt">
-      md-disabled-color-alt
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-disabled-color-alt: rgba($white-base, .30);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The disabled text color on dark backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-divider-color-alt" data-name="md-divider-color-alt" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-divider-color-alt">
-      md-divider-color-alt
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-divider-color-alt: rgba($white-base, .12);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The divider color on dark backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-background-color" data-name="md-background-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-background-color">
-      md-background-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-background-color: #fafafa;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The main content background color on light backgrounds</p>
-</p>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-border-color" data-name="md-border-color" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-border-color">
-      md-border-color
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-border-color: rgba($black-base, .1);</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>The default border color on light backgrounds</p>
-</p>
-
 
       
         
@@ -4456,86 +2414,6 @@ This will generate the style for a flat, raised, and fab button</p>
   
   </ul>
 
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-switch-background" data-name="md-switch-background" data-type="variable" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-switch-background">
-      md-switch-background
-    </a>
-  </h2>
-
-  
-    <span class="type-label"></span>
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    <pre class="code language-scss"><code>$md-switch-background: rgba($black-base, .26) !default;</code></pre>
-
-  
-</div>
-
-
-    
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
 
       
         
@@ -7242,6 +5120,194 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
   
     
 
+<article id="md-theme-avatars-suffix" data-name="md-theme-avatars-suffix" data-type="mixin" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-theme-avatars-suffix">
+      md-theme-avatars-suffix
+    </a>
+  </h2>
+
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+    <pre class="code language-scss"><code>@mixin md-theme-avatars-suffix($bg-color, $text-color, $suffix) { ... }</code></pre>
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>Themes the avatar with the given colors</p>
+</p>
+
+
+      
+        
+        
+  <h3 class="sub-heading">Parameters</h3>
+  <dl class="parameters">
+  
+    <dt class="parameter">
+      <code class="name">$bg-color</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The background color to use for the avatar</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$text-color</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The text color to use in the avatar</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$suffix</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The class name suffix to use. Will be added to the end of .md-avatar-</p>
+
+      </div>
+    </dd>
+  
+  </dl>
+  
+
+      
+        
+        
+
+      
+        
+        
+  <section class="example">
+    <h3 class="sub-heading">Example</h3>
+
+    
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage SASS</p>
+</h4><code>@include md-theme-avatars-suffix($md-indigo-500, $md-white-base, color-1);</code></pre>
+      
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage CSS Output</p>
+</h4><code>.md-avatar-color-1 {
+  background: #3f51b5;
+  color: #fff;
+}</code></pre>
+      
+    </section>
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
 <article id="md-theme-buttons" data-name="md-theme-buttons" data-type="mixin" class="item"
   
   >
@@ -7342,7 +5408,7 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
         
       
     
-    <pre class="code language-scss"><code>@mixin md-theme-buttons($color, $text-color: $white-base, $hover-color: rgba($color, .95), $ink-color: rgba($white-base, .05), $flat-hover-color: rgba($color, .15), $flat-ink-color: rgba($color, .22)) { ... }</code></pre>
+    <pre class="code language-scss"><code>@mixin md-theme-buttons($color, $text-color: $md-white-base, $hover-color: rgba($color, .95), $ink-color: rgba($md-white-base, .05), $flat-hover-color: rgba($color, .15), $flat-ink-color: rgba($color, .22)) { ... }</code></pre>
   
 </div>
 
@@ -7384,7 +5450,7 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
         <span class="type-label">Color</span>
         
           <span class="default-label">
-            Default:<code>$white-base</code>
+            Default:<code>$md-white-base</code>
           </span>
         
       </ul>
@@ -7421,7 +5487,7 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
         <span class="type-label">Color</span>
         
           <span class="default-label">
-            Default:<code>rgba($white-base, .05)</code>
+            Default:<code>rgba($md-white-base, .05)</code>
           </span>
         
       </ul>
@@ -7488,7 +5554,7 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
     
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage SASS</p>
 </h4><code>.md-primary {
-  @include md-theme-buttons(get-md-color(indigo));
+  @include md-theme-buttons($md-primary-color);
 }</code></pre>
       
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage CSS Output</p>
@@ -7736,198 +5802,6 @@ If the depth is 0, a hover effect will be added to raise the card to z-depth of 
   top: 0;
   width: 100%;
 }</code></pre>
-      
-    </section>
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-
-
-
-      
-        
-        
-
-      
-        
-        
-
-      
-        
-        
-
-      
-    
-  </div>
-</article>
-
-  
-    
-
-<article id="md-theme-date-pickers" data-name="md-theme-date-pickers" data-type="mixin" class="item"
-  
-  >
-  <div data-role="content-wrapper">
-    <header class="title-bar">
-  <h2 class="item-title">
-    <a href="#md-theme-date-pickers">
-      md-theme-date-pickers
-    </a>
-  </h2>
-
-  
-
-  <div class="metadata">
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-</header>
-
-    <div class="declaration">
-  
-    
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-    <pre class="code language-scss"><code>@mixin md-theme-date-pickers($primary, $hover-color) { ... }</code></pre>
-  
-</div>
-
-
-    
-      
-        
-        
-  <p><p>Themes a date picker with the given colors</p>
-</p>
-
-
-      
-        
-        
-  <h3 class="sub-heading">Parameters</h3>
-  <dl class="parameters">
-  
-    <dt class="parameter">
-      <code class="name">$primary</code>
-      <ul class="meta">
-        <span class="type-label">Color</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The primary color to use.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$hover-color</code>
-      <ul class="meta">
-        <span class="type-label">Color</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The hover color to use.</p>
-
-      </div>
-    </dd>
-  
-  </dl>
-  
-
-      
-        
-        
-
-      
-        
-        
-  <section class="example">
-    <h3 class="sub-heading">Example</h3>
-
-    
-      <pre class="code language-scss"><h4 class="description"><p>Basic Usage SASS</p>
-</h4><code>.my-primary-theme {
-  @inlude md-theme-date-pickers(get-md-color(indigo), get-md-color(indigo, 5));
-}</code></pre>
-      
-      <pre class="code language-scss"><h4 class="description"><p>Basic Usage Output SCSS</p>
-</h4><code>.my-primary-theme {
-  .md-date-picker-header,
-  .md-calendar-date.active:after {
-    background: #3f51b5;
-  }
-
-  .md-calendar-date.today,
-  .md-year.active {
-     color: #3f51b5;
-  }
-
-  .md-date-picker-date,
-  .md-date-picker-year {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .md-date-picker-date.active,
-  .md-date-picker-year.active,
-  .md-calendar-date:not([disabled]):hover,
-  .md-calendar-date:not([disabled]):focus,
-  .md-calendar-date:not([disabled]).active {
-    color: #fff;
-  }
-
-  .md-calendar-date:focus:not(.active):after,
-  .md-calendar-date:hover:not(.active):after,
-    background: #7986cb;
-  }
-
-  .md-year:focus:not(.active) {
-    color: #7986cb;
-  }</code></pre>
       
     </section>
 
@@ -8309,6 +6183,398 @@ and the .material-icons css class.</p>
    white-space: nowrap;
    width: 1em;
    word-wrap: normal;
+}</code></pre>
+      
+    </section>
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
+<article id="md-theme-date-pickers" data-name="md-theme-date-pickers" data-type="mixin" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-theme-date-pickers">
+      md-theme-date-pickers
+    </a>
+  </h2>
+
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+
+      
+        
+      
+    
+    <pre class="code language-scss"><code>@mixin md-theme-date-pickers($primary, $hover-color, $light-theme: $md-light-theme) { ... }</code></pre>
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>Themes a date picker with the given colors</p>
+</p>
+
+
+      
+        
+        
+  <h3 class="sub-heading">Parameters</h3>
+  <dl class="parameters">
+  
+    <dt class="parameter">
+      <code class="name">$primary</code>
+      <ul class="meta">
+        <span class="type-label">Color</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The primary color to use.</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$hover-color</code>
+      <ul class="meta">
+        <span class="type-label">Color</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The hover color to use.</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$light-theme</code>
+      <ul class="meta">
+        <span class="type-label">Boolean</span>
+        
+          <span class="default-label">
+            Default:<code>$md-light-theme</code>
+          </span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>Boolean if it is the light theme</p>
+
+      </div>
+    </dd>
+  
+  </dl>
+  
+
+      
+        
+        
+
+      
+        
+        
+  <section class="example">
+    <h3 class="sub-heading">Example</h3>
+
+    
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage SASS</p>
+</h4><code>.my-primary-theme {
+  @inlude md-theme-date-pickers($md-indigo-500, $md-indigo-400);
+}</code></pre>
+      
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage Output SCSS</p>
+</h4><code>.my-primary-theme {
+  .md-date-picker-header,
+  .md-calendar-date.active:after {
+    background: #3f51b5;
+  }
+
+  .md-calendar-date.today,
+  .md-year.active {
+     color: #3f51b5;
+  }
+
+  .md-date-picker-date,
+  .md-date-picker-year {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .md-date-picker-date.active,
+  .md-date-picker-year.active,
+  .md-calendar-date:not([disabled]):hover,
+  .md-calendar-date:not([disabled]):focus,
+  .md-calendar-date:not([disabled]).active {
+    color: #fff;
+  }
+
+  .md-calendar-date:focus:not(.active):after,
+  .md-calendar-date:hover:not(.active):after,
+    background: #7986cb;
+  }
+
+  .md-year:focus:not(.active) {
+    color: #7986cb;
+  }</code></pre>
+      
+    </section>
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
+<article id="md-theme-progress" data-name="md-theme-progress" data-type="mixin" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-theme-progress">
+      md-theme-progress
+    </a>
+  </h2>
+
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+    <pre class="code language-scss"><code>@mixin md-theme-progress($color, $inactive-color) { ... }</code></pre>
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>Themes the progress bars with the two colors.</p>
+</p>
+
+
+      
+        
+        
+  <h3 class="sub-heading">Parameters</h3>
+  <dl class="parameters">
+  
+    <dt class="parameter">
+      <code class="name">$color</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The background color and the svg stroke color</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$inactive-color</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The color to use for the linear progress
+       bar. This will be the color of the bar before it that width has been reached.</p>
+
+      </div>
+    </dd>
+  
+  </dl>
+  
+
+      
+        
+        
+
+      
+        
+        
+  <section class="example">
+    <h3 class="sub-heading">Example</h3>
+
+    
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage SASS</p>
+</h4><code>@include md-theme-progress($md-blue-500, $md-blue-300);</code></pre>
+      
+      <pre class="code language-scss"><h4 class="description"><p>Basic Usage CSS Output</p>
+</h4><code>.md-linear-progress-container {
+  background: #2196f3;
+}
+
+.md-linear-progress {
+  background: #64b5f6;
+}
+
+.md-circular-progress-path {
+  stroke: #2196f3;
 }</code></pre>
       
     </section>
@@ -8754,6 +7020,158 @@ and the .material-icons css class.</p>
   
     
 
+<article id="md-theme-selection-controls" data-name="md-theme-selection-controls" data-type="mixin" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-theme-selection-controls">
+      md-theme-selection-controls
+    </a>
+  </h2>
+
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    
+    
+      
+
+      
+
+      
+
+      
+        
+      
+    
+      
+
+      
+        
+      
+
+      
+
+      
+        
+      
+    
+    <pre class="code language-scss"><code>@mixin md-theme-selection-controls($color, $light-theme: $md-light-theme) { ... }</code></pre>
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>Themes the selection controls to use the given color</p>
+<p>Note: If this is the dark theme, the $color param should be a -200 suffix.</p>
+</p>
+
+
+      
+        
+        
+  <h3 class="sub-heading">Parameters</h3>
+  <dl class="parameters">
+  
+    <dt class="parameter">
+      <code class="name">$color</code>
+      <ul class="meta">
+        <span class="type-label">String</span>
+        
+          <span class="required-label">Required</span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>The color to style with</p>
+
+      </div>
+    </dd>
+  
+    <dt class="parameter">
+      <code class="name">$light-theme</code>
+      <ul class="meta">
+        <span class="type-label">Boolean</span>
+        
+          <span class="default-label">
+            Default:<code>$md-light-theme</code>
+          </span>
+        
+      </ul>
+    </dt>
+    <dd class="parameter-definition">
+      <div class="description">
+        <p>If it should be styled using the light theme</p>
+
+      </div>
+    </dd>
+  
+  </dl>
+  
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
 <article id="md-theme-tabs" data-name="md-theme-tabs" data-type="mixin" class="item"
   
   >
@@ -8804,27 +7222,7 @@ and the .material-icons css class.</p>
         
       
     
-      
-
-      
-
-      
-
-      
-        
-      
-    
-      
-
-      
-
-      
-
-      
-        
-      
-    
-    <pre class="code language-scss"><code>@mixin md-theme-tabs($primary-color, $secondary-color, $text-active-color, $text-inactive-color) { ... }</code></pre>
+    <pre class="code language-scss"><code>@mixin md-theme-tabs($primary-color, $secondary-color) { ... }</code></pre>
   
 </div>
 
@@ -8875,38 +7273,6 @@ and the .material-icons css class.</p>
       </div>
     </dd>
   
-    <dt class="parameter">
-      <code class="name">$text-active-color</code>
-      <ul class="meta">
-        <span class="type-label">Color</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The tab active text color. This should be the white-base in most cases.</p>
-
-      </div>
-    </dd>
-  
-    <dt class="parameter">
-      <code class="name">$text-inactive-color</code>
-      <ul class="meta">
-        <span class="type-label">Color</span>
-        
-          <span class="required-label">Required</span>
-        
-      </ul>
-    </dt>
-    <dd class="parameter-definition">
-      <div class="description">
-        <p>The tab inactive text color. This should be the white-base with a 70% opacity in most cases.</p>
-
-      </div>
-    </dd>
-  
   </dl>
   
 
@@ -8923,9 +7289,9 @@ and the .material-icons css class.</p>
     
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage SASS</p>
 </h4><code>.md-primary {
-  $primary: get-md-color(cyan);
-  $secondary: get-md-color(yellow, 3, true);
-  @include md-theme-tabs($primary, $secondary, $white-base, rgba($white-base, .7);
+  $primary: $md-cyan-500;
+  $secondary: $md-yellow-a-200;
+  @include md-theme-tabs($primary, $secondary);
  }</code></pre>
       
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage CSS Output</p>
@@ -9690,7 +8056,7 @@ and the .material-icons css class.</p>
         
       
     
-    <pre class="code language-scss"><code>@mixin md-theme-text-fields($color: get-md-color($md-primary-color), $hint-color: $md-secondary-text-color, $error-color: get-md-color(red)) { ... }</code></pre>
+    <pre class="code language-scss"><code>@mixin md-theme-text-fields($color: $md-primary-color, $hint-color: $md-secondary-text-color, $error-color: $md-red-500) { ... }</code></pre>
   
 </div>
 
@@ -9715,7 +8081,7 @@ and the .material-icons css class.</p>
         <span class="type-label">Color</span>
         
           <span class="default-label">
-            Default:<code>get-md-color($md-primary-color)</code>
+            Default:<code>$md-primary-color</code>
           </span>
         
       </ul>
@@ -9753,7 +8119,7 @@ and the .material-icons css class.</p>
         <span class="type-label">Color</span>
         
           <span class="default-label">
-            Default:<code>get-md-color(red)</code>
+            Default:<code>$md-red-500</code>
           </span>
         
       </ul>
@@ -9781,7 +8147,7 @@ and the .material-icons css class.</p>
 
     
       <pre class="code language-scss"><h4 class="description"><p>Example Usage SASS</p>
-</h4><code>@include md-theme-text-fields(get-md-color($md-primary-color));</code></pre>
+</h4><code>@include md-theme-text-fields($md-primary-color);</code></pre>
       
       <pre class="code language-scss"><h4 class="description"><p>Example Usage CSS Output</p>
 </h4><code>.md-text-field-label,
@@ -9964,7 +8330,7 @@ and the .material-icons css class.</p>
     
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage SASS</p>
 </h4><code>.md-primary {
-  @include md-theme-toolbar(get-md-color(indigo), $white-base);
+  @include md-theme-toolbar($md-primary-color);
 }</code></pre>
       
       <pre class="code language-scss"><h4 class="description"><p>Example Basic Usage CSS Output</p>
@@ -10223,6 +8589,8 @@ and the .material-icons css class.</p>
       
         
       
+      
+        
       
         
       
@@ -10971,10 +9339,6 @@ work as an rgba instead on their base colors where $hue is the opacity level.</p
 
         
       
-        
-      
-      
-        
       
         
       
@@ -10986,6 +9350,263 @@ work as an rgba instead on their base colors where $hue is the opacity level.</p
 </h1>
 
 <section class="variables">
+  
+    
+
+<article id="md-red-50" data-name="md-red-50" data-type="variable" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-red-50">
+      md-red-50
+    </a>
+  </h2>
+
+  
+    <span class="type-label"></span>
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    <pre class="code language-scss"><code>$md-red-50: #ffebee;</code></pre>
+
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>Material Design color palette variables</p>
+</p>
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+  <h3 class="sub-heading">Links</h3>
+
+  <ul class="list-unstyled">
+  
+    <li>
+      <a href="https://www.google.com/design/spec/style/color.html#color-color-palette">
+        
+          https://www.google.com/design/spec/style/color.html#color-color-palette
+        
+      </a>
+    </li>
+  
+  </ul>
+
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
+<article id="md-icon-color" data-name="md-icon-color" data-type="variable" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-icon-color">
+      md-icon-color
+    </a>
+  </h2>
+
+  
+    <span class="type-label"></span>
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    <pre class="code language-scss"><code>$md-icon-color: $md-secondary-text-color;</code></pre>
+
+  
+</div>
+
+
+    
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
+    
+
+<article id="md-hint-text-color" data-name="md-hint-text-color" data-type="variable" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-hint-text-color">
+      md-hint-text-color
+    </a>
+  </h2>
+
+  
+    <span class="type-label"></span>
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    <pre class="code language-scss"><code>$md-hint-text-color: $md-disabled-color;</code></pre>
+
+  
+</div>
+
+
+    
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
   
     
 
@@ -11153,8 +9774,93 @@ work as an rgba instead on their base colors where $hue is the opacity level.</p
 </article>
 
   
+    
+
+<article id="md-avatar-size" data-name="md-avatar-size" data-type="variable" class="item"
+  
+  >
+  <div data-role="content-wrapper">
+    <header class="title-bar">
+  <h2 class="item-title">
+    <a href="#md-avatar-size">
+      md-avatar-size
+    </a>
+  </h2>
+
+  
+    <span class="type-label">String</span>
+  
+
+  <div class="metadata">
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+</header>
+
+    <div class="declaration">
+  
+    <pre class="code language-scss"><code>$md-avatar-size: 40px;</code></pre>
+
+  
+</div>
+
+
+    
+      
+        
+        
+  <p><p>The default size for avatars</p>
+</p>
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+
+
+
+      
+        
+        
+
+      
+        
+        
+
+      
+        
+        
+
+      
+    
+  </div>
+</article>
+
+  
 </section>
 
+        
+      
         
       
     
