@@ -1,13 +1,14 @@
-$primary: get-md-color($md-primary-color);
-$secondary: get-md-color($md-secondary-color, $md-secondary-color-hue, true);
-$text: $white-base;
-$disabled-text: rgba($text, .7);
+$primary: $md-indigo-500;
+$secondary: $md-pink-a-200;
+$text: $md-white-base;
+$disabled-text: $md-light-theme-disabled-text-color;
 
 @include md-theme-text-fields($primary);
 @include md-theme-snackbars();
-@include md-theme-date-pickers($primary, get-md-color($md-primary-color, 5));
+@include md-theme-date-pickers($primary, $md-indigo-400);
 @include md-theme-progress($md-blue-500, $md-blue-200);
 @include md-theme-select-fields($primary);
+@include md-theme-selection-controls($primary);
 @include md-theme-sliders($md-indigo-500);
 
 .md-primary {
@@ -18,7 +19,7 @@ $disabled-text: rgba($text, .7);
 
 .md-secondary {
   @include md-theme-buttons($secondary);
-  $secondary: get-md-color($md-secondary-color);
+  $secondary: $md-pink-500;
   @include md-theme-toolbars($secondary, $white-base);
   @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
 }

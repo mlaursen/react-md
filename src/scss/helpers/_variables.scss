@@ -264,12 +264,14 @@ $md-avatar-colors: (
 
 // =============================================
 // Selection Controls
+$md-switch-light-theme-track-color: rgba($md-black-base, .26);
+$md-switch-light-theme-disabled-color: rgba($md-black-base, .12);
+$md-switch-dark-theme-track-color: rgba($md-white-base, .3);
+$md-switch-dark-theme-disabled-color: rgba($md-white-base, .1);
 /// @link https://www.google.com/design/spec/components/selection-controls.html
 /// @group selection-controls
 $md-switch-height: $md-tab-height !default;
 
-/// @group selection-controls
-$md-switch-background: rgba($black-base, .26) !default;
 /// @group selection-controls
 $md-switch-ball-size: $md-font-icon-size !default;
 /// @group selection-controls
