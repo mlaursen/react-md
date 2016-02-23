@@ -41,9 +41,10 @@
   @if $elevation < 0 or $elevation > 5 {
     @warn 'The elevation must be a number from 0 - 5. elevation given was `#{$elevation}`';
   } @else {
-    $top-shadow-color: get-md-color(black, .14);
-    $middle-shadow-color: get-md-color(black, .12);
-    $bottom-shadow-color: get-md-color(black, if($elevation == 1, .2, .4));
+    $top-shadow-color: rgba($md-black-base, .14);
+    $middle-shadow-color: rgba($md-black-base, .12);
+    $bottom-shadow-color: rgba($md-black-base, if($elevation == 1, .2, .4));
+
     @if $elevation == 0 {
       box-shadow: none;
     } @else if $elevation == 1 {
