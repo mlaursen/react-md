@@ -1,0 +1,29 @@
+@mixin md-theme-lists($color, $light-theme: $md-light-theme) {
+  .md-list {
+    a {
+      color: if($light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
+    }
+
+    .md-subheader {
+      color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+      &.md-primary-subheader {
+        color: $color;
+      }
+    }
+  }
+
+  .md-list-tile {
+    &.active {
+      color: $color;
+    }
+
+    &:hover {
+      background: if($light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+    }
+  }
+
+  .md-list-tile-secondary-text {
+    color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+  }
+}

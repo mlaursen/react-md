@@ -16,21 +16,15 @@
   }
 
   .md-subheader {
-    color: $md-secondary-text-color;
     font-family: $md-font;
     font-size: #{$md-font-size-base}px;
     font-weight: $md-font-medium;
     height: 48px;
     margin: 0;
     padding: $md-default-padding;
-
-    &.md-primary-subheader {
-      color: get-md-color($md-primary-color);
-    }
   }
 
   a {
-    color: $md-text-color;
     text-decoration: none;
   }
 }
@@ -56,12 +50,7 @@
   position: relative;
   transition: background $md-transition-time;
 
-  &.active {
-    color: get-md-color($md-primary-color);
-  }
-
   &:hover {
-    background-color: $md-divider-color;
     cursor: pointer;
   }
 
@@ -82,7 +71,7 @@
   }
 
   .md-ink {
-    background: rgba($black-base, .15);
+    background: rgba($md-black-base, .15);
   }
 
   > *:not(.md-tile-content) {
@@ -116,6 +105,5 @@
 }
 
 .md-tile-secondary-text {
-  color: $md-secondary-text-color;
   font-size: #{$md-font-size-base}px;
 }
