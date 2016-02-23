@@ -122,7 +122,7 @@
 /// Themes the text fields for the given color. This theme mixin does not use the "&." syntax.
 ///
 /// @example scss - Example Usage SASS
-///   @include md-theme-text-fields(get-md-color($md-primary-color));
+///   @include md-theme-text-fields($md-primary-color);
 ///
 /// @example scss - Example Usage CSS Output
 ///  .md-text-field-label,
@@ -150,13 +150,13 @@
 ///    background: #f44336;
 ///  }
 ///
-/// @param {Color} $color [get-md-color($md-primary-color)] - The color to use for the active colors
+/// @param {Color} $color [$md-primary-color] - The color to use for the active colors
 ///        on the underline and icons.
 /// @param {Color} $hint-color [$md-secondary-text-color] - The color for inactive text field labels and icons
 ///        and the hint text underneath the text fields.
-/// @param {Color} $error-color [get-md-color(red)] - The error color to use for the text field
+/// @param {Color} $error-color [$md-red-500] - The error color to use for the text field
 ///        underlines, icons, floating labels and error message text when there is an error.
-@mixin md-theme-text-fields($color: get-md-color($md-primary-color), $hint-color: $md-secondary-text-color, $error-color: get-md-color(red)) {
+@mixin md-theme-text-fields($color: $md-primary-color, $hint-color: $md-secondary-text-color, $error-color: $md-red-500) {
   .md-floating-label,
   .md-text-field-message,
   .md-text-field-icon {
