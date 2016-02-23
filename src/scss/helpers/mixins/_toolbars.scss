@@ -2,7 +2,7 @@
 ///
 /// @example scss- Example Basic Usage SASS
 ///   .md-primary {
-///     @include md-theme-toolbar(get-md-color(indigo), $white-base);
+///     @include md-theme-toolbar($md-primary-color);
 ///   }
 ///
 /// @example scss - Example Basic Usage CSS Output
