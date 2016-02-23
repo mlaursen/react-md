@@ -1,29 +1,29 @@
 @import '~react-md-scss/helpers/all';
 
 .favorite-checkbox .md-checkbox.active {
-  color: get-md-color($md-secondary-color);
+  color: $md-secondary-color;
 }
 
 .custom-stars .md-radio {
-  color: get-md-color(deep-orange, 3);
+  color: $md-deep-orange-200;
 
   &.active {
-    color: get-md-color(deep-orange, 8);
+    color: $md-deep-orange-700;
   }
 }
 
 .custom-info .md-radio {
-  color: get-md-color(light-blue, 3);
+  color: $md-light-blue-200;
 
   &.active {
-    color: get-md-color(light-blue);
+    color: $md-light-blue-500;
   }
 }
 
 .custom-warning .md-radio {
-  color: get-md-color(red, 4);
+  color: $md-red-300;
 
   &.active {
-    color: get-md-color(red, 7);
+    color: $md-red-600;
   }
 }

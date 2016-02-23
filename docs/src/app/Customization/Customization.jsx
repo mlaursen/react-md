@@ -22,16 +22,19 @@ const colors = `
 #### Colors
 
 This project has been set up for using the [Material design color palette](https://www.google.com/design/spec/style/color.html#color-color-palette).
-You can access all these colors with a sass function \`get-md-color($primary, $hue, $secondary)\`.
-There is a good write-up at [the sass documentation](http://mlaursen.github.io/react-md/sassdoc/#undefined-function-get-md-color).
+You can access any of these colors with a variable \`.md-COLORNAME-NUMBER\`. An accent color is \`.md-COLORNAME-a-NUMBER\`.
 
-##### tl;dr
+An example would be
 
-\`primary\` should be one of the colors from the color palette as a color string. ie: indigo
+\`\`\`scss
+.some-indigo-color {
+  color: $md-indigo-500;
+}
 
-\`hue\` should be a number from 1-10 for what the hue should be. Defaults to 6 (the -500 suffix).
-
-\`secondary\` - boolean if this is an accent color, so uses a range of 1-4.
+.some-pink-alt {
+  color: $md-pink-a-200;
+}
+\`\`\`
 `;
 
 const theming = `
@@ -40,9 +43,8 @@ const theming = `
 The initial theme is the one you see for this documentation website.
 
 \`\`\`scss
-$md-primary-color: indigo !default;
-$md-secondary-color: pink !default;
-$md-secondary-hue: 2 !default;
+$md-primary-color: $md-indigo-500 !default;
+$md-secondary-color: $md-pink-a-200 !default;
 \`\`\`
 
 You can override these variables to style your app very quickly.

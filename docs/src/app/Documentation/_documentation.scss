@@ -46,7 +46,7 @@
 }
 
 .toc.md-list {
-  border-left: 6px solid #{get-md-color($md-primary-color)};
+  border-left: 6px solid $md-primary-color;
   margin-top: 3em;
 
   .md-list-subheader:first-child {

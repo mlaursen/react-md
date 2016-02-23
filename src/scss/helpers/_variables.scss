@@ -2,22 +2,8 @@
 
 $md-light-theme: true !default;
 
-/// The primary color
-/// @group Color
-$md-primary-color: indigo !default;
-/// The primary color lighter hue
-/// @group Color
-$md-primary-color-hue-light: 3 !default;
-/// The primary color darker hue
-/// @group Color
-$md-primary-color-hue-bold: 7 !default;
-
-/// The secondary color
-/// @group Color
-$md-secondary-color: pink !default;
-/// The secondary color accent hue
-/// @group Color
-$md-secondary-color-hue: 2 !default;
+$md-primary-color: $md-indigo-500 !default;
+$md-secondary-color: $md-pink-a-200 !default;
 
 $md-text-color: if($md-light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
 $md-secondary-text-color: if($md-light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);

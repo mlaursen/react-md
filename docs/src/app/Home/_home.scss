@@ -2,7 +2,7 @@
 
 .banner {
   align-items: center;
-  background: get-md-color($md-primary-color);
+  background: $md-primary-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +28,7 @@
 }
 
 .about {
-  background: get-md-color(grey, 2);
+  background: $md-grey-100;
   margin-bottom: 2em;
   padding: 1em 0;
 
