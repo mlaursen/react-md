@@ -19,62 +19,17 @@ $md-secondary-color: pink !default;
 /// @group Color
 $md-secondary-color-hue: 2 !default;
 
-/// @group Color
-$black-base: #000;
-/// @group Color
-$white-base: #fff;
-
-/// The text color for light backgrounds
-/// @link https://www.google.com/design/spec/style/color.html#color-ui-color-application
-/// @group Color
-$md-text-color: rgba($black-base, .77);
-/// The Secondary text color on light backgrounds
-/// @group Color
-$md-secondary-text-color: rgba($black-base, .54);
-/// The color for icons on light backgrounds
+$md-text-color: if($md-light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
+$md-secondary-text-color: if($md-light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
 /// @alias md-secondary-text-color
-/// @group Color
 $md-icon-color: $md-secondary-text-color;
-/// The color for disabled text on light backgrounds
-/// @group Color
-$md-disabled-color: rgba($black-base, .38);
-/// The hint text color on light backgrounds
+$md-disabled-color: if($md-light-theme, $md-light-theme-disabled-text-color, $md-dark-theme-disabled-text-color);
 /// @alias md-disabled-color
-/// @group Color
 $md-hint-text-color: $md-disabled-color;
-/// The divider color on light backgrounds
-/// @group Color
-$md-divider-color: rgba($black-base, .12);
+$md-divider-color: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+$md-background-color: if($md-light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
+$md-border-color: if($md-light-theme, rgba($md-black-base, .1), rgba($md-white-base, .12));
 
-/// The text color for dark backgrounds
-/// @group Color
-$md-text-color-alt: $white-base;
-
-/// The secondary text color for dark backgrounds
-/// @group Color
-$md-secondary-text-color-alt: rgba($white-base, .70);
-/// The icon color for dark backgrounds
-/// @alias md-secondary-text-color-alt
-/// @group Color
-$md-icon-color-alt: $md-secondary-text-color-alt;
-/// The disabled text color on dark backgrounds
-/// @group Color
-$md-disabled-color-alt: rgba($white-base, .30);
-/// The hint text color on dark backgrounds
-/// @alias md-disabled-color-alt
-/// @group Color
-$md-hint-text-color-alt: $md-disabled-color-alt;
-/// The divider color on dark backgrounds
-/// @group Color
-$md-divider-color-alt: rgba($white-base, .12);
-
-/// The main content background color on light backgrounds
-/// @group Color
-$md-background-color: #fafafa;
-
-/// The default border color on light backgrounds
-/// @group Color
-$md-border-color: rgba($black-base, .1);
 
 /// The default transition time
 /// @group transitions
@@ -244,7 +199,7 @@ $md-card-title-size: 24px;
 /// @group cards
 $md-card-title-size-small: 14px;
 $md-card-actions-padding: 8px;
-$md-card-color: $white-base;
+$md-card-color: $md-white-base;
 
 
 // =============================================
@@ -393,8 +348,8 @@ $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-h
 $md-chip-height: 32px;
 $md-chip-border-radius: $md-chip-height / 2;
 $md-chip-font-size: 13px;
-$md-chip-color: rgba($black-base, .87);
-$md-chip-remove-icon-color: rgba($black-base, .54);
+$md-chip-color: rmd-gba($md-black-base, .87);
+$md-chip-remove-icon-color: rgba($md-black-base, .54);
 $md-chip-remove-icon-size: 24px;
 $md-chip-remove-icon-margin: 4px;
 
@@ -406,7 +361,7 @@ $md-dialog-title-padding-bottom: 20px;
 $md-dialog-flat-btn-min-width: 64px;
 $md-dialog-flat-btn-lr-padding: 8px;
 $md-dialog-content-text-color: $md-secondary-text-color;
-$md-dialog-overlay-color: rgba($black-base, .45);
+$md-dialog-overlay-color: rgba($md-black-base, .45);
 $md-dialog-transition-time: $md-transition-time * 2 !default;
 $md-dialog-simple-min-width: 56px * 5;
 $md-dialog-min-page-margin: 24px 40px;

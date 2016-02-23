@@ -10,7 +10,7 @@
   }
 
   .md-data-table-header {
-    color: rgba($black-base, .82);
+    color: rgba($md-black-base, .82);
     font-size: #{20 / $md-font-size-base}em;
     height: 64px;
   }
@@ -26,13 +26,13 @@
   }
 
   th {
-    color: rgba($black-base, .54);
+    color: rgba($md-black-base, .54);
     font-size: 12px;
     height: 56px;
   }
 
   td {
-    color: rgba($black-base, .87);
+    color: rgba($md-black-base, .87);
     height: 48px;
   }
 

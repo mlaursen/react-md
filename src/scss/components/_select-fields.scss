@@ -1,7 +1,7 @@
 .md-select-field {
   background: transparent;
   border: 0;
-  color: $black-base;
+  color: $md-black-base;
   cursor: pointer;
   font-family: $md-font;
   padding: $md-default-padding;
@@ -16,7 +16,7 @@
 
   &.focus,
   &:hover {
-    background: $white-base;
+    background: $md-white-base;
   }
 
   &.focus {

@@ -140,20 +140,20 @@
 }
 
 .md-card-media-overlay {
-  background: rgba($black-base, .54);
+  background: rgba($md-black-base, .54);
   bottom: 0;
   position: absolute;
   width: 100%;
 
   .md-headline {
-    color: $white-base;
+    color: $md-white-base;
   }
 
   .md-subheader {
-    color: rgba($white-base, .7);
+    color: $md-dark-theme-secondary-text-color;
   }
 
   .md-btn {
-    color: $white-base;
+    color: $md-white-base;
   }
 }

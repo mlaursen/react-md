@@ -36,10 +36,10 @@
 ///
 /// @param {Color} $color - The background color to use for raised and floating buttons
 ///                         and the text color to use for flat buttons.
-/// @param {Color} $text-color [$white-base] - The text color for raised and floating buttons.
+/// @param {Color} $text-color [$md-white-base] - The text color for raised and floating buttons.
 /// @param {Color} $hover-color [rgba($color, .95)] - The hover color for raised and floating buttons.
 ///        If this value is set to null, it will use the default listed.
-/// @param {Color} $ink-color [rgba($white-base, .05)] - The ink color for raised and floating buttons.
+/// @param {Color} $ink-color [rgba($md-white-base, .05)] - The ink color for raised and floating buttons.
 ///        If this value is set to null, it will use the default listed.
 /// @param {Color} $flat-hover-color [rgba($color, .15)] - The hover color for flat buttons.
 ///        If this value is set to null, it will use the default listed.

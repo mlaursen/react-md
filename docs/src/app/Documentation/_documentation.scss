@@ -10,11 +10,6 @@
   }
 }
 
-main {
-  background: $white-base;
-}
-
-
 .component-info {
   padding: 1em 2em;
 }
@@ -23,7 +18,7 @@ main {
   margin: 1em 0;
 
   > .md-card-text {
-    color: $black-base;
+    color: $md-black-base;
   }
 }
 

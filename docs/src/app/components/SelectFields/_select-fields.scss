@@ -29,12 +29,12 @@
 .person-placeholder {
   $pp-height: 180px;
   $person-height: $md-font-size-base * 16.5px;
-  background: rgba($black-base, .08);
+  background: rgba($md-black-base, .08);
   height: $pp-height;
 
   .person {
     bottom: -38px;
-    color: rgba($black-base, .10);
+    color: rgba($md-black-base, .10);
     font-size: $person-height;
     left: 50%;
     padding: 0;

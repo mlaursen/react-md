@@ -70,7 +70,7 @@
   align-items: center;
   background: #131212;
   bottom: 0;
-  color: $white-base;
+  color: $md-white-base;
   display: flex;
   justify-content: space-around;
   padding: 2px;
@@ -79,7 +79,7 @@
   width: 100%;
 
   .md-ink {
-    background: rgba($white-base, .12);
+    background: rgba($md-white-base, .12);
   }
 }
 

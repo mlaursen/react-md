@@ -67,16 +67,16 @@
 
 
 %md-text {
-  color: if($md-light-theme, $md-text-color, $md-text-color-alt);
+  color: $md-text-color;
 }
 
 %md-secondary-text {
-  color: if($md-light-theme, $md-secondary-text-color, $md-secondary-text-color-alt);
+  color: $md-secondary-text-color;
 }
 
 %md-hint-text,
 %md-disabled-text {
-  color: if($md-light-theme, $md-disabled-color, $md-disabled-color-alt);
+  color: $md-hint-text-color;
 }
 
 %md-tracking--10 {

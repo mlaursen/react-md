@@ -57,7 +57,7 @@
   &:before {
     @extend %circle;
 
-    box-shadow: 0 2px #{$md-switch-bar-height / 2} rgba($black-base, .2);
+    box-shadow: 0 2px #{$md-switch-bar-height / 2} rgba($md-black-base, .2);
     content: '';
     height: $md-switch-ball-size;
     left: -$md-switch-offset;

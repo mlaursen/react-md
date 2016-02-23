@@ -32,7 +32,7 @@
 .md-dialog {
   @include md-box-shadow(5);
 
-  background: $white-base;
+  background: $md-white-base;
 
   &.simple {
     min-width: $md-dialog-simple-min-width;

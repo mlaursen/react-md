@@ -6,7 +6,7 @@
 .md-menu {
   @include md-box-shadow(1);
 
-  background: $white-base;
+  background: $md-white-base;
   position: absolute;
   top: 0;
   z-index: 28;

@@ -23,22 +23,22 @@
 .lang-css,
 .lang-scss,
 .lang-js {
-  color: get-md-color(black);
+  color: $md-black-base;
 
   .hljs-selector-class,
   .hljs-attr,
   .hljs-keyword {
-    color: get-md-color(deep-orange, 10);
+    color: $md-deep-orange-900;
   }
 
   .hljs-variable,
   .hljs-attribute,
   .hljs-class {
-    color: get-md-color(deep-purple, 10);
+    color: $md-deep-purple-900;
   }
 
   .hljs-string {
-    color: get-md-color(green, 10);
+    color: $md-green-900;
   }
 
   .hljs-comment {
