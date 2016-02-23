@@ -1,10 +1,11 @@
-$md-chip-bg-color: get-md-color(grey, 4) !default;
+$md-chip-bg-color: $md-grey-300;
 
 .md-chip-container {
   background: $md-chip-bg-color;
   border-radius: $md-chip-border-radius;
   display: inline-block;
   height: $md-chip-height;
+  transition: box-shadow $md-transition-time;
   vertical-align: top;
 
   .md-avatar {
