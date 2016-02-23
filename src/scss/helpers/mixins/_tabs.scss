@@ -1,9 +1,9 @@
 /// Themes the tabs with the given colors
 /// @example scss - Example Basic Usage SASS
 ///   .md-primary {
-///     $primary: get-md-color(cyan);
-///     $secondary: get-md-color(yellow, 3, true);
-///     @include md-theme-tabs($primary, $secondary, $white-base, rgba($white-base, .7);
+///     $primary: $md-cyan-500;
+///     $secondary: $md-yellow-a-200;
+///     @include md-theme-tabs($primary, $secondary);
 ///    }
 ///
 /// @example scss - Example Basic Usage CSS Output
@@ -29,26 +29,20 @@
 ///
 /// @param {Color} $primary-color - The primary color to use for a tab
 /// @param {Color} $secondary-color - The secondary color to use for a tab
-/// @param {Color} $text-active-color - The tab active text color. This should be the white-base in most cases.
-/// @param {Color} $text-inactive-color - The tab inactive text color. This should be the white-base with a 70% opacity in most cases.
-@mixin md-theme-tabs($primary-color, $secondary-color, $text-active-color, $text-inactive-color) {
+@mixin md-theme-tabs($primary-color, $secondary-color) {
   &.md-tabs-scroll-container {
     background: $primary-color;
 
     .md-tab {
-      color: $text-inactive-color;
+      color: $md-dark-theme-secondary-text-color;
 
       &.active {
-        color: $text-active-color;
+        color: $md-dark-theme-text-color;
       }
     }
 
     .md-tab-indicator {
       background: $secondary-color;
-    }
-
-    .md-ink {
-      background: rgba($white-base, .15);
     }
   }
 }

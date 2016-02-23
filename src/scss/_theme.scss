@@ -1,7 +1,5 @@
 $primary: $md-indigo-500;
 $secondary: $md-pink-a-200;
-$text: $md-white-base;
-$disabled-text: $md-light-theme-disabled-text-color;
 
 @include md-theme-text-fields($primary);
 @include md-theme-snackbars();
@@ -15,14 +13,14 @@ $disabled-text: $md-light-theme-disabled-text-color;
 .md-primary {
   @include md-theme-toolbars($primary, $white-base);
   @include md-theme-buttons($primary);
-  @include md-theme-tabs($primary, $secondary, $text, $disabled-text);
+  @include md-theme-tabs($primary, $secondary);
 }
 
 .md-secondary {
   @include md-theme-buttons($secondary);
   $secondary: $md-pink-500;
   @include md-theme-toolbars($secondary, $white-base);
-  @include md-theme-tabs($secondary, $primary, $text, $disabled-text);
+  @include md-theme-tabs($secondary, $primary);
 }
 
 @each $item in $md-avatar-colors {
