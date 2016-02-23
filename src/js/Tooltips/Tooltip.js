@@ -28,6 +28,7 @@ export default class Tooltip extends Component {
   static LEFT = 'left';
 
   static propTypes = {
+    selector: PropTypes.string,
     className: PropTypes.string,
     text: PropTypes.string.isRequired,
     position: PropTypes.oneOf([Tooltip.TOP, Tooltip.RIGHT, Tooltip.BOTTOM, Tooltip.LEFT]).isRequired,
@@ -42,12 +43,34 @@ export default class Tooltip extends Component {
 
   componentDidMount() {
     this.hackChromeMinimumFontSize();
+    this.addEventListeners();
     window.addEventListener('resize', this.hackChromeMinimumFontSize);
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.hackChromeMinimumFontSize);
   }
+
+  /**
+   * These had been injected in the React.cloneElement before as props,
+   * but there was merging issues if there was Ink involved as well.
+   *
+   * A _safer_ way of handling these events is to add multiple events with vanilla
+   * so they aren't overridden.
+   */
+  addEventListeners = () => {
+    let node;
+    if(this.props.selector) { // the selector is really just a className and we convert it to .classname.classname2
+      node = ReactDOM.findDOMNode(this).querySelector(`.${this.props.selector.trim().replace(/ /g, '.')}`);
+    } else {
+      node = ReactDOM.findDOMNode(this.refs.control);
+    }
+
+    node.addEventListener('mouseover', this.handleMouseOver);
+    node.addEventListener('mouseleave', this.handleMouseLeave);
+    node.addEventListener('keyup', this.handleKeyUp);
+    node.addEventListener('blur', this.handleBlur);
+  };
 
   calcPositioningStyle = () => {
     const { position } = this.props;
@@ -156,14 +179,11 @@ export default class Tooltip extends Component {
     const { active, tabActive, style, textStyle } = this.state;
 
     // classname doesn't join correctly for the button components..
-    const tooltipControl = React.Children.map(children, child => React.cloneElement(child, {
+    const child = React.Children.only(children);
+    const tooltipControl = React.cloneElement(child, {
       ref: 'control',
       className: classnames(child.props.className, 'md-tooltip-control'),
-      onMouseOver: this.handleMouseOver,
-      onMouseLeave: this.handleMouseLeave,
-      onBlur: this.handleBlur,
-      onKeyUp: this.handleKeyUp,
-    }));
+    });
     return (
       <div className={classnames('md-tooltip-container', className)} {...props}>
         {tooltipControl}

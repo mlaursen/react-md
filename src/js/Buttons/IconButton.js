@@ -23,16 +23,14 @@ export default class IconButton extends Component {
     tooltipPosition: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
-    onClickInkMouseDown: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'button',
-    onClickInkMouseDown: false,
   };
 
   render() {
-    const { iconClassName, children, className, href, type, onClickInkMouseDown, tooltip, tooltipClassName, tooltipPosition, ...props } = this.props;
+    const { iconClassName, children, className, href, type, tooltip, tooltipClassName, tooltipPosition, ...props } = this.props;
     let btnProps = {
       ...props,
       className: mergeClassNames(props, 'md-btn', 'md-icon-btn', className),
@@ -58,7 +56,7 @@ export default class IconButton extends Component {
 
     if(tooltip) {
       return (
-        <Tooltip text={tooltip} position={tooltipPosition} className={tooltipClassName}>
+        <Tooltip text={tooltip} position={tooltipPosition} className={tooltipClassName} selector={btnProps.className}>
           {wrappedButton}
         </Tooltip>
       );

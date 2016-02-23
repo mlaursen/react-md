@@ -26,6 +26,28 @@ export default class Ink extends Component {
     onMouseDown: PropTypes.func,
   };
 
+  componentDidMount() {
+    this.addEventListeners();
+  }
+
+  /**
+   * These had been injected in the React.cloneElement before as props,
+   * but there was merging issues if there was a Tooltip involved as well.
+   *
+   * A _safer_ way of handling these events is to add multiple events with vanilla
+   * so they aren't overridden.
+   */
+  addEventListeners = () => {
+    const node = ReactDOM.findDOMNode(this);
+    node.addEventListener('keyup', this.handleKeyUp);
+    node.addEventListener('blur', this.handleBlur);
+    node.addEventListener('mousedown', this.handleMouseDown);
+    node.addEventListener('mouseup', this.handleMouseUp);
+    node.addEventListener('mouseleave', this.handleMouseLeave);
+    node.addEventListener('touchstart', this.handleTouchStart);
+    node.addEventListener('touchend', this.handleTouchEnd);
+  };
+
   calcR = (a, b) => {
     return Math.sqrt((a * a) + (b * b));
   };
@@ -86,9 +108,7 @@ export default class Ink extends Component {
     this.setState({ inks });
   };
 
-  handleMouseDown = (onMouseDown, e) => {
-    if(onMouseDown) { onMouseDown(e); }
-
+  handleMouseDown = (e) => {
     if(this.props.disabled || this.invalidClickEvent(e)) { return; }
     this.createInk(e.pageX, e.pageY);
     this.setState({
@@ -96,8 +116,7 @@ export default class Ink extends Component {
     });
   };
 
-  handleMouseLeave = (onMouseLeave, e) => {
-    if(onMouseLeave) { onMouseLeave(e); }
+  handleMouseLeave = () => {
     if(!this.props.disabled) {
       this.popInk();
       this.setState({
@@ -106,34 +125,29 @@ export default class Ink extends Component {
     }
   };
 
-  handleMouseUp = (onMouseUp, e) => {
-    if(onMouseUp) { onMouseUp(e); }
+  handleMouseUp = (e) => {
     if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
-  handleTouchStart = (onTouchStart, e) => {
-    if(onTouchStart) { onTouchStart(e); }
+  handleTouchStart = (e) => {
     if(this.props.disabled) { return; }
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
   };
 
-  handleTouchEnd = (onTouchEnd, e) => {
-    if(onTouchEnd) { onTouchEnd(e); }
+  handleTouchEnd = () => {
     if(this.props.disabled) { return; }
     this.popInk();
   };
 
-  handleKeyUp = (onKeyUp, e) => {
-    if(onKeyUp) { onKeyUp(e); }
+  handleKeyUp = (e) => {
     if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
       this.createInk();
     }
   };
 
-  handleBlur = (onBlur, e) => {
-    if(onBlur) { onBlur(e); }
+  handleBlur = () => {
     if(!this.props.disabled) {
       this.popInk();
     }
@@ -141,23 +155,14 @@ export default class Ink extends Component {
 
   render() {
     const { className, children, ...props } = this.props;
-    if(!children) { return null; }
     const child = React.Children.only(children);
 
-    return React.cloneElement(child, {
-      ...child.props,
-      onKeyUp: this.handleKeyUp.bind(this, child.props.onKeyUp),
-      onBlur: this.handleBlur.bind(this, child.props.onBlur),
-      onMouseDown: this.handleMouseDown.bind(this, child.props.onMouseDown),
-      onMouseUp: this.handleMouseUp.bind(this, child.props.onMouseUp),
-      onMouseLeave: this.handleMouseLeave.bind(this, child.props.onMouseLeave),
-      onTouchStart: this.handleTouchStart.bind(this, child.props.onTouchStart),
-      onTouchEnd: this.handleTouchEnd.bind(this, child.props.onTouchEnd),
-    }, [(
+    return React.cloneElement(child, child.props, [(
       <TransitionGroup
         key="inks"
         ref="container"
         className={classnames('md-ink-container', className)}
+        {...props}
       >
         {this.state.inks.map(ink => (
           <InkTransition key={ink.time.getTime()} {...ink} />
