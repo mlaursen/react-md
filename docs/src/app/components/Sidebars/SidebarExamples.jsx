@@ -24,6 +24,10 @@ element on the screen.
 Since the sidebar is a fully controlled component, you must pass a function
 that closes the sidebar to \`onOverlayClick\` if you want it to close when
 the overlay is clicked.
+
+The content in the sidebar can be created by passing a header, a list of items that
+will be used to generate a \`List\` with \`ListItem\`/\`ListSubheader\`/\`Divider\`,
+or by passing in children.
 `;
 
 const items = Array.apply(null, new Array(4)).map((_, i) => ({
@@ -64,6 +68,8 @@ export default class SidebarExamples extends Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(this.state.isOpen === nextState.isOpen) { return; }
+    // util function that applies .hide-overflow to the document.body
+    // so it prevents scrolling outside the sidebar when it is open
     setOverflow(nextState.isOpen);
   }
 
