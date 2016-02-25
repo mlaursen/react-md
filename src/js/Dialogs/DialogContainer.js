@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
+import { isPropEnabled, setOverflow } from '../utils';
 import Dialog from './Dialog';
 
 export default class DialogContainer extends Component {
@@ -50,18 +50,18 @@ export default class DialogContainer extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(!this.props.isOpen && nextProps.isOpen) {
-      document.body.classList.add('hide-overflow');
+      setOverflow(true);
       if(nextProps.pageX && nextProps.pageY) {
         this.openFullPageDialog(nextProps);
       }
     } else if(this.props.isOpen && !nextProps.isOpen) {
-      document.body.classList.remove('hide-overflow');
+      setOverflow(false);
       this.delayIsOpen(nextProps.transitionLeaveTimeout);
     }
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('hide-overflow');
+    setOverflow(false);
     this.state.timeout && clearTimeout(this.state.timeout);
   }
 

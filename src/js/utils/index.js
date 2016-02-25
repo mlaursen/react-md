@@ -1,5 +1,40 @@
 import classnames from 'classnames';
 
+/**
+ * Checks if a prop is enabled on a component by checking if the key exists
+ * in the props and that key has not been set to false instead of undefined.
+ *
+ * @param {object} props the component's props
+ * @param {string} propName the prop name to check
+ * @param {array} keys? the keys to check. Defaults to the keys of props if ommitted
+ */
+export function isPropEnabled(props, propName, keys = Object.keys(props)) {
+  return keys.indexOf(propName) !== -1 && props[propName] !== false;
+}
+
+/**
+ * Merges any given classnames along with adding md-primary, or
+ * md-secondary from the props
+ *
+ * @param {Object} props the prosp to get className and check for primary or secondary
+ * @param {...string} classNames any additional classnames to merge
+ * @return string
+ */
+export function mergeClassNames(props, ...classNames) {
+  return classnames(...classNames, props.className, {
+    'md-primary': isPropEnabled(props, 'primary'),
+    'md-secondary': isPropEnabled(props, 'secondary'),
+  });
+}
+
+export function setOverflow(enabled, selector) {
+  let el = selector ? document.querySelector(selector) : document.body;
+  if(enabled) {
+    el.classList.add('hide-overflow');
+  } else {
+    el.classList.remove('hide-overflow');
+  }
+}
 
 export function smoothScroll(el, duration, options = {}) {
   let { callback, toEl, stepAmt } = options;
@@ -48,39 +83,12 @@ export function smoothScroll(el, duration, options = {}) {
 }
 
 /**
- * Checks if a prop is enabled on a component by checking if the key exists
- * in the props and that key has not been set to false instead of undefined.
- *
- * @param {object} props the component's props
- * @param {string} propName the prop name to check
- * @param {array} keys? the keys to check. Defaults to the keys of props if ommitted
- */
-export function isPropEnabled(props, propName, keys = Object.keys(props)) {
-  return keys.indexOf(propName) !== -1 && props[propName] !== false;
-}
-
-/**
  * Checkis of the given thing is an object
  * @param thing the thing to check
  * @return true if the thing is an object
  */
 export function isObject(thing) {
   return Object.prototype.toString.call(thing) === '[object Object]';
-}
-
-/**
- * Merges any given classnames along with adding md-primary, or
- * md-secondary from the props
- *
- * @param {Object} props the prosp to get className and check for primary or secondary
- * @param {...string} classNames any additional classnames to merge
- * @return string
- */
-export function mergeClassNames(props, ...classNames) {
-  return classnames(...classNames, props.className, {
-    'md-primary': isPropEnabled(props, 'primary'),
-    'md-secondary': isPropEnabled(props, 'secondary'),
-  });
 }
 
 function getScrollProp(key) {

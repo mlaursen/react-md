@@ -27,7 +27,7 @@ export const numstr = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'e
 
 export const randomImage = ({ width, height, time } = {}) => {
   width = !width ? 200 : width;
-  height = !height ? 200 : height;
+  height = !height ? width : height;
   time = typeof time === 'undefined' ? Date.now() : time;
   return `https://unsplash.it/${width}/${height}/?random&time=${time}`;
 };

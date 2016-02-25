@@ -2,6 +2,8 @@
   @extend %full-height;
 
   display: inline-block;
+  left: 0;
+  top: 0;
   z-index: $md-sidebar-z-index;
 
   &.responsive {
@@ -16,6 +18,14 @@
 
   &.fixed {
     z-index: $md-sidebar-fixed-z-index;
+  }
+
+  &.md-sidebar-left .md-sidebar {
+    left: 0;
+  }
+
+  &.md-sidebar-right .md-sidebar {
+    right: 0;
   }
 }
 
