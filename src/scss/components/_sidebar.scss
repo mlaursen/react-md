@@ -1,46 +1,21 @@
-%fixed {
-  height: 100vh;
-  position: fixed;
-}
-
-@mixin make-sidebar-responsive($min-width, $width: $md-sidebar-open-width, $fixed: false) {
-  @media screen and (min-width: $min-width) {
-    .md-sidebar-container.md-sidebar-responsive {
-      @if $fixed == true {
-        height: 100vh;
-        position: fixed;
-      } @else {
-        height: initial;
-        min-height: 100vh;
-        position: initial;
-
-        .md-overlay {
-          display: none;
-        }
-      }
-
-      .md-sidebar.active {
-        width: $width;
-      }
-    }
-  }
-}
-
-@include make-sidebar-responsive(0, calc(100vw - #{$md-icon-btn-size}), true);
-@include make-sidebar-responsive(600px);
-
 .md-sidebar-container {
   @extend %full-height;
 
   display: inline-block;
   z-index: $md-sidebar-z-index;
 
-  &.md-sidebar-responsive {
+  &.responsive {
     display: flex;
   }
 
+  &.fixed,
+  &.fixed .md-sidebar {
+    height: 100vh;
+    position: fixed;
+  }
+
   &.fixed {
-    @extend %fixed;
+    z-index: $md-sidebar-fixed-z-index;
   }
 }
 
@@ -48,14 +23,10 @@
   @include make-paper(2);
 
   min-height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   transition: width $md-transition-time;
   width: 0;
   z-index: $md-sidebar-z-index;
-
-  &.active {
-    width: $md-sidebar-open-width;
-  }
 
   .md-avatar {
     height: $md-font-icon-size;
@@ -63,3 +34,6 @@
   }
 }
 
+.md-sidebar-relative {
+  padding-left: $md-sidebar-open-width;
+}

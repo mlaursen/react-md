@@ -3,8 +3,6 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { List, ListItem, ListSubheader } from '../Lists';
-import Divider from '../Dividers';
 import { isPropEnabled } from '../utils';
 
 export default class Sidebar extends Component {
@@ -19,21 +17,13 @@ export default class Sidebar extends Component {
     isOpen: PropTypes.bool,
     fixed: PropTypes.bool,
     responsive: PropTypes.bool,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      divider: PropTypes.bool,
-      subheader: PropTypes.bool,
-      component: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.object,
-      ]),
-      primaryText: PropTypes.string,
-    })),
     header: PropTypes.node,
     children: PropTypes.node,
     className: PropTypes.string,
     transitionName: PropTypes.string,
     transitionEnterTimeout: PropTypes.number,
     transitionLeaveTimeout: PropTypes.number,
+    onOverlayClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -44,35 +34,20 @@ export default class Sidebar extends Component {
   };
 
   render() {
-    const { isOpen, header, overlay, items, responsive, className, children, ...props } = this.props;
+    const { isOpen, header, overlay, responsive, className, children, onOverlayClick, ...props } = this.props;
     const isOverlayVisible = isOpen && (responsive || overlay);
     return (
       <CSSTransitionGroup
         component="div"
-        className={classnames('md-sidebar-container', className, { 'fixed': isPropEnabled(props, 'fixed'), 'md-sidebar-responsive': responsive })}
+        className={classnames('md-sidebar-container', className, { 'fixed': isPropEnabled(props, 'fixed'), responsive })}
         {...props}
         >
         <nav className={classnames('md-sidebar', { 'active': isOpen })}>
           {header}
-          {items &&
-          <List>
-            {items.map(item => {
-              if(item.divider) {
-                return <Divider {...item} />;
-              } else if(item.subheader) {
-                return <ListSubheader {...item} />;
-              } else if(item.textField) {
-                return <li className="md-list-item" key={item.key}>{item.component}</li>;
-              } else {
-                return <ListItem {...item} />;
-              }
-            })}
-          </List>
-          }
           {children}
         </nav>
         {isOverlayVisible &&
-          <div className="md-overlay" />
+          <div className="md-overlay" onClick={onOverlayClick} />
         }
       </CSSTransitionGroup>
     );

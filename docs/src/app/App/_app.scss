@@ -23,38 +23,21 @@ body {
   min-height: 100%;
 }
 
-@media only screen and (min-width: 600px) {
-  main {
-    padding-left: 0;
-    transition: padding-left $md-transition-time;
-
-    &.active {
-      padding-left: $md-sidebar-open-width;
-    }
-  }
-
-  .md-sidebar-responsive.main-sidebar {
-    .md-sidebar {
-      position: fixed;
-    }
-  }
-}
-
 main {
   background: $md-white-base;
   flex-grow: 1;
   margin-top: 0;
   overflow-x: hidden;
+  padding-left: 0;
+  transition: padding-left $md-transition-time;
+
+  &.active {
+    padding-left: $md-sidebar-open-width;
+  }
 }
 
 .react-md-docs {
   display: flex;
-}
-
-.main-sidebar > .md-sidebar {
-  max-height: calc(100vh - #{$md-toolbar-height});
-  min-height: initial;
-  overflow-y: auto;
 }
 
 .middle-align {

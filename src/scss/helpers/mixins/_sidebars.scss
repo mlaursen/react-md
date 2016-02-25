@@ -1,0 +1,38 @@
+@mixin md-sidebar-mobile() {
+  .md-sidebar.active {
+    width: calc(100vw - #{$md-icon-btn-size + $md-toolbar-mobile-margin * 2});
+  }
+
+  .md-sidebar,
+  .md-sidebar-container.responsive {
+    height: 100vh;
+    position: fixed;
+  }
+
+  .md-toolbar-container.fixed ~ .md-sidebar-container.responsive {
+    padding-top: 0;
+  }
+
+  .md-sidebar-container.responsive {
+    z-index: $md-sidebar-fixed-z-index;
+  }
+}
+
+@mixin md-sidebar-desktop() {
+  .md-sidebar-container.responsive {
+    position: fixed;
+
+    .md-overlay {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  .md-toolbar-container ~ .md-sidebar-container .md-sidebar {
+    max-height: calc(100vh - #{$md-toolbar-height});
+  }
+
+  .md-sidebar.active {
+    width: $md-sidebar-open-width;
+  }
+}

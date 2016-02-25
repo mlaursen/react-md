@@ -33,6 +33,8 @@ $md-overlay-z-index: 3 !default;
 $md-dropdown-z-index: 4 !default;
 /// @group sidebar
 $md-sidebar-z-index: 5 !default;
+/// @group sidebar
+$md-sidebar-fixed-z-index: 8 !default;
 /// @group toolbar
 $md-toolbar-z-index: 6 !default;
 /// @group snackbar

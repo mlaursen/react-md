@@ -1,3 +1,8 @@
+%md-toolbar-fixed-relative,
+.md-toolbar-fixed-relative {
+  padding-top: $md-toolbar-height;
+}
+
 .md-toolbar-container {
   display: block;
 
@@ -11,7 +16,7 @@
     }
 
     ~ *:not(.fixed) {
-      padding-top: $md-toolbar-height;
+      @extend %md-toolbar-fixed-relative;
     }
   }
 }

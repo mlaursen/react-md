@@ -2,6 +2,7 @@
   @include md-typography-mobile();
   @include md-date-picker-mobile();
   @include md-select-field-mobile();
+  @include md-sidebar-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
   @include md-text-field-mobile();
@@ -13,6 +14,7 @@
   @include md-typography-desktop();
   @include md-date-picker-desktop();
   @include md-select-field-desktop();
+  @include md-sidebar-desktop();
   @include md-snackbar-desktop();
   @include md-tab-desktop();
   @include md-text-field-desktop();

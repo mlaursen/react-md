@@ -1,36 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import marked from 'marked';
 import classnames from 'classnames';
-import { Link } from 'react-router';
 import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
-import Avatar from 'react-md/lib/Avatars';
-import FontIcon from 'react-md/lib/FontIcons';
 import { IconButton } from 'react-md/lib/Buttons';
-import Sidebar from 'react-md/lib/Sidebars';
-import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
-import Divider from 'react-md/lib/Dividers';
 import { isMobile } from 'react-md/lib/utils';
 
 import './_app.scss';
 import '../Documentation/_markdown.scss';
 import '../Documentation/_prop-types.scss';
 import '../Documentation/_documentation.scss';
+import SidebarNav from './SidebarNav';
 
-import * as components from '../components';
-import { githubHref, hostPrefix, imgPrefix } from '../utils';
+import { githubHref } from '../utils';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
 import Typography from '../Typography';
-
-const componentLinks = Object.keys(components).map(k => {
-  if(!components[k] || !components[k].name) { return; }
-
-  const name = k.split(/(?=[A-Z])/);
-  return {
-    link: 'components/' + name.map(n => n.toLowerCase()).join('-'),
-    label: name.join(' '),
-  };
-}).filter(l => !!l);
 
 export default class App extends Component {
   constructor(props) {
@@ -78,6 +62,10 @@ export default class App extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  closeSidebar = () => {
+    this.setState({ isOpen: false });
+  };
+
   listItemClassName = (path) => {
     return classnames({ 'active': this.props.location.pathname === `/${path}` });
   };
@@ -116,79 +104,12 @@ export default class App extends Component {
             </ActionArea>
           )}
         />
-        <Sidebar isOpen={this.state.isOpen} className="main-sidebar">
-          <List>
-            <ListItem
-              component={Link}
-              className={this.listItemClassName('')}
-              to="/"
-              primaryText="Home"
-              key="home-link"
-              leftIcon={<FontIcon>home</FontIcon>}
-            />
-            <ListItem
-              component={Link}
-              className={this.listItemClassName(GettingStarted.path)}
-              to={`/${GettingStarted.path}`}
-              primaryText="Getting Started"
-              key="getting-started"
-              leftIcon={<FontIcon>info_outline</FontIcon>}
-            />
-            <ListItem
-              component={Link}
-              className={this.listItemClassName(Customization.path)}
-              to={`/${Customization.path}`}
-              primaryText="Customization"
-              key="customization"
-              leftIcon={<FontIcon>build</FontIcon>}
-            />
-            <ListItem
-              component={Link}
-              className={this.listItemClassName(Typography.path)}
-              to={`/${Typography.path}`}
-              primaryText="Typography"
-              key="typography"
-              leftIcon={<FontIcon>text_fields</FontIcon>}
-            />
-            <ListItem
-              component="a"
-              primaryText="SASS Doc"
-              href={`${hostPrefix}/sassdoc`}
-              key="sassdoc"
-              leftAvatar={<Avatar src={`${imgPrefix}/sass-icon.png`} alt="SASS Icon" />}
-            />
-            <Divider />
-            <ListSubheader primaryText="Components" />
-            {componentLinks.map(({ link, label }) => {
-              return (
-              <ListItem
-                component={Link}
-                to={`/${link}`}
-                className={classnames({ 'active': `/${link}` === pathname })}
-                key={link}
-                primaryText={label}
-              />
-              );
-            })}
-            <Divider />
-            <ListSubheader primaryText="References" />
-            <ListItem
-              component="a"
-              primaryText="React"
-              href="https://facebook.github.io/react/"
-              key="react"
-              leftAvatar={<Avatar src="https://facebook.github.io/react/img/logo.svg" alt="React logo" />}
-            />
-            <ListItem
-              component="a"
-              primaryText="Material Design"
-              href="https://www.google.com/design/spec/material-design/introduction.html"
-              key="material-design"
-              leftAvatar={<Avatar src="https://i.ytimg.com/vi/PAKCgvprpQ8/maxresdefault.jpg" alt="Google logo" />}
-            />
-          </List>
-        </Sidebar>
-        <main className={classnames({ 'active': this.state.isOpen })}>
+        <SidebarNav
+          isOpen={this.state.isOpen}
+          pathname={pathname}
+          closeSidebar={this.closeSidebar}
+        />
+        <main className={classnames({ 'md-sidebar-relative': !isMobile && this.state.isOpen && pathname !== '/' })}>
           {React.cloneElement(this.props.children, { key: pathname, marked })}
         </main>
       </div>
