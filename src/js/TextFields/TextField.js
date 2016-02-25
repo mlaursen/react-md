@@ -3,7 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { isPropEnabled } from '../utils';
-import { ESC } from '../constants/keyCodes';
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
 import TextFieldMessage from './TextFieldMessage';
@@ -45,7 +44,6 @@ export default class TextField extends Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    handleKeyDown: PropTypes.func,
     style: PropTypes.object,
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
   };
@@ -111,17 +109,6 @@ export default class TextField extends Component {
     this.setState(state);
   };
 
-  handleKeyDown = (e) => {
-    if(this.props.handleKeyDown) {
-      this.props.handleKeyDown(e);
-    }
-
-    if((e.which || e.keyCode) === ESC) {
-      this.handleChange(e, true);
-      e.preventDefault();
-    }
-  };
-
   render() {
     const { className, label, placeholder, maxLength, helpText, errorText, floatingLabel, icon, lineDirection, rows, maxRows, style, ...props } = this.props;
     const { active, currentRows, areaHeight } = this.state;
@@ -169,7 +156,6 @@ export default class TextField extends Component {
       }),
       onFocus: this.handleFocus,
       onBlur: this.handleBlur,
-      onKeyDown: this.handleKeyDown,
       onChange: this.handleChange,
     };
 
