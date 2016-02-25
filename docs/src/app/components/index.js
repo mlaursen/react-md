@@ -24,3 +24,4 @@ export TextFields from './TextFields';
 export TimePickers from './TimePickers';
 export Toolbars from './Toolbars';
 export Tooltips from './Tooltips';
+export Transitions from './Transitions';
