@@ -18,22 +18,32 @@ export default class InkTransition extends Component {
     transitionLeaveTimeout: 450,
   };
 
+  componentWillUnmount() {
+    if(this.state.timeout) { clearTimeout(this.state.timeout); }
+  }
+
   componentWillEnter = (done) => {
     const node = ReactDOM.findDOMNode(this);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       node.classList.add('active');
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
+        this.setState({ timeout: null });
         done();
       }, this.props.transitionEnterTimeout);
+      this.setState({ timeout });
     }, 25);
+
+    this.setState({ timeout });
   };
 
   componentWillLeave = (done) => {
     const node = ReactDOM.findDOMNode(this);
     node.classList.add('leaving');
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
+      this.setState({ timeout: null });
       done();
     }, this.props.transitionLeaveTimeout);
+    this.setState({ timeout });
   };
 
   render() {
