@@ -78,7 +78,7 @@ export default class ComponentProperties extends Component {
       });
     }
 
-    if(allRemaining && detailNames.indexOf('allRemaining') === -1) {
+    if(allRemaining && detailNames.indexOf('any other props') === -1) {
       extraProps.push({
         name: 'any other props',
         desc: 'Any other props that you pass to this component will be added to the top level node.',

@@ -69,7 +69,7 @@ export default class FABTransitions extends Component {
             will get updated with another className of \`.md-speed-dial-fab\` and
             automatically sets \`mini: true\``,
           }, {
-            name: 'allRemaining',
+            name: 'any other props',
             pt: '',
             desc: `Any other props will be passed to the \`FloatingButton\` component to
             help render the main FAB.`,
