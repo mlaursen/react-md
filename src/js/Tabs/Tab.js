@@ -3,8 +3,7 @@ import classnames from 'classnames';
 
 const Tab = ({ className, icon, label, label2, checked, value, onChange, ...props }) => {
   return (
-    <button
-      type="button"
+    <div
       className={classnames('md-tab', className, { 'active': checked })}
       {...props}
     >
@@ -25,7 +24,7 @@ const Tab = ({ className, icon, label, label2, checked, value, onChange, ...prop
           onChange={onChange}
         />
       </label>
-    </button>
+    </div>
   );
 };
 

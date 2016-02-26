@@ -37,8 +37,6 @@
 }
 
 .md-tab {
-  @extend %button-unstyled;
-
   background: $md-primary-color;
   color: if($md-light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
   flex-shrink: 0;
