@@ -91,3 +91,17 @@ export function isMonthBefore(date, toCompare) {
   const d2 = stripTime(new Date(toCompare.getFullYear(), toCompare.getMonth() - 1, 1));
   return d1 > d2;
 }
+
+export function getTimeString(DateTimeFormat, locales, time) {
+  return new DateTimeFormat(locales, { hour: 'numeric', minute: '2-digit' }).format(time);
+}
+
+export function addHours(time, hours) {
+  const t = new Date(time.getTime());
+  t.setHours(t.getHours() + hours);
+  return t;
+}
+
+export function subtractHours(time, hours) {
+  return addHours(time, -hours);
+}

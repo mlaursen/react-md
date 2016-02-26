@@ -107,9 +107,65 @@
 
 .md-clock {
   $md-clock-size: $md-pickers-landscape-height - $md-dialog-padding - 52px;
+
   border-radius: 50%;
   content: '';
   margin: auto;
+  position: relative;
+}
+
+.md-clock-time {
+  border-radius: 50%;
+  color: $md-black-base;
+  display: table;
+  height: 36px;
+  position: absolute;
+  transition: color $md-transition-time;
+  width: 36px;
+  z-index: 8;
+
+  &.active {
+    color: $md-white-base;
+  }
+}
+
+.md-clock-handle {
+  background: $md-primary-color;
+  height: 2px;
+  position: absolute;
+  transform-origin: 0 0;
+  transition: transform $md-transition-time;
+  width: 114px;
+  z-index: 4;
+
+  &:before,
+  &:after {
+    background: $md-primary-color;
+    border-radius: 50%;
+    content: '';
+    position: absolute;
+  }
+
+  &:before {
+    height: 8px;
+    left: -4px;
+    top: -4px;
+    width: 8px;
+  }
+
+  &:after {
+    height: 36px;
+    right: -18px;
+    top: -18px;
+    width: 36px;
+  }
+}
+
+.md-time {
+  display: table-cell;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 
