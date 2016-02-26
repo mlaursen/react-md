@@ -7,7 +7,7 @@ import GettingStarted from './GettingStarted';
 import Customization from './Customization';
 import Typography from './Typography';
 import Home from './Home';
-import { toDashedName } from './Documentation/utils';
+import { toDashedName } from './utils';
 
 export default (
   <Route path="/" component={App}>

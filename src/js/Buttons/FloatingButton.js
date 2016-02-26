@@ -17,6 +17,7 @@ export default class FloatingButton extends Component {
     iconClassName: PropTypes.string,
     children: PropTypes.string,
     fixed: PropTypes.bool,
+    mini: PropTypes.bool,
   };
 
   render() {
@@ -25,6 +26,7 @@ export default class FloatingButton extends Component {
       <IconButton
         className={classnames('md-floating-btn', className, {
           'fixed': isPropEnabled(props, 'fixed'),
+          'mini': isPropEnabled(props, 'mini'),
         })}
         iconClassName={iconClassName}
         {...props}

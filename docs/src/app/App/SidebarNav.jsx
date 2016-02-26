@@ -11,7 +11,7 @@ import Sidebar from 'react-md/lib/Sidebars';
 
 
 import * as components from '../components';
-import { hostPrefix, imgPrefix } from '../utils';
+import { hostPrefix, imgPrefix, toDashedName, toTitle } from '../utils';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
 import Typography from '../Typography';
@@ -19,10 +19,9 @@ import Typography from '../Typography';
 const componentLinks = Object.keys(components).map(k => {
   if(!components[k] || !components[k].name) { return; }
 
-  const name = k.split(/(?=[A-Z])/);
   return {
-    link: 'components/' + name.map(n => n.toLowerCase()).join('-'),
-    label: name.join(' '),
+    link: 'components/' + toDashedName(k),
+    label: toTitle(k),
   };
 }).filter(l => !!l);
 

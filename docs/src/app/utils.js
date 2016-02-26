@@ -34,3 +34,17 @@ export const randomImage = ({ width, height, time } = {}) => {
 
 export const hostPrefix = ''; // change to '/react-md' for production
 export const imgPrefix = hostPrefix + '/imgs';
+
+export const splitOnCaps = s => s.split(/(?=[A-Z1-9])/);
+
+function getString(s) {
+  if(!(s instanceof Array)) {
+    // cheating since I don't feel like fixing regex
+    return s === 'FABTransitions' ? ['FAB', 'Transitions'] : splitOnCaps(s);
+  }
+
+  return s;
+}
+
+export const toDashedName = (s) => getString(s).map(s => s.toLowerCase()).join('-');
+export const toTitle = (s) => getString(s).join(' ');

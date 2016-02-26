@@ -4,6 +4,7 @@ import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, 
 import Chip from './Chips';
 import Dialog from './Dialogs';
 import Divider from './Dividers';
+import { SpeedDial } from './FABTransitions';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem, ListSubheader } from './Lists';
@@ -49,6 +50,7 @@ export { RaisedButton };
 export { Slider };
 export { Sidebar };
 export { Snackbar };
+export { SpeedDial };
 export { Switch };
 export { TextField };
 export { Tab };
@@ -90,6 +92,7 @@ export default {
   Slider,
   Sidebar,
   Snackbar,
+  SpeedDial,
   TextField,
   TimePicker,
   Toolbar,

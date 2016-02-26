@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import Example from './Example';
 import ComponentProperties from './ComponentProperties';
-import { toDashedName, toTitle } from './utils';
+import { toDashedName, toTitle } from '../utils';
 
 export default class DocPage extends Component {
   constructor(props) {
@@ -14,7 +14,10 @@ export default class DocPage extends Component {
   }
 
   static propTypes = {
-    sectionName: PropTypes.string,
+    sectionName: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
     examples: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       markdown: PropTypes.string.isRequired,

@@ -6,7 +6,7 @@ import { CardTitle, CardMedia } from 'react-md/lib/Cards';
 
 import './_home.scss';
 import * as components from '../components';
-import { toDashedName } from '../Documentation/utils';
+import { toDashedName } from '../utils';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
 

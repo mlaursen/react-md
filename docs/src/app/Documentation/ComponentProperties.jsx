@@ -4,8 +4,7 @@ import classnames from 'classnames';
 import { Card, CardTitle, CardText } from 'react-md/lib/Cards';
 import { IconButton } from 'react-md/lib/Buttons';
 
-import { githubHref } from '../utils';
-import { toDashedName, toTitle } from './utils';
+import { githubHref, toDashedName, toTitle } from '../utils';
 import Markdown from '../Markdown';
 
 export default class ComponentProperties extends Component {
@@ -16,7 +15,10 @@ export default class ComponentProperties extends Component {
   }
 
   static propTypes = {
-    sectionName: PropTypes.string.isRequired,
+    sectionName: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]).isRequired,
     desc: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
@@ -76,7 +78,7 @@ export default class ComponentProperties extends Component {
       });
     }
 
-    if(allRemaining) {
+    if(allRemaining && detailNames.indexOf('allRemaining') === -1) {
       extraProps.push({
         name: 'any other props',
         desc: 'Any other props that you pass to this component will be added to the top level node.',

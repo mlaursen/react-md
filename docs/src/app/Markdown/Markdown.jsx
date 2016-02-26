@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-const DisplayReadme = ({ markdown, marked, ...props }) => (
-  <article {...props} dangerouslySetInnerHTML={{ __html: marked(markdown)}} />
+const Markdown = ({ markdown, marked, ...props }) => (
+  <div {...props} dangerouslySetInnerHTML={{ __html: marked(markdown)}} />
 );
 
-DisplayReadme.propTypes = {
+Markdown.propTypes = {
   markdown: PropTypes.string.isRequired,
   marked: PropTypes.func.isRequired,
 };
 
-export default DisplayReadme;
+export default Markdown;
