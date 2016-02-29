@@ -152,6 +152,13 @@
   }
 }
 
+// Prevents the event.target to be anything other than the .md-clock-face
+.md-clock-time,
+.md-clock-hand {
+  pointer-events: none;
+  user-select: none;
+}
+
 .md-clock-time {
   display: table;
   height: $md-clock-time-size;

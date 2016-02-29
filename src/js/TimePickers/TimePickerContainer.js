@@ -17,11 +17,15 @@ export default class TimePickerContainer extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     const date = props.defaultValue ? new Date(props.defaultValue) : new Date();
+    let value = props.defaultValue;
+    if(value && typeof props.defaultValue !== 'string') {
+      value = getTimeString(props.DateTimeFormat, props.locales, value);
+    }
 
     this.state = {
+      value,
       ...this.getTimeParts(date, props),
       isOpen: props.initiallyOpen,
-      value: props.defaultValue,
       time: date,
       timeMode: props.initialTimeMode,
       tempTime: date,
@@ -31,10 +35,16 @@ export default class TimePickerContainer extends Component {
   static propTypes = {
     className: PropTypes.string,
     icon: PropTypes.node,
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]),
     initiallyOpen: PropTypes.bool,
     label: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]),
     onChange: PropTypes.func,
     floatingLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func.isRequired,
@@ -74,7 +84,8 @@ export default class TimePickerContainer extends Component {
   }
 
   getValue = (props = this.props, state = this.state) => {
-    return typeof props.value === 'undefined' ? state.value : props.value;
+    const value = typeof props.value === 'undefined' ? state.value : props.value;
+    return typeof value === 'string' ? value : getTimeString(props.DateTimeFormat, props.locales, value);
   };
 
   getTimeParts = (date, props = this.props) => {
@@ -142,7 +153,7 @@ export default class TimePickerContainer extends Component {
 
     let textFieldValue = typeof value === 'undefined' ? state.value : value;
     if(isOpen && inline) {
-      textFieldValue = getTimeString(props.DateTimeFormat, props.locales, state.tempTime);
+      textFieldValue = this.getValue(this.props, this.state);
     }
 
     return (

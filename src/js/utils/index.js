@@ -104,6 +104,15 @@ export function getOffset(el) {
   };
 }
 
+export function getTouchOffset(event) {
+  const el = event.target;
+  const rect = el.getBoundingClientRect();
+  return {
+    offsetX: event.clientX - rect.left,
+    offsetY: event.clientY - rect.top,
+  };
+}
+
 /**
  * Amzing media query to check if mobile..
  * @return true if device width is between 0 and 599px

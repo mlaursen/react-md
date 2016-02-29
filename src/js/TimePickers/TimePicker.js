@@ -35,14 +35,19 @@ export default class TimePicker extends Component {
   };
 
   updateTime = (timePart) => {
-    const time = new Date(this.props.tempTime);
-    if(this.props.timeMode === 'hour') {
+    const { tempTime, setTempTime, timeMode, timePeriod } = this.props;
+    const time = new Date(tempTime);
+    if(timeMode === 'hour') {
+      if(timePeriod && timePeriod === 'PM') {
+        timePart += 12;
+      }
+
       time.setHours(timePart);
     } else {
       time.setMinutes(timePart);
     }
 
-    this.props.setTempTime(time);
+    setTempTime(time);
   };
 
   render() {

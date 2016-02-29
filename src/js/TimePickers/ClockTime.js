@@ -19,7 +19,6 @@ export default class ClockTime extends Component {
     index: PropTypes.number.isRequired,
     time: PropTypes.number.isRequired,
     active: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired,
     radius: PropTypes.number.isRequired,
     minutes: PropTypes.bool.isRequired,
   };
@@ -43,10 +42,6 @@ export default class ClockTime extends Component {
     }
   };
 
-  handleClick = (e) => {
-    this.props.onClick(this.props.time, e);
-  };
-
   render() {
     const { time, active, index } = this.props;
 
@@ -55,7 +50,6 @@ export default class ClockTime extends Component {
       <div
         ref="time"
         className={classnames('md-clock-time', { active })}
-        onClick={this.handleClick}
         style={{
           top: this.calcPos(r, true),
           left: this.calcPos(r, false),
