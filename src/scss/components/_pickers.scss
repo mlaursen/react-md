@@ -105,69 +105,68 @@
   padding-bottom: $md-dialog-padding / 2;
 }
 
-.md-clock {
-  $md-clock-size: $md-pickers-landscape-height - $md-dialog-padding - 52px;
-
+.md-clock-face {
   border-radius: 50%;
-  content: '';
   margin: auto;
   position: relative;
-}
 
-.md-clock-time {
-  border-radius: 50%;
-  color: $md-black-base;
-  display: table;
-  height: 36px;
-  position: absolute;
-  transition: color $md-transition-time;
-  width: 36px;
-  z-index: 8;
-
-  &.active {
-    color: $md-white-base;
+  &:hover {
+    cursor: pointer;
   }
 }
 
-.md-clock-handle {
-  background: $md-primary-color;
+.md-clock-hand {
   height: 2px;
   position: absolute;
   transform-origin: 0 0;
   transition: transform $md-transition-time;
-  width: 114px;
   z-index: 4;
 
   &:before,
   &:after {
-    background: $md-primary-color;
     border-radius: 50%;
     content: '';
     position: absolute;
   }
 
+  // center ball
   &:before {
-    height: 8px;
-    left: -4px;
-    top: -4px;
-    width: 8px;
+    height: $md-clock-hand-ball-size;
+    left: -$md-clock-hand-ball-size / 2;
+    // no idea why
+    top: -2px;
+    width: $md-clock-hand-ball-size;
   }
 
   &:after {
-    height: 36px;
-    right: -18px;
-    top: -18px;
-    width: 36px;
+    height: $md-clock-time-size;
+    right: -$md-clock-time-size / 2 + $md-clock-padding / 2;
+    top: -$md-clock-time-size / 2;
+    transition-duration: $md-transition-time;
+    transition-property: transform, background, border;
+    width: $md-clock-time-size;
+  }
+
+  &.invisible-minute:after {
+    transform: scale($md-clock-hand-ball-scale);
   }
 }
 
-.md-time {
+.md-clock-time {
+  display: table;
+  height: $md-clock-time-size;
+  position: absolute;
+  transition: color $md-transition-time;
+  width: $md-clock-time-size;
+  z-index: 8;
+}
+
+.md-clock-time-value {
   display: table-cell;
-  font-size: 16px;
+  font-size: $md-clock-time-font-size;
   text-align: center;
   vertical-align: middle;
 }
-
 
 
 

@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 
-import { getTimeString } from '../utils';
 import { PickerFooter } from '../Pickers';
+import ClockFace from './ClockFace';
 import TimePickerHeader from './TimePickerHeader';
 
 export default class TimePicker extends Component {
@@ -30,11 +29,19 @@ export default class TimePicker extends Component {
     setTempTime: PropTypes.func.isRequired,
     timeMode: PropTypes.oneOf(['hour', 'minute']).isRequired,
     tempTime: PropTypes.instanceOf(Date).isRequired,
+    hour: PropTypes.string.isRequired,
+    minute: PropTypes.string.isRequired,
+    timePeriod: PropTypes.string,
   };
 
-  updateTime = (hour) => {
+  updateTime = (timePart) => {
     const time = new Date(this.props.tempTime);
-    time.setHours(hour);
+    if(this.props.timeMode === 'hour') {
+      time.setHours(timePart);
+    } else {
+      time.setMinutes(timePart);
+    }
+
     this.props.setTempTime(time);
   };
 
@@ -53,59 +60,33 @@ export default class TimePicker extends Component {
       setTempTime,
       timeMode,
       tempTime,
+      hour,
+      minute,
+      timePeriod,
       ...props,
     } = this.props;
 
-    let [hour] = getTimeString(DateTimeFormat, locales, tempTime).split(/(?=[^0-9])/);
-    hour = parseInt(hour);
+    const hourInt = parseInt(hour);
+    const minuteInt = parseInt(minute.replace(':', ''));
 
-    const timeParts = Array.apply(null, new Array(12)).map((_, i) => {
-      const time = i + 1;
-      const r = (Math.PI / 2) - time * (Math.PI / 6);
-      return (
-        <div
-          key={`time-${time}`}
-          className={classnames('md-clock-time', {
-            'active': time === hour,
-          })}
-          onClick={this.updateTime.bind(this, time)}
-          style={{
-            top: 118 - 114 * Math.sin(r),
-            left: 118 + 114 * Math.cos(r),
-          }}
-        >
-          <span className="md-time">{time}</span>
-        </div>
-      );
-    });
-
-    let rotate = (hour - 3) * 30;
-    if(hour < 3) {
-      rotate += 360;
-    }
     return (
       <div className={`${className} time-picker`}>
         <TimePickerHeader
-          DateTimeFormat={DateTimeFormat}
-          locales={locales}
           tempTime={tempTime}
           timeMode={timeMode}
           setTimeMode={setTimeMode}
           setTempTime={setTempTime}
+          hour={hour}
+          minute={minute}
+          timePeriod={timePeriod}
         />
         <div className="md-picker-content-container">
           <div className="md-picker-content clock">
-            <div className="md-clock">
-              {timeParts}
-              <div
-                className="md-clock-handle"
-                style={{
-                  left: 136,
-                  top: 136,
-                  transform: `rotateZ(${rotate}deg)`,
-                }}
-              />
-            </div>
+            <ClockFace
+              time={timeMode === 'hour' ? hourInt : minuteInt}
+              minutes={timeMode === 'minute'}
+              onClick={this.updateTime}
+            />
           </div>
           <PickerFooter
             okLabel={okLabel}

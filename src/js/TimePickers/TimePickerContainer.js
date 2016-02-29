@@ -17,7 +17,9 @@ export default class TimePickerContainer extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     const date = props.defaultValue ? new Date(props.defaultValue) : new Date();
+
     this.state = {
+      ...this.getTimeParts(date, props),
       isOpen: props.initiallyOpen,
       value: props.defaultValue,
       time: date,
@@ -61,6 +63,33 @@ export default class TimePickerContainer extends Component {
     okPrimary: true,
     cancelLabel: 'Cancel',
     cancelPrimary: true,
+  };
+
+  componentWillUpdate(nextProps, nextState) {
+    if(this.getValue() !== this.getValue(nextProps, nextState)) {
+      this.setState(this.getTimeParts(this.getValue(nextProps, nextState), nextProps));
+    } else if(this.state.tempValue !== nextState.tempTime) {
+      this.setState(this.getTimeParts(nextState.tempTime, nextProps));
+    }
+  }
+
+  getValue = (props = this.props, state = this.state) => {
+    return typeof props.value === 'undefined' ? state.value : props.value;
+  };
+
+  getTimeParts = (date, props = this.props) => {
+    const time = getTimeString(props.DateTimeFormat, props.locales, date);
+    let [hour, minute, ...others] = time.split(/(?=[^0-9])/);
+    let timePeriod;
+    if(others.length) {
+      timePeriod = others.join('').trim();
+    }
+
+    return {
+      hour,
+      minute,
+      timePeriod,
+    };
   };
 
   toggleOpen = () => {

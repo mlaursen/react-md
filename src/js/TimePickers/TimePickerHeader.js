@@ -1,15 +1,9 @@
 import React, { PropTypes } from 'react';
 
 import { PickerControl } from '../Pickers';
-import { getTimeString, addHours, subtractHours } from '../utils';
+import { addHours, subtractHours } from '../utils';
 
-const TimePickerHeader = ({ DateTimeFormat, locales, setTimeMode, setTempTime, timeMode, tempTime }) => {
-  const time = getTimeString(DateTimeFormat, locales, tempTime);
-  let [hour, minute, ...others] = time.split(/(?=[^0-9])/);
-  let timePeriod;
-  if(others.length) {
-    timePeriod = others.join('').trim();
-  }
+const TimePickerHeader = ({ setTimeMode, setTempTime, timeMode, tempTime, hour, minute, timePeriod }) => {
   return (
     <header className="md-picker-header">
       <PickerControl onClick={setTimeMode.bind(this, 'hour')} active={timeMode === 'hour'}>
@@ -37,15 +31,13 @@ const TimePickerHeader = ({ DateTimeFormat, locales, setTimeMode, setTempTime, t
 };
 
 TimePickerHeader.propTypes = {
-  DateTimeFormat: PropTypes.func.isRequired,
-  locales: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
   tempTime: PropTypes.instanceOf(Date).isRequired,
   timeMode: PropTypes.oneOf(['hour', 'minute']).isRequired,
   setTimeMode: PropTypes.func.isRequired,
   setTempTime: PropTypes.func.isRequired,
+  hour: PropTypes.string.isRequired,
+  minute: PropTypes.string.isRequired,
+  timePeriod: PropTypes.string,
 };
 
 export default TimePickerHeader;

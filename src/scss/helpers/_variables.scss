@@ -374,6 +374,12 @@ $md-date-picker-landscape-ball-size: 32px !default;
 
 $md-clock-portrait-size: $md-pickers-portrait-width - $md-dialog-padding * 2 !default;
 $md-clock-landscape-size: $md-pickers-landscape-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
+$md-clock-padding: 4px;
+$md-clock-time-size: 36px !default;
+$md-clock-hand-ball-size: 6px !default;
+$md-clock-hand-ball-scale: .4 !default;
+$md-clock-hand-ball-border-size: $md-clock-time-size / 4 !default;
+$md-clock-time-font-size: 16px !default;
 
 $md-pickers-portrait-height: 380px !default;
 $md-pickers-landscape-height: 340px !default;
