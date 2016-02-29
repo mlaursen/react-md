@@ -119,7 +119,8 @@
   height: 2px;
   position: absolute;
   transform-origin: 0 0;
-  transition: transform $md-transition-time;
+  transition-duration: $md-transition-time;
+  transition-property: transform, width;
   z-index: 4;
 
   &:before,

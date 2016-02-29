@@ -113,6 +113,11 @@ export function getTouchOffset(event) {
   };
 }
 
+export function isPointInCircle(cx, cy, r, x, y) {
+  const distance = Math.pow(cx - x, 2) + Math.pow(cy - y, 2);
+  return distance <= Math.pow(r, 2);
+}
+
 /**
  * Amzing media query to check if mobile..
  * @return true if device width is between 0 and 599px

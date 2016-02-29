@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { LEFT_MOUSE } from '../constants/keyCodes';
-import { getTouchOffset } from '../utils';
+import { getTouchOffset, isPointInCircle } from '../utils';
 import ClockTime from './ClockTime';
 import ClockHand from './ClockHand';
 
@@ -18,6 +18,7 @@ export default class ClockFace extends Component {
     time: PropTypes.number.isRequired,
     minutes: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired,
+    timePeriod: PropTypes.string,
   };
 
   componentDidMount() {
@@ -76,18 +77,27 @@ export default class ClockFace extends Component {
       time += sectors;
     }
 
+    if(!this.props.timePeriod) {
+      const isInCircle = isPointInCircle(radius, radius, radius - 48, x, y);
+      if((isInCircle && time !== 0) || (!isInCircle && time === 0)) {
+        time += 12;
+      }
+    }
+
     this.props.onClick(time);
   };
 
   render() {
-    const { time, minutes } = this.props;
+    const { time, minutes, timePeriod } = this.props;
     const { radius } = this.state;
-    const times = Array.apply(null, new Array(12)).map((_, i) => {
+    const size = !minutes && !timePeriod ? 24 : 12;
+    const times = Array.apply(null, new Array(size)).map((_, i) => {
       let clockTime = i + 1;
       if(minutes) {
         clockTime = (clockTime * 5) % 60;
+      } else {
+        clockTime %= 24;
       }
-
 
       return (
         <ClockTime

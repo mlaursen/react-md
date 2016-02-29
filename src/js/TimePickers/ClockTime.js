@@ -28,12 +28,15 @@ export default class ClockTime extends Component {
     this.setState({ size: offsetWidth / 2 }); // eslint-disable-line react/no-did-mount-set-state
   }
 
-  calcPos = (r, isTop) => {
+  calcPos = (r, inner, isTop) => {
     const { radius } = this.props;
     const { size } = this.state;
 
     const outerR = radius - size;
-    const innerR = outerR - CLOCK_PADDING;
+    let innerR = outerR - CLOCK_PADDING;
+    if(inner) {
+      innerR = outerR - size * 2 - CLOCK_PADDING;
+    }
 
     if(isTop) {
       return outerR - innerR * Math.sin(r);
@@ -46,13 +49,14 @@ export default class ClockTime extends Component {
     const { time, active, index } = this.props;
 
     const r = (Math.PI / 2) - index * (Math.PI / 6);
+    const inner = index > 12;
     return (
       <div
         ref="time"
         className={classnames('md-clock-time', { active })}
         style={{
-          top: this.calcPos(r, true),
-          left: this.calcPos(r, false),
+          top: this.calcPos(r, inner, true),
+          left: this.calcPos(r, inner, false),
         }}
       >
         <span className="md-clock-time-value">{time}</span>

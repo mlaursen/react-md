@@ -72,7 +72,7 @@ export default class TimePicker extends Component {
     } = this.props;
 
     const hourInt = parseInt(hour);
-    const minuteInt = parseInt(minute.replace(':', ''));
+    const minuteInt = parseInt(minute.replace(/[^0-9]/g, ''));
 
     return (
       <div className={`${className} time-picker`}>
@@ -91,6 +91,7 @@ export default class TimePicker extends Component {
               time={timeMode === 'hour' ? hourInt : minuteInt}
               minutes={timeMode === 'minute'}
               onClick={this.updateTime}
+              timePeriod={timePeriod}
             />
           </div>
           <PickerFooter

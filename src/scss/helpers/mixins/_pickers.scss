@@ -48,6 +48,10 @@
 
   .md-clock-hand {
     width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+    &.inner-hour {
+      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+    }
   }
 }
 
@@ -86,6 +90,10 @@
 
   .md-clock-hand {
     width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+    &.inner-hour {
+      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+    }
   }
 
   .md-time-periods {

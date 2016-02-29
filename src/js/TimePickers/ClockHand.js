@@ -32,7 +32,10 @@ export default class ClockHand extends Component {
     rotate = `rotateZ(${rotate}deg)`;
     return (
       <div
-        className={classnames('md-clock-hand', { 'invisible-minute': invisibleMinute })}
+        className={classnames('md-clock-hand', {
+          'invisible-minute': invisibleMinute,
+          'inner-hour': !minutes && (time > 12 || time === 0),
+        })}
         style={{
           left: coords,
           top: coords,
