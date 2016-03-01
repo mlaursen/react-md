@@ -7,6 +7,7 @@ export default class ClockHand extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { active: false };
   }
 
   static propTypes = {
@@ -15,34 +16,52 @@ export default class ClockHand extends Component {
     minutes: PropTypes.bool.isRequired,
   };
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.minutes !== nextProps.minutes) {
+      if(this.state.timeout) { clearTimeout(this.state.timeout); }
+
+      this.setState({
+        active: true,
+        timeout: setTimeout(() => this.setState({ active: false, timeout: null }), 150),
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if(this.state.timeout) { clearTimeout(this.state.timeout); }
+  }
+
+  calcCurrentDegrees = () => {
+    const { time, minutes } = this.props;
+    const timeAt0Deg = minutes ? 15 : 3;
+    const sectors = minutes ? 60 : 12;
+    return (time % sectors - timeAt0Deg) * (360 / sectors);
+  };
+
   render() {
     const { coords, time, minutes } = this.props;
-    const pos0 = minutes ? 15 : 3;
-    const sectors = 360 / (minutes ? 60 : 12);
-    let rotate = (time - pos0) * sectors;
-    if(time < pos0) {
-      rotate += 360;
-    }
 
+    const degrees = this.calcCurrentDegrees();
     let invisibleMinute = false;
     if(minutes) {
-      invisibleMinute = rotate % (360 / 12) !== 0;
+      invisibleMinute = degrees % (360 / 12) !== 0;
     }
 
-    rotate = `rotateZ(${rotate}deg)`;
+    const rotateTransform = `rotate3d(0, 0, 1, ${degrees}deg)`;
     return (
       <div
         className={classnames('md-clock-hand', {
+          'active': this.state.active,
           'invisible-minute': invisibleMinute,
           'inner-hour': !minutes && (time > 12 || time === 0),
         })}
         style={{
           left: coords,
           top: coords,
-          transform: rotate,
-          msTransform: rotate,
-          WebkitTransform: rotate,
-          MozTransform: rotate,
+          transform: rotateTransform,
+          msTransform: rotateTransform,
+          WebkitTransform: rotateTransform,
+          MozTransform: rotateTransform,
         }}
       />
     );

@@ -17,14 +17,10 @@ export default class TimePickerContainer extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     const date = props.defaultValue ? new Date(props.defaultValue) : new Date();
-    let value = props.defaultValue;
-    if(value && typeof props.defaultValue !== 'string') {
-      value = getTimeString(props.DateTimeFormat, props.locales, value);
-    }
 
     this.state = {
-      value,
       ...this.getTimeParts(date, props),
+      value: props.defaultValue,
       isOpen: props.initiallyOpen,
       time: date,
       timeMode: props.initialTimeMode,
@@ -35,16 +31,10 @@ export default class TimePickerContainer extends Component {
   static propTypes = {
     className: PropTypes.string,
     icon: PropTypes.node,
-    defaultValue: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Date),
-    ]),
+    defaultValue: PropTypes.instanceOf(Date),
+    value: PropTypes.instanceOf(Date),
     initiallyOpen: PropTypes.bool,
     label: PropTypes.string,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.instanceOf(Date),
-    ]),
     onChange: PropTypes.func,
     floatingLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func.isRequired,
@@ -84,8 +74,7 @@ export default class TimePickerContainer extends Component {
   }
 
   getValue = (props = this.props, state = this.state) => {
-    const value = typeof props.value === 'undefined' ? state.value : props.value;
-    return typeof value === 'string' ? value : getTimeString(props.DateTimeFormat, props.locales, value);
+    return typeof props.value === 'undefined' ? state.value : props.value;
   };
 
   getTimeParts = (date, props = this.props) => {
@@ -124,10 +113,10 @@ export default class TimePickerContainer extends Component {
   };
 
   handleOkClick = (e) => {
-    const { DateTimeFormat, locales, onChange } = this.props;
-    const value = getTimeString(DateTimeFormat, locales, this.state.tempTime);
-    if(typeof this.props.value !== 'undefined' && onChange) {
-      onChange(value, new Date(this.state.tempTime), e);
+    const { onChange } = this.props;
+    const value = new Date(this.state.tempTime);
+    if(onChange) {
+      onChange(value, e);
     }
 
     this.setState({ value, isOpen: false });
@@ -154,6 +143,10 @@ export default class TimePickerContainer extends Component {
     let textFieldValue = typeof value === 'undefined' ? state.value : value;
     if(isOpen && inline) {
       textFieldValue = this.getValue(this.props, this.state);
+    }
+
+    if(textFieldValue) {
+      textFieldValue = getTimeString(props.DateTimeFormat, props.locales, textFieldValue);
     }
 
     return (

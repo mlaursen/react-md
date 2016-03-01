@@ -63,6 +63,31 @@ export default class ClockFace extends Component {
     this.calcNewTime(offsetX, offsetY);
   };
 
+  handleTouchMove = (e) => {
+    e.preventDefault();
+    let { offsetX, offsetY } = e.changedTouches[0];
+    if(typeof offsetX === 'undefined' || typeof offsetY === 'undefined') {
+      const offset = getTouchOffset(e);
+
+      offsetX = offset.offsetX;
+      offsetY = offset.offsetY;
+    }
+
+    this.calcNewTime(offsetX, offsetY);
+  };
+
+  handleTouchEnd = (e) => {
+    let { offsetX, offsetY } = e.changedTouches[0];
+    if(typeof offsetX === 'undefined' || typeof offsetY === 'undefined') {
+      const offset = getTouchOffset(e);
+
+      offsetX = offset.offsetX;
+      offsetY = offset.offsetY;
+    }
+
+    this.calcNewTime(offsetX, offsetY);
+  };
+
   calcNewTime = (x, y) => {
     const { radius } = this.state;
     const sectors = this.props.minutes ? 60 : 12;

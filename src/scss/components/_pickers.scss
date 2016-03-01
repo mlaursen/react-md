@@ -120,8 +120,12 @@
   position: absolute;
   transform-origin: 0 0;
   transition-duration: $md-transition-time;
-  transition-property: transform, width;
+  transition-property: width;
   z-index: 4;
+
+  &.active {
+    transition-property: transform, width;
+  }
 
   &:before,
   &:after {
