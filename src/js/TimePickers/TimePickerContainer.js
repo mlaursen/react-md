@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TransitionGroup from 'react-addons-transition-group';
 import classnames from 'classnames';
 
+import { ESC } from '../constants/keyCodes';
 import { DateTimeFormat, getTimeString } from '../utils';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
@@ -47,7 +48,6 @@ export default class TimePickerContainer extends Component {
     cancelLabel: PropTypes.string.isRequired,
     cancelPrimary: PropTypes.bool,
     initialTimeMode: PropTypes.oneOf(['hour', 'minute']),
-    autoOk: PropTypes.bool,
     inline: PropTypes.bool,
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
@@ -55,7 +55,6 @@ export default class TimePickerContainer extends Component {
   static defaultProps = {
     initiallyOpen: false,
     initialTimeMode: 'hour',
-    autoOk: false,
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat,
     locales: navigator.language,
@@ -71,7 +70,38 @@ export default class TimePickerContainer extends Component {
     } else if(this.state.tempValue !== nextState.tempTime) {
       this.setState(this.getTimeParts(nextState.tempTime, nextProps));
     }
+
+    if(this.state.isOpen && !nextState.isOpen) {
+      if(nextProps.inline) {
+        window.removeEventListener('click', this.closeOnOutside);
+      }
+
+      window.removeEventListener('keydown', this.closeOnEsc);
+    } else if(!this.state.isOpen && nextState.isOpen) {
+      if(nextProps.inline) {
+        window.addEventListener('click', this.closeOnOutside);
+      }
+
+      window.addEventListener('keydown', this.closeOnEsc);
+    }
   }
+
+  closeOnOutside = (e) => {
+    const { container } = this.refs;
+    let target = e.target;
+    while(target.parentNode) {
+      if(target === container) { return; }
+      target = target.parentNode;
+    }
+
+    this.close();
+  };
+
+  closeOnEsc = (e) => {
+    if((e.which || e.keyCode) === ESC) {
+      this.handleCancelClick();
+    }
+  };
 
   getValue = (props = this.props, state = this.state) => {
     return typeof props.value === 'undefined' ? state.value : props.value;
