@@ -143,10 +143,10 @@ export default class TimePickerContainer extends Component {
   };
 
   handleOkClick = (e) => {
-    const { onChange } = this.props;
+    const { onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
     if(onChange) {
-      onChange(value, e);
+      onChange(value, getTimeString(DateTimeFormat, locales, value), e);
     }
 
     this.setState({ value, isOpen: false });

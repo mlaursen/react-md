@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
+import Snackbar from 'react-md/lib/Snackbars';
 import TimePicker from 'react-md/lib/TimePickers';
 
 import Markdown from '../../Markdown';
@@ -19,15 +20,43 @@ export default class TimePickerExamples extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
+    this.state = { toasts: [], undo: false, time: null };
   }
 
   static propTypes = {
     marked: PropTypes.func.isRequired,
   };
 
-  handleTimeChange = (time) => {
-    this.setState({ time });
+  componentWillUpdate(nextProps, nextState) {
+    if(this.state.time !== nextState.time && !nextState.undo) {
+      this.setState({
+        toasts: nextState.toasts.concat([{
+          text: `You have set your appointment time to ${nextState.formattedTime}`,
+          action: {
+            onClick: this.undo.bind(this, this.state.time),
+            label: 'Undo',
+          },
+        }]),
+      });
+    }
+  }
+
+  undo = (time) => {
+    this.setState({
+      time,
+      undo: true,
+    });
+  };
+
+  handleTimeChange = (time, formattedTime) => {
+    this.setState({ time, formattedTime, undo: false });
+  };
+
+  dismissToast = () => {
+    const toasts = this.state.toasts.slice();
+    toasts.shift();
+
+    this.setState({ toasts });
   };
 
   render() {
@@ -63,6 +92,7 @@ export default class TimePickerExamples extends Component {
             onChange={this.handleTimeChange}
           />
         </div>
+        <Snackbar toasts={this.state.toasts} dismiss={this.dismissToast} />
       </div>
     );
   }
