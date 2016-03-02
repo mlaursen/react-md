@@ -44,7 +44,7 @@
 }
 
 /* line 42, ../src/scss/helpers/_extenders.scss */
-.md-linear-progress-container, .md-text-field-container, .md-text-field-label-container, .md-text-field-label, .md-text-field, .md-text-field-divider, .md-text-field-divider.active:after {
+.md-linear-progress-container, .md-text-divider {
   width: 100%;
 }
 
@@ -56,116 +56,200 @@
 
 /* line 51, ../src/scss/helpers/_extenders.scss */
 .md-btn, .md-chip,
-.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year, .md-slider-thumb, .md-thumb-control, .md-tab {
+.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year, .md-slider-thumb, .md-thumb-control {
   background: transparent;
   border: 0;
 }
 /* line 55, ../src/scss/helpers/_extenders.scss */
 .md-btn:focus, .md-chip:focus,
-.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus, .md-slider-thumb:focus, .md-thumb-control:focus, .md-tab:focus {
+.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus, .md-slider-thumb:focus, .md-thumb-control:focus {
   outline: none;
 }
 
+/* line 69, ../src/scss/helpers/_extenders.scss */
+.md-headline, .md-title, .md-subheading-2, .md-subheading-1 {
+  color: rgba(0, 0, 0, 0.77);
+}
+
+/* line 73, ../src/scss/helpers/_extenders.scss */
+.md-display-4, .md-display-3, .md-display-2, .md-display-1, .md-caption {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* line 82, ../src/scss/helpers/_extenders.scss */
+.md-display-4 {
+  letter-spacing: -.1px;
+}
+
+/* line 86, ../src/scss/helpers/_extenders.scss */
+.md-display-3 {
+  letter-spacing: -.05px;
+}
+
+/* line 90, ../src/scss/helpers/_extenders.scss */
+.md-display-2, .md-display-1, .md-headline {
+  letter-spacing: 0;
+}
+
+/* line 94, ../src/scss/helpers/_extenders.scss */
+.md-title {
+  letter-spacing: .5px;
+}
+
+/* line 98, ../src/scss/helpers/_extenders.scss */
+.md-subheading-2, .md-subheading-1, .md-btn,
+.md-body-1,
+.md-btn-2 {
+  letter-spacing: .1px;
+}
+
+/* line 102, ../src/scss/helpers/_extenders.scss */
+.md-caption {
+  letter-spacing: .2px;
+}
+
 /* line 1, ../src/scss/_typography.scss */
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  line-height: 1.42857;
   -webkit-tap-highlight-color: transparent;
 }
 
 /* line 8, ../src/scss/_typography.scss */
+* {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.42857;
+}
+
+/* line 13, ../src/scss/_typography.scss */
 html {
   background: #fafafa;
   font-size: 14px;
 }
 
-/* line 13, ../src/scss/_typography.scss */
-.md-display-4,
-.md-display-3,
-.md-display-2,
-.md-display-1,
-.md-headline,
-.md-title,
-.md-subheader {
-  margin: 0;
+/* line 18, ../src/scss/_typography.scss */
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* line 24, ../src/scss/_typography.scss */
-.md-display-4 {
-  font-size: 8em;
-  font-weight: 300;
-}
-
-/* line 30, ../src/scss/_typography.scss */
-.md-display-3,
-.md-display-2,
 .md-display-1,
-.md-headline {
-  font-weight: 400;
+.md-display-2,
+.md-display-3,
+.md-display-4,
+.md-headline,
+.md-title,
+.md-subheading-1,
+.md-subheading-2,
+.md-body-1,
+.md-body-2,
+.md-caption {
+  margin: 0;
 }
 
-/* line 37, ../src/scss/_typography.scss */
-.md-display-3 {
-  font-size: 4em;
-}
-
-/* line 41, ../src/scss/_typography.scss */
-.md-display-2 {
-  font-size: 3.21429em;
-}
-
-/* line 46, ../src/scss/_typography.scss */
-.md-display-1 {
-  font-size: 2.42857em;
-}
-
-/* line 51, ../src/scss/_typography.scss */
-.md-headline {
-  font-size: 1.71429em;
-}
-
-/* line 56, ../src/scss/_typography.scss */
+/* line 38, ../src/scss/_typography.scss */
+.md-display-1,
+.md-display-2,
+.md-display-3,
+.md-display-4,
+.md-headline,
 .md-title {
-  font-size: 1.42857em;
-  font-weight: 500;
-  margin: 1em 0;
+  margin-bottom: 14px;
+}
+
+/* line 47, ../src/scss/_typography.scss */
+.md-subheading-1,
+.md-subheading-2,
+.md-body-1,
+.md-body-2,
+.md-caption {
+  margin-bottom: 10px;
+}
+
+/* line 57, ../src/scss/_typography.scss */
+.md-display-3,
+.md-display-4,
+.md-title {
+  white-space: nowrap;
 }
 
 /* line 63, ../src/scss/_typography.scss */
-caption,
-.md-caption {
-  font-size: 0.85714em;
-}
-
-/* line 68, ../src/scss/_typography.scss */
-p,
-.md-body-1 {
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.42857;
-}
-
-/* line 75, ../src/scss/_typography.scss */
-.md-body-2 {
-  font-size: 1em;
-  font-weight: 500;
-  line-height: 1.71429;
-}
-
-/* line 81, ../src/scss/_typography.scss */
-.md-subheading-1,
-.md-subheading-2 {
-  font-size: 1.14286em;
-}
-
-/* line 86, ../src/scss/_typography.scss */
-p,
+.md-display-1,
+.md-display-2,
+.md-display-3,
 .md-headline,
+.md-subheading-1,
+.md-subheading-2,
+.md-body-1,
+.md-caption {
+  font-weight: 400;
+}
+
+/* line 74, ../src/scss/_typography.scss */
+.md-btn,
 .md-title,
-[class^='md-subheading'],
-[class^='md-body'] {
-  color: rgba(0, 0, 0, 0.77);
+.md-body-2 {
+  font-weight: 500;
+}
+
+/* line 80, ../src/scss/_typography.scss */
+.md-display-4 {
+  font-size: 112px;
+  font-weight: 300;
+  line-height: 128px;
+}
+
+/* line 89, ../src/scss/_typography.scss */
+.md-display-3 {
+  font-size: 56px;
+  line-height: 84px;
+}
+
+/* line 97, ../src/scss/_typography.scss */
+.md-display-2 {
+  font-size: 45px;
+  line-height: 48px;
+}
+
+/* line 105, ../src/scss/_typography.scss */
+.md-display-1 {
+  font-size: 34px;
+  line-height: 40px;
+}
+
+/* line 113, ../src/scss/_typography.scss */
+.md-headline {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+/* line 121, ../src/scss/_typography.scss */
+.md-title {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* line 129, ../src/scss/_typography.scss */
+.md-subheading-2 {
+  line-height: 28px;
+}
+
+/* line 136, ../src/scss/_typography.scss */
+.md-subheading-1 {
+  line-height: 24px;
+}
+
+/* line 149, ../src/scss/_typography.scss */
+.md-caption {
+  font-size: 12px;
+}
+
+/* line 156, ../src/scss/_typography.scss */
+.md-icon {
+  font-size: 24px;
 }
 
 /* line 5, ../src/scss/_utils.scss */
@@ -211,239 +295,74 @@ p,
   transition: opacity 0.15s;
 }
 
-/* line 166, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-field-label.error,
-.md-text-field-info.error,
-.md-text-field-container .md-icon.error {
-  color: #f44336;
-}
-
-/* line 172, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-field-divider.error:after {
-  background: #f44336;
-}
-
-/* line 176, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-field-label,
-.md-text-field-container .md-icon.hint,
-.md-text-field-info {
-  color: rgba(0, 0, 0, 0.54);
-}
-
-/* line 182, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-field-container .md-icon.active,
-.md-text-field-label.focus:not(.error) {
-  color: #3f51b5;
-}
-
-/* line 187, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-field-divider:after {
-  background: #3f51b5;
-}
-
-/* line 49, ../src/scss/helpers/mixins/_snackbars.scss */
-.md-snackbar .md-flat-btn {
-  color: #ff4081;
-}
-/* line 52, ../src/scss/helpers/mixins/_snackbars.scss */
-.md-snackbar .md-flat-btn .md-ink {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* line 151, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-date-picker-header,
-.md-calendar-date.active:after {
-  background: #3f51b5;
-}
-
-/* line 156, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-date-picker-date.active,
-.md-date-picker-year.active,
-.md-calendar-date:not([disabled]):hover,
-.md-calendar-date:not([disabled]):focus,
-.md-calendar-date:not([disabled]).active {
-  color: #fff;
-}
-
-/* line 164, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-date-picker-date,
-.md-date-picker-year {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* line 169, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-calendar-date.today,
-.md-year.active {
-  color: #3f51b5;
-}
-
-/* line 174, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-calendar-date:after {
-  background: #5c6bc0;
-}
-
-/* line 178, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-year:focus:not(.active) {
-  color: #5c6bc0;
-}
-
-/* line 52, ../src/scss/helpers/mixins/_select-fields.scss */
-.md-select-field-menu .md-list-tile.active {
-  color: #3f51b5;
-}
-
-/* line 17, ../src/scss/helpers/mixins/_toolbars.scss */
-.md-primary.md-toolbar {
-  background: #3f51b5;
-  color: #fff;
-}
-/* line 54, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-raised-btn, .md-primary.md-floating-btn {
-  background: #3f51b5;
-  color: #fff;
-}
-/* line 59, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-raised-btn:hover, .md-primary.md-floating-btn:hover {
-  background: rgba(63, 81, 181, 0.95);
-}
-/* line 63, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-raised-btn .md-ink, .md-primary.md-floating-btn .md-ink {
-  background: rgba(255, 255, 255, 0.05);
-}
-/* line 68, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-flat-btn {
-  color: #3f51b5;
-}
-/* line 71, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-flat-btn:hover {
-  background: rgba(63, 81, 181, 0.15);
-}
-/* line 75, ../src/scss/helpers/mixins/_buttons.scss */
-.md-primary.md-flat-btn .md-ink {
-  background: rgba(63, 81, 181, 0.22);
-}
-/* line 35, ../src/scss/helpers/mixins/_tabs.scss */
-.md-primary.md-tabs-scroll-container {
-  background: #3f51b5;
-}
-/* line 38, ../src/scss/helpers/mixins/_tabs.scss */
-.md-primary.md-tabs-scroll-container .md-tab {
-  color: rgba(255, 255, 255, 0.7);
-}
-/* line 41, ../src/scss/helpers/mixins/_tabs.scss */
-.md-primary.md-tabs-scroll-container .md-tab.active {
-  color: #fff;
-}
-/* line 46, ../src/scss/helpers/mixins/_tabs.scss */
-.md-primary.md-tabs-scroll-container .md-tab-indicator {
-  background: #ff4081;
-}
-/* line 50, ../src/scss/helpers/mixins/_tabs.scss */
-.md-primary.md-tabs-scroll-container .md-ink {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* line 54, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-raised-btn, .md-secondary.md-floating-btn {
-  background: #ff4081;
-  color: #fff;
-}
-/* line 59, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-raised-btn:hover, .md-secondary.md-floating-btn:hover {
-  background: rgba(255, 64, 129, 0.95);
-}
-/* line 63, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-raised-btn .md-ink, .md-secondary.md-floating-btn .md-ink {
-  background: rgba(255, 255, 255, 0.05);
-}
-/* line 68, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-flat-btn {
-  color: #ff4081;
-}
-/* line 71, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-flat-btn:hover {
-  background: rgba(255, 64, 129, 0.15);
-}
-/* line 75, ../src/scss/helpers/mixins/_buttons.scss */
-.md-secondary.md-flat-btn .md-ink {
-  background: rgba(255, 64, 129, 0.22);
-}
-/* line 17, ../src/scss/helpers/mixins/_toolbars.scss */
-.md-secondary.md-toolbar {
-  background: #e91e63;
-  color: #fff;
-}
-/* line 35, ../src/scss/helpers/mixins/_tabs.scss */
-.md-secondary.md-tabs-scroll-container {
-  background: #e91e63;
-}
-/* line 38, ../src/scss/helpers/mixins/_tabs.scss */
-.md-secondary.md-tabs-scroll-container .md-tab {
-  color: rgba(255, 255, 255, 0.7);
-}
-/* line 41, ../src/scss/helpers/mixins/_tabs.scss */
-.md-secondary.md-tabs-scroll-container .md-tab.active {
-  color: #fff;
-}
-/* line 46, ../src/scss/helpers/mixins/_tabs.scss */
-.md-secondary.md-tabs-scroll-container .md-tab-indicator {
-  background: #3f51b5;
-}
-/* line 50, ../src/scss/helpers/mixins/_tabs.scss */
-.md-secondary.md-tabs-scroll-container .md-ink {
-  background: rgba(255, 255, 255, 0.15);
-}
-
 @media only screen and (min-width: 0px) and (max-width: 599px) {
-  /* line 96, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 5, ../src/scss/helpers/mixins/_typography.scss */
+  [class^='md-subheading'] {
+    font-size: 16px;
+  }
+
+  /* line 9, ../src/scss/helpers/mixins/_typography.scss */
+  .md-body-1,
+  .md-body-2 {
+    font-size: 14px;
+  }
+
+  /* line 132, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) {
     width: 320px;
   }
-  /* line 6, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 14, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape).date-picker .md-display-1 {
     display: inline-block;
   }
-  /* line 11, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 19, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-picker-header {
     height: 110px;
   }
-  /* line 15, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 23, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-time-periods {
     display: inline-block;
     padding-left: 1em;
     padding-right: 24px;
   }
-  /* line 21, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 29, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-picker-content {
     height: 340px;
   }
-  /* line 25, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 33, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-display-3 {
     font-size: 4.8em;
     line-height: 1;
   }
-  /* line 30, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 38, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-dows {
     padding-bottom: 12px;
   }
-  /* line 34, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 42, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-calendar-date-placeholder,
   .md-picker:not(.landscape) .md-calendar-date {
     height: 44px;
   }
-  /* line 39, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 47, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.landscape) .md-calendar-date:after {
     height: 36px;
     width: 36px;
   }
-  /* line 44, ../src/scss/helpers/mixins/_date-pickers.scss */
-  .md-picker:not(.landscape) .md-clock {
+  /* line 52, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-face {
     height: 272px;
     width: 272px;
   }
+  /* line 57, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-hand {
+    width: 116px;
+  }
+  /* line 60, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-hand.inner-hour {
+    width: 80px;
+  }
 
-  /* line 8, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-form .md-select-field,
+  /* line 9, ../src/scss/helpers/mixins/_select-fields.scss */
   .md-select-field.text-field-positioned {
     font-size: 16px;
     height: 48px;
@@ -451,165 +370,219 @@ p,
     padding-top: 8px;
   }
   /* line 15, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-form .md-select-field .md-divider,
   .md-select-field.text-field-positioned .md-divider {
     bottom: 8px;
   }
 
-  /* line 2, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 5, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar.active {
+    width: calc(100vw - 72px);
+  }
+
+  /* line 9, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar,
+  .md-sidebar-container.responsive {
+    height: 100vh;
+    position: fixed;
+  }
+
+  /* line 15, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-toolbar-container.fixed ~ .md-sidebar-container.responsive {
+    padding-top: 0;
+  }
+
+  /* line 19, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar-container.responsive {
+    z-index: 10;
+  }
+
+  /* line 5, ../src/scss/helpers/mixins/_snackbars.scss */
   .md-snackbar {
     left: 0;
     right: 0;
   }
-  /* line 6, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 9, ../src/scss/helpers/mixins/_snackbars.scss */
   .md-snackbar .md-flat-btn {
     margin-left: 24px;
   }
 
-  /* line 11, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 14, ../src/scss/helpers/mixins/_snackbars.scss */
   .snackbar-enter,
   .snackbar-leave.snackbar-leave-active {
     transform: scaleY(0);
   }
 
-  /* line 17, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 20, ../src/scss/helpers/mixins/_snackbars.scss */
   .snackbar-enter.snackbar-enter-active,
   .snackbar-leave {
     transform: scaleY(1);
   }
 
-  /* line 63, ../src/scss/helpers/mixins/_tabs.scss */
+  /* line 60, ../src/scss/helpers/mixins/_tabs.scss */
   .md-tab {
     font-size: 14px;
     min-width: 72px;
   }
 
-  /* line 12, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon {
-    font-size: 24px;
-    padding: 12px;
-    padding-right: 24px;
+  /* line 13, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-title-text-field .md-floating-label,
+  .md-title-text-field .md-text-field {
+    font-size: 34px;
   }
   /* line 18, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon ~ .md-text-field,
-  .md-text-field-container .md-icon ~ .md-text-field-divider {
-    width: calc(100% - 60px);
+  .md-title-text-field .md-text-field:not(.multi-line) {
+    height: 90px;
   }
-  /* line 23, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon ~ .md-text-field-divider {
-    left: 60px;
-  }
-
-  /* line 30, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-label-container {
-    height: 72px;
-  }
-  /* line 34, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-label.active {
-    bottom: 40px;
-  }
-  /* line 38, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-divider {
-    bottom: 8px;
-  }
-  /* line 42, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field,
-  .md-text-field-container.single-line .md-text-field-label {
-    bottom: 16px;
-  }
-  /* line 47, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line:not(.no-label) .md-icon {
-    padding-top: 32px;
-  }
-  /* line 53, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line.no-label .md-text-field-label-container {
-    height: 48px;
-  }
-  /* line 57, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line.no-label .md-text-field-label.active {
-    bottom: 16px;
+  /* line 21, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-title-text-field .md-text-field:not(.multi-line).single-line {
+    height: 66px;
   }
 
-  /* line 63, ../src/scss/helpers/mixins/_text-fields.scss */
+  /* line 39, ../src/scss/helpers/mixins/_text-fields.scss */
   .md-text-field,
-  .md-text-field-label {
+  .md-floating-label {
     font-size: 16px;
   }
 
+  /* line 44, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* line 50, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field:not(.multi-line) {
+    height: 72px;
+    padding-bottom: 16px;
+  }
+  /* line 55, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.single-line {
+    height: 48px;
+    padding-top: 16px;
+  }
+  /* line 60, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.multi-line {
+    margin-bottom: 16px;
+  }
+  /* line 66, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.full-width:not(.multi-line) {
+    height: 56px;
+  }
   /* line 70, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field-label {
-    display: block;
-    padding-bottom: 8px;
-  }
-  /* line 75, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field {
-    transition: height 0.15s;
-  }
-  /* line 79, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field-divider {
-    margin-bottom: 7px;
-    margin-top: 7px;
+  .md-text-field.full-width.multi-line {
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
-  /* line 86, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.full-width .md-text-field {
-    padding: 16px;
+  /* line 77, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-floating-label.active {
+    top: 16px;
   }
 
-  /* line 31, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 81, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-divider {
+    bottom: 8px;
+  }
+  /* line 84, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-divider.icon-offset {
+    left: 64px;
+    width: calc(100% - 64px);
+  }
+
+  /* line 92, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-icon {
+    padding: 12px;
+  }
+  /* line 95, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-icon.with-floating-label {
+    vertical-align: bottom;
+  }
+
+  /* line 34, ../src/scss/helpers/mixins/_toolbars.scss */
   .md-toolbar .action-left,
   .md-toolbar .action-area {
     margin-left: 12px;
     margin-right: 12px;
   }
+
+  /* line 5, ../src/scss/helpers/mixins/_tooltips.scss */
+  .md-tooltip {
+    height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* line 11, ../src/scss/helpers/mixins/_tooltips.scss */
+  .md-tooltip-text {
+    font-size: 14px;
+    line-height: 32px;
+  }
 }
 @media only screen and (min-width: 600px) {
-  /* line 102, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 20, ../src/scss/helpers/mixins/_typography.scss */
+  [class^='md-subheading'] {
+    font-size: 15px;
+  }
+
+  /* line 24, ../src/scss/helpers/mixins/_typography.scss */
+  .md-body-1,
+  .md-body-2 {
+    font-size: 13px;
+  }
+
+  /* line 142, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) {
     display: flex;
     width: 560px;
   }
-  /* line 54, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 78, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-picker-header {
     width: 180px;
   }
-  /* line 58, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 82, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-picker-content {
     height: 280px;
     width: 380px;
   }
-  /* line 63, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 87, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-calendar-date-placeholder,
   .md-picker:not(.portrait) .md-calendar-date {
     height: 35px;
   }
-  /* line 68, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 92, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-calendar-date:after {
     height: 32px;
     width: 32px;
   }
-  /* line 74, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 98, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait).time-picker .md-picker-header {
     padding-top: 93.33333px;
   }
-  /* line 78, ../src/scss/helpers/mixins/_date-pickers.scss */
-  .md-picker:not(.portrait) .md-clock {
+  /* line 102, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-face {
     height: 244px;
     width: 244px;
   }
-  /* line 83, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 107, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-hand {
+    width: 102px;
+  }
+  /* line 110, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-hand.inner-hour {
+    width: 66px;
+  }
+  /* line 115, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-time-periods {
     margin-left: auto;
     margin-right: 2.5em;
     width: 35px;
   }
-  /* line 89, ../src/scss/helpers/mixins/_date-pickers.scss */
+  /* line 121, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-display-3 {
     font-size: 3.25em;
   }
 
-  /* line 8, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-form .md-select-field,
+  /* line 9, ../src/scss/helpers/mixins/_select-fields.scss */
   .md-select-field.text-field-positioned {
     font-size: 13px;
     height: 40px;
@@ -617,12 +590,31 @@ p,
     padding-top: 6px;
   }
   /* line 15, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-form .md-select-field .md-divider,
   .md-select-field.text-field-positioned .md-divider {
     bottom: 4px;
   }
 
-  /* line 24, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 28, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar-container.responsive {
+    position: fixed;
+  }
+  /* line 31, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar-container.responsive .md-overlay {
+    display: none;
+    visibility: hidden;
+  }
+
+  /* line 37, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-toolbar-container ~ .md-sidebar-container .md-sidebar {
+    max-height: calc(100vh - 64px);
+  }
+
+  /* line 41, ../src/scss/helpers/mixins/_sidebars.scss */
+  .md-sidebar.active {
+    width: 256px;
+  }
+
+  /* line 30, ../src/scss/helpers/mixins/_snackbars.scss */
   .md-snackbar {
     border-radius: 2px;
     left: 50%;
@@ -630,117 +622,132 @@ p,
     min-width: 288px;
     transform: translateX(-50%);
   }
-  /* line 31, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 37, ../src/scss/helpers/mixins/_snackbars.scss */
   .md-snackbar .md-flat-btn {
     margin-left: 48px;
   }
 
-  /* line 36, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 42, ../src/scss/helpers/mixins/_snackbars.scss */
   .snackbar-enter,
   .snackbar-leave.snackbar-leave-active {
     transform: translateX(-50%) scaleY(0);
   }
 
-  /* line 42, ../src/scss/helpers/mixins/_snackbars.scss */
+  /* line 48, ../src/scss/helpers/mixins/_snackbars.scss */
   .snackbar-enter.snackbar-enter-active,
   .snackbar-leave {
     transform: translateX(-50%) scaleY(1);
   }
 
-  /* line 76, ../src/scss/helpers/mixins/_tabs.scss */
+  /* line 75, ../src/scss/helpers/mixins/_tabs.scss */
   .md-tab {
     font-size: 13px;
     min-width: 160px;
   }
 
-  /* line 81, ../src/scss/helpers/mixins/_tabs.scss */
+  /* line 80, ../src/scss/helpers/mixins/_tabs.scss */
   .md-tab-label {
     padding: 24px;
   }
 
-  /* line 12, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon {
-    font-size: 20px;
-    padding: 10px;
-    padding-right: 20px;
+  /* line 13, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-title-text-field .md-floating-label,
+  .md-title-text-field .md-text-field {
+    font-size: 34px;
   }
   /* line 18, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon ~ .md-text-field,
-  .md-text-field-container .md-icon ~ .md-text-field-divider {
-    width: calc(100% - 50px);
+  .md-title-text-field .md-text-field:not(.multi-line) {
+    height: 81px;
   }
-  /* line 23, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container .md-icon ~ .md-text-field-divider {
-    left: 50px;
-  }
-
-  /* line 30, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-label-container {
-    height: 60px;
-  }
-  /* line 34, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-label.active {
-    bottom: 35px;
-  }
-  /* line 38, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field-divider {
-    bottom: 4px;
-  }
-  /* line 42, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line .md-text-field,
-  .md-text-field-container.single-line .md-text-field-label {
-    bottom: 12px;
-  }
-  /* line 47, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line:not(.no-label) .md-icon {
-    padding-top: 28px;
-  }
-  /* line 53, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line.no-label .md-text-field-label-container {
-    height: 40px;
-  }
-  /* line 57, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.single-line.no-label .md-text-field-label.active {
-    bottom: 15px;
+  /* line 21, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-title-text-field .md-text-field:not(.multi-line).single-line {
+    height: 61px;
   }
 
-  /* line 63, ../src/scss/helpers/mixins/_text-fields.scss */
+  /* line 39, ../src/scss/helpers/mixins/_text-fields.scss */
   .md-text-field,
-  .md-text-field-label {
+  .md-floating-label {
     font-size: 13px;
   }
 
+  /* line 44, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* line 50, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field:not(.multi-line) {
+    height: 60px;
+    padding-bottom: 12px;
+  }
+  /* line 55, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.single-line {
+    height: 40px;
+    padding-top: 12px;
+  }
+  /* line 60, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.multi-line {
+    margin-bottom: 12px;
+  }
+  /* line 66, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field.full-width:not(.multi-line) {
+    height: 48px;
+  }
   /* line 70, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field-label {
-    display: block;
-    padding-bottom: 6px;
-  }
-  /* line 75, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field {
-    transition: height 0.15s;
-  }
-  /* line 79, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.multi-line .md-text-field-divider {
-    margin-bottom: 5px;
-    margin-top: 5px;
+  .md-text-field.full-width.multi-line {
+    margin-bottom: 16px;
+    margin-top: 16px;
   }
 
-  /* line 86, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-text-field-container.full-width .md-text-field {
-    padding: 12px;
+  /* line 77, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-floating-label.active {
+    top: 12px;
   }
 
-  /* line 47, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 81, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-divider {
+    bottom: 4px;
+  }
+  /* line 84, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-divider.icon-offset {
+    left: 56px;
+    width: calc(100% - 56px);
+  }
+
+  /* line 92, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-icon {
+    padding: 8px;
+  }
+  /* line 95, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-icon.with-floating-label {
+    vertical-align: bottom;
+  }
+
+  /* line 52, ../src/scss/helpers/mixins/_toolbars.scss */
   .md-toolbar .action-left,
   .md-toolbar .action-area {
     margin-left: 12px;
     margin-right: 12px;
   }
+
+  /* line 21, ../src/scss/helpers/mixins/_tooltips.scss */
+  .md-tooltip {
+    height: 22px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* line 27, ../src/scss/helpers/mixins/_tooltips.scss */
+  .md-tooltip-text {
+    font-size: 10px;
+    line-height: 22px;
+  }
 }
-/* line 2, ../src/scss/components/_avatars.scss */
+/* line 1, ../src/scss/components/_avatars.scss */
 .md-avatar {
-  background: #bdbdbd;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #9e9e9e;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 50%;
   color: #fff;
   display: inline-block;
@@ -750,13 +757,13 @@ p,
   width: 40px;
 }
 
-/* line 14, ../src/scss/components/_avatars.scss */
+/* line 13, ../src/scss/components/_avatars.scss */
 .md-img-avatar {
   height: 100%;
   width: auto;
 }
 
-/* line 19, ../src/scss/components/_avatars.scss */
+/* line 18, ../src/scss/components/_avatars.scss */
 .md-avatar-content {
   align-items: center;
   display: flex;
@@ -766,60 +773,39 @@ p,
   width: 100%;
 }
 
-/* line 32, ../src/scss/components/_avatars.scss */
-.md-avatar-color-1 {
-  background: #e91e63;
-  color: #b9f6ca;
-}
-
-/* line 32, ../src/scss/components/_avatars.scss */
-.md-avatar-color-2 {
-  background: #9c27b0;
-  color: #ffea00;
-}
-
-/* line 32, ../src/scss/components/_avatars.scss */
-.md-avatar-color-3 {
-  background: #ffc107;
-  color: #0091ea;
-}
-
 /* line 1, ../src/scss/components/_buttons.scss */
-.md-icon {
-  font-size: 24px;
-}
-
-/* line 5, ../src/scss/components/_buttons.scss */
 .md-btn {
-  font-size: 14px;
-  font-weight: 500;
-  height: 36px;
   overflow: hidden;
-  padding: 6px 1em;
   position: relative;
   text-transform: uppercase;
   transition-duration: 0.15s;
   transition-property: box-shadow, background, transform;
 }
-/* line 18, ../src/scss/components/_buttons.scss */
+/* line 10, ../src/scss/components/_buttons.scss */
 .md-btn[disabled] {
   color: rgba(0, 0, 0, 0.38);
 }
-/* line 21, ../src/scss/components/_buttons.scss */
+/* line 13, ../src/scss/components/_buttons.scss */
 .md-btn[disabled]:not(.md-icon-btn) {
   background: rgba(153, 153, 153, 0.2);
 }
 
-/* line 30, ../src/scss/components/_buttons.scss */
+/* line 19, ../src/scss/components/_buttons.scss */
+.md-flat-btn,
+.md-raised-btn {
+  height: 36px;
+  padding: 6px 16px;
+}
+
+/* line 28, ../src/scss/components/_buttons.scss */
 .md-raised-btn:hover,
 .md-floating-btn:hover,
 .md-flat-btn:hover {
   background: rgba(153, 153, 153, 0.2);
 }
 
-/* line 36, ../src/scss/components/_buttons.scss */
+/* line 34, ../src/scss/components/_buttons.scss */
 .md-icon-btn {
-  background: transparent;
   border-radius: 50%;
   color: inherit;
   font-size: 24px;
@@ -828,94 +814,29 @@ p,
   text-decoration: none;
   width: 48px;
 }
-/* line 46, ../src/scss/components/_buttons.scss */
+/* line 43, ../src/scss/components/_buttons.scss */
 .md-icon-btn .md-icon {
   font-size: inherit;
 }
 
-/* line 51, ../src/scss/components/_buttons.scss */
+/* line 48, ../src/scss/components/_buttons.scss */
 .md-flat-btn {
   background: transparent;
   min-width: 88px;
 }
 
-/* line 57, ../src/scss/components/_buttons.scss */
+/* line 54, ../src/scss/components/_buttons.scss */
 .md-raised-btn {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   min-width: 64px;
 }
-/* line 63, ../src/scss/components/_buttons.scss */
-.md-raised-btn:active {
+/* line 58, ../src/scss/components/_buttons.scss */
+.md-raised-btn:not([disabled]) {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+/* line 61, ../src/scss/components/_buttons.scss */
+.md-raised-btn:not([disabled]):active {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
-}
-
-/* line 68, ../src/scss/components/_buttons.scss */
-.md-floating-btn {
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-  height: 56px;
-  width: 56px;
-}
-/* line 75, ../src/scss/components/_buttons.scss */
-.md-floating-btn.mini {
-  height: 40px;
-  width: 40px;
-}
-/* line 80, ../src/scss/components/_buttons.scss */
-.md-floating-btn:active {
-  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
-}
-/* line 84, ../src/scss/components/_buttons.scss */
-.md-floating-btn[disabled] {
-  background: none;
-  box-shadow: none;
-}
-/* line 89, ../src/scss/components/_buttons.scss */
-.md-floating-btn .md-icon {
-  display: block;
-}
-/* line 93, ../src/scss/components/_buttons.scss */
-.md-floating-btn.fixed {
-  bottom: 16px;
-  position: fixed;
-  right: 16px;
-  transition-duration: 0.3s;
-  transition-property: box-shadow, background, transform, bottom;
-}
-/* line 101, ../src/scss/components/_buttons.scss */
-.md-floating-btn.fixed.snackbar-adjust {
-  bottom: 64px;
-}
-/* line 105, ../src/scss/components/_buttons.scss */
-.md-floating-btn.fixed.snackbar-multiline-adjust {
-  bottom: 96px;
-}
-
-/* line 111, ../src/scss/components/_buttons.scss */
-.fab-container {
-  position: relative;
-}
-/* line 114, ../src/scss/components/_buttons.scss */
-.fab-container .md-floating-btn {
-  bottom: -28px;
-  position: absolute;
-}
-/* line 118, ../src/scss/components/_buttons.scss */
-.fab-container .md-floating-btn.mini {
-  bottom: -20px;
-}
-/* line 123, ../src/scss/components/_buttons.scss */
-.fab-container.fab-right .md-floating-btn {
-  right: 16px;
-}
-/* line 127, ../src/scss/components/_buttons.scss */
-.fab-container.fab-left .md-floating-btn {
-  left: 16px;
-}
-/* line 131, ../src/scss/components/_buttons.scss */
-.fab-container + * {
-  margin-top: 32px;
 }
 
 /* line 1, ../src/scss/components/_cards.scss */
@@ -984,7 +905,7 @@ p,
 }
 /* line 59, ../src/scss/components/_cards.scss */
 .md-card-title.title-large .md-headline {
-  font-size: 1.14286em;
+  font-size: 14px;
 }
 /* line 64, ../src/scss/components/_cards.scss */
 .md-card-title:last-child {
@@ -992,9 +913,9 @@ p,
 }
 /* line 68, ../src/scss/components/_cards.scss */
 .md-card-title .md-avatar {
-  height: 3.42857em;
+  height: 48px;
   margin-right: 16px;
-  width: 3.42857em;
+  width: 48px;
 }
 /* line 74, ../src/scss/components/_cards.scss */
 .md-card-title .titles {
@@ -1002,62 +923,67 @@ p,
 }
 /* line 78, ../src/scss/components/_cards.scss */
 .md-card-title .md-headline {
-  font-size: 1.71429em;
   font-weight: 500;
   margin: 0;
 }
-/* line 85, ../src/scss/components/_cards.scss */
+/* line 83, ../src/scss/components/_cards.scss */
 .md-card-title .md-subheader {
   color: rgba(0, 0, 0, 0.54);
-  font-size: 1.14286em;
+  font-size: 14px;
   font-weight: 400;
+  margin: 0;
 }
 
-/* line 92, ../src/scss/components/_cards.scss */
+/* line 91, ../src/scss/components/_cards.scss */
 .md-card-actions {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 8px;
 }
-/* line 98, ../src/scss/components/_cards.scss */
+/* line 97, ../src/scss/components/_cards.scss */
 .md-card-actions .action-area .md-icon-btn {
   color: rgba(0, 0, 0, 0.54);
 }
-/* line 102, ../src/scss/components/_cards.scss */
+/* line 101, ../src/scss/components/_cards.scss */
 .md-card-actions.centered {
   justify-content: center;
 }
 
-/* line 107, ../src/scss/components/_cards.scss */
+/* line 106, ../src/scss/components/_cards.scss */
+.card-expander {
+  justify-content: space-between;
+}
+
+/* line 110, ../src/scss/components/_cards.scss */
 .md-card-expander {
   height: 40px;
   padding: 8px;
   width: 40px;
 }
 
-/* line 116, ../src/scss/components/_cards.scss */
+/* line 119, ../src/scss/components/_cards.scss */
 .md-card-actions-stacked > .md-btn {
   display: block;
   margin: 0;
 }
-/* line 120, ../src/scss/components/_cards.scss */
+/* line 123, ../src/scss/components/_cards.scss */
 .md-card-actions-stacked > .md-btn:nth-child(n+2) {
   margin-top: 8px;
 }
 
-/* line 126, ../src/scss/components/_cards.scss */
+/* line 129, ../src/scss/components/_cards.scss */
 .md-media-16-9 {
   position: relative;
 }
-/* line 35, ../src/scss/helpers/mixins/_cards.scss */
+/* line 36, ../src/scss/helpers/mixins/_cards.scss */
 .md-media-16-9:before {
   content: '';
   display: block;
   padding-top: 56.25%;
   width: 100%;
 }
-/* line 42, ../src/scss/helpers/mixins/_cards.scss */
+/* line 43, ../src/scss/helpers/mixins/_cards.scss */
 .md-media-16-9 > img {
   bottom: 0;
   left: 0;
@@ -1067,18 +993,18 @@ p,
   width: 100%;
 }
 
-/* line 130, ../src/scss/components/_cards.scss */
+/* line 133, ../src/scss/components/_cards.scss */
 .md-media-1-1 {
   position: relative;
 }
-/* line 35, ../src/scss/helpers/mixins/_cards.scss */
+/* line 36, ../src/scss/helpers/mixins/_cards.scss */
 .md-media-1-1:before {
   content: '';
   display: block;
   padding-top: 100%;
   width: 100%;
 }
-/* line 42, ../src/scss/helpers/mixins/_cards.scss */
+/* line 43, ../src/scss/helpers/mixins/_cards.scss */
 .md-media-1-1 > img {
   bottom: 0;
   left: 0;
@@ -1088,27 +1014,27 @@ p,
   width: 100%;
 }
 
-/* line 134, ../src/scss/components/_cards.scss */
+/* line 137, ../src/scss/components/_cards.scss */
 .md-card-media {
   position: relative;
 }
 
-/* line 138, ../src/scss/components/_cards.scss */
+/* line 141, ../src/scss/components/_cards.scss */
 .md-card-media-overlay {
   background: rgba(0, 0, 0, 0.54);
   bottom: 0;
   position: absolute;
   width: 100%;
 }
-/* line 144, ../src/scss/components/_cards.scss */
+/* line 147, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-headline {
   color: #fff;
 }
-/* line 148, ../src/scss/components/_cards.scss */
+/* line 151, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-subheader {
   color: rgba(255, 255, 255, 0.7);
 }
-/* line 152, ../src/scss/components/_cards.scss */
+/* line 155, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-btn {
   color: #fff;
 }
@@ -1119,40 +1045,41 @@ p,
   border-radius: 16px;
   display: inline-block;
   height: 32px;
+  transition: box-shadow 0.15s;
   vertical-align: top;
 }
-/* line 10, ../src/scss/components/_chips.scss */
+/* line 11, ../src/scss/components/_chips.scss */
 .md-chip-container .md-avatar {
   height: 32px;
   width: 32px;
 }
-/* line 14, ../src/scss/components/_chips.scss */
+/* line 15, ../src/scss/components/_chips.scss */
 .md-chip-container .md-avatar + .md-chip {
   padding-left: 8px;
 }
-/* line 19, ../src/scss/components/_chips.scss */
+/* line 20, ../src/scss/components/_chips.scss */
 .md-chip-container.focus {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-/* line 24, ../src/scss/components/_chips.scss */
+/* line 25, ../src/scss/components/_chips.scss */
 .md-chip,
 .md-chip-remove {
   vertical-align: top;
 }
 
-/* line 31, ../src/scss/components/_chips.scss */
+/* line 32, ../src/scss/components/_chips.scss */
 .md-chip {
   color: rgba(0, 0, 0, 0.87);
   font-size: 13px;
   padding: 8px 12px;
 }
-/* line 36, ../src/scss/components/_chips.scss */
+/* line 37, ../src/scss/components/_chips.scss */
 .md-chip.with-remove {
   padding-right: 0;
 }
 
-/* line 41, ../src/scss/components/_chips.scss */
+/* line 42, ../src/scss/components/_chips.scss */
 .md-chip-remove {
   color: rgba(0, 0, 0, 0.54);
   height: 24px;
@@ -1276,45 +1203,50 @@ p,
 .md-dialog p {
   margin: 0;
 }
+/* line 72, ../src/scss/components/_dialogs.scss */
+.md-dialog .md-title {
+  margin-bottom: 0;
+  white-space: initial;
+}
 
-/* line 73, ../src/scss/components/_dialogs.scss */
+/* line 78, ../src/scss/components/_dialogs.scss */
 .md-dialog-footer {
   display: flex;
   justify-content: flex-end;
   padding: 8px;
   padding-left: 24px;
 }
-/* line 79, ../src/scss/components/_dialogs.scss */
+/* line 84, ../src/scss/components/_dialogs.scss */
 .md-dialog-footer.stacked {
   align-items: flex-end;
   flex-direction: column;
 }
-/* line 83, ../src/scss/components/_dialogs.scss */
+/* line 88, ../src/scss/components/_dialogs.scss */
 .md-dialog-footer.stacked .md-btn {
   height: 48px;
 }
 
-/* line 89, ../src/scss/components/_dialogs.scss */
+/* line 94, ../src/scss/components/_dialogs.scss */
 .md-dialog-content {
   color: rgba(0, 0, 0, 0.54);
   overflow: auto;
   padding: 24px;
   padding-top: 0;
 }
-/* line 95, ../src/scss/components/_dialogs.scss */
+/* line 100, ../src/scss/components/_dialogs.scss */
 .md-dialog-content p {
   color: inherit;
 }
-/* line 99, ../src/scss/components/_dialogs.scss */
+/* line 104, ../src/scss/components/_dialogs.scss */
 .md-dialog-content.simple {
   padding: 0;
 }
-/* line 103, ../src/scss/components/_dialogs.scss */
+/* line 108, ../src/scss/components/_dialogs.scss */
 .md-dialog-content .md-list {
-  color: #000;
+  color: rgba(0, 0, 0, 0.77);
   padding-bottom: 8px;
 }
-/* line 108, ../src/scss/components/_dialogs.scss */
+/* line 113, ../src/scss/components/_dialogs.scss */
 .md-dialog-content .md-list-tile {
   display: block;
   height: initial;
@@ -1322,42 +1254,42 @@ p,
   padding-left: 24px;
   padding-right: 24px;
 }
-/* line 115, ../src/scss/components/_dialogs.scss */
+/* line 120, ../src/scss/components/_dialogs.scss */
 .md-dialog-content .md-list-tile:first-child {
   margin-top: 0;
 }
-/* line 120, ../src/scss/components/_dialogs.scss */
+/* line 125, ../src/scss/components/_dialogs.scss */
 .md-dialog-content .md-tile-primary-text {
   white-space: initial;
 }
 
-/* line 125, ../src/scss/components/_dialogs.scss */
+/* line 130, ../src/scss/components/_dialogs.scss */
 .md-dialog-enter.md-dialog-enter-active,
 .md-dialog-leave.md-dialog-leave-active {
   transition: transform 0.3s, opacity 0.15s;
 }
 
-/* line 131, ../src/scss/components/_dialogs.scss */
+/* line 136, ../src/scss/components/_dialogs.scss */
 .full-page.md-dialog-enter, .full-page.md-dialog-leave.md-dialog-leave-active {
   transform: scale(0);
 }
-/* line 136, ../src/scss/components/_dialogs.scss */
+/* line 141, ../src/scss/components/_dialogs.scss */
 .full-page.md-dialog-enter.md-dialog-enter-active, .full-page.md-dialog-leave {
   transform: scale(1);
 }
 
-/* line 143, ../src/scss/components/_dialogs.scss */
+/* line 148, ../src/scss/components/_dialogs.scss */
 .dialog-centered.md-dialog-enter, .dialog-centered.md-dialog-leave.md-dialog-leave-active {
   opacity: 0;
   transform: translate3d(0, -30px, 0);
 }
-/* line 149, ../src/scss/components/_dialogs.scss */
+/* line 154, ../src/scss/components/_dialogs.scss */
 .dialog-centered.md-dialog-enter.md-dialog-enter-active, .dialog-centered.md-dialog-leave {
   opacity: 1;
   transform: translate3d(0, 0, 0);
 }
 
-/* line 156, ../src/scss/components/_dialogs.scss */
+/* line 161, ../src/scss/components/_dialogs.scss */
 .hide-overflow {
   overflow: hidden;
 }
@@ -1384,19 +1316,196 @@ p,
   height: 40px;
 }
 
+/* line 1, ../src/scss/components/_fabs.scss */
+.md-floating-btn.fixed, .md-speed-dial {
+  bottom: 16px;
+  position: fixed;
+  right: 16px;
+  transition-duration: 0.3s;
+  transition-property: box-shadow, background, transform, bottom;
+  z-index: 8;
+}
+/* line 9, ../src/scss/components/_fabs.scss */
+.snackbar-adjust.md-floating-btn.fixed, .snackbar-adjust.md-speed-dial {
+  bottom: 64px;
+}
+/* line 13, ../src/scss/components/_fabs.scss */
+.snackbar-multiline-adjust.md-floating-btn.fixed, .snackbar-multiline-adjust.md-speed-dial {
+  bottom: 96px;
+}
+
+/* line 18, ../src/scss/components/_fabs.scss */
+.md-floating-btn {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  height: 56px;
+  width: 56px;
+}
+/* line 24, ../src/scss/components/_fabs.scss */
+.md-floating-btn.md-speed-dial-fab, .md-floating-btn.mini {
+  height: 40px;
+  padding: 8px;
+  width: 40px;
+}
+/* line 31, ../src/scss/components/_fabs.scss */
+.md-floating-btn:active {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}
+/* line 35, ../src/scss/components/_fabs.scss */
+.md-floating-btn[disabled] {
+  background: none;
+  box-shadow: none;
+}
+/* line 40, ../src/scss/components/_fabs.scss */
+.md-floating-btn .md-icon {
+  display: block;
+}
+
+/* line 52, ../src/scss/components/_fabs.scss */
+.md-speed-dial > .md-floating-btn {
+  z-index: 1;
+}
+
+/* line 57, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab {
+  background: #fff;
+  left: 50%;
+  position: absolute;
+  transform: translate3d(-50%, 0, 0);
+}
+
+/* line 64, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter {
+  top: 0;
+}
+
+/* line 68, ../src/scss/components/_fabs.scss */
+.md-speed-dial-leave {
+  opacity: 1;
+}
+/* line 71, ../src/scss/components/_fabs.scss */
+.md-speed-dial-leave.md-speed-dial-leave-active {
+  opacity: 0;
+}
+
+/* line 76, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter.md-speed-dial-enter-active,
+.md-speed-dial-leave.md-speed-dial-leave-active {
+  transition-duration: 0.15s;
+  transition-property: opacity, top;
+}
+
+/* line 83, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab:nth-of-type(1):not(.md-speed-dial-enter),
+.md-speed-dial-enter:nth-of-type(1).md-speed-dial-enter-active {
+  top: -60px;
+}
+
+/* line 88, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter:nth-of-type(1).md-speed-dial-enter-active {
+  transition-delay: 0s;
+}
+
+/* line 83, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab:nth-of-type(2):not(.md-speed-dial-enter),
+.md-speed-dial-enter:nth-of-type(2).md-speed-dial-enter-active {
+  top: -120px;
+}
+
+/* line 88, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter:nth-of-type(2).md-speed-dial-enter-active {
+  transition-delay: 0.02s;
+}
+
+/* line 83, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab:nth-of-type(3):not(.md-speed-dial-enter),
+.md-speed-dial-enter:nth-of-type(3).md-speed-dial-enter-active {
+  top: -180px;
+}
+
+/* line 88, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter:nth-of-type(3).md-speed-dial-enter-active {
+  transition-delay: 0.04s;
+}
+
+/* line 83, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab:nth-of-type(4):not(.md-speed-dial-enter),
+.md-speed-dial-enter:nth-of-type(4).md-speed-dial-enter-active {
+  top: -240px;
+}
+
+/* line 88, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter:nth-of-type(4).md-speed-dial-enter-active {
+  transition-delay: 0.06s;
+}
+
+/* line 83, ../src/scss/components/_fabs.scss */
+.md-speed-dial-fab:nth-of-type(5):not(.md-speed-dial-enter),
+.md-speed-dial-enter:nth-of-type(5).md-speed-dial-enter-active {
+  top: -300px;
+}
+
+/* line 88, ../src/scss/components/_fabs.scss */
+.md-speed-dial-enter:nth-of-type(5).md-speed-dial-enter-active {
+  transition-delay: 0.08s;
+}
+
+/* line 94, ../src/scss/components/_fabs.scss */
+.md-fab-rotate-right-enter {
+  transform: rotate3d(0, 0, 1, -90deg);
+}
+
+/* line 98, ../src/scss/components/_fabs.scss */
+.md-fab-rotate-left-enter {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+
+/* line 102, ../src/scss/components/_fabs.scss */
+.md-fab-rotate-left-enter.md-fab-rotate-left-enter-active,
+.md-fab-rotate-right-enter.md-fab-rotate-right-enter-active {
+  transform: rotate3d(0, 0, 1, 0deg);
+  transition: transform 0.15s;
+}
+
+/* line 108, ../src/scss/components/_fabs.scss */
+.md-fab-container {
+  position: relative;
+}
+/* line 111, ../src/scss/components/_fabs.scss */
+.md-fab-container .md-floating-btn {
+  bottom: -28px;
+  position: absolute;
+}
+/* line 115, ../src/scss/components/_fabs.scss */
+.md-fab-container .md-floating-btn.mini {
+  bottom: -20px;
+}
+/* line 120, ../src/scss/components/_fabs.scss */
+.md-fab-container.fab-right .md-floating-btn {
+  right: 16px;
+}
+/* line 124, ../src/scss/components/_fabs.scss */
+.md-fab-container.fab-left .md-floating-btn {
+  left: 16px;
+}
+/* line 128, ../src/scss/components/_fabs.scss */
+.md-fab-container + * {
+  margin-top: 32px;
+}
+
 /* line 1, ../src/scss/components/_ink.scss */
 .md-ink-container {
   border-radius: inherit;
   height: 100%;
   left: 0;
   overflow: hidden;
+  pointer-events: none;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: 1;
 }
 
-/* line 12, ../src/scss/components/_ink.scss */
+/* line 13, ../src/scss/components/_ink.scss */
 .md-ink {
   background: rgba(0, 0, 0, 0.12);
   border-radius: 50%;
@@ -1406,14 +1515,14 @@ p,
   transform: scale(0);
   z-index: -1;
 }
-/* line 21, ../src/scss/components/_ink.scss */
+/* line 22, ../src/scss/components/_ink.scss */
 .md-ink.active {
   transform: scale(2.5);
   transition-duration: 0.6s;
   transition-property: opacity, transform;
   transition-timing-function: linear;
 }
-/* line 27, ../src/scss/components/_ink.scss */
+/* line 28, ../src/scss/components/_ink.scss */
 .md-ink.active.leaving {
   opacity: 0;
 }
@@ -1436,37 +1545,30 @@ p,
 }
 /* line 18, ../src/scss/components/_lists.scss */
 .md-list .md-subheader {
-  color: rgba(0, 0, 0, 0.54);
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 500;
   height: 48px;
   margin: 0;
   padding: 16px;
 }
-/* line 27, ../src/scss/components/_lists.scss */
-.md-list .md-subheader.md-primary-subheader {
-  color: #3f51b5;
-}
-/* line 32, ../src/scss/components/_lists.scss */
+/* line 26, ../src/scss/components/_lists.scss */
 .md-list a {
-  color: rgba(0, 0, 0, 0.77);
   text-decoration: none;
 }
 
-/* line 38, ../src/scss/components/_lists.scss */
+/* line 31, ../src/scss/components/_lists.scss */
 .md-divider + .md-list-tile {
   margin-top: 8px;
 }
 
-/* line 42, ../src/scss/components/_lists.scss */
+/* line 35, ../src/scss/components/_lists.scss */
 .md-list-item,
 .md-list-tile {
   padding-left: 16px;
   padding-right: 16px;
 }
 
-/* line 48, ../src/scss/components/_lists.scss */
+/* line 41, ../src/scss/components/_lists.scss */
 .md-list-tile {
   align-items: center;
   display: flex;
@@ -1477,55 +1579,50 @@ p,
   position: relative;
   transition: background 0.15s;
 }
-/* line 59, ../src/scss/components/_lists.scss */
-.md-list-tile.active {
-  color: #3f51b5;
-}
-/* line 63, ../src/scss/components/_lists.scss */
+/* line 52, ../src/scss/components/_lists.scss */
 .md-list-tile:hover {
-  background-color: rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
-/* line 68, ../src/scss/components/_lists.scss */
+/* line 56, ../src/scss/components/_lists.scss */
 .md-list-tile:focus {
   outline: none;
 }
-/* line 72, ../src/scss/components/_lists.scss */
+/* line 60, ../src/scss/components/_lists.scss */
 .md-list-tile.md-list-avatar {
   height: 56px;
 }
-/* line 75, ../src/scss/components/_lists.scss */
+/* line 63, ../src/scss/components/_lists.scss */
 .md-list-tile.md-list-avatar ~ .md-divider.inset {
   margin-left: 88px;
 }
-/* line 80, ../src/scss/components/_lists.scss */
+/* line 68, ../src/scss/components/_lists.scss */
 .md-list-tile.md-list-3-lines {
   height: 88px;
 }
-/* line 84, ../src/scss/components/_lists.scss */
+/* line 72, ../src/scss/components/_lists.scss */
 .md-list-tile .md-ink {
   background: rgba(0, 0, 0, 0.15);
 }
-/* line 88, ../src/scss/components/_lists.scss */
+/* line 76, ../src/scss/components/_lists.scss */
 .md-list-tile > *:not(.md-tile-content) {
   flex-shrink: 0;
 }
 
-/* line 93, ../src/scss/components/_lists.scss */
+/* line 81, ../src/scss/components/_lists.scss */
 .md-tile-content {
   flex-grow: 1;
   overflow: hidden;
 }
-/* line 97, ../src/scss/components/_lists.scss */
+/* line 85, ../src/scss/components/_lists.scss */
 .md-tile-content.icon-left {
   padding-left: 32px;
 }
-/* line 101, ../src/scss/components/_lists.scss */
+/* line 89, ../src/scss/components/_lists.scss */
 .md-tile-content.icon-right {
   padding-right: 16px;
 }
 
-/* line 106, ../src/scss/components/_lists.scss */
+/* line 94, ../src/scss/components/_lists.scss */
 .md-tile-primary-text,
 .md-tile-secondary-text {
   overflow: hidden;
@@ -1533,15 +1630,14 @@ p,
   white-space: nowrap;
 }
 
-/* line 113, ../src/scss/components/_lists.scss */
+/* line 101, ../src/scss/components/_lists.scss */
 .md-tile-primary-text {
   display: block;
   font-size: 16px;
 }
 
-/* line 118, ../src/scss/components/_lists.scss */
+/* line 106, ../src/scss/components/_lists.scss */
 .md-tile-secondary-text {
-  color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
 }
 
@@ -1709,176 +1805,273 @@ p,
   cursor: pointer;
 }
 
-/* line 11, ../src/scss/components/_pickers.scss */
+/* line 10, ../src/scss/components/_pickers.scss */
+.md-picker-control.active,
+.md-date-picker-date.active,
+.md-date-picker-year.active,
+.md-calendar-date:not([disabled]):hover,
+.md-calendar-date:not([disabled]):focus,
+.md-calendar-date:not([disabled]).active {
+  color: #fff;
+}
+
+/* line 19, ../src/scss/components/_pickers.scss */
+.md-picker-control,
+.md-date-picker-date,
+.md-date-picker-year {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* line 26, ../src/scss/components/_pickers.scss */
 .md-picker.inline {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
-  background: #fff;
   position: absolute;
   z-index: 24;
 }
-/* line 18, ../src/scss/components/_pickers.scss */
+/* line 32, ../src/scss/components/_pickers.scss */
 .md-picker.inline.with-icon {
   left: 50px;
 }
-/* line 23, ../src/scss/components/_pickers.scss */
+/* line 37, ../src/scss/components/_pickers.scss */
 .md-picker.portrait {
   width: 320px;
 }
-/* line 6, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 14, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait.date-picker .md-display-1 {
   display: inline-block;
 }
-/* line 11, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 19, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-picker-header {
   height: 110px;
 }
-/* line 15, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 23, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-time-periods {
   display: inline-block;
   padding-left: 1em;
   padding-right: 24px;
 }
-/* line 21, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 29, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-picker-content {
   height: 340px;
 }
-/* line 25, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 33, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-display-3 {
   font-size: 4.8em;
   line-height: 1;
 }
-/* line 30, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 38, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-dows {
   padding-bottom: 12px;
 }
-/* line 34, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 42, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-calendar-date-placeholder,
 .md-picker.portrait .md-calendar-date {
   height: 44px;
 }
-/* line 39, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 47, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.portrait .md-calendar-date:after {
   height: 36px;
   width: 36px;
 }
-/* line 44, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-picker.portrait .md-clock {
+/* line 52, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-clock-face {
   height: 272px;
   width: 272px;
 }
-/* line 27, ../src/scss/components/_pickers.scss */
+/* line 57, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-clock-hand {
+  width: 116px;
+}
+/* line 60, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-clock-hand.inner-hour {
+  width: 80px;
+}
+/* line 41, ../src/scss/components/_pickers.scss */
 .md-picker.landscape {
   display: flex;
   width: 560px;
 }
-/* line 54, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 78, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-picker-header {
   width: 180px;
 }
-/* line 58, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 82, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-picker-content {
   height: 280px;
   width: 380px;
 }
-/* line 63, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 87, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-calendar-date-placeholder,
 .md-picker.landscape .md-calendar-date {
   height: 35px;
 }
-/* line 68, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 92, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-calendar-date:after {
   height: 32px;
   width: 32px;
 }
-/* line 74, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 98, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape.time-picker .md-picker-header {
   padding-top: 93.33333px;
 }
-/* line 78, ../src/scss/helpers/mixins/_date-pickers.scss */
-.md-picker.landscape .md-clock {
+/* line 102, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-clock-face {
   height: 244px;
   width: 244px;
 }
-/* line 83, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 107, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-clock-hand {
+  width: 102px;
+}
+/* line 110, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-clock-hand.inner-hour {
+  width: 66px;
+}
+/* line 115, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-time-periods {
   margin-left: auto;
   margin-right: 2.5em;
   width: 35px;
 }
-/* line 89, ../src/scss/helpers/mixins/_date-pickers.scss */
+/* line 121, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.landscape .md-display-3 {
   font-size: 3.25em;
 }
-/* line 32, ../src/scss/components/_pickers.scss */
+/* line 46, ../src/scss/components/_pickers.scss */
 .md-picker.date-picker .md-picker-control {
   display: block;
 }
-/* line 38, ../src/scss/components/_pickers.scss */
+/* line 52, ../src/scss/components/_pickers.scss */
 .md-picker.time-picker .md-picker-header {
   text-align: right;
 }
-/* line 42, ../src/scss/components/_pickers.scss */
+/* line 56, ../src/scss/components/_pickers.scss */
 .md-picker.time-picker .md-picker-control {
   padding: 0;
 }
 
-/* line 50, ../src/scss/components/_pickers.scss */
+/* line 64, ../src/scss/components/_pickers.scss */
 .md-time-periods .md-picker-control {
   display: block;
 }
 
-/* line 55, ../src/scss/components/_pickers.scss */
+/* line 69, ../src/scss/components/_pickers.scss */
 .md-picker-header {
-  background: #3f51b5;
   padding: 24px;
 }
 
-/* line 60, ../src/scss/components/_pickers.scss */
-.md-picker-control {
-  color: rgba(255, 255, 255, 0.7);
-}
-/* line 65, ../src/scss/components/_pickers.scss */
-.md-picker-control.active {
-  color: #fff;
-}
-/* line 69, ../src/scss/components/_pickers.scss */
+/* line 76, ../src/scss/components/_pickers.scss */
 .md-picker-control .md-subtitle {
   font-size: 1.14286em;
   font-weight: 500;
   margin: 0;
   padding: 0;
 }
-/* line 76, ../src/scss/components/_pickers.scss */
+/* line 83, ../src/scss/components/_pickers.scss */
+.md-picker-control .md-display-1,
+.md-picker-control .md-display-3 {
+  color: inherit;
+  margin-bottom: 0;
+}
+/* line 89, ../src/scss/components/_pickers.scss */
 .md-picker-control .md-display-1 {
   font-weight: 500;
   text-align: left;
 }
 
-/* line 85, ../src/scss/components/_pickers.scss */
+/* line 98, ../src/scss/components/_pickers.scss */
 .md-picker-content-container {
   overflow: hidden;
 }
 
-/* line 90, ../src/scss/components/_pickers.scss */
+/* line 103, ../src/scss/components/_pickers.scss */
 .md-picker-content.clock {
   padding: 24px;
   padding-bottom: 12px;
 }
 
-/* line 95, ../src/scss/components/_pickers.scss */
-.md-clock {
-  background: #e0e0e0;
+/* line 108, ../src/scss/components/_pickers.scss */
+.md-clock-face {
   border-radius: 50%;
-  content: '';
   margin: auto;
+  position: relative;
+}
+/* line 113, ../src/scss/components/_pickers.scss */
+.md-clock-face:hover {
+  cursor: pointer;
 }
 
-/* line 106, ../src/scss/components/_pickers.scss */
+/* line 118, ../src/scss/components/_pickers.scss */
+.md-clock-hand {
+  height: 2px;
+  position: absolute;
+  transform-origin: 0 0;
+  transition-duration: 0.15s;
+  transition-property: width;
+  z-index: 4;
+}
+/* line 126, ../src/scss/components/_pickers.scss */
+.md-clock-hand.active {
+  transition-property: transform, width;
+}
+/* line 130, ../src/scss/components/_pickers.scss */
+.md-clock-hand:before, .md-clock-hand:after {
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+}
+/* line 138, ../src/scss/components/_pickers.scss */
+.md-clock-hand:before {
+  height: 6px;
+  left: -3px;
+  top: -2px;
+  width: 6px;
+}
+/* line 146, ../src/scss/components/_pickers.scss */
+.md-clock-hand:after {
+  height: 36px;
+  right: -16px;
+  top: -18px;
+  transition-duration: 0.15s;
+  transition-property: transform, background, border;
+  width: 36px;
+}
+/* line 155, ../src/scss/components/_pickers.scss */
+.md-clock-hand.invisible-minute:after {
+  transform: scale(0.4);
+}
+
+/* line 161, ../src/scss/components/_pickers.scss */
+.md-clock-time,
+.md-clock-hand {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* line 167, ../src/scss/components/_pickers.scss */
+.md-clock-time {
+  display: table;
+  height: 36px;
+  position: absolute;
+  transition: color 0.15s;
+  width: 36px;
+  z-index: 8;
+}
+
+/* line 176, ../src/scss/components/_pickers.scss */
+.md-clock-time-value {
+  display: table-cell;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 185, ../src/scss/components/_pickers.scss */
 .md-calendar {
   position: relative;
 }
 
-/* line 111, ../src/scss/components/_pickers.scss */
+/* line 190, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-subtitle {
   color: rgba(0, 0, 0, 0.77);
   line-height: 24px;
@@ -1886,34 +2079,34 @@ p,
   padding: 12px;
   text-align: center;
 }
-/* line 119, ../src/scss/components/_pickers.scss */
+/* line 198, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-icon-btn {
   color: rgba(0, 0, 0, 0.77);
   position: absolute;
   top: 0;
 }
-/* line 124, ../src/scss/components/_pickers.scss */
+/* line 203, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-icon-btn:first-of-type {
   left: 12px;
 }
-/* line 128, ../src/scss/components/_pickers.scss */
+/* line 207, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-icon-btn:last-of-type {
   right: 12px;
 }
 
-/* line 134, ../src/scss/components/_pickers.scss */
+/* line 213, ../src/scss/components/_pickers.scss */
 .md-calendar-month,
 .md-dows {
   padding-left: 12px;
   padding-right: 12px;
 }
 
-/* line 141, ../src/scss/components/_pickers.scss */
+/* line 220, ../src/scss/components/_pickers.scss */
 .md-dows .dow {
   color: rgba(0, 0, 0, 0.38);
 }
 
-/* line 146, ../src/scss/components/_pickers.scss */
+/* line 225, ../src/scss/components/_pickers.scss */
 .md-dows .dow,
 .md-calendar-date-placeholder,
 .md-calendar-date {
@@ -1924,36 +2117,36 @@ p,
   width: calc(100% / 7);
 }
 
-/* line 156, ../src/scss/components/_pickers.scss */
+/* line 235, ../src/scss/components/_pickers.scss */
 .md-dows .dow,
 .md-calendar-date {
   font-size: 13px;
 }
 
-/* line 161, ../src/scss/components/_pickers.scss */
+/* line 240, ../src/scss/components/_pickers.scss */
 .md-calendar-date {
   color: rgba(0, 0, 0, 0.77);
   position: relative;
   transition: color 0.15s;
 }
-/* line 168, ../src/scss/components/_pickers.scss */
+/* line 247, ../src/scss/components/_pickers.scss */
 .md-calendar-date .date {
   position: relative;
   z-index: 1;
 }
-/* line 173, ../src/scss/components/_pickers.scss */
+/* line 252, ../src/scss/components/_pickers.scss */
 .md-calendar-date[disabled] {
   color: rgba(0, 0, 0, 0.38);
 }
-/* line 177, ../src/scss/components/_pickers.scss */
+/* line 256, ../src/scss/components/_pickers.scss */
 .md-calendar-date.active, .md-calendar-date.today {
   font-weight: 700;
 }
-/* line 187, ../src/scss/components/_pickers.scss */
+/* line 266, ../src/scss/components/_pickers.scss */
 .md-calendar-date:not([disabled]):hover:after, .md-calendar-date:not([disabled]):focus:after, .md-calendar-date:not([disabled]).active:after {
   transform: translateX(-50%) translateY(-50%) scale(1);
 }
-/* line 193, ../src/scss/components/_pickers.scss */
+/* line 272, ../src/scss/components/_pickers.scss */
 .md-calendar-date:after {
   border-radius: 50%;
   content: '';
@@ -1962,23 +2155,23 @@ p,
   position: absolute;
   top: 50%;
   transform: translateX(-50%) translateY(-50%) scale(0);
-  transition: transform 0.3s cubic-bezier(0.5, 1.8, 0.9, 0.8);
+  transition: transform 0.3s;
   z-index: 0;
 }
 
-/* line 206, ../src/scss/components/_pickers.scss */
+/* line 285, ../src/scss/components/_pickers.scss */
 .md-year-picker {
   overflow-y: auto;
 }
 
-/* line 210, ../src/scss/components/_pickers.scss */
+/* line 289, ../src/scss/components/_pickers.scss */
 .md-years {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 216, ../src/scss/components/_pickers.scss */
+/* line 295, ../src/scss/components/_pickers.scss */
 .md-year {
   display: block;
   font-size: 16px;
@@ -1988,12 +2181,12 @@ p,
   transition-property: color, font-size;
   width: 100%;
 }
-/* line 227, ../src/scss/components/_pickers.scss */
+/* line 306, ../src/scss/components/_pickers.scss */
 .md-year.active {
   font-size: 24px;
   font-weight: bold;
 }
-/* line 232, ../src/scss/components/_pickers.scss */
+/* line 311, ../src/scss/components/_pickers.scss */
 .md-year:focus:not(.active) {
   font-size: 20px;
 }
@@ -2040,60 +2233,38 @@ p,
     transform: rotate(720deg);
   }
 }
-@keyframes md-circular-progress-colors {
-  0% {
-    stroke: #2196f3;
-  }
-  25% {
-    stroke: #ffeb3b;
-  }
-  50% {
-    stroke: #f44336;
-  }
-  75% {
-    stroke: #4caf50;
-  }
-  100% {
-    stroke: #2196f3;
-  }
-}
 @keyframes md-circular-progress-dash {
   0% {
-    stroke-dashoffset: 187;
+    stroke-dashoffset: 187px;
   }
   50% {
-    stroke-dashoffset: 46.75;
+    stroke-dashoffset: 46.75px;
   }
   100% {
-    stroke-dashoffset: 187;
+    stroke-dashoffset: 187px;
   }
 }
-/* line 81, ../src/scss/components/_progress.scss */
+/* line 59, ../src/scss/components/_progress.scss */
 .md-linear-progress.determinate,
 .md-linear-progress-container {
   display: block;
   height: 4px;
 }
 
-/* line 87, ../src/scss/components/_progress.scss */
+/* line 65, ../src/scss/components/_progress.scss */
 .md-linear-progress-container {
-  background: rgba(33, 150, 243, 0.3);
   margin: 1em 0;
   overflow: hidden;
   position: relative;
 }
 
-/* line 96, ../src/scss/components/_progress.scss */
-.md-linear-progress {
-  background: #2196f3;
-}
-/* line 99, ../src/scss/components/_progress.scss */
+/* line 75, ../src/scss/components/_progress.scss */
 .md-linear-progress.determinate {
   position: absolute;
   transition: width 0.15s;
   z-index: 1;
 }
-/* line 106, ../src/scss/components/_progress.scss */
+/* line 82, ../src/scss/components/_progress.scss */
 .md-linear-progress.indeterminate:before, .md-linear-progress.indeterminate:after {
   background: inherit;
   bottom: 0;
@@ -2103,51 +2274,53 @@ p,
   will-change: left, right;
   z-index: 1;
 }
-/* line 117, ../src/scss/components/_progress.scss */
+/* line 93, ../src/scss/components/_progress.scss */
 .md-linear-progress.indeterminate:before {
-  animation: md-linear-indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+  animation-duration: 2.1s;
+  animation-name: md-linear-indeterminate;
+  animation-timing-function: cubic-bezier(0.65, 0.815, 0.735, 0.395);
 }
-/* line 121, ../src/scss/components/_progress.scss */
+/* line 99, ../src/scss/components/_progress.scss */
 .md-linear-progress.indeterminate:after {
-  animation: md-linear-indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
   animation-delay: 1.15s;
+  animation-duration: 2.1s;
+  animation-name: md-linear-indeterminate-short;
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-/* line 126, ../src/scss/components/_progress.scss */
+/* line 106, ../src/scss/components/_progress.scss */
 .md-linear-progress.indeterminate.query:before, .md-linear-progress.indeterminate.query:after {
   animation-direction: reverse;
 }
 
-/* line 133, ../src/scss/components/_progress.scss */
+/* line 113, ../src/scss/components/_progress.scss */
 .md-circular-progress {
   display: block;
   margin: 1em;
 }
-/* line 137, ../src/scss/components/_progress.scss */
+/* line 117, ../src/scss/components/_progress.scss */
 .md-circular-progress.centered {
   margin: 1em auto;
 }
-/* line 141, ../src/scss/components/_progress.scss */
+/* line 121, ../src/scss/components/_progress.scss */
 .md-circular-progress.determinate {
   transition: transform 0.15s;
 }
-/* line 144, ../src/scss/components/_progress.scss */
+/* line 124, ../src/scss/components/_progress.scss */
 .md-circular-progress.determinate .md-circular-progress-path {
-  stroke: #2196f3;
   stroke-dasharray: 187px;
 }
-/* line 150, ../src/scss/components/_progress.scss */
+/* line 129, ../src/scss/components/_progress.scss */
 .md-circular-progress.indeterminate {
   animation: md-circular-progress 1.4s linear infinite;
 }
-/* line 153, ../src/scss/components/_progress.scss */
+/* line 132, ../src/scss/components/_progress.scss */
 .md-circular-progress.indeterminate .md-circular-progress-path {
-  animation: md-circular-progress-dash 1.4s ease-in-out infinite, md-circular-progress-colors 5.6s ease-in-out infinite;
-  stroke: #2196f3;
-  stroke-dasharray: 187;
+  animation: md-circular-progress-dash 1.4s ease-in-out infinite;
+  stroke-dasharray: 187px;
   stroke-dashoffset: 0;
 }
 
-/* line 164, ../src/scss/components/_progress.scss */
+/* line 140, ../src/scss/components/_progress.scss */
 .md-circular-progress-path {
   fill: none;
 }
@@ -2158,52 +2331,51 @@ p,
   border: 0;
   color: #000;
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
   padding: 16px;
   padding-left: 24px;
   position: relative;
   transition: background 0.15s, box-shadow 0.15s;
   width: 100%;
 }
-/* line 13, ../src/scss/components/_select-fields.scss */
+/* line 12, ../src/scss/components/_select-fields.scss */
 .md-select-field.placeholder {
   color: rgba(0, 0, 0, 0.38);
 }
-/* line 17, ../src/scss/components/_select-fields.scss */
+/* line 16, ../src/scss/components/_select-fields.scss */
 .md-select-field.focus, .md-select-field:hover {
   background: #fff;
 }
-/* line 22, ../src/scss/components/_select-fields.scss */
+/* line 21, ../src/scss/components/_select-fields.scss */
 .md-select-field.focus {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   outline: none;
 }
-/* line 29, ../src/scss/components/_select-fields.scss */
+/* line 28, ../src/scss/components/_select-fields.scss */
 .md-select-field .icon-separator > span {
   padding-right: .5em;
 }
-/* line 33, ../src/scss/components/_select-fields.scss */
+/* line 32, ../src/scss/components/_select-fields.scss */
 .md-select-field .icon-separator .md-icon {
   padding-left: 0;
 }
-/* line 38, ../src/scss/components/_select-fields.scss */
+/* line 37, ../src/scss/components/_select-fields.scss */
 .md-select-field .md-icon {
   color: rgba(0, 0, 0, 0.38);
   transition: transform 0.15s;
 }
-/* line 43, ../src/scss/components/_select-fields.scss */
+/* line 42, ../src/scss/components/_select-fields.scss */
 .md-select-field .md-divider {
   position: absolute;
   width: calc(100% - 40px);
 }
 
-/* line 49, ../src/scss/components/_select-fields.scss */
+/* line 48, ../src/scss/components/_select-fields.scss */
 .md-select-field-menu {
   max-height: 272px;
   overflow-y: auto;
   width: 100%;
 }
-/* line 54, ../src/scss/components/_select-fields.scss */
+/* line 53, ../src/scss/components/_select-fields.scss */
 .md-select-field-menu .md-list-tile {
   color: rgba(0, 0, 0, 0.77);
   font-size: inherit;
@@ -2213,142 +2385,59 @@ p,
   padding-top: 12px;
 }
 
-/* line 1, ../src/scss/helpers/_extenders.scss */
-.md-control-input, .md-slider, .md-tab-control {
-  height: 0;
-  position: absolute;
-  visibility: hidden;
-  width: 0;
-  z-index: -1;
-}
-
-/* line 9, ../src/scss/helpers/_extenders.scss */
-.icon-separator {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  text-align: left;
-}
-/* line 16, ../src/scss/helpers/_extenders.scss */
-.icon-separator > .text {
-  flex-grow: 1;
-}
-/* line 19, ../src/scss/helpers/_extenders.scss */
-.icon-separator > .text:first-child {
-  padding-right: 16px;
-}
-/* line 23, ../src/scss/helpers/_extenders.scss */
-.icon-separator > .text:last-child {
-  padding-left: 16px;
-}
-/* line 28, ../src/scss/helpers/_extenders.scss */
-.icon-separator > .md-icon {
-  flex-grow: 0;
-  flex-shrink: 0;
-}
-
-/* line 34, ../src/scss/helpers/_extenders.scss */
-.md-switch:before {
-  border-radius: 50%;
-}
-
-/* line 38, ../src/scss/helpers/_extenders.scss */
-.md-sidebar-container {
-  min-height: 100%;
-}
-
-/* line 42, ../src/scss/helpers/_extenders.scss */
-.md-linear-progress-container, .md-text-field-container, .md-text-field-label-container, .md-text-field-label, .md-text-field, .md-text-field-divider, .md-text-field-divider.active:after {
-  width: 100%;
-}
-
-/* line 46, ../src/scss/helpers/_extenders.scss */
-.md-tabs.fixed-width .md-tab {
-  flex-basis: 0;
-  flex-grow: 1;
-}
-
-/* line 51, ../src/scss/helpers/_extenders.scss */
-.md-btn, .md-chip,
-.md-chip-remove, .md-picker-control, .md-calendar-date, .md-year, .md-slider-thumb, .md-thumb-control, .md-tab {
-  background: transparent;
-  border: 0;
-}
-/* line 55, ../src/scss/helpers/_extenders.scss */
-.md-btn:focus, .md-chip:focus,
-.md-chip-remove:focus, .md-picker-control:focus, .md-calendar-date:focus, .md-year:focus, .md-slider-thumb:focus, .md-thumb-control:focus, .md-tab:focus {
-  outline: none;
-}
-
-/* line 3, ../src/scss/components/_selection-controls.scss */
+/* line 1, ../src/scss/components/_selection-controls.scss */
 .md-control-container {
   align-items: center;
   display: flex;
 }
-/* line 7, ../src/scss/components/_selection-controls.scss */
+/* line 5, ../src/scss/components/_selection-controls.scss */
 .md-control-container:not(.disabled) {
   cursor: pointer;
 }
-/* line 11, ../src/scss/components/_selection-controls.scss */
+/* line 9, ../src/scss/components/_selection-controls.scss */
 .md-control-container.inline {
   display: inline-flex;
 }
-/* line 15, ../src/scss/components/_selection-controls.scss */
+/* line 13, ../src/scss/components/_selection-controls.scss */
 .md-control-container .label {
   cursor: inherit;
   height: 48px;
   line-height: 1.42857;
   padding: 14px 0;
 }
-/* line 23, ../src/scss/components/_selection-controls.scss */
+/* line 21, ../src/scss/components/_selection-controls.scss */
 .md-control-container.disabled .label {
-  color: rgba(0, 0, 0, 0.38);
   cursor: default;
 }
-/* line 28, ../src/scss/components/_selection-controls.scss */
-.md-control-container.disabled .md-switch:before {
-  background: #eee;
-}
 
-/* line 38, ../src/scss/components/_selection-controls.scss */
+/* line 31, ../src/scss/components/_selection-controls.scss */
 .md-control-input:checked + .md-switch:before {
-  background: #3f51b5;
-  border-color: #3f51b5;
-  color: #fff;
   left: 20px;
 }
-/* line 45, ../src/scss/components/_selection-controls.scss */
+/* line 35, ../src/scss/components/_selection-controls.scss */
 .md-control-input:checked + .md-switch .md-ink {
   left: 8px;
 }
 
-/* line 52, ../src/scss/components/_selection-controls.scss */
+/* line 42, ../src/scss/components/_selection-controls.scss */
 .md-checkbox,
 .md-radio {
   transition: color 0.15s;
 }
-/* line 56, ../src/scss/components/_selection-controls.scss */
-.md-checkbox.active,
-.md-radio.active {
-  color: #3f51b5;
-}
 
-/* line 62, ../src/scss/components/_selection-controls.scss */
+/* line 48, ../src/scss/components/_selection-controls.scss */
 .md-switch {
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  background: rgba(0, 0, 0, 0.26);
   border-radius: 8px;
   display: inline-block;
   height: 16px;
   position: relative;
   width: 40px;
 }
-/* line 72, ../src/scss/components/_selection-controls.scss */
+/* line 57, ../src/scss/components/_selection-controls.scss */
 .md-switch:before {
-  background: #fafafa;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   content: '';
   height: 24px;
@@ -2358,7 +2447,7 @@ p,
   transition: background 0.15s, background 0.15s, left 0.15s;
   width: 24px;
 }
-/* line 86, ../src/scss/components/_selection-controls.scss */
+/* line 70, ../src/scss/components/_selection-controls.scss */
 .md-switch .md-ink {
   height: 48px;
   left: -16px;
@@ -2366,13 +2455,13 @@ p,
   transition: left 0.15s;
   width: 48px;
 }
-/* line 93, ../src/scss/components/_selection-controls.scss */
+/* line 77, ../src/scss/components/_selection-controls.scss */
 .md-switch .md-ink.active {
   transform: scale(1.25);
   transition: transform 0.6s, opacity 0.6s, left 0.15s;
 }
 
-/* line 100, ../src/scss/components/_selection-controls.scss */
+/* line 84, ../src/scss/components/_selection-controls.scss */
 .md-switch-container {
   height: 48px;
   margin-right: 6px;
@@ -2381,65 +2470,57 @@ p,
 }
 
 /* line 1, ../src/scss/components/_sidebar.scss */
-.md-sidebar-container.fixed {
+.md-sidebar-container {
+  display: inline-block;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+/* line 9, ../src/scss/components/_sidebar.scss */
+.md-sidebar-container.responsive {
+  display: flex;
+}
+/* line 13, ../src/scss/components/_sidebar.scss */
+.md-sidebar-container.fixed, .md-sidebar-container.fixed .md-sidebar {
   height: 100vh;
   position: fixed;
 }
+/* line 19, ../src/scss/components/_sidebar.scss */
+.md-sidebar-container.fixed {
+  z-index: 10;
+}
+/* line 23, ../src/scss/components/_sidebar.scss */
+.md-sidebar-container.md-sidebar-left .md-sidebar {
+  left: 0;
+}
+/* line 27, ../src/scss/components/_sidebar.scss */
+.md-sidebar-container.md-sidebar-right .md-sidebar {
+  right: 0;
+}
 
-@media screen and (min-width: 0) {
-  /* line 8, ../src/scss/components/_sidebar.scss */
-  .md-sidebar-container.md-sidebar-responsive {
-    height: 100vh;
-    position: fixed;
-  }
-  /* line 22, ../src/scss/components/_sidebar.scss */
-  .md-sidebar-container.md-sidebar-responsive .md-sidebar.active {
-    width: calc(100vw - 48px);
-  }
-}
-@media screen and (min-width: 600px) {
-  /* line 8, ../src/scss/components/_sidebar.scss */
-  .md-sidebar-container.md-sidebar-responsive {
-    height: initial;
-    min-height: 100vh;
-    position: initial;
-  }
-  /* line 17, ../src/scss/components/_sidebar.scss */
-  .md-sidebar-container.md-sidebar-responsive .md-overlay {
-    display: none;
-  }
-  /* line 22, ../src/scss/components/_sidebar.scss */
-  .md-sidebar-container.md-sidebar-responsive .md-sidebar.active {
-    width: 256px;
-  }
-}
 /* line 32, ../src/scss/components/_sidebar.scss */
-.md-sidebar-container {
-  display: inline-block;
-  z-index: 5;
-}
-/* line 38, ../src/scss/components/_sidebar.scss */
-.md-sidebar-container.md-sidebar-responsive {
-  display: flex;
-}
-
-/* line 47, ../src/scss/components/_sidebar.scss */
 .md-sidebar {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   min-height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
   transition: width 0.15s;
   width: 0;
   z-index: 5;
 }
-/* line 56, ../src/scss/components/_sidebar.scss */
-.md-sidebar.active {
-  width: 256px;
-}
-/* line 60, ../src/scss/components/_sidebar.scss */
+/* line 41, ../src/scss/components/_sidebar.scss */
 .md-sidebar .md-avatar {
   height: 24px;
   width: 24px;
+}
+
+/* line 47, ../src/scss/components/_sidebar.scss */
+.md-sidebar-relative {
+  padding-left: 256px;
+}
+
+/* line 51, ../src/scss/components/_sidebar.scss */
+.md-sidebar-relative-right {
+  padding-right: 256px;
 }
 
 /* line 1, ../src/scss/components/_sliders.scss */
@@ -2468,24 +2549,17 @@ p,
 }
 /* line 27, ../src/scss/components/_sliders.scss */
 .md-slider-track:before {
-  background: rgba(0, 0, 0, 0.26);
   content: '';
   right: 0;
 }
 /* line 33, ../src/scss/components/_sliders.scss */
-.md-slider-track .md-track-fill {
-  background: #3f51b5;
-}
-/* line 36, ../src/scss/components/_sliders.scss */
 .md-slider-track .md-track-fill.discrete, .md-slider-track .md-track-fill:not(.dragging) {
   transition: width 0.15s;
 }
 
-/* line 43, ../src/scss/components/_sliders.scss */
+/* line 40, ../src/scss/components/_sliders.scss */
 .md-slider-thumb {
-  background: #fff;
   border-radius: 50%;
-  color: rgba(0, 0, 0, 0.54);
   height: 14px;
   left: -7px;
   position: absolute;
@@ -2495,36 +2569,24 @@ p,
   width: 14px;
   z-index: 3;
 }
-/* line 58, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete, .md-slider-thumb:not(.dragging) {
+
+/* line 54, ../src/scss/components/_sliders.scss */
+.md-continuous-slider-thumb,
+.md-slider-thumb:not(.dragging) {
   transition-property: transform, background, color, top, left;
 }
-/* line 63, ../src/scss/components/_sliders.scss */
-.md-slider-thumb:not(.valued) {
-  border: 2px solid rgba(0, 0, 0, 0.54);
+
+/* line 61, ../src/scss/components/_sliders.scss */
+.md-continuous-slider-thumb.zeroed {
+  border: 2px solid;
 }
-/* line 67, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.valued {
-  background: #3f51b5;
-}
-/* line 70, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.valued .md-ink {
-  background: rgba(63, 81, 181, 0.16);
-}
-/* line 75, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.active {
+/* line 65, ../src/scss/components/_sliders.scss */
+.md-continuous-slider-thumb.active {
   transform: scale(1.5);
 }
-/* line 79, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete {
-  border: 0;
-}
-/* line 82, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete:not(.valued) {
-  background: #bdbdbd;
-}
-/* line 86, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete:after {
+
+/* line 71, ../src/scss/components/_sliders.scss */
+.md-discrete-slider-thumb:after {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 7px solid transparent;
@@ -2539,21 +2601,13 @@ p,
   transition-property: top, border-top-color;
   width: 0;
 }
-/* line 102, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete.active {
+/* line 87, ../src/scss/components/_sliders.scss */
+.md-discrete-slider-thumb.active {
   top: 7px;
   transform: scale(2);
 }
-/* line 106, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete.active:not(.valued):after {
-  border-top-color: #bdbdbd;
-}
-/* line 110, ../src/scss/components/_sliders.scss */
-.md-slider-thumb.discrete.active:after {
-  border-top-color: #3f51b5;
-}
 
-/* line 117, ../src/scss/components/_sliders.scss */
+/* line 93, ../src/scss/components/_sliders.scss */
 .md-thumb-control {
   color: #fff;
   font-size: 8px;
@@ -2563,7 +2617,7 @@ p,
   width: 100%;
 }
 
-/* line 128, ../src/scss/components/_sliders.scss */
+/* line 104, ../src/scss/components/_sliders.scss */
 .md-slider-discrete-value {
   left: 50%;
   position: absolute;
@@ -2673,7 +2727,6 @@ p,
 
 /* line 28, ../src/scss/components/_tabs.scss */
 .md-tab-indicator {
-  background: #3f51b5;
   bottom: 0;
   content: '';
   display: block;
@@ -2684,8 +2737,9 @@ p,
   transition-property: left, width;
 }
 
-/* line 40, ../src/scss/components/_tabs.scss */
+/* line 39, ../src/scss/components/_tabs.scss */
 .md-tab {
+  background: #3f51b5;
   color: rgba(0, 0, 0, 0.54);
   flex-shrink: 0;
   font-weight: 500;
@@ -2693,20 +2747,20 @@ p,
   text-transform: uppercase;
   transition: color 0.15s;
 }
-/* line 50, ../src/scss/components/_tabs.scss */
+/* line 48, ../src/scss/components/_tabs.scss */
 .md-tab.active {
   color: #3f51b5;
 }
-/* line 54, ../src/scss/components/_tabs.scss */
+/* line 52, ../src/scss/components/_tabs.scss */
 .md-tab:hover {
   cursor: pointer;
 }
-/* line 58, ../src/scss/components/_tabs.scss */
+/* line 56, ../src/scss/components/_tabs.scss */
 .md-tab:focus {
   outline: none;
 }
 
-/* line 64, ../src/scss/components/_tabs.scss */
+/* line 62, ../src/scss/components/_tabs.scss */
 .md-tab-label {
   align-items: center;
   cursor: inherit;
@@ -2717,172 +2771,598 @@ p,
   max-width: 264px;
   padding: 12px;
 }
-/* line 74, ../src/scss/components/_tabs.scss */
+/* line 72, ../src/scss/components/_tabs.scss */
 .md-tab-label.multiline {
   font-size: 12px;
 }
-/* line 78, ../src/scss/components/_tabs.scss */
+/* line 76, ../src/scss/components/_tabs.scss */
 .md-tab-label:not(.multiline) {
   padding-bottom: 20px;
 }
-/* line 83, ../src/scss/components/_tabs.scss */
+/* line 81, ../src/scss/components/_tabs.scss */
 .md-tab-label.with-icon {
   height: 72px;
   padding-bottom: 16px;
 }
-/* line 87, ../src/scss/components/_tabs.scss */
+/* line 85, ../src/scss/components/_tabs.scss */
 .md-tab-label.with-icon .md-icon {
   margin-bottom: 10px;
 }
 
-/* line 97, ../src/scss/components/_tabs.scss */
+/* line 95, ../src/scss/components/_tabs.scss */
 .md-tab-content-container .md-swipeable-item:not(.swiping) {
   transition-duration: 0.3s;
 }
 
+/* line 1, ../src/scss/components/_text-fields.scss */
+.md-text-field-container {
+  display: inline-block;
+  vertical-align: top;
+}
 /* line 5, ../src/scss/components/_text-fields.scss */
-.md-text-field-container.single-line .md-text-field,
-.md-text-field-container.single-line .md-text-field-label,
-.md-text-field-container.single-line .md-text-field-divider {
-  position: absolute;
+.md-text-field-container.with-message {
+  width: 256px;
 }
-/* line 11, ../src/scss/components/_text-fields.scss */
-.md-text-field-container.single-line .md-text-field-label.active {
-  font-size: 12px;
-}
-/* line 16, ../src/scss/components/_text-fields.scss */
-.md-text-field-container.multi-line .md-text-field-label {
-  font-size: 12px;
-}
-/* line 20, ../src/scss/components/_text-fields.scss */
-.md-text-field-container .md-icon {
-  color: inherit;
-  transition: color 0.15s;
-}
-/* line 25, ../src/scss/components/_text-fields.scss */
-.md-text-field-container.inline-counter {
+/* line 9, ../src/scss/components/_text-fields.scss */
+.md-text-field-container.single-line-full-width {
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  padding-right: 12px;
+}
+/* line 13, ../src/scss/components/_text-fields.scss */
+.md-text-field-container.single-line-full-width .md-text-field-label {
+  flex-grow: 1;
+}
+/* line 17, ../src/scss/components/_text-fields.scss */
+.md-text-field-container.single-line-full-width .md-text-field-message {
+  flex-shrink: 0;
 }
 
-/* line 33, ../src/scss/components/_text-fields.scss */
-.md-text-field-label-container {
+/* line 23, ../src/scss/components/_text-fields.scss */
+.md-text-field-label {
   display: block;
   position: relative;
+  white-space: nowrap;
 }
 
-/* line 40, ../src/scss/components/_text-fields.scss */
-.md-text-field-label {
-  cursor: text;
-  transition-duration: 0.15s;
-  transition-property: bottom, font-size, color;
+/* line 29, ../src/scss/components/_text-fields.scss */
+.md-text-field:not(.multi-line),
+.md-floating-label {
+  line-height: 1;
 }
 
-/* line 48, ../src/scss/components/_text-fields.scss */
+/* line 34, ../src/scss/components/_text-fields.scss */
 .md-text-field {
   background: none;
   border: 0;
-  color: rgba(0, 0, 0, 0.77);
-  resize: none;
+  display: inline-block;
+  padding-top: 35px;
+  vertical-align: top;
 }
-/* line 56, ../src/scss/components/_text-fields.scss */
+/* line 41, ../src/scss/components/_text-fields.scss */
 .md-text-field:focus {
   outline: none;
 }
-
-/* line 61, ../src/scss/components/_text-fields.scss */
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
+/* line 45, ../src/scss/components/_text-fields.scss */
+.md-text-field:-webkit-autofill, .md-text-field:-webkit-autofill:focus {
   box-shadow: 0 0 0 50px #fff inset;
 }
+/* line 50, ../src/scss/components/_text-fields.scss */
+.md-text-field.multi-line {
+  margin-top: 35px;
+  padding-bottom: 0;
+  padding-top: 0;
+  resize: none;
+  transition-duration: 0.15s;
+  transition-property: height;
+  width: 100%;
+}
+/* line 59, ../src/scss/components/_text-fields.scss */
+.md-text-field.multi-line.full-width {
+  margin: 0;
+}
 
-/* line 67, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider {
+/* line 65, ../src/scss/components/_text-fields.scss */
+.md-text-divider,
+.md-floating-label {
+  position: absolute;
+}
+
+/* line 70, ../src/scss/components/_text-fields.scss */
+.md-floating-label,
+.md-text-field-icon {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+/* line 75, ../src/scss/components/_text-fields.scss */
+.md-floating-label {
+  cursor: text;
+  pointer-events: none;
+  top: 35px;
+  transition-duration: 0.15s;
+  transition-property: font-size, color, top;
+}
+/* line 82, ../src/scss/components/_text-fields.scss */
+.md-floating-label.active {
+  font-size: 12px;
+}
+
+/* line 87, ../src/scss/components/_text-fields.scss */
+.md-text-divider {
   background: rgba(0, 0, 0, 0.1);
   height: 1px;
 }
-/* line 73, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider.from-left:after {
+/* line 93, ../src/scss/components/_text-fields.scss */
+.md-text-divider.from-left:after {
   left: 0;
 }
-/* line 77, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider.from-right:after {
+/* line 97, ../src/scss/components/_text-fields.scss */
+.md-text-divider.from-right:after {
   right: 0;
 }
-/* line 81, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider.from-center:after {
+/* line 101, ../src/scss/components/_text-fields.scss */
+.md-text-divider.from-center:after {
   margin: auto;
 }
-/* line 85, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider:after {
+/* line 105, ../src/scss/components/_text-fields.scss */
+.md-text-divider:after {
   content: '';
   display: block;
   height: 2px;
   transition: width 0.15s;
-  visibility: hidden;
   width: 0;
 }
-/* line 94, ../src/scss/components/_text-fields.scss */
-.md-text-field-divider.active:after {
-  visibility: visible;
+/* line 113, ../src/scss/components/_text-fields.scss */
+.md-text-divider.active:after {
+  width: 100%;
 }
 
-/* line 101, ../src/scss/components/_text-fields.scss */
-.md-text-field-info {
+/* line 118, ../src/scss/components/_text-fields.scss */
+.md-text-field-icon {
+  margin-right: 16px;
+  transition-duration: 0.15s;
+  transition-property: color;
+}
+
+/* line 124, ../src/scss/components/_text-fields.scss */
+.md-text-field-message {
   display: flex;
   font-size: 12px;
   justify-content: space-between;
 }
-/* line 106, ../src/scss/components/_text-fields.scss */
-.md-text-field-info.count-only {
+/* line 129, ../src/scss/components/_text-fields.scss */
+.md-text-field-message.count-only {
   justify-content: flex-end;
 }
 
-/* line 111, ../src/scss/components/_text-fields.scss */
-.md-text-field-count {
+/* line 134, ../src/scss/components/_text-fields.scss */
+.md-text-field-counter {
   display: block;
   flex-shrink: 0;
+  padding-left: 16px;
 }
 
 /* line 1, ../src/scss/components/_toolbars.scss */
+.md-toolbar-container.fixed ~ *:not(.fixed),
+.md-toolbar-fixed-relative {
+  padding-top: 64px;
+}
+
+/* line 6, ../src/scss/components/_toolbars.scss */
 .md-toolbar-container {
   display: block;
 }
-/* line 4, ../src/scss/components/_toolbars.scss */
+/* line 9, ../src/scss/components/_toolbars.scss */
 .md-toolbar-container.fixed {
   position: fixed;
   width: 100%;
   z-index: 6;
 }
-/* line 9, ../src/scss/components/_toolbars.scss */
+/* line 14, ../src/scss/components/_toolbars.scss */
 .md-toolbar-container.fixed .md-toolbar {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
 }
-/* line 13, ../src/scss/components/_toolbars.scss */
-.md-toolbar-container.fixed ~ *:not(.fixed) {
-  padding-top: 64px;
-}
 
-/* line 19, ../src/scss/components/_toolbars.scss */
+/* line 24, ../src/scss/components/_toolbars.scss */
 .md-toolbar {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   align-items: center;
   display: flex;
   height: 64px;
 }
-/* line 26, ../src/scss/components/_toolbars.scss */
+/* line 31, ../src/scss/components/_toolbars.scss */
 .md-toolbar .md-title {
   color: inherit;
-  font-size: 18px;
+  font-weight: 500;
   line-height: 64px;
+  margin: 0;
 }
-/* line 32, ../src/scss/components/_toolbars.scss */
+/* line 38, ../src/scss/components/_toolbars.scss */
 .md-toolbar .action-area {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+}
+
+/* line 1, ../src/scss/components/_tooltips.scss */
+.md-tooltip-container {
+  display: inline-block;
+  position: relative;
+}
+
+/* line 6, ../src/scss/components/_tooltips.scss */
+.md-tooltip {
+  background: #616161;
+  opacity: 0;
+  position: absolute;
+  transition-duration: 0.15s;
+  transition-property: opacity, transform;
+  z-index: 22;
+}
+/* line 14, ../src/scss/components/_tooltips.scss */
+.md-tooltip.active {
+  opacity: .9;
+  transform: none;
+}
+
+/* line 20, ../src/scss/components/_tooltips.scss */
+.md-tooltip-top {
+  transform: translateY(10px) scaleY(0);
+  transform-origin: 50% 100%;
+}
+
+/* line 25, ../src/scss/components/_tooltips.scss */
+.md-tooltip-right {
+  transform: translateX(-10px) scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* line 30, ../src/scss/components/_tooltips.scss */
+.md-tooltip-bottom {
+  transform: translateY(-10px) scaleY(0);
+  transform-origin: 50% 0;
+}
+
+/* line 35, ../src/scss/components/_tooltips.scss */
+.md-tooltip-left {
+  transform: translateX(10px) scaleX(0);
+  transform-origin: 100% 50%;
+}
+
+/* line 40, ../src/scss/components/_tooltips.scss */
+.md-tooltip-text {
+  color: #fff;
+  display: block;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* line 176, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-floating-label,
+.md-text-field-message,
+.md-text-field-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 181, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-floating-label.error,
+.md-text-field-message.error,
+.md-text-field-icon.error {
+  color: #f44336;
+}
+
+/* line 186, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-field-icon.active,
+.md-floating-label.active:not(.error) {
+  color: #3f51b5;
+}
+
+/* line 192, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-divider:after {
+  background: #3f51b5;
+}
+/* line 196, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-divider.error:after {
+  background: #f44336;
+}
+
+/* line 60, ../src/scss/helpers/mixins/_snackbars.scss */
+.md-snackbar .md-flat-btn {
+  color: #3f51b5;
+}
+/* line 63, ../src/scss/helpers/mixins/_snackbars.scss */
+.md-snackbar .md-flat-btn .md-ink {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* line 193, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.inline {
+  background: #fff;
+}
+
+/* line 197, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker-header,
+.md-date-picker-header,
+.md-calendar-date.active:after,
+.md-clock-hand,
+.md-clock-hand:before,
+.md-clock-hand:after {
+  background: #3f51b5;
+}
+
+/* line 206, ../src/scss/helpers/mixins/_pickers.scss */
+.md-calendar-date.today,
+.md-year.active {
+  color: #3f51b5;
+}
+
+/* line 211, ../src/scss/helpers/mixins/_pickers.scss */
+.md-calendar-date:after {
+  background: #5c6bc0;
+}
+
+/* line 215, ../src/scss/helpers/mixins/_pickers.scss */
+.md-year:focus:not(.active) {
+  color: #5c6bc0;
+}
+
+/* line 219, ../src/scss/helpers/mixins/_pickers.scss */
+.md-clock-face {
+  background: #e0e0e0;
+}
+
+/* line 223, ../src/scss/helpers/mixins/_pickers.scss */
+.md-clock-hand.invisible-minute:after {
+  background: #fff;
+  border: 9px solid #3f51b5;
+}
+
+/* line 228, ../src/scss/helpers/mixins/_pickers.scss */
+.md-clock-time {
+  color: #000;
+}
+/* line 231, ../src/scss/helpers/mixins/_pickers.scss */
+.md-clock-time.active {
+  color: #fff;
+}
+
+/* line 8, ../src/scss/helpers/mixins/_lists.scss */
+.md-list a {
+  color: rgba(0, 0, 0, 0.77);
+}
+/* line 12, ../src/scss/helpers/mixins/_lists.scss */
+.md-list .md-subheader {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 15, ../src/scss/helpers/mixins/_lists.scss */
+.md-list .md-subheader.md-primary-subheader {
+  color: #3f51b5;
+}
+
+/* line 22, ../src/scss/helpers/mixins/_lists.scss */
+.md-list-tile.active {
+  color: #3f51b5;
+}
+/* line 26, ../src/scss/helpers/mixins/_lists.scss */
+.md-list-tile:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* line 31, ../src/scss/helpers/mixins/_lists.scss */
+.md-list-tile-secondary-text {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* line 24, ../src/scss/helpers/mixins/_progress.scss */
+.md-linear-progress-container {
+  background: #90caf9;
+}
+
+/* line 28, ../src/scss/helpers/mixins/_progress.scss */
+.md-linear-progress {
+  background: #2196f3;
+}
+
+/* line 32, ../src/scss/helpers/mixins/_progress.scss */
+.md-circular-progress-path {
+  stroke: #2196f3;
+}
+
+/* line 60, ../src/scss/helpers/mixins/_select-fields.scss */
+.md-select-field-menu .md-list-tile.active {
+  color: #3f51b5;
+}
+
+/* line 11, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-radio.active,
+.md-checkbox.active {
+  color: #3f51b5;
+}
+
+/* line 17, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .label {
+  color: rgba(0, 0, 0, 0.38);
+}
+/* line 21, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .md-switch {
+  background: rgba(0, 0, 0, 0.12);
+}
+/* line 24, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .md-switch:before {
+  background: #bdbdbd;
+}
+
+/* line 30, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-input:checked + .md-switch {
+  background: rgba(63, 81, 181, 0.5);
+}
+
+/* line 34, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-input:checked + .md-switch:before {
+  background: #3f51b5;
+  border-color: #3f51b5;
+}
+
+/* line 39, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-switch {
+  background: rgba(0, 0, 0, 0.26);
+}
+/* line 42, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-switch:before {
+  background: #fafafa;
+}
+
+/* line 25, ../src/scss/helpers/mixins/_sliders.scss */
+.md-slider-track:before {
+  background: rgba(0, 0, 0, 0.26);
+}
+
+/* line 29, ../src/scss/helpers/mixins/_sliders.scss */
+.md-slider-thumb.valued,
+.md-slider-track .md-track-fill {
+  background: #3f51b5;
+}
+
+/* line 34, ../src/scss/helpers/mixins/_sliders.scss */
+.md-discrete-slider-thumb.zeroed {
+  background: #000;
+}
+/* line 37, ../src/scss/helpers/mixins/_sliders.scss */
+.md-discrete-slider-thumb.zeroed.active {
+  background: #bdbdbd;
+}
+/* line 40, ../src/scss/helpers/mixins/_sliders.scss */
+.md-discrete-slider-thumb.zeroed.active:after {
+  border-top-color: #bdbdbd;
+}
+
+/* line 46, ../src/scss/helpers/mixins/_sliders.scss */
+.md-discrete-slider-thumb.active:after {
+  border-top-color: #3f51b5;
+}
+
+/* line 50, ../src/scss/helpers/mixins/_sliders.scss */
+.md-slider-thumb {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.26);
+}
+/* line 54, ../src/scss/helpers/mixins/_sliders.scss */
+.md-slider-thumb.zeroed {
+  border-color: rgba(0, 0, 0, 0.26);
+}
+/* line 58, ../src/scss/helpers/mixins/_sliders.scss */
+.md-slider-thumb.valued .md-ink {
+  background: rgba(63, 81, 181, 0.16);
+}
+
+/* line 18, ../src/scss/helpers/mixins/_toolbars.scss */
+.md-primary.md-toolbar {
+  background: #3f51b5;
+  color: #fff;
+}
+/* line 55, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-raised-btn:not([disabled]), .md-primary.md-floating-btn:not([disabled]) {
+  background: #3f51b5;
+  color: #fff;
+}
+/* line 60, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-raised-btn:not([disabled]):hover, .md-primary.md-floating-btn:not([disabled]):hover {
+  background: rgba(63, 81, 181, 0.95);
+}
+/* line 64, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-raised-btn:not([disabled]) .md-ink, .md-primary.md-floating-btn:not([disabled]) .md-ink {
+  background: rgba(255, 255, 255, 0.05);
+}
+/* line 69, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-flat-btn:not([disabled]) {
+  color: #3f51b5;
+}
+/* line 72, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-flat-btn:not([disabled]):hover {
+  background: rgba(63, 81, 181, 0.15);
+}
+/* line 76, ../src/scss/helpers/mixins/_buttons.scss */
+.md-primary.md-flat-btn:not([disabled]) .md-ink {
+  background: rgba(63, 81, 181, 0.22);
+}
+/* line 34, ../src/scss/helpers/mixins/_tabs.scss */
+.md-primary.md-tabs-scroll-container {
+  background: #3f51b5;
+}
+/* line 37, ../src/scss/helpers/mixins/_tabs.scss */
+.md-primary.md-tabs-scroll-container .md-tab {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 40, ../src/scss/helpers/mixins/_tabs.scss */
+.md-primary.md-tabs-scroll-container .md-tab.active {
+  color: #fff;
+}
+/* line 45, ../src/scss/helpers/mixins/_tabs.scss */
+.md-primary.md-tabs-scroll-container .md-tab-indicator {
+  background: #ff4081;
+}
+
+/* line 55, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-raised-btn:not([disabled]), .md-secondary.md-floating-btn:not([disabled]) {
+  background: #ff4081;
+  color: #fff;
+}
+/* line 60, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-raised-btn:not([disabled]):hover, .md-secondary.md-floating-btn:not([disabled]):hover {
+  background: rgba(255, 64, 129, 0.95);
+}
+/* line 64, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-raised-btn:not([disabled]) .md-ink, .md-secondary.md-floating-btn:not([disabled]) .md-ink {
+  background: rgba(255, 255, 255, 0.05);
+}
+/* line 69, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-flat-btn:not([disabled]) {
+  color: #ff4081;
+}
+/* line 72, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-flat-btn:not([disabled]):hover {
+  background: rgba(255, 64, 129, 0.15);
+}
+/* line 76, ../src/scss/helpers/mixins/_buttons.scss */
+.md-secondary.md-flat-btn:not([disabled]) .md-ink {
+  background: rgba(255, 64, 129, 0.22);
+}
+/* line 18, ../src/scss/helpers/mixins/_toolbars.scss */
+.md-secondary.md-toolbar {
+  background: #e91e63;
+  color: #fff;
+}
+/* line 34, ../src/scss/helpers/mixins/_tabs.scss */
+.md-secondary.md-tabs-scroll-container {
+  background: #e91e63;
+}
+/* line 37, ../src/scss/helpers/mixins/_tabs.scss */
+.md-secondary.md-tabs-scroll-container .md-tab {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 40, ../src/scss/helpers/mixins/_tabs.scss */
+.md-secondary.md-tabs-scroll-container .md-tab.active {
+  color: #fff;
+}
+/* line 45, ../src/scss/helpers/mixins/_tabs.scss */
+.md-secondary.md-tabs-scroll-container .md-tab-indicator {
+  background: #3f51b5;
+}
+
+/* line 16, ../src/scss/helpers/mixins/_avatars.scss */
+.md-avatar.md-avatar-color-1 {
+  background: #e91e63;
+  color: #b9f6ca;
+}
+
+/* line 16, ../src/scss/helpers/mixins/_avatars.scss */
+.md-avatar.md-avatar-color-2 {
+  background: #9c27b0;
+  color: #fff176;
+}
+
+/* line 16, ../src/scss/helpers/mixins/_avatars.scss */
+.md-avatar.md-avatar-color-3 {
+  background: #ffc107;
+  color: #00b0ff;
 }
 
 /*# sourceMappingURL=react-md.css.map */

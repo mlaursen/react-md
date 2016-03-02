@@ -1,6 +1,6 @@
 {
   "name": "react-md-docs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Documentation for react-md",
   "scripts": {
     "start": "npm run browser:dev",
