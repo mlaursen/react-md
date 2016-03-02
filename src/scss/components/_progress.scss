@@ -91,12 +91,16 @@
     }
 
     &:before {
-      animation: md-linear-indeterminate $md-linear-progress-anim-time $md-linear-progress-long-transition-func infinite;
+      animation-duration: $md-linear-progress-anim-time;
+      animation-name: md-linear-indeterminate;
+      animation-timing-function: $md-linear-progress-long-transition-func;
     }
 
     &:after {
-      animation: md-linear-indeterminate-short $md-linear-progress-anim-time $md-linear-progress-short-transition-func infinite;
       animation-delay: $md-linear-progress-short-delay;
+      animation-duration: $md-linear-progress-anim-time;
+      animation-name: md-linear-indeterminate-short;
+      animation-timing-function: $md-linear-progress-short-transition-func;
     }
 
     &.query:before,

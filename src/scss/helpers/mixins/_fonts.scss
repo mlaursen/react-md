@@ -1,28 +1,8 @@
-@function get-google-font-url($family: $md-font-family, $weights...) {
-  $url: 'https://fonts.googleapis.com/css?family=#{$family}:';
-  @if length($weights) == 0 {
-    $weights: $md-font-weights;
-  }
-
-  @for $i from 1 through length($weights) {
-    $weight: nth($weights, $i);
-    $url: $url + $weight;
-
-    @if $i < length($weights) {
-      $url: $url + ',';
-    }
-  }
-
-  @return $url;
-}
-
-@function get-google-font-icons() {
-  @return 'https://fonts.googleapis.com/icon?family=Material+Icons';
-}
-
-/// Converts a font weight into the google font suffix
+/// Converts a font weight into the google font suffix.
+///
 /// @param {Number} $font-weight - The font weight to convert
 /// @return {String} the font suffix
+/// @group typography
 @function get-font-suffix($font-weight) {
   @if $font-weight == 300 {
     @return '-Light';
@@ -65,6 +45,8 @@
 /// @param {String} $font-name [Roboto] - The font name to create a font face for
 /// @param {Number} $font-weight [400] - The font weight of the google font
 /// @param {String} $fonts-url - The url to your fonts.
+/// @require get-font-suffix - The function to convert a font weight to a font suffix.
+/// @group typography
 @mixin host-google-font($font-name: Roboto, $font-weight: 400, $fonts-url: null) {
   $full-font-name: str-replace($font-name, ' ') + get-font-suffix($font-weight);
 
@@ -124,6 +106,7 @@
 /// 	}
 ///
 /// @param {String} $font-url ['/fonts/material-icons'] - The path to the material icons fonts
+/// @group typography
 @mixin host-material-icons($font-url: '/fonts/material-icons') {
   $icon-link: $font-url + '/MaterialIcons-Regular';
   @font-face {

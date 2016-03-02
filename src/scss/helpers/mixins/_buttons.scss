@@ -45,6 +45,7 @@
 ///        If this value is set to null, it will use the default listed.
 /// @param {Color} $flat-ink-color [rgba($color, .22)] - The ink color for flat buttons.
 ///        If this value is set to null, it will use the default listed.
+/// @group buttons
 @mixin md-theme-buttons($color, $text-color: $md-white-base, $hover-color: null, $ink-color: null, $flat-hover-color: null, $flat-ink-color: null) {
   $hover-color: if($hover-color == null, rgba($color, .95), $hover-color);
   $ink-color: if($ink-color == null, rgba($md-white-base, .05), $ink-color);

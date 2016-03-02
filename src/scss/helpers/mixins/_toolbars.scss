@@ -13,6 +13,7 @@
 ///
 /// @param {Color} $color - The background colro for the app bar
 /// @param {Color} $text-color - The text color to use in the app bar
+/// @group toolbars
 @mixin md-theme-toolbars($color, $text-color) {
   &.md-toolbar {
     background: $color;
@@ -26,6 +27,8 @@
 ///   @media only screen and (min-width: 0px) and (max-width: 599px) {
 ///     @include md-toolbar-mobile();
 ///   }
+///
+/// @group toolbars
 @mixin md-toolbar-mobile() {
   .md-toolbar {
     .action-left,
@@ -42,6 +45,8 @@
 ///   @media only screen and (min-width: 600px) {
 ///     @include md-toolbar-desktop();
 ///   }
+///
+/// @group toolbars
 @mixin md-toolbar-desktop() {
   .md-toolbar {
     .action-left,

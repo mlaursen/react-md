@@ -4,6 +4,7 @@
 /// @param {String} $height - the height of the select field
 /// @param {String} $padding - The overall padding that should be used. It will be divided by 2
 /// @param {String} $divider-bottom - The bottom position of the divider in the select field
+/// @group select-fields
 @mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) {
   .md-select-field.text-field-positioned {
     font-size: $font-size;
@@ -23,6 +24,8 @@
 ///   @media only screen and (min-width: 0px) and (max-width: 599px) {
 ///     @include md-select-field-mobile();
 ///   }
+///
+/// @group select-fields
 @mixin md-select-field-mobile() {
   @include make-positioned-select-field(
     $md-text-field-mobile-font-size,
@@ -38,6 +41,8 @@
 ///   @media only screen and (min-width: 600px) {
 ///     @include md-select-field-desktop();
 ///   }
+///
+/// @group select-fields
 @mixin md-select-field-desktop() {
   @include make-positioned-select-field(
     $md-text-field-desktop-font-size,
@@ -47,6 +52,10 @@
   );
 }
 
+/// Themes the select fields with the given color.
+///
+/// @param {String} $primary - The primary color to use in theming.
+/// @group select-fields
 @mixin md-theme-select-fields($primary) {
   .md-select-field-menu .md-list-tile.active {
     color: $primary;

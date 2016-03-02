@@ -1,3 +1,6 @@
+/// Additional styling for snackbars on mobile devices.
+///
+/// @group snackbars
 @mixin md-snackbar-mobile() {
   .md-snackbar {
     left: 0;
@@ -20,6 +23,9 @@
   }
 }
 
+/// Additional styling for snackbars on mobile devices.
+///
+/// @group snackbars
 @mixin md-snackbar-desktop() {
   .md-snackbar {
     border-radius: $md-snackbar-desktop-border-radius;
@@ -45,6 +51,11 @@
   }
 }
 
+/// Themes a snackbar to the given colors.
+///
+/// @param {String} $btn-color - The main color to theme snackbars to.
+/// @param {String} $btn-ink-color [rgba($md-white-base, .12)] - The ink color to use.
+/// @group snackbars
 @mixin md-theme-snackbars($btn-color: $md-primary-color, $btn-ink-color: rgba($md-white-base, .12)) {
   .md-snackbar .md-flat-btn {
     color: $btn-color;

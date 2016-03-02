@@ -1,3 +1,6 @@
+/// Additional styling for tooltips on mobile devices.
+///
+/// @group tooltips
 @mixin md-tooltips-mobile() {
   .md-tooltip {
     height: $md-tooltip-mobile-height;
@@ -11,6 +14,9 @@
   }
 }
 
+/// Additional styling for tooltips on desktop screens.
+///
+/// @group tooltips
 @mixin md-tooltips-desktop() {
   .md-tooltip {
     height: $md-tooltip-desktop-height;

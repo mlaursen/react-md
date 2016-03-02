@@ -1,8 +1,10 @@
 /// Themes the selection controls to use the given color
 ///
 /// Note: If this is the dark theme, the $color param should be a -200 suffix.
+///
 /// @param {String} $color - The color to style with
 /// @param {Boolean} $light-theme [$md-light-theme] - If it should be styled using the light theme
+/// @group selection-controls
 @mixin md-theme-selection-controls($color, $light-theme: $md-light-theme) {
   .md-radio,
   .md-checkbox {

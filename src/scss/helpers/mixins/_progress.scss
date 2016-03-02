@@ -19,6 +19,7 @@
 /// @param {String} $color - The background color and the svg stroke color
 /// @param {String} $inactive-color - The color to use for the linear progress
 ///        bar. This will be the color of the bar before it that width has been reached.
+/// @group progress
 @mixin md-theme-progress($color, $inactive-color) {
   .md-linear-progress-container {
     background: $inactive-color;

@@ -1,9 +1,7 @@
 .md-btn {
   @extend %button-unstyled;
 
-  height: $md-btn-height;
   overflow: hidden;
-  padding: $md-btn-padding 1em;
   position: relative;
   text-transform: uppercase;
   transition-duration: $md-transition-time;
@@ -18,6 +16,12 @@
   }
 }
 
+.md-flat-btn,
+.md-raised-btn {
+  height: $md-btn-height;
+  padding: $md-btn-padding $md-default-padding;
+}
+
 .md-raised-btn,
 .md-floating-btn,
 .md-flat-btn {
@@ -28,7 +32,6 @@
 
 
 .md-icon-btn {
-  background: transparent;
   border-radius: 50%;
   color: inherit;
   font-size: $md-font-icon-size;

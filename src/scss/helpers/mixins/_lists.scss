@@ -1,3 +1,8 @@
+/// Themes the list components with the given colors.
+///
+/// @param {String} $color - The primary color to use
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if it should be styled for
+///           the light theme or the dark theme.
 @mixin md-theme-lists($color, $light-theme: $md-light-theme) {
   .md-list {
     a {

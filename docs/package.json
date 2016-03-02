@@ -8,7 +8,7 @@
     "build:dev": "webpack --config webpack.config.js --progress --colors --inline",
     "build:prod": "NODE_ENV=production webpack --config webpack.config.js --progress --colors --inline",
     "build:prod:win": "set NODE_ENV=production&&webpack --config webpack.config.js --progress --colors --inline",
-    "sassdoc": "sassdoc ../src/scss --theme neat -d ./src/www/sassdoc",
+    "sassdoc": "sassdoc ../src/scss -d ./src/www/sassdoc",
     "sassdoc:watch": "watch 'npm run sassdoc' ../src/scss",
     "docs": "npm run build:prod && npm run sassdoc && gh-pages -d src/www",
     "docs:win": "npm run build:prod:win && npm run sassdoc && gh-pages -d src/www"

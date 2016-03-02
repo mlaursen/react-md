@@ -1,202 +1,380 @@
 @import 'colors';
 
+/// This will format the default theme to have the light theme if set to true.
+/// It will use the dark theme if set to false.
+///
+/// @type Boolean
+/// @group theme
 $md-light-theme: true !default;
 
+/// The primary color to use throughout the app. This should
+/// be one of the material design colors.
+///
+/// @type String
+/// @group theme
 $md-primary-color: $md-indigo-500 !default;
+
+/// The secondary color to use throughout the app. This should
+/// be one of the material design colors.
+///
+/// @type String
+/// @group theme
 $md-secondary-color: $md-pink-a-200 !default;
 
+
+
+/// The text color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-text-color: if($md-light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
+
+/// The secondary text color to use throughout the app. This value will change
+/// depending on the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-secondary-text-color: if($md-light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
-/// @alias md-secondary-text-color
+
+/// The icon color to use throughout the app.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
+/// @see md-secondary-text-color
 $md-icon-color: $md-secondary-text-color;
+
+/// The disabled color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-disabled-color: if($md-light-theme, $md-light-theme-disabled-text-color, $md-dark-theme-disabled-text-color);
-/// @alias md-disabled-color
+
+/// The hint text color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
+/// @see md-disabled-color
 $md-hint-text-color: $md-disabled-color;
+
+/// The hint text color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-divider-color: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+
+/// The background color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`. This will be the background color applied to
+/// `html` if you include the `typography` scss.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-background-color: if($md-light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
+
+/// The default border color to use throughout the app. This value will change depending on
+/// the value of `$md-light-theme`.
+///
+/// @type String
+/// @group theme
+/// @see md-light-theme
 $md-border-color: if($md-light-theme, rgba($md-black-base, .1), rgba($md-white-base, .12));
 
 
-/// The default transition time
+/// The default transition time to use on most css that have animations/transitions.
+///
+/// @type Number
 /// @group transitions
 $md-transition-time: .15s !default;
-/// The default bouncy transition
-/// @group transitions
-$md-transition-bounce: cubic-bezier(.5, 1.8, .9, .8) !default;
 
-$md-height: 48px;
 
-// Z Indexes
-/// @group overlay
+/// The default z-index for any `.md-overlay` or any overlay in the app.
+///
+/// @type Number
+/// @group z-indexes
 $md-overlay-z-index: 3 !default;
+
+/// The default z-index for the Dropdown component.
+///
+/// @type Number
 /// @group dropdown
 $md-dropdown-z-index: 4 !default;
-/// @group sidebar
+
+/// The default z-index for the sidebar that is not fixed.
+///
+/// @type Number
+/// @group z-indexes
 $md-sidebar-z-index: 5 !default;
-/// @group sidebar
-$md-sidebar-fixed-z-index: 8 !default;
-/// @group toolbar
+
+/// The default z-index for the sidebar that is fixed to the side.
+/// This z-index should be greater than all other z-indexes except
+/// for the dialog z-index
+///
+/// @type Number
+/// @group z-indexes
+/// @see md-sidebar-z-index
+/// @see md-dialog-z-index
+$md-sidebar-fixed-z-index: 10 !default;
+
+/// The default z-index for a fixed toolbar.
+///
+/// @type Number
+/// @group z-indexes
 $md-toolbar-z-index: 6 !default;
-/// @group snackbar
+
+/// The default z-index for the snackbar component.
+///
+/// @type Number
+/// @group z-indexes
 $md-snackbar-z-index: 6 !default;
+
+/// The default z-index for the fixed floating action button.
+///
+/// @type Number
+/// @group z-indexes
 $md-fab-z-index: 8 !default;
 
+
+/// The default z-index for the dialog component.
+///
+/// @type Number
+/// @group z-indexes
 $md-dialog-z-index: 26 !default;
 
 
+/// The most common used height throughout the material design scss.
+///
+/// @type String
+$md-height: 48px;
+
+/// The default padding used across the the material design scss.
+///
+/// @type String
+$md-default-padding: 16px;
 
 
-// =============================================
+// ===================================================================================
 // Typography
-/// The font family for the application
+// ===================================================================================
+
+
+/// The font name for the application. The recommended font is Roboto,
+/// but you can change it to whatever you would like.
+///
+/// @type String
 /// @group typography
-$md-font-family: Roboto !default;
-/// The font used for the application
+$md-font-name: Roboto !default;
+
+/// The font family for the application. This only combines the `$md-font-name`
+/// with a fallback font of `sans-serif`.
+///
+/// @type String
 /// @group typography
-$md-font: '#{$md-font-family}', sans-serif !default;
-/// The base font size
-/// @group typography
-$md-font-size-base: 14;
-/// The light text weight
+$md-font-family: '#{$md-font-name}', sans-serif !default;
+
+/// The light text weight.
+///
+/// @type Number
 /// @group typography
 $md-font-light: 300;
-/// The regular text weight
+
+/// The regular text weight.
+///
+/// @type Number
 /// @group typography
 $md-font-regular: 400;
-/// The medium text weight
+
+/// The medium text weight.
+///
+/// @type Number
 /// @group typography
 $md-font-medium: 500;
-/// The bold text weight
+
+/// The bold text weight.
+///
+/// @type Number
 /// @group typography
 $md-font-bold: 700;
-/// A list of all the text weights
+
+/// A list of all the text weights. This is mainly used so you can
+/// loop over the weights and include locally hosted fonts.
+///
+/// @type List
 /// @group typography
 $md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
 
 
-
+/// The `.md-display-4` font size.
+///
+/// @type String
+/// @group typography
 $md-display-4-font-size: 112px;
+
+/// The `.md-display-4` line height.
+///
+/// @type String
+/// @group typography
 $md-display-4-line-height: 128px;
 
+/// The `.md-display-3` font size.
+///
+/// @type String
+/// @group typography
 $md-display-3-font-size: 56px;
+
+/// The `.md-display-3` line height.
+///
+/// @type String
+/// @group typography
 $md-display-3-line-height: 84px;
 
+
+/// The `.md-display-2` font size.
+///
+/// @type String
+/// @group typography
 $md-display-2-font-size: 45px;
+
+/// The `.md-display-2` line height.
+///
+/// @type String
+/// @group typography
 $md-display-2-line-height: 48px;
 
+
+/// The `.md-display-1` font size.
+///
+/// @type String
+/// @group typography
 $md-display-1-font-size: 34px;
+
+/// The `.md-display-1` line height.
+///
+/// @type String
+/// @group typography
 $md-display-1-line-height: 40px;
 
+
+/// The `.md-headline` font size.
+///
+/// @type String
+/// @group typography
 $md-headline-font-size: 24px;
+
+/// The `.md-headline` line height.
+///
+/// @type String
+/// @group typography
 $md-headline-line-height: 32px;
 
+
+/// The `.md-title` font size.
+///
+/// @type String
+/// @group typography
 $md-title-font-size: 20px;
+
+/// The `.md-title` line height.
+///
+/// @type String
+/// @group typography
 $md-title-line-height: 28px;
 
+
+/// The \`.md-subheading-1` and `.md-subheading-2` font size for
+/// mobile devices.
+///
+/// @type String
+/// @group typography
 $md-subheading-mobile-font-size: 16px;
+
+/// The \`.md-subheading-1` and `.md-subheading-2` font size for
+/// desktop screens.
+///
+/// @type String
+/// @group typography
 $md-subheading-desktop-font-size: 15px;
+
+/// The `.md-subheading-2` line height.
+///
+/// @type String
+/// @group typography
 $md-subheading-2-line-height: 28px;
+
+/// The `.md-subheading-1` line height.
+///
+/// @type String
+/// @group typography
 $md-subheading-1-line-height: 24px;
 
-$md-body-mobile-font-size: 14px;
+/// The base font size. This is really just the mobile font size
+/// without the `px` suffix.
+///
+/// @type Number
+/// @group typography
+$md-font-size-base: 14;
+
+/// The `.md-body-1` and `.md-body-2` font size for
+/// mobile devices.
+///
+/// @type String
+/// @group typography
+$md-body-mobile-font-size: #{$md-font-size-base}px;
+
+/// The `.md-body-1` and `.md-body-2` font size for
+/// desktop screens.
+///
+/// @type String
+/// @group typography
 $md-body-desktop-font-size: 13px;
+
+/// The `.md-body-2` fnt size.
+///
+/// @type String
+/// @group typography
 $md-body-2-line-height: 24px;
+
+/// The `.md-body-1` fnt size.
+///
+/// @type String
+/// @group typography
 $md-body-1-line-height: 20px;
 
+/// The `.md-caption` font size.
+///
+/// @type String
+/// @group typography
 $md-caption-font-size: 12px;
+
+/// The line height to use all most css classes.
+///
+/// @type Number
+/// @group typography
 $md-line-height: 20 / $md-font-size-base;
 
 
-// =============================================
-// Buttons
-/// The default color base for buttons
-/// @link https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons
-/// @group buttons
-$md-btn-color-base: #999;
-/// @group buttons
-$md-btn-hover-color: rgba($md-btn-color-base, .2);
-/// @group buttons
-$md-btn-pressed-color: rgba($md-btn-color-base, .4);
 
-/// @link https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons
-/// @group buttons
-$md-btn-min-height: $md-height;
-/// @group buttons
-$md-btn-height: 36px;
-/// @group buttons
-$md-btn-padding: ($md-btn-min-height - $md-btn-height) / 2;
-/// @group buttons-flat
-$md-btn-flat-min-width: 88px;
-
-/// @group buttons-raised
-$md-btn-raised-min-width: 64px;
-
-/// @group buttons-fab
-$md-btn-fab-size: 56px;
-/// @group buttons-fab
-$md-btn-fab-size-mini: 40px;
-
-
-/// The font icon size
-/// @group font-icon
-$md-font-icon-size: 24px !default;
-
-$md-icon-btn-size: $md-font-icon-size * 2;
-$md-icon-btn-padding: $md-icon-btn-size / 4;
-
-
-/// The default padding used across the board
-$md-default-padding: 16px;
-
-/// The default ink animation time
-$md-ink-animation-time: .6s !default;
-$md-ink-transition-func: linear !default;
-
-
-// =============================================
-// Tabs
-$md-tab-height: $md-height;
-$md-tab-height-icon: 72px;
-$md-tab-max-width: 264px;
-
-$md-tab-mobile-min-width: 72px;
-$md-tab-mobile-font-size: 14px;
-
-$md-tab-desktop-font-size: 13px;
-$md-tab-desktop-padding: 24px;
-$md-tab-desktop-min-width: 160px;
-
-$md-tab-indicator-height: 2px;
-$md-tab-icon-padding: 10px;
-$md-tab-with-icon-padding-bottom: 16px;
-$md-tab-padding: 12px;
-$md-tab-single-line-padding-bottom: 20px;
-$md-tab-multiline-font-size: 12px;
-
-$md-tab-indicator-transition-time: $md-transition-time * 2 !default;
-
-// =============================================
-// Cards
-/// The default card padding
-/// @link https://www.google.com/design/spec/components/cards.html
-/// @group cards
-$md-card-padding: $md-default-padding;
-/// @group cards
-$md-card-padding-extra: 24px;
-/// @group cards
-$md-card-title-size: 24px;
-/// @group cards
-$md-card-title-size-small: 14px;
-$md-card-actions-padding: 8px;
-$md-card-color: $md-white-base;
-
-
-// =============================================
+// ===================================================================================
 // Avatars
-/// The default size for avatars
+// ===================================================================================
+
+/// The default size for avatars.
+///
 /// @type String
+/// @group avatars
 $md-avatar-size: 40px;
-/// The default avatar colors
+
+/// The default avatar colors to use with the `.md-avatar-SUFFIX`.
+///
 /// @type List
 /// @group avatars
 $md-avatar-colors: (
@@ -206,214 +384,1044 @@ $md-avatar-colors: (
 ) !default;
 
 
-// =============================================
+
+// ===================================================================================
+// Font Icons
+// ===================================================================================
+
+/// The font icon size. This should probably not be changed.
+///
+/// @type String
+/// @group font-icon
+$md-font-icon-size: 24px !default;
+
+
+
+// ===================================================================================
+// Ink
+// ===================================================================================
+
+/// The default ink animation time.
+///
+/// @type String
+/// @group ink
+$md-ink-animation-time: .6s !default;
+
+/// The default transition timing function for ink.
+///
+/// @type String
+/// @group ink
+$md-ink-transition-func: linear !default;
+
+
+
+// ===================================================================================
+// Buttons
+// ===================================================================================
+
+/// The default color base for buttons
+///
+/// @link https://www.google.com/design/spec/components/buttons.html#buttons-flat-raised-buttons
+/// @type String
+/// @group buttons
+$md-btn-color-base: #999;
+
+/// The hover color for buttons.
+///
+/// @type String
+/// @group buttons
+$md-btn-hover-color: rgba($md-btn-color-base, .2);
+
+/// The hover color for buttons.
+///
+/// @type String
+/// @group buttons
+$md-btn-pressed-color: rgba($md-btn-color-base, .4);
+
+/// The inside area of flat and rased buttons before calculating
+/// padding.
+///
+/// @type String
+/// @group buttons
+$md-btn-height: 36px;
+
+/// The padding to use for flat and raised buttons.
+///
+/// @type String
+/// @group buttons
+$md-btn-padding: ($md-height - $md-btn-height) / 2;
+
+/// The min width for flat buttons.
+///
+/// @type String
+/// @group buttons-flat
+$md-btn-flat-min-width: 88px;
+
+/// The min width for raised buttons.
+///
+/// @type String
+/// @group buttons-raised
+$md-btn-raised-min-width: 64px;
+
+/// The normal size for floating action buttons.
+///
+/// @type String
+/// @group buttons-fab
+$md-btn-fab-size: 56px;
+
+/// The mini size for floating action buttons.
+///
+/// @type String
+/// @group buttons-fab
+$md-btn-fab-size-mini: 40px;
+
+/// The icon button size.
+///
+/// @type String
+/// @group buttons-icon
+/// @see md-font-icon-size
+$md-icon-btn-size: $md-font-icon-size * 2;
+
+/// The padding for icon buttons.
+///
+/// @type String
+/// @group buttons-icon
+$md-icon-btn-padding: $md-icon-btn-size / 4;
+
+
+
+// ===================================================================================
+// Tabs
+// ===================================================================================
+
+/// The tab height.
+///
+/// @type String
+/// @group tabs
+$md-tab-height: $md-height;
+
+/// The height of a tab that has an icon.
+///
+/// @type String
+/// @group tabs
+$md-tab-height-icon: 72px;
+
+/// The max width for a tab.
+///
+/// @type String
+/// @group tabs
+$md-tab-max-width: 264px;
+
+/// The min width for a tab on a mobile device.
+///
+/// @type String
+/// @group tabs
+$md-tab-mobile-min-width: 72px;
+
+/// The font size for a tab's label on a mobile device.
+///
+/// @type String
+/// @group tabs
+$md-tab-mobile-font-size: 14px;
+
+/// The font size for a tab's label on a desktop screen.
+///
+/// @type String
+/// @group tabs
+$md-tab-desktop-font-size: 13px;
+
+/// The padding for a tab on a desktop screen.
+///
+/// @type String
+/// @group tabs
+$md-tab-desktop-padding: 24px;
+
+/// The min width for a tab on a desktop screen.
+///
+/// @type String
+/// @group tabs
+$md-tab-desktop-min-width: 160px;
+
+/// The height for the line indicating which tab is currently active.
+///
+/// @type String
+/// @group tabs
+$md-tab-indicator-height: 2px;
+
+/// The top, left, and right padding for a tab that has an icon.
+///
+/// @type String
+/// @group tabs
+$md-tab-icon-padding: 10px;
+
+/// The bottom padding for a tab that has an icon.
+///
+/// @type String
+/// @group tabs
+$md-tab-with-icon-padding-bottom: 16px;
+
+/// The default padding for a tab.
+///
+/// @type String
+/// @group tabs
+$md-tab-padding: 12px;
+
+/// The padding for a tab that has a single line of text
+///
+/// @type String
+/// @group tabs
+$md-tab-single-line-padding-bottom: 20px;
+
+/// The font size for tabs that are multiple lines
+///
+/// @type String
+/// @group tabs
+$md-tab-multiline-font-size: 12px;
+
+/// The time it takes for the indicator of the active tab to transition.
+///
+/// @type String
+/// @group tabs
+$md-tab-indicator-transition-time: $md-transition-time * 2 !default;
+
+
+
+// ===================================================================================
+// Cards
+// ===================================================================================
+
+/// The default padding for cards.
+///
+/// @link https://www.google.com/design/spec/components/cards.html
+/// @type String
+/// @group cards
+$md-card-padding: $md-default-padding;
+
+/// The additional padding required if a card has an additional
+/// component below it.
+///
+/// @type String
+/// @group cards
+$md-card-padding-extra: 24px;
+
+/// The font size for the main card title.
+///
+/// @type String
+/// @group cards
+$md-card-title-size: $md-headline-font-size;
+
+/// The font size for a card's title that is on the second line, or
+/// if the title should be forced to a smaller size.
+///
+/// @type String
+/// @group cards
+$md-card-title-size-small: 14px;
+
+/// The padding for the card actions block.
+///
+/// @type String
+/// @group cards
+$md-card-actions-padding: 8px;
+
+/// The color to use for a card's background color.
+///
+/// @type String
+/// @group cards
+$md-card-color: $md-white-base;
+
+
+
+// ===================================================================================
 // Selection Controls
+// ===================================================================================
+
+/// The switch line color for a light theme.
+///
+/// @type String
+/// @group selection-controls
 $md-switch-light-theme-track-color: rgba($md-black-base, .26);
+
+/// The disabled switch line color for a light theme.
+///
+/// @type String
+/// @group selection-controls
 $md-switch-light-theme-disabled-color: rgba($md-black-base, .12);
+
+/// The switch line color for a dark theme.
+///
+/// @type String
+/// @group selection-controls
 $md-switch-dark-theme-track-color: rgba($md-white-base, .3);
+
+/// The disabled switch line color for a dark theme.
+///
+/// @type String
+/// @group selection-controls
 $md-switch-dark-theme-disabled-color: rgba($md-white-base, .1);
+
+/// The switch height. This is the entire clickable area height for
+/// a switch.
+///
 /// @link https://www.google.com/design/spec/components/selection-controls.html
+/// @type String
 /// @group selection-controls
 $md-switch-height: $md-tab-height !default;
 
+/// The switch ball size.
+///
+/// @type String
 /// @group selection-controls
 $md-switch-ball-size: $md-font-icon-size !default;
+
+/// The height for the switch's bar. This is the line below
+/// the ball.
+///
+/// @type String
 /// @group selection-controls
 $md-switch-bar-height: $md-default-padding !default;
+
+/// The radius for the switch's bar.
+///
+/// @type String
 /// @group selection-controls
 $md-switch-radius: $md-switch-bar-height / 2 !default;
 
+/// The offset for the switch's ball from the left and top.
+///
+/// @type String
 /// @group selection-controls
 $md-switch-offset: $md-switch-bar-height / 4;
+
+/// The width for the entire switch component.
+///
+/// @type String
 /// @group selection-controls
 $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset !default;
 
 
-// =============================================
-// Toolbar
+
+// ===================================================================================
+// Toolbars
+// ===================================================================================
+
+/// The toolbar height.
+///
+/// @type String
 /// @group toolbar
 $md-toolbar-height: 64px !default;
+
+/// The toolbar margin for the action-area and the left action
+/// on mobile devices.
+///
+/// @type String
+/// @group toolbar
 $md-toolbar-mobile-margin: 12px;
+
+/// The toolbar margin for the action-area and the left action
+/// on desktop screens.
+///
+/// @type String
+/// @group toolbar
 $md-toolbar-deskop-margin: 12px;
 
 
-// =============================================
-// Sidebar
+
+// ===================================================================================
+// Sidebars
+// ===================================================================================
+
+/// The open width for the sidebar.
+///
+/// @type String
+/// @group sidebars
 $md-sidebar-open-width: 256px !default;
 
 
-// =============================================
-// Snackbar
+
+// ===================================================================================
+// Snackbars
+// ===================================================================================
+
+/// The background color for snackbars.
+///
+/// @link https://www.google.com/design/spec/components/snackbars-toasts.html#snackbars-toasts-specs
+/// @type String
 /// @group snackbar
 $md-snackbar-bg-color: #323232;
+
+/// The snackbar height.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-height: $md-height;
+
+/// The height for a snackbar that is multiple lines.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-multiline-height: 80px;
-/// The left and right padding for the snackbar
+
+/// The left and right padding for the snackbar.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-lr-padding: 24px;
-/// The top and bottom badding for the snackbar
+
+/// The top and bottom badding for the snackbar.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-tb-padding: 14px;
+
+/// The margin left for the action button in a sidebar.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-action-left-margin: 48px;
+
+/// The min width for a snackbar on a desktop screen.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-desktop-min-width: 288px;
+
+/// The max width for a snackbar on a desktop screen.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-desktop-max-width: 568px;
+
+/// The border radius for a snackbar on a desktop screen.
+///
+/// @type String
 /// @group snackbar
 $md-snackbar-desktop-border-radius: 2px;
 
 
 
-// =============================================
+
+// ===================================================================================
 // Text Fields
+// ===================================================================================
+
+/// The height for a text field that has a floating label
+/// on mobile devices.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-mobile-height: 72px;
+
+/// The height for a text field that has a single line label
+/// on mobile devices.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-mobile-sl-height: $md-height;
+
+/// The padding for text fields on mobile devices.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-mobile-padding: 16px;
+
+/// The font size for text fields on mobile devices.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-mobile-font-size: 16px;
+
+/// The padding between a text field and the underlined divider
+/// on mobile devices.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-mobile-divider-padding: 8px;
 
+/// The height for a text field that has a floating label
+/// on desktop screens.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-desktop-height: 60px;
+
+/// The height for a text field that has a single line label
+/// on desktop screens.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-desktop-sl-height: 40px;
+
+/// The padding for a text field on desktop screens.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-desktop-padding: 12px;
+
+/// The text field's font size for desktop screens.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-desktop-font-size: 13px;
+
+/// The padding between a text field and the underlined divider
+/// on desktop screens.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-desktop-divider-padding: 4px;
 
+/// The margin between a text field and an icon.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-icon-margin: 16px !default;
+
+/// The height of the text field's underlined divider.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-divider-height: 2px !default;
-$md-text-field-title-font-size: 34px !default;
+
+/// The font size for a title text field.
+///
+/// @type String
+/// @group text-fields
+$md-text-field-title-font-size: $md-display-1-font-size !default;
+
+/// The default width for a text field that has some info/error text.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-info-width: 256px !default;
+
+/// The font size for info/error text on a text field.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-info-font-size: 12px;
-$md-text-field-floating-label-top: 35px; // No idea why
+
+/// The floating label top positioning for a text field.
+/// No idea why it is this value. Magic!
+///
+/// @type String
+/// @group text-fields
+$md-text-field-floating-label-top: 35px;
+
+/// The font size for the floating label when it is under focus.
+///
+/// @type String
+/// @group text-fields
 $md-text-field-active-font-size: 12px;
 
 
-// =============================================
+
+// ===================================================================================
 // Progress
+// ===================================================================================
+
+/// The opacity of the primary color for the linear progress bar for the
+/// progress that ha not been met yet.
+///
+/// @type Number
+/// @group progress
 $md-linear-progress-opacity: .3 !default;
+
+/// The height of the linear progress bar.
+///
+/// @type String
+/// @group progress
 $md-linear-progress-height: 4px !default;
-$md-linear-progress-color: blue !default;
+
+/// The time it takes for an indeterminate linear progress animation cycle to take.
+/// This is the bar moving backwards and the short bar.
+///
+/// @type String
+/// @group progress
 $md-linear-progress-anim-time: 2.1s !default;
+
+/// The indeterminate linear progress animation function for the longer bar.
+///
+/// @type String
+/// @group progress
 $md-linear-progress-long-transition-func: cubic-bezier(.65, .815, .735, .395) !default;
+
+/// The indeterminate linear progress animation function for the shorter bar.
+///
+/// @type String
+/// @group progress
 $md-linear-progress-short-transition-func: cubic-bezier(.165, .84, .44, 1) !default;
+
+/// The delay for the shorter bar to appear in the indeterminate linear progress
+/// animation.
+///
+/// @type String
+/// @group progress
 $md-linear-progress-short-delay: 1.15s !default;
 
-$md-circular-progress-color-1: blue !default;
-$md-circular-progress-color-1-hue: 6 !default;
-$md-circular-progress-color-2: yellow !default;
-$md-circular-progress-color-2-hue: 6 !default;
-$md-circular-progress-color-3: red !default;
-$md-circular-progress-color-3-hue: 6 !default;
-$md-circular-progress-color-4: green !default;
-$md-circular-progress-color-4-hue: 6 !default;
+/// The time it takes to complete the indeterminate circular progress animation.
+///
+/// @type String
+/// @group progress
 $md-circular-progress-duration: 1.4s !default;
+
+/// The animation timing function for the indeterminate circular progress animation.
+///
+/// @type String
+/// @group progress
 $md-circular-progress-transition-func: ease-in-out !default;
-$md-circular-progress-stroke-dashoffset: 187 !default;
+
+/// The initial stroke-dasharray for the indetermate progress.
+/// I have no idea how this stuff works.. So change have fun changing that.
+///
+/// @type String
+/// @group progress
+$md-circular-progress-stroke-dashoffset: 187px !default;
+
+/// The stroke-dasharray for the determinate circular progress svg.
+///
+/// @type String
+/// @group progress
 $md-circular-progress-determinate-dasharray: 187px !default;
 
 
-// =============================================
+
+
+
+// ===================================================================================
 // Select Fields
+// ===================================================================================
+
+/// The padding to the left of the select field value text.
+///
+/// @type String
+/// @group select-fields
 $md-select-field-padding-left: 24px;
 
 
-// =============================================
+
+
+
+// ===================================================================================
 // Lists
+// ===================================================================================
+
+/// The padding to use for a divider when it is inset.
+///
+/// @type String
+/// @group lists
 $md-list-tile-left-padding: 72px;
+
+/// This is used to calculate the remaining padding when an avatar/icon
+/// is displayed in a list item.
+///
+/// @type String
+/// @group lists
 $md-tile-left-padding: $md-list-tile-left-padding - $md-default-padding;
+
+/// The additional margin for when a list needs a margin at the top or bottom.
+///
+/// @type String
+/// @group lists
 $md-list-tile-extra-margin: $md-default-padding / 2;
+
+/// The primary text font size for a list item.
+///
+/// @type String
+/// @group lists
 $md-list-primary-text-font-size: 16px;
 
-// =============================================
+
+
+
+// ===================================================================================
 // Dropdowns
-/// Sets the max height of the dropdown to show 5 and 1/3 items
-/// @group dropdown
+// ===================================================================================
+
+/// Sets the max height of the dropdown to show 5 and 1/3 items. This value
+/// should always show at least a fraction of another item.
+///
+/// @type String
+/// @group dropdowns
 $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;
 
-// =============================================
+
+
+
+// ===================================================================================
 // Chips
+// ===================================================================================
+
+/// The chip height.
+///
+/// @type String
+/// @group chips
 $md-chip-height: 32px;
+
+/// The border radius for the chip.
+///
+/// @type String
+/// @group chips
 $md-chip-border-radius: $md-chip-height / 2;
+
+/// The font size inside a chip.
+///
+/// @type String
+/// @group chips
 $md-chip-font-size: 13px;
-$md-chip-color: rmd-gba($md-black-base, .87);
+
+/// The background color of the chip.
+///
+/// @type String
+/// @group chips
+$md-chip-color: rgba($md-black-base, .87);
+
+/// The color for the remove icon.
+///
+/// @type String
+/// @group chips
 $md-chip-remove-icon-color: rgba($md-black-base, .54);
-$md-chip-remove-icon-size: 24px;
+
+/// The font size for the remove icon.
+///
+/// @type String
+/// @group chips
+$md-chip-remove-icon-size: $md-font-icon-size;
+
+/// The margin around the remove icon in a chip.
+///
+/// @type String
+/// @group chips
 $md-chip-remove-icon-margin: 4px;
 
 
-// =============================================
+
+// ===================================================================================
 // Dialogs
+// ===================================================================================
+
+/// The padding surrounding a dialog.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-padding: 24px;
+
+/// The padding below a dialog's title.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-title-padding-bottom: 20px;
+
+/// The min width for an action button in the dialog.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-flat-btn-min-width: 64px;
+
+/// The left and right padding of the action buttons in a dialog.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-flat-btn-lr-padding: 8px;
+
+/// The color for the text inside of a dialog.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-content-text-color: $md-secondary-text-color;
+
+/// The color of the dialog overlay.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-overlay-color: rgba($md-black-base, .45);
+
+/// The time it takes for a dialog to appear/disappear.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-transition-time: $md-transition-time * 2 !default;
+
+/// A simple dialog's min width.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-simple-min-width: 56px * 5;
+
+/// The minimum amount of margin allowed for a non full page dialog
+/// to be from the edges of the screen.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-min-page-margin: 24px 40px;
+
+/// The distance a dialog should travel when appearing in.
+///
+/// @type String
+/// @group dialogs
 $md-dialog-translate-distance: -30px !default;
 
 
 
-// =============================================
-// Date Pickers
+
+
+
+// ===================================================================================
+// Pickers
+// ===================================================================================
+
+/// The height of the date/time picker's content (the clock or calendar)
+/// when in portait mode.
+///
+/// @type String
+/// @group pickers
 $md-pickers-portrait-content-height: 340px !default;
+
+/// The width of date/time pickers in portait mode.
+///
+/// @type String
+/// @group pickers
 $md-pickers-portrait-width: 320px !default;
+
+/// The height of the date/time picker's header in portait mode.
+/// This is the container that holds the year and current date.
+///
+/// @type String
+/// @group pickers
 $md-pickers-portrait-header-height: 110px !default;
+
+/// The width of the date/time picker's header in landscape mode.
+/// This is the container that holds the year and current date.
+///
+/// @type String
+/// @group pickers
 $md-pickers-landscape-header-width: 180px !default;
+
+/// The height of date/time picker's content (the calendar or the clock)
+/// in landscape mode.
+///
+/// @type String
+/// @group pickers
 $md-pickers-landscape-content-height: 280px !default;
+
+/// The width of date/time pickers in landscape mode.
+///
+/// @type String
+/// @group pickers
 $md-pickers-landscape-width: 560px !default;
 
-$md-date-picker-portrait-date-size: 44px !default;
-$md-date-picker-portrait-ball-size: 36px !default;
-$md-date-picker-landscape-date-size: 35px !default;
-$md-date-picker-landscape-ball-size: 32px !default;
-
-$md-clock-portrait-size: $md-pickers-portrait-width - $md-dialog-padding * 2 !default;
-$md-clock-landscape-size: $md-pickers-landscape-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
-$md-clock-padding: 4px;
-$md-clock-time-size: 36px !default;
-$md-clock-hand-ball-size: 6px !default;
-$md-clock-hand-ball-scale: .4 !default;
-$md-clock-hand-ball-border-size: $md-clock-time-size / 4 !default;
-$md-clock-time-font-size: 16px !default;
-
-$md-pickers-portrait-height: 380px !default;
-$md-pickers-landscape-height: 340px !default;
-
-$md-date-picker-year-font-size: 16px !default;
+/// The font size for dates in the date picker.
+///
+/// @type String
+/// @group pickers
 $md-date-picker-calendar-date-font-size: 13px !default;
+
+/// The time it takes for the circle to animate for the date picker.
+///
+/// @type String
+/// @group pickers
 $md-date-picker-transition-time: $md-transition-time * 2 !default;
-$md-date-picker-date-padding: 12px !default;
+
+/// The size of the circle when hovering/selecting a date in the calendar.
+///
+/// @type String
+/// @group pickers
 $md-date-picker-circle-size: 36px !default;
 
+/// The inactive font size for a year when
+/// using a date picker and have the year display mode activated.
+///
+/// @type String
+/// @group pickers
 $md-year-picker-font-size: 16px !default;
+
+/// The font size of a year that has been focused (but not selected) when
+/// using a date picker and have the year display mode activated.
+///
+/// @type String
+/// @group pickers
 $md-year-picker-focus-font-size: 20px !default;
+
+/// The font size of the currently selected year when using a date picker
+/// and have the year display mode activated.
+///
+/// @type String
+/// @group pickers
 $md-year-picker-active-font-size: 24px !default;
 
+/// The size of the date picker's date container in portait mode.
+///
+/// @type String
+/// @group pickers
+$md-date-picker-portrait-date-size: 44px !default;
 
-// =============================================
+/// The size of the date picker's selected date ball size in portrait
+/// mode.
+///
+/// @type String
+/// @group pickers
+$md-date-picker-portrait-ball-size: 36px !default;
+
+/// The size of the date picker's date container in landscape mode.
+///
+/// @type String
+/// @group pickers
+$md-date-picker-landscape-date-size: 35px !default;
+
+/// The size of the date picker's selected date ball size in landscape mode.
+///
+/// @type String
+/// @group pickers
+$md-date-picker-landscape-ball-size: 32px !default;
+
+
+/// The size of the time picker's clock when in portait mode.
+///
+/// @type String
+/// @group pickers
+$md-clock-portrait-size: $md-pickers-portrait-width - $md-dialog-padding * 2 !default;
+
+/// The size of the time picker's clock when in landscape mode.
+///
+/// @type String
+/// @group pickers
+$md-clock-landscape-size: $md-pickers-landscape-content-height - $md-dialog-padding - $md-dialog-padding / 2 !default;
+
+/// The padding from the outside edge of the clock to the edge of one of the
+/// time circles.
+///
+/// @type String
+/// @group pickers
+$md-clock-padding: 4px;
+
+/// This is the *fake* size of a circle around a time on the clock. If this value
+/// is updated, you will need to update the calculations in the ClockTime component.
+///
+/// @type String
+/// @group pickers
+$md-clock-time-size: 36px;
+
+/// The size of the time picker's ball in the center of the clock. So
+/// this is the clock hand's mount point ball thing.
+///
+/// @type String
+/// @group pickers
+$md-clock-hand-ball-size: 6px !default;
+
+/// The scale to shrink the time picker's ball when selecting a minute
+/// that is not a multiple of 15.
+///
+/// @type String
+/// @group pickers
+$md-clock-hand-ball-scale: .4 !default;
+
+/// The border width for the clock's selected time when selecting a minute
+/// that is not a multiple of 15.
+///
+/// @type String
+/// @group pickers
+$md-clock-hand-ball-border-size: $md-clock-time-size / 4 !default;
+
+/// The font size for the values in the clock in a tiem picker.
+///
+/// @type String
+/// @group pickers
+$md-clock-time-font-size: 16px !default;
+
+/// The height for a portrait date/time picker.
+///
+/// @type String
+/// @group pickers
+$md-pickers-portrait-height: 380px !default;
+
+/// The height for a landscape date/time picker.
+///
+/// @type String
+/// @group pickers
+$md-pickers-landscape-height: 340px !default;
+
+
+
+
+
+// ===================================================================================
 // Sliders
+// ===================================================================================
+
+
+/// The size of the ball for sliders.
+///
+/// @type String
+/// @group sliders
 $md-slider-ball-size: 14px;
 
+/// The slider color when there is no value in light themes.
+///
+/// @type String
+/// @group sliders
 $md-slider-light-theme-off-color: rgba($md-black-base, .26);
+
+/// The slider color when there is no value and the slider
+/// is focused for light themes.
+///
+/// @type String
+/// @group sliders
 $md-slider-light-theme-focus-off-color: rgba($md-black-base, .38);
+
+/// The disabled slider color for light themes.
+///
+/// @type String
+/// @group sliders
 $md-slider-light-theme-disabled-color: rgba($md-black-base, .26);
 
+/// The color for sliders in a dark theme when there is no value.
+///
+/// @type String
+/// @group sliders
 $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 
 
-// =============================================
+
+
+
+// ===================================================================================
 // Tooltips
-$md-tooltip-mobile-offset: 24px;
+// ===================================================================================
+
+/// The font size for tooltips on mobile devices.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-mobile-font-size: 14px;
+
+/// The left and right padding for tooltips on mobile devices.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-mobile-lr-padding: 16px;
+
+/// The height for tooltips on mobile devices.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-mobile-height: 32px;
 
-$md-tooltip-desktop-offset: 14px;
+/// The font size for tooltips on desktop screens.
+///
+/// Note: Chrome does not allow fonts below 12px. There is
+/// a hack class to fix that.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-desktop-font-size: 10px;
+
+/// The left and right padding for tooltips on desktop screens.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-desktop-lr-padding: 8px;
+
+/// The height for a tooltip on desktop screens.
+///
+/// @type String
+/// @group tooltips
 $md-tooltip-desktop-height: 22px;

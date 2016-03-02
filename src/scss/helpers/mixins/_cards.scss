@@ -29,6 +29,7 @@
 /// @param {String} $target [img] - The target to force the aspect ratio on
 /// @param {Number} $width [16] - The target width ratio
 /// @param {Number} $height [9] - The target height ratio
+/// @group cards
 @mixin aspect-ratio($target: img, $width: 16, $height: 9) {
   position: relative;
 

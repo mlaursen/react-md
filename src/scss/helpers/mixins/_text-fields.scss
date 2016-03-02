@@ -1,3 +1,13 @@
+/// Creates a text feld with a given css name for the font sizes.
+/// This is mostly used if you want to have a title text field and it
+/// is automatically used in the `make-text-field` mixin.
+///
+/// @param {String} $name - The css class name to use.
+/// @param {String} $font-size - The font size to use.
+/// @param {String} $media-font-size - The font size for the current media size.
+/// @param {String} $fl-height - The floating label height for the current media size.
+/// @param {String} $sl-height - The single line label height for the current media size.
+/// @group text-fields
 @mixin make-text-field-with-font-size($name, $font-size, $media-font-size, $fl-height, $sl-height) {
   .#{$name} {
     .md-floating-label,
@@ -22,6 +32,7 @@
 /// @param {String} $font-size - The font size for the text field.
 /// @param {String} $padding - The padding to be used on the text field and the label.
 /// @param {String} $divider-padding - The padding to use for the text-field-divider at the bottom of the text field.
+/// @group text-fields
 @mixin make-text-field($fl-height, $sl-height, $font-size, $padding, $divider-padding) {
   @include make-text-field-with-font-size(md-title-text-field, $md-text-field-title-font-size, $font-size, $fl-height, $sl-height);
 
@@ -93,6 +104,8 @@
 ///   @media only screen and (min-width: 0px) and (max-width: 599px) {
 ///     @include md-text-field-mobile();
 ///   }
+///
+/// @group text-fields
 @mixin md-text-field-mobile() {
   @include make-text-field(
     $md-text-field-mobile-height,
@@ -109,6 +122,8 @@
 ///   @media only screen and (min-width: 600px) {
 ///     @include md-text-field-desktop();
 ///   }
+///
+/// @group text-fields
 @mixin md-text-field-desktop() {
   @include make-text-field(
     $md-text-field-desktop-height,
@@ -156,6 +171,7 @@
 ///        and the hint text underneath the text fields.
 /// @param {Color} $error-color [$md-red-500] - The error color to use for the text field
 ///        underlines, icons, floating labels and error message text when there is an error.
+/// @group text-fields
 @mixin md-theme-text-fields($color: $md-primary-color, $hint-color: $md-secondary-text-color, $error-color: $md-red-500) {
   .md-floating-label,
   .md-text-field-message,

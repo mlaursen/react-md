@@ -27,8 +27,9 @@
 ///    background: rgba(#fff, .15);
 ///  }
 ///
-/// @param {Color} $primary-color - The primary color to use for a tab
-/// @param {Color} $secondary-color - The secondary color to use for a tab
+/// @param {String} $primary-color - The primary color to use for a tab
+/// @param {String} $secondary-color - The secondary color to use for a tab
+/// @group tabs
 @mixin md-theme-tabs($primary-color, $secondary-color) {
   &.md-tabs-scroll-container {
     background: $primary-color;
@@ -53,6 +54,8 @@
 ///   @media only screen and (min-width: 0px) and (max-width: 599px) {
 ///     @include md-tab-mobile();
 ///   }
+///
+/// @group tabs
 @mixin md-tab-mobile() {
   .md-tab {
     font-size: $md-tab-mobile-font-size;
@@ -66,6 +69,8 @@
 ///   @media only screen and (min-width: 600px) {
 ///     @include md-tab-desktop();
 ///   }
+///
+/// @group tabs
 @mixin md-tab-desktop() {
   .md-tab {
     font-size: $md-tab-desktop-font-size;

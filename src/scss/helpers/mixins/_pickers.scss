@@ -1,3 +1,11 @@
+/// Styles the date picker and the time picker to a portrait display.
+///
+/// @example scss - Basic Usage SASS
+///   .md-picker.portrait {
+///     @include md-pickers-portrait;
+///   }
+///
+/// @group pickers
 @mixin md-pickers-portrait() {
   width: $md-pickers-portrait-width;
 
@@ -55,6 +63,14 @@
   }
 }
 
+/// Styles the date picker and the time picker to a landscape display.
+///
+/// @example scss - Basic Usage SASS
+///   .md-picker.landscape {
+///     @include md-pickers-portrait;
+///   }
+///
+/// @group pickers
 @mixin md-pickers-landscape() {
   display: flex;
   width: $md-pickers-landscape-width;
@@ -108,12 +124,20 @@
 }
 
 
+/// Updates the date picker and time picker components to be displayed portrait
+/// if they are not specifically set to landscape.
+///
+/// @group pickers
 @mixin md-date-picker-mobile() {
   .md-picker:not(.landscape) {
     @include md-pickers-portrait();
   }
 }
 
+/// Updates the date picker and time picker components to be displayed landscape
+/// if they are not specifically set to portrait.
+///
+/// @group pickers
 @mixin md-date-picker-desktop() {
   .md-picker:not(.portrait) {
     @include md-pickers-landscape();
@@ -164,6 +188,7 @@
 /// @param {Color} $primary - The primary color to use.
 /// @param {Color} $hover-color - The hover color to use.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if it is the light theme
+/// @group pickers
 @mixin md-theme-date-pickers($primary, $hover-color, $light-theme: $md-light-theme) {
   .md-picker.inline {
     background: if($light-theme, $md-light-theme-card-color, $md-dark-theme-card-color);
