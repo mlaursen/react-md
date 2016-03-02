@@ -43,6 +43,8 @@
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.14.0",
+    "exports-loader": "^0.6.3",
+    "intl": "^1.1.0",
     "normalize-scss-vanilla": "^1.0.1",
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.6",

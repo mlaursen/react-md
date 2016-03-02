@@ -18,6 +18,7 @@ const env = {
 
 let config = {
   entry: [
+    'babel-polyfill',
     './src/app/index.js',
   ],
 
@@ -69,6 +70,9 @@ let config = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({
+      'Intl': 'exports?global.Intl!intl',
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV || 'development'),
