@@ -43,9 +43,8 @@ the [Material design color palette](https://www.google.com/design/spec/style/col
 The default colors are `indigo` and `pink` (hue A200). You can theme your application by either changing the default color variables:
 
 ```
-$md-primary-color: indigo !default;
-$md-secondary-color: pink !default;
-$md-secondary-hue: 2 !default;
+$md-primary-color: $md-indigo-500 !default;
+$md-secondary-color: $md-pink-a-200 !default;
 ```
 
 Or defining your own theme with the theme mixins.
@@ -64,13 +63,11 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 
 * Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
 * Hopefully update ListItem components to not require Line1 and Line2 crap.
-* Time pickers are not fully implemented. It shows an empty circle. So helpful!
 * The circular progress only does not animate the stroke-width or whatever it is called in IE.
 * Autocomplete
 * Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables.scss) but no components with functionality.
 * Bottom sheets
 * Grid lists
-* Sidebar
 * Steppers
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
 * Eventually add a way to use chips in text fields
