@@ -33,10 +33,14 @@
   @include make-paper(2);
 
   min-height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   transition: width $md-transition-time;
   width: 0;
   z-index: $md-sidebar-z-index;
+
+  &.active {
+    overflow-y: auto;
+  }
 
   .md-avatar {
     height: $md-font-icon-size;
