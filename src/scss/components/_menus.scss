@@ -70,3 +70,11 @@
     transition: transform $md-transition-time;
   }
 }
+
+.md-toolbar-container + .md-menu-container {
+  display: block;
+
+  .md-menu {
+    width: 100%;
+  }
+}

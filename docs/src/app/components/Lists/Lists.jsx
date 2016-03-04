@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Paper from 'react-md/lib/Papers';
 import { List, ListItem, ListSubheader } from 'react-md/lib/Lists';
 
 import DocPage from 'react-md-documentation';
 import ListExamples from './ListExamples';
 import ListExamplesRaw from '!!raw!./ListExamples';
+import MessageList from '../../commonExamples/MessageList';
+import MessageListRaw from '!!raw!../../commonExamples/MessageList';
 
 export default class Lists extends Component {
   constructor(props) {
@@ -88,6 +91,14 @@ export default class Lists extends Component {
           }],
         }]}
         examples={[{
+          name: 'Recent Messages List',
+          markdown: MessageListRaw,
+          children: (
+            <Paper style={{ maxWidth: 340, margin: 'auto' }}>
+              <MessageList />
+            </Paper>
+          ),
+        }, {
           markdown: ListExamplesRaw,
           children: <ListExamples />,
         }]}

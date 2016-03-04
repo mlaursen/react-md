@@ -6,7 +6,6 @@
   @include md-snackbar-mobile();
   @include md-tab-mobile();
   @include md-text-field-mobile();
-  @include md-toolbar-mobile();
   @include md-tooltips-mobile();
 }
 
@@ -20,4 +19,12 @@
   @include md-text-field-desktop();
   @include md-toolbar-desktop();
   @include md-tooltips-desktop();
+}
+
+@media only screen and (orientation: portrait) and (max-width: 599px) {
+  @include md-toolbar-mobile-portait();
+}
+
+@media only screen and (orientation: landscape) and (max-width: 599px) {
+  @include md-toolbar-mobile-landscape();
 }

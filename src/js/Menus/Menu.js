@@ -43,7 +43,7 @@ export default class Menu extends Component {
   };
 
   componentDidMount() {
-    if(this.props.isOpen) {
+    if(this.props.isOpen && this.props.minWidth) {
       this.calcMinWidth();
     }
   }
@@ -57,7 +57,7 @@ export default class Menu extends Component {
         window.removeEventListener('click', this.closeOnOutsideClick);
       }
 
-      if(!this.state.minWidth) {
+      if(!this.state.minWidth && this.props.minWidth) {
         this.calcMinWidth();
       }
     }

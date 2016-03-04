@@ -54,7 +54,7 @@ export default class SidebarNav extends Component {
         className="main-sidebar"
         onOverlayClick={closeSidebar}
       >
-        <List>
+        <List className="avatar-icon-mix">{/* scales avatars to font-icon size */}
           <ListItem
             component={Link}
             className={this.listItemClassName('')}

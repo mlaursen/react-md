@@ -710,19 +710,39 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 /// @group toolbar
 $md-toolbar-height: 64px !default;
 
-/// The toolbar margin for the action-area and the left action
-/// on mobile devices.
+/// The toolbar height for landscape mode on mobile devices.
 ///
 /// @type String
 /// @group toolbar
-$md-toolbar-mobile-margin: 12px;
+$md-toolbar-mobile-landscape-height: 48px;
 
-/// The toolbar margin for the action-area and the left action
-/// on desktop screens.
+/// The toolbar height for landscape mode on mobile devices.
 ///
 /// @type String
 /// @group toolbar
-$md-toolbar-deskop-margin: 12px;
+$md-toolbar-mobile-portrait-height: 56px;
+
+/// The toolbar height for landscape mode on mobile devices.
+///
+/// @type String
+/// @group toolbar
+$md-toolbar-desktop-height: 64px;
+
+/// The toolbar margin for any 'actions' in a toolbar. This
+/// will apply to the css classes `.action-left`, ` action-area`,
+/// `.action-right`.
+///
+/// @type String
+/// @group toolbar
+$md-toolbar-action-margin: 12px;
+
+
+/// The keyline to the title text in a toolbar. This includes any icons
+/// to the left of the title.
+///
+/// @type String
+/// @group toolbar
+$md-toolbar-title-keyline: 72px;
 
 
 

@@ -136,3 +136,7 @@
   flex-shrink: 0;
   padding-left: $md-default-padding;
 }
+
+.md-toolbar .md-text-field {
+  font-size: $md-title-font-size;
+}

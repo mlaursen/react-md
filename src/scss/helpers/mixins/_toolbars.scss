@@ -21,38 +21,38 @@
   }
 }
 
-/// Adds additional css to the app bar for mobile devices
-///
-/// @example scss - Example Usage SASS
-///   @media only screen and (min-width: 0px) and (max-width: 599px) {
-///     @include md-toolbar-mobile();
-///   }
-///
-/// @group toolbars
-@mixin md-toolbar-mobile() {
-  .md-toolbar {
-    .action-left,
-    .action-area {
-      margin-left: $md-toolbar-mobile-margin;
-      margin-right: $md-toolbar-mobile-margin;
-    }
+@mixin md-toolbar-mobile-landscape() {
+  .md-toolbar,
+  .md-toolbar .md-text-field:not(.multi-line) {
+    height: $md-toolbar-mobile-landscape-height;
+  }
+
+  .md-toolbar .md-text-field:not(.multi-line) {
+    line-height: $md-toolbar-mobile-landscape-height;
+  }
+}
+
+@mixin md-toolbar-mobile-portait() {
+  .md-toolbar,
+  .md-toolbar .md-text-field:not(.multi-line) {
+    height: $md-toolbar-mobile-portrait-height;
+  }
+
+  .md-toolbar .md-text-field:not(.multi-line) {
+    line-height: $md-toolbar-mobile-portrait-height;
   }
 }
 
 /// Adds additional css to the app bar for desktop
 ///
-/// @example scss - Example Usage SASS
-///   @media only screen and (min-width: 600px) {
-///     @include md-toolbar-desktop();
-///   }
-///
 /// @group toolbars
 @mixin md-toolbar-desktop() {
-  .md-toolbar {
-    .action-left,
-    .action-area {
-      margin-left: $md-toolbar-deskop-margin;
-      margin-right: $md-toolbar-deskop-margin;
-    }
+  .md-toolbar,
+  .md-toolbar .md-text-field:not(.multi-line) {
+    height: $md-toolbar-desktop-height;
+  }
+
+  .md-toolbar .md-text-field:not(.multi-line) {
+    line-height: $md-toolbar-desktop-height;
   }
 }

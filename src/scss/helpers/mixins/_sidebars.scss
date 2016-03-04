@@ -3,7 +3,7 @@
 /// @group sidebars
 @mixin md-sidebar-mobile() {
   .md-sidebar.active {
-    width: calc(100vw - #{$md-icon-btn-size + $md-toolbar-mobile-margin * 2});
+    width: calc(100vw - #{$md-icon-btn-size + $md-toolbar-action-margin * 2});
   }
 
   .md-sidebar,
