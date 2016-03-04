@@ -36,6 +36,18 @@ main {
   }
 }
 
+.getting-started-theme {
+  @include md-theme-most($md-purple-500, $md-purple-700, $md-green-a-200, $md-green-500);
+}
+
+.customization-theme {
+  @include md-theme-most($md-teal-500, $md-teal-300, $md-purple-a-200, $md-purple-500);
+}
+
+.typography-theme {
+  @include md-theme-most($md-cyan-500, $md-cyan-200, $md-lime-a-200, $md-lime-500);
+}
+
 .react-md-docs {
   display: flex;
 }

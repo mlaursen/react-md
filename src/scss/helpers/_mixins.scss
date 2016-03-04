@@ -15,6 +15,7 @@
 @import 'mixins/toolbars';
 @import 'mixins/tooltips';
 @import 'mixins/typography';
+@import 'mixins/theme';
 
 /// Generates the box shadow for material design
 ///
@@ -101,4 +102,3 @@
   $index: if($i == 0, str-length($string), $i);
   @return str-slice($string, $index, $index + 1);
 }
-

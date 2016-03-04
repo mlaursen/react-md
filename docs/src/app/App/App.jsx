@@ -70,6 +70,19 @@ export default class App extends Component {
     return classnames({ 'active': this.props.location.pathname === `/${path}` });
   };
 
+  mapPathToTheme = () => {
+    switch(this.props.location.pathname) {
+      case `/${GettingStarted.path}`:
+        return 'getting-started-theme';
+      case `/${Customization.path}`:
+        return 'customization-theme';
+      case `/${Typography.path}`:
+        return 'typography-theme';
+      default:
+        return null;
+    }
+  };
+
   render() {
     const pathname = this.props.location.pathname;
     let pageTitle;
@@ -91,7 +104,7 @@ export default class App extends Component {
     }
 
     return (
-      <div className="react-md-docs">
+      <div className={classnames('react-md-docs', this.mapPathToTheme())}>
         <Toolbar
           primary
           fixed

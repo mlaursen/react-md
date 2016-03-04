@@ -1,25 +1,6 @@
-@include md-theme-text-fields($md-primary-color);
-@include md-theme-snackbars($md-primary-color);
-@include md-theme-date-pickers($md-primary-color, $md-indigo-400);
-@include md-theme-lists($md-primary-color);
-@include md-theme-progress($md-blue-500, $md-blue-200);
-@include md-theme-select-fields($md-primary-color);
-@include md-theme-selection-controls($md-primary-color);
-@include md-theme-sliders($md-indigo-500);
+@include md-theme-most();
 
-.md-primary {
-  @include md-theme-toolbars($md-primary-color, $md-white-base);
-  @include md-theme-buttons($md-primary-color);
-  @include md-theme-tabs($md-primary-color, $md-secondary-color);
-}
-
-.md-secondary {
-  @include md-theme-buttons($md-secondary-color);
-  $secondary: $md-pink-500;
-  @include md-theme-toolbars($secondary, $md-white-base);
-  @include md-theme-tabs($secondary, $md-primary-color);
-}
-
+@include md-theme-progress($md-progress-active-color, $md-progress-inactive-color);
 @each $item in $md-avatar-colors {
   $bg-color: nth($item, 1);
   $text-color: nth($item, 2);
@@ -27,3 +8,4 @@
 
   @include md-theme-avatars-suffix($bg-color, $text-color, $suffix);
 }
+

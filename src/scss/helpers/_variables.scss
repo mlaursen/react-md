@@ -14,12 +14,16 @@ $md-light-theme: true !default;
 /// @group theme
 $md-primary-color: $md-indigo-500 !default;
 
+$md-primary-color-hue-1: $md-indigo-400 !default;
+
 /// The secondary color to use throughout the app. This should
 /// be one of the material design colors.
 ///
 /// @type String
 /// @group theme
 $md-secondary-color: $md-pink-a-200 !default;
+
+$md-secondary-color-base: $md-pink-500 !default;
 
 
 
@@ -938,6 +942,9 @@ $md-text-field-active-font-size: 12px;
 // ===================================================================================
 // Progress
 // ===================================================================================
+
+$md-progress-active-color: $md-blue-500 !default;
+$md-progress-inactive-color: $md-blue-200 !default;
 
 /// The opacity of the primary color for the linear progress bar for the
 /// progress that ha not been met yet.
