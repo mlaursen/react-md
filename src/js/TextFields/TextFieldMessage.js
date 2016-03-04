@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-const TextFieldMessage = ({ value, message, maxLength, error, active, helpOnFocus }) => {
+const TextFieldMessage = ({ value, message, maxLength, error, active, helpOnFocus, className }) => {
   const isMessageVisible = !!message && (!helpOnFocus || active);
   return (
     <CSSTransitionGroup
@@ -10,7 +10,7 @@ const TextFieldMessage = ({ value, message, maxLength, error, active, helpOnFocu
       transitionName="opacity"
       transitionEnterTimeout={150}
       transitionLeaveTimeout={150}
-      className={classnames('md-text-field-message', {
+      className={classnames('md-text-field-message', className, {
         error,
         'count-only': !message || !isMessageVisible,
       })}
@@ -35,6 +35,7 @@ TextFieldMessage.propTypes = {
   error: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
   helpOnFocus: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default TextFieldMessage;

@@ -78,15 +78,20 @@
     top: $padding;
   }
 
+  $offset: $sl-height + $md-text-field-icon-margin;
+
   .md-text-divider {
     bottom: $divider-padding;
 
     &.icon-offset {
-      $offset: $sl-height + $md-text-field-icon-margin;
 
       left: $offset;
       width: calc(100% - #{$offset});
     }
+  }
+
+  .md-text-field-message.icon-offset {
+    margin-left: $offset;
   }
 
   .md-text-field-icon {

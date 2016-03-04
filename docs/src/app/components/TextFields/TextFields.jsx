@@ -3,10 +3,14 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TextField from 'react-md/lib/TextFields';
 
 import DocPage from 'react-md-documentation';
+import BasicExamples from './BasicExamples';
+import BasicExamplesRaw from '!!raw!./BasicExamples';
 import TextFieldExamples from './TextFieldExamples';
 import TextFieldExamplesRaw from '!!raw!./TextFieldExamples';
 import TextFieldToolbarExample from './TextFieldToolbarExample';
 import TextFieldToolbarExampleRaw from '!!raw!./TextFieldToolbarExample';
+import ComposeReply from '../../commonExamples/ComposeReply';
+import ComposeReplyRaw from '!!raw!../../commonExamples/ComposeReply';
 
 import './_text-field.scss';
 
@@ -93,9 +97,19 @@ export default class TextFields extends Component {
         }]}
         allRemaining={false}
         examples={[{
-          markdown: TextFieldExamplesRaw,
-          children: <TextFieldExamples />,
+          name: 'Basic',
+          markdown: BasicExamplesRaw,
+          children: <BasicExamples {...this.props} />,
         }, {
+          name: 'With Additional Info',
+          markdown: TextFieldExamplesRaw,
+          children: <TextFieldExamples {...this.props} />,
+        }, {
+          name: 'Full Width',
+          markdown: ComposeReplyRaw,
+          children: <ComposeReply />,
+        }, {
+          name: 'In Toolbars',
           markdown: TextFieldToolbarExampleRaw,
           children: <TextFieldToolbarExample />,
         }]}

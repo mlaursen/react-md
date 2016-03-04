@@ -4,6 +4,10 @@
 
   &.with-message {
     width: $md-text-field-info-width;
+
+    .md-text-field {
+      width: 100%;
+    }
   }
 
   &.single-line-full-width {

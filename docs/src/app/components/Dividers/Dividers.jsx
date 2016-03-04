@@ -3,9 +3,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Divider from 'react-md/lib/Dividers';
 
 import DocPage from 'react-md-documentation';
-import DividerExamples from './DividerExamples';
-import DividerExamplesRaw from '!!raw!./DividerExamples';
-//import './_divider.scss';
+import ComposeReply from '../../commonExamples/ComposeReply';
+import ComposeReplyRaw from '!!raw!../../commonExamples/ComposeReply';
 
 export default class Dividers extends Component {
   constructor(props) {
@@ -20,11 +19,21 @@ export default class Dividers extends Component {
         {...this.props}
         components={[{
           component: Divider,
-          details: [],
+          details: [{
+            name: 'inset',
+            pt: 'ba',
+            desc: `Boolean if the divider should be inset. This will
+            use relative components to calculate the inset distance.`,
+          }, {
+            name: 'vertical',
+            pt: 'ba',
+            desc: `Boolean if the divider is a vertical divider instead
+            of horizontal.`,
+          }],
         }]}
         examples={[{
-          markdown: DividerExamplesRaw,
-          children: <DividerExamples />,
+          markdown: ComposeReplyRaw,
+          children: <ComposeReply />,
         }]}
         >
         Dividers group and separate content within lists and page layouts.

@@ -3,9 +3,9 @@ import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
 import FontIcon from 'react-md/lib/FontIcons';
 
-import FakePhone from '../../FakePhone';
+import FakePhone from '../FakePhone';
 
-export default function DividerExamples() {
+const ComposeReply = () => {
   return (
     <div className="fake-phone-container">
       <FakePhone
@@ -47,4 +47,6 @@ export default function DividerExamples() {
       </FakePhone>
     </div>
   );
-}
+};
+
+export default ComposeReply;

@@ -140,6 +140,7 @@ export default class TextField extends Component {
           active={active}
           message={errorText || helpText}
           maxLength={maxLength}
+          className={icon ? 'icon-offset' : null}
         />
       );
     }
@@ -171,9 +172,11 @@ export default class TextField extends Component {
           areaStyle.height = areaHeight;
         }
       }
+
       textField = (
         <textarea
           {...textFieldProps}
+          placeholder={active || !floatingLabel || fullWidth ? (placeholder || label) : null}
           ref="textarea"
           rows={rows}
           style={areaStyle}
@@ -184,7 +187,7 @@ export default class TextField extends Component {
         <input
           {...textFieldProps}
           style={style}
-          placeholder={!floatingLabel ? label : placeholder}
+          placeholder={!floatingLabel ? (placeholder || label) : placeholder}
         />
       );
     }
