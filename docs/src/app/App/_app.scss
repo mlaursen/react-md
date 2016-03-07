@@ -197,3 +197,14 @@ main {
     max-width: 1170px;
   }
 }
+
+.drawer-container {
+  position: relative;
+}
+
+.documentation-navigation-drawer .md-navigation-drawer {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+}

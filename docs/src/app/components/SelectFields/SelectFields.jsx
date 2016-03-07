@@ -6,7 +6,7 @@ import DocPage from 'react-md-documentation';
 import SelectFieldExamples from './SelectFieldExamples';
 import SelectFieldExamplesRaw from '!!raw!./SelectFieldExamples';
 import FakeTextEditor from '../../FakeTextEditor';
-import FakeTextEditorRaw from '!!raw!../../FakeTextEditor';
+import FakeTextEditorRaw from '!!raw!../../FakeTextEditor/FakeTextEditor';
 import './_select-fields.scss';
 
 export default class SelectFields extends Component {

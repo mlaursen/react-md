@@ -7,6 +7,8 @@ import GettingStarted from './GettingStarted';
 import Customization from './Customization';
 import Typography from './Typography';
 import Home from './Home';
+import NavigationDrawers from './components/NavigationDrawers';
+import HelloWorld from './commonExamples/HelloWorld';
 import { toDashedName } from './utils';
 
 export default (
@@ -17,11 +19,14 @@ export default (
     <Route key={Typography.path} path={Typography.path} component={Typography} />
     {Object.keys(components).map(k => {
       const component = components[k];
-      if(!component.name) {
+      if(!component.name || component.name === 'NavigationDrawers') {
         return;
       }
       const path = toDashedName(component.name);
       return <Route key={path} path={`components/${path}`} component={component} />;
     })}
+    <Route key="navigation-drawers-routes" path="/components/navigation-drawers" component={NavigationDrawers}>
+      <Route path=":suffix" component={HelloWorld} />
+    </Route>
   </Route>
 );

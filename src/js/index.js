@@ -8,6 +8,7 @@ import { SpeedDial } from './FABTransitions';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem, ListSubheader } from './Lists';
+import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
 import { CircularProgress, LinearProgress } from './Progress';
 import { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
@@ -43,6 +44,7 @@ export { LinearProgress };
 export { List };
 export { ListItem };
 export { ListSubheader };
+export { NavigationDrawer };
 export { Paper };
 export { Radio };
 export { RadioGroup };
@@ -86,6 +88,7 @@ export default {
   Dialog,
   Divider,
   FontIcon,
+  NavigationDrawer,
   Ink,
   Paper,
   SelectField,

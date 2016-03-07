@@ -12,6 +12,7 @@ export FontIcons from './FontIcons';
 export GridLists from './GridLists';
 export Lists from './Lists';
 export Menus from './Menus';
+export NavigationDrawers from './NavigationDrawers';
 export Papers from './Papers';
 export Progress from './Progress';
 export SelectionControls from './SelectionControls';
