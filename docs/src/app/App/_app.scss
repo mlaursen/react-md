@@ -228,7 +228,8 @@ main {
     }
   }
 
-  &.clipped {
+  &.clipped,
+  &.floating {
     .md-navigation-drawer-toolbar {
       width: calc(100% - 16px);
     }

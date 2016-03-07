@@ -17,6 +17,7 @@ export default class NavigationDrawer extends Component {
   static PermanentType = {
     FULL_HEIGHT: 'full-height',
     CLIPPED: 'clipped',
+    FLOATING: 'floating',
   };
 
   static propTypes = {
@@ -40,7 +41,11 @@ export default class NavigationDrawer extends Component {
       }),
     ])).isRequired,
     mini: PropTypes.bool,
-    permanentType: PropTypes.oneOf([NavigationDrawer.PermanentType.FULL_HEIGHT, NavigationDrawer.PermanentType.CLIPPED]).isRequired,
+    permanentType: PropTypes.oneOf([
+      NavigationDrawer.PermanentType.FULL_HEIGHT,
+      NavigationDrawer.PermanentType.CLIPPED,
+      NavigationDrawer.PermanentType.FLOATING,
+    ]).isRequired,
   };
 
   static defaultProps = {
@@ -109,7 +114,7 @@ export default class NavigationDrawer extends Component {
 
     return (
       <div className={classnames('md-navigation-drawer-container', { mini, active })}>
-        <nav className="md-navigation-drawer">
+        <nav className={`md-navigation-drawer ${permanentType}`}>
           {header}
           {nav}
         </nav>

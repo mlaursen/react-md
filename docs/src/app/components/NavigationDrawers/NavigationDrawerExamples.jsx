@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
 
-import { Switch } from 'react-md/lib/SelectionControls';
+import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
 import FontIcon from 'react-md/lib/FontIcons';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
-const { FULL_HEIGHT, CLIPPED } = NavigationDrawer.PermanentType;
+const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.PermanentType;
 
 export default class NavigationDrawerExamples extends Component {
   constructor(props) {
@@ -39,7 +39,21 @@ export default class NavigationDrawerExamples extends Component {
   };
 
   togglePermanentType = () => {
-    const permanentType = this.state.permanentType === FULL_HEIGHT ? CLIPPED : FULL_HEIGHT;
+    let permanentType;
+    switch(this.state.permanentType) {
+      case FULL_HEIGHT:
+        permanentType = CLIPPED;
+        break;
+      case CLIPPED:
+        permanentType = FLOATING;
+        break;
+      default:
+        permanentType = FULL_HEIGHT;
+    }
+    this.setState({ permanentType });
+  };
+
+  handlePermanentTypeChange = (permanentType) => {
     this.setState({ permanentType });
   };
 
@@ -92,7 +106,14 @@ export default class NavigationDrawerExamples extends Component {
           closeDrawer={this.closeDrawer}
           openDrawer={this.openDrawer}
         >
-          <Switch label="Toggle permanentType" checked={permanentType === FULL_HEIGHT} onChange={this.togglePermanentType} />
+          <div style={{ padding: '1em' }}>
+            <h3 className="md-subheading-1">Change <code>permanentType</code></h3>
+            <RadioGroup value={permanentType} onChange={this.handlePermanentTypeChange}>
+              <Radio label="Full height" value={FULL_HEIGHT} />
+              <Radio label="Clipped" value={CLIPPED} />
+              <Radio label="Floating" value={FLOATING} />
+            </RadioGroup>
+          </div>
           {this.props.children}
         </NavigationDrawer>
       </div>
