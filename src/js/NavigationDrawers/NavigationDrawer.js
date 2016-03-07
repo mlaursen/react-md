@@ -14,6 +14,11 @@ export default class NavigationDrawer extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
+  static PermanentType = {
+    FULL_HEIGHT: 'full-height',
+    CLIPPED: 'clipped',
+  };
+
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
@@ -31,13 +36,15 @@ export default class NavigationDrawer extends Component {
         key: PropTypes.any,
         leftIcon: PropTypes.node,
         leftAvatar: PropTypes.node,
-        primaryText: PropTypes.string.isRequired,
+        primaryText: PropTypes.string,
       }),
     ])).isRequired,
     mini: PropTypes.bool,
+    permanentType: PropTypes.oneOf([NavigationDrawer.PermanentType.FULL_HEIGHT, NavigationDrawer.PermanentType.CLIPPED]).isRequired,
   };
 
   static defaultProps = {
+    permanentType: NavigationDrawer.PermanentType.FULL_HEIGHT,
     menuIconChildren: 'menu',
     closeIconChildren: 'arrow_back',
   };
@@ -51,10 +58,11 @@ export default class NavigationDrawer extends Component {
       children,
       openDrawer,
       //closeDrawer,
-      navItems,
       //closeIconClassName,
       //closeIconChildren,
+      navItems,
       mini,
+      permanentType,
     } = this.props;
 
     const active = isOpen || !isMobile;
@@ -87,18 +95,25 @@ export default class NavigationDrawer extends Component {
       nav = <List>{navigationItems}</List>;
     }
 
+    let header;
+    if(permanentType === NavigationDrawer.PermanentType.CLIPPED) {
+      header = <header className="md-drawer-header" />;
+    } else if((active && mini) || !mini) {
+      header = (
+        <header className="md-drawer-header">
+          <h3 className="md-title">Title</h3>
+          <Divider />
+        </header>
+      );
+    }
+
     return (
       <div className={classnames('md-navigation-drawer-container', { mini, active })}>
         <nav className="md-navigation-drawer">
-          {((active && mini) || !mini) &&
-          <header className="md-drawer-header">
-            <h3 className="md-title">Title</h3>
-            <Divider />
-          </header>
-          }
+          {header}
           {nav}
         </nav>
-        <div className="md-navigation-drawer-content">
+        <div className={`md-navigation-drawer-content ${permanentType}`}>
           <header className="md-navigation-drawer-toolbar">
             {!active &&
             <IconButton

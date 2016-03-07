@@ -2,15 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
 
+import { Switch } from 'react-md/lib/SelectionControls';
 import FontIcon from 'react-md/lib/FontIcons';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+const { FULL_HEIGHT, CLIPPED } = NavigationDrawer.PermanentType;
 
 export default class NavigationDrawerExamples extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: false };
+    this.state = { isOpen: false, permanentType: FULL_HEIGHT };
   }
 
   static propTypes = {
@@ -36,12 +38,19 @@ export default class NavigationDrawerExamples extends Component {
     };
   };
 
+  togglePermanentType = () => {
+    const permanentType = this.state.permanentType === FULL_HEIGHT ? CLIPPED : FULL_HEIGHT;
+    this.setState({ permanentType });
+  };
+
   render() {
+    const { isOpen, permanentType } = this.state;
     return (
       <div className="drawer-container">
         <NavigationDrawer
           title="Inbox"
-          isOpen={this.state.isOpen}
+          isOpen={isOpen}
+          permanentType={permanentType}
           navItems={[{
             leftIcon: <FontIcon>move_to_inbox</FontIcon>,
             primaryText: 'Inbox',
@@ -83,6 +92,7 @@ export default class NavigationDrawerExamples extends Component {
           closeDrawer={this.closeDrawer}
           openDrawer={this.openDrawer}
         >
+          <Switch label="Toggle permanentType" checked={permanentType === FULL_HEIGHT} onChange={this.togglePermanentType} />
           {this.props.children}
         </NavigationDrawer>
       </div>

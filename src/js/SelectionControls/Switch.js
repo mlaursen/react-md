@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import { isPropEnabled } from '../utils';
 import { LEFT_MOUSE } from '../constants/keyCodes';
 
-export default class Control extends Component {
+export default class Switch extends Component {
   constructor(props) {
     super(props);
 

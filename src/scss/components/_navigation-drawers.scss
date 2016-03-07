@@ -42,7 +42,6 @@
       @include md-box-shadow(1);
     }
   }
-
 }
 
 .md-navigation-drawer {
@@ -90,11 +89,20 @@
   }
 }
 
+.md-navigation-drawer-content {
+  padding-top: 64px;
+}
+
 .md-navigation-drawer-toolbar {
   background: $md-primary-color;
   color: $md-white-base;
+  left: 0;
+  position: fixed;
+  top: 0;
   transition-duration: $md-transition-time;
   transition-property: box-shadow, left, width;
+  width: 100%;
+  z-index: 22;
 
   .md-title {
     color: inherit;
