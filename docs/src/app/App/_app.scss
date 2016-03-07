@@ -147,6 +147,10 @@ main {
     margin-bottom: 10px;
   }
 
+  pre + p {
+    margin-top: 1em;
+  }
+
   p {
     @extend .md-body-1;
   }

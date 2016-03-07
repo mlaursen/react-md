@@ -61,7 +61,6 @@ $md-secondary-color-base: $md-pink-500 !default; // used for secondary toolbars 
 \`\`\`
 
 
-
 You can override these variables to style your app very quickly.
 
 If you would like more control, there are mixins with the prefix \`md-theme-\` that you can use
