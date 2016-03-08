@@ -4,8 +4,10 @@ import classnames from 'classnames';
 
 import { isMobile } from '../utils';
 import Divider from '../Dividers';
-import { IconButton } from '../Buttons';
 import { List, ListItem, ListSubheader } from '../Lists';
+
+import NavigationDrawerHeader from './NavigationDrawerHeader';
+import NavigationDrawerToolbar from './NavigationDrawerToolbar';
 
 export default class NavigationDrawer extends Component {
   constructor(props) {
@@ -13,6 +15,14 @@ export default class NavigationDrawer extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
+
+  static DrawerType = {
+    FULL_HEIGHT: 'full-height',
+    CLIPPED: 'clipped',
+    FLOATING: 'floating',
+    PERSISTENT: 'persistent',
+    PERSISTENT_MINI: 'mini',
+  };
 
   static PermanentType = {
     FULL_HEIGHT: 'full-height',
@@ -22,8 +32,11 @@ export default class NavigationDrawer extends Component {
 
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    containerClassName: PropTypes.string,
     className: PropTypes.string,
+    contentClassName: PropTypes.string,
+    toolbarClassName: PropTypes.string,
     children: PropTypes.node,
     menuIconClassName: PropTypes.string,
     menuIconChildren: PropTypes.node,
@@ -40,37 +53,63 @@ export default class NavigationDrawer extends Component {
         primaryText: PropTypes.string,
       }),
     ])).isRequired,
-    mini: PropTypes.bool,
-    permanentType: PropTypes.oneOf([
-      NavigationDrawer.PermanentType.FULL_HEIGHT,
-      NavigationDrawer.PermanentType.CLIPPED,
-      NavigationDrawer.PermanentType.FLOATING,
-    ]).isRequired,
+    drawerType: PropTypes.oneOf([
+      NavigationDrawer.DrawerType.FULL_HEIGHT,
+      NavigationDrawer.DrawerType.CLIPPED,
+      NavigationDrawer.DrawerType.FLOATING,
+      NavigationDrawer.DrawerType.PERSISTENT,
+      NavigationDrawer.DrawerType.PERSISTENT_MINI,
+    ]),
+    toolbarChildren: PropTypes.node,
+    toolbarTitle: PropTypes.string,
+    navHeader: PropTypes.node,
+    customValidation: function(props) {
+      const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
+      const { drawerType } = props;
+      if(drawerType !== PERSISTENT && drawerType !== PERSISTENT_MINI) {
+        return;
+      }
+
+      const { closeDrawer, closeIconChildren, closeIconClassName } = props;
+      if(typeof closeDrawer !== 'function') {
+        return new Error(`Prop 'closeDrawer' is missing.`);
+      } else if(!closeIconChildren && !closeIconClassName) {
+        return new Error('Need at least one of closeIconChildren or closeIconClassName');
+      }
+    },
   };
 
   static defaultProps = {
-    permanentType: NavigationDrawer.PermanentType.FULL_HEIGHT,
+    drawerType: NavigationDrawer.DrawerType.FULL_HEIGHT,
     menuIconChildren: 'menu',
-    closeIconChildren: 'arrow_back',
+    closeIconChildren: 'keyboard_arrow_left',
   };
 
   render() {
     const {
       isOpen,
       title,
+      toolbarTitle,
+      containerClassName,
+      className,
+      contentClassName,
+      toolbarClassName,
       menuIconClassName,
       menuIconChildren,
       children,
       openDrawer,
-      //closeDrawer,
-      //closeIconClassName,
-      //closeIconChildren,
+      closeDrawer,
+      closeIconClassName,
+      closeIconChildren,
       navItems,
-      mini,
-      permanentType,
+      drawerType,
+      toolbarChildren,
+      navHeader,
     } = this.props;
 
-    const active = isOpen || !isMobile;
+    const mini = drawerType === NavigationDrawer.DrawerType.PERSISTENT_MINI;
+    const persistent = mini || drawerType === NavigationDrawer.DrawerType.PERSISTENT;
+    const active = isOpen || (!persistent && !isMobile);
 
     let nav;
     if(active || mini) {
@@ -101,34 +140,44 @@ export default class NavigationDrawer extends Component {
     }
 
     let header;
-    if(permanentType === NavigationDrawer.PermanentType.CLIPPED) {
+    if(drawerType === NavigationDrawer.DrawerType.CLIPPED) {
       header = <header className="md-drawer-header" />;
+    } else if(navHeader) {
+      header = React.cloneElement(navHeader, { persistent });
     } else if((active && mini) || !mini) {
       header = (
-        <header className="md-drawer-header">
-          <h3 className="md-title">Title</h3>
-          <Divider />
-        </header>
+        <NavigationDrawerHeader
+          title={title}
+          closeDrawer={closeDrawer}
+          closeIconChildren={closeIconChildren}
+          closeIconClassName={closeIconClassName}
+          persistent={persistent}
+        />
       );
     }
 
+    const conditionalClassNames = {
+      mini,
+      active,
+    };
+
     return (
-      <div className={classnames('md-navigation-drawer-container', { mini, active })}>
-        <nav className={`md-navigation-drawer ${permanentType}`}>
+      <div className={classnames('md-navigation-drawer-container', containerClassName, conditionalClassNames)}>
+        <nav className={classnames('md-navigation-drawer', className, drawerType, conditionalClassNames)}>
           {header}
           {nav}
         </nav>
-        <div className={`md-navigation-drawer-content ${permanentType}`}>
-          <header className="md-navigation-drawer-toolbar">
-            {!active &&
-            <IconButton
-              onClick={openDrawer}
-              iconClassName={menuIconClassName}
-              children={menuIconChildren}
-            />
-            }
-            <h3 className="md-title">{title}</h3>
-          </header>
+        <div className={classnames('md-navigation-drawer-content', contentClassName, drawerType, conditionalClassNames)}>
+          <NavigationDrawerToolbar
+            className={classnames(toolbarClassName, drawerType, conditionalClassNames)}
+            persistent={persistent}
+            isOpen={isOpen}
+            openDrawer={openDrawer}
+            menuIconClassName={menuIconClassName}
+            menuIconChildren={menuIconChildren}
+            title={toolbarTitle}
+            children={toolbarChildren}
+          />
           {children}
         </div>
       </div>

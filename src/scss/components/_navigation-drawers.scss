@@ -5,45 +5,6 @@
   vertical-align: top;
 }
 
-.md-navigation-drawer-container {
-  &.mini:not(.active) {
-    .md-navigation-drawer {
-      padding-top: 64px;
-      visibility: visible;
-      width: 72px;
-    }
-
-    .md-navigation-drawer-content {
-      position: relative;
-      width: calc(100% - 72px);
-    }
-
-    .md-navigation-drawer-toolbar {
-      @include md-box-shadow(1);
-
-      left: -72px;
-      position: absolute;
-      width: calc(100% + 72px);
-    }
-  }
-
-  &.active {
-    .md-navigation-drawer {
-      visibility: visible;
-      width: 256px;
-    }
-
-    .md-navigation-drawer-content {
-      padding-left: 256px;
-      width: 100%;
-    }
-
-    .md-navigation-drawer-toolbar {
-      @include md-box-shadow(1);
-    }
-  }
-}
-
 .md-navigation-drawer {
   background: $md-white-base;
   height: 100vh;
@@ -54,6 +15,31 @@
 
   &:not(.floating) {
     @include md-box-shadow(1);
+  }
+
+  &.mini:not(.active) {
+    padding-top: 64px;
+    visibility: visible;
+    width: 72px;
+  }
+
+  &.active {
+    visibility: visible;
+    width: 256px;
+  }
+}
+
+.md-navigation-drawer-content {
+  padding-top: 64px;
+
+  &.mini {
+    padding-left: 72px;
+    position: relative;
+  }
+
+  &.active {
+    padding-left: 256px;
+    width: 100%;
   }
 }
 
@@ -91,10 +77,6 @@
   }
 }
 
-.md-navigation-drawer-content {
-  padding-top: 64px;
-}
-
 .md-navigation-drawer-toolbar {
   background: $md-primary-color;
   color: $md-white-base;
@@ -109,5 +91,10 @@
   .md-title {
     color: inherit;
     padding-left: 16px;
+  }
+
+  &.active,
+  &.mini {
+    @include md-box-shadow(1);
   }
 }
