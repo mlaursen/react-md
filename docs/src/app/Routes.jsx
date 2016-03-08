@@ -26,6 +26,7 @@ export default (
       return <Route key={path} path={`components/${path}`} component={component} />;
     })}
     <Route key="navigation-drawers-routes" path="/components/navigation-drawers" component={NavigationDrawers}>
+      <IndexRoute component={HelloWorld} />
       <Route path=":suffix" component={HelloWorld} />
     </Route>
   </Route>

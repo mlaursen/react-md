@@ -200,37 +200,43 @@ main {
 
 
 // Hacks to get Navigation Drawer to pretend it is at app level inside of a card.
-.documentation-navigation-drawer .md-navigation-drawer,
-.documentation-navigation-drawer .md-navigation-drawer-toolbar {
-  left: 0;
-  position: absolute;
-  top: 0;
-}
-
-.documentation-navigation-drawer .md-navigation-drawer {
-  height: 100%;
-}
-
-.documentation-navigation-drawer .drawer-container {
-  position: relative;
-}
-
-.documentation-navigation-drawer .md-navigation-drawer-content {
-  max-height: 500px;
-  overflow-y: auto;
-
-  &.full-height {
-
-    .md-navigation-drawer-toolbar {
-      left: 256px;
-      padding-top: -64px;
-      width: calc(100% - #{256 + 16px});
-    }
+// scss-lint:disable SelectorDepth
+.documentation-navigation-drawer {
+  .drawer-container {
+    position: relative;
   }
 
-  &.clipped,
-  &.floating {
-    .md-navigation-drawer-toolbar {
+  .md-navigation-drawer-content {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .md-navigation-drawer,
+  .md-navigation-drawer-toolbar {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+
+  .md-navigation-drawer {
+    height: 100%;
+  }
+
+  .md-navigation-drawer-toolbar {
+    &.full-height,
+    &.persistent.active {
+      left: 256px;
+      width: calc(100% - #{256 + 16px});
+    }
+
+    &.mini.active {
+      left: 256px;
+      width: calc(100% - 256px);
+    }
+
+    &.clipped,
+    &.floating,
+    &.persistent {
       width: calc(100% - 16px);
     }
   }

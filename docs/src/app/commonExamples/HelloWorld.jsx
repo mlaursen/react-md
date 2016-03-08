@@ -5,7 +5,7 @@ const HelloWorld = ({ params }) => {
   return (
     <div style={{ padding: '1em' }}>
       <h3 className="md-display-1">Hello, World!</h3>
-      <h6 className="md-title">Coming from {params.suffix}</h6>
+      <h6 className="md-title">Coming from {params.suffix || 'inbox'}</h6>
       {loremIpsum(8)}
     </div>
   );

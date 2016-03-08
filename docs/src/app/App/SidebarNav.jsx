@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 import { Link } from 'react-router';
 
 import Avatar from 'react-md/lib/Avatars';
@@ -38,10 +37,6 @@ export default class SidebarNav extends Component {
     closeSidebar: PropTypes.func.isRequired,
   };
 
-  listItemClassName = (path) => {
-    return classnames({ 'active': this.props.pathname === `/${path}` });
-  };
-
   render() {
     const { isOpen, pathname, closeSidebar } = this.props;
     const home = pathname === '/';
@@ -57,7 +52,7 @@ export default class SidebarNav extends Component {
         <List className="avatar-icon-mix">{/* scales avatars to font-icon size */}
           <ListItem
             component={Link}
-            className={this.listItemClassName('')}
+            activeClassName="active"
             to="/"
             primaryText="Home"
             key="home-link"
@@ -65,7 +60,7 @@ export default class SidebarNav extends Component {
           />
           <ListItem
             component={Link}
-            className={this.listItemClassName(GettingStarted.path)}
+            activeClassName="active"
             to={`/${GettingStarted.path}`}
             primaryText="Getting Started"
             key="getting-started"
@@ -73,7 +68,7 @@ export default class SidebarNav extends Component {
           />
           <ListItem
             component={Link}
-            className={this.listItemClassName(Customization.path)}
+            activeClassName="active"
             to={`/${Customization.path}`}
             primaryText="Customization"
             key="customization"
@@ -81,7 +76,7 @@ export default class SidebarNav extends Component {
           />
           <ListItem
             component={Link}
-            className={this.listItemClassName(Typography.path)}
+            activeClassName="active"
             to={`/${Typography.path}`}
             primaryText="Typography"
             key="typography"
@@ -101,7 +96,7 @@ export default class SidebarNav extends Component {
               <ListItem
                 component={Link}
                 to={`/${link}`}
-                className={this.listItemClassName(link)}
+                activeClassName="active"
                 key={link}
                 primaryText={label}
               />

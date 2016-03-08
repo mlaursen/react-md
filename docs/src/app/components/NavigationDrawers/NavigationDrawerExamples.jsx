@@ -5,14 +5,22 @@ import { Link } from 'react-router';
 import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
 import FontIcon from 'react-md/lib/FontIcons';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
-const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.PermanentType;
+const { FULL_HEIGHT, CLIPPED, FLOATING, PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
+
+// amazing way to keep state between routes
+let state = {
+  isOpen: false,
+  drawerType: FULL_HEIGHT,
+};
+
+const LOCATION = '/components/navigation-drawers';
 
 export default class NavigationDrawerExamples extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: false, permanentType: FULL_HEIGHT };
+    this.state = state;
   }
 
   static propTypes = {
@@ -22,96 +30,98 @@ export default class NavigationDrawerExamples extends Component {
   };
 
   closeDrawer = () => {
-    this.setState({ isOpen: false });
+    state = Object.assign({}, state, { isOpen: false });
+    this.setState(state);
   };
 
   openDrawer = () => {
-    this.setState({ isOpen: true });
+    state = Object.assign({}, state, { isOpen: true });
+    this.setState(state);
+  };
+
+  handlePermanentTypeChange = (drawerType) => {
+    state = Object.assign({}, state, { drawerType });
+    this.setState(state);
+  };
+
+  getTitle = (path) => {
+    switch(path) {
+      case 'starred':
+        return 'Starred';
+      case 'send':
+        return 'Sent Mail';
+      case 'drafts':
+        return 'Drafts';
+      case 'all-mail':
+        return 'All Mail';
+      case 'trash':
+        return 'Trash';
+      case 'spam':
+        return 'Spam';
+      default:
+        return 'Inbox';
+    }
   };
 
   getLinkParts = (suffix) => {
-    const { pathname } = this.props.location;
-    const to = `/components/navigation-drawers/${suffix}`;
+    const to = `${LOCATION}/${suffix}`;
     return {
       to,
-      className: pathname === to ? 'active' : null,
+      component: Link,
+      activeClassName: 'active',
+      primaryText: this.getTitle(suffix),
     };
   };
 
-  togglePermanentType = () => {
-    let permanentType;
-    switch(this.state.permanentType) {
-      case FULL_HEIGHT:
-        permanentType = CLIPPED;
-        break;
-      case CLIPPED:
-        permanentType = FLOATING;
-        break;
-      default:
-        permanentType = FULL_HEIGHT;
-    }
-    this.setState({ permanentType });
-  };
-
-  handlePermanentTypeChange = (permanentType) => {
-    this.setState({ permanentType });
-  };
-
   render() {
-    const { isOpen, permanentType } = this.state;
+    const { isOpen, drawerType } = this.state;
+
+    const currentPath = this.props.location.pathname.replace(LOCATION, '').replace('/', '');
     return (
       <div className="drawer-container">
         <NavigationDrawer
-          title="Inbox"
+          title="Title"
+          toolbarTitle={this.getTitle(currentPath)}
           isOpen={isOpen}
-          permanentType={permanentType}
+          closeDrawer={this.closeDrawer}
+          openDrawer={this.openDrawer}
+          drawerType={drawerType}
           navItems={[{
             leftIcon: <FontIcon>move_to_inbox</FontIcon>,
             primaryText: 'Inbox',
             component: Link,
-            ...this.getLinkParts('inbox'),
+            className: this.props.location.pathname === LOCATION ? 'active' : null,
+            to: LOCATION,
           }, {
             leftIcon: <FontIcon>star</FontIcon>,
-            primaryText: 'Starred',
-            component: Link,
             ...this.getLinkParts('starred'),
           }, {
             leftIcon: <FontIcon>send</FontIcon>,
-            primaryText: 'Sent Mail',
-            component: Link,
             ...this.getLinkParts('sent-mail'),
           }, {
             leftIcon: <FontIcon>drafts</FontIcon>,
-            primaryText: 'Drafts',
-            component: Link,
             ...this.getLinkParts('drafts'),
           }, {
             divider: true,
           }, {
             leftIcon: <FontIcon>mail</FontIcon>,
-            primaryText: 'All Mail',
-            component: Link,
             ...this.getLinkParts('all-mail'),
           }, {
             leftIcon: <FontIcon>delete</FontIcon>,
-            primaryText: 'Trash',
-            component: Link,
             ...this.getLinkParts('trash'),
           }, {
             leftIcon: <FontIcon>error_outline</FontIcon>,
-            primaryText: 'Spam',
-            component: Link,
             ...this.getLinkParts('spam'),
           }]}
-          closeDrawer={this.closeDrawer}
-          openDrawer={this.openDrawer}
         >
           <div style={{ padding: '1em' }}>
-            <h3 className="md-subheading-1">Change <code>permanentType</code></h3>
-            <RadioGroup value={permanentType} onChange={this.handlePermanentTypeChange}>
+            <h3 className="md-subheading-1">Change <code>drawerType</code></h3>
+            <RadioGroup value={drawerType} onChange={this.handlePermanentTypeChange}>
               <Radio label="Full height" value={FULL_HEIGHT} />
               <Radio label="Clipped" value={CLIPPED} />
               <Radio label="Floating" value={FLOATING} />
+              <Radio label="Persistent" value={PERSISTENT} />
+              <Radio label="Persistent mini" value={PERSISTENT_MINI} />
             </RadioGroup>
           </div>
           {this.props.children}
