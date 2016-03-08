@@ -22,6 +22,7 @@ export default class RadioGroup extends Component {
     inline: PropTypes.bool,
     onChange: PropTypes.func,
     name: PropTypes.string,
+    value: PropTypes.string,
   };
 
   static defaultProps = {
@@ -33,16 +34,22 @@ export default class RadioGroup extends Component {
     this.setState({ value });
   };
 
+  getValue = () => {
+    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
+  };
+
   render() {
     const { component, className, children, name, ...props } = this.props;
     const fullProps = {
       ...props,
       className: classnames('md-radio-group', className),
     };
+    const value = this.getValue();
+
     return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {
       return React.cloneElement(child, {
         key: i,
-        checked: this.state.value === child.props.value,
+        checked: value === child.props.value,
         onChange: this.handleChange,
         name: name || child.props.name,
         className: classnames({ 'inline': isPropEnabled(props, 'inline') }),
