@@ -119,6 +119,12 @@ $md-dropdown-z-index: 4 !default;
 /// @group z-indexes
 $md-sidebar-z-index: 5 !default;
 
+/// The default z-index for the navigation-drawer
+///
+/// @type Number
+/// @group navigation-drawers
+$md-navigation-drawer-z-index: 5 !default;
+
 /// The default z-index for the sidebar that is fixed to the side.
 /// This z-index should be greater than all other z-indexes except
 /// for the dialog z-index
@@ -1408,8 +1414,6 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 
 
 
-
-
 // ===================================================================================
 // Tooltips
 // ===================================================================================
@@ -1452,3 +1456,22 @@ $md-tooltip-desktop-lr-padding: 8px;
 /// @type String
 /// @group tooltips
 $md-tooltip-desktop-height: 22px;
+
+
+
+// ===================================================================================
+// Navigation Drawers
+// ===================================================================================
+
+///
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-width: 256px !default;
+
+///
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mini-width: 72px !default;
+

@@ -1,0 +1,32 @@
+@mixin md-navigation-drawer-media($height) {
+  .md-navigation-drawer-content,
+  .md-navigation-drawer.mini:not(.active) {
+    padding-top: $height;
+  }
+
+  .md-drawer-header,
+  .md-navigation-drawer-toolbar {
+    height: $height;
+
+    .md-title {
+      line-height: $height;
+    }
+  }
+
+  .md-navigation-drawer-btn {
+    margin-bottom: ($height - $md-icon-btn-size) / 2;
+    margin-top: ($height - $md-icon-btn-size) / 2;
+  }
+}
+
+@mixin md-navigation-drawer-mobile-portait() {
+  @include md-navigation-drawer-media($md-toolbar-mobile-portrait-height);
+}
+
+@mixin md-navigation-drawer-mobile-landscape() {
+  @include md-navigation-drawer-media($md-toolbar-mobile-landscape-height);
+}
+
+@mixin md-navigation-drawer-desktop() {
+  @include md-navigation-drawer-media($md-toolbar-desktop-height);
+}

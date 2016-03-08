@@ -19,6 +19,7 @@ const NavigationDrawerHeader = (props) => {
   if(persistent && closeDrawer && (closeIconChildren || closeIconClassName)) {
     closeButton = (
       <IconButton
+        className="md-navigation-drawer-btn md-navigation-drawer-toggle"
         onClick={closeDrawer}
         iconClassName={closeIconClassName}
         children={closeIconChildren}

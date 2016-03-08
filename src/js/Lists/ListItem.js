@@ -13,7 +13,7 @@ export default class ListItem extends Component {
   }
 
   static propTypes = {
-    primaryText: PropTypes.node.isRequired,
+    primaryText: PropTypes.node,
     secondaryText: PropTypes.node,
     secondaryText2: PropTypes.node,
     className: PropTypes.string,

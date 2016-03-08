@@ -19,6 +19,7 @@ const NavigationDrawerToolbar = (props) => {
   if(persistent && !isOpen) {
     menuButton = (
       <IconButton
+        className="md-navigation-drawer-btn"
         onClick={openDrawer}
         iconClassName={menuIconClassName}
         children={menuIconChildren}

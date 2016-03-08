@@ -11,51 +11,43 @@
   position: absolute;
   visibility: hidden;
   width: 0;
-  z-index: 22;
+  z-index: $md-navigation-drawer-z-index;
 
   &:not(.floating) {
     @include md-box-shadow(1);
   }
 
   &.mini:not(.active) {
-    padding-top: 64px;
+    text-align: center;
     visibility: visible;
-    width: 72px;
+    width: $md-navigation-drawer-mini-width;
   }
 
   &.active {
     visibility: visible;
-    width: 256px;
+    width: $md-navigation-drawer-width;
   }
 }
 
 .md-navigation-drawer-content {
-  padding-top: 64px;
-
   &.mini {
-    padding-left: 72px;
+    padding-left: $md-navigation-drawer-mini-width;
     position: relative;
   }
 
   &.active {
-    padding-left: 256px;
+    padding-left: $md-navigation-drawer-width;
     width: 100%;
   }
 }
 
 .md-navigation-drawer-toolbar,
 .md-drawer-header {
-  height: 64px;
 
   .md-title {
     display: inline-block;
-    line-height: 64px;
     margin: 0;
     vertical-align: top;
-  }
-
-  .md-icon-btn {
-    margin: 8px 12px;
   }
 }
 
@@ -68,13 +60,6 @@
     color: $md-secondary-text-color;
     padding-left: 16px;
   }
-
-  .md-avatar {
-    flex-shrink: 0;
-    height: 32px;
-    margin: #{(64px - 32) / 2} 12px;
-    width: 32px;
-  }
 }
 
 .md-navigation-drawer-toolbar {
@@ -86,7 +71,7 @@
   transition-duration: $md-transition-time;
   transition-property: box-shadow, left, width;
   width: 100%;
-  z-index: 22;
+  z-index: $md-navigation-drawer-z-index;
 
   .md-title {
     color: inherit;
@@ -97,4 +82,13 @@
   &.mini {
     @include md-box-shadow(1);
   }
+}
+
+.md-navigation-drawer-btn {
+  margin-left: $md-toolbar-action-margin;
+  margin-right: $md-toolbar-action-margin;
+}
+
+.md-navigation-drawer-toggle {
+  float: right;
 }

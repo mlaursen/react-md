@@ -48,7 +48,7 @@ export default class NavigationDrawerExamples extends Component {
     switch(path) {
       case 'starred':
         return 'Starred';
-      case 'send':
+      case 'sent-mail':
         return 'Sent Mail';
       case 'drafts':
         return 'Drafts';
