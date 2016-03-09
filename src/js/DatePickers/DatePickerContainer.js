@@ -7,8 +7,7 @@ import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
-import { addDate, subtractDate } from '../utils';
-import Configuration from '../utils/Configuration';
+import { addDate, subtractDate, DateTimeFormat } from '../utils';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions';
@@ -66,7 +65,7 @@ export default class DatePickerContainer extends Component {
     icon: <FontIcon>date_range</FontIcon>,
     initialYearsDisplayed: 100,
     initialCalendarMode: 'calendar',
-    DateTimeFormat: Configuration.DateTimeFormat,
+    DateTimeFormat: DateTimeFormat,
     locales: navigator.language,
     okLabel: 'Ok',
     okPrimary: true,

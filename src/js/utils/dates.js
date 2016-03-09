@@ -68,6 +68,15 @@ export function subtractDate(sourceDate, amt, part) {
   return addDate(sourceDate, -amt, part);
 }
 
+export const DateTimeFormat = (() => {
+  if(typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
+    return Intl.DateTimeFormat;
+  }
+
+  // (locales, options)
+  return () => date => date;
+})();
+
 /**
  * Checks if a date is the month before another date without time
  *
