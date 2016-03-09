@@ -24,12 +24,6 @@ export default class NavigationDrawer extends Component {
     PERSISTENT_MINI: 'mini',
   };
 
-  static PermanentType = {
-    FULL_HEIGHT: 'full-height',
-    CLIPPED: 'clipped',
-    FLOATING: 'floating',
-  };
-
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
     title: PropTypes.string,
@@ -156,10 +150,7 @@ export default class NavigationDrawer extends Component {
       );
     }
 
-    const conditionalClassNames = {
-      mini,
-      active,
-    };
+    const conditionalClassNames = { active };
 
     return (
       <div className={classnames('md-navigation-drawer-container', containerClassName, conditionalClassNames)}>

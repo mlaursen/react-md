@@ -82,6 +82,12 @@
   &.mini {
     @include md-box-shadow(1);
   }
+
+  &.full-height,
+  &.persistent.active,
+  &.mini.active {
+    left: $md-navigation-drawer-width;
+  }
 }
 
 .md-navigation-drawer-btn {
