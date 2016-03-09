@@ -6,7 +6,7 @@ import classnames from 'classnames';
 
 import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
-import { getOffset } from '../utils';
+import { getOffset, isTouchDevice } from '../utils';
 
 export default class Ink extends Component {
   constructor(props) {
@@ -39,13 +39,16 @@ export default class Ink extends Component {
    */
   addEventListeners = () => {
     const node = ReactDOM.findDOMNode(this);
-    node.addEventListener('keyup', this.handleKeyUp);
-    node.addEventListener('blur', this.handleBlur);
-    node.addEventListener('mousedown', this.handleMouseDown);
-    node.addEventListener('mouseup', this.handleMouseUp);
-    node.addEventListener('mouseleave', this.handleMouseLeave);
-    node.addEventListener('touchstart', this.handleTouchStart);
-    node.addEventListener('touchend', this.handleTouchEnd);
+    if(isTouchDevice) {
+      node.addEventListener('touchstart', this.handleTouchStart);
+      node.addEventListener('touchend', this.handleTouchEnd);
+    } else {
+      node.addEventListener('keyup', this.handleKeyUp);
+      node.addEventListener('blur', this.handleBlur);
+      node.addEventListener('mousedown', this.handleMouseDown);
+      node.addEventListener('mouseup', this.handleMouseUp);
+      node.addEventListener('mouseleave', this.handleMouseLeave);
+    }
   };
 
   calcR = (a, b) => {
@@ -110,6 +113,8 @@ export default class Ink extends Component {
 
   handleMouseDown = (e) => {
     if(this.props.disabled || this.invalidClickEvent(e)) { return; }
+    e.stopPropagation();
+
     this.createInk(e.pageX, e.pageY);
     this.setState({
       skipMouseUp: false,
@@ -132,6 +137,7 @@ export default class Ink extends Component {
 
   handleTouchStart = (e) => {
     if(this.props.disabled) { return; }
+    e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
   };

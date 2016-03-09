@@ -126,6 +126,12 @@ export const isMobile = (() => {
   return window.matchMedia('only screen and (min-width: 0px) and (max-width: 599px)').matches;
 })();
 
+export const isTouchDevice = (() => {
+  const msTouch = window.navigator.msMaxTouchPoints;
+  const touch = 'ontouchstart' in document.createElement('div');
+  return msTouch || touch;
+})();
+
 
 export function easeInOut(currentTime, start, change, duration) {
   currentTime /= duration / 2;
