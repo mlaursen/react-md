@@ -4,7 +4,8 @@ import TransitionGroup from 'react-addons-transition-group';
 import classnames from 'classnames';
 
 import { ESC } from '../constants/keyCodes';
-import { DateTimeFormat, getTimeString } from '../utils';
+import { getTimeString } from '../utils';
+import Configuration from '../utils/Configuration';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
 import Height from '../Transitions';
@@ -56,7 +57,7 @@ export default class TimePickerContainer extends Component {
     initiallyOpen: false,
     initialTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
-    DateTimeFormat: DateTimeFormat,
+    DateTimeFormat: Configuration.DateTimeFormat,
     locales: navigator.language,
     okLabel: 'Ok',
     okPrimary: true,
