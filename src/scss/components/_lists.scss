@@ -30,6 +30,12 @@
     margin-right: $md-avatar-size - $md-font-icon-size;
     width: $md-font-icon-size;
   }
+
+  .md-icon-btn {
+    height: $md-font-icon-size;
+    padding: 0;
+    width: $md-font-icon-size;
+  }
 }
 
 .md-divider + .md-list-tile {
@@ -113,3 +119,13 @@
 .md-tile-primary-text {
   display: block;
 }
+
+.md-list-expander {
+  transition: transform $md-transition-time;
+
+  &.active {
+    transform: rotate3d(0, 0, 1, 180deg);
+  }
+}
+
+@include md-list-nested-offset($md-list-max-nested-items, $md-list-nested-increment);

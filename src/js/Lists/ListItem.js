@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import TransitionGroup from 'react-addons-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+import { IconButton } from '../Buttons';
+import Height from '../Transitions';
+import List from './List';
 import Ink from '../Inks';
 
 export default class ListItem extends Component {
@@ -9,7 +13,7 @@ export default class ListItem extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { focused: false };
+    this.state = { isOpen: props.initiallyOpen };
   }
 
   static propTypes = {
@@ -25,24 +29,32 @@ export default class ListItem extends Component {
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+    nestedItems: PropTypes.arrayOf(PropTypes.node),
+    initiallyOpen: PropTypes.bool,
+    isOpen: PropTypes.bool,
+    onExpanderClick: PropTypes.func,
+    expanderIconChildren: PropTypes.node,
+    expanderIconClassName: PropTypes.string,
   };
 
   static defaultProps = {
-    component: 'li',
+    component: 'div',
+    initiallyOpen: false,
+    expanderIconChildren: 'keyboard_arrow_down',
   };
 
   renderText = () => {
-    const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar } = this.props;
+    const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, nestedItems } = this.props;
     const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
 
-    if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar) {
+    if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) {
       return tileTitle;
     }
 
     const contentClassName = classnames('md-tile-content', {
       'icon-left': leftIcon,
       'avatar-left': leftAvatar,
-      'icon-right': rightIcon,
+      'icon-right': rightIcon || (nestedItems && nestedItems.length),
       'avatar-right': rightAvatar,
     });
     return (
@@ -64,28 +76,86 @@ export default class ListItem extends Component {
   };
 
   renderRightChildren = () => {
-    const { rightIcon, rightAvatar } = this.props;
-    if(!rightIcon && !rightAvatar) { return null; }
+    const { rightIcon, rightAvatar, expanderIconChildren, expanderIconClassName, nestedItems } = this.props;
+    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) { return null; }
+
+    if(nestedItems && nestedItems.length) {
+      const className = classnames('md-list-expander', { 'active': this.isOpen() });
+      if(!rightIcon) {
+        return (
+          <IconButton
+            key="toggle"
+            onClick={this.toggleNestedItems}
+            iconClassName={expanderIconClassName}
+            className={className}
+            children={expanderIconChildren}
+          />
+        );
+      }
+
+      return React.cloneElement(rightIcon, { key: 'toggle', className });
+    }
 
     return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
   };
 
-  render() {
-    const { component, className, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, ...props } = this.props;
+  isOpen = () => {
+    return typeof this.props.isOpen === 'undefined' ? this.state.isOpen : this.props.isOpen;
+  };
 
-    const item = React.createElement(component, {
+  toggleNestedItems = (e) => {
+    const { onExpanderClick } = this.props;
+    if(onExpanderClick) {
+      onExpanderClick(e);
+    } else {
+      this.setState({ isOpen: !this.state.isOpen });
+    }
+  };
+
+  render() {
+    const {
+      component,
+      className,
+      secondaryText,
+      secondaryText2,
+      leftIcon,
+      leftAvatar,
+      rightIcon,
+      rightAvatar,
+      nestedItems,
+      expanderIconClassName,
+      expanderIconChildren,
       ...props,
+    } = this.props;
+
+    const content = React.createElement(component, {
       role: 'button',
+      ...props,
       className: classnames('md-list-tile', className, {
         'two-lines': secondaryText,
         'three-lines': !!secondaryText && !!secondaryText2,
         'md-list-avatar': leftAvatar || rightAvatar,
       }),
     }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
+
+    let children;
+    if(this.isOpen() && nestedItems && nestedItems.length) {
+      children = (
+        <Height key="nested-list">
+          <List>
+            {nestedItems}
+          </List>
+        </Height>
+      );
+    }
+
     return (
-      <Ink>
-        {item}
-      </Ink>
+      <TransitionGroup component="li">
+        <Ink>
+          {content}
+        </Ink>
+        {children}
+      </TransitionGroup>
     );
   }
 }

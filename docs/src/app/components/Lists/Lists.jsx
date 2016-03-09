@@ -8,6 +8,9 @@ import ListExamples from './ListExamples';
 import ListExamplesRaw from '!!raw!./ListExamples';
 import MessageList from '../../commonExamples/MessageList';
 import MessageListRaw from '!!raw!../../commonExamples/MessageList';
+import NestedListExamples from './NestedListExamples';
+import NestedListExamplesRaw from '!!raw!./NestedListExamples';
+
 
 export default class Lists extends Component {
   constructor(props) {
@@ -98,6 +101,10 @@ export default class Lists extends Component {
               <MessageList />
             </Paper>
           ),
+        }, {
+          name: 'Nested Lists',
+          markdown: NestedListExamplesRaw,
+          children: <NestedListExamples />,
         }, {
           markdown: ListExamplesRaw,
           children: <ListExamples />,

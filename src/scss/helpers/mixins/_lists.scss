@@ -91,3 +91,18 @@
     font-size: $md-list-desktop-font-size;
   }
 }
+
+@mixin md-list-nested-offset($depth, $increment) {
+  $selector: '+ .md-list .md-list-tile';
+  $full-selector: '';
+  $multiplier: 1;
+  @for $i from 1 through $depth {
+    $full-selector: '#{$full-selector} #{$selector}';
+
+    .md-list .md-list-tile #{$full-selector} {
+      padding-left: $md-list-tile-left-padding * $multiplier;
+    }
+
+    $multiplier: $multiplier + $increment;
+  }
+}

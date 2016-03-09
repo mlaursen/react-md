@@ -1064,6 +1064,8 @@ $md-list-tile-extra-margin: $md-default-padding / 2;
 $md-list-primary-text-font-size: 16px;
 
 
+$md-list-max-nested-items: 3 !default;
+$md-list-nested-increment: .5 !default;
 $md-list-mobile-font-size: 16px;
 $md-list-mobile-secondary-text-font-size: 14px;
 $md-list-mobile-height: 48px;
