@@ -32,3 +32,62 @@
     color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
   }
 }
+
+@mixin md-lists-mobile() {
+  .md-list {
+    padding-bottom: $md-list-mobile-top-padding;
+    padding-top: $md-list-mobile-top-padding;
+  }
+
+  .md-list-tile {
+    height: $md-list-mobile-height;
+
+    &.md-list-avatar {
+      height: $md-list-mobile-avatar-height;
+    }
+
+    &.two-lines {
+      height: $md-list-mobile-2-line-height;
+    }
+
+    &.three-lines {
+      height: $md-list-mobile-3-line-height;
+    }
+  }
+
+  .md-tile-primary-text {
+    font-size: $md-list-mobile-font-size;
+  }
+
+  .md-tile-secondary-text {
+    font-size: $md-list-mobile-secondary-text-font-size;
+  }
+}
+
+@mixin md-lists-desktop() {
+  .md-list {
+    padding-bottom: $md-list-desktop-top-padding;
+    padding-top: $md-list-desktop-top-padding;
+  }
+
+  .md-list-tile {
+    height: $md-list-desktop-height;
+
+    &.md-list-avatar {
+      height: $md-list-desktop-avatar-height;
+    }
+
+    &.two-lines {
+      height: $md-list-desktop-2-line-height;
+    }
+
+    &.three-lines {
+      height: $md-list-desktop-3-line-height;
+    }
+  }
+
+  .md-tile-primary-text,
+  .md-tile-secondary-text {
+    font-size: $md-list-desktop-font-size;
+  }
+}

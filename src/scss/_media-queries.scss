@@ -1,6 +1,7 @@
 @media only screen and (min-width: 0px) and (max-width: 599px) {
   @include md-typography-mobile();
   @include md-date-picker-mobile();
+  @include md-lists-mobile();
   @include md-select-field-mobile();
   @include md-sidebar-mobile();
   @include md-snackbar-mobile();
@@ -12,6 +13,7 @@
 @media only screen and (min-width: 600px) {
   @include md-typography-desktop();
   @include md-date-picker-desktop();
+  @include md-lists-desktop();
   @include md-select-field-desktop();
   @include md-sidebar-desktop();
   @include md-snackbar-desktop();

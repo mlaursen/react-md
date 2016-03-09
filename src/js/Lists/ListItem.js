@@ -40,8 +40,10 @@ export default class ListItem extends Component {
     }
 
     const contentClassName = classnames('md-tile-content', {
-      'icon-left': !!leftIcon || !!leftAvatar,
-      'icon-right': !!rightIcon || !!rightAvatar,
+      'icon-left': leftIcon,
+      'avatar-left': leftAvatar,
+      'icon-right': rightIcon,
+      'avatar-right': rightAvatar,
     });
     return (
       <div key="tile-content" className={contentClassName}>
@@ -75,8 +77,9 @@ export default class ListItem extends Component {
       ...props,
       role: 'button',
       className: classnames('md-list-tile', className, {
-        'md-list-3-lines': !!secondaryText && !!secondaryText2,
-        'md-list-avatar': leftIcon || leftAvatar || rightIcon || rightAvatar,
+        'two-lines': secondaryText,
+        'three-lines': !!secondaryText && !!secondaryText2,
+        'md-list-avatar': leftAvatar || rightAvatar,
       }),
     }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
     return (
