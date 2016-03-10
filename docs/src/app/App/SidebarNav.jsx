@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Link } from 'react-router';
+import classnames from 'classnames';
 
 import Avatar from 'react-md/lib/Avatars';
 import Divider from 'react-md/lib/Dividers';
@@ -40,6 +41,42 @@ export default class SidebarNav extends Component {
   render() {
     const { isOpen, pathname, closeSidebar } = this.props;
     const home = pathname === '/';
+
+    const topLinks = [{
+      to: '',
+      primaryText: 'Home',
+      icon: 'home',
+    }, {
+      to: GettingStarted.path,
+      primaryText: 'Getting Started',
+      icon: 'info_outline',
+    }, {
+      to: Customization.path,
+      primaryText: 'Customization',
+      icon: 'build',
+    }, {
+      to: Typography.path,
+      primaryText: 'Typography',
+      icon: 'text_fields',
+    }].map(({ icon, to, ...props }, i) => {
+      const isHomeLink = to === '/';
+      // can't use activeClassName because doesn't update correctly with PureRenderMixin
+      let className;
+      if((isHomeLink && home) || (!isHomeLink && !home && pathname.indexOf(to) !== -1)) {
+        className = 'active';
+      }
+
+      return (
+        <ListItem
+          {...props}
+          key={i}
+          to={`/${to}`}
+          component={Link}
+          className={className}
+          leftIcon={<FontIcon>{icon}</FontIcon>}
+        />
+      );
+    });
     return (
       <Sidebar
         isOpen={isOpen}
@@ -50,38 +87,7 @@ export default class SidebarNav extends Component {
         onOverlayClick={closeSidebar}
       >
         <List className="avatar-icon-mix">{/* scales avatars to font-icon size */}
-          <ListItem
-            component={Link}
-            activeClassName="active"
-            to="/"
-            primaryText="Home"
-            key="home-link"
-            leftIcon={<FontIcon>home</FontIcon>}
-          />
-          <ListItem
-            component={Link}
-            activeClassName="active"
-            to={`/${GettingStarted.path}`}
-            primaryText="Getting Started"
-            key="getting-started"
-            leftIcon={<FontIcon>info_outline</FontIcon>}
-          />
-          <ListItem
-            component={Link}
-            activeClassName="active"
-            to={`/${Customization.path}`}
-            primaryText="Customization"
-            key="customization"
-            leftIcon={<FontIcon>build</FontIcon>}
-          />
-          <ListItem
-            component={Link}
-            activeClassName="active"
-            to={`/${Typography.path}`}
-            primaryText="Typography"
-            key="typography"
-            leftIcon={<FontIcon>text_fields</FontIcon>}
-          />
+          {topLinks}
           <ListItem
             component="a"
             primaryText="SASS Doc"
@@ -96,7 +102,7 @@ export default class SidebarNav extends Component {
               <ListItem
                 component={Link}
                 to={`/${link}`}
-                activeClassName="active"
+                className={classnames({ 'active': this.props.pathname.indexOf(link) !== -1 })}
                 key={link}
                 primaryText={label}
               />
