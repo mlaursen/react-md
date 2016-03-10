@@ -45,6 +45,10 @@ export default class ListItem extends Component {
 
   renderText = () => {
     const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, nestedItems } = this.props;
+    if(!primaryText) {
+      return null;
+    }
+
     const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
 
     if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) {

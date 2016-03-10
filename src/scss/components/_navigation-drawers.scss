@@ -6,6 +6,8 @@
 }
 
 .md-navigation-drawer {
+  @include md-box-shadow(1);
+
   background: $md-white-base;
   height: 100vh;
   position: absolute;
@@ -13,19 +15,22 @@
   width: 0;
   z-index: $md-navigation-drawer-z-index;
 
-  &:not(.floating) {
-    @include md-box-shadow(1);
-  }
-
   &.mini:not(.active) {
-    text-align: center;
     visibility: visible;
     width: $md-navigation-drawer-mini-width;
+
+    .md-list-tile {
+      justify-content: center;
+    }
   }
 
   &.active {
     visibility: visible;
     width: $md-navigation-drawer-width;
+  }
+
+  &.temporary.active {
+    z-index: $md-navigation-drawer-temporary-z-index;
   }
 }
 
@@ -33,11 +38,6 @@
   &.mini {
     padding-left: $md-navigation-drawer-mini-width;
     position: relative;
-  }
-
-  &.active {
-    padding-left: $md-navigation-drawer-width;
-    width: 100%;
   }
 }
 
@@ -58,7 +58,7 @@
 
   .md-title {
     color: $md-secondary-text-color;
-    padding-left: 16px;
+    padding-left: $md-default-padding;
   }
 }
 
@@ -75,26 +75,29 @@
 
   .md-title {
     color: inherit;
-    padding-left: 16px;
+    padding-left: $md-default-padding;
   }
 
   &.active,
   &.mini {
     @include md-box-shadow(1);
   }
-
-  &.full-height,
-  &.persistent.active,
-  &.mini.active {
-    left: $md-navigation-drawer-width;
-  }
 }
 
 .md-navigation-drawer-btn {
   margin-left: $md-toolbar-action-margin;
   margin-right: $md-toolbar-action-margin;
+
+  &.hidden {
+    @extend %invisible;
+  }
 }
 
 .md-navigation-drawer-toggle {
   float: right;
+}
+
+.md-navigation-drawer-overlay {
+  // scss-lint:disable PlaceholderInExtend
+  @extend .md-overlay;
 }

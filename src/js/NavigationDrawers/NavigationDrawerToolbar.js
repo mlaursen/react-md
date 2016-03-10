@@ -6,8 +6,8 @@ import { IconButton } from '../Buttons';
 const NavigationDrawerToolbar = (props) => {
   const {
     className,
-    persistent,
     isOpen,
+    temporary,
     openDrawer,
     menuIconClassName,
     menuIconChildren,
@@ -15,20 +15,14 @@ const NavigationDrawerToolbar = (props) => {
     children,
   } = props;
 
-  let menuButton;
-  if(persistent && !isOpen) {
-    menuButton = (
+  return (
+    <header className={classnames('md-navigation-drawer-toolbar', className)}>
       <IconButton
-        className="md-navigation-drawer-btn"
+        className={classnames('md-navigation-drawer-btn', { 'hidden': isOpen && !temporary })}
         onClick={openDrawer}
         iconClassName={menuIconClassName}
         children={menuIconChildren}
       />
-    );
-  }
-  return (
-    <header className={classnames('md-navigation-drawer-toolbar', className)}>
-      {menuButton}
       {title && <h3 className="md-title">{title}</h3>}
       {children}
     </header>
@@ -37,8 +31,8 @@ const NavigationDrawerToolbar = (props) => {
 
 NavigationDrawerToolbar.propTypes = {
   className: PropTypes.string,
-  persistent: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  temporary: PropTypes.bool.isRequired,
   openDrawer: PropTypes.func,
   menuIconClassName: PropTypes.string,
   menuIconChildren: PropTypes.node,

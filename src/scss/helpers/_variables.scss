@@ -119,12 +119,6 @@ $md-dropdown-z-index: 4 !default;
 /// @group z-indexes
 $md-sidebar-z-index: 5 !default;
 
-/// The default z-index for the navigation-drawer
-///
-/// @type Number
-/// @group navigation-drawers
-$md-navigation-drawer-z-index: 5 !default;
-
 /// The default z-index for the sidebar that is fixed to the side.
 /// This z-index should be greater than all other z-indexes except
 /// for the dialog z-index
@@ -152,6 +146,18 @@ $md-snackbar-z-index: 6 !default;
 /// @type Number
 /// @group z-indexes
 $md-fab-z-index: 8 !default;
+
+/// The default z-index for the navigation-drawer
+///
+/// @type Number
+/// @group navigation-drawers
+$md-navigation-drawer-z-index: 10 !default;
+
+/// The default z-index for the temporary navigation-drawer
+///
+/// @type Number
+/// @group navigation-drawers
+$md-navigation-drawer-temporary-z-index: 12 !default;
 
 
 /// The default z-index for the dialog component.

@@ -201,7 +201,14 @@ main {
 
 // Hacks to get Navigation Drawer to pretend it is at app level inside of a card.
 // scss-lint:disable SelectorDepth
+$scrollbar-width: 16px;
+
 .documentation-navigation-drawer {
+  .md-overlay {
+    min-height: 100%;
+    min-width: 100%;
+  }
+
   .drawer-container {
     position: relative;
   }
@@ -223,21 +230,36 @@ main {
   }
 
   .md-navigation-drawer-toolbar {
-    &.full-height,
-    &.persistent.active {
-      left: 256px;
-      width: calc(100% - #{256 + 16px});
+    &.temporary.mini {
+      left: -$md-navigation-drawer-mini-width;
+      width: calc(100% + #{$md-navigation-drawer-mini-width});
     }
 
-    &.mini.active {
-      left: 256px;
-      width: calc(100% - 256px);
+    &.temporary {
+      width: calc(100% - #{$scrollbar-width});
     }
+  }
+}
 
-    &.clipped,
-    &.floating,
-    &.persistent {
-      width: calc(100% - 16px);
+@media only screen and (min-width: 600px) {
+  .documentation-navigation-drawer {
+    .md-navigation-drawer-toolbar {
+      &.full-height,
+      &.persistent.active {
+        left: $md-navigation-drawer-width;
+        width: calc(100% - #{$md-navigation-drawer-width + $scrollbar-width});
+      }
+
+      &.mini.active:not(.temporary) {
+        left: $md-navigation-drawer-width;
+        width: calc(100% - #{$md-navigation-drawer-width});
+      }
+
+      &.clipped,
+      &.floating,
+      &.persistent {
+        width: calc(100% - #{$scrollbar-width});
+      }
     }
   }
 }

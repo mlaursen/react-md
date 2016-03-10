@@ -27,6 +27,51 @@
   @include md-navigation-drawer-media($md-toolbar-mobile-landscape-height);
 }
 
+@mixin md-navigation-drawer-mobile() {
+
+  .md-navigation-drawer.active {
+    z-index: $md-navigation-drawer-temporary-z-index;
+  }
+
+  .md-navigation-drawer-content .md-navigation-drawer-overlay {
+    z-index: $md-navigation-drawer-z-index + 1;
+  }
+}
+
 @mixin md-navigation-drawer-desktop() {
   @include md-navigation-drawer-media($md-toolbar-desktop-height);
+  .md-navigation-drawer.floating {
+    box-shadow: none;
+  }
+
+  .md-navigation-drawer-toolbar {
+    &.full-height,
+    &.clipped,
+    &.floating {
+      .md-navigation-drawer-btn {
+        display: none;
+        visibility: hidden;
+      }
+    }
+
+    &.full-height,
+    &.mini.active,
+    &.persistent.active {
+      left: $md-navigation-drawer-width;
+    }
+  }
+
+  .md-navigation-drawer-content {
+    &:not(.temporary) {
+      &.active {
+        padding-left: $md-navigation-drawer-width;
+        width: 100%;
+      }
+
+      .md-navigation-drawer-overlay {
+        display: none;
+        visibility: hidden;
+      }
+    }
+  }
 }

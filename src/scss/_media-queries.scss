@@ -6,6 +6,7 @@
   @include md-sidebar-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
+  @include md-navigation-drawer-mobile();
   @include md-text-field-mobile();
   @include md-tooltips-mobile();
 }

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import { isMobile } from '../utils';
@@ -22,6 +23,9 @@ export default class NavigationDrawer extends Component {
     FLOATING: 'floating',
     PERSISTENT: 'persistent',
     PERSISTENT_MINI: 'mini',
+    TEMPORARY: 'temporary',
+    // want styles of temporary and mini. Little hacky.
+    TEMPORARY_MINI: 'temporary mini',
   };
 
   static propTypes = {
@@ -47,13 +51,7 @@ export default class NavigationDrawer extends Component {
         primaryText: PropTypes.string,
       }),
     ])).isRequired,
-    drawerType: PropTypes.oneOf([
-      NavigationDrawer.DrawerType.FULL_HEIGHT,
-      NavigationDrawer.DrawerType.CLIPPED,
-      NavigationDrawer.DrawerType.FLOATING,
-      NavigationDrawer.DrawerType.PERSISTENT,
-      NavigationDrawer.DrawerType.PERSISTENT_MINI,
-    ]),
+    drawerType: PropTypes.oneOf(Object.keys(NavigationDrawer.DrawerType).map(k => NavigationDrawer.DrawerType[k])),
     toolbarChildren: PropTypes.node,
     toolbarTitle: PropTypes.string,
     navHeader: PropTypes.node,
@@ -100,10 +98,12 @@ export default class NavigationDrawer extends Component {
       toolbarChildren,
       navHeader,
     } = this.props;
+    const { PERSISTENT, PERSISTENT_MINI, TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
 
-    const mini = drawerType === NavigationDrawer.DrawerType.PERSISTENT_MINI;
-    const persistent = mini || drawerType === NavigationDrawer.DrawerType.PERSISTENT;
-    const active = isOpen || (!persistent && !isMobile);
+    const mini = drawerType === PERSISTENT_MINI || drawerType === TEMPORARY_MINI;
+    const persistent = drawerType === PERSISTENT_MINI || drawerType === PERSISTENT;
+    const temporary = drawerType === TEMPORARY || drawerType === TEMPORARY_MINI;
+    const active = isOpen || (!temporary && (!persistent && !isMobile));
 
     let nav;
     if(active || mini) {
@@ -134,9 +134,7 @@ export default class NavigationDrawer extends Component {
     }
 
     let header;
-    if(drawerType === NavigationDrawer.DrawerType.CLIPPED) {
-      header = <header className="md-drawer-header" />;
-    } else if(navHeader) {
+    if(navHeader) {
       header = React.cloneElement(navHeader, { persistent });
     } else if((active && mini) || !mini) {
       header = (
@@ -161,7 +159,7 @@ export default class NavigationDrawer extends Component {
         <div className={classnames('md-navigation-drawer-content', contentClassName, drawerType, conditionalClassNames)}>
           <NavigationDrawerToolbar
             className={classnames(toolbarClassName, drawerType, conditionalClassNames)}
-            persistent={persistent}
+            temporary={temporary}
             isOpen={isOpen}
             openDrawer={openDrawer}
             menuIconClassName={menuIconClassName}
@@ -170,6 +168,9 @@ export default class NavigationDrawer extends Component {
             children={toolbarChildren}
           />
           {children}
+          <CSSTransitionGroup transitionName="md-overlay" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
+            {isOpen && <div key="overlay" className="md-navigation-drawer-overlay" onClick={closeDrawer} />}
+          </CSSTransitionGroup>
         </div>
       </div>
     );

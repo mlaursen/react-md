@@ -64,7 +64,10 @@
 }
 
 
-
+%invisible {
+  display: none;
+  visibility: hidden;
+}
 
 %md-text {
   color: $md-text-color;
