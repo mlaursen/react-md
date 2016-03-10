@@ -3,6 +3,11 @@
   margin: 0;
   padding-left: 0;
 
+  .md-icon {
+    color: $md-icon-color;
+    transition: color $md-transition-time;
+  }
+
   &.md-text-list {
     .md-divider.inset {
       margin-left: $md-default-padding;

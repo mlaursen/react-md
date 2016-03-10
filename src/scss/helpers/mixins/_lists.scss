@@ -19,7 +19,8 @@
   }
 
   .md-list-tile {
-    &.active {
+    &.active,
+    &.active .md-icon {
       color: $color;
     }
 
