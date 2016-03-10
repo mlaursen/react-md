@@ -8,6 +8,11 @@
   overflow: hidden;
   text-align: center;
   width: $md-avatar-size;
+
+  &.fake-icon {
+    height: $md-font-icon-size;
+    width: $md-font-icon-size;
+  }
 }
 
 .md-img-avatar {

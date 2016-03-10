@@ -25,7 +25,7 @@ export default class Home extends Component {
   };
 
   componentDidMount() {
-    this.appBar = document.querySelector('.react-md-docs-toolbar');
+    this.appBar = document.querySelector('.md-navigation-drawer-toolbar');
     this.appBar.classList.add('no-shadow');
     window.addEventListener('scroll', this.updateToolbar);
   }

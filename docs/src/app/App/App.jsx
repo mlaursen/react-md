@@ -1,28 +1,39 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import marked from 'marked';
 import classnames from 'classnames';
-import Toolbar, { ActionArea } from 'react-md/lib/Toolbars';
-import { IconButton } from 'react-md/lib/Buttons';
-import { isMobile } from 'react-md/lib/utils';
+
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+import Divider from 'react-md/lib/Dividers';
+import { ListItem, ListSubheader } from 'react-md/lib/Lists';
+import FontIcon from 'react-md/lib/FontIcons';
+import Avatar from 'react-md/lib/Avatars';
 
 import './_app.scss';
 import '../Documentation/_markdown.scss';
 import '../Documentation/_prop-types.scss';
 import '../Documentation/_documentation.scss';
-import SidebarNav from './SidebarNav';
 
-import { githubHref } from '../utils';
 import GettingStarted from '../GettingStarted';
 import Customization from '../Customization';
 import Typography from '../Typography';
+import { hostPrefix, imgPrefix, toDashedName, toTitle } from '../utils';
+
+import * as components from '../components';
+const componentLinks = Object.keys(components).map(k => {
+  if(!components[k] || !components[k].name) { return; }
+
+  return {
+    to: 'components/' + toDashedName(k),
+    primaryText: toTitle(k),
+  };
+}).filter(l => !!l);
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
-    // Not home and not a media device
-    const isOpen = props.location.pathname !== '/' && !isMobile;
-    this.state = { isOpen };
+    this.state = { isOpen: false };
   }
 
   static propTypes = {
@@ -44,25 +55,11 @@ export default class App extends Component {
     });
   }
 
-  componentWillUpdate({ location }, { isOpen }) {
-    const { pathname } = this.props.location;
-    if(pathname === location.pathname) { return; }
-
-    const isRoot = location.pathname === '/';
-    if(!isRoot && !isOpen && !isMobile) {
-      this.setState({ isOpen: true });
-    } else if(isRoot && isOpen || isMobile) {
-      setTimeout(() => {
-        this.setState({ isOpen: false });
-      }, 150);
-    }
-  }
-
-  toggleMenu = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+  openDrawer = () => {
+    this.setState({ isOpen: true });
   };
 
-  closeSidebar = () => {
+  closeDrawer = () => {
     this.setState({ isOpen: false });
   };
 
@@ -83,8 +80,43 @@ export default class App extends Component {
     }
   };
 
+  mapToListItem = ({ icon, to, leftIcon, leftAvatar, component, subheader, divider, ...props }, i) => {
+    if(divider) {
+      return <Divider key={i} />;
+    } else if(subheader) {
+      return <ListSubheader {...props} key={i} />;
+    }
+
+    const pathname = this.props.location.pathname;
+    const home = pathname === '/';
+    const isHomeLink = to === '';
+    // can't use activeClassName because doesn't update correctly with PureRenderMixin
+    let className;
+    if((isHomeLink && home) || (!isHomeLink && !home && pathname.indexOf(to) !== -1)) {
+      className = 'active';
+    }
+
+    let left;
+    if(icon) {
+      left = <FontIcon>{icon}</FontIcon>;
+    } else if(leftAvatar) {
+      left = <Avatar {...leftAvatar} className="fake-icon" />;
+    }
+    return (
+      <ListItem
+        {...props}
+        key={i}
+        to={`/${to}`}
+        component={component || Link}
+        className={className}
+        leftIcon={left}
+      />
+    );
+  };
+
   render() {
     const pathname = this.props.location.pathname;
+
     let pageTitle;
     switch(pathname) {
       case `/${GettingStarted.path}`:
@@ -97,35 +129,72 @@ export default class App extends Component {
         pageTitle = 'Typography';
         break;
       case '/':
-        pageTitle = 'react-md';
         break;
       default:
         pageTitle = 'Components';
     }
 
+    const navItems = [{
+      to: '',
+      primaryText: 'Home',
+      icon: 'home',
+    }, {
+      to: GettingStarted.path,
+      primaryText: 'Getting Started',
+      icon: 'info_outline',
+    }, {
+      to: Customization.path,
+      primaryText: 'Customization',
+      icon: 'color_lens',
+    }, {
+      to: Typography.path,
+      primaryText: 'Typography',
+      icon: 'text_fields',
+    }, {
+      component: 'a',
+      primaryText: 'SASS Doc',
+      href: `${hostPrefix}/sassdoc`,
+      leftAvatar: { src: `${imgPrefix}/sass-icon.png`, alt: 'SASS icon' },
+    }, {
+      component: 'div',
+      primaryText: 'Components',
+      initiallyOpen: pathname.indexOf('components') !== -1,
+      nestedItems: componentLinks.map(this.mapToListItem),
+      icon: 'build',
+    }, { divider: true }, {
+      subheader: true,
+      primaryText: 'References',
+    }, {
+      component: 'a',
+      primaryText: 'React',
+      href: 'https://facebook.github.io/react/',
+      leftAvatar: { src: 'https://facebook.github.io/react/img/logo.svg', alt: 'React logo' },
+    }, {
+      component: 'a',
+      primaryText: 'Material Design',
+      href: 'https://www.google.com/design/spec/material-design/introduction.html',
+      leftAvatar: { src: 'https://i.ytimg.com/vi/PAKCgvprpQ8/maxresdefault.jpg', alt: 'Google logo' },
+    }, {
+      component: 'a',
+      primaryText: 'Material Icons',
+      href: 'https://design.google.com/icons/',
+      leftAvatar: { src: 'https://i.ytimg.com/vi/PAKCgvprpQ8/maxresdefault.jpg', alt: 'Google logo' },
+    }].map(this.mapToListItem);
+
     return (
-      <div className={classnames('react-md-docs', this.mapPathToTheme())}>
-        <Toolbar
-          primary
-          fixed
-          title={pageTitle}
-          className="react-md-docs-toolbar"
-          actionLeft={<IconButton onClick={this.toggleMenu}>menu</IconButton>}
-          actionsRight={(
-            <ActionArea>
-              <IconButton href={githubHref} iconClassName="fa fa-github" />
-            </ActionArea>
-          )}
-        />
-        <SidebarNav
-          isOpen={this.state.isOpen}
-          pathname={pathname}
-          closeSidebar={this.closeSidebar}
-        />
-        <main className={classnames({ 'md-sidebar-relative': !isMobile && this.state.isOpen && pathname !== '/' })}>
+      <NavigationDrawer
+        className={classnames('react-md-docs', this.mapPathToTheme())}
+        title="react-md"
+        toolbarTitle={pageTitle}
+        isOpen={this.state.isOpen}
+        navItems={navItems}
+        openDrawer={this.openDrawer}
+        closeDrawer={this.closeDrawer}
+      >
+        <main>
           {React.cloneElement(this.props.children, { key: pathname, marked })}
         </main>
-      </div>
+      </NavigationDrawer>
     );
   }
 }

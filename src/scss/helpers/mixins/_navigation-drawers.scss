@@ -30,6 +30,7 @@
 @mixin md-navigation-drawer-mobile() {
 
   .md-navigation-drawer.active {
+    @include md-box-shadow(3);
     z-index: $md-navigation-drawer-temporary-z-index;
   }
 

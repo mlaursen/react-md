@@ -35,6 +35,7 @@ export default class ListItem extends Component {
     onExpanderClick: PropTypes.func,
     expanderIconChildren: PropTypes.node,
     expanderIconClassName: PropTypes.string,
+    onClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -116,6 +117,14 @@ export default class ListItem extends Component {
     }
   };
 
+  handleOnClick = (e) => {
+    if(this.props.onClick) {
+      this.props.onClick(e);
+    } else {
+      this.toggleNestedItems(e);
+    }
+  };
+
   render() {
     const {
       component,
@@ -135,6 +144,7 @@ export default class ListItem extends Component {
     const content = React.createElement(component, {
       role: 'button',
       ...props,
+      onClick: this.handleOnClick,
       className: classnames('md-list-tile', className, {
         'two-lines': secondaryText,
         'three-lines': !!secondaryText && !!secondaryText2,
