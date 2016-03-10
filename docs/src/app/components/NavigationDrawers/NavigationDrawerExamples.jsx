@@ -12,7 +12,6 @@ const { FULL_HEIGHT, CLIPPED, FLOATING, PERSISTENT, PERSISTENT_MINI, TEMPORARY, 
 let state = {
   isOpen: false,
   drawerType: FULL_HEIGHT,
-  contentNode: null,
 };
 
 const LOCATION = '/components/navigation-drawers';
@@ -40,8 +39,8 @@ export default class NavigationDrawerExamples extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(this.state.drawerType !== nextState.drawerType && nextState.drawerType.indexOf('mini') === -1 && state.toolbar) {
-      state.toolbar.style.top = null;
+    if(this.state.drawerType !== nextState.drawerType) {
+      this.fakeFixedPositioning(nextState);
     }
   }
 
@@ -138,11 +137,10 @@ export default class NavigationDrawerExamples extends Component {
         <NavigationDrawer
           title="Title"
           toolbarTitle={this.getTitle(currentPath)}
-          isOpen={isOpen}
           closeDrawer={this.closeDrawer}
           openDrawer={this.openDrawer}
-          drawerType={drawerType}
           navItems={navItems}
+          {...this.state}
         >
           <div style={{ padding: '1em' }}>
             <h3 className="md-subheading-1">Change <code>drawerType</code></h3>

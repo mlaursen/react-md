@@ -230,13 +230,14 @@ $scrollbar-width: 16px;
   }
 
   .md-navigation-drawer-toolbar {
-    &.temporary.mini {
-      left: -$md-navigation-drawer-mini-width;
-      width: calc(100% + #{$md-navigation-drawer-mini-width});
-    }
-
     &.temporary {
       width: calc(100% - #{$scrollbar-width});
+
+      // scss-lint:disable NestingDepth
+      &.mini {
+        left: -$md-navigation-drawer-mini-width;
+        width: calc(100% + #{$md-navigation-drawer-mini-width});
+      }
     }
   }
 }
