@@ -1,13 +1,11 @@
 
 .md-overlay {
-  background: rgba($md-black-base, .2);
-  height: 100%;
+  background: rgba($md-black-base, .4);
+  height: 100vh;
   left: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: $md-overlay-z-index;
 }
 

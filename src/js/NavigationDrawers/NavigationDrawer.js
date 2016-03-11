@@ -45,9 +45,12 @@ export default class NavigationDrawer extends Component {
     navItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.shape({
-        key: PropTypes.any,
-        leftIcon: PropTypes.node,
-        leftAvatar: PropTypes.node,
+        divider: PropTypes.bool,
+        subheader: PropTypes.bool,
+        component: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.func,
+        ]),
         primaryText: PropTypes.string,
       }),
     ])).isRequired,

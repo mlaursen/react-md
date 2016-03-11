@@ -23,19 +23,6 @@ body {
   min-height: 100%;
 }
 
-main {
-  background: $md-white-base;
-  flex-grow: 1;
-  margin-top: 0;
-  overflow-x: hidden;
-  padding-left: 0;
-  transition: padding-left $md-transition-time;
-
-  &.active {
-    padding-left: $md-sidebar-open-width;
-  }
-}
-
 .getting-started-theme {
   @include md-theme-most($md-purple-500, $md-purple-700, $md-green-a-200, $md-green-500);
 }

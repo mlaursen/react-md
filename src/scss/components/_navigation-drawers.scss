@@ -1,10 +1,3 @@
-.md-navigation-drawer,
-.md-navigation-drawer-content {
-  display: inline-block;
-  transition: width $md-transition-time;
-  vertical-align: top;
-}
-
 .md-navigation-drawer {
   @include md-box-shadow(1);
 
@@ -12,6 +5,8 @@
   height: 100vh;
   overflow-y: auto;
   position: fixed;
+  transition-duration: $md-transition-time;
+  transition-property: width, box-shadow;
   visibility: hidden;
   width: 0;
   z-index: $md-navigation-drawer-z-index;
