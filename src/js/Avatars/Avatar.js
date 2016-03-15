@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
-
 export default class Avatar extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +25,10 @@ export default class Avatar extends Component {
   };
 
   getColor = () => {
-    const { suffix, suffixes } = this.props;
+    const { suffix, suffixes, random } = this.props;
     if(suffix) {
       return `md-avatar-${suffix}`;
-    } else if(!!suffixes && !isPropEnabled(this.props, 'random')) {
+    } else if(!!suffixes && !random) {
       return null;
     }
 

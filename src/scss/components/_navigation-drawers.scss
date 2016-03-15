@@ -1,7 +1,6 @@
 .md-navigation-drawer {
   @include md-box-shadow(1);
 
-  background: $md-white-base;
   height: 100vh;
   overflow-y: auto;
   position: fixed;
@@ -27,6 +26,7 @@
 
   &.temporary.active {
     @include md-box-shadow(3);
+
     z-index: $md-navigation-drawer-temporary-z-index;
   }
 }
@@ -60,7 +60,6 @@
 }
 
 .md-navigation-drawer-toolbar {
-  background: $md-primary-color;
   color: $md-white-base;
   left: 0;
   position: fixed;

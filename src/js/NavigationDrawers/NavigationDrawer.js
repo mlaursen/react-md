@@ -58,6 +58,7 @@ export default class NavigationDrawer extends Component {
     toolbarChildren: PropTypes.node,
     toolbarTitle: PropTypes.string,
     navHeader: PropTypes.node,
+    navHeaderChildren: PropTypes.node,
     customValidation: function(props) {
       const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
       const { drawerType } = props;
@@ -99,6 +100,32 @@ export default class NavigationDrawer extends Component {
     }
   }
 
+  mapItemsToComponents = (mini, active, item, key) => {
+    if(React.isValidElement(item)) {
+      return item;
+    }
+
+    const { divider, subheader, primaryText, nestedItems, ...itemProps } = item;
+    let component;
+    if(divider) {
+      component = Divider;
+    } else if(subheader) {
+      component = ListSubheader;
+    } else {
+      component = ListItem;
+    }
+
+    const props = Object.assign({}, itemProps, {
+      key: item.key || key,
+      nestedItems: nestedItems && nestedItems.map(this.mapItemsToComponents.bind(this, mini, active)),
+    });
+    if(!mini || (mini && active)) {
+      props.primaryText = primaryText;
+    }
+
+    return React.createElement(component, props);
+  };
+
   render() {
     const {
       isOpen,
@@ -119,6 +146,7 @@ export default class NavigationDrawer extends Component {
       drawerType,
       toolbarChildren,
       navHeader,
+      navHeaderChildren,
     } = this.props;
     const { PERSISTENT, PERSISTENT_MINI, TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
 
@@ -129,28 +157,7 @@ export default class NavigationDrawer extends Component {
 
     let nav;
     if(active || mini) {
-      const navigationItems = navItems.map((item, key) => {
-        if(React.isValidElement(item)) {
-          return item;
-        }
-
-        const { divider, subheader, primaryText, ...itemProps } = item;
-        let component;
-        if(divider) {
-          component = Divider;
-        } else if(subheader) {
-          component = ListSubheader;
-        } else {
-          component = ListItem;
-        }
-
-        const props = Object.assign({}, itemProps, { key: item.key || key });
-        if(!mini || (mini && active)) {
-          props.primaryText = primaryText;
-        }
-
-        return React.createElement(component, props);
-      });
+      const navigationItems = navItems.map(this.mapItemsToComponents.bind(this, mini, active));
 
       nav = <List>{navigationItems}</List>;
     }
@@ -166,6 +173,7 @@ export default class NavigationDrawer extends Component {
           closeIconChildren={closeIconChildren}
           closeIconClassName={closeIconClassName}
           persistent={persistent}
+          children={navHeaderChildren}
         />
       );
     }

@@ -8,6 +8,7 @@
 /// @param {String} $secondary-base [$md-secondar-color-base] - This is a -500
 ///       color value that is used to theme toolbars and tabs to a main color.
 @mixin md-theme-most($primary: $md-primary-color, $primary-hue-1: $md-primary-color-hue-1, $secondary: $md-secondary-color, $secondary-base: $md-secondary-color-base) {
+  @include md-theme-navigation-drawers($primary);
   @include md-theme-text-fields($primary);
   @include md-theme-snackbars($primary);
   @include md-theme-date-pickers($primary, $primary-hue-1);

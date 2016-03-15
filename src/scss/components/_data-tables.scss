@@ -36,7 +36,7 @@
     height: 48px;
   }
 
-  tr {
+  tbody tr {
     transition: background $md-transition-time;
 
     &:hover {

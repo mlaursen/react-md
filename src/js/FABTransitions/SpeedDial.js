@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { FloatingButton } from 'react-md/lib/Buttons';
+import { FloatingButton } from '../Buttons';
 
 export default class SpeedDial extends Component {
   constructor(props) {

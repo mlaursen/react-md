@@ -76,3 +76,20 @@
     }
   }
 }
+
+/// Themes the navigation drawers with the given color
+///
+/// @example scss - Basic Usage SASS
+///   @include md-theme-navigation-drawers($md-indigo-500);
+///
+/// @param primary - the primary color to use
+/// @param light-theme [$md-light-theme] - Boolean if it is currently the light theme.
+@mixin md-theme-navigation-drawers($primary, $light-theme: $md-light-theme) {
+  .md-navigation-drawer {
+    background: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+  }
+
+  .md-navigation-drawer-toolbar {
+    background: $primary;
+  }
+}

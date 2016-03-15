@@ -187,7 +187,7 @@ export default class SelectField extends Component {
     const isBelow = isPropEnabled(props, 'below');
     const displayLabel = this.getSelected(itemLabel);
     const displayValue = this.getSelected(itemValue);
-    const fieldClassName= classnames('md-select-field', {
+    const fieldClassName= classnames('md-select-field', className, {
       'focus': focused || isOpen,
       'segmented': isPropEnabled(props, 'segmented'),
       'text-field-positioned': isPropEnabled(props, 'textFieldPositioned'),
