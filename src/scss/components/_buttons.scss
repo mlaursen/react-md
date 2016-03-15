@@ -1,11 +1,13 @@
 .md-btn {
   @extend %button-unstyled;
 
+  display: inline-block;
   overflow: hidden;
   position: relative;
   text-transform: uppercase;
   transition-duration: $md-transition-time * 2;
   transition-property: box-shadow, background, transform;
+  vertical-align: top;
 
   &[disabled] {
     color: $md-disabled-color;
@@ -14,6 +16,16 @@
       background: $md-btn-hover-color;
     }
   }
+
+  // fix so all font libraries appear inline with each other
+  .md-icon {
+    vertical-align: top;
+  }
+}
+
+// scss-lint:disable QualifyingElement
+a.md-btn {
+  text-decoration: none;
 }
 
 .md-flat-btn,

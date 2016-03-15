@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import { isPropEnabled, mergeClassNames } from '../utils';
-import { TAB } from '../constants/keyCodes';
 import Ink from '../Inks';
 
 export default class Button extends Component {
@@ -10,7 +9,6 @@ export default class Button extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { focused: false };
   }
 
   static propTypes = {
@@ -26,25 +24,12 @@ export default class Button extends Component {
     secondary: PropTypes.bool,
     disabled: PropTypes.bool,
     iconBefore: PropTypes.bool,
-    onKeyUp: PropTypes.func,
-    onBlur: PropTypes.func,
+    href: PropTypes.string,
   };
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
-  };
-
-  handleKeyUp = (e) => {
-    if(this.props.onKeyUp) { this.props.onKeyUp(e); }
-    if((e.keyCode || e.which) === TAB) {
-      this.setState({ focused: true });
-    }
-  };
-
-  handleBlur = (e) => {
-    if(this.props.onBlur) { this.props.onBlur(e); }
-    this.setState({ focused: false });
   };
 
   renderChildren = () => {
@@ -66,18 +51,17 @@ export default class Button extends Component {
   };
 
   render() {
-    const { className, iconBefore, label, children, ...props } = this.props;
+    const { className, iconBefore, label, children, href, ...props } = this.props;
     const disabled = isPropEnabled(props, 'disabled');
+
+    const button = React.createElement(href ? 'a' : 'button', {
+      ...props,
+      href: href,
+      className: mergeClassNames(props, 'md-btn', className),
+    }, this.renderChildren());
     return (
       <Ink disabled={disabled}>
-        <button
-          {...props}
-          onKeyUp={this.handleKeyUp}
-          onBlur={this.handleBlur}
-          className={mergeClassNames(props, 'md-btn', className)}
-          >
-          {this.renderChildren()}
-        </button>
+        {button}
       </Ink>
     );
   }
