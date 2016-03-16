@@ -19,10 +19,22 @@ export default class Chip extends Component {
     label: PropTypes.string.isRequired,
     children: PropTypes.node,
     removeIcon: PropTypes.node.isRequired,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
   };
 
   static defaultProps = {
     removeIcon: <FontIcon style={{ transform: 'rotate(45deg)' }}>add_circle</FontIcon>,
+  };
+
+  handleFocus = (e) => {
+    if(this.props.onFocus) { this.props.onFocus(e); }
+    this.setState({ focus: true });
+  };
+
+  handleBlur = (e) => {
+    if(this.props.onBlur) { this.props.onBlur(e); }
+    this.setState({ focus: false });
   };
 
   render() {
@@ -36,9 +48,9 @@ export default class Chip extends Component {
             'with-remove': !!remove,
           })}
           onClick={onClick}
-          onFocus={() => this.setState({ focus: true })}
-          onBlur={() => this.setState({ focus: false })}
-          >
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+        >
           {label}
         </button>
         {remove &&
