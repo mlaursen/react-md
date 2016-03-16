@@ -21,6 +21,8 @@ export default class Card extends Component {
     iconChildren: PropTypes.string,
     isInitialExpanded: PropTypes.bool,
     raise: PropTypes.bool,
+    isExpanded: PropTypes.bool,
+    onExpanderClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -38,17 +40,23 @@ export default class Card extends Component {
   };
 
   getChildContext = () => {
-    const { iconClassName, iconChildren } = this.props;
+    const { iconClassName, iconChildren, isExpanded } = this.props;
     return {
       onExpandClick: this.handleExpandClick,
-      isExpanded: this.state.expanded,
+      isExpanded: typeof isExpanded !== 'undefined' ? isExpanded : this.state.expanded,
       iconClassName,
       iconChildren,
     };
   };
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+  handleExpandClick = (e) => {
+    if(this.props.onExpanderClick) {
+      this.props.onExpanderClick(e);
+    }
+
+    if(typeof this.props.isExpanded === 'undefined') {
+      this.setState({ expanded: !this.state.expanded });
+    }
   };
 
   render() {

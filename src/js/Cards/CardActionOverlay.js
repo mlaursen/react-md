@@ -22,10 +22,10 @@ export default class CardActionOverlay extends Component {
   };
 
   render() {
-    const { title, subtitle, actions, children } = this.props;
+    const { actions, ...titleProps } = this.props;
     return (
       <span>
-        <CardTitle title={title} subtitle={subtitle} children={children} />
+        <CardTitle {...titleProps} />
         <CardActions>
           {actions.map((actionProps, i) => <FlatButton key={i} {...actionProps} />)}
         </CardActions>
