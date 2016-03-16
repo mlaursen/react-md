@@ -1,20 +1,16 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
-
-const Divider = (className, ...props) => (
+const Divider = ({ className, inset, vertical, ...props}) => (
   <hr
     role="divider"
-    className={classnames('md-divider', className, {
-      'inset': isPropEnabled(props, 'inset'),
-      'vertical': isPropEnabled(props, 'vertical'),
-    })}
+    className={classnames('md-divider', className, { inset, vertical })}
     {...props}
   />
 );
 
 Divider.propTypes = {
+  className: PropTypes.string,
   inset: PropTypes.bool,
   vertical: PropTypes.bool,
 };
