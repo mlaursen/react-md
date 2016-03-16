@@ -10,21 +10,22 @@ export default class SpeedDial extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
+    this.state = { isOpen: props.initiallyOpen };
   }
 
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool,
+    initiallyOpen: PropTypes.bool,
     className: PropTypes.string,
     transitionName: PropTypes.string.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
     speedDialTransitionName: PropTypes.string.isRequired,
     speedDialTransitionEnterTimeout: PropTypes.number.isRequired,
     speedDialTransitionLeaveTimeout: PropTypes.number.isRequired,
-    passiveIconChildren: PropTypes.node.isRequired,
-    passiveIconClassName: PropTypes.node.isRequired,
-    activeIconChildren: PropTypes.node.isRequired,
-    activeIconClassName: PropTypes.string.isRequired,
+    passiveIconChildren: PropTypes.node,
+    passiveIconClassName: PropTypes.node,
+    activeIconChildren: PropTypes.node,
+    activeIconClassName: PropTypes.string,
     fabs: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.shape({
@@ -33,15 +34,20 @@ export default class SpeedDial extends Component {
         children: PropTypes.node,
       }),
     ])).isRequired,
+    onClick: PropTypes.func,
+    onPassiveClick: PropTypes.func,
+    onActiveClick: PropTypes.func,
     fabsValidator: function(props) {
       const size = props.fabs.length;
       if(size >= 3 && size <= 5) { return; }
       const middle = size < 3 ? 'at least 3' : 'no more than 5';
       return new Error(`A speed dial requires ${middle} floating action buttons to fling. However, only ${size} were given.`);
     },
+    containerProps: PropTypes.object,
   };
 
   static defaultProps = {
+    initiallyOpen: false,
     transitionName: 'md-fab-rotate',
     transitionEnterTimeout: 150,
     transitionLeaveTimeout: 150,
@@ -52,10 +58,31 @@ export default class SpeedDial extends Component {
     activeIconClassName: 'material-icons',
   };
 
+  isOpen = (props = this.props, state = this.state) => {
+    return typeof props.isOpen === 'undefined' ? state.isOpen : props.isOpen;
+  };
+
+  handleClick = (e) => {
+    const { onClick, onPassiveClick, onActiveClick } = this.props;
+    if(onClick) {
+      onClick(e);
+    }
+
+    const isOpen = this.isOpen();
+    if(isOpen && onActiveClick) {
+      onActiveClick(e);
+    } else if(!isOpen && onPassiveClick) {
+      onPassiveClick(e);
+    }
+
+    if(typeof this.props.isOpen === 'undefined') {
+      this.setState({ isOpen: !isOpen });
+    }
+  };
+
   render() {
     const {
       fabs,
-      isOpen,
       passiveIconChildren,
       passiveIconClassName,
       activeIconChildren,
@@ -65,8 +92,11 @@ export default class SpeedDial extends Component {
       speedDialTransitionName,
       speedDialTransitionEnterTimeout,
       speedDialTransitionLeaveTimeout,
+      containerProps,
       ...props,
     } = this.props;
+
+    const isOpen = this.isOpen();
 
     let speedDialFabs;
     if(isOpen) {
@@ -82,12 +112,11 @@ export default class SpeedDial extends Component {
           props = fab;
         }
 
-        return fn(el, {
-          ...props,
-          className: classnames('md-speed-dial-fab', props.className),
-          key: el.key || i,
+        const created = fn(el, {
           mini: true,
+          ...props,
         });
+        return <div key={i} className="md-speed-dial-fab">{created}</div>;
       });
     }
 
@@ -95,11 +124,13 @@ export default class SpeedDial extends Component {
     props.children = isOpen ? activeIconChildren : passiveIconChildren;
     return (
       <CSSTransitionGroup
+        {...containerProps}
         component="div"
-        className="md-speed-dial"
+        className={classnames('md-speed-dial', !!containerProps && containerProps.className)}
         transitionName={`${transitionName}-${isOpen ? 'right' : 'left'}`}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeave={false}
+        ref="container"
       >
         <CSSTransitionGroup
           component="div"
@@ -110,7 +141,7 @@ export default class SpeedDial extends Component {
         >
           {speedDialFabs}
         </CSSTransitionGroup>
-        <FloatingButton {...props} key={`${isOpen ? 'open' : 'closed'}-fab`} />
+        <FloatingButton {...props} key={`${isOpen ? 'open' : 'closed'}-fab`} onClick={this.handleClick} />
       </CSSTransitionGroup>
     );
   }

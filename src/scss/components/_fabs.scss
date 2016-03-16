@@ -52,10 +52,12 @@
   > .md-floating-btn {
     z-index: 1;
   }
+
 }
 
 .md-speed-dial-fab {
   background: $md-white-base;
+  border-radius: 50%;
   left: 50%;
   position: absolute;
   transform: translate3d(-50%, 0, 0);
