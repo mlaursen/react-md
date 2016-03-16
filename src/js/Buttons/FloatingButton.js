@@ -18,6 +18,7 @@ export default class FloatingButton extends Component {
     children: PropTypes.string,
     fixed: PropTypes.bool,
     mini: PropTypes.bool,
+    avatar: PropTypes.node,
   };
 
   render() {
