@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
+import { FlatButton } from '../Buttons';
 import Toolbar from '../Toolbars';
 import Divider from '../Dividers';
 
@@ -19,7 +20,12 @@ export default class Dialog extends Component {
     isFullPage: PropTypes.bool.isRequired,
     transformOrigin: PropTypes.string,
     title: PropTypes.string,
-    actions: PropTypes.node,
+    actions: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.arrayOf(PropTypes.object),
+      PropTypes.node,
+      PropTypes.object,
+    ]),
     actionLeft: PropTypes.node,
     actionRight: PropTypes.node,
     className: PropTypes.string,
@@ -85,7 +91,17 @@ export default class Dialog extends Component {
     }
 
     if(actions) {
-      footer = <footer className={classnames('md-dialog-footer', { stacked })}>{actions}</footer>;
+      footer = (
+        <footer className={classnames('md-dialog-footer', { stacked })}>
+          {actions.map((action, key) => {
+            if(!React.isValidElement(action)) {
+              return <FlatButton key={key} {...action} />;
+            } else {
+              return action;
+            }
+          })}
+        </footer>
+      );
     }
 
     return (

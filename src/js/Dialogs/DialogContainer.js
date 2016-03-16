@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isPropEnabled, setOverflow } from '../utils';
+import { setOverflow } from '../utils';
 import Dialog from './Dialog';
 
 export default class DialogContainer extends Component {
@@ -21,7 +21,9 @@ export default class DialogContainer extends Component {
     title: PropTypes.string,
     actions: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
+      PropTypes.arrayOf(PropTypes.object),
       PropTypes.node,
+      PropTypes.object,
     ]),
     actionLeft: PropTypes.node,
     actionRight: PropTypes.node,
@@ -37,7 +39,6 @@ export default class DialogContainer extends Component {
     transitionEnterTimeout: PropTypes.number,
     transitionLeave: PropTypes.bool,
     transitionLeaveTimeout: PropTypes.number,
-    onlyChildren: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -91,6 +92,7 @@ export default class DialogContainer extends Component {
       className,
       contentClassName,
       containerClassName,
+      modal,
       close,
       actionLeft,
       actionRight,
@@ -144,7 +146,7 @@ export default class DialogContainer extends Component {
             <div
               key="overlay"
               className="md-overlay"
-              onClick={isPropEnabled(props, 'modal') ? null : close}
+              onClick={modal ? null : close}
             />
           }
         </CSSTransitionGroup>
