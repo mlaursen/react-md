@@ -21,6 +21,11 @@
   }
 }
 
+%md-toolbar-item {
+  margin-left: $md-toolbar-action-margin;
+  margin-right: $md-toolbar-action-margin;
+}
+
 .md-toolbar {
   @include md-box-shadow(1);
 
@@ -47,11 +52,14 @@
   .action-left,
   .action-area,
   .action-right {
-    margin-left: $md-toolbar-action-margin;
-    margin-right: $md-toolbar-action-margin;
+    @extend %md-toolbar-item;
   }
 
   .md-text-field-container {
     padding: 0;
   }
+}
+
+.md-toolbar-item {
+  @extend %md-toolbar-item;
 }
