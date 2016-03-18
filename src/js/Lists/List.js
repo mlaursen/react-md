@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
-import ListSubheader from './ListSubheader';
+import Subheader from '../Subheaders';
 
 export default class List extends Component {
   constructor(props) {
@@ -22,14 +21,14 @@ export default class List extends Component {
   };
 
   render() {
-    const { className, subheader, children, ...props } = this.props;
+    const { className, subheader, children, primarySubheader, textOnly, ordered, ...props } = this.props;
     let allChildren = children;
     if(subheader) {
-      allChildren = [<ListSubheader primary={isPropEnabled(props, 'primarySubheader')} primaryText={subheader} />].concat(children);
+      allChildren = [<Subheader key="subheader" primary={primarySubheader} primaryText={subheader} />].concat(children);
     }
 
-    return React.createElement(isPropEnabled(props, 'ordered') ? 'ol' : 'ul', {
-      className: classnames('md-list', className, { 'md-text-list': isPropEnabled(props, 'textOnly') }),
+    return React.createElement(ordered ? 'ol' : 'ul', {
+      className: classnames('md-list', className, { 'md-text-list': textOnly }),
       ...props,
     }, React.Children.map(allChildren, (child, i) => {
       if(i + 1 < children.length) {

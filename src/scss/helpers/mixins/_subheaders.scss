@@ -1,0 +1,5 @@
+@mixin md-theme-subheaders($color) {
+  .md-subheader.md-primary {
+    color: $color;
+  }
+}

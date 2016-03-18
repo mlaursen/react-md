@@ -7,7 +7,7 @@ import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
-import { List, ListItem, ListSubheader } from './Lists';
+import { List, ListItem } from './Lists';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
 import { CircularProgress, LinearProgress } from './Progress';
@@ -16,6 +16,7 @@ import SelectField from './SelectFields';
 import Slider from './Sliders';
 import Sidebar from './Sidebars';
 import Snackbar from './Snackbars';
+import Subheader from './Subheaders';
 import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
 import TimePicker from './TimePickers';
@@ -43,7 +44,6 @@ export { Ink };
 export { LinearProgress };
 export { List };
 export { ListItem };
-export { ListSubheader };
 export { NavigationDrawer };
 export { Paper };
 export { Radio };
@@ -53,6 +53,7 @@ export { Slider };
 export { Sidebar };
 export { Snackbar };
 export { SpeedDial };
+export { Subheader };
 export { Switch };
 export { TextField };
 export { Tab };
@@ -75,7 +76,6 @@ export default {
   CardActionOverlay,
   List,
   ListItem,
-  ListSubheader,
   CircularProgress,
   LinearProgress,
   Checkbox,
@@ -96,6 +96,7 @@ export default {
   Sidebar,
   Snackbar,
   SpeedDial,
+  Subheader,
   TextField,
   TimePicker,
   Toolbar,

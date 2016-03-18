@@ -1,0 +1,11 @@
+.md-subheader {
+  color: $md-secondary-text-color;
+  font-size: 14px;
+  font-weight: $md-font-medium;
+  height: $md-height;
+  padding: $md-default-padding;
+
+  &.inset {
+    padding-left: $md-list-tile-left-padding;
+  }
+}

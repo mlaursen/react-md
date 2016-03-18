@@ -16,6 +16,7 @@
   @include md-theme-select-fields($primary);
   @include md-theme-selection-controls($primary);
   @include md-theme-sliders($primary);
+  @include md-theme-subheaders($primary);
 
   .md-primary {
     @include md-theme-toolbars($primary, $md-white-base);
