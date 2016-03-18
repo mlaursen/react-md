@@ -100,7 +100,7 @@
   @for $i from 1 through $depth {
     $full-selector: '#{$full-selector} #{$selector}';
 
-    .md-list .md-list-tile #{$full-selector} {
+    .md-list-tile #{$full-selector} {
       padding-left: $md-list-tile-left-padding * $multiplier;
     }
 

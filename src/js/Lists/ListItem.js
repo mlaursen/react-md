@@ -33,6 +33,7 @@ export default class ListItem extends Component {
     initiallyOpen: PropTypes.bool,
     isOpen: PropTypes.bool,
     onExpanderClick: PropTypes.func,
+    expandOnClick: PropTypes.bool,
     expanderIconChildren: PropTypes.node,
     expanderIconClassName: PropTypes.string,
     onClick: PropTypes.func,
@@ -42,10 +43,20 @@ export default class ListItem extends Component {
     component: 'div',
     initiallyOpen: false,
     expanderIconChildren: 'keyboard_arrow_down',
+    expandOnClick: true,
   };
 
   renderText = () => {
-    const { primaryText, secondaryText, secondaryText2, leftIcon, leftAvatar, rightIcon, rightAvatar, nestedItems } = this.props;
+    const {
+      primaryText,
+      secondaryText,
+      secondaryText2,
+      leftIcon,
+      leftAvatar,
+      rightIcon,
+      rightAvatar,
+      nestedItems,
+    } = this.props;
     if(!primaryText) {
       return null;
     }
@@ -110,6 +121,8 @@ export default class ListItem extends Component {
 
   toggleNestedItems = (e) => {
     const { onExpanderClick } = this.props;
+    e.stopPropagation();
+
     if(onExpanderClick) {
       onExpanderClick(e);
     } else {
@@ -117,10 +130,11 @@ export default class ListItem extends Component {
     }
   };
 
-  handleOnClick = (e) => {
-    if(this.props.onClick) {
-      this.props.onClick(e);
-    } else {
+  handleClick = (e) => {
+    const { onClick, nestedItems, expandOnClick, primaryAction, primaryActionNode } = this.props;
+    onClick && onClick(e);
+
+    if(expandOnClick && nestedItems) {
       this.toggleNestedItems(e);
     }
   };
@@ -141,10 +155,10 @@ export default class ListItem extends Component {
       ...props,
     } = this.props;
 
-    const content = React.createElement(component, {
+    let content = React.createElement(component, {
       role: 'button',
       ...props,
-      onClick: this.handleOnClick,
+      onClick: this.handleClick,
       className: classnames('md-list-tile', className, {
         'two-lines': secondaryText,
         'three-lines': !!secondaryText && !!secondaryText2,
