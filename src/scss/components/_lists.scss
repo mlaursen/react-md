@@ -58,6 +58,14 @@
     outline: none;
   }
 
+  &.controls-left {
+    padding-left: 0;
+  }
+
+  &.controls-right {
+    padding-right: 0;
+  }
+
   &.md-list-avatar ~ .md-divider.inset {
     margin-left: $md-toolbar-title-keyline;
   }
@@ -79,6 +87,13 @@
 
     + .md-icon-btn {
       align-self: flex-start;
+    }
+  }
+
+  > .md-control-container,
+  > .md-icon-btn {
+    + .md-tile-content {
+      padding-left: $md-list-tile-left-padding - $md-icon-btn-size;
     }
   }
 }

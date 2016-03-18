@@ -24,7 +24,7 @@
       color: $color;
     }
 
-    &:hover {
+    &:not(.controls):hover {
       background: if($light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
     }
   }
