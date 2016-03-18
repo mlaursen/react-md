@@ -27,9 +27,13 @@
     margin-right: $md-avatar-size - $md-font-icon-size;
     width: $md-font-icon-size;
   }
+
+  .extra-mb {
+    margin-bottom: $md-list-tile-extra-margin;
+  }
 }
 
-.md-divider + .md-list-tile {
+.md-divider + li {
   margin-top: $md-list-tile-extra-margin;
 }
 
