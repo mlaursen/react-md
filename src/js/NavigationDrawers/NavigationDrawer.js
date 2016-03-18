@@ -5,7 +5,8 @@ import classnames from 'classnames';
 
 import { isMobile, setOverflow } from '../utils';
 import Divider from '../Dividers';
-import { List, ListItem, ListSubheader } from '../Lists';
+import { List, ListItem } from '../Lists';
+import Subheader from '../Subheaders';
 
 import NavigationDrawerHeader from './NavigationDrawerHeader';
 import NavigationDrawerToolbar from './NavigationDrawerToolbar';
@@ -110,7 +111,7 @@ export default class NavigationDrawer extends Component {
     if(divider) {
       component = Divider;
     } else if(subheader) {
-      component = ListSubheader;
+      component = Subheader;
     } else {
       component = ListItem;
     }

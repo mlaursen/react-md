@@ -4,7 +4,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import Divider from '..//Dividers';
-import { List, ListItem, ListSubheader } from '../Lists';
+import { List, ListItem } from '../Lists';
+import Subheader from '../Subheaders';
 import { isPropEnabled } from '../utils';
 
 export default class Sidebar extends Component {
@@ -47,7 +48,7 @@ export default class Sidebar extends Component {
     if(divider) {
       component = Divider;
     } else if(subheader) {
-      component = ListSubheader;
+      component = Subheader;
     }
 
     return React.createElement(component, itemProps);
