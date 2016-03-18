@@ -41,6 +41,7 @@ export default class ListItem extends Component {
     primaryActionNode: PropTypes.node,
     secondaryAction: PropTypes.func,
     secondaryActionNode: PropTypes.node,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -96,7 +97,16 @@ export default class ListItem extends Component {
   };
 
   renderRightChildren = () => {
-    const { rightIcon, rightAvatar, expanderIconChildren, expanderIconClassName, nestedItems, secondaryActionNode } = this.props;
+    const {
+      rightIcon,
+      rightAvatar,
+      expanderIconChildren,
+      expanderIconClassName,
+      nestedItems,
+      secondaryActionNode,
+      disabled,
+    } = this.props;
+
     if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length) && !secondaryActionNode) { return null; }
 
     if(nestedItems && nestedItems.length) {
@@ -105,6 +115,7 @@ export default class ListItem extends Component {
         return (
           <IconButton
             key="toggle"
+            disabled={disabled}
             onClick={this.toggleNestedItems}
             iconClassName={expanderIconClassName}
             className={className}
@@ -135,7 +146,8 @@ export default class ListItem extends Component {
   };
 
   handleClick = (e) => {
-    const { onClick, nestedItems, expandOnClick, primaryAction, primaryActionNode } = this.props;
+    const { onClick, nestedItems, expandOnClick, primaryAction, primaryActionNode, disabled } = this.props;
+    if(disabled) { return; }
     onClick && onClick(e);
 
     if(expandOnClick && nestedItems) {
@@ -162,12 +174,14 @@ export default class ListItem extends Component {
       primaryActionNode,
       secondaryAction,
       secondaryActionNode,
+      disabled,
       ...props,
     } = this.props;
 
     let content = React.createElement(component, {
       role: 'button',
       ...props,
+      disabled,
       onClick: this.handleClick,
       className: classnames('md-list-tile', className, {
         'two-lines': secondaryText,
@@ -181,7 +195,7 @@ export default class ListItem extends Component {
 
     // If the list does not have controls
     if(!primaryAction && !primaryActionNode && !secondaryAction && !secondaryActionNode) {
-      content = <Ink>{content}</Ink>;
+      content = <Ink disabled={disabled}>{content}</Ink>;
     }
 
     let children;

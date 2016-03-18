@@ -50,8 +50,12 @@
   position: relative;
   transition: background $md-transition-time;
 
-  &:hover {
+  &:not([disabled]):hover {
     cursor: pointer;
+  }
+
+  &[disabled] {
+    color: $md-disabled-color;
   }
 
   &:focus {
