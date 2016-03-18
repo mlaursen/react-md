@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import { List } from '../Lists';
 
 const ITEM_SCALE = 56;
-import { isPropEnabled } from '../utils';
 
 export default class Menu extends Component {
   constructor(props) {
@@ -21,7 +20,12 @@ export default class Menu extends Component {
   }
 
   static minWidths = [1.5, 2, 3, 6, 7];
-  static positions = ['tr', 'tl', 'br', 'bl'];
+  static Positions = {
+    TOP_RIGHT: 'tr',
+    TOP_LEFT: 'tl',
+    BOTTOM_RIGHT: 'br',
+    BOTTOM_LEFT: 'bl',
+  };
 
   static propTypes = {
     className: PropTypes.string,
@@ -29,17 +33,21 @@ export default class Menu extends Component {
     children: PropTypes.node,
     toggle: PropTypes.node,
     isOpen: PropTypes.bool.isRequired,
-    isBelow: PropTypes.bool,
     style: PropTypes.object,
     minWidth: PropTypes.oneOf(Menu.minWidths),
-    position: PropTypes.oneOf(Menu.positions),
+    position: PropTypes.oneOf(Object.keys(Menu.Positions).map(key => Menu.Positions[key])),
     close: PropTypes.func,
     autoclose: PropTypes.bool,
+    below: PropTypes.bool,
+    cascading: PropTypes.bool,
+    expanderIconChildren: PropTypes.node,
+    expanderIconClassName: PropTypes.string,
   };
 
   static defaultProps = {
-    position: Menu.positions[0],
+    position: Menu.Positions.TOP_RIGHT,
     autoclose: true,
+    expanderIconChildren: 'keyboard_arrow_right',
   };
 
   componentDidMount() {
@@ -97,7 +105,21 @@ export default class Menu extends Component {
   };
 
   render() {
-    const { className, listClassName, children, toggle, isOpen, position, close, autoclose, ...props } = this.props;
+    const {
+      className,
+      listClassName,
+      children,
+      toggle,
+      isOpen,
+      position,
+      close,
+      autoclose,
+      below,
+      cascading,
+      expanderIconChildren,
+      expanderIconClassName,
+      ...props,
+    } = this.props;
 
     return (
       <CSSTransitionGroup
@@ -112,26 +134,26 @@ export default class Menu extends Component {
         {toggle}
         {isOpen &&
           <List
-            className={classnames('md-menu', listClassName, `md-transition-${position}`, {
-              'below': isPropEnabled(props, 'below'),
-              'cascading': isPropEnabled(props, 'cascading'),
-            })}
             ref="list"
+            className={classnames('md-menu', listClassName, `md-transition-${position}`, { below, cascading })}
             style={{ minWidth: this.state.minWidth }}
           >
             {React.Children.map(children, (child, i) => {
               const { onClick } = child.props;
               let handleOnClick = onClick;
-              if(close && autoclose) {
+              if(close && autoclose && !child.props.nestedItems) {
                 handleOnClick = (e) => {
                   if(onClick) { onClick(e); }
 
                   close(e);
                 };
               }
+
               return React.cloneElement(child, {
                 key: child.key || i,
                 onClick: handleOnClick,
+                expanderIconChildren,
+                expanderIconClassName,
               });
             })}
           </List>

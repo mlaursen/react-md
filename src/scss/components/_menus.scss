@@ -25,6 +25,11 @@
       height: 32px;
       padding-left: 24px;
       padding-right: 24px;
+
+      // scss-lint:disable NestingDepth
+      &.controls-right {
+        padding-right: 24 - $md-default-padding;
+      }
     }
 
     .md-tile-primary-text {
