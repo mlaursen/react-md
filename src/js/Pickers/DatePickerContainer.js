@@ -80,7 +80,7 @@ export default class DatePickerContainer extends Component {
     initialYearsDisplayed: 100,
     initialCalendarMode: 'calendar',
     DateTimeFormat: DateTimeFormat,
-    locales: navigator.language,
+    locales: window.navigator.userLanguage || window.navigator.language,
     okLabel: 'Ok',
     okPrimary: true,
     cancelLabel: 'Cancel',
