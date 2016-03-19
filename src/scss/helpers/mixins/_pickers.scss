@@ -44,7 +44,7 @@
     height: $md-date-picker-portrait-date-size;
   }
 
-  .md-calendar-date:after {
+  .md-calendar-date::after {
     height: $md-date-picker-portrait-ball-size;
     width: $md-date-picker-portrait-ball-size;
   }
@@ -89,7 +89,7 @@
     height: $md-date-picker-landscape-date-size;
   }
 
-  .md-calendar-date:after {
+  .md-calendar-date::after {
     height: $md-date-picker-landscape-ball-size;
     width: $md-date-picker-landscape-ball-size;
   }
@@ -196,19 +196,19 @@
 
   .md-picker-header,
   .md-date-picker-header,
-  .md-calendar-date.active:after,
+  .md-calendar-date.active::after,
   .md-clock-hand,
-  .md-clock-hand:before,
-  .md-clock-hand:after {
+  .md-clock-hand::before,
+  .md-clock-hand::after {
     background: $primary;
   }
 
-  .md-calendar-date.today,
+  .md-calendar-date.today:not(.active),
   .md-year.active {
     color: $primary;
   }
 
-  .md-calendar-date:after {
+  .md-calendar-date::after {
     background: $hover-color;
   }
 
@@ -220,7 +220,7 @@
     background: if($light-theme, $md-grey-300, $md-grey-800);
   }
 
-  .md-clock-hand.invisible-minute:after {
+  .md-clock-hand.invisible-minute::after {
     background: $md-white-base;
     border: $md-clock-hand-ball-border-size solid $primary;
   }

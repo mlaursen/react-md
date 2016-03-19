@@ -94,19 +94,19 @@
   background: $md-border-color;
   height: 1px;
 
-  &.from-left:after {
+  &.from-left::after {
     left: 0;
   }
 
-  &.from-right:after {
+  &.from-right::after {
     right: 0;
   }
 
-  &.from-center:after {
+  &.from-center::after {
     margin: auto;
   }
 
-  &:after {
+  &::after {
     content: '';
     display: block;
     height: $md-text-field-divider-height;
@@ -114,7 +114,7 @@
     width: 0;
   }
 
-  &.active:after {
+  &.active::after {
     width: 100%;
   }
 }

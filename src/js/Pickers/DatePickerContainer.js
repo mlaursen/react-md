@@ -18,10 +18,18 @@ export default class DatePickerContainer extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
-    const date = props.defaultValue ? new Date(props.defaultValue) : new Date();
+    let date, value;
+    const { defaultValue, DateTimeFormat, locales } = props;
+    if(defaultValue) {
+      date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
+      value = typeof defaultValue === 'string' ? defaultValue : DateTimeFormat(locales).format(defaultValue);
+    } else {
+      date = new Date();
+    }
+
     this.state = {
+      value,
       isOpen: props.initiallyOpen,
-      value: props.defaultValue,
       calendarDate: date,
       calendarTempDate: date,
       calendarMode: props.initialCalendarMode,
@@ -31,10 +39,16 @@ export default class DatePickerContainer extends Component {
   static propTypes = {
     className: PropTypes.string,
     icon: PropTypes.node,
-    defaultValue: PropTypes.string,
     initiallyOpen: PropTypes.bool,
     label: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]),
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]),
     onChange: PropTypes.func,
     floatingLabel: PropTypes.bool,
     DateTimeFormat: PropTypes.func.isRequired,
@@ -228,6 +242,7 @@ export default class DatePickerContainer extends Component {
           floatingLabel={floatingLabel}
           value={textFieldValue}
           onChange={onChange}
+          readOnly={true}
         />
         {inline ?
           <TransitionGroup>

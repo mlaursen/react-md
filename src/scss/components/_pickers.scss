@@ -2,7 +2,7 @@
   position: relative;
 
   .md-text-field:hover,
-  .md-text-field-label-container:hover {
+  .md-text-field-label:hover {
     cursor: pointer;
   }
 }
@@ -127,15 +127,15 @@
     transition-property: transform, width;
   }
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     border-radius: 50%;
     content: '';
     position: absolute;
   }
 
   // center ball
-  &:before {
+  &::before {
     height: $md-clock-hand-ball-size;
     left: -$md-clock-hand-ball-size / 2;
     // no idea why
@@ -143,7 +143,7 @@
     width: $md-clock-hand-ball-size;
   }
 
-  &:after {
+  &::after {
     height: $md-clock-time-size;
     right: -$md-clock-time-size / 2 + $md-clock-padding / 2;
     top: -$md-clock-time-size / 2;
@@ -152,7 +152,7 @@
     width: $md-clock-time-size;
   }
 
-  &.invisible-minute:after {
+  &.invisible-minute::after {
     transform: scale($md-clock-hand-ball-scale);
   }
 }
@@ -263,13 +263,13 @@
     &:focus,
     &.active {
       //scss-lint:disable NestingDepth
-      &:after {
+      &::after {
         transform: translateX(-50%) translateY(-50%) scale(1);
       }
     }
   }
 
-  &:after {
+  &::after {
     border-radius: 50%;
     content: '';
     display: block;
