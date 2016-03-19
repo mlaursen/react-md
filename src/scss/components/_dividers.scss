@@ -1,3 +1,4 @@
+%md-divider,
 .md-divider {
   background: $md-divider-color;
   border: 0;
@@ -7,6 +8,7 @@
 
   &:not(.vertical) {
     height: 1px;
+    width: 100%;
   }
 
   &.vertical {
