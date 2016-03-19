@@ -135,12 +135,6 @@ $md-sidebar-fixed-z-index: 10 !default;
 /// @group z-indexes
 $md-toolbar-z-index: 6 !default;
 
-/// The default z-index for the snackbar component.
-///
-/// @type Number
-/// @group z-indexes
-$md-snackbar-z-index: 6 !default;
-
 /// The default z-index for the fixed floating action button.
 ///
 /// @type Number
@@ -152,6 +146,12 @@ $md-fab-z-index: 8 !default;
 /// @type Number
 /// @group navigation-drawers
 $md-navigation-drawer-z-index: 10 !default;
+
+/// The default z-index for the snackbar component.
+///
+/// @type Number
+/// @group z-indexes
+$md-snackbar-z-index: 11 !default;
 
 /// The default z-index for the temporary navigation-drawer
 ///

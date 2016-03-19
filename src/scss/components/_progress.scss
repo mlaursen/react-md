@@ -79,8 +79,8 @@
   }
 
   &.indeterminate {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       background: inherit;
       bottom: 0;
       content: '';
@@ -90,21 +90,23 @@
       z-index: 1;
     }
 
-    &:before {
+    &::before {
       animation-duration: $md-linear-progress-anim-time;
+      animation-iteration-count: infinite;
       animation-name: md-linear-indeterminate;
       animation-timing-function: $md-linear-progress-long-transition-func;
     }
 
-    &:after {
+    &::after {
       animation-delay: $md-linear-progress-short-delay;
       animation-duration: $md-linear-progress-anim-time;
+      animation-iteration-count: infinite;
       animation-name: md-linear-indeterminate-short;
       animation-timing-function: $md-linear-progress-short-transition-func;
     }
 
-    &.query:before,
-    &.query:after {
+    &.query::before,
+    &.query::after {
       animation-direction: reverse;
     }
   }
