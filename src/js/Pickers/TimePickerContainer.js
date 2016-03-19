@@ -57,7 +57,7 @@ export default class TimePickerContainer extends Component {
     initialTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat,
-    locales: navigator.language,
+    locales: window.navigator.userLanguage || window.navigator.language,
     okLabel: 'Ok',
     okPrimary: true,
     cancelLabel: 'Cancel',
