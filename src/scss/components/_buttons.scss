@@ -52,6 +52,10 @@ a.md-btn {
   text-decoration: none;
   width: $md-icon-btn-size;
 
+  &[disabled] .md-icon {
+    color: $md-disabled-color;
+  }
+
   .md-icon {
     font-size: inherit;
   }
