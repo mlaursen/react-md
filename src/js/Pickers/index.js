@@ -1,3 +1,2 @@
-export PickerContainer from './PickerContainer';
-export PickerControl from './PickerControl';
-export PickerFooter from './PickerFooter';
+export DatePicker from './DatePickerContainer';
+export TimePicker from './TimePickerContainer';

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { PickerFooter } from '../Pickers';
+import PickerFooter from './PickerFooter';
 import ClockFace from './ClockFace';
 import TimePickerHeader from './TimePickerHeader';
 

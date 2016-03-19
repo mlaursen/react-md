@@ -10,6 +10,7 @@ import Ink from './Inks';
 import { List, ListItem } from './Lists';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
+import { DatePicker, TimePicker } from './Pickers';
 import { CircularProgress, LinearProgress } from './Progress';
 import { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
 import SelectField from './SelectFields';
@@ -19,7 +20,6 @@ import Snackbar from './Snackbars';
 import Subheader from './Subheaders';
 import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
-import TimePicker from './TimePickers';
 import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
 
@@ -34,6 +34,7 @@ export { CardTitle };
 export { Checkbox };
 export { Chip };
 export { CircularProgress };
+export { DatePicker };
 export { Dialog };
 export { Divider };
 export { FlatButton };
@@ -55,9 +56,10 @@ export { Snackbar };
 export { SpeedDial };
 export { Subheader };
 export { Switch };
-export { TextField };
 export { Tab };
 export { Tabs };
+export { TextField };
+export { TimePicker };
 export { Toolbar };
 export { Tooltip };
 
@@ -74,6 +76,7 @@ export default {
   CardActions,
   CardText,
   CardActionOverlay,
+  DatePicker,
   List,
   ListItem,
   CircularProgress,

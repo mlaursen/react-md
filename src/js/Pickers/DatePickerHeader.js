@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { PickerControl } from '../Pickers';
+import PickerControl from './PickerControl';
 
 const DatePickerHeader = ({ DateTimeFormat, locales, changeCalendarMode, calendarMode, calendarTempDate }) => {
   return (

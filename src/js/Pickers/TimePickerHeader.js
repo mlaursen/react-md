@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { PickerControl } from '../Pickers';
+import PickerControl from './PickerControl';
 import { addHours, subtractHours } from '../utils';
 
 const TimePickerHeader = ({ setTimeMode, setTempTime, timeMode, tempTime, hour, minute, timePeriod }) => {
