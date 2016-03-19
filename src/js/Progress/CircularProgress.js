@@ -16,7 +16,7 @@ export default class CircularProgress extends Component {
     className: PropTypes.string,
     value: PropTypes.number,
     scale: PropTypes.number,
-    determinateDashoffset: PropTypes.number,
+    determinateDashoffset: PropTypes.number.isRequired,
     centered: PropTypes.bool,
   };
 
@@ -36,9 +36,9 @@ export default class CircularProgress extends Component {
         strokeDashoffset: determinateDashoffset - (determinateDashoffset / 100 * value),
       };
       svgStyle = {
-        transform: rotate,
-        MozTransform: rotate,
         WebkitTransform: rotate,
+        MozTransform: rotate,
+        transform: rotate,
       };
     }
     return (

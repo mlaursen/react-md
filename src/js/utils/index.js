@@ -36,6 +36,10 @@ export function setOverflow(enabled, selector) {
   }
 }
 
+export function numberBetween(num, min, max) {
+  return Math.max(min, Math.min(num, max));
+}
+
 export function smoothScroll(el, duration, options = {}) {
   let { callback, toEl, stepAmt } = options;
   if(!stepAmt) { stepAmt = 15; }
