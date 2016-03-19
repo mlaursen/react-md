@@ -178,9 +178,12 @@ export default class DatePickerContainer extends Component {
       }
 
       this.setState({
-        isOpen: false,
         value,
         calendarTempDate,
+        // wait for date to be picked then hide
+        timeout: setTimeout(() => {
+          this.setState({ timeout: null, isOpen: false });
+        }, 300),
       });
     } else {
       this.setState({ calendarTempDate });
