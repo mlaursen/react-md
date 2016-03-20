@@ -5,21 +5,13 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 import { List } from '../Lists';
 
-const ITEM_SCALE = 56;
-
 export default class Menu extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    let minWidth;
-    if(props.minWidth) {
-      minWidth = ITEM_SCALE * props.minWidth;
-    }
-    this.state = { minWidth };
   }
 
-  static minWidths = [1.5, 2, 3, 6, 7];
   static Positions = {
     TOP_RIGHT: 'tr',
     TOP_LEFT: 'tl',
@@ -35,7 +27,6 @@ export default class Menu extends Component {
     toggle: PropTypes.node,
     isOpen: PropTypes.bool.isRequired,
     style: PropTypes.object,
-    minWidth: PropTypes.oneOf(Menu.minWidths),
     position: PropTypes.oneOf(Object.keys(Menu.Positions).map(key => Menu.Positions[key])),
     close: PropTypes.func,
     autoclose: PropTypes.bool,
@@ -51,12 +42,6 @@ export default class Menu extends Component {
     expanderIconChildren: 'keyboard_arrow_right',
   };
 
-  componentDidMount() {
-    if(this.props.isOpen && this.props.minWidth) {
-      this.calcMinWidth();
-    }
-  }
-
   componentDidUpdate(prevProps) {
     const { isOpen, autoclose, close } = this.props;
     if(close && autoclose && isOpen && !prevProps.isOpen) {
@@ -64,10 +49,6 @@ export default class Menu extends Component {
     } else if(!isOpen && prevProps.isOpen) {
       if(close && autoclose) {
         window.removeEventListener('click', this.closeOnOutsideClick);
-      }
-
-      if(!this.state.minWidth && this.props.minWidth) {
-        this.calcMinWidth();
       }
     }
   }
