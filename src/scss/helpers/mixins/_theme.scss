@@ -13,9 +13,10 @@
   @include md-theme-snackbars($primary);
   @include md-theme-date-pickers($primary, $primary-hue-1);
   @include md-theme-lists($primary);
-  @include md-theme-selection-controls($primary);
   @include md-theme-sliders($primary);
   @include md-theme-subheaders($primary);
+
+  @include md-theme-selection-controls($secondary);
 
   .md-primary {
     @include md-theme-toolbars($primary, $md-white-base);
