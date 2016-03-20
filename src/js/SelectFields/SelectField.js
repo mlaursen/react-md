@@ -27,7 +27,7 @@ export default class SelectField extends Component {
   static Positions = {
     TOP_LEFT: Menu.Positions.TOP_LEFT,
     TOP_RIGHT: Menu.Positions.TOP_RIGHT,
-    BOTTOM: 'bottom',
+    BOTTOM: 'below',
   };
 
   static propTypes = {
@@ -38,7 +38,6 @@ export default class SelectField extends Component {
     floatingLabel: PropTypes.bool,
     label: PropTypes.string,
     itemLabel: PropTypes.string,
-    itemValue: PropTypes.string,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -65,7 +64,6 @@ export default class SelectField extends Component {
     initiallyOpen: false,
     floatingLabel: false,
     itemLabel: 'label',
-    itemValue: 'value',
     lineDirection: 'left',
     itemsVisible: 6,
     defaultValue: '',
@@ -84,9 +82,17 @@ export default class SelectField extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { noAutoAdjust } = this.props;
     const { open } = this.state;
-    if(!open || open === prevState.open || noAutoAdjust) { return; }
+    if(open === prevState.open || noAutoAdjust) { return; }
+    const node = ReactDOM.findDOMNode(this);
+    if(open) {
+      (node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile')).focus();
+    } else {
+      node.querySelector('.md-text-field').focus();
+    }
 
-    this.calcMenuPosition();
+    if(open) {
+      this.calcMenuPosition();
+    }
   }
 
   /**
@@ -262,7 +268,7 @@ export default class SelectField extends Component {
               primaryText={isObject(item) ? item[itemLabel] : item}
               key={item.key || i}
               onClick={this.selectItem.bind(this, item)}
-              onKeyDown={this.handleItemKeyDown.bind(this, item, i)}
+              onKeyDown={this.handleItemKeyDown.bind(this, item)}
               className={classnames({ 'active': this.isActive(item, displayLabel) })}
             />
           );
