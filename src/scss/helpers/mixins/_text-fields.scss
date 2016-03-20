@@ -218,11 +218,11 @@
   }
 
   .md-text-divider {
-    &:after {
+    &::after {
       background: $color;
     }
 
-    &.error:after {
+    &.error::after {
       background: $error-color;
     }
   }

@@ -180,6 +180,7 @@ export default class ListItem extends Component {
 
     let content = React.createElement(component, {
       role: 'button',
+      tabIndex: component === 'div' && !nestedItems ? 0 : null,
       ...props,
       disabled,
       onClick: this.handleClick,
