@@ -30,6 +30,7 @@ export default class Menu extends Component {
   static propTypes = {
     className: PropTypes.string,
     listClassName: PropTypes.string,
+    listStyle: PropTypes.object,
     children: PropTypes.node,
     toggle: PropTypes.node,
     isOpen: PropTypes.bool.isRequired,
@@ -86,28 +87,11 @@ export default class Menu extends Component {
     this.props.close(e);
   };
 
-  calcMinWidth = () => {
-    const items = ReactDOM.findDOMNode(this.refs.list).querySelectorAll('.md-list-tile');
-    let maxWidth = 0;
-    for(let item of items) {
-      maxWidth = Math.max(maxWidth, item.offsetWidth);
-    }
-
-    let minWidth;
-    for(let i = 0; i < Menu.minWidths.length; i++) {
-      minWidth = ITEM_SCALE * Menu.minWidths[i];
-      if(maxWidth < minWidth) {
-        break;
-      }
-    }
-
-    this.setState({ minWidth });
-  };
-
   render() {
     const {
       className,
       listClassName,
+      listStyle,
       children,
       toggle,
       isOpen,
@@ -136,7 +120,7 @@ export default class Menu extends Component {
           <List
             ref="list"
             className={classnames('md-menu', listClassName, `md-transition-${position}`, { below, cascading })}
-            style={{ minWidth: this.state.minWidth }}
+            style={listStyle}
           >
             {React.Children.map(children, (child, i) => {
               const { onClick } = child.props;

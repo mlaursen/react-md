@@ -3,127 +3,170 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled, isObject } from '../utils';
-import { ListItem } from '../';
-import SelectFieldButton from './SelectFieldButton';
-import Menu from '../Menus';
+import { isObject } from '../utils';
+import { SPACE, ENTER } from '../constants/keyCodes';
 
-const LIST_MARGIN = 8;
+import { ListItem } from '../Lists';
+import FontIcon from '../FontIcons';
+import TextField from '../TextFields';
+import Menu from '../Menus';
 
 export default class SelectField extends Component {
   constructor(props) {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: false, focused: false };
-    if(typeof props.value === 'undefined') {
-      this.state.selected = props.defaultValue;
-    }
+    this.state = {
+      open: props.initiallyOpen,
+      focused: props.initiallyOpen,
+      value: props.defaultValue,
+      size: this.calcSize(props),
+    };
   }
 
+  static Positions = {
+    TOP_LEFT: Menu.Positions.TOP_LEFT,
+    TOP_RIGHT: Menu.Positions.TOP_RIGHT,
+    BOTTOM: 'bottom',
+  };
+
   static propTypes = {
-    name: PropTypes.string,
     className: PropTypes.string,
-    menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-      PropTypes.number,
-    ])).isRequired,
+    listClassName: PropTypes.string,
+    menuClassName: PropTypes.string,
+    initiallyOpen: PropTypes.bool,
+    floatingLabel: PropTypes.bool,
+    label: PropTypes.string,
     itemLabel: PropTypes.string,
     itemValue: PropTypes.string,
-    placeholder: PropTypes.string,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object,
+    ])).isRequired,
     onChange: PropTypes.func,
-    expandRight: PropTypes.bool,
-    itemsVisible: PropTypes.number,
-    textFieldPositioned: PropTypes.bool,
-    defaultValue: PropTypes.string,
-    menuBelow: PropTypes.bool,
-    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
-    editable: PropTypes.bool,
-    segmented: PropTypes.bool,
-    error: PropTypes.bool,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
+    noAutoAdjust: PropTypes.bool,
+    iconClassName: PropTypes.string.isRequired,
+    iconChildren: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
+    initiallyOpen: false,
+    floatingLabel: false,
     itemLabel: 'label',
     itemValue: 'value',
     lineDirection: 'left',
     itemsVisible: 6,
     defaultValue: '',
+    menuItems: [],
+    iconClassName: 'material-icons',
+    iconChildren: 'arrow_drop_down',
   };
 
   componentWillUpdate(nextProps) {
-    if(typeof nextProps.value === 'undefined' && typeof this.state.selected === 'undefined' && nextProps.menuItems.length) {
-      this.setState({ selected: nextProps.menuItems[0] });
+    const { menuItems } = this.props;
+    if(menuItems !== nextProps.menuItems || menuItems.length !== nextProps.menuItems.length) {
+      this.setState({ size: this.calcSize(nextProps) });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.isOpen === prevState.isOpen) { return; }
-    if(!this.state.isOpen) {
-      document.removeEventListener('click', this.closeMenuListener);
-      this.closeMenuListener = null;
-    } else if(!this.closeMenuListener) {
-      this.closeMenuListener = this.handleClickOutside;
-      document.addEventListener('click', this.closeMenuListener);
-    }
+    const { noAutoAdjust } = this.props;
+    const { open } = this.state;
+    if(!open || open === prevState.open || noAutoAdjust) { return; }
 
-    if(isPropEnabled(this.props, 'below') || !this.state.isOpen) { return; }
-
-    const menu = ReactDOM.findDOMNode(this).querySelector('.md-menu');
-    const items = Array.prototype.slice.call(menu.querySelectorAll('.md-list-tile'));
-    const maxScrollDistance = menu.scrollHeight - menu.offsetHeight;
-    let index = 0;
-    items.forEach((item, i) => {
-      if(item.classList.contains('active')) {
-        index = i;
-      }
-    });
-
-    const tileHeight = items[0].offsetHeight - LIST_MARGIN;
-    const selected = items[index];
-    const maxHeight = menu.offsetHeight - tileHeight - LIST_MARGIN;
-    const { itemsVisible } = this.props;
-
-    const scrollTop = selected.offsetTop - tileHeight - LIST_MARGIN;
-    const scrollDiff = scrollTop - maxScrollDistance;
-    const x = isPropEnabled(this.props, 'expandRight') ? '0px' : '100%';
-
-    let top = Math.min(selected.offsetTop - LIST_MARGIN + 12, maxHeight);
-    if(items.length > 3 && index === items.length - 2) {
-      top = maxHeight - tileHeight + LIST_MARGIN / 2;
-    } else if(index > 0 && scrollDiff <= 0) {
-      top = tileHeight + LIST_MARGIN + LIST_MARGIN / 2;
-    } else if(index > 0 && items.length > itemsVisible && index < items.length - 2) {
-      top = top - (items.length - 1 - index) * tileHeight + LIST_MARGIN / 2;
-    }
-
-    if(scrollTop > 0) {
-      menu.scrollTop = scrollTop;
-    }
-
-    menu.style.top = `-${top}px`;
-    // Expands/shrinks menu to center of button
-    menu.style.transformOrigin = `${x} ${top + tileHeight / 2}px`;
+    this.calcMenuPosition();
   }
 
-  getSelected = (key) => {
-    const { value } = this.props;
-    if(typeof value !== 'undefined') {
-      return value;
+  /**
+   * Finds the longest menu item value to use as the text field's size.to that value.
+   * If there is a floating label, it also checks against the label's size so that
+   * the floating label won't be clipped
+   */
+  calcSize = ({ menuItems, itemLabel, label, floatingLabel } = this.props) => {
+    const items = menuItems.slice();
+    if(label && floatingLabel) {
+      items.push(label);
     }
 
-    const { selected } = this.state;
-    if(typeof selected === 'undefined') {
+    return items.reduce((prev, curr) => {
+      const len = (isObject(curr) ? curr[itemLabel] : curr.toString()).length;
+      return Math.max(prev, len);
+    }, 0);
+  };
+
+  /**
+   * Sets the transform-origin for the dropdown menu so that the menu will appear
+   * from the text field's baseline.
+   *
+   * Sets the top position to be one list item down if the first item is not selected.
+   *
+   * Scrolls the current item into view
+   */
+  calcMenuPosition = () => {
+    const node = ReactDOM.findDOMNode(this);
+    const menu = node.querySelector('.md-menu');
+
+    // the item will be the first active one (if valued) otherwise, set the transform-origin as first list item
+    const item = menu.querySelector('.md-list-tile.active') || menu.querySelector('.md-list-tile');
+
+    // The height changes based on screen size and if floating label or not.
+    const height = node.offsetHeight;
+    const diff = item.offsetTop - item.offsetHeight;
+
+    const paddingTop = parseInt(window.getComputedStyle(menu).getPropertyValue('padding-top'));
+
+    const { position } = this.props;
+    let transformOrigin, top;
+    if(SelectField.Positions.BOTTOM !== position) {
+      const x = SelectField.Positions.TOP_LEFT === position ? '0' : '100%';
+      const y = (diff < 0 ? 0 : height) + (height / 2) + paddingTop;
+      transformOrigin = `${x} ${y}px`;
+    }
+
+    // padding top for mobile (desktop is 4)
+    if(diff > 8) {
+      menu.scrollTop = diff;
+    }
+
+    if(diff > 0) {
+      // close enough. It is off by 4px for floating label on desktop
+      top = -(item.offsetHeight + paddingTop - (height - item.offsetHeight));
+    }
+
+    this.setState({
+      listStyle: {
+        msTransformOrigin: transformOrigin,
+        WebkitTransformOrigin: transformOrigin,
+        transformOrigin,
+        top,
+      },
+    });
+  };
+
+  getValue = (key) => {
+    if(typeof this.props.value !== 'undefined') {
+      return this.props.value;
+    }
+
+    const { value } = this.state;
+    if(typeof value === 'undefined') {
       return '';
-    } else if(isObject(selected)) {
-      return selected[key];
+    } else if(isObject(value)) {
+      return value[key];
     } else {
-      return selected;
+      return value;
     }
   };
 
@@ -135,83 +178,82 @@ export default class SelectField extends Component {
     }
   };
 
-  handleFocus = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    this.setState({ focused: true });
+  selectItem = (item, e) => {
+    const { onChange, itemLabel } = this.props;
+    onChange && onChange(item, e);
+
+    this.setState({
+      open: false,
+      value: isObject(item) ? item[itemLabel] : item,
+    });
   };
 
-  handleBlur = () => {
-    this.setState({ focused: false });
+  toggle = () => {
+    this.setState({ open: !this.state.open });
   };
 
-  selectItem = (item, index) => {
-    const { value, onChange } = this.props;
-    onChange && onChange(item, index);
-
-    let nextState = { isOpen: false };
-    if(typeof value === 'undefined') {
-      nextState.selected = item;
-    }
-
-    this.setState(nextState);
+  close = () => {
+    this.setState({ open: false });
   };
 
-  toggleMenu = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
-
-  handleClickOutside = (e) => {
-    const node = ReactDOM.findDOMNode(this);
-    let target = e.target;
-    while(target.parentNode) {
-      if(target === node) { return; }
-      target = target.parentNode;
-    }
-
-    this.setState({ isOpen: false });
-  };
-
-  handleKeyUp = (item, i, e) => {
+  handleKeyDown = (e) => {
     const key = e.which || e.keyCode;
-    if(key === 13 || key === 32) {
-      this.selectItem(item, i);
-      e.preventDefault();
-    }
+    if(key !== SPACE && key !== ENTER) { return; }
+
+    // prevents scrolling for spacebar
+    e.preventDefault();
+    this.setState({ open: true });
+  };
+
+  handleItemKeyDown = (item, e) => {
+    const key = e.which || e.keyCode;
+    if(key !== SPACE && key !== ENTER) { return; }
+
+    // prevents scrolling for spacebar
+    e.preventDefault();
+    this.selectItem(item, e);
   };
 
   render() {
-    const { name, className, menuItems, error, lineDirection, itemLabel, itemValue, value, placeholder, ...props } = this.props;
-    const { focused, isOpen } = this.state;
+    const { open, size, listStyle } = this.state;
+    const {
+      label,
+      floatingLabel,
+      menuItems,
+      itemLabel,
+      position,
+      className,
+      listClassName,
+      menuClassName,
+      iconClassName,
+      iconChildren,
+      ...props,
+    } = this.props;
 
-    const isBelow = isPropEnabled(props, 'below');
-    const displayLabel = this.getSelected(itemLabel);
-    const displayValue = this.getSelected(itemValue);
-    const fieldClassName= classnames('md-select-field', className, {
-      'focus': focused || isOpen,
-      'segmented': isPropEnabled(props, 'segmented'),
-      'text-field-positioned': isPropEnabled(props, 'textFieldPositioned'),
-      'placeholder': displayLabel === '' && placeholder,
-    });
+    const displayLabel = this.getValue(itemLabel);
 
+    const toggle = (
+      <TextField
+        className={classnames('md-select-field', className)}
+        readOnly={true}
+        value={displayLabel}
+        label={label}
+        floatingLabel={floatingLabel}
+        onClick={this.toggle}
+        onKeyDown={this.handleKeyDown}
+        rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
+        size={size}
+      />
+    );
     return (
       <Menu
-        listClassName="md-select-field-menu"
-        isOpen={isOpen}
+        isOpen={open}
         close={this.close}
-        toggle={
-          <SelectFieldButton
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-            label={displayLabel || placeholder}
-            value={displayValue}
-            onClick={this.toggleMenu}
-            className={fieldClassName}
-            name={name}
-            isOpen={isOpen}
-            isBelow={isBelow}
-          />
-        }
+        toggle={toggle}
+        listStyle={listStyle}
+        className={menuClassName}
+        listClassName={classnames('md-select-field-menu', listClassName, { 'single-line': !floatingLabel })}
+        position={position}
         {...props}
       >
         {menuItems.map((item, i) => {
@@ -219,8 +261,8 @@ export default class SelectField extends Component {
             <ListItem
               primaryText={isObject(item) ? item[itemLabel] : item}
               key={item.key || i}
-              onClick={this.selectItem.bind(this, item, i)}
-              onKeyUp={this.handleKeyUp.bind(this, item, i)}
+              onClick={this.selectItem.bind(this, item)}
+              onKeyDown={this.handleItemKeyDown.bind(this, item, i)}
               className={classnames({ 'active': this.isActive(item, displayLabel) })}
             />
           );

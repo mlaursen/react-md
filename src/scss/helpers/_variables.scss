@@ -1025,21 +1025,6 @@ $md-circular-progress-determinate-dasharray: 187px !default;
 
 
 
-
-// ===================================================================================
-// Select Fields
-// ===================================================================================
-
-/// The padding to the left of the select field value text.
-///
-/// @type String
-/// @group select-fields
-$md-select-field-padding-left: 24px;
-
-
-
-
-
 // ===================================================================================
 // Lists
 // ===================================================================================
@@ -1099,6 +1084,15 @@ $md-list-desktop-3-line-height: 76px;
 /// @type String
 /// @group dropdowns
 $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-height / 3 !default;
+
+
+
+// ===================================================================================
+// Select Fields
+// ===================================================================================
+
+$md-select-field-mobile-top: 8px;
+$md-select-field-desktop-top: 12px;
 
 
 

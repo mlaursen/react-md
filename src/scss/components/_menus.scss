@@ -4,7 +4,7 @@
 }
 
 .md-menu {
-  @include md-box-shadow(1);
+  @include md-box-shadow(2);
 
   background: $md-white-base;
   position: absolute;

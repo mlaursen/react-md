@@ -1,61 +1,11 @@
-.md-select-field {
-  background: transparent;
-  border: 0;
-  color: $md-black-base;
-  cursor: pointer;
-  padding: $md-default-padding;
-  padding-left: $md-select-field-padding-left;
-  position: relative;
-  transition: background $md-transition-time, box-shadow $md-transition-time;
-  width: 100%;
-
-  &.placeholder {
-    color: $md-hint-text-color;
-  }
-
-  &.focus,
-  &:hover {
-    background: $md-white-base;
-  }
-
-  &.focus {
-    @include md-box-shadow(1);
-
-    outline: none;
-  }
-
-  .icon-separator {
-    > span {
-      padding-right: .5em;
-    }
-
-    .md-icon {
-      padding-left: 0;
-    }
-  }
-
-  .md-icon {
-    color: $md-disabled-color;
-    transition: transform $md-transition-time;
-  }
-
-  .md-divider {
-    position: absolute;
-    width: calc(100% - #{$md-select-field-padding-left + $md-default-padding});
-  }
-}
-
 .md-select-field-menu {
   max-height: $md-dropdown-max-height;
   overflow-y: auto;
-  width: 100%;
+}
 
-  .md-list-tile {
-    color: $md-text-color;
-    font-size: inherit;
-    height: 40px;
-    padding-bottom: 12px;
-    padding-left: $md-select-field-padding-left;
-    padding-top: 12px;
+.md-select-field:hover {
+  .md-text-field-label,
+  .md-text-field {
+    cursor: pointer;
   }
 }

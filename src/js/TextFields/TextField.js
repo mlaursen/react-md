@@ -41,6 +41,7 @@ export default class TextField extends Component {
     maxLength: PropTypes.number,
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
+    rightIcon: PropTypes.node,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -110,8 +111,23 @@ export default class TextField extends Component {
   };
 
   render() {
-    const { className, label, placeholder, maxLength, helpText, errorText, floatingLabel, icon, lineDirection, rows, maxRows, style, ...props } = this.props;
     const { active, currentRows, areaHeight } = this.state;
+    const {
+      className,
+      label,
+      placeholder,
+      maxLength,
+      helpText,
+      errorText,
+      floatingLabel,
+      icon,
+      rightIcon,
+      lineDirection,
+      rows,
+      maxRows,
+      style,
+      ...props,
+    } = this.props;
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
     const required = isPropEnabled(props, 'required');
@@ -119,7 +135,7 @@ export default class TextField extends Component {
     const multiline = typeof rows === 'number';
     const fullWidth = isPropEnabled(props, 'fullWidth');
 
-    let fontIcon, textFieldMessage;
+    let fontIcon, textFieldMessage, indIcon;
     if(icon) {
       fontIcon = React.cloneElement(icon, {
         className: classnames('md-text-field-icon', {
@@ -127,6 +143,14 @@ export default class TextField extends Component {
           error,
           'with-floating-label': floatingLabel,
           'normal': !!value,
+        }),
+      });
+    }
+
+    if(rightIcon) {
+      indIcon = React.cloneElement(rightIcon, {
+        className: classnames('md-text-field-ind', {
+          'single-line': !floatingLabel,
         }),
       });
     }
@@ -212,6 +236,7 @@ export default class TextField extends Component {
           />
           }
           {textField}
+          {indIcon}
           {!fullWidth &&
           <TextDivider
             icon={!!icon}

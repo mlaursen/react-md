@@ -119,6 +119,18 @@
     $md-text-field-mobile-padding,
     $md-text-field-mobile-divider-padding
   );
+
+  .md-text-field-ind {
+    padding-bottom: $md-text-field-mobile-padding;
+    padding-top: $md-text-field-mobile-height - $md-font-icon-size - $md-text-field-mobile-padding;
+
+    &.single-line {
+      $ind-padding: ($md-text-field-mobile-sl-height - $md-font-icon-size) / 2;
+
+      padding-bottom: $ind-padding;
+      padding-top: $ind-padding;
+    }
+  }
 }
 
 /// Generates css for a text field on desktop
@@ -137,6 +149,18 @@
     $md-text-field-desktop-padding,
     $md-text-field-desktop-divider-padding
   );
+
+  .md-text-field-ind {
+    padding-bottom: $md-text-field-desktop-padding / 2;
+    padding-top: $md-text-field-desktop-height - $md-font-icon-size - $md-text-field-desktop-padding / 2;
+
+    &.single-line {
+      $ind-padding: ($md-text-field-desktop-sl-height - $md-font-icon-size) / 2;
+
+      padding-bottom: $ind-padding;
+      padding-top: $ind-padding;
+    }
+  }
 }
 
 /// Themes the text fields for the given color. This theme mixin does not use the "&." syntax.

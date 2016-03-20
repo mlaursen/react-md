@@ -1,23 +1,3 @@
-/// Makes a positioned text field
-///
-/// @param {String} $font-size - The font size for the select field
-/// @param {String} $height - the height of the select field
-/// @param {String} $padding - The overall padding that should be used. It will be divided by 2
-/// @param {String} $divider-bottom - The bottom position of the divider in the select field
-/// @group select-fields
-@mixin make-positioned-select-field($font-size, $height, $padding, $divider-bottom) {
-  .md-select-field.text-field-positioned {
-    font-size: $font-size;
-    height: $height;
-    padding-bottom: $padding / 2;
-    padding-top: $padding / 2;
-
-    .md-divider {
-      bottom: $divider-bottom;
-    }
-  }
-}
-
 /// Adds additional css to the select field for mobile devices
 ///
 /// @example scss - Example Usage SASS
@@ -27,12 +7,13 @@
 ///
 /// @group select-fields
 @mixin md-select-field-mobile() {
-  @include make-positioned-select-field(
-    $md-text-field-mobile-font-size,
-    $md-text-field-mobile-sl-height,
-    $md-text-field-mobile-padding,
-    $md-text-field-mobile-divider-padding
-  );
+  .md-menu.md-select-field-menu {
+    top: $md-select-field-mobile-top;
+
+    &.single-line {
+      top: -$md-list-mobile-top-padding;
+    }
+  }
 }
 
 /// Adds additional css to the select field for desktop
@@ -44,20 +25,11 @@
 ///
 /// @group select-fields
 @mixin md-select-field-desktop() {
-  @include make-positioned-select-field(
-    $md-text-field-desktop-font-size,
-    $md-text-field-desktop-sl-height,
-    $md-text-field-desktop-padding,
-    $md-text-field-desktop-divider-padding
-  );
-}
+  .md-menu.md-select-field-menu {
+    top: $md-select-field-desktop-top;
 
-/// Themes the select fields with the given color.
-///
-/// @param {String} $primary - The primary color to use in theming.
-/// @group select-fields
-@mixin md-theme-select-fields($primary) {
-  .md-select-field-menu .md-list-tile.active {
-    color: $primary;
+    &.single-line {
+      top: -$md-list-desktop-top-padding;
+    }
   }
 }
