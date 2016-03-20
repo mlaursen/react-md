@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
-
 export default class RadioGroup extends Component {
   constructor(props) {
     super(props);
@@ -27,11 +25,17 @@ export default class RadioGroup extends Component {
 
   static defaultProps = {
     component: 'div',
+    inline: false,
   };
 
   handleChange = (value, e) => {
     this.props.onChange && this.props.onChange(value, e);
-    this.setState({ value });
+    // prevents 2 change events triggering
+    e.stopPropagation();
+
+    if(typeof this.props.value === 'undefined') {
+      this.setState({ value });
+    }
   };
 
   getValue = () => {
@@ -39,7 +43,7 @@ export default class RadioGroup extends Component {
   };
 
   render() {
-    const { component, className, children, name, ...props } = this.props;
+    const { component, className, children, name, inline, ...props } = this.props;
     const fullProps = {
       ...props,
       className: classnames('md-radio-group', className),
@@ -52,7 +56,7 @@ export default class RadioGroup extends Component {
         checked: value === child.props.value,
         onChange: this.handleChange,
         name: name || child.props.name,
-        className: classnames({ 'inline': isPropEnabled(props, 'inline') }),
+        className: classnames({ inline }),
       });
     }));
   }
