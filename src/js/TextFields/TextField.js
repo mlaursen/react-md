@@ -27,6 +27,7 @@ export default class TextField extends Component {
 
   static propTypes = {
     className: PropTypes.string,
+    containerClassName: PropTypes.string,
     children: PropTypes.node,
     type: PropTypes.string.isRequired,
     label: PropTypes.string,
@@ -114,6 +115,7 @@ export default class TextField extends Component {
     const { active, currentRows, areaHeight } = this.state;
     const {
       className,
+      containerClassName,
       label,
       placeholder,
       maxLength,
@@ -172,7 +174,7 @@ export default class TextField extends Component {
     const textFieldProps = {
       ...props,
       value,
-      className: classnames('md-text-field', {
+      className: classnames('md-text-field', className, {
         active,
         'floating-label': floatingLabel,
         'single-line': !floatingLabel && !multiline,
@@ -218,7 +220,7 @@ export default class TextField extends Component {
 
     return (
       <div
-        className={classnames('md-text-field-container', className, {
+        className={classnames('md-text-field-container', containerClassName, {
           'full-width': fullWidth,
           'single-line-full-width': fullWidth && !multiline,
           'with-message': helpText || errorText,

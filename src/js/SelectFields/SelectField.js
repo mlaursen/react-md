@@ -161,16 +161,16 @@ export default class SelectField extends Component {
     });
   };
 
-  getValue = (key) => {
-    if(typeof this.props.value !== 'undefined') {
-      return this.props.value;
+  getValue = (props = this.props, state = this.state) => {
+    if(typeof props.value !== 'undefined') {
+      return props.value;
     }
 
-    const { value } = this.state;
+    const { value } = state;
     if(typeof value === 'undefined') {
       return '';
     } else if(isObject(value)) {
-      return value[key];
+      return value[props.itemLabel];
     } else {
       return value;
     }
@@ -236,11 +236,12 @@ export default class SelectField extends Component {
       ...props,
     } = this.props;
 
-    const displayLabel = this.getValue(itemLabel);
+    const displayLabel = this.getValue();
 
     const toggle = (
       <TextField
         className={classnames('md-select-field', className)}
+        containerClassName="md-select-field-container"
         readOnly={true}
         value={displayLabel}
         label={label}

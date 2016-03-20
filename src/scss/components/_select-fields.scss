@@ -1,19 +1,19 @@
 .md-select-field-menu {
   max-height: $md-dropdown-max-height;
   overflow-y: auto;
-
 }
 
-.md-select-field {
-
+.md-select-field-container {
   &:hover {
     .md-text-field-label,
     .md-text-field {
       cursor: pointer;
     }
   }
+}
 
-  .md-text-field:focus {
+.md-select-field {
+  &:focus {
     user-select: none;
   }
 }
