@@ -52,8 +52,8 @@ export default class SelectField extends Component {
       PropTypes.object,
     ])).isRequired,
     onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-    onFocus: PropTypes.func,
+    onClick: PropTypes.func,
+    onKeyDown: PropTypes.func,
     position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
     noAutoAdjust: PropTypes.bool,
     iconClassName: PropTypes.string.isRequired,
@@ -64,12 +64,11 @@ export default class SelectField extends Component {
     initiallyOpen: false,
     floatingLabel: false,
     itemLabel: 'label',
-    lineDirection: 'left',
-    itemsVisible: 6,
     defaultValue: '',
     menuItems: [],
     iconClassName: 'material-icons',
     iconChildren: 'arrow_drop_down',
+    noAutoAdjust: false,
   };
 
   componentWillUpdate(nextProps) {
@@ -202,7 +201,14 @@ export default class SelectField extends Component {
     this.setState({ open: false });
   };
 
+  handleClick = (e) => {
+    this.props.onClick && this.props.onClick(e);
+    this.toggle();
+  };
+
   handleKeyDown = (e) => {
+    this.props.onKeyDown && this.props.onKeyDown(e);
+
     const key = e.which || e.keyCode;
     if(key !== SPACE && key !== ENTER) { return; }
 
@@ -246,7 +252,7 @@ export default class SelectField extends Component {
         value={displayLabel}
         label={label}
         floatingLabel={floatingLabel}
-        onClick={this.toggle}
+        onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
