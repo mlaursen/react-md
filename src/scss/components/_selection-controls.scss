@@ -28,7 +28,7 @@
   @extend %hidden;
 
   &:checked + .md-switch {
-    &:before {
+    &::before {
       left: $md-switch-width - $md-switch-bar-height - $md-switch-ball-size;
     }
 
@@ -44,6 +44,19 @@
   transition: color $md-transition-time;
 }
 
+.md-checkbox {
+  border-radius: 50%;
+  height: $md-icon-btn-size;
+  overflow: hidden;
+  padding: $md-icon-btn-padding;
+  position: relative;
+  width: $md-icon-btn-size;
+
+  &.disabled {
+    color: $md-disabled-color;
+  }
+}
+
 
 .md-switch {
   @include absolute-center(true, true);
@@ -54,7 +67,7 @@
   position: relative;
   width: $md-switch-height - $md-switch-bar-height / 2;
 
-  &:before {
+  &::before {
     @extend %circle;
 
     box-shadow: 0 2px #{$md-switch-bar-height / 2} rgba($md-black-base, .2);
