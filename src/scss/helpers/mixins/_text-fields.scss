@@ -44,6 +44,10 @@
   .md-text-field-container {
     padding-left: $padding + 4;
     padding-right: $padding + 4;
+
+    &.multi-line.full-width .md-text-field-message {
+      padding-bottom: $padding;
+    }
   }
 
   .md-text-field {

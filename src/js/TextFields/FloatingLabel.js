@@ -23,7 +23,7 @@ FloatingLabel.propTypes = {
   active: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

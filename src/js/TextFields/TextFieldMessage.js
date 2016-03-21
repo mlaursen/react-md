@@ -34,7 +34,7 @@ TextFieldMessage.propTypes = {
   maxLength: PropTypes.number,
   error: PropTypes.bool.isRequired,
   active: PropTypes.bool.isRequired,
-  helpOnFocus: PropTypes.bool.isRequired,
+  helpOnFocus: PropTypes.bool,
   className: PropTypes.string,
 };
 

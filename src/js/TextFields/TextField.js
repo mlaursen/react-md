@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
 import TextFieldMessage from './TextFieldMessage';
@@ -48,6 +47,8 @@ export default class TextField extends Component {
     onChange: PropTypes.func,
     style: PropTypes.object,
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+    required: PropTypes.bool,
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -128,14 +129,15 @@ export default class TextField extends Component {
       rows,
       maxRows,
       style,
+      required,
+      helpOnFocus,
+      fullWidth,
       ...props,
     } = this.props;
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
-    const required = isPropEnabled(props, 'required');
-    const helpOnFocus = isPropEnabled(props, 'helpOnFocus');
     const multiline = typeof rows === 'number';
-    const fullWidth = isPropEnabled(props, 'fullWidth');
+    const useFloatingLabel = floatingLabel && !fullWidth;
 
     let fontIcon, textFieldMessage, indIcon;
     if(icon) {
@@ -143,7 +145,7 @@ export default class TextField extends Component {
         className: classnames('md-text-field-icon', {
           active,
           error,
-          'with-floating-label': floatingLabel,
+          'with-floating-label': useFloatingLabel,
           'normal': !!value,
         }),
       });
@@ -152,7 +154,7 @@ export default class TextField extends Component {
     if(rightIcon) {
       indIcon = React.cloneElement(rightIcon, {
         className: classnames('md-text-field-ind', {
-          'single-line': !floatingLabel,
+          'single-line': !useFloatingLabel,
         }),
       });
     }
@@ -176,8 +178,8 @@ export default class TextField extends Component {
       value,
       className: classnames('md-text-field', className, {
         active,
-        'floating-label': floatingLabel,
-        'single-line': !floatingLabel && !multiline,
+        'floating-label': useFloatingLabel,
+        'single-line': !useFloatingLabel && !multiline,
         'multi-line': multiline,
         'full-width': fullWidth,
       }),
@@ -202,7 +204,7 @@ export default class TextField extends Component {
       textField = (
         <textarea
           {...textFieldProps}
-          placeholder={active || !floatingLabel || fullWidth ? (placeholder || label) : null}
+          placeholder={active || !useFloatingLabel || fullWidth ? (placeholder || label) : null}
           ref="textarea"
           rows={rows}
           style={areaStyle}
@@ -213,7 +215,7 @@ export default class TextField extends Component {
         <input
           {...textFieldProps}
           style={style}
-          placeholder={!floatingLabel ? (placeholder || label) : placeholder}
+          placeholder={!useFloatingLabel ? (placeholder || label) : placeholder}
         />
       );
     }
@@ -221,14 +223,14 @@ export default class TextField extends Component {
     return (
       <div
         className={classnames('md-text-field-container', containerClassName, {
+          'multi-line': multiline,
           'full-width': fullWidth,
-          'single-line-full-width': fullWidth && !multiline,
           'with-message': helpText || errorText,
         })}
       >
         <label className="md-text-field-label">
           {fontIcon}
-          {floatingLabel && label &&
+          {useFloatingLabel && label &&
           <FloatingLabel
             label={label}
             active={active}
