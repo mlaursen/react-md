@@ -35,6 +35,7 @@ export default class Slider extends Component {
     stepPrecision: PropTypes.number.isRequired,
     onChange: PropTypes.func,
     onDragChange: PropTypes.func,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -67,7 +68,8 @@ export default class Slider extends Component {
 
   handleSliderTrackClick = (e) => {
     let { clientX, changedTouches } = e;
-    const { min, max, step, onChange, onDragChange } = this.props;
+    const { min, max, step, onChange, onDragChange, disabled } = this.props;
+    if(disabled) { return; }
     if(changedTouches) {
       clientX = changedTouches[0].clientX;
     }
@@ -129,6 +131,7 @@ export default class Slider extends Component {
   };
 
   handleThumbStart = (e) => {
+    if(this.props.disabled) { return; }
     const { changedTouches, button, ctrlKey } = e;
     if(!changedTouches && (button !== LEFT_MOUSE || ctrlKey)) { return; }
 
@@ -141,7 +144,7 @@ export default class Slider extends Component {
   };
 
   handleDragMove = (e) => {
-    if(this.state.dragMoving) { return; }
+    if(this.state.dragMoving || this.props.disabled) { return; }
 
     requestAnimationFrame(() => {
       this.handleSliderTrackClick(e);
@@ -212,12 +215,20 @@ export default class Slider extends Component {
   render() {
     const value = this.getValue();
     const { active, valued, width, left, dragging } = this.state;
-    const { min, max, step } = this.props;
+    const { min, max, step, disabled } = this.props;
     const discrete = typeof step !== 'undefined';
     return (
       <div className="md-slider-container">
-        <div className={classnames('md-slider-track-container', { 'active': active })}>
-          <input type="range" className="md-slider" readOnly value={value} min={min} max={max} />
+        <div className={classnames('md-slider-track-container', { active, disabled })}>
+          <input
+            type="range"
+            className="md-slider"
+            readOnly
+            value={value}
+            min={min}
+            max={max}
+            disabled={disabled}
+          />
           <SliderTrack
             active={active}
             valued={valued}

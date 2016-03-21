@@ -1,7 +1,7 @@
 .md-slider-track-container {
   position: relative;
 
-  &:hover {
+  &:not(.disabled):hover {
     cursor: pointer;
   }
 }
@@ -17,14 +17,14 @@
   position: relative;
   width: 100%;
 
-  &:before,
+  &::before,
   .md-track-fill {
     height: 2px;
     left: 0;
     position: absolute;
   }
 
-  &:before {
+  &::before {
     content: '';
     right: 0;
   }
@@ -68,7 +68,7 @@
 }
 
 .md-discrete-slider-thumb {
-  &:after {
+  &::after {
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
     border-top: 7px solid transparent;
@@ -105,6 +105,6 @@
   left: 50%;
 
   position: absolute;
-  top: -1px;
-  transform: translateX(-50%) scale(.4);
+  top: 2px;
+  transform: translateX(-50%);
 }
