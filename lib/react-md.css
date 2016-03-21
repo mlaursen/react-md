@@ -34,7 +34,7 @@
 }
 
 /* line 34, ../src/scss/helpers/_extenders.scss */
-.md-switch:before {
+.md-switch::before {
   border-radius: 50%;
 }
 
@@ -72,48 +72,6 @@
   visibility: hidden;
 }
 
-/* line 72, ../src/scss/helpers/_extenders.scss */
-.md-headline, .md-title, .md-subheading-2, .md-subheading-1 {
-  color: rgba(0, 0, 0, 0.77);
-}
-
-/* line 76, ../src/scss/helpers/_extenders.scss */
-.md-display-4, .md-display-3, .md-display-2, .md-display-1, .md-caption {
-  color: rgba(0, 0, 0, 0.54);
-}
-
-/* line 85, ../src/scss/helpers/_extenders.scss */
-.md-display-4 {
-  letter-spacing: -.1px;
-}
-
-/* line 89, ../src/scss/helpers/_extenders.scss */
-.md-display-3 {
-  letter-spacing: -.05px;
-}
-
-/* line 93, ../src/scss/helpers/_extenders.scss */
-.md-display-2, .md-display-1, .md-headline {
-  letter-spacing: 0;
-}
-
-/* line 97, ../src/scss/helpers/_extenders.scss */
-.md-title {
-  letter-spacing: .5px;
-}
-
-/* line 101, ../src/scss/helpers/_extenders.scss */
-.md-subheading-2, .md-subheading-1, .md-btn,
-.md-body-1,
-.md-btn-2 {
-  letter-spacing: .1px;
-}
-
-/* line 105, ../src/scss/helpers/_extenders.scss */
-.md-caption {
-  letter-spacing: .2px;
-}
-
 /* line 1, ../src/scss/_typography.scss */
 *,
 *:before,
@@ -142,6 +100,48 @@ body {
 }
 
 /* line 24, ../src/scss/_typography.scss */
+.md-headline, .md-title, .md-subheading-2, .md-subheading-1 {
+  color: rgba(0, 0, 0, 0.77);
+}
+
+/* line 28, ../src/scss/_typography.scss */
+.md-display-4, .md-display-3, .md-display-2, .md-display-1, .md-caption {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+/* line 37, ../src/scss/_typography.scss */
+.md-display-4 {
+  letter-spacing: -.1px;
+}
+
+/* line 41, ../src/scss/_typography.scss */
+.md-display-3 {
+  letter-spacing: -.05px;
+}
+
+/* line 45, ../src/scss/_typography.scss */
+.md-display-2, .md-display-1, .md-headline {
+  letter-spacing: 0;
+}
+
+/* line 49, ../src/scss/_typography.scss */
+.md-title {
+  letter-spacing: .5px;
+}
+
+/* line 53, ../src/scss/_typography.scss */
+.md-subheading-2, .md-subheading-1, .md-btn,
+.md-body-1,
+.md-body-2 {
+  letter-spacing: .1px;
+}
+
+/* line 57, ../src/scss/_typography.scss */
+.md-caption {
+  letter-spacing: .2px;
+}
+
+/* line 61, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -156,7 +156,7 @@ body {
   margin: 0;
 }
 
-/* line 38, ../src/scss/_typography.scss */
+/* line 75, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -166,7 +166,7 @@ body {
   margin-bottom: 14px;
 }
 
-/* line 47, ../src/scss/_typography.scss */
+/* line 84, ../src/scss/_typography.scss */
 .md-subheading-1,
 .md-subheading-2,
 .md-body-1,
@@ -175,14 +175,14 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 57, ../src/scss/_typography.scss */
+/* line 94, ../src/scss/_typography.scss */
 .md-display-3,
 .md-display-4,
 .md-title {
   white-space: nowrap;
 }
 
-/* line 63, ../src/scss/_typography.scss */
+/* line 100, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -194,73 +194,68 @@ body {
   font-weight: 400;
 }
 
-/* line 74, ../src/scss/_typography.scss */
+/* line 111, ../src/scss/_typography.scss */
 .md-btn,
 .md-title,
 .md-body-2 {
   font-weight: 500;
 }
 
-/* line 80, ../src/scss/_typography.scss */
+/* line 117, ../src/scss/_typography.scss */
 .md-display-4 {
   font-size: 112px;
   font-weight: 300;
   line-height: 128px;
 }
 
-/* line 89, ../src/scss/_typography.scss */
+/* line 126, ../src/scss/_typography.scss */
 .md-display-3 {
   font-size: 56px;
   line-height: 84px;
 }
 
-/* line 97, ../src/scss/_typography.scss */
+/* line 134, ../src/scss/_typography.scss */
 .md-display-2 {
   font-size: 45px;
   line-height: 48px;
 }
 
-/* line 105, ../src/scss/_typography.scss */
+/* line 142, ../src/scss/_typography.scss */
 .md-display-1 {
   font-size: 34px;
   line-height: 40px;
 }
 
-/* line 113, ../src/scss/_typography.scss */
+/* line 150, ../src/scss/_typography.scss */
 .md-headline {
   font-size: 24px;
   line-height: 32px;
 }
 
-/* line 121, ../src/scss/_typography.scss */
+/* line 158, ../src/scss/_typography.scss */
 .md-title {
   font-size: 20px;
   line-height: 28px;
 }
 
-/* line 129, ../src/scss/_typography.scss */
+/* line 166, ../src/scss/_typography.scss */
 .md-subheading-2 {
   line-height: 28px;
 }
 
-/* line 136, ../src/scss/_typography.scss */
+/* line 173, ../src/scss/_typography.scss */
 .md-subheading-1 {
   line-height: 24px;
 }
 
-/* line 149, ../src/scss/_typography.scss */
+/* line 186, ../src/scss/_typography.scss */
 .md-caption {
   font-size: 12px;
 }
 
-/* line 156, ../src/scss/_typography.scss */
+/* line 193, ../src/scss/_typography.scss */
 .md-icon {
   font-size: 24px;
-}
-
-/* line 160, ../src/scss/_typography.scss */
-.md-secondary-text {
-  color: rgba(0, 0, 0, 0.54);
 }
 
 /* line 5, ../src/scss/_utils.scss */
@@ -355,7 +350,7 @@ body {
     height: 44px;
   }
   /* line 47, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-calendar-date:after {
+  .md-picker:not(.landscape) .md-calendar-date::after {
     height: 36px;
     width: 36px;
   }
@@ -406,16 +401,13 @@ body {
     font-size: 14px;
   }
 
-  /* line 9, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-select-field.text-field-positioned {
-    font-size: 16px;
-    height: 48px;
-    padding-bottom: 8px;
-    padding-top: 8px;
+  /* line 10, ../src/scss/helpers/mixins/_select-fields.scss */
+  .md-menu.md-select-field-menu {
+    top: 8px;
   }
-  /* line 15, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-select-field.text-field-positioned .md-divider {
-    bottom: 8px;
+  /* line 13, ../src/scss/helpers/mixins/_select-fields.scss */
+  .md-menu.md-select-field-menu.single-line {
+    top: -8px;
   }
 
   /* line 5, ../src/scss/helpers/mixins/_sidebars.scss */
@@ -558,6 +550,17 @@ body {
     vertical-align: bottom;
   }
 
+  /* line 123, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-ind {
+    padding-bottom: 16px;
+    padding-top: 32px;
+  }
+  /* line 127, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-ind.single-line {
+    padding-bottom: 12px;
+    padding-top: 12px;
+  }
+
   /* line 5, ../src/scss/helpers/mixins/_tooltips.scss */
   .md-tooltip {
     height: 32px;
@@ -603,7 +606,7 @@ body {
     height: 35px;
   }
   /* line 92, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.portrait) .md-calendar-date:after {
+  .md-picker:not(.portrait) .md-calendar-date::after {
     height: 32px;
     width: 32px;
   }
@@ -664,16 +667,13 @@ body {
     font-size: 13px;
   }
 
-  /* line 9, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-select-field.text-field-positioned {
-    font-size: 13px;
-    height: 40px;
-    padding-bottom: 6px;
-    padding-top: 6px;
+  /* line 28, ../src/scss/helpers/mixins/_select-fields.scss */
+  .md-menu.md-select-field-menu {
+    top: 12px;
   }
-  /* line 15, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-select-field.text-field-positioned .md-divider {
-    bottom: 4px;
+  /* line 31, ../src/scss/helpers/mixins/_select-fields.scss */
+  .md-menu.md-select-field-menu.single-line {
+    top: -4px;
   }
 
   /* line 28, ../src/scss/helpers/mixins/_sidebars.scss */
@@ -809,6 +809,17 @@ body {
   /* line 100, ../src/scss/helpers/mixins/_text-fields.scss */
   .md-text-field-icon.with-floating-label {
     vertical-align: bottom;
+  }
+
+  /* line 153, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-ind {
+    padding-bottom: 6px;
+    padding-top: 30px;
+  }
+  /* line 157, ../src/scss/helpers/mixins/_text-fields.scss */
+  .md-text-field-ind.single-line {
+    padding-bottom: 8px;
+    padding-top: 8px;
   }
 
   /* line 50, ../src/scss/helpers/mixins/_toolbars.scss */
@@ -990,36 +1001,47 @@ body {
 
 /* line 1, ../src/scss/components/_buttons.scss */
 .md-btn {
+  display: inline-block;
   overflow: hidden;
   position: relative;
   text-transform: uppercase;
   transition-duration: 0.3s;
   transition-property: box-shadow, background, transform;
+  vertical-align: top;
 }
-/* line 10, ../src/scss/components/_buttons.scss */
+/* line 12, ../src/scss/components/_buttons.scss */
 .md-btn[disabled] {
   color: rgba(0, 0, 0, 0.38);
 }
-/* line 13, ../src/scss/components/_buttons.scss */
+/* line 15, ../src/scss/components/_buttons.scss */
 .md-btn[disabled]:not(.md-icon-btn) {
   background: rgba(153, 153, 153, 0.2);
 }
+/* line 21, ../src/scss/components/_buttons.scss */
+.md-btn .md-icon {
+  vertical-align: top;
+}
 
-/* line 19, ../src/scss/components/_buttons.scss */
+/* line 27, ../src/scss/components/_buttons.scss */
+a.md-btn {
+  text-decoration: none;
+}
+
+/* line 31, ../src/scss/components/_buttons.scss */
 .md-flat-btn,
 .md-raised-btn {
   height: 36px;
   padding: 6px 16px;
 }
 
-/* line 28, ../src/scss/components/_buttons.scss */
+/* line 40, ../src/scss/components/_buttons.scss */
 .md-raised-btn:hover,
 .md-floating-btn:hover,
 .md-flat-btn:hover {
   background: rgba(153, 153, 153, 0.2);
 }
 
-/* line 34, ../src/scss/components/_buttons.scss */
+/* line 46, ../src/scss/components/_buttons.scss */
 .md-icon-btn {
   border-radius: 50%;
   color: inherit;
@@ -1029,119 +1051,124 @@ body {
   text-decoration: none;
   width: 48px;
 }
-/* line 43, ../src/scss/components/_buttons.scss */
+/* line 55, ../src/scss/components/_buttons.scss */
+.md-icon-btn[disabled] .md-icon {
+  color: rgba(0, 0, 0, 0.38);
+}
+/* line 59, ../src/scss/components/_buttons.scss */
 .md-icon-btn .md-icon {
   font-size: inherit;
 }
 
-/* line 48, ../src/scss/components/_buttons.scss */
+/* line 64, ../src/scss/components/_buttons.scss */
 .md-flat-btn {
   background: transparent;
   min-width: 88px;
 }
 
-/* line 54, ../src/scss/components/_buttons.scss */
+/* line 70, ../src/scss/components/_buttons.scss */
 .md-raised-btn {
   border-radius: 2px;
   min-width: 64px;
 }
-/* line 58, ../src/scss/components/_buttons.scss */
+/* line 74, ../src/scss/components/_buttons.scss */
 .md-raised-btn:not([disabled]) {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
-/* line 61, ../src/scss/components/_buttons.scss */
+/* line 77, ../src/scss/components/_buttons.scss */
 .md-raised-btn:not([disabled]):active {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
 
 /* line 1, ../src/scss/components/_cards.scss */
 .md-card-list {
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   margin: 4px;
 }
-/* line 6, ../src/scss/components/_cards.scss */
+/* line 7, ../src/scss/components/_cards.scss */
 .md-card-list .md-card {
   margin: 4px;
 }
-/* line 10, ../src/scss/components/_cards.scss */
+/* line 11, ../src/scss/components/_cards.scss */
 .md-card-list.equal-width {
   @exted %flex-equal-size;
 }
 
-/* line 15, ../src/scss/components/_cards.scss */
+/* line 16, ../src/scss/components/_cards.scss */
 .md-card {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   background: #fff;
   display: inline-block;
   width: 100%;
 }
-/* line 22, ../src/scss/components/_cards.scss */
+/* line 23, ../src/scss/components/_cards.scss */
 .md-card.raise {
   transition: box-shadow 0.3s;
 }
-/* line 25, ../src/scss/components/_cards.scss */
+/* line 26, ../src/scss/components/_cards.scss */
 .md-card.raise:hover {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
 }
 
-/* line 31, ../src/scss/components/_cards.scss */
+/* line 32, ../src/scss/components/_cards.scss */
 .md-card-text {
   color: rgba(0, 0, 0, 0.54);
   padding: 16px;
 }
-/* line 35, ../src/scss/components/_cards.scss */
+/* line 36, ../src/scss/components/_cards.scss */
 .md-card-text > p,
 .md-card-text > .md-body-1,
 .md-card-text > .md-body-2 {
   margin: 0;
 }
-/* line 40, ../src/scss/components/_cards.scss */
+/* line 41, ../src/scss/components/_cards.scss */
 .md-card-text > p:nth-child(n+2),
 .md-card-text > .md-body-1:nth-child(n+2),
 .md-card-text > .md-body-2:nth-child(n+2) {
   margin-bottom: .5em;
   margin-top: .5em;
 }
-/* line 46, ../src/scss/components/_cards.scss */
+/* line 47, ../src/scss/components/_cards.scss */
 .md-card-text:last-child {
   padding-bottom: 24px;
 }
 
-/* line 51, ../src/scss/components/_cards.scss */
+/* line 52, ../src/scss/components/_cards.scss */
 .md-card-title {
   align-items: center;
   display: flex;
   padding: 16px;
 }
-/* line 56, ../src/scss/components/_cards.scss */
+/* line 57, ../src/scss/components/_cards.scss */
 .md-card-title.title-large {
   padding-top: 24px;
 }
-/* line 59, ../src/scss/components/_cards.scss */
+/* line 60, ../src/scss/components/_cards.scss */
 .md-card-title.title-large .md-headline {
   font-size: 14px;
 }
-/* line 64, ../src/scss/components/_cards.scss */
+/* line 65, ../src/scss/components/_cards.scss */
 .md-card-title:last-child {
   padding-bottom: 24px;
 }
-/* line 68, ../src/scss/components/_cards.scss */
+/* line 69, ../src/scss/components/_cards.scss */
 .md-card-title .md-avatar {
   height: 48px;
   margin-right: 16px;
   width: 48px;
 }
-/* line 74, ../src/scss/components/_cards.scss */
+/* line 75, ../src/scss/components/_cards.scss */
 .md-card-title .titles {
   display: inline-block;
 }
-/* line 78, ../src/scss/components/_cards.scss */
+/* line 79, ../src/scss/components/_cards.scss */
 .md-card-title .md-headline {
   font-weight: 500;
   margin: 0;
 }
-/* line 83, ../src/scss/components/_cards.scss */
+/* line 84, ../src/scss/components/_cards.scss */
 .md-card-title .md-subheader {
   color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
@@ -1149,45 +1176,45 @@ body {
   margin: 0;
 }
 
-/* line 91, ../src/scss/components/_cards.scss */
+/* line 92, ../src/scss/components/_cards.scss */
 .md-card-actions {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 8px;
 }
-/* line 97, ../src/scss/components/_cards.scss */
+/* line 98, ../src/scss/components/_cards.scss */
 .md-card-actions .action-area .md-icon-btn {
   color: rgba(0, 0, 0, 0.54);
 }
-/* line 101, ../src/scss/components/_cards.scss */
+/* line 102, ../src/scss/components/_cards.scss */
 .md-card-actions.centered {
   justify-content: center;
 }
 
-/* line 106, ../src/scss/components/_cards.scss */
+/* line 107, ../src/scss/components/_cards.scss */
 .card-expander {
   justify-content: space-between;
 }
 
-/* line 110, ../src/scss/components/_cards.scss */
+/* line 111, ../src/scss/components/_cards.scss */
 .md-card-expander {
   height: 40px;
   padding: 8px;
   width: 40px;
 }
 
-/* line 119, ../src/scss/components/_cards.scss */
+/* line 120, ../src/scss/components/_cards.scss */
 .md-card-actions-stacked > .md-btn {
   display: block;
   margin: 0;
 }
-/* line 123, ../src/scss/components/_cards.scss */
+/* line 124, ../src/scss/components/_cards.scss */
 .md-card-actions-stacked > .md-btn:nth-child(n+2) {
   margin-top: 8px;
 }
 
-/* line 129, ../src/scss/components/_cards.scss */
+/* line 130, ../src/scss/components/_cards.scss */
 .md-media-16-9 {
   position: relative;
 }
@@ -1208,7 +1235,7 @@ body {
   width: 100%;
 }
 
-/* line 133, ../src/scss/components/_cards.scss */
+/* line 134, ../src/scss/components/_cards.scss */
 .md-media-1-1 {
   position: relative;
 }
@@ -1229,27 +1256,27 @@ body {
   width: 100%;
 }
 
-/* line 137, ../src/scss/components/_cards.scss */
+/* line 138, ../src/scss/components/_cards.scss */
 .md-card-media {
   position: relative;
 }
 
-/* line 141, ../src/scss/components/_cards.scss */
+/* line 142, ../src/scss/components/_cards.scss */
 .md-card-media-overlay {
   background: rgba(0, 0, 0, 0.54);
   bottom: 0;
   position: absolute;
   width: 100%;
 }
-/* line 147, ../src/scss/components/_cards.scss */
+/* line 148, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-headline {
   color: #fff;
 }
-/* line 151, ../src/scss/components/_cards.scss */
+/* line 152, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-subheader {
   color: rgba(255, 255, 255, 0.7);
 }
-/* line 155, ../src/scss/components/_cards.scss */
+/* line 156, ../src/scss/components/_cards.scss */
 .md-card-media-overlay .md-btn {
   color: #fff;
 }
@@ -1341,22 +1368,22 @@ body {
   height: 48px;
 }
 /* line 39, ../src/scss/components/_data-tables.scss */
-.md-data-table tr {
+.md-data-table tbody tr {
   transition: background 0.15s;
 }
 /* line 42, ../src/scss/components/_data-tables.scss */
-.md-data-table tr:hover {
+.md-data-table tbody tr:hover {
   background: rgba(0, 0, 0, 0.12);
 }
 
 /* line 1, ../src/scss/components/_dialogs.scss */
 .md-dialog-container {
-  height: 100%;
+  height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   visibility: hidden;
-  width: 100%;
+  width: 100vw;
   z-index: -1;
 }
 /* line 10, ../src/scss/components/_dialogs.scss */
@@ -1517,16 +1544,17 @@ body {
   display: block;
   margin: 0;
 }
-/* line 8, ../src/scss/components/_dividers.scss */
+/* line 9, ../src/scss/components/_dividers.scss */
 .md-divider:not(.vertical) {
   height: 1px;
+  width: 100%;
 }
-/* line 12, ../src/scss/components/_dividers.scss */
+/* line 14, ../src/scss/components/_dividers.scss */
 .md-divider.vertical {
   height: 100%;
   width: 1px;
 }
-/* line 16, ../src/scss/components/_dividers.scss */
+/* line 18, ../src/scss/components/_dividers.scss */
 .md-divider.vertical.inset {
   height: 40px;
 }
@@ -1580,129 +1608,130 @@ body {
   z-index: 1;
 }
 
-/* line 57, ../src/scss/components/_fabs.scss */
+/* line 58, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab {
   background: #fff;
+  border-radius: 50%;
   left: 50%;
   position: absolute;
   transform: translate3d(-50%, 0, 0);
 }
 
-/* line 64, ../src/scss/components/_fabs.scss */
+/* line 66, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter {
   top: 0;
 }
 
-/* line 68, ../src/scss/components/_fabs.scss */
+/* line 70, ../src/scss/components/_fabs.scss */
 .md-speed-dial-leave {
   opacity: 1;
 }
-/* line 71, ../src/scss/components/_fabs.scss */
+/* line 73, ../src/scss/components/_fabs.scss */
 .md-speed-dial-leave.md-speed-dial-leave-active {
   opacity: 0;
 }
 
-/* line 76, ../src/scss/components/_fabs.scss */
+/* line 78, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter.md-speed-dial-enter-active,
 .md-speed-dial-leave.md-speed-dial-leave-active {
   transition-duration: 0.15s;
   transition-property: opacity, top;
 }
 
-/* line 83, ../src/scss/components/_fabs.scss */
+/* line 85, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab:nth-of-type(1):not(.md-speed-dial-enter),
 .md-speed-dial-enter:nth-of-type(1).md-speed-dial-enter-active {
   top: -60px;
 }
 
-/* line 88, ../src/scss/components/_fabs.scss */
+/* line 90, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter:nth-of-type(1).md-speed-dial-enter-active {
   transition-delay: 0s;
 }
 
-/* line 83, ../src/scss/components/_fabs.scss */
+/* line 85, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab:nth-of-type(2):not(.md-speed-dial-enter),
 .md-speed-dial-enter:nth-of-type(2).md-speed-dial-enter-active {
   top: -120px;
 }
 
-/* line 88, ../src/scss/components/_fabs.scss */
+/* line 90, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter:nth-of-type(2).md-speed-dial-enter-active {
   transition-delay: 0.02s;
 }
 
-/* line 83, ../src/scss/components/_fabs.scss */
+/* line 85, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab:nth-of-type(3):not(.md-speed-dial-enter),
 .md-speed-dial-enter:nth-of-type(3).md-speed-dial-enter-active {
   top: -180px;
 }
 
-/* line 88, ../src/scss/components/_fabs.scss */
+/* line 90, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter:nth-of-type(3).md-speed-dial-enter-active {
   transition-delay: 0.04s;
 }
 
-/* line 83, ../src/scss/components/_fabs.scss */
+/* line 85, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab:nth-of-type(4):not(.md-speed-dial-enter),
 .md-speed-dial-enter:nth-of-type(4).md-speed-dial-enter-active {
   top: -240px;
 }
 
-/* line 88, ../src/scss/components/_fabs.scss */
+/* line 90, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter:nth-of-type(4).md-speed-dial-enter-active {
   transition-delay: 0.06s;
 }
 
-/* line 83, ../src/scss/components/_fabs.scss */
+/* line 85, ../src/scss/components/_fabs.scss */
 .md-speed-dial-fab:nth-of-type(5):not(.md-speed-dial-enter),
 .md-speed-dial-enter:nth-of-type(5).md-speed-dial-enter-active {
   top: -300px;
 }
 
-/* line 88, ../src/scss/components/_fabs.scss */
+/* line 90, ../src/scss/components/_fabs.scss */
 .md-speed-dial-enter:nth-of-type(5).md-speed-dial-enter-active {
   transition-delay: 0.08s;
 }
 
-/* line 94, ../src/scss/components/_fabs.scss */
+/* line 96, ../src/scss/components/_fabs.scss */
 .md-fab-rotate-right-enter {
   transform: rotate3d(0, 0, 1, -90deg);
 }
 
-/* line 98, ../src/scss/components/_fabs.scss */
+/* line 100, ../src/scss/components/_fabs.scss */
 .md-fab-rotate-left-enter {
   transform: rotate3d(0, 0, 1, 90deg);
 }
 
-/* line 102, ../src/scss/components/_fabs.scss */
+/* line 104, ../src/scss/components/_fabs.scss */
 .md-fab-rotate-left-enter.md-fab-rotate-left-enter-active,
 .md-fab-rotate-right-enter.md-fab-rotate-right-enter-active {
   transform: rotate3d(0, 0, 1, 0deg);
   transition: transform 0.15s;
 }
 
-/* line 108, ../src/scss/components/_fabs.scss */
+/* line 110, ../src/scss/components/_fabs.scss */
 .md-fab-container {
   position: relative;
 }
-/* line 111, ../src/scss/components/_fabs.scss */
+/* line 113, ../src/scss/components/_fabs.scss */
 .md-fab-container .md-floating-btn {
   bottom: -28px;
   position: absolute;
 }
-/* line 115, ../src/scss/components/_fabs.scss */
+/* line 117, ../src/scss/components/_fabs.scss */
 .md-fab-container .md-floating-btn.mini {
   bottom: -20px;
 }
-/* line 120, ../src/scss/components/_fabs.scss */
+/* line 122, ../src/scss/components/_fabs.scss */
 .md-fab-container.fab-right .md-floating-btn {
   right: 16px;
 }
-/* line 124, ../src/scss/components/_fabs.scss */
+/* line 126, ../src/scss/components/_fabs.scss */
 .md-fab-container.fab-left .md-floating-btn {
   left: 16px;
 }
-/* line 128, ../src/scss/components/_fabs.scss */
+/* line 130, ../src/scss/components/_fabs.scss */
 .md-fab-container + * {
   margin-top: 32px;
 }
@@ -1762,48 +1791,38 @@ body {
   margin-left: 72px;
 }
 /* line 21, ../src/scss/components/_lists.scss */
-.md-list .md-subheader {
-  font-size: 14px;
-  font-weight: 500;
-  height: 48px;
-  margin: 0;
-  padding: 16px;
-}
-/* line 29, ../src/scss/components/_lists.scss */
 .md-list a {
   text-decoration: none;
 }
-/* line 33, ../src/scss/components/_lists.scss */
+/* line 25, ../src/scss/components/_lists.scss */
 .md-list.avatar-icon-mix .md-avatar {
   height: 24px;
   margin-right: 16px;
   width: 24px;
 }
-/* line 39, ../src/scss/components/_lists.scss */
-.md-list .md-icon-btn {
-  height: 24px;
-  padding: 0;
-  width: 24px;
+/* line 31, ../src/scss/components/_lists.scss */
+.md-list .extra-mb {
+  margin-bottom: 8px;
 }
 
-/* line 46, ../src/scss/components/_lists.scss */
-.md-divider + .md-list-tile {
+/* line 36, ../src/scss/components/_lists.scss */
+.md-divider + li {
   margin-top: 8px;
 }
 
-/* line 50, ../src/scss/components/_lists.scss */
+/* line 40, ../src/scss/components/_lists.scss */
 .md-list-item,
 .md-list-tile {
   padding-left: 16px;
   padding-right: 16px;
 }
 
-/* line 56, ../src/scss/components/_lists.scss */
+/* line 46, ../src/scss/components/_lists.scss */
 .no-left-icon-adjust .md-list-tile {
   padding-left: 72px;
 }
 
-/* line 60, ../src/scss/components/_lists.scss */
+/* line 50, ../src/scss/components/_lists.scss */
 .md-list-tile {
   align-items: center;
   display: flex;
@@ -1811,55 +1830,72 @@ body {
   position: relative;
   transition: background 0.15s;
 }
-/* line 67, ../src/scss/components/_lists.scss */
-.md-list-tile:hover {
+/* line 57, ../src/scss/components/_lists.scss */
+.md-list-tile:not([disabled]):hover {
   cursor: pointer;
 }
-/* line 71, ../src/scss/components/_lists.scss */
+/* line 61, ../src/scss/components/_lists.scss */
+.md-list-tile[disabled] {
+  color: rgba(0, 0, 0, 0.38);
+}
+/* line 65, ../src/scss/components/_lists.scss */
 .md-list-tile:focus {
   outline: none;
 }
-/* line 75, ../src/scss/components/_lists.scss */
+/* line 69, ../src/scss/components/_lists.scss */
+.md-list-tile.controls-left {
+  padding-left: 0;
+}
+/* line 73, ../src/scss/components/_lists.scss */
+.md-list-tile.controls-right {
+  padding-right: 0;
+}
+/* line 77, ../src/scss/components/_lists.scss */
 .md-list-tile.md-list-avatar ~ .md-divider.inset {
   margin-left: 72px;
 }
-/* line 79, ../src/scss/components/_lists.scss */
+/* line 81, ../src/scss/components/_lists.scss */
 .md-list-tile .md-ink {
   background: rgba(0, 0, 0, 0.15);
 }
-/* line 83, ../src/scss/components/_lists.scss */
+/* line 85, ../src/scss/components/_lists.scss */
 .md-list-tile > *:not(.md-tile-content) {
   flex-shrink: 0;
 }
-/* line 89, ../src/scss/components/_lists.scss */
+/* line 91, ../src/scss/components/_lists.scss */
 .md-list-tile.three-lines .md-tile-content + .md-icon {
   align-self: flex-start;
   padding-top: 16px;
 }
-/* line 94, ../src/scss/components/_lists.scss */
+/* line 96, ../src/scss/components/_lists.scss */
 .md-list-tile.three-lines .md-tile-content + .md-icon-btn {
   align-self: flex-start;
 }
+/* line 103, ../src/scss/components/_lists.scss */
+.md-list-tile > .md-control-container + .md-tile-content,
+.md-list-tile > .md-icon-btn + .md-tile-content {
+  padding-left: 24px;
+}
 
-/* line 100, ../src/scss/components/_lists.scss */
+/* line 109, ../src/scss/components/_lists.scss */
 .md-tile-content {
   flex-grow: 1;
   overflow: hidden;
 }
-/* line 104, ../src/scss/components/_lists.scss */
+/* line 113, ../src/scss/components/_lists.scss */
 .md-tile-content.icon-left {
   padding-left: 32px;
 }
-/* line 108, ../src/scss/components/_lists.scss */
+/* line 117, ../src/scss/components/_lists.scss */
 .md-tile-content.icon-right {
   padding-right: 16px;
 }
-/* line 112, ../src/scss/components/_lists.scss */
+/* line 121, ../src/scss/components/_lists.scss */
 .md-tile-content.avatar-left {
   padding-left: 16px;
 }
 
-/* line 117, ../src/scss/components/_lists.scss */
+/* line 126, ../src/scss/components/_lists.scss */
 .md-tile-primary-text,
 .md-tile-secondary-text {
   overflow: hidden;
@@ -1867,32 +1903,32 @@ body {
   white-space: nowrap;
 }
 
-/* line 124, ../src/scss/components/_lists.scss */
+/* line 133, ../src/scss/components/_lists.scss */
 .md-tile-primary-text {
   display: block;
 }
 
-/* line 128, ../src/scss/components/_lists.scss */
+/* line 137, ../src/scss/components/_lists.scss */
 .md-list-expander {
   transition: transform 0.15s;
 }
-/* line 131, ../src/scss/components/_lists.scss */
+/* line 140, ../src/scss/components/_lists.scss */
 .md-list-expander.active {
   transform: rotate3d(0, 0, 1, 180deg);
 }
 
 /* line 103, ../src/scss/helpers/mixins/_lists.scss */
-.md-list .md-list-tile + .md-list .md-list-tile {
+.md-list-tile + .md-list .md-list-tile {
   padding-left: 72px;
 }
 
 /* line 103, ../src/scss/helpers/mixins/_lists.scss */
-.md-list .md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile {
+.md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile {
   padding-left: 108px;
 }
 
 /* line 103, ../src/scss/helpers/mixins/_lists.scss */
-.md-list .md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile {
+.md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile + .md-list .md-list-tile {
   padding-left: 144px;
 }
 
@@ -1904,7 +1940,7 @@ body {
 
 /* line 6, ../src/scss/components/_menus.scss */
 .md-menu {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   background: #fff;
   position: absolute;
   top: 0;
@@ -1928,59 +1964,65 @@ body {
   padding-right: 24px;
 }
 /* line 30, ../src/scss/components/_menus.scss */
+.md-menu.cascading .md-list-tile.controls-right {
+  padding-right: 8px;
+}
+/* line 35, ../src/scss/components/_menus.scss */
 .md-menu.cascading .md-tile-primary-text {
   font-size: 15px;
 }
-/* line 35, ../src/scss/components/_menus.scss */
+/* line 40, ../src/scss/components/_menus.scss */
 .md-menu .md-menu-container {
   position: absolute;
 }
 
-/* line 40, ../src/scss/components/_menus.scss */
+/* line 45, ../src/scss/components/_menus.scss */
 .md-transition-tr {
+  right: 0;
   transform-origin: 100% 0;
 }
 
-/* line 44, ../src/scss/components/_menus.scss */
+/* line 50, ../src/scss/components/_menus.scss */
 .md-transition-tl {
   transform-origin: 0 0;
 }
 
-/* line 48, ../src/scss/components/_menus.scss */
+/* line 54, ../src/scss/components/_menus.scss */
 .md-transition-br {
+  right: 0;
   transform-origin: 100% 100%;
 }
 
-/* line 52, ../src/scss/components/_menus.scss */
+/* line 59, ../src/scss/components/_menus.scss */
 .md-transition-bl {
   transform-origin: 0 100%;
 }
 
-/* line 56, ../src/scss/components/_menus.scss */
+/* line 63, ../src/scss/components/_menus.scss */
 .md-menu-enter {
   transform: scale(0);
 }
-/* line 59, ../src/scss/components/_menus.scss */
+/* line 66, ../src/scss/components/_menus.scss */
 .md-menu-enter.md-menu-enter-active {
   transform: scale(1);
   transition: transform 0.15s;
 }
 
-/* line 65, ../src/scss/components/_menus.scss */
+/* line 72, ../src/scss/components/_menus.scss */
 .md-menu-leave {
   transform: scale(1);
 }
-/* line 68, ../src/scss/components/_menus.scss */
+/* line 75, ../src/scss/components/_menus.scss */
 .md-menu-leave.md-menu-leave-active {
   transform: scale(0);
   transition: transform 0.15s;
 }
 
-/* line 74, ../src/scss/components/_menus.scss */
+/* line 81, ../src/scss/components/_menus.scss */
 .md-toolbar-container + .md-menu-container {
   display: block;
 }
-/* line 77, ../src/scss/components/_menus.scss */
+/* line 84, ../src/scss/components/_menus.scss */
 .md-toolbar-container + .md-menu-container .md-menu {
   width: 100%;
 }
@@ -1988,7 +2030,6 @@ body {
 /* line 1, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  background: #fff;
   height: 100vh;
   overflow-y: auto;
   position: fixed;
@@ -1998,21 +2039,21 @@ body {
   width: 0;
   z-index: 10;
 }
-/* line 14, ../src/scss/components/_navigation-drawers.scss */
+/* line 13, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.mini:not(.active) {
   visibility: visible;
   width: 72px;
 }
-/* line 18, ../src/scss/components/_navigation-drawers.scss */
+/* line 17, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.mini:not(.active) .md-list-tile {
   justify-content: center;
 }
-/* line 23, ../src/scss/components/_navigation-drawers.scss */
+/* line 22, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.active {
   visibility: visible;
   width: 256px;
 }
-/* line 28, ../src/scss/components/_navigation-drawers.scss */
+/* line 27, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.temporary.active {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
   z-index: 12;
@@ -2044,7 +2085,6 @@ body {
 
 /* line 62, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar {
-  background: #3f51b5;
   color: #fff;
   left: 0;
   position: fixed;
@@ -2054,23 +2094,23 @@ body {
   width: 100%;
   z-index: 10;
 }
-/* line 73, ../src/scss/components/_navigation-drawers.scss */
+/* line 72, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar .md-title {
   color: inherit;
   padding-left: 16px;
 }
-/* line 78, ../src/scss/components/_navigation-drawers.scss */
+/* line 77, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar.active, .md-navigation-drawer-toolbar.mini {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
-/* line 84, ../src/scss/components/_navigation-drawers.scss */
+/* line 83, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-btn {
   margin-left: 12px;
   margin-right: 12px;
 }
 
-/* line 93, ../src/scss/components/_navigation-drawers.scss */
+/* line 92, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toggle {
   float: right;
 }
@@ -2153,7 +2193,7 @@ body {
 }
 /* line 4, ../src/scss/components/_pickers.scss */
 .md-picker-container .md-text-field:hover,
-.md-picker-container .md-text-field-label-container:hover {
+.md-picker-container .md-text-field-label:hover {
   cursor: pointer;
 }
 
@@ -2221,7 +2261,7 @@ body {
   height: 44px;
 }
 /* line 47, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-calendar-date:after {
+.md-picker.portrait .md-calendar-date::after {
   height: 36px;
   width: 36px;
 }
@@ -2258,7 +2298,7 @@ body {
   height: 35px;
 }
 /* line 92, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-calendar-date:after {
+.md-picker.landscape .md-calendar-date::after {
   height: 32px;
   width: 32px;
 }
@@ -2367,20 +2407,20 @@ body {
   transition-property: transform, width;
 }
 /* line 130, ../src/scss/components/_pickers.scss */
-.md-clock-hand:before, .md-clock-hand:after {
+.md-clock-hand::before, .md-clock-hand::after {
   border-radius: 50%;
   content: '';
   position: absolute;
 }
 /* line 138, ../src/scss/components/_pickers.scss */
-.md-clock-hand:before {
+.md-clock-hand::before {
   height: 6px;
   left: -3px;
   top: -2px;
   width: 6px;
 }
 /* line 146, ../src/scss/components/_pickers.scss */
-.md-clock-hand:after {
+.md-clock-hand::after {
   height: 36px;
   right: -16px;
   top: -18px;
@@ -2389,7 +2429,7 @@ body {
   width: 36px;
 }
 /* line 155, ../src/scss/components/_pickers.scss */
-.md-clock-hand.invisible-minute:after {
+.md-clock-hand.invisible-minute::after {
   transform: scale(0.4);
 }
 
@@ -2495,11 +2535,11 @@ body {
   font-weight: 700;
 }
 /* line 266, ../src/scss/components/_pickers.scss */
-.md-calendar-date:not([disabled]):hover:after, .md-calendar-date:not([disabled]):focus:after, .md-calendar-date:not([disabled]).active:after {
+.md-calendar-date:not([disabled]):hover::after, .md-calendar-date:not([disabled]):focus::after, .md-calendar-date:not([disabled]).active::after {
   transform: translateX(-50%) translateY(-50%) scale(1);
 }
 /* line 272, ../src/scss/components/_pickers.scss */
-.md-calendar-date:after {
+.md-calendar-date::after {
   border-radius: 50%;
   content: '';
   display: block;
@@ -2617,7 +2657,7 @@ body {
   z-index: 1;
 }
 /* line 82, ../src/scss/components/_progress.scss */
-.md-linear-progress.indeterminate:before, .md-linear-progress.indeterminate:after {
+.md-linear-progress.indeterminate::before, .md-linear-progress.indeterminate::after {
   background: inherit;
   bottom: 0;
   content: '';
@@ -2627,114 +2667,73 @@ body {
   z-index: 1;
 }
 /* line 93, ../src/scss/components/_progress.scss */
-.md-linear-progress.indeterminate:before {
+.md-linear-progress.indeterminate::before {
   animation-duration: 2.1s;
+  animation-iteration-count: infinite;
   animation-name: md-linear-indeterminate;
   animation-timing-function: cubic-bezier(0.65, 0.815, 0.735, 0.395);
 }
-/* line 99, ../src/scss/components/_progress.scss */
-.md-linear-progress.indeterminate:after {
+/* line 100, ../src/scss/components/_progress.scss */
+.md-linear-progress.indeterminate::after {
   animation-delay: 1.15s;
   animation-duration: 2.1s;
+  animation-iteration-count: infinite;
   animation-name: md-linear-indeterminate-short;
   animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-/* line 106, ../src/scss/components/_progress.scss */
-.md-linear-progress.indeterminate.query:before, .md-linear-progress.indeterminate.query:after {
+/* line 108, ../src/scss/components/_progress.scss */
+.md-linear-progress.indeterminate.query::before, .md-linear-progress.indeterminate.query::after {
   animation-direction: reverse;
 }
 
-/* line 113, ../src/scss/components/_progress.scss */
+/* line 115, ../src/scss/components/_progress.scss */
 .md-circular-progress {
   display: block;
   margin: 1em;
 }
-/* line 117, ../src/scss/components/_progress.scss */
+/* line 119, ../src/scss/components/_progress.scss */
 .md-circular-progress.centered {
   margin: 1em auto;
 }
-/* line 121, ../src/scss/components/_progress.scss */
+/* line 123, ../src/scss/components/_progress.scss */
 .md-circular-progress.determinate {
   transition: transform 0.15s;
 }
-/* line 124, ../src/scss/components/_progress.scss */
+/* line 126, ../src/scss/components/_progress.scss */
 .md-circular-progress.determinate .md-circular-progress-path {
   stroke-dasharray: 187px;
 }
-/* line 129, ../src/scss/components/_progress.scss */
+/* line 131, ../src/scss/components/_progress.scss */
 .md-circular-progress.indeterminate {
   animation: md-circular-progress 1.4s linear infinite;
 }
-/* line 132, ../src/scss/components/_progress.scss */
+/* line 134, ../src/scss/components/_progress.scss */
 .md-circular-progress.indeterminate .md-circular-progress-path {
   animation: md-circular-progress-dash 1.4s ease-in-out infinite;
   stroke-dasharray: 187px;
   stroke-dashoffset: 0;
 }
 
-/* line 140, ../src/scss/components/_progress.scss */
+/* line 142, ../src/scss/components/_progress.scss */
 .md-circular-progress-path {
   fill: none;
 }
 
 /* line 1, ../src/scss/components/_select-fields.scss */
-.md-select-field {
-  background: transparent;
-  border: 0;
-  color: #000;
-  cursor: pointer;
-  padding: 16px;
-  padding-left: 24px;
-  position: relative;
-  transition: background 0.15s, box-shadow 0.15s;
-  width: 100%;
-}
-/* line 12, ../src/scss/components/_select-fields.scss */
-.md-select-field.placeholder {
-  color: rgba(0, 0, 0, 0.38);
-}
-/* line 16, ../src/scss/components/_select-fields.scss */
-.md-select-field.focus, .md-select-field:hover {
-  background: #fff;
-}
-/* line 21, ../src/scss/components/_select-fields.scss */
-.md-select-field.focus {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-/* line 28, ../src/scss/components/_select-fields.scss */
-.md-select-field .icon-separator > span {
-  padding-right: .5em;
-}
-/* line 32, ../src/scss/components/_select-fields.scss */
-.md-select-field .icon-separator .md-icon {
-  padding-left: 0;
-}
-/* line 37, ../src/scss/components/_select-fields.scss */
-.md-select-field .md-icon {
-  color: rgba(0, 0, 0, 0.38);
-  transition: transform 0.15s;
-}
-/* line 42, ../src/scss/components/_select-fields.scss */
-.md-select-field .md-divider {
-  position: absolute;
-  width: calc(100% - 40px);
-}
-
-/* line 48, ../src/scss/components/_select-fields.scss */
 .md-select-field-menu {
   max-height: 272px;
   overflow-y: auto;
-  width: 100%;
 }
-/* line 53, ../src/scss/components/_select-fields.scss */
-.md-select-field-menu .md-list-tile {
-  color: rgba(0, 0, 0, 0.77);
-  font-size: inherit;
-  height: 40px;
-  padding-bottom: 12px;
-  padding-left: 24px;
-  padding-top: 12px;
+
+/* line 8, ../src/scss/components/_select-fields.scss */
+.md-select-field-container:hover .md-text-field-label,
+.md-select-field-container:hover .md-text-field {
+  cursor: pointer;
+}
+
+/* line 16, ../src/scss/components/_select-fields.scss */
+.md-select-field:focus {
+  user-select: none;
 }
 
 /* line 1, ../src/scss/components/_selection-controls.scss */
@@ -2763,7 +2762,7 @@ body {
 }
 
 /* line 31, ../src/scss/components/_selection-controls.scss */
-.md-control-input:checked + .md-switch:before {
+.md-control-input:checked + .md-switch::before {
   left: 20px;
 }
 /* line 35, ../src/scss/components/_selection-controls.scss */
@@ -2774,10 +2773,21 @@ body {
 /* line 42, ../src/scss/components/_selection-controls.scss */
 .md-checkbox,
 .md-radio {
+  border-radius: 50%;
+  height: 48px;
+  overflow: hidden;
+  padding: 12px;
+  position: relative;
   transition: color 0.15s;
+  width: 48px;
+}
+/* line 52, ../src/scss/components/_selection-controls.scss */
+.md-checkbox.disabled,
+.md-radio.disabled {
+  color: rgba(0, 0, 0, 0.38);
 }
 
-/* line 48, ../src/scss/components/_selection-controls.scss */
+/* line 58, ../src/scss/components/_selection-controls.scss */
 .md-switch {
   top: 50%;
   left: 50%;
@@ -2788,8 +2798,8 @@ body {
   position: relative;
   width: 40px;
 }
-/* line 57, ../src/scss/components/_selection-controls.scss */
-.md-switch:before {
+/* line 67, ../src/scss/components/_selection-controls.scss */
+.md-switch::before {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   content: '';
   height: 24px;
@@ -2799,7 +2809,7 @@ body {
   transition: background 0.15s, background 0.15s, left 0.15s;
   width: 24px;
 }
-/* line 70, ../src/scss/components/_selection-controls.scss */
+/* line 80, ../src/scss/components/_selection-controls.scss */
 .md-switch .md-ink {
   height: 48px;
   left: -16px;
@@ -2807,13 +2817,13 @@ body {
   transition: left 0.15s;
   width: 48px;
 }
-/* line 77, ../src/scss/components/_selection-controls.scss */
+/* line 87, ../src/scss/components/_selection-controls.scss */
 .md-switch .md-ink.active {
   transform: scale(1.25);
   transition: transform 0.6s, opacity 0.6s, left 0.15s;
 }
 
-/* line 84, ../src/scss/components/_selection-controls.scss */
+/* line 94, ../src/scss/components/_selection-controls.scss */
 .md-switch-container {
   height: 48px;
   margin-right: 6px;
@@ -2879,7 +2889,7 @@ body {
   position: relative;
 }
 /* line 4, ../src/scss/components/_sliders.scss */
-.md-slider-track-container:hover {
+.md-slider-track-container:not(.disabled):hover {
   cursor: pointer;
 }
 
@@ -2892,14 +2902,14 @@ body {
   width: 100%;
 }
 /* line 20, ../src/scss/components/_sliders.scss */
-.md-slider-track:before,
+.md-slider-track::before,
 .md-slider-track .md-track-fill {
   height: 2px;
   left: 0;
   position: absolute;
 }
 /* line 27, ../src/scss/components/_sliders.scss */
-.md-slider-track:before {
+.md-slider-track::before {
   content: '';
   right: 0;
 }
@@ -2937,7 +2947,7 @@ body {
 }
 
 /* line 71, ../src/scss/components/_sliders.scss */
-.md-discrete-slider-thumb:after {
+.md-discrete-slider-thumb::after {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 7px solid transparent;
@@ -2972,8 +2982,8 @@ body {
 .md-slider-discrete-value {
   left: 50%;
   position: absolute;
-  top: -1px;
-  transform: translateX(-50%) scale(0.4);
+  top: 2px;
+  transform: translateX(-50%);
 }
 
 /* line 1, ../src/scss/components/_snackbar.scss */
@@ -2986,7 +2996,7 @@ body {
   justify-content: space-between;
   padding: 14px 24px;
   position: fixed;
-  z-index: 6;
+  z-index: 11;
 }
 /* line 12, ../src/scss/components/_snackbar.scss */
 .md-snackbar.multiline {
@@ -3025,6 +3035,19 @@ body {
 .snackbar-enter.snackbar-enter-active * {
   opacity: 1;
   transition: opacity 0.45s ease;
+}
+
+/* line 1, ../src/scss/components/_subheaders.scss */
+.md-subheader {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  padding: 16px;
+}
+/* line 8, ../src/scss/components/_subheaders.scss */
+.md-subheader.inset {
+  padding-left: 72px;
 }
 
 /* line 1, ../src/scss/components/_swipeable-views.scss */
@@ -3247,19 +3270,19 @@ body {
   height: 1px;
 }
 /* line 97, ../src/scss/components/_text-fields.scss */
-.md-text-divider.from-left:after {
+.md-text-divider.from-left::after {
   left: 0;
 }
 /* line 101, ../src/scss/components/_text-fields.scss */
-.md-text-divider.from-right:after {
+.md-text-divider.from-right::after {
   right: 0;
 }
 /* line 105, ../src/scss/components/_text-fields.scss */
-.md-text-divider.from-center:after {
+.md-text-divider.from-center::after {
   margin: auto;
 }
 /* line 109, ../src/scss/components/_text-fields.scss */
-.md-text-divider:after {
+.md-text-divider::after {
   content: '';
   display: block;
   height: 2px;
@@ -3267,7 +3290,7 @@ body {
   width: 0;
 }
 /* line 117, ../src/scss/components/_text-fields.scss */
-.md-text-divider.active:after {
+.md-text-divider.active::after {
   width: 100%;
 }
 
@@ -3301,6 +3324,11 @@ body {
   font-size: 20px;
 }
 
+/* line 148, ../src/scss/components/_text-fields.scss */
+.md-text-field-ind {
+  color: rgba(0, 0, 0, 0.54);
+}
+
 /* line 1, ../src/scss/components/_toolbars.scss */
 .md-toolbar-container.fixed ~ *:not(.fixed),
 .md-toolbar-fixed-relative {
@@ -3323,36 +3351,37 @@ body {
 }
 
 /* line 24, ../src/scss/components/_toolbars.scss */
+.md-toolbar .action-left,
+.md-toolbar .action-area,
+.md-toolbar .action-right, .md-toolbar-item {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+/* line 29, ../src/scss/components/_toolbars.scss */
 .md-toolbar {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   align-items: center;
   display: flex;
 }
-/* line 30, ../src/scss/components/_toolbars.scss */
+/* line 35, ../src/scss/components/_toolbars.scss */
 .md-toolbar .md-title {
   color: inherit;
   font-weight: 500;
   line-height: 64px;
   margin: 0;
 }
-/* line 37, ../src/scss/components/_toolbars.scss */
+/* line 42, ../src/scss/components/_toolbars.scss */
 .md-toolbar .action-area {
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
 }
-/* line 43, ../src/scss/components/_toolbars.scss */
+/* line 48, ../src/scss/components/_toolbars.scss */
 .md-toolbar .md-icon-btn {
   flex-shrink: 0;
 }
-/* line 47, ../src/scss/components/_toolbars.scss */
-.md-toolbar .action-left,
-.md-toolbar .action-area,
-.md-toolbar .action-right {
-  margin-left: 12px;
-  margin-right: 12px;
-}
-/* line 54, ../src/scss/components/_toolbars.scss */
+/* line 58, ../src/scss/components/_toolbars.scss */
 .md-toolbar .md-text-field-container {
   padding: 0;
 }
@@ -3410,31 +3439,45 @@ body {
   white-space: nowrap;
 }
 
-/* line 181, ../src/scss/helpers/mixins/_text-fields.scss */
+/* line 88, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+.md-navigation-drawer {
+  background: #fff;
+}
+/* line 91, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+.md-navigation-drawer.floating {
+  background: #fafafa;
+}
+
+/* line 96, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+.md-navigation-drawer-toolbar {
+  background: #3f51b5;
+}
+
+/* line 205, ../src/scss/helpers/mixins/_text-fields.scss */
 .md-floating-label,
 .md-text-field-message,
 .md-text-field-icon {
   color: rgba(0, 0, 0, 0.54);
 }
-/* line 186, ../src/scss/helpers/mixins/_text-fields.scss */
+/* line 210, ../src/scss/helpers/mixins/_text-fields.scss */
 .md-floating-label.error,
 .md-text-field-message.error,
 .md-text-field-icon.error {
   color: #f44336;
 }
 
-/* line 191, ../src/scss/helpers/mixins/_text-fields.scss */
+/* line 215, ../src/scss/helpers/mixins/_text-fields.scss */
 .md-text-field-icon.active,
 .md-floating-label.active:not(.error) {
   color: #3f51b5;
 }
 
-/* line 197, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-divider:after {
+/* line 221, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-divider::after {
   background: #3f51b5;
 }
-/* line 201, ../src/scss/helpers/mixins/_text-fields.scss */
-.md-text-divider.error:after {
+/* line 225, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-divider.error::after {
   background: #f44336;
 }
 
@@ -3455,21 +3498,21 @@ body {
 /* line 197, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker-header,
 .md-date-picker-header,
-.md-calendar-date.active:after,
+.md-calendar-date.active::after,
 .md-clock-hand,
-.md-clock-hand:before,
-.md-clock-hand:after {
+.md-clock-hand::before,
+.md-clock-hand::after {
   background: #3f51b5;
 }
 
 /* line 206, ../src/scss/helpers/mixins/_pickers.scss */
-.md-calendar-date.today,
+.md-calendar-date.today:not(.active),
 .md-year.active {
   color: #3f51b5;
 }
 
 /* line 211, ../src/scss/helpers/mixins/_pickers.scss */
-.md-calendar-date:after {
+.md-calendar-date::after {
   background: #5c6bc0;
 }
 
@@ -3484,7 +3527,7 @@ body {
 }
 
 /* line 223, ../src/scss/helpers/mixins/_pickers.scss */
-.md-clock-hand.invisible-minute:after {
+.md-clock-hand.invisible-minute::after {
   background: #fff;
   border: 9px solid #3f51b5;
 }
@@ -3516,57 +3559,13 @@ body {
   color: #3f51b5;
 }
 /* line 27, ../src/scss/helpers/mixins/_lists.scss */
-.md-list-tile:hover {
+.md-list-tile:not(.controls):not([disabled]):hover {
   background: rgba(0, 0, 0, 0.12);
 }
 
 /* line 32, ../src/scss/helpers/mixins/_lists.scss */
 .md-list-tile-secondary-text {
   color: rgba(0, 0, 0, 0.54);
-}
-
-/* line 60, ../src/scss/helpers/mixins/_select-fields.scss */
-.md-select-field-menu .md-list-tile.active {
-  color: #3f51b5;
-}
-
-/* line 11, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-radio.active,
-.md-checkbox.active {
-  color: #3f51b5;
-}
-
-/* line 17, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-control-container.disabled .label {
-  color: rgba(0, 0, 0, 0.38);
-}
-/* line 21, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-control-container.disabled .md-switch {
-  background: rgba(0, 0, 0, 0.12);
-}
-/* line 24, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-control-container.disabled .md-switch:before {
-  background: #bdbdbd;
-}
-
-/* line 30, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-control-input:checked + .md-switch {
-  background: rgba(63, 81, 181, 0.5);
-}
-
-/* line 34, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-control-input:checked + .md-switch:before {
-  background: #3f51b5;
-  border-color: #3f51b5;
-}
-
-/* line 39, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-switch {
-  background: rgba(0, 0, 0, 0.26);
-}
-/* line 42, ../src/scss/helpers/mixins/_selection-controls.scss */
-.md-switch:before {
-  background: #fafafa;
 }
 
 /* line 25, ../src/scss/helpers/mixins/_sliders.scss */
@@ -3612,6 +3611,50 @@ body {
   background: rgba(63, 81, 181, 0.16);
 }
 
+/* line 2, ../src/scss/helpers/mixins/_subheaders.scss */
+.md-subheader.md-primary {
+  color: #3f51b5;
+}
+
+/* line 11, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-radio.active,
+.md-checkbox.active {
+  color: #ff4081;
+}
+
+/* line 17, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .label {
+  color: rgba(0, 0, 0, 0.38);
+}
+/* line 21, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .md-switch {
+  background: rgba(0, 0, 0, 0.12);
+}
+/* line 24, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-container.disabled .md-switch:before {
+  background: #bdbdbd;
+}
+
+/* line 30, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-input:checked + .md-switch {
+  background: rgba(255, 64, 129, 0.5);
+}
+
+/* line 34, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-control-input:checked + .md-switch:before {
+  background: #ff4081;
+  border-color: #ff4081;
+}
+
+/* line 39, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-switch {
+  background: rgba(0, 0, 0, 0.26);
+}
+/* line 42, ../src/scss/helpers/mixins/_selection-controls.scss */
+.md-switch:before {
+  background: #fafafa;
+}
+
 /* line 18, ../src/scss/helpers/mixins/_toolbars.scss */
 .md-primary.md-toolbar {
   background: #3f51b5;
@@ -3628,7 +3671,7 @@ body {
 }
 /* line 64, ../src/scss/helpers/mixins/_buttons.scss */
 .md-primary.md-raised-btn:not([disabled]) .md-ink, .md-primary.md-floating-btn:not([disabled]) .md-ink {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.35);
 }
 /* line 69, ../src/scss/helpers/mixins/_buttons.scss */
 .md-primary.md-flat-btn:not([disabled]) {
@@ -3670,7 +3713,7 @@ body {
 }
 /* line 64, ../src/scss/helpers/mixins/_buttons.scss */
 .md-secondary.md-raised-btn:not([disabled]) .md-ink, .md-secondary.md-floating-btn:not([disabled]) .md-ink {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.35);
 }
 /* line 69, ../src/scss/helpers/mixins/_buttons.scss */
 .md-secondary.md-flat-btn:not([disabled]) {
