@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
 import { LEFT_MOUSE } from '../constants/keyCodes';
 
 export default class Switch extends Component {
@@ -10,14 +9,14 @@ export default class Switch extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { checked: isPropEnabled(props, 'defaultToggled'), active: false, leaving: false };
+    this.state = { toggled: props.defaultToggled, active: false, leaving: false };
   }
 
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     defaultToggled: PropTypes.bool,
-    checked: PropTypes.bool,
+    toggled: PropTypes.bool,
     onChange: PropTypes.func,
     value: PropTypes.string,
     label: PropTypes.string,
@@ -25,23 +24,21 @@ export default class Switch extends Component {
   };
 
   toggleCheck = (e) => {
-    const { onChange, value } = this.props;
-    if(value && onChange) {
-      onChange(e);
-    } else {
-      onChange && onChange(e);
-      this.setState({ checked: !this.state.checked });
+    const { onChange } = this.props;
+    onChange && onChange(e);
+    if(typeof this.props.toggled === 'undefined') {
+      this.setState({ toggled: !this.state.toggled });
     }
   };
 
   handleMouseDown = (e) => {
-    if(!isPropEnabled(this.props, 'disabled') && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+    if(!this.props.disabled && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.setState({ active: true, leaving: false });
     }
   };
 
   handleMouseUp = (e) => {
-    if(!isPropEnabled(this.props, 'disabled') && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+    if(!this.props.disabled && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.timeout = setTimeout(() => {
         this.timeout = null;
         this.setState({ active: false, leaving: false });
@@ -51,27 +48,28 @@ export default class Switch extends Component {
     }
   };
 
+  isToggled = () => {
+    return typeof this.props.toggled === 'undefined' ? this.state.toggled : this.props.toggled;
+  };
+
   render() {
-    const { className, label, checked, ...props } = this.props;
+    const { className, label, labelBefore, toggled, disabled, ...props } = this.props;
     const { active, leaving } = this.state;
 
-    const labelBefore = isPropEnabled(props, 'labelBefore');
-    const labelClassName = classnames('md-control-container', className, {
-      'disabled': isPropEnabled(props, 'disabled'),
-    });
+    const labelClassName = classnames('md-control-container', className, { disabled });
 
-    const isChecked = typeof this.props.checked === 'undefined' ? this.state.checked : checked;
     const spanLabel = label ? <span className="label">{label}</span> : null;
     return (
       <label className={labelClassName} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
         {labelBefore && spanLabel}
         <div className="md-switch-container">
           <input
-            type="checkbox"
-            checked={isChecked}
             {...props}
+            type="checkbox"
+            checked={this.isToggled()}
             className="md-control-input"
             onChange={this.toggleCheck}
+            disabled={disabled}
           />
           <div className="md-switch">
             <span className={classnames('md-ink', { active, leaving })} />
