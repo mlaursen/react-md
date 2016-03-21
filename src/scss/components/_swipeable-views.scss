@@ -6,6 +6,7 @@
 
 .md-swipeable-item {
   display: inline-block;
+  min-width: 100%;
   padding-left: 1em;
   padding-right: 1em;
   transition-property: transform;

@@ -1,5 +1,11 @@
 .md-tabs-scroll-container {
   overflow: hidden;
+
+  &.md-primary {
+    .md-ink {
+      background: rgba($md-white-base, .25);
+    }
+  }
 }
 
 .md-tabs {
