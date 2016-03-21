@@ -16,7 +16,7 @@ export default class Snackbar extends Component {
     className: PropTypes.string,
     toasts: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string.isRequired,
-      key: PropTypes.string,
+      key: PropTypes.any,
       action: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.shape({
@@ -37,6 +37,7 @@ export default class Snackbar extends Component {
     autohide: true,
     autohideTimeout: 3000,
     fabTimeout: 450,
+    toasts: [],
   };
 
   componentWillReceiveProps({ toasts, dismiss, autohide, multiline, autohideTimeout, fabTimeout }) {

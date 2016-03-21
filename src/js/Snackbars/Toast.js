@@ -13,10 +13,16 @@ export default class Toast extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    toast: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.string,
-    ]).isRequired,
+    toast: PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      action: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.shape({
+          onClick: PropTypes.func.isRequired,
+          label: PropTypes.string.isRequired,
+        }),
+      ]),
+    }).isRequired,
     dismiss: PropTypes.func.isRequired,
     multiline: PropTypes.bool.isRequired,
   };
