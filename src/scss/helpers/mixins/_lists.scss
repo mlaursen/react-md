@@ -40,7 +40,8 @@
     top: -$md-list-mobile-top-padding;
   }
 
-  .md-list-item {
+
+  %li-heights {
     height: $md-list-mobile-height;
 
     &.avatar-height {
@@ -56,8 +57,19 @@
 
       .md-tile-secondary-text {
         // Allows two lines of text
-        height: $md-line-height * $md-list-mobile-secondary-text-font-size * 2;
+        height: $md-line-height * $md-list-mobile-font-size * 2;
       }
+    }
+  }
+
+  .md-list-tile {
+    @extend %li-heights;
+  }
+
+  .md-list-item {
+    &.primary-action,
+    &.secondary-action {
+      @extend %li-heights;
     }
   }
 
@@ -83,7 +95,7 @@
   %li-heights {
     height: $md-list-desktop-height;
 
-    &.md-list-avatar {
+    &.avatar-height {
       height: $md-list-desktop-avatar-height;
     }
 

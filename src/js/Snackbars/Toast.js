@@ -24,7 +24,7 @@ export default class Toast extends Component {
       ]),
     }).isRequired,
     dismiss: PropTypes.func.isRequired,
-    multiline: PropTypes.bool.isRequired,
+    multiline: PropTypes.bool,
   };
 
   render() {

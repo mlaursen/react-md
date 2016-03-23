@@ -37,6 +37,8 @@ export default class Tabs extends Component {
     primary: true,
     initialActiveTabIndex: 0,
     style: {},
+    fixedWidth: false,
+    centered: false,
   };
 
   componentDidMount() {

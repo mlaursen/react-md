@@ -191,7 +191,7 @@ body {
 }
 
 .md-icon {
-  color: md-font-icon-size;
+  color: $md-icon-color;
   font-size: $md-font-icon-size;
   transition-duration: $md-transition-time;
   transition-property: color;

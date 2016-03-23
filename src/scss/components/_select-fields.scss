@@ -1,6 +1,10 @@
 .md-select-field-menu {
   max-height: $md-dropdown-max-height;
   overflow-y: auto;
+
+  .md-tile-content {
+    overflow: initial;
+  }
 }
 
 .md-select-field-container {

@@ -19,6 +19,10 @@
       @extend %md-toolbar-fixed-relative;
     }
   }
+
+  .md-icon-btn {
+    color: inherit;
+  }
 }
 
 %md-toolbar-item {

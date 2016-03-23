@@ -156,6 +156,7 @@ export default class ListItem extends Component {
       onClick: this.handleClick,
       className: classnames('md-list-tile', className, {
         'secondary-action': nestedItems && nestedItems.length,
+        'avatar-height': leftAvatar || rightAvatar,
         'two-lines': secondaryText,
         'three-lines': threeLines && secondaryText,
       }),

@@ -17,14 +17,16 @@
     }
   }
 
-  // fix so all font libraries appear inline with each other
   .md-icon {
+    color: inherit;
+    // fix so all font libraries appear inline with each other
     vertical-align: top;
   }
 }
 
 // scss-lint:disable QualifyingElement
 a.md-btn {
+  color: $md-icon-color;
   text-decoration: none;
 }
 
