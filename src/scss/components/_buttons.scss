@@ -45,7 +45,6 @@ a.md-btn {
 
 .md-icon-btn {
   border-radius: 50%;
-  color: inherit;
   font-size: $md-font-icon-size;
   height: $md-icon-btn-size;
   padding: $md-icon-btn-padding;
@@ -54,10 +53,6 @@ a.md-btn {
 
   &[disabled] .md-icon {
     color: $md-disabled-color;
-  }
-
-  .md-icon {
-    font-size: inherit;
   }
 }
 

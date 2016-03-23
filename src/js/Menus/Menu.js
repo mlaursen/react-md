@@ -86,6 +86,20 @@ export default class Menu extends Component {
       ...props,
     } = this.props;
 
+    const items = isOpen && React.Children.map(children, (child, key) => {
+      return React.cloneElement(child, {
+        key: child.key || key,
+        onClick: (e) => {
+          if(child.props.onClick) { child.props.onClick(e); }
+          if(autoclose && typeof close === 'function' && !child.props.nestedItems) {
+            close(e);
+          }
+        },
+        expanderIconChildren,
+        expanderIconClassName,
+      });
+    });
+
     return (
       <CSSTransitionGroup
         ref="container"
@@ -103,24 +117,7 @@ export default class Menu extends Component {
             className={classnames('md-menu', listClassName, `md-transition-${position}`, { below, cascading })}
             style={listStyle}
           >
-            {React.Children.map(children, (child, i) => {
-              const { onClick } = child.props;
-              let handleOnClick = onClick;
-              if(close && autoclose && !child.props.nestedItems) {
-                handleOnClick = (e) => {
-                  if(onClick) { onClick(e); }
-
-                  close(e);
-                };
-              }
-
-              return React.cloneElement(child, {
-                key: child.key || i,
-                onClick: handleOnClick,
-                expanderIconChildren,
-                expanderIconClassName,
-              });
-            })}
+            {items}
           </List>
         }
       </CSSTransitionGroup>

@@ -23,10 +23,6 @@
     &.active .md-icon {
       color: $color;
     }
-
-    &:not(.controls):not([disabled]):hover {
-      background: if($light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
-    }
   }
 
   .md-list-tile-secondary-text {
@@ -40,10 +36,14 @@
     padding-top: $md-list-mobile-top-padding;
   }
 
-  .md-list-tile {
+  .md-menu .md-list {
+    top: -$md-list-mobile-top-padding;
+  }
+
+  .md-list-item {
     height: $md-list-mobile-height;
 
-    &.md-list-avatar {
+    &.avatar-height {
       height: $md-list-mobile-avatar-height;
     }
 
@@ -53,6 +53,11 @@
 
     &.three-lines {
       height: $md-list-mobile-3-line-height;
+
+      .md-tile-secondary-text {
+        // Allows two lines of text
+        height: $md-line-height * $md-list-mobile-secondary-text-font-size * 2;
+      }
     }
   }
 
@@ -71,7 +76,11 @@
     padding-top: $md-list-desktop-top-padding;
   }
 
-  .md-list-tile {
+  .md-menu .md-list {
+    top: -$md-list-desktop-top-padding;
+  }
+
+  %li-heights {
     height: $md-list-desktop-height;
 
     &.md-list-avatar {
@@ -84,6 +93,22 @@
 
     &.three-lines {
       height: $md-list-desktop-3-line-height;
+
+      .md-tile-secondary-text {
+        // Allows two lines of text
+        height: $md-line-height * $md-list-desktop-font-size * 2;
+      }
+    }
+  }
+
+  .md-list-tile {
+    @extend %li-heights;
+  }
+
+  .md-list-item {
+    &.primary-action,
+    &.secondary-action {
+      @extend %li-heights;
     }
   }
 

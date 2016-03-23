@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { IconButton } from '../Buttons';
 import Height from '../Transitions';
 import List from './List';
+import ListItemText from './ListItemText';
 import Ink from '../Inks';
 
 export default class ListItem extends Component {
@@ -13,14 +14,14 @@ export default class ListItem extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: props.initiallyOpen };
+    this.state = { isOpen: props.initiallyOpen, hover: false };
   }
 
   static propTypes = {
     primaryText: PropTypes.node,
     secondaryText: PropTypes.node,
-    secondaryText2: PropTypes.node,
     className: PropTypes.string,
+    containerClassName: PropTypes.string,
     leftIcon: PropTypes.node,
     leftAvatar: PropTypes.node,
     rightIcon: PropTypes.node,
@@ -37,11 +38,8 @@ export default class ListItem extends Component {
     expanderIconChildren: PropTypes.node,
     expanderIconClassName: PropTypes.string,
     onClick: PropTypes.func,
-    primaryAction: PropTypes.func,
-    primaryActionNode: PropTypes.node,
-    secondaryAction: PropTypes.func,
-    secondaryActionNode: PropTypes.node,
     disabled: PropTypes.bool,
+    threeLines: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -51,49 +49,13 @@ export default class ListItem extends Component {
     expandOnClick: true,
   };
 
-  renderText = () => {
-    const {
-      primaryText,
-      secondaryText,
-      secondaryText2,
-      leftIcon,
-      leftAvatar,
-      rightIcon,
-      rightAvatar,
-      nestedItems,
-    } = this.props;
-    if(!primaryText) {
-      return null;
-    }
-
-    const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
-
-    if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) {
-      return tileTitle;
-    }
-
-    const contentClassName = classnames('md-tile-content', {
-      'icon-left': leftIcon,
-      'avatar-left': leftAvatar,
-      'icon-right': rightIcon || (nestedItems && nestedItems.length),
-      'avatar-right': rightAvatar,
-    });
-    return (
-      <div key="tile-content" className={contentClassName}>
-        {tileTitle}
-        {secondaryText && <div className="md-tile-secondary-text">{secondaryText}</div>}
-        {secondaryText2 && <div className="md-tile-secondary-text">{secondaryText2}</div>}
-      </div>
-    );
-  };
-
   renderLeftChildren = () => {
-    const { leftIcon, leftAvatar, primaryActionNode } = this.props;
-    if(!leftIcon && !leftAvatar && !primaryActionNode) {
+    const { leftIcon, leftAvatar } = this.props;
+    if(!leftIcon && !leftAvatar) {
       return null;
     }
 
-    return React.cloneElement(primaryActionNode || leftIcon || leftAvatar, { key: 'left-children' });
+    return React.cloneElement(leftIcon || leftAvatar, { key: 'left-children' });
   };
 
   renderRightChildren = () => {
@@ -103,11 +65,10 @@ export default class ListItem extends Component {
       expanderIconChildren,
       expanderIconClassName,
       nestedItems,
-      secondaryActionNode,
       disabled,
     } = this.props;
 
-    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length) && !secondaryActionNode) { return null; }
+    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) { return null; }
 
     if(nestedItems && nestedItems.length) {
       const className = classnames('md-list-expander', { 'active': this.isOpen() });
@@ -127,7 +88,7 @@ export default class ListItem extends Component {
       return React.cloneElement(rightIcon, { key: 'toggle', className });
     }
 
-    return React.cloneElement(rightIcon || rightAvatar || secondaryActionNode, { key: 'right-children' });
+    return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
   };
 
   isOpen = () => {
@@ -146,23 +107,24 @@ export default class ListItem extends Component {
   };
 
   handleClick = (e) => {
-    const { onClick, nestedItems, expandOnClick, primaryAction, primaryActionNode, disabled } = this.props;
+    const { onClick, nestedItems, expandOnClick, disabled } = this.props;
     if(disabled) { return; }
     onClick && onClick(e);
 
     if(expandOnClick && nestedItems) {
       this.toggleNestedItems(e);
-    } else if(primaryAction && primaryActionNode) {
-      primaryAction(e);
     }
   };
 
   render() {
+    const { hover } = this.state;
     const {
       component,
       className,
+      containerClassName,
+      primaryText,
       secondaryText,
-      secondaryText2,
+      threeLines,
       leftIcon,
       leftAvatar,
       rightIcon,
@@ -170,13 +132,21 @@ export default class ListItem extends Component {
       nestedItems,
       expanderIconClassName,
       expanderIconChildren,
-      primaryAction,
-      primaryActionNode,
-      secondaryAction,
-      secondaryActionNode,
       disabled,
       ...props,
     } = this.props;
+
+    const text = (
+      <ListItemText
+        key="text"
+        primaryText={primaryText}
+        secondaryText={secondaryText}
+        className={classnames({
+          'avatar-offset': !!leftAvatar,
+          'icon-offset': !!leftIcon,
+        })}
+      />
+    );
 
     let content = React.createElement(component, {
       role: 'button',
@@ -185,19 +155,13 @@ export default class ListItem extends Component {
       disabled,
       onClick: this.handleClick,
       className: classnames('md-list-tile', className, {
+        'secondary-action': nestedItems && nestedItems.length,
         'two-lines': secondaryText,
-        'three-lines': !!secondaryText && !!secondaryText2,
-        'md-list-avatar': leftAvatar || rightAvatar,
-        'controls': (primaryAction && primaryActionNode) || (secondaryAction && secondaryActionNode),
-        'controls-left': primaryAction && primaryActionNode,
-        'controls-right': (secondaryAction && secondaryActionNode) || !!nestedItems,
+        'three-lines': threeLines && secondaryText,
       }),
-    }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
+    }, [this.renderLeftChildren(), text, this.renderRightChildren()]);
 
-    // If the list does not have controls
-    if(!primaryAction && !primaryActionNode && !secondaryAction && !secondaryActionNode) {
-      content = <Ink disabled={disabled}>{content}</Ink>;
-    }
+    content = <Ink disabled={disabled}>{content}</Ink>;
 
     let children;
     if(this.isOpen() && nestedItems && nestedItems.length) {
@@ -211,7 +175,12 @@ export default class ListItem extends Component {
     }
 
     return (
-      <TransitionGroup component="li">
+      <TransitionGroup
+        component="li"
+        className={classnames('md-list-item', containerClassName, { hover })}
+        onMouseOver={() => this.setState({ hover: true })}
+        onMouseLeave={() => this.setState({ hover: false })}
+      >
         {content}
         {children}
       </TransitionGroup>
