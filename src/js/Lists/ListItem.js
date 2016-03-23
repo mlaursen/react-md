@@ -22,6 +22,7 @@ export default class ListItem extends Component {
     secondaryText: PropTypes.node,
     secondaryText2: PropTypes.node,
     className: PropTypes.string,
+    containerClassName: PropTypes.string,
     leftIcon: PropTypes.node,
     leftAvatar: PropTypes.node,
     rightIcon: PropTypes.node,
@@ -126,6 +127,7 @@ export default class ListItem extends Component {
     const {
       component,
       className,
+      containerClassName,
       primaryText,
       secondaryText,
       secondaryText2,
@@ -189,7 +191,10 @@ export default class ListItem extends Component {
     }
 
     return (
-      <TransitionGroup component="li">
+      <TransitionGroup
+        component="li"
+        className={classnames('md-list-item', containerClassName, { hover })}
+      >
         {content}
         {children}
       </TransitionGroup>
