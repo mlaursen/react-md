@@ -85,7 +85,9 @@
     color: $md-secondary-text-color;
     font-size: $md-card-title-size-small;
     font-weight: $md-font-regular;
+    height: initial;
     margin: 0;
+    padding: 0;
   }
 }
 
@@ -155,5 +157,9 @@
 
   .md-btn {
     color: $md-white-base;
+  }
+
+  .md-ink {
+    background: rgba($md-white-base, .2);
   }
 }

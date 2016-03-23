@@ -113,9 +113,10 @@
   .md-list-tile {
     display: block;
     height: initial;
-    padding-bottom: 16px;
+    padding-bottom: $md-default-padding;
     padding-left: $md-dialog-padding;
     padding-right: $md-dialog-padding;
+    padding-top: $md-default-padding;
 
     &:first-child {
       margin-top: 0;
