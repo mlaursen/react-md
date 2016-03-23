@@ -13,7 +13,7 @@ $ npn install -S react \
 
 ## Documentation
 
-To view examples and component documentation, please view the [documentation website](http://mlaursen.github.io/react-md)
+To view examples and component documentation, please view the [documentation website](http://mlaursen.github.io/react-md-docs/)
 
 # Getting Started
 
@@ -62,8 +62,6 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 # Known Bugs/Works in Progress/Future Changes
 
 * Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
-* Hopefully update ListItem components to not require Line1 and Line2 crap.
-* The circular progress only does not animate the stroke-width or whatever it is called in IE.
 * Autocomplete
 * Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables.scss) but no components with functionality.
 * Bottom sheets
@@ -72,8 +70,6 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
 * Eventually add a way to use chips in text fields
 * Eventually update for dark themes
-
-> I will probably remove all references to valueLink to simplify some of the components.
 
 
 
