@@ -17,18 +17,17 @@ export default class List extends Component {
     subheader: PropTypes.string,
     primarySubheader: PropTypes.bool,
     children: PropTypes.node,
-    textOnly: PropTypes.bool,
   };
 
   render() {
-    const { className, subheader, children, primarySubheader, textOnly, ordered, ...props } = this.props;
+    const { className, subheader, children, primarySubheader, ordered, ...props } = this.props;
     let allChildren = children;
     if(subheader) {
       allChildren = [<Subheader key="subheader" primary={primarySubheader} primaryText={subheader} />].concat(children);
     }
 
     return React.createElement(ordered ? 'ol' : 'ul', {
-      className: classnames('md-list', className, { 'md-text-list': textOnly }),
+      className: classnames('md-list', className),
       ...props,
     }, React.Children.map(allChildren, (child, i) => {
       if(i + 1 < children.length) {

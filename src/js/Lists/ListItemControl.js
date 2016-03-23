@@ -15,12 +15,16 @@ export default class ListItemControl extends Component {
     className: PropTypes.string,
     primaryText: PropTypes.string.isRequired,
     secondaryText: PropTypes.node,
-    primaryAction: PropTypes.node,
-    secondaryAction: PropTypes.node,
+    primaryAction: PropTypes.element,
+    secondaryAction: PropTypes.element,
     threeLines: PropTypes.bool,
     validation: (props, propName, componentName) => {
       if(!props.primaryAction && !props.secondaryAction) {
         return new Error(`Missing required prop 'primaryAction' or 'secondaryAction' for the component '${componentName}'.`);
+      }
+
+      if(props.primaryAction && props.secondaryAction) {
+        return new Error(`You can not have a 'primaryAction' and a 'secondaryAction' prop for the component '${componentName}'.`);
       }
     },
   };
