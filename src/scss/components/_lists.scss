@@ -103,25 +103,6 @@
   > *:not(.md-tile-content) {
     flex-shrink: 0;
   }
-
-  &.three-lines .md-tile-content {
-
-    + .md-icon {
-      align-self: flex-start;
-      padding-top: $md-default-padding;
-    }
-
-    + .md-icon-btn {
-      align-self: flex-start;
-    }
-  }
-
-  > .md-control-container,
-  > .md-icon-btn {
-    + .md-tile-content {
-      padding-left: $md-list-tile-left-padding - $md-icon-btn-size;
-    }
-  }
 }
 
 .md-tile-content {
@@ -143,13 +124,23 @@
 
 .md-tile-primary-text,
 .md-tile-secondary-text {
+  display: block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.md-tile-primary-text {
+.three-lines .md-tile-secondary-text {
+  // scss-lint:disable PropertySortOrder
+  white-space: normal;
+
+  // fallback for non webkit browsers
   display: block;
+
+  // Magic with webkit-line clamp
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .md-list-expander {

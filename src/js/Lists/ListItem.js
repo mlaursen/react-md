@@ -20,7 +20,6 @@ export default class ListItem extends Component {
   static propTypes = {
     primaryText: PropTypes.node,
     secondaryText: PropTypes.node,
-    secondaryText2: PropTypes.node,
     className: PropTypes.string,
     containerClassName: PropTypes.string,
     leftIcon: PropTypes.node,
@@ -40,6 +39,7 @@ export default class ListItem extends Component {
     expanderIconClassName: PropTypes.string,
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
+    threeLines: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -124,7 +124,7 @@ export default class ListItem extends Component {
       containerClassName,
       primaryText,
       secondaryText,
-      secondaryText2,
+      threeLines,
       leftIcon,
       leftAvatar,
       rightIcon,
@@ -155,9 +155,9 @@ export default class ListItem extends Component {
       disabled,
       onClick: this.handleClick,
       className: classnames('md-list-tile', className, {
+        'secondary-action': nestedItems && nestedItems.length,
         'two-lines': secondaryText,
-        'three-lines': !!secondaryText && !!secondaryText2,
-        'md-list-avatar': leftAvatar || rightAvatar,
+        'three-lines': threeLines && secondaryText,
       }),
     }, [this.renderLeftChildren(), text, this.renderRightChildren()]);
 
