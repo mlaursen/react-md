@@ -14,7 +14,7 @@ export default class ListItem extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: props.initiallyOpen };
+    this.state = { isOpen: props.initiallyOpen, hover: false };
   }
 
   static propTypes = {
@@ -39,10 +39,6 @@ export default class ListItem extends Component {
     expanderIconChildren: PropTypes.node,
     expanderIconClassName: PropTypes.string,
     onClick: PropTypes.func,
-    primaryAction: PropTypes.func,
-    primaryActionNode: PropTypes.node,
-    secondaryAction: PropTypes.func,
-    secondaryActionNode: PropTypes.node,
     disabled: PropTypes.bool,
   };
 
@@ -54,12 +50,12 @@ export default class ListItem extends Component {
   };
 
   renderLeftChildren = () => {
-    const { leftIcon, leftAvatar, primaryActionNode } = this.props;
-    if(!leftIcon && !leftAvatar && !primaryActionNode) {
+    const { leftIcon, leftAvatar } = this.props;
+    if(!leftIcon && !leftAvatar) {
       return null;
     }
 
-    return React.cloneElement(primaryActionNode || leftIcon || leftAvatar, { key: 'left-children' });
+    return React.cloneElement(leftIcon || leftAvatar, { key: 'left-children' });
   };
 
   renderRightChildren = () => {
@@ -69,11 +65,10 @@ export default class ListItem extends Component {
       expanderIconChildren,
       expanderIconClassName,
       nestedItems,
-      secondaryActionNode,
       disabled,
     } = this.props;
 
-    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length) && !secondaryActionNode) { return null; }
+    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) { return null; }
 
     if(nestedItems && nestedItems.length) {
       const className = classnames('md-list-expander', { 'active': this.isOpen() });
@@ -93,7 +88,7 @@ export default class ListItem extends Component {
       return React.cloneElement(rightIcon, { key: 'toggle', className });
     }
 
-    return React.cloneElement(rightIcon || rightAvatar || secondaryActionNode, { key: 'right-children' });
+    return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
   };
 
   isOpen = () => {
@@ -112,18 +107,17 @@ export default class ListItem extends Component {
   };
 
   handleClick = (e) => {
-    const { onClick, nestedItems, expandOnClick, primaryAction, primaryActionNode, disabled } = this.props;
+    const { onClick, nestedItems, expandOnClick, disabled } = this.props;
     if(disabled) { return; }
     onClick && onClick(e);
 
     if(expandOnClick && nestedItems) {
       this.toggleNestedItems(e);
-    } else if(primaryAction && primaryActionNode) {
-      primaryAction(e);
     }
   };
 
   render() {
+    const { hover } = this.state;
     const {
       component,
       className,
@@ -138,10 +132,6 @@ export default class ListItem extends Component {
       nestedItems,
       expanderIconClassName,
       expanderIconChildren,
-      primaryAction,
-      primaryActionNode,
-      secondaryAction,
-      secondaryActionNode,
       disabled,
       ...props,
     } = this.props;
@@ -168,16 +158,10 @@ export default class ListItem extends Component {
         'two-lines': secondaryText,
         'three-lines': !!secondaryText && !!secondaryText2,
         'md-list-avatar': leftAvatar || rightAvatar,
-        'controls': (primaryAction && primaryActionNode) || (secondaryAction && secondaryActionNode),
-        'controls-left': primaryAction && primaryActionNode,
-        'controls-right': (secondaryAction && secondaryActionNode) || !!nestedItems,
       }),
     }, [this.renderLeftChildren(), text, this.renderRightChildren()]);
 
-    // If the list does not have controls
-    if(!primaryAction && !primaryActionNode && !secondaryAction && !secondaryActionNode) {
-      content = <Ink disabled={disabled}>{content}</Ink>;
-    }
+    content = <Ink disabled={disabled}>{content}</Ink>;
 
     let children;
     if(this.isOpen() && nestedItems && nestedItems.length) {
@@ -194,6 +178,8 @@ export default class ListItem extends Component {
       <TransitionGroup
         component="li"
         className={classnames('md-list-item', containerClassName, { hover })}
+        onMouseOver={() => this.setState({ hover: true })}
+        onMouseLeave={() => this.setState({ hover: false })}
       >
         {content}
         {children}

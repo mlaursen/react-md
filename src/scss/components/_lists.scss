@@ -1,7 +1,5 @@
 .md-list {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
+  @extend %list-unstyled;
 
   .md-icon {
     color: $md-icon-color;
@@ -37,40 +35,60 @@
   margin-top: $md-list-tile-extra-margin;
 }
 
-.md-list-item,
-.md-list-tile {
-  padding-left: $md-default-padding;
-  padding-right: $md-default-padding;
-}
+.md-list-item {
+  &:hover {
+    cursor: pointer;
+  }
 
-.no-left-icon-adjust .md-list-tile {
-  padding-left: $md-toolbar-title-keyline;
+  &.primary-action,
+  &.secondary-action {
+    padding-left: $md-default-padding;
+    padding-right: $md-default-padding;
+
+    .md-control-container {
+      height: inherit;
+    }
+
+    .md-switch-container {
+      margin-left: auto;
+    }
+  }
+
+  &.primary-action {
+    padding-left: 0;
+  }
+
+  &.secondary-action {
+    padding-right: 0;
+
+    .md-control-container {
+      margin-left: auto;
+    }
+  }
 }
 
 .md-list-tile {
   align-items: center;
   display: flex;
   overflow: hidden;
+  padding-left: $md-default-padding;
+  padding-right: $md-default-padding;
   position: relative;
   transition: background $md-transition-time;
 
-  &:not([disabled]):hover {
-    cursor: pointer;
-  }
-
-  &[disabled] {
-    color: $md-disabled-color;
+  &:hover {
+    background: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
   }
 
   &:focus {
     outline: none;
   }
 
-  &.controls-left {
-    padding-left: 0;
+  &[disabled] {
+    color: $md-disabled-color;
   }
 
-  &.controls-right {
+  &.secondary-action {
     padding-right: 0;
   }
 
