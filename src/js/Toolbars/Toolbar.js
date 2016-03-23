@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled, mergeClassNames } from '../utils';
-
 export default class Toolbar extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +14,15 @@ export default class Toolbar extends Component {
   static propTypes = {
     className: PropTypes.string,
     primary: PropTypes.bool,
-    secondary: PropTypes.bool,
     actionLeft: PropTypes.node,
     title: PropTypes.string,
     children: PropTypes.node,
     actionsRight: PropTypes.node,
     fixed: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    primary: true,
   };
 
   componentDidMount() {
@@ -42,7 +43,7 @@ export default class Toolbar extends Component {
   }
 
   render() {
-    const { actionLeft, title, actionsRight, children, ...props } = this.props;
+    const { actionLeft, title, actionsRight, children, fixed, primary, ...props } = this.props;
     const { tabsOffset } = this.state;
     const childrenAsHeader = !!children && !actionLeft && !title && !actionsRight;
 
@@ -65,8 +66,11 @@ export default class Toolbar extends Component {
       });
     }
     return (
-      <div className={classnames('md-toolbar-container', { fixed: isPropEnabled(props, 'fixed') })}>
-        <header {...props} className={mergeClassNames(props, 'md-toolbar')}>
+      <div className={classnames('md-toolbar-container', { fixed })}>
+        <header
+          {...props}
+          className={classnames('md-toolbar', { 'md-primary': primary })}
+        >
           {header}
         </header>
         {content}

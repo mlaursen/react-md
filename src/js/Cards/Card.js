@@ -3,7 +3,6 @@ import TransitionGroup from 'react-addons-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isPropEnabled } from '../utils';
 import Height from '../Transitions';
 
 export default class Card extends Component {
@@ -73,7 +72,7 @@ export default class Card extends Component {
         >
         {React.Children.map(children, (child, i) => {
           if(!child) { return child; }
-          if(expanderIndex < 0 && isPropEnabled(child.props, 'isExpander')) {
+          if(expanderIndex < 0 && child.props.isExpander) {
             expanderIndex = i;
           }
 

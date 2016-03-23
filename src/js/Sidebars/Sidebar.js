@@ -6,7 +6,6 @@ import classnames from 'classnames';
 import Divider from '..//Dividers';
 import { List, ListItem } from '../Lists';
 import Subheader from '../Subheaders';
-import { isPropEnabled } from '../utils';
 
 export default class Sidebar extends Component {
   constructor(props) {
@@ -55,7 +54,7 @@ export default class Sidebar extends Component {
   };
 
   render() {
-    const { isOpen, header, overlay, responsive, className, children, onOverlayClick, align, items, ...props } = this.props;
+    const { isOpen, header, overlay, responsive, className, children, onOverlayClick, align, items, fixed, ...props } = this.props;
     const isOverlayVisible = isOpen && (responsive || overlay);
 
     let listItems;
@@ -69,7 +68,7 @@ export default class Sidebar extends Component {
     return (
       <CSSTransitionGroup
         component="div"
-        className={classnames('md-sidebar-container', `md-sidebar-${align}`, className, { 'fixed': isPropEnabled(props, 'fixed'), responsive })}
+        className={classnames('md-sidebar-container', `md-sidebar-${align}`, className, { fixed, responsive })}
         {...props}
         >
         <nav className={classnames('md-sidebar', { 'active': isOpen })}>

@@ -15,7 +15,6 @@
   @include md-theme-lists($primary);
   @include md-theme-sliders($primary);
   @include md-theme-subheaders($primary);
-
   @include md-theme-selection-controls($secondary);
 
   .md-primary {
@@ -26,7 +25,5 @@
 
   .md-secondary {
     @include md-theme-buttons($secondary);
-    @include md-theme-toolbars($secondary-base, $md-white-base);
-    @include md-theme-tabs($secondary-base, $primary-hue-1);
   }
 }

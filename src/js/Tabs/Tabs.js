@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { mergeClassNames, isPropEnabled } from '../utils';
 import TabHeader from './TabHeader';
 import SwipeableView from '../SwipeableViews';
 
@@ -29,9 +28,13 @@ export default class Tabs extends Component {
     containerStyle: PropTypes.object,
     style: PropTypes.object,
     onChange: PropTypes.func,
+    primary: PropTypes.bool,
+    fixedWidth: PropTypes.bool,
+    centered: PropTypes.bool,
   };
 
   static defaultProps = {
+    primary: true,
     initialActiveTabIndex: 0,
     style: {},
   };
@@ -154,11 +157,9 @@ export default class Tabs extends Component {
   };
 
   render() {
-    const { className, children, style, ...remainingProps } = this.props;
+    const { className, children, style, fixedWidth, centered, primary, ...remainingProps } = this.props;
     const { headerStyle, indicatorStyle, tabScrolling } = this.state;
     const activeTabIndex = this.getActiveTabIndex(remainingProps, this.state);
-    const fixedWidth = isPropEnabled(remainingProps, 'fixedWidth');
-    const centered = isPropEnabled(remainingProps, 'centered');
 
     let tabsContent = [];
     const tabs = React.Children.map(children, (tab, i) => {
@@ -181,7 +182,7 @@ export default class Tabs extends Component {
         {...remainingProps}
       >
         <TabHeader
-          className={mergeClassNames(remainingProps, 'md-tabs-scroll-container')}
+          className={classnames('md-tabs-scroll-container', { 'md-primary': primary })}
           fixedWidth={fixedWidth}
           centered={centered}
           scrolling={tabScrolling}
