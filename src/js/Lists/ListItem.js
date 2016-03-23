@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { IconButton } from '../Buttons';
 import Height from '../Transitions';
 import List from './List';
+import ListItemText from './ListItemText';
 import Ink from '../Inks';
 
 export default class ListItem extends Component {
@@ -49,42 +50,6 @@ export default class ListItem extends Component {
     initiallyOpen: false,
     expanderIconChildren: 'keyboard_arrow_down',
     expandOnClick: true,
-  };
-
-  renderText = () => {
-    const {
-      primaryText,
-      secondaryText,
-      secondaryText2,
-      leftIcon,
-      leftAvatar,
-      rightIcon,
-      rightAvatar,
-      nestedItems,
-    } = this.props;
-    if(!primaryText) {
-      return null;
-    }
-
-    const tileTitle = <div key="tile-title" className="md-tile-primary-text">{primaryText}</div>;
-
-    if(!leftIcon && !leftAvatar && !rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) {
-      return tileTitle;
-    }
-
-    const contentClassName = classnames('md-tile-content', {
-      'icon-left': leftIcon,
-      'avatar-left': leftAvatar,
-      'icon-right': rightIcon || (nestedItems && nestedItems.length),
-      'avatar-right': rightAvatar,
-    });
-    return (
-      <div key="tile-content" className={contentClassName}>
-        {tileTitle}
-        {secondaryText && <div className="md-tile-secondary-text">{secondaryText}</div>}
-        {secondaryText2 && <div className="md-tile-secondary-text">{secondaryText2}</div>}
-      </div>
-    );
   };
 
   renderLeftChildren = () => {
@@ -161,6 +126,7 @@ export default class ListItem extends Component {
     const {
       component,
       className,
+      primaryText,
       secondaryText,
       secondaryText2,
       leftIcon,
@@ -178,6 +144,18 @@ export default class ListItem extends Component {
       ...props,
     } = this.props;
 
+    const text = (
+      <ListItemText
+        key="text"
+        primaryText={primaryText}
+        secondaryText={secondaryText}
+        className={classnames({
+          'avatar-offset': !!leftAvatar,
+          'icon-offset': !!leftIcon,
+        })}
+      />
+    );
+
     let content = React.createElement(component, {
       role: 'button',
       tabIndex: component === 'div' && !nestedItems ? 0 : null,
@@ -192,7 +170,7 @@ export default class ListItem extends Component {
         'controls-left': primaryAction && primaryActionNode,
         'controls-right': (secondaryAction && secondaryActionNode) || !!nestedItems,
       }),
-    }, [this.renderLeftChildren(), this.renderText(), this.renderRightChildren()]);
+    }, [this.renderLeftChildren(), text, this.renderRightChildren()]);
 
     // If the list does not have controls
     if(!primaryAction && !primaryActionNode && !secondaryAction && !secondaryActionNode) {
