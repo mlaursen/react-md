@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
-import { isPropEnabled, mergeClassNames } from '../utils';
 import FontIcon from '../FontIcons';
 import Ink from '../Inks';
 import Tooltip from '..//Tooltips';
@@ -23,6 +23,7 @@ export default class IconButton extends Component {
     tooltipPosition: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -30,10 +31,23 @@ export default class IconButton extends Component {
   };
 
   render() {
-    const { iconClassName, children, className, href, type, tooltip, tooltipClassName, tooltipPosition, ...props } = this.props;
-    let btnProps = {
+    const {
+      iconClassName,
+      children,
+      className,
+      href,
+      type,
+      tooltip,
+      tooltipClassName,
+      tooltipPosition,
+      disabled,
       ...props,
-      className: mergeClassNames(props, 'md-btn', 'md-icon-btn', className),
+    } = this.props;
+
+    const btnProps = {
+      ...props,
+      disabled,
+      className: classnames('md-btn md-icon-btn', className),
     };
 
     if(href) {
@@ -47,7 +61,6 @@ export default class IconButton extends Component {
       displayedChildren = <FontIcon iconClassName={iconClassName}>{children}</FontIcon>;
     }
 
-    const disabled = isPropEnabled(props, 'disabled');
     const wrappedButton = (
       <Ink disabled={disabled}>
         {React.createElement(href ? 'a' : 'button', btnProps, displayedChildren)}
