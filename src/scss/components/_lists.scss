@@ -1,29 +1,19 @@
 .md-list {
   @extend %list-unstyled;
 
-  .md-icon {
-    color: $md-icon-color;
-    transition: color $md-transition-time;
-  }
-
-  &.md-text-list {
-    .md-divider.inset {
-      margin-left: $md-default-padding;
-    }
-  }
+  user-select: none;
 
   .md-divider.inset {
     margin-left: $md-list-tile-left-padding;
+    width: calc(100% - #{$md-list-tile-left-padding});
   }
 
   a {
     text-decoration: none;
   }
 
-  &.avatar-icon-mix .md-avatar {
-    height: $md-font-icon-size;
-    margin-right: $md-avatar-size - $md-font-icon-size;
-    width: $md-font-icon-size;
+  .md-icon {
+    color: $md-icon-color;
   }
 
   .extra-mb {
@@ -92,10 +82,6 @@
     padding-right: 0;
   }
 
-  &.md-list-avatar ~ .md-divider.inset {
-    margin-left: $md-toolbar-title-keyline;
-  }
-
   .md-ink {
     background: rgba($md-black-base, .15);
   }
@@ -109,16 +95,12 @@
   flex-grow: 1;
   overflow: hidden;
 
-  &.icon-left {
-    padding-left: $md-list-tile-left-padding - $md-default-padding - $md-font-icon-size;
+  &.icon-offset {
+    margin-left: $md-toolbar-title-keyline - $md-default-padding - $md-font-icon-size;
   }
 
-  &.icon-right {
-    padding-right: $md-default-padding;
-  }
-
-  &.avatar-left {
-    padding-left: $md-list-tile-left-padding - $md-default-padding - $md-avatar-size;
+  &.avatar-offset {
+    margin-left: $md-toolbar-title-keyline - $md-default-padding - $md-avatar-size;
   }
 }
 

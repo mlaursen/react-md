@@ -12,9 +12,6 @@
 
   .label {
     cursor: inherit;
-    height: $md-height;
-    line-height: 20 / $md-font-size-base;
-    padding: ($md-height - 20px) / 2 0;
   }
 
   &.disabled {
