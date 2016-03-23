@@ -27,7 +27,7 @@
       padding-right: 24px;
 
       // scss-lint:disable NestingDepth
-      &.controls-right {
+      &.secondary-action {
         padding-right: 24 - $md-default-padding;
       }
     }
@@ -39,6 +39,19 @@
 
   .md-menu-container {
     position: absolute;
+  }
+
+  .md-list-item {
+    position: relative;
+
+    .md-list {
+      @include md-box-shadow(3);
+
+      background: if($md-light-theme, $md-white-base, $md-dark-theme-background-color);
+      left: 100%;
+      position: absolute;
+      z-index: 3;
+    }
   }
 }
 

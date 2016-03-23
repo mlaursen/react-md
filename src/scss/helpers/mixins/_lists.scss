@@ -36,10 +36,14 @@
     padding-top: $md-list-mobile-top-padding;
   }
 
-  .md-list-tile {
+  .md-menu .md-list {
+    top: -$md-list-mobile-top-padding;
+  }
+
+  .md-list-item {
     height: $md-list-mobile-height;
 
-    &.md-list-avatar {
+    &.avatar-height {
       height: $md-list-mobile-avatar-height;
     }
 
@@ -70,6 +74,10 @@
   .md-list {
     padding-bottom: $md-list-desktop-top-padding;
     padding-top: $md-list-desktop-top-padding;
+  }
+
+  .md-menu .md-list {
+    top: -$md-list-desktop-top-padding;
   }
 
   %li-heights {
