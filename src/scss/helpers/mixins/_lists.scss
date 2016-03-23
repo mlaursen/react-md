@@ -41,7 +41,9 @@
   }
 
 
-  %li-heights {
+  .md-list-tile,
+  .md-list-item.primary-action,
+  .md-list-item.secondary-action {
     height: $md-list-mobile-height;
 
     &.avatar-height {
@@ -59,17 +61,6 @@
         // Allows two lines of text
         height: $md-line-height * $md-list-mobile-font-size * 2;
       }
-    }
-  }
-
-  .md-list-tile {
-    @extend %li-heights;
-  }
-
-  .md-list-item {
-    &.primary-action,
-    &.secondary-action {
-      @extend %li-heights;
     }
   }
 
@@ -92,7 +83,9 @@
     top: -$md-list-desktop-top-padding;
   }
 
-  %li-heights {
+  .md-list-tile,
+  .md-list-item.primary-action,
+  .md-list-item.secondary-action {
     height: $md-list-desktop-height;
 
     &.avatar-height {
@@ -110,17 +103,6 @@
         // Allows two lines of text
         height: $md-line-height * $md-list-desktop-font-size * 2;
       }
-    }
-  }
-
-  .md-list-tile {
-    @extend %li-heights;
-  }
-
-  .md-list-item {
-    &.primary-action,
-    &.secondary-action {
-      @extend %li-heights;
     }
   }
 
