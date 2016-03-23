@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import classnames from 'classnames';
 
-import { isPropEnabled, mergeClassNames } from '../utils';
 import Ink from '../Inks';
 
 export default class Button extends Component {
@@ -16,9 +16,6 @@ export default class Button extends Component {
     onClick: PropTypes.func,
     label: PropTypes.string,
     children: PropTypes.node,
-    flat: PropTypes.bool,
-    raised: PropTypes.bool,
-    floating: PropTypes.bool,
     type: PropTypes.string,
     primary: PropTypes.bool,
     secondary: PropTypes.bool,
@@ -34,9 +31,7 @@ export default class Button extends Component {
 
   renderChildren = () => {
     const { children, iconBefore, label } = this.props;
-    if(isPropEnabled(this.props, 'floating')) {
-      return children;
-    } else if(!children) {
+    if(!children) {
       return label;
     } else if(children) {
       return (
@@ -51,16 +46,27 @@ export default class Button extends Component {
   };
 
   render() {
-    const { className, iconBefore, label, children, href, ...props } = this.props;
-    const disabled = isPropEnabled(props, 'disabled');
+    const {
+      className,
+      iconBefore,
+      label,
+      children,
+      href,
+      primary,
+      secondary,
+      ...props,
+    } = this.props;
 
     const button = React.createElement(href ? 'a' : 'button', {
       ...props,
       href: href,
-      className: mergeClassNames(props, 'md-btn', className),
+      className: classnames('md-btn', className, {
+        'md-primary': primary,
+        'md-secondary': secondary,
+      }),
     }, this.renderChildren());
     return (
-      <Ink disabled={disabled}>
+      <Ink disabled={props.disabled}>
         {button}
       </Ink>
     );
