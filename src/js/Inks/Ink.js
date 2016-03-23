@@ -20,10 +20,8 @@ export default class Ink extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.element,
     disabled: PropTypes.bool,
-    onMouseUp: PropTypes.func,
-    onMouseDown: PropTypes.func,
   };
 
   componentDidMount() {
