@@ -28,10 +28,15 @@
 }
 
 @mixin md-navigation-drawer-mobile() {
+  .md-navigation-drawer {
+    left: $md-navigation-drawer-mobile-left;
+    width: $md-navigation-drawer-mobile-width;
 
-  .md-navigation-drawer.active {
-    @include md-box-shadow(3);
-    z-index: $md-navigation-drawer-temporary-z-index;
+    &.active {
+      @include md-box-shadow(3);
+
+      z-index: $md-navigation-drawer-temporary-z-index;
+    }
   }
 
   .md-navigation-drawer-content .md-navigation-drawer-overlay {
@@ -41,8 +46,14 @@
 
 @mixin md-navigation-drawer-desktop() {
   @include md-navigation-drawer-media($md-toolbar-desktop-height);
-  .md-navigation-drawer.floating {
-    box-shadow: none;
+
+  .md-navigation-drawer {
+    left: -$md-navigation-drawer-desktop-width;
+    width: $md-navigation-drawer-desktop-width;
+
+    &.floating {
+      box-shadow: none;
+    }
   }
 
   .md-navigation-drawer-toolbar {
@@ -58,14 +69,14 @@
     &.full-height,
     &.mini.active,
     &.persistent.active {
-      left: $md-navigation-drawer-width;
+      left: $md-navigation-drawer-desktop-width;
     }
   }
 
   .md-navigation-drawer-content {
     &:not(.temporary) {
       &.active {
-        padding-left: $md-navigation-drawer-width;
+        padding-left: $md-navigation-drawer-desktop-width;
         width: 100%;
       }
 

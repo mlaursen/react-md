@@ -5,23 +5,20 @@
   overflow-y: auto;
   position: fixed;
   transition-duration: $md-transition-time;
-  transition-property: width, box-shadow;
-  visibility: hidden;
-  width: 0;
+  transition-property: box-shadow, left, width;
   z-index: $md-navigation-drawer-z-index;
 
+  &.active,
+  &.mini {
+    left: 0;
+  }
+
   &.mini:not(.active) {
-    visibility: visible;
     width: $md-navigation-drawer-mini-width;
 
     .md-list-tile {
       justify-content: center;
     }
-  }
-
-  &.active {
-    visibility: visible;
-    width: $md-navigation-drawer-width;
   }
 
   &.temporary.active {
@@ -60,6 +57,8 @@
 }
 
 .md-navigation-drawer-toolbar {
+  @include md-box-shadow(1);
+
   color: $md-white-base;
   left: 0;
   position: fixed;
@@ -72,11 +71,6 @@
   .md-title {
     color: inherit;
     padding-left: $md-default-padding;
-  }
-
-  &.active,
-  &.mini {
-    @include md-box-shadow(1);
   }
 }
 

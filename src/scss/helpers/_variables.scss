@@ -1480,11 +1480,23 @@ $md-tooltip-desktop-height: 22px;
 // Navigation Drawers
 // ===================================================================================
 
-///
+/// The width for the navigation drawer on mobile devices.
 ///
 /// @type String
 /// @group navigation-drawers
-$md-navigation-drawer-width: 256px !default;
+$md-navigation-drawer-mobile-left: calc(-100% - 48px) !default;
+
+/// The width for the navigation drawer on mobile devices.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mobile-width: calc(100% - 48px) !default;
+
+/// The width for the navigation drawer on desktops.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-desktop-width: 256px !default;
 
 ///
 ///
