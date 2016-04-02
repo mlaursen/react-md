@@ -3,7 +3,7 @@
 React material design - React components built with sass
 
 ```bash
-$ npn install -S react \
+$ npm install -S react \
                  react-dom \
                  react-addons-transition-group \
                  react-addons-css-transition-group \
@@ -13,7 +13,7 @@ $ npn install -S react \
 
 ## Documentation
 
-To view examples and component documentation, please view the [documentation website](http://mlaursen.github.io/react-md-docs/)
+To view examples and component documentation, please view the [documentation website](http://mlaursen.com/react-md/)
 
 # Getting Started
 
@@ -34,7 +34,7 @@ There are some mixins for helping pull these font libraries in from a cdn or loc
 
 ## Customizing the theme
 
-Hopefully the [generated sassdoc](https://mlaursen.github.io/react-md/sassdoc) will help with
+Hopefully the [generated sassdoc](https://mlaursen.com/react-md/sassdoc) will help with
 mixin usage and sass documentation.
 
 There is a sass function called `get-md-color($color, $hue, $secondary)` that can be used to set the primary and secondary colors for your application. It is based off of
