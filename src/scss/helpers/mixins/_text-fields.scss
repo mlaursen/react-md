@@ -10,7 +10,7 @@
 /// @group text-fields
 @mixin make-text-field-with-font-size($name, $font-size, $media-font-size, $fl-height, $sl-height) {
   .#{$name} {
-    .md-floating-label,
+    .md-floating-label:not(.active),
     .md-text-field {
       font-size: $font-size;
     }
