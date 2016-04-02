@@ -29,7 +29,7 @@ export default class SwipeableView extends Component {
 
   static defaultProps = {
     initialIndex: 0,
-    threshold: .4,
+    threshold: .15,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -79,7 +79,7 @@ export default class SwipeableView extends Component {
     let distance = this.calcSwipeDistance(x, 0);
     if(swipeDistance > deltaX && activeIndex + 1 < this.props.children.length) {
       activeIndex++;
-    } else if(swipeDistance < deltaX && activeIndex - 1 >= 0) {
+    } else if(swipeDistance < -deltaX && activeIndex - 1 >= 0) {
       activeIndex--;
     }
 

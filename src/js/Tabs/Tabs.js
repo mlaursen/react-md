@@ -91,7 +91,7 @@ export default class Tabs extends Component {
     const tabContainer = node.querySelector('.md-tabs-scroll-container');
     const tabs = Array.prototype.slice.call(node.querySelectorAll('.md-tab'));
     let maxWidth = tabs.reduce((prev, curr) => prev + curr.offsetWidth, 0) + threshold;
-    maxWidth -= (tabContainer.offsetWidth - parseInt(this.props.style.marginLeft));
+    maxWidth -= (tabContainer.offsetWidth - parseInt(this.props.style.marginLeft || 0));
 
     if(distance > 0) { // moving content left
       distance = Math.min(distance, threshold);
