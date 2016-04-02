@@ -7,7 +7,7 @@ import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
-import { addDate, subtractDate, DateTimeFormat } from '../utils';
+import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions';
@@ -33,6 +33,7 @@ export default class DatePickerContainer extends Component {
       calendarDate: date,
       calendarTempDate: date,
       calendarMode: props.initialCalendarMode,
+      transitionName: 'md-swipe-left',
     };
   }
 
@@ -101,6 +102,11 @@ export default class DatePickerContainer extends Component {
 
       window.addEventListener('keydown', this.closeOnEsc);
     }
+
+    const { calendarDate } = this.state;
+    if(calendarDate === nextState.calendarDate) { return; }
+
+    this.setState({ transitionName: `md-swipe-${calendarDate < nextState.calendarDate ? 'left' : 'right'}` });
   }
 
   componentWillUnmount() {
@@ -214,6 +220,20 @@ export default class DatePickerContainer extends Component {
     });
   };
 
+  handleSwipeChange = (index, distance) => {
+    const { minDate, maxDate } = this.props;
+    const { calendarDate } = this.state;
+    const isPreviousDisabled = isMonthBefore(minDate, calendarDate);
+    const isNextDisabled = isMonthBefore(calendarDate, maxDate);
+
+    if(distance === 0) {
+      return;
+    } else if(!isPreviousDisabled && distance < 0) {
+      this.previousMonth();
+    } else if(!isNextDisabled && distance > 0) {
+      this.nextMonth();
+    }
+  };
 
   render() {
     const { label, floatingLabel, value, onChange, icon, inline, displayMode, ...props } = this.props;
@@ -229,6 +249,7 @@ export default class DatePickerContainer extends Component {
       onNextClick: this.nextMonth,
       onCalendarDateClick: this.setCalendarTempDate,
       onCalendarYearClick: this.setCalendarTempYear,
+      onSwipeChange: this.handleSwipeChange,
     };
 
     let textFieldValue = typeof value === 'undefined' ? state.value : value;

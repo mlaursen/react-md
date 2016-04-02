@@ -30,3 +30,25 @@
     transition: opacity $md-transition-time;
   }
 }
+
+.md-swipe-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+
+  &.md-swipe-left-enter-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: transform $md-transition-time, opacity $md-transition-time;
+  }
+}
+
+.md-swipe-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+
+  &.md-swipe-right-enter-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: transform $md-transition-time, opacity $md-transition-time;
+  }
+}
