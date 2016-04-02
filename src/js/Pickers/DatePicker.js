@@ -30,6 +30,7 @@ export default class DatePicker extends Component {
     calendarTempDate: PropTypes.instanceOf(Date).isRequired,
     calendarMode: PropTypes.oneOf(['calendar', 'year']).isRequired,
     changeCalendarMode: PropTypes.func.isRequired,
+    onSwipeChange: PropTypes.func.isRequired,
   };
 
   render() {

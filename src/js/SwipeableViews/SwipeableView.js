@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 export default class SwipeableView extends Component {
@@ -25,16 +27,17 @@ export default class SwipeableView extends Component {
     threshold: PropTypes.number.isRequired,
     initialIndex: PropTypes.number.isRequired,
     activeIndex: PropTypes.number,
+    transitionName: PropTypes.string,
   };
 
   static defaultProps = {
     initialIndex: 0,
-    threshold: .4,
+    threshold: .15,
   };
 
   componentWillReceiveProps(nextProps) {
     if(this.props.activeIndex !== nextProps.activeIndex) {
-      const distance = -this.refs.container.offsetWidth * nextProps.activeIndex;
+      const distance = -ReactDOM.findDOMNode(this.refs.container).offsetWidth * nextProps.activeIndex;
       this.setState({
         swipeItemStyle: this.getSwipeItemStyle(distance),
         swipeDistance: distance,
@@ -72,25 +75,25 @@ export default class SwipeableView extends Component {
   handleSwipeEnd = (e) => {
     const x = e.changedTouches[0].pageX;
     let activeIndex = this.getActiveIndex();
-    const { offsetWidth } = this.refs.container;
+    const { offsetWidth } = ReactDOM.findDOMNode(this.refs.container);
     const deltaX = offsetWidth * this.props.threshold;
     const swipeDistance = this.state.swipeStart - x;
 
     let distance = this.calcSwipeDistance(x, 0);
     if(swipeDistance > deltaX && activeIndex + 1 < this.props.children.length) {
       activeIndex++;
-    } else if(swipeDistance < deltaX && activeIndex - 1 >= 0) {
+    } else if(swipeDistance < -deltaX && activeIndex - 1 >= 0) {
       activeIndex--;
     }
 
     distance = -offsetWidth * activeIndex;
 
     if(this.props.onChange) {
-      this.props.onChange(activeIndex, distance, e);
+      this.props.onChange(activeIndex, swipeDistance, e);
     }
 
     this.setState({
-      swipeItemStyle: this.getSwipeItemStyle(distance),
+      swipeItemStyle: this.props.transitionName ? {} : this.getSwipeItemStyle(distance),
       swiping: false,
       swipeDistance: distance,
       activeIndex,
@@ -98,18 +101,18 @@ export default class SwipeableView extends Component {
   };
 
   setInitialSwipeDistance = () => {
-    const { offsetWidth } = this.refs.container;
+    const { offsetWidth } = ReactDOM.findDOMNode(this.refs.container);
     const index = this.getActiveIndex();
-    const distance = this.calcSwipeDistance(offsetWidth * index, 0);
+    const distance = -offsetWidth * index;
 
     this.setState({
-      swipeItemStyle: this.getSwipeItemStyle(distance),
+      swipeItemStyle: this.props.transitionName ? {} : this.getSwipeItemStyle(distance),
       swipeDistance: distance,
     });
   };
 
   calcSwipeDistance = (x, threshold) => {
-    const { scrollWidth, offsetWidth } = this.refs.container;
+    const { scrollWidth, offsetWidth } = ReactDOM.findDOMNode(this.refs.container);
     const distance = this.state.swipeDistance + (x - this.state.swipeStart);
     return Math.max(Math.min(distance, threshold), -scrollWidth - threshold + offsetWidth);
   };
@@ -128,7 +131,7 @@ export default class SwipeableView extends Component {
   };
 
   render() {
-    const { className, children } = this.props;
+    const { className, children, ...props } = this.props;
     const { swipeItemStyle, swiping } = this.state;
 
     const content = React.Children.map(children, (child, i) => {
@@ -139,16 +142,15 @@ export default class SwipeableView extends Component {
       });
     });
 
-    return (
-      <section
-        ref="container"
-        className={classnames('md-swipeable-view', className, { swiping })}
-        onTouchStart={this.handleSwipeStart}
-        onTouchMove={this.handleSwipeMove}
-        onTouchEnd={this.handleSwipeEnd}
-      >
-        {content}
-      </section>
-    );
+    return React.createElement(props.transitionName ? CSSTransitionGroup : 'section', {
+      ...props,
+      ref: 'container',
+      component: 'section',
+      className: classnames('md-swipeable-view', className, { swiping }),
+      onTouchStart: this.handleSwipeStart,
+      onTouchMove: this.handleSwipeMove,
+      onTouchEnd: this.handleSwipeEnd,
+      children: content,
+    });
   }
 }

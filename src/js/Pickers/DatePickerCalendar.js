@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import { IconButton } from '../Buttons';
 import { isMonthBefore } from '../utils';
 import CalendarMonth from './CalendarMonth';
+import SwipeableView from '../SwipeableViews';
 
 const DatePickerCalendar = (props) => {
   const {
@@ -17,6 +18,8 @@ const DatePickerCalendar = (props) => {
     locales,
     minDate,
     maxDate,
+    onSwipeChange,
+    transitionName,
   } = props;
 
   const dows = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((dow, i) => (
@@ -39,16 +42,23 @@ const DatePickerCalendar = (props) => {
           {dows}
         </div>
       </header>
-      <CalendarMonth
-        key={DateTimeFormat(locales).format(calendarDate)}
-        calendarDate={calendarDate}
-        calendarTempDate={calendarTempDate}
-        onCalendarDateClick={onCalendarDateClick}
-        minDate={minDate}
-        maxDate={maxDate}
-        DateTimeFormat={DateTimeFormat}
-        locales={locales}
-      />
+      <SwipeableView
+        onChange={onSwipeChange}
+        transitionName={transitionName}
+        transitionEnterTimeout={150}
+        transitionLeave={false}
+      >
+        <CalendarMonth
+          key={DateTimeFormat(locales).format(calendarDate)}
+          calendarDate={calendarDate}
+          calendarTempDate={calendarTempDate}
+          onCalendarDateClick={onCalendarDateClick}
+          minDate={minDate}
+          maxDate={maxDate}
+          DateTimeFormat={DateTimeFormat}
+          locales={locales}
+        />
+      </SwipeableView>
     </section>
   );
 };
@@ -68,6 +78,8 @@ DatePickerCalendar.propTypes = {
   ]).isRequired,
   minDate: PropTypes.instanceOf(Date),
   maxDate: PropTypes.instanceOf(Date),
+  onSwipeChange: PropTypes.func.isRequired,
+  transitionName: PropTypes.string.isRequired,
 };
 
 export default DatePickerCalendar;
