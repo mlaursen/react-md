@@ -33,7 +33,7 @@
 @mixin aspect-ratio($target: img, $width: 16, $height: 9) {
   position: relative;
 
-  &:before {
+  &::before {
     content: '';
     display: block;
     padding-top: ($height / $width) * 100%;
