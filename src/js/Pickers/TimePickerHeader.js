@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import PickerControl from './PickerControl';
-import { addHours, subtractHours } from '../utils';
+import { addHours, subtractHours } from '../utils/dates';
 
 const TimePickerHeader = ({ setTimeMode, setTempTime, timeMode, tempTime, hours, minutes, timePeriod }) => {
   return (

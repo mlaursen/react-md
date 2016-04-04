@@ -94,5 +94,3 @@ export function animate(el, increment, elapsedTime, transitionTime, styleName, s
     next(elapsedTime);
   }
 }
-
-export * from './dates';

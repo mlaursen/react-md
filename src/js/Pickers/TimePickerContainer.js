@@ -4,7 +4,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import classnames from 'classnames';
 
 import { ESC } from '../constants/keyCodes';
-import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils';
+import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils/dates';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
 import Height from '../Transitions';

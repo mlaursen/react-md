@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import { IconButton } from '../Buttons';
-import { isMonthBefore } from '../utils';
+import { isMonthBefore } from '../utils/dates';
 import CalendarMonth from './CalendarMonth';
 import SwipeableView from '../SwipeableViews';
 

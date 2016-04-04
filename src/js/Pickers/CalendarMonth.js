@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils';
+import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils/dates';
 
 export default class CalendarMonth extends Component {
   constructor(props) {

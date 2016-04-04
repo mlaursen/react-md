@@ -7,7 +7,7 @@ import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
-import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils';
+import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions';
