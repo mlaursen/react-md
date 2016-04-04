@@ -4,7 +4,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import classnames from 'classnames';
 
 import { ESC } from '../constants/keyCodes';
-import { DateTimeFormat, getTimeString } from '../utils';
+import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
 import Height from '../Transitions';
@@ -107,20 +107,7 @@ export default class TimePickerContainer extends Component {
     return typeof props.value === 'undefined' ? state.value : props.value;
   };
 
-  getTimeParts = (date, props = this.props) => {
-    const time = getTimeString(props.DateTimeFormat, props.locales, date);
-    let [hour, minute, ...others] = time.split(/(?=[^0-9])/);
-    let timePeriod;
-    if(others.length) {
-      timePeriod = others.join('').trim();
-    }
-
-    return {
-      hour,
-      minute,
-      timePeriod,
-    };
-  };
+  getTimeParts = (date, props = this.props) => extractTimeParts(props.DateTimeFormat, props.locales, date);
 
   toggleOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
