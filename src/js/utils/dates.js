@@ -1,16 +1,17 @@
 /**
  * Removes all time from a date. Only keeps year, month, and date.
- * @param {date} date the date to strip
+ * @param {Date} date the date to strip
  * @return a new Date with the time stripped.
  */
 export function stripTime(date) {
+  if(!date || !(date instanceof Date)) { return null; }
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 /**
  * Gets the last day in a month
  *
- * @param {date} sourceDate the date to get the last day from.
+ * @param {Date} sourceDate the date to get the last day from.
  * @return a new Date as the last day of the month.
  */
 export function getLastDay(sourceDate) {
@@ -21,7 +22,7 @@ export function getLastDay(sourceDate) {
 /**
  * Gets a day in the week. 0 = Sunday 6 = Saturday
  *
- * @param {date} sourceDate the date to find a relative day of wek from
+ * @param {date} sourceDate the date to find a relative day of week from
  * @param {number} dow the day of the week to find
  * @return a new Date as the given day of week
  */
@@ -80,8 +81,8 @@ export const DateTimeFormat = (() => {
 /**
  * Checks if a date is the month before another date without time
  *
- * @param {date} date the date to check if it is before the other
- * @param {date} toCompare the date to compare to
+ * @param {Date} date the date to check if it is before the other
+ * @param {Date} toCompare the date to compare to
  * @return true if the date is before the other date's first day of month.
  */
 export function isMonthBefore(date, toCompare) {
@@ -92,16 +93,66 @@ export function isMonthBefore(date, toCompare) {
   return d1 > d2;
 }
 
+/**
+ * Formats a date as a time string using the DateTimeFormat function and locales.
+ *
+ * @param {function} DateTimeFormat the DateTimeFormat function to use.
+ * @param {string|string[]} locales the locales to use.
+ * @param {Date} time the time to format into a string.
+ * @return a string of the formatted time.
+ */
 export function getTimeString(DateTimeFormat, locales, time) {
   return new DateTimeFormat(locales, { hour: 'numeric', minute: '2-digit' }).format(time);
 }
 
+/**
+ * Extracts the hours, minutes, and optional time period from
+ * a date time.
+ *
+ * @param {function} DateTimeFormat the DateTimeFormat function to use.
+ * @param {string|string[]} locales the locales to use.
+ * @param {Date} time the time to extract from.
+ * @return an object of { hours, minutes, timePeriod }
+ */
+export function extractTimeParts(DateTimeFormat, locales, time) {
+  const formatted = getTimeString(DateTimeFormat, locales, time);
+
+  // IE does not like lookaheads or splitting on [^0-9]
+  // it will include the non-printable characters..
+  const [hours, minutes] = formatted.match(/[0-9]+/g);
+  const [separator, ...remaining] = formatted.match(/[ ,.:A-z]+/g);
+  let timePeriod;
+  if(remaining && remaining.length) {
+    timePeriod = remaining.join('').trim();
+  }
+
+  return {
+    hours,
+    minutes: separator + minutes,
+    timePeriod,
+  };
+}
+
+/**
+ * Adds hours to a date.
+ *
+ * @param {Date} time the time to increment
+ * @param {number} hours the number of hours to increment by.
+ * @return a new Date with the new hours set.
+ */
 export function addHours(time, hours) {
   const t = new Date(time.getTime());
   t.setHours(t.getHours() + hours);
   return t;
 }
 
+/**
+ * Subtracts hours to a date.
+ *
+ * @param {Date} time the time to increment
+ * @param {number} hours the number of hours to decrement by.
+ * @return a new Date with the new hours set.
+ */
 export function subtractHours(time, hours) {
   return addHours(time, -hours);
 }

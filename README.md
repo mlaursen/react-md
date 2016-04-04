@@ -1,6 +1,6 @@
 # react-md
 
-React material design - React components built with sass
+React material design - React components built with sass (*oh no she didn't!*)
 
 ```bash
 $ npm install -S react \
@@ -74,6 +74,17 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 
 
 # Development
+
+```bash
+$ npm run scripts:watch  # watch src and recompile
+```
+
+## Testing
+
+```bash
+$ npm test
+$ npm run test:watch
+```
 
 ## Publishing
 
