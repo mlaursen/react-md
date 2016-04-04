@@ -10,7 +10,7 @@ import { ESC } from '../constants/keyCodes';
 import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import Height from '../Transitions';
+import { Height } from '../Transitions';
 
 export default class DatePickerContainer extends Component {
   constructor(props) {

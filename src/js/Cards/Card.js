@@ -3,7 +3,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Height from '../Transitions';
+import { Height } from '../Transitions';
 
 export default class Card extends Component {
   constructor(props) {

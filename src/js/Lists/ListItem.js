@@ -4,7 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { IconButton } from '../Buttons';
-import Height from '../Transitions';
+import { Height } from '../Transitions';
 import List from './List';
 import ListItemText from './ListItemText';
 import Ink from '../Inks';
