@@ -11,52 +11,6 @@ export function numberBetween(num, min, max) {
   return Math.max(min, Math.min(num, max));
 }
 
-export function smoothScroll(el, duration, options = {}) {
-  let { callback, toEl, stepAmt } = options;
-  if(!stepAmt) { stepAmt = 15; }
-
-  if(toEl) {
-    // TODO: Implement smooth scroll to element
-    const toPos = toEl.getBoundingClientRect().top + document.body.scrollTop;
-    el.scrollTo(el.scrollX, toPos - 65 - 15); // 65 is app bar height
-    return;
-  }
-
-  const scrollHeight = el.scrollY || el.scrollTop;
-  const scrollStep = Math.PI / (duration / stepAmt);
-  const cosParam = scrollHeight / 2;
-
-  let scrollCounter = 0;
-  let scrollMargin;
-
-  function step() {
-    setTimeout(function() {
-      let h = el.scrollY || el.scrollTop;
-      if(h || h > 0) {
-        requestAnimationFrame(step);
-
-        scrollCounter++;
-        scrollMargin = cosParam - cosParam * Math.cos(scrollCounter * scrollStep);
-
-        let scroll = scrollHeight - scrollMargin;
-        if(scroll <= 10) {
-          scroll = 0;
-        }
-
-        if(el.scrollY) {
-          el.scrollTo(el.scrollX, scroll);
-        } else {
-          el.scrollTop = scroll;
-        }
-      } else {
-        callback && callback();
-      }
-    }, stepAmt);
-  }
-
-  requestAnimationFrame(step);
-}
-
 /**
  * Checkis of the given thing is an object
  * @param thing the thing to check
@@ -140,26 +94,5 @@ export function animate(el, increment, elapsedTime, transitionTime, styleName, s
     next(elapsedTime);
   }
 }
-
-
-export function fuzzyFilter(items, word, key = null) {
-  if(!items || !items.length || !word) { return items; }
-
-  const lv = word.toLowerCase();
-  return items.filter(item => {
-    const li = (key ? item[key] : item).toLowerCase();
-    let lastFound = -1;
-    for(let i = 0; i < lv.length; i++) {
-      lastFound = li.indexOf(lv[i], lastFound + i);
-      if(lastFound === -1) {
-        return false;
-      }
-    }
-    return true;
-  });
-}
-
-export const focusableQueryStr = ['input', 'select', 'textarea', 'button'].map(e => `${e}:not([disabled])`).concat(['a[href]', 'area[href]', 'iframe', '[tabindex]', '[contentEditable=true]']).map(el => el + ':not([tabindex=\'-1\'])').join(',');
-export const getFirstFocusable = el => el.querySelector(focusableQueryStr);
 
 export * from './dates';
