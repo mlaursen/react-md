@@ -29,8 +29,8 @@ export default class TimePicker extends Component {
     setTempTime: PropTypes.func.isRequired,
     timeMode: PropTypes.oneOf(['hour', 'minute']).isRequired,
     tempTime: PropTypes.instanceOf(Date).isRequired,
-    hour: PropTypes.string.isRequired,
-    minute: PropTypes.string.isRequired,
+    hours: PropTypes.string.isRequired,
+    minutes: PropTypes.string.isRequired,
     timePeriod: PropTypes.string,
   };
 
@@ -65,14 +65,14 @@ export default class TimePicker extends Component {
       setTempTime,
       timeMode,
       tempTime,
-      hour,
-      minute,
+      hours,
+      minutes,
       timePeriod,
       ...props,
     } = this.props;
 
-    const hourInt = parseInt(hour);
-    const minuteInt = parseInt(minute.replace(/[^0-9]/g, ''));
+    const hoursInt = parseInt(hours);
+    const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''));
 
     return (
       <div className={`${className} time-picker`}>
@@ -81,14 +81,14 @@ export default class TimePicker extends Component {
           timeMode={timeMode}
           setTimeMode={setTimeMode}
           setTempTime={setTempTime}
-          hour={hour}
-          minute={minute}
+          hours={hours}
+          minutes={minutes}
           timePeriod={timePeriod}
         />
         <div className="md-picker-content-container">
           <div className="md-picker-content clock">
             <ClockFace
-              time={timeMode === 'hour' ? hourInt : minuteInt}
+              time={timeMode === 'hour' ? hoursInt : minutesInt}
               minutes={timeMode === 'minute'}
               onClick={this.updateTime}
               timePeriod={timePeriod}
