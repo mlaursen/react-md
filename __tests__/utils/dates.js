@@ -1,4 +1,3 @@
-/*eslint-disable no-undefined*/
 jest.unmock('../../src/js/utils/dates');
 import { DateTimeFormat } from 'intl';
 
