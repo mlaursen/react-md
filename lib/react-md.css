@@ -81,8 +81,8 @@
 
 /* line 1, ../src/scss/_typography.scss */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
@@ -106,49 +106,47 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* line 24, ../src/scss/_typography.scss */
+/* line 27, ../src/scss/_typography.scss */
 .md-headline, .md-title, .md-subheading-2, .md-subheading-1 {
   color: rgba(0, 0, 0, 0.77);
 }
 
-/* line 28, ../src/scss/_typography.scss */
+/* line 34, ../src/scss/_typography.scss */
 .md-display-4, .md-display-3, .md-display-2, .md-display-1, .md-caption {
   color: rgba(0, 0, 0, 0.54);
 }
 
-/* line 37, ../src/scss/_typography.scss */
+/* line 52, ../src/scss/_typography.scss */
 .md-display-4 {
   letter-spacing: -.1px;
 }
 
-/* line 41, ../src/scss/_typography.scss */
+/* line 59, ../src/scss/_typography.scss */
 .md-display-3 {
   letter-spacing: -.05px;
 }
 
-/* line 45, ../src/scss/_typography.scss */
+/* line 66, ../src/scss/_typography.scss */
 .md-display-2, .md-display-1, .md-headline {
   letter-spacing: 0;
 }
 
-/* line 49, ../src/scss/_typography.scss */
+/* line 73, ../src/scss/_typography.scss */
 .md-title {
   letter-spacing: .5px;
 }
 
-/* line 53, ../src/scss/_typography.scss */
-.md-subheading-2, .md-subheading-1, .md-btn,
-.md-body-1,
-.md-body-2 {
+/* line 80, ../src/scss/_typography.scss */
+.md-subheading-2, .md-subheading-1, .md-body-1, .md-body-2, .md-btn {
   letter-spacing: .1px;
 }
 
-/* line 57, ../src/scss/_typography.scss */
+/* line 87, ../src/scss/_typography.scss */
 .md-caption {
   letter-spacing: .2px;
 }
 
-/* line 61, ../src/scss/_typography.scss */
+/* line 91, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -163,7 +161,7 @@ body {
   margin: 0;
 }
 
-/* line 75, ../src/scss/_typography.scss */
+/* line 105, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -173,7 +171,7 @@ body {
   margin-bottom: 14px;
 }
 
-/* line 84, ../src/scss/_typography.scss */
+/* line 114, ../src/scss/_typography.scss */
 .md-subheading-1,
 .md-subheading-2,
 .md-body-1,
@@ -182,14 +180,14 @@ body {
   margin-bottom: 10px;
 }
 
-/* line 94, ../src/scss/_typography.scss */
+/* line 124, ../src/scss/_typography.scss */
 .md-display-3,
 .md-display-4,
 .md-title {
   white-space: nowrap;
 }
 
-/* line 100, ../src/scss/_typography.scss */
+/* line 130, ../src/scss/_typography.scss */
 .md-display-1,
 .md-display-2,
 .md-display-3,
@@ -201,66 +199,66 @@ body {
   font-weight: 400;
 }
 
-/* line 111, ../src/scss/_typography.scss */
+/* line 141, ../src/scss/_typography.scss */
 .md-btn,
 .md-title,
 .md-body-2 {
   font-weight: 500;
 }
 
-/* line 117, ../src/scss/_typography.scss */
+/* line 150, ../src/scss/_typography.scss */
 .md-display-4 {
   font-size: 112px;
   font-weight: 300;
   line-height: 128px;
 }
 
-/* line 126, ../src/scss/_typography.scss */
+/* line 162, ../src/scss/_typography.scss */
 .md-display-3 {
   font-size: 56px;
   line-height: 84px;
 }
 
-/* line 134, ../src/scss/_typography.scss */
+/* line 173, ../src/scss/_typography.scss */
 .md-display-2 {
   font-size: 45px;
   line-height: 48px;
 }
 
-/* line 142, ../src/scss/_typography.scss */
+/* line 184, ../src/scss/_typography.scss */
 .md-display-1 {
   font-size: 34px;
   line-height: 40px;
 }
 
-/* line 150, ../src/scss/_typography.scss */
+/* line 195, ../src/scss/_typography.scss */
 .md-headline {
   font-size: 24px;
   line-height: 32px;
 }
 
-/* line 158, ../src/scss/_typography.scss */
+/* line 206, ../src/scss/_typography.scss */
 .md-title {
   font-size: 20px;
   line-height: 28px;
 }
 
-/* line 166, ../src/scss/_typography.scss */
+/* line 217, ../src/scss/_typography.scss */
 .md-subheading-2 {
   line-height: 28px;
 }
 
-/* line 173, ../src/scss/_typography.scss */
+/* line 227, ../src/scss/_typography.scss */
 .md-subheading-1 {
   line-height: 24px;
 }
 
-/* line 186, ../src/scss/_typography.scss */
+/* line 255, ../src/scss/_typography.scss */
 .md-caption {
   font-size: 12px;
 }
 
-/* line 193, ../src/scss/_typography.scss */
+/* line 262, ../src/scss/_typography.scss */
 .md-icon {
   color: rgba(0, 0, 0, 0.54);
   font-size: 24px;
@@ -309,6 +307,30 @@ body {
 .tab-enter *.tab-enter-active * {
   opacity: 1;
   transition: opacity 0.15s;
+}
+
+/* line 34, ../src/scss/_transitions.scss */
+.md-swipe-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+/* line 38, ../src/scss/_transitions.scss */
+.md-swipe-left-enter.md-swipe-left-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+/* line 45, ../src/scss/_transitions.scss */
+.md-swipe-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+/* line 49, ../src/scss/_transitions.scss */
+.md-swipe-right-enter.md-swipe-right-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.15s, opacity 0.15s;
 }
 
 /* line 1, ../src/scss/components/_avatars.scss */
@@ -568,7 +590,7 @@ a.md-btn {
   position: relative;
 }
 /* line 36, ../src/scss/helpers/mixins/_cards.scss */
-.md-media-16-9:before {
+.md-media-16-9::before {
   content: '';
   display: block;
   padding-top: 56.25%;
@@ -589,7 +611,7 @@ a.md-btn {
   position: relative;
 }
 /* line 36, ../src/scss/helpers/mixins/_cards.scss */
-.md-media-1-1:before {
+.md-media-1-1::before {
   content: '';
   display: block;
   padding-top: 100%;
@@ -1090,7 +1112,7 @@ a.md-btn {
   margin-top: 32px;
 }
 
-/* line 1, ../src/scss/components/_ink.scss */
+/* line 6, ../src/scss/components/_ink.scss */
 .md-ink-container {
   border-radius: inherit;
   height: 100%;
@@ -1103,7 +1125,7 @@ a.md-btn {
   z-index: 1;
 }
 
-/* line 13, ../src/scss/components/_ink.scss */
+/* line 18, ../src/scss/components/_ink.scss */
 .md-ink {
   background: rgba(0, 0, 0, 0.12);
   border-radius: 50%;
@@ -1113,14 +1135,14 @@ a.md-btn {
   transform: scale(0);
   z-index: -1;
 }
-/* line 22, ../src/scss/components/_ink.scss */
+/* line 27, ../src/scss/components/_ink.scss */
 .md-ink.active {
   transform: scale(2.5);
   transition-duration: 0.6s;
   transition-property: opacity, transform;
   transition-timing-function: linear;
 }
-/* line 28, ../src/scss/components/_ink.scss */
+/* line 33, ../src/scss/components/_ink.scss */
 .md-ink.active.leaving {
   opacity: 0;
 }
@@ -1387,38 +1409,34 @@ a.md-btn {
   overflow-y: auto;
   position: fixed;
   transition-duration: 0.15s;
-  transition-property: width, box-shadow;
-  visibility: hidden;
-  width: 0;
+  transition-property: box-shadow, left, width;
   z-index: 10;
 }
-/* line 13, ../src/scss/components/_navigation-drawers.scss */
+/* line 11, ../src/scss/components/_navigation-drawers.scss */
+.md-navigation-drawer.active, .md-navigation-drawer.mini {
+  left: 0;
+}
+/* line 16, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.mini:not(.active) {
-  visibility: visible;
   width: 72px;
 }
-/* line 17, ../src/scss/components/_navigation-drawers.scss */
+/* line 19, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.mini:not(.active) .md-list-tile {
   justify-content: center;
 }
-/* line 22, ../src/scss/components/_navigation-drawers.scss */
-.md-navigation-drawer.active {
-  visibility: visible;
-  width: 256px;
-}
-/* line 27, ../src/scss/components/_navigation-drawers.scss */
+/* line 24, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer.temporary.active {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
   z-index: 12;
 }
 
-/* line 35, ../src/scss/components/_navigation-drawers.scss */
+/* line 32, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-content.mini {
   padding-left: 72px;
   position: relative;
 }
 
-/* line 44, ../src/scss/components/_navigation-drawers.scss */
+/* line 41, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar .md-title,
 .md-drawer-header .md-title {
   display: inline-block;
@@ -1426,18 +1444,19 @@ a.md-btn {
   vertical-align: top;
 }
 
-/* line 52, ../src/scss/components/_navigation-drawers.scss */
+/* line 49, ../src/scss/components/_navigation-drawers.scss */
 .md-drawer-header .md-icon-btn + .md-title {
   padding-left: 12px;
 }
-/* line 56, ../src/scss/components/_navigation-drawers.scss */
+/* line 53, ../src/scss/components/_navigation-drawers.scss */
 .md-drawer-header .md-title {
   color: rgba(0, 0, 0, 0.54);
   padding-left: 16px;
 }
 
-/* line 62, ../src/scss/components/_navigation-drawers.scss */
+/* line 59, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   color: #fff;
   left: 0;
   position: fixed;
@@ -1447,23 +1466,23 @@ a.md-btn {
   width: 100%;
   z-index: 10;
 }
-/* line 72, ../src/scss/components/_navigation-drawers.scss */
+/* line 71, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar .md-title {
   color: inherit;
   padding-left: 16px;
 }
-/* line 77, ../src/scss/components/_navigation-drawers.scss */
-.md-navigation-drawer-toolbar.active, .md-navigation-drawer-toolbar.mini {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+/* line 76, ../src/scss/components/_navigation-drawers.scss */
+.md-navigation-drawer-toolbar .md-text-field {
+  font-size: 20px;
 }
 
-/* line 83, ../src/scss/components/_navigation-drawers.scss */
+/* line 81, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-btn {
   margin-left: 12px;
   margin-right: 12px;
 }
 
-/* line 92, ../src/scss/components/_navigation-drawers.scss */
+/* line 90, ../src/scss/components/_navigation-drawers.scss */
 .md-navigation-drawer-toggle {
   float: right;
 }
@@ -2652,13 +2671,14 @@ a.md-btn {
 }
 /* line 112, ../src/scss/components/_text-fields.scss */
 .md-text-divider.from-right::after {
+  margin-left: auto;
   right: 0;
 }
-/* line 116, ../src/scss/components/_text-fields.scss */
+/* line 117, ../src/scss/components/_text-fields.scss */
 .md-text-divider.from-center::after {
   margin: auto;
 }
-/* line 120, ../src/scss/components/_text-fields.scss */
+/* line 121, ../src/scss/components/_text-fields.scss */
 .md-text-divider::after {
   content: '';
   display: block;
@@ -2666,42 +2686,42 @@ a.md-btn {
   transition: width 0.15s;
   width: 0;
 }
-/* line 128, ../src/scss/components/_text-fields.scss */
+/* line 129, ../src/scss/components/_text-fields.scss */
 .md-text-divider.active::after {
   width: 100%;
 }
 
-/* line 133, ../src/scss/components/_text-fields.scss */
+/* line 134, ../src/scss/components/_text-fields.scss */
 .md-text-field-icon {
   margin-right: 16px;
   transition-duration: 0.15s;
   transition-property: color;
 }
 
-/* line 139, ../src/scss/components/_text-fields.scss */
+/* line 140, ../src/scss/components/_text-fields.scss */
 .md-text-field-message {
   display: flex;
   font-size: 12px;
   justify-content: space-between;
 }
-/* line 144, ../src/scss/components/_text-fields.scss */
+/* line 145, ../src/scss/components/_text-fields.scss */
 .md-text-field-message.count-only {
   justify-content: flex-end;
 }
 
-/* line 149, ../src/scss/components/_text-fields.scss */
+/* line 150, ../src/scss/components/_text-fields.scss */
 .md-text-field-counter {
   display: block;
   flex-shrink: 0;
   padding-left: 16px;
 }
 
-/* line 155, ../src/scss/components/_text-fields.scss */
+/* line 156, ../src/scss/components/_text-fields.scss */
 .md-toolbar .md-text-field {
   font-size: 20px;
 }
 
-/* line 159, ../src/scss/components/_text-fields.scss */
+/* line 160, ../src/scss/components/_text-fields.scss */
 .md-text-field-ind {
   color: rgba(0, 0, 0, 0.54);
 }
@@ -2820,16 +2840,16 @@ a.md-btn {
   white-space: nowrap;
 }
 
-/* line 88, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+/* line 99, ../src/scss/helpers/mixins/_navigation-drawers.scss */
 .md-navigation-drawer {
   background: #fff;
 }
-/* line 91, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+/* line 102, ../src/scss/helpers/mixins/_navigation-drawers.scss */
 .md-navigation-drawer.floating {
   background: #fafafa;
 }
 
-/* line 96, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+/* line 107, ../src/scss/helpers/mixins/_navigation-drawers.scss */
 .md-navigation-drawer-toolbar {
   background: #3f51b5;
 }
@@ -3316,19 +3336,24 @@ a.md-btn {
     min-width: 72px;
   }
 
-  /* line 32, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 31, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  .md-navigation-drawer {
+    left: calc(-100% - 48px);
+    width: calc(100% - 48px);
+  }
+  /* line 35, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer.active {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
     z-index: 12;
   }
 
-  /* line 37, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 42, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer-content .md-navigation-drawer-overlay {
     z-index: 11;
   }
 
   /* line 13, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-title-text-field .md-floating-label,
+  .md-title-text-field .md-floating-label:not(.active),
   .md-title-text-field .md-text-field {
     font-size: 34px;
   }
@@ -3612,7 +3637,7 @@ a.md-btn {
   }
 
   /* line 13, ../src/scss/helpers/mixins/_text-fields.scss */
-  .md-title-text-field .md-floating-label,
+  .md-title-text-field .md-floating-label:not(.active),
   .md-title-text-field .md-text-field {
     font-size: 34px;
   }
@@ -3705,13 +3730,15 @@ a.md-btn {
     padding-top: 8px;
   }
 
-  /* line 50, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 54, ../src/scss/helpers/mixins/_toolbars.scss */
   .md-toolbar,
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     height: 64px;
   }
 
-  /* line 55, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 60, ../src/scss/helpers/mixins/_toolbars.scss */
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     line-height: 64px;
   }
@@ -3739,27 +3766,32 @@ a.md-btn {
     margin-top: 8px;
   }
 
-  /* line 44, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 50, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  .md-navigation-drawer {
+    left: -256px;
+    width: 256px;
+  }
+  /* line 54, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer.floating {
     box-shadow: none;
   }
 
-  /* line 52, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 63, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer-toolbar.full-height .md-navigation-drawer-btn, .md-navigation-drawer-toolbar.clipped .md-navigation-drawer-btn, .md-navigation-drawer-toolbar.floating .md-navigation-drawer-btn {
     display: none;
     visibility: hidden;
   }
-  /* line 58, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 69, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer-toolbar.full-height, .md-navigation-drawer-toolbar.mini.active, .md-navigation-drawer-toolbar.persistent.active {
     left: 256px;
   }
 
-  /* line 67, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 78, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer-content:not(.temporary).active {
     padding-left: 256px;
     width: 100%;
   }
-  /* line 72, ../src/scss/helpers/mixins/_navigation-drawers.scss */
+  /* line 83, ../src/scss/helpers/mixins/_navigation-drawers.scss */
   .md-navigation-drawer-content:not(.temporary) .md-navigation-drawer-overlay {
     display: none;
     visibility: hidden;
@@ -3779,13 +3811,15 @@ a.md-btn {
   }
 }
 @media only screen and (orientation: portrait) and (max-width: 599px) {
-  /* line 36, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 38, ../src/scss/helpers/mixins/_toolbars.scss */
   .md-toolbar,
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     height: 56px;
   }
 
-  /* line 41, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 44, ../src/scss/helpers/mixins/_toolbars.scss */
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     line-height: 56px;
   }
@@ -3816,11 +3850,13 @@ a.md-btn {
 @media only screen and (orientation: landscape) and (max-width: 599px) {
   /* line 25, ../src/scss/helpers/mixins/_toolbars.scss */
   .md-toolbar,
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     height: 48px;
   }
 
-  /* line 30, ../src/scss/helpers/mixins/_toolbars.scss */
+  /* line 31, ../src/scss/helpers/mixins/_toolbars.scss */
+  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
   .md-toolbar .md-text-field:not(.multi-line) {
     line-height: 48px;
   }
