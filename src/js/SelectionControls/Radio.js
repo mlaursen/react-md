@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import FontIcon from '../FontIcons';
-import Ink from '../Inks';
+import InkedControl from './InkedControl';
 
 
 export default class Radio extends Component {
@@ -61,14 +61,6 @@ export default class Radio extends Component {
       ...props,
     } = this.props;
 
-    const icon = (
-      <Ink disabled={disabled}>
-        <div className={classnames('md-radio', { 'active': checked, disabled })}>
-          {checked ? checkedIcon : uncheckedIcon}
-        </div>
-      </Ink>
-    );
-
     return (
       <label
         {...props}
@@ -84,7 +76,13 @@ export default class Radio extends Component {
           name={name}
           value={value}
         />
-        {icon}
+        <InkedControl
+          type="radio"
+          checked={checked}
+          disabled={disabled}
+        >
+          {checked ? checkedIcon : uncheckedIcon}
+        </InkedControl>
         {!labelBefore && label}
       </label>
     );
