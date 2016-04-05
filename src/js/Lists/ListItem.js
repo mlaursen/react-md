@@ -6,8 +6,8 @@ import classnames from 'classnames';
 import { IconButton } from '../Buttons';
 import { Height } from '../Transitions';
 import List from './List';
+import ListTile from './ListTile';
 import ListItemText from './ListItemText';
-import Ink from '../Inks';
 
 export default class ListItem extends Component {
   constructor(props) {
@@ -136,34 +136,6 @@ export default class ListItem extends Component {
       ...props,
     } = this.props;
 
-    const text = (
-      <ListItemText
-        key="text"
-        primaryText={primaryText}
-        secondaryText={secondaryText}
-        className={classnames({
-          'avatar-offset': !!leftAvatar,
-          'icon-offset': !!leftIcon,
-        })}
-      />
-    );
-
-    let content = React.createElement(component, {
-      role: 'button',
-      tabIndex: component === 'div' && !nestedItems ? 0 : null,
-      ...props,
-      disabled,
-      onClick: this.handleClick,
-      className: classnames('md-list-tile', className, {
-        'secondary-action': nestedItems && nestedItems.length,
-        'avatar-height': leftAvatar || rightAvatar,
-        'two-lines': secondaryText,
-        'three-lines': threeLines && secondaryText,
-      }),
-    }, [this.renderLeftChildren(), text, this.renderRightChildren()]);
-
-    content = <Ink disabled={disabled}>{content}</Ink>;
-
     let children;
     if(this.isOpen() && nestedItems && nestedItems.length) {
       children = (
@@ -182,7 +154,30 @@ export default class ListItem extends Component {
         onMouseOver={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
       >
-        {content}
+        <ListTile
+          {...props}
+          component={component}
+          disabled={disabled}
+          onClick={this.handleClick}
+          className={classnames(className, {
+            'secondary-action': nestedItems && nestedItems.length,
+            'avatar-height': leftAvatar || rightAvatar,
+            'two-lines': secondaryText,
+            'three-lines': threeLines && secondaryText,
+          })}
+        >
+          {this.renderLeftChildren()}
+          <ListItemText
+            key="text"
+            primaryText={primaryText}
+            secondaryText={secondaryText}
+            className={classnames({
+              'avatar-offset': !!leftAvatar,
+              'icon-offset': !!leftIcon,
+            })}
+          />
+          {this.renderRightChildren()}
+        </ListTile>
         {children}
       </TransitionGroup>
     );

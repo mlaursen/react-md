@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Ink from '../Inks';
+import injectInk from '../Inks';
 
-export default class Button extends Component {
+class Button extends Component {
   constructor(props) {
     super(props);
 
@@ -22,6 +22,9 @@ export default class Button extends Component {
     disabled: PropTypes.bool,
     iconBefore: PropTypes.bool,
     href: PropTypes.string,
+
+    // Injected from injectInk
+    ink: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -35,7 +38,7 @@ export default class Button extends Component {
       return label;
     } else if(children) {
       return (
-        <div className="icon-separator">
+        <div className="icon-separator" key="label-icons">
           {iconBefore && children}
           <span className="text">{label}</span>
           {!iconBefore && children}
@@ -54,21 +57,19 @@ export default class Button extends Component {
       href,
       primary,
       secondary,
+      ink,
       ...props,
     } = this.props;
 
-    const button = React.createElement(href ? 'a' : 'button', {
+    return React.createElement(href ? 'a' : 'button', {
       ...props,
       href: href,
       className: classnames('md-btn', className, {
         'md-primary': primary,
         'md-secondary': secondary,
       }),
-    }, this.renderChildren());
-    return (
-      <Ink disabled={props.disabled}>
-        {button}
-      </Ink>
-    );
+    }, [ink, this.renderChildren()]);
   }
 }
+
+export default injectInk(Button);

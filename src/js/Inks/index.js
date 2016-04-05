@@ -1,2 +1,2 @@
-import Ink from './Ink';
-export default Ink;
+import injectInk from './injectInk';
+export default injectInk;

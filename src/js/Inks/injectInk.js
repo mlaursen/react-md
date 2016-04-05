@@ -1,14 +1,21 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import TransitionGroup from 'react-addons-transition-group';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import TransitionGroup from 'react-addons-transition-group';
 
 import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
-import { getOffset, isTouchDevice } from '../utils';
+import { getOffset } from '../utils';
 
-export default class Ink extends Component {
+/**
+ * Takes any component and injects an ink container along with event
+ * listeners for handling those inks. It also injects a prop
+ * named `ink` which needs to be added to the ComposedComponent.
+ *
+ * @param ComposedComponent the component to compose with the ink functionality.
+ * @return the ComposedComponent with inks.
+ */
+export default ComposedComponent => class Ink extends Component {
   constructor(props) {
     super(props);
 
@@ -19,34 +26,15 @@ export default class Ink extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.element,
+    onMouseUp: PropTypes.func,
+    onMouseDown: PropTypes.func,
+    onMouseLeave: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onBlur: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    onTouchEnd: PropTypes.func,
     disabled: PropTypes.bool,
-  };
-
-  componentDidMount() {
-    this.addEventListeners();
-  }
-
-  /**
-   * These had been injected in the React.cloneElement before as props,
-   * but there was merging issues if there was a Tooltip involved as well.
-   *
-   * A _safer_ way of handling these events is to add multiple events with vanilla
-   * so they aren't overridden.
-   */
-  addEventListeners = () => {
-    const node = ReactDOM.findDOMNode(this);
-    if(isTouchDevice) {
-      node.addEventListener('touchstart', this.handleTouchStart);
-      node.addEventListener('touchend', this.handleTouchEnd);
-    } else {
-      node.addEventListener('keyup', this.handleKeyUp);
-      node.addEventListener('blur', this.handleBlur);
-      node.addEventListener('mousedown', this.handleMouseDown);
-      node.addEventListener('mouseup', this.handleMouseUp);
-      node.addEventListener('mouseleave', this.handleMouseLeave);
-    }
+    children: PropTypes.node,
   };
 
   calcR = (a, b) => {
@@ -58,7 +46,7 @@ export default class Ink extends Component {
   };
 
   createInk = (pageX, pageY) => {
-    const container = ReactDOM.findDOMNode(this.refs.container);
+    const container = ReactDOM.findDOMNode(this).querySelector('.md-ink-container');
 
     let left = 0, top = 0;
     let size, x, y;
@@ -119,7 +107,8 @@ export default class Ink extends Component {
     });
   };
 
-  handleMouseLeave = () => {
+  handleMouseLeave = (e) => {
+    this.props.onMouseLeave && this.props.onMouseLeave(e);
     if(!this.props.disabled) {
       this.popInk();
       this.setState({
@@ -129,50 +118,62 @@ export default class Ink extends Component {
   };
 
   handleMouseUp = (e) => {
+    this.props.onMouseUp && this.props.onMouseUp(e);
     if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
   handleTouchStart = (e) => {
+    this.props.onTouchStart && this.props.onTouchStart(e);
     if(this.props.disabled) { return; }
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
   };
 
-  handleTouchEnd = () => {
+  handleTouchEnd = (e) => {
+    this.props.onTouchEnd && this.props.onTouchEnd(e);
     if(this.props.disabled) { return; }
     this.popInk();
   };
 
   handleKeyUp = (e) => {
+    this.props.onKeyUp && this.props.onKeyUp(e);
     if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
       this.createInk();
     }
   };
 
-  handleBlur = () => {
+  handleBlur = (e) => {
+    this.props.onBlur && this.props.onBlur(e);
     if(!this.props.disabled) {
       this.popInk();
     }
   };
 
   render() {
-    const { className, children, ...props } = this.props;
-    const child = React.Children.only(children);
+    const { children, ...props } = this.props;
+    const ink = (
+      <TransitionGroup className="md-ink-container" key="ink-container">
+        {this.state.inks.map(ink => <InkTransition key={ink.time.getTime()} {...ink} />)}
+      </TransitionGroup>
+    );
 
-    return React.cloneElement(child, child.props, [(
-      <TransitionGroup
-        key="inks"
-        ref="container"
-        className={classnames('md-ink-container', className)}
+    return (
+      <ComposedComponent
         {...props}
+        onMouseUp={this.handleMouseUp}
+        onMouseDown={this.handleMouseDown}
+        onMouseLeave={this.handleMouseLeave}
+        onKeyUp={this.handleKeyUp}
+        onBlur={this.handleBlur}
+        onTouchStart={this.handleTouchStart}
+        onTouchCancel={this.handleTouchEnd}
+        onTouchEnd={this.handleTouchEnd}
+        ink={ink}
       >
-        {this.state.inks.map(ink => (
-          <InkTransition key={ink.time.getTime()} {...ink} />
-        ))}
-      </TransitionGroup>),
-      child.props.children,
-    ]);
+        {children}
+      </ComposedComponent>
+    );
   }
-}
+};

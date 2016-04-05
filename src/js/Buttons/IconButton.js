@@ -3,10 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
-import Ink from '../Inks';
-import Tooltip from '..//Tooltips';
+import injectInk from '../Inks';
+import Tooltip from '../Tooltips';
 
-export default class IconButton extends Component {
+class IconButton extends Component {
   constructor(props) {
     super(props);
 
@@ -24,6 +24,9 @@ export default class IconButton extends Component {
     href: PropTypes.string,
     type: PropTypes.string,
     disabled: PropTypes.bool,
+
+    // Injected from injectInk
+    ink: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -41,6 +44,7 @@ export default class IconButton extends Component {
       tooltipClassName,
       tooltipPosition,
       disabled,
+      ink,
       ...props,
     } = this.props;
 
@@ -58,14 +62,10 @@ export default class IconButton extends Component {
 
     let displayedChildren = children;
     if(!(children && children.type && children.type === FontIcon)) {
-      displayedChildren = <FontIcon iconClassName={iconClassName}>{children}</FontIcon>;
+      displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
     }
 
-    const wrappedButton = (
-      <Ink disabled={disabled}>
-        {React.createElement(href ? 'a' : 'button', btnProps, displayedChildren)}
-      </Ink>
-    );
+    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren]);
 
     if(tooltip) {
       return (
@@ -78,3 +78,5 @@ export default class IconButton extends Component {
     }
   }
 }
+
+export default injectInk(IconButton);
