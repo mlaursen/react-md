@@ -22,6 +22,9 @@ class Button extends Component {
     disabled: PropTypes.bool,
     iconBefore: PropTypes.bool,
     href: PropTypes.string,
+
+    // Injected from InkHOC
+    inks: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -35,7 +38,7 @@ class Button extends Component {
       return label;
     } else if(children) {
       return (
-        <div className="icon-separator">
+        <div className="icon-separator" key="label-icons">
           {iconBefore && children}
           <span className="text">{label}</span>
           {!iconBefore && children}
@@ -54,6 +57,7 @@ class Button extends Component {
       href,
       primary,
       secondary,
+      inks,
       ...props,
     } = this.props;
 
@@ -64,7 +68,7 @@ class Button extends Component {
         'md-primary': primary,
         'md-secondary': secondary,
       }),
-    }, this.renderChildren());
+    }, [inks, this.renderChildren()]);
   }
 }
 

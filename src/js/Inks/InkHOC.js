@@ -7,6 +7,14 @@ import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
 import { getOffset } from '../utils';
 
+/**
+ * Takes any component and injects an ink container along with event
+ * listeners for handling those inks. It also injects a prop
+ * named `inks` which needs to be added to the ComposedComponent.
+ *
+ * @param ComposedComponent the component to compose with the ink functionality.
+ * @return the ComposedComponent with inks.
+ */
 export default ComposedComponent => class Ink extends Component {
   constructor(props) {
     super(props);
@@ -145,6 +153,12 @@ export default ComposedComponent => class Ink extends Component {
 
   render() {
     const { children, ...props } = this.props;
+    const inks = (
+      <TransitionGroup className="md-ink-container" key="ink-container">
+        {this.state.inks.map(ink => <InkTransition key={ink.time.getTime()} {...ink} />)}
+      </TransitionGroup>
+    );
+
     return (
       <ComposedComponent
         {...props}
@@ -153,10 +167,8 @@ export default ComposedComponent => class Ink extends Component {
         onMouseLeave={this.handleMouseLeave}
         onKeyUp={this.handleKeyUp}
         onBlur={this.handleBlur}
+        inks={inks}
       >
-        <TransitionGroup className="md-ink-container">
-          {this.state.inks.map(ink => <InkTransition key={ink.time.getTime()} {...ink} />)}
-        </TransitionGroup>
         {children}
       </ComposedComponent>
     );

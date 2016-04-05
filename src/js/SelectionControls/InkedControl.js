@@ -16,12 +16,16 @@ class InkedControl extends Component {
     type: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
+
+    // Injected from InkHOC
+    inks: PropTypes.node.isRequired,
   };
 
   render() {
-    const { children, checked, disabled, type, ...props } = this.props;
+    const { children, checked, disabled, type, inks, ...props } = this.props;
     return (
       <div className={classnames(`md-${type}`, { 'active': checked, disabled })} {...props}>
+        {inks}
         {children}
       </div>
     );

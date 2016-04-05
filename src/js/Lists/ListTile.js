@@ -18,15 +18,18 @@ class ListTile extends Component {
     ]).isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
+
+    // Injected from InkHOC
+    inks: PropTypes.node.isRequired,
   };
 
   render() {
-    const { component, className, ...props } = this.props;
+    const { component, inks, className, children, ...props } = this.props;
     return React.createElement(component, {
       role: 'button',
       ...props,
       className: classnames('md-list-tile', className),
-    });
+    }, [inks, children]);
   }
 }
 

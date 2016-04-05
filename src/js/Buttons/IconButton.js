@@ -24,6 +24,9 @@ class IconButton extends Component {
     href: PropTypes.string,
     type: PropTypes.string,
     disabled: PropTypes.bool,
+
+    // Injected from InkHOC
+    inks: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -41,6 +44,7 @@ class IconButton extends Component {
       tooltipClassName,
       tooltipPosition,
       disabled,
+      inks,
       ...props,
     } = this.props;
 
@@ -56,13 +60,12 @@ class IconButton extends Component {
       btnProps.type = type;
     }
 
-    const [ink, ...iconChildren] = React.Children.toArray(children);
-    const displayedChildren = [ink, iconChildren];
-    if(!(iconChildren.length && iconChildren.type && iconChildren.type === FontIcon)) {
-      displayedChildren[1] = <FontIcon key="icon" iconClassName={iconClassName}>{iconChildren[0]}</FontIcon>;
+    let displayedChildren = children;
+    if(!(children && children.type && children.type === FontIcon)) {
+      displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
     }
 
-    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, displayedChildren);
+    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, [inks, displayedChildren]);
 
     if(tooltip) {
       return (
