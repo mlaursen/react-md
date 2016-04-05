@@ -23,6 +23,8 @@ export default ComposedComponent => class Ink extends Component {
     onMouseLeave: PropTypes.func,
     onKeyUp: PropTypes.func,
     onBlur: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    onTouchEnd: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.node,
   };
@@ -97,7 +99,8 @@ export default ComposedComponent => class Ink extends Component {
     });
   };
 
-  handleMouseLeave = () => {
+  handleMouseLeave = (e) => {
+    this.props.onMouseLeave && this.props.onMouseLeave(e);
     if(!this.props.disabled) {
       this.popInk();
       this.setState({
@@ -107,34 +110,38 @@ export default ComposedComponent => class Ink extends Component {
   };
 
   handleMouseUp = (e) => {
+    this.props.onMouseUp && this.props.onMouseUp(e);
     if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
   handleTouchStart = (e) => {
+    this.props.onTouchStart && this.props.onTouchStart(e);
     if(this.props.disabled) { return; }
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
   };
 
-  handleTouchEnd = () => {
+  handleTouchEnd = (e) => {
+    this.props.onTouchEnd && this.props.onTouchEnd(e);
     if(this.props.disabled) { return; }
     this.popInk();
   };
 
   handleKeyUp = (e) => {
+    this.props.onKeyUp && this.props.onKeyUp(e);
     if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
       this.createInk();
     }
   };
 
-  handleBlur = () => {
+  handleBlur = (e) => {
+    this.props.onBlur && this.props.onBlur(e);
     if(!this.props.disabled) {
       this.popInk();
     }
   };
-
 
   render() {
     const { children, ...props } = this.props;
