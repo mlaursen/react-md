@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
-import { InkHOC } from '../Inks';
+import injectInk from '../Inks';
 import Tooltip from '../Tooltips';
 
 class IconButton extends Component {
@@ -25,8 +25,8 @@ class IconButton extends Component {
     type: PropTypes.string,
     disabled: PropTypes.bool,
 
-    // Injected from InkHOC
-    inks: PropTypes.node.isRequired,
+    // Injected from injectInk
+    ink: PropTypes.node.isRequired,
   };
 
   static defaultProps = {
@@ -44,7 +44,7 @@ class IconButton extends Component {
       tooltipClassName,
       tooltipPosition,
       disabled,
-      inks,
+      ink,
       ...props,
     } = this.props;
 
@@ -65,7 +65,7 @@ class IconButton extends Component {
       displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
     }
 
-    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, [inks, displayedChildren]);
+    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren]);
 
     if(tooltip) {
       return (
@@ -79,4 +79,4 @@ class IconButton extends Component {
   }
 }
 
-export default InkHOC(IconButton);
+export default injectInk(IconButton);

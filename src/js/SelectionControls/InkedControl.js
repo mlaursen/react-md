@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { InkHOC } from '../Inks';
+import injectInk from '../Inks';
 
 class InkedControl extends Component {
   constructor(props) {
@@ -17,19 +17,19 @@ class InkedControl extends Component {
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
 
-    // Injected from InkHOC
-    inks: PropTypes.node.isRequired,
+    // Injected from injectInk
+    ink: PropTypes.node.isRequired,
   };
 
   render() {
-    const { children, checked, disabled, type, inks, ...props } = this.props;
+    const { children, checked, disabled, type, ink, ...props } = this.props;
     return (
       <div className={classnames(`md-${type}`, { 'active': checked, disabled })} {...props}>
-        {inks}
+        {ink}
         {children}
       </div>
     );
   }
 }
 
-export default InkHOC(InkedControl);
+export default injectInk(InkedControl);

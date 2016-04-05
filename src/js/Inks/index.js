@@ -1,3 +1,2 @@
-import Ink from './Ink';
-export default Ink;
-export InkHOC from './InkHOC';
+import injectInk from './injectInk';
+export default injectInk;

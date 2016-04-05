@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import { InkHOC } from '../Inks';
+import injectInk from '../Inks';
 
 class Tab extends Component {
   constructor(props) {
@@ -22,18 +22,18 @@ class Tab extends Component {
       PropTypes.number,
     ]),
     onChange: PropTypes.func,
-    inks: PropTypes.node.isRequired,
+    ink: PropTypes.node.isRequired,
   };
 
   render() {
-    const { className, icon, label, label2, checked, value, inks, onChange, ...props } = this.props;
+    const { className, icon, label, label2, checked, value, ink, onChange, ...props } = this.props;
 
     return (
       <div
         className={classnames('md-tab', className, { 'active': checked })}
         {...props}
       >
-        {inks}
+        {ink}
         <label
           className={classnames('md-tab-label', {
             'multiline': !!label && !!label2,
@@ -56,4 +56,4 @@ class Tab extends Component {
   }
 }
 
-export default InkHOC(Tab);
+export default injectInk(Tab);

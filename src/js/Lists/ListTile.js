@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { InkHOC } from '../Inks';
+import injectInk from '../Inks';
 
 class ListTile extends Component {
   constructor(props) {
@@ -19,18 +19,18 @@ class ListTile extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
 
-    // Injected from InkHOC
-    inks: PropTypes.node.isRequired,
+    // Injected from injectInk
+    ink: PropTypes.node.isRequired,
   };
 
   render() {
-    const { component, inks, className, children, ...props } = this.props;
+    const { component, ink, className, children, ...props } = this.props;
     return React.createElement(component, {
       role: 'button',
       ...props,
       className: classnames('md-list-tile', className),
-    }, [inks, children]);
+    }, [ink, children]);
   }
 }
 
-export default InkHOC(ListTile);
+export default injectInk(ListTile);
