@@ -28,10 +28,11 @@ export default class YearPicker extends Component {
     const { container } = this.refs;
     const active = container.querySelector('.md-year.active');
 
-    let scrollTop = container.scrollHeight - active.offsetTop - active.offsetHeight / 2;
+    // Position the active year in the center of the picker
+    let scrollTop = active.offsetTop - (container.offsetHeight * 1.5);
     if(container.offsetHeight < container.offsetWidth) {
-      // landscape
-      scrollTop -= container.offsetHeight / 2;
+      // Landscape is off by a bit for some reason
+      scrollTop -= (active.offsetHeight / 2);
     }
 
     container.scrollTop = scrollTop;
