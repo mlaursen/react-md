@@ -44,12 +44,11 @@ export default class Menu extends Component {
 
   componentDidUpdate(prevProps) {
     const { isOpen, autoclose, close } = this.props;
-    if(close && autoclose && isOpen && !prevProps.isOpen) {
+    if(!close || !autoclose || isOpen === prevProps.isOpen) { return; }
+    if(isOpen) {
       window.addEventListener('click', this.closeOnOutsideClick);
-    } else if(!isOpen && prevProps.isOpen) {
-      if(close && autoclose) {
-        window.removeEventListener('click', this.closeOnOutsideClick);
-      }
+    } else {
+      window.removeEventListener('click', this.closeOnOutsideClick);
     }
   }
 

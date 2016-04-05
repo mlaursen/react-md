@@ -202,6 +202,8 @@ export default class SelectField extends Component {
   };
 
   handleClick = (e) => {
+    // Prevents IE for toggling twice for some reason.
+    e.preventDefault();
     this.props.onClick && this.props.onClick(e);
     this.toggle();
   };
