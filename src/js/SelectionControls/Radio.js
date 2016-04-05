@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 import FontIcon from '../FontIcons';
-import InkedControl from './InkedControl';
+import ControlContainer from './ControlContainer';
 
 
 export default class Radio extends Component {
@@ -36,55 +35,7 @@ export default class Radio extends Component {
     uncheckedIcon: <FontIcon>radio_button_unchecked</FontIcon>,
   };
 
-  isChecked = () => {
-    return typeof this.props.checked === 'undefined' ? this.state.checked : this.props.checked;
-  };
-
-  handleChange = (e) => {
-    const { onChange, value } = this.props;
-    onChange && onChange(value, e);
-    // prevents 2 change events triggering
-    e.stopPropagation();
-  };
-
   render() {
-    const {
-      className,
-      disabled,
-      label,
-      labelBefore,
-      checkedIcon,
-      uncheckedIcon,
-      name,
-      checked,
-      value,
-      ...props,
-    } = this.props;
-
-    return (
-      <label
-        {...props}
-        className={classnames('md-control-container', className, { disabled })}
-      >
-        {labelBefore && label}
-        <input
-          disabled={disabled}
-          type="radio"
-          className="md-control-input"
-          checked={checked}
-          onChange={this.handleChange}
-          name={name}
-          value={value}
-        />
-        <InkedControl
-          type="radio"
-          checked={checked}
-          disabled={disabled}
-        >
-          {checked ? checkedIcon : uncheckedIcon}
-        </InkedControl>
-        {!labelBefore && label}
-      </label>
-    );
+    return <ControlContainer {...this.props} type="radio" />;
   }
 }

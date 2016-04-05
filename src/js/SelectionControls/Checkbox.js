@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 import FontIcon from '../FontIcons';
-import InkedControl from './InkedControl';
+import ControlContainer from './ControlContainer';
 
 
 export default class Checkbox extends Component {
@@ -10,7 +9,6 @@ export default class Checkbox extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { checked: props.defaultChecked };
   }
 
   static propTypes = {
@@ -37,56 +35,7 @@ export default class Checkbox extends Component {
     uncheckedIcon: <FontIcon>check_box_outline_blank</FontIcon>,
   };
 
-  isChecked = () => {
-    return typeof this.props.checked === 'undefined' ? this.state.checked : this.props.checked;
-  };
-
-  handleChange = (e) => {
-    const { onChange, checked } = this.props;
-    onChange && onChange(e);
-    if(typeof checked === 'undefined') {
-      this.setState({ checked: !this.state.checked });
-    }
-  };
-
   render() {
-    const checked = this.isChecked();
-    const {
-      className,
-      disabled,
-      label,
-      labelBefore,
-      checkedIcon,
-      uncheckedIcon,
-      name,
-      value,
-      ...props,
-    } = this.props;
-
-    return (
-      <label
-        {...props}
-        className={classnames('md-control-container', className, { disabled })}
-      >
-        {labelBefore && label}
-        <input
-          disabled={disabled}
-          type="checkbox"
-          className="md-control-input"
-          checked={checked}
-          onChange={this.handleChange}
-          name={name}
-          value={value}
-        />
-        <InkedControl
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-        >
-          {checked ? checkedIcon : uncheckedIcon}
-        </InkedControl>
-        {!labelBefore && label}
-      </label>
-    );
+    return <ControlContainer {...this.props} type="checkbox" />;
   }
 }
