@@ -167,6 +167,9 @@ export default ComposedComponent => class Ink extends Component {
         onMouseLeave={this.handleMouseLeave}
         onKeyUp={this.handleKeyUp}
         onBlur={this.handleBlur}
+        onTouchStart={this.handleTouchStart}
+        onTouchCancel={this.handleTouchEnd}
+        onTouchEnd={this.handleTouchEnd}
         ink={ink}
       >
         {children}
