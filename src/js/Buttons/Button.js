@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import Ink from '../Inks';
+import { InkHOC } from '../Inks';
 
-export default class Button extends Component {
+class Button extends Component {
   constructor(props) {
     super(props);
 
@@ -57,7 +57,7 @@ export default class Button extends Component {
       ...props,
     } = this.props;
 
-    const button = React.createElement(href ? 'a' : 'button', {
+    return React.createElement(href ? 'a' : 'button', {
       ...props,
       href: href,
       className: classnames('md-btn', className, {
@@ -65,10 +65,7 @@ export default class Button extends Component {
         'md-secondary': secondary,
       }),
     }, this.renderChildren());
-    return (
-      <Ink disabled={props.disabled}>
-        {button}
-      </Ink>
-    );
   }
 }
+
+export default InkHOC(Button);

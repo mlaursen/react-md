@@ -3,10 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
-import Ink from '../Inks';
-import Tooltip from '..//Tooltips';
+import { InkHOC } from '../Inks';
+import Tooltip from '../Tooltips';
 
-export default class IconButton extends Component {
+class IconButton extends Component {
   constructor(props) {
     super(props);
 
@@ -56,16 +56,13 @@ export default class IconButton extends Component {
       btnProps.type = type;
     }
 
-    let displayedChildren = children;
-    if(!(children && children.type && children.type === FontIcon)) {
-      displayedChildren = <FontIcon iconClassName={iconClassName}>{children}</FontIcon>;
+    const [ink, ...iconChildren] = React.Children.toArray(children);
+    const displayedChildren = [ink, iconChildren];
+    if(!(iconChildren.length && iconChildren.type && iconChildren.type === FontIcon)) {
+      displayedChildren[1] = <FontIcon key="icon" iconClassName={iconClassName}>{iconChildren[0]}</FontIcon>;
     }
 
-    const wrappedButton = (
-      <Ink disabled={disabled}>
-        {React.createElement(href ? 'a' : 'button', btnProps, displayedChildren)}
-      </Ink>
-    );
+    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, displayedChildren);
 
     if(tooltip) {
       return (
@@ -78,3 +75,5 @@ export default class IconButton extends Component {
     }
   }
 }
+
+export default InkHOC(IconButton);
