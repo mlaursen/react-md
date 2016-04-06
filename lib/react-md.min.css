@@ -102,7 +102,7 @@ body { -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; 
 
 .md-avatar-content { align-items: center; display: flex; font-size: 24px; height: 100%; justify-content: center; width: 100%; }
 
-.md-btn { display: inline-block; overflow: hidden; position: relative; text-transform: uppercase; transition-duration: 0.3s; transition-property: box-shadow, background, transform; vertical-align: top; }
+.md-btn { display: inline-block; position: relative; text-transform: uppercase; transition-duration: 0.3s; transition-property: box-shadow, background, transform; vertical-align: top; }
 .md-btn[disabled] { color: rgba(0, 0, 0, 0.38); }
 .md-btn[disabled]:not(.md-icon-btn) { background: rgba(153, 153, 153, 0.2); }
 .md-btn .md-icon { color: inherit; vertical-align: top; }
@@ -701,8 +701,6 @@ a.md-btn { color: rgba(0, 0, 0, 0.54); text-decoration: none; }
 .md-toolbar .action-area { display: flex; flex-grow: 1; justify-content: flex-end; }
 .md-toolbar .md-icon-btn { flex-shrink: 0; }
 .md-toolbar .md-text-field-container { padding: 0; }
-
-.md-tooltip-container { display: inline-block; position: relative; }
 
 .md-tooltip { background: #616161; opacity: 0; position: absolute; transition-duration: 0.15s; transition-property: opacity, transform; z-index: 22; }
 .md-tooltip.active { opacity: .9; transform: none; }
