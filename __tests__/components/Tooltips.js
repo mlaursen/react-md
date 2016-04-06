@@ -3,13 +3,16 @@ jest.unmock('../../src/js/constants/keyCodes');
 jest.unmock('../../src/js/Tooltips');
 jest.unmock('../../src/js/Tooltips/injectTooltip');
 
+// Expect a warning for style mutating since the style will be NaN
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import { injectTooltip } from '../../src/js/Tooltips';
+import injectTooltip from '../../src/js/Tooltips';
 import { TAB } from '../../src/js/constants/keyCodes';
 
 const findClass = TestUtils.findRenderedDOMComponentWithClass;
+const scryClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
 class Link extends React.Component {
   render() {
@@ -114,5 +117,14 @@ describe('injectTooltip', () => {
     TestUtils.Simulate.blur(tooltipLinkNode);
     tooltip = getTooltip();
     expect(tooltip.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('will not include a tooltip if the label is empty', () => {
+    const tooltipLink = TestUtils.renderIntoDocument(
+      <TooltipLink href="#">Woop</TooltipLink>
+    );
+
+    const tooltip = scryClass(tooltipLink, 'md-tooltip');
+    expect(tooltip.length).toBe(0);
   });
 });

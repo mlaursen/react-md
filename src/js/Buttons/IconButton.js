@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
 import injectInk from '../Inks';
-import { injectTooltip } from '../Tooltips';
+import injectTooltip from '../Tooltips';
 
 class IconButton extends Component {
   constructor(props) {
