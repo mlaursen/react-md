@@ -2,7 +2,6 @@
   @extend %button-unstyled;
 
   display: inline-block;
-  overflow: hidden;
   position: relative;
   text-transform: uppercase;
   transition-duration: $md-transition-time * 2;

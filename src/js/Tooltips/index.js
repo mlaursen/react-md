@@ -1,2 +1,2 @@
-import Tooltip from './Tooltip';
-export default Tooltip;
+import injectTooltip from './injectTooltip';
+export default injectTooltip;

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
 import injectInk from '../Inks';
-import Tooltip from '../Tooltips';
+import injectTooltip from '../Tooltips';
 
 class IconButton extends Component {
   constructor(props) {
@@ -18,15 +18,20 @@ class IconButton extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
     onClick: PropTypes.func,
-    tooltip: PropTypes.string,
-    tooltipClassName: PropTypes.string,
-    tooltipPosition: PropTypes.string,
     href: PropTypes.string,
     type: PropTypes.string,
     disabled: PropTypes.bool,
 
     // Injected from injectInk
     ink: PropTypes.node.isRequired,
+
+    // Inject from injectTooltip
+    tooltip: PropTypes.node,
+
+    // Consumed from injectTooltip
+    tooltipLabel: PropTypes.string,
+    tooltipPosition: PropTypes.string,
+    tooltipDelay: PropTypes.number,
   };
 
   static defaultProps = {
@@ -41,8 +46,6 @@ class IconButton extends Component {
       href,
       type,
       tooltip,
-      tooltipClassName,
-      tooltipPosition,
       disabled,
       ink,
       ...props,
@@ -65,18 +68,8 @@ class IconButton extends Component {
       displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
     }
 
-    const wrappedButton = React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren]);
-
-    if(tooltip) {
-      return (
-        <Tooltip text={tooltip} position={tooltipPosition} className={tooltipClassName} selector={btnProps.className}>
-          {wrappedButton}
-        </Tooltip>
-      );
-    } else {
-      return wrappedButton;
-    }
+    return React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren, tooltip]);
   }
 }
 
-export default injectInk(IconButton);
+export default injectTooltip(injectInk(IconButton));
