@@ -4,6 +4,7 @@
 
 %md-data-table-item {
   @extend %md-data-table-padding;
+
   text-align: left;
   white-space: nowrap;
 
@@ -21,7 +22,17 @@
 }
 
 %md-table-border-bottom {
-  border-bottom: 1px solid $md-border-color;
+  &:not(:last-child) {
+    border-bottom: 1px solid $md-border-color;
+  }
+}
+
+.md-data-table-container {
+  overflow-x: auto;
+}
+
+.md-data-table {
+  max-width: 100%;
 }
 
 .md-table-header-row {
@@ -59,6 +70,7 @@
 }
 
 .md-table-checkbox {
+  color: $md-icon-color;
 
   .md-checkbox {
     $margin: $md-data-table-padding - $md-icon-btn-padding;
