@@ -44,6 +44,11 @@ export default class ControlContainer extends Component {
     }
   };
 
+  handleClick = (e) => {
+    // Prevent 2 onChange after a click event
+    e.stopPropagation();
+  };
+
   render() {
     const isChecked = this.isChecked();
     const {
@@ -74,9 +79,10 @@ export default class ControlContainer extends Component {
           onChange={this.handleChange}
           name={name}
           value={value}
+          onClick={this.handleClick}
         />
         <InkedControl
-          type="radio"
+          type={type}
           checked={isChecked}
           disabled={disabled}
         >
