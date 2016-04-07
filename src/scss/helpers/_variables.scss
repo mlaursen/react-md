@@ -1504,3 +1504,19 @@ $md-navigation-drawer-desktop-width: 256px !default;
 /// @group navigation-drawers
 $md-navigation-drawer-mini-width: 72px !default;
 
+
+
+// ===================================================================================
+// Data Tables
+// ===================================================================================
+
+$md-data-table-content-font-size: 13px;
+$md-data-table-content-color: $md-text-color;
+$md-data-table-header-font-size: 12px;
+$md-data-table-header-color: $md-secondary-text-color;
+$md-data-table-hover-color: $md-grey-200;
+$md-data-table-selected-color: $md-grey-100;
+$md-data-table-checkbox-font-size: 18px;
+$md-data-table-header-height: 56px;
+$md-data-table-padding: 24px;
+$md-data-table-min-padding: 56px;
