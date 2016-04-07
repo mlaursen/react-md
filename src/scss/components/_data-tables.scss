@@ -1,46 +1,80 @@
-.md-data-table {
-  font-size: 13px;
+%md-data-table-padding {
+  padding-right: $md-data-table-padding;
+}
+
+%md-data-table-item {
+  @extend %md-data-table-padding;
   text-align: left;
-  width: 100%;
+  white-space: nowrap;
 
-  &.striped {
-    tr {
-      border-bottom: 1px solid $md-border-color;
-    }
+  &.grow {
+    width: 100%;
   }
 
-  .md-data-table-header {
-    color: rgba($md-black-base, .82);
-    font-size: #{20 / $md-font-size-base}em;
-    height: 64px;
+  &.numeric {
+    text-align: right;
   }
 
-  td,
-  th {
-    padding-left: 24px;
+  &.adjusted {
+    padding-right: $md-data-table-min-padding;
+  }
+}
+
+%md-table-border-bottom {
+  border-bottom: 1px solid $md-border-color;
+}
+
+.md-table-header-row {
+  @extend %md-table-border-bottom;
+}
+
+.md-table-row {
+  @extend %md-table-border-bottom;
+
+  transition: background $md-transition-time;
+
+  &.active {
+    background: $md-data-table-selected-color;
   }
 
-  td:last-child,
-  th:last-child {
-    padding-right: 24px;
+  &:hover {
+    background: $md-data-table-hover-color;
+  }
+}
+
+.md-table-header {
+  @extend %md-data-table-item;
+
+  color: $md-data-table-header-color;
+  font-size: $md-data-table-header-font-size;
+  height: $md-data-table-header-height;
+}
+
+.md-table-data {
+  @extend %md-data-table-item;
+
+  color: $md-data-table-content-color;
+  font-size: $md-data-table-content-font-size;
+  height: $md-height;
+}
+
+.md-table-checkbox {
+
+  .md-checkbox {
+    $margin: $md-data-table-padding - $md-icon-btn-padding;
+
+    margin-left: $margin;
+    margin-right: $margin;
   }
 
-  th {
-    color: rgba($md-black-base, .54);
-    font-size: 12px;
-    height: 56px;
-  }
+  .md-icon {
+    font-size: $md-data-table-checkbox-font-size;
+    padding: ($md-font-icon-size - $md-data-table-checkbox-font-size) / 2;
 
-  td {
-    color: rgba($md-black-base, .87);
-    height: 48px;
-  }
+    transition: color $md-transition-time;
 
-  tbody tr {
-    transition: background $md-transition-time;
-
-    &:hover {
-      background: $md-divider-color;
+    &.active {
+      color: $md-secondary-color;
     }
   }
 }
