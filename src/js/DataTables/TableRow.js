@@ -37,14 +37,6 @@ export default class TableRow extends Component {
     return typeof this.props.selected === 'undefined' ? this.state.selected : this.props.selected;
   };
 
-  handleClick = (e) => {
-    if(this.props.onClick) {
-      this.props.onClick(e);
-    } else {
-      this.handleCheckboxClick(e);
-    }
-  };
-
   handleCheckboxClick = (e) => {
     e.stopPropagation();
     const { onCheckboxClick, selected } = this.props;
@@ -56,14 +48,10 @@ export default class TableRow extends Component {
   };
 
   render() {
-    const { className, children, onClick, onCheckboxClick, ...props } = this.props;
+    const { className, children, onCheckboxClick, ...props } = this.props;
     const selected = this.isSelected();
     return (
-      <tr
-        className={classnames('md-table-row', className, { 'active': selected })}
-        {...props}
-        onClick={this.handleClick}
-      >
+      <tr {...props} className={classnames('md-table-row', className, { 'active': selected })}>
         <TableCheckbox key="checkbox" checked={selected} onClick={this.handleCheckboxClick} />
         {children}
       </tr>
