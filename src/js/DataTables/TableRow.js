@@ -1,16 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
 import TableCheckbox from './TableCheckbox';
 
 export default class TableRow extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       selected: props.defaultSelected,
+      biggest: null,
+      widths: [],
     };
   }
 
@@ -21,17 +22,19 @@ export default class TableRow extends Component {
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
     onClick: PropTypes.func,
     onCheckboxClick: PropTypes.func,
-
-    childrenValidation: (props) => {
-      if(props.children.length < 3) {
-        return new Error(`There must be at least 3 columns for a data table row. Only '${props.children.length}' were given.`);
-      }
-    },
   };
 
   static defaultProps = {
     defaultSelected: false,
   };
+
+  static contextTypes = {
+    plain: PropTypes.bool,
+  };
+
+  componentDidMount() {
+    this.setLongestColumn();
+  }
 
   isSelected = () => {
     return typeof this.props.selected === 'undefined' ? this.state.selected : this.props.selected;
@@ -47,13 +50,46 @@ export default class TableRow extends Component {
     }
   };
 
+  setLongestColumn = () => {
+    const widths = [];
+    const biggest = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-table-data,.md-table-header')).reduce((prev, curr, i) => {
+      const width = curr.offsetWidth;
+      widths.push(width);
+      if(prev.width < width) {
+        return { i, width };
+      } else {
+        return prev;
+      }
+    }, { width: 0, i: 0 });
+
+    this.setState({ biggest, widths });
+  };
+
   render() {
     const { className, children, onCheckboxClick, ...props } = this.props;
     const selected = this.isSelected();
+    const { biggest, widths } = this.state;
+
+    let checkbox;
+    if(!this.context.plain) {
+      checkbox = <TableCheckbox key="checkbox" checked={selected} onClick={this.handleCheckboxClick} />;
+    }
+
+    const columns = React.Children.map(children, (column, i) => {
+      return React.cloneElement(column, {
+        key: column.key || i,
+        ...column.props,
+        className: classnames(column.props.className, {
+          'grow': biggest && biggest.i === i,
+          // Not last item and the biggest width is greater than this item
+          'adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
+        }),
+      });
+    });
     return (
       <tr {...props} className={classnames('md-table-row', className, { 'active': selected })}>
-        <TableCheckbox key="checkbox" checked={selected} onClick={this.handleCheckboxClick} />
-        {children}
+        {checkbox}
+        {columns}
       </tr>
     );
   }

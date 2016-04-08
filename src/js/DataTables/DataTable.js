@@ -7,21 +7,35 @@ export default class DataTable extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = {
+      allSelected: false,
+      selectedRows: props.defaultSelected,
+    };
   }
 
   static propTypes = {
     className: PropTypes.string,
+    style: PropTypes.object,
     children: PropTypes.node,
-    uncheckedIconClassName: PropTypes.string.isRequired,
-    uncheckedIconChildren: PropTypes.node,
-    checkedIconClassName: PropTypes.string.isRequired,
-    checkedIconChildren: PropTypes.node,
-    onHeaderCheckboxClick: PropTypes.func,
+    allSelected: PropTypes.bool,
     defaultSelected: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.arrayOf(PropTypes.number),
     ]),
     multiselect: PropTypes.bool.isRequired,
+    responsive: PropTypes.bool.isRequired,
+
+    /**
+     * Boolean if this table should not include the checkboxes on each row.
+     * This really means that the entire table is unselectable and you wish
+     * to display as a normal table.
+     */
+    plain: PropTypes.bool,
+
+    uncheckedIconClassName: PropTypes.string.isRequired,
+    uncheckedIconChildren: PropTypes.node,
+    checkedIconClassName: PropTypes.string.isRequired,
+    checkedIconChildren: PropTypes.node,
   };
 
   static defaultProps = {
@@ -29,8 +43,8 @@ export default class DataTable extends Component {
     uncheckedIconClassName: 'material-icons',
     checkedIconChildren: 'check_box',
     checkedIconClassName: 'material-icons',
-    onHeaderCheckboxClick: function() {},
     multiselect: true,
+    responsive: true,
   };
 
   static childContextTypes = {
@@ -38,6 +52,11 @@ export default class DataTable extends Component {
     uncheckedIconChildren: PropTypes.node,
     checkedIconClassName: PropTypes.string.isRequired,
     checkedIconChildren: PropTypes.node,
+    selectedRows: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.number),
+    ]),
+    plain: PropTypes.bool,
   };
 
   getChildContext = () => {
@@ -46,6 +65,7 @@ export default class DataTable extends Component {
       uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
+      plain,
     } = this.props;
 
     return {
@@ -53,15 +73,18 @@ export default class DataTable extends Component {
       uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
+      plain,
     };
   };
 
   render() {
-    const { className, children } = this.props;
-    return (
-      <table className={classnames('md-data-table', className)}>
+    const { className, children, plain, style, responsive } = this.props;
+    const table = (
+      <table className={classnames('md-data-table', className, { 'full-width': plain })} style={style}>
         {children}
       </table>
     );
+
+    return responsive ? <div className="md-data-table-container">{table}</div> : table;
   }
 }
