@@ -59,11 +59,11 @@
     "classnames": "^2.2.0"
   },
   "peerDependencies": {
-    "react": "^0.14.x",
-    "react-addons-css-transition-group": "^0.14.x",
-    "react-addons-pure-render-mixin": "^0.14.x",
-    "react-addons-transition-group": "^0.14.x",
-    "react-dom": "^0.14.x"
+    "react": ">= 0.14.0",
+    "react-addons-css-transition-group": ">= 0.14.0",
+    "react-addons-pure-render-mixin": ">= 0.14.0",
+    "react-addons-transition-group": ">= 0.14.0",
+    "react-dom": ">= 0.14.0"
   },
   "jest": {
     "unmockedModulePathPatterns": [
