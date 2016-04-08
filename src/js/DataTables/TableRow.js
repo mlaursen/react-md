@@ -86,6 +86,7 @@ export default class TableRow extends Component {
         }),
       });
     });
+
     return (
       <tr {...props} className={classnames('md-table-row', className, { 'active': selected })}>
         {checkbox}

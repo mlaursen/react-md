@@ -2,6 +2,10 @@
   padding-right: $md-data-table-padding;
 }
 
+%md-data-table-adjusted-padding {
+  padding-right: $md-data-table-min-padding;
+}
+
 %md-data-table-item {
   @extend %md-data-table-padding;
 
@@ -17,7 +21,7 @@
   }
 
   &.adjusted {
-    padding-right: $md-data-table-min-padding;
+    @extend %md-data-table-adjusted-padding;
   }
 }
 
