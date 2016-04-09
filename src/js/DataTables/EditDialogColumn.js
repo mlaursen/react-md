@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { FlatButton } from '../Buttons';
 import TableColumn from './TableColumn';
 import TextField from '../TextFields';
-import { ENTER, TAB } from '../constants/keyCodes';
+import { ENTER, TAB, ESC } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
 
 /**
@@ -191,6 +191,8 @@ export default class EditDialogColumn extends Component {
       this.save();
     } else if(key === TAB) {
       e.preventDefault();
+    } else if(key === ESC) {
+      this.handleCancelClick(e);
     }
   };
 
