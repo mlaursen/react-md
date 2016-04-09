@@ -171,4 +171,8 @@ thead .md-table-row {
   .md-title {
     margin: 0;
   }
+
+  .md-dialog-footer {
+    margin-right: -$md-data-table-padding;
+  }
 }
