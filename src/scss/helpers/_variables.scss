@@ -1520,3 +1520,7 @@ $md-data-table-checkbox-font-size: 18px;
 $md-data-table-header-height: 56px;
 $md-data-table-padding: 24px;
 $md-data-table-min-padding: 56px;
+
+$md-edit-dialog-z-index: 3 !default;
+$md-edit-dialog-transition-time: $md-transition-time * 2 !default;
+$md-edit-dialog-min-width: 300px !default;

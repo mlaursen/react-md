@@ -117,3 +117,58 @@ thead .md-table-row {
     }
   }
 }
+
+.md-edit-dialog-column {
+  padding-right: 0;
+}
+
+.md-edit-dialog {
+  min-width: $md-edit-dialog-min-width;
+  transition-duration: $md-edit-dialog-transition-time;
+  transition-property: background, box-shadow, padding, top;
+
+  &.active,
+  &.animating {
+    position: absolute;
+    z-index: $md-edit-dialog-z-index;
+  }
+
+  &.animating {
+    top: ($md-height - $md-text-field-desktop-sl-height) / 2;
+  }
+
+  &:not(.active) .md-text-divider {
+    height: 0;
+  }
+
+  &.active {
+    @include md-box-shadow(1);
+
+    background: $md-background-color;
+    padding: $md-data-table-padding;
+    padding-bottom: 0;
+    top: 0;
+  }
+
+  .md-text-field-container {
+    @extend %full-width;
+
+    padding: 0;
+  }
+
+  .md-text-field {
+    @extend %full-width;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active:hover {
+      cursor: initial;
+    }
+  }
+
+  .md-title {
+    margin: 0;
+  }
+}
