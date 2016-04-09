@@ -176,7 +176,7 @@ export default class EditDialogColumn extends Component {
 
     const state = { active: true };
     if(!this.state.active) {
-      state.cancelValue = this.state.value || '';
+      state.cancelValue = this.getValue() || '';
     }
 
     this.setState(state);
