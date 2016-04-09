@@ -10,7 +10,7 @@ export default class TableCheckbox extends Component {
   }
 
   static propTypes = {
-    checked: PropTypes.bool.isRequired,
+    checked: PropTypes.bool,
   };
 
   static contextTypes = {

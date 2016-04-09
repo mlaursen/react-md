@@ -9,6 +9,7 @@
 %md-data-table-item {
   @extend %md-data-table-padding;
 
+  position: relative;
   text-align: left;
   white-space: nowrap;
 

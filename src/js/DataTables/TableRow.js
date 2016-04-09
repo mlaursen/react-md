@@ -4,50 +4,70 @@ import classnames from 'classnames';
 
 import TableCheckbox from './TableCheckbox';
 
+/**
+ * A component for displaying a row in a `DataTable`. This will
+ * automatically add a `Checkbox` component to the row if it is not
+ * a `plain` table.
+ *
+ * This component will also automatically adjust the padding between
+ * columns based on the longest column.
+ */
 export default class TableRow extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      selected: props.defaultSelected,
       biggest: null,
       widths: [],
     };
   }
 
   static propTypes = {
-    defaultSelected: PropTypes.bool,
+    /**
+     * Boolean if the row is currently selected. If this value will be
+     * injected by the `TableHeader` or `TableBody` component.
+     */
     selected: PropTypes.bool,
-    className: PropTypes.string,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
-    onClick: PropTypes.func,
-    onCheckboxClick: PropTypes.func,
-  };
 
-  static defaultProps = {
-    defaultSelected: false,
+    /**
+     * An optional className to apply to the row.
+     */
+    className: PropTypes.string,
+
+    /**
+     * A list of `TableColumn` to display in the table.
+     *
+     * > There should be at least 3 columns in a Data table (non plain
+     */
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+
+    /**
+     * An optional onClick function to call when a row is clicked.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * A function to call when the checkbox is clicked. This
+     * function will will be called with `(rowIndex, event)`. The
+     * `TableBody` and `TableHeader` components will automatically
+     * merge in a function to goggle the checkbox.
+     */
+    onCheckboxClick: PropTypes.func,
   };
 
   static contextTypes = {
     plain: PropTypes.bool,
+    header: PropTypes.bool,
   };
 
   componentDidMount() {
     this.setLongestColumn();
   }
 
-  isSelected = () => {
-    return typeof this.props.selected === 'undefined' ? this.state.selected : this.props.selected;
-  };
-
   handleCheckboxClick = (e) => {
     e.stopPropagation();
-    const { onCheckboxClick, selected } = this.props;
+    const { onCheckboxClick } = this.props;
     onCheckboxClick && onCheckboxClick(e);
-
-    if(typeof selected === 'undefined') {
-      this.setState({ selected: !this.state.selected });
-    }
   };
 
   setLongestColumn = () => {
@@ -66,8 +86,7 @@ export default class TableRow extends Component {
   };
 
   render() {
-    const { className, children, onCheckboxClick, ...props } = this.props;
-    const selected = this.isSelected();
+    const { className, children, onCheckboxClick, selected, ...props } = this.props;
     const { biggest, widths } = this.state;
 
     let checkbox;
@@ -79,6 +98,7 @@ export default class TableRow extends Component {
       return React.cloneElement(column, {
         key: column.key || i,
         ...column.props,
+        header: typeof column.props.header === 'undefined' ? this.context.header : column.props.header,
         className: classnames(column.props.className, {
           'grow': biggest && biggest.i === i,
           // Not last item and the biggest width is greater than this item

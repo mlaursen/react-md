@@ -11,7 +11,7 @@ export default class TableBody extends Component {
 
   static propTypes = {
     /**
-     * A single or list of `TableRow` components to render.
+     * A list or a single item of `TableRow` components to render.
      */
     children: PropTypes.node.isRequired,
   };

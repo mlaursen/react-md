@@ -3,6 +3,9 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import injectTooltip from '../Tooltips';
 
+/**
+ * A column in a table. This is either the `th` or `td` component.
+ */
 class TableColumn extends Component {
   constructor(props) {
     super(props);
@@ -11,10 +14,30 @@ class TableColumn extends Component {
   }
 
   static propTypes = {
+    /**
+     * The optional className for the table column
+     */
     className: PropTypes.string,
+
+    /**
+     * The children to display in the column.
+     */
     children: PropTypes.node,
+
+    /**
+     * A boolean if the column has numeric data. It will right-align the data.
+     */
     numeric: PropTypes.bool,
+
+    /**
+     * Boolean if this column should be adjusted with additional padding. This *should*
+     * be handled automatically by the `TableRow` component.
+     */
     adjusted: PropTypes.bool,
+
+    /**
+     * Boolean if this is a `th` component.
+     */
     header: PropTypes.bool.isRequired,
 
     /**

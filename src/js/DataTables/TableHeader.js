@@ -1,13 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 
+/**
+ * A `thead` component ot use in the `DataTable` component. This
+ * will automatically update the header row to check if it is selected
+ * and inject a function to toggle all rows selected if the row is
+ * uncontrolled. It will also automatically attempt to set the `TableColumn`
+ * components to be the header type.
+ */
 export default class TableHeader extends Component {
   constructor(props, context) {
     super(props, context);
   }
 
   static propTypes = {
+    /**
+     * An optional classname to apply to the table header
+     */
     className: PropTypes.string,
 
+    /**
+     * This should be a single `TableRow` component.
+     */
     children: (props, propName, component) => {
       try {
         React.Children.only(props.children);
@@ -17,9 +30,36 @@ export default class TableHeader extends Component {
     },
   };
 
-  static contextTypes = {
+  static childContextTypes = {
+    uncheckedIconClassName: PropTypes.string.isRequired,
+    uncheckedIconChildren: PropTypes.node,
+    checkedIconClassName: PropTypes.string.isRequired,
+    checkedIconChildren: PropTypes.node,
+    plain: PropTypes.bool,
     allSelected: PropTypes.bool.isRequired,
+    selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
     toggleAllRows: PropTypes.func.isRequired,
+    toggleSelectedRow: PropTypes.func.isRequired,
+    header: PropTypes.bool.isRequired,
+  };
+
+  static contextTypes = {
+    uncheckedIconClassName: PropTypes.string.isRequired,
+    uncheckedIconChildren: PropTypes.node,
+    checkedIconClassName: PropTypes.string.isRequired,
+    checkedIconChildren: PropTypes.node,
+    plain: PropTypes.bool,
+    allSelected: PropTypes.bool.isRequired,
+    selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    toggleAllRows: PropTypes.func.isRequired,
+    toggleSelectedRow: PropTypes.func.isRequired,
+  };
+
+  getChildContext = () => {
+    return {
+      ...this.context,
+      header: true,
+    };
   };
 
   render() {

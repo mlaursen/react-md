@@ -164,6 +164,7 @@ export default class DataTable extends Component {
     this.setState({
       rows,
       selectedRows,
+      allSelected: selectedRows.map(b => b).length === 0,
     });
   };
 
