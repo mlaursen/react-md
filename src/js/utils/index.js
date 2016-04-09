@@ -94,3 +94,24 @@ export function animate(el, increment, elapsedTime, transitionTime, styleName, s
     next(elapsedTime);
   }
 }
+
+/**
+ * Takes an event, a container node, and a function to call if the clicked
+ * element is not inside of the container node.
+ *
+ * @param {Object} event the click event
+ * @param {Object} node the container node to compare against
+ * @param {func} callback the function to call if the clicked element
+ *    is not inside the container node
+ */
+export function onOutsideClick(event, node, callback) {
+  let target = event.target;
+  if(target === node) { return; }
+
+  while(target.parentNode) {
+    if(target === node) { return; }
+    target = target.parentNode;
+  }
+
+  callback(event);
+}

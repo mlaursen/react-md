@@ -4,6 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { LEFT_MOUSE, LEFT, RIGHT } from '../constants/keyCodes';
+import { onOutsideClick } from '../utils';
 import SliderTrack from './SliderTrack';
 
 export default class Slider extends Component {
@@ -117,18 +118,7 @@ export default class Slider extends Component {
     });
   };
 
-  handleClickOutside = (e) => {
-    const node = ReactDOM.findDOMNode(this);
-    let target = e.target;
-
-    while(target.parentNode) {
-      if(node === target) { return; }
-
-      target = target.parentNode;
-    }
-
-    this.setState({ active: false });
-  };
+  handleClickOutside = e => onOutsideClick(e, ReactDOM.findDOMNode(this), () => this.setState({ active: false }));
 
   handleThumbStart = (e) => {
     if(this.props.disabled) { return; }
