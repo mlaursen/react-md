@@ -84,6 +84,33 @@ thead .md-table-row {
   font-size: $md-data-table-header-font-size;
   font-weight: $md-font-medium;
   height: $md-data-table-header-height;
+
+  &.sortable {
+    color: $md-text-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:not(:hover) .md-icon {
+      color: $md-text-color;
+    }
+  }
+
+  $padding: ($md-font-icon-size - $md-data-table-sort-icon-font-size) / 2;
+
+  .md-icon {
+    font-size: $md-data-table-sort-icon-font-size;
+    padding: $padding;
+    transition-duration: $md-transition-time;
+    transition-property: color, transform;
+  }
+
+  .inline-top {
+    display: inline-block;
+    padding: $padding;
+    vertical-align: top;
+  }
 }
 
 .md-table-data {

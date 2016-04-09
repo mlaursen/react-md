@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import injectTooltip from '../Tooltips';
+import FontIcon from '../FontIcons';
 
 /**
  * A column in a table. This is either the `th` or `td` component.
@@ -23,6 +24,25 @@ class TableColumn extends Component {
      * The children to display in the column.
      */
     children: PropTypes.node,
+
+    /**
+     * Boolean if the column is currently sorted. You should
+     * set this to true if you want a sortable column at first. You
+     * will also need to add an onClick function that sorts the rows.
+     *
+     * This value should really only be set in the `TableHeader` component.
+     */
+    sorted: PropTypes.bool,
+
+    /**
+     * The optional icon children to display in the sort icon.
+     */
+    sortIconChildren: PropTypes.node,
+
+    /**
+     * The icon className for the sort icon.
+     */
+    sortIconClassName: PropTypes.string.isRequired,
 
     /**
      * A boolean if the column has numeric data. It will right-align the data.
@@ -58,15 +78,32 @@ class TableColumn extends Component {
 
   static defaultProps = {
     header: false,
+    sortIconClassName: 'material-icons',
+    sortIconChildren: 'arrow_upward',
   };
 
   render() {
-    const { className, numeric, adjusted, header, children, tooltip, ...props } = this.props;
+    const { className, numeric, adjusted, header, children, tooltip, sorted, sortIconChildren, sortIconClassName, ...props } = this.props;
+    const sortable = typeof sorted === 'boolean';
+
+    let displayedChildren = [children, tooltip];
+    if(sortable) {
+      displayedChildren = [
+        <FontIcon
+          key="sort-icon"
+          className={!sorted ? 'flipped': null}
+          iconClassName={sortIconClassName}
+          children={sortIconChildren}
+        />,
+        <span key="children" className="inline-top">{children}</span>,
+        tooltip,
+      ];
+    }
 
     return React.createElement(header ? 'th' : 'td', {
-      className: classnames(`md-table-${header ? 'header' : 'data'}`, className, { numeric, adjusted }),
       ...props,
-      children: [children, tooltip],
+      className: classnames(`md-table-${header ? 'header' : 'data'}`, className, { numeric, adjusted, sortable }),
+      children: displayedChildren,
     });
   }
 }
