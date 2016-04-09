@@ -20,6 +20,7 @@ export default class EditDialogColumn extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
+      value: props.defaultValue,
       active: false,
       animating: false,
     };
@@ -53,6 +54,25 @@ export default class EditDialogColumn extends Component {
     maxLength: PropTypes.number,
 
     /**
+     * A value to use for the edit dialog text field. This
+     * will make the component controlled so you will need
+     * to provide an `onChange` function.
+     */
+    value: PropTypes.string,
+
+    /**
+     * An optional function to call when the text field's value
+     * is changed. It is called with `(newValue, changeEvent)`.
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * The default value for the column.
+     */
+    defaultValue: PropTypes.string,
+
+
+    /**
      * An optional onFocus function to call.
      */
     onFocus: PropTypes.func,
@@ -67,6 +87,9 @@ export default class EditDialogColumn extends Component {
      */
     onKeyDown: PropTypes.func,
 
+    /**
+     * Boolean if the edit dialog should be large.
+     */
     large: (props, propName, component) => {
       try {
         PropTypes.bool(props, propName, component);
@@ -83,10 +106,33 @@ export default class EditDialogColumn extends Component {
       }
     },
 
+    /**
+     * The title for the large edit dialog. This is required when large is true.
+     */
     title: PropTypes.string,
+
+    /**
+     * An optional function to call when the OK button is clicked.
+     * It is called with `(textFieldValue, clickEvent)`. This function
+     * will also be called when a user pressed the enter key.
+     */
     onOkClick: PropTypes.func,
+
+    /**
+     * The label to use for the OK button.
+     */
     okLabel: PropTypes.string.isRequired,
+
+    /**
+     * An optional function to call when the Cancel button is clicked.
+     * It is called with `(textFieldValueBeforeEdit, clickEvent)`. This
+     * function will also be called when the user presses the escape key.
+     */
     onCancelClick: PropTypes.func,
+
+    /**
+     * The label to use for the Cancel button.
+     */
     cancelLabel: PropTypes.string.isRequired,
   };
 
@@ -128,7 +174,12 @@ export default class EditDialogColumn extends Component {
   handleFocus = (e) => {
     this.props.onFocus && this.props.onFocus(e);
 
-    this.setState({ active: true });
+    const state = { active: true };
+    if(!this.state.active) {
+      state.cancelValue = this.state.value || '';
+    }
+
+    this.setState(state);
   };
 
   handleKeyDown = (e) => {
@@ -144,20 +195,32 @@ export default class EditDialogColumn extends Component {
   };
 
   save = (e) => {
-    this.props.onOkClick && this.props.onOkClick(this.refs.textField.getValue(), e);
+    this.props.onOkClick && this.props.onOkClick(this.getValue(), e);
 
     this.setState({ active: false });
   };
 
   handleCancelClick = (e) => {
-    this.props.onCancelClick(e);
+    this.props.onCancelClick(this.state.cancelValue, e);
 
-    this.setState({ active: false });
+    this.setState({ active: false, value: this.state.cancelValue });
+  };
+
+  getValue = () => {
+    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
+  };
+
+  handleChange = (value, e) => {
+    this.props.onChange && this.props.onChange(value, e);
+    if(typeof this.props.value === 'undefined') {
+      this.setState({ value });
+    }
   };
 
   render() {
     const { active, animating } = this.state;
     const {
+      defaultValue,
       columnClassName,
       className,
       maxLength,
@@ -170,6 +233,7 @@ export default class EditDialogColumn extends Component {
       ...props,
     } = this.props;
 
+    const value = this.getValue();
     let actions, largeTitle;
     if(large && active) {
       actions = (
@@ -196,10 +260,11 @@ export default class EditDialogColumn extends Component {
           {largeTitle}
           <TextField
             {...props}
-            ref="textField"
             floatingLabel={false}
             onKeyDown={this.handleKeyDown}
             onFocus={this.handleFocus}
+            value={value}
+            onChange={this.handleChange}
             maxLength={active ? maxLength : null}
           />
           {actions}
