@@ -128,7 +128,7 @@ export default class EditDialogColumn extends Component {
   };
 
   static defaultProps = {
-    transitionDuration: 150,
+    transitionDuration: 300,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
     onOkClick: () => {},
@@ -181,7 +181,7 @@ export default class EditDialogColumn extends Component {
     if(key === ENTER) {
       this.save();
     } else if(key === TAB) {
-      e.preventDefault();
+      this.overrideTab(e);
     } else if(key === ESC) {
       this.handleCancelClick(e);
     }
@@ -210,6 +210,32 @@ export default class EditDialogColumn extends Component {
     }
   };
 
+  overrideTab = (e) => {
+    const { large } = this.props;
+    const key = e.which || e.keyCode;
+    if(key !== TAB) { return; }
+
+    if(!large) {
+      e.preventDefault();
+      return;
+    }
+
+    const { shiftKey } = e;
+    const { classList } = e.target;
+
+    let nextFocus;
+    if(classList.contains('md-text-field') && shiftKey) {
+      nextFocus = ReactDOM.findDOMNode(this.refs.okButton);
+    } else if(classList.contains('md-btn') && !shiftKey) {
+      nextFocus = ReactDOM.findDOMNode(this.refs.textField).querySelector('.md-text-field');
+    }
+
+    if(nextFocus) {
+      e.preventDefault();
+      nextFocus.focus();
+    }
+  };
+
   render() {
     const { active, animating } = this.state;
     const {
@@ -232,7 +258,7 @@ export default class EditDialogColumn extends Component {
       actions = (
         <footer className="md-dialog-footer">
           <FlatButton label={cancelLabel} onClick={this.handleCancelClick} primary={true} />
-          <FlatButton label={okLabel} onClick={this.save} primary={true} />
+          <FlatButton ref="okButton" label={okLabel} onClick={this.save} primary={true} onKeyDown={this.overrideTab} />
         </footer>
       );
 
@@ -253,6 +279,7 @@ export default class EditDialogColumn extends Component {
           {largeTitle}
           <TextField
             {...props}
+            ref="textField"
             floatingLabel={false}
             onKeyDown={this.handleKeyDown}
             onFocus={this.handleFocus}
