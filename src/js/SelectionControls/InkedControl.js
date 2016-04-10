@@ -18,7 +18,7 @@ class InkedControl extends Component {
     checked: PropTypes.bool,
 
     // Injected from injectInk
-    ink: PropTypes.node.isRequired,
+    ink: PropTypes.node,
   };
 
   render() {

@@ -24,7 +24,7 @@ class Button extends Component {
     href: PropTypes.string,
 
     // Injected from injectInk
-    ink: PropTypes.node.isRequired,
+    ink: PropTypes.node,
   };
 
   static defaultProps = {
