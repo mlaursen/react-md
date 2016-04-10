@@ -7,7 +7,7 @@
 ///
 /// @group select-fields
 @mixin md-select-field-mobile() {
-  .md-menu.md-select-field-menu {
+  .md-menu.md-select-field-menu:not(.md-transition-below) {
     top: $md-select-field-mobile-top;
 
     &.single-line {
@@ -25,11 +25,20 @@
 ///
 /// @group select-fields
 @mixin md-select-field-desktop() {
-  .md-menu.md-select-field-menu {
+  .md-menu.md-select-field-menu:not(.md-transition-below) {
     top: $md-select-field-desktop-top;
 
     &.single-line {
       top: -$md-list-desktop-top-padding;
+    }
+  }
+
+  .md-toolbar,
+  .md-drawer-header {
+    .md-select-field-container.select-field-btn {
+      height: $md-toolbar-desktop-height;
+      padding-bottom: 12px;
+      padding-top: 12px;
     }
   }
 }

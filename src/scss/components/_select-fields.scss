@@ -14,10 +14,45 @@
       cursor: pointer;
     }
   }
+
+  &.select-field-btn {
+    padding-left: $md-select-field-padding-left;
+    transition: box-shadow $md-transition-time;
+
+    .md-text-divider {
+      display: none;
+    }
+
+    &.active,
+    &:active {
+      @include md-box-shadow(2);
+    }
+  }
 }
 
 .md-select-field {
   &:focus {
     user-select: none;
+  }
+}
+
+.md-list-tile.select-field-btn-tile {
+  padding-left: $md-select-field-padding-left;
+}
+
+.md-data-table .md-select-field-container {
+  padding: 0;
+
+  .md-text-field {
+    height: $md-height;
+    padding: $md-select-field-padding;
+    padding-left: $md-select-field-padding-left;
+  }
+
+  .md-text-field-ind {
+    $padding: ($md-height - $md-font-icon-size) / 2;
+
+    padding-bottom: $padding;
+    padding-top: $padding;
   }
 }

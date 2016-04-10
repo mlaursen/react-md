@@ -23,7 +23,7 @@ class IconButton extends Component {
     disabled: PropTypes.bool,
 
     // Injected from injectInk
-    ink: PropTypes.node.isRequired,
+    ink: PropTypes.node,
 
     // Inject from injectTooltip
     tooltip: PropTypes.node,

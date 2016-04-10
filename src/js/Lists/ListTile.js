@@ -20,7 +20,7 @@ class ListTile extends Component {
     children: PropTypes.node,
 
     // Injected from injectInk
-    ink: PropTypes.node.isRequired,
+    ink: PropTypes.node,
   };
 
   render() {

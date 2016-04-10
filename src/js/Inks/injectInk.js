@@ -5,7 +5,7 @@ import TransitionGroup from 'react-addons-transition-group';
 
 import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
-import { getOffset } from '../utils';
+import { getOffset, isTouchDevice } from '../utils';
 
 /**
  * Takes any component and injects an ink container along with event
@@ -35,6 +35,7 @@ export default ComposedComponent => class Ink extends Component {
     onTouchEnd: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.node,
+    inkDisabled: PropTypes.bool,
   };
 
   calcR = (a, b) => {
@@ -97,8 +98,12 @@ export default ComposedComponent => class Ink extends Component {
     this.setState({ inks });
   };
 
+  disabled = () => {
+    return this.props.disabled || this.props.inkDisabled;
+  };
+
   handleMouseDown = (e) => {
-    if(this.props.disabled || this.invalidClickEvent(e)) { return; }
+    if(isTouchDevice || this.invalidClickEvent(e)) { return; }
     e.stopPropagation();
 
     this.createInk(e.pageX, e.pageY);
@@ -109,23 +114,23 @@ export default ComposedComponent => class Ink extends Component {
 
   handleMouseLeave = (e) => {
     this.props.onMouseLeave && this.props.onMouseLeave(e);
-    if(!this.props.disabled) {
-      this.popInk();
-      this.setState({
-        skipMouseUp: true,
-      });
-    }
+    if(isTouchDevice) { return; }
+
+    this.popInk();
+    this.setState({
+      skipMouseUp: true,
+    });
   };
 
   handleMouseUp = (e) => {
     this.props.onMouseUp && this.props.onMouseUp(e);
-    if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
+    if(this.invalidClickEvent(e) || isTouchDevice || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
   handleTouchStart = (e) => {
     this.props.onTouchStart && this.props.onTouchStart(e);
-    if(this.props.disabled) { return; }
+
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
@@ -133,26 +138,28 @@ export default ComposedComponent => class Ink extends Component {
 
   handleTouchEnd = (e) => {
     this.props.onTouchEnd && this.props.onTouchEnd(e);
-    if(this.props.disabled) { return; }
     this.popInk();
   };
 
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
-    if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
-      this.createInk();
-    }
+    if((e.which || e.keyCode) !== TAB) { return; }
+    this.createInk();
   };
 
   handleBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
-    if(!this.props.disabled) {
-      this.popInk();
-    }
+    this.popInk();
   };
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, inkDisabled, ...props } = this.props;
+
+    // Don't inject ink and new props if disabled
+    if(this.disabled()) {
+      return <ComposedComponent {...props} children={children} />;
+    }
+
     const ink = (
       <TransitionGroup className="md-ink-container" key="ink-container">
         {this.state.inks.map(ink => <InkTransition key={ink.time.getTime()} {...ink} />)}

@@ -73,6 +73,28 @@
   transform-origin: 0 100%;
 }
 
+.md-transition-below {
+  top: 100%;
+  transform-origin: 50% 0;
+  width: 100%;
+
+  &.md-menu-enter {
+    transform: scaleY(0);
+
+    &.md-menu-enter-active {
+      transform: scaleY(1);
+    }
+  }
+
+  &.md-menu-leave {
+    transform: scaleY(1);
+
+    &.md-menu-leave-active {
+      transform: scaleY(0);
+    }
+  }
+}
+
 .md-menu-enter {
   transform: scale(0);
 
