@@ -5,7 +5,12 @@ import injectTooltip from '../Tooltips';
 import FontIcon from '../FontIcons';
 
 /**
- * A column in a table. This is either the `th` or `td` component.
+ * A column in a table. This is either the `th` or `td` component. This column
+ * can be automatically configured to be adjusted with additional padding
+ * or auto expand to fill the remaining table space if the `TableRow` component
+ * has `autoAdjust` set to `true`. If you would like to prevent this column
+ * for being a candidate for auto expanding to remaining space, add the className
+ * `.prevent-grow`.
  */
 class TableColumn extends Component {
   constructor(props) {

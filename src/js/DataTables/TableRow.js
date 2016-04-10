@@ -57,7 +57,8 @@ export default class TableRow extends Component {
 
     /**
      * A boolean if the row should automatically check all the `TableColumn`s in the row
-     * and add the className `grow` to the one that is the biggest.
+     * and add the className `grow` to the one that is the biggest. You can also disable
+     * individual columns by adding the className `.prevent-grow` to them.
      */
     autoAdjust: PropTypes.bool.isRequired,
   };
@@ -85,11 +86,7 @@ export default class TableRow extends Component {
 
   setLongestColumn = () => {
     const widths = [];
-    const biggest = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-table-data,.md-table-header')).reduce((prev, curr, i) => {
-      if(curr.classList.contains('prevent-grow')) {
-        return prev;
-      }
-
+    const biggest = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)')).reduce((prev, curr, i) => {
       const width = curr.offsetWidth;
       widths.push(width);
       if(prev.width < width) {
