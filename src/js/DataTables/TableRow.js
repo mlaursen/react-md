@@ -10,7 +10,7 @@ import TableCheckbox from './TableCheckbox';
  * a `plain` table.
  *
  * This component will also automatically adjust the padding between
- * columns based on the longest column if the `autoFindLongest` prop
+ * columns based on the longest column if the `autoAdjust` prop
  * is set to true.
  */
 export default class TableRow extends Component {
