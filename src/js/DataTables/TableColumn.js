@@ -31,9 +31,10 @@ class TableColumn extends Component {
     children: PropTypes.node,
 
     /**
-     * Boolean if the column is currently sorted. You should
-     * set this to true if you want a sortable column at first. You
-     * will also need to add an onClick function that sorts the rows.
+     * Boolean if the column is currently sorted. If this prop is not `undefined`,
+     * it will add the sort icon unto this column. You will also need to use the
+     * `onClick` function to toggle the `sorted` prop as well as handling the sorting
+     * of data.
      *
      * This value should really only be set in the `TableHeader` component.
      */
@@ -56,7 +57,7 @@ class TableColumn extends Component {
 
     /**
      * Boolean if this column should be adjusted with additional padding. This *should*
-     * be handled automatically by the `TableRow` component.
+     * be handled automatically by the `TableRow` component but can be set manually as well.
      */
     adjusted: PropTypes.bool,
 
