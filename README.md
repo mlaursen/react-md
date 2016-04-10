@@ -63,7 +63,6 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 
 * Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
 * Autocomplete
-* Data Tables -- there is some starter css for tables in [\_data-tables.scss](../master/src/scss/components/_data-tables.scss) but no components with functionality.
 * Bottom sheets
 * Grid lists
 * Steppers

@@ -4,6 +4,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import classnames from 'classnames';
 
 import { ESC } from '../constants/keyCodes';
+import { onOutsideClick } from '../utils';
 import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils/dates';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
@@ -86,16 +87,7 @@ export default class TimePickerContainer extends Component {
     }
   }
 
-  closeOnOutside = (e) => {
-    const { container } = this.refs;
-    let target = e.target;
-    while(target.parentNode) {
-      if(target === container) { return; }
-      target = target.parentNode;
-    }
-
-    this.close();
-  };
+  closeOnOutside = e => onOutsideClick(e, this.refs.container, this.close);
 
   closeOnEsc = (e) => {
     if((e.which || e.keyCode) === ESC) {

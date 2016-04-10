@@ -15,12 +15,16 @@ export default class Switch extends Component {
   static propTypes = {
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    defaultToggled: PropTypes.bool,
+    defaultToggled: PropTypes.bool.isRequired,
     toggled: PropTypes.bool,
     onChange: PropTypes.func,
     value: PropTypes.string,
     label: PropTypes.node,
     labelBefore: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    defaultToggled: false,
   };
 
   toggleCheck = (e) => {

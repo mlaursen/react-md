@@ -96,7 +96,7 @@ $md-border-color: if($md-light-theme, rgba($md-black-base, .1), rgba($md-white-b
 
 /// The default transition time to use on most css that have animations/transitions.
 ///
-/// @type Number
+/// @type Time
 /// @group transitions
 $md-transition-time: .15s !default;
 
@@ -104,19 +104,25 @@ $md-transition-time: .15s !default;
 /// The default z-index for any `.md-overlay` or any overlay in the app.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, overlay
 $md-overlay-z-index: 3 !default;
+
+/// The default z-index for the Data table's edit dialog.
+///
+/// @type Number
+/// @group z-indexes, data-tables
+$md-edit-dialog-z-index: 3 !default;
 
 /// The default z-index for the Dropdown component.
 ///
 /// @type Number
-/// @group dropdown
+/// @group z-indexes, dropdowns
 $md-dropdown-z-index: 4 !default;
 
 /// The default z-index for the sidebar that is not fixed.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, sidebars
 $md-sidebar-z-index: 5 !default;
 
 /// The default z-index for the sidebar that is fixed to the side.
@@ -124,7 +130,7 @@ $md-sidebar-z-index: 5 !default;
 /// for the dialog z-index
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, sidebars
 /// @see md-sidebar-z-index
 /// @see md-dialog-z-index
 $md-sidebar-fixed-z-index: 10 !default;
@@ -132,38 +138,38 @@ $md-sidebar-fixed-z-index: 10 !default;
 /// The default z-index for a fixed toolbar.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, toolbars
 $md-toolbar-z-index: 6 !default;
 
 /// The default z-index for the fixed floating action button.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, buttons-fab
 $md-fab-z-index: 8 !default;
 
 /// The default z-index for the navigation-drawer
 ///
 /// @type Number
-/// @group navigation-drawers
+/// @group z-indexes, navigation-drawers
 $md-navigation-drawer-z-index: 10 !default;
 
 /// The default z-index for the snackbar component.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexesm snackbars
 $md-snackbar-z-index: 11 !default;
 
 /// The default z-index for the temporary navigation-drawer
 ///
 /// @type Number
-/// @group navigation-drawers
+/// @group z-indexes, navigation-drawers
 $md-navigation-drawer-temporary-z-index: 12 !default;
 
 
 /// The default z-index for the dialog component.
 ///
 /// @type Number
-/// @group z-indexes
+/// @group z-indexes, dialogs
 $md-dialog-z-index: 26 !default;
 
 
@@ -596,7 +602,7 @@ $md-tab-multiline-font-size: 12px;
 
 /// The time it takes for the indicator of the active tab to transition.
 ///
-/// @type String
+/// @type Time
 /// @group tabs
 $md-tab-indicator-transition-time: $md-transition-time * 2 !default;
 
@@ -1187,7 +1193,7 @@ $md-dialog-overlay-color: rgba($md-black-base, .45);
 
 /// The time it takes for a dialog to appear/disappear.
 ///
-/// @type String
+/// @type Time
 /// @group dialogs
 $md-dialog-transition-time: $md-transition-time * 2 !default;
 
@@ -1267,7 +1273,7 @@ $md-date-picker-calendar-date-font-size: 13px !default;
 
 /// The time it takes for the circle to animate for the date picker.
 ///
-/// @type String
+/// @type Time
 /// @group pickers
 $md-date-picker-transition-time: $md-transition-time * 2 !default;
 
@@ -1504,3 +1510,87 @@ $md-navigation-drawer-desktop-width: 256px !default;
 /// @group navigation-drawers
 $md-navigation-drawer-mini-width: 72px !default;
 
+
+
+// ===================================================================================
+// Data Tables
+// ===================================================================================
+
+/// The font size for content inside of the `TableBody` component.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-content-font-size: 13px;
+
+/// The text color for the content inside of the `TableBody` component.
+///
+/// @type Color
+/// @group data-tables
+$md-data-table-content-color: $md-text-color;
+
+/// The font size for the content inside of the `TableHeader` component.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-header-font-size: 12px;
+
+/// The text color for the content inside of the `TableHeader` component.
+///
+/// @type Color
+/// @group data-tables
+$md-data-table-header-color: $md-secondary-text-color;
+
+/// The `TableRow` hover color inside of the `TableBody` component.
+///
+/// @type Color
+/// @group data-tables
+$md-data-table-hover-color: $md-grey-200;
+
+/// The `TableRow` background color for a row that has been selected.
+///
+/// @type Color
+/// @group data-tables
+$md-data-table-selected-color: $md-grey-100;
+
+/// The font size for a checkbox in a `DataTable`.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-checkbox-font-size: 18px;
+
+/// The height for the `TableHeader`'s row.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-header-height: 56px;
+
+/// The default left/right padding for a `TableColumn`.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-padding: 24px;
+
+/// The minimum distance between a cell's content and the next cell.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-min-padding: 56px;
+
+/// The default transition time for the edit dialog when changing between
+/// active and inactive.
+///
+/// @type Time
+/// @group data-tables
+$md-edit-dialog-transition-time: $md-transition-time * 2 !default;
+
+/// The default min width for the data table's edit dialog cell.
+///
+/// @type String
+/// @group data-tables
+$md-edit-dialog-min-width: 300px !default;
+
+/// The data table's sort icon font size.
+///
+/// @type String
+/// @group data-tables
+$md-data-table-sort-icon-font-size: 16px;

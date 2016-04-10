@@ -5,6 +5,8 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 import { List } from '../Lists';
 
+import { onOutsideClick } from '../utils';
+
 export default class Menu extends Component {
   constructor(props) {
     super(props);
@@ -56,16 +58,7 @@ export default class Menu extends Component {
     window.removeEventListener('click', this.closeOnOutsideClick);
   }
 
-  closeOnOutsideClick = (e) => {
-    const container = ReactDOM.findDOMNode(this.refs.container);
-    let target = e.target;
-    while(target.parentNode) {
-      if(target === container) { return; }
-      target = target.parentNode;
-    }
-
-    this.props.close(e);
-  };
+  closeOnOutsideClick = (e) => onOutsideClick(e, ReactDOM.findDOMNode(this.refs.container), this.props.close);
 
   render() {
     const {

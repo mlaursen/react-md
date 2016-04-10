@@ -7,6 +7,7 @@ import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
+import { onOutsideClick } from '../utils';
 import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
@@ -125,16 +126,7 @@ export default class DatePickerContainer extends Component {
     }
   };
 
-  closeOnOutside = (e) => {
-    const { container } = this.refs;
-    let target = e.target;
-    while(target.parentNode) {
-      if(target === container) { return; }
-      target = target.parentNode;
-    }
-
-    this.close();
-  };
+  closeOnOutside = e => onOutsideClick(e, this.refs.container, this.close);
 
   toggleOpen = () => {
     this.setState({ isOpen: !this.state.isOpen });
