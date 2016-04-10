@@ -79,3 +79,11 @@ a.md-btn {
     }
   }
 }
+
+.md-toolbar,
+.md-navigation-drawer-toolbar,
+.md-drawer-header {
+  .md-btn {
+    color: inherit;
+  }
+}
