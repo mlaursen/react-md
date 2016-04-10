@@ -135,6 +135,11 @@ export default class SelectField extends Component {
     noAutoAdjust: PropTypes.bool,
 
     /**
+     * Boolean if the select field is disabled.
+     */
+    disabled: PropTypes.bool,
+
+    /**
      * The icon className for the dropdown indicator.
      */
     iconClassName: PropTypes.string.isRequired,
@@ -312,6 +317,8 @@ export default class SelectField extends Component {
     // Prevents IE for toggling twice for some reason.
     e.preventDefault();
     this.props.onClick && this.props.onClick(e);
+    if(this.props.disabled) { return; }
+
     this.toggle();
   };
 
@@ -348,6 +355,7 @@ export default class SelectField extends Component {
       menuClassName,
       iconClassName,
       iconChildren,
+      disabled,
       ...props,
     } = this.props;
 
@@ -365,6 +373,7 @@ export default class SelectField extends Component {
         onKeyDown={this.handleKeyDown}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
+        disabled={disabled}
       />
     );
 
