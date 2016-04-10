@@ -56,7 +56,8 @@ class TableColumn extends Component {
     adjusted: PropTypes.bool,
 
     /**
-     * Boolean if this is a `th` component.
+     * Boolean if this is a `th` component. This value **should** be set
+     * automatically for you if it is in the `TableHeader` component.
      */
     header: PropTypes.bool.isRequired,
 
@@ -68,7 +69,7 @@ class TableColumn extends Component {
     /**
      * The position of the tooltip.
      */
-    tooltipPosition: PropTypes.bool,
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
      * The optionally injected tooltip from the `injectTooltip` higher order component.

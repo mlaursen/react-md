@@ -14,12 +14,13 @@ export default class TableHeader extends Component {
 
   static propTypes = {
     /**
-     * An optional classname to apply to the table header
+     * An optional className to apply to the table header
      */
     className: PropTypes.string,
 
     /**
-     * This should be a single `TableRow` component.
+     * This should be a single `TableRow` component. The `custom` validation will
+     * warn you if there are more than one children given or none at all.
      */
     children: (props, propName, component) => {
       try {

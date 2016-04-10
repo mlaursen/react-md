@@ -10,7 +10,8 @@ import TableCheckbox from './TableCheckbox';
  * a `plain` table.
  *
  * This component will also automatically adjust the padding between
- * columns based on the longest column.
+ * columns based on the longest column if the `autoFindLongest` prop
+ * is set to true.
  */
 export default class TableRow extends Component {
   constructor(props, context) {
@@ -37,7 +38,7 @@ export default class TableRow extends Component {
     /**
      * A list of `TableColumn` to display in the table.
      *
-     * > There should be at least 3 columns in a Data table (non plain
+     * > There should be at least 3 columns in a Data table (non plain)
      */
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
 
@@ -53,6 +54,16 @@ export default class TableRow extends Component {
      * merge in a function to goggle the checkbox.
      */
     onCheckboxClick: PropTypes.func,
+
+    /**
+     * A boolean if the row should automatically check all the `TableColumn`s in the row
+     * and add the className `grow` to the one that is the biggest.
+     */
+    autoAdjust: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    autoAdjust: true,
   };
 
   static contextTypes = {
@@ -61,7 +72,9 @@ export default class TableRow extends Component {
   };
 
   componentDidMount() {
-    this.setLongestColumn();
+    if(this.props.autoAdjust) {
+      this.setLongestColumn();
+    }
   }
 
   handleCheckboxClick = (e) => {

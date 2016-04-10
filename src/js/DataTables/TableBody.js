@@ -28,6 +28,9 @@ export default class TableBody extends Component {
 
     const rows = React.Children.map(children, (row, i) => {
       const uncontrolled = typeof row.props.selected === 'undefined';
+
+      // Update the row to inject the selected prop from context if it is uncontrolled.
+      // Also update the onCheckbox click function to additionally toggle the row if uncontrolled.
       return React.cloneElement(row, {
         ...row.props,
         key: row.key || i,

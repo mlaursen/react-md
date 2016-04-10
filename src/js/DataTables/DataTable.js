@@ -5,9 +5,9 @@ import classnames from 'classnames';
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
- * This can either be a _plain_ table or a _data_ table.
+ * This can either be a __plain__ table or a __data__ table.
  *
- * A _data_ table will include checkboxes on each row while a _plain_ table
+ * A __data__ table will include checkboxes on each row while a __plain__ table
  * will not.
  */
 export default class DataTable extends Component {
@@ -46,11 +46,6 @@ export default class DataTable extends Component {
     defaultSelectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
 
     /**
-     * Boolean if multiple rows can be selected.
-     */
-    multiselect: PropTypes.bool.isRequired,
-
-    /**
      * Boolean if the table is responsive. This will wrap the table in a container
      * that allows scrolling to the right if overflow exists.
      */
@@ -80,6 +75,7 @@ export default class DataTable extends Component {
      * will be passed down as `context`.
      */
     checkedIconClassName: PropTypes.string.isRequired,
+
     /**
      * The icon children to use for the checked row icon. This value
      * will be passed down as `context`.
@@ -93,7 +89,6 @@ export default class DataTable extends Component {
     checkedIconChildren: 'check_box',
     checkedIconClassName: 'material-icons',
     defaultSelectedRows: [],
-    multiselect: true,
     responsive: true,
   };
 
@@ -132,7 +127,7 @@ export default class DataTable extends Component {
   };
 
   componentDidMount() {
-    this.updateRowCount();
+    this.initializeRows();
   }
 
   toggleAllRows = () => {
@@ -153,7 +148,7 @@ export default class DataTable extends Component {
     });
   };
 
-  updateRowCount = () => {
+  initializeRows = () => {
     const rows = ReactDOM.findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
 
     const selectedRows = [];
@@ -162,7 +157,6 @@ export default class DataTable extends Component {
     }
 
     this.setState({
-      rows,
       selectedRows,
       allSelected: selectedRows.map(b => b).length === 0,
     });
