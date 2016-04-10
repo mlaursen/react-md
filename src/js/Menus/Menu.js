@@ -85,6 +85,8 @@ export default class Menu extends Component {
     } = this.props;
 
     const items = isOpen && React.Children.map(children, (child, key) => {
+      if(!child) { return child; }
+
       return React.cloneElement(child, {
         key: child.key || key,
         onClick: (e) => {

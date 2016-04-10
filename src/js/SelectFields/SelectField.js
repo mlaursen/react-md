@@ -30,7 +30,7 @@ export default class SelectField extends Component {
   static Positions = {
     TOP_LEFT: Menu.Positions.TOP_LEFT,
     TOP_RIGHT: Menu.Positions.TOP_RIGHT,
-    BOTTOM: Menu.Positions.BELOW,
+    BELOW: Menu.Positions.BELOW,
   };
 
   static propTypes = {
@@ -123,7 +123,7 @@ export default class SelectField extends Component {
      * ```js
      * SelectField.Positions.TOP_LEFT,
      * SelectField.Positions.TOP_RIGHT,
-     * SelectField.Positions.BOTTOM
+     * SelectField.Positions.BELOW
      * ```
      */
     position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
@@ -246,7 +246,7 @@ export default class SelectField extends Component {
 
     const { position } = this.props;
     let transformOrigin, top;
-    if(SelectField.Positions.BOTTOM !== position) {
+    if(SelectField.Positions.BELOW !== position) {
       const x = SelectField.Positions.TOP_LEFT === position ? '0' : '100%';
       const y = (diff < 0 ? 0 : height) + (height / 2) + paddingTop;
       transformOrigin = `${x} ${y}px`;
@@ -390,7 +390,7 @@ export default class SelectField extends Component {
           'single-line': !floatingLabel,
         })}
         position={position}
-        below={SelectField.Positions.BOTTOM === position}
+        below={SelectField.Positions.BELOW === position}
         {...props}
       >
         {menuItems.map((item, i) => {
