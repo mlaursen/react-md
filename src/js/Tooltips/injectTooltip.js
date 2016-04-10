@@ -132,7 +132,7 @@ export default ComposedComponent => class Tooltip extends Component {
   };
 
   setActive = (key) => {
-    if(!this.props.tooltipLabel) { return; }
+    if(!this.props.tooltipLabel || this.state.timeout) { return; }
 
     const timeout = setTimeout(() => {
       this.setState({
