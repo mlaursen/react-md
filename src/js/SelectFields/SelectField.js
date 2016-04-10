@@ -131,7 +131,7 @@ export default class SelectField extends Component {
     position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
 
     /**
-     * Boolean if the drop down menu shold not automatically attempt to change the top position to match a
+     * Boolean if the drop down menu should not automatically attempt to change the top position to match a
      * selected item. This should really just be used if the opened menu expands past the top of the screen.
      */
     noAutoAdjust: PropTypes.bool,
@@ -171,7 +171,7 @@ export default class SelectField extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { noAutoAdjust } = this.props;
+    const { position, noAutoAdjust } = this.props;
     const { open } = this.state;
     if(this.getValue(prevProps, prevState) !== this.getValue(this.props, this.state)) {
       this.animateNewValue();
@@ -179,18 +179,19 @@ export default class SelectField extends Component {
 
     if(open === prevState.open || noAutoAdjust) { return; }
     const node = ReactDOM.findDOMNode(this);
+    const item = this.getListItem();
     if(open) {
-      const list = node.querySelector('.md-list');
-      const item = node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile');
       item.focus();
-
-      const scroll = item.parentElement.offsetTop;
-      list.scrollTop = scroll <= LIST_PADDING ? 0 : scroll;
     } else {
       node.querySelector('.md-text-field').focus();
     }
 
-    if(open) {
+    if(!open) { return; }
+    if(SelectField.Positions.BELOW === position) {
+      const list = node.querySelector('.md-list');
+      const scroll = item.parentElement.offsetTop;
+      list.scrollTop = scroll <= LIST_PADDING ? 0 : scroll;
+    } else {
       this.calcMenuPosition();
     }
   }
@@ -198,6 +199,17 @@ export default class SelectField extends Component {
   componentWillUnmount() {
     this.state.timeout && clearTimeout(this.state.timeout);
   }
+
+  /**
+   * Gets the first active list item or the first list item if there are no active items.
+   *
+   * @return a list item element.
+   */
+  getListItem = () => {
+    const node = ReactDOM.findDOMNode(this);
+
+    return (node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile')).parentNode;
+  };
 
   animateNewValue = () => {
     this.setState({
@@ -242,8 +254,7 @@ export default class SelectField extends Component {
     const node = ReactDOM.findDOMNode(this);
     const menu = node.querySelector('.md-menu');
 
-    // the item will be the first active one (if valued) otherwise, set the transform-origin as first list item
-    const item = menu.querySelector('.md-list-tile.active') || menu.querySelector('.md-list-tile');
+    const item = this.getListItem();
 
     // The height changes based on screen size and if floating label or not.
     const height = node.offsetHeight;
@@ -260,7 +271,7 @@ export default class SelectField extends Component {
     }
 
     // padding top for mobile (desktop is 4)
-    if(diff > 8) {
+    if(diff > LIST_PADDING) {
       menu.scrollTop = diff;
     }
 
