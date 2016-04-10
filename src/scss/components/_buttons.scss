@@ -21,6 +21,10 @@
     // fix so all font libraries appear inline with each other
     vertical-align: top;
   }
+
+  .md-tooltip {
+    text-transform: initial;
+  }
 }
 
 // scss-lint:disable QualifyingElement
