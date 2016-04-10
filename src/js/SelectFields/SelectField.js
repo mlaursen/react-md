@@ -30,7 +30,7 @@ export default class SelectField extends Component {
   static Positions = {
     TOP_LEFT: Menu.Positions.TOP_LEFT,
     TOP_RIGHT: Menu.Positions.TOP_RIGHT,
-    BOTTOM: 'below',
+    BOTTOM: Menu.Positions.BELOW,
   };
 
   static propTypes = {
