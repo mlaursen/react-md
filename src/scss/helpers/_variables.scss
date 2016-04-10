@@ -1097,7 +1097,16 @@ $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-h
 // Select Fields
 // ===================================================================================
 
+/// The distance from the element for a mobile device.
+///
+/// @type String
+/// @group select-feilds
 $md-select-field-mobile-top: 8px;
+
+/// The distance from the element for a desktop device.
+///
+/// @type String
+/// @group select-fields
 $md-select-field-desktop-top: 12px;
 
 /// The distance to _drop_ a new value in the select field.
@@ -1111,6 +1120,18 @@ $md-select-field-drop-distance: -10px !default;
 /// @type Time
 /// @group select-fields
 $md-select-field-drop-transition-time: $md-transition-time * 2 !default;
+
+/// The select field button padding left.
+///
+/// @type String
+/// @group select-fields
+$md-select-field-padding-left: 24px;
+
+/// The select field button padding excluding left.
+///
+/// @type String
+/// @group select-fields
+$md-select-field-padding: 16px;
 
 
 

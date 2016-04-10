@@ -32,4 +32,13 @@
       top: -$md-list-desktop-top-padding;
     }
   }
+
+  .md-toolbar,
+  .md-drawer-header {
+    .md-select-field-container.select-field-btn {
+      height: $md-toolbar-desktop-height;
+      padding-bottom: 12px;
+      padding-top: 12px;
+    }
+  }
 }

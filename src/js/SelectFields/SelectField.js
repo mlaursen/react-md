@@ -385,7 +385,7 @@ export default class SelectField extends Component {
         close={this.close}
         toggle={toggle}
         listStyle={listStyle}
-        className={menuClassName}
+        className={classnames('md-select-field-menu-container', menuClassName)}
         listClassName={classnames('md-select-field-menu', listClassName, {
           'single-line': !floatingLabel,
         })}
@@ -401,7 +401,10 @@ export default class SelectField extends Component {
               key={item.key || i}
               onClick={this.selectItem.bind(this, item)}
               onKeyDown={this.handleItemKeyDown.bind(this, item)}
-              className={classnames({ 'active': this.isActive(item, displayLabel) })}
+              className={classnames({
+                'active': this.isActive(item, displayLabel),
+                'select-field-btn-tile': below,
+              })}
             />
           );
         })}
