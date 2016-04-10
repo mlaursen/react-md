@@ -22,6 +22,8 @@ export default class Card extends Component {
     raise: PropTypes.bool,
     isExpanded: PropTypes.bool,
     onExpanderClick: PropTypes.func,
+    expanderTooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    expanderTooltipLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -29,6 +31,7 @@ export default class Card extends Component {
     isInitialExpanded: false,
     iconClassName: 'material-icons',
     iconChildren: 'keyboard_arrow_down',
+    expanderTooltipPosition: 'left',
   };
 
   static childContextTypes = {
@@ -36,15 +39,19 @@ export default class Card extends Component {
     isExpanded: PropTypes.bool,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.string,
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    tooltipLabel: PropTypes.string,
   };
 
   getChildContext = () => {
-    const { iconClassName, iconChildren, isExpanded } = this.props;
+    const { iconClassName, iconChildren, isExpanded, expanderTooltipLabel, expanderTooltipPosition } = this.props;
     return {
       onExpandClick: this.handleExpandClick,
       isExpanded: typeof isExpanded !== 'undefined' ? isExpanded : this.state.expanded,
       iconClassName,
       iconChildren,
+      tooltipLabel: expanderTooltipLabel,
+      tooltipPosition: expanderTooltipPosition,
     };
   };
 

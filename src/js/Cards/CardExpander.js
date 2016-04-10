@@ -13,10 +13,12 @@ export default class CardExpander extends Component {
     onExpandClick: PropTypes.func.isRequired,
     iconClassName: PropTypes.string.isRequired,
     iconChildren: PropTypes.string,
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    tooltipLabel: PropTypes.string,
   };
 
   render() {
-    const { isExpanded, onExpandClick, iconClassName, iconChildren } = this.context;
+    const { isExpanded, onExpandClick, iconClassName, iconChildren, tooltipPosition, tooltipLabel } = this.context;
 
     return (
       <IconButton
@@ -26,6 +28,8 @@ export default class CardExpander extends Component {
         onClick={onExpandClick}
         iconClassName={iconClassName}
         children={iconChildren}
+        tooltipLabel={tooltipLabel}
+        tooltipPosition={tooltipPosition}
       />
     );
   }
