@@ -1,11 +1,27 @@
+/// An extender to add the default padding-right for
+/// Data Tables.
+///
+/// @group data-tables
 %md-data-table-padding {
   padding-right: $md-data-table-padding;
 }
 
+/// AN extender to add the adjusted amount of padding-right
+/// for Data Tables.
+///
+/// @group data-tables
 %md-data-table-adjusted-padding {
   padding-right: $md-data-table-min-padding;
 }
 
+/// An extender for a .md-table-header or .md-table-data
+///
+/// @example scss - Example Basic Usage SASS
+///  .md-table-data {
+///    @extend %md-data-table-item;
+///  }
+///
+/// @group data-tables
 %md-data-table-item {
   @extend %md-data-table-padding;
 
@@ -26,6 +42,9 @@
   }
 }
 
+/// An extender for adding the bottom border for Data Tables.
+///
+/// @group data-tables
 %md-table-border-bottom {
   border-bottom: 1px solid $md-border-color;
 }
