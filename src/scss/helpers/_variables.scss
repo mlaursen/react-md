@@ -1100,6 +1100,18 @@ $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-h
 $md-select-field-mobile-top: 8px;
 $md-select-field-desktop-top: 12px;
 
+/// The distance to _drop_ a new value in the select field.
+///
+/// @type String
+/// @group select-fields
+$md-select-field-drop-distance: -10px !default;
+
+/// The transition time for the drop animation of a new value in a select field.
+///
+/// @type Time
+/// @group select-fields
+$md-select-field-drop-transition-time: $md-transition-time * 2 !default;
+
 
 
 

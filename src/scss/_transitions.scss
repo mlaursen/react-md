@@ -52,3 +52,12 @@
     transition: transform $md-transition-time, opacity $md-transition-time;
   }
 }
+
+.drop-enter {
+  transform: translate3d(0, $md-select-field-drop-distance, 0);
+
+  &.drop-enter-active {
+    transform: translate3d(0, 0, 0);
+    transition: transform $md-select-field-drop-transition-time;
+  }
+}

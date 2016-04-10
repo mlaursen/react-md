@@ -81,6 +81,10 @@ export default class SelectField extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { noAutoAdjust } = this.props;
     const { open } = this.state;
+    if(this.getValue(prevProps, prevState) !== this.getValue(this.props, this.state)) {
+      this.animateNewValue();
+    }
+
     if(open === prevState.open || noAutoAdjust) { return; }
     const node = ReactDOM.findDOMNode(this);
     if(open) {
@@ -93,6 +97,24 @@ export default class SelectField extends Component {
       this.calcMenuPosition();
     }
   }
+
+  componentWillUnmount() {
+    this.state.timeout && clearTimeout(this.state.timeout);
+  }
+
+  animateNewValue = () => {
+    this.setState({
+      droppingClassName: 'drop-enter',
+      timeout: setTimeout(() => {
+        this.setState({
+          droppingClassName: 'drop-enter drop-enter-active',
+          timeout: setTimeout(() => {
+            this.setState({ droppingClassName: null, timeout: null });
+          }, 300),
+        });
+      }, 1),
+    });
+  };
 
   /**
    * Finds the longest menu item value to use as the text field's size.to that value.
@@ -229,7 +251,7 @@ export default class SelectField extends Component {
   };
 
   render() {
-    const { open, size, listStyle } = this.state;
+    const { open, size, listStyle, droppingClassName } = this.state;
     const {
       label,
       floatingLabel,
@@ -248,7 +270,7 @@ export default class SelectField extends Component {
 
     const toggle = (
       <TextField
-        className={classnames('md-select-field', className)}
+        className={classnames('md-select-field', className, droppingClassName)}
         containerClassName="md-select-field-container"
         readOnly={true}
         value={displayLabel}
