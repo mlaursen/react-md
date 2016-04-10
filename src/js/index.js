@@ -2,6 +2,7 @@ import Avatar from './Avatars';
 import { FlatButton, FloatingButton, IconButton, RaisedButton } from './Buttons';
 import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, CardTitle } from './Cards';
 import Chip from './Chips';
+import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from './DataTables';
 import Dialog from './Dialogs';
 import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
@@ -35,8 +36,10 @@ export { Checkbox };
 export { Chip };
 export { CircularProgress };
 export { DatePicker };
+export { DataTable };
 export { Dialog };
 export { Divider };
+export { EditDialogColumn };
 export { FlatButton };
 export { FloatingButton };
 export { FontIcon };
@@ -57,6 +60,10 @@ export { SpeedDial };
 export { Subheader };
 export { Switch };
 export { Tab };
+export { TableBody };
+export { TableColumn };
+export { TableHeader };
+export { TableRow };
 export { Tabs };
 export { TextField };
 export { TimePicker };
@@ -77,6 +84,8 @@ export default {
   CardText,
   CardActionOverlay,
   DatePicker,
+  DataTable,
+  EditDialogColumn,
   List,
   ListItem,
   CircularProgress,
@@ -100,6 +109,10 @@ export default {
   Snackbar,
   SpeedDial,
   Subheader,
+  TableBody,
+  TableColumn,
+  TableHeader,
+  TableRow,
   TextField,
   TimePicker,
   Toolbar,
