@@ -11,6 +11,8 @@ import FontIcon from '../FontIcons';
 import Menu from '../Menus';
 import SelectFieldControl from './SelectFieldControl';
 
+const LIST_PADDING = 8;
+
 /**
  * A SelectField is a material design inspired `<select>` component.
  */
@@ -178,7 +180,12 @@ export default class SelectField extends Component {
     if(open === prevState.open || noAutoAdjust) { return; }
     const node = ReactDOM.findDOMNode(this);
     if(open) {
-      (node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile')).focus();
+      const list = node.querySelector('.md-list');
+      const item = node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile');
+      item.focus();
+
+      const scroll = item.parentElement.offsetTop;
+      list.scrollTop = scroll <= LIST_PADDING ? 0 : scroll;
     } else {
       node.querySelector('.md-text-field').focus();
     }
