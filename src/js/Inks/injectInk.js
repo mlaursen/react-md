@@ -5,7 +5,7 @@ import TransitionGroup from 'react-addons-transition-group';
 
 import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
-import { getOffset } from '../utils';
+import { getOffset, isTouchDevice } from '../utils';
 
 /**
  * Takes any component and injects an ink container along with event
@@ -98,8 +98,12 @@ export default ComposedComponent => class Ink extends Component {
     this.setState({ inks });
   };
 
+  disabled = () => {
+    return this.props.disabled || this.props.inkDisabled;
+  };
+
   handleMouseDown = (e) => {
-    if(this.props.disabled || this.props.inkDisabled || this.invalidClickEvent(e)) { return; }
+    if(this.disabled() || isTouchDevice || this.invalidClickEvent(e)) { return; }
     e.stopPropagation();
 
     this.createInk(e.pageX, e.pageY);
@@ -110,23 +114,24 @@ export default ComposedComponent => class Ink extends Component {
 
   handleMouseLeave = (e) => {
     this.props.onMouseLeave && this.props.onMouseLeave(e);
-    if(!this.props.disabled && !this.props.inkDisabled) {
-      this.popInk();
-      this.setState({
-        skipMouseUp: true,
-      });
-    }
+    if(this.disabled() || isTouchDevice) { return; }
+
+    this.popInk();
+    this.setState({
+      skipMouseUp: true,
+    });
   };
 
   handleMouseUp = (e) => {
     this.props.onMouseUp && this.props.onMouseUp(e);
-    if(this.props.disabled || this.props.inkDisabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
+    if(this.disabled() || this.invalidClickEvent(e) || isTouchDevice || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
   handleTouchStart = (e) => {
     this.props.onTouchStart && this.props.onTouchStart(e);
-    if(this.props.disabled || this.props.inkDisabled) { return; }
+    if(this.disabled()) { return; }
+
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
@@ -134,20 +139,19 @@ export default ComposedComponent => class Ink extends Component {
 
   handleTouchEnd = (e) => {
     this.props.onTouchEnd && this.props.onTouchEnd(e);
-    if(this.props.disabled || this.props.inkDisabled) { return; }
+    if(this.disabled()) { return; }
     this.popInk();
   };
 
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
-    if(!this.props.disabled && !this.props.inkDisabled && (e.which || e.keyCode) === TAB) {
-      this.createInk();
-    }
+    if(this.disabled() || (e.which || e.keyCode) !== TAB) { return; }
+    this.createInk();
   };
 
   handleBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
-    if(!this.props.disabled && !this.props.inkDisabled) {
+    if(!this.disabled()) {
       this.popInk();
     }
   };
