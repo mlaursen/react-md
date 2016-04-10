@@ -125,10 +125,25 @@ export default class EditDialogColumn extends Component {
      * The label to use for the Cancel button.
      */
     cancelLabel: PropTypes.string.isRequired,
+
+    /**
+     * An optional function to call when the edit dialog is open and the user clicks
+     * somewhere else on the page.
+     */
+    onOutsideClick: PropTypes.func,
+
+    /**
+     * A boolean if the action when the edit dialog is open and the user clicks somewhere
+     * else on the page should be to confirm the current changes.
+     *
+     * If this is set to `true`, `onOkClick` will be called. Otherwise `onCancelClick` will be called.
+     */
+    okOnOutsideClick: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     transitionDuration: 300,
+    okOnOutsideClick: true,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
     onOkClick: () => {},
@@ -160,7 +175,18 @@ export default class EditDialogColumn extends Component {
     this.state.timeout && clearTimeout(this.state.timeout);
   }
 
-  handleClickOutside = e => onOutsideClick(e, ReactDOM.findDOMNode(this.refs.column), () => this.setState({ active: false }));
+  handleClickOutside = (e) => {
+    onOutsideClick(e, ReactDOM.findDOMNode(this.refs.column), () => {
+      const { onOutsideClick, okOnOutsideClick } = this.props;
+      onOutsideClick && onOutsideClick(e);
+
+      if(okOnOutsideClick) {
+        this.save(e);
+      } else {
+        this.handleCancelClick(e);
+      }
+    });
+  };
 
   handleFocus = (e) => {
     this.props.onFocus && this.props.onFocus(e);
