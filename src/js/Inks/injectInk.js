@@ -35,6 +35,7 @@ export default ComposedComponent => class Ink extends Component {
     onTouchEnd: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.node,
+    inkDisabled: PropTypes.bool,
   };
 
   calcR = (a, b) => {
@@ -98,7 +99,7 @@ export default ComposedComponent => class Ink extends Component {
   };
 
   handleMouseDown = (e) => {
-    if(this.props.disabled || this.invalidClickEvent(e)) { return; }
+    if(this.props.disabled || this.props.inkDisabled || this.invalidClickEvent(e)) { return; }
     e.stopPropagation();
 
     this.createInk(e.pageX, e.pageY);
@@ -109,7 +110,7 @@ export default ComposedComponent => class Ink extends Component {
 
   handleMouseLeave = (e) => {
     this.props.onMouseLeave && this.props.onMouseLeave(e);
-    if(!this.props.disabled) {
+    if(!this.props.disabled && !this.props.inkDisabled) {
       this.popInk();
       this.setState({
         skipMouseUp: true,
@@ -119,13 +120,13 @@ export default ComposedComponent => class Ink extends Component {
 
   handleMouseUp = (e) => {
     this.props.onMouseUp && this.props.onMouseUp(e);
-    if(this.props.disabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
+    if(this.props.disabled || this.props.inkDisabled || this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
   };
 
   handleTouchStart = (e) => {
     this.props.onTouchStart && this.props.onTouchStart(e);
-    if(this.props.disabled) { return; }
+    if(this.props.disabled || this.props.inkDisabled) { return; }
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
@@ -133,20 +134,20 @@ export default ComposedComponent => class Ink extends Component {
 
   handleTouchEnd = (e) => {
     this.props.onTouchEnd && this.props.onTouchEnd(e);
-    if(this.props.disabled) { return; }
+    if(this.props.disabled || this.props.inkDisabled) { return; }
     this.popInk();
   };
 
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
-    if(!this.props.disabled && (e.which || e.keyCode) === TAB) {
+    if(!this.props.disabled && !this.props.inkDisabled && (e.which || e.keyCode) === TAB) {
       this.createInk();
     }
   };
 
   handleBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
-    if(!this.props.disabled) {
+    if(!this.props.disabled && !this.props.inkDisabled) {
       this.popInk();
     }
   };
