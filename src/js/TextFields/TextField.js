@@ -53,7 +53,6 @@ export default class TextField extends Component {
 
   static defaultProps = {
     type: 'text',
-    defaultValue: '',
     floatingLabel: true,
     lineDirection: 'left',
   };
