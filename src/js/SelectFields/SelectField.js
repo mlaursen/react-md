@@ -8,8 +8,8 @@ import { SPACE, ENTER } from '../constants/keyCodes';
 
 import { ListItem } from '../Lists';
 import FontIcon from '../FontIcons';
-import TextField from '../TextFields';
 import Menu from '../Menus';
+import SelectFieldControl from './SelectFieldControl';
 
 /**
  * A SelectField is a material design inspired `<select>` component.
@@ -360,20 +360,22 @@ export default class SelectField extends Component {
     } = this.props;
 
     const displayLabel = this.getValue();
+    const below = Menu.Positions.BELOW === position;
 
     const toggle = (
-      <TextField
-        className={classnames('md-select-field', className, droppingClassName)}
-        containerClassName="md-select-field-container"
-        readOnly={true}
-        value={displayLabel}
+      <SelectFieldControl
+        className={classnames(className, droppingClassName)}
         label={label}
+        value={displayLabel}
         floatingLabel={floatingLabel}
         onClick={this.handleClick}
         onKeyDown={this.handleKeyDown}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
         disabled={disabled}
+        open={open}
+        below={below}
+        inkDisabled={!below}
       />
     );
 
@@ -384,13 +386,17 @@ export default class SelectField extends Component {
         toggle={toggle}
         listStyle={listStyle}
         className={menuClassName}
-        listClassName={classnames('md-select-field-menu', listClassName, { 'single-line': !floatingLabel })}
+        listClassName={classnames('md-select-field-menu', listClassName, {
+          'single-line': !floatingLabel,
+        })}
         position={position}
+        below={SelectField.Positions.BOTTOM === position}
         {...props}
       >
         {menuItems.map((item, i) => {
           return (
             <ListItem
+              tabIndex={0}
               primaryText={isObject(item) ? item[itemLabel] : item}
               key={item.key || i}
               onClick={this.selectItem.bind(this, item)}
