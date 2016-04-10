@@ -11,6 +11,9 @@ import FontIcon from '../FontIcons';
 import TextField from '../TextFields';
 import Menu from '../Menus';
 
+/**
+ * A SelectField is a material design inspired `<select>` component.
+ */
 export default class SelectField extends Component {
   constructor(props) {
     super(props);
@@ -31,33 +34,115 @@ export default class SelectField extends Component {
   };
 
   static propTypes = {
+    /**
+     * An optional className to apply to the text field in the select field.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional className to apply to the menu list.
+     */
     listClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the menu container that holds
+     * the list of menu items.
+     */
     menuClassName: PropTypes.string,
+
+    /**
+     * A boolean if the select field is open by default.
+     */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * A boolean if the text field should have a floating label instead of
+     * an inline label.
+     */
     floatingLabel: PropTypes.bool,
+
+    /**
+     * The label to apply to the text field.
+     */
     label: PropTypes.string,
+
+    /**
+     * An optional key to use to extract a `menuItem`'s label if the
+     * `menuItems` prop is an array of objects.
+     */
     itemLabel: PropTypes.string,
+
+    /**
+     * An optional value to convert the select field into a controlled component.
+     * This will be the displayed value in the text field.
+     */
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
+
+    /**
+     * The defaultValue for the select field.
+     */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
     ]),
+
+    /**
+     * A list of items to display in the opened menu. When a new value is clicked,
+     * the entire menuItem will be returned. If the menu item is an object, you will
+     * need to define the correct `itemLabel` so it displays correctly in the menu.
+     */
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
       PropTypes.object,
     ])).isRequired,
+
+    /**
+     * An optional function to call select field change. It is called with `(newlySelectedMenuItem, changeEvent)`.
+     * If this a controlled component, you will manually need to convert the `newlySelectedMenuItem`'s value if
+     * it is an object so that the `value` prop is a string or number.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field is clicked.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field has focus and a key is pressed.
+     */
     onKeyDown: PropTypes.func,
+
+    /**
+     * The position that the menu should appear from. This should be one of:
+     *
+     * ```js
+     * SelectField.Positions.TOP_LEFT,
+     * SelectField.Positions.TOP_RIGHT,
+     * SelectField.Positions.BOTTOM
+     * ```
+     */
     position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
+
+    /**
+     * Boolean if the drop down menu shold not automatically attempt to change the top position to match a
+     * selected item. This should really just be used if the opened menu expands past the top of the screen.
+     */
     noAutoAdjust: PropTypes.bool,
+
+    /**
+     * The icon className for the dropdown indicator.
+     */
     iconClassName: PropTypes.string.isRequired,
-    iconChildren: PropTypes.node.isRequired,
+
+    /**
+     * The icon children to use for the dropdown indicator.
+     */
+    iconChildren: PropTypes.node,
   };
 
   static defaultProps = {
@@ -282,6 +367,7 @@ export default class SelectField extends Component {
         size={size}
       />
     );
+
     return (
       <Menu
         isOpen={open}
