@@ -26,7 +26,7 @@ export default class TextField extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    containerClassName: PropTypes.string,
+    inputClassName: PropTypes.string,
     children: PropTypes.node,
     type: PropTypes.string.isRequired,
     label: PropTypes.string,
@@ -42,10 +42,17 @@ export default class TextField extends Component {
     floatingLabel: PropTypes.bool,
     icon: PropTypes.node,
     rightIcon: PropTypes.node,
-    onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onInput: PropTypes.func,
+    onInvalid: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyPress: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onSelect: PropTypes.func,
     style: PropTypes.object,
+    inputStyle: PropTypes.object,
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
     required: PropTypes.bool,
     fullWidth: PropTypes.bool,
@@ -116,7 +123,7 @@ export default class TextField extends Component {
     const { active, currentRows, areaHeight } = this.state;
     const {
       className,
-      containerClassName,
+      inputClassName,
       label,
       placeholder,
       maxLength,
@@ -129,10 +136,21 @@ export default class TextField extends Component {
       rows,
       maxRows,
       style,
+      inputStyle,
       required,
       helpOnFocus,
       fullWidth,
       defaultValue,
+      onBlur,
+      onChange,
+      onFocus,
+      onInput,
+      onInvalid,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
+      onSelect,
+      type,
       ...props,
     } = this.props;
     const value = this.getValue();
@@ -175,23 +193,29 @@ export default class TextField extends Component {
     }
 
     const textFieldProps = {
-      ...props,
       value,
-      className: classnames('md-text-field', className, {
+      className: classnames('md-text-field', inputClassName, {
         active,
         'floating-label': useFloatingLabel,
         'single-line': !useFloatingLabel && !multiline,
         'multi-line': multiline,
         'full-width': fullWidth,
       }),
-      onFocus: this.handleFocus,
       onBlur: this.handleBlur,
       onChange: this.handleChange,
+      onFocus: this.handleFocus,
+      onInput: onInput,
+      onInvalid: onInvalid,
+      onKeyDown: onKeyDown,
+      onKeyPress: onKeyPress,
+      onKeyUp: onKeyUp,
+      onSelect: onSelect,
+      type: type
     };
 
     let textField;
     if(multiline) {
-      let areaStyle = style ? Object.assign({}, style) : {};
+      let areaStyle = inputStyle ? Object.assign({}, inputStyle) : {};
       if(maxRows) {
         if(currentRows < maxRows || maxRows === -1) {
           areaStyle.overflow = 'hidden';
@@ -215,7 +239,7 @@ export default class TextField extends Component {
       textField = (
         <input
           {...textFieldProps}
-          style={style}
+          style={inputStyle}
           placeholder={!useFloatingLabel ? (placeholder || label) : placeholder}
         />
       );
@@ -223,7 +247,8 @@ export default class TextField extends Component {
 
     return (
       <div
-        className={classnames('md-text-field-container', containerClassName, {
+        {...props}
+        className={classnames('md-text-field-container', className, {
           'multi-line': multiline,
           'full-width': fullWidth,
           'with-message': helpText || errorText,
