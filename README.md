@@ -1,5 +1,7 @@
 # react-md
 
+[![Join the chat at https://gitter.im/mlaursen/react-md](https://badges.gitter.im/mlaursen/react-md.svg)](https://gitter.im/mlaursen/react-md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 React material design - React components built with sass
 
 ```bash
