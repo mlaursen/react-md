@@ -189,7 +189,7 @@ export default class SelectField extends Component {
     if(!open) { return; }
     if(SelectField.Positions.BELOW === position) {
       const list = node.querySelector('.md-list');
-      const scroll = item.parentElement.offsetTop;
+      const scroll = this.getListItem().offsetTop;
       list.scrollTop = scroll <= LIST_PADDING ? 0 : scroll;
     } else {
       this.calcMenuPosition();
@@ -230,9 +230,9 @@ export default class SelectField extends Component {
    * If there is a floating label, it also checks against the label's size so that
    * the floating label won't be clipped
    */
-  calcSize = ({ menuItems, itemLabel, label, floatingLabel } = this.props) => {
+  calcSize = ({ menuItems, itemLabel, label } = this.props) => {
     const items = menuItems.slice();
-    if(label && floatingLabel) {
+    if(label) {
       items.push(label);
     }
 
