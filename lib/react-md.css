@@ -44,7 +44,7 @@
 }
 
 /* line 42, ../src/scss/helpers/_extenders.scss */
-.md-linear-progress-container, .md-text-divider {
+.md-data-table-container .md-data-table, .md-data-table.full-width, .md-edit-dialog .md-text-field-container, .md-edit-dialog .md-text-field, .md-linear-progress-container, .md-text-divider {
   width: 100%;
 }
 
@@ -108,7 +108,7 @@ body {
 
 /* line 27, ../src/scss/_typography.scss */
 .md-headline, .md-title, .md-subheading-2, .md-subheading-1 {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* line 34, ../src/scss/_typography.scss */
@@ -137,7 +137,7 @@ body {
 }
 
 /* line 80, ../src/scss/_typography.scss */
-.md-subheading-2, .md-subheading-1, .md-body-1, .md-body-2, .md-btn {
+.md-subheading-2, .md-subheading-1, .md-body-1, .md-body-2, .md-btn, .md-table-header, .md-table-data {
   letter-spacing: .1px;
 }
 
@@ -333,6 +333,16 @@ body {
   transition: transform 0.15s, opacity 0.15s;
 }
 
+/* line 56, ../src/scss/_transitions.scss */
+.drop-enter {
+  transform: translate3d(0, -10px, 0);
+}
+/* line 59, ../src/scss/_transitions.scss */
+.drop-enter.drop-enter-active {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s;
+}
+
 /* line 1, ../src/scss/components/_avatars.scss */
 .md-avatar {
   background: #9e9e9e;
@@ -393,28 +403,32 @@ body {
   color: inherit;
   vertical-align: top;
 }
+/* line 25, ../src/scss/components/_buttons.scss */
+.md-btn .md-tooltip {
+  text-transform: initial;
+}
 
-/* line 27, ../src/scss/components/_buttons.scss */
+/* line 31, ../src/scss/components/_buttons.scss */
 a.md-btn {
   color: rgba(0, 0, 0, 0.54);
   text-decoration: none;
 }
 
-/* line 32, ../src/scss/components/_buttons.scss */
+/* line 36, ../src/scss/components/_buttons.scss */
 .md-flat-btn,
 .md-raised-btn {
   height: 36px;
   padding: 6px 16px;
 }
 
-/* line 41, ../src/scss/components/_buttons.scss */
+/* line 45, ../src/scss/components/_buttons.scss */
 .md-raised-btn:hover,
 .md-floating-btn:hover,
 .md-flat-btn:hover {
   background: rgba(153, 153, 153, 0.2);
 }
 
-/* line 47, ../src/scss/components/_buttons.scss */
+/* line 51, ../src/scss/components/_buttons.scss */
 .md-icon-btn {
   border-radius: 50%;
   font-size: 24px;
@@ -423,29 +437,36 @@ a.md-btn {
   text-decoration: none;
   width: 48px;
 }
-/* line 55, ../src/scss/components/_buttons.scss */
+/* line 59, ../src/scss/components/_buttons.scss */
 .md-icon-btn[disabled] .md-icon {
   color: rgba(0, 0, 0, 0.38);
 }
 
-/* line 60, ../src/scss/components/_buttons.scss */
+/* line 64, ../src/scss/components/_buttons.scss */
 .md-flat-btn {
   background: transparent;
   min-width: 88px;
 }
 
-/* line 66, ../src/scss/components/_buttons.scss */
+/* line 70, ../src/scss/components/_buttons.scss */
 .md-raised-btn {
   border-radius: 2px;
   min-width: 64px;
 }
-/* line 70, ../src/scss/components/_buttons.scss */
+/* line 74, ../src/scss/components/_buttons.scss */
 .md-raised-btn:not([disabled]) {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
-/* line 73, ../src/scss/components/_buttons.scss */
+/* line 77, ../src/scss/components/_buttons.scss */
 .md-raised-btn:not([disabled]):active {
   box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* line 86, ../src/scss/components/_buttons.scss */
+.md-toolbar .md-btn,
+.md-navigation-drawer-toolbar .md-btn,
+.md-drawer-header .md-btn {
+  color: inherit;
 }
 
 /* line 1, ../src/scss/components/_cards.scss */
@@ -704,50 +725,178 @@ a.md-btn {
   width: 24px;
 }
 
-/* line 1, ../src/scss/components/_data-tables.scss */
-.md-data-table {
-  font-size: 13px;
-  text-align: left;
-  width: 100%;
-}
-/* line 7, ../src/scss/components/_data-tables.scss */
-.md-data-table.striped tr {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-/* line 12, ../src/scss/components/_data-tables.scss */
-.md-data-table .md-data-table-header {
-  color: rgba(0, 0, 0, 0.82);
-  font-size: 1.42857em;
-  height: 64px;
-}
-/* line 18, ../src/scss/components/_data-tables.scss */
-.md-data-table td,
-.md-data-table th {
-  padding-left: 24px;
-}
-/* line 23, ../src/scss/components/_data-tables.scss */
-.md-data-table td:last-child,
-.md-data-table th:last-child {
+/* line 5, ../src/scss/components/_data-tables.scss */
+.md-table-header, .md-table-data {
   padding-right: 24px;
 }
-/* line 28, ../src/scss/components/_data-tables.scss */
-.md-data-table th {
-  color: rgba(0, 0, 0, 0.54);
-  font-size: 12px;
-  height: 56px;
+
+/* line 13, ../src/scss/components/_data-tables.scss */
+.adjusted.md-table-header, .adjusted.md-table-data {
+  padding-right: 56px;
 }
-/* line 34, ../src/scss/components/_data-tables.scss */
-.md-data-table td {
-  color: rgba(0, 0, 0, 0.87);
-  height: 48px;
+
+/* line 25, ../src/scss/components/_data-tables.scss */
+.md-table-header, .md-table-data {
+  position: relative;
+  text-align: left;
+  white-space: nowrap;
 }
-/* line 39, ../src/scss/components/_data-tables.scss */
-.md-data-table tbody tr {
+/* line 32, ../src/scss/components/_data-tables.scss */
+.grow.md-table-header, .grow.md-table-data {
+  width: 100%;
+}
+/* line 36, ../src/scss/components/_data-tables.scss */
+.numeric.md-table-header, .numeric.md-table-data {
+  text-align: right;
+}
+
+/* line 48, ../src/scss/components/_data-tables.scss */
+tbody .md-table-row:not(:last-child), thead .md-table-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* line 52, ../src/scss/components/_data-tables.scss */
+.md-data-table-container {
+  overflow-x: auto;
+}
+
+/* line 60, ../src/scss/components/_data-tables.scss */
+.md-data-table {
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
+/* line 69, ../src/scss/components/_data-tables.scss */
+tbody .md-table-row {
   transition: background 0.15s;
 }
-/* line 42, ../src/scss/components/_data-tables.scss */
-.md-data-table tbody tr:hover {
-  background: rgba(0, 0, 0, 0.12);
+/* line 72, ../src/scss/components/_data-tables.scss */
+tbody .md-table-row.active {
+  background: #f5f5f5;
+}
+/* line 76, ../src/scss/components/_data-tables.scss */
+tbody .md-table-row:hover {
+  background: #eee;
+}
+
+/* line 92, ../src/scss/components/_data-tables.scss */
+.md-table-row .md-table-header:first-child,
+.md-table-row .md-table-data:first-child {
+  padding-left: 24px;
+}
+
+/* line 98, ../src/scss/components/_data-tables.scss */
+.md-table-header {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+  font-weight: 500;
+  height: 56px;
+}
+/* line 107, ../src/scss/components/_data-tables.scss */
+.md-table-header.sortable {
+  color: rgba(0, 0, 0, 0.87);
+}
+/* line 110, ../src/scss/components/_data-tables.scss */
+.md-table-header.sortable:hover {
+  cursor: pointer;
+}
+/* line 114, ../src/scss/components/_data-tables.scss */
+.md-table-header.sortable:not(:hover) .md-icon {
+  color: rgba(0, 0, 0, 0.87);
+}
+/* line 121, ../src/scss/components/_data-tables.scss */
+.md-table-header .md-icon {
+  font-size: 16px;
+  padding: 4px;
+  transition-duration: 0.15s;
+  transition-property: color, transform;
+}
+/* line 128, ../src/scss/components/_data-tables.scss */
+.md-table-header .inline-top {
+  display: inline-block;
+  padding: 4px;
+  vertical-align: top;
+}
+
+/* line 135, ../src/scss/components/_data-tables.scss */
+.md-table-data {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 13px;
+  font-weight: 400;
+  height: 48px;
+}
+
+/* line 145, ../src/scss/components/_data-tables.scss */
+.md-table-checkbox {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 148, ../src/scss/components/_data-tables.scss */
+.md-table-checkbox .md-checkbox {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+/* line 155, ../src/scss/components/_data-tables.scss */
+.md-table-checkbox .md-icon {
+  font-size: 18px;
+  padding: 3px;
+  transition: color 0.15s;
+}
+/* line 161, ../src/scss/components/_data-tables.scss */
+.md-table-checkbox .md-icon.active {
+  color: #ff4081;
+}
+
+/* line 167, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog-column {
+  padding-right: 0;
+}
+
+/* line 171, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog {
+  min-width: 300px;
+  transition-duration: 0.3s;
+  transition-property: background, box-shadow, padding, top;
+}
+/* line 176, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog.active, .md-edit-dialog.animating {
+  position: absolute;
+  z-index: 3;
+}
+/* line 182, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog.animating {
+  top: 4px;
+}
+/* line 186, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog:not(.active) .md-text-divider {
+  height: 0;
+}
+/* line 190, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog.active {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background: #fafafa;
+  padding: 24px;
+  padding-bottom: 0;
+  top: 0;
+}
+/* line 199, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog .md-text-field-container {
+  padding: 0;
+}
+/* line 208, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog .md-text-field:hover {
+  cursor: pointer;
+}
+/* line 212, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog .md-text-field.active:hover {
+  cursor: initial;
+}
+/* line 217, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog .md-title {
+  margin: 0;
+}
+/* line 221, ../src/scss/components/_data-tables.scss */
+.md-edit-dialog .md-dialog-footer {
+  margin-right: -24px;
 }
 
 /* line 1, ../src/scss/components/_dialogs.scss */
@@ -859,7 +1008,7 @@ a.md-btn {
 }
 /* line 108, ../src/scss/components/_dialogs.scss */
 .md-dialog-content .md-list {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
   padding-bottom: 8px;
 }
 /* line 113, ../src/scss/components/_dialogs.scss */
@@ -1373,30 +1522,53 @@ a.md-btn {
 }
 
 /* line 76, ../src/scss/components/_menus.scss */
+.md-transition-below {
+  top: 100%;
+  transform-origin: 50% 0;
+  width: 100%;
+}
+/* line 81, ../src/scss/components/_menus.scss */
+.md-transition-below.md-menu-enter {
+  transform: scaleY(0);
+}
+/* line 84, ../src/scss/components/_menus.scss */
+.md-transition-below.md-menu-enter.md-menu-enter-active {
+  transform: scaleY(1);
+}
+/* line 89, ../src/scss/components/_menus.scss */
+.md-transition-below.md-menu-leave {
+  transform: scaleY(1);
+}
+/* line 92, ../src/scss/components/_menus.scss */
+.md-transition-below.md-menu-leave.md-menu-leave-active {
+  transform: scaleY(0);
+}
+
+/* line 98, ../src/scss/components/_menus.scss */
 .md-menu-enter {
   transform: scale(0);
 }
-/* line 79, ../src/scss/components/_menus.scss */
+/* line 101, ../src/scss/components/_menus.scss */
 .md-menu-enter.md-menu-enter-active {
   transform: scale(1);
   transition: transform 0.15s;
 }
 
-/* line 85, ../src/scss/components/_menus.scss */
+/* line 107, ../src/scss/components/_menus.scss */
 .md-menu-leave {
   transform: scale(1);
 }
-/* line 88, ../src/scss/components/_menus.scss */
+/* line 110, ../src/scss/components/_menus.scss */
 .md-menu-leave.md-menu-leave-active {
   transform: scale(0);
   transition: transform 0.15s;
 }
 
-/* line 94, ../src/scss/components/_menus.scss */
+/* line 116, ../src/scss/components/_menus.scss */
 .md-toolbar-container + .md-menu-container {
   display: block;
 }
-/* line 97, ../src/scss/components/_menus.scss */
+/* line 119, ../src/scss/components/_menus.scss */
 .md-toolbar-container + .md-menu-container .md-menu {
   width: 100%;
 }
@@ -1836,7 +2008,7 @@ a.md-btn {
 
 /* line 190, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-subtitle {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
   line-height: 24px;
   margin: 0;
   padding: 12px;
@@ -1844,7 +2016,7 @@ a.md-btn {
 }
 /* line 198, ../src/scss/components/_pickers.scss */
 .md-calendar-controls .md-icon-btn {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
   position: absolute;
   top: 0;
 }
@@ -1888,7 +2060,7 @@ a.md-btn {
 
 /* line 240, ../src/scss/components/_pickers.scss */
 .md-calendar-date {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
   position: relative;
   transition: color 0.15s;
 }
@@ -2105,10 +2277,44 @@ a.md-btn {
 .md-select-field-container:hover .md-text-field {
   cursor: pointer;
 }
+/* line 18, ../src/scss/components/_select-fields.scss */
+.md-select-field-container.select-field-btn {
+  padding-left: 24px;
+  transition: box-shadow 0.15s;
+}
+/* line 22, ../src/scss/components/_select-fields.scss */
+.md-select-field-container.select-field-btn .md-text-divider {
+  display: none;
+}
+/* line 26, ../src/scss/components/_select-fields.scss */
+.md-select-field-container.select-field-btn.active, .md-select-field-container.select-field-btn:active {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
 
-/* line 20, ../src/scss/components/_select-fields.scss */
+/* line 34, ../src/scss/components/_select-fields.scss */
 .md-select-field:focus {
   user-select: none;
+}
+
+/* line 39, ../src/scss/components/_select-fields.scss */
+.md-list-tile.select-field-btn-tile {
+  padding-left: 24px;
+}
+
+/* line 43, ../src/scss/components/_select-fields.scss */
+.md-data-table .md-select-field-container {
+  padding: 0;
+}
+/* line 46, ../src/scss/components/_select-fields.scss */
+.md-data-table .md-select-field-container .md-text-field {
+  height: 48px;
+  padding: 16px;
+  padding-left: 24px;
+}
+/* line 52, ../src/scss/components/_select-fields.scss */
+.md-data-table .md-select-field-container .md-text-field-ind {
+  padding-bottom: 12px;
+  padding-top: 12px;
 }
 
 /* line 1, ../src/scss/components/_selection-controls.scss */
@@ -2937,7 +3143,7 @@ a.md-btn {
 
 /* line 8, ../src/scss/helpers/mixins/_lists.scss */
 .md-list a {
-  color: rgba(0, 0, 0, 0.77);
+  color: rgba(0, 0, 0, 0.87);
 }
 /* line 12, ../src/scss/helpers/mixins/_lists.scss */
 .md-list .md-subheader {
@@ -3271,11 +3477,11 @@ a.md-btn {
   }
 
   /* line 10, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-menu.md-select-field-menu {
+  .md-menu.md-select-field-menu:not(.md-transition-below) {
     top: 8px;
   }
   /* line 13, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-menu.md-select-field-menu.single-line {
+  .md-menu.md-select-field-menu:not(.md-transition-below).single-line {
     top: -8px;
   }
 
@@ -3565,12 +3771,20 @@ a.md-btn {
   }
 
   /* line 28, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-menu.md-select-field-menu {
+  .md-menu.md-select-field-menu:not(.md-transition-below) {
     top: 12px;
   }
   /* line 31, ../src/scss/helpers/mixins/_select-fields.scss */
-  .md-menu.md-select-field-menu.single-line {
+  .md-menu.md-select-field-menu:not(.md-transition-below).single-line {
     top: -4px;
+  }
+
+  /* line 38, ../src/scss/helpers/mixins/_select-fields.scss */
+  .md-toolbar .md-select-field-container.select-field-btn,
+  .md-drawer-header .md-select-field-container.select-field-btn {
+    height: 64px;
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 
   /* line 28, ../src/scss/helpers/mixins/_sidebars.scss */
