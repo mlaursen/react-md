@@ -202,6 +202,16 @@ export default class TextField extends Component {
     disabled: PropTypes.bool,
 
     /**
+     * Boolean if the text field is read only.
+     */
+    readOnly: PropTypes.bool,
+
+    /**
+     * An optional size for the text field.
+     */
+    size: PropTypes.number,
+
+    /**
      * Boolean if this text field should be styled as a full width text field.
      * Floating labels and the text field indicator will be removed automatically.
      */
@@ -291,6 +301,8 @@ export default class TextField extends Component {
       helpOnFocus,
       fullWidth,
       defaultValue,
+      readOnly,
+      size,
       onBlur,
       onChange,
       onFocus,
@@ -354,13 +366,15 @@ export default class TextField extends Component {
       onBlur: this.handleBlur,
       onChange: this.handleChange,
       onFocus: this.handleFocus,
-      onInput: onInput,
-      onInvalid: onInvalid,
-      onKeyDown: onKeyDown,
-      onKeyPress: onKeyPress,
-      onKeyUp: onKeyUp,
-      onSelect: onSelect,
-      type: type,
+      onInput,
+      onInvalid,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
+      onSelect,
+      readOnly,
+      size,
+      type,
       value,
     };
 
