@@ -23,8 +23,8 @@ class SelectFieldControl extends Component {
     const control = (
       <TextField
         {...props}
-        className={classnames('md-select-field', className)}
-        containerClassName={classnames('md-select-field-container', {
+        inputClassName={classnames('md-select-field', className)}
+        className={classnames('md-select-field-container', {
           'select-field-btn': below,
           'active': below && open,
         })}

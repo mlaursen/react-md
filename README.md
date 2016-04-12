@@ -72,7 +72,12 @@ See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) s
 
 
 
-# Development
+# Contributing
+
+The source files are located in the `src` dir. When doing a pull request, please do not commit any files
+from the transpiled `lib` dir.
+
+You can compile all the components and watch for changes with
 
 ```bash
 $ npm run scripts:watch  # watch src and recompile
@@ -83,10 +88,4 @@ $ npm run scripts:watch  # watch src and recompile
 ```bash
 $ npm test
 $ npm run test:watch
-```
-
-## Publishing
-
-```bash
-$ npm run build
 ```

@@ -27,6 +27,8 @@ build/Release
 node_modules
 .sass-cache
 
+*.DS_STORE
+
 distExample
 sassdoc
 .publish
