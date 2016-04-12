@@ -1,4 +1,6 @@
 .md-text-field-container {
+  @include md-theme-placeholders($md-secondary-text-color);
+
   display: inline-block;
   vertical-align: top;
 
@@ -153,8 +155,14 @@
   padding-left: $md-default-padding;
 }
 
-.md-toolbar .md-text-field {
-  font-size: $md-title-font-size;
+.md-toolbar,
+.md-navigation-drawer-toolbar {
+  @include md-theme-placeholders($md-dark-theme-secondary-text-color);
+
+  .md-text-field {
+    color: inherit;
+    font-size: $md-title-font-size;
+  }
 }
 
 .md-text-field-ind {

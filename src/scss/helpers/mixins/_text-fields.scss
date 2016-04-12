@@ -231,3 +231,50 @@
     }
   }
 }
+
+/// Applies a color to all the browser placeholder psuedo elements.
+///
+/// @example scss - Basic Usage SASS
+///   .md-primary.md-toolbar {
+///     @include md-theme-placeholders($md-dark-theme-help-text-color);
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .md-primary.md-toolbar {
+///     :-moz-placeholder {
+///       color: $color;
+///     }
+//
+///     ::-moz-placeholder {
+///       color: $color;
+///     }
+///
+///     :-ms-input-placeholder {
+///       color: $color;
+///     }
+///
+///     ::-webkit-input-placeholder {
+///       color: $color;
+///     }
+///   }
+///
+/// @param {Color} $color - The placeholder color to use
+@mixin md-theme-placeholders($color) {
+  // scss-lint:disable VendorPrefix
+
+  :-moz-placeholder {
+    color: $color;
+  }
+
+  ::-moz-placeholder {
+    color: $color;
+  }
+
+  :-ms-input-placeholder {
+    color: $color;
+  }
+
+  ::-webkit-input-placeholder {
+    color: $color;
+  }
+}
