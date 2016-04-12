@@ -135,7 +135,6 @@ export default class TextField extends Component {
       lineDirection,
       rows,
       maxRows,
-      style,
       inputStyle,
       required,
       helpOnFocus,
