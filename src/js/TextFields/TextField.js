@@ -55,6 +55,7 @@ export default class TextField extends Component {
     inputStyle: PropTypes.object,
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
     required: PropTypes.bool,
+    disabled: PropTypes.bool,
     fullWidth: PropTypes.bool,
   };
 
@@ -136,6 +137,7 @@ export default class TextField extends Component {
       rows,
       maxRows,
       inputStyle,
+      disabled,
       required,
       helpOnFocus,
       fullWidth,
@@ -192,7 +194,6 @@ export default class TextField extends Component {
     }
 
     const textFieldProps = {
-      value,
       className: classnames('md-text-field', inputClassName, {
         active,
         'floating-label': useFloatingLabel,
@@ -200,6 +201,7 @@ export default class TextField extends Component {
         'multi-line': multiline,
         'full-width': fullWidth,
       }),
+      disabled,
       onBlur: this.handleBlur,
       onChange: this.handleChange,
       onFocus: this.handleFocus,
@@ -209,7 +211,8 @@ export default class TextField extends Component {
       onKeyPress: onKeyPress,
       onKeyUp: onKeyUp,
       onSelect: onSelect,
-      type: type
+      type: type,
+      value,
     };
 
     let textField;
