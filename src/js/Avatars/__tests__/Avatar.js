@@ -80,4 +80,41 @@ describe('Avatar', () => {
 
     expect(avatarNode.className).toMatch(/md-avatar-(wat-wat|oh-no)/);
   });
+
+  it('will apply the style prop to the md-avatar div', () => {
+    const style = {
+      // #fff
+      color: 'rgb(255, 255, 255)',
+      display: 'block',
+    };
+
+    const avatar = TestUtils.renderIntoDocument(
+      <Avatar style={style}>M</Avatar>
+    );
+
+    const avatarNode = ReactDOM.findDOMNode(avatar);
+
+    expect(avatarNode.style.color).toBe(style.color);
+    expect(avatarNode.style.display).toBe(style.display);
+  });
+
+  it('will apply event listeners to the md-avatar', () => {
+    const onMouseOver = jest.genMockFunction();
+    const onMouseLeave = jest.genMockFunction();
+    const onClick = jest.genMockFunction();
+
+    const avatar = TestUtils.renderIntoDocument(
+      <Avatar onClick={onClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} />
+    );
+
+    const avatarNode = ReactDOM.findDOMNode(avatar);
+
+    TestUtils.Simulate.click(avatarNode);
+    expect(onClick).toBeCalled();
+
+    TestUtils.Simulate.mouseOver(avatarNode);
+    TestUtils.Simulate.mouseLeave(avatarNode);
+    expect(onMouseOver).toBeCalled();
+    expect(onMouseLeave).toBeCalled();
+  });
 });
