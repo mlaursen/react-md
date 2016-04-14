@@ -1,18 +1,20 @@
 /// Themes most of the components with the given colors.
-/// Progress bars and avatars are excluded from this mixin.
+/// Avatars are excluded from this mixin.
 ///
-/// @param {String} $primary [$md-primary-color] - The primary color to theme with
-/// @param {String} $primary-hue-1 [$md-primary-color-hue-1] - A hue color to use
+/// @param {Color} $primary [$md-primary-color] - The primary color to theme with
+/// @param {Color} $primary-hue-1 [$md-primary-color-hue-1] - A hue color to use
 ///       for date pickers
-/// @param {String} $secondary [$md-secondary-color] - The secondary color to use
-/// @param {String} $secondary-base [$md-secondar-color-base] - This is a -500
-///       color value that is used to theme toolbars and tabs to a main color.
-@mixin md-theme-most($primary: $md-primary-color, $primary-hue-1: $md-primary-color-hue-1, $secondary: $md-secondary-color, $secondary-base: $md-secondary-color-base) {
+/// @param {Color} $secondary [$md-secondary-color] - The secondary color to use
+/// @param {Color} $secondary-hue-1 [$md-secondary-color-hue-1] - A hue color to use
+//        for the progress bar at an inactive state.
+/// @group colors
+@mixin md-theme-most($primary: $md-primary-color, $primary-hue-1: $md-primary-color-hue-1, $secondary: $md-secondary-color, $secondary-hue-1: $md-secondary-color-hue-1) {
   @include md-theme-navigation-drawers($primary);
   @include md-theme-text-fields($primary);
   @include md-theme-snackbars($primary);
   @include md-theme-date-pickers($primary, $primary-hue-1);
   @include md-theme-lists($primary);
+  @include md-theme-progress($secondary, $secondary-hue-1);
   @include md-theme-sliders($primary);
   @include md-theme-subheaders($primary);
   @include md-theme-selection-controls($secondary);
