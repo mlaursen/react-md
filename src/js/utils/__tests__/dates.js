@@ -1,7 +1,9 @@
-jest.unmock('../../src/js/utils/dates');
+/*eslint-env jest*/
+/*eslint-disable no-undefined*/
+jest.unmock('../dates');
 import { DateTimeFormat } from 'intl';
 
-import { stripTime, getLastDay, getDayOfWeek, addDate, subtractDate, getTimeString, extractTimeParts, addHours, subtractHours } from '../../src/js/utils/dates';
+import { stripTime, getLastDay, getDayOfWeek, addDate, subtractDate, getTimeString, extractTimeParts, addHours, subtractHours } from '../dates';
 
 const march14 = new Date(Date.UTC(2016, 2, 14, 15, 22, 18, 450));
 const threeFiftyOne = new Date(Date.UTC(2016, 3, 2, 7, 51));
