@@ -1,20 +1,24 @@
-jest.unmock('classnames');
-jest.unmock('../../src/js/constants/keyCodes');
-jest.unmock('../../src/js/Tooltips');
-jest.unmock('../../src/js/Tooltips/injectTooltip');
+/*eslint-env jest*/
+jest.unmock('../../constants/keyCodes');
+jest.unmock('../injectTooltip');
 
 // Expect a warning for style mutating since the style will be NaN
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import injectTooltip from '../../src/js/Tooltips';
-import { TAB } from '../../src/js/constants/keyCodes';
+import injectTooltip from '../injectTooltip';
+import { TAB } from '../../constants/keyCodes';
 
 const findClass = TestUtils.findRenderedDOMComponentWithClass;
 const scryClass = TestUtils.scryRenderedDOMComponentsWithClass;
 
 class Link extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    tooltip: PropTypes.node,
+  };
+
   render() {
     const { children, tooltip, ...props } = this.props;
     return <a {...props}>{children}{tooltip}</a>;
