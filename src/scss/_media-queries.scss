@@ -12,7 +12,7 @@
 
 @media only screen and (min-width: 600px) {
   @include md-typography-desktop();
-  @include md-pickers-desktop();
+  @include md-pickers-landscape();
   @include md-lists-desktop();
   @include md-select-field-desktop();
   @include md-sidebar-desktop();

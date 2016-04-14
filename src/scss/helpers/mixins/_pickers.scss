@@ -7,58 +7,60 @@
 ///
 /// @group pickers
 @mixin md-pickers-portrait() {
-  width: $md-pickers-portrait-width;
+  .md-picker:not(.landscape) {
+    width: $md-pickers-portrait-width;
 
-  &.date-picker {
+    &.date-picker {
 
-    .md-display-1 {
-      display: inline-block;
+      .md-display-1 {
+        display: inline-block;
+      }
     }
-  }
 
-  .md-picker-header {
-    height: $md-pickers-portrait-header-height;
-  }
+    .md-picker-header {
+      height: $md-pickers-portrait-header-height;
+    }
 
-  .md-time-periods {
-    display: inline-block;
-    padding-left: 1em;
-    padding-right: $md-dialog-padding;
-  }
+    .md-time-periods {
+      display: inline-block;
+      padding-left: 1em;
+      padding-right: $md-dialog-padding;
+    }
 
-  .md-picker-content {
-    height: $md-pickers-portrait-content-height;
-  }
+    .md-picker-content {
+      height: $md-pickers-portrait-content-height;
+    }
 
-  .md-display-3 {
-    font-size: 4.8em;
-    line-height: 1;
-  }
+    .md-display-3 {
+      font-size: 4.8em;
+      line-height: 1;
+    }
 
-  .md-dows {
-    padding-bottom: $md-dialog-padding / 2;
-  }
+    .md-dows {
+      padding-bottom: $md-dialog-padding / 2;
+    }
 
-  .md-calendar-date-placeholder,
-  .md-calendar-date {
-    height: $md-date-picker-portrait-date-size;
-  }
+    .md-calendar-date-placeholder,
+    .md-calendar-date {
+      height: $md-date-picker-portrait-date-size;
+    }
 
-  .md-calendar-date::after {
-    height: $md-date-picker-portrait-ball-size;
-    width: $md-date-picker-portrait-ball-size;
-  }
+    .md-calendar-date::after {
+      height: $md-date-picker-portrait-ball-size;
+      width: $md-date-picker-portrait-ball-size;
+    }
 
-  .md-clock-face {
-    height: $md-clock-portrait-size;
-    width: $md-clock-portrait-size;
-  }
+    .md-clock-face {
+      height: $md-clock-portrait-size;
+      width: $md-clock-portrait-size;
+    }
 
-  .md-clock-hand {
-    width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
+    .md-clock-hand {
+      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
 
-    &.inner-hour {
-      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+      &.inner-hour {
+        width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+      }
     }
   }
 }
@@ -72,75 +74,56 @@
 ///
 /// @group pickers
 @mixin md-pickers-landscape() {
-  display: flex;
-  width: $md-pickers-landscape-width;
-
-  .md-picker-header {
-    width: $md-pickers-landscape-header-width;
-  }
-
-  .md-picker-content {
-    height: $md-pickers-landscape-content-height;
-    width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
-  }
-
-  .md-calendar-date-placeholder,
-  .md-calendar-date {
-    height: $md-date-picker-landscape-date-size;
-  }
-
-  .md-calendar-date::after {
-    height: $md-date-picker-landscape-ball-size;
-    width: $md-date-picker-landscape-ball-size;
-  }
-
-
-  &.time-picker .md-picker-header {
-    padding-top: $md-pickers-landscape-content-height / 3;
-  }
-
-  .md-clock-face {
-    height: $md-clock-landscape-size;
-    width: $md-clock-landscape-size;
-  }
-
-  .md-clock-hand {
-    width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
-
-    &.inner-hour {
-      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
-    }
-  }
-
-  .md-time-periods {
-    margin-left: auto;
-    margin-right: 2.5em;
-    width: 35px;
-  }
-
-  .md-display-3 {
-    font-size: 3.25em;
-  }
-}
-
-
-/// Updates the date picker and time picker components to be displayed portrait
-/// if they are not specifically set to landscape.
-///
-/// @group pickers
-@mixin md-pickers-mobile() {
-  .md-picker:not(.landscape) {
-    @include md-pickers-portrait();
-  }
-}
-
-/// Updates the date picker and time picker components to be displayed landscape
-/// if they are not specifically set to portrait.
-///
-/// @group pickers
-@mixin md-pickers-desktop() {
   .md-picker:not(.portrait) {
-    @include md-pickers-landscape();
+    display: flex;
+    width: $md-pickers-landscape-width;
+
+    .md-picker-header {
+      width: $md-pickers-landscape-header-width;
+    }
+
+    .md-picker-content {
+      height: $md-pickers-landscape-content-height;
+      width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
+    }
+
+    .md-calendar-date-placeholder,
+    .md-calendar-date {
+      height: $md-date-picker-landscape-date-size;
+    }
+
+    .md-calendar-date::after {
+      height: $md-date-picker-landscape-ball-size;
+      width: $md-date-picker-landscape-ball-size;
+    }
+
+
+    &.time-picker .md-picker-header {
+      padding-top: $md-pickers-landscape-content-height / 3;
+    }
+
+    .md-clock-face {
+      height: $md-clock-landscape-size;
+      width: $md-clock-landscape-size;
+    }
+
+    .md-clock-hand {
+      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+      &.inner-hour {
+        width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+      }
+    }
+
+    .md-time-periods {
+      margin-left: auto;
+      margin-right: 2.5em;
+      width: 35px;
+    }
+
+    .md-display-3 {
+      font-size: 3.25em;
+    }
   }
 }
 
