@@ -128,7 +128,7 @@
 /// if they are not specifically set to landscape.
 ///
 /// @group pickers
-@mixin md-date-picker-mobile() {
+@mixin md-pickers-mobile() {
   .md-picker:not(.landscape) {
     @include md-pickers-portrait();
   }
@@ -138,13 +138,13 @@
 /// if they are not specifically set to portrait.
 ///
 /// @group pickers
-@mixin md-date-picker-desktop() {
+@mixin md-pickers-desktop() {
   .md-picker:not(.portrait) {
     @include md-pickers-landscape();
   }
 }
 
-/// Themes a date picker with the given colors
+/// Themes a date and time picker with the given colors
 ///
 /// @example scss - Basic Usage SASS
 ///   .my-primary-theme {
@@ -153,43 +153,54 @@
 ///
 /// @example scss - Basic Usage Output SCSS
 ///   .my-primary-theme {
+///     .md-picker.inline {
+///       background: #fff;
+///     }
+///
+///     .md-picker-header,
 ///     .md-date-picker-header,
-///     .md-calendar-date.active:after {
+///     .md-calendar-date.active::after,
+///     .md-clock-hand,
+///     .md-clock-hand::before,
+///     .md-clock-hand::after {
 ///       background: #3f51b5;
 ///     }
 ///
-///     .md-calendar-date.today,
+///     .md-calendar-date.today:not(.active),
 ///     .md-year.active {
 ///        color: #3f51b5;
 ///     }
 ///
-///     .md-date-picker-date,
-///     .md-date-picker-year {
-///       color: rgba(255, 255, 255, 0.7);
-///     }
-///
-///     .md-date-picker-date.active,
-///     .md-date-picker-year.active,
-///     .md-calendar-date:not([disabled]):hover,
-///     .md-calendar-date:not([disabled]):focus,
-///     .md-calendar-date:not([disabled]).active {
-///       color: #fff;
-///     }
-///
-///     .md-calendar-date:focus:not(.active):after,
-///     .md-calendar-date:hover:not(.active):after,
-///       background: #7986cb;
+///     .md-calendar-date::after {
+///       background: #5c6bc0;
 ///     }
 ///
 ///     .md-year:focus:not(.active) {
-///       color: #7986cb;
+///       color: #5c6bc0;
+///     }
+///
+///     .md-clock-face {
+///       background: #e0e0e0;
+///     }
+///
+///     .md-clock-hand.invisible-minute::after {
+///       background: #fff;
+///       border: 6px solid $primary;
+///     }
+///
+///     .md-clock-time {
+///       color: #000;
+///     }
+///
+///     .md-clock-time.active {
+///       color: #fff;
 ///     }
 ///
 /// @param {Color} $primary - The primary color to use.
 /// @param {Color} $hover-color - The hover color to use.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if it is the light theme
 /// @group pickers
-@mixin md-theme-date-pickers($primary, $hover-color, $light-theme: $md-light-theme) {
+@mixin md-theme-pickers($primary, $hover-color, $light-theme: $md-light-theme) {
   .md-picker.inline {
     background: if($light-theme, $md-light-theme-card-color, $md-dark-theme-card-color);
   }
