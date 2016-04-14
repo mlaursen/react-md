@@ -85,6 +85,13 @@ You can compile all the components and watch for changes with
 $ npm run scripts:watch  # watch src and recompile
 ```
 
+## Linting
+
+```bash
+$ npm run lint      # checks lint
+$ npm run lint:fix  # checks lint and attempts to fix problems
+```
+
 ## Testing
 
 ```bash
