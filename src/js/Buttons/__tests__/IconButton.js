@@ -1,8 +1,9 @@
 /*eslint-env jest*/
 jest.unmock('../../Inks');
 jest.unmock('../../Inks/injectInk');
-jest.unmock('../Button');
-jest.unmock('../FlatButton');
+jest.unmock('../../Tooltips');
+jest.unmock('../../Tooltips/injectTooltip');
+jest.unmock('../IconButton');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 
@@ -10,35 +11,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-import FlatButton from '../FlatButton';
-import FontIcon from '../../FontIcons';
+import IconButton from '../IconButton';
 
-describe('FlatButton', () => {
+describe('IconButton', () => {
   it('it merges a className prop', () => {
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="Test" className="test" />
+      <IconButton label="Test" className="test" />
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);
 
-    expect(buttonNode.className).toBe('md-btn md-flat-btn test');
+    expect(buttonNode.className).toBe('md-btn md-icon-btn test');
   });
 
-  it('displays a label in the button', () => {
+  it('displays an icon in the button with iconClassName and children', () => {
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="Hello, World!" />
+      <IconButton>test</IconButton>
+    );
+
+    const button2 = TestUtils.renderIntoDocument(
+      <IconButton iconClassName="fa fa-github" />
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);
+    const button2Node = ReactDOM.findDOMNode(button2);
 
-    expect(buttonNode.textContent).toBe('Hello, World!');
+    expect(buttonNode.textContent).toBe('test');
+    expect(buttonNode.querySelector('.md-icon').className).toBe('md-icon material-icons');
+
+    expect(button2Node.textContent).toBe('');
+    expect(button2Node.querySelector('.md-icon').className).toBe('md-icon fa fa-github');
   });
 
-  it('displays an icon as children in the button', () => {
+  it('displays an children in the button', () => {
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="Test">
-        <FontIcon>test</FontIcon>
-      </FlatButton>
+      <IconButton>test</IconButton>
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);
@@ -46,32 +53,9 @@ describe('FlatButton', () => {
     expect(buttonNode.querySelector('.md-icon')).toBeDefined();
   });
 
-  it('can display an icon before or after the label in the button', () => {
-    const iconBeforeButton = TestUtils.renderIntoDocument(
-      <FlatButton label="Test">
-        <FontIcon>test</FontIcon>
-      </FlatButton>
-    );
-
-    const iconAfterButton = TestUtils.renderIntoDocument(
-      <FlatButton label="Test" iconBefore={false}>
-        <FontIcon>test</FontIcon>
-      </FlatButton>
-    );
-
-    const [iconBeforeIcon, iconBeforeText] = ReactDOM.findDOMNode(iconBeforeButton).querySelector('.icon-separator').childNodes;
-    const [iconAfterText, iconAfterIcon] = ReactDOM.findDOMNode(iconAfterButton).querySelector('.icon-separator').childNodes;
-
-    expect(iconBeforeIcon.classList.contains('md-icon')).toBe(true);
-    expect(iconBeforeText.textContent).toBe('Test');
-
-    expect(iconAfterIcon.classList.contains('md-icon')).toBe(true);
-    expect(iconAfterText.textContent).toBe('Test');
-  });
-
   it('converts the button into a link tag if the href prop is given', () => {
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="Test" href="what" />
+      <IconButton href="what">test</IconButton>
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);
@@ -79,29 +63,10 @@ describe('FlatButton', () => {
     expect(buttonNode.nodeName).toBe('A');
   });
 
-  it('appends md-primary or md-secondary depending on which prop is set to true', () => {
-    const primaryButton = TestUtils.renderIntoDocument(
-      <FlatButton primary={true} className="test" label="Test" />
-    );
-
-    const secondaryButton = TestUtils.renderIntoDocument(
-      <FlatButton secondary={true} className="test" label="Test" />
-    );
-
-    const primaryButtonNode = ReactDOM.findDOMNode(primaryButton);
-    const secondaryButtonNode = ReactDOM.findDOMNode(secondaryButton);
-
-    expect(primaryButtonNode.classList.contains('md-primary')).toBe(true);
-    expect(primaryButtonNode.classList.contains('test')).toBe(true);
-
-    expect(secondaryButtonNode.classList.contains('md-secondary')).toBe(true);
-    expect(secondaryButtonNode.classList.contains('test')).toBe(true);
-  });
-
   it('applies style to the button', () => {
     const style = { display: 'block' };
     const button = TestUtils.renderIntoDocument(
-      <FlatButton style={style} label="Test" />
+      <IconButton style={style}>test</IconButton>
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);
@@ -117,7 +82,7 @@ describe('FlatButton', () => {
     const onTouchEnd = jest.genMockFunction();
 
     const button = TestUtils.renderIntoDocument(
-      <FlatButton
+      <IconButton
         label="Test"
         onClick={onClick}
         onMouseOver={onMouseOver}
@@ -143,10 +108,37 @@ describe('FlatButton', () => {
     expect(onTouchEnd).toBeCalled();
   });
 
+  it('includes a tooltip if the tooltipLabel prop is given', () => {
+    const button = TestUtils.renderIntoDocument(
+      <IconButton tooltipLabel="Woop woop" />
+    );
+
+    const tooltip = ReactDOM.findDOMNode(button).querySelector('.md-tooltip');
+
+    expect(tooltip).toBeDefined();
+    expect(tooltip.textContent).toBe('Woop woop');
+  });
+
+  it('includes ink unless the button is disabled', () => {
+    const button = TestUtils.renderIntoDocument(
+      <IconButton />
+    );
+
+    const disabledButton = TestUtils.renderIntoDocument(
+      <IconButton disabled={true} />
+    );
+
+    const buttonNode = ReactDOM.findDOMNode(button);
+    const disabledButtonNode = ReactDOM.findDOMNode(disabledButton);
+
+    expect(buttonNode.querySelector('.md-ink-container')).toBeDefined();
+    expect(disabledButtonNode.querySelector('.md-ink-container')).toBe(null);
+  });
+
   it('prevent button clicks if disabled', () => {
     const onClick = jest.genMockFunction();
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="test" disabled={true} onClick={onClick} />
+      <IconButton disabled={true} onClick={onClick} />
     );
 
     const buttonNode = ReactDOM.findDOMNode(button);

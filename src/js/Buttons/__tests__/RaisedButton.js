@@ -142,4 +142,16 @@ describe('RaisedButton', () => {
     expect(onTouchStart).toBeCalled();
     expect(onTouchEnd).toBeCalled();
   });
+
+  it('prevent button clicks if disabled', () => {
+    const onClick = jest.genMockFunction();
+    const button = TestUtils.renderIntoDocument(
+      <RaisedButton label="test" disabled={true} onClick={onClick} />
+    );
+
+    const buttonNode = ReactDOM.findDOMNode(button);
+
+    TestUtils.Simulate.click(buttonNode);
+    expect(onClick).not.toBeCalled();
+  });
 });
