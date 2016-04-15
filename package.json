@@ -7,12 +7,12 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "scripts": "babel --ignore=__tests__ ./src/js --out-dir=./lib",
+    "scripts:watch": "babel --ignore=__tests__ ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
     "prebuild": "rimraf lib",
     "lint": "eslint -c .eslintrc src/js/**",
     "lint:fix": "eslint -c .eslintrc --fix src/js/**",
-    "build": "npm run scripts && npm run styles",
-    "scripts:watch": "babel ./src/js --watch --out-dir ./lib"
+    "build": "npm run scripts && npm run styles"
   },
   "repository": {
     "type": "git",

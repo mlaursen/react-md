@@ -13,18 +13,21 @@ export default class Chip extends Component {
   }
 
   static propTypes = {
+    style: PropTypes.object,
     className: PropTypes.string,
     onClick: PropTypes.func,
     remove: PropTypes.func,
     label: PropTypes.string.isRequired,
     children: PropTypes.node,
-    removeIcon: PropTypes.node.isRequired,
+    removeIconChildren: PropTypes.node,
+    removeIconClassName: PropTypes.string,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
   };
 
   static defaultProps = {
-    removeIcon: <FontIcon style={{ transform: 'rotate(45deg)' }}>add_circle</FontIcon>,
+    removeIconChildren: 'add_circle',
+    removeIconClassName: 'material-icons rotate-45-deg',
   };
 
   handleFocus = (e) => {
@@ -38,12 +41,24 @@ export default class Chip extends Component {
   };
 
   render() {
-    const { className, label, children, remove, removeIcon, onClick } = this.props;
+    const {
+      style,
+      className,
+      label,
+      children,
+      remove,
+      removeIconChildren,
+      removeIconClassName,
+      onClick,
+      ...props,
+    } = this.props;
+
     return (
-      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })}>
+      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })} style={style}>
         {children}
         <button
           type="button"
+          {...props}
           className={classnames('md-chip', {
             'with-remove': !!remove,
           })}
@@ -55,7 +70,7 @@ export default class Chip extends Component {
         </button>
         {remove &&
         <button type="button" className="md-chip-remove" onClick={remove}>
-          {removeIcon}
+          <FontIcon iconClassName={removeIconClassName} children={removeIconChildren} />
         </button>
         }
       </div>
