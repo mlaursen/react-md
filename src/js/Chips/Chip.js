@@ -13,6 +13,7 @@ export default class Chip extends Component {
   }
 
   static propTypes = {
+    style: PropTypes.object,
     className: PropTypes.string,
     onClick: PropTypes.func,
     remove: PropTypes.func,
@@ -41,6 +42,7 @@ export default class Chip extends Component {
 
   render() {
     const {
+      style,
       className,
       label,
       children,
@@ -48,13 +50,15 @@ export default class Chip extends Component {
       removeIconChildren,
       removeIconClassName,
       onClick,
+      ...props,
     } = this.props;
 
     return (
-      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })}>
+      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })} style={style}>
         {children}
         <button
           type="button"
+          {...props}
           className={classnames('md-chip', {
             'with-remove': !!remove,
           })}
