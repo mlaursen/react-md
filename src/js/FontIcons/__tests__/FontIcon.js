@@ -1,37 +1,20 @@
 /*eslint-env jest*/
-jest.unmock('../Divider');
+jest.unmock('../FontIcon');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument, Simulate } from 'react-addons-test-utils';
 
-import Divider from '../Divider';
+import FontIcon from '../FontIcon';
 
-describe('Divider', () => {
-  it('updates the className with inset or vertical', () => {
-    let divider = renderIntoDocument(<Divider />);
+describe('FontIcon', () => {
+  it('applies a className and an iconClassName', () => {
+    const icon = renderIntoDocument(<FontIcon className="test" iconClassName="fa fa-github" />);
+    const iconNode = findDOMNode(icon);
 
-    let dividerNode = findDOMNode(divider);
-
-    expect(dividerNode.className).toBe('md-divider');
-
-    divider = renderIntoDocument(<Divider inset={true} />);
-    dividerNode = findDOMNode(divider);
-
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(false);
-
-    divider = renderIntoDocument(<Divider inset={true} vertical={true} />);
-    dividerNode = findDOMNode(divider);
-
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
-
-    divider = renderIntoDocument(<Divider vertical={true} />);
-    dividerNode = findDOMNode(divider);
-
-    expect(dividerNode.classList.contains('inset')).toBe(false);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
+    expect(iconNode.classList.contains('test')).toBe(true);
+    expect(iconNode.classList.contains('fa')).toBe(true);
+    expect(iconNode.classList.contains('fa-github')).toBe(true);
   });
 
   it('passes all remaining props to the divider', () => {
@@ -48,7 +31,7 @@ describe('Divider', () => {
     const style = { display: 'block' };
 
     const divider = renderIntoDocument(
-      <Divider
+      <FontIcon
         style={style}
         onClick={onClick}
         onFocus={onFocus}
