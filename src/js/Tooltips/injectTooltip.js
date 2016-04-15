@@ -183,6 +183,14 @@ export default ComposedComponent => class Tooltip extends Component {
     this.setInactive('tabActive');
   };
 
+  handleTouchStart = (e) => {
+    this.props.onTouchStart && this.props.onTouchStart(e);
+  };
+
+  handleTouchEnd = (e) => {
+    this.props.onTouchEnd && this.props.onTouchEnd(e);
+  };
+
   render() {
     const { tooltipLabel, tooltipPosition, tooltipDelay, ...props } = this.props;
     const { style, active, tabActive, textStyle } = this.state;
