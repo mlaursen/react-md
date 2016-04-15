@@ -1,18 +1,28 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-const Divider = ({ className, inset, vertical, ...props}) => (
-  <hr
-    role="divider"
-    className={classnames('md-divider', className, { inset, vertical })}
-    {...props}
-  />
-);
+export default class Divider extends Component {
+  constructor(props) {
+    super(props);
 
-Divider.propTypes = {
-  className: PropTypes.string,
-  inset: PropTypes.bool,
-  vertical: PropTypes.bool,
-};
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
 
-export default Divider;
+  static propTypes = {
+    className: PropTypes.string,
+    inset: PropTypes.bool,
+    vertical: PropTypes.bool,
+  };
+
+  render() {
+    const { className, inset, vertical, ...props } = this.props;
+    const dividerProps = {
+      role: 'divider',
+      className: classnames('md-divider', className, { inset, vertical }),
+      ...props,
+    };
+
+    return React.createElement(vertical ? 'div' : 'hr', dividerProps);
+  }
+}
