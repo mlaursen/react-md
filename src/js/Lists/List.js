@@ -4,6 +4,9 @@ import classnames from 'classnames';
 
 import Subheader from '../Subheaders';
 
+/**
+ * Lists present multiple line items vertically as a single continuous element.
+ */
 export default class List extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +15,32 @@ export default class List extends Component {
   }
 
   static propTypes = {
+    /**
+     * Boolean if this should be an ordered list (`<ol>`) component. Otherwise, it will
+     * be rendered as `<ul>`.
+     */
     ordered: PropTypes.bool,
+
+    /**
+     * An optional className to apply to the list.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional subheader primaryText to use if you want the list to start
+     * with a subheader.
+     */
     subheader: PropTypes.string,
+
+    /**
+     * A boolean if the optional subheader should be styled with the primary color.
+     */
     primarySubheader: PropTypes.bool,
+
+    /**
+     * This *should* be a list of `ListItem`, `ListItemControl`, `Divider`, or
+     * `Subheader`.
+     */
     children: PropTypes.node,
   };
 

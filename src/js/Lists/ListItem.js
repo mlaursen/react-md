@@ -9,6 +9,9 @@ import List from './List';
 import ListTile from './ListTile';
 import ListItemText from './ListItemText';
 
+/**
+ * A component for rendering a `li` component with icons, avatars, and text.
+ */
 export default class ListItem extends Component {
   constructor(props) {
     super(props);
@@ -18,29 +21,124 @@ export default class ListItem extends Component {
   }
 
   static propTypes = {
-    primaryText: PropTypes.node,
+    /**
+     * This should be the main text to display.
+     */
+    primaryText: PropTypes.node.isRequired,
+
+    /**
+     * An optional secondary text to display below the `primaryText`. This can
+     * be an additional 1 or 2 lines. The text will automatically be ellipsed
+     * if it spans more than one line. If the prop `threeLines` is set to true,
+     * then the text will automatically be ellipsed if it spans more than two lines.
+     */
     secondaryText: PropTypes.node,
+
+    /**
+     * The className to apply to the `.md-list-item` component which is the
+     * entire container.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `.md-list-item` component.
+     */
     style: PropTypes.object,
+
+    /**
+     * The className to apply to the `.md-list-tile` component.
+     */
     tileClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `.md-list-tile` component.
+     */
     tileStyle: PropTypes.object,
+
+    /**
+     * An optional icon to display to the left of the text.
+     */
     leftIcon: PropTypes.node,
+
+    /**
+     * An optional avatar to display to the left of the text.
+     */
     leftAvatar: PropTypes.node,
+
+    /**
+     * An optional icon to display to the left of the text.
+     */
     rightIcon: PropTypes.node,
+
+    /**
+     * An optional avatar to display to the left of the text.
+     */
     rightAvatar: PropTypes.node,
+
+    /**
+     * The component to render the `.md-list-tile` as. This can be set
+     * as an external component if you need additional functionality.
+     *
+     * An example would be setting this to be `react-router`'s `Link` component
+     * so that it redirects on click.
+     */
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+
+    /**
+     * An optional list of `ListItem`, `ListItemControl`, `Divider`, or `Subheader`
+     * to use as a nested list.
+     */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
+
+    /**
+     * Boolean if the nested list should initially be displayed.
+     */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * Boolean if the nested list is currently open. This forces the component
+     * to be a controlled component.
+     */
     isOpen: PropTypes.bool,
+
+    /**
+     * The optional function to call when the nested item expander button is clicked.
+     */
     onExpanderClick: PropTypes.func,
+
+    /**
+     * A boolean if the nested items should be toggled if the `ListItem` is clicked
+     * instead of only the expander button.
+     */
     expandOnClick: PropTypes.bool,
+
+    /**
+     * Any children required to render the expander icon.
+     */
     expanderIconChildren: PropTypes.node,
+
+    /**
+     * The icon className to use for the expander icon.
+     */
     expanderIconClassName: PropTypes.string,
+
+    /**
+     * An optional function to call when the `ListItem` is clicked.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * Boolean if the item is currently disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Boolean if the `ListItem` should allow three lines of text including
+     * the `primaryText`.
+     */
     threeLines: PropTypes.bool,
   };
 
