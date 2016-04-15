@@ -68,6 +68,7 @@
     "react-dom": ">= 0.14.0"
   },
   "jest": {
+    "setupEnvScriptFile": "<rootDir>/src/beforeTest.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/intl",
