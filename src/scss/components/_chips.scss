@@ -46,3 +46,7 @@ $md-chip-bg-color: $md-grey-300;
   padding: 0;
   width: $md-chip-remove-icon-size;
 }
+
+.rotate-45-deg {
+  transform: rotate(45deg);
+}
