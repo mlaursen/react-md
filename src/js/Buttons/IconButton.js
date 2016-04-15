@@ -9,6 +9,9 @@ import injectTooltip from '../Tooltips';
 /**
  * The `IconButton` component automatically includes ink and a tooltip.
  * The tooltip will only be included if the `tooltipLabel` prop is given.
+ *
+ * Any other props (such as style or event listeners) will also be
+ * applied.
  */
 class IconButton extends Component {
   constructor(props) {
