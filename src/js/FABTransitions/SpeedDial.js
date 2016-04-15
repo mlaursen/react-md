@@ -5,6 +5,11 @@ import classnames from 'classnames';
 
 import { FloatingButton } from '../Buttons';
 
+/**
+ * Any props such as style or event listeners will be applied to the
+ * main floating action button. If you want props applied to the `SpeedDial`
+ * itself, you will need to set them in the `containerProps` prop.
+ */
 export default class SpeedDial extends Component {
   constructor(props) {
     super(props);
@@ -14,35 +19,109 @@ export default class SpeedDial extends Component {
   }
 
   static propTypes = {
+    /**
+     * A boolean if the speed dial is currently open. This will make
+     * the speed dial into a controlled component.
+     */
     isOpen: PropTypes.bool,
+
+    /**
+     * Boolean if the uncontrolled speed dial is initially open.
+     */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * An optional className to apply to the speed dial.
+     */
     className: PropTypes.string,
+
+    /**
+     * The speed dial's floating action button transition name when the button's
+     * open state changes. If the button is open, `-right` is appened, otherwise
+     * `-left`.
+     */
     transitionName: PropTypes.string.isRequired,
+
+    /**
+     * The timeout for the speed dial's floating action button transition.
+     */
     transitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The name for the flinging animation of the speed dial.
+     */
     speedDialTransitionName: PropTypes.string.isRequired,
+
+    /**
+     * The timeout for the flinging animation of the speed dial when opening.
+     */
     speedDialTransitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The timeout for the flinging animation when the speed dial is closing.
+     */
     speedDialTransitionLeaveTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The optional children to display for unopened speed dial floating action button.
+     */
     passiveIconChildren: PropTypes.node,
+
+    /**
+     * The optional icon className to display for unopened speed dial floating action button.
+     */
     passiveIconClassName: PropTypes.node,
+
+    /**
+     * The optional children to display for opened speed dial floating action button.
+     */
     activeIconChildren: PropTypes.node,
+
+    /**
+     * The optional icon className to display for opened speed dial floating action button.
+     */
     activeIconClassName: PropTypes.string,
-    fabs: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.shape({
-        onClick: PropTypes.func,
-        iconClassName: PropTypes.string,
-        children: PropTypes.node,
-      }),
-    ])).isRequired,
-    onClick: PropTypes.func,
-    onPassiveClick: PropTypes.func,
-    onActiveClick: PropTypes.func,
-    fabsValidator: function(props) {
+
+    /**
+     * A list of `FloatingButton` or props to generate the `FloatinButton` when the
+     * `SpeedDial` is open. The buttons will automatically be converted to the `mini`
+     * version.
+     */
+    fabs: (props, propName, component) => {
       const size = props.fabs.length;
-      if(size >= 3 && size <= 5) { return; }
+      if(size >= 3 && size <= 5) {
+        return PropTypes.arrayOf(PropTypes.oneOfType([
+          PropTypes.node,
+          PropTypes.shape({
+            onClick: PropTypes.func,
+            iconClassName: PropTypes.string,
+            children: PropTypes.node,
+          }),
+        ])).isRequired(props, propName, component);
+      }
+
       const middle = size < 3 ? 'at least 3' : 'no more than 5';
       return new Error(`A speed dial requires ${middle} floating action buttons to fling. However, only ${size} were given.`);
     },
+
+    /**
+     * An optional function to call when the main floating action button is clicked.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the main floating action button is clicked.
+     */
+    onPassiveClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the main floating action button is clicked.
+     */
+    onActiveClick: PropTypes.func,
+
+    /**
+     * Any additional props to apply to the speed dial itself.
+     */
     containerProps: PropTypes.object,
   };
 
@@ -50,7 +129,6 @@ export default class SpeedDial extends Component {
     initiallyOpen: false,
     transitionName: 'md-fab-rotate',
     transitionEnterTimeout: 150,
-    transitionLeaveTimeout: 150,
     speedDialTransitionName: 'md-speed-dial',
     speedDialTransitionEnterTimeout: 450,
     speedDialTransitionLeaveTimeout: 150,
