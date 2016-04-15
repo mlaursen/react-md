@@ -1,23 +1,25 @@
 /*eslint-env jest*/
-jest.unmock('../FontIcon');
+jest.unmock('../ListItem');
+jest.unmock('../ListTile');
+jest.unmock('../ListItemText');
+jest.unmock('../../Inks');
+jest.unmock('../../Inks/injectInk');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument, Simulate } from 'react-addons-test-utils';
 
-import FontIcon from '../FontIcon';
+import ListItem from '../ListItem';
 
-describe('FontIcon', () => {
-  it('applies a className and an iconClassName', () => {
-    const icon = renderIntoDocument(<FontIcon className="test" iconClassName="fa fa-github" />);
-    const iconNode = findDOMNode(icon);
+describe('ListItem', () => {
+  it('renders as an li component', () => {
+    const li = renderIntoDocument(<ListItem primaryText="Test" />);
+    const liNode = findDOMNode(li);
 
-    expect(iconNode.classList.contains('test')).toBe(true);
-    expect(iconNode.classList.contains('fa')).toBe(true);
-    expect(iconNode.classList.contains('fa-github')).toBe(true);
+    expect(liNode.nodeName).toBe('LI');
   });
 
-  it('passes all remaining props to the font icon', () => {
+  it('passes all remaining props to .md-list-tile', () => {
     const onClick = jest.genMockFunction();
     const onFocus = jest.genMockFunction();
     const onBlur = jest.genMockFunction();
@@ -28,11 +30,10 @@ describe('FontIcon', () => {
     const onTouchStart = jest.genMockFunction();
     const onTouchEnd = jest.genMockFunction();
     const onTouchCancel = jest.genMockFunction();
-    const style = { display: 'block' };
 
-    const divider = renderIntoDocument(
-      <FontIcon
-        style={style}
+    const li = renderIntoDocument(
+      <ListItem
+        primaryText="Test"
         onClick={onClick}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -46,37 +47,35 @@ describe('FontIcon', () => {
       />
     );
 
-    const dividerNode = findDOMNode(divider);
-    expect(dividerNode.style.display).toBe(style.display);
+    const tileNode = findDOMNode(li).querySelector('.md-list-tile');
 
-    Simulate.click(dividerNode);
+    Simulate.click(tileNode);
     expect(onClick).toBeCalled();
 
-    Simulate.focus(dividerNode);
+    Simulate.focus(tileNode);
     expect(onFocus).toBeCalled();
 
-    Simulate.blur(dividerNode);
+    Simulate.blur(tileNode);
     expect(onBlur).toBeCalled();
 
-    Simulate.mouseOver(dividerNode);
+    Simulate.mouseOver(tileNode);
     expect(onMouseOver).toBeCalled();
 
-    Simulate.mouseLeave(dividerNode);
+    Simulate.mouseLeave(tileNode);
     expect(onMouseLeave).toBeCalled();
 
-    Simulate.mouseDown(dividerNode);
+    Simulate.mouseDown(tileNode);
     expect(onMouseDown).toBeCalled();
 
-    Simulate.mouseUp(dividerNode);
+    Simulate.mouseUp(tileNode);
     expect(onMouseUp).toBeCalled();
 
-    Simulate.touchStart(dividerNode);
+    const touchEvent = { changedTouches: [{}] };
+    Simulate.touchStart(tileNode, touchEvent);
     expect(onTouchStart).toBeCalled();
 
-    Simulate.touchEnd(dividerNode);
+    Simulate.touchEnd(tileNode, touchEvent);
     expect(onTouchEnd).toBeCalled();
-
-    Simulate.touchCancel(dividerNode);
-    expect(onTouchCancel).toBeCalled();
   });
+
 });

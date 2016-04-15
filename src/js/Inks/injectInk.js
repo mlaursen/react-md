@@ -33,6 +33,7 @@ export default ComposedComponent => class Ink extends Component {
     onBlur: PropTypes.func,
     onTouchStart: PropTypes.func,
     onTouchEnd: PropTypes.func,
+    onTouchCancel: PropTypes.func,
     disabled: PropTypes.bool,
     children: PropTypes.node,
     inkDisabled: PropTypes.bool,
@@ -103,6 +104,7 @@ export default ComposedComponent => class Ink extends Component {
   };
 
   handleMouseDown = (e) => {
+    this.props.onMouseDown && this.props.onMouseDown(e);
     if(isTouchDevice || this.invalidClickEvent(e)) { return; }
     e.stopPropagation();
 
@@ -141,6 +143,11 @@ export default ComposedComponent => class Ink extends Component {
     this.popInk();
   };
 
+  handleTouchCancel = (e) => {
+    this.props.onTouchCancel && this.props.onTouchCancel(e);
+    this.popInk();
+  };
+
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
     if((e.which || e.keyCode) !== TAB) { return; }
@@ -175,7 +182,7 @@ export default ComposedComponent => class Ink extends Component {
         onKeyUp={this.handleKeyUp}
         onBlur={this.handleBlur}
         onTouchStart={this.handleTouchStart}
-        onTouchCancel={this.handleTouchEnd}
+        onTouchCancel={this.handleTouchCancel}
         onTouchEnd={this.handleTouchEnd}
         ink={ink}
       >
