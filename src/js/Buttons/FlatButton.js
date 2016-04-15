@@ -66,24 +66,11 @@ export default class FlatButton extends Component {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
-
-    /**
-     * An optional label to use if you would like a tooltip to display
-     * on hover or touch hold.
-     */
-    tooltipLabel: PropTypes.string,
-
-    /**
-     * The position that the tooltip should be displayed relative to
-     * the button.
-     */
-    tooltipPosition: PropTypes.oneOf(['left', 'right', 'bottom', 'left']),
   };
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
-    tooltipPosition: 'bottom',
   };
 
   render() {
