@@ -2,12 +2,15 @@
 jest.unmock('../Chip');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
+jest.unmock('../../Avatars');
+jest.unmock('../../Avatars/Avatar');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument, Simulate } from 'react-addons-test-utils';
 
 import Chip from '../Chip';
+import Avatar from '../../Avatars';
 
 describe('Chip', () => {
   it('adds className and style onto the container component', () => {
@@ -133,5 +136,21 @@ describe('Chip', () => {
 
     Simulate.touchCancel(chipNode);
     expect(onTouchCancel).toBeCalled();
+  });
+
+  it('injects an avatar before the label if the children is set', () => {
+    const chip = renderIntoDocument(
+      <Chip label="Test">
+        <Avatar>T</Avatar>
+      </Chip>
+    );
+
+    const chipNode = findDOMNode(chip);
+    expect(chipNode.classList.contains('md-contact-chip')).toBe(true);
+
+    const [avatar, label] = chipNode.childNodes;
+
+    expect(avatar.className).toBe('md-avatar');
+    expect(label.textContent).toBe('Test');
   });
 });

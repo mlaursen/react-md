@@ -4,6 +4,10 @@ import classnames from 'classnames';
 
 import FontIcon from '../FontIcons';
 
+/**
+ * Any additional props such as event listeners will be applied
+ * to the chip itself, not the chip container.
+ */
 export default class Chip extends Component {
   constructor(props) {
     super(props);
@@ -13,16 +17,57 @@ export default class Chip extends Component {
   }
 
   static propTypes = {
+    /**
+     * Any style that should be added to the chip container.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to add to the chip container.
+     */
     className: PropTypes.string,
-    onClick: PropTypes.func,
-    remove: PropTypes.func,
+
+    /**
+     * The label to display in the chip.
+     */
     label: PropTypes.string.isRequired,
-    children: PropTypes.node,
+
+    /**
+     * An optional function to call when the chip is clicked.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * An optional function to call to convert the chip into a removable chip.
+     * This will inject a remove icon button into the chip.
+     */
+    remove: PropTypes.func,
+
+    /**
+     * The children to use to display the remove icon button.
+     */
     removeIconChildren: PropTypes.node,
+
+    /**
+     * The icon className to use to display the remove icon button.
+     */
     removeIconClassName: PropTypes.string,
+
+    /**
+     * An optional function to call when the chip is focused.
+     */
     onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the chip is blurred.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * This should be an Avatar component that will be injected before the
+     * label in the chip.
+     */
+    children: PropTypes.node,
   };
 
   static defaultProps = {
