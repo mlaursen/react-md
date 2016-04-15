@@ -1260,7 +1260,7 @@ tbody .md-table-row:hover {
   margin-top: 32px;
 }
 
-/* line 6, ../src/scss/components/_ink.scss */
+/* line 6, ../src/scss/components/_inks.scss */
 .md-ink-container {
   border-radius: inherit;
   height: 100%;
@@ -1273,7 +1273,7 @@ tbody .md-table-row:hover {
   z-index: 1;
 }
 
-/* line 18, ../src/scss/components/_ink.scss */
+/* line 18, ../src/scss/components/_inks.scss */
 .md-ink {
   background: rgba(0, 0, 0, 0.12);
   border-radius: 50%;
@@ -1283,14 +1283,14 @@ tbody .md-table-row:hover {
   transform: scale(0);
   z-index: -1;
 }
-/* line 27, ../src/scss/components/_ink.scss */
+/* line 27, ../src/scss/components/_inks.scss */
 .md-ink.active {
   transform: scale(2.5);
   transition-duration: 0.6s;
   transition-property: opacity, transform;
   transition-timing-function: linear;
 }
-/* line 33, ../src/scss/components/_ink.scss */
+/* line 33, ../src/scss/components/_inks.scss */
 .md-ink.active.leaving {
   opacity: 0;
 }
@@ -1767,109 +1767,109 @@ tbody .md-table-row:hover {
 .md-picker.inline.with-icon {
   left: 50px;
 }
-/* line 37, ../src/scss/components/_pickers.scss */
-.md-picker.portrait {
+/* line 10, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) {
   width: 320px;
 }
-/* line 14, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait.date-picker .md-display-1 {
+/* line 15, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape).date-picker .md-display-1 {
   display: inline-block;
 }
-/* line 19, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-picker-header {
+/* line 20, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-picker-header {
   height: 110px;
 }
-/* line 23, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-time-periods {
+/* line 24, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-time-periods {
   display: inline-block;
   padding-left: 1em;
   padding-right: 24px;
 }
-/* line 29, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-picker-content {
+/* line 30, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-picker-content {
   height: 340px;
 }
-/* line 33, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-display-3 {
+/* line 34, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-display-3 {
   font-size: 4.8em;
   line-height: 1;
 }
-/* line 38, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-dows {
+/* line 39, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-dows {
   padding-bottom: 12px;
 }
-/* line 42, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-calendar-date-placeholder,
-.md-picker.portrait .md-calendar-date {
+/* line 43, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-calendar-date-placeholder,
+.md-picker.portrait .md-picker:not(.landscape) .md-calendar-date {
   height: 44px;
 }
-/* line 47, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-calendar-date::after {
+/* line 48, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-calendar-date::after {
   height: 36px;
   width: 36px;
 }
-/* line 52, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-clock-face {
+/* line 53, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-clock-face {
   height: 272px;
   width: 272px;
 }
-/* line 57, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-clock-hand {
+/* line 58, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-clock-hand {
   width: 116px;
 }
-/* line 60, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.portrait .md-clock-hand.inner-hour {
+/* line 61, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.portrait .md-picker:not(.landscape) .md-clock-hand.inner-hour {
   width: 80px;
 }
-/* line 41, ../src/scss/components/_pickers.scss */
-.md-picker.landscape {
+/* line 77, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) {
   display: flex;
   width: 560px;
 }
-/* line 78, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-picker-header {
+/* line 81, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-picker-header {
   width: 180px;
 }
-/* line 82, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-picker-content {
+/* line 85, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-picker-content {
   height: 280px;
   width: 380px;
 }
-/* line 87, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-calendar-date-placeholder,
-.md-picker.landscape .md-calendar-date {
+/* line 90, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-calendar-date-placeholder,
+.md-picker.landscape .md-picker:not(.portrait) .md-calendar-date {
   height: 35px;
 }
-/* line 92, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-calendar-date::after {
+/* line 95, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-calendar-date::after {
   height: 32px;
   width: 32px;
 }
-/* line 98, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape.time-picker .md-picker-header {
+/* line 101, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait).time-picker .md-picker-header {
   padding-top: 93.33333px;
 }
-/* line 102, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-clock-face {
+/* line 105, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-clock-face {
   height: 244px;
   width: 244px;
 }
-/* line 107, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-clock-hand {
+/* line 110, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-clock-hand {
   width: 102px;
 }
-/* line 110, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-clock-hand.inner-hour {
+/* line 113, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-clock-hand.inner-hour {
   width: 66px;
 }
-/* line 115, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-time-periods {
+/* line 118, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-time-periods {
   margin-left: auto;
   margin-right: 2.5em;
   width: 35px;
 }
-/* line 121, ../src/scss/helpers/mixins/_pickers.scss */
-.md-picker.landscape .md-display-3 {
+/* line 124, ../src/scss/helpers/mixins/_pickers.scss */
+.md-picker.landscape .md-picker:not(.portrait) .md-display-3 {
   font-size: 3.25em;
 }
 /* line 46, ../src/scss/components/_pickers.scss */
@@ -2413,36 +2413,36 @@ tbody .md-table-row:hover {
   width: 60px;
 }
 
-/* line 1, ../src/scss/components/_sidebar.scss */
+/* line 1, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container {
   display: inline-block;
   left: 0;
   top: 0;
   z-index: 5;
 }
-/* line 9, ../src/scss/components/_sidebar.scss */
+/* line 9, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container.responsive {
   display: flex;
 }
-/* line 13, ../src/scss/components/_sidebar.scss */
+/* line 13, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container.fixed, .md-sidebar-container.fixed .md-sidebar {
   height: 100vh;
   position: fixed;
 }
-/* line 19, ../src/scss/components/_sidebar.scss */
+/* line 19, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container.fixed {
   z-index: 10;
 }
-/* line 23, ../src/scss/components/_sidebar.scss */
+/* line 23, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container.md-sidebar-left .md-sidebar {
   left: 0;
 }
-/* line 27, ../src/scss/components/_sidebar.scss */
+/* line 27, ../src/scss/components/_sidebars.scss */
 .md-sidebar-container.md-sidebar-right .md-sidebar {
   right: 0;
 }
 
-/* line 32, ../src/scss/components/_sidebar.scss */
+/* line 32, ../src/scss/components/_sidebars.scss */
 .md-sidebar {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
   min-height: 100%;
@@ -2451,17 +2451,17 @@ tbody .md-table-row:hover {
   width: 0;
   z-index: 5;
 }
-/* line 41, ../src/scss/components/_sidebar.scss */
+/* line 41, ../src/scss/components/_sidebars.scss */
 .md-sidebar.active {
   overflow-y: auto;
 }
 
-/* line 46, ../src/scss/components/_sidebar.scss */
+/* line 46, ../src/scss/components/_sidebars.scss */
 .md-sidebar-relative {
   padding-left: 256px;
 }
 
-/* line 50, ../src/scss/components/_sidebar.scss */
+/* line 50, ../src/scss/components/_sidebars.scss */
 .md-sidebar-relative-right {
   padding-right: 256px;
 }
@@ -2568,7 +2568,7 @@ tbody .md-table-row:hover {
   transform: translateX(-50%);
 }
 
-/* line 1, ../src/scss/components/_snackbar.scss */
+/* line 1, ../src/scss/components/_snackbars.scss */
 .md-snackbar {
   align-items: center;
   background: #323232;
@@ -2580,40 +2580,40 @@ tbody .md-table-row:hover {
   position: fixed;
   z-index: 11;
 }
-/* line 12, ../src/scss/components/_snackbar.scss */
+/* line 12, ../src/scss/components/_snackbars.scss */
 .md-snackbar.multiline {
   height: 80px;
 }
-/* line 16, ../src/scss/components/_snackbar.scss */
+/* line 16, ../src/scss/components/_snackbars.scss */
 .md-snackbar p {
   color: #fff;
   margin: 0;
 }
-/* line 21, ../src/scss/components/_snackbar.scss */
+/* line 21, ../src/scss/components/_snackbars.scss */
 .md-snackbar .md-flat-btn {
   min-width: initial;
   overflow: visible;
   padding: 0;
 }
 
-/* line 28, ../src/scss/components/_snackbar.scss */
+/* line 28, ../src/scss/components/_snackbars.scss */
 .snackbar-enter-active:not(:only-child),
 .snackbar-enter-active:not(:only-child) * {
   transition-delay: 0.45s;
 }
 
-/* line 33, ../src/scss/components/_snackbar.scss */
+/* line 33, ../src/scss/components/_snackbars.scss */
 .snackbar-enter-active,
 .snackbar-leave-active {
   transform-origin: 0 100%;
   transition: transform 0.3s;
 }
 
-/* line 40, ../src/scss/components/_snackbar.scss */
+/* line 40, ../src/scss/components/_snackbars.scss */
 .snackbar-enter * {
   opacity: .01;
 }
-/* line 45, ../src/scss/components/_snackbar.scss */
+/* line 45, ../src/scss/components/_snackbars.scss */
 .snackbar-enter.snackbar-enter-active * {
   opacity: 1;
   transition: opacity 0.45s ease;
@@ -2764,52 +2764,68 @@ tbody .md-table-row:hover {
   display: inline-block;
   vertical-align: top;
 }
-/* line 5, ../src/scss/components/_text-fields.scss */
+/* line 265, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-field-container :-moz-placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 269, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-field-container ::-moz-placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 273, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-field-container :-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 277, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-text-field-container ::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.54);
+}
+/* line 7, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.full-width {
   align-items: center;
   display: flex;
 }
-/* line 9, ../src/scss/components/_text-fields.scss */
+/* line 11, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.full-width.multi-line {
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
-/* line 15, ../src/scss/components/_text-fields.scss */
+/* line 17, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.full-width.multi-line .md-text-field-message {
   width: 100%;
 }
-/* line 20, ../src/scss/components/_text-fields.scss */
+/* line 22, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.full-width .md-text-field-label {
   flex-grow: 1;
 }
-/* line 24, ../src/scss/components/_text-fields.scss */
+/* line 26, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.full-width .md-text-field-message {
   flex-shrink: 0;
 }
-/* line 29, ../src/scss/components/_text-fields.scss */
+/* line 31, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.with-message {
   width: 256px;
 }
-/* line 32, ../src/scss/components/_text-fields.scss */
+/* line 34, ../src/scss/components/_text-fields.scss */
 .md-text-field-container.with-message .md-text-field {
   width: 100%;
 }
 
-/* line 38, ../src/scss/components/_text-fields.scss */
+/* line 40, ../src/scss/components/_text-fields.scss */
 .md-text-field-label {
   display: block;
   position: relative;
   white-space: nowrap;
 }
 
-/* line 44, ../src/scss/components/_text-fields.scss */
+/* line 46, ../src/scss/components/_text-fields.scss */
 .md-text-field:not(.multi-line),
 .md-floating-label {
   line-height: 1;
 }
 
-/* line 49, ../src/scss/components/_text-fields.scss */
+/* line 51, ../src/scss/components/_text-fields.scss */
 .md-text-field {
   background: none;
   border: 0;
@@ -2817,15 +2833,15 @@ tbody .md-table-row:hover {
   padding-top: 35px;
   vertical-align: top;
 }
-/* line 56, ../src/scss/components/_text-fields.scss */
+/* line 58, ../src/scss/components/_text-fields.scss */
 .md-text-field:focus {
   outline: none;
 }
-/* line 60, ../src/scss/components/_text-fields.scss */
+/* line 62, ../src/scss/components/_text-fields.scss */
 .md-text-field:-webkit-autofill, .md-text-field:-webkit-autofill:focus {
   box-shadow: 0 0 0 50px #fff inset;
 }
-/* line 65, ../src/scss/components/_text-fields.scss */
+/* line 67, ../src/scss/components/_text-fields.scss */
 .md-text-field.multi-line {
   margin-top: 35px;
   padding-bottom: 0;
@@ -2835,24 +2851,24 @@ tbody .md-table-row:hover {
   transition-property: height;
   width: 100%;
 }
-/* line 75, ../src/scss/components/_text-fields.scss */
+/* line 77, ../src/scss/components/_text-fields.scss */
 .md-text-field.full-width {
   width: 100%;
 }
 
-/* line 80, ../src/scss/components/_text-fields.scss */
+/* line 82, ../src/scss/components/_text-fields.scss */
 .md-text-divider,
 .md-floating-label {
   position: absolute;
 }
 
-/* line 85, ../src/scss/components/_text-fields.scss */
+/* line 87, ../src/scss/components/_text-fields.scss */
 .md-floating-label,
 .md-text-field-icon {
   color: rgba(0, 0, 0, 0.38);
 }
 
-/* line 90, ../src/scss/components/_text-fields.scss */
+/* line 92, ../src/scss/components/_text-fields.scss */
 .md-floating-label {
   cursor: text;
   pointer-events: none;
@@ -2860,30 +2876,30 @@ tbody .md-table-row:hover {
   transition-duration: 0.15s;
   transition-property: font-size, color, top;
 }
-/* line 97, ../src/scss/components/_text-fields.scss */
+/* line 99, ../src/scss/components/_text-fields.scss */
 .md-floating-label.active {
   font-size: 12px;
 }
 
-/* line 102, ../src/scss/components/_text-fields.scss */
+/* line 104, ../src/scss/components/_text-fields.scss */
 .md-text-divider {
   background: rgba(0, 0, 0, 0.1);
   height: 1px;
 }
-/* line 108, ../src/scss/components/_text-fields.scss */
+/* line 110, ../src/scss/components/_text-fields.scss */
 .md-text-divider.from-left::after {
   left: 0;
 }
-/* line 112, ../src/scss/components/_text-fields.scss */
+/* line 114, ../src/scss/components/_text-fields.scss */
 .md-text-divider.from-right::after {
   margin-left: auto;
   right: 0;
 }
-/* line 117, ../src/scss/components/_text-fields.scss */
+/* line 119, ../src/scss/components/_text-fields.scss */
 .md-text-divider.from-center::after {
   margin: auto;
 }
-/* line 121, ../src/scss/components/_text-fields.scss */
+/* line 123, ../src/scss/components/_text-fields.scss */
 .md-text-divider::after {
   content: '';
   display: block;
@@ -2891,42 +2907,64 @@ tbody .md-table-row:hover {
   transition: width 0.15s;
   width: 0;
 }
-/* line 129, ../src/scss/components/_text-fields.scss */
+/* line 131, ../src/scss/components/_text-fields.scss */
 .md-text-divider.active::after {
   width: 100%;
 }
 
-/* line 134, ../src/scss/components/_text-fields.scss */
+/* line 136, ../src/scss/components/_text-fields.scss */
 .md-text-field-icon {
   margin-right: 16px;
   transition-duration: 0.15s;
   transition-property: color;
 }
 
-/* line 140, ../src/scss/components/_text-fields.scss */
+/* line 142, ../src/scss/components/_text-fields.scss */
 .md-text-field-message {
   display: flex;
   font-size: 12px;
   justify-content: space-between;
 }
-/* line 145, ../src/scss/components/_text-fields.scss */
+/* line 147, ../src/scss/components/_text-fields.scss */
 .md-text-field-message.count-only {
   justify-content: flex-end;
 }
 
-/* line 150, ../src/scss/components/_text-fields.scss */
+/* line 152, ../src/scss/components/_text-fields.scss */
 .md-text-field-counter {
   display: block;
   flex-shrink: 0;
   padding-left: 16px;
 }
 
-/* line 156, ../src/scss/components/_text-fields.scss */
-.md-toolbar .md-text-field {
+/* line 265, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-toolbar :-moz-placeholder,
+.md-navigation-drawer-toolbar :-moz-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 269, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-toolbar ::-moz-placeholder,
+.md-navigation-drawer-toolbar ::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 273, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-toolbar :-ms-input-placeholder,
+.md-navigation-drawer-toolbar :-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 277, ../src/scss/helpers/mixins/_text-fields.scss */
+.md-toolbar ::-webkit-input-placeholder,
+.md-navigation-drawer-toolbar ::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* line 162, ../src/scss/components/_text-fields.scss */
+.md-toolbar .md-text-field,
+.md-navigation-drawer-toolbar .md-text-field {
+  color: inherit;
   font-size: 20px;
 }
 
-/* line 160, ../src/scss/components/_text-fields.scss */
+/* line 168, ../src/scss/components/_text-fields.scss */
 .md-text-field-ind {
   color: rgba(0, 0, 0, 0.54);
 }
@@ -3090,12 +3128,12 @@ tbody .md-table-row:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* line 193, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 187, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker.inline {
   background: #fff;
 }
 
-/* line 197, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 191, ../src/scss/helpers/mixins/_pickers.scss */
 .md-picker-header,
 .md-date-picker-header,
 .md-calendar-date.active::after,
@@ -3105,38 +3143,38 @@ tbody .md-table-row:hover {
   background: #3f51b5;
 }
 
-/* line 206, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 200, ../src/scss/helpers/mixins/_pickers.scss */
 .md-calendar-date.today:not(.active),
 .md-year.active {
   color: #3f51b5;
 }
 
-/* line 211, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 205, ../src/scss/helpers/mixins/_pickers.scss */
 .md-calendar-date::after {
   background: #5c6bc0;
 }
 
-/* line 215, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 209, ../src/scss/helpers/mixins/_pickers.scss */
 .md-year:focus:not(.active) {
   color: #5c6bc0;
 }
 
-/* line 219, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 213, ../src/scss/helpers/mixins/_pickers.scss */
 .md-clock-face {
   background: #e0e0e0;
 }
 
-/* line 223, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 217, ../src/scss/helpers/mixins/_pickers.scss */
 .md-clock-hand.invisible-minute::after {
   background: #fff;
   border: 9px solid #3f51b5;
 }
 
-/* line 228, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 222, ../src/scss/helpers/mixins/_pickers.scss */
 .md-clock-time {
   color: #000;
 }
-/* line 231, ../src/scss/helpers/mixins/_pickers.scss */
+/* line 225, ../src/scss/helpers/mixins/_pickers.scss */
 .md-clock-time.active {
   color: #fff;
 }
@@ -3162,6 +3200,21 @@ tbody .md-table-row:hover {
 /* line 28, ../src/scss/helpers/mixins/_lists.scss */
 .md-list-tile-secondary-text {
   color: rgba(0, 0, 0, 0.54);
+}
+
+/* line 24, ../src/scss/helpers/mixins/_progress.scss */
+.md-linear-progress-container {
+  background: #ff80ab;
+}
+
+/* line 28, ../src/scss/helpers/mixins/_progress.scss */
+.md-linear-progress {
+  background: #ff4081;
+}
+
+/* line 32, ../src/scss/helpers/mixins/_progress.scss */
+.md-circular-progress-path {
+  stroke: #ff4081;
 }
 
 /* line 25, ../src/scss/helpers/mixins/_sliders.scss */
@@ -3324,21 +3377,6 @@ tbody .md-table-row:hover {
   background: rgba(255, 64, 129, 0.22);
 }
 
-/* line 24, ../src/scss/helpers/mixins/_progress.scss */
-.md-linear-progress-container {
-  background: #90caf9;
-}
-
-/* line 28, ../src/scss/helpers/mixins/_progress.scss */
-.md-linear-progress {
-  background: #2196f3;
-}
-
-/* line 32, ../src/scss/helpers/mixins/_progress.scss */
-.md-circular-progress-path {
-  stroke: #2196f3;
-}
-
 /* line 16, ../src/scss/helpers/mixins/_avatars.scss */
 .md-avatar.md-avatar-color-1 {
   background: #e91e63;
@@ -3367,61 +3405,6 @@ tbody .md-table-row:hover {
   .md-body-1,
   .md-body-2 {
     font-size: 14px;
-  }
-
-  /* line 132, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) {
-    width: 320px;
-  }
-  /* line 14, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape).date-picker .md-display-1 {
-    display: inline-block;
-  }
-  /* line 19, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-picker-header {
-    height: 110px;
-  }
-  /* line 23, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-time-periods {
-    display: inline-block;
-    padding-left: 1em;
-    padding-right: 24px;
-  }
-  /* line 29, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-picker-content {
-    height: 340px;
-  }
-  /* line 33, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-display-3 {
-    font-size: 4.8em;
-    line-height: 1;
-  }
-  /* line 38, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-dows {
-    padding-bottom: 12px;
-  }
-  /* line 42, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-calendar-date-placeholder,
-  .md-picker:not(.landscape) .md-calendar-date {
-    height: 44px;
-  }
-  /* line 47, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-calendar-date::after {
-    height: 36px;
-    width: 36px;
-  }
-  /* line 52, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-clock-face {
-    height: 272px;
-    width: 272px;
-  }
-  /* line 57, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-clock-hand {
-    width: 116px;
-  }
-  /* line 60, ../src/scss/helpers/mixins/_pickers.scss */
-  .md-picker:not(.landscape) .md-clock-hand.inner-hour {
-    width: 80px;
   }
 
   /* line 34, ../src/scss/helpers/mixins/_lists.scss */
@@ -3670,54 +3653,54 @@ tbody .md-table-row:hover {
     font-size: 13px;
   }
 
-  /* line 142, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 77, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) {
     display: flex;
     width: 560px;
   }
-  /* line 78, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 81, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-picker-header {
     width: 180px;
   }
-  /* line 82, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 85, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-picker-content {
     height: 280px;
     width: 380px;
   }
-  /* line 87, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 90, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-calendar-date-placeholder,
   .md-picker:not(.portrait) .md-calendar-date {
     height: 35px;
   }
-  /* line 92, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 95, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-calendar-date::after {
     height: 32px;
     width: 32px;
   }
-  /* line 98, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 101, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait).time-picker .md-picker-header {
     padding-top: 93.33333px;
   }
-  /* line 102, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 105, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-clock-face {
     height: 244px;
     width: 244px;
   }
-  /* line 107, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 110, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-clock-hand {
     width: 102px;
   }
-  /* line 110, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 113, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-clock-hand.inner-hour {
     width: 66px;
   }
-  /* line 115, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 118, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-time-periods {
     margin-left: auto;
     margin-right: 2.5em;
     width: 35px;
   }
-  /* line 121, ../src/scss/helpers/mixins/_pickers.scss */
+  /* line 124, ../src/scss/helpers/mixins/_pickers.scss */
   .md-picker:not(.portrait) .md-display-3 {
     font-size: 3.25em;
   }
@@ -4053,6 +4036,61 @@ tbody .md-table-row:hover {
     margin-bottom: 4px;
     margin-top: 4px;
   }
+
+  /* line 10, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) {
+    width: 320px;
+  }
+  /* line 15, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape).date-picker .md-display-1 {
+    display: inline-block;
+  }
+  /* line 20, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-picker-header {
+    height: 110px;
+  }
+  /* line 24, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-time-periods {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: 24px;
+  }
+  /* line 30, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-picker-content {
+    height: 340px;
+  }
+  /* line 34, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-display-3 {
+    font-size: 4.8em;
+    line-height: 1;
+  }
+  /* line 39, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-dows {
+    padding-bottom: 12px;
+  }
+  /* line 43, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-calendar-date-placeholder,
+  .md-picker:not(.landscape) .md-calendar-date {
+    height: 44px;
+  }
+  /* line 48, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-calendar-date::after {
+    height: 36px;
+    width: 36px;
+  }
+  /* line 53, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-face {
+    height: 272px;
+    width: 272px;
+  }
+  /* line 58, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-hand {
+    width: 116px;
+  }
+  /* line 61, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.landscape) .md-clock-hand.inner-hour {
+    width: 80px;
+  }
 }
 @media only screen and (orientation: landscape) and (max-width: 599px) {
   /* line 25, ../src/scss/helpers/mixins/_toolbars.scss */
@@ -4089,6 +4127,58 @@ tbody .md-table-row:hover {
   .md-navigation-drawer-btn {
     margin-bottom: 0px;
     margin-top: 0px;
+  }
+
+  /* line 77, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) {
+    display: flex;
+    width: 560px;
+  }
+  /* line 81, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-picker-header {
+    width: 180px;
+  }
+  /* line 85, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-picker-content {
+    height: 280px;
+    width: 380px;
+  }
+  /* line 90, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-calendar-date-placeholder,
+  .md-picker:not(.portrait) .md-calendar-date {
+    height: 35px;
+  }
+  /* line 95, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-calendar-date::after {
+    height: 32px;
+    width: 32px;
+  }
+  /* line 101, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait).time-picker .md-picker-header {
+    padding-top: 93.33333px;
+  }
+  /* line 105, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-face {
+    height: 244px;
+    width: 244px;
+  }
+  /* line 110, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-hand {
+    width: 102px;
+  }
+  /* line 113, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-clock-hand.inner-hour {
+    width: 66px;
+  }
+  /* line 118, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-time-periods {
+    margin-left: auto;
+    margin-right: 2.5em;
+    width: 35px;
+  }
+  /* line 124, ../src/scss/helpers/mixins/_pickers.scss */
+  .md-picker:not(.portrait) .md-display-3 {
+    font-size: 3.25em;
   }
 }
 
