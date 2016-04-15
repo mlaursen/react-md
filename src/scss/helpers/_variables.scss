@@ -658,7 +658,7 @@ $md-card-actions-padding: 8px;
 ///
 /// @type String
 /// @group cards
-$md-card-color: $md-white-base;
+$md-card-color: if($md-light-theme, $md-white-base, $md-grey-800);
 
 
 

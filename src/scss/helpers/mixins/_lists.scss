@@ -5,10 +5,6 @@
 ///           the light theme or the dark theme.
 @mixin md-theme-lists($color, $light-theme: $md-light-theme) {
   .md-list {
-    a {
-      color: if($light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
-    }
-
     .md-subheader {
       color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
 
