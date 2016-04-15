@@ -419,7 +419,7 @@ export default class SelectField extends Component {
               key={item.key || i}
               onClick={this.selectItem.bind(this, item)}
               onKeyDown={this.handleItemKeyDown.bind(this, item)}
-              className={classnames({
+              tileClassName={classnames({
                 'active': this.isActive(item, displayLabel),
                 'select-field-btn-tile': below,
               })}

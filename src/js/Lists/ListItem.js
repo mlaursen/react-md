@@ -21,7 +21,9 @@ export default class ListItem extends Component {
     primaryText: PropTypes.node,
     secondaryText: PropTypes.node,
     className: PropTypes.string,
-    containerClassName: PropTypes.string,
+    style: PropTypes.object,
+    tileClassName: PropTypes.string,
+    tileStyle: PropTypes.object,
     leftIcon: PropTypes.node,
     leftAvatar: PropTypes.node,
     rightIcon: PropTypes.node,
@@ -121,7 +123,9 @@ export default class ListItem extends Component {
     const {
       component,
       className,
-      containerClassName,
+      style,
+      tileClassName,
+      tileStyle,
       primaryText,
       secondaryText,
       threeLines,
@@ -150,16 +154,18 @@ export default class ListItem extends Component {
     return (
       <TransitionGroup
         component="li"
-        className={classnames('md-list-item', containerClassName, { hover })}
+        className={classnames('md-list-item', className, { hover })}
+        style={style}
         onMouseOver={() => this.setState({ hover: true })}
         onMouseLeave={() => this.setState({ hover: false })}
       >
         <ListTile
           {...props}
+          style={tileStyle}
           component={component}
           disabled={disabled}
           onClick={this.handleClick}
-          className={classnames(className, {
+          className={classnames(tileClassName, {
             'secondary-action': nestedItems && nestedItems.length,
             'avatar-height': leftAvatar || rightAvatar,
             'two-lines': secondaryText,
