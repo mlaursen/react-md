@@ -67,7 +67,7 @@
   position: relative;
   transition: background $md-transition-time;
 
-  &:hover {
+  &:not([disabled]):hover {
     background: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
   }
 
@@ -115,7 +115,7 @@
 
 .three-lines .md-tile-secondary-text {
   // scss-lint:disable PropertySortOrder
-  white-space: normal;
+  white-space: pre-line;
 
   // fallback for non webkit browsers
   display: block;
