@@ -17,7 +17,7 @@ describe('FontIcon', () => {
     expect(iconNode.classList.contains('fa-github')).toBe(true);
   });
 
-  it('passes all remaining props to the divider', () => {
+  it('passes all remaining props to the font icon', () => {
     const onClick = jest.genMockFunction();
     const onFocus = jest.genMockFunction();
     const onBlur = jest.genMockFunction();

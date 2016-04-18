@@ -72,7 +72,14 @@ export default class ListItemControl extends Component {
   };
 
   render() {
-    const { primaryAction, secondaryAction, primaryText, secondaryText, threeLines, ...props } = this.props;
+    const {
+      primaryAction,
+      secondaryAction,
+      primaryText,
+      secondaryText,
+      threeLines,
+      ...props,
+    } = this.props;
 
     const label = (
       <ListItemText

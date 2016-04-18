@@ -11,6 +11,10 @@ import ListItemText from './ListItemText';
 
 /**
  * A component for rendering a `li` component with icons, avatars, and text.
+ *
+ * Any remaing props will be passed to the inner `ListItem` component. This
+ * will allow you to use custom components such as `react-router`'s `Link`
+ * component.
  */
 export default class ListItem extends Component {
   constructor(props) {
@@ -254,8 +258,6 @@ export default class ListItem extends Component {
         component="li"
         className={classnames('md-list-item', className, { hover })}
         style={style}
-        onMouseOver={() => this.setState({ hover: true })}
-        onMouseLeave={() => this.setState({ hover: false })}
       >
         <ListTile
           {...props}
@@ -265,8 +267,8 @@ export default class ListItem extends Component {
           onClick={this.handleClick}
           className={classnames(tileClassName, {
             'secondary-action': nestedItems && nestedItems.length,
-            'avatar-height': leftAvatar || rightAvatar,
-            'two-lines': secondaryText,
+            'avatar-height': !secondaryText && (leftAvatar || rightAvatar),
+            'two-lines': !threeLines && secondaryText,
             'three-lines': threeLines && secondaryText,
           })}
         >
