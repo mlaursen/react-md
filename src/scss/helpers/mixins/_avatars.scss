@@ -10,7 +10,7 @@
 ///
 /// @param {String} $bg-color - The background color to use for the avatar
 /// @param {String} $text-color - The text color to use in the avatar
-/// @param {String} $suffix - The class name suffix to use. Will be added to the end of .md-avatar-
+/// @param {String} $suffix - The class name suffix to use. Will be added to the end of .md-avatar
 /// @group avatars
 @mixin md-theme-avatars-suffix($bg-color, $text-color, $suffix) {
   .md-avatar.md-avatar-#{$suffix} {

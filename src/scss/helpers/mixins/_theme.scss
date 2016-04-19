@@ -6,7 +6,7 @@
 ///       for date pickers
 /// @param {Color} $secondary [$md-secondary-color] - The secondary color to use
 /// @param {Color} $secondary-hue-1 [$md-secondary-color-hue-1] - A hue color to use
-//        for the progress bar at an inactive state.
+///       for the progress bar at an inactive state.
 /// @group colors
 @mixin md-theme-most($primary: $md-primary-color, $primary-hue-1: $md-primary-color-hue-1, $secondary: $md-secondary-color, $secondary-hue-1: $md-secondary-color-hue-1) {
   @include md-theme-navigation-drawers($primary);

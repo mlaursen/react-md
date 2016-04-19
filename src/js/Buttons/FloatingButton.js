@@ -67,7 +67,7 @@ export default class FloatingButton extends Component {
      * The position that the tooltip should be displayed relative to
      * the button.
      */
-    tooltipPosition: PropTypes.oneOf(['left', 'right', 'bottom', 'left']),
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
      * An optional amount of delay before the tooltip appears.
