@@ -7,60 +7,58 @@
 ///
 /// @group pickers
 @mixin md-pickers-portrait() {
-  .md-picker:not(.landscape) {
-    width: $md-pickers-portrait-width;
+  width: $md-pickers-portrait-width;
 
-    &.date-picker {
+  &.date-picker {
 
-      .md-display-1 {
-        display: inline-block;
-      }
-    }
-
-    .md-picker-header {
-      height: $md-pickers-portrait-header-height;
-    }
-
-    .md-time-periods {
+    .md-display-1 {
       display: inline-block;
-      padding-left: 1em;
-      padding-right: $md-dialog-padding;
     }
+  }
 
-    .md-picker-content {
-      height: $md-pickers-portrait-content-height;
-    }
+  .md-picker-header {
+    height: $md-pickers-portrait-header-height;
+  }
 
-    .md-display-3 {
-      font-size: 4.8em;
-      line-height: 1;
-    }
+  .md-time-periods {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: $md-dialog-padding;
+  }
 
-    .md-dows {
-      padding-bottom: $md-dialog-padding / 2;
-    }
+  .md-picker-content {
+    height: $md-pickers-portrait-content-height;
+  }
 
-    .md-calendar-date-placeholder,
-    .md-calendar-date {
-      height: $md-date-picker-portrait-date-size;
-    }
+  .md-display-3 {
+    font-size: 4.8em;
+    line-height: 1;
+  }
 
-    .md-calendar-date::after {
-      height: $md-date-picker-portrait-ball-size;
-      width: $md-date-picker-portrait-ball-size;
-    }
+  .md-dows {
+    padding-bottom: $md-dialog-padding / 2;
+  }
 
-    .md-clock-face {
-      height: $md-clock-portrait-size;
-      width: $md-clock-portrait-size;
-    }
+  .md-calendar-date-placeholder,
+  .md-calendar-date {
+    height: $md-date-picker-portrait-date-size;
+  }
 
-    .md-clock-hand {
-      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
+  .md-calendar-date::after {
+    height: $md-date-picker-portrait-ball-size;
+    width: $md-date-picker-portrait-ball-size;
+  }
 
-      &.inner-hour {
-        width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
-      }
+  .md-clock-face {
+    height: $md-clock-portrait-size;
+    width: $md-clock-portrait-size;
+  }
+
+  .md-clock-hand {
+    width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+    &.inner-hour {
+      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
     }
   }
 }
@@ -74,56 +72,54 @@
 ///
 /// @group pickers
 @mixin md-pickers-landscape() {
-  .md-picker:not(.portrait) {
-    display: flex;
-    width: $md-pickers-landscape-width;
+  display: flex;
+  width: $md-pickers-landscape-width;
 
-    .md-picker-header {
-      width: $md-pickers-landscape-header-width;
+  .md-picker-header {
+    width: $md-pickers-landscape-header-width;
+  }
+
+  .md-picker-content {
+    height: $md-pickers-landscape-content-height;
+    width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
+  }
+
+  .md-calendar-date-placeholder,
+  .md-calendar-date {
+    height: $md-date-picker-landscape-date-size;
+  }
+
+  .md-calendar-date::after {
+    height: $md-date-picker-landscape-ball-size;
+    width: $md-date-picker-landscape-ball-size;
+  }
+
+
+  &.time-picker .md-picker-header {
+    padding-top: $md-pickers-landscape-content-height / 3;
+  }
+
+  .md-clock-face {
+    height: $md-clock-landscape-size;
+    width: $md-clock-landscape-size;
+  }
+
+  .md-clock-hand {
+    width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+    &.inner-hour {
+      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
     }
+  }
 
-    .md-picker-content {
-      height: $md-pickers-landscape-content-height;
-      width: $md-pickers-landscape-width - $md-pickers-landscape-header-width;
-    }
+  .md-time-periods {
+    margin-left: auto;
+    margin-right: 2.5em;
+    width: 35px;
+  }
 
-    .md-calendar-date-placeholder,
-    .md-calendar-date {
-      height: $md-date-picker-landscape-date-size;
-    }
-
-    .md-calendar-date::after {
-      height: $md-date-picker-landscape-ball-size;
-      width: $md-date-picker-landscape-ball-size;
-    }
-
-
-    &.time-picker .md-picker-header {
-      padding-top: $md-pickers-landscape-content-height / 3;
-    }
-
-    .md-clock-face {
-      height: $md-clock-landscape-size;
-      width: $md-clock-landscape-size;
-    }
-
-    .md-clock-hand {
-      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
-
-      &.inner-hour {
-        width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
-      }
-    }
-
-    .md-time-periods {
-      margin-left: auto;
-      margin-right: 2.5em;
-      width: 35px;
-    }
-
-    .md-display-3 {
-      font-size: 3.25em;
-    }
+  .md-display-3 {
+    font-size: 3.25em;
   }
 }
 
