@@ -39,14 +39,13 @@ There are some mixins for helping pull these font libraries in from a cdn or loc
 Hopefully the [generated sassdoc](https://react-md.mlaursen.com/sassdoc) will help with
 mixin usage and sass documentation.
 
-There is a sass function called `get-md-color($color, $hue, $secondary)` that can be used to set the primary and secondary colors for your application. It is based off of
-the [Material design color palette](https://www.google.com/design/spec/style/color.html#color-color-palette).
-
 The default colors are `indigo` and `pink` (hue A200). You can theme your application by either changing the default color variables:
 
 ```
 $md-primary-color: $md-indigo-500 !default;
+$md-primary-color-hue-1: $md-indigo-400 !default;
 $md-secondary-color: $md-pink-a-200 !default;
+$md-secondary-color-hue-1: $md-pink-a-100 !default;
 ```
 
 Or defining your own theme with the theme mixins.
