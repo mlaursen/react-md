@@ -151,6 +151,7 @@ export default ComposedComponent => class Ink extends Component {
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
     if((e.which || e.keyCode) !== TAB) { return; }
+    e.stopPropagation();
     this.createInk();
   };
 
