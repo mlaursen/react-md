@@ -54,7 +54,10 @@ export default class Menu extends Component {
      * An array of `ListItem`, `ListItemControl`, `Divider`, `Subheader`, or react element
      * to display when the menu is open.
      */
-    children: PropTypes.arrayOf(PropTypes.element),
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]),
 
     /**
      * The component to use that will toggle the `isOpen` prop. This will make
@@ -108,6 +111,13 @@ export default class Menu extends Component {
     expanderIconChildren: 'keyboard_arrow_right',
     expanderIconClassName: 'material-icons',
   };
+
+  componentDidMount() {
+    const { isOpen, autoclose, close } = this.props;
+    if(isOpen && autoclose && close) {
+      window.addEventListener('click', this.closeOnOutsideClick);
+    }
+  }
 
   componentDidUpdate(prevProps) {
     const { isOpen, autoclose, close } = this.props;
