@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-import { isMobile, setOverflow } from '../utils';
+import { setOverflow } from '../utils';
 import Divider from '../Dividers';
 import { List, ListItem } from '../Lists';
 import Subheader from '../Subheaders';
@@ -31,6 +31,7 @@ export default class NavigationDrawer extends Component {
 
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
+    isMobile: PropTypes.bool.isRequired,
     title: PropTypes.string,
     containerClassName: PropTypes.string,
     className: PropTypes.string,
@@ -80,6 +81,7 @@ export default class NavigationDrawer extends Component {
     drawerType: NavigationDrawer.DrawerType.FULL_HEIGHT,
     menuIconChildren: 'menu',
     closeIconChildren: 'keyboard_arrow_left',
+    isMobile: false,
   };
 
   componentWillUpdate(nextProps) {
@@ -130,6 +132,7 @@ export default class NavigationDrawer extends Component {
   render() {
     const {
       isOpen,
+      isMobile,
       title,
       toolbarTitle,
       containerClassName,
@@ -149,6 +152,7 @@ export default class NavigationDrawer extends Component {
       navHeader,
       navHeaderChildren,
     } = this.props;
+
     const { PERSISTENT, PERSISTENT_MINI, TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
 
     const mini = drawerType === PERSISTENT_MINI || drawerType === TEMPORARY_MINI;

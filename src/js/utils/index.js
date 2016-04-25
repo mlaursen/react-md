@@ -47,15 +47,6 @@ export function isPointInCircle(cx, cy, r, x, y) {
   return distance <= Math.pow(r, 2);
 }
 
-/**
- * Amzing media query to check if mobile..
- * @return true if device width is between 0 and 599px
- */
-export const isMobile = (() => {
-  return window.matchMedia('only screen and (min-width: 0px) and (max-width: 599px)').matches;
-})();
-
-
 export function easeInOut(currentTime, start, change, duration) {
   currentTime /= duration / 2;
   if(currentTime < 1) {
