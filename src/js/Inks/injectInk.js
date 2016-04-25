@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TransitionGroup from 'react-addons-transition-group';
 
-import { LEFT_MOUSE, TAB } from '../constants/keyCodes';
+import { LEFT_MOUSE } from '../constants/keyCodes';
 import InkTransition from './InkTransition';
-import { getOffset, isTouchDevice } from '../utils';
+import { getOffset } from '../utils';
 
 /**
  * Takes any component and injects an ink container along with event
@@ -29,14 +29,14 @@ export default ComposedComponent => class Ink extends Component {
     onMouseUp: PropTypes.func,
     onMouseDown: PropTypes.func,
     onMouseLeave: PropTypes.func,
-    onKeyUp: PropTypes.func,
+    onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onTouchStart: PropTypes.func,
     onTouchEnd: PropTypes.func,
     onTouchCancel: PropTypes.func,
     disabled: PropTypes.bool,
-    children: PropTypes.node,
     inkDisabled: PropTypes.bool,
+    children: PropTypes.node,
   };
 
   calcR = (a, b) => {
@@ -105,29 +105,28 @@ export default ComposedComponent => class Ink extends Component {
 
   handleMouseDown = (e) => {
     this.props.onMouseDown && this.props.onMouseDown(e);
-    if(isTouchDevice || this.invalidClickEvent(e)) { return; }
-    e.stopPropagation();
+    const nextState = { skipFocus: true };
+    if(!this.invalidClickEvent(e)) {
+      e.stopPropagation();
+      this.createInk(e.pageX, e.pageY);
+      nextState.skipMouseUp = false;
+    }
 
-    this.createInk(e.pageX, e.pageY);
-    this.setState({
-      skipMouseUp: false,
-    });
+    this.setState(nextState);
   };
 
   handleMouseLeave = (e) => {
     this.props.onMouseLeave && this.props.onMouseLeave(e);
-    if(isTouchDevice) { return; }
 
     this.popInk();
-    this.setState({
-      skipMouseUp: true,
-    });
+    this.setState({ skipMouseUp: true });
   };
 
   handleMouseUp = (e) => {
     this.props.onMouseUp && this.props.onMouseUp(e);
-    if(this.invalidClickEvent(e) || isTouchDevice || this.state.skipMouseUp) { return; }
+    if(this.invalidClickEvent(e) || this.state.skipMouseUp) { return; }
     this.popInk();
+    this.setState({ skipFocus: false });
   };
 
   handleTouchStart = (e) => {
@@ -136,6 +135,7 @@ export default ComposedComponent => class Ink extends Component {
     e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this.createInk(pageX, pageY);
+    this.setState({ skipFocus: true });
   };
 
   handleTouchEnd = (e) => {
@@ -148,16 +148,17 @@ export default ComposedComponent => class Ink extends Component {
     this.popInk();
   };
 
-  handleKeyUp = (e) => {
-    this.props.onKeyUp && this.props.onKeyUp(e);
-    if((e.which || e.keyCode) !== TAB) { return; }
-    e.stopPropagation();
-    this.createInk();
-  };
-
   handleBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
     this.popInk();
+  };
+
+  handleFocus = (e) => {
+    this.props.onFocus && this.props.onFocus(e);
+    if(this.state.skipFocus) { return; }
+    e.stopPropagation();
+
+    this.createInk();
   };
 
   render() {
@@ -180,7 +181,7 @@ export default ComposedComponent => class Ink extends Component {
         onMouseUp={this.handleMouseUp}
         onMouseDown={this.handleMouseDown}
         onMouseLeave={this.handleMouseLeave}
-        onKeyUp={this.handleKeyUp}
+        onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onTouchStart={this.handleTouchStart}
         onTouchCancel={this.handleTouchCancel}
