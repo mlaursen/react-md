@@ -18,15 +18,21 @@ class ListTile extends Component {
     ]).isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
+    role: PropTypes.string,
+    tabIndex: PropTypes.number,
 
     // Injected from injectInk
     ink: PropTypes.node,
   };
 
+  static defaultProps = {
+    tabIndex: 0,
+    role: 'button',
+  };
+
   render() {
     const { component, ink, className, children, ...props } = this.props;
     return React.createElement(component, {
-      role: 'button',
       ...props,
       className: classnames('md-list-tile', className),
     }, [ink, children]);
