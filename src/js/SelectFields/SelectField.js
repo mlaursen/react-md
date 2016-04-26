@@ -402,7 +402,7 @@ export default class SelectField extends Component {
     const { menuItems, itemLabel } = this.props;
     const { lastCode, minMatchIndex, maxMatchIndex, activeIndex } = this.state;
     if(code === lastCode) {
-      if(minMatchIndex === -1 || maxMatchIndex === -1) { return; }
+      if(minMatchIndex === maxMatchIndex || minMatchIndex === -1 || maxMatchIndex === -1) { return; }
       let index = activeIndex + 1;
       if(index > maxMatchIndex) {
         index = minMatchIndex;
@@ -485,27 +485,11 @@ export default class SelectField extends Component {
         this.handleItemClick(this.state.activeIndex, e);
       }
     } else if(code && code.match(/[A-Z]/)) {
-      this.attemptCodeFocus(code, event);
+      this.attemptCodeFocus(code, e);
     } else if(isBetween(key, ZERO, NINE) || isBetween(key, KEYPAD_ZERO, KEYPAD_NINE)) {
       const num = key - (isBetween(key, ZERO, NINE) ? ZERO : KEYPAD_ZERO);
-      this.attemptCodeFocus(String(num), event);
+      this.attemptCodeFocus(String(num), e);
     }
-  };
-
-  /**
-   * Handles the text field's click.
-   *
-   * @param {Object} e the click event
-   */
-  handleClick = (e) => {
-    this.props.onClick && this.props.onClick(e);
-
-    // Prevents IE for toggling twice for some reason.
-    e.preventDefault();
-    e.stopPropagation();
-    if(this.props.disabled) { return; }
-
-    this.toggle();
   };
 
 
@@ -522,7 +506,7 @@ export default class SelectField extends Component {
 
   /**
    * Listens to all click events on the menu container. If it is one of the menu items,
-   * the item is selected.
+   * the item is selected. If the target is the text field, the menu will be toggled.
    *
    * The single event listener is for better performance on giant lists.
    * @param {Object} e the click event.
@@ -530,7 +514,11 @@ export default class SelectField extends Component {
   handleContainerClick = (e) => {
     let node = e.target;
     while(node) {
-      if(node.classList.contains('md-list-tile')) {
+      let classList = node.classList;
+      if(classList.contains('md-text-field')) {
+        this.toggle();
+        return;
+      } else if(classList.contains('md-list-tile')) {
         const tiles = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-list-tile'));
         this.handleItemClick(tiles.indexOf(node), e);
         return;
@@ -566,7 +554,6 @@ export default class SelectField extends Component {
         label={label}
         value={displayLabel}
         floatingLabel={floatingLabel}
-        onClick={this.handleClick}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
         disabled={disabled}
@@ -591,22 +578,26 @@ export default class SelectField extends Component {
       ));
     }
 
+    const menuProps = {
+      isOpen: open,
+      close: this.close,
+      className: classnames('md-select-field-menu-container', menuClassName),
+      listClassName: classnames('md-select-field-menu', listClassName, {
+        'single-line': !floatingLabel,
+      }),
+      toggle,
+      listStyle,
+      position,
+      ...props,
+    };
+
+    if(!disabled) {
+      menuProps.onClick = this.handleContainerClick;
+      menuProps.onKeyDown = this.handleKeyDown;
+    }
+
     return (
-      <Menu
-        isOpen={open}
-        close={this.close}
-        toggle={toggle}
-        listStyle={listStyle}
-        className={classnames('md-select-field-menu-container', menuClassName)}
-        listClassName={classnames('md-select-field-menu', listClassName, {
-          'single-line': !floatingLabel,
-        })}
-        position={position}
-        below={SelectField.Positions.BELOW === position}
-        {...props}
-        onClick={this.handleContainerClick}
-        onKeyDown={this.handleKeyDown}
-      >
+      <Menu {...menuProps}>
         {items}
       </Menu>
     );

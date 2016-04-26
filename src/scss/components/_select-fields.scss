@@ -8,7 +8,7 @@
 }
 
 .md-select-field-container {
-  &:hover {
+  &:not(.disabled):hover {
     .md-text-field-label,
     .md-text-field {
       cursor: pointer;

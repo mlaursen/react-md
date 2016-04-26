@@ -16,6 +16,10 @@
     }
   }
 
+  &:hover:not([disabled]) {
+    cursor: pointer;
+  }
+
   .md-icon {
     color: inherit;
     // fix so all font libraries appear inline with each other
