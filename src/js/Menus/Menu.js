@@ -135,6 +135,26 @@ export default class Menu extends Component {
 
   closeOnOutsideClick = (e) => onOutsideClick(e, ReactDOM.findDOMNode(this.refs.container), this.props.close);
 
+  /**
+   * Checks if a list item was the target of a click event. Closes the menu if it was.
+   *
+   * There is only a single event listener to help with giant lists always rerendering since the
+   * onClick functions were not equal with autobinding.
+   *
+   * @param {Object} e the click event.
+   */
+  handleListClick = (e) => {
+    let node = e.target;
+    while(node) {
+      if(node.classList.contains('md-list-item')) {
+        this.props.close();
+        return;
+      }
+
+      node = node.parentNode;
+    }
+  };
+
   render() {
     const {
       className,
@@ -152,22 +172,34 @@ export default class Menu extends Component {
       ...props,
     } = this.props;
 
-    const items = isOpen && React.Children.map(children, (child, key) => {
-      if(!child) { return child; }
+    let menuItems;
+    if(isOpen) {
+      const listProps = {
+        ref: 'list',
+        className: classnames('md-menu', listClassName, `md-transition-${position}`, { cascading }),
+        style: listStyle,
+      };
 
-      return React.cloneElement(child, {
-        key: child.key || key,
-        onClick: (e) => {
-          if(child.props.onClick) { child.props.onClick(e); }
-          if(autoclose && typeof close === 'function' && !child.props.nestedItems) {
-            close(e);
-          }
-        },
-        expanderIconChildren,
-        expanderIconClassName,
+      if(autoclose && close) {
+        listProps.onClick = this.handleListClick;
+      }
+
+      const items = React.Children.map(children, (child, key) => {
+        if(!child) { return child; }
+
+        return React.cloneElement(child, {
+          key: child.key || key,
+          expanderIconChildren,
+          expanderIconClassName,
+        });
       });
-    });
 
+      menuItems = (
+        <List {...listProps}>
+          {items}
+        </List>
+      );
+    }
     return (
       <CSSTransitionGroup
         ref="container"
@@ -179,15 +211,7 @@ export default class Menu extends Component {
         {...props}
       >
         {toggle}
-        {isOpen &&
-          <List
-            ref="list"
-            className={classnames('md-menu', listClassName, `md-transition-${position}`, { cascading })}
-            style={listStyle}
-          >
-            {items}
-          </List>
-        }
+        {menuItems}
       </CSSTransitionGroup>
     );
   }
