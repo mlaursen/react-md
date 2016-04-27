@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { isObject } from '../utils';
-import { SPACE, ENTER } from '../constants/keyCodes';
+import { isObject, isBetween } from '../utils';
+import { SPACE, TAB, ENTER, UP, DOWN, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 
 import { ListItem } from '../Lists';
 import FontIcon from '../FontIcons';
@@ -26,6 +26,7 @@ export default class SelectField extends Component {
       focused: props.initiallyOpen,
       value: props.defaultValue,
       size: this.calcSize(props),
+      activeIndex: this.getActiveIndex(props, { value: props.defaultValue }),
     };
   }
 
@@ -163,32 +164,30 @@ export default class SelectField extends Component {
     noAutoAdjust: false,
   };
 
-  componentWillUpdate(nextProps) {
+  componentWillUpdate(nextProps, nextState) {
+    let state;
+    if(this.getValue(this.props, this.state) !== this.getValue(nextProps, nextState)) {
+      state = this.state.open && !nextState.open ? this.getAnimatedNewValueState() : {};
+      state.activeIndex = this.getActiveIndex(nextProps, nextState);
+    }
+
     const { menuItems } = this.props;
     if(menuItems !== nextProps.menuItems || menuItems.length !== nextProps.menuItems.length) {
-      this.setState({ size: this.calcSize(nextProps) });
+      state = state || {};
+      state.size = this.calcSize(nextProps);
+    }
+
+    if(state) {
+      this.setState(state);
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { position, noAutoAdjust } = this.props;
     const { open } = this.state;
-    if(this.getValue(prevProps, prevState) !== this.getValue(this.props, this.state)) {
-      this.animateNewValue();
-    }
-
-    if(open === prevState.open || noAutoAdjust) { return; }
-    const node = ReactDOM.findDOMNode(this);
-    const item = this.getListItem();
-    if(open) {
-      item.focus();
-    } else {
-      node.querySelector('.md-text-field').focus();
-    }
-
-    if(!open) { return; }
+    if(!open || open === prevState.open || noAutoAdjust) { return; }
     if(SelectField.Positions.BELOW === position) {
-      const list = node.querySelector('.md-list');
+      const list = ReactDOM.findDOMNode(this).querySelector('.md-list');
       const scroll = this.getListItem().offsetTop;
       list.scrollTop = scroll <= LIST_PADDING ? 0 : scroll;
     } else {
@@ -201,18 +200,32 @@ export default class SelectField extends Component {
   }
 
   /**
-   * Gets the first active list item or the first list item if there are no active items.
+   * Selects a new item with the given index and event.
+   * If there is an onChange event, the newly selected item, new index, and
+   * event will be called with onChange.
    *
-   * @return a list item element.
+   * If this is an uncontrolled component, it will return the new value to be used.
+   *
+   * @param {Number} index the newly selected item index
+   * @param {Object} event the event to pass to onChange
+   * @return {String} an optional new value to return if it is an uncontrolled component.
    */
-  getListItem = () => {
-    const node = ReactDOM.findDOMNode(this);
+  selectItem = (index, event) => {
+    const { onChange, menuItems, value, itemLabel } = this.props;
+    const item = menuItems[index];
+    onChange && onChange(item, index, event);
 
-    return (node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile')).parentNode;
+    if(typeof value === 'undefined') {
+      return isObject(item) ? item[itemLabel] : item;
+    }
   };
 
-  animateNewValue = () => {
-    this.setState({
+  /**
+   * Creates a state object to drop a new value into the text field.
+   * @return {Object} a state object with timeouts for animating the new value.
+   */
+  getAnimatedNewValueState = () => {
+    return {
       droppingClassName: 'drop-enter',
       timeout: setTimeout(() => {
         this.setState({
@@ -222,13 +235,54 @@ export default class SelectField extends Component {
           }, 300),
         });
       }, 1),
+    };
+  };
+
+  /**
+   * Gets the current activeIndex for the given props and state.
+   *
+   * @param {Object} props? the props to use
+   * @param {Object} state? the state to use
+   * @return the activeIndex or -1
+   */
+  getActiveIndex = (props = this.props, state = this.state) => {
+    const value = this.getValue(props, state);
+    if(!value) {
+      return -1;
+    }
+
+    const { itemLabel, menuItems } = props;
+    let i = 0;
+    menuItems.some((item, j) => {
+      const found = (isObject(item) ? item[itemLabel] : item) === value;
+      if(found) {
+        i = j;
+      }
+
+      return found;
     });
+
+    return i;
+  };
+
+  /**
+   * Gets the first active list item or the first list item if there are no active items.
+   *
+   * @return {Object} a list item element.
+   */
+  getListItem = () => {
+    const node = ReactDOM.findDOMNode(this);
+
+    return (node.querySelector('.md-list-tile.active') || node.querySelector('.md-list-tile')).parentNode;
   };
 
   /**
    * Finds the longest menu item value to use as the text field's size.to that value.
    * If there is a floating label, it also checks against the label's size so that
    * the floating label won't be clipped
+   *
+   * @param {Object} props? the props to use
+   * @return {Number} the size to use for the text field
    */
   calcSize = ({ menuItems, itemLabel, label } = this.props) => {
     const items = menuItems.slice();
@@ -290,6 +344,15 @@ export default class SelectField extends Component {
     });
   };
 
+  /**
+   * Gets the current value for the select field. If the component is controlled,
+   * props.value will be returned. Otherwise, it will return the state.value. If the
+   * state.value is an object, it will return value[itemLabel].
+   *
+   * @param {Object} props? the props to use
+   * @param {Object} state? the state to use
+   * @return {String} the current value to use for the select field.
+   */
   getValue = (props = this.props, state = this.state) => {
     if(typeof props.value !== 'undefined') {
       return props.value;
@@ -305,24 +368,6 @@ export default class SelectField extends Component {
     }
   };
 
-  isActive = (item, displayLabel) => {
-    if(typeof item === 'string' || typeof item === 'number') {
-      return item === displayLabel;
-    } else {
-      return item[this.props.itemLabel] === displayLabel;
-    }
-  };
-
-  selectItem = (item, e) => {
-    const { onChange, itemLabel } = this.props;
-    onChange && onChange(item, e);
-
-    this.setState({
-      open: false,
-      value: isObject(item) ? item[itemLabel] : item,
-    });
-  };
-
   toggle = () => {
     this.setState({ open: !this.state.open });
   };
@@ -331,37 +376,160 @@ export default class SelectField extends Component {
     this.setState({ open: false });
   };
 
-  handleClick = (e) => {
-    // Prevents IE for toggling twice for some reason.
-    e.preventDefault();
-    this.props.onClick && this.props.onClick(e);
-    if(this.props.disabled) { return; }
+  /**
+   * Attempts to focus an item with the given index. If the index is not -1
+   * or the open list contains that index, the item will be focused.
+   */
+  focus = (index) => {
+    if(index === -1) {
+      return;
+    }
 
-    this.toggle();
+    const item = ReactDOM.findDOMNode(this).querySelectorAll('.md-list-tile')[index];
+    item && item.focus();
   };
 
+  /**
+   * Searches the menuItems for an item that starts with the given code. If there is an
+   * item that matches, the item will be focused. If the previous code is equal, the
+   * next match will be found. If there are no more matches, the first item will be focused
+   * again.
+   *
+   * @param {String} code the number pressed or the capitalized letter pressed.
+   * @param {Object} event the keydown event to pass to onChange
+   */
+  attemptCodeFocus = (code, event) => {
+    const { menuItems, itemLabel } = this.props;
+    const { lastCode, minMatchIndex, maxMatchIndex, activeIndex } = this.state;
+    if(code === lastCode) {
+      if(minMatchIndex === maxMatchIndex || minMatchIndex === -1 || maxMatchIndex === -1) { return; }
+      let index = activeIndex + 1;
+      if(index > maxMatchIndex) {
+        index = minMatchIndex;
+      }
+
+      this.focus(index);
+      this.setState({ activeIndex: index, value: this.selectItem(index, event) });
+    } else {
+      const matches = menuItems.filter(i => {
+        const item = (isObject(i) ? i[itemLabel] : i) + '';
+        return item && item.length ? item.charAt(0).toUpperCase() === code : false;
+      });
+
+      const state = {
+        lastMatches: matches,
+        lastCode: code,
+        minMatchIndex: -1,
+        maxMatchIndex: -1,
+      };
+
+      if(matches.length) {
+        state.minMatchIndex = menuItems.indexOf(matches[0]);
+        state.maxMatchIndex = menuItems.indexOf(matches[matches.length - 1]);
+        state.activeIndex = state.minMatchIndex;
+
+        this.focus(state.activeIndex);
+        state.value = this.selectItem(state.activeIndex, event);
+      }
+
+      this.setState(state);
+    }
+  };
+
+  /**
+   * Attempts to increment the activeIndex by 1 or -1.
+   *
+   * @param {Boolean} negative boolean if it should be a decrement
+   * @param {Object} event the keydown event
+   */
+  handleItemIncrement = (negative, event) => {
+    event.preventDefault();
+    const { activeIndex } = this.state;
+    const length = this.props.menuItems.length - 1;
+    let index;
+    if(negative && activeIndex === -1 || !negative && activeIndex >= length) {
+      return;
+    } else if(negative) {
+      index = Math.max(0, activeIndex - 1);
+    } else {
+      index = Math.min(length, activeIndex + 1);
+    }
+
+    this.focus(index);
+    this.setState({
+      activeIndex: index,
+      value: this.selectItem(index, event),
+    });
+  };
+
+  /**
+   * Listens to all key down events in the menu-container. This will improve memory management
+   * if there are a ridiculous amount of menu items. One keydown listener vs 10000.
+   *
+   * @param {Object} e the keydown event
+   */
   handleKeyDown = (e) => {
     this.props.onKeyDown && this.props.onKeyDown(e);
 
     const key = e.which || e.keyCode;
-    if(key !== SPACE && key !== ENTER) { return; }
-
-    // prevents scrolling for spacebar
-    e.preventDefault();
-    this.setState({ open: true });
+    const code = String.fromCharCode(key);
+    if(key === UP || key === DOWN) {
+      this.handleItemIncrement(key === UP, e);
+    } else if(key === TAB) {
+      this.close();
+    } else if(key === ENTER || key === SPACE) {
+      const classList = e.target.classList;
+      if(classList.contains('md-text-field')) {
+        this.toggle();
+      } else if(classList.contains('md-list-tile')) {
+        this.handleItemClick(this.state.activeIndex, e);
+      }
+    } else if(code && code.match(/[A-Z]/)) {
+      this.attemptCodeFocus(code, e);
+    } else if(isBetween(key, ZERO, NINE) || isBetween(key, KEYPAD_ZERO, KEYPAD_NINE)) {
+      const num = key - (isBetween(key, ZERO, NINE) ? ZERO : KEYPAD_ZERO);
+      this.attemptCodeFocus(String(num), e);
+    }
   };
 
-  handleItemKeyDown = (item, e) => {
-    const key = e.which || e.keyCode;
-    if(key !== SPACE && key !== ENTER) { return; }
 
-    // prevents scrolling for spacebar
-    e.preventDefault();
-    this.selectItem(item, e);
+  /**
+   * Closes the menu and calls the onChange function. If it is an
+   * uncontrolled component, updates the value in the state.
+   */
+  handleItemClick = (i, e) => {
+    this.setState({
+      open: false,
+      value: this.selectItem(i, e),
+    });
+  };
+
+  /**
+   * Listens to all click events on the menu container. If it is one of the menu items,
+   * the item is selected. If the target is the text field, the menu will be toggled.
+   *
+   * The single event listener is for better performance on giant lists.
+   * @param {Object} e the click event.
+   */
+  handleContainerClick = (e) => {
+    let node = e.target;
+    while(node) {
+      let classList = node.classList;
+      if(classList.contains('md-text-field')) {
+        this.toggle();
+        return;
+      } else if(classList.contains('md-list-tile')) {
+        const tiles = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-list-tile'));
+        this.handleItemClick(tiles.indexOf(node), e);
+        return;
+      }
+
+      node = node.parentNode;
+    }
   };
 
   render() {
-    const { open, size, listStyle, droppingClassName } = this.state;
+    const { open, size, activeIndex, listStyle, droppingClassName } = this.state;
     const {
       label,
       floatingLabel,
@@ -386,8 +554,6 @@ export default class SelectField extends Component {
         label={label}
         value={displayLabel}
         floatingLabel={floatingLabel}
-        onClick={this.handleClick}
-        onKeyDown={this.handleKeyDown}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
         disabled={disabled}
@@ -397,35 +563,42 @@ export default class SelectField extends Component {
       />
     );
 
+    let items;
+    if(open) {
+      items = menuItems.map((item, i) => (
+        <ListItem
+          tabIndex={-1}
+          primaryText={isObject(item) ? item[itemLabel] : item}
+          key={item.key || i}
+          tileClassName={classnames({
+            'active': i === activeIndex,
+            'select-field-btn-tile': below,
+          })}
+        />
+      ));
+    }
+
+    const menuProps = {
+      isOpen: open,
+      close: this.close,
+      className: classnames('md-select-field-menu-container', menuClassName),
+      listClassName: classnames('md-select-field-menu', listClassName, {
+        'single-line': !floatingLabel,
+      }),
+      toggle,
+      listStyle,
+      position,
+      ...props,
+    };
+
+    if(!disabled) {
+      menuProps.onClick = this.handleContainerClick;
+      menuProps.onKeyDown = this.handleKeyDown;
+    }
+
     return (
-      <Menu
-        isOpen={open}
-        close={this.close}
-        toggle={toggle}
-        listStyle={listStyle}
-        className={classnames('md-select-field-menu-container', menuClassName)}
-        listClassName={classnames('md-select-field-menu', listClassName, {
-          'single-line': !floatingLabel,
-        })}
-        position={position}
-        below={SelectField.Positions.BELOW === position}
-        {...props}
-      >
-        {menuItems.map((item, i) => {
-          return (
-            <ListItem
-              tabIndex={0}
-              primaryText={isObject(item) ? item[itemLabel] : item}
-              key={item.key || i}
-              onClick={this.selectItem.bind(this, item)}
-              onKeyDown={this.handleItemKeyDown.bind(this, item)}
-              tileClassName={classnames({
-                'active': this.isActive(item, displayLabel),
-                'select-field-btn-tile': below,
-              })}
-            />
-          );
-        })}
+      <Menu {...menuProps}>
+        {items}
       </Menu>
     );
   }

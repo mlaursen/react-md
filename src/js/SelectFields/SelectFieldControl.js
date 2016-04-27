@@ -16,6 +16,7 @@ class SelectFieldControl extends Component {
     below: PropTypes.bool,
     open: PropTypes.bool.isRequired,
     ink: PropTypes.node,
+    disabled: PropTypes.bool,
   };
 
   render() {
@@ -27,6 +28,7 @@ class SelectFieldControl extends Component {
         className={classnames('md-select-field-container', {
           'select-field-btn': below,
           'active': below && open,
+          'disabled': props.disabled,
         })}
         readOnly={true}
       />

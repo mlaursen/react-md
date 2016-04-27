@@ -12,6 +12,18 @@ export function numberBetween(num, min, max) {
 }
 
 /**
+ * Checks if a number is between a min and maximum (inclusive)
+ *
+ * @param {Number} num the number to check
+ * @param {Number} min the minimum
+ * @param {Number} max the maximum
+ * @return {Boolean} true if the number is between the min and max (inclusive)
+ */
+export function isBetween(num, min, max) {
+  return num >= min && num <= max;
+}
+
+/**
  * Checkis of the given thing is an object
  * @param thing the thing to check
  * @return true if the thing is an object
