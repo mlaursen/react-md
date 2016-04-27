@@ -108,6 +108,7 @@ body { -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; 
 .md-btn { display: inline-block; position: relative; text-transform: uppercase; transition-duration: 0.3s; transition-property: box-shadow, background, transform; vertical-align: top; }
 .md-btn[disabled] { color: rgba(0, 0, 0, 0.38); }
 .md-btn[disabled]:not(.md-icon-btn) { background: rgba(153, 153, 153, 0.2); }
+.md-btn:hover:not([disabled]) { cursor: pointer; }
 .md-btn .md-icon { color: inherit; vertical-align: top; }
 .md-btn .md-tooltip { text-transform: initial; }
 
@@ -188,6 +189,8 @@ a.md-btn { color: rgba(0, 0, 0, 0.54); text-decoration: none; }
 .md-chip.with-remove { padding-right: 0; }
 
 .md-chip-remove { color: rgba(0, 0, 0, 0.54); height: 24px; margin: 4px; padding: 0; width: 24px; }
+
+.rotate-45-deg { transform: rotate(45deg); }
 
 .md-table-header, .md-table-data { padding-right: 24px; }
 
@@ -355,8 +358,8 @@ tbody .md-table-row:hover { background: #eee; }
 .md-list-item.secondary-action { padding-right: 0; }
 .md-list-item.secondary-action .md-control-container { margin-left: auto; }
 
-.md-list-tile { align-items: center; display: flex; overflow: hidden; padding-left: 16px; padding-right: 16px; position: relative; transition: background 0.15s; }
-.md-list-tile:hover { background: rgba(0, 0, 0, 0.12); }
+.md-list-tile { align-items: center; color: rgba(0, 0, 0, 0.87); display: flex; overflow: hidden; padding-left: 16px; padding-right: 16px; position: relative; transition: background 0.15s; }
+.md-list-tile:not([disabled]):hover { background: rgba(0, 0, 0, 0.12); }
 .md-list-tile:focus { outline: none; }
 .md-list-tile[disabled] { color: rgba(0, 0, 0, 0.38); }
 .md-list-tile.secondary-action { padding-right: 0; }
@@ -369,7 +372,7 @@ tbody .md-table-row:hover { background: #eee; }
 
 .md-tile-primary-text, .md-tile-secondary-text { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.three-lines .md-tile-secondary-text { white-space: normal; display: block; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.three-lines .md-tile-secondary-text { white-space: pre-line; display: block; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 
 .md-list-expander { transition: transform 0.15s; }
 .md-list-expander.active { transform: rotate3d(0, 0, 1, 180deg); }
@@ -468,29 +471,29 @@ tbody .md-table-row:hover { background: #eee; }
 
 .md-picker.inline { box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4); position: absolute; z-index: 24; }
 .md-picker.inline.with-icon { left: 50px; }
-.md-picker.portrait .md-picker:not(.landscape) { width: 320px; }
-.md-picker.portrait .md-picker:not(.landscape).date-picker .md-display-1 { display: inline-block; }
-.md-picker.portrait .md-picker:not(.landscape) .md-picker-header { height: 110px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-time-periods { display: inline-block; padding-left: 1em; padding-right: 24px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-picker-content { height: 340px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-display-3 { font-size: 4.8em; line-height: 1; }
-.md-picker.portrait .md-picker:not(.landscape) .md-dows { padding-bottom: 12px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-calendar-date-placeholder, .md-picker.portrait .md-picker:not(.landscape) .md-calendar-date { height: 44px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-calendar-date::after { height: 36px; width: 36px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-clock-face { height: 272px; width: 272px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-clock-hand { width: 116px; }
-.md-picker.portrait .md-picker:not(.landscape) .md-clock-hand.inner-hour { width: 80px; }
-.md-picker.landscape .md-picker:not(.portrait) { display: flex; width: 560px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-picker-header { width: 180px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-picker-content { height: 280px; width: 380px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-calendar-date-placeholder, .md-picker.landscape .md-picker:not(.portrait) .md-calendar-date { height: 35px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-calendar-date::after { height: 32px; width: 32px; }
-.md-picker.landscape .md-picker:not(.portrait).time-picker .md-picker-header { padding-top: 93.33333px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-clock-face { height: 244px; width: 244px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-clock-hand { width: 102px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-clock-hand.inner-hour { width: 66px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-time-periods { margin-left: auto; margin-right: 2.5em; width: 35px; }
-.md-picker.landscape .md-picker:not(.portrait) .md-display-3 { font-size: 3.25em; }
+.md-picker.portrait { width: 320px; }
+.md-picker.portrait.date-picker .md-display-1 { display: inline-block; }
+.md-picker.portrait .md-picker-header { height: 110px; }
+.md-picker.portrait .md-time-periods { display: inline-block; padding-left: 1em; padding-right: 24px; }
+.md-picker.portrait .md-picker-content { height: 340px; }
+.md-picker.portrait .md-display-3 { font-size: 4.8em; line-height: 1; }
+.md-picker.portrait .md-dows { padding-bottom: 12px; }
+.md-picker.portrait .md-calendar-date-placeholder, .md-picker.portrait .md-calendar-date { height: 44px; }
+.md-picker.portrait .md-calendar-date::after { height: 36px; width: 36px; }
+.md-picker.portrait .md-clock-face { height: 272px; width: 272px; }
+.md-picker.portrait .md-clock-hand { width: 116px; }
+.md-picker.portrait .md-clock-hand.inner-hour { width: 80px; }
+.md-picker.landscape { display: flex; width: 560px; }
+.md-picker.landscape .md-picker-header { width: 180px; }
+.md-picker.landscape .md-picker-content { height: 280px; width: 380px; }
+.md-picker.landscape .md-calendar-date-placeholder, .md-picker.landscape .md-calendar-date { height: 35px; }
+.md-picker.landscape .md-calendar-date::after { height: 32px; width: 32px; }
+.md-picker.landscape.time-picker .md-picker-header { padding-top: 93.33333px; }
+.md-picker.landscape .md-clock-face { height: 244px; width: 244px; }
+.md-picker.landscape .md-clock-hand { width: 102px; }
+.md-picker.landscape .md-clock-hand.inner-hour { width: 66px; }
+.md-picker.landscape .md-time-periods { margin-left: auto; margin-right: 2.5em; width: 35px; }
+.md-picker.landscape .md-display-3 { font-size: 3.25em; }
 .md-picker.date-picker .md-picker-control { display: block; }
 .md-picker.time-picker .md-picker-header { text-align: right; }
 .md-picker.time-picker .md-picker-control { padding: 0; }
@@ -588,7 +591,7 @@ tbody .md-table-row:hover { background: #eee; }
 .md-select-field-menu { max-height: 272px; overflow-y: auto; }
 .md-select-field-menu .md-tile-content { overflow: initial; }
 
-.md-select-field-container:hover .md-text-field-label, .md-select-field-container:hover .md-text-field { cursor: pointer; }
+.md-select-field-container:not(.disabled):hover .md-text-field-label, .md-select-field-container:not(.disabled):hover .md-text-field { cursor: pointer; }
 .md-select-field-container.select-field-btn { padding-left: 24px; transition: box-shadow 0.15s; }
 .md-select-field-container.select-field-btn .md-text-divider { display: none; }
 .md-select-field-container.select-field-btn.active, .md-select-field-container.select-field-btn:active { box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4); }
@@ -814,7 +817,6 @@ tbody .md-table-row:hover { background: #eee; }
 .md-clock-time { color: #000; }
 .md-clock-time.active { color: #fff; }
 
-.md-list a { color: rgba(0, 0, 0, 0.87); }
 .md-list .md-subheader { color: rgba(0, 0, 0, 0.54); }
 .md-list .md-subheader.md-primary-subheader { color: #3f51b5; }
 
@@ -930,17 +932,6 @@ tbody .md-table-row:hover { background: #eee; }
   .md-tooltip-text { font-size: 14px; line-height: 32px; } }
 @media only screen and (min-width: 600px) { [class^='md-subheading'] { font-size: 15px; }
   .md-body-1, .md-body-2 { font-size: 13px; }
-  .md-picker:not(.portrait) { display: flex; width: 560px; }
-  .md-picker:not(.portrait) .md-picker-header { width: 180px; }
-  .md-picker:not(.portrait) .md-picker-content { height: 280px; width: 380px; }
-  .md-picker:not(.portrait) .md-calendar-date-placeholder, .md-picker:not(.portrait) .md-calendar-date { height: 35px; }
-  .md-picker:not(.portrait) .md-calendar-date::after { height: 32px; width: 32px; }
-  .md-picker:not(.portrait).time-picker .md-picker-header { padding-top: 93.33333px; }
-  .md-picker:not(.portrait) .md-clock-face { height: 244px; width: 244px; }
-  .md-picker:not(.portrait) .md-clock-hand { width: 102px; }
-  .md-picker:not(.portrait) .md-clock-hand.inner-hour { width: 66px; }
-  .md-picker:not(.portrait) .md-time-periods { margin-left: auto; margin-right: 2.5em; width: 35px; }
-  .md-picker:not(.portrait) .md-display-3 { font-size: 3.25em; }
   .md-list { padding-bottom: 4px; padding-top: 4px; }
   .md-menu .md-list { top: -4px; }
   .md-list-tile, .md-list-item.primary-action, .md-list-item.secondary-action { height: 40px; }
@@ -994,7 +985,18 @@ tbody .md-table-row:hover { background: #eee; }
   .md-navigation-drawer-content:not(.temporary).active { padding-left: 256px; width: 100%; }
   .md-navigation-drawer-content:not(.temporary) .md-navigation-drawer-overlay { display: none; visibility: hidden; }
   .md-tooltip { height: 22px; padding-left: 8px; padding-right: 8px; }
-  .md-tooltip-text { font-size: 10px; line-height: 22px; } }
+  .md-tooltip-text { font-size: 10px; line-height: 22px; }
+  .md-picker:not(.portrait) { display: flex; width: 560px; }
+  .md-picker:not(.portrait) .md-picker-header { width: 180px; }
+  .md-picker:not(.portrait) .md-picker-content { height: 280px; width: 380px; }
+  .md-picker:not(.portrait) .md-calendar-date-placeholder, .md-picker:not(.portrait) .md-calendar-date { height: 35px; }
+  .md-picker:not(.portrait) .md-calendar-date::after { height: 32px; width: 32px; }
+  .md-picker:not(.portrait).time-picker .md-picker-header { padding-top: 93.33333px; }
+  .md-picker:not(.portrait) .md-clock-face { height: 244px; width: 244px; }
+  .md-picker:not(.portrait) .md-clock-hand { width: 102px; }
+  .md-picker:not(.portrait) .md-clock-hand.inner-hour { width: 66px; }
+  .md-picker:not(.portrait) .md-time-periods { margin-left: auto; margin-right: 2.5em; width: 35px; }
+  .md-picker:not(.portrait) .md-display-3 { font-size: 3.25em; } }
 @media only screen and (orientation: portrait) and (max-width: 599px) { .md-toolbar, .md-navigation-drawer-toolbar .md-text-field:not(.multi-line), .md-toolbar .md-text-field:not(.multi-line) { height: 56px; }
   .md-navigation-drawer-toolbar .md-text-field:not(.multi-line), .md-toolbar .md-text-field:not(.multi-line) { line-height: 56px; }
   .md-navigation-drawer-content, .md-navigation-drawer.mini:not(.active) { padding-top: 56px; }
