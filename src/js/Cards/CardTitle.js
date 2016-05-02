@@ -4,6 +4,14 @@ import classnames from 'classnames';
 
 import CardExpander from './CardExpander';
 
+/**
+ * The `CardTitle` component is used to display the main content title for the card.
+ *
+ * This can include an optional `Avatar` to display before the title as well as
+ * an optional subtitle.
+ *
+ * This component can also act as an expander which will inject the `CardExpander`.
+ */
 export default class CardTitle extends Component {
   constructor(props) {
     super(props);
@@ -12,12 +20,42 @@ export default class CardTitle extends Component {
   }
 
   static propTypes = {
+    /**
+     * The main title to display.
+     */
     title: PropTypes.string.isRequired,
+
+    /**
+     * An optional subtitle.
+     */
     subtitle: PropTypes.string,
+
+    /**
+     * The optional className to apply.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional `Avatar` to display before the titles.
+     */
     avatar: PropTypes.node,
+
+    /**
+     * Any additional children to display after the titles.
+     */
     children: PropTypes.node,
+
+    /**
+     * Boolean if this should act as an expander. This will inject the
+     * `CardExpander` after the titles and optional children.
+     */
     isExpander: PropTypes.bool,
+
+    /**
+     * Boolean if this component should be expandable when there is a `CardExpander`
+     * above it in the `Card`.
+     */
+    expandable: PropTypes.bool,
   };
 
   static defaultProps = {
