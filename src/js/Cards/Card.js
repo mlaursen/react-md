@@ -5,6 +5,16 @@ import classnames from 'classnames';
 
 import { Height } from '../Transitions';
 
+/**
+ * The `Card` component is a sheet of material that serves as an entry point to
+ * more detailed information. A card could contain a photo, text, and a link
+ * about a single subject.
+ *
+ * The `Card` component also defines `contextTypes` for checking if the `Card`
+ * is expanded. The expander icon can have a tooltip and be changed through
+ * props. If the card is not expanded, the children components will not be
+ * visible until it has been toggled.
+ */
 export default class Card extends Component {
   constructor(props) {
     super(props);
@@ -14,15 +24,56 @@ export default class Card extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional className to apply to the card.
+     */
     className: PropTypes.string,
+
+    /**
+     * Any Card parts that should be rendered.
+     */
     children: PropTypes.node,
+
+    /**
+     * The icon className to use for the expander icon.
+     */
     iconClassName: PropTypes.string,
+
+    /**
+     * Any icon children required for the expander icon.
+     */
     iconChildren: PropTypes.string,
+
+    /**
+     * Boolean if the card is initially expanded when there is an expander
+     * component.
+     */
     initiallyExpanded: PropTypes.bool,
+
+    /**
+     * Boolean if the card should raise on hover when on a desktop display.
+     */
     raise: PropTypes.bool,
+
+    /**
+     * Boolean if the card is currently expanded. This will require the `onExpanderClick` function
+     * to toggle the state. The card will become controlled if this is not `undefined`.
+     */
     isExpanded: PropTypes.bool,
+
+    /**
+     * An optional function to call when the expander is clicked.
+     */
     onExpanderClick: PropTypes.func,
+
+    /**
+     * The tooltip position for the expander icon.
+     */
     expanderTooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
+     * The optional tooltip to display for the expander icon.
+     */
     expanderTooltipLabel: PropTypes.string,
   };
 
