@@ -1,9 +1,6 @@
 language: node_js
 node_js:
-  - "5.1.x"
-  - "4.2.x"
-  - "4.1.x"
-  - "4.0.x"
-scripts:
+  - "4"
+script:
   - npm run lint
   - npm test
