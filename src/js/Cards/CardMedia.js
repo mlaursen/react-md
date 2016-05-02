@@ -29,6 +29,7 @@ export default class CardMedia extends Component {
 
   render() {
     const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;
+
     return (
       <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio}`]: forceAspect })}>
         {children}
