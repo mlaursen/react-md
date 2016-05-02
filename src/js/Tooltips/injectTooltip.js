@@ -192,8 +192,9 @@ export default ComposedComponent => class Tooltip extends Component {
   };
 
   render() {
-    const { tooltipLabel, tooltipPosition, tooltipDelay, ...props } = this.props;
     const { style, active, tabActive, textStyle } = this.state;
+    const { tooltipLabel, tooltipPosition, ...props } = this.props;
+    delete props.tooltipDelay;
 
     const tooltip = tooltipLabel && (
       <div

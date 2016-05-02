@@ -300,12 +300,8 @@ export default class TextField extends Component {
       required,
       helpOnFocus,
       fullWidth,
-      defaultValue,
       readOnly,
       size,
-      onBlur,
-      onChange,
-      onFocus,
       onInput,
       onInvalid,
       onKeyDown,
@@ -315,6 +311,12 @@ export default class TextField extends Component {
       type,
       ...props,
     } = this.props;
+
+    delete props.defaultValue;
+    delete props.onBlur;
+    delete props.onChange;
+    delete props.onFocus;
+
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
     const multiline = typeof rows === 'number';
