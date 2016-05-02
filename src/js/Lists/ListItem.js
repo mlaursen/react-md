@@ -233,14 +233,15 @@ export default class ListItem extends Component {
       threeLines,
       leftIcon,
       leftAvatar,
-      rightIcon,
       rightAvatar,
       nestedItems,
-      expanderIconClassName,
-      expanderIconChildren,
       disabled,
       ...props,
     } = this.props;
+
+    delete props.rightIcon;
+    delete props.expanderIconClassName;
+    delete props.expanderIconChildren;
 
     let children;
     if(this.isOpen() && nestedItems && nestedItems.length) {

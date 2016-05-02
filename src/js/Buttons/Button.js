@@ -51,15 +51,16 @@ class Button extends Component {
   render() {
     const {
       className,
-      iconBefore,
-      label,
-      children,
       href,
       primary,
       secondary,
       ink,
       ...props,
     } = this.props;
+
+    delete props.iconBefore;
+    delete props.label;
+    delete props.children;
 
     return React.createElement(href ? 'a' : 'button', {
       ...props,

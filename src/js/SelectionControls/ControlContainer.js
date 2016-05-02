@@ -60,10 +60,11 @@ export default class ControlContainer extends Component {
       uncheckedIcon,
       name,
       value,
-      checked,
       type,
       ...props,
     } = this.props;
+
+    delete props.checked;
 
     return (
       <label

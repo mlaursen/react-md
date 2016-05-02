@@ -58,8 +58,6 @@ export default class TimePicker extends Component {
       cancelLabel,
       cancelPrimary,
       onCancelClick,
-      DateTimeFormat,
-      locales,
       className,
       setTimeMode,
       setTempTime,
@@ -68,7 +66,6 @@ export default class TimePicker extends Component {
       hours,
       minutes,
       timePeriod,
-      ...props,
     } = this.props;
 
     const hoursInt = parseInt(hours);

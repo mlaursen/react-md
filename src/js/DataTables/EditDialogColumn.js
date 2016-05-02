@@ -265,18 +265,19 @@ export default class EditDialogColumn extends Component {
   render() {
     const { active, animating } = this.state;
     const {
-      defaultValue,
       columnClassName,
       className,
       maxLength,
       title,
-      onOkClick,
       okLabel,
-      onCancelClick,
       cancelLabel,
       large,
       ...props,
     } = this.props;
+
+    delete props.defaultValue;
+    delete props.onOkClick;
+    delete props.onCancelClick;
 
     const value = this.getValue();
     let actions, largeTitle;

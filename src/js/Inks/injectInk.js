@@ -162,7 +162,8 @@ export default ComposedComponent => class Ink extends Component {
   };
 
   render() {
-    const { children, inkDisabled, ...props } = this.props;
+    const { children, ...props } = this.props;
+    delete props.inkDisabled;
 
     // Don't inject ink and new props if disabled
     if(this.disabled()) {
