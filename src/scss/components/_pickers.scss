@@ -72,6 +72,7 @@
 
 .md-picker-control {
   @extend %button-unstyled;
+  @extend %clickable;
 
   .md-subtitle {
     font-size: 16em / $md-font-size-base;
@@ -239,6 +240,7 @@
 
 .md-calendar-date {
   @extend %button-unstyled;
+  @extend %clickable;
 
   color: $md-text-color;
   position: relative;
@@ -294,6 +296,7 @@
 
 .md-year {
   @extend %button-unstyled;
+  @extend %clickable;
 
   display: block;
   font-size: $md-year-picker-font-size;

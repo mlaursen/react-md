@@ -68,3 +68,9 @@
   display: none;
   visibility: hidden;
 }
+
+%clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
