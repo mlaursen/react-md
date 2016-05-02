@@ -10,7 +10,7 @@ export default class Card extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { expanded: props.isInitialExpanded };
+    this.state = { expanded: props.initiallyExpanded };
   }
 
   static propTypes = {
@@ -18,7 +18,7 @@ export default class Card extends Component {
     children: PropTypes.node,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.string,
-    isInitialExpanded: PropTypes.bool,
+    initiallyExpanded: PropTypes.bool,
     raise: PropTypes.bool,
     isExpanded: PropTypes.bool,
     onExpanderClick: PropTypes.func,
@@ -28,7 +28,7 @@ export default class Card extends Component {
 
   static defaultProps = {
     raise: true,
-    isInitialExpanded: false,
+    initiallyExpanded: false,
     iconClassName: 'material-icons',
     iconChildren: 'keyboard_arrow_down',
     expanderTooltipPosition: 'left',
@@ -69,28 +69,27 @@ export default class Card extends Component {
     const { className, children, raise, ...props } = this.props;
 
     let expanderIndex = -1;
+    const cardChildren = React.Children.map(children, (child, i) => {
+      if(!child || !child.props) { return child; }
+      if(expanderIndex < 0 && child.props.isExpander) {
+        expanderIndex = i;
+      }
+
+      if(!child.props.expandable) {
+        return child;
+      } else if(expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) {
+        return null;
+      } else {
+        return <Height>{child}</Height>;
+      }
+    });
     return (
       <TransitionGroup
         component="div"
         {...props}
-        className={classnames('md-card', className, {
-          'raise': raise,
-        })}
+        className={classnames('md-card', className, { raise })}
         >
-        {React.Children.map(children, (child, i) => {
-          if(!child) { return child; }
-          if(expanderIndex < 0 && child.props.isExpander) {
-            expanderIndex = i;
-          }
-
-          if(!child.props.expandable) {
-            return child;
-          } else if(expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) {
-            return null;
-          } else {
-            return <Height>{child}</Height>;
-          }
-        })}
+        {cardChildren}
       </TransitionGroup>
     );
   }
