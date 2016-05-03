@@ -85,10 +85,12 @@ $ npm run scripts:watch  # watch src and recompile
 ```
 
 ## Linting
+The scss linting is done through the Ruby version of `sass` and `scss_lint`. Mostly because I use vim and it is
+what I was using before. The `sass-lint` from `npm` did not follow the same rules as expected.
 
 ```bash
-$ npm run lint      # checks lint
-$ npm run lint:fix  # checks lint and attempts to fix problems
+$ npm run lint        # lints scss and js files
+$ npm run lint:fix    # attempts to fix linting problems for js
 ```
 
 ## Testing

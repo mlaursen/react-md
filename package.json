@@ -10,7 +10,9 @@
     "scripts:watch": "babel --ignore=__tests__ ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
     "prebuild": "npm test && rimraf lib",
-    "lint": "eslint -c .eslintrc src/js/**",
+    "lint:styles": "scss-lint src/scss",
+    "lint:scripts": "eslint -c .eslintrc src/js/**",
+    "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src/js/**",
     "build": "npm run scripts && npm run styles"
   },

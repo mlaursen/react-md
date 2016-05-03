@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  // scss-lint:disable ColorVariable
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 

@@ -22,7 +22,7 @@
   $focus-off-color: if($light-theme, $md-slider-light-theme-focus-off-color, $md-slider-dark-theme-off-color);
   $disabled-color: if($light-theme, $md-slider-light-theme-disabled-color, $md-slider-dark-theme-off-color);
 
-  .md-slider-track:before {
+  .md-slider-track::before {
     background: $off-color;
   }
 
@@ -37,13 +37,13 @@
     &.active {
       background: $md-grey-400;
 
-      &:after {
+      &::after {
         border-top-color: $md-grey-400;
       }
     }
   }
 
-  .md-discrete-slider-thumb.active:after {
+  .md-discrete-slider-thumb.active::after {
     border-top-color: $color;
   }
 
