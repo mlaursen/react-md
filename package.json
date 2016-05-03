@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
-    "autoprefixer": "^6.1.1",
     "babel-cli": "^6.4.0",
     "babel-core": "^6.2.1",
     "babel-eslint": "^6.0.2",
@@ -50,7 +49,6 @@
     "eslint-plugin-react": "^5.0.1",
     "intl": "^1.1.0",
     "jest-cli": "^12.0.2",
-    "normalize-scss-vanilla": "^1.0.1",
     "react": "^15.0.x",
     "react-addons-css-transition-group": "^15.0.x",
     "react-addons-pure-render-mixin": "^15.0.x",
