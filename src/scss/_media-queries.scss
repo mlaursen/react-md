@@ -1,4 +1,4 @@
-@media only screen and (min-width: 0px) and (max-width: 599px) {
+@media only screen and (max-width: 599px) {
   @include md-typography-mobile();
   @include md-lists-mobile();
   @include md-select-field-mobile();

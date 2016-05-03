@@ -260,7 +260,7 @@
 ///
 /// @param {Color} $color - The placeholder color to use
 @mixin md-theme-placeholders($color) {
-  // scss-lint:disable VendorPrefix
+  // scss-lint:disable VendorPrefix, PseudoElement
 
   :-moz-placeholder {
     color: $color;

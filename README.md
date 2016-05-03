@@ -1,5 +1,6 @@
 # react-md
 
+[![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
 [![Join the chat at https://gitter.im/mlaursen/react-md](https://badges.gitter.im/mlaursen/react-md.svg)](https://gitter.im/mlaursen/react-md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 React material design - React components built with sass
@@ -85,10 +86,12 @@ $ npm run scripts:watch  # watch src and recompile
 ```
 
 ## Linting
+The scss linting is done through the Ruby version of `sass` and `scss_lint`. Mostly because I use vim and it is
+what I was using before. The `sass-lint` from `npm` did not follow the same rules as expected.
 
 ```bash
-$ npm run lint      # checks lint
-$ npm run lint:fix  # checks lint and attempts to fix problems
+$ npm run lint        # lints scss and js files
+$ npm run lint:fix    # attempts to fix linting problems for js
 ```
 
 ## Testing

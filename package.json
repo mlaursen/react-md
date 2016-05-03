@@ -10,7 +10,9 @@
     "scripts:watch": "babel --ignore=__tests__ ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
     "prebuild": "npm test && rimraf lib",
-    "lint": "eslint -c .eslintrc src/js/**",
+    "lint:styles": "scss-lint src/scss",
+    "lint:scripts": "eslint -c .eslintrc src/js/**",
+    "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src/js/**",
     "build": "npm run scripts && npm run styles"
   },
@@ -33,7 +35,6 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
-    "autoprefixer": "^6.1.1",
     "babel-cli": "^6.4.0",
     "babel-core": "^6.2.1",
     "babel-eslint": "^6.0.2",
@@ -48,7 +49,6 @@
     "eslint-plugin-react": "^5.0.1",
     "intl": "^1.1.0",
     "jest-cli": "^12.0.2",
-    "normalize-scss-vanilla": "^1.0.1",
     "react": "^15.0.x",
     "react-addons-css-transition-group": "^15.0.x",
     "react-addons-pure-render-mixin": "^15.0.x",

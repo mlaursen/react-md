@@ -21,7 +21,7 @@
     .md-switch {
       background: if($light-theme, $md-switch-light-theme-disabled-color, $md-switch-dark-theme-disabled-color);
 
-      &:before {
+      &::before {
         background: if($light-theme, $md-grey-400, $md-grey-800);
       }
     }
@@ -31,7 +31,7 @@
     background: rgba($color, .5);
   }
 
-  .md-control-input:checked +.md-switch:before {
+  .md-control-input:checked +.md-switch::before {
     background: $color;
     border-color: $color;
   }
@@ -39,7 +39,7 @@
   .md-switch {
     background: if($light-theme, $md-switch-light-theme-track-color, $md-switch-dark-theme-track-color);
 
-    &:before {
+    &::before {
       background: if($light-theme, $md-grey-50, $md-grey-400);
     }
   }
