@@ -29,8 +29,6 @@ node_modules
 
 *.DS_STORE
 
-distExample
 sassdoc
 .publish
-docs/src/www/bundle*
-docs/src/www/sassdoc
+lib

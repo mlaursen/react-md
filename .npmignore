@@ -1,0 +1,11 @@
+node_modules
+*.DS_STORE
+.sass-cache
+.publish
+*.log
+.babelrc
+.eslintrc
+.scss-lint.yml
+.travis.yml
+.gitignore
+*__tests__*
