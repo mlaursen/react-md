@@ -4,6 +4,5 @@ before_install:
 node_js:
   - "4"
 script:
-  - scss-lint -c .scss-lint.yml src/scss/**/*.scss
   - npm run lint
   - npm test
