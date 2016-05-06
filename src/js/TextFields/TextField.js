@@ -215,6 +215,11 @@ export default class TextField extends Component {
      * Boolean if this text field should be styled as a full width text field.
      * Floating labels and the text field indicator will be removed automatically.
      */
+    block: PropTypes.bool,
+
+    /**
+     * Boolean if the this text field should span the full width of a parent
+     */
     fullWidth: PropTypes.bool,
   };
 
@@ -299,6 +304,7 @@ export default class TextField extends Component {
       disabled,
       required,
       helpOnFocus,
+      block,
       fullWidth,
       readOnly,
       size,
@@ -320,7 +326,7 @@ export default class TextField extends Component {
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
     const multiline = typeof rows === 'number';
-    const useFloatingLabel = floatingLabel && !fullWidth;
+    const useFloatingLabel = floatingLabel && !block;
 
     let fontIcon, textFieldMessage, indIcon;
     if(icon) {
@@ -362,7 +368,9 @@ export default class TextField extends Component {
         'floating-label': useFloatingLabel,
         'single-line': !useFloatingLabel && !multiline,
         'multi-line': multiline,
+        'block': block,
         'full-width': fullWidth,
+        'with-icon': rightIcon,
       }),
       disabled,
       onBlur: this.handleBlur,
@@ -396,7 +404,7 @@ export default class TextField extends Component {
       textField = (
         <textarea
           {...textFieldProps}
-          placeholder={active || !useFloatingLabel || fullWidth ? (placeholder || label) : null}
+          placeholder={active || !useFloatingLabel || block ? (placeholder || label) : null}
           ref="textarea"
           rows={rows}
           style={areaStyle}
@@ -417,6 +425,7 @@ export default class TextField extends Component {
         {...props}
         className={classnames('md-text-field-container', className, {
           'multi-line': multiline,
+          'block': block,
           'full-width': fullWidth,
           'with-message': helpText || errorText,
         })}
@@ -434,7 +443,7 @@ export default class TextField extends Component {
           }
           {textField}
           {indIcon}
-          {!fullWidth &&
+          {!block &&
           <TextDivider
             icon={!!icon}
             active={active}

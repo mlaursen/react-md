@@ -1,6 +1,10 @@
 .md-menu-container {
   display: inline-block;
   position: relative;
+
+  &.full-width {
+    width: 100%;
+  }
 }
 
 .md-menu {
