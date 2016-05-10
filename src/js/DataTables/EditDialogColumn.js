@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { FlatButton } from '../Buttons';
+import FlatButton from '../Buttons/FlatButton';
 import TableColumn from './TableColumn';
 import TextField from '../TextFields';
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
@@ -28,9 +28,19 @@ export default class EditDialogColumn extends Component {
 
   static propTypes = {
     /**
+     * The optional style to apply to the edit dialog.
+     */
+    style: PropTypes.object,
+
+    /**
      * The optional className to apply to the edit dialog.
      */
     className: PropTypes.string,
+
+    /**
+     * The optional style to apply to the column.
+     */
+    columnStyle: PropTypes.object,
 
     /**
      * The optional className to apply to the column.
@@ -146,8 +156,6 @@ export default class EditDialogColumn extends Component {
     okOnOutsideClick: true,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
-    onOkClick: () => {},
-    onCancelClick: () => {},
   };
 
   componentWillUpdate(nextProps, nextState) {
@@ -205,7 +213,7 @@ export default class EditDialogColumn extends Component {
 
     const key = e.which || e.keyCode;
     if(key === ENTER) {
-      this.save();
+      this.save(e);
     } else if(key === TAB) {
       this.overrideTab(e);
     } else if(key === ESC) {
@@ -220,7 +228,7 @@ export default class EditDialogColumn extends Component {
   };
 
   handleCancelClick = (e) => {
-    this.props.onCancelClick(this.state.cancelValue, e);
+    this.props.onCancelClick && this.props.onCancelClick(this.state.cancelValue, e);
 
     this.setState({ active: false, value: this.state.cancelValue });
   };
@@ -265,7 +273,9 @@ export default class EditDialogColumn extends Component {
   render() {
     const { active, animating } = this.state;
     const {
+      columnStyle,
       columnClassName,
+      style,
       className,
       maxLength,
       title,
@@ -295,13 +305,14 @@ export default class EditDialogColumn extends Component {
     }
 
     return (
-      <TableColumn className={classnames(columnClassName, 'prevent-grow md-edit-dialog-column')} ref="column">
+      <TableColumn className={classnames('prevent-grow md-edit-dialog-column', columnClassName)} ref="column" style={columnStyle}>
         <div
           className={classnames('md-edit-dialog', className, {
             animating,
             active,
             large,
           })}
+          style={style}
         >
           {largeTitle}
           <TextField

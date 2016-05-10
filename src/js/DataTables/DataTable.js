@@ -163,9 +163,9 @@ export default class DataTable extends Component {
   };
 
   render() {
-    const { className, children, plain, style, responsive } = this.props;
+    const { className, children, plain, responsive, ...props } = this.props;
     const table = (
-      <table className={classnames('md-data-table', className, { 'full-width': plain })} style={style}>
+      <table className={classnames('md-data-table', className, { 'full-width': plain })} {...props}>
         {children}
       </table>
     );
