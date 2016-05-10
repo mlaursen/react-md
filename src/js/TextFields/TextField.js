@@ -218,7 +218,7 @@ export default class TextField extends Component {
     block: PropTypes.bool,
 
     /**
-     * Boolean if the this text field should span the full width of a parent
+     * Boolean if the this text field should span the full width of a parent.
      */
     fullWidth: PropTypes.bool,
   };
