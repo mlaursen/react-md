@@ -151,6 +151,11 @@ export default class SelectField extends Component {
      * The icon children to use for the dropdown indicator.
      */
     iconChildren: PropTypes.node,
+
+    /**
+     * Boolean if the this select field should span the full width of a parent
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -542,6 +547,7 @@ export default class SelectField extends Component {
       iconClassName,
       iconChildren,
       disabled,
+      fullWidth,
       ...props,
     } = this.props;
 
@@ -560,6 +566,7 @@ export default class SelectField extends Component {
         open={open}
         below={below}
         inkDisabled={!below}
+        fullWidth={fullWidth}
       />
     );
 
@@ -581,7 +588,9 @@ export default class SelectField extends Component {
     const menuProps = {
       isOpen: open,
       close: this.close,
-      className: classnames('md-select-field-menu-container', menuClassName),
+      className: classnames('md-select-field-menu-container', menuClassName, {
+        'full-width': fullWidth,
+      }),
       listClassName: classnames('md-select-field-menu', listClassName, {
         'single-line': !floatingLabel,
       }),

@@ -28,6 +28,10 @@
       @include md-box-shadow(2);
     }
   }
+
+  &.full-width {
+    width: 100%;
+  }
 }
 
 .md-select-field {

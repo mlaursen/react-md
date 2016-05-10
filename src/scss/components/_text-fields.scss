@@ -4,7 +4,7 @@
   display: inline-block;
   vertical-align: top;
 
-  &.full-width {
+  &.block {
     align-items: center;
     display: flex;
 
@@ -34,6 +34,10 @@
     .md-text-field {
       width: 100%;
     }
+  }
+
+  &.full-width {
+    width: 100%;
   }
 }
 
@@ -74,8 +78,16 @@
     width: 100%;
   }
 
+  &.block {
+    width: 100%;
+  }
+
   &.full-width {
     width: 100%;
+
+    &.with-icon {
+      width: calc(100% - #{$md-font-icon-size});
+    }
   }
 }
 
