@@ -10,10 +10,12 @@ import { getOffset } from '../utils';
 /**
  * Takes any component and injects an ink container along with event
  * listeners for handling those inks. It also injects a prop
- * named `ink` which needs to be added to the ComposedComponent.
+ * named `ink` which needs to be added to the `ComposedComponent`.
  *
+ * ```js
  * @param ComposedComponent the component to compose with the ink functionality.
  * @return the ComposedComponent with inks.
+ * ```
  */
 export default ComposedComponent => class Ink extends Component {
   constructor(props) {
@@ -26,17 +28,55 @@ export default ComposedComponent => class Ink extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional onMouseUp function to call along with the ink creation onMouseUp.
+     */
     onMouseUp: PropTypes.func,
+
+    /**
+     * An optional onMouseDown function to call along with the ink creation onMouseDown.
+     */
     onMouseDown: PropTypes.func,
+
+    /**
+     * An optional onMouseLeave function to call along with the ink creation onMouseLeave.
+     */
     onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional onFocus function to call along with the ink creation onFocus.
+     */
     onFocus: PropTypes.func,
+
+    /**
+     * An optional onBlur function to call along with the ink creation onBlur.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * An optional onTouchStart function to call along with the ink creation onTouchStart.
+     */
     onTouchStart: PropTypes.func,
+
+    /**
+     * An optional onTouchEnd function to call along with the ink creation onTouchEnd.
+     */
     onTouchEnd: PropTypes.func,
+
+    /**
+     * An optional onTouchCancel function to call along with the ink creation onTouchCancel.
+     */
     onTouchCancel: PropTypes.func,
+
+    /**
+     * Boolean if the ink or the composed component is disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Boolean if only the ink is disabled.
+     */
     inkDisabled: PropTypes.bool,
-    children: PropTypes.node,
   };
 
   calcR = (a, b) => {
@@ -162,12 +202,12 @@ export default ComposedComponent => class Ink extends Component {
   };
 
   render() {
-    const { children, ...props } = this.props;
+    const { ...props } = this.props;
     delete props.inkDisabled;
 
     // Don't inject ink and new props if disabled
     if(this.disabled()) {
-      return <ComposedComponent {...props} children={children} />;
+      return <ComposedComponent {...props} />;
     }
 
     const ink = (
@@ -188,9 +228,7 @@ export default ComposedComponent => class Ink extends Component {
         onTouchCancel={this.handleTouchCancel}
         onTouchEnd={this.handleTouchEnd}
         ink={ink}
-      >
-        {children}
-      </ComposedComponent>
+      />
     );
   }
 };
