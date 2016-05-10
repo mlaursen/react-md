@@ -217,10 +217,16 @@ export default class TextField extends Component {
      */
     block: PropTypes.bool,
 
-    /**
-     * Boolean if the this text field should span the full width of a parent
-     */
-    fullWidth: PropTypes.bool,
+    fullWidth: (props, propName, component) => {
+      if(typeof props[propName] !== 'undefined') {
+        console.warn(
+          'The \'fullWidth\' prop will be renamed \'block\' in the next release (0.2.0). ' +
+          'Switch to the \'block\' prop type for the current full width implementation.'
+
+        );
+      }
+      return PropTypes.bool(props, propName, component);
+    },
   };
 
   static defaultProps = {
@@ -326,7 +332,8 @@ export default class TextField extends Component {
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
     const multiline = typeof rows === 'number';
-    const useFloatingLabel = floatingLabel && !block;
+    const isFullWidth = block || fullWidth;
+    const useFloatingLabel = floatingLabel && !isFullWidth;
 
     let fontIcon, textFieldMessage, indIcon;
     if(icon) {
@@ -404,7 +411,7 @@ export default class TextField extends Component {
       textField = (
         <textarea
           {...textFieldProps}
-          placeholder={active || !useFloatingLabel || block ? (placeholder || label) : null}
+          placeholder={active || !useFloatingLabel || isFullWidth ? (placeholder || label) : null}
           ref="textarea"
           rows={rows}
           style={areaStyle}
@@ -443,7 +450,7 @@ export default class TextField extends Component {
           }
           {textField}
           {indIcon}
-          {!block &&
+          {!isFullWidth &&
           <TextDivider
             icon={!!icon}
             active={active}

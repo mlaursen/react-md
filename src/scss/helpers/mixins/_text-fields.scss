@@ -45,7 +45,8 @@
     padding-left: $padding + 4;
     padding-right: $padding + 4;
 
-    &.multi-line.block .md-text-field-message {
+    &.multi-line.block .md-text-field-message,
+    &.multi-line.full-width .md-text-field-message {
       padding-bottom: $padding;
     }
   }
@@ -65,7 +66,8 @@
       margin-bottom: $padding;
     }
 
-    &.block {
+    &.block,
+    &.full-width {
 
       &:not(.multi-line) {
         height: $fl-height - $padding;
