@@ -16,33 +16,60 @@ export default class Overlay extends Component {
     transitionName: PropTypes.string.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
     transitionLeaveTimeout: PropTypes.number.isRequired,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
     overlayStyle: PropTypes.object,
     overlayClassName: PropTypes.string,
   };
 
   static defaultProps = {
+    component: 'span',
     transitionName: 'md-overlay',
     transitionEnterTimeout: 150,
     transitionLeaveTimeout: 150,
   };
 
   render() {
-    const { isOpen, onClick, overlayStyle, overlayClassName, ...props } = this.props;
+    const {
+      isOpen,
+      component,
+      style,
+      className,
+      overlayStyle,
+      overlayClassName,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      ...props,
+    } = this.props;
 
     let overlay;
     if(isOpen) {
       const overlayProps = {
-        onClick,
         key: 'overlay',
         style: overlayStyle,
         className: classnames('md-overlay', overlayClassName),
+        ...props,
       };
 
       overlay = <div {...overlayProps} />;
     }
 
     return (
-      <CSSTransitionGroup {...props}>{overlay}</CSSTransitionGroup>
+      <CSSTransitionGroup
+        component={component}
+        style={style}
+        className={className}
+        transitionName={transitionName}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
+        {overlay}
+      </CSSTransitionGroup>
     );
   }
 }

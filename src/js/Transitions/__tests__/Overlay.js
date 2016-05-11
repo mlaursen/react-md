@@ -49,7 +49,7 @@ describe('Overlay', () => {
     expect(overlayNodes.length).toBe(1);
   });
 
-  it('calls the onClick function when the overlay is clicked', () => {
+  it('passes event listeners to the overlay instead of the CSSTransitionGroup', () => {
     const onClick = jest.genMockFunction();
     const overlay = renderIntoDocument(
       <Overlay isOpen={true} onClick={onClick} />
