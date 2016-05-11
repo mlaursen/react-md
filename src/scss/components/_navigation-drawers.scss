@@ -66,7 +66,7 @@
   transition-duration: $md-transition-time;
   transition-property: box-shadow, left, width;
   width: 100%;
-  z-index: $md-navigation-drawer-z-index;
+  z-index: $md-navigation-drawer-toolbar-z-index;
 
   .md-title {
     color: inherit;
@@ -89,9 +89,4 @@
 
 .md-navigation-drawer-toggle {
   float: right;
-}
-
-.md-navigation-drawer-overlay {
-  // scss-lint:disable PlaceholderInExtend
-  @extend .md-overlay;
 }

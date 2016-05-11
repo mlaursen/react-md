@@ -114,7 +114,7 @@ $md-transition-time: .15s !default;
 ///
 /// @type Number
 /// @group z-indexes, overlay
-$md-overlay-z-index: 3 !default;
+$md-overlay-z-index: 100 !default;
 
 /// The default z-index for the Data table's edit dialog.
 ///
@@ -160,7 +160,7 @@ $md-fab-z-index: 8 !default;
 ///
 /// @type Number
 /// @group z-indexes, navigation-drawers
-$md-navigation-drawer-z-index: 10 !default;
+$md-navigation-drawer-z-index: $md-overlay-z-index + 1 !default;
 
 /// The default z-index for the snackbar component.
 ///
@@ -172,14 +172,20 @@ $md-snackbar-z-index: 11 !default;
 ///
 /// @type Number
 /// @group z-indexes, navigation-drawers
-$md-navigation-drawer-temporary-z-index: 12 !default;
+$md-navigation-drawer-temporary-z-index: $md-overlay-z-index + 1 !default;
+
+/// The default z-index for the temporary navigation-drawer
+///
+/// @type Number
+/// @group z-indexes, navigation-drawers
+$md-navigation-drawer-toolbar-z-index: $md-overlay-z-index - 1 !default;
 
 
 /// The default z-index for the dialog component.
 ///
 /// @type Number
 /// @group z-indexes, dialogs
-$md-dialog-z-index: 26 !default;
+$md-dialog-z-index: $md-overlay-z-index + 5 !default;
 
 
 /// The most common used height throughout the material design scss.

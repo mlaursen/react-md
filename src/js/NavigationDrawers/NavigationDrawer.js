@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
 import { setOverflow } from '../utils';
 import Divider from '../Dividers';
 import { List, ListItem } from '../Lists';
 import Subheader from '../Subheaders';
+import Overlay from '../Transitions/Overlay';
 
 import NavigationDrawerHeader from './NavigationDrawerHeader';
 import NavigationDrawerToolbar from './NavigationDrawerToolbar';
@@ -203,9 +203,7 @@ export default class NavigationDrawer extends Component {
             children={toolbarChildren}
           />
           {children}
-          <CSSTransitionGroup transitionName="md-overlay" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
-            {isOpen && <div key="overlay" className="md-navigation-drawer-overlay" onClick={closeDrawer} />}
-          </CSSTransitionGroup>
+          <Overlay isOpen={isOpen} onClick={closeDrawer} />
         </div>
       </div>
     );
