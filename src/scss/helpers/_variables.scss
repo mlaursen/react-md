@@ -185,7 +185,7 @@ $md-navigation-drawer-toolbar-z-index: $md-overlay-z-index - 1 !default;
 ///
 /// @type Number
 /// @group z-indexes, dialogs
-$md-dialog-z-index: 26 !default;
+$md-dialog-z-index: $md-overlay-z-index + 5 !default;
 
 
 /// The most common used height throughout the material design scss.

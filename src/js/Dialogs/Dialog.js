@@ -28,15 +28,14 @@ export default class Dialog extends Component {
     ]),
     actionLeft: PropTypes.node,
     actionRight: PropTypes.node,
+    style: PropTypes.object,
     className: PropTypes.string,
+    contentStyle: PropTypes.object,
     contentClassName: PropTypes.string,
     children: PropTypes.node,
-    style: PropTypes.object,
-    onlyChildren: PropTypes.bool,
   };
 
   componentDidMount() {
-    if(this.props.onlyChildren) { return; }
     let state = {};
     const { dialog, content } = this.refs;
 
@@ -63,6 +62,7 @@ export default class Dialog extends Component {
       title,
       children,
       className,
+      contentStyle,
       contentClassName,
       actions,
       actionLeft,
@@ -71,13 +71,12 @@ export default class Dialog extends Component {
       transformOrigin,
       isSimple,
       isFullPage,
-      onlyChildren,
       ...props,
     } = this.props;
     const { stacked, divided } = this.state;
 
     let header, footer;
-    if(!onlyChildren && !isFullPage && title) {
+    if(!isFullPage && title) {
       header = <h1 className="md-title">{title}</h1>;
     } else if(isFullPage) {
       header = (
@@ -113,20 +112,18 @@ export default class Dialog extends Component {
         })}
         style={Object.assign({}, style, { transformOrigin })}
         {...props}
-        >
+      >
         {header}
         {header && divided && <Divider />}
-        {onlyChildren && children}
-        {!onlyChildren &&
-          <section
-            ref="content"
-            className={classnames('md-dialog-content', contentClassName, {
-              'simple': isSimple,
-            })}
-            >
-            {children}
-          </section>
-        }
+        <section
+          ref="content"
+          style={contentStyle}
+          className={classnames('md-dialog-content', contentClassName, {
+            'simple': isSimple,
+          })}
+        >
+          {children}
+        </section>
         {footer && divided && <Divider />}
         {footer}
       </div>

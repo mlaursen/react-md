@@ -29,10 +29,12 @@ export default class DialogContainer extends Component {
     actionLeft: PropTypes.node,
     actionRight: PropTypes.node,
     className: PropTypes.string,
+    dialogClassName: PropTypes.string,
     contentClassName: PropTypes.string,
-    containerClassName: PropTypes.string,
     modal: PropTypes.bool,
     style: PropTypes.object,
+    dialogStyle: PropTypes.object,
+    contentStyle: PropTypes.object,
     pageX: PropTypes.number,
     pageY: PropTypes.number,
     transitionName: PropTypes.string.isRequired,
@@ -93,12 +95,14 @@ export default class DialogContainer extends Component {
       children,
       className,
       contentClassName,
-      containerClassName,
+      dialogClassName,
       modal,
       close,
       actionLeft,
       actionRight,
       style,
+      dialogStyle,
+      contentStyle,
       transitionName,
       transitionEnter,
       transitionEnterTimeout,
@@ -116,23 +120,25 @@ export default class DialogContainer extends Component {
         transitionEnterTimeout={transitionEnterTimeout}
         transisionLeave={transitionLeave}
         transitionLeaveTimeout={transitionLeaveTimeout}
-        className={classnames('md-dialog-container', containerClassName, {
+        className={classnames('md-dialog-container', className, {
           'open': isOpen || this.state.openClassName,
           'simple': isSimple,
           'dialog-centered': !isFullPage,
         })}
-        >
+        style={style}
+      >
         {isOpen &&
           <Dialog
             key="dialog"
             title={title}
             children={children}
-            className={className}
+            className={dialogClassName}
             contentClassName={contentClassName}
             actions={actions}
             actionLeft={actionLeft}
             actionRight={actionRight}
-            style={style}
+            style={dialogStyle}
+            contentStyle={contentStyle}
             transformOrigin={this.state.transformOrigin}
             isSimple={isSimple}
             isFullPage={isFullPage}
