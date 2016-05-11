@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "scripts": "babel --ignore=__tests__ ./src/js --out-dir=./lib",
-    "scripts:watch": "babel --ignore=__tests__ ./src/js --watch --out-dir=./lib",
+    "scripts": "babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --out-dir=./lib",
+    "scripts:watch": "babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
     "prebuild": "npm test && rimraf lib",
     "lint:styles": "scss-lint src/scss",
