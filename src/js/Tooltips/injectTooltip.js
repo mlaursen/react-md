@@ -10,6 +10,20 @@ const MOBILE_FONT_SIZE = 14;
 const DESKTOP_MARGIN = 14;
 const MOBILE_MARGIN = 24;
 
+/**
+ * Takes any component and injects a tooltip when the user hovers
+ * over the component or touch holds it on a mobile device. It also
+ * injects the event listeners and a `tooltip` prop to be added to
+ * the `ComposedComponent`.
+ *
+ * If the `tooltipLabel` prop is omitted, the tooltip and event listeners will not
+ * be included.
+ *
+ * ```js
+ * @param ComposedComponent the component to compose with the tooltip functionality.
+ * @return the ComposedComponent with a tooltip.
+ * ```
+ */
 export default ComposedComponent => class Tooltip extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +40,49 @@ export default ComposedComponent => class Tooltip extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
+    /**
+     * The tooltip to display.
+     */
     tooltipLabel: PropTypes.string,
+
+    /**
+     * The position of the tooltip relative to the `ComposedComponent`.
+     */
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+
+    /**
+     * The delay before the tooltip appears or disappears.
+     */
     tooltipDelay: PropTypes.number.isRequired,
+
+    /**
+     * An optional onKeyUp function to call along with the tooltip creation onKeyUp.
+     */
     onKeyUp: PropTypes.func,
+
+    /**
+     * An optional onBlur function to call along with the tooltip creation onBlur.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * An optional onMouseOver function to call along with the tooltip creation onMouseOver.
+     */
     onMouseOver: PropTypes.func,
+
+    /**
+     * An optional onMouseLeave function to call along with the tooltip creation onMouseLeave.
+     */
     onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional onTouchStart function to call along with the tooltip creation onTouchStart.
+     */
     onTouchStart: PropTypes.func,
+
+    /**
+     * An optional onTouchEnd function to call along with the tooltip creation onTouchEnd.
+     */
     onTouchEnd: PropTypes.func,
   };
 
@@ -195,8 +243,11 @@ export default ComposedComponent => class Tooltip extends Component {
     const { style, active, tabActive, textStyle } = this.state;
     const { tooltipLabel, tooltipPosition, ...props } = this.props;
     delete props.tooltipDelay;
+    if(!tooltipLabel) {
+      return <ComposedComponent {...props} />;
+    }
 
-    const tooltip = tooltipLabel && (
+    const tooltip = (
       <div
         key="tooltip"
         ref="tooltip"
