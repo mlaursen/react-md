@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
-import { FlatButton } from '../Buttons';
-import Toolbar from '../Toolbars';
-import Divider from '../Dividers';
+import Toolbar from '../Toolbars/Toolbar';
+import Divider from '../Dividers/Divider';
+
+import DialogFooter from './DialogFooter';
 
 const DIALOG_PADDING = 8;
 
@@ -89,18 +90,8 @@ export default class Dialog extends Component {
       );
     }
 
-    if(actions) {
-      footer = (
-        <footer className={classnames('md-dialog-footer', { stacked })}>
-          {actions.map((action, key) => {
-            if(!React.isValidElement(action)) {
-              return <FlatButton key={key} {...action} />;
-            } else {
-              return action;
-            }
-          })}
-        </footer>
-      );
+    if(actions && actions.length) {
+      footer = <DialogFooter className={classnames({ stacked })} actions={actions} />;
     }
 
     return (

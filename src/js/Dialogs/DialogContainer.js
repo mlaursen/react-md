@@ -110,7 +110,7 @@ export default class DialogContainer extends Component {
       transitionLeaveTimeout,
       ...props,
     } = this.props;
-    const isSimple = !actions;
+    const isSimple = !actions || !actions.length;
 
     const isFullPage = !!actionLeft || !!actionRight;
     return (
