@@ -3,6 +3,12 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
+/**
+ * This is a controlled component for rendering an overlay on the page.
+ *
+ * Any event listeners will be applied to overlay instead of the `CSSTransitionGroup`
+ * containing the overlay when open.
+ */
 export default class Overlay extends Component {
   constructor(props) {
     super(props);
@@ -11,18 +17,57 @@ export default class Overlay extends Component {
   }
 
   static propTypes = {
+    /**
+     * Boolean if the Overlay is currently open.
+     */
     isOpen: PropTypes.bool.isRequired,
+
+    /**
+     * An optional function to call when the overlay is clicked.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * The transition name for the overlay.
+     */
     transitionName: PropTypes.string.isRequired,
+
+    /**
+     * The enter timeout for the overlay when it has been toggled on.
+     */
     transitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The leave timeout for the overlay when it has been toggled off.
+     */
     transitionLeaveTimeout: PropTypes.number.isRequired,
+
+    /**
+     * An optional style to apply to the `CSSTransitionGroup` containing the overlay.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `CSSTransitionGroup` holding the overlay.
+     */
     className: PropTypes.string,
+
+    /**
+     * The component to render the `CSSTransitionGroup` as.
+     */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
+
+    /**
+     * An optional style to apply to the overlay itself.
+     */
     overlayStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the overlay itself.
+     */
     overlayClassName: PropTypes.string,
   };
 
