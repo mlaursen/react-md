@@ -38,10 +38,6 @@
       z-index: $md-navigation-drawer-temporary-z-index;
     }
   }
-
-  .md-navigation-drawer-content .md-navigation-drawer-overlay {
-    z-index: $md-navigation-drawer-z-index + 1;
-  }
 }
 
 @mixin md-navigation-drawer-desktop() {
@@ -78,11 +74,6 @@
       &.active {
         padding-left: $md-navigation-drawer-desktop-width;
         width: 100%;
-      }
-
-      .md-navigation-drawer-overlay {
-        display: none;
-        visibility: hidden;
       }
     }
   }

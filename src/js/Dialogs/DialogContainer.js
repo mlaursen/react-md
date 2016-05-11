@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 import { setOverflow } from '../utils';
 import Dialog from './Dialog';
+import Overlay from '../Transitions/Overlay';
 
 export default class DialogContainer extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class DialogContainer extends Component {
   };
 
   static defaultProps = {
+    modal: false,
     transitionName: 'md-dialog',
     transitionEnter: true,
     transitionEnterTimeout: 300,
@@ -137,19 +139,7 @@ export default class DialogContainer extends Component {
             {...props}
           />
         }
-        <CSSTransitionGroup
-          transitionName="md-overlay"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={transitionLeaveTimeout}
-          >
-          {isOpen &&
-            <div
-              key="overlay"
-              className="md-overlay"
-              onClick={modal ? null : close}
-            />
-          }
-        </CSSTransitionGroup>
+        <Overlay isOpen={isOpen} onClick={modal ? null : close} />
       </CSSTransitionGroup>
     );
   }
