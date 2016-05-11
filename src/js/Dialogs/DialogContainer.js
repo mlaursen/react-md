@@ -7,6 +7,10 @@ import { setOverflow } from '../utils';
 import Dialog from './Dialog';
 import Overlay from '../Transitions/Overlay';
 
+/**
+ * This component renders a `Dialog` when the `isOpen` prop is set to true.
+ * It will manage the css transitions between the open and closed states.
+ */
 export default class DialogContainer extends Component {
   constructor(props) {
     super(props);
@@ -16,31 +20,126 @@ export default class DialogContainer extends Component {
   }
 
   static propTypes = {
+    /**
+     * Boolean if the Dialog is currently open.
+     */
     isOpen: PropTypes.bool.isRequired,
+
+    /**
+     * A function to call that will close the dialog. This function will
+     * be called when the overlay is clicked on simple dialogs.
+     */
     close: PropTypes.func.isRequired,
+
+    /**
+     * Any children to display in the Dialog.
+     */
     children: PropTypes.node,
+
+    /**
+     * An optional title to display in the dialog.
+     */
     title: PropTypes.string,
+
+    /**
+     * A single action or a list of actions to display in the Dialog.
+     * This can either be a list of `FlatButton` props or `FlatButton` elements.
+     */
     actions: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.arrayOf(PropTypes.object),
-      PropTypes.node,
+      PropTypes.element,
       PropTypes.object,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.object,
+      ])),
     ]),
+
+    /**
+     * Any action to display to the left of the title in a full page dialog's toolbar.
+     * See the [Toolbar's actionLeft](/components/toolbars) documentation for more information.
+     */
     actionLeft: PropTypes.node,
+
+    /**
+     * Any action to display to the right of the title in a full page dialog's toolbar.
+     * See the [Toolbar actionsRight](/components/toolbars) documentation for more information.
+     */
     actionRight: PropTypes.node,
+
+    /**
+     * An optional className to apply to the `Dialog` container.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional className to apply to the `Dialog` itself.
+     */
     dialogClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the `Dialog`'s content section.
+     */
     contentClassName: PropTypes.string,
+
+    /**
+     * Boolean if the `Dialog` should behave as a modal. This means that one
+     * of the actions must be selected to close the dialog. The overlay
+     * can not be clicked to be closed.
+     */
     modal: PropTypes.bool,
+
+    /**
+     * An optional style to apply to the `Dialog` container.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional style to apply to the `Dialog` itself.
+     */
     dialogStyle: PropTypes.object,
+
+    /**
+     * An optional style to apply to the `Dialog`'s content section.
+     */
     contentStyle: PropTypes.object,
+
+    /**
+     * An optional click/touch event's pageX location to use when
+     * rendering a full page dialog. This will make the `Dialog` appear relative
+     * to the click origin.
+     */
     pageX: PropTypes.number,
+
+    /**
+     * An optional click/touch event's pageY location to use when
+     * rendering a full page dialog. This will make the `Dialog` appear relative
+     * to the click origin.
+     */
     pageY: PropTypes.number,
+
+    /**
+     * The transition name to use for the `Dialog` when appearing/disappearing
+     */
     transitionName: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the enter transition should be used.
+     */
     transitionEnter: PropTypes.bool,
+
+    /**
+     * The timeout for the the enter transition.
+     */
     transitionEnterTimeout: PropTypes.number,
+
+    /**
+     * Boolean if the leave transition should be used.
+     */
     transitionLeave: PropTypes.bool,
+
+    /**
+     * The timeout for the leave transition.
+     */
     transitionLeaveTimeout: PropTypes.number,
   };
 
@@ -75,6 +174,12 @@ export default class DialogContainer extends Component {
     return `${pageX - window.scrollX}px ${pageY - window.scrollY}px`;
   };
 
+  /**
+   * The only purpose of this function is to be used when closing the dialog.
+   * The visibility gets changed to hidden and the z-index turns to -1. So
+   * this function will wait for the dialog to finish animating before removing
+   * the open className
+   */
   delayIsOpen = (time) => {
     const timeout = setTimeout(() => {
       this.setState({ openClassName: false, timeout: null });

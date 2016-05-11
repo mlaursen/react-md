@@ -8,6 +8,10 @@ import DialogFooter from './DialogFooter';
 
 const DIALOG_PADDING = 8;
 
+/**
+ * This is the Dialog that appears when the `DialogContainer` component has
+ * a true value for `isOpen`.
+ */
 export default class Dialog extends Component {
   constructor(props) {
     super(props);
@@ -17,22 +21,75 @@ export default class Dialog extends Component {
   }
 
   static propTypes = {
+    /**
+     * Boolean if it is a simple dialog.
+     */
     isSimple: PropTypes.bool.isRequired,
+
+    /**
+     * Boolean if it is a full page dialog.
+     */
     isFullPage: PropTypes.bool.isRequired,
+
+    /**
+     * A transform-origin string to use for a full page dialog. This will
+     * allow the dialog to appear from that origin.
+     */
     transformOrigin: PropTypes.string,
+
+    /**
+     * An optional title to display above the content or in the `Toolbar` of a `Dialog`.
+     */
     title: PropTypes.string,
+
+    /**
+     * A single action or a list of actions to display in the Dialog.
+     * This can either be a list of `FlatButton` props or `FlatButton` elements.
+     */
     actions: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.arrayOf(PropTypes.object),
-      PropTypes.node,
+      PropTypes.element,
       PropTypes.object,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.object,
+      ])),
     ]),
+
+    /**
+     * Any action to display to the left of the title in a full page dialog's toolbar.
+     * See the [Toolbar's actionLeft](/components/toolbars) documentation for more information.
+     */
     actionLeft: PropTypes.node,
+
+    /**
+     * Any action to display to the right of the title in a full page dialog's toolbar.
+     * See the [Toolbar actionsRight](/components/toolbars) documentation for more information.
+     */
     actionRight: PropTypes.node,
+
+    /**
+     * An optional style to apply to the `Dialog`.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `Dialog`.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the dialog's content.
+     */
     contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the dialog's content.
+     */
     contentClassName: PropTypes.string,
+
+    /**
+     * Any children to display in the `Dialog`.
+     */
     children: PropTypes.node,
   };
 

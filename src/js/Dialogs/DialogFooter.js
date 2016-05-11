@@ -4,6 +4,10 @@ import classnames from 'classnames';
 
 import FlatButton from '../Buttons/FlatButton';
 
+/**
+ * A simple component for converting action objects into `FlatButton`
+ * or just rendering the actions that are valid elements.
+ */
 export default class DialogFooter extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +16,14 @@ export default class DialogFooter extends Component {
   }
 
   static propTypes = {
+    /**
+     * The optional className to apply.
+     */
     className: PropTypes.string,
+
+    /**
+     * The list of actions or a single action to display in the footer.
+     */
     actions: PropTypes.oneOfType([
       PropTypes.shape({
         onClick: PropTypes.func.isRequired,
