@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import classnames from 'classnames';
 
 import Toast from './Toast';
 
@@ -9,6 +11,7 @@ export default class Snackbar extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { multiline: false };
   }
 
   static propTypes = {
@@ -28,7 +31,6 @@ export default class Snackbar extends Component {
     autohide: PropTypes.bool,
     autohideTimeout: PropTypes.number,
     dismiss: PropTypes.func.isRequired,
-    multiline: PropTypes.bool,
     fabTimeout: PropTypes.number,
     transitionName: PropTypes.string.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
@@ -45,18 +47,20 @@ export default class Snackbar extends Component {
     toasts: [],
   };
 
-  componentWillReceiveProps({ toasts, dismiss, autohide, multiline, autohideTimeout, fabTimeout }) {
+  componentWillReceiveProps({ toasts, dismiss, autohide, autohideTimeout, fabTimeout }) {
     if(this.props.toasts.length === toasts.length) { return; }
     const [toast] = toasts;
     toast && toast.onAppear && toast.onAppear();
+    this.isMultilineToast(toast);
 
     const fixedFAB = document.querySelector('.md-floating-btn.fixed');
     if(fixedFAB) {
       fixedFAB.classList.remove('snackbar-multiline-adjust');
       fixedFAB.classList.remove('snackbar-adjust');
+
       if(toast) {
         this.fabTimeout = setTimeout(() => {
-          fixedFAB.classList.add(`snackbar${multiline ? '-multiline' : ''}-adjust`);
+          fixedFAB.classList.add(`snackbar${this.state.multiline ? '-multiline' : ''}-adjust`);
         }, this.props.toasts.length > 1 ? fabTimeout : 0);
       }
     }
@@ -78,12 +82,45 @@ export default class Snackbar extends Component {
     return typeof action === 'string' ? { label: action, onClick: this.props.dismiss } : action;
   };
 
+  /**
+   * Checks if a toast is a multiline toast and updates the state with the new value.
+   * It checks by rendering the new toast and comparing it's size, then removing the
+   * new toast.
+   *
+   * @param {Object} toast the toast to check.
+   */
+  isMultilineToast = (toast) => {
+    if(!toast) { return; }
+
+    const p = document.createElement('p');
+    p.innerHTML = toast.text;
+
+    const btn = document.createElement('button');
+    btn.className = 'md-btn md-flat-btn';
+    btn.innerHTML = typeof toast.action === 'string' ? toast.action : toast.action.label;
+
+    const snackbar = document.createElement('section');
+    snackbar.className = classnames('md-snackbar', this.props.className);
+
+    snackbar.appendChild(p);
+    snackbar.appendChild(btn);
+
+    const node = ReactDOM.findDOMNode(this);
+    node.appendChild(snackbar);
+
+    const lineHeight = this.state.lineHeight || parseInt(window.getComputedStyle(p).getPropertyValue('line-height'));
+    const multiline = p.offsetHeight > lineHeight;
+    node.removeChild(snackbar);
+
+    this.setState({ multiline, lineHeight });
+  };
+
   render() {
+    const { multiline } = this.state;
     const {
       className,
       toasts,
       dismiss,
-      multiline,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
