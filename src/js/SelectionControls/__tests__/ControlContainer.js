@@ -82,7 +82,7 @@ describe('ControlContainer', () => {
     expect(content).toBe(props.checkedIcon);
   });
 
-  it('calls the onChange prop with the next checked state, the current input value, and the event', () => {
+  it('calls the onChange prop with the next checked state and the event for checkboxes', () => {
     const onChange = jest.genMockFunction();
     const props = {
       type: 'checkbox',
@@ -101,7 +101,29 @@ describe('ControlContainer', () => {
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[0][1]).toBe(props.value);
+    expect(onChange.mock.calls[0][1]).toBeDefined();
+  });
+
+  it('calls the onChange prop with the radio value and the event for radios', () => {
+    const onChange = jest.genMockFunction();
+    const props = {
+      type: 'radio',
+      checkedIcon: 'checked',
+      uncheckedIcon: 'unchecked',
+      labelBefore: false,
+      defaultChecked: false,
+      value: 'test',
+      onChange,
+    };
+
+    const control = renderIntoDocument(<ControlContainer {...props} />);
+
+    const input = findRenderedDOMComponentWithTag(control, 'input');
+    Simulate.change(input, { target: { checked: true }});
+
+    expect(onChange.mock.calls.length).toBe(1);
+    expect(onChange.mock.calls[0][0]).toBe(props.value);
+    expect(onChange.mock.calls[0][1]).toBeDefined();
   });
 
   it('can be a controlled component', () => {

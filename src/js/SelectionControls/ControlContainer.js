@@ -34,9 +34,13 @@ export default class ControlContainer extends Component {
   };
 
   handleChange = (e) => {
-    const { onChange, value } = this.props;
+    const { onChange, value, type } = this.props;
     const checked = !this.isChecked();
-    onChange && onChange(checked, value, e);
+    if(onChange) {
+      const arg = type === 'radio' ? value : checked;
+      onChange(arg, e);
+    }
+
     // prevents 2 change events triggering
     e.stopPropagation();
 
