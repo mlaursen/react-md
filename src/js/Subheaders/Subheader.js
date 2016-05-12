@@ -10,21 +10,23 @@ export default class Subheader extends Component {
   }
 
   static propTypes = {
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
     className: PropTypes.string,
     primary: PropTypes.bool,
     inset: PropTypes.bool,
-    menu: PropTypes.bool,
-    menuComponent: PropTypes.string,
     primaryText: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
-    menuComponent: 'h5',
+    component: 'li',
   };
 
   render() {
-    const { menu, menuComponent, inset, primary, primaryText, className, ...props } = this.props;
-    return React.createElement(menu ? menuComponent : 'li', {
+    const { component, inset, primary, primaryText, className, ...props } = this.props;
+    return React.createElement(component, {
       ...props,
       className: classnames('md-subheader', className, {
         inset,
