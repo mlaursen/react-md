@@ -44,12 +44,12 @@ export default class LinearProgress extends Component {
     return (
       <div className={classnames('md-linear-progress-container', className)} {...props}>
         <div
+          style={style}
           className={classnames('md-linear-progress', {
             query,
             'determinate': isDeterminate,
             'indeterminate': !isDeterminate,
           })}
-          style={style}
         />
       </div>
     );
