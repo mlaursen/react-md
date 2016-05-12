@@ -35,6 +35,7 @@ export default class Snackbar extends Component {
     transitionName: PropTypes.string.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
     transitionLeaveTimeout: PropTypes.number.isRequired,
+    fab: PropTypes.object,
   };
 
   static defaultProps = {
@@ -47,20 +48,19 @@ export default class Snackbar extends Component {
     toasts: [],
   };
 
-  componentWillReceiveProps({ toasts, dismiss, autohide, autohideTimeout, fabTimeout }) {
+  componentWillReceiveProps({ toasts, dismiss, autohide, autohideTimeout, fab, fabTimeout }) {
     if(this.props.toasts.length === toasts.length) { return; }
     const [toast] = toasts;
     toast && toast.onAppear && toast.onAppear();
     this.isMultilineToast(toast);
 
-    const fixedFAB = document.querySelector('.md-floating-btn.fixed');
-    if(fixedFAB) {
-      fixedFAB.classList.remove('snackbar-multiline-adjust');
-      fixedFAB.classList.remove('snackbar-adjust');
+    if(fab) {
+      fab.classList.remove('snackbar-multiline-adjust');
+      fab.classList.remove('snackbar-adjust');
 
       if(toast) {
         this.fabTimeout = setTimeout(() => {
-          fixedFAB.classList.add(`snackbar${this.state.multiline ? '-multiline' : ''}-adjust`);
+          fab.classList.add(`snackbar${this.state.multiline ? '-multiline' : ''}-adjust`);
         }, this.props.toasts.length > 1 ? fabTimeout : 0);
       }
     }
