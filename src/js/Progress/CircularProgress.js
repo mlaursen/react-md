@@ -14,6 +14,7 @@ export default class CircularProgress extends Component {
   }
 
   static propTypes = {
+    style: PropTypes.object.isRequired,
     className: PropTypes.string,
     value: (props, propName, component) => {
       if(typeof props[propName] === 'undefined') { return; }
@@ -33,28 +34,42 @@ export default class CircularProgress extends Component {
   };
 
   static defaultProps = {
+    style: {},
     scale: 1,
     determinateDashoffset: 187,
     centered: true,
   };
 
   render() {
-    const { scale, className, value, determinateDashoffset, centered } = this.props;
+    const {
+      scale,
+      style,
+      className,
+      value,
+      determinateDashoffset,
+      centered,
+      ...props,
+    } = this.props;
+
     const isDeterminate = typeof value === 'number';
-    let circleStyle, svgStyle;
+    let circleStyle, svgStyle = style;
     if(isDeterminate) {
       const rotate = `rotate(${ROATE_DISTANCE / 100 * value}deg)`;
       circleStyle = {
         strokeDashoffset: determinateDashoffset - (determinateDashoffset / 100 * value),
       };
-      svgStyle = {
-        WebkitTransform: rotate,
-        MozTransform: rotate,
-        transform: rotate,
-      };
+
+      svgStyle = Object.assign({}, style, {
+        WebkitTransform: classnames(style.WebkitTransform, rotate),
+        MozTransform: classnames(style.MozTransform, rotate),
+        transform: classnames(style.transform, rotate),
+      });
     }
+
     return (
       <svg
+        {...props}
+        style={svgStyle}
         className={classnames('md-circular-progress', className, {
           'determinate': isDeterminate,
           'indeterminate': !isDeterminate,
@@ -64,8 +79,7 @@ export default class CircularProgress extends Component {
         height={scale * BASE_SIZE}
         viewBox="0 0 66 66"
         xmlns="http://www.w3.org/2000/svg"
-        style={svgStyle}
-        >
+      >
         <circle
           className="md-circular-progress-path"
           strokeWidth="6"
