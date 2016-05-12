@@ -30,11 +30,17 @@ export default class Snackbar extends Component {
     dismiss: PropTypes.func.isRequired,
     multiline: PropTypes.bool,
     fabTimeout: PropTypes.number,
+    transitionName: PropTypes.string.isRequired,
+    transitionEnterTimeout: PropTypes.number.isRequired,
+    transitionLeaveTimeout: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
     autohide: true,
     autohideTimeout: 3000,
+    transitionName: 'snackbar',
+    transitionEnterTimeout: 450,
+    transitionLeaveTimeout: 450,
     fabTimeout: 450,
     toasts: [],
   };
@@ -73,15 +79,25 @@ export default class Snackbar extends Component {
   };
 
   render() {
-    const { className, toasts, dismiss, multiline, ...props } = this.props;
+    const {
+      className,
+      toasts,
+      dismiss,
+      multiline,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      ...props,
+    } = this.props;
+
     const [toast] = toasts;
     return (
       <CSSTransitionGroup
         className="md-snackbar-container"
-        transitionName="snackbar"
-        transitionEnterTimeout={1200}
-        transitionLeaveTimeout={450}
-        >
+        transitionName={transitionName}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
         {toast &&
           <Toast
             key={toast.key || Date.now()}
