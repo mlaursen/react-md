@@ -1,6 +1,4 @@
 /*eslint-env jest*/
-jest.unmock('../../Inks');
-jest.unmock('../../Inks/injectInk');
 jest.unmock('../../Tooltips');
 jest.unmock('../../Tooltips/injectTooltip');
 jest.unmock('../IconButton');

@@ -10,10 +10,6 @@ jest.unmock('../../Buttons');
 jest.unmock('../../Buttons/IconButton');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
-jest.unmock('../../Inks');
-jest.unmock('../../Inks/injectInk');
-jest.unmock('../../Tooltips');
-jest.unmock('../../Tooltips/injectTooltip');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';

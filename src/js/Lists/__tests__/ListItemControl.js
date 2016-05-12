@@ -5,8 +5,6 @@ jest.unmock('../../SelectionControls/Checkbox');
 jest.unmock('../../SelectionControls/ControlContainer');
 jest.unmock('../../SelectionControls/InkedControl');
 jest.unmock('../../SelectionControls/Switch');
-jest.unmock('../../Inks');
-jest.unmock('../../Inks/injectInk');
 jest.unmock('../../constants/keyCodes');
 
 import React from 'react';
