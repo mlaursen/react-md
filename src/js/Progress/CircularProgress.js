@@ -6,6 +6,18 @@ import { isBetween } from '../utils';
 const ROATE_DISTANCE = 360 * 1.75;
 const BASE_SIZE = 24; // font-icon font size
 
+/**
+ * The `CircularProgress` component is used to give visual feedback while your app
+ * is loading.
+ *
+ * There are two different types of circular progress bars: `Determinate` and `Indeterminate`.
+ *
+ * A `Determinate` circular progress bar should be used when you want to keep track of the current
+ * progress. An example would be downloading a file.
+ *
+ * An `Indeterminate` circular progress bar should be used when you can not keep track of the progress
+ * yourself. An example would be waiting for some API call to complete.
+ */
 export default class CircularProgress extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +26,25 @@ export default class CircularProgress extends Component {
   }
 
   static propTypes = {
+    /**
+     * A style object to apply to the svg. If this is a determinate `CircularProgress`,
+     * the `transform` (and vendor prefixes) styles will be merged with the current
+     * progress rotation.
+     */
     style: PropTypes.object.isRequired,
+
+    /**
+     * An optional className to apply to the svg.
+     */
     className: PropTypes.string,
+
+    /**
+     * The current value of the progress. If this value is defined, it will
+     * be converted to a determinate circular progress. The progress will not
+     * advance unless this value changes.
+     *
+     * This value should also be a number between 0 and 100.
+     */
     value: (props, propName, component) => {
       if(typeof props[propName] === 'undefined') { return; }
       let err = PropTypes.number(props, propName, component);
@@ -28,8 +57,21 @@ export default class CircularProgress extends Component {
 
       return err;
     },
-    scale: PropTypes.number,
+
+    /**
+     * The scale for the circular progress.
+     */
+    scale: PropTypes.number.isRequired,
+
+    /**
+     * You probably don't want to update this. I'm not good at svg. This should
+     * match the scss variable `$md-circular-progress-stroke-dashoffset`.
+     */
     determinateDashoffset: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the the progress should be centered in it's container.
+     */
     centered: PropTypes.bool,
   };
 
