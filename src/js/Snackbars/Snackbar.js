@@ -95,15 +95,18 @@ export default class Snackbar extends Component {
     const p = document.createElement('p');
     p.innerHTML = toast.text;
 
-    const btn = document.createElement('button');
-    btn.className = 'md-btn md-flat-btn';
-    btn.innerHTML = typeof toast.action === 'string' ? toast.action : toast.action.label;
 
     const snackbar = document.createElement('section');
     snackbar.className = classnames('md-snackbar', this.props.className);
 
     snackbar.appendChild(p);
-    snackbar.appendChild(btn);
+    if(toast.action) {
+      const btn = document.createElement('button');
+      btn.className = 'md-btn md-flat-btn';
+      btn.innerHTML = typeof toast.action === 'string' ? toast.action : toast.action.label;
+
+      snackbar.appendChild(btn);
+    }
 
     const node = ReactDOM.findDOMNode(this);
     node.appendChild(snackbar);
