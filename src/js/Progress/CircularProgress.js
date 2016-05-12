@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
+import { isBetween } from '../utils';
 
 const ROATE_DISTANCE = 360 * 1.75;
 const BASE_SIZE = 24; // font-icon font size
@@ -14,7 +15,18 @@ export default class CircularProgress extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    value: PropTypes.number,
+    value: (props, propName, component) => {
+      if(typeof props[propName] === 'undefined') { return; }
+      let err = PropTypes.number(props, propName, component);
+      if(!err) {
+        const value = props[propName];
+        if(!isBetween(value, 0, 100)) {
+          err = new Error(`A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`);
+        }
+      }
+
+      return err;
+    },
     scale: PropTypes.number,
     determinateDashoffset: PropTypes.number.isRequired,
     centered: PropTypes.bool,

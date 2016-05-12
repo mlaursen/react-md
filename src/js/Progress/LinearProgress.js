@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { numberBetween } from '../utils';
+import { isBetween } from '../utils';
 
 export default class LinearProgress extends Component {
   constructor(props) {
@@ -13,7 +13,18 @@ export default class LinearProgress extends Component {
 
   static propTypes = {
     className: PropTypes.string,
-    value: PropTypes.number,
+    value: (props, propName, component) => {
+      if(typeof props[propName] === 'undefined') { return; }
+      let err = PropTypes.number(props, propName, component);
+      if(!err) {
+        const value = props[propName];
+        if(!isBetween(value, 0, 100)) {
+          err = new Error(`A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`);
+        }
+      }
+
+      return err;
+    },
     query: PropTypes.bool,
   };
 
@@ -27,7 +38,7 @@ export default class LinearProgress extends Component {
 
     let style;
     if(isDeterminate) {
-      style = { width: `${numberBetween(value, 0, 100)}%` };
+      style = { width: `${value}%` };
     }
 
     return (
