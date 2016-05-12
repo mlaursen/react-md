@@ -13,6 +13,7 @@ export default class Switch extends Component {
   }
 
   static propTypes = {
+    style: PropTypes.object,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     defaultToggled: PropTypes.bool.isRequired,
@@ -29,9 +30,11 @@ export default class Switch extends Component {
 
   toggleCheck = (e) => {
     const { onChange } = this.props;
-    onChange && onChange(e);
+    const toggled = !this.isToggled();
+    onChange && onChange(toggled, e);
+
     if(typeof this.props.toggled === 'undefined') {
-      this.setState({ toggled: !this.state.toggled });
+      this.setState({ toggled });
     }
   };
 
@@ -58,14 +61,19 @@ export default class Switch extends Component {
 
   render() {
     const { active, leaving } = this.state;
-    const { className, label, labelBefore, disabled, ...props } = this.props;
+    const { className, label, labelBefore, disabled, style, ...props } = this.props;
     delete props.toggled;
 
     const labelClassName = classnames('md-control-container', className, { disabled });
 
     const spanLabel = label ? <span className="label">{label}</span> : null;
     return (
-      <label className={labelClassName} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+      <label
+        className={labelClassName}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+        style={style}
+      >
         {labelBefore && spanLabel}
         <div className="md-switch-container">
           <input
