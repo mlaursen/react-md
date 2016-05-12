@@ -34,19 +34,15 @@ export default class ControlContainer extends Component {
   };
 
   handleChange = (e) => {
-    const { onChange, value, checked } = this.props;
-    onChange && onChange(value, e);
+    const { onChange, value } = this.props;
+    const checked = !this.isChecked();
+    onChange && onChange(checked, value, e);
     // prevents 2 change events triggering
     e.stopPropagation();
 
-    if(typeof checked === 'undefined') {
-      this.setState({ checked: !this.state.checked });
+    if(typeof this.props.checked === 'undefined') {
+      this.setState({ checked });
     }
-  };
-
-  handleClick = (e) => {
-    // Prevent 2 onChange after a click event
-    e.stopPropagation();
   };
 
   render() {
@@ -80,7 +76,6 @@ export default class ControlContainer extends Component {
           onChange={this.handleChange}
           name={name}
           value={value}
-          onClick={this.handleClick}
         />
         <InkedControl
           type={type}
