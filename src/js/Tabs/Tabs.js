@@ -6,6 +6,13 @@ import classnames from 'classnames';
 import TabHeader from './TabHeader';
 import SwipeableView from '../SwipeableViews';
 
+/**
+ * The `Tabs` component is a container for the `Tab` component. It will
+ * manage selecting the current active tab and allow the tab content
+ * to be swiped to change.
+ *
+ * > Tabs should not be used for indicating navigation.
+ */
 export default class Tabs extends Component {
   constructor(props) {
     super(props);
@@ -21,15 +28,54 @@ export default class Tabs extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node.isRequired,
-    initialActiveTabIndex: PropTypes.number,
-    activeTabIndex: PropTypes.number,
-    containerStyle: PropTypes.object,
+    /**
+     * An optional style to apply.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply.
+     */
+    className: PropTypes.string,
+
+    /**
+     * The list of tabs to manage.
+     */
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+
+    /**
+     * The initial index of the tab that is active.
+     */
+    initialActiveTabIndex: PropTypes.number.isRequired,
+
+    /**
+     * The active tab index if you want to control the tabs yourself.
+     */
+    activeTabIndex: PropTypes.number,
+
+    /**
+     * An optional function to call when the tab is changed. The next active
+     * tab index and the change event will be given.
+     *
+     * `onChange(tabIndex, event)`.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Boolean if the tabs should be styled with the primary color.
+     */
     primary: PropTypes.bool,
+
+    /**
+     * Boolean if the tabs are fixed width. This means that all of them will
+     * be the same size.
+     */
     fixedWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the tabs should be centered so there is extra whitespace
+     * around the tabs.
+     */
     centered: PropTypes.bool,
   };
 
