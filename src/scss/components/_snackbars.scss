@@ -26,13 +26,13 @@
 
 .snackbar-enter-active:not(:only-child),
 .snackbar-enter-active:not(:only-child) * {
-  transition-delay: $md-transition-time * 3;
+  transition-delay: $md-snackbar-chained-transition-delay;
 }
 
 .snackbar-enter-active,
 .snackbar-leave-active {
   transform-origin: 0 100%;
-  transition: transform $md-transition-time * 2;
+  transition: transform $md-snackbar-transition-time;
 }
 
 .snackbar-enter {
@@ -43,7 +43,7 @@
   &.snackbar-enter-active {
     * {
       opacity: 1;
-      transition: opacity $md-transition-time * 3 ease;
+      transition: opacity $md-snackbar-opacity-transition-time ease;
     }
   }
 }

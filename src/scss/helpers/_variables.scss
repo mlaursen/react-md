@@ -854,6 +854,24 @@ $md-snackbar-desktop-max-width: 568px;
 /// @group snackbar
 $md-snackbar-desktop-border-radius: 2px;
 
+/// The transition time for the snackbar appearing.
+///
+/// @type Time
+/// @group snackbar
+$md-snackbar-transition-time: $md-transition-time * 2 !default;
+
+/// The transition time for the snackbar's children appearing.
+///
+/// @type Time
+/// @group snackbar
+$md-snackbar-opacity-transition-time: $md-transition-time * 3 !default;
+
+/// The transition delay for chained toasts.
+///
+/// @type Time
+/// @group snackbar
+$md-snackbar-chained-transition-delay: $md-transition-time * 3 !default;
+
 
 
 
