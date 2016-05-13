@@ -12,6 +12,8 @@ export default class Toolbar extends Component {
   }
 
   static propTypes = {
+    style: PropTypes.object,
+    containerStyle: PropTypes.object,
     className: PropTypes.string,
     containerClassName: PropTypes.string,
     primary: PropTypes.bool,
@@ -44,7 +46,18 @@ export default class Toolbar extends Component {
   }
 
   render() {
-    const { actionLeft, title, actionsRight, children, fixed, primary, className, containerClassName, ...props } = this.props;
+    const {
+      actionLeft,
+      title,
+      actionsRight,
+      children,
+      fixed,
+      primary,
+      className,
+      containerStyle,
+      containerClassName,
+      ...props,
+    } = this.props;
     const { tabsOffset } = this.state;
     const childrenAsHeader = !!children && !actionLeft && !title && !actionsRight;
 
@@ -67,7 +80,7 @@ export default class Toolbar extends Component {
       });
     }
     return (
-      <div className={classnames('md-toolbar-container', containerClassName, { fixed })}>
+      <div className={classnames('md-toolbar-container', containerClassName, { fixed })} style={containerStyle}>
         <header
           {...props}
           className={classnames('md-toolbar', className, { 'md-primary': primary })}
