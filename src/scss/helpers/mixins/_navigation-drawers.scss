@@ -19,7 +19,7 @@
   }
 }
 
-@mixin md-navigation-drawer-mobile-portait() {
+@mixin md-navigation-drawer-mobile-portrait() {
   @include md-navigation-drawer-media($md-toolbar-mobile-portrait-height);
 }
 

@@ -28,8 +28,8 @@
 }
 
 @media only screen and (orientation: portrait) and (max-width: 599px) {
-  @include md-toolbar-mobile-portait();
-  @include md-navigation-drawer-mobile-portait();
+  @include md-toolbar-mobile-portrait();
+  @include md-navigation-drawer-mobile-portrait();
 
   .md-picker:not(.landscape) {
     @include md-pickers-portrait();
