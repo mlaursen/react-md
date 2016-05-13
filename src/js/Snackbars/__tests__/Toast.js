@@ -9,9 +9,6 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-  scryRenderedComponentsWithType,
-  findRenderedDOMComponentWithTag,
-  scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
 import Toast from '../Toast';

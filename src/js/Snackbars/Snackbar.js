@@ -107,28 +107,40 @@ export default class Snackbar extends Component {
   };
 
   componentWillReceiveProps({ toasts, dismiss, autohide, autohideTimeout, fab, transitionEnterTimeout }) {
-    if(this.props.toasts.length === toasts.length) { return; }
+    if(fab && !toasts.length) {
+      fab.classList.remove('snackbar-multiline-adjust');
+      fab.classList.remove('snackbar-adjust');
+    }
+
+    if(this.props.toasts.length === toasts.length || !toasts.length || toasts[0] === this.props.toasts[0]) {
+      return;
+    }
+    // If dismiss was called in chained toasts
+    this.toastTimeout && clearTimeout(this.toastTimeout);
+
     const [toast] = toasts;
-    toast && toast.onAppear && toast.onAppear();
-    this.isMultilineToast(toast);
+    toast.onAppear && toast.onAppear();
+
+    const state = this.initializeNextToast(toast);
+    state.chained = this.props.toasts.length > 1;
+
+    if(autohide) {
+      this.toastTimeout = setTimeout(() => {
+        dismiss();
+        this.toastTimeout = null;
+      }, autohideTimeout);
+    }
 
     if(fab) {
       fab.classList.remove('snackbar-multiline-adjust');
       fab.classList.remove('snackbar-adjust');
 
-      if(toast) {
-        this.fabTimeout = setTimeout(() => {
-          fab.classList.add(`snackbar${this.state.multiline ? '-multiline' : ''}-adjust`);
-        }, this.props.toasts.length > 1 ? transitionEnterTimeout : 0);
-      }
+      this.fabTimeout = setTimeout(() => {
+        fab.classList.add(`snackbar${this.state.multiline ? '-multiline' : ''}-adjust`);
+      }, state.chained ? transitionEnterTimeout : 0);
     }
 
-    if(!toast || !autohide || this.toastTimeout) { return; }
-
-    this.toastTimeout = setTimeout(() => {
-      this.toastTimeout = null;
-      dismiss();
-    }, autohideTimeout);
+    this.setState(state);
   }
 
   componentWillUnmount() {
@@ -140,16 +152,7 @@ export default class Snackbar extends Component {
     return typeof action === 'string' ? { label: action, onClick: this.props.dismiss } : action;
   };
 
-  /**
-   * Checks if a toast is a multiline toast and updates the state with the new value.
-   * It checks by rendering the new toast and comparing it's size, then removing the
-   * new toast.
-   *
-   * @param {Object} toast the toast to check.
-   */
-  isMultilineToast = (toast) => {
-    if(!toast) { return; }
-
+  initializeNextToast = (toast) => {
     const p = document.createElement('p');
     p.innerHTML = toast.text;
 
@@ -173,11 +176,15 @@ export default class Snackbar extends Component {
     const multiline = p.offsetHeight > lineHeight;
     node.removeChild(snackbar);
 
-    this.setState({ multiline, lineHeight });
+    return {
+      multiline,
+      lineHeight,
+      key: toast.key || Date.now(),
+    };
   };
 
   render() {
-    const { multiline } = this.state;
+    const { multiline, chained, key } = this.state;
     const {
       className,
       toasts,
@@ -193,12 +200,12 @@ export default class Snackbar extends Component {
       <CSSTransitionGroup
         className="md-snackbar-container"
         transitionName={transitionName}
-        transitionEnterTimeout={transitionEnterTimeout}
+        transitionEnterTimeout={transitionEnterTimeout * (chained ? 2 : 1)}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
         {toast &&
           <Toast
-            key={toast.key || Date.now()}
+            key={key}
             className={className}
             toast={toast}
             dismiss={dismiss}
