@@ -3,6 +3,11 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 import injectInk from '../Inks';
 
+/**
+ * The `Tab` component should be rendered inside the `Tabs` component.
+ * It is used for generating a tab and holding some sort of content
+ * to be displayed when active.
+ */
 class Tab extends Component {
   constructor(props) {
     super(props);
@@ -11,22 +16,51 @@ class Tab extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional className to apply.
+     */
     className: PropTypes.string,
-    children: PropTypes.node.isRequired,
+
+    /**
+     * The content to display when the tab is active.
+     */
+    children: PropTypes.node,
+
+    /**
+     * An optional icon to display in the tab.
+     */
     icon: PropTypes.node,
+
+    /**
+     * An optional label to display in the tab.
+     */
     label: PropTypes.string,
+
+    /**
+     * An optional second line label to display in the tab.
+     */
     label2: PropTypes.string,
+
+    /**
+     * Boolean if the Tab is currently active. This is managed by the
+     * `Tabs` component.
+     */
     checked: PropTypes.bool,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+
+    /**
+     * A function to call when the tab is clicked. This is managed by the
+     * `Tabs` component.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * Ink that has been injected from the `injectInk` HOC. Do not use.
+     */
     ink: PropTypes.node.isRequired,
   };
 
   render() {
-    const { className, icon, label, label2, checked, value, ink, onChange, ...props } = this.props;
+    const { className, icon, label, label2, checked, ink, onChange, ...props } = this.props;
 
     return (
       <div
@@ -47,7 +81,6 @@ class Tab extends Component {
             type="radio"
             className="md-tab-control"
             checked={checked}
-            value={value}
             onChange={onChange}
           />
         </label>
