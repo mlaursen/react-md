@@ -5,8 +5,6 @@ jest.unmock('../../Lists/List.js');
 jest.unmock('../../Lists/ListTile');
 jest.unmock('../../Lists/ListItemText');
 jest.unmock('../../Lists/ListItem');
-jest.unmock('../../Inks');
-jest.unmock('../../Inks/injectInk');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';

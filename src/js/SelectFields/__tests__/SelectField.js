@@ -7,8 +7,6 @@ jest.unmock('../../TextFields');
 jest.unmock('../../TextFields/TextField');
 jest.unmock('../../TextFields/TextDivider');
 jest.unmock('../../TextFields/FloatingLabel');
-jest.unmock('../../Inks');
-jest.unmock('../../Inks/injectInk');
 jest.unmock('../../Lists');
 jest.unmock('../../Lists/List');
 jest.unmock('../../Lists/ListItem');

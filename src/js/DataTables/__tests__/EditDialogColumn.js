@@ -5,8 +5,6 @@ jest.unmock('../TableColumn');
 jest.unmock('../DataTable');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
-jest.unmock('../../Tooltips');
-jest.unmock('../../Tooltips/injectTooltip');
 jest.unmock('../../TextFields');
 jest.unmock('../../TextFields/TextField');
 jest.unmock('../../TextFields/TextDivider');

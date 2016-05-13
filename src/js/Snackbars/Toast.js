@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { FlatButton } from '../Buttons';
+import FlatButton from '../Buttons/FlatButton';
 
 export default class Toast extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ export default class Toast extends Component {
           'multiline': multiline,
         })}
         {...props}
-        >
+      >
         <p>{text}</p>
         {action && <FlatButton {...btnProps} />}
       </section>

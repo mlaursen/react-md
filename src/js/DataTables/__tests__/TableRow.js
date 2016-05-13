@@ -3,8 +3,6 @@ jest.unmock('../DataTable');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
 jest.unmock('../TableColumn');
-jest.unmock('../../Tooltips');
-jest.unmock('../../Tooltips/injectTooltip');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 
