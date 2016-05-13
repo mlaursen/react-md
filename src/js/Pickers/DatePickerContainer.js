@@ -39,37 +39,148 @@ export default class DatePickerContainer extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional className to apply to the date picker.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional icon to display with the date picker.
+     */
     icon: PropTypes.node,
+
+    /**
+     * Boolean if the date picker is initially open.
+     */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * An optional label to be displayed in the date picker's text
+     * field.
+     */
     label: PropTypes.string,
+
+    /**
+     * Boolean if the label for the date picker's text field should
+     * be a floating label.
+     */
+    floatingLabel: PropTypes.bool,
+
+    /**
+     * The value of the date picker. This will make the date picker
+     * be a controlled component. This value should either be a
+     * formatted date string or a date object.
+     */
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
     ]),
+
+    /**
+     * An optional default value to give for the date picker. This should
+     * either be a formatted date string or a date object.
+     */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
     ]),
+
+    /**
+     * An optional function to call when the selected date is changed
+     * by hitting the OK button. The newly formatted date string,
+     * the new Date object, and the change event will be given.
+     *
+     * `onChange(dateString, dateObject, event)`.
+     */
     onChange: PropTypes.func,
-    floatingLabel: PropTypes.bool,
+
+    /**
+     * A function to format the dates since it should be formatted to the user's
+     * locale. This _should_ be the `Intl.DateTimeFormat` function. You
+     * can also create your own if you really wanted. Unadvisable though.
+     *
+     * See [intl-polyfill](https://github.com/andyearnshaw/Intl.js/) for more info.
+     */
     DateTimeFormat: PropTypes.func.isRequired,
+
+    /**
+     * The locales to use for formatting the date. This will default to using
+     * the user's language in the browser or `'en-US'` when server renering.
+     */
     locales: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+
+    /**
+     * The label to use for the ok button on the date picker.
+     */
     okLabel: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the ok button should be styled with the primary color.
+     */
     okPrimary: PropTypes.bool,
+
+    /**
+     * The label to use for the cancel button on the date picker.
+     */
     cancelLabel: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the cancel button should be styled with the primary color.
+     */
     cancelPrimary: PropTypes.bool,
+
+    /**
+     * The initial mode to open the calendar in.
+     */
     initialCalendarMode: PropTypes.oneOf(['calendar', 'year']),
+
+    /**
+     * The icon to use for the previous month button.
+     */
     previousIcon: PropTypes.node.isRequired,
+
+    /**
+     * The icon to use for the next month button.
+     */
     nextIcon: PropTypes.node.isRequired,
+
+    /**
+     * An optional min date to use for the date picker. This will prevent
+     * any dates before this time to be chosen.
+     */
     minDate: PropTypes.instanceOf(Date),
+
+    /**
+     * An optional max date to use for the date picker. This will prevent
+     * any dates after this time to be chosen.
+     */
     maxDate: PropTypes.instanceOf(Date),
+
+    /**
+     * Boolean if the date should automatically be selected when a user clicks
+     * on a new date instead of making them hit the ok button.
+     */
     autoOk: PropTypes.bool,
+
+    /**
+     * The number of years to display.
+     */
     initialYearsDisplayed: PropTypes.number,
+
+    /**
+     * Boolean if the date picker should be displayed inline instead of in a
+     * dialog.
+     */
     inline: PropTypes.bool,
+
+    /**
+     * An optional force of the display mode of the date picker.
+     * This _should_ not really be used since there are media queries
+     * to use the correct mode based on device orientation.
+     */
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
@@ -82,7 +193,9 @@ export default class DatePickerContainer extends Component {
     initialYearsDisplayed: 100,
     initialCalendarMode: 'calendar',
     DateTimeFormat: DateTimeFormat,
-    locales: window.navigator.userLanguage || window.navigator.language,
+    locales: typeof window !== 'undefined'
+      ? window.navigator.userLanguage || window.navigator.language
+      : 'en-US',
     okLabel: 'Ok',
     okPrimary: true,
     cancelLabel: 'Cancel',
