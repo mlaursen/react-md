@@ -27,7 +27,10 @@ export default class CardText extends Component {
     /**
      * The component to render as.
      */
-    component: PropTypes.string,
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
 
     /**
      * Boolean if this component should be expandable when there is a `CardExpander`

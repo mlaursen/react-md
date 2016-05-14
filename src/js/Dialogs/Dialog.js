@@ -140,6 +140,7 @@ export default class Dialog extends Component {
       header = (
         <Toolbar
           primary
+          fixed={true}
           actionLeft={actionLeft}
           title={title}
           actionsRight={actionRight}
