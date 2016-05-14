@@ -7,6 +7,10 @@ import { LEFT_MOUSE, LEFT, RIGHT } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
 import SliderTrack from './SliderTrack';
 
+/**
+ * A `Slider` can either be continuous or discrete. A continuous slider will not have
+ * a number indicating it's current value while a discrete slider will.
+ */
 export default class Slider extends Component {
   constructor(props) {
     super(props);
@@ -27,15 +31,69 @@ export default class Slider extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional value for the slider. This will make the slider a controlled
+     * component.
+     */
     value: PropTypes.number,
+
+    /**
+     * An optional starting value. If omitted, it will be the min value of the
+     * slider.
+     */
     defaultValue: PropTypes.number,
+
+    /**
+     * The min value for the slider. It seems to only work with a value of 0 or 1 right now.
+     */
     min: PropTypes.number.isRequired,
+
+    /**
+     * The max value for the slider. It really only seems to work as 10 or 100 right now.
+     */
     max: PropTypes.number.isRequired,
+
+    /**
+     * Any number to use for converting the slider into a discrete slider. This will be
+     * how many units the slider moves each tick. Only really tested with a value of 1.
+     */
     step: PropTypes.number,
+
+    /**
+     * The number of decimal places to round to for each new step in a discrete slider.
+     */
     stepPrecision: PropTypes.number.isRequired,
+
+    /**
+     * An optional function to call when the slider's value changes. It will
+     * be called with the new value and the change event.
+     *
+     * `onChange(newValue, event)`.
+     */
     onChange: PropTypes.func,
+
+    /**
+     * An optional function to call when the slider's value has changed while the
+     * user is dragging the slider. It will be called with the new value and the
+     * drag event.
+     *
+     * `onChange(newValue, event)`.
+     */
     onDragChange: PropTypes.func,
+
+    /**
+     * Boolean if the slider is disabled.
+     */
     disabled: PropTypes.bool,
   };
 
@@ -205,10 +263,10 @@ export default class Slider extends Component {
   render() {
     const value = this.getValue();
     const { active, valued, width, left, dragging } = this.state;
-    const { min, max, step, disabled } = this.props;
+    const { min, max, step, disabled, className, style } = this.props;
     const discrete = typeof step !== 'undefined';
     return (
-      <div className="md-slider-container">
+      <div className={classnames('md-slider-container', className)} style={style}>
         <div className={classnames('md-slider-track-container', { active, disabled })}>
           <input
             type="range"

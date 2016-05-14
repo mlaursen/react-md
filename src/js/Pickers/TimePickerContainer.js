@@ -31,25 +31,118 @@ export default class TimePickerContainer extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional className to apply to the year picker.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional icon to display with the time picker.
+     */
     icon: PropTypes.node,
-    defaultValue: PropTypes.instanceOf(Date),
-    value: PropTypes.instanceOf(Date),
+
+    /**
+     * Boolean if the time picker is initially open.
+     */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * An optional label to be displayed in the time picker's text
+     * field.
+     */
     label: PropTypes.string,
-    onChange: PropTypes.func,
+
+    /**
+     * Boolean if the label for the time picker's text field should
+     * be a floating label.
+     */
     floatingLabel: PropTypes.bool,
+
+    /**
+     * The value of the time picker. This will make the time picker
+     * be a controlled component.
+     */
+    value: PropTypes.instanceOf(Date),
+
+    /**
+     * An optional function to call when the selected date is changed
+     * by hitting the OK button. The newly formatted time string,
+     * the new Date object, and the change event will be given.
+     *
+     * `onChange(timeString, dateObject, event)`.
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * An optional default value to give for the year picker.
+     */
+    defaultValue: PropTypes.instanceOf(Date),
+
+    /**
+     * A function to format the dates since it should be formatted to the user's
+     * locale. This _should_ be the `Intl.DateTimeFormat` function. You
+     * can also create your own if you really wanted. Unadvisable though.
+     *
+     * See [intl-polyfill](https://github.com/andyearnshaw/Intl.js/) for more info.
+     */
     DateTimeFormat: PropTypes.func.isRequired,
+
+    /**
+     * The locales to use for formatting the date. This will default to using
+     * the user's language in the browser or `'en-US'` when server renering.
+     */
     locales: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+
+    /**
+     * The label to use for the ok button on the year picker.
+     */
     okLabel: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the ok button should be styled with the primary color.
+     */
     okPrimary: PropTypes.bool,
+
+    /**
+     * The label to use for the cancel button on the year picker.
+     */
     cancelLabel: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the cancel button should be styled with the primary color.
+     */
     cancelPrimary: PropTypes.bool,
+
+    /**
+     * The initial mode to open the time picker in.
+     */
     initialTimeMode: PropTypes.oneOf(['hour', 'minute']),
+
+    /**
+     * Boolean if the date should automatically be selected when a user clicks
+     * on a new date instead of making them hit the ok button.
+     */
+    autoOk: PropTypes.bool,
+
+    /**
+     * The number of years to display.
+     */
+    initialYearsDisplayed: PropTypes.number,
+
+    /**
+     * Boolean if the date picker should be displayed inline instead of in a
+     * dialog.
+     */
     inline: PropTypes.bool,
+
+    /**
+     * An optional force of the display mode of the date picker.
+     * This _should_ not really be used since there are media queries
+     * to use the correct mode based on device orientation.
+     */
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
@@ -125,7 +218,7 @@ export default class TimePickerContainer extends Component {
     const { onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
     if(onChange) {
-      onChange(value, getTimeString(DateTimeFormat, locales, value), e);
+      onChange(getTimeString(DateTimeFormat, locales, value), value, e);
     }
 
     this.setState({ value, isOpen: false });

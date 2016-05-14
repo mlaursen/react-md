@@ -2,8 +2,12 @@
 ///
 /// @group sidebars
 @mixin md-sidebar-mobile() {
-  .md-sidebar.active {
-    width: calc(100vw - #{$md-icon-btn-size + $md-toolbar-action-margin * 2});
+  .md-sidebar {
+    max-width: $md-sidebar-mobile-max-width;
+
+    &.active {
+      width: calc(100vw - 56px);
+    }
   }
 
   .md-sidebar,
@@ -35,10 +39,17 @@
   }
 
   .md-toolbar-container ~ .md-sidebar-container .md-sidebar {
+    margin-top: $md-toolbar-height;
     max-height: calc(100vh - #{$md-toolbar-height});
   }
 
-  .md-sidebar.active {
-    width: $md-sidebar-open-width;
+  .md-sidebar {
+    &.md-sidebar-left {
+      max-width: $md-sidebar-desktop-max-width;
+    }
+
+    &.active {
+      width: $md-sidebar-open-width;
+    }
   }
 }

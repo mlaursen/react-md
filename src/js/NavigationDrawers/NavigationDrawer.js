@@ -11,6 +11,11 @@ import Overlay from '../Transitions/Overlay';
 import NavigationDrawerHeader from './NavigationDrawerHeader';
 import NavigationDrawerToolbar from './NavigationDrawerToolbar';
 
+/**
+ * Navigation drawers are an excellent component to use to set up the initial
+ * layout of your application. This component combines a Navigation drawer
+ * (a sidebar of nav items), an app bar, and displays any additional content.
+ */
 export default class NavigationDrawer extends Component {
   constructor(props) {
     super(props);
@@ -30,51 +35,170 @@ export default class NavigationDrawer extends Component {
   };
 
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    isMobile: PropTypes.bool.isRequired,
-    title: PropTypes.string,
-    containerClassName: PropTypes.string,
+    /**
+     * An optional style to apply to the navigation drawer itself.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the navigation drawer iteself.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the navigation drawer container.
+     */
+    containerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the navigation drawer container.
+     */
+    containerClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the main content.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the main content.
+     */
     contentClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the main toolbar.
+     */
+    toolbarStyle: PropTypes.object,
+
+    /**
+     * An optional className to applt to the main toolbar.
+     */
     toolbarClassName: PropTypes.string,
+
+    /**
+     * Boolean if the navigation drawer is currently open.
+     */
+    isOpen: PropTypes.bool.isRequired,
+
+    /**
+     * Boolean if the current device is mobile.
+     */
+    isMobile: PropTypes.bool.isRequired,
+
+    /**
+     * An optional title to display in the navigation drawer header.
+     */
+    title: PropTypes.string,
+
+    /**
+     * The main content to display.
+     */
     children: PropTypes.node,
+
+    /**
+     * The icon className to use for the main menu icon.
+     */
     menuIconClassName: PropTypes.string,
+
+    /**
+     * Any children required to render the main menu icon.
+     */
     menuIconChildren: PropTypes.node,
+
+    /**
+     * The icon className to use for closing a persistent navigation drawer.
+     */
     closeIconClassName: PropTypes.string,
+
+    /**
+     * Any children required to render the close icon for a persistent navigation drawer.
+     */
     closeIconChildren: PropTypes.node,
+
+    /**
+     * A function to call that will open the navigation drawer. This will
+     * be applied to the main menu button.
+     */
     openDrawer: PropTypes.func,
-    closeDrawer: PropTypes.func,
-    navItems: PropTypes.arrayOf(PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.shape({
-        divider: PropTypes.bool,
-        subheader: PropTypes.bool,
-        component: PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.func,
-        ]),
-        primaryText: PropTypes.string,
-      }),
-    ])).isRequired,
-    drawerType: PropTypes.oneOf(Object.keys(NavigationDrawer.DrawerType).map(k => NavigationDrawer.DrawerType[k])),
-    toolbarChildren: PropTypes.node,
-    toolbarTitle: PropTypes.string,
-    navHeader: PropTypes.node,
-    navHeaderChildren: PropTypes.node,
-    customValidation: function(props) {
+
+    /**
+     * A function to call that will close the navigation drawer. If the drawer
+     * is persistent or persistent mini, this function is required.
+     */
+    closeDrawer: (props, propName, component) => {
       const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
       const { drawerType } = props;
       if(drawerType !== PERSISTENT && drawerType !== PERSISTENT_MINI) {
         return;
       }
 
-      const { closeDrawer, closeIconChildren, closeIconClassName } = props;
-      if(typeof closeDrawer !== 'function') {
-        return new Error(`Prop 'closeDrawer' is missing.`);
-      } else if(!closeIconChildren && !closeIconClassName) {
-        return new Error('Need at least one of closeIconChildren or closeIconClassName');
-      }
+      return PropTypes.func.isRequired(props, propName, component)
+        || PropTypes.string.isRequired(props, 'closeIconClassName', component)
+        || PropTypes.node(props, 'closeIconChildren', component);
     },
+
+    /**
+     * A list of items to render in the navigation drawer. If an item
+     * is a prop object, all props will be passed to either a `ListItem`,
+     * `Divider`, or `Subheader` component.
+     *
+     * ##### Additional Info
+     */
+    navItems: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.shape({
+        /**
+         * Boolean if this item should be rendered as a divider.
+         */
+        divider: PropTypes.bool,
+
+        /**
+         * Boolean if this item should be rendered as a subheader.
+         */
+        subheader: PropTypes.bool,
+
+        /**
+         * An optional component to render the `ListItem` as.
+         */
+        component: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.func,
+        ]),
+
+        /**
+         * The main text to be displayed in a `Subheader` or a `ListItem`.
+         */
+        primaryText: PropTypes.string,
+      }),
+    ])).isRequired,
+
+    /**
+     * The drawer type to use.
+     */
+    drawerType: PropTypes.oneOf(Object.keys(NavigationDrawer.DrawerType).map(k => NavigationDrawer.DrawerType[k])),
+
+    /**
+     * Any additional children to display in the main toolbar.
+     */
+    toolbarChildren: PropTypes.node,
+
+    /**
+     * An optional title to display in the main toolbar.
+     */
+    toolbarTitle: PropTypes.string,
+
+    /**
+     * An optional header to display in the navigation drawer. This will be rendered
+     * before the `navItems`. This will replace the generated header if you gave the
+     * `title` prop.
+     */
+    navHeader: PropTypes.node,
+
+    /**
+     * Any additional children to display in the navigation drawer's header after the
+     * `title`.
+     */
+    navHeaderChildren: PropTypes.node,
   };
 
   static defaultProps = {

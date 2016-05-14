@@ -30,6 +30,7 @@
 @mixin md-navigation-drawer-mobile() {
   .md-navigation-drawer {
     left: $md-navigation-drawer-mobile-left;
+    max-width: $md-sidebar-mobile-max-width;
     width: $md-navigation-drawer-mobile-width;
 
     &.active {
@@ -45,6 +46,7 @@
 
   .md-navigation-drawer {
     left: -$md-navigation-drawer-desktop-width;
+    max-width: $md-sidebar-desktop-max-width;
     width: $md-navigation-drawer-desktop-width;
 
     &.floating {
