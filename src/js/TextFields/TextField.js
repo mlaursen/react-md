@@ -176,6 +176,11 @@ export default class TextField extends Component {
     onSelect: PropTypes.func,
 
     /**
+     * An optional function to call when the text field is clicked.
+     */
+    onClick: PropTypes.func,
+
+    /**
      * Optional style to apply to the text field container.
      */
     style: PropTypes.object,
@@ -314,6 +319,7 @@ export default class TextField extends Component {
       onKeyPress,
       onKeyUp,
       onSelect,
+      onClick,
       type,
       ...props,
     } = this.props;
@@ -376,6 +382,7 @@ export default class TextField extends Component {
       onBlur: this.handleBlur,
       onChange: this.handleChange,
       onFocus: this.handleFocus,
+      onClick,
       onInput,
       onInvalid,
       onKeyDown,
