@@ -54,9 +54,8 @@ describe('DatePickerHeader', () => {
     expect(date[0]).toBe(props.locales);
     expect(date[1]).toEqual({ month: 'short', day: '2-digit' });
 
-    // Mock only returns the date back.
-    expect(header.state.year).toBe(props.calendarTempDate);
-    expect(header.state.weekday).toBe(props.calendarTempDate);
-    expect(header.state.date).toBe(props.calendarTempDate);
+    expect(header.state.year).toBe('');
+    expect(header.state.weekday).toBe('');
+    expect(header.state.date).toBe('');
   });
 });
