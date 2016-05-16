@@ -50,6 +50,29 @@ export default class DatePicker extends Component {
       ...props,
     } = this.props;
 
+    let picker;
+    if(calendarMode === 'calendar') {
+      picker = (
+        <DatePickerCalendar
+          {...props}
+          key="calendar"
+          calendarTempDate={calendarTempDate}
+          DateTimeFormat={DateTimeFormat}
+          locales={locales}
+        />
+      );
+    } else {
+      picker = (
+        <YearPicker
+          {...props}
+          key="year"
+          calendarTempDate={calendarTempDate}
+          DateTimeFormat={DateTimeFormat}
+          locales={locales}
+        />
+      );
+    }
+
     return (
       <div className={`${className} date-picker`}>
         <DatePickerHeader
@@ -60,20 +83,7 @@ export default class DatePicker extends Component {
           changeCalendarMode={changeCalendarMode}
         />
         <div className="md-picker-content-container">
-          {calendarMode === 'calendar' ?
-            <DatePickerCalendar
-              {...props}
-              calendarTempDate={calendarTempDate}
-              DateTimeFormat={DateTimeFormat}
-              locales={locales}
-            /> :
-            <YearPicker
-              {...props}
-              calendarTempDate={calendarTempDate}
-              DateTimeFormat={DateTimeFormat}
-              locales={locales}
-            />
-          }
+          {picker}
           <PickerFooter
             okLabel={okLabel}
             okPrimary={okPrimary}
