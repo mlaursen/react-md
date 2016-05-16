@@ -1,85 +1,84 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
-import { IconButton } from '../Buttons';
-import { isMonthBefore } from '../utils/dates';
 import CalendarMonth from './CalendarMonth';
 import SwipeableView from '../SwipeableViews';
+import CalendarHeader from './CalendarHeader';
 
-const DatePickerCalendar = (props) => {
-  const {
-    previousIcon,
-    onPreviousClick,
-    nextIcon,
-    onNextClick,
-    calendarDate,
-    calendarTempDate,
-    onCalendarDateClick,
-    DateTimeFormat,
-    locales,
-    minDate,
-    maxDate,
-    onSwipeChange,
-    transitionName,
-  } = props;
+export default class DatePickerCalendar extends Component {
+  constructor(props) {
+    super(props);
 
-  const dows = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((dow, i) => (
-    <h4 className="dow" key={`dow-${dow}-${i}`}>{dow}</h4>
-  ));
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
 
-  const isPreviousDisabled = isMonthBefore(minDate, calendarDate);
-  const isNextDisabled = isMonthBefore(calendarDate, maxDate);
-  return (
-    <section className="md-picker-content md-calendar">
-      <header className="md-calendar-header">
-        <div className="md-calendar-controls">
-          <IconButton onClick={onPreviousClick} disabled={isPreviousDisabled}>{previousIcon}</IconButton>
-          <h4 className="md-subtitle">
-            {DateTimeFormat(locales, { month: 'long', year: 'numeric' }).format(calendarDate)}
-          </h4>
-          <IconButton onClick={onNextClick} disabled={isNextDisabled}>{nextIcon}</IconButton>
-        </div>
-        <div className="md-dows">
-          {dows}
-        </div>
-      </header>
-      <SwipeableView
-        onChange={onSwipeChange}
-        transitionName={transitionName}
-        transitionEnterTimeout={150}
-        transitionLeave={false}
-      >
-        <CalendarMonth
-          key={DateTimeFormat(locales).format(calendarDate)}
-          calendarDate={calendarDate}
-          calendarTempDate={calendarTempDate}
-          onCalendarDateClick={onCalendarDateClick}
+  static propTypes = {
+    previousIcon: PropTypes.node.isRequired,
+    onPreviousClick: PropTypes.func.isRequired,
+    nextIcon: PropTypes.node.isRequired,
+    onNextClick: PropTypes.func.isRequired,
+    onCalendarDateClick: PropTypes.func.isRequired,
+    calendarDate: PropTypes.instanceOf(Date).isRequired,
+    calendarTempDate: PropTypes.instanceOf(Date).isRequired,
+    DateTimeFormat: PropTypes.func.isRequired,
+    locales: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]).isRequired,
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
+    onSwipeChange: PropTypes.func.isRequired,
+    transitionName: PropTypes.string.isRequired,
+  };
+
+  render() {
+    const {
+      previousIcon,
+      onPreviousClick,
+      nextIcon,
+      onNextClick,
+      calendarDate,
+      calendarTempDate,
+      onCalendarDateClick,
+      DateTimeFormat,
+      locales,
+      minDate,
+      maxDate,
+      onSwipeChange,
+      transitionName,
+    } = this.props;
+
+    return (
+      <section className="md-picker-content md-calendar">
+        <CalendarHeader
+          date={calendarDate}
           minDate={minDate}
           maxDate={maxDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
+          onPreviousClick={onPreviousClick}
+          previousIcon={previousIcon}
+          onNextClick={onNextClick}
+          nextIcon={nextIcon}
         />
-      </SwipeableView>
-    </section>
-  );
-};
-
-DatePickerCalendar.propTypes = {
-  previousIcon: PropTypes.node.isRequired,
-  onPreviousClick: PropTypes.func.isRequired,
-  nextIcon: PropTypes.node.isRequired,
-  onNextClick: PropTypes.func.isRequired,
-  onCalendarDateClick: PropTypes.func.isRequired,
-  calendarDate: PropTypes.instanceOf(Date).isRequired,
-  calendarTempDate: PropTypes.instanceOf(Date).isRequired,
-  DateTimeFormat: PropTypes.func.isRequired,
-  locales: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
-  minDate: PropTypes.instanceOf(Date),
-  maxDate: PropTypes.instanceOf(Date),
-  onSwipeChange: PropTypes.func.isRequired,
-  transitionName: PropTypes.string.isRequired,
-};
-
-export default DatePickerCalendar;
+        <SwipeableView
+          onChange={onSwipeChange}
+          transitionName={transitionName}
+          transitionEnterTimeout={150}
+          transitionLeave={false}
+        >
+          <CalendarMonth
+            key={DateTimeFormat(locales).format(calendarDate)}
+            calendarDate={calendarDate}
+            calendarTempDate={calendarTempDate}
+            onCalendarDateClick={onCalendarDateClick}
+            minDate={minDate}
+            maxDate={maxDate}
+            DateTimeFormat={DateTimeFormat}
+            locales={locales}
+          />
+        </SwipeableView>
+      </section>
+    );
+  }
+}
