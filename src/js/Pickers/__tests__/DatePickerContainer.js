@@ -7,7 +7,6 @@ import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-  findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
 } from 'react-addons-test-utils';
@@ -118,7 +117,7 @@ describe('DatePickerContainer', () => {
     });
     const event = { target: 'a' };
     const onChange = jest.genMockFunction();
-    let container = renderIntoDocument(
+    const container = renderIntoDocument(
       <DatePickerContainer
         locales="en-US"
         onChange={onChange}
@@ -132,5 +131,46 @@ describe('DatePickerContainer', () => {
     expect(onChange.mock.calls[0][0]).toBe(defaultValue);
     expect(onChange.mock.calls[0][1]).toEqual(new Date(defaultValue));
     expect(onChange.mock.calls[0][2]).toEqual(event);
+  });
+
+  it('calls the onChange prop with the new formatted date string and the new date object when the autoOk prop is true and a new date is selected.', () => {
+    const onChange = jest.genMockFunction();
+    const defaultValue = '3/17/2016';
+    const DateTimeFormat = jest.genMockFunction().mockImplementation(() => {
+      return {
+        format: () => defaultValue,
+      };
+    });
+
+    let container = renderIntoDocument(
+      <DatePickerContainer
+        locales="en-US"
+        onChange={onChange}
+        defaultValue={defaultValue}
+        DateTimeFormat={DateTimeFormat}
+      />
+    );
+
+    let tempDate = new Date(2016, 2, 15);
+    container.setCalendarTempDate(tempDate);
+    expect(onChange.mock.calls.length).toBe(0);
+    expect(container.state.calendarTempDate).toEqual(tempDate);
+
+    container = renderIntoDocument(
+      <DatePickerContainer
+        locales="en-US"
+        onChange={onChange}
+        defaultValue={defaultValue}
+        DateTimeFormat={DateTimeFormat}
+        autoOk={true}
+      />
+    );
+
+    tempDate = new Date(2016, 2, 18);
+    container.setCalendarTempDate(tempDate);
+    expect(onChange.mock.calls.length).toBe(1);
+    expect(container.state.calendarTempDate).toEqual(tempDate);
+    expect(onChange.mock.calls[0][0]).toBe(defaultValue);
+    expect(onChange.mock.calls[0][1]).toEqual(tempDate);
   });
 });

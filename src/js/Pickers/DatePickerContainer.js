@@ -295,23 +295,21 @@ export default class DatePickerContainer extends Component {
   setCalendarTempDate = (calendarTempDate) => {
     const { autoOk, DateTimeFormat, locales, onChange } = this.props;
 
+    const state = { calendarTempDate };
     if(autoOk) {
       const value = DateTimeFormat(locales).format(calendarTempDate);
-      if(onChange && typeof this.props.value !== 'undefined') {
-        onChange(value, new Date(calendarTempDate));
+      onChange && onChange(value, new Date(calendarTempDate));
+
+      if(typeof this.props.value === 'undefined') {
+        state.value = value;
       }
 
-      this.setState({
-        value,
-        calendarTempDate,
-        // wait for date to be picked then hide
-        timeout: setTimeout(() => {
-          this.setState({ timeout: null, isOpen: false });
-        }, 300),
-      });
-    } else {
-      this.setState({ calendarTempDate });
+      // Add a wait for the new date to be selected, then close
+      state.timeout = setTimeout(() => {
+        this.setState({ timeout: null, isOpen: false });
+      }, 300);
     }
+    this.setState(state);
   };
 
   setCalendarTempYear = (year) => {
