@@ -40,9 +40,24 @@ export default class DatePickerContainer extends Component {
 
   static propTypes = {
     /**
-     * An optional className to apply to the date picker.
+     * An optional style to apply to the date picker's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the date picker's container.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the date picker.
+     */
+    pickerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the date picker.
+     */
+    pickerClassName: PropTypes.string,
 
     /**
      * An optional icon to display with the date picker.
@@ -341,12 +356,27 @@ export default class DatePickerContainer extends Component {
   };
 
   render() {
-    const { label, floatingLabel, value, onChange, icon, inline, displayMode, ...props } = this.props;
     const { isOpen, ...state } = this.state;
+    const {
+      style,
+      className,
+      pickerStyle,
+      pickerClassName,
+      label,
+      floatingLabel,
+      icon,
+      inline,
+      displayMode,
+      ...props,
+    } = this.props;
+    delete props.value;
+    delete props.onChange;
+
     const pickerProps = {
       ...state,
       ...props,
-      className: classnames('md-picker', displayMode, { inline, 'with-icon': inline && icon }),
+      style: pickerStyle,
+      className: classnames('md-picker', displayMode, pickerClassName, { inline, 'with-icon': inline && icon }),
       onCancelClick: this.handleCancelClick,
       onOkClick: this.handleOkClick,
       changeCalendarMode: this.changeCalendarMode,
@@ -363,7 +393,7 @@ export default class DatePickerContainer extends Component {
     }
 
     return (
-      <div className="md-picker-container" ref="container">
+      <div className={classnames('md-picker-container', className)} ref="container" style={style}>
         <TextField
           icon={icon}
           onClick={this.toggleOpen}
