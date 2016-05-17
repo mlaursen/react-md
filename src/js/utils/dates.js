@@ -75,7 +75,9 @@ export const DateTimeFormat = (() => {
   }
 
   // (locales, options)
-  return () => date => date;
+  return {
+    format: () => date => date,
+  };
 })();
 
 /**

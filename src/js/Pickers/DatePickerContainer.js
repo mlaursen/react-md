@@ -11,7 +11,7 @@ import { onOutsideClick } from '../utils';
 import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import { Height } from '../Transitions';
+import Height from '../Transitions/Height';
 
 export default class DatePickerContainer extends Component {
   constructor(props) {
@@ -355,6 +355,25 @@ export default class DatePickerContainer extends Component {
     }
   };
 
+  /**
+   * Gets the current value from the date picker as a formatted string.
+   *
+   * @param {Object} props? the props object to use.
+   * @param {Object} state? the state object to use.
+   * @return {String} a formatted date string or the empty string.
+   */
+  getValue = (props = this.props, state = this.state) => {
+    const { DateTimeFormat, locales } = props;
+    const value = typeof this.props.value !== 'undefined' ? props.value : state.value;
+    if(!value) {
+      return '';
+    } else if(value instanceof Date) {
+      return DateTimeFormat(locales).format(new Date(value));
+    } else {
+      return value;
+    }
+  };
+
   render() {
     const { isOpen, ...state } = this.state;
     const {
@@ -387,9 +406,13 @@ export default class DatePickerContainer extends Component {
       onSwipeChange: this.handleSwipeChange,
     };
 
-    let textFieldValue = typeof value === 'undefined' ? state.value : value;
-    if(isOpen && inline) {
-      textFieldValue = new props.DateTimeFormat(props.locale).format(state.calendarTempDate);
+    let picker = isOpen ? <DatePicker {...pickerProps} /> : null;
+    let content;
+    if(inline) {
+      picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
+      content = <TransitionGroup>{picker}</TransitionGroup>;
+    } else {
+      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
     }
 
     return (
@@ -399,22 +422,10 @@ export default class DatePickerContainer extends Component {
           onClick={this.toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={textFieldValue}
-          onChange={onChange}
+          value={this.getValue()}
           readOnly={true}
         />
-        {inline ?
-          <TransitionGroup>
-            {isOpen &&
-              <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>
-                <DatePicker {...pickerProps} />
-              </Height>
-            }
-          </TransitionGroup> :
-          <Dialog isOpen={isOpen} close={this.close}>
-            {isOpen && <DatePicker {...pickerProps} />}
-          </Dialog>
-        }
+        {content}
       </div>
     );
   }
