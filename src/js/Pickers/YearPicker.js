@@ -1,7 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
 
+import Year from './Year';
+
+/**
+ * The `YearPicker` component is the Year view in a `DatePicker`. This
+ * will display a list of years to select from within the given range.
+ */
 export default class YearPicker extends Component {
   constructor(props) {
     super(props);
@@ -9,11 +14,26 @@ export default class YearPicker extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     const year = props.calendarTempDate.getFullYear();
-    const halfed = parseInt(props.initialYearsDisplayed / 2);
-    this.state = {
-      startYear: props.minDate ? props.minDate.getFullYear() : year - halfed,
-      endYear: props.maxDate ? props.maxDate.getFullYear() : year + halfed,
-    };
+    const range = !props.minDate && !props.maxDate ? parseInt(props.initialYearsDisplayed / 2) : props.initialYearsDisplayed;
+    let startYear, endYear;
+    if(props.minDate && props.maxDate) {
+      startYear = props.minDate.getFullYear();
+      endYear = props.maxDate.getFullYear();
+    } else if(!props.minDate && !props.maxDate) {
+      startYear = year - range;
+      endYear = year + range;
+      if(props.initialYearsDisplayed % 2 === 0) {
+        endYear -= 1;
+      }
+    } else if(!props.maxDate) {
+      startYear = props.minDate.getFullYear();
+      endYear = startYear + props.initialYearsDisplayed - 1;
+    } else {
+      endYear = props.maxDate.getFullYear();
+      startYear = endYear - props.initialYearsDisplayed + 1;
+    }
+
+    this.state = { startYear, endYear };
   }
 
   static propTypes = {
@@ -42,17 +62,15 @@ export default class YearPicker extends Component {
     const { startYear, endYear } = this.state;
 
     const currentYear = this.props.calendarTempDate.getFullYear();
-    let years = [];
+    const years = [];
     for(let year = startYear; year <= endYear; year++) {
       years.push(
-        <button
-          type="button"
-          key={`year-${year}`}
-          className={classnames('md-year', { 'active': year === currentYear })}
-          onClick={this.props.onCalendarYearClick.bind(this, year)}
-          >
-          {year}
-        </button>
+        <Year
+          key={year}
+          year={year}
+          active={year === currentYear}
+          onClick={this.props.onCalendarYearClick}
+        />
       );
     }
     return (

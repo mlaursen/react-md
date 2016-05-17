@@ -11,7 +11,7 @@ import { onOutsideClick } from '../utils';
 import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import { Height } from '../Transitions';
+import Height from '../Transitions/Height';
 
 export default class DatePickerContainer extends Component {
   constructor(props) {
@@ -40,9 +40,24 @@ export default class DatePickerContainer extends Component {
 
   static propTypes = {
     /**
-     * An optional className to apply to the date picker.
+     * An optional style to apply to the date picker's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the date picker's container.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the date picker.
+     */
+    pickerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the date picker.
+     */
+    pickerClassName: PropTypes.string,
 
     /**
      * An optional icon to display with the date picker.
@@ -252,9 +267,7 @@ export default class DatePickerContainer extends Component {
   handleOkClick = (e) => {
     const { DateTimeFormat, locales, onChange } = this.props;
     const value = DateTimeFormat(locales).format(this.state.calendarTempDate);
-    if(typeof this.props.value !== 'undefined' && onChange) {
-      onChange(value, new Date(this.state.calendarTempDate), e);
-    }
+    onChange && onChange(value, new Date(this.state.calendarTempDate), e);
 
     this.setState({ value, isOpen: false });
   };
@@ -282,23 +295,21 @@ export default class DatePickerContainer extends Component {
   setCalendarTempDate = (calendarTempDate) => {
     const { autoOk, DateTimeFormat, locales, onChange } = this.props;
 
+    const state = { calendarTempDate };
     if(autoOk) {
       const value = DateTimeFormat(locales).format(calendarTempDate);
-      if(onChange && typeof this.props.value !== 'undefined') {
-        onChange(value, new Date(calendarTempDate));
+      onChange && onChange(value, new Date(calendarTempDate));
+
+      if(typeof this.props.value === 'undefined') {
+        state.value = value;
       }
 
-      this.setState({
-        value,
-        calendarTempDate,
-        // wait for date to be picked then hide
-        timeout: setTimeout(() => {
-          this.setState({ timeout: null, isOpen: false });
-        }, 300),
-      });
-    } else {
-      this.setState({ calendarTempDate });
+      // Add a wait for the new date to be selected, then close
+      state.timeout = setTimeout(() => {
+        this.setState({ timeout: null, isOpen: false });
+      }, 300);
     }
+    this.setState(state);
   };
 
   setCalendarTempYear = (year) => {
@@ -340,13 +351,47 @@ export default class DatePickerContainer extends Component {
     }
   };
 
+  /**
+   * Gets the current value from the date picker as a formatted string.
+   *
+   * @param {Object} props? the props object to use.
+   * @param {Object} state? the state object to use.
+   * @return {String} a formatted date string or the empty string.
+   */
+  getValue = (props = this.props, state = this.state) => {
+    const { DateTimeFormat, locales } = props;
+    const value = typeof this.props.value !== 'undefined' ? props.value : state.value;
+    if(!value) {
+      return '';
+    } else if(value instanceof Date) {
+      return DateTimeFormat(locales).format(new Date(value));
+    } else {
+      return value;
+    }
+  };
+
   render() {
-    const { label, floatingLabel, value, onChange, icon, inline, displayMode, ...props } = this.props;
     const { isOpen, ...state } = this.state;
+    const {
+      style,
+      className,
+      pickerStyle,
+      pickerClassName,
+      label,
+      floatingLabel,
+      icon,
+      inline,
+      displayMode,
+      ...props,
+    } = this.props;
+    delete props.value;
+    delete props.onChange;
+
     const pickerProps = {
       ...state,
       ...props,
-      className: classnames('md-picker', displayMode, { inline, 'with-icon': inline && icon }),
+      style: pickerStyle,
+      className: classnames('md-picker', displayMode, pickerClassName, { inline, 'with-icon': inline && icon }),
       onCancelClick: this.handleCancelClick,
       onOkClick: this.handleOkClick,
       changeCalendarMode: this.changeCalendarMode,
@@ -357,34 +402,26 @@ export default class DatePickerContainer extends Component {
       onSwipeChange: this.handleSwipeChange,
     };
 
-    let textFieldValue = typeof value === 'undefined' ? state.value : value;
-    if(isOpen && inline) {
-      textFieldValue = new props.DateTimeFormat(props.locale).format(state.calendarTempDate);
+    let picker = isOpen ? <DatePicker {...pickerProps} /> : null;
+    let content;
+    if(inline) {
+      picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
+      content = <TransitionGroup>{picker}</TransitionGroup>;
+    } else {
+      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
     }
 
     return (
-      <div className="md-picker-container" ref="container">
+      <div className={classnames('md-picker-container', className)} ref="container" style={style}>
         <TextField
           icon={icon}
           onClick={this.toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={textFieldValue}
-          onChange={onChange}
+          value={this.getValue()}
           readOnly={true}
         />
-        {inline ?
-          <TransitionGroup>
-            {isOpen &&
-              <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>
-                <DatePicker {...pickerProps} />
-              </Height>
-            }
-          </TransitionGroup> :
-          <Dialog isOpen={isOpen} close={this.close}>
-            {isOpen && <DatePicker {...pickerProps} />}
-          </Dialog>
-        }
+        {content}
       </div>
     );
   }
