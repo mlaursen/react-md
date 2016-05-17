@@ -267,9 +267,7 @@ export default class DatePickerContainer extends Component {
   handleOkClick = (e) => {
     const { DateTimeFormat, locales, onChange } = this.props;
     const value = DateTimeFormat(locales).format(this.state.calendarTempDate);
-    if(typeof this.props.value !== 'undefined' && onChange) {
-      onChange(value, new Date(this.state.calendarTempDate), e);
-    }
+    onChange && onChange(value, new Date(this.state.calendarTempDate), e);
 
     this.setState({ value, isOpen: false });
   };
