@@ -5,6 +5,7 @@
   "main": "./lib",
   "scripts": {
     "test": "jest",
+    "test:changes": "jest -o",
     "test:watch": "jest --watch",
     "scripts": "babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --out-dir=./lib",
     "scripts:watch": "babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
