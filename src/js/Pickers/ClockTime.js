@@ -4,6 +4,11 @@ import classnames from 'classnames';
 
 const CLOCK_PADDING = 4;
 
+/**
+ * The `ClockTime` component is used for positioning hours or minutes
+ * in a clock. The time will be positioned based on it's given index
+ * and the radius of the clock.
+ */
 export default class ClockTime extends Component {
   constructor(props) {
     super(props);
@@ -16,48 +21,63 @@ export default class ClockTime extends Component {
   }
 
   static propTypes = {
+    /**
+     * The index of the current time to be displayed. This
+     * should be a number between 1 and 24.
+     */
     index: PropTypes.number.isRequired,
+
+    /**
+     * The time number to display.
+     */
     time: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if this time is currently selected.
+     */
     active: PropTypes.bool.isRequired,
+
+    /**
+     * The radius of the clock.
+     */
     radius: PropTypes.number.isRequired,
-    minutes: PropTypes.bool.isRequired,
   };
 
   componentDidMount() {
-    const { offsetWidth } = this.refs.time;
-    this.setState({ size: offsetWidth / 2 }); // eslint-disable-line react/no-did-mount-set-state
+    this.setPosition();
   }
 
-  calcPos = (r, inner, isTop) => {
-    const { radius } = this.props;
-    const { size } = this.state;
+  componentWillReceiveProps(nextProps) {
+    if(this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
 
-    const outerR = radius - size;
-    let innerR = outerR - CLOCK_PADDING;
-    if(inner) {
-      innerR = outerR - size * 2 - CLOCK_PADDING;
+      this.setPosition(nextProps);
     }
+  }
 
-    if(isTop) {
-      return outerR - innerR * Math.sin(r);
-    } else {
-      return outerR + innerR * Math.cos(r);
-    }
+  setPosition = ({ radius, index } = this.props) => {
+    // 36 is default size for the time
+    const size = (this.refs.time.offsetWidth || 36) / 2;
+    const timeRadians = (Math.PI / 2) - index * (Math.PI / 6);
+    const innerCircle = index > 12;
+
+    const outerRadius = radius - size;
+    const innerRadius = outerRadius - CLOCK_PADDING - (innerCircle ? size * 2 : 0);
+
+    this.setState({
+      style: {
+        top: outerRadius - innerRadius * Math.sin(timeRadians),
+        left: outerRadius + innerRadius * Math.cos(timeRadians),
+      },
+    });
   };
 
   render() {
-    const { time, active, index } = this.props;
-
-    const r = (Math.PI / 2) - index * (Math.PI / 6);
-    const inner = index > 12;
+    const { time, active } = this.props;
     return (
       <div
         ref="time"
         className={classnames('md-clock-time', { active })}
-        style={{
-          top: this.calcPos(r, inner, true),
-          left: this.calcPos(r, inner, false),
-        }}
+        style={this.state.style}
       >
         <span className="md-clock-time-value">{time}</span>
       </div>

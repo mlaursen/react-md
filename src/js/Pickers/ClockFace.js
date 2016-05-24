@@ -131,7 +131,6 @@ export default class ClockFace extends Component {
           time={clockTime}
           active={clockTime === time}
           radius={radius}
-          minutes={minutes}
         />
       );
     });
