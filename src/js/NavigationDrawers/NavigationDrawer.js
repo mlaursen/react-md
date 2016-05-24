@@ -133,7 +133,7 @@ export default class NavigationDrawer extends Component {
       }
 
       return PropTypes.func.isRequired(props, propName, component)
-        || PropTypes.string.isRequired(props, 'closeIconClassName', component)
+        || PropTypes.string(props, 'closeIconClassName', component)
         || PropTypes.node(props, 'closeIconChildren', component);
     },
 
@@ -220,6 +220,7 @@ export default class NavigationDrawer extends Component {
 
     const isNextTemp = temps.indexOf(nextProps.drawerType) !== -1;
     const isCurrTemp = temps.indexOf(this.props.drawerType) !== -1;
+    if(!isNextTemp && !isCurrTemp) { return; }
     if((isCurrTemp && !isNextTemp) || (!isCurrTemp && !isNextTemp)) {
       setOverflow(false);
     } else {
@@ -259,9 +260,13 @@ export default class NavigationDrawer extends Component {
       isMobile,
       title,
       toolbarTitle,
-      containerClassName,
+      style,
       className,
+      containerStyle,
+      containerClassName,
+      contentStyle,
       contentClassName,
+      toolbarStyle,
       toolbarClassName,
       menuIconClassName,
       menuIconChildren,
@@ -310,24 +315,26 @@ export default class NavigationDrawer extends Component {
     const conditionalClassNames = { active };
 
     return (
-      <div className={classnames('md-navigation-drawer-container', containerClassName, conditionalClassNames)}>
-        <nav className={classnames('md-navigation-drawer', className, drawerType, conditionalClassNames)}>
+      <div className={classnames('md-navigation-drawer-container', containerClassName, conditionalClassNames)} style={containerStyle}>
+        <nav className={classnames('md-navigation-drawer', className, drawerType, conditionalClassNames)} style={style}>
           {header}
           {nav}
         </nav>
-        <div className={classnames('md-navigation-drawer-content', contentClassName, drawerType, conditionalClassNames)}>
+        <div className={classnames('md-navigation-drawer-content', contentClassName, drawerType, conditionalClassNames)} style={contentStyle}>
           <NavigationDrawerToolbar
             className={classnames(toolbarClassName, drawerType, conditionalClassNames)}
             temporary={temporary}
             isOpen={isOpen}
+            persistent={persistent}
             openDrawer={openDrawer}
             menuIconClassName={menuIconClassName}
             menuIconChildren={menuIconChildren}
             title={toolbarTitle}
             children={toolbarChildren}
+            style={toolbarStyle}
           />
           {children}
-          <Overlay isOpen={isOpen} onClick={closeDrawer} />
+          <Overlay isOpen={isOpen && !persistent} onClick={closeDrawer} />
         </div>
       </div>
     );

@@ -13,7 +13,7 @@
     }
   }
 
-  .md-navigation-drawer-btn {
+  .md-icon-btn {
     margin-bottom: ($height - $md-icon-btn-size) / 2;
     margin-top: ($height - $md-icon-btn-size) / 2;
   }
@@ -52,22 +52,21 @@
     &.floating {
       box-shadow: none;
     }
+
+    &.floating,
+    &.clipped {
+      height: calc(100vh - #{$md-toolbar-desktop-height});
+      margin-top: $md-toolbar-desktop-height;
+      z-index: $md-navigation-drawer-z-index - 5;
+    }
   }
 
   .md-navigation-drawer-toolbar {
     &.full-height,
-    &.clipped,
-    &.floating {
-      .md-navigation-drawer-btn {
-        display: none;
-        visibility: hidden;
-      }
-    }
-
-    &.full-height,
     &.mini.active,
     &.persistent.active {
       left: $md-navigation-drawer-desktop-width;
+      width: calc(100vw - #{$md-navigation-drawer-desktop-width});
     }
   }
 

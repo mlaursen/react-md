@@ -11,6 +11,7 @@
   &.active,
   &.mini {
     left: 0;
+    z-index: $md-navigation-drawer-z-index - 5;
   }
 
   &.mini:not(.active) {
@@ -76,14 +77,14 @@
   .md-text-field {
     font-size: $md-title-font-size;
   }
-}
 
-.md-navigation-drawer-btn {
-  margin-left: $md-toolbar-action-margin;
-  margin-right: $md-toolbar-action-margin;
+  .md-icon-btn {
+    margin-left: $md-toolbar-action-margin;
+    margin-right: $md-toolbar-action-margin;
 
-  &.hidden {
-    @extend %invisible;
+    + .md-title {
+      padding-left: 0;
+    }
   }
 }
 

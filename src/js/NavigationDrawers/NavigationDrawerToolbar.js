@@ -1,43 +1,63 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
+import IconButton from '../Buttons/IconButton';
 
-import { IconButton } from '../Buttons';
+export default class NavigationDrawerToolbar extends Component {
+  constructor(props) {
+    super(props);
 
-const NavigationDrawerToolbar = (props) => {
-  const {
-    className,
-    isOpen,
-    temporary,
-    openDrawer,
-    menuIconClassName,
-    menuIconChildren,
-    title,
-    children,
-  } = props;
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
 
-  return (
-    <header className={classnames('md-navigation-drawer-toolbar', className)}>
-      <IconButton
-        className={classnames('md-navigation-drawer-btn', { 'hidden': isOpen && !temporary })}
-        onClick={openDrawer}
-        iconClassName={menuIconClassName}
-        children={menuIconChildren}
-      />
-      {title && <h3 className="md-title">{title}</h3>}
-      {children}
-    </header>
-  );
-};
+  static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    title: PropTypes.string,
+    isOpen: PropTypes.bool,
+    temporary: PropTypes.bool,
+    persistent: PropTypes.bool,
+    openDrawer: PropTypes.func,
+    menuIconChildren: PropTypes.node,
+    menuIconClassName: PropTypes.string,
+  };
 
-NavigationDrawerToolbar.propTypes = {
-  className: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
-  temporary: PropTypes.bool.isRequired,
-  openDrawer: PropTypes.func,
-  menuIconClassName: PropTypes.string,
-  menuIconChildren: PropTypes.node,
-  title: PropTypes.string,
-  children: PropTypes.node,
-};
+  render() {
+    const {
+      style,
+      className,
+      children,
+      title,
+      temporary,
+      isOpen,
+      persistent,
+      openDrawer,
+      menuIconChildren,
+      menuIconClassName,
+    } = this.props;
 
-export default NavigationDrawerToolbar;
+    let menuBtn;
+    if(temporary || (persistent && !isOpen)) {
+      menuBtn = (
+        <IconButton
+          key="toggle"
+          onClick={openDrawer}
+          children={menuIconChildren}
+          iconClassName={menuIconClassName}
+        />
+      );
+    }
+
+    return (
+      <header
+        className={classnames('md-navigation-drawer-toolbar', className)}
+        style={style}
+      >
+        {menuBtn}
+        {title && <h3 className="md-title">{title}</h3>}
+        {children}
+      </header>
+    );
+  }
+}
