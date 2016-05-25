@@ -21,6 +21,7 @@ export default class NavigationDrawerToolbar extends Component {
     openDrawer: PropTypes.func,
     menuIconChildren: PropTypes.node,
     menuIconClassName: PropTypes.string,
+    touch: PropTypes.bool,
   };
 
   render() {
@@ -33,12 +34,13 @@ export default class NavigationDrawerToolbar extends Component {
       isOpen,
       persistent,
       openDrawer,
+      touch,
       menuIconChildren,
       menuIconClassName,
     } = this.props;
 
     let menuBtn;
-    if(temporary || (persistent && !isOpen)) {
+    if(temporary || touch || (persistent && !isOpen)) {
       menuBtn = (
         <IconButton
           key="toggle"

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
-import { setOverflow } from '../utils';
+import { setOverflow, isTouchDevice } from '../utils';
 import Divider from '../Dividers';
 import { List, ListItem } from '../Lists';
 import Subheader from '../Subheaders';
@@ -21,6 +21,7 @@ export default class NavigationDrawer extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { touch: false };
   }
 
   static DrawerType = {
@@ -79,11 +80,6 @@ export default class NavigationDrawer extends Component {
      * Boolean if the navigation drawer is currently open.
      */
     isOpen: PropTypes.bool.isRequired,
-
-    /**
-     * Boolean if the current device is mobile.
-     */
-    isMobile: PropTypes.bool.isRequired,
 
     /**
      * An optional title to display in the navigation drawer header.
@@ -205,8 +201,11 @@ export default class NavigationDrawer extends Component {
     drawerType: NavigationDrawer.DrawerType.FULL_HEIGHT,
     menuIconChildren: 'menu',
     closeIconChildren: 'keyboard_arrow_left',
-    isMobile: false,
   };
+
+  componentDidMount() {
+    this.setState({ touch: isTouchDevice() }); // eslint-disable-line
+  }
 
   componentWillUpdate(nextProps) {
     if(nextProps.isOpen === this.props.isOpen && nextProps.drawerType === this.props.drawerType) {
@@ -257,7 +256,6 @@ export default class NavigationDrawer extends Component {
   render() {
     const {
       isOpen,
-      isMobile,
       title,
       toolbarTitle,
       style,
@@ -282,12 +280,13 @@ export default class NavigationDrawer extends Component {
       navHeaderChildren,
     } = this.props;
 
+    const { touch } = this.state;
     const { PERSISTENT, PERSISTENT_MINI, TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
 
     const mini = drawerType === PERSISTENT_MINI || drawerType === TEMPORARY_MINI;
     const persistent = drawerType === PERSISTENT_MINI || drawerType === PERSISTENT;
     const temporary = drawerType === TEMPORARY || drawerType === TEMPORARY_MINI;
-    const active = isOpen || (!temporary && (!persistent && !isMobile));
+    const active = isOpen || (!temporary && (!persistent && !touch));
 
     let nav;
     if(active || mini) {
@@ -332,6 +331,7 @@ export default class NavigationDrawer extends Component {
             title={toolbarTitle}
             children={toolbarChildren}
             style={toolbarStyle}
+            touch={touch}
           />
           {children}
           <Overlay isOpen={isOpen && !persistent} onClick={closeDrawer} />
