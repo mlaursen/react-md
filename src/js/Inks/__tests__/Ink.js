@@ -59,6 +59,7 @@ describe('injectInk', () => {
     const onFocus = jest.genMockFunction();
     const onBlur = jest.genMockFunction();
     const onTouchStart = jest.genMockFunction();
+    const onTouchMove = jest.genMockFunction();
     const onTouchCancel = jest.genMockFunction();
     const onTouchEnd = jest.genMockFunction();
 
@@ -70,6 +71,7 @@ describe('injectInk', () => {
         onFocus={onFocus}
         onBlur={onBlur}
         onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
         onTouchCancel={onTouchCancel}
         onTouchEnd={onTouchEnd}
       >
@@ -86,6 +88,7 @@ describe('injectInk', () => {
     Simulate.focus(testNode);
     Simulate.blur(testNode);
     Simulate.touchStart(testNode, touchEvent);
+    Simulate.touchMove(testNode, touchEvent);
     Simulate.touchCancel(testNode, touchEvent);
     Simulate.touchEnd(testNode, touchEvent);
 
@@ -95,6 +98,7 @@ describe('injectInk', () => {
     expect(onFocus.mock.calls.length).toBe(1);
     expect(onBlur.mock.calls.length).toBe(1);
     expect(onTouchStart.mock.calls.length).toBe(1);
+    expect(onTouchMove.mock.calls.length).toBe(1);
     expect(onTouchCancel.mock.calls.length).toBe(1);
     expect(onTouchEnd.mock.calls.length).toBe(1);
   });
@@ -140,6 +144,7 @@ describe('injectInk', () => {
     expect(inks.length).toBe(0);
 
     Simulate.touchStart(button, { changedTouches: [{}] });
+    jest.runOnlyPendingTimers();
 
     inks = scryRenderedComponentsWithType(inkTest, InkTransition);
     expect(inks.length).toBe(1);

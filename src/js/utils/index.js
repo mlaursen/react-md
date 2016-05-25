@@ -112,3 +112,12 @@ export function onOutsideClick(event, node, callback) {
 
   callback(event);
 }
+
+/**
+ * Checks if touch events are in the browser.
+ * @return {bool} true if it is a touch device
+ */
+export function isTouchDevice() {
+  return typeof window !== 'undefined'
+    && ('ontouchstart' in window || !!navigator.maxTouchPoints);
+}

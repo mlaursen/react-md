@@ -8,3 +8,4 @@ export const getOffset = jest.genMockFunction().mockImplementation(() => {
 
 export const animate = jest.genMockFunction();
 export const isBetween = jest.genMockFunction().mockImplementation(() => true);
+export const isTouchDevice = jest.genMockFunction();
