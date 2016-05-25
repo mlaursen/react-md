@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import PickerFooter from './PickerFooter';
 import ClockFace from './ClockFace';
@@ -83,14 +84,21 @@ export default class TimePicker extends Component {
           timePeriod={timePeriod}
         />
         <div className="md-picker-content-container">
-          <div className="md-picker-content clock">
+          <CSSTransitionGroup
+            component="div"
+            className="md-picker-content clock"
+            transitionName="clock"
+            transitionEnterTimeout={150}
+            transitionLeaveTimeout={150}
+          >
             <ClockFace
+              key={timeMode}
               time={timeMode === 'hour' ? hoursInt : minutesInt}
               minutes={timeMode === 'minute'}
               onClick={this.updateTime}
               timePeriod={timePeriod}
             />
-          </div>
+          </CSSTransitionGroup>
           <PickerFooter
             okLabel={okLabel}
             okPrimary={okPrimary}

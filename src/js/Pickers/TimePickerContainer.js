@@ -260,6 +260,7 @@ export default class TimePickerContainer extends Component {
           floatingLabel={floatingLabel}
           value={textFieldValue}
           onChange={onChange}
+          readOnly={true}
         />
         {inline ?
           <TransitionGroup>

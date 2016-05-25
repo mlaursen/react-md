@@ -315,3 +315,26 @@
     font-size: $md-year-picker-focus-font-size;
   }
 }
+
+.clock-enter {
+  position: absolute;
+  transform: scale(.3);
+  z-index: 2;
+
+  &.clock-enter-active {
+    transform: scale(1);
+    transition: transform $md-transition-time;
+  }
+}
+
+.clock-leave {
+  opacity: 1;
+  transform: scale(1);
+
+  &.clock-leave-active {
+    opacity: 0;
+    transform: scale(.3);
+    transition-duration: $md-transition-time;
+    transition-property: opacity, transform;
+  }
+}
