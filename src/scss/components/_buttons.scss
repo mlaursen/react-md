@@ -58,6 +58,7 @@ a.md-btn {
   height: $md-icon-btn-size;
   padding: $md-icon-btn-padding;
   text-decoration: none;
+  user-select: none;
   width: $md-icon-btn-size;
 
   &[disabled] .md-icon {

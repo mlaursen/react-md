@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
+import { isTouchDevice } from '../utils';
 
 const DESKTOP_FONT_SIZE = 10;
-const MOBILE_FONT_SIZE = 14;
 const DESKTOP_MARGIN = 14;
 const MOBILE_MARGIN = 24;
 
@@ -34,7 +34,7 @@ export default ComposedComponent => class Tooltip extends Component {
       textStyle: null,
       active: false,
       tabActive: false,
-      mobile: false,
+      touch: false,
       timeout: null,
     };
   }
@@ -54,6 +54,11 @@ export default ComposedComponent => class Tooltip extends Component {
      * The delay before the tooltip appears or disappears.
      */
     tooltipDelay: PropTypes.number.isRequired,
+
+    /**
+     * The timeout to use for displaying the tooltip when using a touch device.
+     */
+    tooltipTouchTimeout: PropTypes.number.isRequired,
 
     /**
      * An optional onKeyUp function to call along with the tooltip creation onKeyUp.
@@ -89,6 +94,7 @@ export default ComposedComponent => class Tooltip extends Component {
   static defaultProps = {
     tooltipPosition: 'bottom',
     tooltipDelay: 0,
+    tooltipTouchTimeout: 500,
   };
 
   componentDidMount() {
@@ -113,6 +119,10 @@ export default ComposedComponent => class Tooltip extends Component {
     if(this.props.tooltipLabel) {
       window.removeEventListener('resize', this.hackChromeMinimumFontSize);
     }
+
+    if(this.state.touchTimeout) {
+      clearTimeout(this.state.touchTimeout);
+    }
   }
 
   /**
@@ -126,9 +136,9 @@ export default ComposedComponent => class Tooltip extends Component {
     const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
     const fontSize = parseInt(window.getComputedStyle(this.refs.tooltipText).getPropertyValue('font-size'));
 
-    const mobile = fontSize === MOBILE_FONT_SIZE;
-    const state = { mobile };
-    if(isChrome && !mobile) {
+    const touch = isTouchDevice();
+    const state = { touch };
+    if(isChrome && !touch) {
       const transform = `scale(${DESKTOP_FONT_SIZE / fontSize})`;
       state.textStyle = {
         WebkitTransform: transform,
@@ -142,8 +152,8 @@ export default ComposedComponent => class Tooltip extends Component {
 
   calcPositioningStyle = () => {
     const { tooltipPosition } = this.props;
-    const margin = this.state.mobile ? MOBILE_MARGIN : DESKTOP_MARGIN;
-    const control = ReactDOM.findDOMNode(this);
+    const margin = this.state.touch ? MOBILE_MARGIN : DESKTOP_MARGIN;
+    const control = findDOMNode(this);
     const controlHeight = control.offsetHeight;
     const controlWidth = control.offsetWidth;
     const { tooltip } = this.refs;
@@ -206,43 +216,74 @@ export default ComposedComponent => class Tooltip extends Component {
     });
   };
 
+  /**
+   * Prevent the context menu from appearing on touch hold.
+   */
+  preventContext(e) {
+    e.preventDefault();
+  }
+
   handleMouseOver = (e) => {
     this.props.onMouseOver && this.props.onMouseOver(e);
+    if(this.state.touch) { return; }
 
     this.setActive('active');
   };
 
   handleMouseLeave = (e) => {
     this.props.onMouseLeave && this.props.onMouseLeave(e);
+    if(this.state.touch) { return; }
 
     this.setInactive('active');
   };
 
   handleKeyUp = (e) => {
     this.props.onKeyUp && this.props.onKeyUp(e);
-    if((e.which || e.keyCode) !== TAB) { return; }
+    if(this.state.touch || (e.which || e.keyCode) !== TAB) { return; }
 
     this.setActive('tabActive');
   };
 
   handleBlur = (e) => {
     this.props.onBlur && this.props.onBlur(e);
+    if(this.state.touch) { return; }
 
     this.setInactive('tabActive');
   };
 
   handleTouchStart = (e) => {
     this.props.onTouchStart && this.props.onTouchStart(e);
+    if(!this.props.tooltipLabel) { return; }
+
+    window.addEventListener('contextmenu', this.preventContext);
+    this.setState({
+      touchTimeout: setTimeout(() => {
+        this.setState({
+          touchTimeout: null,
+          style: this.calcPositioningStyle(),
+          active: true,
+        });
+      }, this.props.tooltipTouchTimeout),
+    });
   };
 
   handleTouchEnd = (e) => {
     this.props.onTouchEnd && this.props.onTouchEnd(e);
+    if(!this.props.tooltipLabel) { return; }
+    window.removeEventListener('contextmenu', this.preventContext);
+    if(this.state.touchTimeout) {
+      clearTimeout(this.state.touchTimeout);
+    }
+
+    this.setState({ touchTimeout: null, active: false });
   };
 
   render() {
     const { style, active, tabActive, textStyle } = this.state;
     const { tooltipLabel, tooltipPosition, ...props } = this.props;
     delete props.tooltipDelay;
+    delete props.tooltipTouchTimeout;
+
     if(!tooltipLabel) {
       return <ComposedComponent {...props} />;
     }
