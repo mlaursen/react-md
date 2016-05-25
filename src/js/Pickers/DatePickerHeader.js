@@ -27,7 +27,7 @@ export default class DatePickerHeader extends Component {
     changeCalendarMode: PropTypes.func.isRequired,
   };
 
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     const { DateTimeFormat, locales, calendarTempDate, changeCalendarMode } = this.props;
     if(DateTimeFormat !== nextProps.DateTimeFormat
       || locales !== nextProps.locales
@@ -62,7 +62,7 @@ export default class DatePickerHeader extends Component {
           <h6 className="md-subtitle">{year}</h6>
         </PickerControl>
         <PickerControl onClick={this.selectCalendar} active={calendarMode === 'calendar'}>
-          <h4 className="md-display-1">{weekday + ', '}</h4>
+          <h4 className="md-display-1">{weekday + ','}&nbsp;</h4>
           <h4 className="md-display-1">{date}</h4>
         </PickerControl>
       </header>
