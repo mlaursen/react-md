@@ -89,7 +89,7 @@ export default class TimePicker extends Component {
             className="md-picker-content clock"
             transitionName="clock"
             transitionEnterTimeout={150}
-            transitionLeaveTimeout={150}
+            transitionLeave={false}
           >
             <ClockFace
               key={timeMode}
