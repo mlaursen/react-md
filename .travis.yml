@@ -3,6 +3,9 @@ before_install:
   - gem install sass scss_lint
 node_js:
   - "4"
+cache:
+  directories:
+    - node_modules
 script:
   - npm run lint
   - npm test
