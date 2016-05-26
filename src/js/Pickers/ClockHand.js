@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
+/**
+ * The `ClockHand` component is just used to display the hand of the clock
+ * and a ball to surround the selected time.
+ */
 export default class ClockHand extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +15,20 @@ export default class ClockHand extends Component {
   }
 
   static propTypes = {
+    /**
+     * This is the x and y coordinate to use for the center of the `ClockFace`.
+     * This should really be whatever the radius of the `ClockFace` is.
+     */
     coords: PropTypes.number,
+
+    /**
+     * The current time of the clock.
+     */
     time: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the clock is displaying minutes instead of hours.
+     */
     minutes: PropTypes.bool.isRequired,
   };
 
@@ -58,10 +74,10 @@ export default class ClockHand extends Component {
         style={{
           left: coords,
           top: coords,
-          transform: rotateTransform,
-          msTransform: rotateTransform,
           WebkitTransform: rotateTransform,
           MozTransform: rotateTransform,
+          msTransform: rotateTransform,
+          transform: rotateTransform,
         }}
       />
     );

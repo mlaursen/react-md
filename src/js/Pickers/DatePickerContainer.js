@@ -360,7 +360,7 @@ export default class DatePickerContainer extends Component {
    */
   getValue = (props = this.props, state = this.state) => {
     const { DateTimeFormat, locales } = props;
-    const value = typeof this.props.value !== 'undefined' ? props.value : state.value;
+    const value = typeof props.value !== 'undefined' ? props.value : state.value;
     if(!value) {
       return '';
     } else if(value instanceof Date) {
@@ -387,23 +387,29 @@ export default class DatePickerContainer extends Component {
     delete props.value;
     delete props.onChange;
 
-    const pickerProps = {
-      ...state,
-      ...props,
-      style: pickerStyle,
-      className: classnames('md-picker', displayMode, pickerClassName, { inline, 'with-icon': inline && icon }),
-      onCancelClick: this.handleCancelClick,
-      onOkClick: this.handleOkClick,
-      changeCalendarMode: this.changeCalendarMode,
-      onPreviousClick: this.previousMonth,
-      onNextClick: this.nextMonth,
-      onCalendarDateClick: this.setCalendarTempDate,
-      onCalendarYearClick: this.setCalendarTempYear,
-      onSwipeChange: this.handleSwipeChange,
-    };
+    let picker, content;
+    if(isOpen) {
+      picker = (
+        <DatePicker
+          {...state}
+          {...props}
+          style={pickerStyle}
+          className={classnames('md-picker', displayMode, pickerClassName, {
+            inline,
+            'with-icon': inline && icon,
+          })}
+          onCancelClick={this.handleCancelClick}
+          onOkClick={this.handleOkClick}
+          changeCalendarMode={this.changeCalendarMode}
+          onPreviousClick={this.previousMonth}
+          onNextClick={this.nextMonth}
+          onCalendarDateClick={this.setCalendarTempDate}
+          onCalendarYearClick={this.setCalendarTempYear}
+          onSwipeChange={this.handleSwipeChange}
+        />
+      );
+    }
 
-    let picker = isOpen ? <DatePicker {...pickerProps} /> : null;
-    let content;
     if(inline) {
       picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
       content = <TransitionGroup>{picker}</TransitionGroup>;

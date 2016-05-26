@@ -8,7 +8,7 @@ import { onOutsideClick } from '../utils';
 import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils/dates';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
-import { Height } from '../Transitions';
+import Height from '../Transitions/Height';
 import TextField from '../TextFields';
 import TimePicker from './TimePicker';
 
@@ -18,23 +18,45 @@ export default class TimePickerContainer extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
-    const date = props.defaultValue ? new Date(props.defaultValue) : new Date();
+    let initialDate;
+    if(props.defaultValue) {
+      initialDate = new Date(props.defaultValue);
+    } else if(props.value) {
+      initialDate = new Date(props.value);
+    } else {
+      initialDate = new Date();
+    }
 
     this.state = {
-      ...this.getTimeParts(date, props),
+      ...this.getTimeParts(initialDate, props),
       value: props.defaultValue,
       isOpen: props.initiallyOpen,
-      time: date,
+      time: initialDate,
       timeMode: props.initialTimeMode,
-      tempTime: date,
+      tempTime: initialDate,
     };
   }
 
   static propTypes = {
     /**
-     * An optional className to apply to the year picker.
+     * An optional style to apply to the time picker's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the time picker's container.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the time picker.
+     */
+    pickerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the time picker.
+     */
+    pickerClassName: PropTypes.string,
 
     /**
      * An optional icon to display with the time picker.
@@ -151,7 +173,9 @@ export default class TimePickerContainer extends Component {
     initialTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat,
-    locales: window.navigator.userLanguage || window.navigator.language,
+    locales: typeof window !== 'undefined'
+      ? window.navigator.userLanguage || window.navigator.language
+      : 'en-US',
     okLabel: 'Ok',
     okPrimary: true,
     cancelLabel: 'Cancel',
@@ -228,51 +252,90 @@ export default class TimePickerContainer extends Component {
     this.setState({ isOpen: false, tempTime: this.state.time });
   };
 
+  getTextFieldValue = (props = this.props, state = this.state) => {
+    const { DateTimeFormat, locales } = props;
+    const value = this.getValue(props, state);
+    if(!value) {
+      return '';
+    } else if(value instanceof Date) {
+      return getTimeString(DateTimeFormat, locales, value);
+    } else {
+      // currently don't support value of string
+      return value;
+    }
+  };
+
   render() {
-    const { label, floatingLabel, value, onChange, icon, inline, displayMode, ...props } = this.props;
-    const { isOpen, ...state } = this.state;
+    const {
+      isOpen,
+      timeMode,
+      tempTime,
+      hours,
+      minutes,
+      timePeriod,
+    } = this.state;
 
-    const pickerProps = {
-      ...state,
+    const {
+      label,
+      floatingLabel,
+      icon,
+      inline,
+      displayMode,
+      style,
+      className,
+      pickerStyle,
+      pickerClassName,
       ...props,
-      className: classnames('md-picker', displayMode, { inline, 'with-icon': inline && icon }),
-      onOkClick: this.handleOkClick,
-      onCancelClick: this.handleCancelClick,
-      setTimeMode: this.setTimeMode,
-      setTempTime: this.setTempTime,
-    };
+    } = this.props;
+    delete props.value;
+    delete props.onChange;
+    delete props.defaultValue;
 
-    let textFieldValue = typeof value === 'undefined' ? state.value : value;
-    if(isOpen && inline) {
-      textFieldValue = this.getValue(this.props, this.state);
+    let picker, content;
+    if(isOpen) {
+      picker = (
+        <TimePicker
+          {...props}
+          tempTime={tempTime}
+          timeMode={timeMode}
+          hours={hours}
+          minutes={minutes}
+          timePeriod={timePeriod}
+          style={pickerStyle}
+          className={classnames('md-picker', displayMode, pickerClassName, {
+            inline,
+            'with-icon': inline && icon,
+          })}
+          onOkClick={this.handleOkClick}
+          onCancelClick={this.handleCancelClick}
+          setTimeMode={this.setTimeMode}
+          setTempTime={this.setTempTime}
+        />
+      );
     }
 
-    if(textFieldValue) {
-      textFieldValue = getTimeString(props.DateTimeFormat, props.locales, textFieldValue);
+    if(inline) {
+      picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
+      content = <TransitionGroup>{picker}</TransitionGroup>;
+    } else {
+      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
     }
 
     return (
-      <div className="md-picker-container" ref="container">
+      <div
+        style={style}
+        className={classnames('md-picker-container', className)}
+        ref="container"
+      >
         <TextField
           icon={icon}
           onClick={this.toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={textFieldValue}
-          onChange={onChange}
+          value={this.getTextFieldValue()}
+          readOnly={true}
         />
-        {inline ?
-          <TransitionGroup>
-            {isOpen &&
-              <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>
-                <TimePicker {...pickerProps} />
-              </Height>
-            }
-          </TransitionGroup> :
-          <Dialog isOpen={isOpen} close={this.close}>
-            {isOpen && <TimePicker {...pickerProps} />}
-          </Dialog>
-        }
+        {content}
       </div>
     );
   }
