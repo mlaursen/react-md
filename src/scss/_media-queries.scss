@@ -1,17 +1,22 @@
-@media only screen and (max-width: 599px) {
+@import 'helpers/variables';
+
+$md-mobile-max-width: $md-desktop-min-width - 1;
+
+@media only screen and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
   @include md-typography-mobile();
   @include md-lists-mobile();
   @include md-select-field-mobile();
   @include md-sidebar-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
-  @include md-navigation-drawer-mobile();
   @include md-text-field-mobile();
   @include md-tooltips-mobile();
+  @include md-navigation-drawer-mobile();
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: #{$md-desktop-min-width}) {
   @include md-typography-desktop();
+  @include md-navigation-drawer-desktop();
   @include md-lists-desktop();
   @include md-select-field-desktop();
   @include md-sidebar-desktop();
@@ -19,7 +24,6 @@
   @include md-tab-desktop();
   @include md-text-field-desktop();
   @include md-toolbar-desktop();
-  @include md-navigation-drawer-desktop();
   @include md-tooltips-desktop();
 
   .md-picker:not(.portrait) {
@@ -27,7 +31,7 @@
   }
 }
 
-@media only screen and (orientation: portrait) and (max-width: 599px) {
+@media only screen and (orientation: portrait) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
   @include md-toolbar-mobile-portrait();
   @include md-navigation-drawer-mobile-portrait();
 
@@ -36,7 +40,7 @@
   }
 }
 
-@media only screen and (orientation: landscape) and (max-width: 599px) {
+@media only screen and (orientation: landscape) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
   @include md-toolbar-mobile-landscape();
   @include md-navigation-drawer-mobile-landscape();
 

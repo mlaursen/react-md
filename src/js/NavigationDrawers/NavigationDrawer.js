@@ -334,7 +334,7 @@ export default class NavigationDrawer extends Component {
             touch={touch}
           />
           {children}
-          <Overlay isOpen={isOpen && !persistent} onClick={closeDrawer} />
+          <Overlay isOpen={isOpen && (!persistent || persistent && touch)} onClick={closeDrawer} />
         </div>
       </div>
     );

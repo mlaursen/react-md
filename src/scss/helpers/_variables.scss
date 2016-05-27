@@ -1,5 +1,18 @@
 @import 'colors';
 
+/// The min width for the mobile media query.
+///
+/// @type String
+/// @group media-queries
+$md-mobile-min-width: 320px !default;
+
+
+/// The min width for the desktop media query.
+///
+/// @type String
+/// @group media-queries
+$md-desktop-min-width: 1025px !default;
+
 /// This will format the default theme to have the light theme if set to true.
 /// It will use the dark theme if set to false.
 ///
