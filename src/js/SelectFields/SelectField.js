@@ -518,9 +518,10 @@ export default class SelectField extends Component {
    */
   handleContainerClick = (e) => {
     let node = e.target;
-    while(node) {
+    while(node && node.classList) {
       let classList = node.classList;
       if(classList.contains('md-text-field')) {
+        e.stopPropagation();
         this.toggle();
         return;
       } else if(classList.contains('md-list-tile')) {

@@ -78,12 +78,6 @@ export default class TableRow extends Component {
     }
   }
 
-  handleCheckboxClick = (e) => {
-    e.stopPropagation();
-    const { onCheckboxClick } = this.props;
-    onCheckboxClick && onCheckboxClick(e);
-  };
-
   setLongestColumn = () => {
     const widths = [];
     const biggest = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)')).reduce((prev, curr, i) => {
@@ -101,12 +95,12 @@ export default class TableRow extends Component {
 
   render() {
     const { biggest, widths } = this.state;
-    const { className, children, selected, ...props } = this.props;
+    const { className, children, selected, onCheckboxClick, ...props } = this.props;
     delete props.onCheckboxClick;
 
     let checkbox;
     if(!this.context.plain) {
-      checkbox = <TableCheckbox key="checkbox" checked={selected} onClick={this.handleCheckboxClick} />;
+      checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 
     const columns = React.Children.map(children, (column, i) => {
