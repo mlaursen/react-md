@@ -202,7 +202,7 @@ export default class BottomNavigation extends Component {
   };
 
   render() {
-    const { active, visible } = this.state;
+    const { visible } = this.state;
     const {
       style,
       className,
@@ -214,6 +214,7 @@ export default class BottomNavigation extends Component {
       transitionEnterTimeout,
       transitionLeaveTimeout,
     } = this.props;
+    const active = this.getActive();
 
     const fixed = actions.length === 3;
     const navs = actions.map(({ label, ...props }) => (
