@@ -126,25 +126,25 @@ $md-transition-time: .15s !default;
 /// The default z-index for any `.md-overlay` or any overlay in the app.
 ///
 /// @type Number
-/// @group z-indexes, overlay
+/// @group overlays
 $md-overlay-z-index: 100 !default;
 
 /// The default z-index for the Data table's edit dialog.
 ///
 /// @type Number
-/// @group z-indexes, data-tables
+/// @group data-tables
 $md-edit-dialog-z-index: 3 !default;
 
 /// The default z-index for the Dropdown component.
 ///
 /// @type Number
-/// @group z-indexes, dropdowns
+/// @group dropdowns
 $md-dropdown-z-index: 4 !default;
 
 /// The default z-index for the sidebar that is not fixed.
 ///
 /// @type Number
-/// @group z-indexes, sidebars
+/// @group sidebars
 $md-sidebar-z-index: 5 !default;
 
 /// The default z-index for the sidebar that is fixed to the side.
@@ -152,7 +152,7 @@ $md-sidebar-z-index: 5 !default;
 /// for the dialog z-index
 ///
 /// @type Number
-/// @group z-indexes, sidebars
+/// @group sidebars
 /// @see md-sidebar-z-index
 /// @see md-dialog-z-index
 $md-sidebar-fixed-z-index: 10 !default;
@@ -160,44 +160,44 @@ $md-sidebar-fixed-z-index: 10 !default;
 /// The default z-index for a fixed toolbar.
 ///
 /// @type Number
-/// @group z-indexes, toolbars
+/// @group toolbars
 $md-toolbar-z-index: 6 !default;
 
 /// The default z-index for the fixed floating action button.
 ///
 /// @type Number
-/// @group z-indexes, buttons-fab
+/// @group buttons-fab
 $md-fab-z-index: 8 !default;
 
 /// The default z-index for the navigation-drawer
 ///
 /// @type Number
-/// @group z-indexes, navigation-drawers
+/// @group navigation-drawers
 $md-navigation-drawer-z-index: $md-overlay-z-index + 1 !default;
 
 /// The default z-index for the snackbar component.
 ///
 /// @type Number
-/// @group z-indexesm snackbars
+/// @group snackbars
 $md-snackbar-z-index: 11 !default;
 
 /// The default z-index for the temporary navigation-drawer
 ///
 /// @type Number
-/// @group z-indexes, navigation-drawers
+/// @group navigation-drawers
 $md-navigation-drawer-temporary-z-index: $md-overlay-z-index + 1 !default;
 
 /// The default z-index for the temporary navigation-drawer
 ///
 /// @type Number
-/// @group z-indexes, navigation-drawers
+/// @group navigation-drawers
 $md-navigation-drawer-toolbar-z-index: $md-overlay-z-index - 1 !default;
 
 
 /// The default z-index for the dialog component.
 ///
 /// @type Number
-/// @group z-indexes, dialogs
+/// @group dialogs
 $md-dialog-z-index: $md-overlay-z-index + 5 !default;
 
 
@@ -757,25 +757,25 @@ $md-switch-width: $md-switch-height + $md-switch-bar-height - $md-switch-offset 
 /// The toolbar height.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-height: 64px !default;
 
 /// The toolbar height for landscape mode on mobile devices.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-mobile-landscape-height: 48px;
 
 /// The toolbar height for landscape mode on mobile devices.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-mobile-portrait-height: 56px;
 
 /// The toolbar height for landscape mode on mobile devices.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-desktop-height: 64px;
 
 /// The toolbar margin for any 'actions' in a toolbar. This
@@ -783,7 +783,7 @@ $md-toolbar-desktop-height: 64px;
 /// `.action-right`.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-action-margin: 12px;
 
 
@@ -791,7 +791,7 @@ $md-toolbar-action-margin: 12px;
 /// to the left of the title.
 ///
 /// @type String
-/// @group toolbar
+/// @group toolbars
 $md-toolbar-title-keyline: 72px;
 
 
@@ -828,73 +828,73 @@ $md-sidebar-desktop-max-width: 400px;
 ///
 /// @link https://www.google.com/design/spec/components/snackbars-toasts.html#snackbars-toasts-specs
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-bg-color: #323232;
 
 /// The snackbar height.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-height: $md-height;
 
 /// The height for a snackbar that is multiple lines.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-multiline-height: 80px;
 
 /// The left and right padding for the snackbar.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-lr-padding: 24px;
 
 /// The top and bottom badding for the snackbar.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-tb-padding: 14px;
 
 /// The margin left for the action button in a sidebar.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-action-left-margin: 48px;
 
 /// The min width for a snackbar on a desktop screen.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-desktop-min-width: 288px;
 
 /// The max width for a snackbar on a desktop screen.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-desktop-max-width: 568px;
 
 /// The border radius for a snackbar on a desktop screen.
 ///
 /// @type String
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-desktop-border-radius: 2px;
 
 /// The transition time for the snackbar appearing.
 ///
 /// @type Time
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-transition-time: $md-transition-time * 2 !default;
 
 /// The transition time for the snackbar's children appearing.
 ///
 /// @type Time
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-opacity-transition-time: $md-transition-time * 3 !default;
 
 /// The transition delay for chained toasts.
 ///
 /// @type Time
-/// @group snackbar
+/// @group snackbars
 $md-snackbar-chained-transition-delay: $md-transition-time * 3 !default;
 
 
@@ -1155,7 +1155,7 @@ $md-dropdown-max-height: $md-height * 5 + $md-list-tile-extra-margin * 2 + $md-h
 /// The distance from the element for a mobile device.
 ///
 /// @type String
-/// @group select-feilds
+/// @group select-fields
 $md-select-field-mobile-top: 8px;
 
 /// The distance from the element for a desktop device.
