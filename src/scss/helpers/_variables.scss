@@ -1682,3 +1682,80 @@ $md-edit-dialog-min-width: 300px !default;
 /// @type String
 /// @group data-tables
 $md-data-table-sort-icon-font-size: 16px;
+
+
+// ===================================================================================
+// Bottom Navigations
+// ===================================================================================
+
+/// The height for the bottom navigation component.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-navigation-height: 56px;
+
+/// The min width for a bottom-nav action that is fixed. A fixed bottom-nav
+/// is only available when there are only 3 actions.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-fixed-min-width: 80px;
+
+/// THe max width for a bottom-nav action that is fixed. A fixed bottom-nav
+/// is only available when there are only 3 actions.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-fixed-max-width: 168px;
+
+/// The min width for an active bottom-nav action when the bottom-nav size is
+/// shifting. A shifting bottom-nav is used when there are more than 3 actions.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-shifting-active-min-width: 96px;
+
+/// The min width for an inactive bottom-nav action when the bottom-nav size is
+/// shifting. A shifting bottom-nav is used when there are more than 3 actions.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-shifting-inactive-min-width: 56px;
+
+/// The max width for an inactive bottom-nav action when the bottom-nav size is
+/// shifting. A shifting bottom-nav is used when there are more than 3 actions.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-shifting-inactive-max-width: 96px;
+
+/// The padding to use for a bottom-nav action.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-padding: 6px 12px 10px;
+
+/// The font size to use for an active bottom-nav action.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-active-font-size: 14px;
+
+/// The font size to use for an inactive bottom-nav action.
+///
+/// @type String
+/// @group bottom-navigations
+$md-bottom-nav-inactive-font-size: 12px;
+
+/// The transition time for the label appearing in a shifting bottom-nav action.
+///
+/// @type Time
+/// @group bottom-navigations
+$md-bottom-nav-transition-time: $md-transition-time !default;
+
+/// The transition time for the entire bottom-navigation component appearing when
+/// a user has scrolled the bottom-navigation into or out of view.
+///
+/// @type Time
+/// @group bottom-navigations
+$md-bottom-navigation-transition-time: $md-transition-time !default;
