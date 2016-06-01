@@ -1,0 +1,76 @@
+.md-bottom-navigation {
+  @include md-box-shadow(1);
+
+  bottom: 0;
+  display: flex;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.md-bottom-nav {
+  @extend %button-unstyled;
+  @extend %clickable;
+
+  flex-grow: 1;
+  font-size: $md-bottom-nav-inactive-font-size;
+  height: $md-bottom-navigation-height;
+  padding: $md-bottom-nav-padding;
+  transition-duration: $md-transition-time;
+  transition-property: color, font-size;
+  user-select: none;
+
+  &.active {
+    flex-shrink: 0;
+    font-size: $md-bottom-nav-active-font-size;
+  }
+
+  &.fixed {
+    max-width: $md-bottom-nav-fixed-max-width;
+    min-width: $md-bottom-nav-fixed-min-width;
+  }
+
+  &.shifting {
+    max-width: $md-bottom-nav-shifting-inactive-max-width;
+    min-width: $md-bottom-nav-shifting-inactive-min-width;
+    transition-property: color, font-size, max-width;
+
+    &.active {
+      max-width: $md-bottom-nav-fixed-max-width;
+      min-width: $md-bottom-nav-shifting-active-min-width;
+    }
+  }
+
+  .md-icon {
+    color: inherit;
+    display: block;
+  }
+}
+
+.bottom-nav-enter {
+  max-height: 0;
+  overflow: hidden;
+
+  &.bottom-nav-enter-active {
+    max-height: 16px;
+    transition: max-height $md-bottom-nav-transition-time;
+  }
+}
+
+.bottom-navigation-enter {
+  max-height: 0;
+
+  &.bottom-navigation-enter-active {
+    max-height: $md-bottom-navigation-height;
+    transition: max-height $md-bottom-navigation-transition-time;
+  }
+}
+
+.bottom-navigation-leave {
+  max-height: $md-bottom-navigation-height;
+
+  &.bottom-navigation-leave-active {
+    max-height: 0;
+    transition: max-height $md-bottom-navigation-transition-time;
+  }
+}
