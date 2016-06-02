@@ -49,13 +49,14 @@ describe('BottomNavigation', () => {
         label: 'C',
       }],
       onChange: jest.fn(),
+      activeIndex: 0,
     };
 
     const nav = renderIntoDocument(<BottomNavigation {...props} />);
 
-    nav.handleNavChange('B');
+    nav.handleNavChange(2);
     expect(props.onChange.mock.calls.length).toBe(1);
-    expect(props.onChange.mock.calls[0][0]).toBe('B');
+    expect(props.onChange.mock.calls[0][0]).toBe(2);
   });
 
   it('generates a BottomNav component for each action', () => {

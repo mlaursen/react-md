@@ -24,6 +24,7 @@ describe('BottomNav', () => {
         active={false}
         onNavChange={jest.fn()}
         fixed={false}
+        index={0}
       />
     );
 
@@ -32,13 +33,14 @@ describe('BottomNav', () => {
     expect(bottomNavNode.classList.contains(className)).toBe(true);
   });
 
-  it('passes the label and click event to the onClick and onNavChange props', () => {
+  it('passes the index and click event to the onClick and onNavChange props', () => {
     const props = {
       onNavChange: jest.fn(),
       onClick: jest.fn(),
       label: 'a',
       fixed: false,
       active: false,
+      index: 0,
     };
 
     const nav = renderIntoDocument(<BottomNav {...props} />);
@@ -47,14 +49,14 @@ describe('BottomNav', () => {
     Simulate.click(navNode);
 
     expect(props.onNavChange.mock.calls.length).toBe(1);
-    expect(props.onNavChange.mock.calls[0][0]).toBe(props.label);
+    expect(props.onNavChange.mock.calls[0][0]).toBe(props.index);
 
     expect(props.onClick.mock.calls.length).toBe(1);
-    expect(props.onClick.mock.calls[0][0]).toBe(props.label);
+    expect(props.onClick.mock.calls[0][0]).toBe(props.index);
   });
 
   it('renders as a button by default', () => {
-    const nav = renderIntoDocument(<BottomNav label="A" active={false} fixed={false} onNavChange={jest.fn()} />);
+    const nav = renderIntoDocument(<BottomNav label="A" active={false} fixed={false} onNavChange={jest.fn()} index={0} />);
     const btns = scryRenderedDOMComponentsWithTag(nav, 'button');
     expect(btns.length).toBe(1);
   });
@@ -75,6 +77,7 @@ describe('BottomNav', () => {
       fixed: false,
       component: Link,
       onNavChange: jest.fn(),
+      index: 0,
     };
 
     const nav = renderIntoDocument(<BottomNav {...props} />);
@@ -108,6 +111,7 @@ describe('BottomNav', () => {
       fixed: false,
       label: 'A',
       onNavChange: jest.fn(),
+      index: 0,
     };
 
     const nav = renderIntoDocument(<BottomNav {...props} />);
@@ -148,6 +152,7 @@ describe('BottomNav', () => {
     const props = {
       label: 'Hello, World!',
       onNavChange: jest.fn(),
+      index: 0,
     };
 
     let nav = renderIntoDocument(<BottomNav {...props} active={false} fixed={false} />);
