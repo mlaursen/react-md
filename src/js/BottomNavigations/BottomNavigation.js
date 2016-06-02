@@ -16,7 +16,7 @@ export default class BottomNavigation extends Component {
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
-      active: props.initiallyActive || props.actions[0].label,
+      activeIndex: props.initialActiveIndex,
       visible: props.initiallyVisible,
       pageY: null,
       scrolling: false,
@@ -85,10 +85,16 @@ export default class BottomNavigation extends Component {
     colored: PropTypes.bool,
 
     /**
-     * An optional label to use for an action that is currently active. If
-     * omitted, the first action's label will be used.
+     * The initial active index for the bottom navigation. This will select one of
+     * the tabs by default for an uncontrolled component.
      */
-    initiallyActive: PropTypes.string,
+    initialActiveIndex: PropTypes.number.isRequired,
+
+    /**
+     * An active index for the bottom navigation. This will make the component controlled
+     * and require the onChange function to be defined to switch the index.
+     */
+    activeIndex: PropTypes.number,
 
     /**
      * Boolean if the bottom navigation component is initially visible.
@@ -121,8 +127,8 @@ export default class BottomNavigation extends Component {
     dynamic: PropTypes.bool.isRequired,
 
     /**
-     * An optional function to call when the active action is changed. This
-     * function is given the clicked action's label.
+     * An optional function to call when the active action is changed. This function
+     * is called with the new `activeIndex`.
      */
     onChange: PropTypes.func,
   };
@@ -132,6 +138,7 @@ export default class BottomNavigation extends Component {
     transitionEnterTimeout: 150,
     transitionLeaveTimeout: 150,
     dynamic: true,
+    initialActiveIndex: 0,
     initiallyVisible: true,
   };
 
@@ -189,16 +196,16 @@ export default class BottomNavigation extends Component {
     this.setState({ pageY: null, scrolling: false });
   };
 
-  getActive = (props = this.props, state = this.state) => {
-    return typeof props.active !== 'undefined' ? props.active : state.active;
+  getActiveIndex = (props = this.props, state = this.state) => {
+    return (typeof props.active !== 'undefined' ? props : state).activeIndex;
   };
 
-  handleNavChange = (label) => {
-    const active = this.getActive();
-    if(active === label) { return; }
-    this.props.onChange && this.props.onChange(label);
+  handleNavChange = (index) => {
+    const activeIndex = this.getActiveIndex();
+    if(activeIndex === index) { return; }
+    this.props.onChange && this.props.onChange(index);
 
-    this.setState({ active: label });
+    this.setState({ activeIndex: index });
   };
 
   render() {
@@ -213,17 +220,22 @@ export default class BottomNavigation extends Component {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      ...props,
     } = this.props;
-    const active = this.getActive();
+    delete props.initialActiveIndex;
+    delete props.initiallyVisible;
+    delete props.activeIndex;
+
+    const activeIndex = this.getActiveIndex();
 
     const fixed = actions.length === 3;
-    const navs = actions.map(({ label, ...props }) => (
+    const navs = actions.map((props, i) => (
       <BottomNav
-        key={label}
+        key={i}
+        index={i}
         {...props}
         onNavChange={this.handleNavChange}
-        label={label}
-        active={active === label}
+        active={activeIndex === i}
         colored={colored}
         fixed={fixed}
       />
@@ -252,6 +264,7 @@ export default class BottomNavigation extends Component {
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
+        {...props}
       >
         {nav}
       </CSSTransitionGroup>

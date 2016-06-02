@@ -43,6 +43,11 @@ class BottomNav extends Component {
     iconClassName: PropTypes.string,
 
     /**
+     * The index of this nav tab.
+     */
+    index: PropTypes.number.isRequired,
+
+    /**
      * Boolean if this nav is currently active.
      */
     active: PropTypes.bool.isRequired,
@@ -56,7 +61,7 @@ class BottomNav extends Component {
      * An optional function to call onClick. It is called
      * with the label and click event.
      *
-     * `onClick(label, event)`
+     * `onClick(index, event)`
      */
     onClick: PropTypes.func,
 
@@ -64,7 +69,7 @@ class BottomNav extends Component {
      * A function injected from the `BottomNavigation` component.
      * It is called with the label and click event.
      *
-     * `onClick(label, event)`
+     * `onClick(index, event)`
      */
     onNavChange: PropTypes.func.isRequired,
 
@@ -93,9 +98,9 @@ class BottomNav extends Component {
   };
 
   handleClick = (e) => {
-    const { onClick, onNavChange, label } = this.props;
-    onClick && onClick(label, e);
-    onNavChange(label, e);
+    const { onClick, onNavChange, index } = this.props;
+    onClick && onClick(index, e);
+    onNavChange(index, e);
   };
 
   render() {
@@ -112,6 +117,7 @@ class BottomNav extends Component {
       ...props,
     } = this.props;
     delete props.onClick;
+    delete props.index;
 
 
     let displayLabel;

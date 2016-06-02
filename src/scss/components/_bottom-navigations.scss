@@ -16,6 +16,8 @@
   font-size: $md-bottom-nav-inactive-font-size;
   height: $md-bottom-navigation-height;
   padding: $md-bottom-nav-padding;
+  text-align: center;
+  text-decoration: none;
   transition-duration: $md-transition-time;
   transition-property: color, font-size;
   user-select: none;
@@ -46,6 +48,13 @@
     display: block;
   }
 }
+
+// scss-lint:disable QualifyingElement
+// Need this hack to get links to display correctly.
+a.md-bottom-nav.shifting:not(.active) .md-icon {
+  margin-top: ($md-bottom-navigation-height - $md-font-icon-size - 16px) / 2;
+}
+
 
 .bottom-nav-enter {
   max-height: 0;
