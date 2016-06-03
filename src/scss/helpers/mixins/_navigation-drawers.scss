@@ -73,6 +73,10 @@
     max-width: $md-navigation-drawer-mobile-max-width;
     width: $md-navigation-drawer-mobile-width;
     z-index: $md-navigation-drawer-temporary-z-index;
+
+    &.mini.active {
+      width: $md-navigation-drawer-mobile-width;
+    }
   }
 
   .drawer-enter,

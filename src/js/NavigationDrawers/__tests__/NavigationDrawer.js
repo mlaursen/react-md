@@ -1,5 +1,5 @@
 /*eslint-env jest*/
-jest.unmock('../_NavigationDrawer');
+jest.unmock('../NavigationDrawer');
 
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
@@ -10,7 +10,7 @@ import {
   scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
-import NavigationDrawer from '../_NavigationDrawer';
+import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../Drawer';
 import DrawerToolbar from '../DrawerToolbar';
 import Overlay from '../../Transitions/Overlay';
