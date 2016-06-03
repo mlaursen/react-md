@@ -6,6 +6,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
+  findRenderedDOMComponentWithClass,
 } from 'react-addons-test-utils';
 
 import DrawerToolbar from '../DrawerToolbar';
@@ -119,7 +120,7 @@ describe('DrawerToolbar', () => {
       persistent: false,
       openDrawer: jest.fn(),
       title: 'Eyyyy',
-      children: <div>Wow</div>,
+      children: <div className="test">Wow</div>,
     };
 
     let toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
@@ -127,6 +128,6 @@ describe('DrawerToolbar', () => {
     expect(toolbarNode.childNodes.length).toBe(3);
     // Not sure how to test that first is icon button
     expect(toolbarNode.childNodes[1].textContent).toBe(props.title);
-    expect(toolbarNode.childNodes[2]).toBe(props.children);
+    expect(toolbarNode.childNodes[2]).toBe(findRenderedDOMComponentWithClass(toolbar, 'test'));
   });
 });
