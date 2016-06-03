@@ -48,7 +48,3 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
     @include md-pickers-landscape();
   }
 }
-
-@media only screen and (orientation: landscape) and (min-width: #{$md-tablet-min-width}) and (max-width: #{$md-mobile-max-width}) {
-  @include md-navigation-drawer-tablet-landscape();
-}
