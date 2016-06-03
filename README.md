@@ -18,6 +18,10 @@ $ npm i -S react \
 
 To view examples and component documentation, please view the [documentation website](http://react-md.mlaursen.com)
 
+## Upgrade Guide
+
+If you need to view any upgrading help, view the [upgrade guide](../master/docs/UpgradeGuide.md)
+
 # Getting Started
 
 ## Prerequisites
