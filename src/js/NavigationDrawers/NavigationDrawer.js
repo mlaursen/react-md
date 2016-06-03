@@ -11,6 +11,28 @@ import Overlay from '../Transitions/Overlay';
 import NavigationDrawerHeader from './NavigationDrawerHeader';
 import NavigationDrawerToolbar from './NavigationDrawerToolbar';
 
+const deprecate = (props, propName, component, to) => {
+  if(typeof props[propName] !== 'undefined') {
+    console.error(
+      `The prop '${propName}' has been renamed to '${to}' ` +
+      'for the next release. Check the upgrade docs at ' +
+      'https://github.com/mlaursen/react-md/tree/master/docs/UpgradeGuide.md ' +
+      'for more information.'
+    );
+  }
+};
+
+const removed = (props, propName) => {
+  if(typeof props[propName] !== 'undefined') {
+    console.error(
+      `The prop '${propName}' has been removed for the next release. Check ` +
+      'the upgrade docs at ' +
+      'https://github.com/mlaursen/react-md/tree/master/docs/UpgradeGuide.md ' +
+      'for more information.'
+    );
+  }
+};
+
 /**
  * Navigation drawers are an excellent component to use to set up the initial
  * layout of your application. This component combines a Navigation drawer
@@ -39,22 +61,34 @@ export default class NavigationDrawer extends Component {
     /**
      * An optional style to apply to the navigation drawer itself.
      */
-    style: PropTypes.object,
+    style: (props, propName, component) => {
+      deprecate(props, propName, component, 'drawerStyle');
+      return PropTypes.object(props, propName, component);
+    },
 
     /**
      * An optional className to apply to the navigation drawer iteself.
      */
-    className: PropTypes.string,
+    className: (props, propName, component) => {
+      deprecate(props, propName, component, 'drawerClassName');
+      return PropTypes.string(props, propName, component);
+    },
 
     /**
      * An optional style to apply to the navigation drawer container.
      */
-    containerStyle: PropTypes.object,
+    containerStyle: (props, propName, component) => {
+      deprecate(props, propName, component, 'style');
+      return PropTypes.object(props, propName, component);
+    },
 
     /**
      * An optional className to apply to the navigation drawer container.
      */
-    containerClassName: PropTypes.string,
+    containerClassName: (props, propName, component) => {
+      deprecate(props, propName, component, 'className');
+      return PropTypes.string(props, propName, component);
+    },
 
     /**
      * An optional style to apply to the main content.
@@ -79,12 +113,18 @@ export default class NavigationDrawer extends Component {
     /**
      * Boolean if the navigation drawer is currently open.
      */
-    isOpen: PropTypes.bool.isRequired,
+    isOpen: (props, propName, component) => {
+      removed(props, propName);
+      return PropTypes.bool.isRequired(props, propName, component);
+    },
 
     /**
      * An optional title to display in the navigation drawer header.
      */
-    title: PropTypes.string,
+    title: (props, propName, component) => {
+      deprecate(props, propName, component, 'drawerTitle');
+      return PropTypes.string(props, propName, component);
+    },
 
     /**
      * The main content to display.
@@ -115,13 +155,18 @@ export default class NavigationDrawer extends Component {
      * A function to call that will open the navigation drawer. This will
      * be applied to the main menu button.
      */
-    openDrawer: PropTypes.func,
+    openDrawer: (props, propName, component) => {
+      removed(props, propName);
+      return PropTypes.func(props, propName, component);
+    },
 
     /**
      * A function to call that will close the navigation drawer. If the drawer
      * is persistent or persistent mini, this function is required.
      */
     closeDrawer: (props, propName, component) => {
+      removed(props, propName);
+
       const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
       const { drawerType } = props;
       if(drawerType !== PERSISTENT && drawerType !== PERSISTENT_MINI) {
@@ -171,7 +216,10 @@ export default class NavigationDrawer extends Component {
     /**
      * The drawer type to use.
      */
-    drawerType: PropTypes.oneOf(Object.keys(NavigationDrawer.DrawerType).map(k => NavigationDrawer.DrawerType[k])),
+    drawerType: (props, propName, component) => {
+      removed(props, propName);
+      return PropTypes.oneOf(Object.keys(NavigationDrawer.DrawerType).map(k => NavigationDrawer.DrawerType[k]))(props, propName, component);
+    },
 
     /**
      * Any additional children to display in the main toolbar.
@@ -188,13 +236,19 @@ export default class NavigationDrawer extends Component {
      * before the `navItems`. This will replace the generated header if you gave the
      * `title` prop.
      */
-    navHeader: PropTypes.node,
+    navHeader: (props, propName, component) => {
+      removed(props, propName);
+      return PropTypes.node(props, propName, component);
+    },
 
     /**
      * Any additional children to display in the navigation drawer's header after the
      * `title`.
      */
-    navHeaderChildren: PropTypes.node,
+    navHeaderChildren: (props, propName, component) => {
+      deprecate(props, propName, component, 'drawerChildren');
+      return PropTypes.node(props, propName, component);
+    },
   };
 
   static defaultProps = {
