@@ -518,13 +518,13 @@ export default class SelectField extends Component {
    */
   handleContainerClick = (e) => {
     let node = e.target;
-    while(node && node.classList) {
-      let classList = node.classList;
-      if(classList.contains('md-text-field')) {
-        e.stopPropagation();
+    while(node && node.parentNode) {
+      let { className } = node;
+      if(className.match(/md-text-field/)) {
+        e.preventDefault(); // stops a double click from being triggered. No idea why
         this.toggle();
         return;
-      } else if(classList.contains('md-list-tile')) {
+      } else if(className.match(/md-list-tile/)) {
         const tiles = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-list-tile'));
         this.handleItemClick(tiles.indexOf(node), e);
         return;
