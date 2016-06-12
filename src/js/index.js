@@ -23,6 +23,7 @@ import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
+import Menu from './Menus';
 
 export { Avatar };
 export { Card };
@@ -48,6 +49,7 @@ export { Ink };
 export { LinearProgress };
 export { List };
 export { ListItem };
+export { Menu };
 export { NavigationDrawer };
 export { Paper };
 export { Radio };
@@ -100,6 +102,7 @@ export default {
   Dialog,
   Divider,
   FontIcon,
+  Menu,
   NavigationDrawer,
   Ink,
   Paper,
