@@ -201,10 +201,10 @@ describe('TextField', () => {
     const input = renderIntoDocument(<TextField />);
 
     const inputNode = findDOMNode(input);
-    expect(document.activeElement).not.toBe(inputNode);
+    expect(document.activeElement).not.toEqual(inputNode);
 
     input.focus();
-    expect(document.activeElement).toBe(inputNode);
+    expect(document.activeElement).toEqual(inputNode);
   });
 
   it('renders the FloatingLabel component with correct props', () => {
