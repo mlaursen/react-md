@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
 import TextFieldMessage from './TextFieldMessage';
+import FontIcon from '../FontIcons';
 
 const valueType = PropTypes.oneOfType([
   PropTypes.string,
@@ -39,6 +40,7 @@ export default class TextField extends Component {
       currentRows: props.rows,
       areaHeight: 'auto',
       value: props.defaultValue,
+      passwordVisible: false,
     };
   }
 
@@ -236,6 +238,16 @@ export default class TextField extends Component {
      * Boolean if the this text field should span the full width of a parent.
      */
     fullWidth: PropTypes.bool,
+
+    /**
+     * Any children used to render the password icon button.
+     */
+    passwordIconChildren: PropTypes.node,
+
+    /**
+     * Any icon className to use to render the password icon button.
+     */
+    passwordIconClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -243,6 +255,7 @@ export default class TextField extends Component {
     defaultValue: '',
     floatingLabel: true,
     lineDirection: 'left',
+    passwordIconChildren: 'remove_red_eye',
   };
 
   getValue = () => {
@@ -311,8 +324,12 @@ export default class TextField extends Component {
     this.textField.focus();
   };
 
+  _togglePasswordField = () => {
+    this.setState({ passwordVisible: !this.state.passwordVisible });
+  };
+
   render() {
-    const { active, currentRows, areaHeight } = this.state;
+    const { active, currentRows, areaHeight, passwordVisible } = this.state;
     const {
       className,
       inputClassName,
@@ -324,6 +341,8 @@ export default class TextField extends Component {
       floatingLabel,
       icon,
       rightIcon,
+      passwordIconChildren,
+      passwordIconClassName,
       lineDirection,
       rows,
       maxRows,
@@ -375,6 +394,20 @@ export default class TextField extends Component {
           'single-line': !useFloatingLabel,
         }),
       });
+    } else if(type === 'password') {
+      indIcon = (
+        <button
+          type="button"
+          onClick={this._togglePasswordField}
+          className={classnames('md-password-btn', {
+            'active': passwordVisible,
+            'multi-line': useFloatingLabel,
+            'single-line': !useFloatingLabel,
+          })}
+        >
+          <FontIcon iconClassName={passwordIconClassName} children={passwordIconChildren} />
+        </button>
+      );
     }
 
     if(errorText || maxLength || helpText) {
@@ -414,7 +447,6 @@ export default class TextField extends Component {
       onSelect,
       readOnly,
       size,
-      type,
       value,
     };
 
@@ -465,6 +497,7 @@ export default class TextField extends Component {
         <input
           {...textFieldProps}
           ref="textField"
+          type={passwordVisible ? 'text': type}
           style={inputStyle}
           placeholder={visiblePlaceholder}
         />

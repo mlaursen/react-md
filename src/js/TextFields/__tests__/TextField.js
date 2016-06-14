@@ -9,6 +9,8 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
+  findRenderedDOMComponentWithClass,
+  scryRenderedDOMComponentsWithClass,
 } from 'react-addons-test-utils';
 
 import TextField from '../TextField';
@@ -381,5 +383,28 @@ describe('TextField', () => {
     expect(message.props.active).toBe(false);
     expect(message.props.message).toBe(props.errorText);
     expect(message.props.maxLength).toBeUndefined();
+  });
+
+  it('renders a password btn when the type is password', () => {
+    let textField = renderIntoDocument(<TextField type="password" />);
+    let btns = scryRenderedDOMComponentsWithClass(textField, 'md-password-btn');
+    expect(btns.length).toBe(1);
+
+    textField = renderIntoDocument(<TextField type="text" />);
+    btns = scryRenderedDOMComponentsWithClass(textField, 'md-password-btn');
+    expect(btns.length).toBe(0);
+  });
+
+  it('toggles the password\'s visible when the password button is clicked by switching the type to text', () => {
+    const textField = renderIntoDocument(<TextField type="password" />);
+    const btn = findRenderedDOMComponentWithClass(textField, 'md-password-btn');
+    const input = findRenderedDOMComponentWithTag(textField, 'input');
+
+    expect(input.getAttribute('type')).toBe('password');
+    expect(btn.className).not.toContain('active');
+
+    Simulate.click(btn);
+    expect(input.getAttribute('type')).toBe('text');
+    expect(btn.className).toContain('active');
   });
 });

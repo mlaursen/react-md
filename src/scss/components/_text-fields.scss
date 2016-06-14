@@ -1,6 +1,5 @@
 .md-text-field-container {
   @include md-theme-placeholders($md-secondary-text-color);
-
   display: inline-block;
   vertical-align: top;
 
@@ -210,4 +209,22 @@
 
 .md-text-field-ind {
   color: $md-icon-color;
+}
+
+.md-password-btn {
+  @extend %button-unstyled;
+  @extend %clickable;
+  @extend %md-hint-text;
+
+  height: $md-font-icon-size;
+  padding-left: $md-default-padding;
+  vertical-align: bottom;
+
+  &.active {
+    @extend %md-secondary-text;
+  }
+
+  .md-icon {
+    color: inherit;
+  }
 }

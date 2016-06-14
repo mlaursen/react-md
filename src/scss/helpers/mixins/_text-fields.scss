@@ -135,6 +135,10 @@
       padding-top: $ind-padding;
     }
   }
+
+  .md-password-btn {
+    margin-bottom: $md-text-field-mobile-divider-padding * 2;
+  }
 }
 
 /// Generates css for a text field on desktop
@@ -164,6 +168,10 @@
       padding-bottom: $ind-padding;
       padding-top: $ind-padding;
     }
+  }
+
+  .md-password-btn {
+    margin-bottom: $md-text-field-desktop-divider-padding * 2;
   }
 }
 
