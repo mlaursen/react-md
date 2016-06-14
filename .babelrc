@@ -1,5 +1,5 @@
 {
   "presets": ["es2015", "react", "stage-0"],
-  "plugins": ["add-module-exports"],
+  "plugins": ["transform-es2015-modules-umd", "add-module-exports"],
   "sourceMaps": true
 }
