@@ -20,12 +20,15 @@ export default class NavigationDrawer extends Component {
     super(props);
 
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    const { initiallyOpen, initialDrawerType } = props;
     this.state = {
-      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : true,
-      mobile: false,
-      tablet: false,
-      desktop: true,
-      drawerType: props.desktopDrawerType,
+      isOpen: typeof initiallyOpen !== 'undefined'
+        ? initiallyOpen
+        : initialDrawerType !== 'mobile',
+      mobile: initialDrawerType === 'mobile',
+      tablet: initialDrawerType === 'tablet',
+      desktop: initialDrawerType === 'desktop',
+      drawerType: props[initialDrawerType + 'DrawerType'],
     };
   }
 
@@ -113,6 +116,11 @@ export default class NavigationDrawer extends Component {
      * drawers.
      */
     initiallyOpen: PropTypes.bool,
+
+    /**
+     * The initial drawer type to render. This is used for Server Side Rendering.
+     */
+    initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
 
     /**
      * The `DrawerType` to use for mobile devices. If the `mobileMinWidth` prop
@@ -285,6 +293,7 @@ export default class NavigationDrawer extends Component {
   };
 
   static defaultProps = {
+    initialDrawerType: 'desktop',
     mobileDrawerType: NavigationDrawer.DrawerType.TEMPORARY,
     tabletDrawerType: NavigationDrawer.DrawerType.PERSISTENT,
     desktopDrawerType: NavigationDrawer.DrawerType.FULL_HEIGHT,

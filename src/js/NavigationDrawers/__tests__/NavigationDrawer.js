@@ -39,7 +39,13 @@ describe('NavigationDrawer', () => {
     };
 
     let nav = renderIntoDocument(<NavigationDrawer {...props} />);
-    nav.setState({ mobile: false, tablet: false, desktop: true });
+    // since there is no window object for media queries
+    nav.setState({
+      mobile: false,
+      tablet: false,
+      desktop: true,
+      drawerType: 'full-height',
+    });
 
     let drawers = scryRenderedComponentsWithType(nav, Drawer);
     expect(drawers.length).toBe(1);
