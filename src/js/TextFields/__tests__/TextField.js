@@ -197,16 +197,6 @@ describe('TextField', () => {
     expect(label.props.label).toBe('Label');
   });
 
-  it('has a publically accessible API for focusing the text field', () => {
-    const input = renderIntoDocument(<TextField />);
-
-    const inputNode = findDOMNode(input);
-    expect(document.activeElement).not.toEqual(inputNode);
-
-    input.focus();
-    expect(document.activeElement).toEqual(inputNode);
-  });
-
   it('renders the FloatingLabel component with correct props', () => {
     let props = { label: 'Hello' };
     let textField = renderIntoDocument(<TextField {...props} />);
