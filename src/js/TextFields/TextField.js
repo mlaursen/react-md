@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
@@ -18,6 +19,15 @@ const valueType = PropTypes.oneOfType([
  * Text Fields display as `inline-block` by default so that their size does not span `100%`. If
  * you want a text field per-line, wrap them in a div, or set them to display block (will make their width
  * expand as well though).
+ *
+ * There is a publically accessible `focus()` function to simplify the focusing of the text field.
+ *
+ * It can be used as follows:
+ *
+ * ```js
+ * <TextField ref="textField" />
+ * <button onClick={() => this.refs.textField.focus()}>Focus Text Field</button>
+ * ```
  */
 export default class TextField extends Component {
   constructor(props) {
@@ -289,6 +299,18 @@ export default class TextField extends Component {
     this.setState(state);
   };
 
+  /**
+   * A publicly accessibly API for focusing the text field.
+   */
+  focus = () => {
+    if(!this.textField) {
+      this.textField = findDOMNode(this.refs.textField || this.refs.textarea);
+    }
+
+
+    this.textField.focus();
+  };
+
   render() {
     const { active, currentRows, areaHeight } = this.state;
     const {
@@ -408,21 +430,42 @@ export default class TextField extends Component {
         }
       }
 
+      let visiblePlaceholder;
+      if(active || !useFloatingLabel || block) {
+        visiblePlaceholder = placeholder || label;
+
+        if(required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        }
+      }
+
       textField = (
         <textarea
           {...textFieldProps}
-          placeholder={active || !useFloatingLabel || block ? (placeholder || label) : null}
+          placeholder={visiblePlaceholder}
           ref="textarea"
           rows={rows}
           style={areaStyle}
         />
       );
     } else {
+      let visiblePlaceholder;
+      if(!useFloatingLabel) {
+        visiblePlaceholder = placeholder || label;
+
+        if(required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        }
+      } else {
+        visiblePlaceholder = placeholder;
+      }
+
       textField = (
         <input
           {...textFieldProps}
+          ref="textField"
           style={inputStyle}
-          placeholder={!useFloatingLabel ? (placeholder || label) : placeholder}
+          placeholder={visiblePlaceholder}
         />
       );
     }
