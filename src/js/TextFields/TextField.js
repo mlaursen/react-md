@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
 import TextFieldMessage from './TextFieldMessage';
+import FontIcon from '../FontIcons';
 
 const valueType = PropTypes.oneOfType([
   PropTypes.string,
@@ -18,6 +20,15 @@ const valueType = PropTypes.oneOfType([
  * Text Fields display as `inline-block` by default so that their size does not span `100%`. If
  * you want a text field per-line, wrap them in a div, or set them to display block (will make their width
  * expand as well though).
+ *
+ * There is a publically accessible `focus()` function to simplify the focusing of the text field.
+ *
+ * It can be used as follows:
+ *
+ * ```js
+ * <TextField ref="textField" />
+ * <button onClick={() => this.refs.textField.focus()}>Focus Text Field</button>
+ * ```
  */
 export default class TextField extends Component {
   constructor(props) {
@@ -29,6 +40,7 @@ export default class TextField extends Component {
       currentRows: props.rows,
       areaHeight: 'auto',
       value: props.defaultValue,
+      passwordVisible: false,
     };
   }
 
@@ -226,6 +238,16 @@ export default class TextField extends Component {
      * Boolean if the this text field should span the full width of a parent.
      */
     fullWidth: PropTypes.bool,
+
+    /**
+     * Any children used to render the password icon button.
+     */
+    passwordIconChildren: PropTypes.node,
+
+    /**
+     * Any icon className to use to render the password icon button.
+     */
+    passwordIconClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -233,6 +255,7 @@ export default class TextField extends Component {
     defaultValue: '',
     floatingLabel: true,
     lineDirection: 'left',
+    passwordIconChildren: 'remove_red_eye',
   };
 
   getValue = () => {
@@ -289,8 +312,24 @@ export default class TextField extends Component {
     this.setState(state);
   };
 
+  /**
+   * A publicly accessibly API for focusing the text field.
+   */
+  focus = () => {
+    if(!this.textField) {
+      this.textField = findDOMNode(this.refs.textField || this.refs.textarea);
+    }
+
+
+    this.textField.focus();
+  };
+
+  _togglePasswordField = () => {
+    this.setState({ passwordVisible: !this.state.passwordVisible });
+  };
+
   render() {
-    const { active, currentRows, areaHeight } = this.state;
+    const { active, currentRows, areaHeight, passwordVisible } = this.state;
     const {
       className,
       inputClassName,
@@ -302,6 +341,8 @@ export default class TextField extends Component {
       floatingLabel,
       icon,
       rightIcon,
+      passwordIconChildren,
+      passwordIconClassName,
       lineDirection,
       rows,
       maxRows,
@@ -338,6 +379,7 @@ export default class TextField extends Component {
     if(icon) {
       fontIcon = React.cloneElement(icon, {
         className: classnames('md-text-field-icon', {
+          disabled,
           active,
           error,
           'with-floating-label': useFloatingLabel,
@@ -352,6 +394,20 @@ export default class TextField extends Component {
           'single-line': !useFloatingLabel,
         }),
       });
+    } else if(type === 'password') {
+      indIcon = (
+        <button
+          type="button"
+          onClick={this._togglePasswordField}
+          className={classnames('md-password-btn', {
+            'active': passwordVisible,
+            'multi-line': useFloatingLabel,
+            'single-line': !useFloatingLabel,
+          })}
+        >
+          <FontIcon iconClassName={passwordIconClassName} children={passwordIconChildren} />
+        </button>
+      );
     }
 
     if(errorText || maxLength || helpText) {
@@ -391,7 +447,6 @@ export default class TextField extends Component {
       onSelect,
       readOnly,
       size,
-      type,
       value,
     };
 
@@ -408,21 +463,43 @@ export default class TextField extends Component {
         }
       }
 
+      let visiblePlaceholder;
+      if(active || !useFloatingLabel || block) {
+        visiblePlaceholder = placeholder || label;
+
+        if(required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        }
+      }
+
       textField = (
         <textarea
           {...textFieldProps}
-          placeholder={active || !useFloatingLabel || block ? (placeholder || label) : null}
+          placeholder={visiblePlaceholder}
           ref="textarea"
           rows={rows}
           style={areaStyle}
         />
       );
     } else {
+      let visiblePlaceholder;
+      if(!useFloatingLabel) {
+        visiblePlaceholder = placeholder || label;
+
+        if(required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        }
+      } else {
+        visiblePlaceholder = placeholder;
+      }
+
       textField = (
         <input
           {...textFieldProps}
+          ref="textField"
+          type={passwordVisible ? 'text': type}
           style={inputStyle}
-          placeholder={!useFloatingLabel ? (placeholder || label) : placeholder}
+          placeholder={visiblePlaceholder}
         />
       );
     }
@@ -431,6 +508,7 @@ export default class TextField extends Component {
       <div
         {...props}
         className={classnames('md-text-field-container', className, {
+          disabled,
           'multi-line': multiline,
           'block': block,
           'full-width': fullWidth,
@@ -446,6 +524,7 @@ export default class TextField extends Component {
             error={error}
             required={required}
             value={value}
+            disabled={disabled}
           />
           }
           {textField}

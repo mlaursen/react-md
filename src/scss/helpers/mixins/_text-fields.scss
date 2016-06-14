@@ -135,6 +135,10 @@
       padding-top: $ind-padding;
     }
   }
+
+  .md-password-btn {
+    margin-bottom: $md-text-field-mobile-divider-padding * 2;
+  }
 }
 
 /// Generates css for a text field on desktop
@@ -164,6 +168,10 @@
       padding-bottom: $ind-padding;
       padding-top: $ind-padding;
     }
+  }
+
+  .md-password-btn {
+    margin-bottom: $md-text-field-desktop-divider-padding * 2;
   }
 }
 
@@ -205,12 +213,10 @@
 /// @param {Color} $error-color [$md-red-500] - The error color to use for the text field
 ///        underlines, icons, floating labels and error message text when there is an error.
 /// @group text-fields
-@mixin md-theme-text-fields($color: $md-primary-color, $hint-color: $md-secondary-text-color, $error-color: $md-red-500) {
+@mixin md-theme-text-fields($color: $md-primary-color, $error-color: $md-red-500) {
   .md-floating-label,
   .md-text-field-message,
   .md-text-field-icon {
-    color: $hint-color;
-
     &.error {
       color: $error-color;
     }
@@ -259,6 +265,7 @@
 ///   }
 ///
 /// @param {Color} $color - The placeholder color to use
+/// @group text-fields
 @mixin md-theme-placeholders($color) {
   // scss-lint:disable VendorPrefix, PseudoElement
 
