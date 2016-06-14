@@ -39,6 +39,28 @@
   &.full-width {
     width: 100%;
   }
+
+  &.disabled {
+    @extend %md-disabled-text;
+    @include md-theme-placeholders($md-disabled-color);
+  }
+
+  // scss-lint:disable VendorPrefix, PseudoElement
+  :-moz-placeholder {
+    opacity: 1;
+  }
+
+  ::-moz-placeholder {
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    opacity: 1;
+  }
+
+  ::-webkit-input-placeholder {
+    opacity: 1;
+  }
 }
 
 .md-text-field-label {
@@ -96,12 +118,9 @@
   position: absolute;
 }
 
-.md-floating-label,
-.md-text-field-icon {
-  color: $md-hint-text-color;
-}
-
 .md-floating-label {
+  @extend %md-secondary-text;
+
   cursor: text;
   pointer-events: none;
   top: $md-text-field-floating-label-top;
@@ -110,6 +129,10 @@
 
   &.active {
     font-size: $md-text-field-active-font-size;
+  }
+
+  &.disabled {
+    @extend %md-disabled-text;
   }
 }
 
@@ -146,12 +169,20 @@
 }
 
 .md-text-field-icon {
+  @extend %md-secondary-text;
+
   margin-right: $md-text-field-icon-margin;
   transition-duration: $md-transition-time;
   transition-property: color;
+
+  &.disabled {
+    @extend %md-disabled-text;
+  }
 }
 
 .md-text-field-message {
+  @extend %md-hint-text;
+
   display: flex;
   font-size: $md-text-field-info-font-size;
   justify-content: space-between;

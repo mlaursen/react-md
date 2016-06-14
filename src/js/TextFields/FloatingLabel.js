@@ -17,6 +17,7 @@ export default class FloatingLabel extends Component {
     error: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
     required: PropTypes.bool,
+    disabled: PropTypes.bool,
     value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -24,7 +25,7 @@ export default class FloatingLabel extends Component {
   };
 
   render() {
-    const { active, error, required, value } = this.props;
+    const { active, error, required, value, disabled } = this.props;
     let { label } = this.props;
     if(required && label.indexOf('*') === -1) {
       label = label.trim() + ' *';
@@ -32,6 +33,7 @@ export default class FloatingLabel extends Component {
 
     const className= classnames('md-floating-label', {
       error,
+      disabled,
       'focus': active,
       'active': active || !!value,
     });

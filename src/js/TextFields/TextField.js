@@ -360,6 +360,7 @@ export default class TextField extends Component {
     if(icon) {
       fontIcon = React.cloneElement(icon, {
         className: classnames('md-text-field-icon', {
+          disabled,
           active,
           error,
           'with-floating-label': useFloatingLabel,
@@ -474,6 +475,7 @@ export default class TextField extends Component {
       <div
         {...props}
         className={classnames('md-text-field-container', className, {
+          disabled,
           'multi-line': multiline,
           'block': block,
           'full-width': fullWidth,
@@ -489,6 +491,7 @@ export default class TextField extends Component {
             error={error}
             required={required}
             value={value}
+            disabled={disabled}
           />
           }
           {textField}
