@@ -1,4 +1,5 @@
 import Avatar from './Avatars';
+import BottomNavigation from './BottomNavigations';
 import { FlatButton, FloatingButton, IconButton, RaisedButton } from './Buttons';
 import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, CardTitle } from './Cards';
 import Chip from './Chips';
@@ -9,6 +10,7 @@ import { SpeedDial } from './FABTransitions';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem } from './Lists';
+import Menu from './Menus';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
@@ -23,9 +25,9 @@ import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
-import Menu from './Menus';
 
 export { Avatar };
+export { BottomNavigation };
 export { Card };
 export { CardActions };
 export { CardActionOverlay };
@@ -74,6 +76,7 @@ export { Tooltip };
 
 export default {
   Avatar,
+  BottomNavigation,
   FlatButton,
   RaisedButton,
   FloatingButton,
