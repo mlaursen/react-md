@@ -594,6 +594,7 @@ export default class SelectField extends Component {
       }),
       listClassName: classnames('md-select-field-menu', listClassName, {
         'single-line': !floatingLabel,
+        'full-width': fullWidth,
       }),
       toggle,
       listStyle,
