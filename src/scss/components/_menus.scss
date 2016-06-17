@@ -41,6 +41,10 @@
     }
   }
 
+  &.full-width {
+    @extend %full-width;
+  }
+
   .md-menu-container {
     position: absolute;
   }

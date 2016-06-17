@@ -133,7 +133,7 @@ class FileInput extends Component {
     return (
       <label
         style={style}
-        className={classnames(`md-btn md-${flat ? 'flat' : 'raised'}-btn`, className, {
+        className={classnames(`md-btn md-${flat ? 'flat' : 'raised'}-btn md-file-input-btn`, className, {
           'md-primary': primary,
           'md-secondary': secondary,
         })}
