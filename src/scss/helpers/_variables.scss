@@ -6,6 +6,12 @@
 /// @group media-queries
 $md-mobile-min-width: 320px !default;
 
+/// The min width for the tablet media query.
+///
+/// @type String
+/// @group media-queries
+$md-tablet-min-width: 768px !default;
+
 
 /// The min width for the desktop media query.
 ///
@@ -797,6 +803,67 @@ $md-toolbar-title-keyline: 72px;
 
 
 // ===================================================================================
+// Navigation Drawers
+// ===================================================================================
+
+/// The width for the navigation drawer on mobile devices.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mobile-left: calc(-100% - 56px) !default;
+
+/// The width for the navigation drawer on mobile devices.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mobile-width: calc(100% - 56px) !default;
+
+/// The width for the navigation drawer on desktops.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-desktop-width: 256px !default;
+
+/// The width for a mini navigation drawer that has not been opened.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mini-width: 72px !default;
+
+/// The max width for a navigation drawer on mobile devices.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-mobile-max-width: 320px;
+
+/// the max width for a navigation drawer on desktop devices.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-desktop-max-width: 400px;
+
+
+/// The transition time for the navigation drawer to slide in and out of view.
+///
+/// @type String
+/// @group navigation-drawers
+$md-navigation-drawer-transition-time: $md-transition-time * 2 !default;
+
+/// The distance that the cross-fade transition should move.
+///
+/// @type String
+/// @group navigation-drawers
+$md-cross-fade-distance: 10px !default;
+
+/// The transition time for the cross-fade transition.
+///
+/// @type Time
+/// @group navigation-drawers
+$md-cross-fade-transition-time: $md-transition-time * 2 !default;
+
+
+
+// ===================================================================================
 // Sidebars
 // ===================================================================================
 
@@ -810,13 +877,15 @@ $md-sidebar-open-width: 256px !default;
 ///
 /// @type String
 /// @group sidebars
-$md-sidebar-mobile-max-width: 320px;
+/// @alias md-navigation-drawer-mobile-max-width
+$md-sidebar-mobile-max-width: $md-navigation-drawer-mobile-max-width;
 
 /// The max open width for the sidebar that is docked to the left.
 ///
 /// @type String
 /// @group sidebars
-$md-sidebar-desktop-max-width: 400px;
+/// @alias md-navigation-drawer-desktop-max-width
+$md-sidebar-desktop-max-width: $md-navigation-drawer-desktop-max-width;
 
 
 
@@ -855,7 +924,7 @@ $md-snackbar-lr-padding: 24px;
 /// @group snackbars
 $md-snackbar-tb-padding: 14px;
 
-/// The margin left for the action button in a sidebar.
+/// The margin left for the action button in a snackbar.
 ///
 /// @type String
 /// @group snackbars
@@ -1567,37 +1636,6 @@ $md-tooltip-desktop-lr-padding: 8px;
 /// @type String
 /// @group tooltips
 $md-tooltip-desktop-height: 22px;
-
-
-
-// ===================================================================================
-// Navigation Drawers
-// ===================================================================================
-
-/// The width for the navigation drawer on mobile devices.
-///
-/// @type String
-/// @group navigation-drawers
-$md-navigation-drawer-mobile-left: calc(-100% - 56px) !default;
-
-/// The width for the navigation drawer on mobile devices.
-///
-/// @type String
-/// @group navigation-drawers
-$md-navigation-drawer-mobile-width: calc(100% - 56px) !default;
-
-/// The width for the navigation drawer on desktops.
-///
-/// @type String
-/// @group navigation-drawers
-$md-navigation-drawer-desktop-width: 256px !default;
-
-///
-///
-/// @type String
-/// @group navigation-drawers
-$md-navigation-drawer-mini-width: 72px !default;
-
 
 
 // ===================================================================================

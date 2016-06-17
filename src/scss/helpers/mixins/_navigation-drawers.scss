@@ -1,7 +1,29 @@
+/// Styles the navigation drawer component to use a specific toolbar height at a
+/// media screen size.
+///
+/// @access private
+/// @param {String} $height - The current height of the toolbar for this media size
+/// @group navigation-drawers
 @mixin md-navigation-drawer-media($height) {
-  .md-navigation-drawer-content,
-  .md-navigation-drawer.mini:not(.active) {
+  .md-navigation-drawer-content {
     padding-top: $height;
+  }
+
+  .md-navigation-drawer {
+    &.clipped,
+    &.floating,
+    &.mini:not(.active) {
+      max-height: calc(100vh - #{$height});
+    }
+
+    &.mini:not(.active) {
+      top: $height;
+    }
+
+    &.clipped,
+    &.floating {
+      margin-top: $height;
+    }
   }
 
   .md-drawer-header,
@@ -19,34 +41,59 @@
   }
 }
 
+/// Styles the navigation drawer component for a portait mobile device
+///
+/// @group navigation-drawers
 @mixin md-navigation-drawer-mobile-portrait() {
   @include md-navigation-drawer-media($md-toolbar-mobile-portrait-height);
 }
 
+/// Styles the navigation drawer component for a landscape mobile device
+///
+/// @group navigation-drawers
 @mixin md-navigation-drawer-mobile-landscape() {
   @include md-navigation-drawer-media($md-toolbar-mobile-landscape-height);
 }
 
+/// Styles the navigation drawer component for a landscape tablet device
+///
+/// @group navigation-drawers
+@mixin md-navigation-drawer-tablet-landscape() {
+  @include md-navigation-drawer-landscape-devices();
+}
+
+/// Styles the navigation drawer component for a mobile device. This updates
+/// the drawer so it will always be temporary and updates the width.
+///
+/// @group navigation-drawers
 @mixin md-navigation-drawer-mobile() {
   .md-navigation-drawer {
-    left: $md-navigation-drawer-mobile-left;
-    max-width: $md-sidebar-mobile-max-width;
+    @include md-box-shadow(3);
+
+    max-width: $md-navigation-drawer-mobile-max-width;
     width: $md-navigation-drawer-mobile-width;
+    z-index: $md-navigation-drawer-temporary-z-index;
 
-    &.active {
-      @include md-box-shadow(3);
-
-      z-index: $md-navigation-drawer-temporary-z-index;
+    &.mini.active {
+      width: $md-navigation-drawer-mobile-width;
     }
+  }
+
+  .drawer-enter,
+  .drawer-leave.drawer-leave-active {
+    left: $md-navigation-drawer-mobile-left;
   }
 }
 
-@mixin md-navigation-drawer-desktop() {
-  @include md-navigation-drawer-media($md-toolbar-desktop-height);
 
+/// Styles the navigation drawer component for larger screened landscape
+/// devices. This should be used for landscape tablets and desktop screens.
+///
+/// @access private
+/// @group navigation-drawers
+@mixin md-navigation-drawer-landscape-devices() {
   .md-navigation-drawer {
-    left: -$md-navigation-drawer-desktop-width;
-    max-width: $md-sidebar-desktop-max-width;
+    max-width: $md-navigation-drawer-desktop-max-width;
     width: $md-navigation-drawer-desktop-width;
 
     &.floating {
@@ -55,9 +102,11 @@
 
     &.floating,
     &.clipped {
-      height: calc(100vh - #{$md-toolbar-desktop-height});
-      margin-top: $md-toolbar-desktop-height;
       z-index: $md-navigation-drawer-z-index - 5;
+    }
+
+    &.mini.active {
+      width: $md-navigation-drawer-desktop-width;
     }
   }
 
@@ -70,14 +119,23 @@
     }
   }
 
-  .md-navigation-drawer-content {
-    &:not(.temporary) {
-      &.active {
-        padding-left: $md-navigation-drawer-desktop-width;
-        width: 100%;
-      }
-    }
+  .md-navigation-drawer-content.active {
+    padding-left: $md-navigation-drawer-desktop-width;
+    width: 100%;
   }
+
+  .drawer-enter,
+  .drawer-leave.drawer-leave-active {
+    left: -$md-navigation-drawer-desktop-width;
+  }
+}
+
+/// Styles the navigation drawer component for desktop displays.
+///
+/// @group navigation-drawers
+@mixin md-navigation-drawer-desktop() {
+  @include md-navigation-drawer-media($md-toolbar-desktop-height);
+  @include md-navigation-drawer-landscape-devices();
 }
 
 /// Themes the navigation drawers with the given color

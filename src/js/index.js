@@ -1,4 +1,5 @@
 import Avatar from './Avatars';
+import BottomNavigation from './BottomNavigations';
 import { FlatButton, FloatingButton, IconButton, RaisedButton } from './Buttons';
 import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, CardTitle } from './Cards';
 import Chip from './Chips';
@@ -6,9 +7,11 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogCol
 import Dialog from './Dialogs';
 import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
+import FileInput, { FileUpload } from './FileInput';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem } from './Lists';
+import Menu from './Menus';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
@@ -25,6 +28,7 @@ import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
 
 export { Avatar };
+export { BottomNavigation };
 export { Card };
 export { CardActions };
 export { CardActionOverlay };
@@ -42,12 +46,15 @@ export { Divider };
 export { EditDialogColumn };
 export { FlatButton };
 export { FloatingButton };
+export { FileInput };
+export { FileUpload };
 export { FontIcon };
 export { IconButton };
 export { Ink };
 export { LinearProgress };
 export { List };
 export { ListItem };
+export { Menu };
 export { NavigationDrawer };
 export { Paper };
 export { Radio };
@@ -72,6 +79,7 @@ export { Tooltip };
 
 export default {
   Avatar,
+  BottomNavigation,
   FlatButton,
   RaisedButton,
   FloatingButton,
@@ -99,7 +107,10 @@ export default {
   Chip,
   Dialog,
   Divider,
+  FileInput,
+  FileUpload,
   FontIcon,
+  Menu,
   NavigationDrawer,
   Ink,
   Paper,

@@ -1,5 +1,5 @@
 /*eslint-env jest*/
-jest.unmock('../_NavigationDrawer');
+jest.unmock('../NavigationDrawer');
 
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
@@ -10,7 +10,7 @@ import {
   scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
-import NavigationDrawer from '../_NavigationDrawer';
+import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../Drawer';
 import DrawerToolbar from '../DrawerToolbar';
 import Overlay from '../../Transitions/Overlay';
@@ -39,7 +39,13 @@ describe('NavigationDrawer', () => {
     };
 
     let nav = renderIntoDocument(<NavigationDrawer {...props} />);
-    nav.setState({ mobile: false, tablet: false, desktop: true });
+    // since there is no window object for media queries
+    nav.setState({
+      mobile: false,
+      tablet: false,
+      desktop: true,
+      drawerType: 'full-height',
+    });
 
     let drawers = scryRenderedComponentsWithType(nav, Drawer);
     expect(drawers.length).toBe(1);

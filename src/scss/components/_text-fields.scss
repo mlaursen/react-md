@@ -1,6 +1,5 @@
 .md-text-field-container {
   @include md-theme-placeholders($md-secondary-text-color);
-
   display: inline-block;
   vertical-align: top;
 
@@ -38,6 +37,28 @@
 
   &.full-width {
     width: 100%;
+  }
+
+  &.disabled {
+    @extend %md-disabled-text;
+    @include md-theme-placeholders($md-disabled-color);
+  }
+
+  // scss-lint:disable VendorPrefix, PseudoElement
+  :-moz-placeholder {
+    opacity: 1;
+  }
+
+  ::-moz-placeholder {
+    opacity: 1;
+  }
+
+  :-ms-input-placeholder {
+    opacity: 1;
+  }
+
+  ::-webkit-input-placeholder {
+    opacity: 1;
   }
 }
 
@@ -96,12 +117,9 @@
   position: absolute;
 }
 
-.md-floating-label,
-.md-text-field-icon {
-  color: $md-hint-text-color;
-}
-
 .md-floating-label {
+  @extend %md-secondary-text;
+
   cursor: text;
   pointer-events: none;
   top: $md-text-field-floating-label-top;
@@ -110,6 +128,10 @@
 
   &.active {
     font-size: $md-text-field-active-font-size;
+  }
+
+  &.disabled {
+    @extend %md-disabled-text;
   }
 }
 
@@ -146,12 +168,20 @@
 }
 
 .md-text-field-icon {
+  @extend %md-secondary-text;
+
   margin-right: $md-text-field-icon-margin;
   transition-duration: $md-transition-time;
   transition-property: color;
+
+  &.disabled {
+    @extend %md-disabled-text;
+  }
 }
 
 .md-text-field-message {
+  @extend %md-hint-text;
+
   display: flex;
   font-size: $md-text-field-info-font-size;
   justify-content: space-between;
@@ -179,4 +209,22 @@
 
 .md-text-field-ind {
   color: $md-icon-color;
+}
+
+.md-password-btn {
+  @extend %button-unstyled;
+  @extend %clickable;
+  @extend %md-hint-text;
+
+  height: $md-font-icon-size;
+  padding-left: $md-default-padding;
+  vertical-align: bottom;
+
+  &.active {
+    @extend %md-secondary-text;
+  }
+
+  .md-icon {
+    color: inherit;
+  }
 }
