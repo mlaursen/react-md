@@ -7,6 +7,7 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogCol
 import Dialog from './Dialogs';
 import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
+import FileInput, { FileUpload } from './FileInput';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem } from './Lists';
@@ -45,6 +46,8 @@ export { Divider };
 export { EditDialogColumn };
 export { FlatButton };
 export { FloatingButton };
+export { FileInput };
+export { FileUpload };
 export { FontIcon };
 export { IconButton };
 export { Ink };
@@ -104,6 +107,8 @@ export default {
   Chip,
   Dialog,
   Divider,
+  FileInput,
+  FileUpload,
   FontIcon,
   Menu,
   NavigationDrawer,
