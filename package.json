@@ -9,12 +9,13 @@
     "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --out-dir=./lib",
     "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
-    "prebuild": "npm test && rimraf lib",
     "lint:styles": "scss-lint src/scss",
     "lint:scripts": "eslint -c .eslintrc src/js/**",
     "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src/js/**",
-    "build": "npm run scripts && npm run styles"
+    "build:umd": "webpack --config ./webpack.config.js --progress --colors",
+    "prebuild": "rimraf lib && rimraf dist && npm run lint",
+    "build": "npm run scripts && npm run build:umd && npm run styles"
   },
   "repository": {
     "type": "git",
