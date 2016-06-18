@@ -39,6 +39,8 @@ If the device orientation, the `mobileDrawerType` will be used instead.
 
 The `desktopDrawerType` will be used if the media query matches the `desktopMinWidth`.
 
+There is also a new prop: `initialDrawerType` that will help with Server Side Rendering. This should either be `'mobile'`, `'tablet'`, or `'desktop'`. It will then set the drawer type to the corresponding drawer type on initial render. (Before it always rendered the desktop until it was fully mounted). This new prop should be used along with the `initiallyOpen` prop to render the mobile devices correctly without forcing the menu to open and close initially.
+
 
 #### onDrawerChange
 
