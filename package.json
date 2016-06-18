@@ -8,7 +8,7 @@
     "test:watch": "BABEL_ENV=test jest --watch",
     "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --out-dir=./lib",
     "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
-    "styles": "sass --style expanded --line ./src/scss/react-md.scss ./lib/react-md.css && sass --style compact ./src/scss/react-md.scss ./lib/react-md.min.css",
+    "styles": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
     "lint:styles": "scss-lint src/scss",
     "lint:scripts": "eslint -c .eslintrc src/js/**",
     "lint": "npm run lint:styles && npm run lint:scripts",
