@@ -7,7 +7,7 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogCol
 import Dialog from './Dialogs';
 import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
-import FileInput, { FileUpload } from './FileInput';
+import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem } from './Lists';
