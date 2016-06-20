@@ -74,7 +74,7 @@ export default class Menu extends Component {
     /**
      * The position that the menu should appear from.
      */
-    position: PropTypes.oneOf(Object.keys(Menu.Positions).map(key => Menu.Positions[key])),
+    position: PropTypes.oneOf([ Menu.Positions.TOP_RIGHT, Menu.Positions.TOP_LEFT, Menu.Positions.BOTTOM_RIGHT, Menu.Positions.BOTTOM_LEFT, Menu.Positions.BELOW ]),
 
     /**
      * An optional function that will force the menu to close. This is used so that the
