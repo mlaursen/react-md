@@ -474,7 +474,7 @@ export default class TextField extends Component {
         if(required && visiblePlaceholder.indexOf('*') === -1) {
           visiblePlaceholder = visiblePlaceholder.trim() + ' *';
         }
-      } else if(active) {
+      } else if(active || !!value) {
         visiblePlaceholder = placeholder;
       }
 
