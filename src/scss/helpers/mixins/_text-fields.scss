@@ -223,7 +223,7 @@
   }
 
   .md-text-field-icon.active,
-  .md-floating-label.active:not(.error) {
+  .md-floating-label.focus:not(.error) {
     color: $color;
   }
 

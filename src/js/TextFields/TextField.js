@@ -331,7 +331,9 @@ export default class TextField extends Component {
   render() {
     const { active, currentRows, areaHeight, passwordVisible } = this.state;
     const {
+      style,
       className,
+      inputStyle,
       inputClassName,
       label,
       placeholder,
@@ -346,26 +348,17 @@ export default class TextField extends Component {
       lineDirection,
       rows,
       maxRows,
-      inputStyle,
       disabled,
       required,
       helpOnFocus,
       block,
       fullWidth,
-      readOnly,
-      size,
-      onInput,
-      onInvalid,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
-      onSelect,
-      onClick,
       type,
       ...props,
     } = this.props;
 
     delete props.defaultValue;
+    delete props.value;
     delete props.onBlur;
     delete props.onChange;
     delete props.onFocus;
@@ -425,6 +418,7 @@ export default class TextField extends Component {
     }
 
     const textFieldProps = {
+      ...props,
       className: classnames('md-text-field', inputClassName, {
         active,
         'floating-label': useFloatingLabel,
@@ -438,15 +432,6 @@ export default class TextField extends Component {
       onBlur: this.handleBlur,
       onChange: this.handleChange,
       onFocus: this.handleFocus,
-      onClick,
-      onInput,
-      onInvalid,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
-      onSelect,
-      readOnly,
-      size,
       value,
     };
 
@@ -489,7 +474,7 @@ export default class TextField extends Component {
         if(required && visiblePlaceholder.indexOf('*') === -1) {
           visiblePlaceholder = visiblePlaceholder.trim() + ' *';
         }
-      } else {
+      } else if(active) {
         visiblePlaceholder = placeholder;
       }
 
@@ -506,7 +491,7 @@ export default class TextField extends Component {
 
     return (
       <div
-        {...props}
+        style={style}
         className={classnames('md-text-field-container', className, {
           disabled,
           'multi-line': multiline,
