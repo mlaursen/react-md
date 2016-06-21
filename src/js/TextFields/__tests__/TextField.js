@@ -182,19 +182,27 @@ describe('TextField', () => {
     expect(input.getAttribute('placeholder')).toBe('Placeholder');
   });
 
-  it('allows both a placeholder and a label when floatingLabel is true', () => {
-    const textField = renderIntoDocument(
-      <TextField
-        label="Label"
-        placeholder="Placeholder"
-        floatingLabel={true}
-      />
-    );
+  it('displays both a placeholder and a label when floatingLabel is true and the text field has a value or focus', () => {
+    let props = {
+      label: 'Label',
+      placeholder: 'Placeholder',
+      floatingLabel: true,
+    };
 
-    const input = findRenderedDOMComponentWithTag(textField, 'input');
-    const label = findRenderedComponentWithType(textField, FloatingLabel);
-    expect(input.getAttribute('placeholder')).toBe('Placeholder');
-    expect(label.props.label).toBe('Label');
+    let textField = renderIntoDocument(<TextField {...props} />);
+    let label = findRenderedComponentWithType(textField, FloatingLabel);
+    let input = findRenderedDOMComponentWithTag(textField, 'input');
+    expect(label.props.label).toBe(props.label);
+    expect(input.getAttribute('placeholder')).toBe(null);
+
+    Simulate.focus(input);
+    expect(input.getAttribute('placeholder')).toBe(props.placeholder);
+
+    props = Object.assign({}, props, { value: 'Abcd' });
+    label = findRenderedComponentWithType(textField, FloatingLabel);
+    input = findRenderedDOMComponentWithTag(textField, 'input');
+    expect(label.props.label).toBe(props.label);
+    expect(input.getAttribute('placeholder')).toBe(props.placeholder);
   });
 
   it('renders the FloatingLabel component with correct props', () => {
