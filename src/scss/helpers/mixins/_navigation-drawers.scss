@@ -81,7 +81,7 @@
 
   .drawer-enter,
   .drawer-leave.drawer-leave-active {
-    left: $md-navigation-drawer-mobile-left;
+    transform: translate3d($md-navigation-drawer-mobile-left, 0, 0);
   }
 }
 
@@ -126,7 +126,7 @@
 
   .drawer-enter,
   .drawer-leave.drawer-leave-active {
-    left: -$md-navigation-drawer-desktop-width;
+    transform: translate3d(-$md-navigation-drawer-desktop-width, 0, 0);
   }
 }
 

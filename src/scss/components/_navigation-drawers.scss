@@ -104,12 +104,12 @@
 
 .drawer-leave,
 .drawer-enter.drawer-enter-active {
-  left: 0;
+  transform: translate3d(0, 0, 0);
 }
 
 .drawer-enter-active,
 .drawer-leave-active {
-  transition: left $md-navigation-drawer-transition-time;
+  transition: transform $md-navigation-drawer-transition-time;
 }
 
 .cross-fade-enter {
