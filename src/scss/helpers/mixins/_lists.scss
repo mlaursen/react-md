@@ -102,6 +102,14 @@
     }
   }
 
+  .md-list-item:hover {
+    cursor: pointer;
+  }
+
+  .md-list-tile:hover:not([disabled]) {
+    background: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+  }
+
   .md-tile-primary-text,
   .md-tile-secondary-text {
     font-size: $md-list-desktop-font-size;

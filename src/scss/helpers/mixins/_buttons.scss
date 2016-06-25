@@ -79,3 +79,18 @@
   }
 }
 
+
+@mixin md-buttons-desktop() {
+
+  .md-btn:hover:not([disabled]) {
+    cursor: pointer;
+  }
+
+  .md-raised-btn,
+  .md-floating-btn,
+  .md-flat-btn {
+    &:hover {
+      background: $md-btn-hover-color;
+    }
+  }
+}

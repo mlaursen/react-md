@@ -26,10 +26,6 @@
 }
 
 .md-list-item {
-  &:hover {
-    cursor: pointer;
-  }
-
   &.primary-action,
   &.secondary-action {
     padding-left: $md-default-padding;
@@ -66,10 +62,6 @@
   padding-right: $md-default-padding;
   position: relative;
   transition: background $md-transition-time;
-
-  &:not([disabled]):hover {
-    background: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
-  }
 
   &:focus {
     outline: none;
