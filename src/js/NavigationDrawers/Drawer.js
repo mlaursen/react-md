@@ -86,6 +86,11 @@ export default class Drawer extends Component {
     isOpen: PropTypes.bool.isRequired,
 
     /**
+     * Boolean if this is a drawer on a mobile device.
+     */
+    mobile: PropTypes.bool,
+
+    /**
      * The nav items to display in the drawer.
      *
      * @see NavigationDrawer for more info
@@ -162,6 +167,7 @@ export default class Drawer extends Component {
       isOpen,
       children,
       autoclose,
+      mobile,
     } = this.props;
 
     const items = navItems.map(this.mapItemsToComponents);
@@ -184,7 +190,10 @@ export default class Drawer extends Component {
       <nav
         style={style}
         className={classnames('md-navigation-drawer', className, drawerType, {
+          mobile,
           'active': mini && isOpen,
+          'mobile-inactive': mobile && !isOpen,
+          'mobile-active': mobile && isOpen,
         })}
       >
         {header}
