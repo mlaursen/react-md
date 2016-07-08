@@ -288,6 +288,9 @@ export default class EditDialogColumn extends Component {
     delete props.defaultValue;
     delete props.onOkClick;
     delete props.onCancelClick;
+    delete props.header;
+    delete props.okOnOutsideClick;
+    delete props.transitionDuration;
 
     const value = this.getValue();
     let actions, largeTitle;

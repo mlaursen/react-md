@@ -132,6 +132,10 @@ export default class SwipeableView extends Component {
 
   render() {
     const { className, children, ...props } = this.props;
+    delete props.activeIndex;
+    delete props.initialIndex;
+    delete props.threshold;
+
     const { swipeItemStyle, swiping } = this.state;
 
     const content = React.Children.map(children, (child, i) => {
@@ -142,10 +146,13 @@ export default class SwipeableView extends Component {
       });
     });
 
+    if(props.transitionName) {
+      props.component = 'section';
+    }
+
     return React.createElement(props.transitionName ? CSSTransitionGroup : 'section', {
       ...props,
       ref: 'container',
-      component: 'section',
       className: classnames('md-swipeable-view', className, { swiping }),
       onTouchStart: this.handleSwipeStart,
       onTouchMove: this.handleSwipeMove,

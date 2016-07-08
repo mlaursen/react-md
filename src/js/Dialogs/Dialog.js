@@ -131,6 +131,9 @@ export default class Dialog extends Component {
       isFullPage,
       ...props,
     } = this.props;
+    delete props.pageX;
+    delete props.pageY;
+
     const { stacked, divided } = this.state;
 
     let header, footer;

@@ -223,7 +223,7 @@ export default class DialogContainer extends Component {
         transitionName={transitionName}
         transitionEnter={transitionEnter}
         transitionEnterTimeout={transitionEnterTimeout}
-        transisionLeave={transitionLeave}
+        transitionLeave={transitionLeave}
         transitionLeaveTimeout={transitionLeaveTimeout}
         className={classnames('md-dialog-container', className, {
           'open': isOpen || this.state.openClassName,

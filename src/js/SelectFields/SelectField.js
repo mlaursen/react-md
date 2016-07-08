@@ -551,6 +551,8 @@ export default class SelectField extends Component {
       fullWidth,
       ...props,
     } = this.props;
+    delete props.noAutoAdjust;
+    delete props.initiallyOpen;
 
     const displayLabel = this.getValue();
     const below = Menu.Positions.BELOW === position;

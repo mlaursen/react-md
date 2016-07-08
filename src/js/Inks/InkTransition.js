@@ -47,6 +47,10 @@ export default class InkTransition extends Component {
   };
 
   render() {
-    return <div className="md-ink" {...this.props} />;
+    const { ...props } = this.props;
+    delete props.transitionEnterTimeout;
+    delete props.transitionLeaveTimeout;
+
+    return <div className="md-ink" {...props} />;
   }
 }

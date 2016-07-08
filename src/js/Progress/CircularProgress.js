@@ -120,7 +120,6 @@ export default class CircularProgress extends Component {
         width={scale * BASE_SIZE}
         height={scale * BASE_SIZE}
         viewBox="0 0 66 66"
-        xmlns="http://www.w3.org/2000/svg"
       >
         <circle
           className="md-circular-progress-path"

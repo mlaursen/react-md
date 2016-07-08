@@ -64,6 +64,8 @@ export default class CardTitle extends Component {
 
   render() {
     const { title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
+    delete props.expandable;
+
     return (
       <div {...props} className={classnames('md-card-title', className, { 'title-large': !!avatar, 'card-expander': isExpander })}>
         {avatar}

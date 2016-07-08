@@ -118,6 +118,11 @@ export default class Card extends Component {
 
   render() {
     const { className, children, raise, ...props } = this.props;
+    delete props.iconChildren;
+    delete props.iconClassName;
+    delete props.initiallyExpanded;
+    delete props.expanderTooltipLabel;
+    delete props.expanderTooltipPosition;
 
     let expanderIndex = -1;
     const cardChildren = React.Children.map(children, (child, i) => {

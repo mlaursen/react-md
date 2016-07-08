@@ -206,6 +206,9 @@ export default class Tabs extends Component {
 
   render() {
     const { className, children, style, fixedWidth, centered, primary, ...remainingProps } = this.props;
+    delete remainingProps.scrollable;
+    delete remainingProps.initialActiveTabIndex;
+
     const { headerStyle, indicatorStyle, tabScrolling } = this.state;
     const activeTabIndex = this.getActiveTabIndex(remainingProps, this.state);
 
