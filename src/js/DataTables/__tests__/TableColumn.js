@@ -30,7 +30,7 @@ class Table extends React.Component {
         <TableBody>
           <TableRow>
             {this.props.children}
-            <td>dummy</td>
+            <TableColumn>dummy</TableColumn>
           </TableRow>
         </TableBody>
       </DataTable>

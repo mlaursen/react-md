@@ -36,8 +36,8 @@ describe('Menu', () => {
         listStyle={listStyle}
         listClassName={listClassName}
       >
-        <li>A</li>
-        <li>A</li>
+        <ListItem primaryText="A" />
+        <ListItem primaryText="A" />
       </Menu>
     );
 
@@ -114,8 +114,8 @@ describe('Menu', () => {
   it('toggles the visibility of the items when opened', () => {
     let menu = renderIntoDocument(
       <Menu isOpen={false}>
-        <li>1</li>
-        <li>2</li>
+        <ListItem primaryText="1" />
+        <ListItem primaryText="2" />
       </Menu>
     );
 
@@ -126,8 +126,8 @@ describe('Menu', () => {
 
     menu = renderIntoDocument(
       <Menu isOpen={true}>
-        <li>1</li>
-        <li>2</li>
+        <ListItem primaryText="1" />
+        <ListItem primaryText="2" />
       </Menu>
     );
 
