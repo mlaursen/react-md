@@ -123,6 +123,7 @@ export default class Card extends Component {
     delete props.initiallyExpanded;
     delete props.expanderTooltipLabel;
     delete props.expanderTooltipPosition;
+    delete props.onExpanderClick;
 
     let expanderIndex = -1;
     const cardChildren = React.Children.map(children, (child, i) => {

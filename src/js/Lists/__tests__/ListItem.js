@@ -71,7 +71,8 @@ describe('ListItem', () => {
   it('renders an optional React component inside the li component and passes remaining props to the component', () => {
     class Custom extends React.Component {
       render() {
-        return <section {...this.props} />;
+        const { customProp, what, ...props } = this.props; // eslint-disable-line no-unused-vars,react/prop-types
+        return <section {...props} />;
       }
     }
 
