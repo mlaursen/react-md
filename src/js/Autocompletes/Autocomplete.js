@@ -154,6 +154,18 @@ export default class Autocomplete extends Component {
     onChange: PropTypes.func,
 
     /**
+     * An optional function to call when the `Autocomplete`'s text field is focused.
+     */
+    onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the entire `Autocomplete` component is blurred.
+     * This will be triggered when the window is clicked or when a user tabs away from
+     * the autocomplete.
+     */
+    onBlur: PropTypes.func,
+
+    /**
      * Boolean if this text field should be styled as a full width text field.
      * Floating labels and the text field indicator will be removed automatically.
      */
@@ -169,6 +181,25 @@ export default class Autocomplete extends Component {
      * of in a `Menu`.
      */
     inline: PropTypes.bool,
+
+    /**
+     * An optional function to call when an autocomplete suggestion is clicked either
+     * by using the mouse, the enter/space key, or touch. The match index and current
+     * `dataLabel` will be given back.
+     *
+     * `onItemClick(suggestionIndex, suggestion[dataLabel] || suggestion);`
+     */
+    onItemClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the `Autocomplete` suggestion menu opens.
+     */
+    onMenuOpen: PropTypes.func,
+
+    /**
+     * An optional function to call when the `Autocomplete` suggestion menu closes.
+     */
+    onMenuClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -221,19 +252,25 @@ export default class Autocomplete extends Component {
   componentWillUpdate(nextProps, nextState) {
     if(this.state.isOpen !== nextState.isOpen) {
       window[(nextState.isOpen ? 'add' : 'remove') + 'EventListener']('click', this._handleOutsideClick);
+
+      const menuFn = nextProps[`onMenu${nextState.isOpen ? 'Open' : 'Close'}`];
+      menuFn && menuFn();
     }
 
     if(nextProps.data !== this.props.data) {
       const { data, filter, dataLabel } = nextProps;
 
+      const matches = filter ? filter(data, nextState.value, dataLabel) : data;
       this.setState({
-        matches: filter ? filter(data, nextState.value, dataLabel) : data,
+        matches,
+        isOpen: !!matches.length,
       });
     }
   }
 
   _handleOutsideClick = (e) => {
     onOutsideClick(e, this._menu, () => {
+      this.props.onBlur && this.props.onBlur();
       this.setState({ isOpen: false });
     });
   }
@@ -253,7 +290,8 @@ export default class Autocomplete extends Component {
     this.setState({ matches, isOpen: !!matches.length, value });
   };
 
-  _handleFocus = () => {
+  _handleFocus = (e) => {
+    this.props.onFocus && this.props.onFocus(e);
     this.setState({
       matchIndex: -1,
       isOpen: !this.state.manualFocus && !!this.state.matches.length,
@@ -262,26 +300,29 @@ export default class Autocomplete extends Component {
   };
 
   _handleTab = (e) => {
-    const { matches, value, isOpen } = this.state;
+    this.props.onBlur && this.props.onBlur(e);
 
-    const nextState = {};
-    if(isOpen && matches.length) {
-      let [match] = matches;
-      if(typeof match === 'object') {
-        match = match[this.props.dataLabel];
-      }
+    this.setState({ isOpen: false });
+    //const { matches, value, isOpen } = this.state;
 
-      if(value !== match) {
-        e.preventDefault();
-        nextState.value = match;
-      } else {
-        nextState.isOpen = false;
-      }
-    } else {
-      nextState.isOpen = false;
-    }
+    //const nextState = {};
+    //if(isOpen && matches.length) {
+    //  let [match] = matches;
+    //  if(typeof match === 'object') {
+    //    match = match[this.props.dataLabel];
+    //  }
 
-    this.setState(nextState);
+    //  if(value !== match) {
+    //    e.preventDefault();
+    //    nextState.value = match;
+    //  } else {
+    //    nextState.isOpen = false;
+    //  }
+    //} else {
+    //  nextState.isOpen = false;
+    //}
+
+    //this.setState(nextState);
   };
 
   _handleKeyDown = (e) => {
@@ -320,9 +361,12 @@ export default class Autocomplete extends Component {
     this.setState({
       isOpen: false,
       manualFocus: true,
-      matches: filter(data, value, dataLabel),
+      matches: filter ? filter(data, value, dataLabel) : matches,
       value,
-    }, () => this.refs.textField.focus());
+    }, () => {
+      this.props.onItemClick && this.props.onItemClick(value, index);
+      this.refs.textField.focus();
+    });
   };
 
   _focusSuggestion = (negative, e) => {
@@ -364,9 +408,9 @@ export default class Autocomplete extends Component {
         break;
       default:
         props = {
+          ...match,
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
-          ...match,
         };
     }
 
@@ -388,6 +432,10 @@ export default class Autocomplete extends Component {
     delete props.dataValue;
     delete props.filter;
     delete props.data;
+    delete props.onItemClick;
+    delete props.onMenuOpen;
+    delete props.onMenuClose;
+    delete props.onBlur;
 
     const autocomplete = (
       <TextField
@@ -401,7 +449,6 @@ export default class Autocomplete extends Component {
         block={block}
       />
     );
-
 
     return (
       <Menu
