@@ -35,7 +35,7 @@ export default class FloatingLabel extends Component {
       error,
       disabled,
       'focus': active,
-      'active': active || !!value,
+      'active': active || value !== '',
     });
 
     return <span className={className}>{label}</span>;
