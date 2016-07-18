@@ -11,6 +11,10 @@ import TextField from '../TextFields';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
 
+/**
+ * The `Autocomplete` component is useful for presenting real-time suggestions, completions,
+ * or filtering.
+ */
 export default class Autocomplete extends Component {
   constructor(props) {
     super(props);
