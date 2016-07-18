@@ -49,6 +49,9 @@ export default class Subheader extends Component {
 
   render() {
     const { component, inset, primary, primaryText, className, ...props } = this.props;
+    delete props.expanderIconChildren;
+    delete props.expanderIconClassName;
+
     return React.createElement(component, {
       ...props,
       className: classnames('md-subheader', className, {

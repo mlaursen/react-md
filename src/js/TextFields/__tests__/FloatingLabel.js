@@ -32,6 +32,7 @@ describe('FloatingLabel', () => {
       active: false,
       error: false,
       label: 'Hello World',
+      value: '',
     };
     let label = renderIntoDocument(<FloatingLabel {...props} />);
     let className = findDOMNode(label).className;
