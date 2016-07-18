@@ -139,6 +139,22 @@
   .md-password-btn {
     margin-bottom: $md-text-field-mobile-divider-padding * 2;
   }
+
+  .md-autocomplete-suggestion {
+    font-size: $md-text-field-mobile-font-size;
+
+    &.single-line {
+      bottom: 12px;
+    }
+
+    &.floating {
+      bottom: 15px;
+    }
+
+    &.block {
+      bottom: 16px;
+    }
+  }
 }
 
 /// Generates css for a text field on desktop
@@ -172,6 +188,22 @@
 
   .md-password-btn {
     margin-bottom: $md-text-field-desktop-divider-padding * 2;
+  }
+
+  .md-autocomplete-suggestion {
+    font-size: $md-text-field-desktop-font-size;
+
+    &.single-line {
+      bottom: 10px;
+    }
+
+    &.floating {
+      bottom: 9px;
+    }
+
+    &.block {
+      bottom: 15px;
+    }
   }
 }
 
