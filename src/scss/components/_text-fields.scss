@@ -228,3 +228,20 @@
     color: inherit;
   }
 }
+
+.md-autocomplete {
+  display: inline-block;
+  position: relative;
+
+  &.full-width {
+    @extend %full-width;
+  }
+}
+
+.md-autocomplete-suggestion {
+  @extend %md-secondary-text;
+
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}

@@ -1,3 +1,4 @@
+import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
 import BottomNavigation from './BottomNavigations';
 import { FlatButton, FloatingButton, IconButton, RaisedButton } from './Buttons';
@@ -7,7 +8,7 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogCol
 import Dialog from './Dialogs';
 import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
-import FileInput, { FileUpload } from './FileInput';
+import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
 import Ink from './Inks';
 import { List, ListItem } from './Lists';
@@ -27,6 +28,7 @@ import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
 
+export { Autocomplete };
 export { Avatar };
 export { BottomNavigation };
 export { Card };
@@ -78,6 +80,7 @@ export { Toolbar };
 export { Tooltip };
 
 export default {
+  Autocomplete,
   Avatar,
   BottomNavigation,
   FlatButton,

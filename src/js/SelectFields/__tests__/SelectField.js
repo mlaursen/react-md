@@ -107,7 +107,7 @@ describe('SelectField', () => {
   });
 
   it('opens the menu when the text field is clicked', () => {
-    const select = renderIntoDocument(<SelectField items={[1, 2]} />);
+    const select = renderIntoDocument(<SelectField menuItems={[1, 2]} />);
     // Need to mock the calc function since it crashes on querySelector
     select.calcMenuPosition = jest.genMockFunction();
 

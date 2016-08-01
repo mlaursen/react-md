@@ -17,6 +17,7 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
 @media only screen and (min-width: #{$md-desktop-min-width}) {
   @include md-typography-desktop();
   @include md-navigation-drawer-desktop();
+  @include md-buttons-desktop();
   @include md-lists-desktop();
   @include md-select-field-desktop();
   @include md-sidebar-desktop();

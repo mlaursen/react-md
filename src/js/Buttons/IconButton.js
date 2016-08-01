@@ -96,6 +96,8 @@ class IconButton extends Component {
       ink,
       ...props,
     } = this.props;
+    delete props.tooltipLabel;
+    delete props.tooltipPosition;
 
     const btnProps = {
       ...props,

@@ -163,7 +163,19 @@ export default class DataTable extends Component {
   };
 
   render() {
-    const { className, children, plain, responsive, ...props } = this.props;
+    const {
+      className,
+      children,
+      plain,
+      responsive,
+      ...props,
+    } = this.props;
+    delete props.checkedIconChildren;
+    delete props.checkedIconClassName;
+    delete props.uncheckedIconChildren;
+    delete props.uncheckedIconClassName;
+    delete props.defaultSelectedRows;
+
     const table = (
       <table className={classnames('md-data-table', className, { 'full-width': plain })} {...props}>
         {children}

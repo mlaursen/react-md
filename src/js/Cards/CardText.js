@@ -45,6 +45,8 @@ export default class CardText extends Component {
 
   render() {
     const { component, className, children, ...props } = this.props;
+    delete props.expandable;
+
     return React.createElement(component, {
       className: classnames('md-card-text', className),
       ...props,

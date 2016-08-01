@@ -74,7 +74,7 @@ export default class Menu extends Component {
     /**
      * The position that the menu should appear from.
      */
-    position: PropTypes.oneOf(Object.keys(Menu.Positions).map(key => Menu.Positions[key])),
+    position: PropTypes.oneOf([ Menu.Positions.TOP_RIGHT, Menu.Positions.TOP_LEFT, Menu.Positions.BOTTOM_RIGHT, Menu.Positions.BOTTOM_LEFT, Menu.Positions.BELOW ]),
 
     /**
      * An optional function that will force the menu to close. This is used so that the
@@ -103,6 +103,17 @@ export default class Menu extends Component {
      * The icon className to use for the expander icon.
      */
     expanderIconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the height of the open menu should be limited to the `$md-dropdown-max-height`
+     * and enable scrolling in the menu.
+     */
+    limitHeight: PropTypes.bool,
+
+    /**
+     * Boolean if the menu should span the full width.
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -169,6 +180,8 @@ export default class Menu extends Component {
       cascading,
       expanderIconChildren,
       expanderIconClassName,
+      fullWidth,
+      limitHeight,
       ...props,
     } = this.props;
 
@@ -176,7 +189,7 @@ export default class Menu extends Component {
     if(isOpen) {
       const listProps = {
         ref: 'list',
-        className: classnames('md-menu', listClassName, `md-transition-${position}`, { cascading }),
+        className: classnames('md-menu', listClassName, `md-transition-${position}`, { cascading, 'limit-height': limitHeight }),
         style: listStyle,
       };
 
@@ -207,7 +220,7 @@ export default class Menu extends Component {
         transitionName="md-menu"
         transitionEnterTimeout={300}
         transitionLeaveTimeout={300}
-        className={classnames('md-menu-container', className)}
+        className={classnames('md-menu-container', className, { 'full-width': fullWidth })}
         {...props}
       >
         {toggle}

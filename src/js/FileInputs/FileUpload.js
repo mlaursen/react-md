@@ -332,8 +332,22 @@ export default class FileUpload extends Component {
   };
 
   render() {
+    const { ...props } = this.props;
+
+    // Remove invalid input props
+    delete props.maxSize;
+    delete props.onLoad;
+    delete props.onLoadStart;
+    delete props.onLoadEnd;
+    delete props.onProgress;
+    delete props.onAbort;
+    delete props.onError;
+    delete props.maxSize;
+    delete props.onSizeError;
+    delete props.readAs;
+
     return (
-      <FileInput {...this.props} onChange={this._handleUpload} />
+      <FileInput {...props} onChange={this._handleUpload} />
     );
   }
 }

@@ -194,6 +194,9 @@ export default class Snackbar extends Component {
       transitionLeaveTimeout,
       ...props,
     } = this.props;
+    delete props.fab;
+    delete props.autohide;
+    delete props.autohideTimeout;
 
     const [toast] = toasts;
     return (

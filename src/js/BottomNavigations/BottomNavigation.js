@@ -224,7 +224,9 @@ export default class BottomNavigation extends Component {
     } = this.props;
     delete props.initialActiveIndex;
     delete props.initiallyVisible;
+    delete props.active;
     delete props.activeIndex;
+    delete props.dynamic;
 
     const activeIndex = this.getActiveIndex();
 

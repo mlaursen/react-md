@@ -31,6 +31,7 @@ export default class CardExpander extends Component {
   render() {
     const { isExpanded, onExpandClick, iconClassName, iconChildren, tooltipPosition, tooltipLabel } = this.context;
 
+
     return (
       <IconButton
         className={classnames('md-card-expander', {

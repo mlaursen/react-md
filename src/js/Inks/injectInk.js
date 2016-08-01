@@ -242,7 +242,7 @@ export default ComposedComponent => class Ink extends Component {
 
     const ink = (
       <TransitionGroup className="md-ink-container" key="ink-container">
-        {this.state.inks.map(ink => <InkTransition key={ink.time.getTime()} {...ink} />)}
+        {this.state.inks.map(({ time, ...ink }) => <InkTransition key={time.getTime()} {...ink} />)}
       </TransitionGroup>
     );
 

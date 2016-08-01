@@ -21,6 +21,8 @@ class SelectFieldControl extends Component {
 
   render() {
     const { className, below, open, ink, ...props } = this.props;
+    delete props.inkDisabled;
+
     const control = (
       <TextField
         {...props}

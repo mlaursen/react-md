@@ -3,7 +3,8 @@
   position: relative;
 
   &.full-width {
-    width: 100%;
+    @extend %full-width;
+    display: block;
   }
 }
 
@@ -14,6 +15,11 @@
   position: absolute;
   top: 0;
   z-index: 28;
+
+  &.limit-height {
+    max-height: $md-dropdown-max-height;
+    overflow-y: auto;
+  }
 
   &.below {
     border-top: 1px solid $md-border-color;

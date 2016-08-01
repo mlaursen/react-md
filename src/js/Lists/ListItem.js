@@ -242,6 +242,10 @@ export default class ListItem extends Component {
     delete props.rightIcon;
     delete props.expanderIconClassName;
     delete props.expanderIconChildren;
+    delete props.isOpen;
+    delete props.onExpanderClick;
+    delete props.initiallyOpen;
+    delete props.expandOnClick;
 
     let children;
     if(this.isOpen() && nestedItems && nestedItems.length) {

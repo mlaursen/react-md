@@ -31,13 +31,19 @@ import FlatButton from '../../Buttons/FlatButton';
 import TextField from '../../TextFields/TextField';
 import { ENTER, ESC } from '../../constants/keyCodes';
 
+class TH extends React.Component { // hack to remove props warning of being cloned
+  render() {
+    return <th>{this.props.children}</th>;
+  }
+}
+
 class Table extends React.Component {
   render() {
     return (
       <DataTable>
         <TableBody>
           <TableRow>
-            <th>A</th>
+            <TH>A</TH>
             {this.props.children}
           </TableRow>
         </TableBody>

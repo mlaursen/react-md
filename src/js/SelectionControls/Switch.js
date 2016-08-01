@@ -103,6 +103,7 @@ export default class Switch extends Component {
     const { active, leaving } = this.state;
     const { className, label, labelBefore, disabled, style, ...props } = this.props;
     delete props.toggled;
+    delete props.defaultToggled;
 
     const labelClassName = classnames('md-control-container', className, { disabled });
 

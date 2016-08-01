@@ -79,7 +79,18 @@ export default class Avatar extends Component {
   };
 
   render() {
-    const { className, src, alt, icon, children, ...props } = this.props;
+    const {
+      className,
+      src,
+      alt,
+      icon,
+      children,
+      ...props,
+    } = this.props;
+    delete props.suffixes;
+    delete props.suffix;
+    delete props.random;
+
     return (
       <div className={classnames('md-avatar', className, this.getColor())} {...props}>
         {src && <img src={src} alt={alt} className="md-img-avatar" />}

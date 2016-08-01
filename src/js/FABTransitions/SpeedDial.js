@@ -173,6 +173,8 @@ export default class SpeedDial extends Component {
       containerProps,
       ...props,
     } = this.props;
+    delete props.isOpen;
+    delete props.initiallyOpen;
 
     const isOpen = this.isOpen();
 

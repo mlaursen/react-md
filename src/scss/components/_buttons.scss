@@ -16,10 +16,6 @@
     }
   }
 
-  &:hover:not([disabled]) {
-    cursor: pointer;
-  }
-
   .md-icon {
     color: inherit;
     // fix so all font libraries appear inline with each other
@@ -42,15 +38,6 @@ a.md-btn {
   height: $md-btn-height;
   padding: $md-btn-padding $md-default-padding;
 }
-
-.md-raised-btn,
-.md-floating-btn,
-.md-flat-btn {
-  &:hover {
-    background: $md-btn-hover-color;
-  }
-}
-
 
 .md-icon-btn {
   border-radius: 50%;

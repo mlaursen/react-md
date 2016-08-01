@@ -34,6 +34,10 @@ export default class Divider extends Component {
 
   render() {
     const { className, inset, vertical, ...props } = this.props;
+    // When in a list
+    delete props.expanderIconChildren;
+    delete props.expanderIconClassName;
+
     const dividerProps = {
       role: 'divider',
       className: classnames('md-divider', className, { inset, vertical }),

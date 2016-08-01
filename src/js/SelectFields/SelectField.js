@@ -129,7 +129,7 @@ export default class SelectField extends Component {
      * SelectField.Positions.BELOW
      * ```
      */
-    position: PropTypes.oneOf(Object.keys(SelectField.Positions).map(key => SelectField.Positions[key])),
+    position: PropTypes.oneOf([ SelectField.Positions.TOP_LEFT, SelectField.Positions.TOP_RIGHT, SelectField.Positions.BELOW ]),
 
     /**
      * Boolean if the drop down menu should not automatically attempt to change the top position to match a
@@ -551,6 +551,8 @@ export default class SelectField extends Component {
       fullWidth,
       ...props,
     } = this.props;
+    delete props.noAutoAdjust;
+    delete props.initiallyOpen;
 
     const displayLabel = this.getValue();
     const below = Menu.Positions.BELOW === position;

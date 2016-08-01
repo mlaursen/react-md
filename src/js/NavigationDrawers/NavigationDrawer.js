@@ -449,13 +449,13 @@ export default class NavigationDrawer extends Component {
       contentTransitionLeaveTimeout,
     } = this.props;
 
-    const { isOpen, drawerType } = this.state;
+    const { isOpen, drawerType, mobile } = this.state;
     const persistent = this._isPersistent(drawerType);
     const temporary = this._isTemporary(drawerType);
     const mini = this._isMini(drawerType);
 
     let drawer, overlay;
-    if(isOpen || mini) {
+    if(isOpen || mini || mobile) {
       drawer = (
         <Drawer
           key="drawer"
@@ -473,6 +473,7 @@ export default class NavigationDrawer extends Component {
           children={drawerChildren}
           mini={mini}
           isOpen={isOpen}
+          mobile={mobile}
         />
       );
     }

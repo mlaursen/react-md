@@ -82,12 +82,7 @@ export default class ListItemControl extends Component {
     } = this.props;
 
     const label = (
-      <ListItemText
-        primaryText={primaryText}
-        secondaryText={secondaryText}
-        leftIcon={!!primaryAction}
-        rightIcon={!!secondaryAction}
-      />
+      <ListItemText primaryText={primaryText} secondaryText={secondaryText} />
     );
 
     const control = React.cloneElement(primaryAction || secondaryAction, { label, labelBefore: !!secondaryAction });

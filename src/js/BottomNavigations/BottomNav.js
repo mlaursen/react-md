@@ -118,6 +118,7 @@ class BottomNav extends Component {
     } = this.props;
     delete props.onClick;
     delete props.index;
+    delete props.onNavChange;
 
 
     let displayLabel;

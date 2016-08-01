@@ -12,6 +12,18 @@
     z-index: $md-navigation-drawer-z-index - 5;
   }
 
+  &.mobile {
+    transition: transform $md-navigation-drawer-transition-time;
+  }
+
+  &.mobile-inactive {
+    transform: translate3d(-100vw, 0, 0);
+  }
+
+  &.mobile-active {
+    transform: translate3d(0, 0, 0);
+  }
+
   &.mini {
     overflow-x: hidden;
     transition-duration: $md-navigation-drawer-transition-time;
@@ -104,12 +116,12 @@
 
 .drawer-leave,
 .drawer-enter.drawer-enter-active {
-  left: 0;
+  transform: translate3d(0, 0, 0);
 }
 
 .drawer-enter-active,
 .drawer-leave-active {
-  transition: left $md-navigation-drawer-transition-time;
+  transition: transform $md-navigation-drawer-transition-time;
 }
 
 .cross-fade-enter {

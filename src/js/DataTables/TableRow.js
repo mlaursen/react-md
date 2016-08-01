@@ -96,7 +96,7 @@ export default class TableRow extends Component {
   render() {
     const { biggest, widths } = this.state;
     const { className, children, selected, onCheckboxClick, ...props } = this.props;
-    delete props.onCheckboxClick;
+    delete props.autoAdjust;
 
     let checkbox;
     if(!this.context.plain) {
