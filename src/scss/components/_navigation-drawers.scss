@@ -130,7 +130,7 @@
 
   &.cross-fade-enter-active {
     opacity: 1;
-    transform: translate3d(0, 0, 0) $md-cross-fade-transition-time;
+    transform: translate3d(0, 0, 0);
     transition-duration: $md-cross-fade-transition-time;
     transition-property: transform, opacity;
   }

@@ -9,7 +9,7 @@
   }
 
   &.equal-width {
-    @exted %flex-equal-size;
+    @extend %flex-equal-size;
   }
 }
 
