@@ -51,6 +51,7 @@
 
 .md-data-table-container {
   overflow-x: auto;
+  overflow-y: hidden;
 
   .md-data-table {
     @extend %full-width;
@@ -227,5 +228,37 @@ thead .md-table-row {
 
   .md-dialog-footer {
     margin-right: -$md-data-table-padding;
+  }
+}
+
+.md-table-footer-controls,
+.md-table-footer-controls-mask {
+  height: $md-data-table-header-height;
+}
+
+.md-table-footer-controls {
+  align-items: center;
+  color: $md-secondary-text-color;
+  display: inline-flex;
+  font-size: $md-data-table-header-font-size;
+  justify-content: flex-start;
+  position: absolute;
+  white-space: nowrap;
+
+  .md-select-field {
+    color: inherit;
+    font-size: inherit;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: right;
+    width: $md-table-controls-select-field-width;
+  }
+
+  .md-icon-btn {
+    color: inherit;
+  }
+
+  .pagination {
+    margin-left: $md-table-pagination-margin;
   }
 }
