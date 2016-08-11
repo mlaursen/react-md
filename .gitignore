@@ -33,3 +33,5 @@ sassdoc
 .publish
 lib
 dist
+
+.jest-cache
