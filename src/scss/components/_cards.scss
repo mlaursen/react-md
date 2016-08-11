@@ -41,14 +41,15 @@
   color: $md-secondary-text-color;
   padding: $md-card-padding;
 
+  > p {
+    margin-top: 0;
+  }
+
   > p,
   > .md-body-1,
   > .md-body-2 {
-    margin: 0;
-
-    &:nth-child(n+2) {
-      margin-bottom: .5em;
-      margin-top: .5em;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
