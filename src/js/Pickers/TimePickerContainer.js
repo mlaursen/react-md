@@ -12,6 +12,20 @@ import Height from '../Transitions/Height';
 import TextField from '../TextFields';
 import TimePicker from './TimePicker';
 
+/**
+ * The `TimePickerContainer` component is a wrapper for the main `TimePicker` component
+ * to manage the state and _logic_ for rendering the `TimePicker`. This component will
+ * either render inline or in a `Dialog` depending if the `inline` prop is set
+ * to `true`.
+ *
+ * NOTE: This component is actually exported as `TimePicker` when using the `import { member }` syntax.
+ * The following two lines are equivalent:
+ *
+ * ```js
+ * import { TimePicker } from 'react-md/lib/Pickers';
+ * import TimePickerContainer as TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+ * ```
+ */
 export default class TimePickerContainer extends Component {
   constructor(props) {
     super(props);

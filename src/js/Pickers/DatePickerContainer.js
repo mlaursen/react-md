@@ -13,6 +13,19 @@ import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions/Height';
 
+/**
+ * The `DatePickerContainer` component is a wrapper for the main `DatePicker` component
+ * to manage the state and _logic_ for rendering the `DatePicker`. This component will
+ * either render inline or in a `Dialog` depending if the `inline` prop is set to `true`.
+ *
+ * NOTE: This component is actually exported as `DatePicker` when using the `import { member }` syntax.
+ * The following two lines are equivalent:
+ *
+ * ```js
+ * import { DatePicker } from 'react-md/lib/Pickers';
+ * import DatePickerContainer as DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+ * ```
+ */
 export default class DatePickerContainer extends Component {
   constructor(props) {
     super(props);
