@@ -44,19 +44,25 @@
   padding-left: $md-select-field-padding-left;
 }
 
-.md-data-table .md-select-field-container {
-  padding: 0;
-
-  .md-text-field {
-    height: $md-height;
-    padding: $md-select-field-padding;
-    padding-left: $md-select-field-padding-left;
+.md-data-table {
+  .md-select-field-container {
+    padding: 0;
   }
 
-  .md-text-field-ind {
-    $padding: ($md-height - $md-font-icon-size) / 2;
 
-    padding-bottom: $padding;
-    padding-top: $padding;
+  .md-table-body {
+
+    .md-select-field {
+      height: $md-height;
+      padding: $md-select-field-padding;
+      padding-left: $md-select-field-padding-left;
+    }
+
+    .md-text-field-ind {
+      $padding: ($md-height - $md-font-icon-size) / 2;
+
+      padding-bottom: $padding;
+      padding-top: $padding;
+    }
   }
 }

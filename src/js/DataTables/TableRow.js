@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 
 import TableCheckbox from './TableCheckbox';
@@ -20,6 +20,7 @@ export default class TableRow extends Component {
     this.state = {
       biggest: null,
       widths: [],
+      hover: false,
     };
   }
 
@@ -61,6 +62,16 @@ export default class TableRow extends Component {
      * individual columns by adding the className `.prevent-grow` to them.
      */
     autoAdjust: PropTypes.bool.isRequired,
+
+    /**
+     * An optional function to call onMouseOver.
+     */
+    onMouseOver: PropTypes.func,
+
+    /**
+     * An optional function to call onMouseLeave.
+     */
+    onMouseLeave: PropTypes.func,
   };
 
   static defaultProps = {
@@ -78,9 +89,43 @@ export default class TableRow extends Component {
     }
   }
 
+  /**
+   * Need to ignore adding the hvoer state if the mouse is over a menu/menu item
+   * or the edit dialog is open.
+   *
+   * @param {Function} classList - the classList to use for checking classNames
+   * @return {Boolean} true if the hover state should be ignored for this classList
+   */
+  _ignoreHoverState(classList) {
+    return classList.contains('md-menu')
+      || ['md-edit-dialog', 'active'].every(cn => classList.contains(cn));
+  }
+
+  _handleMouseOver = (e) => {
+    this.props.onMouseOver && this.props.onMouseOver(e);
+
+    let target = e.target;
+    while(target && target.parentNode) {
+      if (target.classList && this._ignoreHoverState(target.classList)) {
+        return this.setState({ hover: false });
+      }
+
+      target = target.parentNode;
+    }
+
+    this.setState({ hover: true });
+  };
+
+  _handleMouseLeave = (e) => {
+    this.props.onMouseLeave && this.props.onMouseLeave(e);
+    this.setState({ hover: false });
+  };
+
   setLongestColumn = () => {
     const widths = [];
-    const biggest = Array.prototype.slice.call(ReactDOM.findDOMNode(this).querySelectorAll('.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)')).reduce((prev, curr, i) => {
+    const biggest = Array.prototype.slice.call(
+      findDOMNode(this).querySelectorAll('.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)')
+    ).reduce((prev, curr, i) => {
       const width = curr.offsetWidth;
       widths.push(width);
       if(prev.width < width) {
@@ -94,7 +139,7 @@ export default class TableRow extends Component {
   };
 
   render() {
-    const { biggest, widths } = this.state;
+    const { biggest, widths, hover } = this.state;
     const { className, children, selected, onCheckboxClick, ...props } = this.props;
     delete props.autoAdjust;
 
@@ -117,7 +162,15 @@ export default class TableRow extends Component {
     });
 
     return (
-      <tr {...props} className={classnames('md-table-row', className, { 'active': selected })}>
+      <tr
+        {...props}
+        className={classnames('md-table-row', className, {
+          hover,
+          'active': selected,
+        })}
+        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+      >
         {checkbox}
         {columns}
       </tr>
