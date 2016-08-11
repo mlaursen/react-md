@@ -75,6 +75,21 @@ export default class Card extends Component {
      * The optional tooltip to display for the expander icon.
      */
     expanderTooltipLabel: PropTypes.string,
+
+    /**
+     * Boolean if the card contains a table. It will update the styling accordingly.
+     * When using the `DataTable` component, do not wrap it in a `CardText` component.
+     *
+     * ```js
+     * <Card tableCard={true}>
+     *   <CardTitle title="Example />
+     *   <DataTable>
+     *     ...
+     *   </DataTable>
+     * </Card>
+     * ```
+     */
+    tableCard: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -117,7 +132,7 @@ export default class Card extends Component {
   };
 
   render() {
-    const { className, children, raise, ...props } = this.props;
+    const { className, children, raise, tableCard, ...props } = this.props;
     delete props.iconChildren;
     delete props.iconClassName;
     delete props.initiallyExpanded;
@@ -144,8 +159,8 @@ export default class Card extends Component {
       <TransitionGroup
         component="div"
         {...props}
-        className={classnames('md-card', className, { raise })}
-        >
+        className={classnames('md-card', className, { raise, 'md-table-card': tableCard })}
+      >
         {cardChildren}
       </TransitionGroup>
     );

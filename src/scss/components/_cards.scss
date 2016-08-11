@@ -27,6 +27,14 @@
       @include md-box-shadow(4);
     }
   }
+
+}
+
+.md-table-card {
+  .md-card-title {
+    height: $md-data-table-header-height;
+    padding-left: $md-data-table-padding;
+  }
 }
 
 .md-card-text {
