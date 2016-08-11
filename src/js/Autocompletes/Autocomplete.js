@@ -654,6 +654,31 @@ export default class Autocomplete extends Component {
     }
   };
 
+  /**
+   * Allows touch devices to autocomplete the inline view by tapping:
+   * - the suggestion text
+   * - the text field IF there is a suggestion visible
+   */
+  _handleTouchStart = (e) => {
+    const { target } = e;
+    const { data, dataLabel, onAutocomplete } = this.props;
+    const { suggestionIndex, suggestion } = this.state;
+    if (target.classList.contains('md-autocomplete-suggestion') || suggestion) {
+      let value = data[suggestionIndex];
+      if(typeof value === 'object') {
+        value = value[dataLabel];
+      }
+
+      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      this.setState({
+        value,
+        suggestion: '',
+        suggestionIndex: -1,
+        tabbed: true,
+      });
+    }
+  };
+
   render() {
     const { isOpen, matches, focus, tabbed, suggestionStyle } = this.state;
     const {
@@ -734,6 +759,7 @@ export default class Autocomplete extends Component {
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}
           transitionLeaveTimeout={150}
+          onTouchStart={this._handleTouchStart}
         >
           {autocomplete}
           {suggestion}
