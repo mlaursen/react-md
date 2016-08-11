@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 
 /**
  * The `TableBody` component is used for managing the state of all
@@ -10,6 +11,16 @@ export default class TableBody extends Component {
   }
 
   static propTypes = {
+    /**
+     * An optional style to apply to the tbody.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the tbody.
+     */
+    className: PropTypes.string,
+
     /**
      * A list or a single item of `TableRow` components to render.
      */
@@ -23,7 +34,7 @@ export default class TableBody extends Component {
   };
 
   render() {
-    const { children, ...props } = this.props;
+    const { children, className, ...props } = this.props;
     const { selectedRows, toggleSelectedRow } = this.context;
 
     const rows = React.Children.map(children, (row, i) => {
@@ -46,7 +57,7 @@ export default class TableBody extends Component {
     });
 
     return (
-      <tbody {...props}>
+      <tbody {...props} className={classnames('md-table-body', className)}>
         {rows}
       </tbody>
     );

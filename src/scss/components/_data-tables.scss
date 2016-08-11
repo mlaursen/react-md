@@ -64,6 +64,17 @@
   &.full-width {
     @extend %full-width;
   }
+
+  &.plain {
+    height: initial;
+    min-height: $md-height;
+    white-space: normal;
+  }
+
+  td {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
 }
 
 tbody .md-table-row {
@@ -86,12 +97,10 @@ thead .md-table-row {
   @extend %md-table-border-bottom;
 }
 
-.md-table-row {
-  .md-table-header,
-  .md-table-data {
-    &:first-child {
-      padding-left: $md-data-table-padding;
-    }
+.md-table-header,
+.md-table-data {
+  &:first-child {
+    padding-left: $md-data-table-padding;
   }
 }
 
@@ -120,7 +129,7 @@ thead .md-table-row {
 
   .md-icon {
     font-size: $md-data-table-sort-icon-font-size;
-    padding: $padding;
+    padding: $padding 0;
     transition-duration: $md-transition-time;
     transition-property: color, transform;
   }
@@ -153,9 +162,6 @@ thead .md-table-row {
   }
 
   .md-icon {
-    font-size: $md-data-table-checkbox-font-size;
-    padding: ($md-font-icon-size - $md-data-table-checkbox-font-size) / 2;
-
     transition: color $md-transition-time;
 
     &.active {
@@ -170,6 +176,7 @@ thead .md-table-row {
 
 .md-edit-dialog {
   min-width: $md-edit-dialog-min-width;
+  padding-right: $md-data-table-padding;
   transition-duration: $md-edit-dialog-transition-time;
   transition-property: background, box-shadow, padding, top;
 
