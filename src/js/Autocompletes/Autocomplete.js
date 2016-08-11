@@ -238,7 +238,7 @@ export default class Autocomplete extends Component {
      * by using the mouse, the enter/space key, or touch. The match index and current
      * `dataLabel` will be given back.
      *
-     * `onAutocomplete(suggestionIndex, suggestion[dataLabel] || suggestion);`
+     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex);`
      */
     onAutocomplete: PropTypes.func,
 
