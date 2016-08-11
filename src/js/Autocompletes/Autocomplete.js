@@ -243,6 +243,13 @@ export default class Autocomplete extends Component {
     onAutocomplete: PropTypes.func,
 
     /**
+     * A boolean if the text field's value should be reset to the empty string when
+     * an item is auto-completed. This is usefull if you do not want a fully controlled
+     * component and the values are stored outside of the `TextField`. (like `Chips`).
+     */
+    clearOnAutocomplete: PropTypes.bool,
+
+    /**
      * An optional function to call when the `Autocomplete` suggestion menu opens.
      */
     onMenuOpen: PropTypes.func,
@@ -516,13 +523,14 @@ export default class Autocomplete extends Component {
     if(index === -1) { return; }
 
     const { matches } = this.state;
-    const { data, dataLabel, filter, onAutocomplete } = this.props;
+    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete } = this.props;
     let value = matches.filter(m => !React.isValidElement(m))[index];
     if(typeof value === 'object') {
       value = value[dataLabel];
     }
 
     onAutocomplete && onAutocomplete(value, index);
+    value = clearOnAutocomplete ? '' : value;
     this.setState({
       isOpen: false,
       manualFocus: true,
@@ -673,6 +681,7 @@ export default class Autocomplete extends Component {
     delete props.onMouseDown;
     delete props.onChange;
     delete props.findInlineSuggestion;
+    delete props.clearOnAutocomplete;
 
     const value = this._getValue();
 
