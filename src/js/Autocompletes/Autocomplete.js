@@ -99,16 +99,16 @@ export default class Autocomplete extends Component {
      * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
-    value: (props, propName, component) => {
+    value: (props, propName, component, ...others) => {
       let err;
       if(typeof props[propName] !== 'undefined') {
         err = PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.number,
-        ])(props, propName, component);
+        ])(props, propName, component, ...others);
 
         if(!err) {
-          err = PropTypes.func.isRequired(props, 'onChange', component);
+          err = PropTypes.func.isRequired(props, 'onChange', component, ...others);
         }
       }
 
@@ -151,7 +151,7 @@ export default class Autocomplete extends Component {
      * }),
      * ```
      */
-    data: (props, propName, component) => {
+    data: (props, propName, component, ...others) => {
       const { dataLabel } = props;
       return PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.element,
@@ -163,7 +163,7 @@ export default class Autocomplete extends Component {
             PropTypes.number,
           ]).isRequired,
         }),
-      ])).isRequired(props, propName, component);
+      ])).isRequired(props, propName, component, ...others);
     },
 
     /**

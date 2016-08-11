@@ -65,12 +65,12 @@ export default class BottomNavigation extends Component {
      *
      * The default component is a 'button'.
      */
-    actions: (props, propName, component) => {
+    actions: (props, propName, component, ...others) => {
       const err = PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.string.isRequired,
         iconClassName: PropTypes.string,
         iconChildren: PropTypes.node,
-      })).isRequired(props, propName, component);
+      })).isRequired(props, propName, component, ...others);
 
       if(err) {
         return err;
