@@ -1,7 +1,7 @@
 import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
 import BottomNavigation from './BottomNavigations';
-import { FlatButton, FloatingButton, IconButton, RaisedButton } from './Buttons';
+import { FlatButton, FloatingButton, IconButton, RaisedButton, AccessibleFakeButton } from './Buttons';
 import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, CardTitle } from './Cards';
 import Chip from './Chips';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from './DataTables';
@@ -28,6 +28,7 @@ import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import Tooltip from './Tooltips';
 
+export { AccessibleFakeButton };
 export { Autocomplete };
 export { Avatar };
 export { BottomNavigation };
@@ -83,6 +84,7 @@ export default {
   Autocomplete,
   Avatar,
   BottomNavigation,
+  AccessibleFakeButton,
   FlatButton,
   RaisedButton,
   FloatingButton,

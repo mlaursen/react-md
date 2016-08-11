@@ -1,6 +1,7 @@
 /*eslint-env jest*/
 jest.unmock('../Menu');
 jest.unmock('../../Lists');
+jest.unmock('../../Buttons/AccessibleFakeButton');
 jest.unmock('../../Lists/List.js');
 jest.unmock('../../Lists/ListTile');
 jest.unmock('../../Lists/ListItemText');

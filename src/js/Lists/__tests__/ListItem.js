@@ -5,6 +5,7 @@ jest.unmock('../ListTile');
 jest.unmock('../ListItemText');
 jest.unmock('../../Buttons');
 jest.unmock('../../Buttons/IconButton');
+jest.unmock('../../Buttons/AccessibleFakeButton');
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../../Transitions');
 jest.unmock('../../Transitions/Height');
