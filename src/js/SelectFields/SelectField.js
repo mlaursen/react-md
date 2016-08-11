@@ -38,14 +38,30 @@ export default class SelectField extends Component {
 
   static propTypes = {
     /**
-     * An optional className to apply to the text field in the select field.
+     * An optional style to apply to the text field's input in the select field.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the text field's input in the select field.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the menu list.
+     */
+    listStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the menu list.
      */
     listClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the menuc ontainer that holds the list
+     * of menu items.
+     */
+    menuStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the menu container that holds
@@ -542,6 +558,7 @@ export default class SelectField extends Component {
       menuItems,
       itemLabel,
       position,
+      style,
       className,
       listClassName,
       menuClassName,
@@ -559,7 +576,8 @@ export default class SelectField extends Component {
 
     const toggle = (
       <SelectFieldControl
-        className={classnames(className, droppingClassName)}
+        inputStyle={style}
+        inputClassName={classnames(className, droppingClassName)}
         label={label}
         value={displayLabel}
         floatingLabel={floatingLabel}
