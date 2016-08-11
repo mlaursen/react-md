@@ -381,10 +381,7 @@ export default class Autocomplete extends Component {
       const { data, filter, dataLabel } = nextProps;
 
       const matches = filter ? filter(data, nextState.value, dataLabel) : data;
-      this.setState({
-        matches,
-        isOpen: !!matches.length && !this.state.manualFocus,
-      });
+      this.setState({ matches });
     }
   }
 
