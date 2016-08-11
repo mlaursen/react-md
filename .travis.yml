@@ -15,6 +15,7 @@ sudo: false
 cache:
   directories:
     - node_modules
+    - .jest-cache
 script:
   - npm run lint
   - npm test
