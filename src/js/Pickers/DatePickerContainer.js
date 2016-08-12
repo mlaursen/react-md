@@ -13,6 +13,19 @@ import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions/Height';
 
+/**
+ * The `DatePickerContainer` component is a wrapper for the main `DatePicker` component
+ * to manage the state and _logic_ for rendering the `DatePicker`. This component will
+ * either render inline or in a `Dialog` depending if the `inline` prop is set to `true`.
+ *
+ * NOTE: This component is actually exported as `DatePicker` when using the `import { member }` syntax.
+ * The following two lines are equivalent:
+ *
+ * ```js
+ * import { DatePicker } from 'react-md/lib/Pickers';
+ * import DatePickerContainer as DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+ * ```
+ */
 export default class DatePickerContainer extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +33,12 @@ export default class DatePickerContainer extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 
     let date, value;
-    const { defaultValue, DateTimeFormat, locales } = props;
-    if(defaultValue) {
+    const { defaultValue, DateTimeFormat, locales, formatOptions } = props;
+    if (typeof props.value !== 'undefined' && props.value !== null) {
+      date = typeof props.value === 'string' ? new Date(props.value) : props.value;
+    } else if(defaultValue) {
       date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
-      value = typeof defaultValue === 'string' ? defaultValue : DateTimeFormat(locales).format(defaultValue);
+      value = typeof defaultValue === 'string' ? defaultValue : DateTimeFormat(locales, formatOptions).format(defaultValue);
     } else {
       date = new Date();
     }
@@ -197,6 +212,20 @@ export default class DatePickerContainer extends Component {
      * to use the correct mode based on device orientation.
      */
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
+
+    /**
+     * The DateTimeFormat options to apply to format the date.
+     */
+    formatOptions: PropTypes.shape({
+      weekday: PropTypes.oneOf(['narrow', 'short', 'long']),
+      era: PropTypes.oneOf(['narrow', 'short', 'long']),
+      year: PropTypes.oneOf(['numeric', '2-digit']),
+      month: PropTypes.oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
+      day: PropTypes.oneOf(['numeric', '2-digit']),
+      hour: PropTypes.oneOf(['numeric', '2-digit']),
+      second: PropTypes.oneOf(['numeric', '2-digit']),
+      timeZoneName: PropTypes.oneOf(['short', 'long']),
+    }),
   };
 
   static defaultProps = {
@@ -265,8 +294,8 @@ export default class DatePickerContainer extends Component {
   };
 
   handleOkClick = (e) => {
-    const { DateTimeFormat, locales, onChange } = this.props;
-    const value = DateTimeFormat(locales).format(this.state.calendarTempDate);
+    const { DateTimeFormat, locales, onChange, formatOptions } = this.props;
+    const value = DateTimeFormat(locales, formatOptions).format(this.state.calendarTempDate);
     onChange && onChange(value, new Date(this.state.calendarTempDate), e);
 
     this.setState({ value, isOpen: false });
@@ -293,11 +322,11 @@ export default class DatePickerContainer extends Component {
   };
 
   setCalendarTempDate = (calendarTempDate) => {
-    const { autoOk, DateTimeFormat, locales, onChange } = this.props;
+    const { autoOk, DateTimeFormat, locales, onChange, formatOptions } = this.props;
 
     const state = { calendarTempDate };
     if(autoOk) {
-      const value = DateTimeFormat(locales).format(calendarTempDate);
+      const value = DateTimeFormat(locales, formatOptions).format(calendarTempDate);
       onChange && onChange(value, new Date(calendarTempDate));
 
       if(typeof this.props.value === 'undefined') {
@@ -359,12 +388,12 @@ export default class DatePickerContainer extends Component {
    * @return {String} a formatted date string or the empty string.
    */
   getValue = (props = this.props, state = this.state) => {
-    const { DateTimeFormat, locales } = props;
+    const { DateTimeFormat, locales, formatOptions } = props;
     const value = typeof props.value !== 'undefined' ? props.value : state.value;
     if(!value) {
       return '';
     } else if(value instanceof Date) {
-      return DateTimeFormat(locales).format(new Date(value));
+      return DateTimeFormat(locales, formatOptions).format(new Date(value));
     } else {
       return value;
     }

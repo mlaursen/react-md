@@ -106,9 +106,9 @@ export default class FileUpload extends Component {
      * A required function to call when the `maxSize` prop is set. It will
      * be given a list of files that were too big.
      */
-    onSizeError: (props, propName, component) => {
+    onSizeError: (props, propName, component, ...others) => {
       if(typeof props.maxSize === 'number') {
-        return PropTypes.func.isRequired(props, propName, component);
+        return PropTypes.func.isRequired(props, propName, component, ...others);
       }
     },
 

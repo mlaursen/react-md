@@ -20,7 +20,10 @@ export default class ListItem extends Component {
   constructor(props) {
     super(props);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    if (typeof props.component !== 'function') {
+      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+
     this.state = { isOpen: props.initiallyOpen, hover: false };
   }
 

@@ -51,6 +51,7 @@
 
 .md-data-table-container {
   overflow-x: auto;
+  overflow-y: hidden;
 
   .md-data-table {
     @extend %full-width;
@@ -64,6 +65,17 @@
   &.full-width {
     @extend %full-width;
   }
+
+  &.plain {
+    height: initial;
+    min-height: $md-height;
+    white-space: normal;
+  }
+
+  td {
+    padding-bottom: 0;
+    padding-top: 0;
+  }
 }
 
 tbody .md-table-row {
@@ -73,7 +85,7 @@ tbody .md-table-row {
     background: $md-data-table-selected-color;
   }
 
-  &:hover {
+  &.hover {
     background: $md-data-table-hover-color;
   }
 
@@ -86,12 +98,10 @@ thead .md-table-row {
   @extend %md-table-border-bottom;
 }
 
-.md-table-row {
-  .md-table-header,
-  .md-table-data {
-    &:first-child {
-      padding-left: $md-data-table-padding;
-    }
+.md-table-header,
+.md-table-data {
+  &:first-child {
+    padding-left: $md-data-table-padding;
   }
 }
 
@@ -120,7 +130,7 @@ thead .md-table-row {
 
   .md-icon {
     font-size: $md-data-table-sort-icon-font-size;
-    padding: $padding;
+    padding: $padding 0;
     transition-duration: $md-transition-time;
     transition-property: color, transform;
   }
@@ -153,9 +163,6 @@ thead .md-table-row {
   }
 
   .md-icon {
-    font-size: $md-data-table-checkbox-font-size;
-    padding: ($md-font-icon-size - $md-data-table-checkbox-font-size) / 2;
-
     transition: color $md-transition-time;
 
     &.active {
@@ -170,6 +177,7 @@ thead .md-table-row {
 
 .md-edit-dialog {
   min-width: $md-edit-dialog-min-width;
+  padding-right: $md-data-table-padding;
   transition-duration: $md-edit-dialog-transition-time;
   transition-property: background, box-shadow, padding, top;
 
@@ -220,5 +228,37 @@ thead .md-table-row {
 
   .md-dialog-footer {
     margin-right: -$md-data-table-padding;
+  }
+}
+
+.md-table-footer-controls,
+.md-table-footer-controls-mask {
+  height: $md-data-table-header-height;
+}
+
+.md-table-footer-controls {
+  align-items: center;
+  color: $md-secondary-text-color;
+  display: inline-flex;
+  font-size: $md-data-table-header-font-size;
+  justify-content: flex-start;
+  position: absolute;
+  white-space: nowrap;
+
+  .md-select-field {
+    color: inherit;
+    font-size: inherit;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: right;
+    width: $md-table-controls-select-field-width;
+  }
+
+  .md-icon-btn {
+    color: inherit;
+  }
+
+  .pagination {
+    margin-left: $md-table-pagination-margin;
   }
 }

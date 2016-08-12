@@ -12,7 +12,8 @@ class SelectFieldControl extends Component {
   }
 
   static propTypes = {
-    className: PropTypes.string,
+    inputStyle: PropTypes.object,
+    inputClassName: PropTypes.string,
     below: PropTypes.bool,
     open: PropTypes.bool.isRequired,
     ink: PropTypes.node,
@@ -20,18 +21,18 @@ class SelectFieldControl extends Component {
   };
 
   render() {
-    const { className, below, open, ink, ...props } = this.props;
+    const { inputClassName, below, open, ink, ...props } = this.props;
     delete props.inkDisabled;
 
     const control = (
       <TextField
         {...props}
-        inputClassName={classnames('md-select-field', className)}
         className={classnames('md-select-field-container', {
           'select-field-btn': below,
           'active': below && open,
           'disabled': props.disabled,
         })}
+        inputClassName={classnames('md-select-field', inputClassName)}
         readOnly={true}
       />
     );

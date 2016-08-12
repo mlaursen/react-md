@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classnames from 'classnames';
 
 import injectInk from '../Inks';
+import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
 
 class ListTile extends Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class ListTile extends Component {
     ]).isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
-    role: PropTypes.string,
     tabIndex: PropTypes.number,
 
     // Injected from injectInk
@@ -27,15 +27,16 @@ class ListTile extends Component {
 
   static defaultProps = {
     tabIndex: 0,
-    role: 'button',
   };
 
   render() {
-    const { component, ink, className, children, ...props } = this.props;
-    return React.createElement(component, {
-      ...props,
-      className: classnames('md-list-tile', className),
-    }, [ink, children]);
+    const { ink, children, className, ...props } = this.props;
+    return (
+      <AccessibleFakeButton {...props} className={classnames('md-list-tile', className)}>
+        {ink}
+        {children}
+      </AccessibleFakeButton>
+    );
   }
 }
 

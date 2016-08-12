@@ -45,9 +45,9 @@ export default class CircularProgress extends Component {
      *
      * This value should also be a number between 0 and 100.
      */
-    value: (props, propName, component) => {
+    value: (props, propName, component, ...others) => {
       if(typeof props[propName] === 'undefined') { return; }
-      let err = PropTypes.number(props, propName, component);
+      let err = PropTypes.number(props, propName, component, ...others);
       if(!err) {
         const value = props[propName];
         if(!isBetween(value, 0, 100)) {

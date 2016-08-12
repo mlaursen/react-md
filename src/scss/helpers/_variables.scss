@@ -1721,6 +1721,18 @@ $md-edit-dialog-min-width: 300px !default;
 /// @group data-tables
 $md-data-table-sort-icon-font-size: 16px;
 
+/// The data table's footer controls' select field width.
+///
+/// @type String
+/// @group data-tables
+$md-table-controls-select-field-width: 40px;
+
+/// The margin to use for the pagination section of the table footer controls.
+///
+/// @type String
+/// @group data-tables
+$md-table-pagination-margin: 32px;
+
 
 // ===================================================================================
 // Bottom Navigations

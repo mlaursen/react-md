@@ -106,9 +106,11 @@ export default class EditDialogColumn extends Component {
      * The title for the large edit dialog. The custom validation changes to required
      * when the `large` prop is set to true.
      */
-    title: (props, propName, component) => {
+    title: (props, propName, component, ...others) => {
       if(props.large) {
-        return PropTypes.string.isRequired(props, propName, component);
+        return PropTypes.string.isRequired(props, propName, component, ...others);
+      } else {
+        return PropTypes.string(props, propName, component, ...others);
       }
     },
 

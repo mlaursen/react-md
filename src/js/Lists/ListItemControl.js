@@ -48,11 +48,11 @@ export default class ListItemControl extends Component {
      * The custom validation will warn you about missing both a `primaryAction` and
      * a `secondaryAction` or if you have both a `primaryAction` and a `secondaryAction`.
      */
-    primaryAction: (props, propName, component) => {
+    primaryAction: (props, propName, component, ...others) => {
       const primaryAction = props[propName];
       const secondaryAction = props.secondaryAction;
       if(primaryAction && !secondaryAction) {
-        return PropTypes.element(props, propName, component);
+        return PropTypes.element(props, propName, component, ...others);
       } else if(!primaryAction && !secondaryAction) {
         return new Error(`Missing required prop 'primaryAction' or 'secondaryAction' for the component '${component}'.`);
       } else if(primaryAction && secondaryAction) {

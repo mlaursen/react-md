@@ -99,16 +99,16 @@ export default class Autocomplete extends Component {
      * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
-    value: (props, propName, component) => {
+    value: (props, propName, component, ...others) => {
       let err;
       if(typeof props[propName] !== 'undefined') {
         err = PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.number,
-        ])(props, propName, component);
+        ])(props, propName, component, ...others);
 
         if(!err) {
-          err = PropTypes.func.isRequired(props, 'onChange', component);
+          err = PropTypes.func.isRequired(props, 'onChange', component, ...others);
         }
       }
 
@@ -151,7 +151,7 @@ export default class Autocomplete extends Component {
      * }),
      * ```
      */
-    data: (props, propName, component) => {
+    data: (props, propName, component, ...others) => {
       const { dataLabel } = props;
       return PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.element,
@@ -163,7 +163,7 @@ export default class Autocomplete extends Component {
             PropTypes.number,
           ]).isRequired,
         }),
-      ])).isRequired(props, propName, component);
+      ])).isRequired(props, propName, component, ...others);
     },
 
     /**
@@ -238,9 +238,16 @@ export default class Autocomplete extends Component {
      * by using the mouse, the enter/space key, or touch. The match index and current
      * `dataLabel` will be given back.
      *
-     * `onAutocomplete(suggestionIndex, suggestion[dataLabel] || suggestion);`
+     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex);`
      */
     onAutocomplete: PropTypes.func,
+
+    /**
+     * A boolean if the text field's value should be reset to the empty string when
+     * an item is auto-completed. This is usefull if you do not want a fully controlled
+     * component and the values are stored outside of the `TextField`. (like `Chips`).
+     */
+    clearOnAutocomplete: PropTypes.bool,
 
     /**
      * An optional function to call when the `Autocomplete` suggestion menu opens.
@@ -374,10 +381,7 @@ export default class Autocomplete extends Component {
       const { data, filter, dataLabel } = nextProps;
 
       const matches = filter ? filter(data, nextState.value, dataLabel) : data;
-      this.setState({
-        matches,
-        isOpen: !!matches.length && !this.state.manualFocus,
-      });
+      this.setState({ matches });
     }
   }
 
@@ -516,13 +520,14 @@ export default class Autocomplete extends Component {
     if(index === -1) { return; }
 
     const { matches } = this.state;
-    const { data, dataLabel, filter, onAutocomplete } = this.props;
+    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete } = this.props;
     let value = matches.filter(m => !React.isValidElement(m))[index];
     if(typeof value === 'object') {
       value = value[dataLabel];
     }
 
     onAutocomplete && onAutocomplete(value, index);
+    value = clearOnAutocomplete ? '' : value;
     this.setState({
       isOpen: false,
       manualFocus: true,
@@ -646,6 +651,31 @@ export default class Autocomplete extends Component {
     }
   };
 
+  /**
+   * Allows touch devices to autocomplete the inline view by tapping:
+   * - the suggestion text
+   * - the text field IF there is a suggestion visible
+   */
+  _handleTouchStart = (e) => {
+    const { target } = e;
+    const { data, dataLabel, onAutocomplete } = this.props;
+    const { suggestionIndex, suggestion } = this.state;
+    if (target.classList.contains('md-autocomplete-suggestion') || suggestion) {
+      let value = data[suggestionIndex];
+      if(typeof value === 'object') {
+        value = value[dataLabel];
+      }
+
+      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      this.setState({
+        value,
+        suggestion: '',
+        suggestionIndex: -1,
+        tabbed: true,
+      });
+    }
+  };
+
   render() {
     const { isOpen, matches, focus, tabbed, suggestionStyle } = this.state;
     const {
@@ -673,6 +703,7 @@ export default class Autocomplete extends Component {
     delete props.onMouseDown;
     delete props.onChange;
     delete props.findInlineSuggestion;
+    delete props.clearOnAutocomplete;
 
     const value = this._getValue();
 
@@ -725,6 +756,7 @@ export default class Autocomplete extends Component {
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}
           transitionLeaveTimeout={150}
+          onTouchStart={this._handleTouchStart}
         >
           {autocomplete}
           {suggestion}
