@@ -177,7 +177,7 @@ export default class DataTable extends Component {
     delete props.defaultSelectedRows;
 
     const table = (
-      <table className={classnames('md-data-table', className, { 'full-width': plain })} {...props}>
+      <table className={classnames('md-data-table', className, { 'md-plain-table': plain })} {...props}>
         {children}
       </table>
     );

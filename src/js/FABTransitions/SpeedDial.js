@@ -87,7 +87,7 @@ export default class SpeedDial extends Component {
      * `SpeedDial` is open. The buttons will automatically be converted to the `mini`
      * version.
      */
-    fabs: (props, propName, component) => {
+    fabs: (props, propName, component, ...others) => {
       const size = props.fabs.length;
       if(size >= 3 && size <= 5) {
         return PropTypes.arrayOf(PropTypes.oneOfType([
@@ -97,7 +97,7 @@ export default class SpeedDial extends Component {
             iconClassName: PropTypes.string,
             children: PropTypes.node,
           }),
-        ])).isRequired(props, propName, component);
+        ])).isRequired(props, propName, component, ...others);
       }
 
       const middle = size < 3 ? 'at least 3' : 'no more than 5';

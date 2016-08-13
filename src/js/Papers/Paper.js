@@ -30,8 +30,8 @@ export default class Paper extends Component {
      * The depth of the paper. This should be a number between 0 - 5. If
      * the depth is 0, it will raise to a depth of 3 on hover.
      */
-    zDepth: (props, propName, component) => {
-      let err = PropTypes.number.isRequired(props, propName, component);
+    zDepth: (props, propName, component, ...others) => {
+      let err = PropTypes.number.isRequired(props, propName, component, ...others);
       if(err) {
         return err;
       }
