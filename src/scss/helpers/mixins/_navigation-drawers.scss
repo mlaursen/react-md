@@ -33,12 +33,13 @@
     .md-title {
       line-height: $height;
     }
+
+    .md-icon-btn {
+      margin-bottom: ($height - $md-icon-btn-size) / 2;
+      margin-top: ($height - $md-icon-btn-size) / 2;
+    }
   }
 
-  .md-icon-btn {
-    margin-bottom: ($height - $md-icon-btn-size) / 2;
-    margin-top: ($height - $md-icon-btn-size) / 2;
-  }
 }
 
 /// Styles the navigation drawer component for a portait mobile device
