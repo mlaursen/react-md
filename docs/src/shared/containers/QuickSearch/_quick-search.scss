@@ -1,0 +1,25 @@
+@import '~sass-utils';
+
+.md-menu.quick-search-menu {
+  @extend %centered;
+
+  position: initial;
+  width: 50%;
+}
+
+%quick-search,
+.quick-search {
+  left: 50vw;
+  position: fixed;
+  top: 0;
+}
+
+.quick-search-menu-container {
+  display: initial;
+}
+
+.quick-search-overlay {
+  @extend %quick-search;
+
+  z-index: $md-overlay-z-index - 5;
+}

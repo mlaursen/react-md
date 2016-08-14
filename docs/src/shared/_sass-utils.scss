@@ -1,0 +1,36 @@
+@import '~react-md/src/scss/helpers/all';
+
+$md-primary-color: $md-light-blue-500;
+$md-primary-color-hue-1: $md-light-blue-300;
+$md-secondary-color: $md-deep-orange-a-200;
+$md-secondary-color-hue-1: $md-deep-orange-a-100;
+
+$footer-min-height: 220px;
+$quick-nav-height: 88px;
+
+%centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%auto-left {
+  margin-left: auto;
+}
+
+%justify-center {
+  justify-content: center;
+}
+
+%justify-between {
+  justify-content: space-between;
+}
+
+%inline-top {
+  display: inline-block;
+  vertical-align: top;
+}
+
+%doc-btn {
+  margin: 1em;
+  vertical-align: top;
+}
