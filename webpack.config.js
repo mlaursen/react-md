@@ -1,4 +1,3 @@
-/*eslint-env node*/
 const webpack = require('webpack');
 
 function makeConfig() {
@@ -58,6 +57,7 @@ devConfig.plugins = devConfig.plugins.concat([
 ]);
 
 const prodConfig = makeConfig();
+prodConfig.devtool = 'source-map';
 prodConfig.output.filename = 'react-md.min.js';
 prodConfig.plugins = prodConfig.plugins.concat([
   new webpack.DefinePlugin({
