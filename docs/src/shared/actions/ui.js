@@ -5,6 +5,7 @@ import {
   ADD_TOAST,
   DISMISS_TOAST,
   MEDIA_CHANGE,
+  UPDATE_DRAWER_TYPE,
 } from 'constants/ActionTypes';
 
 export function setToolbarInactive(inactive) {
@@ -30,3 +31,8 @@ export function dismissToast() {
 export function mediaChange() {
   return { type: MEDIA_CHANGE };
 }
+
+export function updateDrawerType(drawerType) {
+  return { type: UPDATE_DRAWER_TYPE, drawerType };
+}
+

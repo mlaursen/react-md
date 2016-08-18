@@ -185,12 +185,12 @@ export function getIdsForRoute(route) {
 
 function getOneOfPropType(value, tabs) {
   const l = value.length - 1;
-  const values = tab(tabs) + value.reduce((prev, curr, i) => {
+  const values = value.reduce((prev, curr, i) => {
     const v = prev + curr.value;
     return v + (i < l ? ',\n' + tab(tabs) : '');
-  }, '');
+  }, '\n' + tab(tabs)) + '\n' + tab(tabs - 1);
 
-  return `oneOf([\n${values}\n])`;
+  return `oneOf([${values}])`;
 }
 
 function getOneOfTypePropType(value, tabs) {
@@ -207,7 +207,7 @@ function getShapePropType(value, tabs) {
   const keys = Object.keys(value);
   const l = keys.length - 1;
   const values = keys.reduce((prev, key, i) => {
-    const v = prev + key + ': ' + getPropTypeString(value[key], tabs + 1);
+    const v = prev + key + ': ' + getPropTypeString(value[key], tabs);
     return v + (i < l ? ',\n' + tab(tabs) : '');
   }, '\n' + tab(tabs)) + '\n' + tab(tabs - 1);
 

@@ -11,6 +11,14 @@ export function loadDocumentation(component, section) {
       const examples = require(`examples/${folder}/index.js`).default;
       const description = require(`examples/${folder}/README.md`);
 
+      if (section === 'pickers') {
+        // Hack to show DateTimeFormat defaultValue on pickers.
+        docgens[0].props.DateTimeFormat.defaultValue = {
+          computed: false,
+          value: 'Intl.DateTimeFormat || (locales, options) => { format: date => date }',
+        };
+      }
+
       dispatch({
         type: LOAD_DOCUMENTATION,
         payload: {

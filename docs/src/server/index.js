@@ -21,8 +21,8 @@ let port = process.env.PORT || 8080;
 if (process.env.NODE_ENV === 'production') {
   port = 80;
   app.use(logger('combined'));
-  app.use(vhost('react-md.mlaursen.com'), client);
-  app.use('/*', vhost('react-md.mlaursen.com'), require('./react-md').default);
+  app.use(vhost('localhost'), client);
+  app.use('/*', vhost('localhost'), require('./react-md').default);
 } else {
   const fallback = require('express-history-api-fallback');
   const webpack = require('webpack');

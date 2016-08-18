@@ -31,6 +31,7 @@
     "no-mixed-operators": 0,
     "consistent-return": 0,
     "import/imports-first": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "no-sequences": 0
   }
 }
