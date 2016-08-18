@@ -23,7 +23,7 @@ import TimePicker from './TimePicker';
  *
  * ```js
  * import { TimePicker } from 'react-md/lib/Pickers';
- * import TimePickerContainer as TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+ * import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
  * ```
  */
 export default class TimePickerContainer extends Component {
@@ -180,6 +180,11 @@ export default class TimePickerContainer extends Component {
      * to use the correct mode based on device orientation.
      */
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
+
+    /**
+     * Boolean if the text field for the Time Picker should be displayed as full width.
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -299,6 +304,7 @@ export default class TimePickerContainer extends Component {
       className,
       pickerStyle,
       pickerClassName,
+      fullWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -348,6 +354,7 @@ export default class TimePickerContainer extends Component {
           floatingLabel={floatingLabel}
           value={this.getTextFieldValue()}
           readOnly={true}
+          fullWidth={fullWidth}
         />
         {content}
       </div>
