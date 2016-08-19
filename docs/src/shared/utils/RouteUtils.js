@@ -262,6 +262,7 @@ function getComponentSearchObjects(route) {
   }).concat([Object.assign({}, route, {
     key: route.key || `full-page-${route.to}`,
     primaryText: toTitle(toPropTypeId(route.to)) + ' - Examples',
+    component: Link,
   })]);
 }
 

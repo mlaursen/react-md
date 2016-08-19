@@ -4,6 +4,7 @@ export const ADD_TOAST = Symbol('ADD_TOAST');
 export const DISMISS_TOAST = Symbol('DISMISS_TOAST');
 export const MEDIA_CHANGE = Symbol('MEDIA_CHANGE');
 export const UPDATE_DRAWER_TYPE = Symbol('UPDATE_DRAWER_TYPE');
+export const SET_MOBILE_SEARCH = Symbol('SET_MOBILE_SEARCH');
 
 export const SET_TOOLBAR_INACTIVE = Symbol('SET_TOOLBAR_INACTIVE');
 

@@ -1,4 +1,9 @@
-import { LOCATION_CHANGE, SET_TOOLBAR_INACTIVE, UPDATE_DRAWER_TYPE } from 'constants/ActionTypes';
+import {
+  LOCATION_CHANGE,
+  SET_TOOLBAR_INACTIVE,
+  UPDATE_DRAWER_TYPE,
+  SET_MOBILE_SEARCH,
+} from 'constants/ActionTypes';
 import { getPageTitle } from 'utils/StringUtils';
 import { isMobile, isTablet, getDrawerType } from 'utils/MediaUtils';
 
@@ -35,12 +40,21 @@ function updateDrawerType(state, drawerType) {
   return Object.assign({}, state, { tabletDrawerType: drawerType, desktopDrawerType: drawerType });
 }
 
+function setMobileSearch(state, mobileSearch) {
+  if (state.mobileSearch === mobileSearch) {
+    return state;
+  }
+
+  return Object.assign({}, state, { mobileSearch });
+}
+
 const initialState = {
   initialDrawerType: getDrawerType(isMobile(), isTablet()),
   toolbarTitle: '',
   inactive: true,
   tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
   desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
+  mobileSearch: false,
 };
 
 export default function drawer(state = initialState, action) {
@@ -51,6 +65,8 @@ export default function drawer(state = initialState, action) {
       return updateToolbarInactivity(state, action);
     case UPDATE_DRAWER_TYPE:
       return updateDrawerType(state, action.drawerType);
+    case SET_MOBILE_SEARCH:
+      return setMobileSearch(state, action.mobileSearch);
     default:
       return state;
   }

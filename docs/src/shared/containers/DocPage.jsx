@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { loadDocumentation } from 'actions/documentation';
 
 import DocPage from 'components/DocPage';
-@connect(({ documentation }) => ({ ...documentation }), {
+
+@connect(({ documentation, ui: { media: { mobile, tablet } } }) => ({ ...documentation, mobile, tablet }), {
   loadDocumentation,
 })
 export default class DocPageContainer extends PureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
+    mobile: PropTypes.bool.isRequired,
     loadDocumentation: PropTypes.func.isRequired,
   };
 

@@ -6,6 +6,7 @@ import {
   DISMISS_TOAST,
   MEDIA_CHANGE,
   UPDATE_DRAWER_TYPE,
+  SET_MOBILE_SEARCH,
 } from 'constants/ActionTypes';
 
 export function setToolbarInactive(inactive) {
@@ -36,3 +37,6 @@ export function updateDrawerType(drawerType) {
   return { type: UPDATE_DRAWER_TYPE, drawerType };
 }
 
+export function setMobileSearch(mobileSearch) {
+  return { type: SET_MOBILE_SEARCH, mobileSearch };
+}

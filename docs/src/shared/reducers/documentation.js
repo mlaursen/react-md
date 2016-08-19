@@ -20,7 +20,6 @@ const initialState = {
   description: '',
   examples: [],
   docgens: [],
-  tableCard: false,
 };
 
 export default function documentation(state = initialState, action) {

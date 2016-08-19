@@ -6,7 +6,7 @@ import './_quick-search.scss';
 import { showOverlay, hideOverlay } from 'actions/ui';
 import { searchForComponent } from 'actions/quickSearch';
 
-@connect(({ quickSearch }) => ({ data: quickSearch.matches }), {
+@connect(({ quickSearch, ui: { media: { mobile } } }) => ({ data: quickSearch.matches, mobile }), {
   onChange: searchForComponent,
   onBlur: hideOverlay,
   onMenuOpen: showOverlay,
@@ -19,10 +19,11 @@ export default class QuickSearch extends PureComponent {
     onBlur: PropTypes.func.isRequired,
     onAutocomplete: PropTypes.func.isRequired,
     onMenuOpen: PropTypes.func.isRequired,
+    mobile: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { ...props } = this.props;
+    const { mobile, ...props } = this.props;
     delete props.dispatch;
 
     return (
@@ -30,7 +31,7 @@ export default class QuickSearch extends PureComponent {
         {...props}
         label="Search documentation"
         block
-        fullWidth
+        fullWidth={mobile}
         filter={null}
         className="quick-search"
         listClassName="quick-search-menu"

@@ -5,14 +5,23 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import Overlay from 'containers/Overlay';
 import QuickNav from 'containers/QuickNav';
-import QuickSearch from 'containers/QuickSearch';
 import AppFooter from 'components/AppFooter';
 import Notifications from 'containers/Notifications';
+import ToolbarChildren from 'components/ToolbarChildren';
 import { getNavItems } from 'utils/RouteUtils';
-import { mediaChange } from 'actions/ui';
+import { mediaChange, setMobileSearch } from 'actions/ui';
 
-@connect(({ ui: { drawer, media } }) => ({ ...drawer, ...media }), {
+@connect(({ ui: { drawer, media } }) => ({
+  initialDrawerType: drawer.initialDrawerType,
+  toolbarTitle: drawer.toolbarTitle,
+  inactive: drawer.inactive,
+  tabletDrawerType: drawer.tabletDrawerType,
+  desktopDrawerType: drawer.desktopDrawerType,
+  mobileSearch: drawer.mobileSearch,
+  mobile: media.mobile,
+}), {
   mediaChange,
+  setMobileSearch,
 })
 export default class App extends PureComponent {
   static propTypes = {
@@ -20,13 +29,15 @@ export default class App extends PureComponent {
     children: PropTypes.node,
 
     location: PropTypes.object.isRequired,
-    initiallyOpen: PropTypes.bool.isRequired,
     initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     inactive: PropTypes.bool.isRequired,
     mobile: PropTypes.bool.isRequired,
     tabletDrawerType: PropTypes.string.isRequired,
     desktopDrawerType: PropTypes.string.isRequired,
+    mediaChange: PropTypes.func.isRequired,
+    mobileSearch: PropTypes.bool.isRequired,
+    setMobileSearch: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -35,40 +46,48 @@ export default class App extends PureComponent {
   }
 
   render() {
-    let { children } = this.props;
+    let { children, toolbarTitle } = this.props;
 
     const {
-      location,
+      location: { pathname },
       inactive,
       mobile,
-      initiallyOpen,
+      mobileSearch,
       initialDrawerType,
-      toolbarTitle,
       tabletDrawerType,
       desktopDrawerType,
+      setMobileSearch,
     } = this.props;
 
     if (children) {
-      children = React.cloneElement(children, { key: location.pathname });
+      children = React.cloneElement(children, { key: pathname });
+    }
+
+    if (mobileSearch) {
+      toolbarTitle = null;
     }
 
     let quickNav;
     let toolbarChildren;
-    if (location.pathname !== '/') {
+    if (pathname !== '/') {
       quickNav = <QuickNav key="quick-nav" />;
-
-      if (!mobile) {
-        toolbarChildren = <QuickSearch key="quick-search" />;
-      }
+      toolbarChildren = (
+        <ToolbarChildren
+          key="children"
+          mobile={mobile}
+          mobileSearch={mobileSearch}
+          setMobileSearch={setMobileSearch}
+        />
+      );
     }
 
     return (
       <NavigationDrawer
-        initiallyOpen={initiallyOpen}
         initialDrawerType={initialDrawerType}
         toolbarClassName={cn({ inactive })}
         drawerTitle="react-md"
         toolbarTitle={toolbarTitle}
+        toolbarClassName="doc-toolbar"
         toolbarChildren={toolbarChildren}
         navItems={getNavItems(location.pathname)}
         contentClassName="text-page"
