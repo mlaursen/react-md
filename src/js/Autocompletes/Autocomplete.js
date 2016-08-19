@@ -726,9 +726,7 @@ export default class Autocomplete extends Component {
 
     const value = this._getValue();
 
-    const mergedClassName = classnames('md-autocomplete', containerClassName, {
-      'full-width': fullWidth,
-    });
+    const mergedClassName = classnames('md-autocomplete', containerClassName);
 
     const autocomplete = (
       <TextField
@@ -770,7 +768,7 @@ export default class Autocomplete extends Component {
         <CSSTransitionGroup
           component="div"
           style={containerStyle}
-          className={mergedClassName}
+          className={classnames(mergedClassName, { 'full-width': fullWidth })}
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}
