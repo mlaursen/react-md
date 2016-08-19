@@ -41,6 +41,7 @@ export default class TextField extends Component {
       areaHeight: 'auto',
       value: props.defaultValue,
       passwordVisible: false,
+      minWidth: null,
     };
   }
 
@@ -248,6 +249,12 @@ export default class TextField extends Component {
      * Any icon className to use to render the password icon button.
      */
     passwordIconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the min-width for the text field should automatically be adjusted
+     * to be the max of the placeholder text or label text width.
+     */
+    adjustMinWidth: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -256,7 +263,23 @@ export default class TextField extends Component {
     floatingLabel: true,
     lineDirection: 'left',
     passwordIconChildren: 'remove_red_eye',
+    adjustMinWidth: true,
   };
+
+  componentDidMount() {
+    if (this.props.adjustMinWidth) {
+      this._setMinWidth();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { adjustMinWidth, label, placeholder } = this.props;
+    if (nextProps.adjustMinWidth && label !== nextProps.label || placeholder !== nextProps.label || !adjustMinWidth) {
+      this._setMinWidth();
+    } else if(adjustMinWidth && !nextProps.adjustMinWidth) {
+      this.setState({ minWidth: null });
+    }
+  }
 
   getValue = () => {
     return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
@@ -313,23 +336,61 @@ export default class TextField extends Component {
   };
 
   /**
-   * A publicly accessibly API for focusing the text field.
+   * This is a helper method to focus the text field since the text field is nested
+   * in some containers. This will allow the following to work:
+   *
+   * ```js
+   * this.refs.textField.focus();
+   * ```
+   *
+   * Because of the containers and the positioning of the text field, the following will
+   * *not* work:
+   *
+   * ```js
+   * ReactDOM.findDOMNode(this.refs.textFeld).focus();
+   * ```
    */
-  focus = () => {
+  focus() {
     if(!this.textField) {
       this.textField = findDOMNode(this.refs.textField || this.refs.textarea);
     }
 
 
     this.textField.focus();
-  };
+  }
 
   _togglePasswordField = () => {
     this.setState({ passwordVisible: !this.state.passwordVisible });
   };
 
+  _setMinWidth = () => {
+    const { placeholder, label } = this.props;
+    const { textarea, textField, floatingLabel } = this.refs;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'md-text-field';
+    const context = canvas.getContext('2d');
+
+    let minWidth;
+    if (context) {
+      context.font = window.getComputedStyle(textarea || textField).getPropertyValue('font');
+
+      minWidth = Math.max(
+        floatingLabel ? findDOMNode(floatingLabel).offsetWidth : 0,
+        placeholder ? context.measureText(placeholder).width : 0,
+        !floatingLabel ? context.measureText(label).width : 0
+      );
+
+      if (minWidth) {
+        minWidth += 12;
+      }
+    }
+
+    this.setState({ minWidth });
+  };
+
   render() {
-    const { active, currentRows, areaHeight, passwordVisible } = this.state;
+    const { active, currentRows, areaHeight, passwordVisible, minWidth } = this.state;
+
     const {
       style,
       className,
@@ -362,6 +423,7 @@ export default class TextField extends Component {
     delete props.onBlur;
     delete props.onChange;
     delete props.onFocus;
+    delete props.adjustMinWidth;
 
     const value = this.getValue();
     const error = !!errorText || (!!maxLength && value.length > maxLength);
@@ -483,7 +545,7 @@ export default class TextField extends Component {
           {...textFieldProps}
           ref="textField"
           type={passwordVisible ? 'text': type}
-          style={inputStyle}
+          style={Object.assign({ minWidth }, inputStyle)}
           placeholder={visiblePlaceholder}
         />
       );
@@ -504,6 +566,7 @@ export default class TextField extends Component {
           {fontIcon}
           {useFloatingLabel && label &&
           <FloatingLabel
+            ref="floatingLabel"
             label={label}
             active={active}
             error={error}
