@@ -138,6 +138,15 @@ export default class Autocomplete extends Component {
     dataValue: PropTypes.string,
 
     /**
+     * A single key or an array of keys to delete from your data object before passing
+     * to the `ListItem` component.
+     */
+    deleteKeys: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
+
+    /**
      * The data that will be used for autocomplete suggestions. This can either be
      * an array of string, number, or object. If it is an array of objects, the key
      * `dataLabel` is required.
@@ -148,7 +157,6 @@ export default class Autocomplete extends Component {
      *     PropTypes.string,
      *     PropTypes.number,
      *   ]).isRequired,
-     *   props: PropTypes.object,
      * }),
      * ```
      */
@@ -163,7 +171,6 @@ export default class Autocomplete extends Component {
             PropTypes.string,
             PropTypes.number,
           ]).isRequired,
-          props: PropTypes.object,
         }),
       ])).isRequired(props, propName, component, ...others);
     },
@@ -619,7 +626,7 @@ export default class Autocomplete extends Component {
   _mapToListItem = (match) => {
     if(React.isValidElement(match)) { return match; }
 
-    const { dataLabel, dataValue } = this.props;
+    const { dataLabel, dataValue, deleteKeys } = this.props;
     let props;
     switch(typeof match) {
       case 'string':
@@ -631,10 +638,19 @@ export default class Autocomplete extends Component {
         break;
       default:
         props = {
-          ...match.props,
+          ...match,
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
         };
+
+        if (typeof deleteKeys === 'string') {
+          delete props[deleteKeys];
+        } else if (Array.isArray(deleteKeys)) {
+          deleteKeys.forEach(key => {
+            delete props[key];
+          });
+        }
+
     }
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
@@ -706,6 +722,7 @@ export default class Autocomplete extends Component {
     delete props.onChange;
     delete props.findInlineSuggestion;
     delete props.clearOnAutocomplete;
+    delete props.deleteKeys;
 
     const value = this._getValue();
 
