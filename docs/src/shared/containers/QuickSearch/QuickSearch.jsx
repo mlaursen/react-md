@@ -28,13 +28,14 @@ export default class QuickSearch extends PureComponent {
     return (
       <Autocomplete
         {...props}
-        label="Quick Search..."
+        label="Search documentation"
         block
         fullWidth
         filter={null}
         className="quick-search"
         listClassName="quick-search-menu"
         containerClassName="quick-search-menu-container"
+        clearOnAutocomplete
       />
     );
   }

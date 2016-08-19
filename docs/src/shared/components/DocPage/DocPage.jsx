@@ -27,6 +27,8 @@ export default class DocPage extends PureComponent {
       description: PropTypes.string.isRequired,
       props: PropTypes.object.isRequired,
     })).isRequired,
+    mobile: PropTypes.bool.isRequired,
+    tablet: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -35,7 +37,7 @@ export default class DocPage extends PureComponent {
   };
 
   render() {
-    const { name, description, examples, docgens, style, className } = this.props;
+    const { name, description, examples, docgens, style, className, mobile, tablet } = this.props;
 
     return (
       <main
@@ -48,7 +50,7 @@ export default class DocPage extends PureComponent {
         </div>
         <h2 className="md-headline">Prop Types</h2>
         <div className="md-card-list">
-          {docgens.map((docgen, key) => <DocgenPropTypes key={key} {...docgen} />)}
+          {docgens.map((docgen, key) => <DocgenPropTypes key={key} {...docgen} mobile={mobile} tablet={tablet} />)}
         </div>
       </main>
     );
