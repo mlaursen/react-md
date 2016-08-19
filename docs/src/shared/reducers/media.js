@@ -1,13 +1,11 @@
 import { MEDIA_CHANGE } from 'constants/ActionTypes';
-
-function createMedia(min, max, orientation = '') {
-  return `only screen and (min-width: ${min}px) and (max-width: ${max})${orientation && ` and (orientation: ${orientation})`}`;
-}
+import { isMobile, isTablet } from 'utils/MediaUtils';
 
 function handleMediaChange(state) {
-  const mobile = window.matchMedia(createMedia(320, 1024)).matches;
-  const tablet = window.matchMedia(createMedia(768, 1024, 'landscape')).matches;
+  const mobile = isMobile();
+  const tablet = isTablet();
   const desktop = !mobile && !tablet;
+
 
   if (state.mobile === mobile && state.tablet === tablet && state.desktop === desktop) {
     return state;
@@ -21,9 +19,9 @@ function handleMediaChange(state) {
 }
 
 const initialState = {
-  mobile: false,
-  tablet: false,
-  desktop: true,
+  mobile: isMobile(),
+  tablet: isTablet(),
+  desktop: !isMobile() && !isTablet(),
 };
 
 export default function media(state = initialState, action) {

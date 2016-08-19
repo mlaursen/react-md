@@ -1,5 +1,6 @@
 import { LOCATION_CHANGE, SET_TOOLBAR_INACTIVE, UPDATE_DRAWER_TYPE } from 'constants/ActionTypes';
 import { getPageTitle } from 'utils/StringUtils';
+import { isMobile, isTablet, getDrawerType } from 'utils/MediaUtils';
 
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
@@ -35,8 +36,7 @@ function updateDrawerType(state, drawerType) {
 }
 
 const initialState = {
-  initiallyOpen: true,
-  initialDrawerType: 'desktop',
+  initialDrawerType: getDrawerType(isMobile(), isTablet()),
   toolbarTitle: '',
   inactive: true,
   tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,

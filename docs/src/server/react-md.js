@@ -3,38 +3,29 @@ import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 
 import { getPageTitle } from 'utils/StringUtils';
+import { getDrawerType } from 'utils/MediaUtils';
 import Root from './Root';
 import routes from 'routes';
 import configureStore from 'stores/configureStore';
 
-function getDrawerType(mobile, ipad) {
-  if (mobile) {
-    return 'mobile';
-  } else if (ipad) {
-    return 'ipad';
-  } else {
-    return 'desktop';
-  }
-}
-
 export default function reactMD(req, res) {
   const userAgent = req.header('user-agent');
   const mobile = !!userAgent.match(/mobile/i);
-  const ipad = !!userAgent.match(/ipad/i);
+  const tablet = !!userAgent.match(/ipad/i);
 
   const toolbarTitle = getPageTitle(req.url);
   const initialState = {
     ui: {
       drawer: {
         initiallyOpen: !mobile,
-        initialDrawerType: getDrawerType(mobile, ipad),
+        initialDrawerType: getDrawerType(mobile, tablet),
         inactive: !toolbarTitle,
         toolbarTitle,
       },
       media: {
         mobile,
-        ipad,
-        desktop: !mobile && !ipad,
+        tablet,
+        desktop: !mobile && !tablet,
       },
     },
   };
