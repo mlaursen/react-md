@@ -148,6 +148,7 @@ export default class Autocomplete extends Component {
      *     PropTypes.string,
      *     PropTypes.number,
      *   ]).isRequired,
+     *   props: PropTypes.object,
      * }),
      * ```
      */
@@ -162,6 +163,7 @@ export default class Autocomplete extends Component {
             PropTypes.string,
             PropTypes.number,
           ]).isRequired,
+          props: PropTypes.object,
         }),
       ])).isRequired(props, propName, component, ...others);
     },
@@ -629,7 +631,7 @@ export default class Autocomplete extends Component {
         break;
       default:
         props = {
-          ...match,
+          ...match.props,
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
         };
