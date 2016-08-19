@@ -1,12 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { RaisedButton } from 'react-md/lib/Buttons';
 import { setOverflow } from 'react-md/lib/utils';
 
 import './_new-page.scss';
 
-export default class NewPage extends Component {
+export default class NewPage extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -16,10 +15,6 @@ export default class NewPage extends Component {
   static propTypes = {
     children: PropTypes.node,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.isOpen === nextState.isOpen) { return; }

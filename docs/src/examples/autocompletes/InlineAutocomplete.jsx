@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -13,7 +12,7 @@ import { addToast } from 'actions/ui';
 import './_style.scss';
 
 @connect(() => ({}), { addToast })
-export default class InlineAutocomplete extends Component {
+export default class InlineAutocomplete extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -23,10 +22,6 @@ export default class InlineAutocomplete extends Component {
   static propTypes = {
     addToast: PropTypes.func.isRequired,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   _handleSubmit = (e) => {
     e.preventDefault();

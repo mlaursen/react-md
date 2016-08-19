@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton } from 'react-md/lib/Buttons';
 import { GITHUB_LINK } from 'constants';
 
-export default () => (
+const IconButtonExamples = () => (
   <div>
     <p>
       Icon buttons can not be unstyled or styled with the primary/secondary color.
@@ -29,3 +29,5 @@ export default () => (
     />
   </div>
 );
+
+export default IconButtonExamples;

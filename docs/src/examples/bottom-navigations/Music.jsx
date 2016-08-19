@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import loremIpsum from 'lorem-ipsum';
 
 import { randomImage, randomImages, getRandomInt } from 'utils/RandomUtils';
@@ -38,15 +37,11 @@ const lorems = Array.apply(null, new Array(8)).map((_, i) => ({
   subtitle: loremIpsum({ count: getRandomInt({ min: 1, max: 5 }), units: 'words' }),
   img: randomImage({ width: 140, time: i }),
 }));
-export default class Music extends Component {
+export default class Music extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   render() {
     return (

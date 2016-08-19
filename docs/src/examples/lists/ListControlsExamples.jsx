@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import { List, ListItemControl } from 'react-md/lib/Lists';
 import { Checkbox, Switch } from 'react-md/lib/SelectionControls';
 
@@ -15,15 +14,11 @@ const formatDate = date => {
     minute: '2-digit',
   }).format(date);
 };
-export default class ListControlsExamples extends Component {
+export default class ListControlsExamples extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { checked: false };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   getSyncMessage = () => {

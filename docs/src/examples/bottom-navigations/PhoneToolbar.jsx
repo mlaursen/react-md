@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { IconButton } from 'react-md/lib/Buttons';
@@ -9,7 +8,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 const actionLeft = <IconButton key="menu">menu</IconButton>;
 const kebab = <IconButton key="kebab">more_vert</IconButton>;
 
-export default class PhoneToolbar extends Component {
+export default class PhoneToolbar extends PureComponent {
   static propTypes = {
     inset: PropTypes.bool.isRequired,
   };
@@ -17,10 +16,6 @@ export default class PhoneToolbar extends Component {
   static defaultProps = {
     inset: false,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   render() {
     const { inset } = this.props;

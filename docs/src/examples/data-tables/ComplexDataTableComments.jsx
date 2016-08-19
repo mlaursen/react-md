@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent } from 'react';
 import { CardText } from 'react-md/lib/Cards';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from 'react-md/lib/DataTables';
 import { RadioGroup, Radio, Switch } from 'react-md/lib/SelectionControls';
@@ -8,11 +7,10 @@ import { sort } from 'utils/ListUtils';
 
 import movies from 'constants/movies';
 
-export default class ComplexDataTableComments extends Component {
+export default class ComplexDataTableComments extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       large: false,
       sortedMovies: sort(movies, 'title', true).map(movie => ({ ...movie, comment: '' })),

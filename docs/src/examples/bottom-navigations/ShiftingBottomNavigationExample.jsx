@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
 
@@ -12,7 +11,7 @@ import NewsStand from './NewsStand';
 
 const themeClassNames = ['movies-and-tv', 'music', 'book', 'newsstand'];
 
-export default class ShiftingBottomNavigationExample extends Component {
+export default class ShiftingBottomNavigationExample extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -20,10 +19,6 @@ export default class ShiftingBottomNavigationExample extends Component {
       activeIndex: 0,
       bottomNav: null,
     };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentDidMount() {

@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 
 import injectInk from 'react-md/lib/Inks';
 
 @injectInk
-class TerriblyInaccessibleFakeButton extends Component {
+class TerriblyInaccessibleFakeButton extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
@@ -23,10 +22,6 @@ class TerriblyInaccessibleFakeButton extends Component {
     onTouchCancel: PropTypes.func,
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
-
   render() {
     const { ink, children, ...props } = this.props;
     return (
@@ -38,10 +33,12 @@ class TerriblyInaccessibleFakeButton extends Component {
   }
 }
 
-export default () => (
+const InkExamples = () => (
   <div>
     <TerriblyInaccessibleFakeButton>Click me!</TerriblyInaccessibleFakeButton>
     <TerriblyInaccessibleFakeButton tabIndex={0}>Keyboard focus me!</TerriblyInaccessibleFakeButton>
     <TerriblyInaccessibleFakeButton disabled>Click me!</TerriblyInaccessibleFakeButton>
   </div>
 );
+
+export default InkExamples;

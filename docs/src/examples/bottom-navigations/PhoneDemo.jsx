@@ -1,13 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import classnames from 'classnames';
 import Paper from 'react-md/lib/Papers';
 import { isTouchDevice } from 'react-md/lib/utils';
 
 import PhoneToolbar from './PhoneToolbar';
 
-export default class PhoneDemo extends Component {
+export default class PhoneDemo extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -20,10 +19,6 @@ export default class PhoneDemo extends Component {
     children: PropTypes.node,
     bottomNav: PropTypes.object,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   componentDidMount() {
     if (isTouchDevice()) {

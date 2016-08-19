@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import NavigationDrawer from 'react-md/lib//NavigationDrawers';
 import { IconButton } from 'react-md/lib/Buttons';
@@ -11,7 +10,7 @@ import { randomAvatars } from 'utils/RandomUtils';
 
 const avatars = randomAvatars(3, 'fake-icon');
 
-export default class NewPageDemo extends Component {
+export default class NewPageDemo extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -22,10 +21,6 @@ export default class NewPageDemo extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   closeDemo = () => {
     this.refs.newPage.closeDemo();

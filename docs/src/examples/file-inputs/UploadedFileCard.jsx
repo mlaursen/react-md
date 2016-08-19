@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import { IconButton } from 'react-md/lib/Buttons';
@@ -15,7 +14,7 @@ if (!global.Intl) {
   });
 }
 
-export default class UploadedFileCard extends Component {
+export default class UploadedFileCard extends PureComponent {
   static propTypes = {
     file: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -28,10 +27,6 @@ export default class UploadedFileCard extends Component {
       ]).isRequired,
     }).isRequired,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   _extractLang = () => {
     const { type, uploadResult } = this.props.file;

@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 
@@ -11,7 +10,7 @@ const PROGRESS_INTERVAL = 15;
 const PROGRESS_INCREMENT = 100 / (30000 / PROGRESS_INTERVAL);
 
 @connect(({ ui }) => ({ ...ui.media }))
-export default class SpotifyAlbum extends Component {
+export default class SpotifyAlbum extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -44,10 +43,6 @@ export default class SpotifyAlbum extends Component {
     songName: PropTypes.string,
     songDuration: PropTypes.number,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.playing && !this.props.playing) {

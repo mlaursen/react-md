@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -20,15 +19,11 @@ if (!global.fetch) {
   });
 }
 
-export default class SpotifySearch extends Component {
+export default class SpotifySearch extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { artists: [], albums: [], playingId: null, value: '' };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {

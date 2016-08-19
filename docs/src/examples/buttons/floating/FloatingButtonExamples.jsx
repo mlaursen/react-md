@@ -1,7 +1,7 @@
 import React from 'react';
 import { FloatingButton } from 'react-md/lib/Buttons';
 
-export default () => (
+const FloatingButtonExamples = () => (
   <div className="floating-btn-examples">
     <p>Floating buttons can be unstyled or styled with the primary/secondary color.</p>
     <FloatingButton>home</FloatingButton>
@@ -19,3 +19,5 @@ export default () => (
     <FloatingButton secondary disabled>accessible</FloatingButton>
   </div>
 );
+
+export default FloatingButtonExamples;

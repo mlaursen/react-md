@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
 import Menu from 'react-md/lib/Menus';
 import { RaisedButton, IconButton } from 'react-md/lib/Buttons';
 import { ListItem } from 'react-md/lib/Lists';
@@ -11,10 +10,6 @@ export default class ToggleableMenuExamlples extends PureComponent {
     super(props);
 
     this.state = { open: false, open2: false };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   toggle = () => {

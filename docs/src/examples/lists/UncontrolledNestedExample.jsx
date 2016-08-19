@@ -2,7 +2,7 @@ import React from 'react';
 import { List, ListItem } from 'react-md/lib/Lists';
 import Subheader from 'react-md/lib/Subheaders';
 
-export default () => {
+const UncontrolledNestedExample = () => {
   const uncontrolledItems = Array.apply(null, new Array(5)).map((_, i) => {
     return (
       <ListItem
@@ -24,3 +24,5 @@ export default () => {
     </List>
   );
 };
+
+export default UncontrolledNestedExample;

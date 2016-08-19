@@ -1,12 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import { List, ListItem } from 'react-md/lib/Lists';
 import Subheader from 'react-md/lib/Subheaders';
 
 const ITEMS = Array.apply(null, new Array(5)).map(() => 'Single-line item');
 const NESTED_ITEMS = ['Revealed single-line item', 'Revealed single-line item'];
 
-export default class ControlledNestedExample extends Component {
+export default class ControlledNestedExample extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -27,10 +26,6 @@ export default class ControlledNestedExample extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   toggle = (i, bool) => {
     const key = `li${i}`;

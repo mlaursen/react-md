@@ -7,13 +7,44 @@ import { toClassName } from 'utils/StringUtils';
 
 export default class Example extends PureComponent {
   static propTypes = {
+    /**
+     * An optional className to apply.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional title for the code example.
+     */
     title: PropTypes.string,
+
+    /**
+     * An optional description to apply to the code Example. This
+     * is used if the description should not be included in the
+     * source code.
+     *
+     * This value will automatically be parsed as markdown.
+     */
     description: PropTypes.string,
+
+    /**
+     * The raw source code of the example to parse as markdown.
+     */
     code: PropTypes.string.isRequired,
+
+    /**
+     * The code example to show.
+     */
     children: PropTypes.node.isRequired,
-    fallbackId: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the example is a table to add additional styling.
+     */
     tableCard: PropTypes.bool,
+
+    /**
+     * Injected from `DocPage.
+     */
+    fallbackId: PropTypes.string.isRequired,
   };
 
   render() {

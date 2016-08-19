@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatButton } from 'react-md/lib/Buttons';
 import FontIcon from 'react-md/lib/FontIcons';
 
-export default () => (
+const FlatButtonExamples = () => (
   <div>
     <p>Flat buttons can be unstyled or styled with the primary/secondary color.</p>
     <FlatButton label="Hello, World!" data-ink-target="true" />
@@ -20,3 +20,5 @@ export default () => (
     </FlatButton>
   </div>
 );
+
+export default FlatButtonExamples;

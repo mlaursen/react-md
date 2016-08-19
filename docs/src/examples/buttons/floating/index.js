@@ -4,6 +4,7 @@ import FloatingButtonExamplesRaw from '!!raw!./FloatingButtonExamples';
 
 import SpeedDialExample from './SpeedDialExample';
 import SpeedDialExampleRaw from '!!raw!./SpeedDialExample';
+import SpeedDialMarkdown from './SpeedDialMarkdown.md';
 
 import './_style.scss';
 
@@ -13,6 +14,7 @@ export default [{
   children: <FloatingButtonExamples />,
 }, {
   title: 'Speed Dial Transition',
+  description: SpeedDialMarkdown,
   code: SpeedDialExampleRaw,
   children: <SpeedDialExample />,
 }];

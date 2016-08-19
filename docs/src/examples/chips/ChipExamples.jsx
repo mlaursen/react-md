@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Avatar from 'react-md/lib/Avatars';
 import Chip from 'react-md/lib/Chips';
 
-export default class ChipExamples extends Component {
+export default class ChipExamples extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { removed: false, removed2: false };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {

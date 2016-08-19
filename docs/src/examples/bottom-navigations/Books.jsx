@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import Divider from 'react-md/lib/Dividers';
 import { Card, CardMedia, CardTitle, CardActions } from 'react-md/lib/Cards';
 import { FlatButton } from 'react-md/lib/Buttons';
@@ -49,11 +48,7 @@ data.forEach((datum, i) => {
   datum.img = imgs[i];
 });
 
-export default class Books extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
-
+export default class Books extends PureComponent {
   render() {
     const cards = data.map(({ img, ...titleProps }, i) => (
       <Card raise={false} key={i} className="book-card">

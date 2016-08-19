@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import { findIndex } from 'lodash/array';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -9,15 +8,11 @@ import programmingLanguages from 'constants/programmingLanguages';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-export default class MixedDataTypesAutocomplete extends Component {
+export default class MixedDataTypesAutocomplete extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { data: [] };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   // Filters the programming languages and then injects Subheaders for each letter block.

@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-
 import { RaisedButton } from 'react-md/lib/Buttons';
 import { LinearProgress } from 'react-md/lib/Progress';
 import { FileUpload } from 'react-md/lib/FileInputs';
 
 import UploadedFileCard from './UploadedFileCard';
 
-export default class FileUploadExample extends Component {
+export default class FileUploadExample extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { files: {} };
     this._timeout = null;
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {

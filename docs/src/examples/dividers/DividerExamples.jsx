@@ -8,7 +8,7 @@ import { randomAvatars } from 'utils/RandomUtils';
 
 const avatars = randomAvatars(3);
 
-export default () => (
+const DividerExamples = () => (
   <div>
     <form className="divider-example-container">
       <TextField label="Something" block floatingLabel={false} />
@@ -26,3 +26,5 @@ export default () => (
     </List>
   </div>
 );
+
+export default DividerExamples;

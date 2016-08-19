@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
-
+import React, { PureComponent } from 'react';
 import { RaisedButton } from 'react-md/lib/Buttons';
 import FileInput from 'react-md/lib/FileInputs';
 import SelectField from 'react-md/lib/SelectFields';
@@ -14,7 +12,7 @@ const FILE_TYPES = ['webm', 'mkv', 'flv', 'avi', 'mov', 'mp4'];
  * This example was copied from
  * https://www.reddit.com/r/MaterialDesign/comments/4odb1j/wip_file_converter/
  */
-export default class FileConverterExample extends Component {
+export default class FileConverterExample extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -26,10 +24,6 @@ export default class FileConverterExample extends Component {
     };
 
     this._interval = null;
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUnmount() {

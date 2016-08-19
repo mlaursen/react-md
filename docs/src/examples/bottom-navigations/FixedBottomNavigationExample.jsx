@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
 
 import LoremIpsum from 'components/LoremIpsum';
 import PhoneDemo from './PhoneDemo';
 
-export default class SimpleExample extends Component {
+export default class SimpleExample extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { page: 0, bottomNav: null };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentDidMount() {

@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import { IconButton, FlatButton } from 'react-md/lib/Buttons';
 import { Card, CardTitle, CardMedia } from 'react-md/lib/Cards';
 
-export default class Section extends Component {
+export default class Section extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     listClassName: PropTypes.string,
@@ -16,10 +15,6 @@ export default class Section extends Component {
     })).isRequired,
     titleIcon: PropTypes.string,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   render() {
     const { className, listClassName, cardClassName, title, data, titleIcon } = this.props;

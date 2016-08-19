@@ -5,7 +5,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 
 import { randomImage } from 'utils/RandomUtils';
 
-export default () => (
+const AvatarExamples = () => (
   <div>
     <div className="middle-align">
       <Avatar src={randomImage()} alt="Some image from unsplash.it" />
@@ -41,3 +41,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default AvatarExamples;

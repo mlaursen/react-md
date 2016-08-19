@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
 import { RaisedButton, IconButton, FlatButton } from 'react-md/lib/Buttons';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
 
-export default class FullPageDialogExamples extends Component {
+export default class FullPageDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   openDialog = (e) => {

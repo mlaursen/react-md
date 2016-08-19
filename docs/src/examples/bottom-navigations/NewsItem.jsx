@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
-export default class NewsItem extends Component {
+export default class NewsItem extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
@@ -11,10 +10,6 @@ export default class NewsItem extends Component {
     titleClassName: PropTypes.string,
     subtitleClassName: PropTypes.string,
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   render() {
     const { title, subtitle, time, img, titleClassName, subtitleClassName } = this.props;

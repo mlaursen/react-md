@@ -2,7 +2,7 @@ import React from 'react';
 import { RaisedButton } from 'react-md/lib/Buttons';
 import FontIcon from 'react-md/lib/FontIcons';
 
-export default () => (
+const RaisedButtonExamples = () => (
   <div>
     <p>Raised buttons can be unstyled or styled with the primary/secondary color.</p>
     <RaisedButton label="Hello, World!" />
@@ -20,3 +20,5 @@ export default () => (
     </RaisedButton>
   </div>
 );
+
+export default RaisedButtonExamples;

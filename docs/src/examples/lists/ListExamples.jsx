@@ -11,7 +11,7 @@ const InfoIcon = () => <FontIcon>info</FontIcon>;
 const StarIcon = () => <FontIcon>star</FontIcon>;
 const avatars = randomAvatars(3);
 
-export default () => (
+const ListExamples = () => (
   <div>
     <List subheader="Text Only List" className="example-list">
       <ListItem primaryText="Inbox" />
@@ -79,3 +79,5 @@ export default () => (
     </List>
   </div>
 );
+
+export default ListExamples;

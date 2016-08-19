@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import FileInput from 'react-md/lib/FileInputs';
 import Snackbar from 'react-md/lib/Snackbars';
 
 import './_file-inputs.scss';
 
-export default class FileInputExamples extends Component {
+export default class FileInputExamples extends PureComponent {
   constructor(props) {
     super(props);
 

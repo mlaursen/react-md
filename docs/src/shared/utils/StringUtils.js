@@ -87,7 +87,7 @@ export function toPageName(str) {
 export function toJsonName(component) {
   let name = toTitle(component);
 
-  if (['Selection Controls', 'Progress'].indexOf(name) === -1) {
+  if (['Selection Controls', 'Circular Progress', 'Linear Progress'].indexOf(name) === -1) {
     name = name.substring(0, name.length - 1);
   }
 

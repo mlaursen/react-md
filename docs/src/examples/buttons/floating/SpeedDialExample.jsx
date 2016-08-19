@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import classnames from 'classnames';
 import { RaisedButton } from 'react-md/lib/Buttons';
 import { SpeedDial } from 'react-md/lib/FABTransitions';
 import { getOffset } from 'react-md/lib/utils';
-
-import Markdown from 'components/Markdown';
-import markdown from './SpeedDialMarkdown.md';
 
 function getViewSize() {
   const w = window;
@@ -20,7 +16,7 @@ function getViewSize() {
   };
 }
 
-export default class SpeedDialExample extends Component {
+export default class SpeedDialExample extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -29,10 +25,6 @@ export default class SpeedDialExample extends Component {
       isOpen: false,
       moving: false,
     };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -110,7 +102,6 @@ export default class SpeedDialExample extends Component {
     const { isOpen, demoActive, moving, controlledStyle } = this.state;
     return (
       <div>
-        <Markdown markdown={markdown} />
         {(demoActive || moving) &&
           /* fake size of floating button */
           <div style={{ margin: '1em', height: 56 }}>

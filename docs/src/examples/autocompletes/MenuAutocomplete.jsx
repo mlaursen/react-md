@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent } from 'react';
 import Fuse from 'fuse.js';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -7,11 +6,10 @@ import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
 
 import programmingLanguages from 'constants/programmingLanguages';
 
-export default class MenuAutocomplete extends Component {
+export default class MenuAutocomplete extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     this.state = {
       filterType: Autocomplete.caseInsensitiveFilter,
     };

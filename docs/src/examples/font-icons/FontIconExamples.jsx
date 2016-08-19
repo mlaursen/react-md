@@ -1,7 +1,7 @@
 import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 
-export default () => (
+const FontIconExamples = () => (
   <div>
     <p>FontIcons from Material Icons</p>
     <FontIcon>home</FontIcon>
@@ -11,3 +11,5 @@ export default () => (
     <FontIcon iconClassName="fa fa-book" />
   </div>
 );
+
+export default FontIconExamples;
