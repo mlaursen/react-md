@@ -58,6 +58,7 @@ export default class ChipExamples extends PureComponent {
         transitionName="opacity"
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
+        className="chip-list"
       >
         <Chip label="Example Chip">
           <Avatar random>A</Avatar>

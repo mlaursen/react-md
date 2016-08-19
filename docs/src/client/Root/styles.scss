@@ -19,6 +19,18 @@
   margin-left: auto;
 }
 
+.mla {
+  margin-left: auto !important;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
 // Custom, iPhone Retina
 @media only screen and (min-width: 320px) {
   .container {

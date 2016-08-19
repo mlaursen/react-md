@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { uniqBy } from 'lodash/array';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
-import Chip from 'react-md/lib/Chips';
+import StateChip from './StateChip';
 
 import states from 'constants/states';
 
@@ -14,12 +15,10 @@ export default class ChipsWithTextField extends PureComponent {
     this.state = { states: [] };
   }
 
-  _addState = (state) => {
-    if (this.state.states.indexOf(state) === -1) {
-      this.setState({
-        states: [...this.state.states, state],
-      });
-    }
+  _addState = (state, stateIndex) => {
+    const newStates = [...this.state.states, states[stateIndex]];
+
+    this.setState({ states: uniqBy(newStates, s => s.name) });
   };
 
   _removeState = (state) => {
@@ -30,7 +29,7 @@ export default class ChipsWithTextField extends PureComponent {
 
   render() {
     const chips = this.state.states.map(state => (
-      <Chip label={state} key={state} remove={this._removeState.bind(this, state)} />
+      <StateChip key={state.name} state={state} onRemove={this._removeState} />
     ));
     return (
       <CSSTransitionGroup
@@ -38,6 +37,7 @@ export default class ChipsWithTextField extends PureComponent {
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
         component="div"
+        className="chip-list"
       >
         {chips}
         <Autocomplete
@@ -47,6 +47,7 @@ export default class ChipsWithTextField extends PureComponent {
           onAutocomplete={this._addState}
           clearOnAutocomplete
           fullWidth
+          deleteKeys="abbreviation"
         />
       </CSSTransitionGroup>
     );
