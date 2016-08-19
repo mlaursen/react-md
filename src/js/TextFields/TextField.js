@@ -20,15 +20,6 @@ const valueType = PropTypes.oneOfType([
  * Text Fields display as `inline-block` by default so that their size does not span `100%`. If
  * you want a text field per-line, wrap them in a div, or set them to display block (will make their width
  * expand as well though).
- *
- * There is a publically accessible `focus()` function to simplify the focusing of the text field.
- *
- * It can be used as follows:
- *
- * ```js
- * <TextField ref="textField" />
- * <button onClick={() => this.refs.textField.focus()}>Focus Text Field</button>
- * ```
  */
 export default class TextField extends Component {
   constructor(props) {
@@ -43,6 +34,8 @@ export default class TextField extends Component {
       passwordVisible: false,
       minWidth: null,
     };
+
+    this.focus = this.focus.bind(this);
   }
 
   static propTypes = {

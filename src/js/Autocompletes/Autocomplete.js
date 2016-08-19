@@ -277,6 +277,27 @@ export default class Autocomplete extends Component {
     findInlineSuggestion: Autocomplete.findIgnoreCase,
   };
 
+  /**
+   * This function does a simple ignore case search of some `filterText` for every
+   * item in a `haystack`. It will only include items that are:
+   *  - not null or undefined
+   *  - valid React Components
+   *  - a number or string that contains each letter/number in exact order ignoring case
+   *  - an object's `dataLabel` value that contains each letter/number in exact order ignoring case.
+   *
+   * Example:
+   * ```js
+   * const haystack = ['Apple', 'Banana', 'Orange'];
+   * caseInsensitiveFilter(haystack, 'An') // ['Banana', 'Orange'];
+   * caseInsensitiveFilter(haystack, 'ae') // []
+   * ```
+   *
+   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
+   * @param {string} filterText - the filter text to use.
+   * @param {string=} dataLabel - the data label to use if the element is an object.
+   *
+   * @return {Array.<string|number|Object|function>} a filtered list.
+   */
   static caseInsensitiveFilter(haystack, filterText, dataLabel) {
     const needle = filterText.toLowerCase();
 
@@ -301,6 +322,28 @@ export default class Autocomplete extends Component {
     });
   }
 
+
+  /**
+   * This function does a simple fuzzy search of some `needle` for every
+   * item in a `haystack`. It will only include items that are:
+   *  - not null or undefined
+   *  - valid React Components
+   *  - a number or string that contains each letter/number in order ignoring case
+   *  - an object's `dataLabel` value that contains each letter/number in order ignoring case.
+   *
+   * Example:
+   * ```js
+   * const haystack = ['Apple', 'Banana', 'Orange'];
+   * fuzzyFilter(haystack, 'An') // ['Banana', 'Orange'];
+   * fuzzyFilter(haystack, 'ae') // ['Apple']
+   * ```
+   *
+   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
+   * @param {string} filterText - the filter text to use.
+   * @param {string=} dataLabel - the data label to use if the element is an object.
+   *
+   * @return {Array.<string|number|Object|function>} a filtered list.
+   */
   static fuzzyFilter(haystack, needle, dataLabel) {
     // Create an amazing regex that matches the letters in order
     // and escapes any strings that could be part of a regex.
@@ -334,6 +377,18 @@ export default class Autocomplete extends Component {
     });
   }
 
+  /**
+   * This function finds the first item in a `haystack` that starts with every
+   * letter of the `value` in order. It will ignore:
+   *  - null or undefined
+   *  - valid React components
+   *
+   * @param {Array.<string|number|Object|function} haystack - the haystack to search.
+   * @param {string} value - the current value to use.
+   * @param {string=} dataLabel - the object key to use to extract the comparing value.
+   *
+   * @return {string|number} the found element or the empty string.
+   */
   static findIgnoreCase(haystack, value, dataLabel) {
     const needle = value ? value.toLowerCase() : '';
 
@@ -341,10 +396,8 @@ export default class Autocomplete extends Component {
 
     let suggestion = '';
     haystack.some(hay => {
-      if(hay === null || typeof hay === 'undefined') {
+      if(hay === null || typeof hay === 'undefined' || React.isValidElement(hay)) {
         return false;
-      } else if(React.isValidElement(hay)) {
-        return true;
       }
 
       hay = typeof hay === 'object' ? hay[dataLabel] : hay.toString();
