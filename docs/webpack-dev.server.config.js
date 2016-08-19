@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 
 const config = require('./webpack.config')();
 config.cache - true;
-config.devtool = 'source-map';
+config.devtool = 'eval-source-map';
 
 config.entry = config.__server;
 config.name = 'server';

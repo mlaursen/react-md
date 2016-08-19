@@ -3,12 +3,17 @@ import IconButton from 'react-md/lib/Buttons/IconButton';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
+import Autocomplete from 'react-md/lib/Autocompletes';
+import TextField from 'react-md/lib/TextFields';
 
 import { GITHUB_LINK } from 'constants';
 import { sort } from 'utils/ListUtils';
 import { toPropTypeId } from 'utils/StringUtils';
 import Markdown from 'components/Markdown';
 import PropTypesRow from './PropTypesRow';
+import ComponentMethods from './ComponentMethods';
+
+import docgenMethodsPropTypes from 'constants/docgenMethodsPropTypes';
 
 export default class DocgenPropTypes extends PureComponent {
   constructor(props) {
@@ -17,31 +22,62 @@ export default class DocgenPropTypes extends PureComponent {
     const propList = Object.keys(props.props).map(name => ({ name, ...props.props[name] }));
 
     this.state = {
+      propList,
+      propFilter: '',
       ascending: true,
-      sortedComponents: sort(propList, 'name', true),
+      visibleProps: sort(propList, 'name', true),
     };
   }
 
   static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+    tablet: PropTypes.bool.isRequired,
     component: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     props: PropTypes.object.isRequired,
+    methods: docgenMethodsPropTypes,
   };
 
   _sort = () => {
     const ascending = !this.state.ascending;
     this.setState({
       ascending,
-      sortedComponents: sort(this.state.sortedComponents, 'name', ascending),
+      visibleProps: sort(this.state.visibleProps, 'name', ascending),
+    });
+  };
+
+  _filterProperties = (propFilter) => {
+    this.setState({
+      propFilter,
+      visibleProps: Autocomplete.fuzzyFilter(this.state.propList, propFilter, 'name'),
     });
   };
 
   render() {
-    const { ascending, sortedComponents } = this.state;
-    const { component, source, description } = this.props;
+    const { ascending, visibleProps, propFilter } = this.state;
+    const { component, source, description, mobile, tablet, methods } = this.props;
 
-    const rows = sortedComponents.map(props => <PropTypesRow key={props.name} {...props} />);
+    const rows = visibleProps.map(props => <PropTypesRow key={props.name} {...props} />);
+
+    let filter;
+    if (tablet || !mobile) {
+      filter = (
+        <TextField
+          label="Filter properties"
+          value={propFilter}
+          onChange={this._filterProperties}
+          floatingLabel={false}
+        />
+      );
+    }
+
+    let methodsTable;
+    let methodsTitle;
+    if (methods.length) {
+      methodsTitle = <CardTitle title="Methods" />;
+      methodsTable = <ComponentMethods key="methods" methods={methods} />;
+    }
 
     return (
       <Card
@@ -51,6 +87,7 @@ export default class DocgenPropTypes extends PureComponent {
         tableCard
       >
         <CardTitle title={component}>
+          {filter}
           <IconButton
             href={`${GITHUB_LINK}/blob/master/${source}`}
             iconClassName="fa fa-github"
@@ -71,6 +108,8 @@ export default class DocgenPropTypes extends PureComponent {
             {rows}
           </TableBody>
         </DataTable>
+        {methodsTitle}
+        {methodsTable}
       </Card>
     );
   }

@@ -1,10 +1,10 @@
 import { LOAD_DOCUMENTATION } from 'constants/ActionTypes';
-import { capitalizeFirst } from 'utils/StringUtils';
+import { toTitle } from 'utils/StringUtils';
 
 function updateDocumentation(state, { component, section, examples, docgens, description }) {
-  let name = capitalizeFirst(component);
+  let name = toTitle(component);
   if (section) {
-    name += ` ${capitalizeFirst(section)}`;
+    name += ` ${toTitle(section)}`;
   }
 
   return {
