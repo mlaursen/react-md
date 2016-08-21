@@ -1,12 +1,7 @@
 import { MEDIA_CHANGE } from 'constants/ActionTypes';
 import { isMobile, isTablet } from 'utils/MediaUtils';
 
-function handleMediaChange(state) {
-  const mobile = isMobile();
-  const tablet = isTablet();
-  const desktop = !mobile && !tablet;
-
-
+function handleMediaChange(state, { mobile, tablet, desktop }) {
   if (state.mobile === mobile && state.tablet === tablet && state.desktop === desktop) {
     return state;
   } else {
@@ -27,7 +22,7 @@ const initialState = {
 export default function media(state = initialState, action) {
   switch (action.type) {
     case MEDIA_CHANGE:
-      return handleMediaChange(state);
+      return handleMediaChange(state, action.media);
     default:
       return state;
   }

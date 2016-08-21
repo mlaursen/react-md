@@ -10,6 +10,8 @@ import {
   UPDATE_THEME,
 } from 'constants/ActionTypes';
 
+import { isMobile, isTablet } from 'utils/MediaUtils';
+
 export function setToolbarInactive(inactive) {
   return { type: SET_TOOLBAR_INACTIVE, inactive };
 }
@@ -31,7 +33,14 @@ export function dismissToast() {
 }
 
 export function mediaChange() {
-  return { type: MEDIA_CHANGE };
+  const mobile = isMobile();
+  const tablet = isTablet();
+  const desktop = !mobile && !tablet;
+
+  return {
+    type: MEDIA_CHANGE,
+    media: { mobile, tablet, desktop },
+  };
 }
 
 export function updateDrawerType(drawerType) {

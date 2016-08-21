@@ -1,10 +1,8 @@
 import { LOAD_DOCUMENTATION } from 'constants/ActionTypes';
-import { toTitle } from 'utils/StringUtils';
 
-function updateDocumentation(state, { component, section, examples, docgens, description }) {
-  let name = toTitle(component);
-  if (section) {
-    name += ` ${toTitle(section)}`;
+function updateDocumentation(state, { name, examples, docgens, description }) {
+  if (state.name === name) {
+    return state;
   }
 
   return {

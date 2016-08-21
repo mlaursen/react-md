@@ -15,7 +15,7 @@ export default class ChipsWithTextField extends PureComponent {
     this.state = { states: [] };
   }
 
-  _addState = (state, stateIndex) => {
+  _addState = (state, stateIndex, states) => {
     const newStates = [...this.state.states, states[stateIndex]];
 
     this.setState({ states: uniqBy(newStates, s => s.name) });

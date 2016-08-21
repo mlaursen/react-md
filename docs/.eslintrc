@@ -5,6 +5,9 @@
     "browser": true,
     "node": true,
   },
+  "globals": {
+    "__CLIENT__": true
+  },
   "rules": {
     "import/imports-first": 0,
     "import/no-unresolved": 0,

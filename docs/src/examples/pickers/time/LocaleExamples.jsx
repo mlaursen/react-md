@@ -4,7 +4,7 @@ import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 // or
 // import { TimePicker } from 'react-md/lib/Pickers';
 
-if (!global.Intl) {
+if (__CLIENT__ && !global.Intl) {
   require.ensure([], require => {
     const lang = typeof window !== 'undefined'
       ? window.navigator.userLanguage || window.navigator.language

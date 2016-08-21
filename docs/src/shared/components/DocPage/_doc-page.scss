@@ -14,6 +14,9 @@
 }
 
 .component-prop-types {
+  // prevents the cards for expanding too much on mobile devices
+  overflow: hidden;
+
   .md-card-title {
     padding-left: $md-card-padding-extra;
 
@@ -86,5 +89,18 @@
 
   pre {
     margin: 0;
+  }
+}
+
+.example-code {
+  background: $md-background-color;
+  border-top: 1px solid $md-border-color;
+
+  pre {
+    margin: 0;
+
+    + pre {
+      margin-top: 1em;
+    }
   }
 }

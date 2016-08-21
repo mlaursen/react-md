@@ -101,11 +101,12 @@ export default class App extends PureComponent {
       initialDrawerType,
       drawerTitle: 'react-md',
       drawerClassName: 'fixed-drawer',
+      drawerHeaderFixed: true,
       drawerChildren,
       toolbarTitle,
       toolbarChildren,
       toolbarClassName: cn('doc-toolbar', { inactive }),
-      navItems: getNavItems(location.pathname),
+      navItems: getNavItems(pathname),
       contentClassName: 'text-page',
       tabletDrawerType,
       desktopDrawerType,
@@ -114,6 +115,7 @@ export default class App extends PureComponent {
     if (!includeHeader) {
       delete props.drawerChildren;
       delete props.drawerTitle;
+      delete props.drawerHeaderFixed;
     }
 
     return (

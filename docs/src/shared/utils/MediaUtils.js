@@ -1,6 +1,6 @@
 export function isMobile() {
   return typeof window !== 'undefined'
-    && window.matchMedia('only screen and (min-width: 320px) and (max-width: 767px)').matches;
+    && window.matchMedia('only screen and (min-width: 320px) and (max-width: 1024px)').matches;
 }
 
 export function isTablet() {

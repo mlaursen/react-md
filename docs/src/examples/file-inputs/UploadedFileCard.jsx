@@ -7,7 +7,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 
 import Markdown from 'components/Markdown';
 
-if (!global.Intl) {
+if (__CLIENT__ && !global.Intl) {
   require.ensure([], require => {
     require('intl');
     require('intl/locale-data/jsonp/en-US');

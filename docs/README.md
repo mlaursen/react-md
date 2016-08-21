@@ -31,6 +31,13 @@ $ npm run scripts:watch
 $ npm run scripts:watch &
 ```
 
+You can also run the production version by:
+
+```bash
+$ cp prod-config.json.example prod-config.json
+$ npm run build && npm start
+```
+
 ## Code Structure
 
 This project is set up as follows:

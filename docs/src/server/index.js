@@ -17,12 +17,14 @@ const client = express.static(clientRoot, {
 });
 
 
-let port = process.env.PORT || 8080;
+let port = 8080;
 if (process.env.NODE_ENV === 'production') {
-  port = 80;
+  const prodConfig = require('../../prod-config.json');
+
+  port = prodConfig.port;
   app.use(logger('combined'));
-  app.use(vhost('localhost'), client);
-  app.use('/*', vhost('localhost'), require('./react-md').default);
+  app.use(vhost(prodConfig.vhost, client));
+  app.use(vhost(prodConfig.vhost, require('./react-md').default));
 } else {
   const fallback = require('express-history-api-fallback');
   const webpack = require('webpack');

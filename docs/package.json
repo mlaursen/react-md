@@ -1,6 +1,6 @@
 {
   "name": "react-md-docs",
-  "version": "0.4.0",
+  "version": "0.3.4",
   "description": "The documentation website for react-md.",
   "main": "dist/server/server.js",
   "scripts": {

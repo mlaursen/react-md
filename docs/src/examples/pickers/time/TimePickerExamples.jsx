@@ -6,7 +6,7 @@ import { TimePicker } from 'react-md/lib/Pickers';
 import { addToast, dismissToast } from '../../../actions/docs';
 
 /*eslint-env node*/
-if(!global.Intl) {
+if(__CLIENT__ && !global.Intl) {
   require.ensure([], require => {
     require('intl');
     require('intl/locale-data/jsonp/en-US');

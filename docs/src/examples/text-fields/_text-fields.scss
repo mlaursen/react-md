@@ -1,0 +1,9 @@
+@import '~sass-utils';
+
+.block-text-field-examples .md-text-field-container {
+  display: block;
+
+  .md-text-field-label {
+    display: inline-block;
+  }
+}

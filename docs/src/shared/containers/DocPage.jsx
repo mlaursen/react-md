@@ -16,8 +16,10 @@ export default class DocPageContainer extends PureComponent {
   };
 
   componentWillMount() {
-    const { component, section } = this.props.params;
-    this.props.loadDocumentation(component, section);
+    if (__CLIENT__) {
+      const { component, section } = this.props.params;
+      this.props.loadDocumentation(component, section);
+    }
   }
 
   render() {

@@ -35,3 +35,4 @@ lib
 dist
 
 .jest-cache
+prod-config.json

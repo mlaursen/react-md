@@ -13,7 +13,7 @@ import SpotifyAlbum from './SpotifyAlbum';
 
 const SPOTIFY_API = 'https://api.spotify.com/v1';
 
-if (!global.fetch) {
+if (__CLIENT__ && !global.fetch) {
   require.ensure([], require => {
     require('whatwg-fetch');
   });

@@ -2,6 +2,16 @@
 @import '~sass-utils';
 @import '~md-scss';
 
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  > .md-btn {
+    margin: .5em;
+  }
+}
+
 .google-logo {
   background: $md-white-base;
 }
@@ -265,31 +275,5 @@
 
   .avatar-amber {
     background: $md-amber-500;
-  }
-}
-
-.fixed-drawer .md-drawer-header {
-  background: $md-white-base;
-  position: fixed;
-  width: $md-navigation-drawer-desktop-width;
-  z-index: 22;
-
-}
-
-@media only screen and (min-width: #{$md-mobile-min-width}) and (orientation: portrait) {
-  .fixed-drawer .md-drawer-header ~ .md-list {
-    margin-top: $md-toolbar-mobile-portrait-height;
-  }
-}
-
-@media only screen and (min-width: #{$md-mobile-min-width}) and (orientation: landscape) {
-  .fixed-drawer .md-drawer-header ~ .md-list {
-    margin-top: $md-toolbar-mobile-landscape-height;
-  }
-}
-
-@media only screen and (min-width: #{$md-desktop-min-width}) {
-  .fixed-drawer .md-drawer-header ~ .md-list {
-    margin-top: $md-toolbar-desktop-height;
   }
 }

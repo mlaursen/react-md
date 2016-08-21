@@ -10,16 +10,24 @@ export default {
   childRoutes: [{
     path: ':component',
     getComponent(state, cb) {
-      require.ensure([], require => {
+      if (__CLIENT__) {
+        require.ensure([], require => {
+          cb(null, require('containers/DocPage').default);
+        });
+      } else {
         cb(null, require('containers/DocPage').default);
-      });
+      }
     },
   }, {
     path: ':section/:component',
     getComponent(state, cb) {
-      require.ensure([], require => {
+      if (__CLIENT__) {
+        require.ensure([], require => {
+          cb(null, require('containers/DocPage').default);
+        });
+      } else {
         cb(null, require('containers/DocPage').default);
-      });
+      }
     },
   }],
 };

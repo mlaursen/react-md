@@ -1,0 +1,16 @@
+@import '~sass-utils';
+
+.inline-rel-container {
+  display: inline-block;
+  margin: 1em;
+  position: relative;
+}
+
+.tooltip-button-container {
+  @extend %centered;
+
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  width: 220px;
+}

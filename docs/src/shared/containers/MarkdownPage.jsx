@@ -23,10 +23,13 @@ export default class MarkdownPage extends PureComponent {
   componentWillMount() {
     const { location: { pathname } } = this.props;
 
-    require.ensure([], require => {
-      const markdown = require(`../../../${getMarkdownFileName(pathname)}.md`);
-      this.setState({ markdown });
-    });
+    if (__CLIENT__) {
+      require.ensure([], require => {
+        this.setState({ markdown: require(`../../../${getMarkdownFileName(pathname)}.md`) });
+      });
+    } else {
+      this.setState({ markdown: require(`../../../${getMarkdownFileName(pathname)}.md`) });
+    }
   }
 
   render() {

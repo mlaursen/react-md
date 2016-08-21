@@ -34,20 +34,15 @@ Please keep your pull requests small and focused on a single issue. This will he
 the code review process and made it more likely to be accepted.
 
 ### Getting Started
-To get started, you will need to fork the main project as well as the
-[documentation website](https://github.com/mlaursen/react-md-docs) to use for visual
-testing. Once you have forked the two repos, you can begin with the code snippet
-below.
+I am currently using a branching model where `master` only gets updated when a new `npm publish`
+occurs. The active branch will be whatever version number that is currently being developed with
+an `x`. So if the next release is `v0.3.5`, the active development branch will be `release/0.3.x`.
+
 
 ```bash
 $ git clone git@github.com:<username>/react-md.git
-$ git clone git@github.com:<username>/react-md-docs.git
 
-# Install deps and link react-md
-# This will allow any updates in the react-md project to be
-# immediately reflected in the react-md-docs project.
-$ cd react-md && npm i && npm link && npm run scripts && cd ..
-$ cd react-md-docs && npm i && npm link react-md
+$ cd react-md && npm install
 ```
 
 If you have an existing local repository, please update it before you start to limit
@@ -56,13 +51,14 @@ merge conflicts.
 ```bash
 $ cd react-md
 $ git remote add upstream git@github.com:mlaursen/react-md.git
-$ git checkout master
-$ git fetch upstream master
+
+# checkout the current release branch
+# so if you want to work on v0.3.5
+$ git checkout release/0.3.x
+$ git fetch upstream release/0.3.x
 $ git rebase
 $ git checkout -b bugfix/My-Topic-Branch
 $ npm update
-
-# Repeat for react-md-docs
 ```
 
 The `jsx` versions of the components will be in the `src` dir and the fully transpiled

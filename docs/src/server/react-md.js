@@ -1,12 +1,39 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { getPageTitle } from 'utils/StringUtils';
 import { getDrawerType } from 'utils/MediaUtils';
-import Root from './Root';
 import routes from 'routes';
 import configureStore from 'stores/configureStore';
+import Root from './Root';
+import { loadDocumentation } from 'actions/documentation';
+
+const VALID_COMPONENTS = [
+  'flat',
+  'raised',
+  'floating',
+  'icon',
+  'date',
+  'time',
+  'checkboxes',
+  'radios',
+  'switches',
+  'circular',
+  'linear',
+];
+
+function parseURL(url) {
+  let [section, component] = url.replace('/components/', '').split('/');
+
+  if (!component || VALID_COMPONENTS.indexOf(component) === -1) {
+    component = section;
+    section = null;
+  }
+
+  return { component, section };
+}
 
 export default function reactMD(req, res) {
   const userAgent = req.header('user-agent');
@@ -17,10 +44,14 @@ export default function reactMD(req, res) {
   const initialState = {
     ui: {
       drawer: {
-        initiallyOpen: !mobile,
         initialDrawerType: getDrawerType(mobile, tablet),
-        inactive: !toolbarTitle,
         toolbarTitle,
+        inactive: !toolbarTitle,
+        tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
+        desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
+        mobileSearch: false,
+        includeHeader: true,
+        themeable: !mobile && !tablet,
       },
       media: {
         mobile,
@@ -31,16 +62,20 @@ export default function reactMD(req, res) {
   };
 
   const store = configureStore(initialState);
+  if (req.url.match(/components/)) {
+    const { component, section } = parseURL(req.url);
+    store.dispatch(loadDocumentation(component, section));
+  }
 
-  match({ routes, location: req.url }, (error, redirectLocation, props) => {
+  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     if (error) {
       req.status(500).send(error.message);
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-    } else if (props) {
+    } else if (renderProps) {
       res.render('index', {
         initialState: JSON.stringify(initialState),
-        html: renderToString(<Root store={store} {...props} />),
+        html: renderToString(<Root store={store} {...renderProps} />),
       });
     } else {
       res.status(404).send('Not Found');
