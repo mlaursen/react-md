@@ -181,6 +181,7 @@ export default class Drawer extends Component {
           closeIconChildren={closeIconChildren}
           closeIconClassName={closeIconClassName}
           persistent={persistent}
+          temporary={temporary}
           children={children}
         />
       );
