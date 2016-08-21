@@ -12,8 +12,10 @@ export default class ToDo extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    onRemove: PropTypes.func.isRequired,
-    todo: PropTypes.string.isRequired,
+    todo: PropTypes.shape({
+      todo: PropTypes.string.isRequired,
+      key: PropTypes.number.isRequired,
+    }).isRequired,
     checked: PropTypes.bool.isRequired,
   };
 
@@ -26,7 +28,7 @@ export default class ToDo extends PureComponent {
   }
 
   render() {
-    const { todo, checked } = this.props;
+    const { todo: { todo }, checked } = this.props;
     return (
       <ListItemControl
         primaryAction={<Checkbox onChange={this._handleChange} checked={checked} className={checked ? 'strikethrough' : ''} />}

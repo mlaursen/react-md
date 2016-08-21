@@ -8,6 +8,8 @@ import StatefulExampleRaw from '!!raw!./StatefulExample';
 
 import ToDoList from './ToDoList';
 import ToDoListRaw from '!!raw!./ToDoList';
+import ToDoRaw from '!!raw!./ToDo';
+import ToDoCSSRaw from '!!raw!./_todo-list.scss';
 
 import './_checkboxes.scss';
 
@@ -24,6 +26,19 @@ export default [{
 }, {
   title: 'To Do List Example',
   className: 'default-text-color',
-  code: ToDoListRaw,
+  code: `
+/* ToDoList.jsx */
+${ToDoListRaw}
+\`\`\`
+
+\`\`\`js
+/* ToDo.jsx */
+${ToDoRaw}
+\`\`\`
+
+\`\`\`scss
+/* _todo-list.scss */
+${ToDoCSSRaw}
+`,
   children: <ToDoList />,
 }];

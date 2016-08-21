@@ -22,7 +22,6 @@ export default class ToDoList extends PureComponent {
     this._handleChange = this._handleChange.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleClick = this._handleClick.bind(this);
-    this._handleRemove = this._handleRemove.bind(this);
   }
 
   static propTypes = {
@@ -36,9 +35,10 @@ export default class ToDoList extends PureComponent {
 
   _handleKeyDown(e) {
     if ((e.which || e.keyCode) === ENTER) {
+      const key = Date.now();
       const todo = {
-        key: Date.now(),
-        todo: this.state.value,
+        key,
+        todo: { todo: this.state.value, key },
         checked: false,
       };
 
@@ -53,12 +53,9 @@ export default class ToDoList extends PureComponent {
   _handleClick(checked, todo) {
     const todos = this.state.todos.slice();
     const i = findIndex(todos, t => t.key === todo.key);
-    todos[i] = Object.assign({}, todo, { checked });
-    this.setState({ remaining: this.state.remaining + (checked ? -1 : 1), todos });
-  }
+    todos[i] = Object.assign({}, todos[i], { checked });
 
-  _handleRemove(todo) {
-    console.log('todo:', todo);
+    this.setState({ remaining: this.state.remaining + (checked ? -1 : 1), todos });
   }
 
   render() {
@@ -67,7 +64,7 @@ export default class ToDoList extends PureComponent {
     let todoItems;
     let controls;
     if (todos.length) {
-      todoItems = todos.map(todo => <ToDo {...todo} onClick={this._handleClick} onRemove={this._handleRemove} />);
+      todoItems = todos.map(todo => <ToDo {...todo} onClick={this._handleClick} />);
       todoItems = [<Divider key="divider-1" />, <List key="todos">{todoItems}</List>];
 
       controls = [
@@ -77,6 +74,7 @@ export default class ToDoList extends PureComponent {
         </div>,
       ];
     }
+
     return (
       <section className="todo-list-example">
         <h3 className="md-headline todo-headline">todos</h3>
