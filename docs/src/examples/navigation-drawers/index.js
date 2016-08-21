@@ -19,9 +19,6 @@ layout of this documentation site. When you leave this page, the Drawer
 Type will be set back to \`FULL_HEIGHT\`. If you are on mobile,
 you can only view the difference with a mini version. or switching to
 persistent.
-
-> Please note: Nested list items will look incorrect in the mini versions
-> of the navigaiton drawer.
 `,
   children: <NavigationDrawerDemo />,
 }];

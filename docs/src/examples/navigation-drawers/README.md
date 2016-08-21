@@ -20,7 +20,3 @@ drawer will automatically be `TEMPORARY`. If the `drawerType` is set to
 
 If you would like a consistent `drawerType` between all devices, you can
 always set the `drawerType` to `TEMPORARY` or `TEMPORARY_MINI`.
-
-
-> Note: The example below will behave wierdly because the Navigation Drawer
-> component is meant to be an entire application layout.
