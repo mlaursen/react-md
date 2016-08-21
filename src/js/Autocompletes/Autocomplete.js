@@ -247,7 +247,7 @@ export default class Autocomplete extends Component {
      * by using the mouse, the enter/space key, or touch. The match index and current
      * `dataLabel` will be given back.
      *
-     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex);`
+     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex, matches);`
      */
     onAutocomplete: PropTypes.func,
 
@@ -540,7 +540,7 @@ export default class Autocomplete extends Component {
         value = value[dataLabel];
       }
 
-      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      onAutocomplete && onAutocomplete(value, suggestionIndex, this.state.matches);
       this.setState({
         value,
         suggestion: '',
@@ -588,7 +588,7 @@ export default class Autocomplete extends Component {
       value = value[dataLabel];
     }
 
-    onAutocomplete && onAutocomplete(value, index);
+    onAutocomplete && onAutocomplete(value, index, matches);
     value = clearOnAutocomplete ? '' : value;
     this.setState({
       isOpen: false,
@@ -737,7 +737,7 @@ export default class Autocomplete extends Component {
         value = value[dataLabel];
       }
 
-      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      onAutocomplete && onAutocomplete(value, suggestionIndex, data);
       this.setState({
         value,
         suggestion: '',
