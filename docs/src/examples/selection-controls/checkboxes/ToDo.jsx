@@ -1,0 +1,37 @@
+import React, { PureComponent, PropTypes } from 'react';
+import ListItemControl from 'react-md/lib/Lists/ListItemControl';
+import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
+
+export default class ToDo extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._handleChange = this._handleChange.bind(this);
+    this._handleRemove = this._handleRemove.bind(this);
+  }
+
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    todo: PropTypes.string.isRequired,
+    checked: PropTypes.bool.isRequired,
+  };
+
+  _handleChange(checked) {
+    this.props.onClick(checked, this.props.todo);
+  }
+
+  _handleRemove() {
+    this.props.onRemove(this.props.todo);
+  }
+
+  render() {
+    const { todo, checked } = this.props;
+    return (
+      <ListItemControl
+        primaryAction={<Checkbox onChange={this._handleChange} checked={checked} className={checked ? 'strikethrough' : ''} />}
+        primaryText={todo}
+      />
+    );
+  }
+}
