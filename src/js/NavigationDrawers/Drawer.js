@@ -122,6 +122,15 @@ export default class Drawer extends Component {
         primaryText: PropTypes.string,
       }),
     ])).isRequired,
+
+    /**
+     * Boolean if the drawer header should be fixed to the top of the
+     * sliding drawer. This will add the `className` `md-drawer-scrolling-list`
+     * the list surrounding the `navItems`. The `md-drawer-scrolling-list`
+     * `className` adjusts the max-height for the list content for the different
+     * device sizes.
+     */
+    drawerHeaderFixed: PropTypes.bool,
   };
 
   mapItemsToComponents = (item, key) => {
@@ -168,6 +177,7 @@ export default class Drawer extends Component {
       children,
       autoclose,
       mobile,
+      drawerHeaderFixed,
     } = this.props;
 
     const items = navItems.map(this.mapItemsToComponents);
@@ -198,7 +208,13 @@ export default class Drawer extends Component {
         })}
       >
         {header}
-        <List key="nav-items" onClick={autoclose && temporary ? closeDrawer : null}>{items}</List>
+        <List
+          key="nav-items"
+          onClick={autoclose && temporary ? closeDrawer : null}
+          className={classnames({ 'md-drawer-scrolling-list': drawerHeaderFixed })}
+        >
+          {items}
+        </List>
       </nav>
     );
   }

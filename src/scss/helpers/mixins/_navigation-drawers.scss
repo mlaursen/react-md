@@ -40,6 +40,9 @@
     }
   }
 
+  .md-drawer-scrolling-list {
+    max-height: calc(100vh - #{$height});
+  }
 }
 
 /// Styles the navigation drawer component for a portait mobile device

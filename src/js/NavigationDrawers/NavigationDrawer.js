@@ -96,6 +96,15 @@ export default class NavigationDrawer extends Component {
     drawerChildren: PropTypes.node,
 
     /**
+     * Boolean if the drawer header should be fixed to the top of the
+     * sliding drawer. This will add the `className` `md-drawer-scrolling-list`
+     * the list surrounding the `navItems`. The `md-drawer-scrolling-list`
+     * `className` adjusts the max-height for the list content for the different
+     * device sizes.
+     */
+    drawerHeaderFixed: PropTypes.bool,
+
+    /**
      * An optional title to display in the toolbar.
      */
     toolbarTitle: PropTypes.string,
@@ -431,6 +440,7 @@ export default class NavigationDrawer extends Component {
       toolbarStyle,
       toolbarClassName,
       drawerTitle,
+      drawerHeaderFixed,
       drawerChildren,
       menuIconChildren,
       menuIconClassName,
@@ -461,6 +471,7 @@ export default class NavigationDrawer extends Component {
           key="drawer"
           style={drawerStyle}
           className={drawerClassName}
+          drawerHeaderFixed={drawerHeaderFixed}
           autoclose={autoclose}
           title={drawerTitle}
           closeDrawer={this.closeDrawer}
