@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
+import ThemeSwitcher from 'containers/ThemeSwitcher';
 import Overlay from 'containers/Overlay';
 import QuickNav from 'containers/QuickNav';
 import AppFooter from 'components/AppFooter';
@@ -11,7 +12,10 @@ import ToolbarChildren from 'components/ToolbarChildren';
 import { getNavItems } from 'utils/RouteUtils';
 import { mediaChange, setMobileSearch } from 'actions/ui';
 
-@connect(({ ui: { drawer, media } }) => ({
+@connect(({ ui: { drawer, media, theme } }) => ({
+  theme,
+  themeable: drawer.themeable,
+  includeHeader: drawer.includeHeader,
   initialDrawerType: drawer.initialDrawerType,
   toolbarTitle: drawer.toolbarTitle,
   inactive: drawer.inactive,
@@ -29,6 +33,9 @@ export default class App extends PureComponent {
     children: PropTypes.node,
 
     location: PropTypes.object.isRequired,
+    theme: PropTypes.string.isRequired,
+    themeable: PropTypes.bool.isRequired,
+    includeHeader: PropTypes.bool.isRequired,
     initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     inactive: PropTypes.bool.isRequired,
@@ -57,6 +64,9 @@ export default class App extends PureComponent {
       tabletDrawerType,
       desktopDrawerType,
       setMobileSearch,
+      theme,
+      themeable,
+      includeHeader,
     } = this.props;
 
     if (children) {
@@ -81,19 +91,33 @@ export default class App extends PureComponent {
       );
     }
 
+    let drawerChildren;
+    if (themeable) {
+      drawerChildren = <ThemeSwitcher key="theme-switcher" />;
+    }
+
+    const props = {
+      className: theme,
+      initialDrawerType,
+      drawerTitle: 'react-md',
+      drawerClassName: 'fixed-drawer',
+      drawerChildren,
+      toolbarTitle,
+      toolbarChildren,
+      toolbarClassName: cn('doc-toolbar', { inactive }),
+      navItems: getNavItems(location.pathname),
+      contentClassName: 'text-page',
+      tabletDrawerType,
+      desktopDrawerType,
+    };
+
+    if (!includeHeader) {
+      delete props.drawerChildren;
+      delete props.drawerTitle;
+    }
+
     return (
-      <NavigationDrawer
-        initialDrawerType={initialDrawerType}
-        toolbarClassName={cn({ inactive })}
-        drawerTitle="react-md"
-        toolbarTitle={toolbarTitle}
-        toolbarClassName="doc-toolbar"
-        toolbarChildren={toolbarChildren}
-        navItems={getNavItems(location.pathname)}
-        contentClassName="text-page"
-        tabletDrawerType={desktopDrawerType}
-        desktopDrawerType={tabletDrawerType}
-      >
+      <NavigationDrawer {...props}>
         {children}
         {quickNav}
         <Overlay className="quick-search-overlay" />

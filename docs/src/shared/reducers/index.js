@@ -8,6 +8,7 @@ import overlay from './overlay';
 import quickNav from './quickNav';
 import quickSearch from './quickSearch';
 import snackbar from './snackbar';
+import theme from './theme';
 
 export default combineReducers({
   documentation,
@@ -19,5 +20,6 @@ export default combineReducers({
     overlay,
     quickNav,
     snackbar,
+    theme,
   }),
 });

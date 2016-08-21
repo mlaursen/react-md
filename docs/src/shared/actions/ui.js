@@ -7,6 +7,7 @@ import {
   MEDIA_CHANGE,
   UPDATE_DRAWER_TYPE,
   SET_MOBILE_SEARCH,
+  UPDATE_THEME,
 } from 'constants/ActionTypes';
 
 export function setToolbarInactive(inactive) {
@@ -39,4 +40,12 @@ export function updateDrawerType(drawerType) {
 
 export function setMobileSearch(mobileSearch) {
   return { type: SET_MOBILE_SEARCH, mobileSearch };
+}
+
+export function updateTheme(theme) {
+  if (typeof Storage !== 'undefined') {
+    localStorage.setItem('theme', theme);
+  }
+
+  return { type: UPDATE_THEME, theme };
 }
