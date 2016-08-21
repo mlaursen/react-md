@@ -1,7 +1,11 @@
 import React, { PureComponent } from 'react';
-import { Radio, RadioGroup } from 'react-md/lib/SelectionControls';
+import RadioGroup from 'react-md/lib/SelectionControls/RadioGroup';
+import Radio from 'react-md/lib/SelectionControls/Radio';
 
-export default class ControlledRadioExample extends PureComponent {
+// or
+// import { Radio, RadioGroup } from 'react-md/lib/SelectionControls';
+
+export default class StatefulExample extends PureComponent {
   constructor(props) {
     super(props);
 
