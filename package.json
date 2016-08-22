@@ -1,8 +1,13 @@
 {
   "name": "react-md",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "React material design components",
   "main": "./lib",
+  "files": [
+    "dist/",
+    "lib/",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test jest --watch",
@@ -29,7 +34,7 @@
     "google",
     "ui"
   ],
-  "author": "mlaursen",
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mlaursen/react-md/issues"

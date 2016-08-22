@@ -1,0 +1,75 @@
+@import '~sass-utils';
+
+.theme-1 {
+  @include md-theme-most(
+    $md-light-blue-500,
+    $md-light-blue-300,
+    $md-deep-orange-a-200,
+    $md-deep-orange-a-100
+  );
+
+  .banner {
+    background: $md-light-blue-500;
+  }
+}
+
+.theme-2 {
+  @include md-theme-most(
+    $md-purple-500,
+    $md-purple-300,
+    $md-light-green-a-700,
+    $md-light-green-a-200
+  );
+}
+
+.theme-3 {
+  @include md-theme-most(
+    $md-blue-500,
+    $md-blue-300,
+    $md-amber-a-200,
+    $md-light-green-a-100
+  );
+}
+
+.theme-4 {
+  @include md-theme-most(
+    $md-cyan-500,
+    $md-cyan-300,
+    $md-yellow-a-700,
+    $md-light-green-a-200
+  );
+}
+
+.theme-5 {
+  @include md-theme-most(
+    $md-orange-500,
+    $md-orange-300,
+    $md-deep-purple-a-200,
+    $md-deep-purple-a-100
+  );
+}
+
+// .theme-dark {
+//   @include md-theme-most(
+//     $md-light-blue-500,
+//     $md-light-blue-300,
+//     $md-deep-orange-a-200,
+//     $md-deep-orange-a-100
+//   );
+// }
+
+.theme-switcher {
+  height: $md-toolbar-desktop-height;
+}
+
+@media only screen and (orientation: portrait) and (max-width: 599px) {
+  .theme-switcher {
+    height: $md-toolbar-mobile-portrait-height;
+  }
+}
+
+@media only screen and (orientation: landscape) and (max-width: 599px) {
+  .theme-switcher {
+    height: $md-toolbar-mobile-landscape-height;
+  }
+}

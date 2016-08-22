@@ -66,16 +66,18 @@
     @extend %full-width;
   }
 
-  &.plain {
-    height: initial;
-    min-height: $md-height;
-    white-space: normal;
-  }
-
   td {
     padding-bottom: 0;
     padding-top: 0;
   }
+}
+
+.md-plain-table .md-table-data {
+  height: initial;
+  min-height: $md-height;
+  padding-bottom: $md-default-padding;
+  padding-top: $md-default-padding;
+  vertical-align: top;
 }
 
 tbody .md-table-row {

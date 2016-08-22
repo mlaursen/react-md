@@ -9,3 +9,5 @@ node_modules
 .travis.yml
 .gitignore
 *__tests__*
+docs
+!docs/*.md

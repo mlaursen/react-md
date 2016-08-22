@@ -810,13 +810,13 @@ $md-toolbar-title-keyline: 72px;
 ///
 /// @type String
 /// @group navigation-drawers
-$md-navigation-drawer-mobile-left: calc(-100% - 56px) !default;
+$md-navigation-drawer-mobile-left: calc(-100vw - 56px) !default;
 
 /// The width for the navigation drawer on mobile devices.
 ///
 /// @type String
 /// @group navigation-drawers
-$md-navigation-drawer-mobile-width: calc(100% - 56px) !default;
+$md-navigation-drawer-mobile-width: calc(100vw - 56px) !default;
 
 /// The width for the navigation drawer on desktops.
 ///

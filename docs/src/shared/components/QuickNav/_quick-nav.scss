@@ -1,0 +1,64 @@
+@import '~sass-utils';
+
+.quick-nav {
+  background: $md-primary-color;
+  display: flex;
+  flex-wrap: nowrap;
+  height: $quick-nav-height;
+  justify-content: space-around;
+  padding: 1em;
+  width: 100%;
+
+  .md-headline,
+  .md-subheading-2 {
+    margin-bottom: 0;
+  }
+
+  .md-icon,
+  .md-subheading-2 {
+    color: $md-dark-theme-secondary-text-color;
+  }
+
+  .md-headline {
+    color: $md-white-base;
+  }
+
+  .md-icon {
+    vertical-align: text-bottom;
+  }
+}
+
+.quick-nav-link {
+  text-decoration: none;
+  width: 33%;
+
+  *:first-child {
+    margin-right: .5em;
+  }
+
+  .titles {
+    display: inline-block;
+  }
+
+  &.right {
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .quick-nav-link.right,
+  .quick-nav-link.only {
+    width: 80%;
+  }
+
+  .quick-nav-link.left:not(.only) {
+    align-items: flex-end;
+    display: flex;
+    margin-bottom: 6px;
+    width: $md-height;
+
+    .titles {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,239 @@
+@import '~sass-utils';
+
+.demo-content {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.noscroll .demo-content {
+  overflow-y: hidden;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  max-width: calc(100% - 16px);
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+.book-card {
+  display: flex;
+  height: 150px;
+
+  .md-card-media {
+    @extend %inline-top;
+  }
+
+  .action-right {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: top;
+  }
+
+  .md-divider {
+    margin-top: 1em;
+  }
+}
+
+.fun-section {
+  &.lorems {
+    .md-card-list {
+      flex-wrap: wrap;
+    }
+
+    .md-title {
+      text-transform: capitalize;
+    }
+  }
+
+  .md-card-list {
+    flex-wrap: nowrap;
+
+    .md-headline {
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .md-headline,
+    .md-subheader {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .md-card-title {
+      padding-bottom: $md-default-padding;
+    }
+
+    .titles {
+      width: 100%;
+    }
+  }
+}
+
+.fixed-example {
+  .demo-content {
+    max-height: 600px - $md-bottom-navigation-height;
+  }
+
+  .md-bottom-nav {
+    position: relative;
+  }
+}
+
+.md-card-title.with-icon {
+  position: relative;
+
+  .titles {
+    width: calc(100% - 32px);
+  }
+
+  .md-icon-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.release-card,
+.lorem-card {
+  width: calc(50% - 8px);
+}
+
+.recommended-card {
+  width: calc(#{percentage(1 / 3)} - 8px);
+}
+
+.demoing-toolbar {
+  margin: 0;
+  transition-duration: $md-transition-time;
+  transition-property: background, box-shadow, margin;
+
+  &:not(.inset) .md-toolbar {
+    background: $md-grey-200;
+    box-shadow: none;
+  }
+
+  &.inset {
+    margin: 8px;
+  }
+}
+
+.demoing {
+  overflow: hidden;
+  position: relative;
+
+  .md-bottom-navigaion {
+    transition: background $md-transition-time;
+  }
+
+  &.demo-movies-and-tv {
+    @include md-theme-bottom-navigations-colored($md-blue-grey-500, $md-white-base, rgba($md-blue-grey-200, .3));
+
+    .md-flat-btn.md-primary {
+      color: $md-blue-grey-500;
+    }
+  }
+
+  &.demo-music {
+    @include md-theme-bottom-navigations-colored($md-teal-500, $md-white-base, rgba($md-teal-a-200, .2));
+
+    .md-flat-btn.md-primary {
+      color: $md-teal-500;
+    }
+  }
+
+  &.demo-books {
+    @include md-theme-bottom-navigations-colored($md-grey-500, $md-white-base, rgba($md-grey-200, .3));
+
+    .md-flat-btn.md-primary {
+      color: $md-grey-500;
+    }
+  }
+
+  &.demo-newsstand {
+    @include md-theme-bottom-navigations-colored($md-brown-500, $md-white-base, rgba($md-brown-200, .3));
+
+    .md-flat-btn.md-primary {
+      color: $md-brown-500;
+    }
+  }
+}
+
+.news-item {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: $md-default-padding;
+
+  .line-clamp,
+  .two-line-clamp {
+    // scss-lint:disable PropertySortOrder
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    white-space: pre-line;
+
+    // fallback for non webkit browsers
+    display: block;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+
+  .line-clamp {
+    height: 20px;
+    -webkit-line-clamp: 1;
+  }
+
+  .two-line-clamp {
+    height: 40px;
+    -webkit-line-clamp: 2;
+  }
+
+  .md-headline {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .md-subheader {
+    font-weight: normal;
+    padding: 0;
+  }
+
+  .secondary-text {
+    color: $md-secondary-text-color;
+    font-size: 12px;
+  }
+
+  .md-headline,
+  .md-subheader {
+    margin: 0;
+  }
+
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $md-divider-color;
+  }
+}
+
+.news-left {
+  flex-grow: 1;
+  padding-right: $md-default-padding * 2;
+}
+
+.news-right {
+  flex-shrink: 0;
+}
+
+.cross-fade-enter {
+  opacity: .01;
+  transform: translate3d(0, 6px, 0);
+
+  &.cross-fade-enter-active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: transform $md-transition-time .05s, opacity $md-transition-time;
+  }
+}

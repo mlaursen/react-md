@@ -33,11 +33,15 @@
     .md-title {
       line-height: $height;
     }
+
+    .md-icon-btn {
+      margin-bottom: ($height - $md-icon-btn-size) / 2;
+      margin-top: ($height - $md-icon-btn-size) / 2;
+    }
   }
 
-  .md-icon-btn {
-    margin-bottom: ($height - $md-icon-btn-size) / 2;
-    margin-top: ($height - $md-icon-btn-size) / 2;
+  .md-drawer-scrolling-list {
+    max-height: calc(100vh - #{$height});
   }
 }
 

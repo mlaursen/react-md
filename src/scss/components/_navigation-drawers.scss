@@ -87,7 +87,7 @@
   top: 0;
   transition-duration: $md-navigation-drawer-transition-time;
   transition-property: box-shadow, left, width;
-  width: 100%;
+  width: 100vw;
   z-index: $md-navigation-drawer-toolbar-z-index;
 
   .md-title {
@@ -109,7 +109,7 @@
   }
 }
 
-.md-navigation-drawer-toggle {
+.md-drawer-toggle {
   float: right;
 }
 
@@ -134,4 +134,8 @@
     transition-duration: $md-cross-fade-transition-time;
     transition-property: transform, opacity;
   }
+}
+
+.md-drawer-scrolling-list {
+  overflow-y: auto;
 }

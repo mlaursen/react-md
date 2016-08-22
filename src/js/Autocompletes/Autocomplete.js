@@ -138,6 +138,15 @@ export default class Autocomplete extends Component {
     dataValue: PropTypes.string,
 
     /**
+     * A single key or an array of keys to delete from your data object before passing
+     * to the `ListItem` component.
+     */
+    deleteKeys: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]),
+
+    /**
      * The data that will be used for autocomplete suggestions. This can either be
      * an array of string, number, or object. If it is an array of objects, the key
      * `dataLabel` is required.
@@ -238,7 +247,7 @@ export default class Autocomplete extends Component {
      * by using the mouse, the enter/space key, or touch. The match index and current
      * `dataLabel` will be given back.
      *
-     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex);`
+     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex, matches);`
      */
     onAutocomplete: PropTypes.func,
 
@@ -268,6 +277,27 @@ export default class Autocomplete extends Component {
     findInlineSuggestion: Autocomplete.findIgnoreCase,
   };
 
+  /**
+   * This function does a simple ignore case search of some `filterText` for every
+   * item in a `haystack`. It will only include items that are:
+   *  - not null or undefined
+   *  - valid React Components
+   *  - a number or string that contains each letter/number in exact order ignoring case
+   *  - an object's `dataLabel` value that contains each letter/number in exact order ignoring case.
+   *
+   * Example:
+   * ```js
+   * const haystack = ['Apple', 'Banana', 'Orange'];
+   * caseInsensitiveFilter(haystack, 'An') // ['Banana', 'Orange'];
+   * caseInsensitiveFilter(haystack, 'ae') // []
+   * ```
+   *
+   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
+   * @param {string} filterText - the filter text to use.
+   * @param {string=} dataLabel - the data label to use if the element is an object.
+   *
+   * @return {Array.<string|number|Object|function>} a filtered list.
+   */
   static caseInsensitiveFilter(haystack, filterText, dataLabel) {
     const needle = filterText.toLowerCase();
 
@@ -292,6 +322,28 @@ export default class Autocomplete extends Component {
     });
   }
 
+
+  /**
+   * This function does a simple fuzzy search of some `needle` for every
+   * item in a `haystack`. It will only include items that are:
+   *  - not null or undefined
+   *  - valid React Components
+   *  - a number or string that contains each letter/number in order ignoring case
+   *  - an object's `dataLabel` value that contains each letter/number in order ignoring case.
+   *
+   * Example:
+   * ```js
+   * const haystack = ['Apple', 'Banana', 'Orange'];
+   * fuzzyFilter(haystack, 'An') // ['Banana', 'Orange'];
+   * fuzzyFilter(haystack, 'ae') // ['Apple']
+   * ```
+   *
+   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
+   * @param {string} filterText - the filter text to use.
+   * @param {string=} dataLabel - the data label to use if the element is an object.
+   *
+   * @return {Array.<string|number|Object|function>} a filtered list.
+   */
   static fuzzyFilter(haystack, needle, dataLabel) {
     // Create an amazing regex that matches the letters in order
     // and escapes any strings that could be part of a regex.
@@ -325,6 +377,18 @@ export default class Autocomplete extends Component {
     });
   }
 
+  /**
+   * This function finds the first item in a `haystack` that starts with every
+   * letter of the `value` in order. It will ignore:
+   *  - null or undefined
+   *  - valid React components
+   *
+   * @param {Array.<string|number|Object|function} haystack - the haystack to search.
+   * @param {string} value - the current value to use.
+   * @param {string=} dataLabel - the object key to use to extract the comparing value.
+   *
+   * @return {string|number} the found element or the empty string.
+   */
   static findIgnoreCase(haystack, value, dataLabel) {
     const needle = value ? value.toLowerCase() : '';
 
@@ -332,10 +396,8 @@ export default class Autocomplete extends Component {
 
     let suggestion = '';
     haystack.some(hay => {
-      if(hay === null || typeof hay === 'undefined') {
+      if(hay === null || typeof hay === 'undefined' || React.isValidElement(hay)) {
         return false;
-      } else if(React.isValidElement(hay)) {
-        return true;
       }
 
       hay = typeof hay === 'object' ? hay[dataLabel] : hay.toString();
@@ -478,7 +540,7 @@ export default class Autocomplete extends Component {
         value = value[dataLabel];
       }
 
-      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      onAutocomplete && onAutocomplete(value, suggestionIndex, this.state.matches);
       this.setState({
         value,
         suggestion: '',
@@ -526,7 +588,7 @@ export default class Autocomplete extends Component {
       value = value[dataLabel];
     }
 
-    onAutocomplete && onAutocomplete(value, index);
+    onAutocomplete && onAutocomplete(value, index, matches);
     value = clearOnAutocomplete ? '' : value;
     this.setState({
       isOpen: false,
@@ -617,7 +679,7 @@ export default class Autocomplete extends Component {
   _mapToListItem = (match) => {
     if(React.isValidElement(match)) { return match; }
 
-    const { dataLabel, dataValue } = this.props;
+    const { dataLabel, dataValue, deleteKeys } = this.props;
     let props;
     switch(typeof match) {
       case 'string':
@@ -633,6 +695,15 @@ export default class Autocomplete extends Component {
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
         };
+
+        if (typeof deleteKeys === 'string') {
+          delete props[deleteKeys];
+        } else if (Array.isArray(deleteKeys)) {
+          deleteKeys.forEach(key => {
+            delete props[key];
+          });
+        }
+
     }
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
@@ -666,7 +737,7 @@ export default class Autocomplete extends Component {
         value = value[dataLabel];
       }
 
-      onAutocomplete && onAutocomplete(value, suggestionIndex);
+      onAutocomplete && onAutocomplete(value, suggestionIndex, data);
       this.setState({
         value,
         suggestion: '',
@@ -704,12 +775,11 @@ export default class Autocomplete extends Component {
     delete props.onChange;
     delete props.findInlineSuggestion;
     delete props.clearOnAutocomplete;
+    delete props.deleteKeys;
 
     const value = this._getValue();
 
-    const mergedClassName = classnames('md-autocomplete', containerClassName, {
-      'full-width': fullWidth,
-    });
+    const mergedClassName = classnames('md-autocomplete', containerClassName);
 
     const autocomplete = (
       <TextField
@@ -751,7 +821,7 @@ export default class Autocomplete extends Component {
         <CSSTransitionGroup
           component="div"
           style={containerStyle}
-          className={mergedClassName}
+          className={classnames(mergedClassName, { 'full-width': fullWidth })}
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}

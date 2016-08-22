@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "package.json",
+    "nodemon.json",
+    "dist/server",
+    "webpack-dev*.js",
+    "webpack.config/js"
+  ],
+  "ignore": [
+    "src/server/react-md.jsx"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}

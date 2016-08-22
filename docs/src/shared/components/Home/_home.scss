@@ -1,0 +1,55 @@
+@import '~sass-utils';
+
+.home {
+  padding-bottom: 5em;
+}
+
+.logo {
+  padding-bottom: 2em;
+}
+
+.img-card .md-ink {
+  background: rgba($md-white-base, .12);
+}
+
+.banner {
+  align-items: center;
+  background: $md-primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2em;
+
+  .md-subheading-2,
+  .md-display-2 {
+    color: $md-white-base;
+  }
+}
+
+.getting-started {
+  justify-content: center;
+
+  .md-card {
+    max-width: 355px;
+    text-decoration: none;
+  }
+}
+
+.about {
+  @extend %centered;
+  @extend %md-title;
+
+  margin-bottom: 2em;
+  padding: 1em 0;
+  white-space: normal;
+}
+
+.md-navigation-drawer-toolbar.inactive {
+  box-shadow: none;
+}
+
+.ink-item {
+  overflow: hidden;
+  position: relative;
+}

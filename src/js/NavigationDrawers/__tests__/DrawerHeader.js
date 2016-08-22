@@ -14,9 +14,11 @@ import { IconButton } from '../../Buttons';
 describe('DrawerHeader', () => {
   it('allows for a className to be passed it', () => {
     const props = {
+      title: 'test',
       className: 'test',
       closeDrawer: jest.fn(),
       persistent: false,
+      temporary: false,
     };
 
     const header = renderIntoDocument(<DrawerHeader {...props} />);
@@ -29,6 +31,7 @@ describe('DrawerHeader', () => {
       closeDrawer: jest.fn(),
       title: 'Hello, World!',
       persistent: false,
+      temporary: false,
     };
 
     const header = renderIntoDocument(<DrawerHeader {...props} />);
@@ -41,6 +44,7 @@ describe('DrawerHeader', () => {
       closeDrawer: jest.fn(),
       closeIconChildren: 'close',
       persistent: true,
+      temporary: false,
     };
 
     const header = renderIntoDocument(<DrawerHeader {...props} />);

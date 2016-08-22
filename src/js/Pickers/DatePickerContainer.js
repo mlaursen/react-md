@@ -23,7 +23,7 @@ import Height from '../Transitions/Height';
  *
  * ```js
  * import { DatePicker } from 'react-md/lib/Pickers';
- * import DatePickerContainer as DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+ * import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
  * ```
  */
 export default class DatePickerContainer extends Component {
@@ -223,9 +223,15 @@ export default class DatePickerContainer extends Component {
       month: PropTypes.oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
       day: PropTypes.oneOf(['numeric', '2-digit']),
       hour: PropTypes.oneOf(['numeric', '2-digit']),
+      minute: PropTypes.oneOf(['numeric', '2-digit']),
       second: PropTypes.oneOf(['numeric', '2-digit']),
       timeZoneName: PropTypes.oneOf(['short', 'long']),
     }),
+
+    /**
+     * Boolean if the text field for the Date Picker should be displayed as full width.
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -411,6 +417,7 @@ export default class DatePickerContainer extends Component {
       icon,
       inline,
       displayMode,
+      fullWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -455,6 +462,7 @@ export default class DatePickerContainer extends Component {
           floatingLabel={floatingLabel}
           value={this.getValue()}
           readOnly={true}
+          fullWidth={fullWidth}
         />
         {content}
       </div>

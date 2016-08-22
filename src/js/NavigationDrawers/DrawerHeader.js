@@ -53,6 +53,11 @@ export default class DrawerHeader extends Component {
      * Boolean if the drawer is persistent.
      */
     persistent: PropTypes.bool.isRequired,
+
+    /**
+     * Boolean if the drawer is temporary.
+     */
+    temporary: PropTypes.bool.isRequired,
   };
 
   render() {
@@ -64,6 +69,7 @@ export default class DrawerHeader extends Component {
       closeIconChildren,
       closeIconClassName,
       persistent,
+      temporary,
     } = this.props;
 
     let headerTitle, closeBtn;
@@ -71,16 +77,20 @@ export default class DrawerHeader extends Component {
       headerTitle = <h3 key="title" className="md-title">{title}</h3>;
     }
 
-    if(persistent) {
+    if(persistent || temporary) {
       closeBtn = (
         <IconButton
           key="close-btn"
           className="md-drawer-toggle"
           onClick={closeDrawer}
           children={closeIconChildren}
-          className={closeIconClassName}
+          iconClassName={closeIconClassName}
         />
       );
+    }
+
+    if (!persistent && !title && !children) {
+      return null;
     }
 
     return (

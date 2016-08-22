@@ -1,0 +1,13 @@
+.sidebar-fixed-example {
+  display: flex;
+  justify-content: space-around;
+
+  .md-sidebar-container {
+    z-index: 1000;
+  }
+
+  .md-sidebar {
+    z-index: 1005;
+  }
+}
+

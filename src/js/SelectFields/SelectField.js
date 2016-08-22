@@ -568,6 +568,8 @@ export default class SelectField extends Component {
       fullWidth,
       ...props,
     } = this.props;
+    delete props.value;
+    delete props.defaultValue;
     delete props.noAutoAdjust;
     delete props.initiallyOpen;
 

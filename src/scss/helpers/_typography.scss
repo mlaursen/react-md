@@ -1,0 +1,235 @@
+
+/// A placeholder for styling a class with the text color.
+///
+/// @group typography
+%md-text {
+  color: $md-text-color;
+}
+
+/// A placeholder for styling a class with the secondary text color.
+///
+/// @group typography
+%md-secondary-text {
+  color: $md-secondary-text-color;
+}
+
+/// A placeholder for styling a class with the hint text color.
+///
+/// @group typography
+%md-hint-text,
+/// A placeholder for styling a class with the disabled text color.
+///
+/// @group typography
+%md-disabled-text {
+  color: $md-hint-text-color;
+}
+
+/// A placeholder for styling a class with the material design tracking of -10.
+///
+/// @group typography
+%md-tracking--10 {
+  letter-spacing: -.1px;
+}
+
+/// A placeholder for styling a class with the material design tracking of -5.
+///
+/// @group typography
+%md-tracking--5 {
+  letter-spacing: -.05px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 0.
+///
+/// @group typography
+%md-tracking-0 {
+  letter-spacing: 0;
+}
+
+/// A placeholder for styling a class with the material design tracking of 5.
+///
+/// @group typography
+%md-tracking-5 {
+  letter-spacing: .5px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 10.
+///
+/// @group typography
+%md-tracking-10 {
+  letter-spacing: .1px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 20.
+///
+/// @group typography
+%md-tracking-20 {
+  letter-spacing: .2px;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-display-4,
+%md-headline,
+%md-title,
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-body-2,
+%md-caption {
+  margin: 0;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-display-4,
+%md-headline,
+%md-title {
+  margin-bottom: #{$md-font-size-base}px;
+}
+
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-body-2,
+%md-caption {
+  margin-bottom: 10px;
+}
+
+
+
+%md-display-3,
+%md-display-4,
+%md-title {
+  white-space: nowrap;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-headline,
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-caption {
+  font-weight: $md-font-regular;
+}
+
+.md-btn,
+%md-title,
+%md-body-2 {
+  font-weight: $md-font-medium;
+}
+
+/// A placeholder for the Display 4 typography.
+///
+/// @group typography
+%md-display-4 {
+  @extend %md-secondary-text;
+  @extend %md-tracking--10;
+
+  font-size: $md-display-4-font-size;
+  font-weight: $md-font-light;
+  line-height: $md-display-4-line-height;
+}
+
+/// A placeholder for the Display 3 typography.
+///
+/// @group typography
+%md-display-3 {
+  @extend %md-secondary-text;
+  @extend %md-tracking--5;
+
+  font-size: $md-display-3-font-size;
+  line-height: $md-display-3-line-height;
+}
+
+/// A placeholder for the Display 2 typography.
+///
+/// @group typography
+%md-display-2 {
+  @extend %md-secondary-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-display-2-font-size;
+  line-height: $md-display-2-line-height;
+}
+
+/// A placeholder for the Display 1 typography.
+///
+/// @group typography
+%md-display-1 {
+  @extend %md-secondary-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-display-1-font-size;
+  line-height: $md-display-1-line-height;
+}
+
+/// A placeholder for the headline typography.
+///
+/// @group typography
+%md-headline {
+  @extend %md-text;
+  @extend %md-tracking-0;
+
+  font-size: $md-headline-font-size;
+  line-height: $md-headline-line-height;
+}
+
+/// A placeholder for the title typography.
+///
+/// @group typography
+%md-title {
+  @extend %md-text;
+  @extend %md-tracking-5;
+
+  font-size: $md-title-font-size;
+  line-height: $md-title-line-height;
+}
+
+/// A placeholder for the subheading-2 typography.
+///
+/// @group typography
+%md-subheading-2 {
+  @extend %md-text;
+  @extend %md-tracking-10;
+
+  line-height: $md-subheading-2-line-height;
+}
+
+/// A placeholder for the subheading-1 typography.
+///
+/// @group typography
+%md-subheading-1 {
+  @extend %md-tracking-10;
+  @extend %md-text;
+
+  line-height: $md-subheading-1-line-height;
+}
+
+/// Aplaceholder for the body-1 typography
+///
+/// @group typography
+%md-body-1 {
+  @extend %md-tracking-10;
+}
+
+/// Aplaceholder for the body-2 typography
+///
+/// @group typography
+%md-body-2 {
+  @extend %md-tracking-10;
+}
+
+
+/// A placeholder for the caption typography.
+///
+/// @group typography
+%md-caption {
+  @extend %md-secondary-text;
+  @extend %md-tracking-20;
+
+  font-size: $md-caption-font-size;
+}

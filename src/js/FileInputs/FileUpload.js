@@ -292,7 +292,9 @@ export default class FileUpload extends Component {
       }
     } else if(type.match(/image|video|audio/)) {
       fr.readAsDataURL(file);
-    } else if(type.match(/application|model|multipart/)) {
+    } else if (type.match(/json$/)) {
+      fr.readAsText(file);
+    } else if(type.match(/application|model|multipart/) || name.match(/(w|e)ar$/)) {
       fr.readAsArrayBuffer(file);
     } else {
       fr.readAsText(file);
