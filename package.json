@@ -4,8 +4,9 @@
   "description": "React material design components",
   "main": "./lib",
   "files": [
-    "dist",
-    "lib"
+    "dist/",
+    "lib/",
+    "LICENSE"
   ],
   "scripts": {
     "test": "BABEL_ENV=test jest",

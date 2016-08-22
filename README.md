@@ -7,10 +7,6 @@ React Material Design - React components built with sass
 react-md is a set of React components and sass files for implementing [Google's Material Design](https://material.google.com). The
 [Documentation Website](http://react-md.mlaursen.com) can be used for viewing live examples, code samples, and general prop documentation.
 
-There are some other implementations that might work better for you:
-- [Material-UI](/callemall/material-ui) - Uses inline styling
-- [React Toolbox](/react-toolbox/react-toolbox) - SASS Implementation
-
 ## Installation
 
 ```bash
@@ -22,7 +18,24 @@ $ npm i -S react \
            react-md
 ```
 
+You can also use the UMD build from [npmcdn](https://npmcdn.com/#/):
+
+```html
+<!-- Production Version -->
+<link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min.css">
+<script src="https://npmcdn.com/react-md/dist/react-md.min.js"></script>
+
+<!-- Development Version -->
+<link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.css">
+<script src="https://npmcdn.com/react-md/dist/react-md.js"></script>
+```
+
 ## Getting Started
+
+> NOTE: There are some other implementations that might work better for you:
+> - [Material-UI](/callemall/material-ui) - Uses inline styling
+> - [React Toolbox](/react-toolbox/react-toolbox) - SASS Implementation
+
 
 ### Prerequisites
 
@@ -39,7 +52,8 @@ Finally, if you want to use the `DatePicker` or `TimePicker` components, the [In
 be included for older browsers. [See caniuse](http://caniuse.com/#search=intl) for browser support.
 
 ### Usage
-Here is a basic setup using webpack:
+
+#### Basic Webpack Usage
 
 ```js
 /* App.jsx */
@@ -86,9 +100,38 @@ export default class MyAwesomeComponent extends Component {
 @import '~react-md/scss/react-md';
 ```
 
+#### UMD Usage
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min,css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="https://npmcdn.com/react/dist/react-with-addons.min.js"></script>
+    <script src="https://npmcdn.com/react-dom/dist/react-dom.min.js"></script>
+    <script src="https://npmcdn.com/react-md/dist/react-md.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.7.7/babel.min.js"></script>
+    <script>
+const input = `
+const { RaisedButton } = ReactMD;
+const MyAwesomeComponent = () => (
+  <RaisedButton label="Hello, World!" />
+);
+
+React.render(<MyAwesomeComponent />, document.getElementById('app'));`
+
+eval(Babel.transform(input, { presets: ['es2015', 'react', 'stage-0'] }).code);
+    </script>
+  </body>
+</html>
+```
+
 ### Customizing the theme
 
-Hopefully the [generated sassdoc](https://react-md.mlaursen.com/sassdoc) will help with
+Hopefully the [generated sassdoc](http://react-md.mlaursen.com/sassdoc) will help with
 mixin usage and sass documentation.
 
 The default colors are `indigo` and `pink` (hue A200). You can theme your application by either changing the default color variables:
@@ -117,10 +160,12 @@ If you need to view any upgrading help, view the [upgrade guide](../master/docs/
 
 ## Contributing
 
-The source files are located in the `src` dir. When doing a pull request, please do not commit any files
-from the transpiled `lib` dir.
+The branching model used for this project is basically the ![git flow diagram](http://nvie.com/img/git-model@2x.png).
+The only difference is that I do not use a `develop` branch. The develop branch is just the current release branch.
+So if the current release is v0.3, the active develop branch is `release/0.3.x`. Please make sure pull requests
+are targeted to the correct release branch and not `master`.
 
-You can compile all the components and watch for changes with
+The source files are located in the `src` dir. You can compile all the components and watch for changes with
 
 ```bash
 $ npm run scripts:watch  # watch src and recompile
@@ -149,5 +194,4 @@ $ npm run test:watch
 * Grid lists
 * Steppers
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
-* Eventually add a way to use chips in text fields
 * Eventually update for dark themes
