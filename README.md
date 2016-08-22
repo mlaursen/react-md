@@ -106,7 +106,7 @@ export default class MyAwesomeComponent extends Component {
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min,css">
+    <link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min.css">
   </head>
   <body>
     <div id="app"></div>
