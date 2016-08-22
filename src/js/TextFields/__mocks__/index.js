@@ -2,4 +2,10 @@
 import React from 'react';
 
 export default jest.genMockFunction()
-  .mockImplementation(({ floatingLabel, ...props }) => <input type="input" {...props} />); //eslint-disable-line
+  .mockImplementation(originalProps => {
+    const { ...props } = originalProps;
+    delete props.floatingLabel;
+    delete props.fullWidth;
+    delete props.block;
+    return <input type="input" {...props} />;
+  });
