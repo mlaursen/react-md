@@ -7,7 +7,6 @@ export default class ToDo extends PureComponent {
     super(props);
 
     this._handleChange = this._handleChange.bind(this);
-    this._handleRemove = this._handleRemove.bind(this);
   }
 
   static propTypes = {
@@ -21,10 +20,6 @@ export default class ToDo extends PureComponent {
 
   _handleChange(checked) {
     this.props.onClick(checked, this.props.todo);
-  }
-
-  _handleRemove() {
-    this.props.onRemove(this.props.todo);
   }
 
   render() {
