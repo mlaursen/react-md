@@ -160,7 +160,7 @@ If you need to view any upgrading help, view the [upgrade guide](../master/docs/
 
 ## Contributing
 
-The branching model used for this project is basically the ![git flow diagram](http://nvie.com/img/git-model@2x.png).
+The branching model used for this project is basically the [git flow diagram](http://nvie.com/img/git-model@2x.png).
 The only difference is that I do not use a `develop` branch. The develop branch is just the current release branch.
 So if the current release is v0.3, the active develop branch is `release/0.3.x`. Please make sure pull requests
 are targeted to the correct release branch and not `master`.
