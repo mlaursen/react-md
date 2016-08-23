@@ -172,6 +172,12 @@ export default class SelectField extends Component {
      * Boolean if the this select field should span the full width of a parent
      */
     fullWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the select field should automatically increase it's text field's
+     * min width to the max size of it's label or placeholder text.
+     */
+    adjustMinWidth: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -183,6 +189,7 @@ export default class SelectField extends Component {
     iconClassName: 'material-icons',
     iconChildren: 'arrow_drop_down',
     noAutoAdjust: false,
+    adjustMinWidth: false,
   };
 
   componentWillUpdate(nextProps, nextState) {
@@ -566,6 +573,7 @@ export default class SelectField extends Component {
       iconChildren,
       disabled,
       fullWidth,
+      adjustMinWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -590,6 +598,7 @@ export default class SelectField extends Component {
         below={below}
         inkDisabled={!below}
         fullWidth={fullWidth}
+        adjustMinWidth={adjustMinWidth}
       />
     );
 

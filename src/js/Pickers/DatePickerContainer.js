@@ -232,6 +232,12 @@ export default class DatePickerContainer extends Component {
      * Boolean if the text field for the Date Picker should be displayed as full width.
      */
     fullWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the date picker should automatically increase it's text field's
+     * min width to the max size of it's label or placeholder text.
+     */
+    adjustMinWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -418,6 +424,7 @@ export default class DatePickerContainer extends Component {
       inline,
       displayMode,
       fullWidth,
+      adjustMinWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -463,6 +470,7 @@ export default class DatePickerContainer extends Component {
           value={this.getValue()}
           readOnly={true}
           fullWidth={fullWidth}
+          adjustMinWidth={adjustMinWidth}
         />
         {content}
       </div>

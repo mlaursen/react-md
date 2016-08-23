@@ -185,6 +185,12 @@ export default class TimePickerContainer extends Component {
      * Boolean if the text field for the Time Picker should be displayed as full width.
      */
     fullWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the time picker should automatically increase it's text field's
+     * min width to the max size of it's label or placeholder text.
+     */
+    adjustMinWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -305,6 +311,7 @@ export default class TimePickerContainer extends Component {
       pickerStyle,
       pickerClassName,
       fullWidth,
+      adjustMinWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -355,6 +362,7 @@ export default class TimePickerContainer extends Component {
           value={this.getTextFieldValue()}
           readOnly={true}
           fullWidth={fullWidth}
+          adjustMinWidth={adjustMinWidth}
         />
         {content}
       </div>

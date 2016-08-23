@@ -7,5 +7,7 @@ export default jest.genMockFunction()
     delete props.floatingLabel;
     delete props.fullWidth;
     delete props.block;
+    delete props.adjustMinWidth;
+
     return <input type="input" {...props} />;
   });
