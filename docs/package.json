@@ -1,6 +1,6 @@
 {
   "name": "react-md-docs",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "The documentation website for react-md.",
   "main": "dist/server/server.js",
   "scripts": {
@@ -33,6 +33,8 @@
     "express": "^4.14.0",
     "fuse.js": "^2.4.1",
     "highlight.js": "^9.6.0",
+    "lodash": "^4.15.0",
+    "lorem-ipsum": "^1.0.3",
     "marked": "^0.3.6",
     "morgan": "^1.7.0",
     "node-noop": "^1.0.0",
@@ -76,8 +78,6 @@
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "json-loader": "^0.5.4",
-    "lodash": "^4.15.0",
-    "lorem-ipsum": "^1.0.3",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "postcss-loader": "^0.9.1",
