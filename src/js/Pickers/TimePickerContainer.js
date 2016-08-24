@@ -167,6 +167,12 @@ export default class TimePickerContainer extends PureComponent {
      * min width to the max size of it's label or placeholder text.
      */
     adjustMinWidth: PropTypes.bool,
+
+    /**
+     * The direction that the text field divider expands from when the text field
+     * in the date picker gains focus.
+     */
+    lineDirection: TextField.propTypes.lineDirection,
   };
 
   static defaultProps = {
@@ -324,6 +330,7 @@ export default class TimePickerContainer extends PureComponent {
       pickerClassName,
       fullWidth,
       adjustMinWidth,
+      lineDirection,
       ...props,
     } = this.props;
     delete props.value;
@@ -376,6 +383,7 @@ export default class TimePickerContainer extends PureComponent {
           readOnly
           fullWidth={fullWidth}
           adjustMinWidth={adjustMinWidth}
+          lineDirection={lineDirection}
         />
         {content}
       </div>
