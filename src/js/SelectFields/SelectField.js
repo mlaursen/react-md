@@ -168,6 +168,14 @@ export default class SelectField extends PureComponent {
      * min width to the max size of it's label or placeholder text.
      */
     adjustMinWidth: PropTypes.bool,
+
+    /**
+     * The direction that the text field divider expands from when the text field
+     * gains focus. If this is omitted, it will automatically match the direction
+     * of the `position` prop so that the line expands from the same direction
+     * as the menu.
+     */
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
   };
 
   static defaultProps = {
@@ -592,6 +600,7 @@ export default class SelectField extends PureComponent {
 
   render() {
     const { open, size, activeIndex, listStyle, droppingClassName } = this.state;
+    let { lineDirection } = this.props;
     const {
       label,
       floatingLabel,
@@ -613,9 +622,14 @@ export default class SelectField extends PureComponent {
     delete props.defaultValue;
     delete props.noAutoAdjust;
     delete props.initiallyOpen;
+    delete props.lineDirection;
 
     const displayLabel = this._getValue(this.props, this.state);
     const below = Menu.Positions.BELOW === position;
+
+    if (!lineDirection && !below) {
+      lineDirection = Menu.Positions.TOP_LEFT === position ? 'left' : 'right';
+    }
 
     const toggle = (
       <SelectFieldControl
@@ -632,6 +646,7 @@ export default class SelectField extends PureComponent {
         inkDisabled={!below}
         fullWidth={fullWidth}
         adjustMinWidth={adjustMinWidth}
+        lineDirection={lineDirection}
       />
     );
 
