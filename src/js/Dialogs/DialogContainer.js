@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { setOverflow } from '../utils';
 import Dialog from './Dialog';
@@ -11,14 +10,7 @@ import Overlay from '../Transitions/Overlay';
  * This component renders a `Dialog` when the `isOpen` prop is set to true.
  * It will manage the css transitions between the open and closed states.
  */
-export default class DialogContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { openClassName: props.isOpen };
-  }
-
+export default class DialogContainer extends PureComponent {
   static propTypes = {
     /**
      * Boolean if the Dialog is currently open.
@@ -152,27 +144,41 @@ export default class DialogContainer extends Component {
     transitionLeaveTimeout: 300,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { openClassName: props.isOpen };
+    this._delayIsOpen = this._delayIsOpen.bind(this);
+    this._openFullPageDialog = this._openFullPageDialog.bind(this);
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(!this.props.isOpen && nextProps.isOpen) {
+    if (!this.props.isOpen && nextProps.isOpen) {
       setOverflow(true);
-      if(nextProps.pageX && nextProps.pageY) {
-        this.openFullPageDialog(nextProps);
+      if (nextProps.pageX && nextProps.pageY) {
+        this._openFullPageDialog(nextProps);
       }
-    } else if(this.props.isOpen && !nextProps.isOpen) {
+    } else if (this.props.isOpen && !nextProps.isOpen) {
       setOverflow(false);
-      this.delayIsOpen(nextProps.transitionLeaveTimeout);
+      this._delayIsOpen(nextProps.transitionLeaveTimeout);
     }
   }
 
   componentWillUnmount() {
     setOverflow(false);
-    this.state.timeout && clearTimeout(this.state.timeout);
+
+    if (this.state.timeout) {
+      clearTimeout(this.state.timeout);
+    }
   }
 
-  getTransformOrigin = (pageX, pageY) => {
-    if(!pageX || !pageY) { return; }
+  _getTransformOrigin(pageX, pageY) {
+    if (!pageX || !pageY) {
+      return null;
+    }
+
     return `${pageX - window.scrollX}px ${pageY - window.scrollY}px`;
-  };
+  }
 
   /**
    * The only purpose of this function is to be used when closing the dialog.
@@ -180,17 +186,17 @@ export default class DialogContainer extends Component {
    * this function will wait for the dialog to finish animating before removing
    * the open className
    */
-  delayIsOpen = (time) => {
+  _delayIsOpen(time) {
     const timeout = setTimeout(() => {
       this.setState({ openClassName: false, timeout: null });
     }, time);
 
     this.setState({ timeout, openClassName: true });
-  };
+  }
 
-  openFullPageDialog = ({ pageX, pageY }) => {
-    this.setState({ transformOrigin: this.getTransformOrigin(pageX, pageY) });
-  };
+  _openFullPageDialog({ pageX, pageY }) {
+    this.setState({ transformOrigin: this._getTransformOrigin(pageX, pageY) });
+  }
 
   render() {
     const {
@@ -225,7 +231,7 @@ export default class DialogContainer extends Component {
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeave={transitionLeave}
         transitionLeaveTimeout={transitionLeaveTimeout}
-        className={classnames('md-dialog-container', className, {
+        className={cn('md-dialog-container', className, {
           'open': isOpen || this.state.openClassName,
           'simple': isSimple,
           'dialog-centered': !isFullPage,

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import { isBetween } from '../utils';
 
@@ -22,13 +21,7 @@ import { isBetween } from '../utils';
  * progress animation. Afterwards, it will start the determinate animation of where
  * you manually keep updating the value of the progress.
  */
-export default class LinearProgress extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class LinearProgress extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the linear progress container.
@@ -43,12 +36,14 @@ export default class LinearProgress extends Component {
      * This value should also be a number between 0 and 100.
      */
     value: (props, propName, component, ...others) => {
-      if(typeof props[propName] === 'undefined') { return; }
+      if (typeof props[propName] === 'undefined') { return null; }
       let err = PropTypes.number(props, propName, component, ...others);
-      if(!err) {
+      if (!err) {
         const value = props[propName];
-        if(!isBetween(value, 0, 100)) {
-          err = new Error(`A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`);
+        if (!isBetween(value, 0, 100)) {
+          err = new Error(
+            `A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`
+          );
         }
       }
 
@@ -70,15 +65,15 @@ export default class LinearProgress extends Component {
     const isDeterminate = typeof value === 'number';
 
     let style;
-    if(isDeterminate) {
+    if (isDeterminate) {
       style = { width: `${value}%` };
     }
 
     return (
-      <div className={classnames('md-linear-progress-container', className)} {...props}>
+      <div className={cn('md-linear-progress-container', className)} {...props}>
         <div
           style={style}
-          className={classnames('md-linear-progress', {
+          className={cn('md-linear-progress', {
             query,
             'determinate': isDeterminate,
             'indeterminate': !isDeterminate,

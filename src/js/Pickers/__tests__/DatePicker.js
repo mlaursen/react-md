@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../DatePicker');
 
 import React from 'react';
@@ -20,17 +21,17 @@ describe('DatePicker', () => {
       className: 'a',
       okLabel: 'a',
       okPrimary: false,
-      onOkClick: jest.genMockFunction(),
+      onOkClick: jest.fn(),
       cancelLabel: 'a',
       cancelPrimary: false,
-      onCancelClick: jest.genMockFunction(),
+      onCancelClick: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
       calendarDate: new Date(),
       calendarTempDate: new Date(),
       calendarMode: 'calendar',
-      changeCalendarMode: jest.genMockFunction(),
-      onSwipeChange: jest.genMockFunction(),
+      changeCalendarMode: jest.fn(),
+      onSwipeChange: jest.fn(),
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -47,17 +48,17 @@ describe('DatePicker', () => {
       className: 'a',
       okLabel: 'a',
       okPrimary: false,
-      onOkClick: jest.genMockFunction(),
+      onOkClick: jest.fn(),
       cancelLabel: 'a',
       cancelPrimary: false,
-      onCancelClick: jest.genMockFunction(),
+      onCancelClick: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
       calendarDate: new Date(),
       calendarTempDate: new Date(),
       calendarMode: 'calendar',
-      changeCalendarMode: jest.genMockFunction(),
-      onSwipeChange: jest.genMockFunction(),
+      changeCalendarMode: jest.fn(),
+      onSwipeChange: jest.fn(),
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -73,17 +74,17 @@ describe('DatePicker', () => {
       className: 'a',
       okLabel: 'a',
       okPrimary: false,
-      onOkClick: jest.genMockFunction(),
+      onOkClick: jest.fn(),
       cancelLabel: 'a',
       cancelPrimary: false,
-      onCancelClick: jest.genMockFunction(),
+      onCancelClick: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
       calendarDate: new Date(),
       calendarTempDate: new Date(),
       calendarMode: 'year',
-      changeCalendarMode: jest.genMockFunction(),
-      onSwipeChange: jest.genMockFunction(),
+      changeCalendarMode: jest.fn(),
+      onSwipeChange: jest.fn(),
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);

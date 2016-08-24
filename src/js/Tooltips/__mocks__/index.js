@@ -1,2 +1,2 @@
-/*eslint-env jest*/
-export default jest.genMockFunction().mockImplementation(ComposedComponent => ComposedComponent);
+/* eslint-env jest*/
+export default jest.fn(ComposedComponent => ComposedComponent);

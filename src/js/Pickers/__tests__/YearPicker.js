@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../YearPicker');
 
 import React from 'react';
@@ -14,11 +14,11 @@ describe('YearPicker', () => {
   it('renders the number of years from initialYearsDisplayed', () => {
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
-      onCalendarYearClick: jest.genMockFunction(),
+      onCalendarYearClick: jest.fn(),
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.genMockFunction();
+    YearPicker.prototype.componentDidMount = jest.fn();
     let yearPicker = renderIntoDocument(<YearPicker {...props} />);
     let years = scryRenderedComponentsWithType(yearPicker, Year);
 
@@ -35,29 +35,30 @@ describe('YearPicker', () => {
     const props = {
       minDate: new Date(2016, 1, 15),
       calendarTempDate: new Date(2016, 1, 1),
-      onCalendarYearClick: jest.genMockFunction(),
+      onCalendarYearClick: jest.fn(),
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.genMockFunction();
+    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
     // Even numbers have one more
     expect(years.length).toBe(props.initialYearsDisplayed);
     expect(years[0].props.year).toBe(props.minDate.getFullYear());
-    expect(years[props.initialYearsDisplayed - 1].props.year).toBe(props.minDate.getFullYear() + props.initialYearsDisplayed - 1);
+    expect(years[props.initialYearsDisplayed - 1].props.year)
+      .toBe(props.minDate.getFullYear() + props.initialYearsDisplayed - 1);
   });
 
   it('renders the number of years from initialYearsDisplayed ending with the maxDate', () => {
     const props = {
       maxDate: new Date(2016, 1, 15),
       calendarTempDate: new Date(2016, 1, 1),
-      onCalendarYearClick: jest.genMockFunction(),
+      onCalendarYearClick: jest.fn(),
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.genMockFunction();
+    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
@@ -72,16 +73,16 @@ describe('YearPicker', () => {
       minDate: new Date(2012),
       maxDate: new Date(2015),
       calendarTempDate: new Date(2012, 1, 1),
-      onCalendarYearClick: jest.genMockFunction(),
+      onCalendarYearClick: jest.fn(),
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.genMockFunction();
+    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
     expect(years.length).toBe(props.maxDate.getFullYear() - props.minDate.getFullYear() + 1);
 
     expect(years[0].props.year).toBe(props.minDate.getFullYear());
-    expect(years[years.length -1].props.year).toBe(props.maxDate.getFullYear());
+    expect(years[years.length - 1].props.year).toBe(props.maxDate.getFullYear());
   });
 });

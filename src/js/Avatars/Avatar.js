@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The avatar component is used to convert a `FontIcon`, an image, or
@@ -9,13 +8,7 @@ import classnames from 'classnames';
  * Any other props given to the Avatar component such as event listeners
  * or styles will also be applied.
  */
-export default class Avatar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Avatar extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the avatar.
@@ -66,17 +59,16 @@ export default class Avatar extends Component {
     suffixes: ['color-1', 'color-2', 'color-3'],
   };
 
-  getColor = () => {
-    const { suffix, suffixes, random } = this.props;
-    if(suffix) {
+  _getColor(suffix, suffixes, random) {
+    if (suffix) {
       return `md-avatar-${suffix}`;
-    } else if(!!suffixes && !random) {
+    } else if (!!suffixes && !random) {
       return null;
     }
 
     const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
     return `md-avatar-${suffixes[i]}`;
-  };
+  }
 
   render() {
     const {
@@ -85,14 +77,17 @@ export default class Avatar extends Component {
       alt,
       icon,
       children,
+      suffix,
+      suffixes,
+      random,
       ...props,
     } = this.props;
-    delete props.suffixes;
-    delete props.suffix;
-    delete props.random;
 
     return (
-      <div className={classnames('md-avatar', className, this.getColor())} {...props}>
+      <div
+        className={cn('md-avatar', className, this._getColor(suffix, suffixes, random))}
+        {...props}
+      >
         {src && <img src={src} alt={alt} className="md-img-avatar" />}
         {!src &&
           <div className="md-avatar-content">

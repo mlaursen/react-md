@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import FontIcon from '../FontIcons';
 import ControlContainer from './ControlContainer';
 
@@ -9,13 +8,7 @@ import ControlContainer from './ControlContainer';
  * additional state management. It is completely optional to use these
  * two components together though. It is just to eliminate some redundancies.
  */
-export default class Radio extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Radio extends PureComponent {
   static propTypes = {
     /**
      * The optional className to apply to the surrounding label.

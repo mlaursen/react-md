@@ -1,13 +1,10 @@
+/* eslint-disable no-param-reassign */
 import { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 
 import { animate } from '../utils';
 
 export default class Height extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   static propTypes = {
     children: PropTypes.node,
     transitionEnterTimeout: PropTypes.number.isRequired,
@@ -21,11 +18,38 @@ export default class Height extends Component {
     increment: 15,
   };
 
-  init = (done, isEnter = true) => {
-    const el = ReactDOM.findDOMNode(this);
+  constructor(props) {
+    super(props);
+
+    this._init = this._init.bind(this);
+    this._animatePadding = this._animatePadding.bind(this);
+  }
+
+  componentWillEnter(done) {
+    this._init(done, true);
+  }
+
+  componentDidEnter() {
+    const el = findDOMNode(this);
+    el.style.height = null;
+    el.style.paddingTop = null;
+    el.style.paddingBottom = null;
+    el.style.overflow = null;
+  }
+
+  componentWillLeave(done) {
+    this._init(done, false);
+  }
+
+  _linearIncrement(value, time) {
+    return value / time;
+  }
+
+  _init(done, isEnter = true) {
+    const el = findDOMNode(this);
     const fullHeight = el.offsetHeight;
     const elStyle = window.getComputedStyle(el);
-    const paddingTop = parseInt(elStyle.paddingTop);
+    const paddingTop = parseInt(elStyle.paddingTop, 10);
 
     const { increment, transitionEnterTimeout, transitionLeaveTimeout } = this.props;
     const transitionTime = isEnter ? transitionEnterTimeout : transitionLeaveTimeout;
@@ -36,59 +60,38 @@ export default class Height extends Component {
 
     el.style.overflow = 'hidden';
     el.style.paddingBottom = 0;
-    if(isEnter) {
+    const animationIncrement = this._linearIncrement(paddingTop, ptTime / increment);
+    if (isEnter) {
       el.style.paddingTop = 0;
       el.style.height = 0;
 
-      this.animatePadding(el, 0, this.linearIncrement(paddingTop, ptTime / increment), 'paddingTop', 0, ptTime, increment, () => {
+      this._animatePadding(el, 0, animationIncrement, 'paddingTop', 0, ptTime, increment, () => {
         animate(el, increment, ptTime, hTime, 'height', 0, paddingTop, fullHeight, done);
       });
     } else {
       el.style.paddingTop = `${paddingTop}px`;
       el.style.height = `${fullHeight}px`;
       animate(el, increment, 0, hTime, 'height', fullHeight - paddingTop, fullHeight, -fullHeight, () => {
-        this.animatePadding(el, paddingTop, -this.linearIncrement(paddingTop, ptTime / increment), 'paddingTop', 0, ptTime, increment, done);
+        this._animatePadding(el, paddingTop, -animationIncrement, 'paddingTop', 0, ptTime, increment, done);
       });
     }
-  };
+  }
 
-  linearIncrement = (value, time) => {
-    return value / time;
-  };
-
-  animatePadding = (el, padding, paddingIncrement, name, elapsedTime, transitionTime, increment, next) => {
+  _animatePadding(el, padding, paddingIncrement, name, elapsedTime, transitionTime, increment, next) {
     elapsedTime += increment;
     padding += paddingIncrement;
     el.style[name] = `${padding}px`;
-    if(elapsedTime < transitionTime) {
+    if (elapsedTime < transitionTime) {
       setTimeout(() => {
-        this.animatePadding(el, padding, paddingIncrement, name, elapsedTime, transitionTime, increment, next);
+        this._animatePadding(el, padding, paddingIncrement, name, elapsedTime, transitionTime, increment, next);
       }, increment);
     } else {
-      el.style[name] = Math.floor(padding) + 'px';
+      el.style[name] = `${Math.floor(padding)}px`;
       next();
     }
-  };
-
-  componentWillEnter = (done) => {
-    this.init(done, true);
-  };
-
-  componentDidEnter = () => {
-    const el = ReactDOM.findDOMNode(this);
-    el.style.height = null;
-    el.style.paddingTop = null;
-    el.style.paddingBottom = null;
-    el.style.overflow = null;
-  };
-
-  componentWillLeave = (done) => {
-    this.init(done, false);
-  };
+  }
 
   render() {
     return this.props.children;
   }
 }
-
-

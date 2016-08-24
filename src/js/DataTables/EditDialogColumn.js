@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 
 import FlatButton from '../Buttons/FlatButton';
 import TableColumn from './TableColumn';
@@ -14,18 +13,7 @@ import { onOutsideClick } from '../utils';
  * version which only has the text field or a large version
  * that includes a title with a save and cancel action buttons.
  */
-export default class EditDialogColumn extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      value: props.defaultValue,
-      active: false,
-      animating: false,
-    };
-  }
-
+export default class EditDialogColumn extends PureComponent {
   static propTypes = {
     /**
      * The optional style to apply to the edit dialog.
@@ -107,7 +95,7 @@ export default class EditDialogColumn extends Component {
      * when the `large` prop is set to true.
      */
     title: (props, propName, component, ...others) => {
-      if(props.large) {
+      if (props.large) {
         return PropTypes.string.isRequired(props, propName, component, ...others);
       } else {
         return PropTypes.string(props, propName, component, ...others);
@@ -148,7 +136,8 @@ export default class EditDialogColumn extends Component {
      * A boolean if the action when the edit dialog is open and the user clicks somewhere
      * else on the page should be to confirm the current changes.
      *
-     * If this is set to `true`, `onOkClick` will be called. Otherwise `onCancelClick` will be called.
+     * If this is set to `true`, `onOkClick` will be called. Otherwise `onCancelClick` will
+     * be called.
      */
     okOnOutsideClick: PropTypes.bool.isRequired,
   };
@@ -160,20 +149,39 @@ export default class EditDialogColumn extends Component {
     cancelLabel: 'Cancel',
   };
 
-  componentWillUpdate(nextProps, nextState) {
-    if(this.state.active === nextState.active) { return; }
+  constructor(props) {
+    super(props);
 
-    if(nextState.active) {
-      window.addEventListener('click', this.handleClickOutside);
+    this.state = {
+      value: props.defaultValue,
+      active: false,
+      animating: false,
+    };
+
+    this._save = this._save.bind(this);
+    this._getValue = this._getValue.bind(this);
+    this._overrideTab = this._overrideTab.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleChange = this._handleChange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleCancelClick = this._handleCancelClick.bind(this);
+    this._handleClickOutside = this._handleClickOutside.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.active === nextState.active) { return; }
+
+    if (nextState.active) {
+      window.addEventListener('click', this._handleClickOutside);
     } else {
-      window.removeEventListener('click', this.handleClickOutside);
+      window.removeEventListener('click', this._handleClickOutside);
     }
 
     this.setState({
       animating: true,
       timeout: setTimeout(() => {
-        if(!nextState.active) {
-          ReactDOM.findDOMNode(this).querySelector('input').blur();
+        if (!nextState.active) {
+          findDOMNode(this).querySelector('input').blur();
         }
 
         this.setState({ animating: false, timeout: null });
@@ -182,76 +190,90 @@ export default class EditDialogColumn extends Component {
   }
 
   componentWillUnmount() {
-    this.state.timeout && clearTimeout(this.state.timeout);
+    if (this.statetimeout) {
+      clearTimeout(this.state.timeout);
+    }
   }
 
-  handleClickOutside = (e) => {
-    onOutsideClick(e, ReactDOM.findDOMNode(this.refs.column), () => {
-      const { onOutsideClick, okOnOutsideClick } = this.props;
-      onOutsideClick && onOutsideClick(e);
+  _handleClickOutside(e) {
+    onOutsideClick(e, findDOMNode(this.refs.column), () => {
+      if (this.props.onOutsideClick) {
+        this.props.onOutsideClick(e);
+      }
 
-      if(okOnOutsideClick) {
-        this.save(e);
+      if (this.props.okOnOutsideClick) {
+        this._save(e);
       } else {
-        this.handleCancelClick(e);
+        this._handleCancelClick(e);
       }
     });
-  };
+  }
 
-  handleFocus = (e) => {
-    this.props.onFocus && this.props.onFocus(e);
+  _handleFocus(e) {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
 
     const state = { active: true };
-    if(!this.state.active) {
-      state.cancelValue = this.getValue() || '';
+    if (!this.state.active) {
+      state.cancelValue = this._getValue() || '';
     }
 
     this.setState(state);
-  };
+  }
 
-  handleKeyDown = (e) => {
+  _handleKeyDown(e) {
     const { onKeyDown } = this.props;
-    onKeyDown && onKeyDown(e);
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
 
     const key = e.which || e.keyCode;
-    if(key === ENTER) {
-      this.save(e);
-    } else if(key === TAB) {
-      this.overrideTab(e);
-    } else if(key === ESC) {
-      this.handleCancelClick(e);
+    if (key === ENTER) {
+      this._save(e);
+    } else if (key === TAB) {
+      this._overrideTab(e);
+    } else if (key === ESC) {
+      this._handleCancelClick(e);
     }
-  };
+  }
 
-  save = (e) => {
-    this.props.onOkClick && this.props.onOkClick(this.getValue(), e);
+  _save(e) {
+    if (this.props.onOkClick) {
+      this.props.onOkClick(this._getValue(), e);
+    }
 
     this.setState({ active: false });
-  };
+  }
 
-  handleCancelClick = (e) => {
-    this.props.onCancelClick && this.props.onCancelClick(this.state.cancelValue, e);
+  _handleCancelClick(e) {
+    if (this.props.onCancelClick) {
+      this.props.onCancelClick(this.state.cancelValue, e);
+    }
 
     this.setState({ active: false, value: this.state.cancelValue });
-  };
+  }
 
-  getValue = () => {
+  _getValue() {
     return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
-  };
+  }
 
-  handleChange = (value, e) => {
-    this.props.onChange && this.props.onChange(value, e);
-    if(typeof this.props.value === 'undefined') {
+  _handleChange(value, e) {
+    if (this.props.onChange) {
+      this.props.onChange(value, e);
+    }
+
+    if (typeof this.props.value === 'undefined') {
       this.setState({ value });
     }
-  };
+  }
 
-  overrideTab = (e) => {
+  _overrideTab(e) {
     const { large } = this.props;
     const key = e.which || e.keyCode;
-    if(key !== TAB) { return; }
+    if (key !== TAB) { return; }
 
-    if(!large) {
+    if (!large) {
       e.preventDefault();
       return;
     }
@@ -260,17 +282,17 @@ export default class EditDialogColumn extends Component {
     const { classList } = e.target;
 
     let nextFocus;
-    if(classList.contains('md-text-field') && shiftKey) {
-      nextFocus = ReactDOM.findDOMNode(this.refs.okButton);
-    } else if(classList.contains('md-btn') && !shiftKey) {
-      nextFocus = ReactDOM.findDOMNode(this.refs.textField).querySelector('.md-text-field');
+    if (classList.contains('md-text-field') && shiftKey) {
+      nextFocus = findDOMNode(this.refs.okButton);
+    } else if (classList.contains('md-btn') && !shiftKey) {
+      nextFocus = findDOMNode(this.refs.textField).querySelector('.md-text-field');
     }
 
-    if(nextFocus) {
+    if (nextFocus) {
       e.preventDefault();
       nextFocus.focus();
     }
-  };
+  }
 
   render() {
     const { active, animating } = this.state;
@@ -294,13 +316,20 @@ export default class EditDialogColumn extends Component {
     delete props.okOnOutsideClick;
     delete props.transitionDuration;
 
-    const value = this.getValue();
-    let actions, largeTitle;
-    if(large && active) {
+    const value = this._getValue();
+    let actions;
+    let largeTitle;
+    if (large && active) {
       actions = (
         <footer className="md-dialog-footer">
-          <FlatButton label={cancelLabel} onClick={this.handleCancelClick} primary={true} />
-          <FlatButton ref="okButton" label={okLabel} onClick={this.save} primary={true} onKeyDown={this.overrideTab} />
+          <FlatButton label={cancelLabel} onClick={this._handleCancelClick} primary />
+          <FlatButton
+            ref="okButton"
+            label={okLabel}
+            onClick={this._save}
+            primary
+            onKeyDown={this._overrideTab}
+          />
         </footer>
       );
 
@@ -310,9 +339,13 @@ export default class EditDialogColumn extends Component {
     }
 
     return (
-      <TableColumn className={classnames('prevent-grow md-edit-dialog-column', columnClassName)} ref="column" style={columnStyle}>
+      <TableColumn
+        className={cn('prevent-grow md-edit-dialog-column', columnClassName)}
+        ref="column"
+        style={columnStyle}
+      >
         <div
-          className={classnames('md-edit-dialog', className, {
+          className={cn('md-edit-dialog', className, {
             animating,
             active,
             large,
@@ -324,10 +357,10 @@ export default class EditDialogColumn extends Component {
             {...props}
             ref="textField"
             floatingLabel={false}
-            onKeyDown={this.handleKeyDown}
-            onFocus={this.handleFocus}
+            onKeyDown={this._handleKeyDown}
+            onFocus={this._handleFocus}
             value={value}
-            onChange={this.handleChange}
+            onChange={this._handleChange}
             maxLength={active ? maxLength : null}
           />
           {actions}

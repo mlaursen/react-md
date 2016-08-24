@@ -38,7 +38,7 @@ describe('Chip', () => {
   });
 
   it('injects a remove icon button if the remove prop is not undefined', () => {
-    const remove = jest.genMockFunction();
+    const remove = jest.fn();
     const chip = renderIntoDocument(
       <Chip label="Test" remove={remove} />
     );
@@ -57,7 +57,7 @@ describe('Chip', () => {
   });
 
   it('allows for customizable remove icons', () => {
-    const remove = jest.genMockFunction();
+    const remove = jest.fn();
     const chip = renderIntoDocument(
       <Chip
         label="Test"
@@ -78,16 +78,16 @@ describe('Chip', () => {
   });
 
   it('passes all remaining props to the button component', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const chip = renderIntoDocument(
       <Chip

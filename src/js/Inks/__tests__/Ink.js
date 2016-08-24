@@ -1,5 +1,5 @@
-/*eslint-env jest*/
-/*eslint-disable react/prop-types*/
+/* eslint-env jest*/
+/* eslint-disable react/prop-types*/
 jest.unmock('../injectInk');
 jest.unmock('../../constants/keyCodes');
 
@@ -45,7 +45,7 @@ describe('injectInk', () => {
     expect(disabledComp.props.ink).not.toBeDefined();
 
     const inkDisabled = renderIntoDocument(
-      <InkTest inkDisabled={true}>Hello!</InkTest>
+      <InkTest inkDisabled>Hello!</InkTest>
     );
 
     const inkDisabledComp = findRenderedComponentWithType(inkDisabled, Test);
@@ -53,15 +53,15 @@ describe('injectInk', () => {
   });
 
   it('allows for the touch, click, and focus event listeners to be passed down', () => {
-    const onMouseUp = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchMove = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
+    const onMouseUp = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchMove = jest.fn();
+    const onTouchCancel = jest.fn();
+    const onTouchEnd = jest.fn();
 
     const inkTest = renderIntoDocument(
       <InkTest

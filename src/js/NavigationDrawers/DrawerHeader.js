@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import { IconButton } from '../Buttons';
 import Divider from '../Dividers';
@@ -10,13 +9,7 @@ import Divider from '../Dividers';
  * in the Navigation Drawer. It consists of an optional title, any children, and
  * a close icon for persistent Navigation Drawers.
  */
-export default class DrawerHeader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DrawerHeader extends PureComponent {
   static propTypes = {
     /**
      * A className to apply.
@@ -72,12 +65,13 @@ export default class DrawerHeader extends Component {
       temporary,
     } = this.props;
 
-    let headerTitle, closeBtn;
-    if(title) {
+    let headerTitle;
+    if (title) {
       headerTitle = <h3 key="title" className="md-title">{title}</h3>;
     }
 
-    if(persistent || temporary) {
+    let closeBtn;
+    if (persistent || temporary) {
       closeBtn = (
         <IconButton
           key="close-btn"
@@ -94,7 +88,7 @@ export default class DrawerHeader extends Component {
     }
 
     return (
-      <header className={classnames('md-drawer-header', className)}>
+      <header className={cn('md-drawer-header', className)}>
         {headerTitle}
         {children}
         {closeBtn}

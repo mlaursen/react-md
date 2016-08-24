@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 
 import { LEFT_MOUSE, LEFT, RIGHT } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
@@ -11,25 +10,7 @@ import SliderTrack from './SliderTrack';
  * A `Slider` can either be continuous or discrete. A continuous slider will not have
  * a number indicating it's current value while a discrete slider will.
  */
-export default class Slider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    const value = typeof props.defaultValue === 'number' ? props.defaultValue : props.min;
-    const width = this.calcValuePercent(value, props.min, props.max);
-    this.state = {
-      value,
-      width,
-      active: false,
-      dragging: false,
-      moving: false,
-      valued: width > 0,
-      left: this.calcLeft(width),
-    };
-  }
-
+export default class Slider extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -103,136 +84,166 @@ export default class Slider extends Component {
     stepPrecision: 2,
   };
 
+  constructor(props) {
+    super(props);
+
+    const value = typeof props.defaultValue === 'number' ? props.defaultValue : props.min;
+    const width = this._calcValuePercent(value, props.min, props.max);
+    this.state = {
+      value,
+      width,
+      active: false,
+      dragging: false,
+      moving: false,
+      valued: width > 0,
+      left: this._calcLeft(width),
+    };
+
+    this._handleClickOutside = this._handleClickOutside.bind(this);
+    this._handleSliderTrackClick = this._handleSliderTrackClick.bind(this);
+    this._handleThumbStart = this._handleThumbStart.bind(this);
+    this._handleDragMove = this._handleDragMove.bind(this);
+    this._handleDragEnd = this._handleDragEnd.bind(this);
+    this._handleThumbKeydown = this._handleThumbKeydown.bind(this);
+    this._updateValueWithStep = this._updateValueWithStep.bind(this);
+  }
+
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.active && !prevState.active) {
-      window.addEventListener('click', this.handleClickOutside);
-    } else if(!this.state.active && prevState.active) {
-      window.removeEventListener('click', this.handleClickOutside);
+    if (this.state.active && !prevState.active) {
+      window.addEventListener('click', this._handleClickOutside);
+    } else if (!this.state.active && prevState.active) {
+      window.removeEventListener('click', this._handleClickOutside);
     }
   }
 
-  calcValuePercent = (value, min, max) => {
-    if(value === min) {
+  _getValue(props, state) {
+    return typeof props.value === 'undefined' ? state.value : props.value;
+  }
+
+  _calcValuePercent(value, min, max) {
+    if (value === min) {
       return 0;
-    } else if(value === max) {
+    } else if (value === max) {
       return 100;
     } else {
       return Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
     }
-  };
+  }
 
-  calcLeft = (width) => {
+  _calcLeft(width) {
     return `calc(${width}% - 7px)`;
-  };
+  }
 
-  handleSliderTrackClick = (e) => {
-    let { clientX, changedTouches } = e;
+  _handleSliderTrackClick(e) {
+    let { clientX } = e;
     const { min, max, step, onChange, onDragChange, disabled } = this.props;
-    if(disabled) { return; }
-    if(changedTouches) {
-      clientX = changedTouches[0].clientX;
+    if (disabled) { return; }
+    if (e.changedTouches) {
+      clientX = e.changedTouches[0].clientX;
     }
 
-    const track = ReactDOM.findDOMNode(this).querySelector('.md-slider-track');
+    const track = findDOMNode(this).querySelector('.md-slider-track');
     let distance = clientX - track.getBoundingClientRect().left;
     const clientWidth = track.clientWidth;
 
-    if(distance < 0) {
+    if (distance < 0) {
       distance = 0;
-    } else if(distance > clientWidth) {
+    } else if (distance > clientWidth) {
       distance = clientWidth;
     }
 
     let value = 0;
-    if(distance !== 0 && distance !== clientWidth) {
+    if (distance !== 0 && distance !== clientWidth) {
       const calcedValue = distance / clientWidth * max;
-      if(step) {
-        value = this.updateValueWithStep(calcedValue);
+      if (step) {
+        value = this._updateValueWithStep(calcedValue);
       } else {
         value = Math.round(calcedValue);
       }
-    } else if(distance === 0) {
+    } else if (distance === 0) {
       value = min;
-    } else if(distance === clientWidth) {
+    } else if (distance === clientWidth) {
       value = max;
     }
 
     value = Math.min(max, Math.max(min, value));
     const { dragging } = this.state;
-    if(dragging && onDragChange) {
+    if (dragging && onDragChange) {
       onDragChange(value, e);
-    } else if(!dragging && onChange) {
+    } else if (!dragging && onChange) {
       onChange(value, e);
     }
 
 
-    const width = this.calcValuePercent(value, min, max);
+    const width = this._calcValuePercent(value, min, max);
     this.setState({
       valued: value > min,
-      left: this.calcLeft(width),
+      left: this._calcLeft(width),
       width,
       value,
       active: true,
     });
-  };
+  }
 
-  handleClickOutside = e => onOutsideClick(e, ReactDOM.findDOMNode(this), () => this.setState({ active: false }));
+  _handleClickOutside(e) {
+    onOutsideClick(e, findDOMNode(this), () => this.setState({ active: false }));
+  }
 
-  handleThumbStart = (e) => {
-    if(this.props.disabled) { return; }
+  _handleThumbStart(e) {
+    if (this.props.disabled) { return; }
     const { changedTouches, button, ctrlKey } = e;
-    if(!changedTouches && (button !== LEFT_MOUSE || ctrlKey)) { return; }
+    if (!changedTouches && (button !== LEFT_MOUSE || ctrlKey)) { return; }
 
-    document.addEventListener('mousemove', this.handleDragMove);
-    document.addEventListener('mouseup', this.handleDragEnd);
-    document.addEventListener('touchmove', this.handleDragMove);
-    document.addEventListener('touchend', this.handleDragEnd);
+    document.addEventListener('mousemove', this._handleDragMove);
+    document.addEventListener('mouseup', this._handleDragEnd);
+    document.addEventListener('touchmove', this._handleDragMove);
+    document.addEventListener('touchend', this._handleDragEnd);
 
     this.setState({ dragging: true });
-  };
+  }
 
-  handleDragMove = (e) => {
-    if(this.state.dragMoving || this.props.disabled) { return; }
+  _handleDragMove(e) {
+    if (this.state.dragMoving || this.props.disabled) { return; }
 
     requestAnimationFrame(() => {
-      this.handleSliderTrackClick(e);
+      this._handleSliderTrackClick(e);
       this.setState({ dragMoving: false });
     });
     this.setState({ dragMoving: true });
-  };
+  }
 
-  handleDragEnd = (e) => {
-    document.removeEventListener('mousemove', this.handleDragMove);
-    document.removeEventListener('mouseup', this.handleDragEnd);
-    document.removeEventListener('touchmove', this.handleDragMove);
-    document.removeEventListener('touchend', this.handleDragEnd);
+  _handleDragEnd(e) {
+    document.removeEventListener('mousemove', this._handleDragMove);
+    document.removeEventListener('mouseup', this._handleDragEnd);
+    document.removeEventListener('touchmove', this._handleDragMove);
+    document.removeEventListener('touchend', this._handleDragEnd);
 
-    if(this.props.onChange) {
+    if (this.props.onChange) {
       this.props.onChange(this.state.value, e);
     }
 
     this.setState({ dragging: false });
-  };
+  }
 
-  handleThumbKeydown = (e) => {
+  _handleThumbKeydown(e) {
     const key = e.which || e.keyCode;
-    if(key !== LEFT && key !== RIGHT) { return; }
+    if (key !== LEFT && key !== RIGHT) { return; }
 
     const { min, max, step, onChange } = this.props;
     const stepAmt = step || (max / (max - min));
-    let value = this.getValue();
-    if(key === LEFT) {
+    let value = this._getValue(this.props, this.state);
+    if (key === LEFT) {
       value = Math.max(value - stepAmt, min);
     } else {
       value = Math.min(value + stepAmt, max);
     }
 
-    if(step) {
-      value = this.updateValueWithStep(value);
+    if (step) {
+      value = this._updateValueWithStep(value);
     }
 
-    const width = this.calcValuePercent(value, min, max);
-    if(onChange) {
+    const width = this._calcValuePercent(value, min, max);
+    if (onChange) {
       onChange(value, e);
     }
 
@@ -243,31 +254,27 @@ export default class Slider extends Component {
       left: this.calcLeft(width),
       active: true,
     });
-  };
+  }
 
-  getValue = () => {
-    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
-  };
-
-  updateValueWithStep = (value) => {
+  _updateValueWithStep(value) {
     const { step, stepPrecision } = this.props;
     const stepScale = 100 / (100 * step);
-    let updatedValue = (Math.round(value * stepScale) / stepScale).toFixed(stepPrecision);
-    if(updatedValue.split('\.')[1] === '00') {
-      return parseInt(updatedValue);
+    const updatedValue = (Math.round(value * stepScale) / stepScale).toFixed(stepPrecision);
+    if (updatedValue.split('.')[1] === '00') {
+      return parseInt(updatedValue, 10);
     } else {
-      return parseFloat(updatedValue);
+      return parseFloat(updatedValue, 10);
     }
-  };
+  }
 
   render() {
-    const value = this.getValue();
+    const value = this._getValue(this.props, this.state);
     const { active, valued, width, left, dragging } = this.state;
     const { min, max, step, disabled, className, style } = this.props;
     const discrete = typeof step !== 'undefined';
     return (
-      <div className={classnames('md-slider-container', className)} style={style}>
-        <div className={classnames('md-slider-track-container', { active, disabled })}>
+      <div className={cn('md-slider-container', className)} style={style}>
+        <div className={cn('md-slider-track-container', { active, disabled })}>
           <input
             type="range"
             className="md-slider"
@@ -285,10 +292,10 @@ export default class Slider extends Component {
             dragging={dragging}
             value={value}
             discrete={discrete}
-            onClick={this.handleSliderTrackClick}
-            onTouchStart={this.handleThumbStart}
-            onMouseDown={this.handleThumbStart}
-            onKeyDown={this.handleThumbKeydown}
+            onClick={this._handleSliderTrackClick}
+            onTouchStart={this._handleThumbStart}
+            onMouseDown={this._handleThumbStart}
+            onKeyDown={this._handleThumbKeydown}
           />
         </div>
       </div>

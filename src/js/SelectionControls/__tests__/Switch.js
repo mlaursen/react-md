@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Switch');
 
 import React from 'react';
@@ -25,11 +25,11 @@ describe('Switch', () => {
   });
 
   it('calls the onChange function with the next toggled state and the click event', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const switchR = renderIntoDocument(<Switch onChange={onChange} />);
 
     const switchInput = findRenderedDOMComponentWithTag(switchR, 'input');
-    Simulate.change(switchInput, { target: { checked: true }});
+    Simulate.change(switchInput, { target: { checked: true } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe(true);

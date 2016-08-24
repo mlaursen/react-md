@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 
 import TabHeader from './TabHeader';
 import SwipeableView from '../SwipeableViews';
@@ -13,20 +12,7 @@ import SwipeableView from '../SwipeableViews';
  *
  * > Tabs should not be used for indicating navigation.
  */
-export default class Tabs extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      activeTabIndex: props.initialActiveTabIndex,
-      headerStyle: {},
-      indicatorStyle: {},
-      tabMoveDistance: 0,
-      tabScrolling: false,
-    };
-  }
-
+export default class Tabs extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -87,122 +73,140 @@ export default class Tabs extends Component {
     centered: false,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTabIndex: props.initialActiveTabIndex,
+      headerStyle: {},
+      indicatorStyle: {},
+      tabMoveDistance: 0,
+      tabScrolling: false,
+    };
+    this._updateIndicator = this._updateIndicator.bind(this);
+    this._calcTabMoveDistance = this._calcTabMoveDistance.bind(this);
+    this._handleTabChange = this._handleTabChange.bind(this);
+    this._handleTabScrollEnd = this._handleTabScrollEnd.bind(this);
+    this._handleTabScrollMove = this._handleTabScrollMove.bind(this);
+    this._handleTabScrollStart = this._handleTabScrollStart.bind(this);
+    this._handleSwipeChange = this._handleSwipeChange.bind(this);
+  }
+
   componentDidMount() {
-    this.updateIndicator();
+    this._updateIndicator();
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(this.props.activeTabIndex !== nextProps.activeTabIndex || this.state.activeTabIndex !== nextState.activeTabIndex) {
-      const node = ReactDOM.findDOMNode(this);
+    if (this._getActiveIndex(this.props, this.state) !== this._getActiveIndex(nextProps, nextState)) {
+      const node = findDOMNode(this);
       const tabContainer = node.querySelector('.md-tabs-scroll-container');
-      const tabs = ReactDOM.findDOMNode(this).querySelectorAll('.md-tab');
-      const active = tabs[this.getActiveTabIndex(nextProps, nextState)];
-      const containerWidth = tabContainer.offsetWidth - parseInt(nextProps.style.marginLeft);
+      const tabs = findDOMNode(this).querySelectorAll('.md-tab');
+      const active = tabs[this._getActiveIndex(nextProps, nextState)];
+      const containerWidth = tabContainer.offsetWidth - parseInt(nextProps.style.marginLeft, 10);
       const activePosition = active.offsetLeft + active.offsetWidth;
       const { tabMoveDistance } = nextState;
-      if(activePosition > containerWidth + Math.abs(tabMoveDistance)) {
+      if (activePosition > containerWidth + Math.abs(tabMoveDistance)) {
         const newDistance = containerWidth - activePosition;
         this.setState({
-          headerStyle: this.getHeaderStyle(newDistance),
+          headerStyle: this._getHeaderStyle(newDistance),
           tabMoveDistance: newDistance,
         });
       }
     }
   }
 
-
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.activeTabIndex !== this.props.activeTabIndex || this.state.activeTabIndex !== prevState.activeTabIndex) {
-      this.updateIndicator();
+    if (this._getActiveIndex(this.props, this.state) !== this._getActiveIndex(prevProps, prevState)) {
+      this._updateIndicator();
     }
   }
 
-  updateIndicator = () => {
-    const { offsetWidth, offsetLeft } = ReactDOM.findDOMNode(this).querySelector('.md-tab.active');
-    this.setState({
-      indicatorStyle: {
-        left: `${offsetLeft}px`,
-        width: `${offsetWidth}px`,
-      },
-    });
-  };
-
-  getActiveTabIndex = (props = this.props, state = this.state) => {
+  _getActiveIndex(props, state) {
     return typeof props.activeTabIndex === 'undefined' ? state.activeTabIndex : props.activeTabIndex;
-  };
+  }
 
-  calcTabMoveDistance = ({ pageX }, threshold = 0) => {
-    let distance = this.state.tabMoveDistance + (pageX - this.state.tabStartX);
-    const node = ReactDOM.findDOMNode(this);
-    const tabContainer = node.querySelector('.md-tabs-scroll-container');
-    const tabs = Array.prototype.slice.call(node.querySelectorAll('.md-tab'));
-    let maxWidth = tabs.reduce((prev, curr) => prev + curr.offsetWidth, 0) + threshold;
-    maxWidth -= (tabContainer.offsetWidth - parseInt(this.props.style.marginLeft || 0));
-
-    if(distance > 0) { // moving content left
-      distance = Math.min(distance, threshold);
-    } else { // moving content right
-      distance = Math.max(distance, -maxWidth);
-    }
-
-    return distance;
-  };
-
-  getHeaderStyle = (tabMoveDistance) => {
+  _getHeaderStyle(tabMoveDistance) {
     const transform = `translateX(${tabMoveDistance}px)`;
     return {
       WebkitTransform: transform,
       MozTransform: transform,
       transform,
     };
-  };
+  }
 
-  handleTabChange = (tabIndex, tabOnChange, e) => {
+  _updateIndicator() {
+    const { offsetWidth, offsetLeft } = findDOMNode(this).querySelector('.md-tab.active');
+    this.setState({
+      indicatorStyle: {
+        left: `${offsetLeft}px`,
+        width: `${offsetWidth}px`,
+      },
+    });
+  }
+
+  _calcTabMoveDistance({ pageX }, threshold = 0) {
+    let distance = this.state.tabMoveDistance + (pageX - this.state.tabStartX);
+    const node = findDOMNode(this);
+    const tabContainer = node.querySelector('.md-tabs-scroll-container');
+    const tabs = Array.prototype.slice.call(node.querySelectorAll('.md-tab'));
+    let maxWidth = tabs.reduce((prev, curr) => prev + curr.offsetWidth, 0) + threshold;
+    maxWidth -= (tabContainer.offsetWidth - parseInt(this.props.style.marginLeft || 0, 10));
+
+    if (distance > 0) { // moving content left
+      distance = Math.min(distance, threshold);
+    } else { // moving content right
+      distance = Math.max(distance, -maxWidth);
+    }
+
+    return distance;
+  }
+
+  _handleTabChange(tabIndex, tabOnChange, e) {
     const { activeTabIndex, onChange } = this.props;
-    if(tabOnChange) {
+    if (tabOnChange) {
       tabOnChange(tabIndex, e);
     }
 
-    if(onChange) {
+    if (onChange) {
       onChange(tabIndex, e);
     }
 
-    if(typeof activeTabIndex === 'undefined') {
+    if (typeof activeTabIndex === 'undefined') {
       this.setState({ activeTabIndex: tabIndex });
     }
-  };
+  }
 
-  handleTabScrollStart = ({ changedTouches }) => {
+  _handleTabScrollStart({ changedTouches }) {
     this.setState({
       tabStartX: changedTouches[0].pageX,
       tabScrolling: true,
     });
-  };
+  }
 
-  handleTabScrollMove = ({ changedTouches }) => {
-    const tabMoveDistance = this.calcTabMoveDistance(changedTouches[0], 24);
+  _handleTabScrollMove({ changedTouches }) {
+    const tabMoveDistance = this._calcTabMoveDistance(changedTouches[0], 24);
     this.setState({ headerStyle: this.getHeaderStyle(tabMoveDistance) });
-  };
+  }
 
-  handleTabScrollEnd = ({ changedTouches }) => {
-    const tabMoveDistance = this.calcTabMoveDistance(changedTouches[0], 0);
+  _handleTabScrollEnd({ changedTouches }) {
+    const tabMoveDistance = this._calcTabMoveDistance(changedTouches[0], 0);
     this.setState({
-      headerStyle: this.getHeaderStyle(tabMoveDistance),
+      headerStyle: this._getHeaderStyle(tabMoveDistance),
       tabMoveDistance,
       tabScrolling: false,
     });
-  };
+  }
 
-  handleSwipeChange = (index) => {
+  _handleSwipeChange(index) {
     const { activeTabIndex, onChange } = this.props;
-    if(onChange) {
+    if (onChange) {
       onChange(index);
     }
 
-    if(typeof activeTabIndex === 'undefined') {
+    if (typeof activeTabIndex === 'undefined') {
       this.setState({ activeTabIndex: index });
     }
-  };
+  }
 
   render() {
     const { className, children, style, fixedWidth, centered, primary, ...remainingProps } = this.props;
@@ -210,7 +214,7 @@ export default class Tabs extends Component {
     delete remainingProps.initialActiveTabIndex;
 
     const { headerStyle, indicatorStyle, tabScrolling } = this.state;
-    const activeTabIndex = this.getActiveTabIndex(remainingProps, this.state);
+    const activeTabIndex = this._getActiveIndex(remainingProps, this.state);
 
     let tabsContent = [];
     const tabs = React.Children.map(children, (tab, i) => {
@@ -223,23 +227,23 @@ export default class Tabs extends Component {
       return React.cloneElement(tab, {
         key: tab.key || `tab-${i}`,
         checked: i === activeTabIndex,
-        onChange: this.handleTabChange.bind(this, i, tab.props.onChange),
+        onChange: this._handleTabChange.bind(this, i, tab.props.onChange), // eslint-disable-line react/jsx-no-bind
       });
     });
 
     return (
       <div
-        className={classnames('md-tabs-container', className)}
+        className={cn('md-tabs-container', className)}
         {...remainingProps}
       >
         <TabHeader
-          className={classnames('md-tabs-scroll-container', { 'md-primary': primary })}
+          className={cn('md-tabs-scroll-container', { 'md-primary': primary })}
           fixedWidth={fixedWidth}
           centered={centered}
           scrolling={tabScrolling}
-          onTouchStart={this.handleTabScrollStart}
-          onTouchMove={this.handleTabScrollMove}
-          onTouchEnd={this.handleTabScrollEnd}
+          onTouchStart={this._handleTabScrollStart}
+          onTouchMove={this._handleTabScrollMove}
+          onTouchEnd={this._handleTabScrollEnd}
           style={Object.assign({}, style, headerStyle)}
           indicatorStyle={indicatorStyle}
         >
@@ -248,7 +252,7 @@ export default class Tabs extends Component {
         <SwipeableView
           className="md-tab-content-container"
           activeIndex={activeTabIndex}
-          onChange={this.handleSwipeChange}
+          onChange={this._handleSwipeChange}
         >
           {tabsContent}
         </SwipeableView>

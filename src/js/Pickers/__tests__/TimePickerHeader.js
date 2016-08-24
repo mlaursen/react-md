@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../TimePickerHeader');
 jest.unmock('../PickerControl');
 
@@ -91,9 +91,9 @@ describe('TimePickerHeader', () => {
     };
 
     const header = renderIntoDocument(<TimePickerHeader {...props} />);
-    let periods = scryRenderedComponentsWithType(header, PickerControl);
-    let am = findDOMNode(periods[0]);
-    let pm = findDOMNode(periods[1]);
+    const periods = scryRenderedComponentsWithType(header, PickerControl);
+    const am = findDOMNode(periods[0]);
+    const pm = findDOMNode(periods[1]);
 
     Simulate.click(am);
     expect(props.setTimeMode.mock.calls.length).toBe(1);

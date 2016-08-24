@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { isBetween } from '../utils';
 import BottomNav from './BottomNav';
@@ -10,19 +9,7 @@ import BottomNav from './BottomNav';
  * The `BottomNavigation` component is used when there are three to five
  * top-level destinations that require direct access on mobile devices.
  */
-export default class BottomNavigation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      activeIndex: props.initialActiveIndex,
-      visible: props.initiallyVisible,
-      pageY: null,
-      scrolling: false,
-    };
-  }
-
+export default class BottomNavigation extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -72,11 +59,16 @@ export default class BottomNavigation extends Component {
         iconChildren: PropTypes.node,
       })).isRequired(props, propName, component, ...others);
 
-      if(err) {
+      if (err) {
         return err;
-      } else if(!isBetween(props[propName].length, 3, 5)) {
-        return new Error(`The '${component}' expects a number of actions between 3 and 5 but '${props[propName].length}' were given`);
+      } else if (!isBetween(props[propName].length, 3, 5)) {
+        const l = props[propName].length;
+        return new Error(
+          `The '${component}' expects a number of actions between 3 and 5 but '${l}' were given.`
+        );
       }
+
+      return null;
     },
 
     /**
@@ -142,71 +134,92 @@ export default class BottomNavigation extends Component {
     initiallyVisible: true,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeIndex: props.initialActiveIndex,
+      visible: props.initiallyVisible,
+      pageY: null,
+      scrolling: false,
+    };
+
+    this._addTouchEvents = this._addTouchEvents.bind(this);
+    this._removeTouchEvents = this._removeTouchEvents.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handleNavChange = this._handleNavChange.bind(this);
+  }
+
   componentDidMount() {
-    if(this.props.dynamic) {
-      this.addTouchEvents();
+    if (this.props.dynamic) {
+      this._addTouchEvents();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.dynamic === nextProps.dynamic) { return; }
-    if(nextProps.dynamic) {
-      this.addTouchEvents();
+    if (this.props.dynamic === nextProps.dynamic) { return; }
+    if (nextProps.dynamic) {
+      this._addTouchEvents();
     } else {
-      this.removeTouchEvents();
+      this._removeTouchEvents();
     }
   }
 
   componentWillUnmount() {
-    if(this.props.dynamic) {
-      this.removeTouchEvents();
+    if (this.props.dynamic) {
+      this._removeTouchEvents();
     }
   }
 
-  addTouchEvents = () => {
+  _addTouchEvents() {
     window.addEventListener('touchstart', this.handleTouchStart);
     window.addEventListener('touchmove', this.handleTouchMove);
     window.addEventListener('touchend', this.handleTouchEnd);
-  };
+  }
 
-  removeTouchEvents = () => {
+  _removeTouchEvents() {
     window.removeEventListener('touchstart', this.handleTouchStart);
     window.removeEventListener('touchmove', this.handleTouchMove);
     window.removeEventListener('touchend', this.handleTouchEnd);
-  };
+  }
 
-  handleTouchStart = (e) => {
+  _handleTouchStart(e) {
     const { pageY } = e.changedTouches[0];
 
     this.setState({ pageY, scrolling: true });
-  };
+  }
 
-  handleTouchMove = (e) => {
+  _handleTouchMove(e) {
     const { scrolling, visible, pageY } = this.state;
-    if(!scrolling) { return; }
+    if (!scrolling) { return; }
 
     const touchY = e.changedTouches[0].pageY;
-    if((visible && pageY > touchY) || (!visible && pageY < touchY)) {
+    if ((visible && pageY > touchY) || (!visible && pageY < touchY)) {
       this.setState({ visible: !visible, pageY: touchY });
     }
-  };
+  }
 
-  handleTouchEnd = () => {
-    if(!this.state.scrolling) { return; }
+  _handleTouchEnd() {
+    if (!this.state.scrolling) { return; }
     this.setState({ pageY: null, scrolling: false });
-  };
+  }
 
-  getActiveIndex = (props = this.props, state = this.state) => {
+  _getActiveIndex(props, state) {
     return (typeof props.active !== 'undefined' ? props : state).activeIndex;
-  };
+  }
 
-  handleNavChange = (index) => {
-    const activeIndex = this.getActiveIndex();
-    if(activeIndex === index) { return; }
-    this.props.onChange && this.props.onChange(index);
+  _handleNavChange(index) {
+    const activeIndex = this._getActiveIndex(this.props, this.state);
+    if (activeIndex === index) { return; }
+
+    if (this.props.onChange) {
+      this.props.onChange(index);
+    }
 
     this.setState({ activeIndex: index });
-  };
+  }
 
   render() {
     const { visible } = this.state;
@@ -228,15 +241,15 @@ export default class BottomNavigation extends Component {
     delete props.activeIndex;
     delete props.dynamic;
 
-    const activeIndex = this.getActiveIndex();
+    const activeIndex = this._getActiveIndex(this.props, this.state);
 
     const fixed = actions.length === 3;
-    const navs = actions.map((props, i) => (
+    const navs = actions.map((actionProps, i) => (
       <BottomNav
         key={i}
         index={i}
-        {...props}
-        onNavChange={this.handleNavChange}
+        {...actionProps}
+        onNavChange={this._handleNavChange}
         active={activeIndex === i}
         colored={colored}
         fixed={fixed}
@@ -244,12 +257,12 @@ export default class BottomNavigation extends Component {
     ));
 
     let nav;
-    if(visible) {
+    if (visible) {
       nav = (
         <footer
           key="nav"
           style={style}
-          className={classnames('md-bottom-navigation', className, {
+          className={cn('md-bottom-navigation', className, {
             colored,
             'default': !colored,
           })}
@@ -262,7 +275,7 @@ export default class BottomNavigation extends Component {
     return (
       <CSSTransitionGroup
         style={containerStyle}
-        className={classnames('md-bottom-navigation-container', containerClassName)}
+        className={cn('md-bottom-navigation-container', containerClassName)}
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}

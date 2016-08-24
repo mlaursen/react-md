@@ -1,22 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
-import { FlatButton } from '../Buttons';
+import FlatButton from '../Buttons/FlatButton';
 
 /**
  * The `CardActionOverlay` component is a simple wrapper for generating an overlay
  * for the `CardMedia` component by having a `CardTitle` and an array of props
  * for generating `FlatButton` for the `CardActions` component.
  */
-export default class CardActionOverlay extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CardActionOverlay extends PureComponent {
   static propTypes = {
     /**
      * The title to use.

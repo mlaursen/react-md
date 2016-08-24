@@ -1,10 +1,12 @@
+/* eslint-disable no-shadow */
+
 /**
  * Removes all time from a date. Only keeps year, month, and date.
  * @param {Date} date the date to strip
  * @return a new Date with the time stripped.
  */
 export function stripTime(date) {
-  if(!date || !(date instanceof Date)) { return null; }
+  if (!date || !(date instanceof Date)) { return null; }
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
@@ -45,7 +47,7 @@ export function getDayOfWeek(sourceDate, dow = 0) {
 export function addDate(sourceDate, amt, part) {
   const date = new Date(sourceDate);
 
-  switch(part) {
+  switch (part) {
     case 'D':
       return new Date(date.setDate(date.getDate() + amt));
     case 'M':
@@ -70,7 +72,7 @@ export function subtractDate(sourceDate, amt, part) {
 }
 
 export const DateTimeFormat = (() => {
-  if(typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
+  if (typeof Intl !== 'undefined' && typeof Intl.DateTimeFormat !== 'undefined') {
     return Intl.DateTimeFormat;
   }
 
@@ -88,7 +90,7 @@ export const DateTimeFormat = (() => {
  * @return true if the date is before the other date's first day of month.
  */
 export function isMonthBefore(date, toCompare) {
-  if(!date || !toCompare) { return false; }
+  if (!date || !toCompare) { return false; }
 
   const d1 = stripTime(new Date(date.getFullYear(), date.getMonth(), 1));
   const d2 = stripTime(new Date(toCompare.getFullYear(), toCompare.getMonth() - 1, 1));
@@ -124,7 +126,7 @@ export function extractTimeParts(DateTimeFormat, locales, time) {
   const [hours, minutes] = formatted.match(/[0-9]+/g);
   const [separator, ...remaining] = formatted.match(/[ ,.:A-z]+/g);
   let timePeriod;
-  if(remaining && remaining.length) {
+  if (remaining && remaining.length) {
     timePeriod = remaining.join('').trim();
   }
 

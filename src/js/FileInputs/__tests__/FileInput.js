@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable max-len */
 jest.unmock('../FileInput');
 
 import React from 'react';
@@ -63,7 +64,7 @@ describe('FileInput', () => {
 
   it('returns a list of files when multiple is true onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple={true} />);
+    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
 
@@ -78,7 +79,7 @@ describe('FileInput', () => {
 
   it('returns an empty list of files when the user cancels an upload and multiple is true onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple={true} />);
+    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
     const files = [];

@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Menu');
 jest.unmock('../../Lists');
 jest.unmock('../../Buttons/AccessibleFakeButton');
@@ -31,7 +31,7 @@ describe('Menu', () => {
     const listClassName = 'list-test';
     const menu = renderIntoDocument(
       <Menu
-        isOpen={true}
+        isOpen
         style={style}
         className={className}
         listStyle={listStyle}
@@ -52,16 +52,16 @@ describe('Menu', () => {
   });
 
   it('applies any remaining props to the container component', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const menu = renderIntoDocument(
       <Menu
@@ -126,7 +126,7 @@ describe('Menu', () => {
     expect(items.length).toBe(0);
 
     menu = renderIntoDocument(
-      <Menu isOpen={true}>
+      <Menu isOpen>
         <ListItem primaryText="1" />
         <ListItem primaryText="2" />
       </Menu>
@@ -139,9 +139,9 @@ describe('Menu', () => {
   });
 
   it('attempts to close the menu on a child click if autoclose is set to true', () => {
-    const close = jest.genMockFunction();
+    const close = jest.fn();
     let menu = renderIntoDocument(
-      <Menu isOpen={true} autoclose={true} close={close}>
+      <Menu isOpen autoclose close={close}>
         <ListItem primaryText="One" />
         <ListItem primaryText="Two" />
       </Menu>
@@ -154,7 +154,7 @@ describe('Menu', () => {
     expect(close.mock.calls.length).toBe(1);
 
     menu = renderIntoDocument(
-      <Menu isOpen={true} autoclose={false} close={close}>
+      <Menu isOpen autoclose={false} close={close}>
         <ListItem primaryText="One" />
         <ListItem primaryText="Two" />
       </Menu>

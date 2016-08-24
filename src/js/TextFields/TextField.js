@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
@@ -21,23 +20,7 @@ const valueType = PropTypes.oneOfType([
  * you want a text field per-line, wrap them in a div, or set them to display block (will make their width
  * expand as well though).
  */
-export default class TextField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      active: false,
-      currentRows: props.rows,
-      areaHeight: 'auto',
-      value: props.defaultValue,
-      passwordVisible: false,
-      minWidth: null,
-    };
-
-    this.focus = this.focus.bind(this);
-  }
-
+export default class TextField extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the text field container.
@@ -248,6 +231,11 @@ export default class TextField extends Component {
      * to be the max of the placeholder text or label text width.
      */
     adjustMinWidth: PropTypes.bool.isRequired,
+
+    /**
+     * An optional id for the text field.
+     */
+    id: PropTypes.string,
   };
 
   static defaultProps = {
@@ -259,6 +247,25 @@ export default class TextField extends Component {
     adjustMinWidth: false,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      active: false,
+      currentRows: props.rows,
+      areaHeight: 'auto',
+      value: props.defaultValue,
+      passwordVisible: false,
+      minWidth: null,
+    };
+
+    this.focus = this.focus.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleChange = this._handleChange.bind(this);
+    this._togglePasswordField = this._togglePasswordField.bind(this);
+  }
+
   componentDidMount() {
     if (this.props.adjustMinWidth) {
       this._setMinWidth();
@@ -267,66 +274,16 @@ export default class TextField extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { adjustMinWidth, label, placeholder } = this.props;
-    if (nextProps.adjustMinWidth && label !== nextProps.label || placeholder !== nextProps.label || !adjustMinWidth) {
+    if (nextProps.adjustMinWidth && (label !== nextProps.label || placeholder !== nextProps.label || !adjustMinWidth)) {
       this._setMinWidth();
-    } else if(adjustMinWidth && !nextProps.adjustMinWidth) {
+    } else if (adjustMinWidth && !nextProps.adjustMinWidth) {
       this.setState({ minWidth: null });
     }
   }
 
-  getValue = () => {
-    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
-  };
-
-  handleFocus = (e) => {
-    if(this.props.onFocus) {
-      this.props.onFocus(e);
-    }
-
-    this.setState({ active: true });
-  };
-
-  handleBlur = (e) => {
-    if(this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-
-    this.setState({ active: false });
-  };
-
-  handleChange = (e, reset = false) => {
-    const { onChange, rows, maxRows } = this.props;
-    const value = reset ? '' : e.target.value;
-    if(onChange) {
-      onChange(value, e);
-    }
-
-    if(typeof this.props.value !== 'undefined') {
-      return;
-    } else if(!rows || !maxRows) {
-      this.setState({ value });
-      return;
-    }
-
-    let state = { value };
-
-
-    const { textarea } = this.refs;
-    const { offsetHeight, scrollHeight } = textarea;
-    let { currentRows, areaHeight } = this.state;
-
-    const moreRows = maxRows !== -1 && currentRows >= maxRows;
-    const noScroll = scrollHeight <= (typeof areaHeight === 'number' && areaHeight || offsetHeight);
-    if(noScroll || moreRows) {
-      this.setState(state);
-      return;
-    }
-
-    currentRows++;
-    state.currentRows = currentRows;
-    state.areaHeight = scrollHeight;
-    this.setState(state);
-  };
+  _getValue(props, state) {
+    return typeof props.value === 'undefined' ? state.value : props.value;
+  }
 
   /**
    * This is a helper method to focus the text field since the text field is nested
@@ -344,19 +301,66 @@ export default class TextField extends Component {
    * ```
    */
   focus() {
-    if(!this.textField) {
+    if (!this.textField) {
       this.textField = findDOMNode(this.refs.textField || this.refs.textarea);
     }
-
 
     this.textField.focus();
   }
 
-  _togglePasswordField = () => {
-    this.setState({ passwordVisible: !this.state.passwordVisible });
-  };
+  _handleFocus(e) {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
 
-  _setMinWidth = () => {
+    this.setState({ active: true });
+  }
+
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+
+    this.setState({ active: false });
+  }
+
+  _handleChange(e, reset = false) {
+    const { onChange, rows, maxRows } = this.props;
+    const value = reset ? '' : e.target.value;
+    if (onChange) {
+      onChange(value, e);
+    }
+
+    if (typeof this.props.value !== 'undefined') {
+      return null;
+    } else if (!rows || !maxRows) {
+      return this.setState({ value });
+    }
+
+    const state = { value };
+
+    const { textarea } = this.refs;
+    const { offsetHeight, scrollHeight } = textarea;
+    let { currentRows } = this.state;
+    const { areaHeight } = this.state;
+
+    const moreRows = maxRows !== -1 && currentRows >= maxRows;
+    const noScroll = scrollHeight <= (typeof areaHeight === 'number' && areaHeight || offsetHeight);
+    if (noScroll || moreRows) {
+      return this.setState(state);
+    }
+
+    currentRows++;
+    state.currentRows = currentRows;
+    state.areaHeight = scrollHeight;
+    return this.setState(state);
+  }
+
+  _togglePasswordField() {
+    this.setState({ passwordVisible: !this.state.passwordVisible });
+  }
+
+  _setMinWidth() {
     const { placeholder, label } = this.props;
     const { textarea, textField, floatingLabel } = this.refs;
     const canvas = document.createElement('canvas');
@@ -379,7 +383,7 @@ export default class TextField extends Component {
     }
 
     this.setState({ minWidth });
-  };
+  }
 
   render() {
     const { active, currentRows, areaHeight, passwordVisible, minWidth } = this.state;
@@ -408,6 +412,7 @@ export default class TextField extends Component {
       block,
       fullWidth,
       type,
+      id,
       ...props,
     } = this.props;
 
@@ -418,15 +423,15 @@ export default class TextField extends Component {
     delete props.onFocus;
     delete props.adjustMinWidth;
 
-    const value = this.getValue();
+    const value = this._getValue(this.props, this.state);
     const error = !!errorText || (!!maxLength && value.length > maxLength);
     const multiline = typeof rows === 'number';
     const useFloatingLabel = floatingLabel && !block;
 
-    let fontIcon, textFieldMessage, indIcon;
-    if(icon) {
+    let fontIcon;
+    if (icon) {
       fontIcon = React.cloneElement(icon, {
-        className: classnames('md-text-field-icon', {
+        className: cn('md-text-field-icon', {
           disabled,
           active,
           error,
@@ -436,18 +441,19 @@ export default class TextField extends Component {
       });
     }
 
-    if(rightIcon) {
+    let indIcon;
+    if (rightIcon) {
       indIcon = React.cloneElement(rightIcon, {
-        className: classnames('md-text-field-ind', {
+        className: cn('md-text-field-ind', {
           'single-line': !useFloatingLabel,
         }),
       });
-    } else if(type === 'password') {
+    } else if (type === 'password') {
       indIcon = (
         <button
           type="button"
           onClick={this._togglePasswordField}
-          className={classnames('md-password-btn', {
+          className={cn('md-password-btn', {
             'active': passwordVisible,
             'multi-line': useFloatingLabel,
             'single-line': !useFloatingLabel,
@@ -458,7 +464,8 @@ export default class TextField extends Component {
       );
     }
 
-    if(errorText || maxLength || helpText) {
+    let textFieldMessage;
+    if (errorText || maxLength || helpText) {
       textFieldMessage = (
         <TextFieldMessage
           value={value}
@@ -474,41 +481,42 @@ export default class TextField extends Component {
 
     const textFieldProps = {
       ...props,
-      className: classnames('md-text-field', inputClassName, {
+      id,
+      className: cn('md-text-field', inputClassName, {
         active,
+        block,
         'floating-label': useFloatingLabel,
         'single-line': !useFloatingLabel && !multiline,
         'multi-line': multiline,
-        'block': block,
         'full-width': fullWidth,
         'with-icon': rightIcon,
       }),
       disabled,
-      onBlur: this.handleBlur,
-      onChange: this.handleChange,
-      onFocus: this.handleFocus,
+      onBlur: this._handleBlur,
+      onChange: this._handleChange,
+      onFocus: this._handleFocus,
       value,
     };
 
     let textField;
-    if(multiline) {
+    if (multiline) {
       let areaStyle = inputStyle ? Object.assign({}, inputStyle) : {};
-      if(maxRows) {
-        if(currentRows < maxRows || maxRows === -1) {
+      if (maxRows) {
+        if (currentRows < maxRows || maxRows === -1) {
           areaStyle.overflow = 'hidden';
         }
 
-        if(areaHeight) {
+        if (areaHeight) {
           areaStyle.height = areaHeight;
         }
       }
 
       let visiblePlaceholder;
-      if(active || !useFloatingLabel || block) {
+      if (active || !useFloatingLabel || block) {
         visiblePlaceholder = placeholder || label;
 
-        if(required && visiblePlaceholder.indexOf('*') === -1) {
-          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        if (required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = `${visiblePlaceholder.trim()} *`;
         }
       }
 
@@ -523,13 +531,13 @@ export default class TextField extends Component {
       );
     } else {
       let visiblePlaceholder;
-      if(!useFloatingLabel) {
+      if (!useFloatingLabel) {
         visiblePlaceholder = placeholder || label;
 
-        if(required && visiblePlaceholder.indexOf('*') === -1) {
-          visiblePlaceholder = visiblePlaceholder.trim() + ' *';
+        if (required && visiblePlaceholder.indexOf('*') === -1) {
+          visiblePlaceholder = `${visiblePlaceholder.trim()} *`;
         }
-      } else if(active || !!value) {
+      } else if (active || !!value) {
         visiblePlaceholder = placeholder;
       }
 
@@ -537,9 +545,36 @@ export default class TextField extends Component {
         <input
           {...textFieldProps}
           ref="textField"
-          type={passwordVisible ? 'text': type}
+          type={passwordVisible ? 'text' : type}
           style={Object.assign({ minWidth }, inputStyle)}
           placeholder={visiblePlaceholder}
+        />
+      );
+    }
+
+    let floatingLabelEl;
+    if (useFloatingLabel && label) {
+      floatingLabelEl = (
+        <FloatingLabel
+          ref="floatingLabel"
+          label={label}
+          active={active}
+          error={error}
+          required={required}
+          value={value}
+          disabled={disabled}
+        />
+      );
+    }
+
+    let textDivider;
+    if (!block) {
+      textDivider = (
+        <TextDivider
+          icon={!!icon}
+          active={active}
+          error={error}
+          lineDirection={lineDirection}
         />
       );
     }
@@ -547,37 +582,20 @@ export default class TextField extends Component {
     return (
       <div
         style={style}
-        className={classnames('md-text-field-container', className, {
+        className={cn('md-text-field-container', className, {
           disabled,
+          block,
           'multi-line': multiline,
-          'block': block,
           'full-width': fullWidth,
           'with-message': helpText || errorText,
         })}
       >
-        <label className="md-text-field-label">
+        <label className="md-text-field-label" htmlFor={id}>
           {fontIcon}
-          {useFloatingLabel && label &&
-          <FloatingLabel
-            ref="floatingLabel"
-            label={label}
-            active={active}
-            error={error}
-            required={required}
-            value={value}
-            disabled={disabled}
-          />
-          }
+          {floatingLabelEl}
           {textField}
           {indIcon}
-          {!block &&
-          <TextDivider
-            icon={!!icon}
-            active={active}
-            error={error}
-            lineDirection={lineDirection}
-          />
-          }
+          {textDivider}
         </label>
         {textFieldMessage}
       </div>

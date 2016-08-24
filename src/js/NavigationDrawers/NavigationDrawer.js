@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import Drawer from './Drawer';
 import DrawerToolbar from './DrawerToolbar';
@@ -15,23 +14,7 @@ import Overlay from '../Transitions/Overlay';
  * The `NavigationDrawer` component is customizable to have different
  * display states for mobile, tablet, and desktop displays.
  */
-export default class NavigationDrawer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    const { initiallyOpen, initialDrawerType } = props;
-    this.state = {
-      isOpen: typeof initiallyOpen !== 'undefined'
-        ? initiallyOpen
-        : initialDrawerType !== 'mobile',
-      mobile: initialDrawerType === 'mobile',
-      tablet: initialDrawerType === 'tablet',
-      desktop: initialDrawerType === 'desktop',
-      drawerType: props[initialDrawerType + 'DrawerType'],
-    };
-  }
-
+export default class NavigationDrawer extends PureComponent {
   static DrawerType = {
     FULL_HEIGHT: 'full-height',
     CLIPPED: 'clipped',
@@ -319,6 +302,27 @@ export default class NavigationDrawer extends Component {
     contentTransitionEnterTimeout: 300,
   };
 
+  constructor(props) {
+    super(props);
+
+    const { initiallyOpen, initialDrawerType } = props;
+
+    this.state = {
+      isOpen: typeof initiallyOpen !== 'undefined'
+        ? initiallyOpen
+        : initialDrawerType !== 'mobile',
+      mobile: initialDrawerType === 'mobile',
+      tablet: initialDrawerType === 'tablet',
+      desktop: initialDrawerType === 'desktop',
+      drawerType: props[`${initialDrawerType}DrawerType`],
+    };
+
+    this._openDrawer = this._openDrawer.bind(this);
+    this._closeDrawer = this._closeDrawer.bind(this);
+    this._updateMedia = this._updateMedia.bind(this);
+    this._updateDrawerType = this._updateDrawerType.bind(this);
+  }
+
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
     this._updateMedia();
@@ -334,7 +338,7 @@ export default class NavigationDrawer extends Component {
       desktopDrawerType,
     } = this.props;
 
-    if(nextProps.mobileMinWidth !== mobileMinWidth || nextProps.mobileDrawerType !== mobileDrawerType
+    if (nextProps.mobileMinWidth !== mobileMinWidth || nextProps.mobileDrawerType !== mobileDrawerType
       || nextProps.tabletMinWidth !== tabletMinWidth || nextProps.tabletDrawerType !== tabletDrawerType
       || nextProps.desktopMinWidth !== desktopMinWidth || nextProps.desktopDrawerType !== desktopDrawerType) {
       this._updateDrawerType(nextProps);
@@ -342,7 +346,7 @@ export default class NavigationDrawer extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if(this.state.isOpen !== nextState.isOpen && nextProps.onDrawerChange) {
+    if (this.state.isOpen !== nextState.isOpen && nextProps.onDrawerChange) {
       nextProps.onDrawerChange(nextState.isOpen);
     }
   }
@@ -351,22 +355,43 @@ export default class NavigationDrawer extends Component {
     window.removeEventListener('resize', this._updateMedia);
   }
 
-  _matches = (min, max, orientation) => {
+  _matches(min, max, orientation) {
     let media = 'only screen';
-    if(orientation) {
+    if (orientation) {
       media += ` and (orientation: ${orientation})`;
     }
 
     media += ` and (min-width: ${min}px)`;
 
-    if(max) {
+    if (max) {
       media += ` and (max-width: ${max}px)`;
     }
 
     return window.matchMedia(media).matches;
-  };
+  }
 
-  _updateDrawerType = (props) => {
+  _isFullHeight(drawerType) {
+    const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.DrawerType;
+    return [FULL_HEIGHT, CLIPPED, FLOATING].indexOf(drawerType) !== -1;
+  }
+
+  _isPersistent(drawerType) {
+    const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
+    return [PERSISTENT, PERSISTENT_MINI].indexOf(drawerType) !== -1;
+  }
+
+  _isTemporary(drawerType) {
+    const { TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
+    return [TEMPORARY, TEMPORARY_MINI].indexOf(drawerType) !== -1;
+  }
+
+  _isMini(drawerType) {
+    const { PERSISTENT_MINI, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
+    return [PERSISTENT_MINI, TEMPORARY_MINI].indexOf(drawerType) !== -1;
+  }
+
+
+  _updateDrawerType(props) {
     const {
       mobileMinWidth,
       mobileDrawerType,
@@ -382,53 +407,32 @@ export default class NavigationDrawer extends Component {
       desktop: this._matches(desktopMinWidth),
     };
 
-    if(nextState.tablet) {
+    if (nextState.tablet) {
       nextState.drawerType = tabletDrawerType;
-    } else if(nextState.mobile) {
+    } else if (nextState.mobile) {
       nextState.drawerType = mobileDrawerType;
     } else {
       nextState.drawerType = desktopDrawerType;
     }
 
-    if(this._isFullHeight(nextState.drawerType) !== this._isFullHeight(this.state.drawerType)) {
+    if (this._isFullHeight(nextState.drawerType) !== this._isFullHeight(this.state.drawerType)) {
       nextState.isOpen = this._isFullHeight(nextState.drawerType);
     }
 
     this.setState(nextState);
-  };
+  }
 
-  _updateMedia = () => {
+  _updateMedia() {
     this._updateDrawerType(this.props);
-  };
+  }
 
-  openDrawer = () => {
+  _openDrawer() {
     this.setState({ isOpen: true });
-  };
+  }
 
-  closeDrawer = () => {
+  _closeDrawer() {
     this.setState({ isOpen: false });
-  };
-
-  _isFullHeight = (drawerType) => {
-    const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.DrawerType;
-    return [FULL_HEIGHT, CLIPPED, FLOATING].indexOf(drawerType) !== -1;
-  };
-
-  _isPersistent = (drawerType) => {
-    const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
-    return [PERSISTENT, PERSISTENT_MINI].indexOf(drawerType) !== -1;
-  };
-
-  _isTemporary = (drawerType) => {
-    const { TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
-    return [TEMPORARY, TEMPORARY_MINI].indexOf(drawerType) !== -1;
-  };
-
-  _isMini = (drawerType) => {
-    const { PERSISTENT_MINI, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
-    return [PERSISTENT_MINI, TEMPORARY_MINI].indexOf(drawerType) !== -1;
-  };
-
+  }
   render() {
     const {
       style,
@@ -464,8 +468,8 @@ export default class NavigationDrawer extends Component {
     const temporary = this._isTemporary(drawerType);
     const mini = this._isMini(drawerType);
 
-    let drawer, overlay;
-    if(isOpen || mini || mobile) {
+    let drawer;
+    if (isOpen || mini || mobile) {
       drawer = (
         <Drawer
           key="drawer"
@@ -474,7 +478,7 @@ export default class NavigationDrawer extends Component {
           drawerHeaderFixed={drawerHeaderFixed}
           autoclose={autoclose}
           title={drawerTitle}
-          closeDrawer={this.closeDrawer}
+          closeDrawer={this._closeDrawer}
           closeIconChildren={closeIconChildren}
           closeIconClassName={closeIconClassName}
           temporary={temporary}
@@ -489,14 +493,15 @@ export default class NavigationDrawer extends Component {
       );
     }
 
-    if(temporary) {
-      overlay = <Overlay isOpen={isOpen} onClick={this.closeDrawer} />;
+    let overlay;
+    if (temporary) {
+      overlay = <Overlay isOpen={isOpen} onClick={this._closeDrawer} />;
     }
 
     return (
       <CSSTransitionGroup
         style={style}
-        className={classnames('md-navigation-drawer-container', className)}
+        className={cn('md-navigation-drawer-container', className)}
         component="div"
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
@@ -505,7 +510,7 @@ export default class NavigationDrawer extends Component {
         {drawer}
         <CSSTransitionGroup
           style={contentStyle}
-          className={classnames('md-navigation-drawer-content', contentClassName, drawerType, {
+          className={cn('md-navigation-drawer-content', contentClassName, drawerType, {
             'active': isOpen && !temporary,
           })}
           component="div"
@@ -522,7 +527,7 @@ export default class NavigationDrawer extends Component {
             className={toolbarClassName}
             temporary={temporary}
             persistent={persistent}
-            openDrawer={this.openDrawer}
+            openDrawer={this._openDrawer}
             menuIconChildren={menuIconChildren}
             menuIconClassName={menuIconClassName}
             title={toolbarTitle}

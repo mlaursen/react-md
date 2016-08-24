@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
-import { Height } from '../Transitions';
+import Height from '../Transitions/Height';
+import contextTypes from './contextTypes';
 
 /**
  * The `Card` component is a sheet of material that serves as an entry point to
@@ -15,14 +15,7 @@ import { Height } from '../Transitions';
  * props. If the card is not expanded, the children components will not be
  * visible until it has been toggled.
  */
-export default class Card extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { expanded: props.initiallyExpanded };
-  }
-
+export default class Card extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the card.
@@ -100,36 +93,44 @@ export default class Card extends Component {
     expanderTooltipPosition: 'left',
   };
 
-  static childContextTypes = {
-    onExpandClick: PropTypes.func,
-    isExpanded: PropTypes.bool,
-    iconClassName: PropTypes.string,
-    iconChildren: PropTypes.string,
-    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    tooltipLabel: PropTypes.string,
-  };
+  static childContextTypes = contextTypes;
 
-  getChildContext = () => {
-    const { iconClassName, iconChildren, isExpanded, expanderTooltipLabel, expanderTooltipPosition } = this.props;
+  constructor(props) {
+    super(props);
+
+    this.state = { expanded: props.initiallyExpanded };
+    this._handleExpandClick = this._handleExpandClick.bind(this);
+  }
+
+  getChildContext() {
+    const {
+      iconClassName,
+      iconChildren,
+      isExpanded,
+      expanderTooltipLabel,
+      expanderTooltipPosition,
+    } = this.props;
+
     return {
-      onExpandClick: this.handleExpandClick,
+      onExpandClick: this._handleExpandClick,
       isExpanded: typeof isExpanded !== 'undefined' ? isExpanded : this.state.expanded,
       iconClassName,
       iconChildren,
       tooltipLabel: expanderTooltipLabel,
       tooltipPosition: expanderTooltipPosition,
     };
-  };
+  }
 
-  handleExpandClick = (e) => {
-    if(this.props.onExpanderClick) {
-      this.props.onExpanderClick(e);
+  _handleExpandClick(e) {
+    const { onExpanderClick, isExpanded } = this.props;
+    if (onExpanderClick) {
+      onExpanderClick(e);
     }
 
-    if(typeof this.props.isExpanded === 'undefined') {
+    if (typeof isExpanded === 'undefined') {
       this.setState({ expanded: !this.state.expanded });
     }
-  };
+  }
 
   render() {
     const { className, children, raise, tableCard, ...props } = this.props;
@@ -142,14 +143,14 @@ export default class Card extends Component {
 
     let expanderIndex = -1;
     const cardChildren = React.Children.map(children, (child, i) => {
-      if(!child || !child.props) { return child; }
-      if(expanderIndex < 0 && child.props.isExpander) {
+      if (!child || !child.props) { return child; }
+      if (expanderIndex < 0 && child.props.isExpander) {
         expanderIndex = i;
       }
 
-      if(!child.props.expandable) {
+      if (!child.props.expandable) {
         return child;
-      } else if(expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) {
+      } else if (expanderIndex !== i && expanderIndex > -1 && !this.state.expanded) {
         return null;
       } else {
         return <Height>{child}</Height>;
@@ -159,7 +160,7 @@ export default class Card extends Component {
       <TransitionGroup
         component="div"
         {...props}
-        className={classnames('md-card', className, { raise, 'md-table-card': tableCard })}
+        className={cn('md-card', className, { raise, 'md-table-card': tableCard })}
       >
         {cardChildren}
       </TransitionGroup>

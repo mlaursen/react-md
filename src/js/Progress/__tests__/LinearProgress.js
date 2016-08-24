@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../LinearProgress');
 
 import React from 'react';
@@ -40,7 +40,7 @@ describe('LinearProgress', () => {
     );
 
     let progressNode = findRenderedDOMComponentWithClass(progress, 'md-linear-progress');
-    expect(progressNode.style.width).toBe(value + '%');
+    expect(progressNode.style.width).toBe(`${value}%`);
 
     value = 0;
     progress = renderIntoDocument(
@@ -48,6 +48,6 @@ describe('LinearProgress', () => {
     );
 
     progressNode = findRenderedDOMComponentWithClass(progress, 'md-linear-progress');
-    expect(progressNode.style.width).toBe(value + '%');
+    expect(progressNode.style.width).toBe(`${value}%`);
   });
 });

@@ -17,7 +17,6 @@ function makeConfig() {
         commonjs: 'react-dom',
         amd: 'react-dom',
       },
-      'react-addons-pure-render-mixin': 'var React.addons.PureRenderMixin',
       'react-addons-css-transition-group': 'var React.addons.CSSTransitionGroup',
       'react-addons-transition-group': 'var React.addons.TransitionGroup',
     },

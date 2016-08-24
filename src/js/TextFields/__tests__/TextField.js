@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable max-len */
 jest.unmock('../TextField');
 
 import React from 'react';
@@ -22,9 +23,9 @@ import FontIcon from '../../FontIcons/FontIcon';
 describe('TextField', () => {
   it('applies style and className to the container and inputStyle and inputClassName to the input field', () => {
     const style = { display: 'block' };
-    const className = "container";
+    const className = 'container';
     const inputStyle = { display: 'inline-block' };
-    const inputClassName = "input";
+    const inputClassName = 'input';
 
     let textField = renderIntoDocument(
       <TextField
@@ -65,17 +66,17 @@ describe('TextField', () => {
   });
 
   it('passes all input related event listeners to the input tag or text area', () => {
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onKeyUp = jest.genMockFunction();
-    const onKeyDown = jest.genMockFunction();
-    const onKeyPress = jest.genMockFunction();
-    const onChange = jest.genMockFunction();
-    const onInput = jest.genMockFunction();
-    const onInvalid = jest.genMockFunction();
-    const onSelect = jest.genMockFunction();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onKeyUp = jest.fn();
+    const onKeyDown = jest.fn();
+    const onKeyPress = jest.fn();
+    const onChange = jest.fn();
+    const onInput = jest.fn();
+    const onInvalid = jest.fn();
+    const onSelect = jest.fn();
 
-    let textField = renderIntoDocument(
+    const textField = renderIntoDocument(
       <TextField
         onFocus={onFocus}
         onBlur={onBlur}
@@ -89,7 +90,7 @@ describe('TextField', () => {
       />
     );
 
-    let textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
+    const textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
 
     Simulate.focus(textFieldNode);
     expect(onFocus).toBeCalled();
@@ -120,7 +121,7 @@ describe('TextField', () => {
   });
 
   it('sends the updated value and the change event on change', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const textField = renderIntoDocument(<TextField onChange={onChange} />);
     const textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
 
@@ -140,9 +141,9 @@ describe('TextField', () => {
     );
 
     const input = findRenderedDOMComponentWithTag(textField, 'input');
-    let icon = findRenderedComponentWithType(textField, FontIcon);
-    let divider = findRenderedComponentWithType(textField, TextDivider);
-    let label = findRenderedComponentWithType(textField, FloatingLabel);
+    const icon = findRenderedComponentWithType(textField, FontIcon);
+    const divider = findRenderedComponentWithType(textField, TextDivider);
+    const label = findRenderedComponentWithType(textField, FloatingLabel);
 
     expect(input.className).not.toContain('active');
     expect(icon.props.className).not.toContain('active');
@@ -189,7 +190,7 @@ describe('TextField', () => {
       floatingLabel: true,
     };
 
-    let textField = renderIntoDocument(<TextField {...props} />);
+    const textField = renderIntoDocument(<TextField {...props} />);
     let label = findRenderedComponentWithType(textField, FloatingLabel);
     let input = findRenderedDOMComponentWithTag(textField, 'input');
     expect(label.props.label).toBe(props.label);
@@ -241,7 +242,7 @@ describe('TextField', () => {
 
     expect(dividers[0].props.active).toBe(true);
 
-    textField = renderIntoDocument(<TextField block={true} />);
+    textField = renderIntoDocument(<TextField block />);
 
     dividers = scryRenderedComponentsWithType(textField, TextDivider);
     expect(dividers.length).toBe(0);

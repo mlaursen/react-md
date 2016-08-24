@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Overlay');
 
 import React from 'react';
@@ -20,7 +20,7 @@ describe('Overlay', () => {
     const overlayClassName = 'what-what';
     const overlay = renderIntoDocument(
       <Overlay
-        isOpen={true}
+        isOpen
         style={style}
         className={className}
         overlayStyle={overlayStyle}
@@ -43,16 +43,16 @@ describe('Overlay', () => {
     let overlayNodes = scryRenderedDOMComponentsWithClass(overlay, 'md-overlay');
     expect(overlayNodes.length).toBe(0);
 
-    overlay = renderIntoDocument(<Overlay isOpen={true} />);
+    overlay = renderIntoDocument(<Overlay isOpen />);
     overlayNodes = scryRenderedDOMComponentsWithClass(overlay, 'md-overlay');
 
     expect(overlayNodes.length).toBe(1);
   });
 
   it('passes event listeners to the overlay instead of the CSSTransitionGroup', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const overlay = renderIntoDocument(
-      <Overlay isOpen={true} onClick={onClick} />
+      <Overlay isOpen onClick={onClick} />
     );
 
     const overlayNode = findRenderedDOMComponentWithClass(overlay, 'md-overlay');

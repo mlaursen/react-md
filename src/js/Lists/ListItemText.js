@@ -1,14 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-export default class ListItemText extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class ListItemText extends PureComponent {
   static propTypes = {
     primaryText: PropTypes.node.isRequired,
     secondaryText: PropTypes.node,
@@ -17,7 +10,7 @@ export default class ListItemText extends Component {
 
   render() {
     const { primaryText, secondaryText, ...props } = this.props;
-    const className = classnames('md-tile-content', props.className);
+    const className = cn('md-tile-content', props.className);
 
     return (
       <div {...props} className={className}>

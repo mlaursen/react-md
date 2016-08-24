@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Year');
 
 import React from 'react';
@@ -12,7 +12,7 @@ import Year from '../Year';
 
 describe('Year', () => {
   it('calls the onClick function when clicked', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const year = renderIntoDocument(
       <Year year={2000} onClick={onClick} active={false} />
     );
@@ -24,7 +24,7 @@ describe('Year', () => {
 
   it('renders the year as children', () => {
     const year = renderIntoDocument(
-      <Year year={2000} onClick={jest.genMockFunction()} active={false} />
+      <Year year={2000} onClick={jest.fn()} active={false} />
     );
 
     const yearNode = findDOMNode(year);

@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import Divider from '../Dividers';
-import { List, ListItem } from '../Lists';
+import List from '../Lists/List';
+import ListItem from '../Lists/ListItem';
 import Subheader from '../Subheaders';
 
 /**
@@ -13,13 +13,7 @@ import Subheader from '../Subheaders';
  *
  * A sidebar can be docked tot he left or right of the screen.
  */
-export default class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Sidebar extends PureComponent {
   static propTypes = {
     /**
      * Boolean if the overlay should appear when opened.
@@ -114,36 +108,48 @@ export default class Sidebar extends Component {
     transitionLeaveTimeout: 150,
   };
 
-  itemToComponent = ({ divider, subheader, ...itemProps }) => {
+  _itemToComponent({ divider, subheader, ...itemProps }) {
     let component = ListItem;
-    if(divider) {
+    if (divider) {
       component = Divider;
-    } else if(subheader) {
+    } else if (subheader) {
       component = Subheader;
     }
 
     return React.createElement(component, itemProps);
-  };
+  }
 
   render() {
-    const { isOpen, header, overlay, responsive, className, children, onOverlayClick, align, items, fixed, ...props } = this.props;
+    const {
+      isOpen,
+      header,
+      overlay,
+      responsive,
+      className,
+      children,
+      onOverlayClick,
+      align,
+      items,
+      fixed,
+      ...props,
+    } = this.props;
     const isOverlayVisible = isOpen && (responsive || overlay);
 
     let listItems;
-    if(items) {
+    if (items) {
       listItems = (
         <List>
-          {items.map(this.itemToComponent)}
+          {items.map(this._itemToComponent)}
         </List>
       );
     }
     return (
       <CSSTransitionGroup
         component="div"
-        className={classnames('md-sidebar-container', `md-sidebar-${align}`, className, { fixed, responsive })}
+        className={cn('md-sidebar-container', `md-sidebar-${align}`, className, { fixed, responsive })}
         {...props}
-        >
-        <nav className={classnames('md-sidebar', { 'active': isOpen })}>
+      >
+        <nav className={cn('md-sidebar', { 'active': isOpen })}>
           {header}
           {listItems}
           {children}

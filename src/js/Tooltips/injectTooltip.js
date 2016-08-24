@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import { isTouchDevice } from '../utils';
@@ -24,21 +23,7 @@ const MOBILE_MARGIN = 24;
  * @return the ComposedComponent with a tooltip.
  * ```
  */
-export default ComposedComponent => class Tooltip extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      style: null,
-      textStyle: null,
-      active: false,
-      tabActive: false,
-      touch: false,
-      timeout: null,
-    };
-  }
-
+export default ComposedComponent => class Tooltip extends PureComponent {
   static propTypes = {
     /**
      * The tooltip to display.
@@ -97,32 +82,63 @@ export default ComposedComponent => class Tooltip extends Component {
     tooltipTouchTimeout: 500,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      style: null,
+      textStyle: null,
+      active: false,
+      tabActive: false,
+      touch: false,
+      timeout: null,
+    };
+
+    this._setActive = this._setActive.bind(this);
+    this._setInactive = this._setInactive.bind(this);
+    this._calcPositioningStyle = this._calcPositioningStyle.bind(this);
+    this._hackChromeMinimumFontSize = this._hackChromeMinimumFontSize.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this._handleMouseOver = this._handleMouseOver.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+  }
+
   componentDidMount() {
-    if(this.props.tooltipLabel) {
-      this.hackChromeMinimumFontSize();
-      window.addEventListener('resize', this.hackChromeMinimumFontSize);
+    if (this.props.tooltipLabel) {
+      this._hackChromeMinimumFontSize();
+      window.addEventListener('resize', this._hackChromeMinimumFontSize);
     }
   }
 
   componentDidUpdate(prevProps) {
     const { tooltipLabel } = this.props;
-    if(tooltipLabel === prevProps.tooltipLabel) { return; }
+    if (tooltipLabel === prevProps.tooltipLabel) { return; }
 
-    if(tooltipLabel) {
-      window.addEventListener('resize', this.hackChromeMinimumFontSize);
+    if (tooltipLabel) {
+      window.addEventListener('resize', this._hackChromeMinimumFontSize);
     } else {
-      window.removeEventListener('resize', this.hackChromeMinimumFontSize);
+      window.removeEventListener('resize', this._hackChromeMinimumFontSize);
     }
   }
 
   componentWillUnmount() {
-    if(this.props.tooltipLabel) {
-      window.removeEventListener('resize', this.hackChromeMinimumFontSize);
+    if (this.props.tooltipLabel) {
+      window.removeEventListener('resize', this._hackChromeMinimumFontSize);
     }
 
-    if(this.state.touchTimeout) {
+    if (this.state.touchTimeout) {
       clearTimeout(this.state.touchTimeout);
     }
+  }
+
+  /**
+   * Prevent the context menu from appearing on touch hold.
+   */
+  _preventContext(e) {
+    e.preventDefault();
   }
 
   /**
@@ -132,13 +148,13 @@ export default ComposedComponent => class Tooltip extends Component {
    *
    * So now the solution is to scale the text if chrome only..
    */
-  hackChromeMinimumFontSize = () => {
+  _hackChromeMinimumFontSize() {
     const isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-    const fontSize = parseInt(window.getComputedStyle(this.refs.tooltipText).getPropertyValue('font-size'));
+    const fontSize = parseInt(window.getComputedStyle(this.refs.tooltipText).getPropertyValue('font-size'), 10);
 
     const touch = isTouchDevice();
     const state = { touch };
-    if(isChrome && !touch) {
+    if (isChrome && !touch) {
       const transform = `scale(${DESKTOP_FONT_SIZE / fontSize})`;
       state.textStyle = {
         WebkitTransform: transform,
@@ -148,9 +164,9 @@ export default ComposedComponent => class Tooltip extends Component {
     }
 
     this.setState(state);
-  };
+  }
 
-  calcPositioningStyle = () => {
+  _calcPositioningStyle() {
     const { tooltipPosition } = this.props;
     const margin = this.state.touch ? MOBILE_MARGIN : DESKTOP_MARGIN;
     const control = findDOMNode(this);
@@ -160,14 +176,17 @@ export default ComposedComponent => class Tooltip extends Component {
     const tooltipWidth = tooltip.offsetWidth;
     const tooltipHeight = tooltip.offsetHeight;
 
-    let top, right, bottom, left;
-    if(tooltipPosition === 'top' || tooltipPosition === 'bottom') {
+    let top;
+    let right;
+    let bottom;
+    let left;
+    if (tooltipPosition === 'top' || tooltipPosition === 'bottom') {
       left = (controlWidth / 2) - (tooltipWidth / 2);
     } else { // LEFT || RIGHT
       top = (controlHeight / 2) - (tooltipHeight / 2);
     }
 
-    switch(tooltipPosition) {
+    switch (tooltipPosition) {
       case 'top':
         top = -(tooltipHeight + margin);
         break;
@@ -187,26 +206,26 @@ export default ComposedComponent => class Tooltip extends Component {
       bottom,
       left,
     };
-  };
+  }
 
-  setActive = (key) => {
-    if(!this.props.tooltipLabel || this.state.timeout) { return; }
+  _setActive(key) {
+    if (!this.props.tooltipLabel || this.state.timeout) { return; }
 
     const timeout = setTimeout(() => {
       this.setState({
         [key]: true,
-        style: this.calcPositioningStyle(),
+        style: this._calcPositioningStyle(),
         timeout: null,
       });
     }, this.props.tooltipDelay);
 
     this.setState({ timeout });
-  };
+  }
 
-  setInactive = (key) => {
-    if(!this.props.tooltipLabel) { return; }
+  _setInactive(key) {
+    if (!this.props.tooltipLabel) { return; }
 
-    if(this.state.timeout) {
+    if (this.state.timeout) {
       clearTimeout(this.state.timeout);
     }
 
@@ -214,69 +233,74 @@ export default ComposedComponent => class Tooltip extends Component {
       [key]: false,
       timeout: null,
     });
-  };
-
-  /**
-   * Prevent the context menu from appearing on touch hold.
-   */
-  preventContext(e) {
-    e.preventDefault();
   }
 
-  handleMouseOver = (e) => {
-    this.props.onMouseOver && this.props.onMouseOver(e);
-    if(this.state.touch) { return; }
+  _handleMouseOver(e) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
+    if (this.state.touch) { return; }
 
-    this.setActive('active');
-  };
+    this._setActive('active');
+  }
 
-  handleMouseLeave = (e) => {
-    this.props.onMouseLeave && this.props.onMouseLeave(e);
-    if(this.state.touch) { return; }
+  _handleMouseLeave(e) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+    if (this.state.touch) { return; }
 
-    this.setInactive('active');
-  };
+    this._setInactive('active');
+  }
 
-  handleKeyUp = (e) => {
-    this.props.onKeyUp && this.props.onKeyUp(e);
-    if(this.state.touch || (e.which || e.keyCode) !== TAB) { return; }
+  _handleKeyUp(e) {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(e);
+    }
+    if (this.state.touch || (e.which || e.keyCode) !== TAB) { return; }
 
-    this.setActive('tabActive');
-  };
+    this._setActive('tabActive');
+  }
 
-  handleBlur = (e) => {
-    this.props.onBlur && this.props.onBlur(e);
-    if(this.state.touch) { return; }
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+    if (this.state.touch) { return; }
 
-    this.setInactive('tabActive');
-  };
+    this._setInactive('tabActive');
+  }
 
-  handleTouchStart = (e) => {
-    this.props.onTouchStart && this.props.onTouchStart(e);
-    if(!this.props.tooltipLabel) { return; }
+  _handleTouchStart(e) {
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(e);
+    }
+    if (!this.props.tooltipLabel) { return; }
 
-    window.addEventListener('contextmenu', this.preventContext);
+    window.addEventListener('contextmenu', this._preventContext);
     this.setState({
       touchTimeout: setTimeout(() => {
         this.setState({
           touchTimeout: null,
-          style: this.calcPositioningStyle(),
+          style: this._calcPositioningStyle(),
           active: true,
         });
       }, this.props.tooltipTouchTimeout),
     });
-  };
+  }
 
-  handleTouchEnd = (e) => {
-    this.props.onTouchEnd && this.props.onTouchEnd(e);
-    if(!this.props.tooltipLabel) { return; }
-    window.removeEventListener('contextmenu', this.preventContext);
-    if(this.state.touchTimeout) {
+  _handleTouchEnd(e) {
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(e);
+    }
+    if (!this.props.tooltipLabel) { return; }
+    window.removeEventListener('contextmenu', this._preventContext);
+    if (this.state.touchTimeout) {
       clearTimeout(this.state.touchTimeout);
     }
 
     this.setState({ touchTimeout: null, active: false });
-  };
+  }
 
   render() {
     const { style, active, tabActive, textStyle } = this.state;
@@ -284,7 +308,7 @@ export default ComposedComponent => class Tooltip extends Component {
     delete props.tooltipDelay;
     delete props.tooltipTouchTimeout;
 
-    if(!tooltipLabel) {
+    if (!tooltipLabel) {
       return <ComposedComponent {...props} />;
     }
 
@@ -292,7 +316,7 @@ export default ComposedComponent => class Tooltip extends Component {
       <div
         key="tooltip"
         ref="tooltip"
-        className={classnames(`md-tooltip md-tooltip-${tooltipPosition}`, { 'active': active || tabActive })}
+        className={cn(`md-tooltip md-tooltip-${tooltipPosition}`, { 'active': active || tabActive })}
         aria-hidden={!active && !tabActive}
         style={style}
       >
@@ -304,12 +328,12 @@ export default ComposedComponent => class Tooltip extends Component {
       <ComposedComponent
         {...props}
         tooltip={tooltip}
-        onMouseOver={this.handleMouseOver}
-        onMouseLeave={this.handleMouseLeave}
-        onKeyUp={this.handleKeyUp}
-        onBlur={this.handleBlur}
-        onTouchStart={this.handleTouchStart}
-        onTouchEnd={this.handleTouchEnd}
+        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onKeyUp={this._handleKeyUp}
+        onBlur={this._handleBlur}
+        onTouchStart={this._handleTouchStart}
+        onTouchEnd={this._handleTouchEnd}
       />
     );
   }

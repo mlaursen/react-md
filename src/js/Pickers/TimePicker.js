@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
 import PickerFooter from './PickerFooter';
 import ClockFace from './ClockFace';
@@ -9,13 +8,7 @@ import TimePickerHeader from './TimePickerHeader';
  * The `TimePicker` component is used to display a time picker
  * in the `TimePickerContainer` component.
  */
-export default class TimePicker extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class TimePicker extends PureComponent {
   static propTypes = {
     className: PropTypes.string.isRequired,
     okLabel: PropTypes.string.isRequired,
@@ -72,15 +65,22 @@ export default class TimePicker extends Component {
     timePeriod: PropTypes.string,
   };
 
-  updateTime = (timePart) => {
+  constructor(props) {
+    super(props);
+
+    this._updateTime = this._updateTime.bind(this);
+  }
+
+  _updateTime(newTime) {
+    let timePart = newTime;
     const { tempTime, setTempTime, timeMode, timePeriod } = this.props;
     const time = new Date(tempTime);
-    if(timeMode === 'hour') {
+    if (timeMode === 'hour') {
       const isAM = timePeriod === 'AM';
       const is12 = timePart === 12;
-      if(timePeriod && isAM && is12) {
+      if (timePeriod && isAM && is12) {
         timePart = 0;
-      } else if(timePeriod && !isAM && !is12) {
+      } else if (timePeriod && !isAM && !is12) {
         timePart += 12;
       }
 
@@ -90,7 +90,7 @@ export default class TimePicker extends Component {
     }
 
     setTempTime(time);
-  };
+  }
 
   render() {
     const {
@@ -110,8 +110,8 @@ export default class TimePicker extends Component {
       timePeriod,
     } = this.props;
 
-    const hoursInt = parseInt(hours);
-    const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''));
+    const hoursInt = parseInt(hours, 10);
+    const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''), 10);
 
     return (
       <div className={`${className} time-picker`}>
@@ -129,7 +129,7 @@ export default class TimePicker extends Component {
             <ClockFace
               time={timeMode === 'hour' ? hoursInt : minutesInt}
               minutes={timeMode === 'minute'}
-              onClick={this.updateTime}
+              onClick={this._updateTime}
               timePeriod={timePeriod}
             />
           </div>

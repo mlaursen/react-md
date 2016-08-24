@@ -1,4 +1,2 @@
-/*eslint-env jest*/
-export default jest.genMockFunction().mockImplementation(() => {
-  return { format: jest.genMockFunction().mockImplementation(() => '') };
-});
+/* eslint-env jest*/
+export default jest.fn(() => ({ format: jest.fn(() => '') }));

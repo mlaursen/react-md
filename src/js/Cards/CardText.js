@@ -1,18 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `CardText` component is a simple wrapper for text or any content in a `Card`.
  * It really just adds correct padding and font color.
  */
-export default class CardText extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CardText extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply.
@@ -48,7 +41,7 @@ export default class CardText extends Component {
     delete props.expandable;
 
     return React.createElement(component, {
-      className: classnames('md-card-text', className),
+      className: cn('md-card-text', className),
       ...props,
     }, children);
   }

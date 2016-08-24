@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../List');
 jest.unmock('../ListItem');
 jest.unmock('../ListTile');
@@ -17,7 +17,7 @@ import Divider from '../../Dividers';
 describe('List', () => {
   it('renders an ol or ul component', () => {
     const ul = renderIntoDocument(<List />);
-    const ol = renderIntoDocument(<List ordered={true} />);
+    const ol = renderIntoDocument(<List ordered />);
 
     const ulNode = findDOMNode(ul);
     const olNode = findDOMNode(ol);
@@ -37,16 +37,16 @@ describe('List', () => {
   });
 
   it('passes all remaining props to the list', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const list = renderIntoDocument(
       <List

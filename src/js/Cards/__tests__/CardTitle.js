@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Card');
 jest.unmock('../CardTitle');
 jest.unmock('../../Avatars/Avatar.js');
@@ -31,14 +31,14 @@ describe('CardTitle', () => {
   });
 
   it('allows for normal event listeners to be passed to the title component', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const card = renderIntoDocument(
       <Card>
@@ -147,7 +147,7 @@ describe('CardTitle', () => {
   it('updates the className to include card-expander if it is an expander', () => {
     const card = renderIntoDocument(
       <Card>
-        <CardTitle title="Test" isExpander={true} />
+        <CardTitle title="Test" isExpander />
       </Card>
     );
 

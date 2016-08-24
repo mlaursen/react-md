@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import InkedControl from './InkedControl';
 
 /**
@@ -9,14 +8,7 @@ import InkedControl from './InkedControl';
  * the input type, an icon showing the state of the control,
  * and an optional label.
  */
-export default class ControlContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { checked: props.defaultChecked };
-  }
-
+export default class ControlContainer extends PureComponent {
   static propTypes = {
     /**
      * The type of the selection control.
@@ -82,16 +74,33 @@ export default class ControlContainer extends Component {
      * An optional form name to give to the control.
      */
     name: PropTypes.string,
+
+    /**
+     * An optional onClik function.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * An optional id for the control item.
+     */
+    id: PropTypes.string,
   };
 
-  isChecked = () => {
-    return typeof this.props.checked === 'undefined' ? this.state.checked : this.props.checked;
-  };
+  constructor(props) {
+    super(props);
 
-  handleChange = (e) => {
+    this.state = { checked: props.defaultChecked };
+    this._handleChange = this._handleChange.bind(this);
+  }
+
+  _isChecked(props, state) {
+    return typeof props.checked === 'undefined' ? state.checked : props.checked;
+  }
+
+  _handleChange(e) {
     const { onChange, value, type } = this.props;
-    const checked = !this.isChecked();
-    if(onChange) {
+    const checked = !this._isChecked(this.props, this.state);
+    if (onChange) {
       const arg = type === 'radio' ? value : checked;
       onChange(arg, e);
     }
@@ -99,13 +108,13 @@ export default class ControlContainer extends Component {
     // prevents 2 change events triggering
     e.stopPropagation();
 
-    if(typeof this.props.checked === 'undefined') {
+    if (typeof this.props.checked === 'undefined') {
       this.setState({ checked });
     }
-  };
+  }
 
   render() {
-    const isChecked = this.isChecked();
+    const isChecked = this._isChecked(this.props, this.state);
     const {
       className,
       disabled,
@@ -116,6 +125,8 @@ export default class ControlContainer extends Component {
       name,
       value,
       type,
+      onClick,
+      id,
       ...props,
     } = this.props;
 
@@ -124,15 +135,18 @@ export default class ControlContainer extends Component {
     return (
       <label
         {...props}
-        className={classnames('md-control-container', className, { disabled })}
+        htmlFor={id}
+        className={cn('md-control-container', className, { disabled })}
       >
         {labelBefore && label}
         <input
+          id={id}
+          onClick={onClick}
           disabled={disabled}
           type={type}
           className="md-control-input"
           checked={isChecked}
-          onChange={this.handleChange}
+          onChange={this._handleChange}
           name={name}
           value={value}
         />

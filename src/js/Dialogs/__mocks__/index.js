@@ -1,8 +1,6 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 import React from 'react';
 
-export default jest.fn(({ isOpen, children }) => {
-  return (
-    <div>{isOpen && children}</div>
-  );
-});
+export default jest.fn(({ isOpen, children }) => (
+  <div>{isOpen && children}</div>
+));

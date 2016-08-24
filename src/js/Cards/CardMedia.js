@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `CardMedia` component is used to display images or some sort
@@ -8,13 +7,7 @@ import classnames from 'classnames';
  *
  * The media can be forced to be 1:1 aspect ratio or a 16:9 aspect ratio.
  */
-export default class CardMedia extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CardMedia extends PureComponent {
   static aspect = {
     equal: '1-1',
     wide: '16-9',
@@ -64,7 +57,12 @@ export default class CardMedia extends Component {
     delete props.expandable;
 
     return (
-      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio}`]: forceAspect })}>
+      <section
+        {...props}
+        className={cn('md-card-media', className, {
+          [`md-media-${aspectRatio}`]: forceAspect,
+        })}
+      >
         {children}
         {overlay && <div className="md-card-media-overlay">{overlay}</div>}
       </section>

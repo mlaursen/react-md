@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../CalendarMonth');
 jest.unmock('../../utils/dates');
 
@@ -22,7 +23,7 @@ describe('CalendarMonth', () => {
       className,
       calendarDate: new Date(),
       calendarTempDate: new Date(),
-      onCalendarDateClick: jest.genMockFunction(),
+      onCalendarDateClick: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
     };
@@ -40,7 +41,7 @@ describe('CalendarMonth', () => {
       locales: 'en-US',
       calendarDate: new Date(2016, 3, 12),
       calendarTempDate: new Date(2016, 3, 12),
-      onCalendarDateClick: jest.genMockFunction(),
+      onCalendarDateClick: jest.fn(),
     };
 
     const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);

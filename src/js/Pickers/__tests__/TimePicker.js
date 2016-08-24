@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../TimePicker');
 
 import React from 'react';
@@ -68,7 +68,7 @@ describe('TimePicker', () => {
 
     expect(face.props.time).toBe(3);
     expect(face.props.minutes).toBe(false);
-    expect(face.props.onClick).toBe(picker.updateTime);
+    expect(face.props.onClick).toBe(picker._updateTime);
     expect(face.props.timePeriod).toBe(props.timePeriod);
 
     props = Object.assign({}, commonProps, { timeMode: 'minute' });
@@ -77,7 +77,7 @@ describe('TimePicker', () => {
 
     expect(face.props.time).toBe(55);
     expect(face.props.minutes).toBe(true);
-    expect(face.props.onClick).toBe(picker.updateTime);
+    expect(face.props.onClick).toBe(picker._updateTime);
     expect(face.props.timePeriod).toBe(props.timePeriod);
   });
 
@@ -85,14 +85,14 @@ describe('TimePicker', () => {
     const props = Object.assign({}, commonProps, { setTempTime: jest.fn() });
     let picker = renderIntoDocument(<TimePicker {...props} />);
 
-    picker.updateTime(11);
+    picker._updateTime(11);
     expect(props.setTempTime.mock.calls.length).toBe(1);
     expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 11, 55));
 
     props.timeMode = 'minute';
     picker = renderIntoDocument(<TimePicker {...props} />);
 
-    picker.updateTime(32);
+    picker._updateTime(32);
     expect(props.setTempTime.mock.calls.length).toBe(2);
     expect(props.setTempTime.mock.calls[1][0]).toEqual(new Date(2016, 3, 15, 3, 32));
   });
@@ -106,11 +106,11 @@ describe('TimePicker', () => {
     });
     let picker = renderIntoDocument(<TimePicker {...props} />);
 
-    picker.updateTime(12);
+    picker._updateTime(12);
     expect(props.setTempTime.mock.calls.length).toBe(1);
     expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 12, 55));
 
-    picker.updateTime(5);
+    picker._updateTime(5);
     expect(props.setTempTime.mock.calls.length).toBe(2);
     expect(props.setTempTime.mock.calls[1][0]).toEqual(new Date(2016, 3, 15, 17, 55));
 
@@ -118,11 +118,11 @@ describe('TimePicker', () => {
     props.tempTime = new Date(2016, 3, 15, 3, 55);
     picker = renderIntoDocument(<TimePicker {...props} />);
 
-    picker.updateTime(12);
+    picker._updateTime(12);
     expect(props.setTempTime.mock.calls.length).toBe(3);
     expect(props.setTempTime.mock.calls[2][0]).toEqual(new Date(2016, 3, 15, 0, 55));
 
-    picker.updateTime(5);
+    picker._updateTime(5);
     expect(props.setTempTime.mock.calls.length).toBe(4);
     expect(props.setTempTime.mock.calls[3][0]).toEqual(new Date(2016, 3, 15, 5, 55));
   });
@@ -134,8 +134,8 @@ describe('TimePicker', () => {
     });
     delete props.timePeriod;
 
-    let picker = renderIntoDocument(<TimePicker {...props} />);
-    picker.updateTime(22);
+    const picker = renderIntoDocument(<TimePicker {...props} />);
+    picker._updateTime(22);
     expect(props.setTempTime.mock.calls.length).toBe(1);
     expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 22, 55));
   });

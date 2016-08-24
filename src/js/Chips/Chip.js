@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import FontIcon from '../FontIcons';
 
@@ -8,14 +7,7 @@ import FontIcon from '../FontIcons';
  * Any additional props such as event listeners will be applied
  * to the chip itself, not the chip container.
  */
-export default class Chip extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { focus: false };
-  }
-
+export default class Chip extends PureComponent {
   static propTypes = {
     /**
      * Any style that should be added to the chip container.
@@ -75,15 +67,29 @@ export default class Chip extends Component {
     removeIconClassName: 'material-icons rotate-45-deg',
   };
 
-  handleFocus = (e) => {
-    if(this.props.onFocus) { this.props.onFocus(e); }
-    this.setState({ focus: true });
-  };
+  constructor(props) {
+    super(props);
 
-  handleBlur = (e) => {
-    if(this.props.onBlur) { this.props.onBlur(e); }
+    this.state = { focus: false };
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
+  }
+
+  _handleFocus(e) {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+
+    this.setState({ focus: true });
+  }
+
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+
     this.setState({ focus: false });
-  };
+  }
 
   render() {
     const {
@@ -98,26 +104,37 @@ export default class Chip extends Component {
       ...props,
     } = this.props;
 
+    let removeBtn;
+    if (remove) {
+      removeBtn = (
+        <button type="button" className="md-chip-remove" onClick={remove}>
+          <FontIcon iconClassName={removeIconClassName} children={removeIconChildren} />
+        </button>
+      );
+    }
+
     return (
-      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })} style={style}>
+      <div
+        className={cn('md-chip-container', className, {
+          'md-contact-chip': !!children,
+          'focus': this.state.focus,
+        })}
+        style={style}
+      >
         {children}
         <button
           type="button"
           {...props}
-          className={classnames('md-chip', {
+          className={cn('md-chip', {
             'with-remove': !!remove,
           })}
           onClick={onClick}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
+          onFocus={this._handleFocus}
+          onBlur={this._handleBlur}
         >
           {label}
         </button>
-        {remove &&
-        <button type="button" className="md-chip-remove" onClick={remove}>
-          <FontIcon iconClassName={removeIconClassName} children={removeIconChildren} />
-        </button>
-        }
+        {removeBtn}
       </div>
     );
   }

@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest */
+/* eslint-disable max-len */
 jest.unmock('../Card');
 jest.unmock('../CardActions');
 jest.unmock('../CardTitle');
@@ -53,14 +54,14 @@ describe('Card', () => {
   });
 
   it('allows for normal event listeners to be passed to the card', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const card = renderIntoDocument(
       <Card
@@ -104,19 +105,18 @@ describe('Card', () => {
   it('injects a card expander into the CardActions compoennt if the prop isExpander is true', () => {
     const card = renderIntoDocument(
       <Card>
-        <CardActions isExpander={true} />
+        <CardActions isExpander />
       </Card>
     );
 
     const toggleNode = findRenderedComponentWithType(card, CardExpander);
     expect(toggleNode).toBeDefined();
-
   });
 
   it('injects a card expander into the CardTitle component if the prop isExpander is true', () => {
     const card = renderIntoDocument(
       <Card>
-        <CardTitle title="Hello" isExpander={true} />
+        <CardTitle title="Hello" isExpander />
       </Card>
     );
 
@@ -127,8 +127,8 @@ describe('Card', () => {
   it('hides a any component after an expander if the card is not expanded', () => {
     const card = renderIntoDocument(
       <Card>
-        <CardActions isExpander={true} />
-        <CardText expandable={true}>Hello, World</CardText>
+        <CardActions isExpander />
+        <CardText expandable>Hello, World</CardText>
       </Card>
     );
 
@@ -138,9 +138,9 @@ describe('Card', () => {
 
   it('wraps a child with the height transition if there is an expander and the card is expanded', () => {
     const card = renderIntoDocument(
-      <Card initiallyExpanded={true}>
-        <CardActions isExpander={true} />
-        <CardText expandable={true}>Hello, World</CardText>
+      <Card initiallyExpanded>
+        <CardActions isExpander />
+        <CardText expandable>Hello, World</CardText>
       </Card>
     );
 
@@ -151,9 +151,9 @@ describe('Card', () => {
   it('will still display any component that does not have expandabe set to true', () => {
     const card = renderIntoDocument(
       <Card>
-        <CardActions isExpander={true} />
+        <CardActions isExpander />
         <CardText>Hello, World</CardText>
-        <CardText expandable={true}>Goodbye, World</CardText>
+        <CardText expandable>Goodbye, World</CardText>
       </Card>
     );
 

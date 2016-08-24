@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+/* eslint-disable new-cap,no-shadow */
+import React, { PureComponent, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
@@ -26,33 +26,7 @@ import Height from '../Transitions/Height';
  * import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
  * ```
  */
-export default class DatePickerContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    let date, value;
-    const { defaultValue, DateTimeFormat, locales, formatOptions } = props;
-    if (typeof props.value !== 'undefined' && props.value !== null) {
-      date = typeof props.value === 'string' ? new Date(props.value) : props.value;
-    } else if(defaultValue) {
-      date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
-      value = typeof defaultValue === 'string' ? defaultValue : DateTimeFormat(locales, formatOptions).format(defaultValue);
-    } else {
-      date = new Date();
-    }
-
-    this.state = {
-      value,
-      isOpen: props.initiallyOpen,
-      calendarDate: date,
-      calendarTempDate: date,
-      calendarMode: props.initialCalendarMode,
-      transitionName: 'md-swipe-left',
-    };
-  }
-
+export default class DatePickerContainer extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the date picker's container.
@@ -248,7 +222,7 @@ export default class DatePickerContainer extends Component {
     icon: <FontIcon>date_range</FontIcon>,
     initialYearsDisplayed: 100,
     initialCalendarMode: 'calendar',
-    DateTimeFormat: DateTimeFormat,
+    DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
     locales: typeof window !== 'undefined'
       ? window.navigator.userLanguage || window.navigator.language
       : 'en-US',
@@ -258,90 +232,136 @@ export default class DatePickerContainer extends Component {
     cancelPrimary: true,
   };
 
+  constructor(props) {
+    super(props);
+
+    let date;
+    let value;
+    const { defaultValue, DateTimeFormat, locales, formatOptions } = props;
+    if (typeof props.value !== 'undefined' && props.value !== null) {
+      date = typeof props.value === 'string' ? new Date(props.value) : props.value;
+    } else if (defaultValue) {
+      date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
+      value = typeof defaultValue === 'string'
+        ? defaultValue
+        : DateTimeFormat(locales, formatOptions).format(defaultValue);
+    } else {
+      date = new Date();
+    }
+
+    this.state = {
+      value,
+      isOpen: props.initiallyOpen,
+      calendarDate: date,
+      calendarTempDate: date,
+      calendarMode: props.initialCalendarMode,
+      transitionName: 'md-swipe-left',
+    };
+
+    this._close = this._close.bind(this);
+    this._toggleOpen = this._toggleOpen.bind(this);
+    this._closeOnEsc = this._closeOnEsc.bind(this);
+    this._closeOnOutside = this._closeOnOutside.bind(this);
+    this._handleOkClick = this._handleOkClick.bind(this);
+    this._handleCancelClick = this._handleCancelClick.bind(this);
+    this._changeCalendarMode = this._changeCalendarMode.bind(this);
+    this._nextMonth = this._nextMonth.bind(this);
+    this._previousMonth = this._previousMonth.bind(this);
+    this._setCalendarTempDate = this._setCalendarTempDate.bind(this);
+    this._setCalendarTempYear = this._setCalendarTempYear.bind(this);
+    this._handleSwipeChange = this._handleSwipeChange.bind(this);
+  }
+
   componentWillUpdate(nextProps, nextState) {
-    if(this.state.isOpen && !nextState.isOpen) {
-      if(nextProps.inline) {
-        window.removeEventListener('click', this.closeOnOutside);
+    if (this.state.isOpen && !nextState.isOpen) {
+      if (nextProps.inline) {
+        window.removeEventListener('click', this._closeOnOutside);
       }
 
-      window.removeEventListener('keydown', this.closeOnEsc);
-    } else if(!this.state.isOpen && nextState.isOpen) {
-      if(nextProps.inline) {
-        window.addEventListener('click', this.closeOnOutside);
+      window.removeEventListener('keydown', this._closeOnEsc);
+    } else if (!this.state.isOpen && nextState.isOpen) {
+      if (nextProps.inline) {
+        window.addEventListener('click', this._closeOnOutside);
       }
 
-      window.addEventListener('keydown', this.closeOnEsc);
+      window.addEventListener('keydown', this._closeOnEsc);
     }
 
     const { calendarDate } = this.state;
-    if(calendarDate === nextState.calendarDate) { return; }
+    if (calendarDate === nextState.calendarDate) { return; }
 
     this.setState({ transitionName: `md-swipe-${calendarDate < nextState.calendarDate ? 'left' : 'right'}` });
   }
 
   componentWillUnmount() {
-    if(this.state.isOpen) {
-      if(this.props.inline) {
-        window.removeEventListener('click', this.closeOnOutside);
+    if (this.state.isOpen) {
+      if (this.props.inline) {
+        window.removeEventListener('click', this._closeOnOutside);
       }
 
-      window.removeEventListener('keydown', this.closeOnEsc);
+      window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
 
-  closeOnEsc = (e) => {
-    if((e.which || e.keyCode) === ESC) {
-      this.handleCancelClick();
+  _closeOnEsc(e) {
+    if ((e.which || e.keyCode) === ESC) {
+      this._handleCancelClick();
     }
-  };
+  }
 
-  closeOnOutside = e => onOutsideClick(e, this.refs.container, this.close);
+  _closeOnOutside(e) {
+    onOutsideClick(e, this.refs.container, this._close);
+  }
 
-  toggleOpen = () => {
+  _toggleOpen() {
     this.setState({ isOpen: !this.state.isOpen });
-  };
+  }
 
-  close = () => {
+  _close() {
     this.setState({ isOpen: false });
-  };
+  }
 
-  handleOkClick = (e) => {
+  _handleOkClick(e) {
     const { DateTimeFormat, locales, onChange, formatOptions } = this.props;
     const value = DateTimeFormat(locales, formatOptions).format(this.state.calendarTempDate);
-    onChange && onChange(value, new Date(this.state.calendarTempDate), e);
+    if (onChange) {
+      onChange(value, new Date(this.state.calendarTempDate), e);
+    }
 
     this.setState({ value, isOpen: false });
-  };
+  }
 
-  handleCancelClick = () => {
+  _handleCancelClick() {
     this.setState({ calendarTempDate: this.state.calendarDate, isOpen: false });
-  };
+  }
 
-  changeCalendarMode = (calendarMode) => {
-    if(this.state.calendarMode === calendarMode) { return; }
+  _changeCalendarMode(calendarMode) {
+    if (this.state.calendarMode === calendarMode) { return; }
 
     this.setState({ calendarMode });
-  };
+  }
 
-  previousMonth = () => {
+  _previousMonth() {
     const calendarDate = subtractDate(this.state.calendarDate, 1, 'M');
     this.setState({ calendarDate });
-  };
+  }
 
-  nextMonth = () => {
+  _nextMonth() {
     const calendarDate = addDate(this.state.calendarDate, 1, 'M');
     this.setState({ calendarDate });
-  };
+  }
 
-  setCalendarTempDate = (calendarTempDate) => {
+  _setCalendarTempDate(calendarTempDate) {
     const { autoOk, DateTimeFormat, locales, onChange, formatOptions } = this.props;
 
     const state = { calendarTempDate };
-    if(autoOk) {
+    if (autoOk) {
       const value = DateTimeFormat(locales, formatOptions).format(calendarTempDate);
-      onChange && onChange(value, new Date(calendarTempDate));
+      if (onChange) {
+        onChange(value, new Date(calendarTempDate));
+      }
 
-      if(typeof this.props.value === 'undefined') {
+      if (typeof this.props.value === 'undefined') {
         state.value = value;
       }
 
@@ -351,22 +371,22 @@ export default class DatePickerContainer extends Component {
       }, 300);
     }
     this.setState(state);
-  };
+  }
 
-  setCalendarTempYear = (year) => {
+  _setCalendarTempYear(year) {
     const { calendarTempDate, calendarDate } = this.state;
-    if(calendarTempDate.getFullYear() === year) { return; }
+    if (calendarTempDate.getFullYear() === year) { return; }
 
     const { minDate, maxDate } = this.props;
     let nextDate = new Date(calendarDate.setFullYear(year));
     let nextTemp = new Date(calendarTempDate.setFullYear(year));
 
-    if(minDate && nextTemp < minDate) {
+    if (minDate && nextTemp < minDate) {
       nextDate = new Date(minDate);
       nextTemp = new Date(minDate);
     }
 
-    if(maxDate && nextTemp > maxDate) {
+    if (maxDate && nextTemp > maxDate) {
       nextDate = new Date(maxDate);
       nextTemp = new Date(maxDate);
     }
@@ -375,22 +395,22 @@ export default class DatePickerContainer extends Component {
       calendarDate: nextDate,
       calendarTempDate: nextTemp,
     });
-  };
+  }
 
-  handleSwipeChange = (index, distance) => {
+  _handleSwipeChange(index, distance) {
     const { minDate, maxDate } = this.props;
     const { calendarDate } = this.state;
     const isPreviousDisabled = isMonthBefore(minDate, calendarDate);
     const isNextDisabled = isMonthBefore(calendarDate, maxDate);
 
-    if(distance === 0) {
+    if (distance === 0) {
       return;
-    } else if(!isPreviousDisabled && distance < 0) {
-      this.previousMonth();
-    } else if(!isNextDisabled && distance > 0) {
-      this.nextMonth();
+    } else if (!isPreviousDisabled && distance < 0) {
+      this._previousMonth();
+    } else if (!isNextDisabled && distance > 0) {
+      this._nextMonth();
     }
-  };
+  }
 
   /**
    * Gets the current value from the date picker as a formatted string.
@@ -399,17 +419,17 @@ export default class DatePickerContainer extends Component {
    * @param {Object} state? the state object to use.
    * @return {String} a formatted date string or the empty string.
    */
-  getValue = (props = this.props, state = this.state) => {
+  _getValue(props, state) {
     const { DateTimeFormat, locales, formatOptions } = props;
     const value = typeof props.value !== 'undefined' ? props.value : state.value;
-    if(!value) {
+    if (!value) {
       return '';
-    } else if(value instanceof Date) {
+    } else if (value instanceof Date) {
       return DateTimeFormat(locales, formatOptions).format(new Date(value));
     } else {
       return value;
     }
-  };
+  }
 
   render() {
     const { isOpen, ...state } = this.state;
@@ -430,45 +450,46 @@ export default class DatePickerContainer extends Component {
     delete props.value;
     delete props.onChange;
 
-    let picker, content;
-    if(isOpen) {
+    let picker;
+    if (isOpen) {
       picker = (
         <DatePicker
           {...state}
           {...props}
           style={pickerStyle}
-          className={classnames('md-picker', displayMode, pickerClassName, {
+          className={cn('md-picker', displayMode, pickerClassName, {
             inline,
             'with-icon': inline && icon,
           })}
-          onCancelClick={this.handleCancelClick}
-          onOkClick={this.handleOkClick}
-          changeCalendarMode={this.changeCalendarMode}
-          onPreviousClick={this.previousMonth}
-          onNextClick={this.nextMonth}
-          onCalendarDateClick={this.setCalendarTempDate}
-          onCalendarYearClick={this.setCalendarTempYear}
-          onSwipeChange={this.handleSwipeChange}
+          onCancelClick={this._handleCancelClick}
+          onOkClick={this._handleOkClick}
+          changeCalendarMode={this._changeCalendarMode}
+          onPreviousClick={this._previousMonth}
+          onNextClick={this._nextMonth}
+          onCalendarDateClick={this._setCalendarTempDate}
+          onCalendarYearClick={this._setCalendarTempYear}
+          onSwipeChange={this._handleSwipeChange}
         />
       );
     }
 
-    if(inline) {
+    let content;
+    if (inline) {
       picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
       content = <TransitionGroup>{picker}</TransitionGroup>;
     } else {
-      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
+      content = <Dialog isOpen={isOpen} close={this._close}>{picker}</Dialog>;
     }
 
     return (
-      <div className={classnames('md-picker-container', className)} ref="container" style={style}>
+      <div className={cn('md-picker-container', className)} ref="container" style={style}>
         <TextField
           icon={icon}
-          onClick={this.toggleOpen}
+          onClick={this._toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={this.getValue()}
-          readOnly={true}
+          value={this._getValue(this.props, this.state)}
+          readOnly
           fullWidth={fullWidth}
           adjustMinWidth={adjustMinWidth}
         />

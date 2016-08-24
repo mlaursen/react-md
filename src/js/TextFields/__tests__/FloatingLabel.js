@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../FloatingLabel');
 
 import React from 'react';
@@ -21,7 +21,7 @@ describe('FloatingLabel', () => {
 
     expect(labelNode.textContent).toBe('Hello World *');
 
-    props = Object.assign({}, props, { label: 'Hello World *'});
+    props = Object.assign({}, props, { label: 'Hello World *' });
     label = renderIntoDocument(<FloatingLabel {...props} />);
     labelNode = findDOMNode(label);
     expect(labelNode.textContent).toBe('Hello World *');

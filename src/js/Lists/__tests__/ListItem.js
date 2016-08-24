@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../List');
 jest.unmock('../ListItem');
 jest.unmock('../ListTile');
@@ -77,7 +77,9 @@ describe('ListItem', () => {
       }
     }
 
-    const customItem = renderIntoDocument(<ListItem primaryText="Test" component={Custom} customProp="Hello, World!" what={() => {}} />);
+    const customItem = renderIntoDocument(
+      <ListItem primaryText="Test" component={Custom} customProp="Hello, World!" what={() => {}} />
+    );
 
     const customItems = scryRenderedComponentsWithType(customItem, Custom);
     expect(customItems.length).toBe(1);
@@ -87,16 +89,16 @@ describe('ListItem', () => {
   });
 
   it('passes all remaining props to .md-list-tile', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const li = renderIntoDocument(
       <ListItem
@@ -149,7 +151,9 @@ describe('ListItem', () => {
     const li = renderIntoDocument(<ListItem primaryText="Test" />);
     const leftAvatar = renderIntoDocument(<ListItem primaryText="Test" leftAvatar={<div />} />);
     const rightAvatar = renderIntoDocument(<ListItem primaryText="Test" rightAvatar={<div />} />);
-    const secondaryTextAvatar = renderIntoDocument(<ListItem primaryText="Test" secondaryText="Test" leftAvatar={<div />} />);
+    const secondaryTextAvatar = renderIntoDocument(
+      <ListItem primaryText="Test" secondaryText="Test" leftAvatar={<div />} />
+    );
 
     const find = tree => findDOMNode(findRenderedComponentWithType(tree, ListTile));
     let tile = find(li);
@@ -169,7 +173,7 @@ describe('ListItem', () => {
   it('updates the list tile\'s className to adjust for two or three lines of secondary text', () => {
     const singleLine = renderIntoDocument(<ListItem primaryText="Test" />);
     const twoLines = renderIntoDocument(<ListItem primaryText="test" secondaryText="test" />);
-    const threeLines = renderIntoDocument(<ListItem primaryText="test" secondaryText="test" threeLines={true} />);
+    const threeLines = renderIntoDocument(<ListItem primaryText="test" secondaryText="test" threeLines />);
 
     const find = tree => findDOMNode(findRenderedComponentWithType(tree, ListTile));
     let tile = find(singleLine);
@@ -248,7 +252,7 @@ describe('ListItem', () => {
       />
     );
 
-    let liNodes = findDOMNode(li).childNodes;
+    const liNodes = findDOMNode(li).childNodes;
     expect(liNodes.length).toBe(1);
 
     const tile = findDOMNode(findRenderedComponentWithType(li, ListTile));
@@ -262,7 +266,7 @@ describe('ListItem', () => {
     const li = renderIntoDocument(
       <ListItem
         primaryText="Test"
-        initiallyOpen={true}
+        initiallyOpen
         nestedItems={[<ListItem key={0} primaryText="Test" />]}
       />
     );
@@ -323,7 +327,7 @@ describe('ListItem', () => {
   });
 
   it('allows for an optional onExpanderClick function', () => {
-    const onExpanderClick = jest.genMockFunction();
+    const onExpanderClick = jest.fn();
     const li = renderIntoDocument(
       <ListItem
         primaryText="Test"
@@ -339,11 +343,11 @@ describe('ListItem', () => {
   });
 
   it('allows the list item to be disabled', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const li = renderIntoDocument(
       <ListItem
         primaryText="Test"
-        disabled={true}
+        disabled
         onClick={onClick}
       />
     );

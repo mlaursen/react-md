@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../CircularProgress');
 
 import React from 'react';
@@ -55,7 +55,7 @@ describe('CircularProgress', () => {
       <CircularProgress scale={scale} />
     );
 
-    const expected = (baseSize * scale) + '';
+    const expected = `${(baseSize * scale)}`;
     const progressNode = findDOMNode(progress);
     expect(progressNode.getAttribute('width')).toBe(expected);
     expect(progressNode.getAttribute('height')).toBe(expected);

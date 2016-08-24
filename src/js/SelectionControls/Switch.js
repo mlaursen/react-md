@@ -1,17 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import { LEFT_MOUSE } from '../constants/keyCodes';
 
-export default class Switch extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { toggled: props.defaultToggled, active: false, leaving: false };
-  }
-
+export default class Switch extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -62,30 +54,50 @@ export default class Switch extends Component {
      * Boolean if the label should appear before the switch.
      */
     labelBefore: PropTypes.bool,
+
+    /**
+     * An optional id for the switch.
+     */
+    id: PropTypes.string,
   };
 
   static defaultProps = {
     defaultToggled: false,
   };
 
-  toggleCheck = (e) => {
-    const { onChange } = this.props;
-    const toggled = !this.isToggled();
-    onChange && onChange(toggled, e);
+  constructor(props) {
+    super(props);
 
-    if(typeof this.props.toggled === 'undefined') {
+    this.state = { toggled: props.defaultToggled, active: false, leaving: false };
+    this._toggleCheck = this._toggleCheck.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+  }
+
+  _isToggled(props, state) {
+    return typeof props.toggled === 'undefined' ? state.toggled : props.toggled;
+  }
+
+  _toggleCheck(e) {
+    const { onChange } = this.props;
+    const toggled = !this._isToggled(this.props, this.state);
+    if (onChange) {
+      onChange(toggled, e);
+    }
+
+    if (typeof this.props.toggled === 'undefined') {
       this.setState({ toggled });
     }
-  };
+  }
 
-  handleMouseDown = (e) => {
-    if(!this.props.disabled && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+  _handleMouseDown(e) {
+    if (!this.props.disabled && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.setState({ active: true, leaving: false });
     }
-  };
+  }
 
-  handleMouseUp = (e) => {
-    if(!this.props.disabled && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
+  _handleMouseUp(e) {
+    if (!this.props.disabled && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
       this.timeout = setTimeout(() => {
         this.timeout = null;
         this.setState({ active: false, leaving: false });
@@ -93,40 +105,38 @@ export default class Switch extends Component {
 
       this.setState({ leaving: true });
     }
-  };
-
-  isToggled = () => {
-    return typeof this.props.toggled === 'undefined' ? this.state.toggled : this.props.toggled;
-  };
+  }
 
   render() {
     const { active, leaving } = this.state;
-    const { className, label, labelBefore, disabled, style, ...props } = this.props;
+    const { className, label, labelBefore, disabled, style, id, ...props } = this.props;
     delete props.toggled;
     delete props.defaultToggled;
 
-    const labelClassName = classnames('md-control-container', className, { disabled });
+    const labelClassName = cn('md-control-container', className, { disabled });
 
     const spanLabel = label ? <span className="label">{label}</span> : null;
     return (
       <label
         className={labelClassName}
-        onMouseDown={this.handleMouseDown}
-        onMouseUp={this.handleMouseUp}
+        onMouseDown={this._handleMouseDown}
+        onMouseUp={this._handleMouseUp}
         style={style}
+        htmlFor={id}
       >
         {labelBefore && spanLabel}
         <div className="md-switch-container">
           <input
             {...props}
+            id={id}
             type="checkbox"
-            checked={this.isToggled()}
+            checked={this._isToggled(this.props, this.state)}
             className="md-control-input"
-            onChange={this.toggleCheck}
+            onChange={this._toggleCheck}
             disabled={disabled}
           />
           <div className="md-switch">
-            <span className={classnames('md-ink', { active, leaving })} />
+            <span className={cn('md-ink', { active, leaving })} />
           </div>
         </div>
         {!labelBefore && spanLabel}

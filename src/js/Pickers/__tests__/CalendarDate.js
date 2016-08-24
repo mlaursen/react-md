@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../CalendarDate');
 
 import React from 'react';
@@ -18,7 +19,7 @@ describe('CalendarDate', () => {
       locales: 'en-US',
       date: new Date(2016, 1, 1),
       disabled: false,
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       index: 0,
     };
 
@@ -41,7 +42,7 @@ describe('CalendarDate', () => {
       locales: 'en-US',
       date: new Date(2016, 1, 1),
       disabled: false,
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       index: 0,
     };
 

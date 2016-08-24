@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import { isBetween } from '../utils';
 
 const ROATE_DISTANCE = 360 * 1.75;
@@ -18,13 +17,7 @@ const BASE_SIZE = 24; // font-icon font size
  * An `Indeterminate` circular progress bar should be used when you can not keep track of the progress
  * yourself. An example would be waiting for some API call to complete.
  */
-export default class CircularProgress extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CircularProgress extends PureComponent {
   static propTypes = {
     /**
      * A style object to apply to the svg. If this is a determinate `CircularProgress`,
@@ -46,12 +39,14 @@ export default class CircularProgress extends Component {
      * This value should also be a number between 0 and 100.
      */
     value: (props, propName, component, ...others) => {
-      if(typeof props[propName] === 'undefined') { return; }
+      if (typeof props[propName] === 'undefined') { return null; }
       let err = PropTypes.number(props, propName, component, ...others);
-      if(!err) {
+      if (!err) {
         const value = props[propName];
-        if(!isBetween(value, 0, 100)) {
-          err = new Error(`A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`);
+        if (!isBetween(value, 0, 100)) {
+          err = new Error(
+            `A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`
+          );
         }
       }
 
@@ -94,17 +89,18 @@ export default class CircularProgress extends Component {
     } = this.props;
 
     const isDeterminate = typeof value === 'number';
-    let circleStyle, svgStyle = style;
-    if(isDeterminate) {
+    let circleStyle;
+    let svgStyle = style;
+    if (isDeterminate) {
       const rotate = `rotate(${ROATE_DISTANCE / 100 * value}deg)`;
       circleStyle = {
         strokeDashoffset: determinateDashoffset - (determinateDashoffset / 100 * value),
       };
 
       svgStyle = Object.assign({}, style, {
-        WebkitTransform: classnames(style.WebkitTransform, rotate),
-        MozTransform: classnames(style.MozTransform, rotate),
-        transform: classnames(style.transform, rotate),
+        WebkitTransform: cn(style.WebkitTransform, rotate),
+        MozTransform: cn(style.MozTransform, rotate),
+        transform: cn(style.transform, rotate),
       });
     }
 
@@ -112,10 +108,10 @@ export default class CircularProgress extends Component {
       <svg
         {...props}
         style={svgStyle}
-        className={classnames('md-circular-progress', className, {
+        className={cn('md-circular-progress', className, {
+          centered,
           'determinate': isDeterminate,
           'indeterminate': !isDeterminate,
-          'centered': centered,
         })}
         width={scale * BASE_SIZE}
         height={scale * BASE_SIZE}

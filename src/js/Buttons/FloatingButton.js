@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import IconButton from './IconButton';
 
@@ -14,13 +13,7 @@ import IconButton from './IconButton';
  * Any other props (such as style or event listeners) will also be
  * applied.
  */
-export default class FloatingButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class FloatingButton extends PureComponent {
   static propTypes = {
     /**
      * The className to use for rendering the `FontIcon`.
@@ -110,7 +103,7 @@ export default class FloatingButton extends Component {
     return (
       <IconButton
         {...props}
-        className={classnames('md-floating-btn', className, {
+        className={cn('md-floating-btn', className, {
           mini,
           fixed,
           'md-primary': primary,

@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Dialog');
 
 import React from 'react';
@@ -22,7 +22,7 @@ describe('Dialog', () => {
     const contentClassName = 'content';
     const dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
         style={style}
         className={className}
@@ -44,7 +44,7 @@ describe('Dialog', () => {
     const content = 'Hello, World!';
     const dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
       >
         {content}
@@ -59,7 +59,7 @@ describe('Dialog', () => {
     const title = 'Test';
     const dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
         title={title}
       />
@@ -76,7 +76,7 @@ describe('Dialog', () => {
     const dialog = renderIntoDocument(
       <Dialog
         isSimple={false}
-        isFullPage={true}
+        isFullPage
         title="Test"
         actionLeft="Left"
         actionRight="Right"
@@ -90,7 +90,7 @@ describe('Dialog', () => {
   it('renders a dialog footer when there are actions', () => {
     let dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
       />
     );
@@ -100,7 +100,7 @@ describe('Dialog', () => {
 
     dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
         actions={[]}
       />
@@ -111,9 +111,9 @@ describe('Dialog', () => {
 
     dialog = renderIntoDocument(
       <Dialog
-        isSimple={true}
+        isSimple
         isFullPage={false}
-        actions={[{ onClick: jest.genMockFunction() }]}
+        actions={[{ onClick: jest.fn() }]}
       />
     );
 

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `RadioGroup` component is a state manager for the `Radio` component.
@@ -9,16 +8,7 @@ import classnames from 'classnames';
  *
  * This is just a simple wrapper to reduce some prop redundancy.
  */
-export default class RadioGroup extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      value: props.defaultValue || React.Children.toArray(props.children)[0].props.value,
-    };
-  }
-
+export default class RadioGroup extends PureComponent {
   static propTypes = {
     /**
      * The default value for the radio group. This will check the radio that
@@ -79,37 +69,49 @@ export default class RadioGroup extends Component {
     inline: false,
   };
 
-  handleChange = (value, e) => {
-    this.props.onChange && this.props.onChange(value, e);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: props.defaultValue || React.Children.toArray(props.children)[0].props.value,
+    };
+
+    this._handleChange = this._handleChange.bind(this);
+  }
+
+  _getValue(props, state) {
+    return typeof props.value === 'undefined' ? state.value : props.value;
+  }
+
+  _handleChange(value, e) {
+    if (this.props.onChange) {
+      this.props.onChange(value, e);
+    }
     // prevents 2 change events triggering
     e.stopPropagation();
 
-    if(typeof this.props.value === 'undefined') {
+    if (typeof this.props.value === 'undefined') {
       this.setState({ value });
     }
-  };
-
-  getValue = () => {
-    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
-  };
+  }
 
   render() {
     const { component, className, children, name, inline, disabled, ...props } = this.props;
     const fullProps = {
       ...props,
-      className: classnames('md-radio-group', className),
+      className: cn('md-radio-group', className),
     };
-    const value = this.getValue();
+    const value = this._getValue(this.props, this.state);
 
-    return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {
-      return React.cloneElement(child, {
-        key: i,
-        checked: value === child.props.value,
-        onChange: this.handleChange,
-        name: name || child.props.name,
-        className: classnames({ inline }),
-        disabled: child.props.disabled || disabled,
-      });
-    }));
+    return React.createElement(component, fullProps, React.Children.map(children, (child, i) =>
+        React.cloneElement(child, {
+          key: i,
+          checked: value === child.props.value,
+          onChange: this._handleChange,
+          name: name || child.props.name,
+          className: cn({ inline }),
+          disabled: child.props.disabled || disabled,
+        })
+    ));
   }
 }

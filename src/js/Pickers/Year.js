@@ -1,18 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * This is a component for rendering a year in the Date Picker's Year picker
  * list.
  */
-export default class Year extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Year extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     active: PropTypes.bool.isRequired,
@@ -20,17 +13,24 @@ export default class Year extends Component {
     year: PropTypes.number.isRequired,
   };
 
-  handleClick = (e) => {
+  constructor(props) {
+    super(props);
+
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+
+  _handleClick(e) {
     this.props.onClick(this.props.year, e);
-  };
+  }
 
   render() {
     const { active, className, year } = this.props;
     return (
       <button
         type="button"
-        className={classnames('md-year', className, { active })}
-        onClick={this.handleClick}
+        className={cn('md-year', className, { active })}
+        onClick={this._handleClick}
       >
         {year}
       </button>

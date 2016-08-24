@@ -1,23 +1,21 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import cn from 'classnames';
 
-const TabHeader = ({ indicatorStyle, children, className, scrolling, fixedWidth, centered, ...props }) => {
-  return (
-    <header className={className}>
-      <ul
-        className={classnames('md-tabs', {
-          'fixed-width': fixedWidth,
-          'tabs-centered': centered,
-          scrolling,
-        })}
-        {...props}
-      >
-        {children}
-        <span className="md-tab-indicator" style={indicatorStyle} />
-      </ul>
-    </header>
-  );
-};
+const TabHeader = ({ indicatorStyle, children, className, scrolling, fixedWidth, centered, ...props }) => (
+  <header className={className}>
+    <ul
+      className={cn('md-tabs', {
+        'fixed-width': fixedWidth,
+        'tabs-centered': centered,
+        scrolling,
+      })}
+      {...props}
+    >
+      {children}
+      <span className="md-tab-indicator" style={indicatorStyle} />
+    </ul>
+  </header>
+);
 
 TabHeader.propTypes = {
   indicatorStyle: PropTypes.object.isRequired,

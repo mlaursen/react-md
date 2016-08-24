@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable max-len */
 jest.unmock('../TimePeriods');
 jest.unmock('../PickerControl');
 

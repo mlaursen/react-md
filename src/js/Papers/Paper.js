@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import { isBetween } from '../utils';
 
 /**
@@ -13,13 +12,7 @@ import { isBetween } from '../utils';
  * @include md-box-shadow(5);
  * ```
  */
-export default class Paper extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Paper extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply.
@@ -31,14 +24,16 @@ export default class Paper extends Component {
      * the depth is 0, it will raise to a depth of 3 on hover.
      */
     zDepth: (props, propName, component, ...others) => {
-      let err = PropTypes.number.isRequired(props, propName, component, ...others);
-      if(err) {
+      const err = PropTypes.number.isRequired(props, propName, component, ...others);
+      if (err) {
         return err;
       }
 
-      if(!isBetween(props[propName], 0, 5)) {
+      if (!isBetween(props[propName], 0, 5)) {
         return new Error(`The zDepth of 'Paper' must be a number between 0 and 5 but '${props[propName]}' was given.`);
       }
+
+      return null;
     },
 
     /**
@@ -53,7 +48,7 @@ export default class Paper extends Component {
 
   render() {
     const { children, zDepth, ...props } = this.props;
-    const className = classnames(`paper-${zDepth}`, props.className);
+    const className = cn(`paper-${zDepth}`, props.className);
     return <div {...props} className={className}>{children}</div>;
   }
 }

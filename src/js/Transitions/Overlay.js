@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 /**
  * This is a controlled component for rendering an overlay on the page.
@@ -9,13 +8,7 @@ import classnames from 'classnames';
  * Any event listeners will be applied to overlay instead of the `CSSTransitionGroup`
  * containing the overlay when open.
  */
-export default class Overlay extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Overlay extends PureComponent {
   static propTypes = {
     /**
      * Boolean if the Overlay is currently open.
@@ -93,11 +86,11 @@ export default class Overlay extends Component {
     } = this.props;
 
     let overlay;
-    if(isOpen) {
+    if (isOpen) {
       const overlayProps = {
         key: 'overlay',
         style: overlayStyle,
-        className: classnames('md-overlay', overlayClassName),
+        className: cn('md-overlay', overlayClassName),
         ...props,
       };
 

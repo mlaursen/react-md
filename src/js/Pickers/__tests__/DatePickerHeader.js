@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../DatePickerHeader');
 
 import React from 'react';
@@ -15,7 +16,7 @@ describe('DatePickerHeader', () => {
     const DateTimeFormat = require('../__mocks__/DateTimeFormat');
 
     const props = {
-      changeCalendarMode: jest.genMockFunction(),
+      changeCalendarMode: jest.fn(),
       DateTimeFormat,
       locales: 'en-US',
       calendarTempDate: new Date(2016, 1, 1),
@@ -27,8 +28,8 @@ describe('DatePickerHeader', () => {
     expect(controls.length).toBe(2);
 
     const [year, calendar] = controls;
-    expect(year.props.onClick).toBe(header.selectYear);
-    expect(calendar.props.onClick).toBe(header.selectCalendar);
+    expect(year.props.onClick).toBe(header._selectYear);
+    expect(calendar.props.onClick).toBe(header._selectCalendar);
   });
 
   it('formats the calendar temp date', () => {
@@ -36,7 +37,7 @@ describe('DatePickerHeader', () => {
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
       locales: 'en-US',
-      changeCalendarMode: jest.genMockFunction(),
+      changeCalendarMode: jest.fn(),
       calendarMode: 'year',
       DateTimeFormat,
     };

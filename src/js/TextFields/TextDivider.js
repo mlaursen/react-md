@@ -1,17 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `TextDivider` component renders the divider below the `TextField` component.
  */
-export default class TextDivider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class TextDivider extends PureComponent {
   static propTypes = {
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
     active: PropTypes.bool.isRequired,
@@ -21,7 +14,7 @@ export default class TextDivider extends Component {
 
   render() {
     const { lineDirection, active, error, icon } = this.props;
-    const className = classnames('md-text-divider', `from-${lineDirection}`, {
+    const className = cn('md-text-divider', `from-${lineDirection}`, {
       active,
       error,
       'icon-offset': icon,

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import injectTooltip from '../Tooltips';
 import FontIcon from '../FontIcons';
 
@@ -12,13 +11,7 @@ import FontIcon from '../FontIcons';
  * for being a candidate for auto expanding to remaining space, add the className
  * `.prevent-grow`.
  */
-class TableColumn extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class TableColumn extends PureComponent {
   static propTypes = {
     /**
      * The optional className for the table column
@@ -90,15 +83,26 @@ class TableColumn extends Component {
   };
 
   render() {
-    const { className, numeric, adjusted, header, children, tooltip, sorted, sortIconChildren, sortIconClassName, ...props } = this.props;
+    const {
+      className,
+      numeric,
+      adjusted,
+      header,
+      children,
+      tooltip,
+      sorted,
+      sortIconChildren,
+      sortIconClassName,
+      ...props,
+    } = this.props;
     const sortable = typeof sorted === 'boolean';
 
     let displayedChildren = [children, tooltip];
-    if(sortable) {
+    if (sortable) {
       displayedChildren = [
         <FontIcon
           key="sort-icon"
-          className={!sorted ? 'flipped': null}
+          className={!sorted ? 'flipped' : null}
           iconClassName={sortIconClassName}
           children={sortIconChildren}
         />,
@@ -109,7 +113,11 @@ class TableColumn extends Component {
 
     return React.createElement(header ? 'th' : 'td', {
       ...props,
-      className: classnames(`md-table-${header ? 'header' : 'data'}`, className, { numeric, adjusted, sortable }),
+      className: cn(`md-table-${header ? 'header' : 'data'}`, className, {
+        numeric,
+        adjusted,
+        sortable,
+      }),
       children: displayedChildren,
     });
   }

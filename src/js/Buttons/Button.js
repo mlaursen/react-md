@@ -1,16 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import injectInk from '../Inks';
 
 class Button extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
   static propTypes = {
     className: PropTypes.string,
     onClick: PropTypes.func,
@@ -32,11 +25,17 @@ class Button extends Component {
     iconBefore: true,
   };
 
-  renderChildren = () => {
+  constructor(props) {
+    super(props);
+
+    this._renderChildren = this._renderChildren.bind(this);
+  }
+
+  _renderChildren() {
     const { children, iconBefore, label } = this.props;
-    if(!children) {
+    if (!children) {
       return label;
-    } else if(children) {
+    } else if (children) {
       return (
         <div className="icon-separator" key="label-icons">
           {iconBefore && children}
@@ -46,7 +45,7 @@ class Button extends Component {
       );
     }
     return label;
-  };
+  }
 
   render() {
     const {
@@ -64,12 +63,12 @@ class Button extends Component {
 
     return React.createElement(href ? 'a' : 'button', {
       ...props,
-      href: href,
-      className: classnames('md-btn', className, {
+      href,
+      className: cn('md-btn', className, {
         'md-primary': primary,
         'md-secondary': secondary,
       }),
-    }, [ink, this.renderChildren()]);
+    }, [ink, this._renderChildren()]);
   }
 }
 

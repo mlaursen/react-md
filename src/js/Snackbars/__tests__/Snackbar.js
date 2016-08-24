@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Snackbar');
 
 import React from 'react';
@@ -13,7 +13,7 @@ import Toast from '../Toast';
 describe('Snackbar', () => {
   it('renders a toast', () => {
     let toasts = [];
-    const dismiss = jest.genMockFunction();
+    const dismiss = jest.fn();
 
     let snackbar = renderIntoDocument(
       <Snackbar toasts={toasts} dismiss={dismiss} />
@@ -32,7 +32,7 @@ describe('Snackbar', () => {
   });
 
   it('automatically dismisses a toast after the autohide timeout', () => {
-    const dismiss = jest.genMockFunction();
+    const dismiss = jest.fn();
 
     class Test extends React.Component {
       constructor(props) {
@@ -45,7 +45,7 @@ describe('Snackbar', () => {
         return <Snackbar toasts={this.state.toasts} dismiss={dismiss} />;
       }
     }
-    let test = renderIntoDocument(<Test />);
+    const test = renderIntoDocument(<Test />);
 
     let toastComps = scryRenderedComponentsWithType(test, Toast);
     expect(toastComps.length).toBe(0);

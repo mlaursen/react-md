@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { IconButton } from '../Buttons';
 import { Height } from '../Transitions';
@@ -17,16 +16,6 @@ import ListItemText from './ListItemText';
  * component.
  */
 export default class ListItem extends Component {
-  constructor(props) {
-    super(props);
-
-    if (typeof props.component !== 'function') {
-      this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    }
-
-    this.state = { isOpen: props.initiallyOpen, hover: false };
-  }
-
   static propTypes = {
     /**
      * This should be the main text to display.
@@ -156,16 +145,31 @@ export default class ListItem extends Component {
     expandOnClick: true,
   };
 
-  renderLeftChildren = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = { isOpen: props.initiallyOpen, hover: false };
+
+    this._renderLeftChildren = this._renderLeftChildren.bind(this);
+    this._renderRightChildren = this._renderRightChildren.bind(this);
+    this._toggleNestedItems = this._toggleNestedItems.bind(this);
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _isOpen(props, state) {
+    return typeof props.isOpen === 'undefined' ? state.isOpen : props.isOpen;
+  }
+
+  _renderLeftChildren() {
     const { leftIcon, leftAvatar } = this.props;
-    if(!leftIcon && !leftAvatar) {
+    if (!leftIcon && !leftAvatar) {
       return null;
     }
 
     return React.cloneElement(leftIcon || leftAvatar, { key: 'left-children' });
-  };
+  }
 
-  renderRightChildren = () => {
+  _renderRightChildren() {
     const {
       rightIcon,
       rightAvatar,
@@ -175,16 +179,16 @@ export default class ListItem extends Component {
       disabled,
     } = this.props;
 
-    if(!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) { return null; }
+    if (!rightIcon && !rightAvatar && !(nestedItems && nestedItems.length)) { return null; }
 
-    if(nestedItems && nestedItems.length) {
-      const className = classnames('md-list-expander', { 'active': this.isOpen() });
-      if(!rightIcon) {
+    if (nestedItems && nestedItems.length) {
+      const className = cn('md-list-expander', { 'active': this._isOpen(this.props, this.state) });
+      if (!rightIcon) {
         return (
           <IconButton
             key="toggle"
             disabled={disabled}
-            onClick={this.toggleNestedItems}
+            onClick={this._toggleNestedItems}
             iconClassName={expanderIconClassName}
             className={className}
             children={expanderIconChildren}
@@ -196,32 +200,30 @@ export default class ListItem extends Component {
     }
 
     return React.cloneElement(rightIcon || rightAvatar, { key: 'right-children' });
-  };
+  }
 
-  isOpen = () => {
-    return typeof this.props.isOpen === 'undefined' ? this.state.isOpen : this.props.isOpen;
-  };
-
-  toggleNestedItems = (e) => {
+  _toggleNestedItems(e) {
     const { onExpanderClick } = this.props;
     e.stopPropagation();
 
-    if(onExpanderClick) {
+    if (onExpanderClick) {
       onExpanderClick(e);
     } else {
       this.setState({ isOpen: !this.state.isOpen });
     }
-  };
+  }
 
-  handleClick = (e) => {
+  _handleClick(e) {
     const { onClick, nestedItems, expandOnClick, disabled } = this.props;
-    if(disabled) { return; }
-    onClick && onClick(e);
-
-    if(expandOnClick && nestedItems) {
-      this.toggleNestedItems(e);
+    if (disabled) { return; }
+    if (onClick) {
+      onClick(e);
     }
-  };
+
+    if (expandOnClick && nestedItems) {
+      this._toggleNestedItems(e);
+    }
+  }
 
   render() {
     const { hover } = this.state;
@@ -251,7 +253,7 @@ export default class ListItem extends Component {
     delete props.expandOnClick;
 
     let children;
-    if(this.isOpen() && nestedItems && nestedItems.length) {
+    if (this._isOpen(this.props, this.state) && nestedItems && nestedItems.length) {
       children = (
         <Height key="nested-list">
           <List>
@@ -264,7 +266,7 @@ export default class ListItem extends Component {
     return (
       <TransitionGroup
         component="li"
-        className={classnames('md-list-item', className, { hover })}
+        className={cn('md-list-item', className, { hover })}
         style={style}
       >
         <ListTile
@@ -272,25 +274,25 @@ export default class ListItem extends Component {
           style={tileStyle}
           component={component}
           disabled={disabled}
-          onClick={this.handleClick}
-          className={classnames(tileClassName, {
+          onClick={this._handleClick}
+          className={cn(tileClassName, {
             'secondary-action': nestedItems && nestedItems.length,
             'avatar-height': !secondaryText && (leftAvatar || rightAvatar),
             'two-lines': !threeLines && secondaryText,
             'three-lines': threeLines && secondaryText,
           })}
         >
-          {this.renderLeftChildren()}
+          {this._renderLeftChildren()}
           <ListItemText
             key="text"
             primaryText={primaryText}
             secondaryText={secondaryText}
-            className={classnames({
+            className={cn({
               'avatar-offset': !!leftAvatar,
               'icon-offset': !!leftIcon,
             })}
           />
-          {this.renderRightChildren()}
+          {this._renderRightChildren()}
         </ListTile>
         {children}
       </TransitionGroup>

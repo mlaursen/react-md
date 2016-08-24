@@ -1,18 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The divider component will pass all other props such as style or
  * event listeners on to the component.
  */
-export default class Divider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Divider extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the divider.
@@ -40,7 +33,7 @@ export default class Divider extends Component {
 
     const dividerProps = {
       role: 'divider',
-      className: classnames('md-divider', className, { inset, vertical }),
+      className: cn('md-divider', className, { inset, vertical }),
       ...props,
     };
 

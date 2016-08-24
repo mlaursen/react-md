@@ -1,17 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `Subheader` component is generally used inside of lists or menus.
  */
-export default class Subheader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Subheader extends PureComponent {
   static propTypes = {
     /**
      * The text to display as a subheader.
@@ -54,7 +47,7 @@ export default class Subheader extends Component {
 
     return React.createElement(component, {
       ...props,
-      className: classnames('md-subheader', className, {
+      className: cn('md-subheader', className, {
         inset,
         'md-primary': primary,
       }),
