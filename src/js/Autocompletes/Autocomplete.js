@@ -423,6 +423,7 @@ export default class Autocomplete extends PureComponent {
     this._handleItemClick = this._handleItemClick.bind(this);
     this._handleTouchStart = this._handleTouchStart.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
+    this._handleTextFieldKeyDown = this._handleTextFieldKeyDown.bind(this);
     this._focusSuggestion = this._focusSuggestion.bind(this);
     this._findInlineSuggestions = this._findInlineSuggestions.bind(this);
     this._mapToListItem = this._mapToListItem.bind(this);
