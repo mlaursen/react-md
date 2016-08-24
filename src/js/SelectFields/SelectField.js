@@ -177,7 +177,7 @@ export default class SelectField extends Component {
      * Boolean if the select field should automatically increase it's text field's
      * min width to the max size of it's label or placeholder text.
      */
-    adjustMinWidth: PropTypes.bool.isRequired,
+    adjustMinWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -189,7 +189,6 @@ export default class SelectField extends Component {
     iconClassName: 'material-icons',
     iconChildren: 'arrow_drop_down',
     noAutoAdjust: false,
-    adjustMinWidth: false,
   };
 
   componentWillUpdate(nextProps, nextState) {
