@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 const CLOCK_PADDING = 4;
 
@@ -9,17 +8,7 @@ const CLOCK_PADDING = 4;
  * in a clock. The time will be positioned based on it's given index
  * and the radius of the clock.
  */
-export default class ClockTime extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      // default size in scss
-      size: 18,
-    };
-  }
-
+export default class ClockTime extends PureComponent {
   static propTypes = {
     /**
      * The index of the current time to be displayed. This
@@ -43,18 +32,28 @@ export default class ClockTime extends Component {
     radius: PropTypes.number.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // default size in scss
+      size: 18,
+    };
+
+    this._setPosition = this._setPosition.bind(this);
+  }
+
   componentDidMount() {
-    this.setPosition();
+    this._setPosition(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
-
-      this.setPosition(nextProps);
+    if (this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
+      this._setPosition(nextProps);
     }
   }
 
-  setPosition = ({ radius, index } = this.props) => {
+  _setPosition({ radius, index }) {
     // 36 is default size for the time
     const size = (this.refs.time.offsetWidth || 36) / 2;
     const timeRadians = (Math.PI / 2) - index * (Math.PI / 6);
@@ -69,14 +68,14 @@ export default class ClockTime extends Component {
         left: outerRadius + innerRadius * Math.cos(timeRadians),
       },
     });
-  };
+  }
 
   render() {
     const { time, active } = this.props;
     return (
       <div
         ref="time"
-        className={classnames('md-clock-time', { active })}
+        className={cn('md-clock-time', { active })}
         style={this.state.style}
       >
         <span className="md-clock-time-value">{time}</span>

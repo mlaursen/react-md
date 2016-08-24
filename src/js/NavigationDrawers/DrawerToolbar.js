@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import { IconButton } from '../Buttons';
 
@@ -8,13 +7,7 @@ import { IconButton } from '../Buttons';
  * The `DrawerToolbar` component is the Toolbar that gets rendered to the right
  * of the sliding drawer and above the main content.
  */
-export default class DrawerToolbar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DrawerToolbar extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -89,8 +82,8 @@ export default class DrawerToolbar extends Component {
       children,
     } = this.props;
 
-    let menuBtn, toolbarTitle;
-    if(temporary || (!isOpen && persistent)) {
+    let menuBtn;
+    if (temporary || (!isOpen && persistent)) {
       menuBtn = (
         <IconButton
           key="menu-btn"
@@ -101,14 +94,15 @@ export default class DrawerToolbar extends Component {
       );
     }
 
-    if(title) {
+    let toolbarTitle;
+    if (title) {
       toolbarTitle = <h3 key="title" className="md-title">{title}</h3>;
     }
 
     return (
       <header
         style={style}
-        className={classnames('md-navigation-drawer-toolbar', className, drawerType, {
+        className={cn('md-navigation-drawer-toolbar', className, drawerType, {
           'active': isOpen && !temporary,
         })}
       >

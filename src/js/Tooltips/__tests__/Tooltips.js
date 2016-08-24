@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../injectTooltip');
 

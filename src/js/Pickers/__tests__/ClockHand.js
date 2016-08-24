@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../ClockHand');
 
 import React from 'react';
@@ -54,7 +54,7 @@ describe('ClockHand', () => {
 
   it('adds the className invisible-minute when the hand is on a minute that is not divisible by 5', () => {
     let hand = renderIntoDocument(
-      <ClockHand coords={136} time={0} minutes={true} />
+      <ClockHand coords={136} time={0} minutes />
     );
 
     let className = findDOMNode(hand).className;
@@ -62,7 +62,7 @@ describe('ClockHand', () => {
     expect(className).not.toContain('invisible-minute');
 
     hand = renderIntoDocument(
-      <ClockHand coords={136} time={2} minutes={true} />
+      <ClockHand coords={136} time={2} minutes />
     );
 
     className = findDOMNode(hand).className;
@@ -70,7 +70,7 @@ describe('ClockHand', () => {
     expect(className).toContain('invisible-minute');
 
     hand = renderIntoDocument(
-      <ClockHand coords={136} time={59} minutes={true} />
+      <ClockHand coords={136} time={59} minutes />
     );
 
     className = findDOMNode(hand).className;
@@ -78,7 +78,7 @@ describe('ClockHand', () => {
     expect(className).toContain('invisible-minute');
 
     hand = renderIntoDocument(
-      <ClockHand coords={136} time={30} minutes={true} />
+      <ClockHand coords={136} time={30} minutes />
     );
 
     className = findDOMNode(hand).className;

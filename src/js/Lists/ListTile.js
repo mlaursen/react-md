@@ -1,17 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import injectInk from '../Inks';
 import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
 
-class ListTile extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class ListTile extends PureComponent {
   static propTypes = {
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -32,7 +25,7 @@ class ListTile extends Component {
   render() {
     const { ink, children, className, ...props } = this.props;
     return (
-      <AccessibleFakeButton {...props} className={classnames('md-list-tile', className)}>
+      <AccessibleFakeButton {...props} className={cn('md-list-tile', className)}>
         {ink}
         {children}
       </AccessibleFakeButton>

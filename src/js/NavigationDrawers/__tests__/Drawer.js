@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Drawer');
 
 import React from 'react';
@@ -11,7 +11,7 @@ import {
 
 import Drawer from '../Drawer';
 import DrawerHeader from '../DrawerHeader';
-import { List } from '../../Lists';
+import List from '../../Lists/List';
 
 describe('Drawer', () => {
   it('merges className and style', () => {

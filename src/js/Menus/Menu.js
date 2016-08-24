@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 import { List } from '../Lists';
 
 import { onOutsideClick } from '../utils';
@@ -14,13 +13,7 @@ import { onOutsideClick } from '../utils';
  * Menus allow users to take an action by selecting from a list of choices revealed
  * upon opening a temporary, new sheet of material.
  */
-export default class Menu extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Menu extends PureComponent {
   static Positions = {
     TOP_RIGHT: 'tr',
     TOP_LEFT: 'tl',
@@ -74,7 +67,12 @@ export default class Menu extends Component {
     /**
      * The position that the menu should appear from.
      */
-    position: PropTypes.oneOf([ Menu.Positions.TOP_RIGHT, Menu.Positions.TOP_LEFT, Menu.Positions.BOTTOM_RIGHT, Menu.Positions.BOTTOM_LEFT, Menu.Positions.BELOW ]),
+    position: PropTypes.oneOf([
+      Menu.Positions.TOP_RIGHT,
+      Menu.Positions.TOP_LEFT,
+      Menu.Positions.BOTTOM_RIGHT,
+      Menu.Positions.BOTTOM_LEFT, Menu.Positions.BELOW,
+    ]),
 
     /**
      * An optional function that will force the menu to close. This is used so that the
@@ -125,15 +123,15 @@ export default class Menu extends Component {
 
   componentDidMount() {
     const { isOpen, autoclose, close } = this.props;
-    if(isOpen && autoclose && close) {
+    if (isOpen && autoclose && close) {
       window.addEventListener('click', this.closeOnOutsideClick);
     }
   }
 
   componentDidUpdate(prevProps) {
     const { isOpen, autoclose, close } = this.props;
-    if(!close || !autoclose || isOpen === prevProps.isOpen) { return; }
-    if(isOpen) {
+    if (!close || !autoclose || isOpen === prevProps.isOpen) { return; }
+    if (isOpen) {
       window.addEventListener('click', this.closeOnOutsideClick);
     } else {
       window.removeEventListener('click', this.closeOnOutsideClick);
@@ -156,8 +154,8 @@ export default class Menu extends Component {
    */
   handleListClick = (e) => {
     let node = e.target;
-    while(node) {
-      if(node.classList.contains('md-list-item')) {
+    while (node) {
+      if (node.classList.contains('md-list-item')) {
         this.props.close();
         return;
       }
@@ -186,19 +184,22 @@ export default class Menu extends Component {
     } = this.props;
 
     let menuItems;
-    if(isOpen) {
+    if (isOpen) {
       const listProps = {
         ref: 'list',
-        className: classnames('md-menu', listClassName, `md-transition-${position}`, { cascading, 'limit-height': limitHeight }),
+        className: cn('md-menu', listClassName, `md-transition-${position}`, {
+          cascading,
+          'limit-height': limitHeight,
+        }),
         style: listStyle,
       };
 
-      if(autoclose && close) {
+      if (autoclose && close) {
         listProps.onClick = this.handleListClick;
       }
 
       const items = React.Children.map(children, (child, key) => {
-        if(!child) { return child; }
+        if (!child) { return child; }
 
         return React.cloneElement(child, {
           key: child.key || key,
@@ -220,7 +221,7 @@ export default class Menu extends Component {
         transitionName="md-menu"
         transitionEnterTimeout={300}
         transitionLeaveTimeout={300}
-        className={classnames('md-menu-container', className, { 'full-width': fullWidth })}
+        className={cn('md-menu-container', className, { 'full-width': fullWidth })}
         {...props}
       >
         {toggle}

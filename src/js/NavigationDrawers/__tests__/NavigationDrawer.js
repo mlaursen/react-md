@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../NavigationDrawer');
 
 import React from 'react';
@@ -38,7 +38,7 @@ describe('NavigationDrawer', () => {
       drawerChildren: <div>Some Stuff</div>,
     };
 
-    let nav = renderIntoDocument(<NavigationDrawer {...props} />);
+    const nav = renderIntoDocument(<NavigationDrawer {...props} />);
     // since there is no window object for media queries
     nav.setState({
       mobile: false,
@@ -53,7 +53,7 @@ describe('NavigationDrawer', () => {
     expect(drawers[0].props.className).toContain(props.drawerClassName);
     expect(drawers[0].props.autoclose).toBe(NavigationDrawer.defaultProps.autoclose);
     expect(drawers[0].props.title).toBe(props.drawerTitle);
-    expect(drawers[0].props.closeDrawer).toBe(nav.closeDrawer);
+    expect(drawers[0].props.closeDrawer).toBe(nav._closeDrawer);
     expect(drawers[0].props.closeIconChildren).toBe(NavigationDrawer.defaultProps.closeIconChildren);
     expect(drawers[0].props.closeIconClassName).toBe(NavigationDrawer.defaultProps.closeIconClassName);
     expect(drawers[0].props.temporary).toBe(false);
@@ -64,7 +64,7 @@ describe('NavigationDrawer', () => {
     expect(drawers[0].props.isOpen).toBe(true);
     expect(drawers[0].props.navItems).toBe(props.navItems);
 
-    nav.closeDrawer();
+    nav._closeDrawer();
     drawers = scryRenderedComponentsWithType(nav, Drawer);
     expect(drawers.length).toBe(0);
 
@@ -115,14 +115,19 @@ describe('NavigationDrawer', () => {
     expect(toolbar.props.persistent).toBeDefined();
     expect(toolbar.props.title).toBe(props.toolbarTitle);
     expect(toolbar.props.children).toBe(props.toolbarChildren);
-    expect(toolbar.props.openDrawer).toBe(nav.openDrawer);
+    expect(toolbar.props.openDrawer).toBe(nav._openDrawer);
     expect(toolbar.props.menuIconChildren).toBe(NavigationDrawer.defaultProps.menuIconChildren);
     expect(toolbar.props.menuIconClassName).toBe(NavigationDrawer.defaultProps.menuIconClassName);
   });
 
   it('renders an overlay for temporary drawers', () => {
     const nav = renderIntoDocument(<NavigationDrawer navItems={[]} />);
-    nav.setState({ mobile: false, tablet: false, desktop: true, drawerType: NavigationDrawer.defaultProps.FULL_HEIGHT });
+    nav.setState({
+      mobile: false,
+      tablet: false,
+      desktop: true,
+      drawerType: NavigationDrawer.defaultProps.FULL_HEIGHT,
+    });
 
     let overlays = scryRenderedComponentsWithType(nav, Overlay);
     expect(overlays.length).toBe(0);
@@ -131,7 +136,7 @@ describe('NavigationDrawer', () => {
     overlays = scryRenderedComponentsWithType(nav, Overlay);
     expect(overlays.length).toBe(1);
     expect(overlays[0].props.isOpen).toBe(nav.state.isOpen);
-    expect(overlays[0].props.onClick).toBe(nav.closeDrawer);
+    expect(overlays[0].props.onClick).toBe(nav._closeDrawer);
 
     nav.setState({ drawerType: NavigationDrawer.DrawerType.TEMPORARY_MINI });
     overlays = scryRenderedComponentsWithType(nav, Overlay);

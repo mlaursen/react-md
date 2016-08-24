@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../TimePickerContainer');
 jest.unmock('../../utils/dates');
 
@@ -28,7 +28,7 @@ describe('TimePickerContainer', () => {
         pickerStyle={pickerStyle}
         pickerClassName={pickerClassName}
         locales="en-US"
-        initiallyOpen={true}
+        initiallyOpen
       />
     );
 
@@ -43,7 +43,7 @@ describe('TimePickerContainer', () => {
 
   it('renders a transition group if displayed inline', () => {
     let container = renderIntoDocument(
-      <TimePickerContainer inline={true} locales="en-US" />
+      <TimePickerContainer inline locales="en-US" />
     );
 
     let transitions = scryRenderedComponentsWithType(container, TransitionGroup);
@@ -62,19 +62,19 @@ describe('TimePickerContainer', () => {
     let pickers = scryRenderedComponentsWithType(container, TimePicker);
     expect(pickers.length).toBe(0);
 
-    container = renderIntoDocument(<TimePickerContainer initiallyOpen={true} locales="en-US" />);
+    container = renderIntoDocument(<TimePickerContainer initiallyOpen locales="en-US" />);
     pickers = scryRenderedComponentsWithType(container, TimePicker);
     expect(pickers.length).toBe(1);
 
     const { props } = pickers[0];
-    expect(props.onOkClick).toBe(container.handleOkClick);
+    expect(props.onOkClick).toBe(container._handleOkClick);
     expect(props.okLabel).toBe(TimePickerContainer.defaultProps.okLabel);
     expect(props.okPrimary).toBe(TimePickerContainer.defaultProps.okPrimary);
-    expect(props.onCancelClick).toBe(container.handleCancelClick);
+    expect(props.onCancelClick).toBe(container._handleCancelClick);
     expect(props.cancelLabel).toBe(TimePickerContainer.defaultProps.cancelLabel);
     expect(props.cancelPrimary).toBe(TimePickerContainer.defaultProps.cancelPrimary);
-    expect(props.setTimeMode).toBe(container.setTimeMode);
-    expect(props.setTempTime).toBe(container.setTempTime);
+    expect(props.setTimeMode).toBe(container._setTimeMode);
+    expect(props.setTempTime).toBe(container._setTempTime);
     expect(props.tempTime).toBe(container.state.tempTime);
     expect(props.timeMode).toBe(container.state.timeMode);
     expect(props.hours).toBe(container.state.hours);
@@ -91,7 +91,7 @@ describe('TimePickerContainer', () => {
 
     const container = renderIntoDocument(<TimePickerContainer {...props} />);
     const event = { button: 2 };
-    container.handleOkClick(event);
+    container._handleOkClick(event);
     expect(props.onChange.mock.calls.length).toBe(1);
     expect(props.onChange.mock.calls[0][0]).toBe('3:15 AM');
     expect(props.onChange.mock.calls[0][1]).toEqual(new Date(2016, 3, 15, 3, 15));

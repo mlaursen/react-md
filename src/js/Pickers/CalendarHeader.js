@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+/* eslint-disable new-cap */
+import React, { PureComponent, PropTypes } from 'react';
 
 import IconButton from '../Buttons/IconButton';
 import { isMonthBefore, getDayOfWeek, addDate } from '../utils/dates';
@@ -10,14 +10,7 @@ import { isMonthBefore, getDayOfWeek, addDate } from '../utils/dates';
  * current month/year. It also renders the abbreviiations for the days
  * of the week.
  */
-export default class CalendarHeader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = this.generateDows(props);
-  }
-
+export default class CalendarHeader extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
@@ -35,24 +28,30 @@ export default class CalendarHeader extends Component {
     ]).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = this._generateDows(props);
+  }
+
   componentWillReceiveProps(nextProps) {
     const { DateTimeFormat, locales } = this.props;
-    if(DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales) {
-      this.setState(this.generateDows(nextProps));
+    if (DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales) {
+      this.setState(this._generateDows(nextProps));
     }
   }
 
-  generateDows = ({ DateTimeFormat, locales, date } = this.props) => {
+  _generateDows({ DateTimeFormat, locales, date } = this.props) {
     const sunday = getDayOfWeek(date, 0);
     const formatter = DateTimeFormat(locales, { weekday: 'narrow' });
     const dows = [];
-    for(let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i++) {
       const dow = formatter.format(addDate(sunday, i, 'D'));
       dows.push(<h4 className="dow" key={i}>{dow}</h4>);
     }
 
     return { dows };
-  };
+  }
 
   render() {
     const { dows } = this.state;

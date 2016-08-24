@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require,max-len */
 jest.unmock('../DatePickerContainer');
 jest.unmock('../DatePicker');
 
@@ -20,7 +21,7 @@ describe('DatePickerContainer', () => {
     const className = 'test';
     const pickerStyle = { background: 'black' };
     const pickerClassName = 'picker-test';
-    let datePickerContainer = renderIntoDocument(
+    const datePickerContainer = renderIntoDocument(
       <DatePickerContainer
         style={style}
         className={className}
@@ -110,13 +111,9 @@ describe('DatePickerContainer', () => {
 
   it('when the ok button is clicked, the onChange prop is called with the formatted date string, the new date object, and the event', () => {
     const defaultValue = '3/17/2016';
-    const DateTimeFormat = jest.genMockFunction().mockImplementation(() => {
-      return {
-        format: () => defaultValue,
-      };
-    });
+    const DateTimeFormat = jest.fn(() => ({ format: () => defaultValue }));
     const event = { target: 'a' };
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const container = renderIntoDocument(
       <DatePickerContainer
         locales="en-US"
@@ -126,7 +123,7 @@ describe('DatePickerContainer', () => {
       />
     );
 
-    container.handleOkClick(event);
+    container._handleOkClick(event);
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe(defaultValue);
     expect(onChange.mock.calls[0][1]).toEqual(new Date(defaultValue));
@@ -134,13 +131,9 @@ describe('DatePickerContainer', () => {
   });
 
   it('calls the onChange prop with the new formatted date string and the new date object when the autoOk prop is true and a new date is selected.', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const defaultValue = '3/17/2016';
-    const DateTimeFormat = jest.genMockFunction().mockImplementation(() => {
-      return {
-        format: () => defaultValue,
-      };
-    });
+    const DateTimeFormat = jest.fn(() => ({ format: () => defaultValue }));
 
     let container = renderIntoDocument(
       <DatePickerContainer
@@ -152,7 +145,7 @@ describe('DatePickerContainer', () => {
     );
 
     let tempDate = new Date(2016, 2, 15);
-    container.setCalendarTempDate(tempDate);
+    container._setCalendarTempDate(tempDate);
     expect(onChange.mock.calls.length).toBe(0);
     expect(container.state.calendarTempDate).toEqual(tempDate);
 
@@ -162,12 +155,12 @@ describe('DatePickerContainer', () => {
         onChange={onChange}
         defaultValue={defaultValue}
         DateTimeFormat={DateTimeFormat}
-        autoOk={true}
+        autoOk
       />
     );
 
     tempDate = new Date(2016, 2, 18);
-    container.setCalendarTempDate(tempDate);
+    container._setCalendarTempDate(tempDate);
     expect(onChange.mock.calls.length).toBe(1);
     expect(container.state.calendarTempDate).toEqual(tempDate);
     expect(onChange.mock.calls[0][0]).toBe(defaultValue);

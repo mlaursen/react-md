@@ -16,9 +16,9 @@
     "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
     "lint:styles": "scss-lint src/scss",
-    "lint:scripts": "eslint -c .eslintrc src/js/**",
+    "lint:scripts": "eslint -c .eslintrc src",
     "lint": "npm run lint:styles && npm run lint:scripts",
-    "lint:fix": "eslint -c .eslintrc --fix src/js/**",
+    "lint:fix": "eslint -c .eslintrc --fix src",
     "build:umd": "webpack --config ./webpack.config.js --progress --colors",
     "prebuild": "rimraf lib && rimraf dist && npm run lint",
     "build": "npm run scripts && npm run build:umd && npm run styles"
@@ -54,13 +54,15 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "babelify": "^7.3.0",
-    "eslint": "^3.2.2",
-    "eslint-plugin-react": "^6.0.0",
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.1.2",
     "intl": "^1.2.4",
     "jest-cli": "^14.1.0",
     "react": "^15.3.x",
     "react-addons-css-transition-group": "^15.3.x",
-    "react-addons-pure-render-mixin": "^15.3.x",
     "react-addons-test-utils": "^15.3.x",
     "react-addons-transition-group": "^15.3.x",
     "react-dom": "^15.3.x",
@@ -71,11 +73,10 @@
     "classnames": "^2.2.5"
   },
   "peerDependencies": {
-    "react": ">= 0.14.0",
-    "react-addons-css-transition-group": ">= 0.14.0",
-    "react-addons-pure-render-mixin": ">= 0.14.0",
-    "react-addons-transition-group": ">= 0.14.0",
-    "react-dom": ">= 0.14.0"
+    "react": ">= 15.0.0",
+    "react-addons-css-transition-group": ">= 15.0.0",
+    "react-addons-transition-group": ">= 15.0.0",
+    "react-dom": ">= 15.0.0"
   },
   "jest": {
     "cacheDirectory": "./.jest-cache",

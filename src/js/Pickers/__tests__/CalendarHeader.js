@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../CalendarHeader');
 
 import React from 'react';
@@ -18,8 +19,8 @@ describe('CalendarHeader', () => {
     const props = {
       DateTimeFormat,
       locales: 'en-US',
-      onPreviousClick: jest.genMockFunction(),
-      onNextClick: jest.genMockFunction(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
       previousIcon: 'a',
       nextIcon: 'a',
       date: new Date(),
@@ -36,8 +37,8 @@ describe('CalendarHeader', () => {
     const props = {
       DateTimeFormat,
       locales: 'en-US',
-      onPreviousClick: jest.genMockFunction(),
-      onNextClick: jest.genMockFunction(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
       previousIcon: 'a',
       nextIcon: 'a',
       date: new Date(),
@@ -56,8 +57,8 @@ describe('CalendarHeader', () => {
     const props = {
       DateTimeFormat,
       locales: 'en-US',
-      onPreviousClick: jest.genMockFunction(),
-      onNextClick: jest.genMockFunction(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
       previousIcon: 'a',
       nextIcon: 'a',
       date: new Date(),

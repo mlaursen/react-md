@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes, isValidElement, createElement } from 'react';
+import cn from 'classnames';
 
 import Divider from '../Dividers';
-import { List, ListItem } from '../Lists';
+import List from '../Lists/List';
+import ListItem from '../Lists/ListItem';
 import Subheader from '../Subheaders';
 import DrawerHeader from './DrawerHeader';
 
@@ -11,13 +11,7 @@ import DrawerHeader from './DrawerHeader';
  * The `Drawer` component is another version of the `Sidebar` component
  * that is built into the `NavigationDrawer` component.
  */
-export default class Drawer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Drawer extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the drawer.
@@ -133,17 +127,23 @@ export default class Drawer extends Component {
     drawerHeaderFixed: PropTypes.bool,
   };
 
-  mapItemsToComponents = (item, key) => {
-    if(React.isValidElement(item)) {
+  constructor(props) {
+    super(props);
+
+    this._mapItemsToComponents = this._mapItemsToComponents.bind(this);
+  }
+
+  _mapItemsToComponents(item, key) {
+    if (isValidElement(item)) {
       return item;
     }
 
     const { mini, isOpen } = this.props;
     const { divider, subheader, nestedItems, ...remainingProps } = item;
     let component;
-    if(divider) {
+    if (divider) {
       component = Divider;
-    } else if(subheader) {
+    } else if (subheader) {
       component = Subheader;
     } else {
       component = ListItem;
@@ -153,12 +153,12 @@ export default class Drawer extends Component {
       key: item.key || key,
     });
 
-    if(nestedItems && (!mini || isOpen)) {
-      props.nestedItems = nestedItems.map(this.mapItemsToComponents);
+    if (nestedItems && (!mini || isOpen)) {
+      props.nestedItems = nestedItems.map(this._mapItemsToComponents);
     }
 
-    return React.createElement(component, props);
-  };
+    return createElement(component, props);
+  }
 
   render() {
     const {
@@ -180,9 +180,9 @@ export default class Drawer extends Component {
       drawerHeaderFixed,
     } = this.props;
 
-    const items = navItems.map(this.mapItemsToComponents);
+    const items = navItems.map(this._mapItemsToComponents);
     let header;
-    if(!mini || (mini && isOpen)) {
+    if (!mini || (mini && isOpen)) {
       header = (
         <DrawerHeader
           key={header}
@@ -200,7 +200,7 @@ export default class Drawer extends Component {
     return (
       <nav
         style={style}
-        className={classnames('md-navigation-drawer', className, drawerType, {
+        className={cn('md-navigation-drawer', className, drawerType, {
           mobile,
           'active': mini && isOpen,
           'mobile-inactive': mobile && !isOpen,
@@ -211,7 +211,7 @@ export default class Drawer extends Component {
         <List
           key="nav-items"
           onClick={autoclose && temporary ? closeDrawer : null}
-          className={classnames({ 'md-drawer-scrolling-list': drawerHeaderFixed })}
+          className={cn({ 'md-drawer-scrolling-list': drawerHeaderFixed })}
         >
           {items}
         </List>

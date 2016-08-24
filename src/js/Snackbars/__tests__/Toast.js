@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Toast');
 jest.unmock('../../Buttons/Button');
 jest.unmock('../../Buttons/FlatButton');
@@ -19,7 +19,7 @@ describe('Toast', () => {
     const style = { display: 'block' };
     const className = 'test';
     const t = { text: 'Toast', action: 'Ok' };
-    const dismiss = jest.genMockFunction();
+    const dismiss = jest.fn();
     const toast = renderIntoDocument(
       <Toast style={style} className={className} toast={t} dismiss={dismiss} />
     );
@@ -30,7 +30,7 @@ describe('Toast', () => {
   });
 
   it('renders the text in the toast', () => {
-    const dismiss = jest.genMockFunction();
+    const dismiss = jest.fn();
     const toast = renderIntoDocument(
       <Toast toast={{ text: 'Toast' }} dismiss={dismiss} />
     );
@@ -40,7 +40,7 @@ describe('Toast', () => {
   });
 
   it('automatically dismisses a toast that has an action of a string', () => {
-    const dismiss = jest.genMockFunction();
+    const dismiss = jest.fn();
     const t = {
       text: 'Toast',
       action: 'Ok',

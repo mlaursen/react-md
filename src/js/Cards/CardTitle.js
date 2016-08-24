@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
+import contextTypes from './contextTypes';
 import CardExpander from './CardExpander';
 
 /**
@@ -12,13 +12,7 @@ import CardExpander from './CardExpander';
  *
  * This component can also act as an expander which will inject the `CardExpander`.
  */
-export default class CardTitle extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CardTitle extends PureComponent {
   static propTypes = {
     /**
      * The main title to display.
@@ -62,12 +56,20 @@ export default class CardTitle extends Component {
     avatar: null,
   };
 
+  static contextTypes = contextTypes;
+
   render() {
     const { title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
     delete props.expandable;
 
     return (
-      <div {...props} className={classnames('md-card-title', className, { 'title-large': !!avatar, 'card-expander': isExpander })}>
+      <div
+        {...props}
+        className={cn('md-card-title', className, {
+          'title-large': !!avatar,
+          'card-expander': isExpander,
+        })}
+      >
         {avatar}
         <div className="titles">
           <h2 className="md-headline">{title}</h2>

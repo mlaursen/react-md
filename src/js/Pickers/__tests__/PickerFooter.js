@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../PickerFooter');
 
 import React from 'react';
@@ -14,10 +14,10 @@ describe('PickerFooter', () => {
   it('renders two flat buttons', () => {
     const okLabel = 'Ok';
     const okPrimary = true;
-    const onOkClick = jest.genMockFunction();
+    const onOkClick = jest.fn();
     const cancelLabel = 'Cancel';
     const cancelPrimary = false;
-    const onCancelClick = jest.genMockFunction();
+    const onCancelClick = jest.fn();
 
     const pickerFooter = renderIntoDocument(
       <PickerFooter

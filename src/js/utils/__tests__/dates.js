@@ -1,9 +1,19 @@
-/*eslint-env jest*/
-/*eslint-disable no-undefined*/
+/* eslint-env jest*/
+/* eslint-disable no-undefined*/
 jest.unmock('../dates');
 import { DateTimeFormat } from 'intl';
 
-import { stripTime, getLastDay, getDayOfWeek, addDate, subtractDate, getTimeString, extractTimeParts, addHours, subtractHours } from '../dates';
+import {
+  stripTime,
+  getLastDay,
+  getDayOfWeek,
+  addDate,
+  subtractDate,
+  getTimeString,
+  extractTimeParts,
+  addHours,
+  subtractHours,
+} from '../dates';
 
 const march14 = new Date(2016, 2, 14, 15, 22, 18, 450);
 const threeFiftyOne = new Date(2016, 3, 2, 3, 51);
@@ -86,7 +96,6 @@ describe('subtractDate', () => {
 
 describe('getTimeString', () => {
   it('gets a formatted time string for a given locale', () => {
-
     expect(getTimeString(DateTimeFormat, 'en-US', threeFiftyOne)).toBe('3:51 AM');
     expect(getTimeString(DateTimeFormat, 'da-DK', threeFiftyOne)).toBe('3.51');
   });

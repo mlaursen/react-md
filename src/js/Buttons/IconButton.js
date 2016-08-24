@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import FontIcon from '../FontIcons';
 import injectInk from '../Inks';
@@ -13,13 +12,7 @@ import injectTooltip from '../Tooltips';
  * Any other props (such as style or event listeners) will also be
  * applied.
  */
-class IconButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class IconButton extends PureComponent {
   static propTypes = {
     /**
      * The className to use for rendering the `FontIcon`.
@@ -102,17 +95,17 @@ class IconButton extends Component {
     const btnProps = {
       ...props,
       disabled,
-      className: classnames('md-btn md-icon-btn', className),
+      className: cn('md-btn md-icon-btn', className),
     };
 
-    if(href) {
+    if (href) {
       btnProps.href = href;
     } else {
       btnProps.type = type;
     }
 
     let displayedChildren = children;
-    if(!(children && children.type && children.type === FontIcon)) {
+    if (!(children && children.type && children.type === FontIcon)) {
       displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
     }
 

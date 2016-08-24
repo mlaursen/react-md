@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import injectInk from '../Inks';
 
 /**
@@ -8,13 +7,7 @@ import injectInk from '../Inks';
  * It is used for generating a tab and holding some sort of content
  * to be displayed when active.
  */
-class Tab extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class Tab extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply.
@@ -57,27 +50,34 @@ class Tab extends Component {
      * Ink that has been injected from the `injectInk` HOC. Do not use.
      */
     ink: PropTypes.node.isRequired,
+
+    /**
+     * An optional id for the tab.
+     */
+    id: PropTypes.string,
   };
 
   render() {
-    const { className, icon, label, label2, checked, ink, onChange, ...props } = this.props;
+    const { className, icon, label, label2, checked, ink, onChange, id, ...props } = this.props;
 
     return (
       <div
-        className={classnames('md-tab', className, { 'active': checked })}
+        className={cn('md-tab', className, { 'active': checked })}
         {...props}
       >
         {ink}
         <label
-          className={classnames('md-tab-label', {
+          className={cn('md-tab-label', {
             'multiline': !!label && !!label2,
             'with-icon': !!label && !!icon,
           })}
+          htmlFor={id}
         >
           {icon}
           {label && <div>{label}</div>}
           {label2 && <div>{label2}</div>}
           <input
+            id={id}
             type="radio"
             className="md-tab-control"
             checked={checked}

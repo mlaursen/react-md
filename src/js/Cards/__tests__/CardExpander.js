@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../CardExpander');
 jest.unmock('../Card');
 jest.unmock('../CardActions');
@@ -19,14 +19,14 @@ import CardActions from '../CardActions';
 
 describe('CardExpander', () => {
   it('allows for a customizable expander icon', () => {
-    let card = renderIntoDocument(<Card><CardActions isExpander={true} /></Card>);
+    let card = renderIntoDocument(<Card><CardActions isExpander /></Card>);
     let icon = findRenderedDOMComponentWithClass(card, 'md-icon');
     expect(icon.classList.contains('material-icons')).toBe(true);
     expect(icon.textContent).toBe('keyboard_arrow_down');
 
     card = renderIntoDocument(
       <Card iconClassName="fa fa-github" iconChildren={null}>
-        <CardActions isExpander={true} />
+        <CardActions isExpander />
       </Card>
     );
 
@@ -37,10 +37,10 @@ describe('CardExpander', () => {
   });
 
   it('allows for an optional onExpanderClick function', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const card = renderIntoDocument(
       <Card onExpanderClick={onClick}>
-        <CardActions isExpander={true} />
+        <CardActions isExpander />
       </Card>
     );
 

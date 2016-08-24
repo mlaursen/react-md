@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../../Tooltips');
 jest.unmock('../../Tooltips/injectTooltip');
 jest.unmock('../IconButton');
@@ -6,7 +6,7 @@ jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
 import IconButton from '../IconButton';
@@ -17,7 +17,7 @@ describe('IconButton', () => {
       <IconButton label="Test" className="test" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.className).toBe('md-btn md-icon-btn test');
   });
@@ -31,8 +31,8 @@ describe('IconButton', () => {
       <IconButton iconClassName="fa fa-github" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
-    const button2Node = ReactDOM.findDOMNode(button2);
+    const buttonNode = findDOMNode(button);
+    const button2Node = findDOMNode(button2);
 
     expect(buttonNode.textContent).toBe('test');
     expect(buttonNode.querySelector('.md-icon').className).toBe('md-icon material-icons');
@@ -46,7 +46,7 @@ describe('IconButton', () => {
       <IconButton>test</IconButton>
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.querySelector('.md-icon')).toBeDefined();
   });
@@ -56,7 +56,7 @@ describe('IconButton', () => {
       <IconButton href="what">test</IconButton>
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.nodeName).toBe('A');
   });
@@ -67,17 +67,17 @@ describe('IconButton', () => {
       <IconButton style={style}>test</IconButton>
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.style.display).toBe(style.display);
   });
 
   it('applies event listeners to the button', () => {
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onClick = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onClick = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
 
     const button = TestUtils.renderIntoDocument(
       <IconButton
@@ -90,7 +90,7 @@ describe('IconButton', () => {
       />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     TestUtils.Simulate.click(buttonNode);
     expect(onClick).toBeCalled();
@@ -111,7 +111,7 @@ describe('IconButton', () => {
       <IconButton tooltipLabel="Woop woop" />
     );
 
-    const tooltip = ReactDOM.findDOMNode(button).querySelector('.md-tooltip');
+    const tooltip = findDOMNode(button).querySelector('.md-tooltip');
 
     expect(tooltip).toBeDefined();
     expect(tooltip.textContent).toBe('Woop woop');
@@ -123,23 +123,23 @@ describe('IconButton', () => {
     );
 
     const disabledButton = TestUtils.renderIntoDocument(
-      <IconButton disabled={true} />
+      <IconButton disabled />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
-    const disabledButtonNode = ReactDOM.findDOMNode(disabledButton);
+    const buttonNode = findDOMNode(button);
+    const disabledButtonNode = findDOMNode(disabledButton);
 
     expect(buttonNode.querySelector('.md-ink-container')).toBeDefined();
     expect(disabledButtonNode.querySelector('.md-ink-container')).toBe(null);
   });
 
   it('prevent button clicks if disabled', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const button = TestUtils.renderIntoDocument(
-      <IconButton disabled={true} onClick={onClick} />
+      <IconButton disabled onClick={onClick} />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     TestUtils.Simulate.click(buttonNode);
     expect(onClick).not.toBeCalled();

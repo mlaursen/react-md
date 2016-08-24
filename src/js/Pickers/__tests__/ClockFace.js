@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../ClockFace');
 
 import React from 'react';
@@ -6,9 +6,7 @@ import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-//  findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-//  scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
 import { LEFT_MOUSE, RIGHT_MOUSE } from '../../constants/keyCodes';
@@ -40,14 +38,14 @@ describe('ClockFace', () => {
   it('renders minutes in 5 minute increments starting from 0', () => {
     const onClick = jest.fn();
     let face = renderIntoDocument(
-      <ClockFace time={3} minutes={true} onClick={onClick} />
+      <ClockFace time={3} minutes onClick={onClick} />
     );
 
     let times = scryRenderedComponentsWithType(face, ClockTime);
     expect(times.length).toBe(60 / 5);
 
     face = renderIntoDocument(
-      <ClockFace time={3} minutes={true} onClick={onClick} timePeriod="AM" />
+      <ClockFace time={3} minutes onClick={onClick} timePeriod="AM" />
     );
 
     times = scryRenderedComponentsWithType(face, ClockTime);

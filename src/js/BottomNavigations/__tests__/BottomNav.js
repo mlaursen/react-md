@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../BottomNav');
 
 import React from 'react';
@@ -56,13 +56,15 @@ describe('BottomNav', () => {
   });
 
   it('renders as a button by default', () => {
-    const nav = renderIntoDocument(<BottomNav label="A" active={false} fixed={false} onNavChange={jest.fn()} index={0} />);
+    const nav = renderIntoDocument(
+      <BottomNav label="A" active={false} fixed={false} onNavChange={jest.fn()} index={0} />
+    );
     const btns = scryRenderedDOMComponentsWithTag(nav, 'button');
     expect(btns.length).toBe(1);
   });
 
   it('renders as the component prop', () => {
-    /*eslint-disable react/prop-types*/
+    /* eslint-disable react/prop-types, react/prefer-stateless-function */
     class Link extends React.Component {
       render() {
         const { to, ...props } = this.props;
@@ -159,15 +161,15 @@ describe('BottomNav', () => {
     let navNode = findDOMNode(nav);
     expect(navNode.textContent).toBe('');
 
-    nav = renderIntoDocument(<BottomNav {...props} active={true} fixed={false} />);
+    nav = renderIntoDocument(<BottomNav {...props} active fixed={false} />);
     navNode = findDOMNode(nav);
     expect(navNode.textContent).toBe(props.label);
 
-    nav = renderIntoDocument(<BottomNav {...props} active={true} fixed={true} />);
+    nav = renderIntoDocument(<BottomNav {...props} active fixed />);
     navNode = findDOMNode(nav);
     expect(navNode.textContent).toBe(props.label);
 
-    nav = renderIntoDocument(<BottomNav {...props} active={false} fixed={true} />);
+    nav = renderIntoDocument(<BottomNav {...props} active={false} fixed />);
     navNode = findDOMNode(nav);
     expect(navNode.textContent).toBe(props.label);
   });

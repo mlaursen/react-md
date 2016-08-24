@@ -1,25 +1,23 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import SliderThumb from './SliderThumb';
 
-const SliderTrack = ({ width, onClick, ...props }) => {
-  return (
-    <div
-      className="md-slider-track"
-      onClick={onClick}
-    >
-      <span
-        className={classnames('md-track-fill', {
-          'dragging': props.dragging,
-          'discrete': props.discrete,
-        })}
-        style={{ width: `${width}%` }}
-      />
-      <SliderThumb {...props} />
-    </div>
-  );
-};
+const SliderTrack = ({ width, onClick, ...props }) => (
+  <div
+    className="md-slider-track"
+    onClick={onClick}
+  >
+    <span
+      className={cn('md-track-fill', {
+        'dragging': props.dragging,
+        'discrete': props.discrete,
+      })}
+      style={{ width: `${width}%` }}
+    />
+    <SliderThumb {...props} />
+  </div>
+);
 
 SliderTrack.propTypes = {
   width: PropTypes.number.isRequired,

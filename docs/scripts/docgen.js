@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/*eslint-env node*/
-'use strict';
+'use strict'; // eslint-disable-line strict
 
 const fs = require('fs-extra');
 const path = require('path');
@@ -24,7 +23,7 @@ const docgens = {};
   'Cards/CardActionOverlay',
   'Cards/CardActions',
   'Cards/CardMedia',
-  //'Cards/CardExpander',
+  // 'Cards/CardExpander',
   'Cards/CardText',
   'Cards/CardTitle',
   'Chips/Chip',
@@ -74,35 +73,35 @@ const docgens = {};
       return prev + prefix + curr.toLowerCase();
     }, '');
 
-  if(component === 'SpeedDial' || component === 'FloatingButton') {
+  if (component === 'SpeedDial' || component === 'FloatingButton') {
     folder = 'buttons/floating';
-  } else if(component.match('Button')) {
+  } else if (component.match('Button')) {
     folder = 'buttons/' + component.replace('Button', '').toLowerCase();
-  } else if(component.match('Picker')) {
+  } else if (component.match('Picker')) {
     folder = 'pickers/' + component.replace('PickerContainer', '').toLowerCase();
-  } else if(folder.match('selection-controls')) {
+  } else if (folder.match('selection-controls')) {
     folder += '/' + pluralize(component.replace('Group', '').toLowerCase());
-  } else if(folder === 'progress') {
+  } else if (folder === 'progress') {
     folder += '/' + component.replace('Progress', '').toLowerCase();
   }
 
   let file = component;
   let temp, regex;
-  if(file.match(/Ink|Tooltip/)) {
+  if (file.match(/Ink|Tooltip/)) {
     temp = component;
     file = `inject${component}`;
     regex = /ComposedComponent => /;
-  } else if(file.match(/Picker/)) {
+  } else if (file.match(/Picker/)) {
     temp = '.' + component.replace('Container', '');
     regex = /DateTimeFormat: DateTimeFormat,/;
   }
 
-  if(temp) {
+  if (temp) {
     const from = path.resolve(reactMD, sourceFolder, file + '.js');
     temp = path.resolve(reactMD, sourceFolder, temp + '.js');
     fs.copySync(from, temp);
 
-    if(regex) {
+    if (regex) {
       replace({
         regex,
         replacement: '',
@@ -113,18 +112,25 @@ const docgens = {};
   }
 
   const rawFile = fs.readFileSync(path.resolve(reactMD, sourceFolder, temp || file + '.js'));
-  const generated = docgen.parse(rawFile, docgen.resolver.findAllComponentDefinitions)[0];
-  generated.source = `src/js/${sourceFolder}/${file}.js`;
-  generated.component = component.replace(/Container/, '');
+  try {
+    const generated = docgen.parse(rawFile, docgen.resolver.findAllComponentDefinitions)[0];
+    generated.source = `src/js/${sourceFolder}/${file}.js`;
+    generated.component = component.replace(/Container/, '');
+    generated.methods = generated.methods.filter(method => method.name.charAt(0) !== '_');
 
-  docgens[folder] = docgens[folder] || {
-    name: generated.component.replace('Group', ''),
-    docgens: [],
-  };
 
-  docgens[folder].docgens.push(generated);
+    docgens[folder] = docgens[folder] || {
+      name: generated.component.replace('Group', ''),
+      docgens: [],
+    };
 
-  if(temp) {
+    docgens[folder].docgens.push(generated);
+  } catch (e) {
+    console.log('e:', e);
+    console.log('Failed to parse: ', file);
+  }
+
+  if (temp) {
     fs.unlinkSync(temp);
   }
 });

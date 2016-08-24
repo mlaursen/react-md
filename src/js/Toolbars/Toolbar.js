@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 
 /**
  * A toolbar is a container that has an optional title and action areas.
@@ -9,14 +8,7 @@ import classnames from 'classnames';
  * If you do not want to use the `NavigationDrawer` component, you can get
  * almost the same effect by combining the `Toolbar` and `Sidebar` components.
  */
-export default class Toolbar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
-  }
-
+export default class Toolbar extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the toobar header.
@@ -77,18 +69,24 @@ export default class Toolbar extends Component {
     primary: true,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   componentDidMount() {
-    if(!this.refs.content) { return; }
+    if (!this.refs.content) { return; }
 
-    const tabs = ReactDOM.findDOMNode(this.refs.content);
-    if(tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) { return; }
+    const tabs = findDOMNode(this.refs.content);
+    if (tabs.querySelector('.md-tabs.tabs-centered') || tabs.querySelector('.md-tabs.fixed-width')) { return; }
 
-    const actionLeft = ReactDOM.findDOMNode(this).querySelector('.action-left');
-    if(!actionLeft) { return; }
-    const actionLeftMargin = parseInt(window.getComputedStyle(actionLeft, null).getPropertyValue('margin-left'));
+    const actionLeft = findDOMNode(this).querySelector('.action-left');
+    if (!actionLeft) { return; }
+    const actionLeftMargin = parseInt(window.getComputedStyle(actionLeft, null).getPropertyValue('margin-left'), 10);
     const offset = tabs.querySelector('.md-tab-label > div').offsetLeft;
 
-    /*eslint-disable react/no-did-mount-set-state*/
+    /* eslint-disable react/no-did-mount-set-state*/
     this.setState({
       tabsOffset: `${actionLeftMargin * 2 + actionLeft.offsetWidth - offset}px`,
     });
@@ -111,7 +109,7 @@ export default class Toolbar extends Component {
     const childrenAsHeader = !!children && !actionLeft && !title && !actionsRight;
 
     let header;
-    if(childrenAsHeader) {
+    if (childrenAsHeader) {
       header = children;
     } else {
       header = [
@@ -122,17 +120,17 @@ export default class Toolbar extends Component {
     }
 
     let content;
-    if(!childrenAsHeader && children) {
+    if (!childrenAsHeader && children) {
       content = React.cloneElement(children, {
         ref: 'content',
         style: Object.assign({}, children.props.style, { marginLeft: tabsOffset }),
       });
     }
     return (
-      <div className={classnames('md-toolbar-container', containerClassName, { fixed })} style={containerStyle}>
+      <div className={cn('md-toolbar-container', containerClassName, { fixed })} style={containerStyle}>
         <header
           {...props}
-          className={classnames('md-toolbar', className, { 'md-primary': primary })}
+          className={cn('md-toolbar', className, { 'md-primary': primary })}
         >
           {header}
         </header>

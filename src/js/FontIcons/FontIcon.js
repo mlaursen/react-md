@@ -1,17 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * Any additional props such as style or event listeners will also be included.
  */
-export default class FontIcon extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class FontIcon extends PureComponent {
   static propTypes = {
     /**
      * The icon font library className to use to display the icon.
@@ -35,6 +28,6 @@ export default class FontIcon extends Component {
 
   render() {
     const { iconClassName, className, children, ...props } = this.props;
-    return <i className={classnames('md-icon', iconClassName, className)} {...props}>{children}</i>;
+    return <i className={cn('md-icon', iconClassName, className)} {...props}>{children}</i>;
   }
 }

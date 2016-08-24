@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
+
+import contextTypes from './contextTypes';
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -10,17 +11,7 @@ import classnames from 'classnames';
  * A __data__ table will include checkboxes on each row while a __plain__ table
  * will not.
  */
-export default class DataTable extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
-      selectedRows: props.defaultSelectedRows,
-    };
-  }
-
+export default class DataTable extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the table.
@@ -92,19 +83,22 @@ export default class DataTable extends Component {
     responsive: true,
   };
 
-  static childContextTypes = {
-    uncheckedIconClassName: PropTypes.string.isRequired,
-    uncheckedIconChildren: PropTypes.node,
-    checkedIconClassName: PropTypes.string.isRequired,
-    checkedIconChildren: PropTypes.node,
-    plain: PropTypes.bool,
-    allSelected: PropTypes.bool.isRequired,
-    selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
-    toggleAllRows: PropTypes.func.isRequired,
-    toggleSelectedRow: PropTypes.func.isRequired,
-  };
+  static childContextTypes = contextTypes;
 
-  getChildContext = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
+      selectedRows: props.defaultSelectedRows,
+    };
+
+    this._initializeRows = this._initializeRows.bind(this);
+    this._toggleAllRows = this._toggleAllRows.bind(this);
+    this._toggleSelectedRow = this._toggleSelectedRow.bind(this);
+  }
+
+  getChildContext() {
     const {
       uncheckedIconChildren,
       uncheckedIconClassName,
@@ -121,24 +115,23 @@ export default class DataTable extends Component {
       plain,
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
-      toggleAllRows: this.toggleAllRows,
-      toggleSelectedRow: this.toggleSelectedRow,
+      toggleAllRows: this._toggleAllRows,
+      toggleSelectedRow: this._toggleSelectedRow,
     };
-  };
-
-  componentDidMount() {
-    this.initializeRows();
   }
 
-  toggleAllRows = () => {
+  componentDidMount() {
+    this._initializeRows();
+  }
+  _toggleAllRows() {
     const allSelected = !this.state.allSelected;
     this.setState({
       allSelected,
       selectedRows: this.state.selectedRows.map(() => allSelected),
     });
-  };
+  }
 
-  toggleSelectedRow = (row) => {
+  _toggleSelectedRow(row) {
     const selectedRows = this.state.selectedRows.slice();
     selectedRows[row] = !selectedRows[row];
 
@@ -146,13 +139,13 @@ export default class DataTable extends Component {
       selectedRows,
       allSelected: selectedRows.filter(selected => selected).length === selectedRows.length,
     });
-  };
+  }
 
-  initializeRows = () => {
-    const rows = ReactDOM.findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
+  _initializeRows() {
+    const rows = findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
 
     const selectedRows = [];
-    for(let i = 0; i < rows; i++) {
+    for (let i = 0; i < rows; i++) {
       selectedRows[i] = this.state.selectedRows[i] || false;
     }
 
@@ -160,7 +153,7 @@ export default class DataTable extends Component {
       selectedRows,
       allSelected: selectedRows.map(b => b).length === 0,
     });
-  };
+  }
 
   render() {
     const {
@@ -177,7 +170,7 @@ export default class DataTable extends Component {
     delete props.defaultSelectedRows;
 
     const table = (
-      <table className={classnames('md-data-table', className, { 'md-plain-table': plain })} {...props}>
+      <table className={cn('md-data-table', className, { 'md-plain-table': plain })} {...props}>
         {children}
       </table>
     );

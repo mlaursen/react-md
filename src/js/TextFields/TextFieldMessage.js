@@ -1,19 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 /**
  * The `TextFieldMessage` component is used for rendering a help or error text message
  * under a `TextField`. It can also be used to display a counter of remaining characters.
  */
-export default class TextFieldMessage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class TextFieldMessage extends PureComponent {
   static propTypes = {
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -31,23 +24,28 @@ export default class TextFieldMessage extends Component {
     const { value, message, maxLength, error, active, helpOnFocus, className } = this.props;
     const isMessageVisible = !!message && (!helpOnFocus || active);
 
+    let counter;
+    if (maxLength) {
+      counter = (
+        <span className="md-text-field-counter">
+          {`${value.length} / ${maxLength}`}
+        </span>
+      );
+    }
+
     return (
       <CSSTransitionGroup
         component="div"
         transitionName="opacity"
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
-        className={classnames('md-text-field-message', className, {
+        className={cn('md-text-field-message', className, {
           error,
           'count-only': !message || !isMessageVisible,
         })}
       >
         {isMessageVisible && <span key="message">{message}</span>}
-        {maxLength &&
-        <span className="md-text-field-counter">
-          {`${value.length} / ${maxLength}`}
-        </span>
-        }
+        {counter}
       </CSSTransitionGroup>
     );
   }

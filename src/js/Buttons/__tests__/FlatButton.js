@@ -1,11 +1,11 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Button');
 jest.unmock('../FlatButton');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
 import FlatButton from '../FlatButton';
@@ -17,7 +17,7 @@ describe('FlatButton', () => {
       <FlatButton label="Test" className="test" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.className).toBe('md-btn md-flat-btn test');
   });
@@ -27,7 +27,7 @@ describe('FlatButton', () => {
       <FlatButton label="Hello, World!" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.textContent).toBe('Hello, World!');
   });
@@ -39,7 +39,7 @@ describe('FlatButton', () => {
       </FlatButton>
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.querySelector('.md-icon')).toBeDefined();
   });
@@ -57,8 +57,10 @@ describe('FlatButton', () => {
       </FlatButton>
     );
 
-    const [iconBeforeIcon, iconBeforeText] = ReactDOM.findDOMNode(iconBeforeButton).querySelector('.icon-separator').childNodes;
-    const [iconAfterText, iconAfterIcon] = ReactDOM.findDOMNode(iconAfterButton).querySelector('.icon-separator').childNodes;
+    const [iconBeforeIcon, iconBeforeText] = findDOMNode(iconBeforeButton)
+      .querySelector('.icon-separator').childNodes;
+    const [iconAfterText, iconAfterIcon] = findDOMNode(iconAfterButton)
+      .querySelector('.icon-separator').childNodes;
 
     expect(iconBeforeIcon.classList.contains('md-icon')).toBe(true);
     expect(iconBeforeText.textContent).toBe('Test');
@@ -72,22 +74,22 @@ describe('FlatButton', () => {
       <FlatButton label="Test" href="what" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.nodeName).toBe('A');
   });
 
   it('appends md-primary or md-secondary depending on which prop is set to true', () => {
     const primaryButton = TestUtils.renderIntoDocument(
-      <FlatButton primary={true} className="test" label="Test" />
+      <FlatButton primary className="test" label="Test" />
     );
 
     const secondaryButton = TestUtils.renderIntoDocument(
-      <FlatButton secondary={true} className="test" label="Test" />
+      <FlatButton secondary className="test" label="Test" />
     );
 
-    const primaryButtonNode = ReactDOM.findDOMNode(primaryButton);
-    const secondaryButtonNode = ReactDOM.findDOMNode(secondaryButton);
+    const primaryButtonNode = findDOMNode(primaryButton);
+    const secondaryButtonNode = findDOMNode(secondaryButton);
 
     expect(primaryButtonNode.classList.contains('md-primary')).toBe(true);
     expect(primaryButtonNode.classList.contains('test')).toBe(true);
@@ -102,17 +104,17 @@ describe('FlatButton', () => {
       <FlatButton style={style} label="Test" />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     expect(buttonNode.style.display).toBe(style.display);
   });
 
   it('applies event listeners to the button', () => {
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onClick = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onClick = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
 
     const button = TestUtils.renderIntoDocument(
       <FlatButton
@@ -125,7 +127,7 @@ describe('FlatButton', () => {
       />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     TestUtils.Simulate.click(buttonNode);
     expect(onClick).toBeCalled();
@@ -142,12 +144,12 @@ describe('FlatButton', () => {
   });
 
   it('prevent button clicks if disabled', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const button = TestUtils.renderIntoDocument(
-      <FlatButton label="test" disabled={true} onClick={onClick} />
+      <FlatButton label="test" disabled onClick={onClick} />
     );
 
-    const buttonNode = ReactDOM.findDOMNode(button);
+    const buttonNode = findDOMNode(button);
 
     TestUtils.Simulate.click(buttonNode);
     expect(onClick).not.toBeCalled();

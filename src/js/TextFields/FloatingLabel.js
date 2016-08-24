@@ -1,17 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * This component is used for rendering the floating label for a text field.
  */
-export default class FloatingLabel extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class FloatingLabel extends PureComponent {
   static propTypes = {
     active: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
@@ -27,11 +20,11 @@ export default class FloatingLabel extends Component {
   render() {
     const { active, error, required, value, disabled } = this.props;
     let { label } = this.props;
-    if(required && label.indexOf('*') === -1) {
-      label = label.trim() + ' *';
+    if (required && label.indexOf('*') === -1) {
+      label = `${label.trim()} *`;
     }
 
-    const className= classnames('md-floating-label', {
+    const className = cn('md-floating-label', {
       error,
       disabled,
       'focus': active,

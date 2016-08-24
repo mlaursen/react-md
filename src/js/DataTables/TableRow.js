@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import classnames from 'classnames';
+import cn from 'classnames';
 
+import headerContextTypes from './headerContextTypes';
 import TableCheckbox from './TableCheckbox';
 
 /**
@@ -14,16 +15,6 @@ import TableCheckbox from './TableCheckbox';
  * is set to true.
  */
 export default class TableRow extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      biggest: null,
-      widths: [],
-      hover: false,
-    };
-  }
-
   static propTypes = {
     /**
      * Boolean if the row is currently selected. If this value will be
@@ -78,14 +69,25 @@ export default class TableRow extends Component {
     autoAdjust: true,
   };
 
-  static contextTypes = {
-    plain: PropTypes.bool,
-    header: PropTypes.bool,
-  };
+  static contextTypes = headerContextTypes;
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      biggest: null,
+      widths: [],
+      hover: false,
+    };
+
+    this._handleMouseOver = this._handleMouseOver.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._setLongestColumn = this._setLongestColumn.bind(this);
+  }
 
   componentDidMount() {
-    if(this.props.autoAdjust) {
-      this.setLongestColumn();
+    if (this.props.autoAdjust) {
+      this._setLongestColumn();
     }
   }
 
@@ -93,19 +95,21 @@ export default class TableRow extends Component {
    * Need to ignore adding the hvoer state if the mouse is over a menu/menu item
    * or the edit dialog is open.
    *
-   * @param {Function} classList - the classList to use for checking classNames
+   * @param {Function} classList - the classList to use for checking cn
    * @return {Boolean} true if the hover state should be ignored for this classList
    */
   _ignoreHoverState(classList) {
     return classList.contains('md-menu')
-      || ['md-edit-dialog', 'active'].every(cn => classList.contains(cn));
+      || ['md-edit-dialog', 'active'].every(className => classList.contains(className));
   }
 
-  _handleMouseOver = (e) => {
-    this.props.onMouseOver && this.props.onMouseOver(e);
+  _handleMouseOver(e) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
 
     let target = e.target;
-    while(target && target.parentNode) {
+    while (target && target.parentNode) {
       if (target.classList && this._ignoreHoverState(target.classList)) {
         return this.setState({ hover: false });
       }
@@ -113,22 +117,27 @@ export default class TableRow extends Component {
       target = target.parentNode;
     }
 
-    this.setState({ hover: true });
-  };
+    return this.setState({ hover: true });
+  }
 
-  _handleMouseLeave = (e) => {
-    this.props.onMouseLeave && this.props.onMouseLeave(e);
+  _handleMouseLeave(e) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+
     this.setState({ hover: false });
-  };
+  }
 
-  setLongestColumn = () => {
+  _setLongestColumn() {
     const widths = [];
     const biggest = Array.prototype.slice.call(
-      findDOMNode(this).querySelectorAll('.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)')
+      findDOMNode(this).querySelectorAll(
+        '.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)'
+      )
     ).reduce((prev, curr, i) => {
       const width = curr.offsetWidth;
       widths.push(width);
-      if(prev.width < width) {
+      if (prev.width < width) {
         return { i, width };
       } else {
         return prev;
@@ -136,7 +145,7 @@ export default class TableRow extends Component {
     }, { width: 0, i: 0 });
 
     this.setState({ biggest, widths });
-  };
+  }
 
   render() {
     const { biggest, widths, hover } = this.state;
@@ -144,27 +153,27 @@ export default class TableRow extends Component {
     delete props.autoAdjust;
 
     let checkbox;
-    if(!this.context.plain) {
+    if (!this.context.plain) {
       checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 
-    const columns = React.Children.map(children, (column, i) => {
-      return React.cloneElement(column, {
-        key: column.key || i,
-        ...column.props,
-        header: typeof column.props.header === 'undefined' ? this.context.header : column.props.header,
-        className: classnames(column.props.className, {
-          'grow': biggest && biggest.i === i,
-          // Not last item and the biggest width is greater than this item
-          'adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
-        }),
-      });
-    });
+    const columns = React.Children.map(children, (column, i) => React.cloneElement(column, {
+      key: column.key || i,
+      ...column.props,
+      header: typeof column.props.header === 'undefined'
+        ? this.context.header
+        : column.props.header,
+      className: cn(column.props.className, {
+        'grow': biggest && biggest.i === i,
+        // Not last item and the biggest width is greater than this item
+        'adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
+      }),
+    }));
 
     return (
       <tr
         {...props}
-        className={classnames('md-table-row', className, {
+        className={cn('md-table-row', className, {
           hover,
           'active': selected,
         })}

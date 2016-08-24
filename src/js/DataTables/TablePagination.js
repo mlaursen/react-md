@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 import SelectField from '../SelectFields';
 import IconButton from '../Buttons/IconButton';
 
@@ -12,19 +11,7 @@ import IconButton from '../Buttons/IconButton';
  * so that when a user scrolls to the right, they will always be able to use the
  * pagination.
  */
-export default class TablePagination extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    this.state = {
-      start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
-      rowsPerPage: props.defaultRowsPerPage,
-      controlsMarginLeft: 0,
-    };
-  }
-
+export default class TablePagination extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the `tfoot` tag.
@@ -106,6 +93,21 @@ export default class TablePagination extends Component {
     decrementIconChildren: 'keyboard_arrow_left',
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
+      rowsPerPage: props.defaultRowsPerPage,
+      controlsMarginLeft: 0,
+    };
+
+    this._position = this._position.bind(this);
+    this._increment = this._increment.bind(this);
+    this._decrement = this._decrement.bind(this);
+    this._setRowsPerPage = this._setRowsPerPage.bind(this);
+  }
+
   componentDidMount() {
     this._position();
     window.addEventListener('resize', this._position);
@@ -114,7 +116,10 @@ export default class TablePagination extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { rows } = this.props;
     const { start, rowsPerPage } = this.state;
-    if(rows !== prevProps.rows || start !== prevState.start || rowsPerPage !== prevState.rowsPerPage) {
+    if (rows !== prevProps.rows
+      || start !== prevState.start
+      || rowsPerPage !== prevState.rowsPerPage
+    ) {
       this._position();
     }
   }
@@ -125,33 +130,34 @@ export default class TablePagination extends Component {
 
   _findTable(el) {
     let table;
-    while(el && el.parentNode) {
-      if(el.classList && el.classList.contains('md-data-table')) {
+    let node = el;
+    while (node && node.parentNode) {
+      if (node.classList && node.classList.contains('md-data-table')) {
         // Attempt to check one more element up to see if there is a table-container
         // for responsive tables.
-        table = el;
-      } else if(el.classList && el.classList.contains('md-data-table-container')) {
-        return el;
-      } else if(table) {
+        table = node;
+      } else if (node.classList && node.classList.contains('md-data-table-container')) {
+        return node;
+      } else if (table) {
         return table;
       }
 
-      el = el.parentNode;
+      node = node.parentNode;
     }
 
     return null;
   }
 
-  _position = () => {
+  _position() {
     const table = this._findTable(findDOMNode(this));
-    if(table) {
+    if (table) {
       this.setState({
         controlsMarginLeft: table.offsetWidth - this.refs.controls.offsetWidth,
       });
     }
-  };
+  }
 
-  _increment = () => {
+  _increment() {
     const { rows, onPagination } = this.props;
     const { start, rowsPerPage } = this.state;
 
@@ -162,23 +168,23 @@ export default class TablePagination extends Component {
 
     onPagination(newStart, rowsPerPage);
     this.setState({ start: newStart });
-  };
+  }
 
-  _decrement = () => {
+  _decrement() {
     const { start, rowsPerPage } = this.state;
     const newStart = Math.max(0, start - rowsPerPage);
 
     this.props.onPagination(newStart, rowsPerPage);
     this.setState({ start: newStart });
-  };
+  }
 
-  _setRowsPerPage = (rowsPerPage) => {
+  _setRowsPerPage(rowsPerPage) {
     const { start } = this.state;
 
     const newStart = Math.max(0, start - (start % rowsPerPage));
     this.props.onPagination(newStart, rowsPerPage);
     this.setState({ start: newStart, rowsPerPage });
-  };
+  }
 
   render() {
     const { start, rowsPerPage, controlsMarginLeft } = this.state;
@@ -199,7 +205,7 @@ export default class TablePagination extends Component {
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
-      <tfoot {...props} className={classnames('md-table-footer', className)}>
+      <tfoot {...props} className={cn('md-table-footer', className)}>
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
           <td colSpan="100%">

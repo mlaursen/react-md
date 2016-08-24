@@ -1,5 +1,5 @@
-/*eslint-env jest*/
-/*eslint-disable react/prop-types*/
+/* eslint-env jest */
+/* eslint-disable max-len,react/prop-types,react/prefer-stateless-function,react/no-multi-comp,react/jsx-pascal-case */
 jest.unmock('../EditDialogColumn');
 jest.unmock('../TableColumn');
 jest.unmock('../DataTable');
@@ -94,7 +94,7 @@ describe('EditDialogColumn', () => {
     );
 
     let editNode = findRenderedDOMComponentWithClass(edit, 'md-edit-dialog');
-    let textNode = findRenderedDOMComponentWithClass(edit, 'md-text-field');
+    const textNode = findRenderedDOMComponentWithClass(edit, 'md-text-field');
 
     expect(editNode.classList.contains('animating')).toBe(false);
     expect(editNode.classList.contains('active')).toBe(false);
@@ -146,7 +146,7 @@ describe('EditDialogColumn', () => {
     );
 
     const editComp = findRenderedComponentWithType(edit, EditDialogColumn);
-    editComp.save = jest.genMockFunction();
+    editComp._save = jest.fn();
 
     let textNode = findRenderedDOMComponentWithClass(edit, 'md-text-field');
     Simulate.change(textNode, { target: { value: 'abc' } });
@@ -155,11 +155,11 @@ describe('EditDialogColumn', () => {
     expect(textNode.value).toBe('abc');
 
     Simulate.keyDown(textNode, { which: ENTER, keyCode: ENTER });
-    expect(editComp.save.mock.calls.length).toBe(1);
+    expect(editComp._save.mock.calls.length).toBe(1);
   });
 
   it('calls the onOkClick function on save with the current value and the click or enter keypress event', () => {
-    const onOkClick = jest.genMockFunction();
+    const onOkClick = jest.fn();
     const edit = renderIntoDocument(
       <Table>
         <EditDialogColumn onOkClick={onOkClick} />
@@ -197,7 +197,7 @@ describe('EditDialogColumn', () => {
   });
 
   it('calls the onCancelClick function on canceling the changes with the initial value and the event', () => {
-    const onCancelClick = jest.genMockFunction();
+    const onCancelClick = jest.fn();
     const edit = renderIntoDocument(
       <Table>
         <EditDialogColumn onCancelClick={onCancelClick} defaultValue="abc" />
@@ -219,7 +219,7 @@ describe('EditDialogColumn', () => {
   it('displays a modal title when the column is large and active', () => {
     const edit = renderIntoDocument(
       <Table>
-        <EditDialogColumn large={true} title="Test" />
+        <EditDialogColumn large title="Test" />
       </Table>
     );
 
@@ -236,7 +236,7 @@ describe('EditDialogColumn', () => {
   it('displays a dialog footer with a cancel and ok button in a large dialog', () => {
     const edit = renderIntoDocument(
       <Table>
-        <EditDialogColumn large={true} title="Test" />
+        <EditDialogColumn large title="Test" />
       </Table>
     );
 

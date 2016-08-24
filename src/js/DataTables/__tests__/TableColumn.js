@@ -1,5 +1,5 @@
-/*eslint-env jest*/
-/*eslint-disable react/prop-types*/
+/* eslint-env jest*/
+/* eslint-disable react/prop-types,react/prefer-stateless-function */
 jest.unmock('../DataTable');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
@@ -54,14 +54,14 @@ describe('TableColumn', () => {
   });
 
   it('applies the correct event listeners', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const table = renderIntoDocument(
       <Table>
@@ -108,7 +108,7 @@ describe('TableColumn', () => {
   it('renders as a th tag if the header props is true', () => {
     const table = renderIntoDocument(
       <Table>
-        <TableColumn header={true}>A</TableColumn>
+        <TableColumn header>A</TableColumn>
       </Table>
     );
 
@@ -119,7 +119,7 @@ describe('TableColumn', () => {
   it('injects a sorting icon if it sorted prop is defined as a boolean', () => {
     const table = renderIntoDocument(
       <Table>
-        <TableColumn sorted={true}>c</TableColumn>
+        <TableColumn sorted>c</TableColumn>
       </Table>
     );
 
@@ -146,7 +146,7 @@ describe('TableColumn', () => {
 
     table = renderIntoDocument(
       <Table>
-        <TableColumn sorted={true}>c</TableColumn>
+        <TableColumn sorted>c</TableColumn>
       </Table>
     );
 

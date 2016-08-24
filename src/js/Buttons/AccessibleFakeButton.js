@@ -1,5 +1,4 @@
-import { Component, PropTypes, createElement } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import { PureComponent, PropTypes, createElement } from 'react';
 import { SPACE, ENTER } from '../constants/keyCodes';
 
 /**
@@ -11,14 +10,7 @@ import { SPACE, ENTER } from '../constants/keyCodes';
  * space or enter key to trigger the `onClick` event, and toggles the `aria-pressed`
  * attribute.
  */
-export default class AccessibleFakeButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { pressed: false };
-  }
-
+export default class AccessibleFakeButton extends PureComponent {
   static propTypes = {
     /**
      * Any children to display in the Accessible Fake Button.
@@ -55,19 +47,31 @@ export default class AccessibleFakeButton extends Component {
     tabIndex: 0,
   };
 
-  _handleClick = (e) => {
-    this.props.onClick && this.props.onClick(e);
+  constructor(props) {
+    super(props);
+
+    this.state = { pressed: false };
+    this._handleClick = this._handleClick.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+  }
+
+  _handleClick(e) {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
 
     this.setState({ pressed: !this.state.pressed });
-  };
+  }
 
-  _handleKeyUp = (e) => {
-    this.props.onKeyUp && this.props.onKeyUp(e);
+  _handleKeyUp(e) {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(e);
+    }
 
     if ([SPACE, ENTER].indexOf(e.which || e.keyCode) !== -1) {
       this._handleClick(e);
     }
-  };
+  }
 
   render() {
     const { component, children, ...props } = this.props;
@@ -79,7 +83,7 @@ export default class AccessibleFakeButton extends Component {
       role: 'button',
       onClick: this._handleClick,
       onKeyUp: this._handleKeyUp,
-      ['aria-pressed']: this.state.pressed,
+      'aria-pressed': this.state.pressed,
     }, children);
   }
 }

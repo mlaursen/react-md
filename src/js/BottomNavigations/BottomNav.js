@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 import FontIcon from '../FontIcons';
 import injectInk from '../Inks';
 
@@ -9,13 +8,7 @@ import injectInk from '../Inks';
  * The `BottomNav` component is used for rendering one of the nav items
  * in the `BottomNavigation` component. This is used for switching the view.
  */
-class BottomNav extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class BottomNav extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -97,11 +90,20 @@ class BottomNav extends Component {
     component: 'button',
   };
 
-  handleClick = (e) => {
+  constructor(props) {
+    super(props);
+
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _handleClick(e) {
     const { onClick, onNavChange, index } = this.props;
-    onClick && onClick(index, e);
+    if (onClick) {
+      onClick(index, e);
+    }
+
     onNavChange(index, e);
-  };
+  }
 
   render() {
     const {
@@ -122,7 +124,7 @@ class BottomNav extends Component {
 
 
     let displayLabel;
-    if(fixed || active) {
+    if (fixed || active) {
       displayLabel = <span key="label">{label}</span>;
     }
 
@@ -133,7 +135,7 @@ class BottomNav extends Component {
         transitionName="bottom-nav"
         transitionEnterTimeout={150}
         transitionLeave={false}
-        className={classnames('md-bottom-nav', className, {
+        className={cn('md-bottom-nav', className, {
           active,
           colored,
           fixed,
@@ -141,7 +143,7 @@ class BottomNav extends Component {
           'default': !colored,
         })}
         {...props}
-        onClick={this.handleClick}
+        onClick={this._handleClick}
       >
         {ink}
         <FontIcon key="icon" iconClassName={iconClassName}>{iconChildren}</FontIcon>

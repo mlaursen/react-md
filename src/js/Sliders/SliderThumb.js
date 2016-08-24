@@ -1,27 +1,25 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import cn from 'classnames';
 
-const SliderThumb = ({ active, value, valued, left, dragging, discrete, ...props }) => {
-  return (
-    <div
-      className={classnames('md-slider-thumb', {
-        active,
-        valued,
-        dragging,
-        'zeroed': !valued,
-        'md-discrete-slider-thumb': discrete,
-        'md-continuous-slider-thumb': !discrete,
-      })}
-      style={{ left }}
-    >
-      <button {...props} className="md-thumb-control">
-        {discrete && active &&
-          <span className="md-slider-discrete-value">{value}</span>
-        }
-      </button>
-    </div>
-  );
-};
+const SliderThumb = ({ active, value, valued, left, dragging, discrete, ...props }) => (
+  <div
+    className={cn('md-slider-thumb', {
+      active,
+      valued,
+      dragging,
+      'zeroed': !valued,
+      'md-discrete-slider-thumb': discrete,
+      'md-continuous-slider-thumb': !discrete,
+    })}
+    style={{ left }}
+  >
+    <button {...props} className="md-thumb-control">
+      {discrete && active &&
+        <span className="md-slider-discrete-value">{value}</span>
+      }
+    </button>
+  </div>
+);
 
 SliderThumb.propTypes = {
   onTouchStart: PropTypes.func.isRequired,

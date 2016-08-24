@@ -1,18 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
 import PickerFooter from './PickerFooter';
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerCalendar from './DatePickerCalendar';
 import YearPicker from './YearPicker';
 
-export default class DatePicker extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DatePicker extends PureComponent {
   static propTypes = {
     className: PropTypes.string.isRequired,
     okLabel: PropTypes.string.isRequired,
@@ -51,7 +44,7 @@ export default class DatePicker extends Component {
     } = this.props;
 
     let picker;
-    if(calendarMode === 'calendar') {
+    if (calendarMode === 'calendar') {
       picker = (
         <DatePickerCalendar
           {...props}

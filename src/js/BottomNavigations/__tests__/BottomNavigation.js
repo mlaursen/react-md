@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../BottomNavigation');
 
 import React from 'react';
@@ -54,7 +54,7 @@ describe('BottomNavigation', () => {
 
     const nav = renderIntoDocument(<BottomNavigation {...props} />);
 
-    nav.handleNavChange(2);
+    nav._handleNavChange(2);
     expect(props.onChange.mock.calls.length).toBe(1);
     expect(props.onChange.mock.calls[0][0]).toBe(2);
   });
@@ -98,7 +98,7 @@ describe('BottomNavigation', () => {
     const actions = [{ label: 'A' }, { label: 'B' }, { label: 'C' }];
     const nav = renderIntoDocument(<BottomNavigation actions={actions} />);
 
-    nav.handleTouchStart({ changedTouches: [{ pageY: 32 }]});
+    nav._handleTouchStart({ changedTouches: [{ pageY: 32 }] });
     expect(nav.state.scrolling).toBe(true);
     expect(nav.state.pageY).toBe(32);
   });
@@ -112,18 +112,18 @@ describe('BottomNavigation', () => {
     const moveEvent = { changedTouches: [{ pageY: 20 }] };
     expect(nav.state.visible).toBe(true);
 
-    nav.handleTouchMove(moveEvent);
+    nav._handleTouchMove(moveEvent);
 
     expect(nav.state.visible).toBe(true);
     expect(nav.state.scrolling).toBe(false);
     expect(nav.state.pageY).toBe(null);
 
-    nav.handleTouchStart(startEvent);
+    nav._handleTouchStart(startEvent);
     expect(nav.state.visible).toBe(true);
     expect(nav.state.scrolling).toBe(true);
     expect(nav.state.pageY).toBe(32);
 
-    nav.handleTouchMove(moveEvent);
+    nav._handleTouchMove(moveEvent);
     expect(nav.state.visible).toBe(false);
     expect(nav.state.pageY).toBe(20);
     expect(nav.state.scrolling).toBe(true);
@@ -133,8 +133,8 @@ describe('BottomNavigation', () => {
     const actions = [{ label: 'A' }, { label: 'B' }, { label: 'C' }];
     const nav = renderIntoDocument(<BottomNavigation actions={actions} />);
 
-    nav.handleTouchStart({ changedTouches: [{ pageY: 32 }] });
-    nav.handleTouchEnd();
+    nav._handleTouchStart({ changedTouches: [{ pageY: 32 }] });
+    nav._handleTouchEnd();
     expect(nav.state.visible).toBe(true);
     expect(nav.state.pageY).toBe(null);
     expect(nav.state.scrolling).toBe(false);

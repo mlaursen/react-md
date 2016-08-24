@@ -1,19 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `ClockHand` component is just used to display the hand of the clock
  * and a ball to surround the selected time.
  */
-export default class ClockHand extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { active: false };
-  }
-
+export default class ClockHand extends PureComponent {
   static propTypes = {
     /**
      * This is the x and y coordinate to use for the center of the `ClockFace`.
@@ -32,9 +24,15 @@ export default class ClockHand extends Component {
     minutes: PropTypes.bool.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { active: false };
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(this.props.minutes !== nextProps.minutes) {
-      if(this.state.timeout) { clearTimeout(this.state.timeout); }
+    if (this.props.minutes !== nextProps.minutes) {
+      if (this.state.timeout) { clearTimeout(this.state.timeout); }
 
       this.setState({
         active: true,
@@ -44,29 +42,29 @@ export default class ClockHand extends Component {
   }
 
   componentWillUnmount() {
-    if(this.state.timeout) { clearTimeout(this.state.timeout); }
+    if (this.state.timeout) { clearTimeout(this.state.timeout); }
   }
 
-  calcCurrentDegrees = () => {
-    const { time, minutes } = this.props;
+  _calcCurrentDegrees({ time, minutes }) {
     const timeAt0Deg = minutes ? 15 : 3;
     const sectors = minutes ? 60 : 12;
+
     return (time % sectors - timeAt0Deg) * (360 / sectors);
-  };
+  }
 
   render() {
     const { coords, time, minutes } = this.props;
 
-    const degrees = this.calcCurrentDegrees();
+    const degrees = this._calcCurrentDegrees(this.props);
     let invisibleMinute = false;
-    if(minutes) {
+    if (minutes) {
       invisibleMinute = degrees % (360 / 12) !== 0;
     }
 
     const rotateTransform = `rotate3d(0, 0, 1, ${degrees}deg)`;
     return (
       <div
-        className={classnames('md-clock-hand', {
+        className={cn('md-clock-hand', {
           'active': this.state.active,
           'invisible-minute': invisibleMinute,
           'inner-hour': !minutes && (time > 12 || time === 0),

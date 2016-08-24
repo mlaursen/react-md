@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import cn from 'classnames';
+
+import contextTypes from './contextTypes';
 
 /**
  * The `TableBody` component is used for managing the state of all
  * `TableRow` inside of it.
  */
 export default class TableBody extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   static propTypes = {
     /**
      * An optional style to apply to the tbody.
@@ -27,11 +25,7 @@ export default class TableBody extends Component {
     children: PropTypes.node.isRequired,
   };
 
-  static contextTypes = {
-    allSelected: PropTypes.bool.isRequired,
-    selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
-    toggleSelectedRow: PropTypes.func.isRequired,
-  };
+  static contextTypes = contextTypes;
 
   render() {
     const { children, className, ...props } = this.props;
@@ -47,9 +41,11 @@ export default class TableBody extends Component {
         key: row.key || i,
         selected: uncontrolled ? selectedRows[i] : row.props.selected,
         onCheckboxClick: e => {
-          row.props.onCheckboxClick && row.props.onCheckboxClick(i, e);
+          if (row.props.onCheckboxClick) {
+            row.props.onCheckboxClick(i, e);
+          }
 
-          if(uncontrolled) {
+          if (uncontrolled) {
             toggleSelectedRow(i);
           }
         },
@@ -57,8 +53,8 @@ export default class TableBody extends Component {
     });
 
     return (
-      <tbody {...props} className={classnames('md-table-body', className)}>
-        {rows}
+      <tbody {...props} className={cn('md-table-body', className)}>
+      {rows}
       </tbody>
     );
   }

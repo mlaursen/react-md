@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../ControlContainer');
 jest.unmock('../InkedControl');
 
@@ -76,14 +76,14 @@ describe('ControlContainer', () => {
     expect(content).toBe(props.uncheckedIcon);
 
     const input = findRenderedDOMComponentWithTag(control, 'input');
-    Simulate.change(input, { target: { checked: true }});
+    Simulate.change(input, { target: { checked: true } });
 
     content = findDOMNode(control).textContent;
     expect(content).toBe(props.checkedIcon);
   });
 
   it('calls the onChange prop with the next checked state and the event for checkboxes', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const props = {
       type: 'checkbox',
       checkedIcon: 'checked',
@@ -97,7 +97,7 @@ describe('ControlContainer', () => {
     const control = renderIntoDocument(<ControlContainer {...props} />);
 
     const input = findRenderedDOMComponentWithTag(control, 'input');
-    Simulate.change(input, { target: { checked: true }});
+    Simulate.change(input, { target: { checked: true } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe(true);
@@ -105,7 +105,7 @@ describe('ControlContainer', () => {
   });
 
   it('calls the onChange prop with the radio value and the event for radios', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const props = {
       type: 'radio',
       checkedIcon: 'checked',
@@ -119,7 +119,7 @@ describe('ControlContainer', () => {
     const control = renderIntoDocument(<ControlContainer {...props} />);
 
     const input = findRenderedDOMComponentWithTag(control, 'input');
-    Simulate.change(input, { target: { checked: true }});
+    Simulate.change(input, { target: { checked: true } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe(props.value);
@@ -137,21 +137,21 @@ describe('ControlContainer', () => {
       value: 'test',
     };
 
-    const onChange = jest.genMockFunction().mockImplementation((checked) => {
+    const onChange = jest.fn((checked) => {
       props = Object.assign({}, props, { checked });
     });
 
     let control = renderIntoDocument(<ControlContainer {...props} onChange={onChange} />);
 
     let input = findRenderedDOMComponentWithTag(control, 'input');
-    Simulate.change(input, { target: { checked: true }});
+    Simulate.change(input, { target: { checked: true } });
 
     control = renderIntoDocument(<ControlContainer {...props} onChange={onChange} />);
     input = findRenderedDOMComponentWithTag(control, 'input');
     expect(input.checked).toBe(true);
     expect(onChange.mock.calls.length).toBe(1);
 
-    Simulate.change(input, { target: { checked: false }});
+    Simulate.change(input, { target: { checked: false } });
 
     control = renderIntoDocument(<ControlContainer {...props} onChange={onChange} />);
     input = findRenderedDOMComponentWithTag(control, 'input');

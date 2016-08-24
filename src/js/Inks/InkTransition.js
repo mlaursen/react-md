@@ -2,11 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class InkTransition extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { timeout: null };
-  }
-
   static propTypes = {
     style: PropTypes.object.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
@@ -18,19 +13,25 @@ export default class InkTransition extends Component {
     transitionLeaveTimeout: 450,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { timeout: null };
+  }
+
   componentWillUnmount() {
-    if(this.state.timeout) { clearTimeout(this.state.timeout); }
+    if (this.state.timeout) { clearTimeout(this.state.timeout); }
   }
 
   componentWillEnter = (done) => {
     const node = ReactDOM.findDOMNode(this);
     const timeout = setTimeout(() => {
       node.classList.add('active');
-      const timeout = setTimeout(() => {
+      const timeout2 = setTimeout(() => {
         this.setState({ timeout: null });
         done();
       }, this.props.transitionEnterTimeout);
-      this.setState({ timeout });
+      this.setState({ timeout: timeout2 });
     }, 25);
 
     this.setState({ timeout });

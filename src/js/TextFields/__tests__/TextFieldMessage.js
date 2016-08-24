@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../TextFieldMessage');
 
 import React from 'react';
@@ -61,7 +61,7 @@ describe('TextFieldMessage', () => {
 
     message = renderIntoDocument(<TextFieldMessage {...props} />);
     counter = findRenderedDOMComponentWithClass(message, 'md-text-field-counter');
-    expect(counter.textContent).toBe(props.value.length + ' / 30');
+    expect(counter.textContent).toBe(`${props.value.length} / 30`);
   });
 
   it('renders a message', () => {

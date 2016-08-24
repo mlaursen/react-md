@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../ListItemControl');
 jest.unmock('../ListItemText');
 jest.unmock('../../SelectionControls/Checkbox');
@@ -52,16 +52,16 @@ describe('ListItemControl', () => {
   });
 
   it('passes the remaining props to the primary list item', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const lic = renderIntoDocument(
       <ListItemControl
@@ -131,7 +131,7 @@ describe('ListItemControl', () => {
   });
 
   it('allows for any additional props in the action to remain', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const lic = renderIntoDocument(
       <ListItemControl
         primaryText="Test"

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import Toolbar from '../Toolbars/Toolbar';
 import Divider from '../Dividers/Divider';
 
@@ -12,14 +11,7 @@ const DIALOG_PADDING = 8;
  * This is the Dialog that appears when the `DialogContainer` component has
  * a true value for `isOpen`.
  */
-export default class Dialog extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { stacked: false };
-  }
-
+export default class Dialog extends PureComponent {
   static propTypes = {
     /**
      * Boolean if it is a simple dialog.
@@ -93,26 +85,32 @@ export default class Dialog extends Component {
     children: PropTypes.node,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { stacked: false };
+  }
+
   componentDidMount() {
-    let state = {};
+    const state = {};
     const { dialog, content } = this.refs;
 
-    if(content.scrollHeight > content.clientHeight) {
+    if (content.scrollHeight > content.clientHeight) {
       state.divided = true;
     }
 
-    if(this.props.actions) {
+    if (this.props.actions) {
       const maxButtonWidth = (dialog.offsetWidth - DIALOG_PADDING * 3) / 2;
       const actions = dialog.querySelectorAll('.md-btn');
-      for(let action of actions) {
-        if(action.offsetWidth > maxButtonWidth) {
+      for (const action of actions) {
+        if (action.offsetWidth > maxButtonWidth) {
           state.stacked = true;
           break;
         }
       }
     }
 
-    this.setState(state); //eslint-disable-line react/no-did-mount-set-state
+    this.setState(state); // eslint-disable-line react/no-did-mount-set-state
   }
 
   render() {
@@ -136,14 +134,15 @@ export default class Dialog extends Component {
 
     const { stacked, divided } = this.state;
 
-    let header, footer;
-    if(!isFullPage && title) {
+    let header;
+    let footer;
+    if (!isFullPage && title) {
       header = <h1 className="md-title">{title}</h1>;
-    } else if(isFullPage) {
+    } else if (isFullPage) {
       header = (
         <Toolbar
           primary
-          fixed={true}
+          fixed
           actionLeft={actionLeft}
           title={title}
           actionsRight={actionRight}
@@ -151,14 +150,14 @@ export default class Dialog extends Component {
       );
     }
 
-    if(actions && actions.length) {
-      footer = <DialogFooter className={classnames({ stacked })} actions={actions} />;
+    if (actions && actions.length) {
+      footer = <DialogFooter className={cn({ stacked })} actions={actions} />;
     }
 
     return (
       <div
         ref="dialog"
-        className={classnames('md-dialog', className, {
+        className={cn('md-dialog', className, {
           'full-page': isFullPage,
           'dialog-centered': !isFullPage,
         })}
@@ -170,7 +169,7 @@ export default class Dialog extends Component {
         <section
           ref="content"
           style={contentStyle}
-          className={classnames('md-dialog-content', contentClassName, {
+          className={cn('md-dialog-content', contentClassName, {
             'simple': isSimple,
           })}
         >

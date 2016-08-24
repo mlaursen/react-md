@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import injectInk from '../Inks';
 import FontIcon from '../FontIcons';
@@ -9,13 +8,7 @@ import FontIcon from '../FontIcons';
  * The `FileInput` component is used as simple styling for the `<input type="file" />`.
  * It will style the input as a raised button by default.
  */
-class FileInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class FileInput extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -81,9 +74,9 @@ class FileInput extends Component {
      * be triggered when the user selects a new file or cancels the new file selection.
      *
      * This function will be given the new [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList)
-     * as an array and the change event. If this is not a multiple file input, only the newly selected File
-     * will be given instead of a list of one file. Since this is an `input` tag,
-     * the user will not be able to select the same file multiple times unless
+     * as an array and the change event. If this is not a multiple file input, only the
+     * newly selected File will be given instead of a list of one file. Since this is an
+     * `input` tag, the user will not be able to select the same file multiple times unless
      * you manually clear the input's value.
      *
      * > NOTE: If the user hits cancel, null will be given for a single file input.
@@ -98,6 +91,11 @@ class FileInput extends Component {
      * Injected from `injectInk`
      */
     ink: PropTypes.node,
+
+    /**
+     * An optional id for the file input field.
+     */
+    id: PropTypes.string,
   };
 
   static defaultProps = {
@@ -105,15 +103,21 @@ class FileInput extends Component {
     iconChildren: 'file_upload',
   };
 
-  _handleChange = (e) => {
+  constructor(props) {
+    super(props);
+
+    this._handleChange = this._handleChange.bind(this);
+  }
+
+  _handleChange(e) {
     const { multiple, onChange } = this.props;
     const { files } = e.target;
-    if(!multiple) {
+    if (!multiple) {
       onChange(files[0] || null, e);
     } else {
       onChange(Array.prototype.slice.call(files), e);
     }
-  };
+  }
 
   render() {
     const {
@@ -126,6 +130,7 @@ class FileInput extends Component {
       secondary,
       flat,
       ink,
+      id,
       ...props,
     } = this.props;
     delete props.onChange;
@@ -133,15 +138,17 @@ class FileInput extends Component {
     return (
       <label
         style={style}
-        className={classnames(`md-btn md-${flat ? 'flat' : 'raised'}-btn md-file-input-btn`, className, {
+        className={cn(`md-btn md-${flat ? 'flat' : 'raised'}-btn md-file-input-btn`, className, {
           'md-primary': primary,
           'md-secondary': secondary,
         })}
         disabled={props.disabled}
+        htmlFor={id}
       >
         {ink}
         <input
           {...props}
+          id={id}
           aria-hidden="true"
           type="file"
           className="md-file-input"

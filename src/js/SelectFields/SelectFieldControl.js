@@ -1,16 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import TextField from '../TextFields';
 import injectInk from '../Inks';
 
-class SelectFieldControl extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class SelectFieldControl extends PureComponent {
   static propTypes = {
     inputStyle: PropTypes.object,
     inputClassName: PropTypes.string,
@@ -27,13 +20,13 @@ class SelectFieldControl extends Component {
     const control = (
       <TextField
         {...props}
-        className={classnames('md-select-field-container', {
+        className={cn('md-select-field-container', {
           'select-field-btn': below,
           'active': below && open,
           'disabled': props.disabled,
         })}
-        inputClassName={classnames('md-select-field', inputClassName)}
-        readOnly={true}
+        inputClassName={cn('md-select-field', inputClassName)}
+        readOnly
       />
     );
 

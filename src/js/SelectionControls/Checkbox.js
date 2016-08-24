@@ -1,20 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import FontIcon from '../FontIcons';
 import ControlContainer from './ControlContainer';
 
 
 /**
- * Checkboxes can be toggle by clicking the label of the checkbox or the checkbox itself. If the icon itself is clicked, ink will appear. There will be no
- * ink when the label is clicked.
+ * Checkboxes can be toggle by clicking the label of the checkbox or the
+ * checkbox itself. If the icon itself is clicked, ink will appear. There
+ * will be no ink when the label is clicked.
  */
-export default class Checkbox extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Checkbox extends PureComponent {
   static propTypes = {
     /**
      * The optional className to apply to the surrounding label.

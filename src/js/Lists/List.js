@@ -1,19 +1,12 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import Subheader from '../Subheaders';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
  */
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class List extends PureComponent {
   static propTypes = {
     /**
      * Boolean if this should be an ordered list (`<ol>`) component. Otherwise, it will
@@ -47,18 +40,18 @@ export default class List extends Component {
   render() {
     const { className, subheader, children, primarySubheader, ordered, ...props } = this.props;
     let allChildren = children;
-    if(subheader) {
+    if (subheader) {
       allChildren = [<Subheader key="subheader" primary={primarySubheader} primaryText={subheader} />].concat(children);
     }
 
     return React.createElement(ordered ? 'ol' : 'ul', {
-      className: classnames('md-list', className),
+      className: cn('md-list', className),
       ...props,
     }, React.Children.map(allChildren, (child, i) => {
-      if(i + 1 < children.length) {
+      if (i + 1 < children.length) {
         const nextChild = children[i + 1];
-        if(nextChild.type && nextChild.type.name === 'Divider') {
-          return React.cloneElement(child, { className: classnames(child.props.className, 'extra-mb') });
+        if (nextChild.type && nextChild.type.name === 'Divider') {
+          return React.cloneElement(child, { className: cn(child.props.className, 'extra-mb') });
         }
       }
       return child;

@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Avatar');
 jest.unmock('../../FontIcons');
 
@@ -63,7 +63,7 @@ describe('Avatar', () => {
 
   it('can apply a random color with the random prop', () => {
     const avatar = TestUtils.renderIntoDocument(
-      <Avatar random={true}>M</Avatar>
+      <Avatar random>M</Avatar>
     );
 
     const avatarNode = ReactDOM.findDOMNode(avatar);
@@ -73,7 +73,7 @@ describe('Avatar', () => {
 
   it('can apply a random color with custom suffixes', () => {
     const avatar = TestUtils.renderIntoDocument(
-      <Avatar random={true} suffixes={['wat-wat', 'oh-no']}>M</Avatar>
+      <Avatar random suffixes={['wat-wat', 'oh-no']}>M</Avatar>
     );
 
     const avatarNode = ReactDOM.findDOMNode(avatar);
@@ -99,9 +99,9 @@ describe('Avatar', () => {
   });
 
   it('will apply event listeners to the md-avatar', () => {
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onClick = jest.genMockFunction();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onClick = jest.fn();
 
     const avatar = TestUtils.renderIntoDocument(
       <Avatar onClick={onClick} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} />

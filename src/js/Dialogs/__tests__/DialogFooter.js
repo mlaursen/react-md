@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../DialogFooter');
 
 import React from 'react';
@@ -14,7 +14,7 @@ import FlatButton from '../../Buttons/FlatButton';
 describe('DialogFooter', () => {
   it('renders an actions object prop as a flat button', () => {
     const actions = {
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       label: 'Test',
     };
 
@@ -38,10 +38,10 @@ describe('DialogFooter', () => {
 
   it('renders a list of action objects as flat buttons', () => {
     const actions = [{
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       label: 'Test 1',
     }, {
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       label: 'Test 2',
     }];
 
@@ -69,7 +69,7 @@ describe('DialogFooter', () => {
 
   it('renders a mixed list of action objects and valid elements', () => {
     const actions = [{
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       label: 'Test 1',
     },
       <button key={2}>Test 2</button>,

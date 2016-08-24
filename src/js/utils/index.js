@@ -1,6 +1,8 @@
+/* eslint-disable no-param-reassign */
+
 export function setOverflow(enabled, selector) {
-  let el = selector ? document.querySelector(selector) : document.body;
-  if(enabled) {
+  const el = selector ? document.querySelector(selector) : document.body;
+  if (enabled) {
     el.classList.add('hide-overflow');
   } else {
     el.classList.remove('hide-overflow');
@@ -79,11 +81,11 @@ export function isPointInCircle(cx, cy, r, x, y) {
 
 export function easeInOut(currentTime, start, change, duration) {
   currentTime /= duration / 2;
-  if(currentTime < 1) {
+  if (currentTime < 1) {
     return change / 2 * currentTime * currentTime + start;
   }
   currentTime -= 1;
-  return -change / 2 * (currentTime * (currentTime -2 ) - 1) + start;
+  return -change / 2 * (currentTime * (currentTime - 2) - 1) + start;
 }
 
 /**
@@ -97,11 +99,21 @@ export function easeInOut(currentTime, start, change, duration) {
  * @param finalValue
  * @param next
  */
-export function animate(el, increment, elapsedTime, transitionTime, styleName, startValue, currentValue, finalValue, next) {
+export function animate(
+  el,
+  increment,
+  elapsedTime,
+  transitionTime,
+  styleName,
+  startValue,
+  currentValue,
+  finalValue,
+  next
+) {
   elapsedTime += increment;
-  el.style[styleName] = easeInOut(elapsedTime, startValue, finalValue, transitionTime) + 'px';
+  el.style[styleName] = `${easeInOut(elapsedTime, startValue, finalValue, transitionTime)}px`;
 
-  if(elapsedTime < transitionTime) {
+  if (elapsedTime < transitionTime) {
     setTimeout(() => {
       animate(el, increment, elapsedTime, transitionTime, styleName, startValue, currentValue, finalValue, next);
     }, increment);
@@ -121,10 +133,10 @@ export function animate(el, increment, elapsedTime, transitionTime, styleName, s
  */
 export function onOutsideClick(event, node, callback) {
   let target = event.target;
-  if(target === node) { return; }
+  if (target === node) { return; }
 
-  while(target.parentNode) {
-    if(target === node) { return; }
+  while (target.parentNode) {
+    if (target === node) { return; }
     target = target.parentNode;
   }
 

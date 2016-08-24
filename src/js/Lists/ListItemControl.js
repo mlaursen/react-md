@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import ListItemText from './ListItemText';
 
@@ -10,12 +9,6 @@ import ListItemText from './ListItemText';
  * a `Checkbox`, `Switch`, or a `Reorder` icon.
  */
 export default class ListItemControl extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
   static propTypes = {
     /**
      * An optional className to apply to the list item.
@@ -51,13 +44,19 @@ export default class ListItemControl extends Component {
     primaryAction: (props, propName, component, ...others) => {
       const primaryAction = props[propName];
       const secondaryAction = props.secondaryAction;
-      if(primaryAction && !secondaryAction) {
+      if (primaryAction && !secondaryAction) {
         return PropTypes.element(props, propName, component, ...others);
-      } else if(!primaryAction && !secondaryAction) {
-        return new Error(`Missing required prop 'primaryAction' or 'secondaryAction' for the component '${component}'.`);
-      } else if(primaryAction && secondaryAction) {
-        return new Error(`You can not have a 'primaryAction' and a 'secondaryAction' prop for the component '${component}'.`);
+      } else if (!primaryAction && !secondaryAction) {
+        return new Error(
+          `Missing required prop 'primaryAction' or 'secondaryAction' for the component '${component}'.`
+        );
+      } else if (primaryAction && secondaryAction) {
+        return new Error(
+          `You can not have a 'primaryAction' and a 'secondaryAction' prop for the component '${component}'.`
+        );
       }
+
+      return null;
     },
 
     /**
@@ -86,7 +85,7 @@ export default class ListItemControl extends Component {
     );
 
     const control = React.cloneElement(primaryAction || secondaryAction, { label, labelBefore: !!secondaryAction });
-    const className = classnames('md-list-item', props.className, {
+    const className = cn('md-list-item', props.className, {
       'primary-action': !!primaryAction,
       'secondary-action': !!secondaryAction,
       'two-lines': secondaryText && !threeLines,

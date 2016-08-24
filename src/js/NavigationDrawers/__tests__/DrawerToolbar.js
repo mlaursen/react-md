@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../DrawerToolbar');
 
 import React from 'react';
@@ -113,7 +113,7 @@ describe('DrawerToolbar', () => {
   });
 
   it('renders any additional children after the menu button and title', () => {
-    let props = {
+    const props = {
       drawerType: 'temporary',
       isOpen: true,
       temporary: true,
@@ -123,8 +123,8 @@ describe('DrawerToolbar', () => {
       children: <div className="test">Wow</div>,
     };
 
-    let toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    let toolbarNode = findDOMNode(toolbar);
+    const toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
+    const toolbarNode = findDOMNode(toolbar);
     expect(toolbarNode.childNodes.length).toBe(3);
     // Not sure how to test that first is icon button
     expect(toolbarNode.childNodes[1].textContent).toBe(props.title);

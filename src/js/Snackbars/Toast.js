@@ -1,16 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import FlatButton from '../Buttons/FlatButton';
 
-export default class Toast extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Toast extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     toast: PropTypes.shape({
@@ -31,7 +24,7 @@ export default class Toast extends Component {
     const { className, toast, dismiss, multiline, ...props } = this.props;
     const { text, action } = toast;
     let btnProps = action;
-    if(typeof action === 'string') {
+    if (typeof action === 'string') {
       btnProps = {
         label: action,
         onClick: dismiss,
@@ -40,10 +33,8 @@ export default class Toast extends Component {
 
     return (
       <section
-        className={classnames('md-snackbar', className, {
-          'multiline': multiline,
-        })}
         {...props}
+        className={cn('md-snackbar', className, { multiline })}
       >
         <p>{text}</p>
         {action && <FlatButton {...btnProps} />}

@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+/* eslint-disable no-shadow */
+import React, { PureComponent, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { ESC } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
@@ -26,31 +26,7 @@ import TimePicker from './TimePicker';
  * import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
  * ```
  */
-export default class TimePickerContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    let initialDate;
-    if(props.defaultValue) {
-      initialDate = new Date(props.defaultValue);
-    } else if(props.value) {
-      initialDate = new Date(props.value);
-    } else {
-      initialDate = new Date();
-    }
-
-    this.state = {
-      ...this.getTimeParts(initialDate, props),
-      value: props.defaultValue,
-      isOpen: props.initiallyOpen,
-      time: initialDate,
-      timeMode: props.initialTimeMode,
-      tempTime: initialDate,
-    };
-  }
-
+export default class TimePickerContainer extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the time picker's container.
@@ -197,7 +173,7 @@ export default class TimePickerContainer extends Component {
     initiallyOpen: false,
     initialTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
-    DateTimeFormat: DateTimeFormat,
+    DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
     locales: typeof window !== 'undefined'
       ? window.navigator.userLanguage || window.navigator.language
       : 'en-US',
@@ -207,88 +183,124 @@ export default class TimePickerContainer extends Component {
     cancelPrimary: true,
   };
 
-  componentWillUpdate(nextProps, nextState) {
-    if(this.getValue() !== this.getValue(nextProps, nextState)) {
-      this.setState(this.getTimeParts(this.getValue(nextProps, nextState), nextProps));
-    } else if(this.state.tempValue !== nextState.tempTime) {
-      this.setState(this.getTimeParts(nextState.tempTime, nextProps));
+  constructor(props) {
+    super(props);
+
+    let initialDate;
+    if (props.defaultValue) {
+      initialDate = new Date(props.defaultValue);
+    } else if (props.value) {
+      initialDate = new Date(props.value);
+    } else {
+      initialDate = new Date();
     }
 
-    if(this.state.isOpen && !nextState.isOpen) {
-      if(nextProps.inline) {
-        window.removeEventListener('click', this.closeOnOutside);
+    this.state = {
+      ...this._getTimeParts(initialDate, props),
+      value: props.defaultValue,
+      isOpen: props.initiallyOpen,
+      time: initialDate,
+      timeMode: props.initialTimeMode,
+      tempTime: initialDate,
+    };
+
+    this._close = this._close.bind(this);
+    this._toggleOpen = this._toggleOpen.bind(this);
+    this._closeOnEsc = this._closeOnEsc.bind(this);
+    this._closeOnOutside = this._closeOnOutside.bind(this);
+    this._getTextFieldValue = this._getTextFieldValue.bind(this);
+    this._setTimeMode = this._setTimeMode.bind(this);
+    this._setTempTime = this._setTempTime.bind(this);
+    this._handleOkClick = this._handleOkClick.bind(this);
+    this._handleCancelClick = this._handleCancelClick.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this._getValue(this.props, this.state) !== this._getValue(nextProps, nextState)) {
+      this.setState(this._getTimeParts(this._getValue(nextProps, nextState), nextProps));
+    } else if (this.state.tempValue !== nextState.tempTime) {
+      this.setState(this._getTimeParts(nextState.tempTime, nextProps));
+    }
+
+    if (this.state.isOpen && !nextState.isOpen) {
+      if (nextProps.inline) {
+        window.removeEventListener('click', this._closeOnOutside);
       }
 
-      window.removeEventListener('keydown', this.closeOnEsc);
-    } else if(!this.state.isOpen && nextState.isOpen) {
-      if(nextProps.inline) {
-        window.addEventListener('click', this.closeOnOutside);
+      window.removeEventListener('keydown', this._closeOnEsc);
+    } else if (!this.state.isOpen && nextState.isOpen) {
+      if (nextProps.inline) {
+        window.addEventListener('click', this._closeOnOutside);
       }
 
-      window.addEventListener('keydown', this.closeOnEsc);
+      window.addEventListener('keydown', this._closeOnEsc);
     }
   }
 
-  closeOnOutside = e => onOutsideClick(e, this.refs.container, this.close);
-
-  closeOnEsc = (e) => {
-    if((e.which || e.keyCode) === ESC) {
-      this.handleCancelClick();
-    }
-  };
-
-  getValue = (props = this.props, state = this.state) => {
+  _getValue(props, state) {
     return typeof props.value === 'undefined' ? state.value : props.value;
-  };
+  }
 
-  getTimeParts = (date, props = this.props) => extractTimeParts(props.DateTimeFormat, props.locales, date);
+  _getTimeParts(date, props) {
+    return extractTimeParts(props.DateTimeFormat, props.locales, date);
+  }
 
-  toggleOpen = () => {
+  _closeOnOutside(e) {
+    onOutsideClick(e, this.refs.container, this._close);
+  }
+
+  _closeOnEsc(e) {
+    if ((e.which || e.keyCode) === ESC) {
+      this._handleCancelClick();
+    }
+  }
+
+  _toggleOpen() {
     this.setState({ isOpen: !this.state.isOpen });
-  };
+  }
 
-  close = () => {
+  _close() {
     this.setState({ isOpen: false });
-  };
+  }
 
-  setTimeMode = (timeMode) => {
-    if(this.state.timeMode === timeMode) { return; }
+  _setTimeMode(timeMode) {
+    if (this.state.timeMode === timeMode) { return; }
 
     this.setState({ timeMode });
-  };
+  }
 
-  setTempTime = (time) => {
-    if(this.state.tempTime === time) { return; }
+  _setTempTime(time) {
+    if (this.state.tempTime === time) { return; }
 
     this.setState({ tempTime: time });
-  };
+  }
 
-  handleOkClick = (e) => {
+  _handleOkClick(e) {
     const { onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
-    if(onChange) {
+    if (onChange) {
       onChange(getTimeString(DateTimeFormat, locales, value), value, e);
     }
 
     this.setState({ value, isOpen: false });
-  };
+  }
 
-  handleCancelClick = () => {
+  _handleCancelClick() {
     this.setState({ isOpen: false, tempTime: this.state.time });
-  };
+  }
 
-  getTextFieldValue = (props = this.props, state = this.state) => {
+  _getTextFieldValue(props, state) {
     const { DateTimeFormat, locales } = props;
-    const value = this.getValue(props, state);
-    if(!value) {
+    const value = this._getValue(props, state);
+    if (!value) {
       return '';
-    } else if(value instanceof Date) {
+    } else if (value instanceof Date) {
       return getTimeString(DateTimeFormat, locales, value);
     } else {
       // currently don't support value of string
       return value;
     }
-  };
+  }
 
   render() {
     const {
@@ -318,8 +330,8 @@ export default class TimePickerContainer extends Component {
     delete props.onChange;
     delete props.defaultValue;
 
-    let picker, content;
-    if(isOpen) {
+    let picker;
+    if (isOpen) {
       picker = (
         <TimePicker
           {...props}
@@ -329,38 +341,39 @@ export default class TimePickerContainer extends Component {
           minutes={minutes}
           timePeriod={timePeriod}
           style={pickerStyle}
-          className={classnames('md-picker', displayMode, pickerClassName, {
+          className={cn('md-picker', displayMode, pickerClassName, {
             inline,
             'with-icon': inline && icon,
           })}
-          onOkClick={this.handleOkClick}
-          onCancelClick={this.handleCancelClick}
-          setTimeMode={this.setTimeMode}
-          setTempTime={this.setTempTime}
+          onOkClick={this._handleOkClick}
+          onCancelClick={this._handleCancelClick}
+          setTimeMode={this._setTimeMode}
+          setTempTime={this._setTempTime}
         />
       );
     }
 
-    if(inline) {
+    let content;
+    if (inline) {
       picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
       content = <TransitionGroup>{picker}</TransitionGroup>;
     } else {
-      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
+      content = <Dialog isOpen={isOpen} close={this._close}>{picker}</Dialog>;
     }
 
     return (
       <div
         style={style}
-        className={classnames('md-picker-container', className)}
+        className={cn('md-picker-container', className)}
         ref="container"
       >
         <TextField
           icon={icon}
-          onClick={this.toggleOpen}
+          onClick={this._toggleOpen}
           label={label}
           floatingLabel={floatingLabel}
-          value={this.getTextFieldValue()}
-          readOnly={true}
+          value={this._getTextFieldValue(this.props, this.state)}
+          readOnly
           fullWidth={fullWidth}
           adjustMinWidth={adjustMinWidth}
         />

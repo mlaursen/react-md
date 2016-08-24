@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../DialogContainer');
 
 import React from 'react';
@@ -15,7 +15,7 @@ describe('DialogContainer', () => {
   it('merges className and style', () => {
     const style = { display: 'block' };
     const className = 'test';
-    const close = jest.genMockFunction();
+    const close = jest.fn();
     const dialogContainer = renderIntoDocument(
       <DialogContainer style={style} className={className} isOpen={false} close={close} />
     );
@@ -26,19 +26,19 @@ describe('DialogContainer', () => {
   });
 
   it('renders a dialog when the isOpen prop is true', () => {
-    const close = jest.genMockFunction();
+    const close = jest.fn();
     let dialog = renderIntoDocument(<DialogContainer isOpen={false} close={close} />);
 
     let dialogNode = scryRenderedComponentsWithType(dialog, Dialog);
     expect(dialogNode.length).toBe(0);
 
-    dialog = renderIntoDocument(<DialogContainer isOpen={true} close={close} />);
+    dialog = renderIntoDocument(<DialogContainer isOpen close={close} />);
     dialogNode = scryRenderedComponentsWithType(dialog, Dialog);
     expect(dialogNode.length).toBe(1);
   });
 
   it('renders a simple dialog if there are no actions', () => {
-    const close = jest.genMockFunction();
+    const close = jest.fn();
     let dialog = renderIntoDocument(
       <DialogContainer
         isOpen={false}

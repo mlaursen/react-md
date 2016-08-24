@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../CardMedia');
 
 import React from 'react';
@@ -25,14 +25,14 @@ describe('CardMedia', () => {
   });
 
   it('allows for normal event listeners to be passed to the media component', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const media = renderIntoDocument(
       <CardMedia
@@ -74,7 +74,7 @@ describe('CardMedia', () => {
   });
 
   it('forces an aspect ratio unless the force aspect prop is set to false', () => {
-    const className = 'md-media-' + CardMedia.aspect.wide;
+    const className = `md-media-${CardMedia.aspect.wide}`;
     let media = renderIntoDocument(<CardMedia />);
     let mediaNode = findDOMNode(media);
     expect(mediaNode.classList.contains(className)).toBe(true);
@@ -89,7 +89,7 @@ describe('CardMedia', () => {
     const overlay = <p>Hello</p>;
     const media = renderIntoDocument(
       <CardMedia overlay={overlay}>
-        <img src={src} />
+        <img src={src} role="presentation" />
       </CardMedia>
     );
 

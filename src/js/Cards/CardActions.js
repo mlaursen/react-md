@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import CardExpander from './CardExpander';
+import contextTypes from './contextTypes';
 
 /**
  * The `CardActions` component is used for adding actions on your card.
@@ -9,18 +10,7 @@ import CardExpander from './CardExpander';
  *
  * This component can act as a `CardExpander`.
  */
-export default class CardActions extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  static contextTypes = {
-    isExpanded: PropTypes.bool.isRequired,
-    onExpandClick: PropTypes.func.isRequired,
-    iconClassName: PropTypes.string.isRequired,
-    iconChildren: PropTypes.string,
-  };
-
+export default class CardActions extends PureComponent {
   static propTypes = {
     /**
      * Boolean if this component should act as an expander and inject the
@@ -44,10 +34,12 @@ export default class CardActions extends Component {
     centered: PropTypes.bool,
   };
 
+  static contextTypes = contextTypes;
+
   render() {
     const { className, children, isExpander, centered, ...props } = this.props;
     return (
-      <section {...props} className={classnames('md-card-actions', className, { centered })}>
+      <section {...props} className={cn('md-card-actions', className, { centered })}>
         <div className="action-area">
           {children}
         </div>

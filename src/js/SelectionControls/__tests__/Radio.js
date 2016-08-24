@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Radio');
 jest.unmock('../ControlContainer');
 
@@ -26,11 +26,11 @@ describe('Radio', () => {
   });
 
   it('calls the onChange function prop with the current value and the event', () => {
-    const onChange = jest.genMockFunction();
+    const onChange = jest.fn();
     const radio = renderIntoDocument(<Radio onChange={onChange} value="A" />);
 
     const input = findRenderedDOMComponentWithTag(radio, 'input');
-    Simulate.change(input, { target: { checked: true }});
+    Simulate.change(input, { target: { checked: true } });
 
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0]).toBe('A');

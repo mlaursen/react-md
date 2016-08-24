@@ -1,4 +1,3 @@
-/*eslint-env node*/
-window.matchMedia = function() {
+window.matchMedia = function matchMedia() {
   return false;
 };

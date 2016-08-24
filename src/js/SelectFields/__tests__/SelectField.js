@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable max-len */
 jest.unmock('../SelectField');
 jest.unmock('../SelectFieldControl');
 jest.unmock('../../Menus');
@@ -33,7 +34,7 @@ describe('SelectField', () => {
     const menuClassName = 'menu-test';
     const select = renderIntoDocument(
       <SelectField
-        initiallyOpen={true}
+        initiallyOpen
         className={className}
         listClassName={listClassName}
         menuClassName={menuClassName}
@@ -52,15 +53,15 @@ describe('SelectField', () => {
   });
 
   it('appies the text field event listeners correctly', () => {
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onKeyUp = jest.genMockFunction();
-    const onKeyDown = jest.genMockFunction();
-    const onKeyPress = jest.genMockFunction();
-    const onChange = jest.genMockFunction();
-    const onInput = jest.genMockFunction();
-    const onInvalid = jest.genMockFunction();
-    const onSelect = jest.genMockFunction();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onKeyUp = jest.fn();
+    const onKeyDown = jest.fn();
+    const onKeyPress = jest.fn();
+    const onChange = jest.fn();
+    const onInput = jest.fn();
+    const onInvalid = jest.fn();
+    const onSelect = jest.fn();
 
     const select = renderIntoDocument(
       <SelectField
@@ -76,7 +77,7 @@ describe('SelectField', () => {
       />
     );
 
-    let textFieldNode = findRenderedDOMComponentWithTag(select, 'input');
+    const textFieldNode = findRenderedDOMComponentWithTag(select, 'input');
 
     Simulate.focus(textFieldNode);
     expect(onFocus).toBeCalled();
@@ -109,7 +110,7 @@ describe('SelectField', () => {
   it('opens the menu when the text field is clicked', () => {
     const select = renderIntoDocument(<SelectField menuItems={[1, 2]} />);
     // Need to mock the calc function since it crashes on querySelector
-    select.calcMenuPosition = jest.genMockFunction();
+    select.calcMenuPosition = jest.fn();
 
     expect(select.state.open).toBe(false);
     Simulate.click(findRenderedDOMComponentWithTag(select, 'input'));
@@ -123,7 +124,6 @@ describe('SelectField', () => {
 
     const value = findRenderedDOMComponentWithTag(select, 'input').value;
     expect(value).toBe(String(defaultValue));
-    expect(select.getValue()).toBe(defaultValue);
   });
 
   it('selects the next or first item in the list if the down arrow is pressed', () => {
@@ -132,7 +132,7 @@ describe('SelectField', () => {
       <SelectField menuItems={items} />
     );
 
-    let input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe('');
 
@@ -152,7 +152,7 @@ describe('SelectField', () => {
       <SelectField menuItems={items} label="Test" defaultValue={expected} />
     );
 
-    let input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe(expected);
 
@@ -165,7 +165,7 @@ describe('SelectField', () => {
     const items = [1, 2, 3];
     const select = renderIntoDocument(<SelectField menuItems={items} />);
 
-    let input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
 
     expect(value).toBe('');
@@ -180,7 +180,7 @@ describe('SelectField', () => {
     const items = [1, 2, 3];
     const select = renderIntoDocument(<SelectField menuItems={items} defaultValue={1} />);
 
-    let input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
 
     expect(value).toBe('1');
@@ -195,7 +195,7 @@ describe('SelectField', () => {
     const items = [1, 2, 3];
     const select = renderIntoDocument(<SelectField menuItems={items} defaultValue={3} />);
 
-    let input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
 
     expect(value).toBe('3');
@@ -210,7 +210,7 @@ describe('SelectField', () => {
     const items = ['A', 'B', 'C'];
     const select = renderIntoDocument(<SelectField menuItems={items} />);
 
-    const input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe('');
 
@@ -225,7 +225,7 @@ describe('SelectField', () => {
     const items = ['Item 1', 'Item 2'];
     const select = renderIntoDocument(<SelectField menuItems={items} />);
 
-    const input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe('');
 
@@ -247,7 +247,7 @@ describe('SelectField', () => {
     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const select = renderIntoDocument(<SelectField menuItems={items} />);
 
-    const input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe('');
 
@@ -261,7 +261,7 @@ describe('SelectField', () => {
     const items = [9, 99];
     const select = renderIntoDocument(<SelectField menuItems={items} />);
 
-    const input = select => findRenderedDOMComponentWithTag(select, 'input');
+    const input = selectField => findRenderedDOMComponentWithTag(selectField, 'input');
     let value = input(select).value;
     expect(value).toBe('');
 
@@ -279,8 +279,8 @@ describe('SelectField', () => {
   });
 
   it('will disable click and keydown events if disabled', () => {
-    const onClick = jest.genMockFunction();
-    const onKeyDown = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onKeyDown = jest.fn();
     const select = renderIntoDocument(<SelectField disabled menuItems={[1]} />);
     select.handleContainerClick = onClick;
     select.handleKeyDown = onKeyDown;

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils/dates';
 import CalendarDate from './CalendarDate';
@@ -8,13 +7,7 @@ import CalendarDate from './CalendarDate';
 /**
  * This component renders a month for the calendar view of the `DatePicker`.
  */
-export default class CalendarMonth extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CalendarMonth extends PureComponent {
   static propTypes = {
     /**
      * A className to apply.
@@ -75,16 +68,17 @@ export default class CalendarMonth extends Component {
     const activeDate = stripTime(new Date(calendarTempDate));
     const today = stripTime(new Date());
 
-    while(currentDate <= endDate) {
-      const key = currentDate.getMonth() + '-' + currentDate.getDate();
+    while (currentDate <= endDate) {
+      const key = `${currentDate.getMonth()}-${currentDate.getDate()}`;
+
       let date;
-      if(currentDate.getMonth() === calendarDate.getMonth()) {
+      if (currentDate.getMonth() === calendarDate.getMonth()) {
         const isMinDateDisabled = minDate && minDate.getTime() > currentDate.getTime();
         const isMaxDateDisbaled = maxDate && maxDate.getTime() < currentDate.getTime();
         date = (
           <CalendarDate
             key={key}
-            className={classnames({
+            className={cn({
               'today': currentDate.getTime() === today.getTime(),
               'active': currentDate.getTime() === activeDate.getTime(),
             })}
@@ -104,7 +98,7 @@ export default class CalendarMonth extends Component {
     }
 
     return (
-      <div className={classnames('md-calendar-month', className)} {...props}>
+      <div className={cn('md-calendar-month', className)} {...props}>
         {days}
       </div>
     );

@@ -1,17 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+/* eslint-disable new-cap */
+import React, { PureComponent, PropTypes } from 'react';
 
 import CalendarMonth from './CalendarMonth';
 import SwipeableView from '../SwipeableViews';
 import CalendarHeader from './CalendarHeader';
 
-export default class DatePickerCalendar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DatePickerCalendar extends PureComponent {
   static propTypes = {
     previousIcon: PropTypes.node.isRequired,
     onPreviousClick: PropTypes.func.isRequired,

@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 import FileInput from './FileInput';
 
 /**
@@ -28,14 +27,7 @@ import FileInput from './FileInput';
  * <RaisedButton onClick={() => this.refs.upload.abort()} label="Abort! Abort!" />
  * ```
  */
-export default class FileUpload extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {};
-  }
-
+export default class FileUpload extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -107,9 +99,11 @@ export default class FileUpload extends Component {
      * be given a list of files that were too big.
      */
     onSizeError: (props, propName, component, ...others) => {
-      if(typeof props.maxSize === 'number') {
+      if (typeof props.maxSize === 'number') {
         return PropTypes.func.isRequired(props, propName, component, ...others);
       }
+
+      return null;
     },
 
     /**
@@ -197,27 +191,42 @@ export default class FileUpload extends Component {
     /**
      * An optional function to call when a file selects or unselects a file.
      * This will be called before any local uploading occurs.
+     *
+     * ```js
+     * onChange(file(s) || null, event);
+     * ```
      */
     onChange: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.abort = this.abort.bind(this);
+    this._uploadFile = this._uploadFile.bind(this);
+    this._handleUpload = this._handleUpload.bind(this);
+  }
+
   /**
-   * Aborts the upload of a file. This either takes a file or a fileName and calls the
-   * `abort` function for that file's `FileReader`.
+   * Attempts to abort the upload of a file. This function takes an optional `file` or `fileName`
+   * as it's parameter. If the parameter is omitted, it attempts to abort the first file that was
+   * added. If the `onAbort` function was given, it will be called as well.
    *
-   * @param {Object|String} file? The file or the file name to use to find the correct `FileReader`.
+   * @param {Object|string=} file - The file or the file name to use to find the
+   *     correct `FileReader`.
    */
-  abort = (file) => {
+  abort(file) {
     let fileName = file;
-    if(!file) {
+    if (!file) {
       // Attempt to remove first file added...
       fileName = Object.keys(this.state)[0];
-    } else if(typeof file.name === 'string') {
+    } else if (typeof file.name === 'string') {
       fileName = file.name;
     }
 
     const reader = this.state[fileName];
-    if(reader) {
+    if (reader) {
       reader.abort();
       const state = this.state;
       delete state[fileName];
@@ -226,9 +235,9 @@ export default class FileUpload extends Component {
 
       this.setState(state);
     }
-  };
+  }
 
-  _uploadFile = (file) => {
+  _uploadFile(file) {
     const {
       onAbort,
       onError,
@@ -242,32 +251,32 @@ export default class FileUpload extends Component {
     const { name, type } = file;
 
     const fr = new FileReader();
-    if(onError) {
+    if (onError) {
       fr.onerror = e => {
         onError(file, e.target.error, e);
       };
     }
 
-    if(onAbort) {
+    if (onAbort) {
       fr.onabort = e => {
         onAbort(file, e);
       };
     }
 
-    if(onLoadStart) {
+    if (onLoadStart) {
       fr.onloadstart = e => {
         onLoadStart(file, e);
       };
     }
 
-    if(onLoadEnd) {
+    if (onLoadEnd) {
       fr.onloadend = e => {
         onLoadEnd(file, e);
       };
     }
 
     fr.onload = e => {
-      if(onLoad) {
+      if (onLoad) {
         onLoad(file, e.target.result, e);
       }
 
@@ -276,51 +285,53 @@ export default class FileUpload extends Component {
       this.setState(state);
     };
 
-    if(onProgress) {
+    if (onProgress) {
       fr.onprogress = e => {
-        if(e.lengthComputable) {
+        if (e.lengthComputable) {
           onProgress(file, (e.loaded / e.total) * 100, e);
         }
       };
     }
 
-    if(readAs) {
-      if(typeof readAs === 'function') {
+    if (readAs) {
+      if (typeof readAs === 'function') {
         readAs(file.type, file, fr);
       } else {
-        fr['readAs' + readAs](file);
+        fr[`readAs${readAs}`](file);
       }
-    } else if(type.match(/image|video|audio/)) {
+    } else if (type.match(/image|video|audio/)) {
       fr.readAsDataURL(file);
     } else if (type.match(/json$/)) {
       fr.readAsText(file);
-    } else if(type.match(/application|model|multipart/) || name.match(/(w|e)ar$/)) {
+    } else if (type.match(/application|model|multipart/) || name.match(/(w|e)ar$/)) {
       fr.readAsArrayBuffer(file);
     } else {
       fr.readAsText(file);
     }
 
     return fr;
-  };
+  }
 
-  _handleUpload = (files, e) => {
-    this.props.onChange && this.props.onChange(files, e);
+  _handleUpload(fileList, e) {
+    if (this.props.onChange) {
+      this.props.onChange(fileList, e);
+    }
 
-    if(!files) { return; }
+    if (!fileList) { return; }
     const { maxSize, onSizeError } = this.props;
-    files = Array.isArray(files) ? files : [files];
+    let files = Array.isArray(fileList) ? fileList : [fileList];
 
     let errorFiles = [];
-    if(maxSize) {
+    if (maxSize) {
       errorFiles = files.filter(file => file.size > maxSize);
       files = files.filter(file => file.size <= maxSize);
     }
 
-    if(errorFiles.length) {
+    if (errorFiles.length) {
       onSizeError(errorFiles);
     }
 
-    if(!files.length) {
+    if (!files.length) {
       return;
     }
 
@@ -331,7 +342,7 @@ export default class FileUpload extends Component {
     });
 
     this.setState(nextState);
-  };
+  }
 
   render() {
     const { ...props } = this.props;
