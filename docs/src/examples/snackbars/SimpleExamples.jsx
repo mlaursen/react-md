@@ -47,7 +47,7 @@ export default class SnackbarExamples extends PureComponent {
 
   // Pops the first toast off of the stack of toasts.
   // Make sure to make a new array object since it won't update
-  // the snackbar otherwise. PureRenderMixin probs.
+  // the snackbar otherwise.
   _dismissToast = () => {
     const toasts = this.state.toasts.slice();
     toasts.shift();
