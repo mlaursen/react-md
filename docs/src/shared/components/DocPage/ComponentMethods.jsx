@@ -5,12 +5,6 @@ import docgenMethodsPropTypes from 'constants/docgenMethodsPropTypes';
 import Markdown from 'components/Markdown';
 
 export default class ComponentMethods extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   static propTypes = {
     methods: docgenMethodsPropTypes,
   };
@@ -18,7 +12,7 @@ export default class ComponentMethods extends PureComponent {
   render() {
     const { methods } = this.props;
 
-    const rows = methods.map(({ description, name, params, returns }) => {
+    const rows = methods.map(({ description, name, params, returns, modifiers }) => {
       let definition = '';
       if (params.length) {
         definition += '\n\n```js\n';
@@ -26,12 +20,19 @@ export default class ComponentMethods extends PureComponent {
       }
 
       if (returns) {
-        definition += `@return ${returns.type ? `{${returns.type.name}} ` : ''}${returns.decription}\n\`\`\``;
+        definition += `\n\n@return ${returns.type ? `{${returns.type.name}} ` : ''}${returns.description}\n\`\`\``;
+      }
+
+      let prefix = modifiers.join(' ');
+      if (prefix) {
+        prefix += ' ';
       }
 
       return (
         <TableRow key={name}>
-          <TableColumn>{name}</TableColumn>
+          <TableColumn>
+            <Markdown markdown={`\`\`\`js\n${prefix}${name}\n\`\`\``} />
+          </TableColumn>
           <TableColumn>
             <Markdown markdown={description + definition} />
           </TableColumn>

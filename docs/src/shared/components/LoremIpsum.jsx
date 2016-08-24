@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import shallowCompare from 'react-addons-shallow-compare';
+import React, { PureComponent, PropTypes } from 'react';
 import loremIpsum from 'lorem-ipsum';
 
-export default class LoremIpsum extends Component {
+export default class LoremIpsum extends PureComponent {
   static propTypes = {
     count: PropTypes.number.isRequired,
     units: PropTypes.oneOf(['sentences', 'words', 'paragraphs']),
@@ -12,10 +11,6 @@ export default class LoremIpsum extends Component {
     count: 1,
     units: 'paragraphs',
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
 
   render() {
     const { count, units, ...props } = this.props;

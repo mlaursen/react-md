@@ -11,6 +11,9 @@
 .md-card.component-example {
   margin-bottom: 1em;
   margin-top: 1em;
+
+  // Stops sidescroll for mobile devices.
+  overflow: hidden;
 }
 
 .component-prop-types {
