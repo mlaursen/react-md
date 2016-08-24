@@ -1,0 +1,27 @@
+@import '~sass-utils';
+
+.terribly-inaccessible-fake-button {
+  @include md-box-shadow(2);
+
+  background: $md-white-base;
+  display: inline-block;
+  min-height: 40px;
+  min-width: 40px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  vertical-align: top;
+
+  &.disabled {
+    box-shadow: none;
+    color: $md-disabled-color;
+  }
+
+  &:not(.disabled):hover {
+    cursor: pointer;
+  }
+
+  + .terribly-inaccessible-fake-button {
+    margin-left: 1em;
+  }
+}
