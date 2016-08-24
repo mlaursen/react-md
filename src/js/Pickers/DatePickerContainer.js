@@ -8,7 +8,7 @@ import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
-import { addDate, subtractDate, DateTimeFormat, isMonthBefore } from '../utils/dates';
+import { addDate, subtractDate, DateTimeFormat, isMonthBefore, isDateEqual } from '../utils/dates';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions/Height';
@@ -90,6 +90,16 @@ export default class DatePickerContainer extends PureComponent {
     ]),
 
     /**
+     * An optional date to use when the calendar is opened for the first time.
+     * If this is omitted, it will either be the `defaultValue`, `value`, or
+     * today.
+     */
+    initialCalendarDate: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]),
+
+    /**
      * An optional function to call when the selected date is changed
      * by hitting the OK button. The newly formatted date string,
      * the new Date object, and the change event will be given.
@@ -161,7 +171,21 @@ export default class DatePickerContainer extends PureComponent {
      * An optional max date to use for the date picker. This will prevent
      * any dates after this time to be chosen.
      */
-    maxDate: PropTypes.instanceOf(Date),
+    maxDate: (props, propName, component, ...others) => {
+      const err = PropTypes.instanceOf(Date)(props, propName, component, ...others);
+      if (err || typeof props.minDate === 'undefined' || typeof props[propName] === 'undefined') {
+        return err;
+      }
+
+      const { minDate, maxDate } = props;
+      if (minDate > maxDate) {
+        return new Error(
+          `The min date: '${minDate}' is greater than the max date: '${maxDate}'`
+        );
+      }
+
+      return null;
+    },
 
     /**
      * Boolean if the date should automatically be selected when a user clicks
@@ -237,7 +261,15 @@ export default class DatePickerContainer extends PureComponent {
 
     let date;
     let value;
-    const { defaultValue, DateTimeFormat, locales, formatOptions } = props;
+    const {
+      defaultValue,
+      DateTimeFormat,
+      locales,
+      formatOptions,
+      initialCalendarDate,
+      minDate,
+      maxDate,
+    } = props;
     if (typeof props.value !== 'undefined' && props.value !== null) {
       date = typeof props.value === 'string' ? new Date(props.value) : props.value;
     } else if (defaultValue) {
@@ -249,11 +281,23 @@ export default class DatePickerContainer extends PureComponent {
       date = new Date();
     }
 
+    if (minDate || maxDate) {
+      date = this._validateDateRange(date, minDate, maxDate);
+    }
+
+    let calendarTempDate = date;
+    if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
+      calendarTempDate = typeof initialCalendarDate === 'string'
+        ? new Date(initialCalendarDate)
+        : initialCalendarDate;
+      date = calendarTempDate;
+    }
+
     this.state = {
       value,
       isOpen: props.initiallyOpen,
       calendarDate: date,
-      calendarTempDate: date,
+      calendarTempDate,
       calendarMode: props.initialCalendarMode,
       transitionName: 'md-swipe-left',
     };
@@ -270,6 +314,17 @@ export default class DatePickerContainer extends PureComponent {
     this._setCalendarTempDate = this._setCalendarTempDate.bind(this);
     this._setCalendarTempYear = this._setCalendarTempYear.bind(this);
     this._handleSwipeChange = this._handleSwipeChange.bind(this);
+    this._validateDateRange = this._validateDateRange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { minDate, maxDate } = this.props;
+    if (!isDateEqual(minDate, nextProps.minDate) || !isDateEqual(maxDate, nextProps.maxDate)) {
+      const date = this._validateDateRange(this.state.calendarDate, nextProps.minDate, nextProps.maxDate);
+      if (date) {
+        this.setState({ calendarTempDate: date, calendarDate: date });
+      }
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -429,6 +484,31 @@ export default class DatePickerContainer extends PureComponent {
     } else {
       return value;
     }
+  }
+
+  /**
+   * Attempts to validate the `calendarDate` in the state against the min and
+   * max dates.
+   *
+   * This will return null if the current calendarDate is still within the range.
+   *
+   * @param {Date} calendarDate - The current calendar date to compare to.
+   * @param {Date} minDate - An optional min date to compare to.
+   * @param {Date} maxDate - An optional max date to compare to.
+   * @return {Object} - The new state object with the updated calendarDate and
+   *    calendarTempDate keys or null.
+   */
+  _validateDateRange(calendarDate, minDate, maxDate) {
+    let date = null;
+    if (minDate && minDate > calendarDate) {
+      date = new Date(minDate);
+    }
+
+    if (maxDate && maxDate < calendarDate) {
+      date = new Date(maxDate);
+    }
+
+    return date;
   }
 
   render() {
