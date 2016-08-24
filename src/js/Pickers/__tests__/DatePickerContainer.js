@@ -166,4 +166,53 @@ describe('DatePickerContainer', () => {
     expect(onChange.mock.calls[0][0]).toBe(defaultValue);
     expect(onChange.mock.calls[0][1]).toEqual(tempDate);
   });
+
+  it('allows for an initial calendar date as a string', () => {
+    const initialCalendarDateStr = '3/17/2016';
+    const initialCalendarDate = new Date(initialCalendarDateStr);
+    const props = {
+      locales: 'en-US',
+      initialCalendarDate: initialCalendarDateStr,
+    };
+
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    expect(container.state.calendarDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+  });
+
+  it('allows for an initial calendar date as a Date object', () => {
+    const initialCalendarDate = new Date(2016, 2, 18);
+    const props = { locales: 'en-US', initialCalendarDate };
+
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    expect(container.state.calendarDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+  });
+
+  it('modifies the initial state\'s calendarDate if the min date is greater than the calendarDate', () => {
+    const minDate = new Date();
+    minDate.setDate(minDate.getDate() + 2);
+
+    const props = { minDate, locales: 'en-US' };
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    expect(container.state.calendarDate).toEqual(minDate);
+    expect(container.state.calendarTempDate).toEqual(minDate);
+  });
+
+  it('modifies the initial state\'s calendarDate if the max date is less than the calendarDate', () => {
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() - 2);
+
+    const props = { maxDate, locales: 'en-US' };
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    expect(container.state.calendarDate).toEqual(maxDate);
+    expect(container.state.calendarTempDate).toEqual(maxDate);
+  });
+
+  // Modifies the calendar date when the min or max date change from componentWillReceiveProps...
+  // but not sure how to test lifecycle
 });
