@@ -267,6 +267,12 @@ export default class Autocomplete extends Component {
      * An optional function to call when the `Autocomplete` suggestion menu closes.
      */
     onMenuClose: PropTypes.func,
+
+    /**
+     * Boolean if the autocomplete should automatically increase it's text field's
+     * min width to the max size of it's label or placeholder text.
+     */
+    adjustMinWidth: PropTypes.bool,
   };
 
   static defaultProps = {

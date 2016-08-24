@@ -256,7 +256,7 @@ export default class TextField extends Component {
     floatingLabel: true,
     lineDirection: 'left',
     passwordIconChildren: 'remove_red_eye',
-    adjustMinWidth: true,
+    adjustMinWidth: false,
   };
 
   componentDidMount() {
