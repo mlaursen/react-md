@@ -1,6 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+/**
+ * This is just the label component for the slider. It will
+ * return null if there are no children to display.
+ */
 export default class SliderLabel extends PureComponent {
   static propTypes = {
     className: PropTypes.string,

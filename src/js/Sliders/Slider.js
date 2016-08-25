@@ -244,10 +244,16 @@ export default class Slider extends PureComponent {
       value = undefined;
     }
 
+    let trackWidth;
+    if (props.label && !props.editable && !props.leftIcon && !props.rightIcon) {
+      trackWidth = '100%';
+    }
+
     this.state = {
       value,
       scale,
       thumbLeft,
+      trackWidth,
       trackFillWidth,
       active: false,
       dragging: false,
@@ -267,19 +273,24 @@ export default class Slider extends PureComponent {
     this._handleIncrement = this._handleIncrement.bind(this);
     this._handleTextFieldChange = this._handleTextFieldChange.bind(this);
     this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
+    this._calcTrackWidth = this._calcTrackWidth.bind(this);
   }
 
   componentDidMount() {
     this._node = findDOMNode(this);
     this._track = findDOMNode(this.refs.track);
     this._textField = this.props.editable && findDOMNode(this.refs.textField);
+    this._calcTrackWidth(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.editable !== nextProps.editable) {
-      this._textField = nextProps.editable
-        ? findDOMNode(this.refs.textField)
-        : null;
+    const { editable, leftIcon, rightIcon, label } = this.props;
+    if (editable !== nextProps.editable
+      || leftIcon !== nextProps.leftIcon
+      || rightIcon !== nextProps.rightIcon
+      || label !== nextProps.label
+    ) {
+      this._calcTrackWidth(nextProps);
     }
   }
 
@@ -295,6 +306,12 @@ export default class Slider extends PureComponent {
       fn('mouseup', this._handleMouseUp);
       fn('touchmove', this._handleTouchMove);
       fn('touchend', this._handleTouchEnd);
+    }
+
+    if (this.props.editable !== prevProps.editable) {
+      this._textField = this.props.editable
+        ? findDOMNode(this.refs.textField)
+        : null;
     }
   }
 
@@ -338,8 +355,30 @@ export default class Slider extends PureComponent {
     return distance / offsetWidth * 100;
   }
 
+  /**
+   * Checks if the target is within the text field container.
+   *
+   * @param {Object} target - The event target.
+   * @return {bool} true if the target is in the text field.
+   */
   _isTextField(target) {
     return this._textField && this._textField.contains(target);
+  }
+
+  /**
+   * Checks if a classList does not contain all the *bad* class names.
+   *
+   * @param {function} classList - The classList to check.
+   * @return {bool} true if the classList does not contain any of the *bad* class names.
+   */
+  _isValidClassList(classList) {
+    let invalid = false;
+    ['md-slider-label', 'md-slider-ind', 'md-icon'].some(cl => {
+      invalid = classList.contains(cl);
+      return invalid;
+    });
+
+    return !invalid;
   }
 
   /**
@@ -408,9 +447,10 @@ export default class Slider extends PureComponent {
       return;
     }
 
-    if (e.target.classList.contains('md-slider-thumb')) {
+    const { classList } = e.target;
+    if (classList.contains('md-slider-thumb')) {
       this.setState({ dragging: true, active: true });
-    } else if (!this._isTextField(e.target)) {
+    } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
   }
@@ -456,9 +496,10 @@ export default class Slider extends PureComponent {
       return;
     }
 
-    if (e.target.classList.contains('md-slider-thumb')) {
+    const { classList } = e.target;
+    if (classList.contains('md-slider-thumb')) {
       this.setState({ dragging: true, active: true, maskInked: true });
-    } else if (!this._isTextField(e.target)) {
+    } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
   }
@@ -578,8 +619,40 @@ export default class Slider extends PureComponent {
     this.setState({ active: true });
   }
 
+  /**
+   * For some reason the width of the track gets set to 0 if the `Slider` has a label and
+   * does not include the `leftIcon`, `rightIcon`, and is not `editable` OR it is
+   * `editable` and does not include the `leftIcon`. All other cases the width works
+   * correctly.
+   *
+   * This function just checks these things, and sets the width accordingly.
+   */
+  _calcTrackWidth(props) {
+    const { editable, leftIcon, rightIcon, inputWidth, label } = props;
+
+    if (!label) {
+      this.setState({ trackWidth: null });
+      return;
+    }
+
+    let trackWidth = null;
+    if (!leftIcon && !rightIcon && !editable) {
+      trackWidth = '100%';
+    } else if (editable && !leftIcon) {
+      const cs = window.getComputedStyle(this._textField);
+      const pl = parseInt(cs.getPropertyValue('padding-left'), 10);
+      const ml = parseInt(cs.getPropertyValue('margin-left'), 10);
+
+      trackWidth = pl + ml + inputWidth;
+    }
+
+    if (trackWidth) {
+      this.setState({ trackWidth });
+    }
+  }
+
   render() {
-    const { dragging, active, thumbLeft, trackFillWidth, maskInked } = this.state;
+    const { dragging, active, thumbLeft, trackFillWidth, maskInked, trackWidth } = this.state;
     const {
       id,
       min,
@@ -643,7 +716,7 @@ export default class Slider extends PureComponent {
         {leftIcon}
         <Track
           ref="track"
-          style={trackStyle}
+          style={Object.assign({}, trackStyle, { width: trackWidth })}
           className={cn(trackClassName, {
             'md-slider-track--ind-left': leftIcon,
             'md-slider-track--ind-right': rightIcon,
