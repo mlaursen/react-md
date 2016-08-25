@@ -15,18 +15,35 @@ export default class DocPageContainer extends PureComponent {
     loadDocumentation: PropTypes.func.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { examples: [] };
+  }
+
   componentWillMount() {
+    const { component, section } = this.props.params;
+    const folder = (section ? `${section}/` : '') + component;
+    // Can not have the examples in the redux state since it is not serializable.
+    // So either async require example for client, or bundle for server.
     if (__CLIENT__) {
-      const { component, section } = this.props.params;
       this.props.loadDocumentation(component, section);
+
+      require.ensure([], require => {
+        const examples = require(`examples/${folder}/index.js`).default;
+        this.setState({ examples });
+      });
+    } else {
+      const examples = require(`examples/${folder}/index.js`).default;
+      this.setState({ examples });
     }
   }
 
   render() {
-    const { ...props } = this.props;
+    const { ...props } = this.props; // eslint-disable-line no-useless-rename
     delete props.dispatch;
     delete props.loadDocumentation;
 
-    return <DocPage {...props} />;
+    return <DocPage {...this.state} {...props} />;
   }
 }

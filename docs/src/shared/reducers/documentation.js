@@ -1,6 +1,6 @@
 import { LOAD_DOCUMENTATION } from 'constants/ActionTypes';
 
-function updateDocumentation(state, { name, examples, docgens, description }) {
+function updateDocumentation(state, { name, docgens, description }) {
   if (state.name === name) {
     return state;
   }
@@ -8,7 +8,6 @@ function updateDocumentation(state, { name, examples, docgens, description }) {
   return {
     name,
     description,
-    examples,
     docgens,
   };
 }
@@ -16,7 +15,6 @@ function updateDocumentation(state, { name, examples, docgens, description }) {
 const initialState = {
   name: '',
   description: '',
-  examples: [],
   docgens: [],
 };
 
