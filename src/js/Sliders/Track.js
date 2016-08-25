@@ -5,6 +5,10 @@ import TrackFill from './TrackFill';
 import Thumb from './Thumb';
 import ThumbMask from './ThumbMask';
 
+/**
+ * The `Track` component is used for showing the current state of the slider.
+ * It will render the `TrackFill`, `Thumb`, and `ThumbMask` components.
+ */
 export default class Track extends PureComponent {
   static propTypes = {
     style: PropTypes.object,

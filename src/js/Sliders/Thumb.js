@@ -3,6 +3,9 @@ import cn from 'classnames';
 
 import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
 
+/**
+ * The `Thumb` component is the little ball for the slider.
+ */
 export default class Thumb extends PureComponent {
   static propTypes = {
     style: PropTypes.object,

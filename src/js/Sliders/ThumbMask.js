@@ -1,6 +1,14 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+/**
+ * The `ThumbMask` component is used for either:
+ *
+ *  - rendering the ink behind the `Thumb` component when the `Thumb`
+ *  has keyboard focus or touch focus
+ *  - rendering a underlay to make the `Track` look broken for disabled
+ *  Sliders.
+ */
 export default class ThumbMask extends PureComponent {
   static propTypes = {
     style: PropTypes.object,

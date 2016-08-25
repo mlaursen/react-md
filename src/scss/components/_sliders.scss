@@ -95,6 +95,10 @@ $md-slider-thumb-disabled-scale: .75 !default;
     position: relative;
   }
 
+  .md-slider-track--full-width {
+    @extend %full-width;
+  }
+
   .md-slider-track--ind-left {
     margin-left: $md-default-padding;
   }

@@ -1,6 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+/**
+ * The `TrackFill` component is used for showing a colored bar
+ * within the `Track` component to show the `Slider`'s position.
+ *
+ * If the `Slider` is disabled, this will just return null.
+ */
 export default class TrackFill extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
