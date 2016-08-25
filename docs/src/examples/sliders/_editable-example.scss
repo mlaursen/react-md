@@ -1,0 +1,26 @@
+@import '~sass-utils';
+
+.color-changer-dialog {
+  width: 320px;
+}
+
+.md-slider-container + .md-slider-container {
+  margin-top: 2em;
+}
+
+.color-changer {
+  content: '';
+  display: block;
+  height: 300px;
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.margin-centered {
+  @extend %centered;
+  display: block;
+}
+
+.padding-top-24 {
+  padding-top: 24px;
+}
