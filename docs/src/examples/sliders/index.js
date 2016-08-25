@@ -1,17 +1,10 @@
 import React from 'react';
 
-import ContinuousExample from './ContinuousExample';
-import ContinuousExampleRaw from '!!raw!./ContinuousExample';
-
-import DiscreteExample from './DiscreteExample';
-import DiscreteExampleRaw from '!!raw!./DiscreteExample';
+import SimpleContinuousExamples from './SimpleContinuousExamples';
+import SimpleContinuousExamplesRaw from '!!raw!./SimpleContinuousExamples';
 
 export default [{
-  title: 'Continuous Example',
-  code: ContinuousExampleRaw,
-  children: <ContinuousExample />,
-}, {
-  title: 'Discrete Example',
-  code: DiscreteExampleRaw,
-  children: <DiscreteExample />,
+  title: 'Simple Continuous Example',
+  code: SimpleContinuousExamplesRaw,
+  children: <SimpleContinuousExamples />,
 }];

@@ -1,6 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
+
 export default class Thumb extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
@@ -27,7 +29,8 @@ export default class Thumb extends PureComponent {
     } = this.props;
 
     return (
-      <span
+      <AccessibleFakeButton
+        disabled={disabled}
         {...props}
         style={Object.assign({}, style, { left: thumbLeft })}
         className={cn('md-slider-thumb', className, {
