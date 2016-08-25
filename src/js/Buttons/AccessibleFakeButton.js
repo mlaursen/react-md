@@ -40,6 +40,11 @@ export default class AccessibleFakeButton extends PureComponent {
      * The tab index to use for the Fake button so it is keyboard focusable.
      */
     tabIndex: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the Button is disabled. This will prevent tab focus.
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -56,6 +61,10 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   _handleClick(e) {
+    if (this.props.disabled) {
+      return;
+    }
+
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -64,6 +73,10 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   _handleKeyUp(e) {
+    if (this.props.disabled) {
+      return;
+    }
+
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -74,12 +87,14 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   render() {
-    const { component, children, ...props } = this.props;
+    const { component, children, disabled, tabIndex, ...props } = this.props;
     delete props.onClick;
     delete props.onKeyUp;
 
     return createElement(component, {
       ...props,
+      disabled,
+      tabIndex: disabled ? null : tabIndex,
       role: 'button',
       onClick: this._handleClick,
       onKeyUp: this._handleKeyUp,
