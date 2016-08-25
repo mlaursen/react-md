@@ -35,6 +35,8 @@ const docgens = {};
   'DataTables/EditDialogColumn',
   'Dialogs/DialogContainer',
   'Dividers/Divider',
+  'ExpansionPanels/ExpansionPanel',
+  'ExpansionPanels/ExpansionList',
   'FABTransitions/SpeedDial',
   'FileInputs/FileInput',
   'FileInputs/FileUpload',
