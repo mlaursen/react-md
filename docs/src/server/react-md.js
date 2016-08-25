@@ -74,7 +74,7 @@ export default function reactMD(req, res) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       res.render('index', {
-        initialState: JSON.stringify(initialState),
+        initialState: JSON.stringify(store.getState()),
         html: renderToString(<Root store={store} {...renderProps} />),
       });
     } else {

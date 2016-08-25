@@ -19,9 +19,6 @@ export function loadDocumentation(component, section) {
       require.ensure([], require => {
         const folder = (section ? `${section}/` : '') + component;
         const docgens = require(`docgens/${toJsonName(section ? `${component}-${section}` : component)}`);
-
-        // Unable to resolve folder names as index.js for some reason
-        const examples = require(`examples/${folder}/index.js`).default;
         const description = require(`examples/${folder}/README.md`);
 
         if (section === 'pickers') {
@@ -38,16 +35,12 @@ export function loadDocumentation(component, section) {
             name,
             description,
             docgens,
-            examples,
           },
         });
       });
     } else {
       const folder = (section ? `${section}/` : '') + component;
       const docgens = require(`docgens/${toJsonName(section ? `${component}-${section}` : component)}`);
-
-      // Unable to resolve folder names as index.js for some reason
-      const examples = require(`examples/${folder}/index.js`).default;
       const description = require(`examples/${folder}/README.md`);
 
       if (section === 'pickers') {
@@ -64,7 +57,6 @@ export function loadDocumentation(component, section) {
           name,
           description,
           docgens,
-          examples,
         },
       });
     }
