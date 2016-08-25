@@ -241,7 +241,7 @@ export default class DatePickerContainer extends PureComponent {
      * The direction that the text field divider expands from when the text field
      * in the date picker gains focus.
      */
-    lineDirection: TextField.propTypes.lineDirection,
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
   };
 
   static defaultProps = {

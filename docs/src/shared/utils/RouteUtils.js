@@ -93,6 +93,7 @@ const components = {
     'data-tables',
     'dialogs',
     'dividers',
+    'expansion-panels',
     'file-inputs',
     'font-icons',
     'lists',

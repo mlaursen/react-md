@@ -7,6 +7,7 @@ export default jest.fn(originalProps => {
   delete props.fullWidth;
   delete props.block;
   delete props.adjustMinWidth;
+  delete props.lineDirection;
 
   return <input type="input" {...props} />;
 });
