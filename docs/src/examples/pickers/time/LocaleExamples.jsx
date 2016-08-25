@@ -29,18 +29,18 @@ const LocaleExamples = () => (
       label="Select a date"
       locales="en-US"
       defaultValue={todayAt1522}
-      fullWidth
+      adjustMinWidth
     />
     <TimePicker
       label="Vælg en aftale dato"
       locales="da-DK"
       defaultValue={todayAt1522}
-      fullWidth
+      adjustMinWidth
     />
     <TimePicker
       label="Pretend Translate to Browser Locale"
       defaultValue={todayAt1522}
-      fullWidth
+      adjustMinWidth
     />
   </div>
 );

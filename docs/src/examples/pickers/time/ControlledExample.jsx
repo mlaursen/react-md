@@ -45,8 +45,6 @@ export default class ControlledExample extends PureComponent {
   };
 
   _undo = (formattedTime, time) => {
-    console.log('UNDO');
-    console.log('time:', time);
     this.setState({ time, formattedTime, undo: true });
   };
 

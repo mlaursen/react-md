@@ -10,17 +10,17 @@ const OrientationExamples = () => (
     <TimePicker
       label="Select an appointment time"
       floatingLabel={false}
-      fullWidth
+      adjustMinWidth
     />
     <TimePicker
       label="Portrait Mode"
       displayMode="portrait"
-      fullWidth
+      adjustMinWidth
     />
     <TimePicker
       label="Landscape Mode"
       displayMode="landscape"
-      fullWidth
+      adjustMinWidth
     />
   </div>
 );

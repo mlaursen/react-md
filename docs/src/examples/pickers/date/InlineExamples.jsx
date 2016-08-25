@@ -6,7 +6,7 @@ import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 
 const InlineExamples = () => (
   <div>
-    <DatePicker label="Select a date" inline fullWidth />
+    <DatePicker label="Select a date" inline fullWidth lineDirection="center" />
     <DatePicker
       label="Custom Format Options"
       formatOptions={{
@@ -20,7 +20,7 @@ const InlineExamples = () => (
         second: 'numeric',
         timeZoneName: 'long',
       }}
-      fullWidth
+      adjustMinWidth
     />
   </div>
 );
