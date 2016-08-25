@@ -3,12 +3,16 @@ import cn from 'classnames';
 
 import TrackFill from './TrackFill';
 import Thumb from './Thumb';
-import ThumbDisabledMask from './ThumbDisabledMask';
+import ThumbMask from './ThumbMask';
 
 export default class Track extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
+    thumbStyle: PropTypes.object,
+    thumbClassName: PropTypes.string,
+    trackFillStyle: PropTypes.object,
+    trackFillClassName: PropTypes.string,
     on: PropTypes.bool,
     off: PropTypes.bool,
     active: PropTypes.bool,
@@ -16,6 +20,10 @@ export default class Track extends PureComponent {
     disabled: PropTypes.bool,
     thumbLeft: PropTypes.string.isRequired,
     trackFillWidth: PropTypes.string.isRequired,
+    maskInked: PropTypes.bool,
+    onThumbKeyUp: PropTypes.func.isRequired,
+    onThumbKeyDown: PropTypes.func.isRequired,
+    onThumbFocus: PropTypes.func.isRequired,
   };
 
   render() {
@@ -28,21 +36,45 @@ export default class Track extends PureComponent {
       className,
       thumbLeft,
       trackFillWidth,
+      trackFillStyle,
+      trackFillClassName,
+      maskInked,
+      thumbStyle,
+      thumbClassName,
+      onThumbFocus,
+      onThumbKeyUp,
+      onThumbKeyDown,
       ...props,
     } = this.props;
 
     return (
       <div {...props} className={cn('md-slider-track', className)}>
-        <TrackFill disabled={disabled} dragging={dragging} trackFillWidth={trackFillWidth} />
+        <TrackFill
+          style={trackFillStyle}
+          className={trackFillClassName}
+          disabled={disabled}
+          dragging={dragging}
+          trackFillWidth={trackFillWidth}
+        />
         <Thumb
+          style={thumbStyle}
+          className={thumbClassName}
           on={on}
           off={off}
           disabled={disabled}
           dragging={dragging}
           active={active}
           thumbLeft={thumbLeft}
+          onFocus={onThumbFocus}
+          onKeyUp={onThumbKeyUp}
+          onKeyDown={onThumbKeyDown}
         />
-        <ThumbDisabledMask disabled={disabled} thumbLeft={thumbLeft} />
+        <ThumbMask
+          dragging={dragging}
+          disabled={disabled}
+          thumbLeft={thumbLeft}
+          maskInked={maskInked}
+        />
       </div>
     );
   }
