@@ -1,0 +1,88 @@
+@import '../helpers/extenders';
+
+.md-expansion-panel-list {
+  @extend %list-unstyled;
+}
+
+.md-expansion-panel {
+  @include md-box-shadow(1);
+
+  background: $md-white-base;
+  color: $md-secondary-text-color;
+  list-style: none;
+  transition: margin $md-transition-time;
+
+  &.expanded {
+    &:not(:first-child) {
+      margin-top: $md-default-padding;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: $md-default-padding;
+    }
+  }
+}
+
+.md-panel-header {
+  align-items: center;
+  display: flex;
+  font-size: $md-expansion-panel-font-size;
+  height: $md-height;
+  justify-content: space-between;
+  padding-left: $md-expansion-panel-padding;
+  padding-right: $md-expansion-panel-padding;
+  transition-duration: $md-transition-time;
+  transition-property: background, height;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &.focused {
+    background: $md-grey-200;
+  }
+
+  &.expanded {
+    height: $md-expansion-panel-expanded-height;
+  }
+
+  > *:not(:last-child) {
+    padding-right: $md-default-padding;
+  }
+}
+
+.md-panel-expander {
+  margin-left: auto;
+  transition: transform $md-transition-time;
+}
+
+.md-panel-content {
+  padding-bottom: $md-default-padding;
+  padding-left: $md-expansion-panel-padding;
+  padding-right: $md-expansion-panel-padding;
+}
+
+.md-panel-controls {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: $md-default-padding 0;
+
+  .md-btn {
+    margin-right: 8px;
+    min-width: 64px;
+  }
+}
+
+.md-panel-label {
+  color: $md-text-color;
+}
+
+.md-panel-secondary-label {
+  color: $md-secondary-text-color;
+  font-size: $md-expansion-panel-secondary-font-size;
+}
