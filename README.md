@@ -33,8 +33,8 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 ## Getting Started
 
 > NOTE: There are some other implementations that might work better for you:
-> - [Material-UI](/callemall/material-ui) - Uses inline styling
-> - [React Toolbox](/react-toolbox/react-toolbox) - SASS Implementation
+> - [Material-UI](https://github.com/callemall/material-ui) - Inline styling
+> - [React Toolbox](https://github.com/react-toolbox/react-toolbox) - SASS Implementation
 
 
 ### Prerequisites
