@@ -1,110 +1,217 @@
-.md-slider-track-container {
-  position: relative;
+////
+/// @group sliders
+////
 
-  &:not(.disabled):hover {
-    cursor: pointer;
+@import '../helpers/all';
+
+/// The Side of the Thumb for the Slider.
+/// @type Number
+$md-slider-thumb-size: 14px;
+
+/// The default height for the Slider's container.
+/// @type Number
+$md-slider-height: $md-height !default;
+
+/// The default height for the Slider's track.
+/// @type Number
+$md-slider-track-height: 2px;
+
+/// The z-index for the Slider's thumb.
+/// @type Number
+$md-slider-thumb-z-index: 22 !default;
+
+/// The scale to use when the slider is active. This will be applied
+/// to the `scale` transform on the thumb.
+/// @type Number
+$md-slider-thumb-active-scale: 1.5 !default;
+
+/// The scale to use when the slider is disabled. This will be applied
+/// to the `scale` transform on the thumb.
+/// @type Number
+$md-slider-thumb-disabled-scale: .75 !default;
+
+
+/// This includes the react-md Sliders Component scss.
+///
+/// @param {Color} $primary-color [$md-primary-color] - The primary color to use for the
+///     slider. This will be the non-disabled track's fill color and the non-disabled thumb's
+///     color. If you are using the `dark-theme`, This value should be the primary color with
+///     a `-200` suffix.
+/// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
+///     light theme.
+@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+  $md-slider-on-color: $primary-color;
+  $md-slider-off-color: if($light-theme, rgba($md-black-base, .26), rgba($md-white-base, .3));
+  $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+
+  .md-slider-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .md-icon {
+      $margin: ($md-slider-height - $md-font-icon-size) / 2;
+
+      margin-bottom: $margin;
+      margin-top: $margin;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
-}
 
-.md-slider {
-  @extend %hidden;
-}
+  .md-slider-container--disabled:hover {
+    cursor: initial;
+  }
 
-.md-slider-track {
-  display: block;
-  height: $md-height;
-  padding-top: $md-height - 10px;
-  position: relative;
-  width: 100%;
+  .md-slider-label {
+    display: block;
+    width: 100%;
+  }
 
-  &::before,
-  .md-track-fill {
-    height: 2px;
-    left: 0;
+  .md-slider-input {
+    height: 0;
     position: absolute;
+    visibility: hidden;
+    width: 0;
+    z-index: -1;
   }
 
-  &::before {
+  .md-slider-track {
+    $center: ($md-slider-height / 2) - ($md-slider-track-height / 2);
+    background: $md-slider-off-color;
     content: '';
-    right: 0;
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: $md-slider-track-height;
+    margin-bottom: $center;
+    margin-top: $center;
+    position: relative;
   }
 
-  .md-track-fill {
-    &.discrete,
-    &:not(.dragging) {
-      transition: width $md-transition-time;
+  .md-slider-track-fill {
+    background: $md-slider-on-color;
+    height: $md-slider-track-height;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    transition-duration: $md-transition-time;
+    transition-property: width;
+  }
+
+  .md-slider-track-fill--dragging {
+    transition-property: none;
+  }
+
+  .md-slider-thumb {
+    border-radius: 50%;
+    content: '';
+    display: inline-block;
+    height: $md-slider-thumb-size;
+    position: absolute;
+    top: -(($md-slider-thumb-size / 2) - ($md-slider-track-height / 2));
+    transition-duration: $md-transition-time;
+    transition-property: left, transform, background;
+    width: $md-slider-thumb-size;
+    z-index: $md-slider-thumb-z-index;
+  }
+
+  .md-slider-thumb--on {
+    background: $md-slider-on-color;
+  }
+
+  .md-slider-thumb--active {
+    transform: scale($md-slider-thumb-active-scale);
+    transform-origin: center;
+  }
+
+  .md-slider-thumb--dragging {
+    transition-property: transform, background;
+  }
+
+  .md-slider-thumb--disabled {
+    background: $md-slider-off-color;
+    transform: scale($md-slider-thumb-disabled-scale);
+  }
+
+  .md-slider-thumb--off {
+    background: $bg-color;
+    border: 2px solid;
+    border-color: $md-slider-off-color;
+    position: relative;
+  }
+
+  .md-slider-thumb--disabled-mask {
+    background: $bg-color;
+    border-radius: initial;
+    transform: scale(1.1);
+    z-index: $md-slider-thumb-z-index - 1;
+  }
+
+  .md-slider-ind {
+    display: block;
+    text-align: center;
+  }
+
+  .md-slider-ind--slider-left {
+    margin-right: $md-default-padding;
+  }
+
+  .md-slider-ind--slider-right {
+    margin-left: $md-default-padding;
+  }
+
+  .md-slider-editor {
+    text-align: right;
+  }
+
+  @media only screen and (min-width: $md-mobile-min-width) {
+    .md-slider-ind {
+      font-size: $md-text-field-mobile-font-size;
+      margin-top: 14px;
+    }
+  }
+
+  @media only screen and (min-width: $md-desktop-min-width) {
+    .md-slider-ind {
+      font-size: $md-text-field-desktop-font-size;
+      margin-top: 16px;
     }
   }
 }
 
-.md-slider-thumb {
-  @extend %button-unstyled;
 
-  border-radius: 50%;
-  height: $md-slider-ball-size;
-  left: -$md-slider-ball-size / 2;
-  position: absolute;
-  top: $md-height - 10 - $md-slider-ball-size / 2;
-  transition-duration: $md-transition-time;
-  transition-property: transform, background, color, top;
-  width: $md-slider-ball-size;
-  z-index: 3;
-}
+/// This only modifies the colors for the Slider component.
+///
+/// @param {Color} $primary-color [$md-primary-color] - The primary color to use for the
+///     slider. This will be the non-disabled track's fill color and the non-disabled thumb's
+///     color. If you are using the `dark-theme`, This value should be the primary color with
+///     a `-200` suffix.
+/// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
+///     light theme.
+@mixin md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+  $md-slider-on-color: $primary-color;
+  $md-slider-off-color: if($light-theme, rgba($md-black-base, .26), rgba($md-white-base, .3));
+  $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
 
-.md-continuous-slider-thumb,
-.md-slider-thumb:not(.dragging) {
-  transition-property: transform, background, color, top, left;
-}
-
-.md-continuous-slider-thumb {
-
-  &.zeroed {
-    border: 2px solid;
+  .md-slider-track,
+  .md-slider-thumb--disabled {
+    background: $md-slider-off-color;
   }
 
-  &.active {
-    transform: scale(1.5);
-  }
-}
-
-.md-discrete-slider-thumb {
-  &::after {
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid transparent;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    content: '';
-    height: 0;
-    left: 0;
-    position: absolute;
-    top: 10px;
-    transition-duration: $md-transition-time;
-    transition-property: top, border-top-color;
-    width: 0;
+  .md-slider-thumb--on,
+  .md-slider-track-fill {
+    background: $md-slider-on-color;
   }
 
-  &.active {
-    top: $md-slider-ball-size / 2;
-    transform: scale(2);
+  .md-slider-thumb--off,
+  .md-slider-thumb--disabled-mask {
+    background: $bg-color;
   }
-}
 
-.md-thumb-control {
-  @extend %button-unstyled;
-
-  color: $md-white-base;
-  font-size: 8px;
-  height: 100%;
-  position: relative;
-  vertical-align: top;
-  width: 100%;
-}
-
-.md-slider-discrete-value {
-  left: 50%;
-
-  position: absolute;
-  top: 2px;
-  transform: translateX(-50%);
+  .md-slider-thumb--off {
+    border-color: $md-slider-off-color;
+  }
 }

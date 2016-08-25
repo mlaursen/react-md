@@ -9,54 +9,54 @@
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the sliders should
 ///         be styled to the light or dark theme.
 /// @group sliders
-@mixin md-theme-sliders($color, $ink-color: null, $ball-zeroed-color: null, $light-theme: $md-light-theme) {
-  @if $ink-color == null {
-    $ink-color: rgba($color, .16);
-  }
-
-  @if $ball-zeroed-color == null {
-    $ball-zeroed-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
-  }
-
-  $off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
-  $focus-off-color: if($light-theme, $md-slider-light-theme-focus-off-color, $md-slider-dark-theme-off-color);
-  $disabled-color: if($light-theme, $md-slider-light-theme-disabled-color, $md-slider-dark-theme-off-color);
-
-  .md-slider-track::before {
-    background: $off-color;
-  }
-
-  .md-slider-thumb.valued,
-  .md-slider-track .md-track-fill {
-    background: $color;
-  }
-
-  .md-discrete-slider-thumb.zeroed {
-    background: if($light-theme, $md-black-base, $md-white-base);
-
-    &.active {
-      background: $md-grey-400;
-
-      &::after {
-        border-top-color: $md-grey-400;
-      }
-    }
-  }
-
-  .md-discrete-slider-thumb.active::after {
-    border-top-color: $color;
-  }
-
-  .md-slider-thumb {
-    background: $ball-zeroed-color;
-    color: $off-color;
-
-    &.zeroed {
-      border-color: $off-color;
-    }
-
-    &.valued .md-ink {
-      background: $ink-color;
-    }
-  }
-}
+//@mixin md-theme-sliders($color, $ink-color: null, $ball-zeroed-color: null, $light-theme: $md-light-theme) {
+//  @if $ink-color == null {
+//    $ink-color: rgba($color, .16);
+//  }
+//
+//  @if $ball-zeroed-color == null {
+//    $ball-zeroed-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+//  }
+//
+//  $off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
+//  $focus-off-color: if($light-theme, $md-slider-light-theme-focus-off-color, $md-slider-dark-theme-off-color);
+//  $disabled-color: if($light-theme, $md-slider-light-theme-disabled-color, $md-slider-dark-theme-off-color);
+//
+//  .md-slider-track::before {
+//    background: $off-color;
+//  }
+//
+//  .md-slider-thumb.valued,
+//  .md-slider-track .md-track-fill {
+//    background: $color;
+//  }
+//
+//  .md-discrete-slider-thumb.zeroed {
+//    background: if($light-theme, $md-black-base, $md-white-base);
+//
+//    &.active {
+//      background: $md-grey-400;
+//
+//      &::after {
+//        border-top-color: $md-grey-400;
+//      }
+//    }
+//  }
+//
+//  .md-discrete-slider-thumb.active::after {
+//    border-top-color: $color;
+//  }
+//
+//  .md-slider-thumb {
+//    background: $ball-zeroed-color;
+//    color: $off-color;
+//
+//    &.zeroed {
+//      border-color: $off-color;
+//    }
+//
+//    &.valued .md-ink {
+//      background: $ink-color;
+//    }
+//  }
+//}

@@ -1557,44 +1557,6 @@ $md-pickers-landscape-height: 340px !default;
 
 
 // ===================================================================================
-// Sliders
-// ===================================================================================
-
-
-/// The size of the ball for sliders.
-///
-/// @type String
-/// @group sliders
-$md-slider-ball-size: 14px;
-
-/// The slider color when there is no value in light themes.
-///
-/// @type String
-/// @group sliders
-$md-slider-light-theme-off-color: rgba($md-black-base, .26);
-
-/// The slider color when there is no value and the slider
-/// is focused for light themes.
-///
-/// @type String
-/// @group sliders
-$md-slider-light-theme-focus-off-color: rgba($md-black-base, .38);
-
-/// The disabled slider color for light themes.
-///
-/// @type String
-/// @group sliders
-$md-slider-light-theme-disabled-color: rgba($md-black-base, .26);
-
-/// The color for sliders in a dark theme when there is no value.
-///
-/// @type String
-/// @group sliders
-$md-slider-dark-theme-off-color: rgba($md-white-base, .3);
-
-
-
-// ===================================================================================
 // Tooltips
 // ===================================================================================
 
