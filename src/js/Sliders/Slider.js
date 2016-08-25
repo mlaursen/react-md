@@ -1,303 +1,333 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
-import { LEFT_MOUSE, LEFT, RIGHT } from '../constants/keyCodes';
-import { onOutsideClick } from '../utils';
-import SliderTrack from './SliderTrack';
+import { LEFT_MOUSE } from '../constants/keyCodes';
+import SliderLabel from './SliderLabel';
+import Track from './Track';
+import TextField from '../TextFields';
 
-/**
- * A `Slider` can either be continuous or discrete. A continuous slider will not have
- * a number indicating it's current value while a discrete slider will.
- */
 export default class Slider extends PureComponent {
   static propTypes = {
-    /**
-     * An optional style to apply.
-     */
+    id: PropTypes.string,
     style: PropTypes.object,
-
-    /**
-     * An optional className to apply.
-     */
     className: PropTypes.string,
-
-    /**
-     * An optional value for the slider. This will make the slider a controlled
-     * component.
-     */
-    value: PropTypes.number,
-
-    /**
-     * An optional starting value. If omitted, it will be the min value of the
-     * slider.
-     */
-    defaultValue: PropTypes.number,
-
-    /**
-     * The min value for the slider. It seems to only work with a value of 0 or 1 right now.
-     */
+    defaultValue: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
-
-    /**
-     * The max value for the slider. It really only seems to work as 10 or 100 right now.
-     */
     max: PropTypes.number.isRequired,
 
-    /**
-     * Any number to use for converting the slider into a discrete slider. This will be
-     * how many units the slider moves each tick. Only really tested with a value of 1.
-     */
-    step: PropTypes.number,
-
-    /**
-     * The number of decimal places to round to for each new step in a discrete slider.
-     */
-    stepPrecision: PropTypes.number.isRequired,
-
-    /**
-     * An optional function to call when the slider's value changes. It will
-     * be called with the new value and the change event.
-     *
-     * `onChange(newValue, event)`.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * An optional function to call when the slider's value has changed while the
-     * user is dragging the slider. It will be called with the new value and the
-     * drag event.
-     *
-     * `onChange(newValue, event)`.
-     */
-    onDragChange: PropTypes.func,
-
-    /**
-     * Boolean if the slider is disabled.
-     */
     disabled: PropTypes.bool,
+    value: PropTypes.number,
+    onChange: PropTypes.func,
+    onDragChange: PropTypes.func,
+    leftIcon: PropTypes.element,
+    rightIcon: PropTypes.element,
+    onMouseOver: PropTypes.func,
+    label: PropTypes.node,
+    formatValue: PropTypes.func.isRequired,
+    editable: (props, propName, component, ...others) => {
+      if (typeof props[propName] === 'undefined') {
+        return null;
+      }
+
+      const err = PropTypes.bool.isRequired(props, propName, component, ...others);
+      if (!err && typeof props.rightIcon !== 'undefined') {
+        return new Error(
+          `The '${component}' is unable to be editable and include a 'rightIcon'.`
+        );
+      }
+
+      return err;
+    },
   };
 
   static defaultProps = {
+    defaultValue: 0,
     min: 0,
     max: 100,
-    stepPrecision: 2,
+    formatValue: Math.round,
   };
 
   constructor(props) {
     super(props);
 
-    const value = typeof props.defaultValue === 'number' ? props.defaultValue : props.min;
-    const width = this._calcValuePercent(value, props.min, props.max);
+    const scale = Math.abs(props.min) + Math.abs(props.max);
+
+    let value = typeof props.value !== 'undefined'
+      ? props.value
+      : props.defaultValue;
+
+    const thumbLeft = this._calcLeft((value / scale) * 100);
+    const trackFillWidth = `${(value / scale) * 100}%`;
+
+    if (typeof props.value !== 'undefined') {
+      value = undefined;
+    }
+
     this.state = {
       value,
-      width,
+      scale,
+      thumbLeft,
+      trackFillWidth,
       active: false,
       dragging: false,
-      moving: false,
-      valued: width > 0,
-      left: this._calcLeft(width),
     };
 
-    this._handleClickOutside = this._handleClickOutside.bind(this);
-    this._handleSliderTrackClick = this._handleSliderTrackClick.bind(this);
-    this._handleThumbStart = this._handleThumbStart.bind(this);
-    this._handleDragMove = this._handleDragMove.bind(this);
-    this._handleDragEnd = this._handleDragEnd.bind(this);
-    this._handleThumbKeydown = this._handleThumbKeydown.bind(this);
-    this._updateValueWithStep = this._updateValueWithStep.bind(this);
+    this._updatePosition = this._updatePosition.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+    this._handleMouseMove = this._handleMouseMove.bind(this);
+    this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
+  }
+
+  componentDidMount() {
+    this._node = findDOMNode(this);
+    this._track = findDOMNode(this.refs.track);
+    this._textField = this.props.editable && findDOMNode(this.refs.textField);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.editable !== nextProps.editable) {
+      this._textField = nextProps.editable
+        ? findDOMNode(this.refs.textField)
+        : null;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.active && !prevState.active) {
-      window.addEventListener('click', this._handleClickOutside);
-    } else if (!this.state.active && prevState.active) {
-      window.removeEventListener('click', this._handleClickOutside);
+    const { active, dragging } = this.state;
+    if (active !== prevState.active) {
+      window[`${active ? 'add' : 'remove'}EventListener`]('click', this._blurOnOutsideClick);
+    }
+
+    if (dragging !== prevState.dragging) {
+      const fn = window[`${active ? 'add' : 'remove'}EventListener`];
+      fn('mousemove', this._handleMouseMove);
+      fn('mouseup', this._handleMouseUp);
     }
   }
 
+  /**
+   * This is a simple getter method for determining the value from either
+   * a controlled or stateless perspective of this component.
+   *
+   * @param {Object} props - The props to extract a value from.
+   * @param {Object} state - The state to extract a value from.
+   * @return {number} the current value of the slider.
+   */
   _getValue(props, state) {
-    return typeof props.value === 'undefined' ? state.value : props.value;
+    return typeof props.value !== 'undefined' ? props.value : state.value;
   }
 
-  _calcValuePercent(value, min, max) {
-    if (value === min) {
-      return 0;
-    } else if (value === max) {
-      return 100;
-    } else {
-      return Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
-    }
+  /**
+   * Gets the `left` position for the thumb based on the value given.
+   *
+   * @param {number} value - The current value.
+   * @return {string} the `calc` string.
+   */
+  _calcLeft(value) {
+    return `calc(${value}% - 6px)`;
   }
 
-  _calcLeft(width) {
-    return `calc(${width}% - 7px)`;
+  /**
+   * Calculates the distance the thumb has moved based on the new X position
+   * and the position of the track.
+   *
+   * @param {number} x - The current x position of the thumb.
+   * @param {Object} track - The slider's track node.
+   * @return {number} the current distance moved as a percentage.
+   */
+  _calcDistanceMoved(x, track) {
+    const { offsetWidth } = track;
+    const distance = Math.min(
+      offsetWidth,
+      Math.max(0, x - track.getBoundingClientRect().left)
+    );
+
+    return distance / offsetWidth * 100;
   }
 
-  _handleSliderTrackClick(e) {
-    let { clientX } = e;
-    const { min, max, step, onChange, onDragChange, disabled } = this.props;
-    if (disabled) { return; }
-    if (e.changedTouches) {
-      clientX = e.changedTouches[0].clientX;
-    }
+  _isTextField(target) {
+    return this._textField && this._textField.contains(target);
+  }
 
-    const track = findDOMNode(this).querySelector('.md-slider-track');
-    let distance = clientX - track.getBoundingClientRect().left;
-    const clientWidth = track.clientWidth;
+  /**
+   * Updates the slider's thumb position and the slider's track fill width based
+   * on the thumb's current x position on the screen.
+   *
+   * This will also call the `onDragChange` prop if it exists.
+   *
+   * @param {number} x - The screen x position of the thumb.
+   */
+  _updatePosition(x, normalize) {
+    const { scale } = this.state;
+    const { onChange, onDragChange, formatValue } = this.props;
+    let distance = this._calcDistanceMoved(x, this._track);
+    const value = formatValue(distance / 100 * scale);
 
-    if (distance < 0) {
-      distance = 0;
-    } else if (distance > clientWidth) {
-      distance = clientWidth;
-    }
-
-    let value = 0;
-    if (distance !== 0 && distance !== clientWidth) {
-      const calcedValue = distance / clientWidth * max;
-      if (step) {
-        value = this._updateValueWithStep(calcedValue);
-      } else {
-        value = Math.round(calcedValue);
+    if (normalize) {
+      if (onChange) {
+        onChange(value);
       }
-    } else if (distance === 0) {
-      value = min;
-    } else if (distance === clientWidth) {
-      value = max;
+
+      distance = (value / scale) * 100;
+    } else if (onDragChange) {
+      onDragChange(value);
     }
 
-    value = Math.min(max, Math.max(min, value));
-    const { dragging } = this.state;
-    if (dragging && onDragChange) {
-      onDragChange(value, e);
-    } else if (!dragging && onChange) {
-      onChange(value, e);
-    }
-
-
-    const width = this._calcValuePercent(value, min, max);
-    this.setState({
-      valued: value > min,
-      left: this._calcLeft(width),
-      width,
+    const state = {
       value,
       active: true,
+      dragging: !normalize,
+      thumbLeft: this._calcLeft(distance),
+      trackFillWidth: `${distance}%`,
+    };
+
+    if (typeof this.props.value !== 'undefined') {
+      delete state.value;
+    }
+
+    this.setState(state);
+  }
+
+  /**
+   * If the click target is the thumb, it will start listening to mouse move and
+   * mouse up events to allow continuous changes of the slider's value. Otherwise
+   * it will quickly set the new value to the click position in the slider.
+   *
+   * @param {Object} e - The mousedown event.
+   */
+  _handleMouseDown(e) {
+    if (e.button !== LEFT_MOUSE || e.shiftKey || this.props.disabled) {
+      return;
+    }
+
+    if (e.target.classList.contains('md-slider-thumb')) {
+      this.setState({ dragging: true, active: true });
+    } else if (!this._isTextField(e.target)) {
+      this._updatePosition(e.clientX, true);
+    }
+  }
+
+  /**
+   * This will update the value of the slider based on the current x position
+   * of the mouse if the slider is currently not disabled and in a dragging state.
+   */
+  _handleMouseMove(e) {
+    if (this.props.disabled || !this.state.dragging) {
+      return;
+    }
+
+    // Stops the text highlighting while dragging
+    e.preventDefault();
+
+    this._updatePosition(e.clientX);
+  }
+
+  _handleMouseUp(e) {
+    if (e.button !== LEFT_MOUSE || e.shiftKey || !this.state.dragging || this.props.disabled) {
+      return;
+    }
+
+    this._updatePosition(e.clientX, true);
+  }
+
+  /**
+   * This will set the active state of the slider to false if the user
+   * clicks outside of the slider's container.
+   *
+   * @param {Object} e - The window's click event.
+   */
+  _blurOnOutsideClick(e) {
+    if (this.state.dragging || this.props.disabled) {
+      return;
+    }
+
+    if (!this._node.contains(e.target)) {
+      this.setState({ active: false });
+    }
+  }
+
+  _updateIcon(icon, direction) {
+    if (!icon) {
+      return null;
+    }
+
+    const iconEl = React.Children.only(icon);
+
+    return cloneElement(iconEl, {
+      className: cn(iconEl.props.className, `md-slider-ind--slider-${direction}`),
     });
-  }
-
-  _handleClickOutside(e) {
-    onOutsideClick(e, findDOMNode(this), () => this.setState({ active: false }));
-  }
-
-  _handleThumbStart(e) {
-    if (this.props.disabled) { return; }
-    const { changedTouches, button, ctrlKey } = e;
-    if (!changedTouches && (button !== LEFT_MOUSE || ctrlKey)) { return; }
-
-    document.addEventListener('mousemove', this._handleDragMove);
-    document.addEventListener('mouseup', this._handleDragEnd);
-    document.addEventListener('touchmove', this._handleDragMove);
-    document.addEventListener('touchend', this._handleDragEnd);
-
-    this.setState({ dragging: true });
-  }
-
-  _handleDragMove(e) {
-    if (this.state.dragMoving || this.props.disabled) { return; }
-
-    requestAnimationFrame(() => {
-      this._handleSliderTrackClick(e);
-      this.setState({ dragMoving: false });
-    });
-    this.setState({ dragMoving: true });
-  }
-
-  _handleDragEnd(e) {
-    document.removeEventListener('mousemove', this._handleDragMove);
-    document.removeEventListener('mouseup', this._handleDragEnd);
-    document.removeEventListener('touchmove', this._handleDragMove);
-    document.removeEventListener('touchend', this._handleDragEnd);
-
-    if (this.props.onChange) {
-      this.props.onChange(this.state.value, e);
-    }
-
-    this.setState({ dragging: false });
-  }
-
-  _handleThumbKeydown(e) {
-    const key = e.which || e.keyCode;
-    if (key !== LEFT && key !== RIGHT) { return; }
-
-    const { min, max, step, onChange } = this.props;
-    const stepAmt = step || (max / (max - min));
-    let value = this._getValue(this.props, this.state);
-    if (key === LEFT) {
-      value = Math.max(value - stepAmt, min);
-    } else {
-      value = Math.min(value + stepAmt, max);
-    }
-
-    if (step) {
-      value = this._updateValueWithStep(value);
-    }
-
-    const width = this._calcValuePercent(value, min, max);
-    if (onChange) {
-      onChange(value, e);
-    }
-
-    this.setState({
-      value,
-      width,
-      valued: value > min,
-      left: this.calcLeft(width),
-      active: true,
-    });
-  }
-
-  _updateValueWithStep(value) {
-    const { step, stepPrecision } = this.props;
-    const stepScale = 100 / (100 * step);
-    const updatedValue = (Math.round(value * stepScale) / stepScale).toFixed(stepPrecision);
-    if (updatedValue.split('.')[1] === '00') {
-      return parseInt(updatedValue, 10);
-    } else {
-      return parseFloat(updatedValue, 10);
-    }
   }
 
   render() {
+    const { dragging, active, thumbLeft, trackFillWidth } = this.state;
+    const {
+      id,
+      min,
+      max,
+      disabled,
+      className,
+      label,
+      editable,
+      ...props,
+    } = this.props;
+    delete props.value;
+    delete props.onChange;
+    delete props.onDragChange;
+    delete props.leftIcon;
+    delete props.rightIcon;
+    delete props.formatValue;
+
     const value = this._getValue(this.props, this.state);
-    const { active, valued, width, left, dragging } = this.state;
-    const { min, max, step, disabled, className, style } = this.props;
-    const discrete = typeof step !== 'undefined';
+    let { leftIcon, rightIcon } = this.props;
+    leftIcon = this._updateIcon(leftIcon, 'left');
+    rightIcon = this._updateIcon(rightIcon, 'right');
+    let rightChildren = rightIcon;
+    if (editable) {
+      rightChildren = (
+        <TextField
+          ref="textField"
+          value={value}
+          inputClassName="md-slider-editor"
+          size={max.toString().length}
+          floatingLabel={false}
+          onChange={this._handleTextFieldChange}
+        />
+      );
+    }
+
     return (
-      <div className={cn('md-slider-container', className)} style={style}>
-        <div className={cn('md-slider-track-container', { active, disabled })}>
-          <input
-            type="range"
-            className="md-slider"
-            readOnly
-            value={value}
-            min={min}
-            max={max}
-            disabled={disabled}
-          />
-          <SliderTrack
-            active={active}
-            valued={valued}
-            width={width}
-            left={left}
-            dragging={dragging}
-            value={value}
-            discrete={discrete}
-            onClick={this._handleSliderTrackClick}
-            onTouchStart={this._handleThumbStart}
-            onMouseDown={this._handleThumbStart}
-            onKeyDown={this._handleThumbKeydown}
-          />
-        </div>
+      <div
+        {...props}
+        className={cn('md-slider-container', className, {
+          'md-slider-container--disabled': disabled,
+        })}
+        onMouseDown={this._handleMouseDown}
+      >
+        <SliderLabel htmlFor={id} children={label} />
+        <input
+          id={id}
+          type="range"
+          className="md-slider-input"
+          readOnly
+          min={min}
+          max={max}
+          value={value}
+          disabled={disabled}
+        />
+        {leftIcon}
+        <Track
+          ref="track"
+          active={active}
+          dragging={dragging}
+          disabled={disabled}
+          thumbLeft={thumbLeft}
+          trackFillWidth={trackFillWidth}
+          on={!disabled && value !== min}
+          off={value === min}
+        />
+        {rightChildren}
       </div>
     );
   }
