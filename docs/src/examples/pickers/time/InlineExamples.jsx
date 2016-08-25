@@ -5,7 +5,7 @@ import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 // import { TimePicker } from 'react-md/lib/Pickers';
 
 const InlineExamples = () => (
-  <TimePicker label="Select a time" inline fullWidth />
+  <TimePicker label="Select a time" inline fullWidth lineDirection="center" />
 );
 
 export default InlineExamples;

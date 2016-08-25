@@ -10,17 +10,17 @@ const OrientationExamples = () => (
     <DatePicker
       label="Select an appointment date"
       floatingLabel={false}
-      fullWidth
+      adjustMinWidth
     />
     <DatePicker
       label="Portrait Mode"
       displayMode="portrait"
-      fullWidth
+      adjustMinWidth
     />
     <DatePicker
       label="Landscape Mode"
       displayMode="landscape"
-      fullWidth
+      adjustMinWidth
     />
   </div>
 );
