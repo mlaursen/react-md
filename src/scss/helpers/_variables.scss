@@ -1809,3 +1809,32 @@ $md-bottom-nav-transition-time: $md-transition-time !default;
 /// @type Time
 /// @group bottom-navigations
 $md-bottom-navigation-transition-time: $md-transition-time !default;
+
+
+// ===================================================================================
+// Expansion Panels
+// ===================================================================================
+
+/// The font size for the unexpanded panel's labels.
+///
+/// @type String
+/// @group expansion-panels
+$md-expansion-panel-font-size: 15px;
+
+/// The font size for the exexpanded panel's secondary labels.
+///
+/// @type String
+/// @group expansion-panels
+$md-expansion-panel-secondary-font-size: 12px;
+
+/// The default left/right padding for an expansion panel.
+///
+/// @type String
+/// @group expansion-panels
+$md-expansion-panel-padding: 24px;
+
+/// The height of the panel's header when expanded.
+///
+/// @type String
+/// @group expansion-panels
+$md-expansion-panel-expanded-height: 64px;
