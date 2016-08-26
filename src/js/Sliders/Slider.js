@@ -296,22 +296,30 @@ export default class Slider extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     const { active, dragging } = this.state;
-    if (active !== prevState.active) {
-      window[`${active ? 'add' : 'remove'}EventListener`]('click', this._blurOnOutsideClick);
-    }
-
     if (dragging !== prevState.dragging) {
       const fn = window[`${active ? 'add' : 'remove'}EventListener`];
       fn('mousemove', this._handleMouseMove);
       fn('mouseup', this._handleMouseUp);
       fn('touchmove', this._handleTouchMove);
       fn('touchend', this._handleTouchEnd);
+      fn('click', this._blurOnOutsideClick);
     }
 
     if (this.props.editable !== prevProps.editable) {
       this._textField = this.props.editable
         ? findDOMNode(this.refs.textField)
         : null;
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.dragging) {
+      const rm = window.removeEventListener;
+      rm('mousemove', this._handleMouseMove);
+      rm('mouseup', this._handleMouseUp);
+      rm('touchmove', this._handleTouchMove);
+      rm('touchend', this._handleTouchEnd);
+      rm('click', this._blurOnOutsideClick);
     }
   }
 
@@ -424,8 +432,8 @@ export default class Slider extends PureComponent {
       trackFillWidth: `${distance}%`,
     };
 
-    if (e.changedTouches) {
-      state.maskInked = true;
+    if (e.type === 'touchend') {
+      state.maskInked = false;
     }
 
     if (typeof this.props.value !== 'undefined') {
@@ -447,8 +455,11 @@ export default class Slider extends PureComponent {
       return;
     }
 
+
     const { classList } = e.target;
     if (classList.contains('md-slider-thumb')) {
+      // Prevents text highlighting while dragging.
+      e.preventDefault();
       this.setState({ dragging: true, active: true });
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
@@ -498,6 +509,8 @@ export default class Slider extends PureComponent {
 
     const { classList } = e.target;
     if (classList.contains('md-slider-thumb')) {
+      // Prevents text highlighting while dragging.
+      e.preventDefault();
       this.setState({ dragging: true, active: true, maskInked: true });
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
@@ -574,6 +587,10 @@ export default class Slider extends PureComponent {
 
     if (typeof value === 'undefined') {
       state.value = newValue;
+    }
+
+    if (e.type === 'keydown') {
+      state.maskInked = true;
     }
 
     this.setState(state);
