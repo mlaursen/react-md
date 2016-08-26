@@ -5,6 +5,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 import { Link, IndexLink } from 'react-router';
 import { toTitle, toPropTypeId, getIdsForRoute } from 'utils/StringUtils';
 import { flatten } from 'utils/ListUtils';
+import smoothscroll from 'smoothscroll';
 
 import googleLogo from '../imgs/googleLogo.svg';
 import reactLogo from '../imgs/reactLogo.svg';
@@ -292,6 +293,8 @@ export const fuseRoutes = routes.reduce((searchables, route) => {
   return searchables;
 }, []);
 
+
+let firstRun = true;
 /**
  * This function is called any time the browser's url changes. Currently
  * it just scrolls to the top of the page or to a given hash after the
@@ -303,13 +306,22 @@ export function onUpdate() {
     setTimeout(() => {
       const { offsetHeight } = document.querySelector('.md-navigation-drawer-toolbar');
       const el = document.getElementById(hash.replace('#', ''));
+      let position = 0;
       if (el) {
-        window.scrollTo(0, el.offsetTop - offsetHeight);
+        position = el.offsetTop - offsetHeight;
+      }
+
+      if (firstRun) {
+        firstRun = false;
+        window.scrollTo(0, position);
       } else {
-        (document.body || document.documentElement).scrollTop = 0;
+        smoothscroll(position);
       }
     }, 300);
+  } else if (firstRun) {
+    firstRun = false;
+    window.scrollTo(0, 0);
   } else {
-    (document.body || document.documentElement).scrollTop = 0;
+    smoothscroll(0);
   }
 }
