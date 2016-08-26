@@ -1,4 +1,5 @@
 import { PureComponent, PropTypes, createElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import { SPACE, ENTER } from '../constants/keyCodes';
 
 /**
@@ -39,7 +40,7 @@ export default class AccessibleFakeButton extends PureComponent {
     /**
      * The tab index to use for the Fake button so it is keyboard focusable.
      */
-    tabIndex: PropTypes.number.isRequired,
+    tabIndex: PropTypes.number,
 
     /**
      * Boolean if the Button is disabled. This will prevent tab focus.
@@ -60,6 +61,10 @@ export default class AccessibleFakeButton extends PureComponent {
     this._handleKeyUp = this._handleKeyUp.bind(this);
   }
 
+  componentDidMount() {
+    this._node = findDOMNode(this);
+  }
+
   _handleClick(e) {
     if (this.props.disabled) {
       return;
@@ -69,6 +74,7 @@ export default class AccessibleFakeButton extends PureComponent {
       this.props.onClick(e);
     }
 
+    this._node.focus();
     this.setState({ pressed: !this.state.pressed });
   }
 
