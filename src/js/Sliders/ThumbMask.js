@@ -17,10 +17,22 @@ export default class ThumbMask extends PureComponent {
     thumbLeft: PropTypes.string.isRequired,
     maskInked: PropTypes.bool,
     dragging: PropTypes.bool,
+    discrete: PropTypes.bool,
+    leaving: PropTypes.bool,
   };
 
   render() {
-    const { style, className, thumbLeft, disabled, dragging, maskInked, ...props } = this.props;
+    const {
+      style,
+      className,
+      thumbLeft,
+      disabled,
+      dragging,
+      maskInked,
+      discrete,
+      leaving,
+      ...props,
+    } = this.props;
 
     return (
       <span
@@ -30,6 +42,8 @@ export default class ThumbMask extends PureComponent {
           'md-slider-thumb--dragging': dragging,
           'md-slider-thumb--mask-inked': maskInked,
           'md-slider-thumb--mask-disabled': disabled,
+          'md-slider-thumb--discrete-mask-inked': maskInked && discrete,
+          'md-slider-thumb--discrete-mask-leaving': discrete && leaving,
         })}
       />
     );

@@ -16,6 +16,7 @@ export default class Thumb extends PureComponent {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     dragging: PropTypes.bool,
+    discrete: PropTypes.bool,
   };
 
   render() {
@@ -28,6 +29,7 @@ export default class Thumb extends PureComponent {
       disabled,
       dragging,
       thumbLeft,
+      discrete,
       ...props,
     } = this.props;
 
@@ -41,7 +43,12 @@ export default class Thumb extends PureComponent {
           'md-slider-thumb--dragging': dragging,
           'md-slider-thumb--disabled': disabled,
           'md-slider-thumb--on': on,
-          'md-slider-thumb--off': off,
+          'md-slider-thumb--continuous-off': !discrete && off,
+          'md-slider-thumb--discrete': discrete,
+          'md-slider-thumb--discrete-on': discrete && active && on,
+          'md-slider-thumb--discrete-off': discrete && off,
+          'md-slider-thumb--discrete-active': discrete && active,
+          'md-slider-thumb--discrete-active-off': discrete && active && off,
         })}
       />
     );

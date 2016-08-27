@@ -2,6 +2,8 @@ import React from 'react';
 
 import SimpleContinuousExamples from './SimpleContinuousExamples';
 import SimpleContinuousExamplesRaw from '!!raw!./SimpleContinuousExamples';
+import SimpleDiscreteExamples from './SimpleDiscreteExamples';
+import SimpleDiscreteExamplesRaw from '!!raw!./SimpleDiscreteExamples';
 import IconExamples from './IconExamples';
 import IconExamplesRaw from '!!raw!./IconExamples';
 import EditableExample from './EditableExample';
@@ -12,6 +14,10 @@ export default [{
   title: 'Simple Continuous Example',
   code: SimpleContinuousExamplesRaw,
   children: <SimpleContinuousExamples />,
+}, {
+  title: 'Simple Discrete Examples',
+  code: SimpleDiscreteExamplesRaw,
+  children: <SimpleDiscreteExamples />,
 }, {
   title: 'With Icon Examples',
   code: IconExamplesRaw,
