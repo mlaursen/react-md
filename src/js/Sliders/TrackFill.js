@@ -13,12 +13,13 @@ export default class TrackFill extends PureComponent {
     className: PropTypes.string,
     dragging: PropTypes.bool,
     disabled: PropTypes.bool,
+    off: PropTypes.bool,
     trackFillWidth: PropTypes.string.isRequired,
   };
 
   render() {
-    const { style, className, trackFillWidth, dragging, disabled, ...props } = this.props;
-    if (disabled) {
+    const { style, className, trackFillWidth, dragging, disabled, off, ...props } = this.props;
+    if (disabled || off) {
       return null;
     }
 
