@@ -1,6 +1,6 @@
 {
   "name": "react-md-docs",
-  "version": "0.3.7",
+  "version": "0.4.0-alpha",
   "description": "The documentation website for react-md.",
   "main": "dist/server/server.js",
   "scripts": {
@@ -48,6 +48,7 @@
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
+    "smoothscroll": "^0.2.2",
     "vhost": "^3.0.2",
     "webfontloader": "^1.6.26",
     "whatwg-fetch": "^1.0.0"
