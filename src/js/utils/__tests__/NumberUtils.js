@@ -29,7 +29,7 @@ describe('NumberUtils', () => {
 
   describe('calculateValueDistance', () => {
     it('does stuff I do not really know how to test', () => {
-      expect(calculateValueDistance(0, 20, 0, 100, 1, 0, 100, false)).toEqual({ distance: 0, value: 0 });
+      expect(calculateValueDistance(0, 20, 0, 100, 1, 0, 100, 0, false)).toEqual({ distance: 0, value: 0 });
     });
   });
 

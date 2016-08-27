@@ -46,7 +46,7 @@ export default class Thumb extends PureComponent {
           'md-slider-thumb--continuous-off': !discrete && off,
           'md-slider-thumb--discrete': discrete,
           'md-slider-thumb--discrete-on': discrete && active && on,
-          'md-slider-thumb--discrete-off': discrete && off,
+          'md-slider-thumb--discrete-off': discrete && !disabled && off,
           'md-slider-thumb--discrete-active': discrete && active,
           'md-slider-thumb--discrete-active-off': discrete && active && off,
         })}

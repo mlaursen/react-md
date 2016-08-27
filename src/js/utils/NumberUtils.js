@@ -51,18 +51,18 @@ function calculateDistance(x, width, left, normalize) {
  * @param {Number} step - the amount to increment by.
  * @param {Number} min - the min value for the slider.
  * @param {Number} max - the max value for the slider.
+ * @param {Number} precision - the precision that the value should be rounded to.
  * @param {Boolean} normalize - boolean if the vaue and distance should be _normalized_.
  *
  * @return {Object} an object with the value and distance.
  */
-export function calculateValueDistance(x, width, left, scale, step, min, max, normalize) {
+export function calculateValueDistance(x, width, left, scale, step, min, max, precision, normalize) {
   let value;
   let distance = calculateDistance(x, width, left, normalize);
   if (normalize) {
     value = Math.round(distance / (width / scale));
-    if (step !== 1) {
+    if (step < 1) {
       const modded = value % step;
-
       if (modded !== 0 && modded >= step / 2) {
         value += (step - modded);
       } else if (modded !== 0) {
@@ -72,13 +72,17 @@ export function calculateValueDistance(x, width, left, scale, step, min, max, no
 
     distance = value / scale * 100;
     value += min;
+
+    if (step > 1) {
+      value *= step;
+    }
   } else {
     value = Math.round(distance / 100 * scale);
   }
 
   return {
     distance: Math.max(0, Math.min(100, distance)),
-    value: Math.max(min, Math.min(max, value)),
+    value: Math.max(min, Math.min(max, value.toFixed(precision))),
   };
 }
 

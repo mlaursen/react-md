@@ -2,12 +2,21 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import { getField } from '../utils';
+import { isValidClick } from '../utils/EventUtils';
 import { calculateValueDistance } from '../utils/NumberUtils';
-import { LEFT_MOUSE, LEFT, RIGHT, TAB } from '../constants/keyCodes';
+import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import SliderLabel from './SliderLabel';
 import Track from './Track';
 import TextField from '../TextFields';
 
+/**
+ * The `Slider` component is used to let users select a value from a continuous
+ * or discrete range of values by moving the slider thumb.
+ *
+ * When the user has finished dragging the Slider or increments the value by using
+ * the edit field/keyboard arrows, the value will be rounded to the nearest `step`.
+ */
 export default class Slider extends PureComponent {
   static propTypes = {
     /**
@@ -22,7 +31,7 @@ export default class Slider extends PureComponent {
       const err = PropTypes.string.isRequired(props, propName, component, ...others);
       if (err) {
         return new Error(
-          `The 'id' prop is required for the '${component}' when the 'label' ` +
+          `The '${propName}' prop is required for the '${component}' when the 'label' ` +
           'prop is defined. This will be used for the \'htmlFor\' prop of the label.'
         );
       }
@@ -86,59 +95,61 @@ export default class Slider extends PureComponent {
     defaultValue: PropTypes.number.isRequired,
 
     /**
-     * The min value for the slider.
+     * The min value for the slider. The min and max values must be on the same
+     * side of 0. It is currently invalid to have a range from negative to positive.
      */
     min: (props, propName, component, ...others) => {
-      const err = PropTypes.number.isRequired(props, propName, component, ...others);
-      if (err) {
-        return err;
-      }
-      const min = props[propName];
-      if (min > props.value) {
-        return new Error(
-          `The 'min' prop must be less than or equal to the 'value' prop for the '${component}' but ` +
-          `received: 'min: ${min}' and 'value: ${props.value}'`
-        );
-      } else if (min > props.defaultValue) {
-        return new Error(
-          `The 'min' prop must be less than or equal to the 'defaultValue' prop for the '${component}' but ` +
-          `received: 'min: ${min}' and 'defaultValue: ${props.defaultValue}'`
-        );
+      let err = PropTypes.number.isRequired(props, propName, component, ...others);
+      if (!err) {
+        const min = props[propName];
+        let name;
+        if (min > props.value) {
+          name = 'value';
+        } else if (min > props.defaultValue) {
+          name = 'defaultValue';
+        }
+
+        if (name) {
+          err = new Error(
+            `The '${propName}' prop must be less than or equal to the '${name}' prop for the '${component}' but ` +
+            `received: 'min: ${min}' and '${name}: ${props[name]}'`
+          );
+        } else if (min < 0 && props.max > 0) {
+          err = new Error(
+            `The '${component}' is unable to have a range spanning from negative to positive. The range ` +
+            'must either be all negative or all postive.'
+          );
+        }
       }
 
-
-      return null;
+      return err;
     },
 
     /**
-     * The max value for the slider. The max value must be greater than
-     * the min value.
+     * The max value for the slider. The max value must be greater than the min value
+     * and the min and max values must be on the same side of 0. It is currently
+     * invalid to have a range from negative to positive.
      */
     max: (props, propName, component, ...others) => {
-      const err = PropTypes.number.isRequired(props, propName, component, ...others);
-      if (err) {
-        return err;
+      let err = PropTypes.number.isRequired(props, propName, component, ...others);
+      if (!err) {
+        const max = props[propName];
+        let name;
+        if (max < props.value) {
+          name = 'value';
+        } else if (max < props.defaultValue) {
+          name = 'defaultValue';
+        }
+
+        if (name) {
+          err = new Error(
+            `The '${propName}' prop must be greater than or equal to the '${name}' prop for the '${component}' but ` +
+            `received: '${propName}: ${max}' and '${name}: ${props[name]}'`
+          );
+        }
       }
 
-      const max = props[propName];
-      if (props.min >= max) {
-        return new Error(
-          `The 'max' prop must be greater than the 'min' prop for the '${component} but ` +
-          `received: 'min: ${props.min}' and 'max: ${max}'.`
-        );
-      } else if (max < props.value) {
-        return new Error(
-          `The 'max' prop must be greater than the 'value' prop for the '${component}' but ` +
-          `received: 'max: ${max}' and 'value: ${props.value}'`
-        );
-      } else if (max < props.defaultValue) {
-        return new Error(
-          `The 'max' prop must be greater than the 'defaultValue' prop for the '${component}' but ` +
-          `received: 'max: ${max}' and 'defaultValue: ${props.defaultValue}'`
-        );
-      }
-
-      return null;
+      return err;
     },
 
     /**
@@ -179,11 +190,16 @@ export default class Slider extends PureComponent {
      * - a key up event
      * - a key down event
      */
-    onChange: PropTypes.func,
+    onChange: (props, propName, component, ...others) => { // eslint-disable-line arrow-body-style
+      return typeof props.value !== 'undefined'
+        ? PropTypes.func.isRequired(props, propName, component, ...others)
+        : PropTypes.func(props, propName, component, ...others);
+    },
 
     /**
      * This is only called when the user is dragging the slider with either
-     * the mouse or touch.
+     * the mouse or touch. Probably not really usefull. It just includes the
+     * new drag percentage while the `onChange` does not.
      *
      * The callback for this function is defined as:
      *
@@ -218,9 +234,38 @@ export default class Slider extends PureComponent {
     /**
      * The incremental amount when the user hits left or right with the
      * keyboard arrows, or the user hits the up or down buttons in the
-     * editable number text field.
+     * editable number text field. This number must be a number between
+     * 0 and 1 or a whole number above 1.
      */
-    step: PropTypes.number.isRequired,
+    step: (props, propName, component, ...others) => {
+      let err = PropTypes.number.isRequired(props, propName, component, ...others);
+      if (!err) {
+        const step = props[propName];
+        if (step <= 0) {
+          err = new Error(
+            `The '${propName}' for the '${component}' must be a number greater than 0. The ` +
+            `current value is '${step}'.`
+          );
+        } else {
+          let name;
+          if (typeof props.value !== 'undefined' && props.value % step !== 0) {
+            name = 'value';
+          } else if (props.defaultValue % step !== 0) {
+            name = 'defaultValue';
+          }
+
+          if (name) {
+            err = new Error(
+              `The '${name}' prop on '${component}' should be a number divisible by the ` +
+              `'${propName}' prop. The current value is '${props[name]}' and the '${propName}' ` +
+              `is '${step}'.`
+            );
+          }
+        }
+      }
+
+      return err;
+    },
 
     /**
      * Boolean if the Slider should be editable. This will place a number text field
@@ -232,10 +277,10 @@ export default class Slider extends PureComponent {
         return null;
       }
 
-      const err = PropTypes.bool.isRequired(props, propName, component, ...others);
+      let err = PropTypes.bool.isRequired(props, propName, component, ...others);
       if (!err && typeof props.rightIcon !== 'undefined') {
-        return new Error(
-          `The '${component}' is unable to be editable and include a 'rightIcon'.`
+        err = new Error(
+          `The '${component}' is unable to be 'editable' and include a 'rightIcon'.`
         );
       }
 
@@ -263,7 +308,7 @@ export default class Slider extends PureComponent {
       let err = PropTypes.bool(props, propName, component, ...others);
       if (!err && typeof props.editable !== 'undefined') {
         err = new Error(
-          `The '${component}' can not be 'discrete' and 'editable'. Please choose one.`
+          `The '${component}' cannot be 'discrete' and 'editable'. Please choose one.`
         );
       }
 
@@ -277,11 +322,12 @@ export default class Slider extends PureComponent {
     tickWidth: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ]),
+    ]).isRequired,
 
     /**
      * This is number divisible by the total number of values included in the Slider. Every
-     * value that is divisible by this number will include a tick mark.
+     * value that is divisible by this number will include a tick mark. It is common recommended
+     * to have this equal to the `step` prop.
      *
      * This prop is completely optional.
      */
@@ -292,14 +338,19 @@ export default class Slider extends PureComponent {
 
       let err = PropTypes.number(props, propName, component, ...others);
       if (!err) {
-        const { min, max } = props;
+        const { min, max, step } = props;
         const range = Math.abs(max - min);
 
-        if (range % props[propName] !== 0) {
+        if ((range / props[propName]) % 1 !== 0) {
           err = new Error(
             `The '${propName}' must be a number divisible by the range set by the 'min' and ` +
             `'max' props. The current range is '${range}' by including the min: '${min}' and ` +
             `max: '${max}' values. The current value of '${propName}' is '${props[propName]}'.`
+          );
+        } else if (props[propName] % step !== 0) {
+          err = new Error(
+            `The 'step' prop must be a number divisible by the '${propName}'. It is common to have ` +
+            `them as the same value. The current 'step' is '${step}' and the '${propName}' is '${props[propName]}'.`
           );
         }
       }
@@ -313,6 +364,26 @@ export default class Slider extends PureComponent {
      * the ink is only visible temporarily for a discrete slider when keyboard focusing.
      */
     discreteInkTransitionTime: PropTypes.number.isRequired,
+
+    /**
+     * The precision that the value should be rounded to when the Slider is updated. This
+     * needs to be a whole number greater than or equal to 0.
+     */
+    valuePrecision: (props, propName, component, ...others) => {
+      let err = PropTypes.number.isRequired(props, propName, component, ...others);
+      if (!err) {
+        const precision = props[propName];
+
+        if (precision % 1 !== 0 || precision < 0) {
+          err = new Error(
+            `The '${propName}' must be a positive whole number or 0 on the '${component}'. ` +
+            `The current '${propName}' is '${precision}'`
+          );
+        }
+      }
+
+      return err;
+    },
   };
 
   static defaultProps = {
@@ -323,12 +394,13 @@ export default class Slider extends PureComponent {
     inputWidth: 40,
     tickWidth: 6,
     discreteInkTransitionTime: 300,
+    valuePrecision: 0,
   };
 
   constructor(props) {
     super(props);
 
-    const scale = Math.abs(props.max - props.min);
+    const scale = Math.abs(props.max - props.min) / props.step;
 
     let value = typeof props.value !== 'undefined'
       ? props.value
@@ -340,7 +412,7 @@ export default class Slider extends PureComponent {
     } else if (distance === props.max) {
       distance = 100;
     } else {
-      distance = value / scale * 100;
+      distance = value / props.max * 100;
     }
 
     const thumbLeft = this._calcLeft(distance);
@@ -366,6 +438,7 @@ export default class Slider extends PureComponent {
       dragging: false,
       maskInked: false,
     };
+    this._dragAdded = false;
 
     this._focusThumb = this._focusThumb.bind(this);
     this._updatePosition = this._updatePosition.bind(this);
@@ -390,7 +463,7 @@ export default class Slider extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { leftIcon, rightIcon, label, min, max } = this.props;
+    const { leftIcon, rightIcon, label, min, max, step } = this.props;
     if (leftIcon !== nextProps.leftIcon
       || rightIcon !== nextProps.rightIcon
       || label !== nextProps.label
@@ -398,30 +471,31 @@ export default class Slider extends PureComponent {
       this._calcTrackWidth(nextProps);
     }
 
-    if (min !== nextProps.min || max !== nextProps.max) {
-      this.setState({ scale: Math.abs(nextProps.max - nextProps.min) });
+    if (min !== nextProps.min || max !== nextProps.max || step !== nextProps.step) {
+      this.setState({ scale: Math.abs(nextProps.max - nextProps.min) / nextProps.step });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { active, dragging } = this.state;
-    const fn = window[`${active ? 'add' : 'remove'}EventListener`];
+    const { active, manualIncrement } = this.state;
+    let fn = window[`${active ? 'add' : 'remove'}EventListener`];
     if (active !== prevState.active) {
       fn('click', this._blurOnOutsideClick);
+
       if (active) {
         this._focusThumb();
-        this._focusTimeout = setTimeout(() => {
-          this._focusTimeout = null;
-          this._thumb.focus();
-        }, 100);
       }
     }
 
-    if (dragging !== prevState.dragging) {
+    const addDrag = active && !manualIncrement;
+    fn = window[`${addDrag ? 'add' : 'remove'}EventListener`];
+    if (this._dragAdded !== addDrag) {
       fn('mousemove', this._handleDragMove);
       fn('mouseup', this._handleDragEnd);
       fn('touchmove', this._handleDragMove);
       fn('touchend', this._handleDragEnd);
+
+      this._dragAdded = addDrag;
     }
 
     if (this.props.editable !== prevProps.editable) {
@@ -433,7 +507,7 @@ export default class Slider extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.state.dragging) {
+    if (this._dragAdded) {
       const rm = window.removeEventListener;
       rm('mousemove', this._handleMouseMove);
       rm('mouseup', this._handleMouseUp);
@@ -452,18 +526,6 @@ export default class Slider extends PureComponent {
   }
 
   /**
-   * This is a simple getter method for determining the value from either
-   * a controlled or stateless perspective of this component.
-   *
-   * @param {Object} props - The props to extract a value from.
-   * @param {Object} state - The state to extract a value from.
-   * @return {number} the current value of the slider.
-   */
-  _getValue(props, state) {
-    return typeof props.value !== 'undefined' ? props.value : state.value;
-  }
-
-  /**
    * Gets the `left` position for the thumb based on the value given.
    *
    * @param {number} value - The current value.
@@ -473,15 +535,11 @@ export default class Slider extends PureComponent {
     return `calc(${value}% - 6px)`;
   }
 
-  _invalidClickEvent(e, type) {
-    return e.type === type && (e.button !== LEFT_MOUSE || e.shiftKey);
-  }
-
   /**
    * Checks if the target is within the text field container.
    *
    * @param {Object} target - The event target.
-   * @return {bool} true if the target is in the text field.
+   * @return {Boolean} true if the target is in the text field.
    */
   _isTextField(target) {
     return this._textField && this._textField.contains(target);
@@ -491,7 +549,7 @@ export default class Slider extends PureComponent {
    * Checks if a classList does not contain all the *bad* class names.
    *
    * @param {function} classList - The classList to check.
-   * @return {bool} true if the classList does not contain any of the *bad* class names.
+   * @return {Boolean} true if the classList does not contain any of the *bad* class names.
    */
   _isValidClassList(classList) {
     let invalid = false;
@@ -524,7 +582,7 @@ export default class Slider extends PureComponent {
   _updatePosition(e, normalize) {
     const x = (e.changedTouches ? e.changedTouches[0] : e).clientX;
     const { scale } = this.state;
-    const { onChange, onDragChange, min, max, step } = this.props;
+    const { onChange, onDragChange, min, max, step, valuePrecision } = this.props;
 
     const { value, distance } = calculateValueDistance(
       x,
@@ -534,6 +592,7 @@ export default class Slider extends PureComponent {
       step,
       min,
       max,
+      valuePrecision,
       normalize
     );
 
@@ -550,12 +609,13 @@ export default class Slider extends PureComponent {
       value,
       active: true,
       distance,
+      manualIncrement: false,
       dragging: !normalize,
       thumbLeft: this._calcLeft(distance),
       trackFillWidth: `${distance}%`,
     };
 
-    if (e.type === 'touchend') {
+    if (e.type === 'touchend' || e.type === 'mousedown') {
       state.maskInked = false;
     }
 
@@ -575,7 +635,7 @@ export default class Slider extends PureComponent {
    * @param {Object} e - The touchstart or mousedown event.
    */
   _handleDragStart(e) {
-    if (this.props.disabled || this._invalidClickEvent(e, 'mousedown')) {
+    if (this.props.disabled || !isValidClick(e, 'mousedown')) {
       return;
     }
 
@@ -584,7 +644,7 @@ export default class Slider extends PureComponent {
     if (classList.contains('md-slider-thumb') || isDiscreteValue) {
       // Prevents text highlighting while dragging.
       e.preventDefault();
-      this.setState({ dragging: true, active: true });
+      this.setState({ dragging: true, active: true, manualIncrement: false, maskInked: false });
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
@@ -602,7 +662,7 @@ export default class Slider extends PureComponent {
   }
 
   _handleDragEnd(e) {
-    if (!this.state.dragging || this.props.disabled || this._invalidClickEvent(e, 'mouseup')) {
+    if (!this.state.dragging || this.props.disabled || !isValidClick(e, 'mouseup')) {
       return;
     }
 
@@ -617,7 +677,7 @@ export default class Slider extends PureComponent {
    * @param {Object} e - The window's click event.
    */
   _blurOnOutsideClick(e) {
-    if (this.state.dragging || this.props.disabled) {
+    if ((this.state.dragging && !this.state.manualIncrement) || this.props.disabled) {
       return;
     }
 
@@ -636,30 +696,25 @@ export default class Slider extends PureComponent {
      * @param {bool} disableTransition - Boolean if the jump's transition should be disabled.
      */
   _handleIncrement(incrementedValue, e, disableTransition) {
-    const { onChange, value, min, max, discrete } = this.props;
-    const newValue = Math.max(min, Math.min(max, incrementedValue));
-    if (onChange) {
-      onChange(newValue, e);
-    }
+    const { onChange, min, max, discrete } = this.props;
 
-    let distance = newValue;
-    if (distance === min) {
-      distance = 0;
-    } else if (distance === max) {
-      distance = 100;
-    } else {
-      distance = (distance / this.state.scale) * 100;
+    const distance = Math.max(0, Math.min(100, ((incrementedValue - min) / (max - min)) * 100));
+    const value = Math.max(min, Math.min(max, incrementedValue));
+
+    if (onChange) {
+      onChange(value, e);
     }
 
     const state = {
       distance,
+      manualIncrement: true,
       thumbLeft: this._calcLeft(distance),
       trackFillWidth: `${distance}%`,
       dragging: Math.abs(this.state.distance - distance) < 2 && disableTransition,
     };
 
-    if (typeof value === 'undefined') {
-      state.value = newValue;
+    if (typeof this.props.value === 'undefined') {
+      state.value = value;
     }
 
     if (e.type === 'keydown' && !discrete) {
@@ -673,6 +728,12 @@ export default class Slider extends PureComponent {
     this._handleIncrement(newValue, e, false);
   }
 
+  /**
+   * This will increment the Slider's value by the `step` prop. if the left or
+   * right key arrow is pressed.
+   *
+   * @param {Object} e - the keydown event.
+   */
   _handleKeyDown(e) {
     const key = e.which || e.keyCode;
     const { min, max, step, disabled } = this.props;
@@ -687,7 +748,7 @@ export default class Slider extends PureComponent {
       return;
     }
 
-    let nextValue = this._getValue(this.props, this.state);
+    let nextValue = getField(this.props, this.state);
     nextValue = Math.max(
       min,
       Math.min((key === LEFT ? -step : step) + nextValue, max)
@@ -696,6 +757,12 @@ export default class Slider extends PureComponent {
     this._handleIncrement(nextValue, e, true);
   }
 
+  /**
+   * This function will animate the discrete Slider's ink if it gains focus
+   * by a tab event.
+   *
+   * @param {Object} e - the key up event.
+   */
   _handleKeyUp(e) {
     if ((e.which || e.keyCode) !== TAB) {
       return;
@@ -744,11 +811,16 @@ export default class Slider extends PureComponent {
     }
   }
 
+  /**
+   * The ink for a Discrete slider is only visible for a short time on initial
+   * focus. This function will handle the in/out transitions.
+   */
   _animateDiscreteInk() {
     const wait = this.props.discreteInkTransitionTime;
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
     }
+
     this._inkTimeout = setTimeout(() => {
       this.setState({ leaving: true, maskInked: false });
 
@@ -759,6 +831,11 @@ export default class Slider extends PureComponent {
     }, wait);
   }
 
+  /**
+   * This is a helper function for focusing the Slider's thumb comopnent. There
+   * is a short delay because the body sometimes gets focused immediately after
+   * if there is no timeout..
+   */
   _focusThumb() {
     if (this._focusTimeout) {
       clearTimeout(this._focusTimeout);
@@ -813,8 +890,9 @@ export default class Slider extends PureComponent {
     delete props.onChange;
     delete props.onDragChange;
     delete props.discreteInkTransitionTime;
+    delete props.valuePrecision;
 
-    const value = this._getValue(this.props, this.state);
+    const value = getField(this.props, this.state);
     let rightChildren = rightIcon;
     if (editable) {
       rightChildren = (
@@ -877,6 +955,7 @@ export default class Slider extends PureComponent {
           discrete={discrete}
           tickWidth={tickWidth}
           discreteTicks={discreteTicks}
+          step={step}
           scale={scale}
           value={value}
         />

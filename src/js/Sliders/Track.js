@@ -38,6 +38,7 @@ export default class Track extends PureComponent {
     onThumbKeyDown: PropTypes.func.isRequired,
     onThumbFocus: PropTypes.func.isRequired,
     scale: PropTypes.number,
+    step: PropTypes.number,
     discreteTicks: PropTypes.number,
     tickWidth: PropTypes.oneOfType([
       PropTypes.number,
@@ -71,12 +72,13 @@ export default class Track extends PureComponent {
       tickWidth,
       discreteTicks,
       scale,
+      step,
       ...props,
     } = this.props;
 
     const ticks = [];
     if (typeof discreteTicks !== 'undefined' && !disabled) {
-      const amt = scale / discreteTicks;
+      const amt = scale / (discreteTicks / step);
       const offset = updateUnit(tickWidth, half, 'px');
       const inc = 100 / amt;
 
