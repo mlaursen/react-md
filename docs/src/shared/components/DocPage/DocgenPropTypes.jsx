@@ -19,7 +19,7 @@ export default class DocgenPropTypes extends PureComponent {
   constructor(props) {
     super(props);
 
-    const propList = Object.keys(props.props).map(name => ({ name, ...props.props[name] }));
+    const propList = this._makePropList(props);
 
     this.state = {
       propList,
@@ -38,6 +38,22 @@ export default class DocgenPropTypes extends PureComponent {
     props: PropTypes.object.isRequired,
     methods: docgenMethodsPropTypes,
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.props !== nextProps.props) {
+      const propList = this._makePropList(nextProps);
+      this.setState({
+        propList,
+        propFilter: '',
+        ascending: true,
+        visibleProps: sort(propList, 'name', true),
+      });
+    }
+  }
+
+  _makePropList(props) {
+    return Object.keys(props.props).map(name => ({ name, ...props.props[name] }));
+  }
 
   _sort = () => {
     const ascending = !this.state.ascending;
