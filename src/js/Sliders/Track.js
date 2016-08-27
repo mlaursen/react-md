@@ -77,7 +77,7 @@ export default class Track extends PureComponent {
     } = this.props;
 
     const ticks = [];
-    if (typeof discreteTicks !== 'undefined' && !disabled) {
+    if (typeof discreteTicks !== 'undefined' && !disabled && discrete) {
       const amt = scale / (discreteTicks / step);
       const offset = updateUnit(tickWidth, half, 'px');
       const inc = 100 / amt;
