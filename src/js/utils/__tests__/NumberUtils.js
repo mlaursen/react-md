@@ -1,39 +1,9 @@
 /* eslint-env jest */
 jest.unmock('../NumberUtils');
 
-import { calculateScale, isBetween } from '../NumberUtils';
+import { isBetween, calculateValueDistance, updateUnit } from '../NumberUtils';
 
 describe('NumberUtils', () => {
-  describe('calculateScale', () => {
-    it('calculates a scale from the default min and max values', () => {
-      expect(calculateScale(0, 100)).toBe(101);
-    });
-
-    it('calculates a scale from a min and max value greater than 0', () => {
-      expect(calculateScale(1, 100)).toBe(100);
-      expect(calculateScale(1, 3)).toBe(3);
-      expect(calculateScale(1, 2)).toBe(2);
-    });
-
-    it('calculates a scale from a min and max value less than 0', () => {
-      expect(calculateScale(-100, -1)).toBe(100);
-      expect(calculateScale(-3, -1)).toBe(3);
-      expect(calculateScale(-2, -1)).toBe(2);
-    });
-
-    it('calculates a scale from a min value less than 0 and a max value equal to 0', () => {
-      expect(calculateScale(-100, 0)).toBe(101);
-      expect(calculateScale(-3, 0)).toBe(4);
-      expect(calculateScale(-2, 0)).toBe(3);
-    });
-
-    it('calculates a scale from a min value less than 0 and a max value greater than 0', () => {
-      expect(calculateScale(-100, 1)).toBe(102);
-      expect(calculateScale(-3, 5)).toBe(9);
-      expect(calculateScale(-2, 100)).toBe(103);
-    });
-  });
-
   describe('isBetween', () => {
     it('returns true if a number is between the min and max values', () => {
       expect(isBetween(1, 0, 2)).toBe(true);
@@ -54,6 +24,46 @@ describe('NumberUtils', () => {
       expect(isBetween(0, 1, 100)).toBe(false);
       expect(isBetween(-101, -100, 100)).toBe(false);
       expect(isBetween(100, 1, 99)).toBe(false);
+    });
+  });
+
+  describe('calculateValueDistance', () => {
+    it('does stuff I do not really know how to test', () => {
+      expect(calculateValueDistance(0, 20, 0, 100, 1, 0, 100, false)).toEqual({ distance: 0, value: 0 });
+    });
+  });
+
+  describe('updateUnit', () => {
+    it('applies a function to a number unit', () => {
+      const fn = u => u;
+      expect(updateUnit(3, fn)).toBe(3);
+      expect(updateUnit(4, u => u / 2)).toBe(2);
+    });
+
+    it('applies a function to a string unit', () => {
+      const fn = u => u;
+      const half = u => u / 2;
+
+      expect(updateUnit('1rem', fn)).toBe('1rem');
+      expect(updateUnit('1em', fn)).toBe('1em');
+      expect(updateUnit('1px', fn)).toBe('1px');
+
+      expect(updateUnit('2rem', half)).toBe('1rem');
+      expect(updateUnit('2em', half)).toBe('1em');
+      expect(updateUnit('2px', half)).toBe('1px');
+    });
+
+    it('applies a function to a number unit and casts it to the given toUnit', () => {
+      const fn = u => u;
+      const half = u => u / 2;
+
+      expect(updateUnit(1, fn, 'rem')).toBe('1rem');
+      expect(updateUnit(1, fn, 'em')).toBe('1em');
+      expect(updateUnit(1, fn, 'px')).toBe('1px');
+
+      expect(updateUnit(2, half, 'rem')).toBe('1rem');
+      expect(updateUnit(2, half, 'em')).toBe('1em');
+      expect(updateUnit(2, half, 'px')).toBe('1px');
     });
   });
 });

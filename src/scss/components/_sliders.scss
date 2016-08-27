@@ -36,11 +36,6 @@ $md-slider-thumb-disabled-scale: .75 !default;
 /// @type Number
 $md-slider-discrete-tick-height: $md-slider-track-height !default;
 
-/// The width for a Discrete Slider's tick.
-///
-/// @type Number
-$md-slider-discrete-tick-width: 6px !default;
-
 
 /// The transition time to use for the Discrete Slider's ink appearance
 /// when the user focuses with the keyboard.
@@ -275,7 +270,6 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
     height: $md-slider-discrete-tick-height;
     position: absolute;
     top: -(($md-slider-discrete-tick-height / 2) - ($md-slider-track-height / 2));
-    width: $md-slider-discrete-tick-width;
     z-index: $md-slider-thumb-z-index - 1;
   }
 
