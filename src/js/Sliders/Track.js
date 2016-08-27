@@ -1,10 +1,13 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import { updateUnit } from '../utils/NumberUtils';
 import TrackFill from './TrackFill';
 import Thumb from './Thumb';
 import ThumbMask from './ThumbMask';
 import DiscreteValue from './DiscreteValue';
+
+const half = w => w / 2;
 
 /**
  * The `Track` component is used for showing the current state of the slider.
@@ -74,18 +77,15 @@ export default class Track extends PureComponent {
     const ticks = [];
     if (typeof discreteTicks !== 'undefined' && !disabled) {
       const amt = scale / discreteTicks;
-      const offset = typeof tickWidth === 'number' ? `${tickWidth}px` : tickWidth;
+      const offset = updateUnit(tickWidth, half, 'px');
+      const inc = 100 / amt;
 
       for (let i = 0; i <= amt; i++) {
-        let left = `${i * discreteTicks}%`;
-        let width;
+        let left = `${i * inc}%`;
+        let width = tickWidth;
         if (i === 0 || i === amt) {
-          width = typeof tickWidth === 'number'
-            ? tickWidth / 2
-            : `${parseInt(tickWidth, 10)}${tickWidth.replace(/[0-9]/g, '')}`;
-        }
-
-        if (i !== 0 && i !== amt) {
+          width = updateUnit(tickWidth, half);
+        } else {
           left = `calc(${left} - ${offset})`;
         }
 
@@ -108,7 +108,6 @@ export default class Track extends PureComponent {
           disabled={disabled}
           dragging={dragging}
           trackFillWidth={trackFillWidth}
-          off={off}
         />
         <Thumb
           style={thumbStyle}

@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
-import { calculateScale } from '../utils/NumberUtils';
+import { calculateValueDistance } from '../utils/NumberUtils';
 import { LEFT_MOUSE, LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import SliderLabel from './SliderLabel';
 import Track from './Track';
@@ -251,20 +251,6 @@ export default class Slider extends PureComponent {
     ]).isRequired,
 
     /**
-     * This is a function that is called whenever the user changes the Slider's position
-     * by either:
-     * - dragging with the mouse
-     * - dragging with touch
-     * - quick jumping with mouse
-     * - quick jumping with touch
-     * - mouse up
-     * - touch end
-     *
-     * By default, this will just round the next value to a whole number.
-     */
-    formatValue: PropTypes.func.isRequired,
-
-    /**
      * Boolean if the slider should be discrete. This will update the slider to include a
      * _balloon_ with the current value inside. It will also not allow the `Slider` to be
      * editable.
@@ -284,11 +270,21 @@ export default class Slider extends PureComponent {
       return err;
     },
 
+    /**
+     * The width of each tick for a discrete slider with ticks. This can either be a number
+     * which gets converted to `px`, or a valid css unit.
+     */
     tickWidth: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
+    /**
+     * This is number divisible by the total number of values included in the Slider. Every
+     * value that is divisible by this number will include a tick mark.
+     *
+     * This prop is completely optional.
+     */
     discreteTicks: (props, propName, component, ...others) => {
       if (typeof props[propName] === 'undefined') {
         return null;
@@ -297,7 +293,7 @@ export default class Slider extends PureComponent {
       let err = PropTypes.number(props, propName, component, ...others);
       if (!err) {
         const { min, max } = props;
-        const range = Math.abs(min) + Math.abs(max);
+        const range = Math.abs(max - min);
 
         if (range % props[propName] !== 0) {
           err = new Error(
@@ -311,6 +307,11 @@ export default class Slider extends PureComponent {
       return err;
     },
 
+    /**
+     * The transition time for a discrete Slider's keyboard focus ink. This should match the
+     * `md-slider-discrete-ink-transition-time` value in your SCSS. This is used because
+     * the ink is only visible temporarily for a discrete slider when keyboard focusing.
+     */
     discreteInkTransitionTime: PropTypes.number.isRequired,
   };
 
@@ -318,31 +319,32 @@ export default class Slider extends PureComponent {
     defaultValue: 0,
     min: 0,
     max: 100,
-    formatValue: Math.round,
     step: 1,
     inputWidth: 40,
-    tickWidth: 3,
+    tickWidth: 6,
     discreteInkTransitionTime: 300,
   };
 
   constructor(props) {
     super(props);
 
-    const scale = calculateScale(props.min, props.max);
+    const scale = Math.abs(props.max - props.min);
 
     let value = typeof props.value !== 'undefined'
       ? props.value
       : props.defaultValue;
 
-    let scaledValue = value;
-    if (scaledValue === props.min) {
-      scaledValue = 0;
-    } else if (scaledValue === props.max) {
-      scaledValue = 100;
+    let distance = value;
+    if (distance === props.min) {
+      distance = 0;
+    } else if (distance === props.max) {
+      distance = 100;
+    } else {
+      distance = value / scale * 100;
     }
 
-    const thumbLeft = this._calcLeft(scaledValue);
-    const trackFillWidth = `${scaledValue}%`;
+    const thumbLeft = this._calcLeft(distance);
+    const trackFillWidth = `${distance}%`;
 
     if (typeof props.value !== 'undefined') {
       value = undefined;
@@ -356,6 +358,7 @@ export default class Slider extends PureComponent {
     this.state = {
       value,
       scale,
+      distance,
       thumbLeft,
       trackWidth,
       trackFillWidth,
@@ -364,8 +367,9 @@ export default class Slider extends PureComponent {
       maskInked: false,
     };
 
+    this._focusThumb = this._focusThumb.bind(this);
     this._updatePosition = this._updatePosition.bind(this);
-    this._initDragging = this._initDragging.bind(this);
+    this._handleDragStart = this._handleDragStart.bind(this);
     this._handleDragMove = this._handleDragMove.bind(this);
     this._handleDragEnd = this._handleDragEnd.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
@@ -376,7 +380,6 @@ export default class Slider extends PureComponent {
     this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
     this._calcTrackWidth = this._calcTrackWidth.bind(this);
     this._animateDiscreteInk = this._animateDiscreteInk.bind(this);
-    this._focusThumb = this._focusThumb.bind(this);
   }
 
   componentDidMount() {
@@ -396,7 +399,7 @@ export default class Slider extends PureComponent {
     }
 
     if (min !== nextProps.min || max !== nextProps.max) {
-      this.setState({ scale: calculateScale(nextProps.min, nextProps.max) });
+      this.setState({ scale: Math.abs(nextProps.max - nextProps.min) });
     }
   }
 
@@ -470,24 +473,6 @@ export default class Slider extends PureComponent {
     return `calc(${value}% - 6px)`;
   }
 
-  /**
-   * Calculates the distance the thumb has moved based on the new X position
-   * and the position of the track.
-   *
-   * @param {number} x - The current x position of the thumb.
-   * @param {Object} track - The slider's track node.
-   * @return {number} the current distance moved as a percentage.
-   */
-  _calcDistanceMoved(x, track) {
-    const { offsetWidth } = track;
-    const distance = Math.min(
-      offsetWidth,
-      Math.max(0, x - track.getBoundingClientRect().left)
-    );
-
-    return distance / offsetWidth * 100;
-  }
-
   _invalidClickEvent(e, type) {
     return e.type === type && (e.button !== LEFT_MOUSE || e.shiftKey);
   }
@@ -539,30 +524,32 @@ export default class Slider extends PureComponent {
   _updatePosition(e, normalize) {
     const x = (e.changedTouches ? e.changedTouches[0] : e).clientX;
     const { scale } = this.state;
-    const { onChange, onDragChange, formatValue, min, max } = this.props;
-    let distance = this._calcDistanceMoved(x, this._track, scale);
-    const value = formatValue(distance / 100 * scale);
+    const { onChange, onDragChange, min, max, step } = this.props;
+
+    const { value, distance } = calculateValueDistance(
+      x,
+      this._track.offsetWidth,
+      this._track.getBoundingClientRect().left,
+      scale,
+      step,
+      min,
+      max,
+      normalize
+    );
+
 
     if (onChange) {
       onChange(value, e);
     }
 
-    if (normalize) {
-      // const dist = (a, b) => Math.sqrt(Math.pow(a - b, 2));
-      if (value === min) {
-        distance = 0;
-      } else if (value === max) {
-        distance = 100;
-      } else {
-        distance = (value / scale) * 100;
-      }
-    } else if (onDragChange) {
+    if (!normalize && onDragChange) {
       onDragChange(distance, value, e);
     }
 
     const state = {
       value,
       active: true,
+      distance,
       dragging: !normalize,
       thumbLeft: this._calcLeft(distance),
       trackFillWidth: `${distance}%`,
@@ -587,7 +574,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - The touchstart or mousedown event.
    */
-  _initDragging(e) {
+  _handleDragStart(e) {
     if (this.props.disabled || this._invalidClickEvent(e, 'mousedown')) {
       return;
     }
@@ -665,9 +652,10 @@ export default class Slider extends PureComponent {
     }
 
     const state = {
+      distance,
       thumbLeft: this._calcLeft(distance),
       trackFillWidth: `${distance}%`,
-      dragging: disableTransition,
+      dragging: Math.abs(this.state.distance - distance) < 2 && disableTransition,
     };
 
     if (typeof value === 'undefined') {
@@ -709,15 +697,15 @@ export default class Slider extends PureComponent {
   }
 
   _handleKeyUp(e) {
-    const state = { dragging: false };
-    if ((e.which || e.keyCode) === TAB) {
-      state.maskInked = true;
+    if ((e.which || e.keyCode) !== TAB) {
+      return;
     }
 
-    if (state.maskInked && this.props.discrete) {
+    if (this.props.discrete) {
       this._animateDiscreteInk();
     }
-    this.setState(state);
+
+    this.setState({ maskInked: true });
   }
 
   _handleFocus() {
@@ -787,7 +775,17 @@ export default class Slider extends PureComponent {
   }
 
   render() {
-    const { dragging, active, thumbLeft, trackFillWidth, maskInked, trackWidth, scale } = this.state;
+    const {
+      dragging,
+      active,
+      thumbLeft,
+      trackFillWidth,
+      maskInked,
+      trackWidth,
+      scale,
+      distance,
+    } = this.state;
+
     const {
       id,
       min,
@@ -814,7 +812,6 @@ export default class Slider extends PureComponent {
     delete props.value;
     delete props.onChange;
     delete props.onDragChange;
-    delete props.formatValue;
     delete props.discreteInkTransitionTime;
 
     const value = this._getValue(this.props, this.state);
@@ -840,8 +837,8 @@ export default class Slider extends PureComponent {
         className={cn('md-slider-container', className, {
           'md-slider-container--disabled': disabled,
         })}
-        onMouseDown={this._initDragging}
-        onTouchStart={this._initDragging}
+        onMouseDown={this._handleDragStart}
+        onTouchStart={this._handleDragStart}
       >
         <SliderLabel htmlFor={id} children={label} />
         <input
@@ -871,8 +868,8 @@ export default class Slider extends PureComponent {
           disabled={disabled}
           thumbLeft={thumbLeft}
           trackFillWidth={trackFillWidth}
-          on={!disabled && value !== min}
-          off={value === min}
+          on={!disabled && distance > min}
+          off={distance === 0}
           maskInked={maskInked}
           onThumbKeyUp={this._handleKeyUp}
           onThumbKeyDown={this._handleKeyDown}
