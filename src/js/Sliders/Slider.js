@@ -210,6 +210,18 @@ export default class Slider extends PureComponent {
     onDragChange: PropTypes.func,
 
     /**
+     * An optional function to call when the slider's container has
+     * the mousedown event.
+     */
+    onMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the slider's container has
+     * the touchstart event.
+     */
+    onTouchStart: PropTypes.func,
+
+    /**
      * An optional icon or letter to place to the left of the slider.
      * if you want to use a non-font icon or a letter, use the `md-slider-ind`
      * className on your element.
@@ -635,6 +647,12 @@ export default class Slider extends PureComponent {
    * @param {Object} e - The touchstart or mousedown event.
    */
   _handleDragStart(e) {
+    if (e.type === 'mousedown' && this.props.onMouseDown) {
+      this.props.onMouseDown(e);
+    } else if (e.type === 'touchstart' && this.props.onTouchStart) {
+      this.props.onTouchStart(e);
+    }
+
     if (this.props.disabled || !isValidClick(e, 'mousedown')) {
       return;
     }

@@ -15,6 +15,6 @@ export const getTouchOffset = jest.fn(e => {
 export const isPointInCircle = jest.fn(() => true);
 
 /* eslint-disable arrow-body-style */
-export const getField = jest.fn((props, state, field) => {
+export const getField = jest.fn((props, state, field = 'value') => {
   return typeof props[field] !== 'undefined' ? props[field] : state[field];
 });
