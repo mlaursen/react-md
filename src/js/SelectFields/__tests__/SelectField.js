@@ -15,6 +15,7 @@ jest.unmock('../../Lists/ListTile');
 jest.unmock('../../Lists/ListItemText');
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../../utils');
+jest.unmock('../../utils/NumberUtils');
 
 import React from 'react';
 import {
