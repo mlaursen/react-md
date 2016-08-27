@@ -6,6 +6,7 @@
 
 /// The Side of the Thumb for the Slider.
 /// @type Number
+/// @access private
 $md-slider-thumb-size: 14px;
 
 /// The default height for the Slider's container.
@@ -14,6 +15,7 @@ $md-slider-height: $md-height !default;
 
 /// The default height for the Slider's track.
 /// @type Number
+/// @access private
 $md-slider-track-height: 2px;
 
 /// The z-index for the Slider's thumb.
@@ -32,16 +34,38 @@ $md-slider-thumb-disabled-scale: .75 !default;
 
 
 /// The height for a Discrete Slider's tick.
-///
 /// @type Number
 $md-slider-discrete-tick-height: $md-slider-track-height !default;
 
 
 /// The transition time to use for the Discrete Slider's ink appearance
 /// when the user focuses with the keyboard.
-///
 /// @type Number
 $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
+
+/// The opacity to use for the Slider's thumb ink. This will appear when the user
+/// focuses with the keybord or touches the slider on a mobile device.
+///
+/// This opacity will be applied to the `$primary-color`.
+/// @type Number
+$md-slider-mask-ink-opacity: .15 !default;
+
+/// The opacity to use for the discrete Slider's thumb ink. This will appear when the user
+/// focuses with the keybord.
+///
+/// This opacity will be applied to the `$primary-color`.
+/// @type Number
+$md-slider-discrete-mask-ink-opacity: .3 !default;
+
+/// The off color to use for the Slider when using the light theme.
+/// @type Color
+/// @access private
+$md-slider-light-theme-off-color: rgba($md-black-base, .26);
+
+/// The off color to use for the Slider when using the dark theme.
+/// @type Color
+/// @access private
+$md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 
 
 /// This includes the react-md Sliders Component scss.
@@ -52,34 +76,31 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
 ///     a `-200` suffix.
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
-@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+/// @param {Boolean} $include-discrete [true] - A boolean if the discrete slider's scss should be included.
+/// @param {Boolean} $include-editor [true] - A boolean if the editable slider's scss should be included.
+/// @param {Boolean} $include-indicators [true] - A boolean if the small scss for displaying indicators/icons
+///     with the slider should be included.
+@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: true, $include-editor: true, $include-indicators: true) {
+  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+
   $md-slider-on-color: $primary-color;
-  $md-slider-off-color: if($light-theme, rgba($md-black-base, .26), rgba($md-white-base, .3));
+  $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
   $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+  $md-slider-mask-ink-color: rgba($primary-color, $md-slider-mask-ink-opacity);
 
   .md-slider-container {
     display: flex;
     flex-wrap: wrap;
 
-    .md-icon {
-      $margin: ($md-slider-height - $md-font-icon-size) / 2;
-
-      margin-bottom: $margin;
-      margin-top: $margin;
-    }
-
     &:hover {
       cursor: pointer;
     }
-
-    .md-text-field-container {
-      margin-left: 4px;
-      padding-right: 0;
-    }
   }
 
-  .md-slider-container--disabled:hover {
-    cursor: initial;
+  .md-slider-container--disabled {
+    &:hover {
+      cursor: initial;
+    }
   }
 
   .md-slider-label {
@@ -110,14 +131,6 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
 
   .md-slider-track--full-width {
     @extend %full-width;
-  }
-
-  .md-slider-track--ind-left {
-    margin-left: $md-default-padding;
-  }
-
-  .md-slider-track--ind-right {
-    margin-right: $md-default-padding;
   }
 
   .md-slider-track-fill {
@@ -183,19 +196,8 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
   }
 
   .md-slider-thumb--mask-inked {
-    background: rgba($primary-color, .15);
+    background: $md-slider-mask-ink-color;
     transform: scale(3.5);
-    z-index: $md-slider-thumb-z-index - 1;
-  }
-
-  .md-slider-thumb--discrete-mask-inked {
-    transform: scale(2.5);
-    transition-duration: $md-slider-discrete-ink-transition-time;
-  }
-
-  .md-slider-thumb--discrete-mask-leaving {
-    background: rgba($primary-color, .3);
-    transition-duration: $md-slider-discrete-ink-transition-time;
     z-index: $md-slider-thumb-z-index - 1;
   }
 
@@ -205,6 +207,32 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
     transform: scale(1.1);
     z-index: $md-slider-thumb-z-index - 1;
   }
+
+  @if $include-discrete {
+    @include react-md-discrete-slider($primary-color, $light-theme);
+  }
+
+  @if $include-editor {
+    @include react-md-editable-slider;
+  }
+
+  @if $include-indicators {
+    @include react-md-slider-indicators;
+  }
+}
+
+/// This will include the styles for a discrete Slider.
+///
+/// @param {Color} $primary-color [$md-primary-color] - The primary color to style the Slider with.
+/// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the slider should be styled for
+///     the light or dark theme.
+@mixin react-md-discrete-slider($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+
+  $md-slider-on-color: $primary-color;
+  $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
+  $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+  $md-slider-discrete-mask-ink-color: rgba($primary-color, $md-slider-discrete-mask-ink-opacity);
 
   .md-slider-thumb--discrete {
     &::after {
@@ -248,6 +276,17 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
     }
   }
 
+  .md-slider-thumb--discrete-mask-inked {
+    transform: scale(2.5);
+    transition-duration: $md-slider-discrete-ink-transition-time;
+  }
+
+  .md-slider-thumb--discrete-mask-leaving {
+    background: $md-slider-discrete-mask-ink-color;
+    transition-duration: $md-slider-discrete-ink-transition-time;
+    z-index: $md-slider-thumb-z-index - 1;
+  }
+
   .md-slider-discrete-value {
     align-items: center;
     color: $md-white-base;
@@ -261,7 +300,7 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
     transition-duration: $md-transition-time;
     transition-property: left;
     width: $md-slider-thumb-size * 2;
-    z-index: 40;
+    z-index: $md-slider-thumb-z-index + 1;
   }
 
   .md-slider-discrete-tick {
@@ -276,14 +315,44 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
   .md-slider-discrete-value--dragging {
     transition-property: none;
   }
+}
+
+/// This includes the small scss for displaying an editable slider.
+@mixin react-md-editable-slider {
+  .md-slider-editor {
+    text-align: right;
+  }
+
+  .md-slider-container {
+    .md-text-field-container {
+      margin-left: 4px;
+      padding-right: 0;
+    }
+  }
+}
+
+/// This includes the small scss for displaying `.md-icon` or indicators with a Slider.
+@mixin react-md-slider-indicators {
+  .md-slider-container {
+    .md-icon {
+      $margin: ($md-slider-height - $md-font-icon-size) / 2;
+
+      margin-bottom: $margin;
+      margin-top: $margin;
+    }
+  }
 
   .md-slider-ind {
     display: block;
     text-align: center;
   }
 
-  .md-slider-editor {
-    text-align: right;
+  .md-slider-track--ind-left {
+    margin-left: $md-default-padding;
+  }
+
+  .md-slider-track--ind-right {
+    margin-right: $md-default-padding;
   }
 
   @media only screen and (min-width: $md-mobile-min-width) {
@@ -302,7 +371,8 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
 }
 
 
-/// This only modifies the colors for the Slider component.
+/// This will theme the Slider component with an updated `primary-color` and
+/// optionally a switch in themes.
 ///
 /// @param {Color} $primary-color [$md-primary-color] - The primary color to use for the
 ///     slider. This will be the non-disabled track's fill color and the non-disabled thumb's
@@ -310,31 +380,79 @@ $md-slider-discrete-ink-transition-time: $md-transition-time * 2 !default;
 ///     a `-200` suffix.
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
-@mixin md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
-  $md-slider-on-color: $primary-color;
-  $md-slider-off-color: if($light-theme, rgba($md-black-base, .26), rgba($md-white-base, .3));
-  $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
+/// @param {Boolean} $include-discrete [true] - A boolean if the discrete Slider scss should be
+///     themed as well.
+@mixin react-md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: true) {
+  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 
-  .md-slider-track,
-  .md-slider-thumb--disabled {
-    background: $md-slider-off-color;
-  }
+  $md-slider-on-color: $primary-color;
+  $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
+  $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
 
   .md-slider-thumb--on,
   .md-slider-track-fill {
     background: $md-slider-on-color;
   }
 
-  .md-slider-thumb--continuous-off,
-  .md-slider-thumb--disabled-mask {
-    background: $bg-color;
+  @if $light-theme != $md-light-theme {
+    .md-slider-track,
+    .md-slider-thumb--disabled {
+      background: $md-slider-off-color;
+    }
+
+    .md-slider-thumb--continuous-off,
+    .md-slider-thumb--disabled-mask {
+      background: $bg-color;
+    }
+
+    .md-slider-thumb--off {
+      border-color: $md-slider-off-color;
+    }
   }
 
-  .md-slider-thumb--off {
-    border-color: $md-slider-off-color;
+  @if $include-discrete {
+    @include react-md-theme-discrete-slider($primary-color);
+  }
+}
+
+/// This will update the discrete Slider with the new `$primary-color`.
+///
+/// @param {Color} $primary-color [$md-primary-color] - The primary color to
+///     theme the discrete Slider with.
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the discrete Slider
+///     should be themed for the light or dark theme.
+@mixin react-md-theme-discrete-slider($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+
+  $md-slider-on-color: $primary-color;
+
+  .md-slider-thumb--discrete-on {
+    &::after {
+      border-top-color: $md-slider-on-color;
+    }
+  }
+}
+
+/// A helper function to validate that a `$primary-color` has a `-200` suffix when
+/// using the dark theme. It doesn't actually output anything with sass-loader atm
+/// though. :/
+///
+/// @param {Color} $primary-color - The primary color to validate.
+/// @param {Boolean} $light-theme - Boolean if the current theme is the light theme.
+/// @return {Boolean} true if the primary color is valid or false if it is invalid.
+@function validate-slider-primary-color($primary-color, $light-theme) {
+  @if $light-theme {
+    @return true;
   }
 
-  .md-slider-thumb--discrete-on::after {
-    border-top-color: $md-slider-on-color;
+  $found: false;
+  @each $name, $color in $md-color-map {
+    @if str-index($name, '-200') != null && str-index($name, '-a-200') == null && $color == $primary-color {
+      @return true;
+    }
   }
+
+  @warn "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix. The primary color must be a non-accent -200 color when using the dark theme sliders.";
+
+  @return false;
 }
