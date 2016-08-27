@@ -2,7 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
-import { isObject, isBetween } from '../utils';
+import { isObject } from '../utils';
+import { isBetween } from '../utils/NumberUtils';
 import { SPACE, TAB, ENTER, UP, DOWN, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 
 import ListItem from '../Lists/ListItem';
