@@ -1,6 +1,8 @@
 import React from 'react';
 import Slider from 'react-md/lib/Sliders';
 
+const incrementalStep = 50 / 6;
+
 const SimpleDiscreteExamples = () => {
   return (
     <div>
@@ -8,9 +10,12 @@ const SimpleDiscreteExamples = () => {
       <Slider
         discrete
         id="discreteDefault"
-        defaultValue={30}
-        label="Default Value"
-        discreteTicks={20}
+        defaultValue={incrementalStep * 2}
+        label="Default Value With Ticks and Precision"
+        max={50}
+        step={incrementalStep}
+        discreteTicks={incrementalStep}
+        valuePrecision={1}
       />
       <Slider
         discrete
