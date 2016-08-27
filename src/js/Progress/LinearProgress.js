@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import { isBetween } from '../utils';
+import { isBetween } from '../utils/NumberUtils';
 
 /**
  * There are 3 different types of linear progress bars: `Determinate`,

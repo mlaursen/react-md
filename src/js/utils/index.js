@@ -1,5 +1,19 @@
 /* eslint-disable no-param-reassign */
 
+/**
+ * Gets the current field for a component that can the field
+ * as either uncontrolled or controlled.
+ *
+ * @param {Object} props - the props object.
+ * @param {Object} state = the state object.
+ * @param {string=} field - the field to extract a value from. Defaults to 'value'.
+ *
+ * @return the field's value.
+ */
+export function getField(props, state, field = 'value') {
+  return typeof props[field] !== 'undefined' ? props[field] : state[field];
+}
+
 export function setOverflow(enabled, selector) {
   const el = selector ? document.querySelector(selector) : document.body;
   if (enabled) {
@@ -7,22 +21,6 @@ export function setOverflow(enabled, selector) {
   } else {
     el.classList.remove('hide-overflow');
   }
-}
-
-export function numberBetween(num, min, max) {
-  return Math.max(min, Math.min(num, max));
-}
-
-/**
- * Checks if a number is between a min and maximum (inclusive)
- *
- * @param {Number} num the number to check
- * @param {Number} min the minimum
- * @param {Number} max the maximum
- * @return {Boolean} true if the number is between the min and max (inclusive)
- */
-export function isBetween(num, min, max) {
-  return num >= min && num <= max;
 }
 
 /**

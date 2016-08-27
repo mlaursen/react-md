@@ -18,6 +18,9 @@ $ npm i -S react \
            react-md
 ```
 
+> Starting with v0.4.x, the `react-addons-pure-render-mixin` will no longer be required.
+It requires React 15+ and uses the `PureComponent` when possible.
+
 You can also use the UMD build from [npmcdn](https://npmcdn.com/#/):
 
 ```html
@@ -33,8 +36,8 @@ You can also use the UMD build from [npmcdn](https://npmcdn.com/#/):
 ## Getting Started
 
 > NOTE: There are some other implementations that might work better for you:
-> - [Material-UI](/callemall/material-ui) - Uses inline styling
-> - [React Toolbox](/react-toolbox/react-toolbox) - SASS Implementation
+> - [Material-UI](https://github.com/callemall/material-ui) - Inline styling
+> - [React Toolbox](https://github.com/react-toolbox/react-toolbox) - SASS Implementation
 
 
 ### Prerequisites

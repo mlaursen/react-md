@@ -19,7 +19,7 @@ config.module.loaders = config.module.loaders.concat([{
 }, {
   test: /\.scss$/,
   exclude: /node_modules/,
-  loader: 'style!css!postcss!sass?outputStyle=expanded&sourceMap',
+  loader: 'style!css?sourceMap!postcss!sass?outputStyle=expanded&sourceMap',
 }, config.__imgLoader('file')]);
 
 config.output.filename = '[name].js';
