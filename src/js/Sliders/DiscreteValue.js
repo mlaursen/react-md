@@ -10,6 +10,7 @@ export default class DiscreteValue extends PureComponent {
     active: PropTypes.bool,
     value: PropTypes.number.isRequired,
     thumbLeft: PropTypes.string.isRequired,
+    valuePrecision: PropTypes.number.isRequired,
   };
 
   render() {
@@ -21,11 +22,20 @@ export default class DiscreteValue extends PureComponent {
       thumbLeft,
       active,
       value,
+      valuePrecision,
       ...props,
     } = this.props;
 
     if (!discrete || !active) {
       return null;
+    }
+
+    let valueStr = value.toFixed(valuePrecision);
+    if (valuePrecision > 0) {
+      const [w, d] = valueStr.split('.');
+      if (parseInt(d, 10) === 0) {
+        valueStr = w;
+      }
     }
     return (
       <span
@@ -35,7 +45,7 @@ export default class DiscreteValue extends PureComponent {
           'md-slider-discrete-value--dragging': dragging,
         })}
       >
-        {value}
+        {valueStr}
       </span>
     );
   }

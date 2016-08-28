@@ -594,7 +594,7 @@ export default class Slider extends PureComponent {
   _updatePosition(e, normalize) {
     const x = (e.changedTouches ? e.changedTouches[0] : e).clientX;
     const { scale } = this.state;
-    const { onChange, onDragChange, min, max, step, valuePrecision } = this.props;
+    const { onChange, onDragChange, min, max, step } = this.props;
 
     const { value, distance } = calculateValueDistance(
       x,
@@ -604,7 +604,6 @@ export default class Slider extends PureComponent {
       step,
       min,
       max,
-      valuePrecision,
       normalize
     );
 
@@ -902,13 +901,13 @@ export default class Slider extends PureComponent {
       discrete,
       discreteTicks,
       tickWidth,
+      valuePrecision,
       ...props,
     } = this.props;
     delete props.value;
     delete props.onChange;
     delete props.onDragChange;
     delete props.discreteInkTransitionTime;
-    delete props.valuePrecision;
 
     const value = getField(this.props, this.state);
     let rightChildren = rightIcon;
@@ -973,6 +972,7 @@ export default class Slider extends PureComponent {
           discrete={discrete}
           tickWidth={tickWidth}
           discreteTicks={discreteTicks}
+          valuePrecision={valuePrecision}
           step={step}
           scale={scale}
           value={value}

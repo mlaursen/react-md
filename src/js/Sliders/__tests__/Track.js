@@ -22,6 +22,7 @@ const PROPS = {
   onThumbKeyDown: jest.fn(),
   onThumbKeyUp: jest.fn(),
   onThumbFocus: jest.fn(),
+  valuePrecision: 0,
 };
 
 describe('Track', () => {
