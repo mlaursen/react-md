@@ -44,6 +44,7 @@ export default class Track extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]),
+    valuePrecision: PropTypes.number.isRequired,
   };
 
   render() {
@@ -73,6 +74,7 @@ export default class Track extends PureComponent {
       discreteTicks,
       scale,
       step,
+      valuePrecision,
       ...props,
     } = this.props;
 
@@ -133,6 +135,7 @@ export default class Track extends PureComponent {
           active={active}
           value={value}
           thumbLeft={thumbLeft}
+          valuePrecision={valuePrecision}
         />
         <ThumbMask
           dragging={dragging}

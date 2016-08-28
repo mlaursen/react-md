@@ -12,7 +12,7 @@ import DiscreteValue from '../DiscreteValue';
 
 describe('DiscreteValue', () => {
   it('returns null when not not discrete or not active', () => {
-    const props = { value: 3, thumbLeft: '' };
+    const props = { value: 3, thumbLeft: '', valuePrecision: 0 };
 
     let value = renderIntoDocument(<DiscreteValue {...props} />);
     expect(findDOMNode(value)).toBe(null);
@@ -34,6 +34,7 @@ describe('DiscreteValue', () => {
       active: true,
       style: { display: 'block' },
       className: 'test',
+      valuePrecision: 0,
     };
 
     const value = renderIntoDocument(<DiscreteValue {...props} />);
@@ -70,6 +71,7 @@ describe('DiscreteValue', () => {
       active: true,
       value: 3,
       thumbLeft: '',
+      valuePrecision: 0,
     };
 
     const discreteValue = renderIntoDocument(
