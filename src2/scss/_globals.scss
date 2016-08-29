@@ -1,0 +1,35 @@
+@import 'colors';
+
+/// The primary color to use throughout the app. This should be a color
+/// with a `-500` suffix.
+/// @type Color
+/// @group theme
+$md-primary-color: $md-indigo-500 !default;
+
+/// A lighter version of the primary color to use throughout the app.
+/// @type Color
+/// @group theme
+$md-primary-color-hue-1: $md-indigo-400 !default;
+
+/// The secondary color to use throughout the app. This should be a color
+/// with a `-a-{NUMBER}` suffix.
+/// @type Color
+/// @group theme
+$md-secondary-color: $md-pink-a-200 !default;
+
+/// A lighter version of the primary color to use throughout the app. This should be a color
+/// with a `-a-{NUMBER}` suffix.
+/// @type Color
+/// @group theme
+$md-secondary-color-hue-1: $md-pink-a-100 !default;
+
+/// Boolean if the application is to be themed with the light theme.
+/// @type Boolean
+$md-light-theme: true !default;
+
+/// The default transition time to use on most animations/transitions.
+/// @type Number
+$md-transition-time: .15s !default;
+
+$md-height: 48px;
+$md-default-padding: 16px;

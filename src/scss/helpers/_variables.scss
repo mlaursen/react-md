@@ -419,27 +419,7 @@ $md-line-height: 20 / $md-font-size-base;
 
 
 
-// ===================================================================================
-// Avatars
-// ===================================================================================
-
-/// The default size for avatars.
-///
-/// @type String
-/// @group avatars
 $md-avatar-size: 40px;
-
-/// The default avatar colors to use with the `.md-avatar-SUFFIX`.
-///
-/// @type List
-/// @group avatars
-$md-avatar-colors: (
-  ($md-pink-500 $md-green-a-100 color-1)
-  ($md-purple-500 $md-yellow-300 color-2)
-  ($md-amber-500 $md-light-blue-a-400 color-3)
-) !default;
-
-
 
 // ===================================================================================
 // Font Icons

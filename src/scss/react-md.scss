@@ -4,7 +4,7 @@
 @import 'utils';
 @import 'transitions';
 
-@import 'components/avatars';
+//@import 'components/avatars';
 @import 'components/bottom-navigations';
 @import 'components/buttons';
 @import 'components/cards';
@@ -36,5 +36,3 @@
 
 @import 'theme';
 @import 'media-queries';
-
-@include react-md-sliders;
