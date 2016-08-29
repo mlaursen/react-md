@@ -2,6 +2,10 @@
 @import '~sass-utils';
 @import '~md-scss';
 
+@import '~react-md-scss';
+
+@include react-md-avatars;
+
 .btn-group {
   display: flex;
   flex-wrap: wrap;

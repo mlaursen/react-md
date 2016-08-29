@@ -1,0 +1,461 @@
+////
+/// @group typography
+////
+
+/// The font name to use throughout the application. It is recommended
+/// to use Roboto or Noto, but it can be whatever.
+/// @type String
+$md-font-name: Roboto !default;
+
+/// The font family for the application. This only combines the `$md-font-name`
+/// with a fallback font of `sans-serif`.
+/// @type String
+$md-font-family: '#{$md-font-name}', sans-serif !default;
+
+/// The light text weight.
+/// @type Number
+/// @access private
+$md-font-light: 300;
+
+/// The regular text weight.
+/// @type Number
+/// @access private
+$md-font-regular: 400;
+
+/// The medium text weight.
+/// @type Number
+/// @access private
+$md-font-medium: 500;
+
+/// The bold text weight.
+/// @type Number
+/// @access private
+$md-font-bold: 700;
+
+/// A list of all the text weights. This is mainly used so you can
+/// loop over the weights and include locally hosted fonts.
+/// @type List
+/// @access private
+$md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
+
+
+/// The `.md-display-4` font size.
+/// @type Number
+/// @access private
+$md-display-4-font-size: 112px;
+
+/// The `.md-display-4` line height.
+/// @type Number
+/// @access private
+$md-display-4-line-height: 128px;
+
+/// The `.md-display-3` font size.
+/// @type Number
+/// @access private
+$md-display-3-font-size: 56px;
+
+/// The `.md-display-3` line height.
+/// @type Number
+/// @access private
+$md-display-3-line-height: 84px;
+
+
+/// The `.md-display-2` font size.
+/// @type Number
+/// @access private
+$md-display-2-font-size: 45px;
+
+/// The `.md-display-2` line height.
+/// @type Number
+/// @access private
+$md-display-2-line-height: 48px;
+
+
+/// The `.md-display-1` font size.
+/// @type Number
+/// @access private
+$md-display-1-font-size: 34px;
+
+/// The `.md-display-1` line height.
+/// @type Number
+/// @access private
+$md-display-1-line-height: 40px;
+
+
+/// The `.md-headline` font size.
+/// @type Number
+/// @access private
+$md-headline-font-size: 24px;
+
+/// The `.md-headline` line height.
+/// @type Number
+/// @access private
+$md-headline-line-height: 32px;
+
+
+/// The `.md-title` font size.
+/// @type Number
+/// @access private
+$md-title-font-size: 20px;
+
+/// The `.md-title` line height.
+/// @type Number
+/// @access private
+$md-title-line-height: 28px;
+
+
+/// The \`.md-subheading-1` and `.md-subheading-2` font size for
+/// mobile devices.
+/// @type Number
+/// @access private
+$md-subheading-mobile-font-size: 16px;
+
+/// The \`.md-subheading-1` and `.md-subheading-2` font size for
+/// desktop screens.
+/// @type Number
+/// @access private
+$md-subheading-desktop-font-size: 15px;
+
+/// The `.md-subheading-2` line height.
+/// @type Number
+/// @access private
+$md-subheading-2-line-height: 28px;
+
+/// The `.md-subheading-1` line height.
+/// @type Number
+/// @access private
+$md-subheading-1-line-height: 24px;
+
+/// The base font size. This is really just the mobile font size
+/// without the `px` suffix.
+/// @type Number
+/// @access private
+$md-font-size-base: 14;
+
+/// The `.md-body-1` and `.md-body-2` font size for mobile devices.
+/// @type Number
+/// @access private
+$md-body-mobile-font-size: #{$md-font-size-base}px;
+
+/// The `.md-body-1` and `.md-body-2` font size for
+/// desktop screens.
+/// @type Number
+/// @access private
+$md-body-desktop-font-size: 13px;
+
+/// The `.md-body-2` fnt size.
+/// @type Number
+/// @access private
+$md-body-2-line-height: 24px;
+
+/// The `.md-body-1` fnt size.
+/// @type Number
+/// @access private
+$md-body-1-line-height: 20px;
+
+/// The `.md-caption` font size.
+/// @type Number
+/// @access private
+$md-caption-font-size: 12px;
+
+/// The line height to use on almost all elements.
+/// @type Number
+$md-line-height: 20 / $md-font-size-base;
+
+
+/// A placeholder for styling a class with the material design tracking of -10.
+%md-tracking--10 {
+  letter-spacing: -.1px;
+}
+
+/// A placeholder for styling a class with the material design tracking of -5.
+%md-tracking--5 {
+  letter-spacing: -.05px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 0.
+%md-tracking-0 {
+  letter-spacing: 0;
+}
+
+/// A placeholder for styling a class with the material design tracking of 5.
+%md-tracking-5 {
+  letter-spacing: .5px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 10.
+%md-tracking-10 {
+  letter-spacing: .1px;
+}
+
+/// A placeholder for styling a class with the material design tracking of 20.
+%md-tracking-20 {
+  letter-spacing: .2px;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-display-4,
+%md-headline,
+%md-title,
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-body-2,
+%md-caption {
+  margin: 0;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-display-4,
+%md-headline,
+%md-title {
+  margin-bottom: #{$md-font-size-base}px;
+}
+
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-body-2,
+%md-caption {
+  margin-bottom: 10px;
+}
+
+
+
+%md-display-3,
+%md-display-4,
+%md-title {
+  white-space: nowrap;
+}
+
+%md-display-1,
+%md-display-2,
+%md-display-3,
+%md-headline,
+%md-subheading-1,
+%md-subheading-2,
+%md-body-1,
+%md-caption {
+  font-weight: $md-font-regular;
+}
+
+%md-title,
+%md-body-2 {
+  font-weight: $md-font-medium;
+}
+
+/// A placeholder for the Display 4 typography.
+%md-display-4 {
+  @extend %md-tracking--10;
+
+  font-size: $md-display-4-font-size;
+  font-weight: $md-font-light;
+  line-height: $md-display-4-line-height;
+}
+
+/// A placeholder for the Display 3 typography.
+%md-display-3 {
+  @extend %md-tracking--5;
+
+  font-size: $md-display-3-font-size;
+  line-height: $md-display-3-line-height;
+}
+
+/// A placeholder for the Display 2 typography.
+%md-display-2 {
+  @extend %md-tracking-0;
+
+  font-size: $md-display-2-font-size;
+  line-height: $md-display-2-line-height;
+}
+
+/// A placeholder for the Display 1 typography.
+%md-display-1 {
+  @extend %md-tracking-0;
+
+  font-size: $md-display-1-font-size;
+  line-height: $md-display-1-line-height;
+}
+
+/// A placeholder for the headline typography.
+%md-headline {
+  @extend %md-tracking-0;
+
+  font-size: $md-headline-font-size;
+  line-height: $md-headline-line-height;
+}
+
+/// A placeholder for the title typography.
+%md-title {
+  @extend %md-tracking-5;
+
+  font-size: $md-title-font-size;
+  line-height: $md-title-line-height;
+}
+
+/// A placeholder for the subheading-2 typography.
+%md-subheading-2 {
+  @extend %md-tracking-10;
+
+  line-height: $md-subheading-2-line-height;
+}
+
+/// A placeholder for the subheading-1 typography.
+%md-subheading-1 {
+  @extend %md-tracking-10;
+
+  line-height: $md-subheading-1-line-height;
+}
+
+/// Aplaceholder for the body-1 typography
+%md-body-1 {
+  @extend %md-tracking-10;
+}
+
+/// Aplaceholder for the body-2 typography
+%md-body-2 {
+  @extend %md-tracking-10;
+}
+
+
+/// A placeholder for the caption typography.
+%md-caption {
+  @extend %md-tracking-20;
+
+  font-size: $md-caption-font-size;
+}
+
+/// This includes the css for simple typography in react-md. It will
+/// update all items to use `box-sizing: border-box`, set the font
+/// family, set the line-height, text-rendering, and create the base
+/// class names for the typography. If the `$extend-html-tags` is true,
+/// the `h1` - `h5`, `p`, and `caption` tags will be updated with the
+/// corresponding css class name.
+///
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the application
+///     is using the light theme.
+/// @param {Boolean} $extend-html-tags [true] - Boolean if the base html tags should
+///     be updated or not.
+@mixin react-md-typography($light-theme: $md-light-theme, $extend-html-tags: true) {
+  $md-text-color: if($light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
+  $md-secondary-text-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+  $md-hint-text-color: if($light-theme, $md-light-theme-hint-text-color, $md-dark-theme-hint-text-color);
+  $md-disabled-text-color: $md-hint-text-color;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    // scss-lint:disable ColorVariable
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  * {
+    font-family: $md-font-family;
+    line-height: $md-line-height;
+  }
+
+  html {
+    background: if($light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
+    font-size: #{$md-font-size-base}px;
+  }
+
+  body {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  %md-headline,
+  %md-title,
+  %md-subheading-2,
+  %md-subheading-1 {
+    color: $md-text-color;
+  }
+
+  %md-display-4,
+  %md-display-3,
+  %md-display-2,
+  %md-display-1,
+  %md-caption {
+    color: $md-secondary-text-color;
+  }
+
+  @if $extend-html-tags {
+    h1 {
+      @extend %md-display-1;
+    }
+
+    h2 {
+      @extend %md-headline;
+    }
+
+    h3 {
+      @extend %md-title;
+    }
+
+    h4 {
+      @extend %md-subheading-2;
+    }
+
+    h5 {
+      @extend %md-subheading-2;
+    }
+
+    p {
+      @extend %md-body-1;
+    }
+
+    caption {
+      @extend %md-caption;
+    }
+  }
+
+  .md-display-1 {
+    @extend %md-display-1;
+  }
+
+  .md-display-2 {
+    @extend %md-display-2;
+  }
+
+  .md-display-3 {
+    @extend %md-display-3;
+  }
+
+  .md-display-4 {
+    @extend %md-display-4;
+  }
+
+  .md-headline {
+    @extend %md-headline;
+  }
+
+  .md-title {
+    @extend %md-title;
+  }
+
+  .md-subheading-1 {
+    @extend %md-subheading-1;
+  }
+
+  .md-subheading-2 {
+    @extend %md-subheading-2;
+  }
+
+  .md-body-1 {
+    @extend %md-body-1;
+  }
+
+  .md-body-2 {
+    @extend %md-body-2;
+  }
+
+  .md-caption {
+    @extend %md-caption;
+  }
+}

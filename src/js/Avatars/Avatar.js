@@ -56,18 +56,37 @@ export default class Avatar extends PureComponent {
   };
 
   static defaultProps = {
-    suffixes: ['color-1', 'color-2', 'color-3'],
+    suffixes: [
+      'red',
+      'pink',
+      'purple',
+      'deep-purple',
+      'indigo',
+      'blue',
+      'light-blue',
+      'cyan',
+      'teal',
+      'green',
+      'light-green',
+      'lime',
+      'yellow',
+      'amber',
+      'orange',
+      'deep-orange',
+      'brown',
+      'blue-grey',
+    ],
   };
 
   _getColor(suffix, suffixes, random) {
     if (suffix) {
-      return `md-avatar-${suffix}`;
+      return `md-avatar--${suffix}`;
     } else if (!!suffixes && !random) {
-      return null;
+      return 'md-avatar--default';
     }
 
     const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
-    return `md-avatar-${suffixes[i]}`;
+    return `md-avatar--${suffixes[i]}`;
   }
 
   render() {
@@ -85,10 +104,10 @@ export default class Avatar extends PureComponent {
 
     return (
       <div
-        className={cn('md-avatar', className, this._getColor(suffix, suffixes, random))}
         {...props}
+        className={cn('md-avatar', className, this._getColor(suffix, suffixes, random))}
       >
-        {src && <img src={src} alt={alt} className="md-img-avatar" />}
+        {src && <img src={src} alt={alt} className="md-avatar-img" />}
         {!src &&
           <div className="md-avatar-content">
             {icon || children}

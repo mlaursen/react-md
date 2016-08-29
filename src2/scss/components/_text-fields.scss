@@ -1,0 +1,180 @@
+////
+/// @group text-fields
+///
+
+
+@mixin react-md-text-fields($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+}
+
+@mixin react-md-text-field-container($light-theme: $md-light-theme) {
+  .md-text-field-container {
+    // scss-lint:disable VendorPrefix, PseudoElement
+    :-moz-placeholder {
+      opacity: 1;
+    }
+
+    ::-moz-placeholder {
+      opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+      opacity: 1;
+    }
+
+    ::-webkit-input-placeholder {
+      opacity: 1;
+    }
+  }
+
+  .md-text-field-container--block {
+    align-items: center;
+    display: flex;
+
+    .md-text-field-label {
+      flex-grow: 1;
+    }
+
+    .md-text-field-message {
+      flex-shrink: 0;
+    }
+  }
+
+  .md-text-field-container--multiline-block {
+    align-items: flex-start;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .md-text-field-container--full-width {
+    width: 100%;
+  }
+
+  .md-text-field-container--disabled {
+    $color: if($light-theme, $md-light-theme-disabled-text-color, $md-dark-theme-disabled-text-color);
+    @include react-md-theme-placeholders($color);
+    color: $color;
+  }
+}
+
+@mixin react-md-text-field($light-theme: $md-light-theme) {
+  .md-text-field {
+    background: none;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:focus {
+      box-shadow: 0 0 0 50px $md-white-base inset;
+    }
+  }
+
+  .md-text-field--multiline {
+    margin-top: $md-text-field-floating-label-top;
+    padding-bottom: 0;
+    padding-top: 0;
+    resize: none;
+    transition-duration: $md-transition-time;
+    transition-property: height;
+  }
+
+  .md-text-field--full-width {
+    width: 100%;
+  }
+
+  .md-text-field--full-width-icon {
+    width: calc(100% - #{$md-font-icon-size});
+  }
+}
+
+@mixin react-md-text-field-divider($light-theme: $md-light-theme) {
+  $md-divider-color: if($light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+
+  .md-text-field-divider {
+    background: $md-divider-color;
+    height: 1px;
+    position: absolute;
+    width: 100%;
+
+    &::after {
+      content: '';
+      height: $md-text-field-divider-height;
+      transition-duration: $md-transition-time;
+      transition-property: width;
+      width: 0;
+    }
+  }
+
+  .md-text-field-divider--active::after {
+    width: 100%;
+  }
+
+  .md-text-field-divider--from-left::after {
+    left: 0;
+  }
+
+  .md-text-field-divider--from-center::after {
+    margin: auto;
+  }
+
+  .md-text-field-divider--from-right::after {
+    margin-left: auto;
+    right: 0;
+  }
+}
+
+@mixin react-md-text-field-icon($light-theme: $md-light-theme) {
+}
+
+@mixin react-md-text-field-message($light-theme: $md-light-theme) {
+}
+
+/// Applies a color to all the browser placeholder psuedo elements.
+///
+/// @example scss - Basic Usage SASS
+///   .md-primary.md-toolbar {
+///     @include md-theme-placeholders($md-dark-theme-help-text-color);
+///   }
+///
+/// @example scss - Basic Usage CSS Output
+///   .md-primary.md-toolbar {
+///     :-moz-placeholder {
+///       color: $color;
+///     }
+//
+///     ::-moz-placeholder {
+///       color: $color;
+///     }
+///
+///     :-ms-input-placeholder {
+///       color: $color;
+///     }
+///
+///     ::-webkit-input-placeholder {
+///       color: $color;
+///     }
+///   }
+///
+/// @param {Color} $color - The placeholder color to use
+/// @group text-fields
+@mixin react-md-theme-placeholders($color) {
+  // scss-lint:disable VendorPrefix, PseudoElement
+
+  :-moz-placeholder {
+    color: $color;
+  }
+
+  ::-moz-placeholder {
+    color: $color;
+  }
+
+  :-ms-input-placeholder {
+    color: $color;
+  }
+
+  ::-webkit-input-placeholder {
+    color: $color;
+  }
+}

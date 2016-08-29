@@ -1,0 +1,37 @@
+////
+/// @group icons
+////
+
+
+/// The font icon size.
+/// @type Number
+$md-font-icon-size: 24px;
+
+/// Includes the css for using `md-icon`.
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
+///     application is using the light-theme or not.
+@mixin react-md-icons($light-theme: $md-light-theme) {
+  $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+  .md-icon {
+    color: $md-icon-color;
+    font-size: $md-font-icon-size;
+    transition-duration: $md-transition-time;
+    transition-property: color;
+  }
+}
+
+
+/// Updates the color of the base `md-icon` if the `$light-theme` paramater
+/// does not equal the global `$md-light-theme`.
+/// @param {Boolean{ $light-theme [$md-light-theme] - Boolean if using the
+///     light theme.
+@mixin react-md-theme-icons($light-theme: $md-light-theme) {
+  $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+  @if $light-theme != $md-light-theme {
+    .md-icon {
+      color: $md-icon-color;
+    }
+  }
+}
