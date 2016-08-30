@@ -5,17 +5,15 @@ const SingleLineExamples = () => (
   <div className="block-text-field-examples">
     <TextField
       label="Title"
-      className="md-title-text-field"
       size={10}
-      floatingLabel={false}
+      customSize="title"
       lineDirection="right"
     />
     <TextField label="Title" floatingLabel={false} />
     <TextField
       label="Type many letters"
-      rows={2}
+      multiline
       maxRows={4}
-      floatingLabel={false}
     />
     <TextField label="Enter your password" type="password" floatingLabel={false} />
   </div>

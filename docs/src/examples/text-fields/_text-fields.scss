@@ -1,9 +1,15 @@
 @import '~sass-utils';
 
-.block-text-field-examples .md-text-field-container {
-  display: block;
+.block-text-field-examples {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
 
-  .md-text-field-label {
-    display: inline-block;
+  .md-text-field-container:not(:first-child) {
+    margin-top: .5em;
+  }
+
+  .md-text-field-container:not(:last-child) {
+    margin-bottom: .5em;
   }
 }

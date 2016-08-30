@@ -5,7 +5,7 @@ const sassdoc = require('sassdoc');
 
 const reactMD = path.resolve(process.cwd(), '..');
 
-sassdoc(path.join(reactMD, 'src', 'scss'), {
+sassdoc(path.join(reactMD, 'src2', 'scss'), {
   dest: path.resolve(process.cwd(), 'dist', 'client', 'sassdoc'),
   package: path.join(reactMD, 'package.json'),
   display: {

@@ -183,7 +183,6 @@ export default class SelectField extends PureComponent {
     initiallyOpen: false,
     floatingLabel: false,
     itemLabel: 'label',
-    defaultValue: '',
     menuItems: [],
     iconClassName: 'material-icons',
     iconChildren: 'arrow_drop_down',

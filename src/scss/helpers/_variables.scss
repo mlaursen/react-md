@@ -953,114 +953,114 @@ $md-snackbar-chained-transition-delay: $md-transition-time * 3 !default;
 // Text Fields
 // ===================================================================================
 
-/// The height for a text field that has a floating label
-/// on mobile devices.
-///
-/// @type String
-/// @group text-fields
+// /// The height for a text field that has a floating label
+// /// on mobile devices.
+// ///
+// /// @type String
+// /// @group text-fields
 $md-text-field-mobile-height: 72px;
-
-/// The height for a text field that has a single line label
-/// on mobile devices.
-///
-/// @type String
-/// @group text-fields
+// 
+// /// The height for a text field that has a single line label
+// /// on mobile devices.
+// ///
+// /// @type String
+// /// @group text-fields
 $md-text-field-mobile-sl-height: $md-height;
-
-/// The padding for text fields on mobile devices.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-mobile-padding: 16px;
-
-/// The font size for text fields on mobile devices.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-mobile-font-size: 16px;
-
-/// The padding between a text field and the underlined divider
-/// on mobile devices.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-mobile-divider-padding: 8px;
-
-/// The height for a text field that has a floating label
-/// on desktop screens.
-///
-/// @type String
-/// @group text-fields
+// 
+// /// The padding for text fields on mobile devices.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-mobile-padding: 16px;
+// 
+// /// The font size for text fields on mobile devices.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-mobile-font-size: 16px;
+// 
+// /// The padding between a text field and the underlined divider
+// /// on mobile devices.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-mobile-divider-padding: 8px;
+// 
+// /// The height for a text field that has a floating label
+// /// on desktop screens.
+// ///
+// /// @type String
+// /// @group text-fields
 $md-text-field-desktop-height: 60px;
-
-/// The height for a text field that has a single line label
-/// on desktop screens.
-///
-/// @type String
-/// @group text-fields
+// 
+// /// The height for a text field that has a single line label
+// /// on desktop screens.
+// ///
+// /// @type String
+// /// @group text-fields
 $md-text-field-desktop-sl-height: 40px;
-
-/// The padding for a text field on desktop screens.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-desktop-padding: 12px;
-
-/// The text field's font size for desktop screens.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-desktop-font-size: 13px;
-
-/// The padding between a text field and the underlined divider
-/// on desktop screens.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-desktop-divider-padding: 4px;
-
-/// The margin between a text field and an icon.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-icon-margin: 16px !default;
-
-/// The height of the text field's underlined divider.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-divider-height: 2px !default;
-
-/// The font size for a title text field.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-title-font-size: $md-display-1-font-size !default;
-
-/// The default width for a text field that has some info/error text.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-info-width: 256px !default;
-
-/// The font size for info/error text on a text field.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-info-font-size: 12px;
-
-/// The floating label top positioning for a text field.
-/// No idea why it is this value. Magic!
-///
-/// @type String
-/// @group text-fields
-$md-text-field-floating-label-top: 35px;
-
-/// The font size for the floating label when it is under focus.
-///
-/// @type String
-/// @group text-fields
-$md-text-field-active-font-size: 12px;
+// 
+// /// The padding for a text field on desktop screens.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-desktop-padding: 12px;
+// 
+// /// The text field's font size for desktop screens.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-desktop-font-size: 13px;
+// 
+// /// The padding between a text field and the underlined divider
+// /// on desktop screens.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-desktop-divider-padding: 4px;
+// 
+// /// The margin between a text field and an icon.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-icon-margin: 16px !default;
+// 
+// /// The height of the text field's underlined divider.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-divider-height: 2px !default;
+// 
+// /// The font size for a title text field.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-title-font-size: $md-display-1-font-size !default;
+// 
+// /// The default width for a text field that has some info/error text.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-info-width: 256px !default;
+// 
+// /// The font size for info/error text on a text field.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-info-font-size: 12px;
+// 
+// /// The floating label top positioning for a text field.
+// /// No idea why it is this value. Magic!
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-floating-label-top: 35px;
+// 
+// /// The font size for the floating label when it is under focus.
+// ///
+// /// @type String
+// /// @group text-fields
+// $md-text-field-active-font-size: 12px;
 
 
 

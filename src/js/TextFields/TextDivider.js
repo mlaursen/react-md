@@ -1,26 +1,37 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-/**
- * The `TextDivider` component renders the divider below the `TextField` component.
- */
 export default class TextDivider extends PureComponent {
   static propTypes = {
-    lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
-    active: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
-    icon: PropTypes.bool.isRequired,
+    block: PropTypes.bool,
+    active: PropTypes.bool,
+    error: PropTypes.bool,
+    lineDirection: PropTypes.string,
+    className: PropTypes.string,
   };
 
   render() {
-    const { lineDirection, active, error, icon } = this.props;
-    const className = cn('md-text-divider', `from-${lineDirection}`, {
+    const {
+      block,
       active,
       error,
-      'icon-offset': icon,
-    });
+      lineDirection,
+      className,
+      ...props,
+    } = this.props;
+    if (block) {
+      return null;
+    }
+
     return (
-      <div className={className} />
+      <hr
+        {...props}
+        className={cn('md-text-field-divider', className, {
+          [`md-text-field-divider--from-${lineDirection}`]: lineDirection,
+          'md-text-field-divider--active': active,
+          'md-text-field-divider--error': error,
+        })}
+      />
     );
   }
 }

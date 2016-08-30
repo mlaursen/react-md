@@ -1,36 +1,52 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-/**
- * This component is used for rendering the floating label for a text field.
- */
 export default class FloatingLabel extends PureComponent {
   static propTypes = {
-    active: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
-    required: PropTypes.bool,
+    label: PropTypes.node,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    floating: PropTypes.bool,
+    floatingLabel: PropTypes.bool,
+    error: PropTypes.bool,
+    active: PropTypes.bool,
     disabled: PropTypes.bool,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    iconOffset: PropTypes.bool,
+    customSize: PropTypes.string,
   };
 
   render() {
-    const { active, error, required, value, disabled } = this.props;
-    let { label } = this.props;
-    if (required && label.indexOf('*') === -1) {
-      label = `${label.trim()} *`;
-    }
-
-    const className = cn('md-floating-label', {
+    const {
+      label,
+      className,
+      floating,
+      floatingLabel,
+      active,
       error,
       disabled,
-      'focus': active,
-      'active': active || value !== '',
-    });
+      iconOffset,
+      customSize,
+      ...props,
+    } = this.props;
+    if (!label || !floatingLabel) {
+      return null;
+    }
 
-    return <span className={className}>{label}</span>;
+    return (
+      <span
+        {...props}
+        className={cn('md-floating-label', className, {
+          'md-floating-label--active': !error && active,
+          'md-floating-label--error': error,
+          'md-floating-label--inactive': !floating && !customSize,
+          'md-floating-label--floating': floating,
+          'md-floating-label--disabled': disabled,
+          'md-floating-label--icon-offset': iconOffset,
+          [`md-floating-label--${customSize}`]: customSize && !floating,
+        })}
+      >
+        {label}
+      </span>
+    );
   }
 }

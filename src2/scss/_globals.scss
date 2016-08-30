@@ -31,5 +31,57 @@ $md-light-theme: true !default;
 /// @type Number
 $md-transition-time: .15s !default;
 
+$md-transition-func: cubic-bezier(.23, 1, .32, 1);
+
 $md-height: 48px;
 $md-default-padding: 16px;
+
+/// The default min width for a mobile device.
+/// @type Number
+/// @group media-queries
+$md-mobile-min-width: 320px !default;
+
+/// The default min width for a tablet device.
+/// @type Number
+/// @group media-queries
+$md-tablet-min-width: 768px !default;
+
+/// The default min width for a desktop screen.
+/// @type Number
+/// @group media-queries
+$md-desktop-min-width: 1025px !default;
+
+/// The default mobile media query.
+/// @type String
+/// @group media-queries
+$md-mobile-media: only screen and (min-width: $md-mobile-min-width) !default;
+
+/// The default media query for a portrait mobile device.
+/// @type String
+/// @group media-queries
+$md-mobile-portrait-media: only screen and (min-width: $md-mobile-min-width) and (orientation: portrait) !default;
+
+/// The default media query for a landscape mobile device.
+/// @type String
+/// @group media-queries
+$md-mobile-landscape-media: only screen and (min-width: $md-mobile-min-width) and (orientation: landscape) !default;
+
+/// The default media query for a tablet device.
+/// @type String
+/// @group media-queries
+$md-tablet-media: only screen and (min-width: $md-tablet-min-width) !default;
+
+/// The default media query for a portrait tablet device.
+/// @type String
+/// @group media-queries
+$md-tablet-portrait-media: only screen and (min-width: $md-tablet-min-width) and (orientation: protrait) !default;
+
+/// The default media query for a landscape tablet device.
+/// @type String
+/// @group media-queries
+$md-tablet-landscape-media: only screen and (min-width: $md-tablet-min-width) and (orientation: landscape) !default;
+
+/// The default media query for a desktop device.
+/// @type String
+/// @group media-queries
+$md-desktop-media: only screen and (min-width: $md-desktop-min-width) !default;

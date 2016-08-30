@@ -96,7 +96,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * The default value for the autocomplete's text field.
      */
-    defaultValue: PropTypes.string.isRequired,
+    defaultValue: PropTypes.string,
 
     /**
      * An object key to use to extract the text to be compared for filtering.
@@ -254,7 +254,6 @@ export default class Autocomplete extends PureComponent {
   };
 
   static defaultProps = {
-    defaultValue: '',
     dataLabel: 'primaryText',
     floatingLabel: true,
     filter: Autocomplete.fuzzyFilter,
