@@ -6,12 +6,13 @@ const FloatingLabelExamples = () => (
     <TextField
       label="Title"
       placeholder="Hello World"
-      className="md-title-text-field"
+      customSize="title"
       size={10}
+      floatingLabel
     />
-    <TextField label="Title" lineDirection="center" />
-    <TextField label="Type many letters" lineDirection="right" rows={2} maxRows={4} />
-    <TextField label="Enter your password" type="password" />
+    <TextField label="Title" lineDirection="center" floatingLabel />
+    <TextField label="Type many letters" lineDirection="right" multiline maxRows={4} floatingLabel />
+    <TextField label="Enter your password" type="password" floatingLabel />
   </div>
 );
 

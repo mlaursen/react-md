@@ -1,4 +1,4 @@
-@import '~react-md/src/scss/components/sliders';
+@import '~react-md-scss';
 @import '~sass-utils';
 
 .theme-1 {
@@ -8,6 +8,8 @@
     $md-deep-orange-a-200,
     $md-deep-orange-a-100
   );
+
+  @include react-md-theme-text-fields($md-light-blue-500);
 
   .banner {
     background: $md-light-blue-500;
@@ -21,6 +23,8 @@
     $md-light-green-a-700,
     $md-light-green-a-200
   );
+
+  @include react-md-theme-text-fields($md-purple-500);
 }
 
 .theme-3 {
@@ -30,6 +34,7 @@
     $md-amber-a-200,
     $md-light-green-a-100
   );
+  @include react-md-theme-text-fields($md-blue-500);
 }
 
 .theme-4 {
@@ -39,6 +44,7 @@
     $md-yellow-a-700,
     $md-light-green-a-200
   );
+  @include react-md-theme-text-fields($md-cyan-500);
 }
 
 .theme-5 {
@@ -48,6 +54,7 @@
     $md-deep-purple-a-200,
     $md-deep-purple-a-100
   );
+  @include react-md-theme-text-fields($md-orange-500);
 }
 
 // .theme-dark {

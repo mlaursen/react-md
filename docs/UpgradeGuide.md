@@ -1,5 +1,11 @@
 # react-md Upgrade Guide
 
+## Upgrading from 0.3.x to 0.4.x
+
+### Text Fields
+The `TextField` component has been updated to no longer use `floatingLabel` by default. In addition,
+text fields no longer have padding to the left or right anymore.
+
 ## Upgrading from 0.2.x to 0.3.x
 
 ### NavigationDrawer

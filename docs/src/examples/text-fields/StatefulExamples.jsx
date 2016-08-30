@@ -9,8 +9,15 @@ const StatefulExamples = () => (
     <TextField
       label="Phone"
       type="tel"
-      icon={<FontIcon>phone</FontIcon>}
+      leftIcon={<FontIcon>phone</FontIcon>}
       size={10}
+    />
+    <TextField
+      label="Phone"
+      type="tel"
+      rightIcon={<FontIcon>phone</FontIcon>}
+      size={10}
+      floatingLabel
     />
     <p>
       When a text field is set to required, the label is automatically
@@ -20,24 +27,23 @@ const StatefulExamples = () => (
     <TextField
       label="Phone *"
       type="tel"
-      icon={<FontIcon>phone</FontIcon>}
+      leftIcon={<FontIcon>phone</FontIcon>}
       size={10}
-      floatingLabel={false}
       required
+      floatingLabel
     />
     <p>And text fields will be un-interactable when disabled.</p>
     <TextField label="Help, I am disabled" disabled />
     <TextField
       label="Phone"
       type="tel"
-      icon={<FontIcon>phone</FontIcon>}
+      leftIcon={<FontIcon>phone</FontIcon>}
       size={10}
-      floatingLabel={false}
       disabled
     />
     <TextField
       label="Try to type many letters"
-      rows={2}
+      multiline
       maxRows={4}
       disabled
     />

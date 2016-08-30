@@ -1,604 +1,437 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, cloneElement, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import { TAB } from '../constants/keyCodes';
+import { addSuffix } from '../utils/StringUtils';
+import FontIcon from '../FontIcons';
 import FloatingLabel from './FloatingLabel';
 import TextDivider from './TextDivider';
-import TextFieldMessage from './TextFieldMessage';
-import FontIcon from '../FontIcons';
+import TextArea from './TextArea';
+import Message from './Message';
 
-const valueType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number,
-]);
-
-/**
- * There is also an additional css class you can add to the text field to increase the font
- * size to a "title". This is configurable and there is a mixin to generate more of these helpers.
- *
- * Text Fields display as `inline-block` by default so that their size does not span `100%`. If
- * you want a text field per-line, wrap them in a div, or set them to display block (will make their width
- * expand as well though).
- */
 export default class TextField extends PureComponent {
   static propTypes = {
-    /**
-     * An optional className to apply to the text field container.
-     */
-    className: PropTypes.string,
-
-    /**
-     * An optional className to apply to the input field iteself.
-     */
-    inputClassName: PropTypes.string,
-
-    /**
-     * A valid text field type. This should be one of the valid html5 input types.
-     *
-     * > If the text field is a multiline text field, it will not be applied because
-     * > the main text field will be a `textarea`.
-     */
-    type: PropTypes.string.isRequired,
-
-    /**
-     * A label to display with the text field. If the text field is set to be
-     * a single line text field, this will automatically be used as the placeholder
-     * text if there is no `placeholder` prop given.
-     */
-    label: PropTypes.string,
-
-    /**
-     * An optional placeholder to display along with the floating label.
-     */
-    placeholder: PropTypes.string,
-
-    /**
-     * An optional value to set in the text field. This will make the component
-     * controlled and require the `onChange` prop to be set.
-     */
-    value: valueType,
-
-    /**
-     * A default value to use for the text field.
-     */
-    defaultValue: valueType,
-
-    /**
-     * The number of rows to display by default. This will convert the text field
-     * into a multiline text field.
-     */
-    rows: PropTypes.number,
-
-    /**
-     * The maximum number of rows that can be displayed in a multiline text field.
-     * The text field will continue to expand in height until this value is met.
-     * Settings this value to `-1` will allow the text field to expand infinitely.
-     */
-    maxRows: PropTypes.number,
-
-    /**
-     * An optional error text to display below the text field. If this value is `trueish`,
-     * the icon, label, and text field didivder will be styled with the error color.
-     */
-    errorText: PropTypes.string,
-
-    /**
-     * An optional help text to display below the text field.
-     */
-    helpText: PropTypes.string,
-
-    /**
-     * A boolean if the help text should only be displayed on focus.
-     */
-    helpOnFocus: PropTypes.bool,
-
-    /**
-     * The max length for the text field. If this prop is set, it will automatically
-     * add a counter below the text field.
-     */
-    maxLength: PropTypes.number,
-
-    /**
-     * Boolean if the label for the text field should float. Settings this to false
-     * will make a single line text field.
-     */
-    floatingLabel: PropTypes.bool,
-
-    /**
-     * An optional icon to display to the left of the text field.
-     */
-    icon: PropTypes.node,
-
-    /**
-     * An optional icon to display to the right of the text field.
-     */
-    rightIcon: PropTypes.node,
-
-    /**
-     * An optional function to call when the text field is blurred.
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field's value has changed.
-     * The callback will be `onChange(newValue, event)`.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field gains focus.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field's value has changed.
-     * It is similar to `onChange` except that it triggers immediately after
-     * the value has changed while `onChange` happens on blur and after the
-     * content has updated. You most likely want to use `onChange`.
-     */
-    onInput: PropTypes.func,
-
-    /**
-     * An optional function to call when a required text field is submitted in
-     * a form without any value.
-     */
-    onInvalid: PropTypes.func,
-
-    /**
-     * An optional function to call when a user has pressed a key down.
-     */
-    onKeyDown: PropTypes.func,
-
-    /**
-     * An optional function to call when a user has pressed and released a key.
-     */
-    onKeyPress: PropTypes.func,
-
-    /**
-     * An optional function to call when a user has released a key.
-     */
-    onKeyUp: PropTypes.func,
-
-    /**
-     * An optional function to call when text in the text field has been selected.
-     */
-    onSelect: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field is clicked.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * Optional style to apply to the text field container.
-     */
     style: PropTypes.object,
-
-    /**
-     * Optional style to apply to the text field input itself.
-     */
+    className: PropTypes.string,
     inputStyle: PropTypes.object,
-
-    /**
-     * The direction that the text field divider expands from when the text field
-     * gains focus.
-     */
-    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
-
-    /**
-     * Boolean if the text field is required.
-     */
-    required: PropTypes.bool,
-
-    /**
-     * An optional boolean if the text field is disabaled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Boolean if the text field is read only.
-     */
-    readOnly: PropTypes.bool,
-
-    /**
-     * An optional size for the text field.
-     */
-    size: PropTypes.number,
-
-    /**
-     * Boolean if this text field should be styled as a full width text field.
-     * Floating labels and the text field indicator will be removed automatically.
-     */
+    inputClassName: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     block: PropTypes.bool,
-
-    /**
-     * Boolean if the this text field should span the full width of a parent.
-     */
-    fullWidth: PropTypes.bool,
-
-    /**
-     * Any children used to render the password icon button.
-     */
-    passwordIconChildren: PropTypes.node,
-
-    /**
-     * Any icon className to use to render the password icon button.
-     */
-    passwordIconClassName: PropTypes.string,
-
-    /**
-     * Boolean if the min-width for the text field should automatically be adjusted
-     * to be the max of the placeholder text or label text width.
-     */
-    adjustMinWidth: PropTypes.bool.isRequired,
-
-    /**
-     * An optional id for the text field.
-     */
+    disabled: PropTypes.bool,
+    floatingLabel: PropTypes.bool,
+    label: PropTypes.string,
     id: PropTypes.string,
+    placeholder: PropTypes.string,
+    type: PropTypes.oneOf([
+      'text',
+      'number',
+      'email',
+      'search',
+      'tel',
+      'url',
+      'password',
+    ]).isRequired,
+    onClick: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    active: PropTypes.bool,
+    error: PropTypes.bool,
+    floating: PropTypes.bool,
+    required: PropTypes.bool,
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+    leftIcon: PropTypes.element,
+    rightIcon: PropTypes.element,
+    passwordIconChildren: PropTypes.node,
+    passwordIconClassName: PropTypes.string,
+    passwordInitiallyVisible: PropTypes.bool.isRequired,
+    fullWidth: PropTypes.bool,
+    multiline: PropTypes.bool,
+    rows: PropTypes.number,
+    maxRows: PropTypes.number,
+    customSize: PropTypes.string,
+    errorText: PropTypes.string,
+    helpText: PropTypes.string,
+    helpOnFocus: PropTypes.bool,
+    maxLength: PropTypes.number,
   };
 
   static defaultProps = {
     type: 'text',
-    defaultValue: '',
-    floatingLabel: true,
     lineDirection: 'left',
     passwordIconChildren: 'remove_red_eye',
-    adjustMinWidth: false,
+    passwordInitiallyVisible: false,
+    rows: 2,
   };
 
   constructor(props) {
     super(props);
 
+    let currentLength = 0;
+    if (typeof props.value !== 'undefined') {
+      currentLength = props.value.length;
+    } else if (typeof props.defaultValue !== 'undefined') {
+      currentLength = props.defaultValue.length;
+    }
+
     this.state = {
-      active: false,
-      currentRows: props.rows,
-      areaHeight: 'auto',
-      value: props.defaultValue,
-      passwordVisible: false,
-      minWidth: null,
+      active: !!props.defaultValue || !!props.value,
+      error: false,
+      floating: !!props.defaultValue || !!props.value,
+      passwordVisible: props.passwordInitiallyVisible,
+      height: null,
+      currentLength,
     };
 
     this.focus = this.focus.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
+    this._blur = this._blur.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleOutsideClick = this._handleOutsideClick.bind(this);
     this._togglePasswordField = this._togglePasswordField.bind(this);
+    this._handleHeightChange = this._handleHeightChange.bind(this);
+    this._findTextField = this._findTextField.bind(this);
+    this._updateMultilineHeight = this._updateMultilineHeight.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.adjustMinWidth) {
-      this._setMinWidth();
-    }
+    this._node = findDOMNode(this);
+    this._findTextField();
+    window.addEventListener('resize', this._updateMultilineHeight);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { adjustMinWidth, label, placeholder } = this.props;
-    if (nextProps.adjustMinWidth && (label !== nextProps.label || placeholder !== nextProps.label || !adjustMinWidth)) {
-      this._setMinWidth();
-    } else if (adjustMinWidth && !nextProps.adjustMinWidth) {
-      this.setState({ minWidth: null });
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        currentLength: typeof nextProps.value !== 'undefined' ? nextProps.value.toString().length : 0,
+      });
     }
   }
 
-  _getValue(props, state) {
-    return typeof props.value === 'undefined' ? state.value : props.value;
+  componentDidUpdate(prevProps, prevState) {
+    const { block, active } = this.props;
+    if (block !== prevProps.block
+      || active !== prevProps.active
+      || this.state.active !== prevState.active
+    ) {
+      const fn = window[`${!block && (active || this.state.active) ? 'add' : 'remove'}EventListener`];
+      fn('click', this._handleOutsideClick);
+    }
+
+    if (this.props.multiline !== prevProps.multiline) {
+      this._findTextField();
+    }
   }
 
-  /**
-   * This is a helper method to focus the text field since the text field is nested
-   * in some containers. This will allow the following to work:
-   *
-   * ```js
-   * this.refs.textField.focus();
-   * ```
-   *
-   * Because of the containers and the positioning of the text field, the following will
-   * *not* work:
-   *
-   * ```js
-   * ReactDOM.findDOMNode(this.refs.textFeld).focus();
-   * ```
-   */
+  componentWillUnmount() {
+    const { block, active } = this.props;
+    if (!block && (active || this.state.active)) {
+      window.removeEventListener('click', this._handleOutsideClick);
+    }
+
+    window.removeEventListener('resize', this._updateMultilineHeight);
+  }
+
   focus() {
-    if (!this.textField) {
-      this.textField = findDOMNode(this.refs.textField || this.refs.textarea);
+    this._textField.focus();
+  }
+
+  _findTextField() {
+    if (this.props.multiline) {
+      this._textField = this._node.querySelector('.md-text-field--multiline:last-child');
+    } else {
+      this._textField = this.refs.textField;
     }
 
-    this.textField.focus();
+    this._updateMultilineHeight();
+  }
+
+  _updateMultilineHeight() {
+    if (!this.props.multiline) {
+      return;
+    }
+
+    this._additionalHeight = parseInt(window.getComputedStyle(this._textField).getPropertyValue('margin-top'), 10);
+
+    if (!this.props.block) {
+      const divider = findDOMNode(this.refs.divider);
+      const mb = parseInt(window.getComputedStyle(divider).getPropertyValue('margin-bottom'), 10);
+      this._additionalHeight += (mb === 4 ? 12 : 16);
+    }
+  }
+
+  _blur() {
+    const value = this._textField.value;
+
+    this.setState({
+      active: false,
+      error: this.props.required && !value,
+      floating: !!value,
+    });
+  }
+
+  _handleOutsideClick(e) {
+    if (!this._node.contains(e.target)) {
+      this._blur();
+    }
   }
 
   _handleFocus(e) {
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
+    const { onFocus, block } = this.props;
+    if (onFocus) {
+      onFocus(e);
     }
 
-    this.setState({ active: true });
-  }
-
-  _handleBlur(e) {
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
+    if (!block) {
+      this.setState({ active: true, floating: true });
     }
-
-    this.setState({ active: false });
   }
 
-  _handleChange(e, reset = false) {
-    const { onChange, rows, maxRows } = this.props;
-    const value = reset ? '' : e.target.value;
+  _handleChange(e) {
+    const { onChange, maxLength } = this.props;
     if (onChange) {
-      onChange(value, e);
+      onChange(e.target.value, e);
     }
 
-    if (typeof this.props.value !== 'undefined') {
-      return null;
-    } else if (!rows || !maxRows) {
-      return this.setState({ value });
+    if (typeof maxLength !== 'undefined') {
+      const currentLength = e.target.value.length;
+      this.setState({ currentLength, error: currentLength > maxLength });
+    }
+  }
+
+  _handleKeyDown(e) {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
     }
 
-    const state = { value };
-
-    const { textarea } = this.refs;
-    const { offsetHeight, scrollHeight } = textarea;
-    let { currentRows } = this.state;
-    const { areaHeight } = this.state;
-
-    const moreRows = maxRows !== -1 && currentRows >= maxRows;
-    const noScroll = scrollHeight <= (typeof areaHeight === 'number' && areaHeight || offsetHeight);
-    if (noScroll || moreRows) {
-      return this.setState(state);
+    if (!this.props.block && (e.which || e.keyCode) === TAB) {
+      this._blur();
     }
-
-    currentRows++;
-    state.currentRows = currentRows;
-    state.areaHeight = scrollHeight;
-    return this.setState(state);
   }
 
   _togglePasswordField() {
-    this.setState({ passwordVisible: !this.state.passwordVisible });
+    this.setState({ passwordVisible: !this.state.passwordVisible }, this.focus);
   }
 
-  _setMinWidth() {
-    const { placeholder, label } = this.props;
-    const { textarea, textField, floatingLabel } = this.refs;
-    const canvas = document.createElement('canvas');
-    canvas.className = 'md-text-field';
-    const context = canvas.getContext('2d');
+  _handleHeightChange(height) {
+    if (this._additionalHeight) {
+      this.setState({ height: height + this._additionalHeight });
+    }
+  }
 
-    let minWidth;
-    if (context) {
-      context.font = window.getComputedStyle(textarea || textField).getPropertyValue('font');
-
-      minWidth = Math.max(
-        floatingLabel ? findDOMNode(floatingLabel).offsetWidth : 0,
-        placeholder ? context.measureText(placeholder).width : 0,
-        !floatingLabel ? context.measureText(label).width : 0
-      );
-
-      if (minWidth) {
-        minWidth += 12;
-      }
+  _cloneIcon(icon, active, error, disabled) {
+    if (!icon) {
+      return icon;
     }
 
-    this.setState({ minWidth });
+    try {
+      const iconEl = Children.only(icon);
+      return cloneElement(iconEl, {
+        className: cn('md-text-field-icon', {
+          'md-text-field-icon--disabled': disabled,
+          'md-text-field-icon--active': !error && active,
+          'md-text-field-icon--error': error,
+        }, iconEl.props.className),
+      });
+    } catch (e) {
+      return icon;
+    }
   }
 
   render() {
-    const { active, currentRows, areaHeight, passwordVisible, minWidth } = this.state;
-
+    const { passwordVisible, height, currentLength } = this.state;
     const {
       style,
       className,
       inputStyle,
       inputClassName,
-      label,
-      placeholder,
-      maxLength,
-      helpText,
-      errorText,
-      floatingLabel,
-      icon,
-      rightIcon,
+      block,
+      disabled,
+      id,
+      lineDirection,
       passwordIconChildren,
       passwordIconClassName,
-      lineDirection,
+      type,
+      fullWidth,
+      multiline,
       rows,
       maxRows,
-      disabled,
-      required,
+      customSize,
+      errorText,
+      helpText,
       helpOnFocus,
-      block,
-      fullWidth,
-      type,
-      id,
+      maxLength,
       ...props,
     } = this.props;
+    delete props.placeholder;
+    delete props.active;
+    delete props.error;
+    delete props.floating;
+    delete props.leftIcon;
+    delete props.rightIcon;
+    delete props.onClick;
+    delete props.passwordInitiallyVisible;
+    delete props.label;
+    delete props.floatingLabel;
 
-    delete props.defaultValue;
-    delete props.value;
-    delete props.onBlur;
-    delete props.onChange;
-    delete props.onFocus;
     delete props.adjustMinWidth;
 
-    const value = this._getValue(this.props, this.state);
-    const error = !!errorText || (!!maxLength && value.length > maxLength);
-    const multiline = typeof rows === 'number';
-    const useFloatingLabel = floatingLabel && !block;
+    let { placeholder, active, error, floating, leftIcon, rightIcon, label, floatingLabel } = this.props;
+    active = active || this.state.active;
+    error = error || this.state.error;
+    floating = floating || this.state.floating;
 
-    let fontIcon;
-    if (icon) {
-      fontIcon = React.cloneElement(icon, {
-        className: cn('md-text-field-icon', {
-          disabled,
-          active,
-          error,
-          'with-floating-label': useFloatingLabel,
-          'normal': !!value,
-        }),
-      });
+    // Disable floating label on blocks
+    floatingLabel = floatingLabel && !block;
+
+    if (props.required) {
+      if (label) {
+        label = addSuffix(label, '*');
+      }
+
+      if (placeholder && !label && !floatingLabel) {
+        placeholder = addSuffix(placeholder, '*');
+      }
     }
 
-    let indIcon;
-    if (rightIcon) {
-      indIcon = React.cloneElement(rightIcon, {
-        className: cn('md-text-field-ind', {
-          'single-line': !useFloatingLabel,
-        }),
-      });
-    } else if (type === 'password') {
-      indIcon = (
+    if (floatingLabel && !floating) {
+      placeholder = null;
+    } else if (!placeholder && !floatingLabel) {
+      placeholder = label;
+    }
+
+    leftIcon = this._cloneIcon(leftIcon, active, error, disabled);
+    if (type === 'password' && !disabled) {
+      rightIcon = (
         <button
           type="button"
           onClick={this._togglePasswordField}
           className={cn('md-password-btn', {
-            'active': passwordVisible,
-            'multi-line': useFloatingLabel,
-            'single-line': !useFloatingLabel,
+            'md-password-btn--active': active,
+            'md-password-btn--invisible': active && !passwordVisible,
           })}
         >
           <FontIcon iconClassName={passwordIconClassName} children={passwordIconChildren} />
         </button>
       );
+    } else {
+      rightIcon = this._cloneIcon(rightIcon, active, error, disabled);
     }
 
-    let textFieldMessage;
-    if (errorText || maxLength || helpText) {
-      textFieldMessage = (
-        <TextFieldMessage
-          value={value}
-          error={error}
-          helpOnFocus={helpOnFocus}
-          active={active}
-          message={errorText || helpText}
-          maxLength={maxLength}
-          className={icon ? 'icon-offset' : null}
-        />
-      );
-    }
-
-    const textFieldProps = {
-      ...props,
-      id,
-      className: cn('md-text-field', inputClassName, {
-        active,
-        block,
-        'floating-label': useFloatingLabel,
-        'single-line': !useFloatingLabel && !multiline,
-        'multi-line': multiline,
-        'full-width': fullWidth,
-        'with-icon': rightIcon,
-      }),
-      disabled,
-      onBlur: this._handleBlur,
-      onChange: this._handleChange,
-      onFocus: this._handleFocus,
-      value,
-    };
-
-    let textField;
+    let input;
     if (multiline) {
-      let areaStyle = inputStyle ? Object.assign({}, inputStyle) : {};
-      if (maxRows) {
-        if (currentRows < maxRows || maxRows === -1) {
-          areaStyle.overflow = 'hidden';
-        }
-
-        if (areaHeight) {
-          areaStyle.height = areaHeight;
-        }
-      }
-
-      let visiblePlaceholder;
-      if (active || !useFloatingLabel || block) {
-        visiblePlaceholder = placeholder || label;
-
-        if (required && visiblePlaceholder.indexOf('*') === -1) {
-          visiblePlaceholder = `${visiblePlaceholder.trim()} *`;
-        }
-      }
-
-      textField = (
-        <textarea
-          {...textFieldProps}
-          placeholder={visiblePlaceholder}
-          ref="textarea"
+      input = (
+        <TextArea
+          key="area"
+          ref="textField"
+          {...props}
+          disabled={disabled}
+          id={id}
           rows={rows}
-          style={areaStyle}
+          maxRows={maxRows}
+          placeholder={placeholder}
+          style={inputStyle}
+          floatingLabel={floatingLabel}
+          className={inputClassName}
+          onFocus={this._handleFocus}
+          onKeyDown={this._handleKeyDown}
+          onChange={this._handleChange}
+          onHeightChange={this._handleHeightChange}
         />
       );
     } else {
-      let visiblePlaceholder;
-      if (!useFloatingLabel) {
-        visiblePlaceholder = placeholder || label;
-
-        if (required && visiblePlaceholder.indexOf('*') === -1) {
-          visiblePlaceholder = `${visiblePlaceholder.trim()} *`;
-        }
-      } else if (active || !!value) {
-        visiblePlaceholder = placeholder;
-      }
-
-      textField = (
+      input = (
         <input
-          {...textFieldProps}
-          ref="textField"
-          type={passwordVisible ? 'text' : type}
-          style={Object.assign({ minWidth }, inputStyle)}
-          placeholder={visiblePlaceholder}
-        />
-      );
-    }
-
-    let floatingLabelEl;
-    if (useFloatingLabel && label) {
-      floatingLabelEl = (
-        <FloatingLabel
-          ref="floatingLabel"
-          label={label}
-          active={active}
-          error={error}
-          required={required}
-          value={value}
+          {...props}
           disabled={disabled}
+          type={passwordVisible ? 'text' : type}
+          id={id}
+          key="input"
+          ref="textField"
+          placeholder={placeholder}
+          style={inputStyle}
+          className={cn('md-text-field', {
+            'md-text-field--password': type === 'password',
+            [`md-text-field--${customSize}`]: customSize,
+          }, inputClassName)}
+          onFocus={this._handleFocus}
+          onKeyDown={this._handleKeyDown}
+          onChange={this._handleChange}
         />
       );
     }
 
-    let textDivider;
-    if (!block) {
-      textDivider = (
-        <TextDivider
-          icon={!!icon}
-          active={active}
-          error={error}
-          lineDirection={lineDirection}
-        />
-      );
+    const divider = (
+      <TextDivider
+        key="divider"
+        ref="divider"
+        block={block}
+        error={error}
+        active={active}
+        lineDirection={lineDirection}
+      />
+    );
+
+    let children;
+    if (leftIcon || rightIcon) {
+      children = <div className="md-text-field-divider-container">{input}{divider}</div>;
+    } else {
+      children = [input, divider];
     }
 
     return (
-      <div
-        style={style}
-        className={cn('md-text-field-container', className, {
-          disabled,
-          block,
-          'multi-line': multiline,
-          'full-width': fullWidth,
-          'with-message': helpText || errorText,
-        })}
+      <label
+        htmlFor={id}
+        style={Object.assign({}, style, { height })}
+        className={cn('md-text-field-container', {
+          'md-text-field-container--input': !multiline,
+          'md-text-field-container--full-width': fullWidth && !block,
+          'md-text-field-container--block': block,
+          'md-text-field-container--disabled': disabled,
+          'md-text-field-container--input-floating-label': !multiline && floatingLabel,
+          'md-text-field-container--multiline': multiline,
+          'md-text-field-container--multiline-floating-label': multiline && floatingLabel,
+          'md-text-field-container--with-icon': (!!leftIcon || !!rightIcon),
+          [`md-text-field-container--${customSize}`]: !floatingLabel && customSize,
+          [`md-text-field-container--floating-label-${customSize}`]: floatingLabel && customSize,
+        }, className)}
       >
-        <label className="md-text-field-label" htmlFor={id}>
-          {fontIcon}
-          {floatingLabelEl}
-          {textField}
-          {indIcon}
-          {textDivider}
-        </label>
-        {textFieldMessage}
-      </div>
+        <FloatingLabel
+          label={label}
+          floatingLabel={floatingLabel}
+          floating={floating}
+          error={error}
+          active={active}
+          disabled={disabled}
+          iconOffset={!!leftIcon}
+          customSize={customSize}
+        />
+        {leftIcon}
+        {children}
+        {rightIcon}
+        <Message
+          error={error}
+          errorText={errorText}
+          helpText={helpText}
+          active={active}
+          maxLength={maxLength}
+          currentLength={currentLength}
+          helpOnFocus={helpOnFocus}
+          leftIcon={!!leftIcon}
+          block={block}
+          rightIcon={!!rightIcon}
+        />
+      </label>
     );
   }
 }

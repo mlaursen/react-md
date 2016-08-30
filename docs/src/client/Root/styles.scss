@@ -5,6 +5,7 @@
 @import '~react-md-scss';
 
 @include react-md-avatars;
+@include react-md-text-fields;
 
 .btn-group {
   display: flex;
@@ -171,7 +172,7 @@
   @extend %centered;
   @include md-typography-mobile();
   @include md-tab-mobile();
-  @include md-text-field-mobile();
+  // @include md-text-field-mobile();
   @include md-lists-mobile();
   @include md-snackbar-mobile();
   @include md-toolbar-mobile-portrait();
@@ -197,7 +198,7 @@
     z-index: $md-overlay-z-index - 5;
 
     &:not(.md-primary) {
-      @include md-theme-placeholders($md-secondary-text-color);
+      // @include md-theme-placeholders($md-secondary-text-color);
 
       background: $md-white-base;
     }

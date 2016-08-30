@@ -1154,3 +1154,45 @@ $md-dark-theme-background-color: #303030;
 
 /// @type Color
 $md-dark-theme-card-color: $md-grey-800;
+
+/// A mapping of all the light-theme colors.
+/// @type Map
+$md-light-theme-colors: (
+  text: $md-light-theme-text-color,
+  secondary: $md-light-theme-secondary-text-color,
+  icon: $md-light-theme-icon-text-color,
+  disabled: $md-light-theme-disabled-text-color,
+  hint: $md-light-theme-hint-text-color,
+  divider: $md-light-theme-divider-color,
+  background: $md-light-theme-background-color,
+);
+
+/// A mapping of all the dark-theme colors.
+/// @type Map
+$md-dark-theme-colors: (
+  text: $md-dark-theme-text-color,
+  secondary: $md-dark-theme-secondary-text-color,
+  icon: $md-dark-theme-icon-text-color,
+  disabled: $md-dark-theme-disabled-text-color,
+  hint: $md-dark-theme-hint-text-color,
+  divider: $md-dark-theme-divider-color,
+  background: $md-dark-theme-background-color,
+);
+
+
+
+/// A utility function for getting a color from either the light or dark theme.
+///
+/// @param {String} $name - The color name to look up.
+/// @param {Boolean} $light-theme - Boolean if it is for the light theme.
+/// @return {Color} the color for the theme or null if it is not a color that changes
+///     based on the theme.
+@function get-color($name, $light-theme) {
+  $map: if($light-theme, $md-light-theme-colors, $md-dark-theme-colors);
+  @if map-has-key($map, $name) == false {
+    @warn "The given color: #{$name} is not a valid color in the #{if($light-theme, 'light', 'dark')} theme.";
+    @return null;
+  }
+
+  @return map-get($map, $name);
+}
