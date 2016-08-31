@@ -74,11 +74,12 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     a `-200` suffix.
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
+/// @param {Boolean} $inlude-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} $include-discrete [true] - A boolean if the discrete slider's scss should be included.
 /// @param {Boolean} $include-editor [true] - A boolean if the editable slider's scss should be included.
 /// @param {Boolean} $include-indicators [true] - A boolean if the small scss for displaying indicators/icons
 ///     with the slider should be included.
-@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: true, $include-editor: true, $include-indicators: true) {
+@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-discrete: true, $include-editor: true, $include-indicators: true) {
   $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 
   $md-slider-on-color: $primary-color;
@@ -215,7 +216,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   }
 
   @if $include-indicators {
-    @include react-md-slider-indicators;
+    @include react-md-slider-indicators($include-media);
   }
 }
 
@@ -330,7 +331,13 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 }
 
 /// This includes the small scss for displaying `.md-icon` or indicators with a Slider.
-@mixin react-md-slider-indicators {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries
+///     should be included.
+@mixin react-md-slider-indicators($include-media: $md-media-included) {
+  @if $include-media {
+    @include react-md-slider-indicators-media;
+  }
+
   .md-slider-container {
     .md-icon {
       $margin: ($md-slider-height - $md-font-icon-size) / 2;
@@ -352,19 +359,47 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   .md-slider-track--ind-right {
     margin-right: $md-default-padding;
   }
+}
 
-  @media only screen and (min-width: $md-mobile-min-width) {
-    .md-slider-ind {
-      font-size: $md-text-field-mobile-font-size;
-      margin-top: 14px;
-    }
+/// Creates the css for the slider indicators on mobile devices. This should most likely
+/// be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-slider-indicators-mobile;
+///   }
+@mixin react-md-slider-indicators-mobile {
+  .md-slider-ind {
+    font-size: $md-text-field-mobile-font-size;
+    margin-top: 14px;
+  }
+}
+
+/// Creates the css for the slider indicators on desktop screens. This should most likely
+/// be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-slider-indicators-desktop;
+///   }
+@mixin react-md-slider-indicators-desktop {
+  .md-slider-ind {
+    font-size: $md-text-field-desktop-font-size;
+    margin-top: 16px;
+  }
+}
+
+/// Includes the mobile and desktop media queries for the slider indicators.
+///
+/// @example scss - Basic Usage SCSS
+///   @include react-md-slider-indicators-media;
+@mixin react-md-slider-indicators-media {
+  @media #{$md-mobile-media} {
+    @include react-md-slider-indicators-mobile;
   }
 
-  @media only screen and (min-width: $md-desktop-min-width) {
-    .md-slider-ind {
-      font-size: $md-text-field-desktop-font-size;
-      margin-top: 16px;
-    }
+  @media #{$md-desktop-media} {
+    @include react-md-slider-indicators-desktop;
   }
 }
 
@@ -387,9 +422,11 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
   $bg-color: if($light-theme, $md-white-base, $md-dark-theme-background-color);
 
-  .md-slider-thumb--on,
-  .md-slider-track-fill {
-    background: $md-slider-on-color;
+  @if $md-slider-on-color != $md-primary-color {
+    .md-slider-thumb--on,
+    .md-slider-track-fill {
+      background: $md-slider-on-color;
+    }
   }
 
   @if $light-theme != $md-light-theme {
@@ -424,10 +461,12 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 
   $md-slider-on-color: $primary-color;
 
-  .md-slider-thumb--discrete-on {
-    &::after {
-      border-top-color: $md-slider-on-color;
-    }
+  @if $md-slider-on-color != $md-primary-color {
+    .md-slider-thumb--discrete-on {
+      &::after {
+        border-top-color: $md-slider-on-color;
+      }
+  }
   }
 }
 

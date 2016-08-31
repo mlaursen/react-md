@@ -80,11 +80,25 @@ $md-avatar-colors: (
     width: 100%;
   }
 
-  @include react-md-theme-avatars($md-avatar-default-background, $md-avatar-default-background, default);
+  @include react-md-theme-avatar($md-avatar-default-background, $md-avatar-default-background, default);
 
   @if $include-suffixes {
     @each $suffix, $colors in $md-avatar-colors {
-      @include react-md-theme-avatars(nth($colors, 1), nth($colors, 2), $suffix);
+      @include react-md-theme-avatar(nth($colors, 1), nth($colors, 2), $suffix);
+    }
+  }
+}
+
+/// This will only update the base avatar's border color if the `$light-theme` is different than
+/// `$md-light-theme`. If you want to add different colors, you should use the `react-md-theme-avatar`
+/// mixin.
+///
+/// @see {mixin} react-md-theme-avatar
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+@mixin react-md-theme-avatars($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-avatar {
+      border-color: get-color('border', $light-theme);
     }
   }
 }
@@ -105,7 +119,7 @@ $md-avatar-colors: (
 /// @param {Color} bg-color - The background color to use.
 /// @param {Color} text-color - The text color to use.
 /// @param {String} suffix - The class name suffix to use.
-@mixin react-md-theme-avatars($bg-color, $text-color, $suffix) {
+@mixin react-md-theme-avatar($bg-color, $text-color, $suffix) {
   .md-avatar--#{$suffix} {
     background: $bg-color;
     color: $text-color;

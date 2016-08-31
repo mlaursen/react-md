@@ -31,10 +31,9 @@ $md-light-theme: true !default;
 /// @type Number
 $md-transition-time: .15s !default;
 
-$md-transition-func: cubic-bezier(.23, 1, .32, 1);
-
-$md-height: 48px;
-$md-default-padding: 16px;
+/// The default transition function to use on most animations/transitions.
+/// @type String
+$md-transition-func: cubic-bezier(.23, 1, .32, 1) !default;
 
 /// The default min width for a mobile device.
 /// @type Number
@@ -85,3 +84,14 @@ $md-tablet-landscape-media: only screen and (min-width: $md-tablet-min-width) an
 /// @type String
 /// @group media-queries
 $md-desktop-media: only screen and (min-width: $md-desktop-min-width) !default;
+
+/// Boolean if the media queries should be included by default for all component mixins.
+/// Set this to false if you want to manually include them. It is really only beneficial
+/// if you want to join all media queries into one, but you can always use a postcss plugin
+/// to combine them if you are worried about bundle size.
+/// @type Boolean
+$md-media-included: true !default;
+
+
+$md-height: 48px;
+$md-default-padding: 16px;

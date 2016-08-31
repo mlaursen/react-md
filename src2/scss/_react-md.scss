@@ -7,3 +7,102 @@
 @import 'components/avatars';
 @import 'components/sliders';
 @import 'components/text-fields';
+
+/// Includes every component, transition, and typography including their
+/// media queries if the `$md-media-included` variable is `true`. You can
+/// modify any global variables before including this mixin to change the overall
+/// theme.
+///
+/// @example scss - Example Usage SCSS
+///   @import 'react-md';
+///   @include react-md-everything;
+///
+/// @group base
+@mixin react-md-everything {
+  @include react-md-typography;
+
+  @include react-md-icons;
+  @include react-md-text-fields;
+  @include react-md-sliders;
+  @include react-md-avatars;
+}
+
+/// Updates the styles of every component with the new theme colors. If there
+/// are components that do not change if the `$light-theme` variable is the same,
+/// their updated styles will not be included. This is useful if you want to switch
+/// between the light or dark theme, or even the entire theme colors while keeping
+/// the base css the same between all themes.
+///
+/// In addition, if the theme colors do not switch, those styles will not be created.
+/// So this allows the same colors between light and dark themes.
+///
+/// If you switch between the light and dark theme, you will need to give a `$html-class-name`
+/// That will nest every component inside.
+///
+/// @example scss - Example Theme Change SCSS
+///   @import 'react-md';
+///   $md-primary-color: $md-deep-purple-500;
+///   $md-primary-color-hue-1: $md-deep-purple-200;
+///   $md-secondary-color: $md-orange-a-400;
+///   $md-secondary-color-hue-1: $md-orange-a-200;
+///
+///   @include react-md-everything;
+///
+///   .blue-theme {
+///     @include react-md-theme-everything(
+///       $md-cyan-500,
+///       $md-cyan-200,
+///       $md-yellow-a-700,
+///       $md-yellow-a-200,
+///     );
+///   }
+///
+/// @example scss - Example Dark Theme Change SCSS
+///   @import 'react-md';
+///   $md-primary-color: $md-deep-purple-500;
+///   $md-primary-color-hue-1: $md-deep-purple-200;
+///   $md-secondary-color: $md-orange-a-400;
+///   $md-secondary-color-hue-1: $md-orange-a-200;
+///
+///   @include react-md-everything;
+///
+///   @include react-md-theme-everything(
+///     $md-primary-color,
+///     $md-primary-color-hue-1,
+///     $md-secondary-color,
+///     $md-secondary-color-hue-1,
+///     $md-text-field-error-color,
+///     false,
+///     dark-theme
+///   );
+///
+/// @param {Color} primary-color - The primary color to use.
+/// @param {Color} primary-hue-1 - A lighter version of the primary color to use.
+/// @param {Color} secondary-color - The secondary color to use.
+/// @param {Color} secondary-hue-1 - A lighter version of the secondary color to use.
+/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @param {String} html-class-name [null] - The html className to nest every component
+///     in. This should really be used if switching from the light or dark theme.
+@mixin react-md-theme-everything(
+  $primary-color,
+  $primary-hue-1,
+  $secondary-color,
+  $secondary-hue-1,
+  $error-color: $md-text-field-error-color,
+  $light-theme: $md-light-theme,
+  $html-class-name: null
+) {
+  @if $html-class-name != null {
+    @include react-md-theme-typography($html-class-name, $light-theme);
+
+    @include react-md-theme-icons($light-theme);
+    @include react-md-theme-avatars($light-theme);
+    @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+  } @else {
+    @include react-md-theme-icons($light-theme);
+    @include react-md-theme-avatars($light-theme);
+    @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+  }
+
+}
