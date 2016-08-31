@@ -223,19 +223,6 @@ $md-default-padding: 16px;
 // ===================================================================================
 
 
-/// The font name for the application. The recommended font is Roboto,
-/// but you can change it to whatever you would like.
-///
-/// @type String
-/// @group typography
-$md-font-name: Roboto !default;
-
-/// The font family for the application. This only combines the `$md-font-name`
-/// with a fallback font of `sans-serif`.
-///
-/// @type String
-/// @group typography
-$md-font-family: '#{$md-font-name}', sans-serif !default;
 
 /// The light text weight.
 ///

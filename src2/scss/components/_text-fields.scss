@@ -15,16 +15,38 @@ $md-text-field-error-color: $md-red-500 !default;
 /// @type Number
 $md-text-field-divider-active-height: 2px !default;
 
+/// A Map of custom sizes for text fields. Set this to null if you do not want any
+/// custom sizes by default.
+/// @type Map
 $md-text-field-custom-sizes: (
   title: $md-display-1-font-size,
 ) !default;
 
+/// Boolean if the multiline styling should be included by default.
+/// @type Boolean
 $md-text-field-include-multiline: true !default;
+
+/// Boolean if the floating label styling should be included by default.
+/// @type Boolean
 $md-text-field-include-floating-label: true !default;
+
+/// Boolean if the block styling should be included by default.
+/// @type Boolean
 $md-text-field-include-block: true !default;
+
+/// Boolean if the icon styling for text fields should be included by default.
+/// @type Boolean
 $md-text-field-include-icon: true !default;
+
+/// Boolean if the message styling for text fields should be included by default.
+/// @type Boolean
 $md-text-field-include-message: true !default;
+
+/// Boolean if the password text field styling should be included by default.
+/// @type Boolean
 $md-text-field-include-password: true !default;
+
+
 
 /// The font size for the text field messages.
 /// @type Number
@@ -133,7 +155,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
 ///     styling of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
@@ -152,7 +174,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
   $primary-color: $md-primary-color,
   $light-theme: $md-light-theme,
   $error-color: $md-text-field-error-color,
-  $include-media: true,
+  $include-media: $md-media-included,
   $include-multiline: $md-text-field-include-multiline,
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
@@ -187,11 +209,33 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
   }
 }
 
+/// Themes all parts of the text fields if they are included.
+///
+/// @example scss - Example Usage SCSS
+///   .my-subtheme {
+///     @include react-md-theme-text-fields($md-blue-500);
+///   }
+///
+/// @param {Color} primary-color - The primary color to theme text fields with.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
+///     the light or dark theme.
+/// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
+/// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
+///     styling of text fields should be included.
+/// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
+///     floating label styles should be included.
+/// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the `block` styling
+///     should be included.
+/// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
+///     using icons should be included.
+/// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
+///     styling should be included. This is the css for the counter and/or help/error text.
+/// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
+///     text fields should be included.
 @mixin react-md-theme-text-fields(
-  $primary-color: $md-primary-color,
+  $primary-color,
   $light-theme: $md-light-theme,
   $error-color: $md-text-field-error-color,
-  $include-media: true,
   $include-multiline: $md-text-field-include-multiline,
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
@@ -220,7 +264,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if currently using the light
 ///     theme.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the
 ///     multiline text field css should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean
@@ -231,7 +275,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     should be included.
 @mixin react-md-text-field-container(
   $light-theme: $md-light-theme,
-  $include-media: true,
+  $include-media: $md-media-included,
   $include-multiline: $md-text-field-include-multiline,
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
@@ -332,7 +376,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-container(true);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 @mixin react-md-theme-text-field-container($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
@@ -353,14 +397,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-container-mobile-media;
+///     @include react-md-text-field-container-mobile;
 ///   }
 ///
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
 ///     styling of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     floating label styling of text fields should be included.
-@mixin react-md-text-field-container-mobile-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
+@mixin react-md-text-field-container-mobile($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   .md-text-field-container--input {
     min-height: $md-text-field-mobile-height;
   }
@@ -388,14 +432,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-container-desktop-media;
+///     @include react-md-text-field-container-desktop;
 ///   }
 ///
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
 ///     styling of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     floating label styling of text fields should be included.
-@mixin react-md-text-field-container-desktop-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
+@mixin react-md-text-field-container-desktop($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   .md-text-field-container--input {
     min-height: $md-text-field-desktop-height;
   }
@@ -431,11 +475,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     label styling should be included.
 @mixin react-md-text-field-container-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-container-mobile-media($include-multiline, $include-floating-label);
+    @include react-md-text-field-container-mobile($include-multiline, $include-floating-label);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-container-desktop-media($include-multiline, $include-floating-label);
+    @include react-md-text-field-container-desktop($include-multiline, $include-floating-label);
   }
 }
 
@@ -449,12 +493,12 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text field should be styled
 ///     for the light-theme.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline styling
 ///     of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the floating
 ///     label styles should be included.
-@mixin react-md-text-field($light-theme: $md-light-theme, $include-media: true, $include-multiline: $md-text-field-include-multiline) {
+@mixin react-md-text-field($light-theme: $md-light-theme, $include-media: $md-media-included, $include-multiline: $md-text-field-include-multiline) {
   @if $include-media {
     @include react-md-text-field-media;
   }
@@ -504,14 +548,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-mobile-media;
+///     @include react-md-text-field-mobile;
 ///   }
 ///
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
 ///     styling of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     floating label styles should be included.
-@mixin react-md-text-field-mobile-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
+@mixin react-md-text-field-mobile($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   .md-text-field {
     font-size: $md-text-field-mobile-font-size;
   }
@@ -534,14 +578,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-desktop-media;
+///     @include react-md-text-field-desktop;
 ///   }
 ///
 /// @param {Boolean} include-multiline [$md-text-field-include-multiline] - Boolean if the multiline
 ///     styling of text fields should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     floating label styles should be included.
-@mixin react-md-text-field-desktop-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
+@mixin react-md-text-field-desktop($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   .md-text-field {
     font-size: $md-text-field-desktop-font-size;
   }
@@ -573,11 +617,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     floating label styles should be included.
 @mixin react-md-text-field-media($include-multiline: $md-text-field-include-multiline, $include-floating-label: $md-text-field-include-floating-label) {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-mobile-media($include-multiline, $include-floating-label);
+    @include react-md-text-field-mobile($include-multiline, $include-floating-label);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-desktop-media($include-multiline, $include-floating-label);
+    @include react-md-text-field-desktop($include-multiline, $include-floating-label);
   }
 }
 
@@ -591,8 +635,8 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
-@mixin react-md-text-field-divider($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: true) {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
+@mixin react-md-text-field-divider($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: $md-media-included) {
   @if $include-media {
     @include react-md-text-field-divider-media;
   }
@@ -652,7 +696,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-divider($md-light-blue-400, true, $md-orange-500);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
@@ -682,9 +726,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-divider-mobile-media;
+///     @include react-md-text-field-divider-mobile;
 ///   }
-@mixin react-md-text-field-divider-mobile-media {
+@mixin react-md-text-field-divider-mobile {
   .md-text-field-divider {
     margin-bottom: $md-text-field-mobile-divider-bottom-padding;
   }
@@ -695,9 +739,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-divider-desktop-media;
+///     @include react-md-text-field-divider-desktop;
 ///   }
-@mixin react-md-text-field-divider-desktop-media {
+@mixin react-md-text-field-divider-desktop {
   .md-text-field-divider {
     margin-bottom: $md-text-field-desktop-divider-bottom-padding;
   }
@@ -709,11 +753,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///   @include react-md-text-field-divider-media;
 @mixin react-md-text-field-divider-media {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-divider-mobile-media;
+    @include react-md-text-field-divider-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-divider-desktop-media;
+    @include react-md-text-field-divider-desktop;
   }
 }
 
@@ -727,8 +771,8 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
-@mixin react-md-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: true) {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
+@mixin react-md-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: $md-media-included) {
   @if $include-media {
     @include react-md-text-field-icon-media;
   }
@@ -764,7 +808,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-icon($md-light-blue-400, true, $md-orange-500);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
@@ -793,9 +837,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-icon-mobile-media;
+///     @include react-md-text-field-icon-mobile;
 ///   }
-@mixin react-md-text-field-icon-mobile-media {
+@mixin react-md-text-field-icon-mobile {
   $text-field-height: 19px;
 
   .md-text-field-icon {
@@ -808,9 +852,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-icon-desktop-media;
+///     @include react-md-text-field-icon-desktop;
 ///   }
-@mixin react-md-text-field-icon-desktop-media {
+@mixin react-md-text-field-icon-desktop {
   $text-field-height: 15px;
 
   .md-text-field-icon {
@@ -824,11 +868,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///   @include react-md-text-field-icon-media;
 @mixin react-md-text-field-icon-media {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-icon-mobile-media;
+    @include react-md-text-field-icon-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-icon-desktop-media;
+    @include react-md-text-field-icon-desktop;
   }
 }
 
@@ -841,8 +885,8 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
-@mixin react-md-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: true) {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
+@mixin react-md-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-media: $md-media-included) {
   @if $include-media {
     @include react-md-text-field-floating-label-media;
   }
@@ -892,7 +936,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-floating-label($md-light-blue-400, true, $md-orange-500);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
@@ -925,9 +969,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-floating-label-mobile-media;
+///     @include react-md-text-field-floating-label-mobile;
 ///   }
-@mixin react-md-text-field-floating-label-mobile-media {
+@mixin react-md-text-field-floating-label-mobile {
   .md-floating-label--inactive {
     font-size: $md-text-field-mobile-font-size;
     transform: translate3d(0, 40px, 0);
@@ -943,9 +987,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-floating-label-desktop-media;
+///     @include react-md-text-field-floating-label-desktop;
 ///   }
-@mixin react-md-text-field-floating-label-desktop-media {
+@mixin react-md-text-field-floating-label-desktop {
   .md-floating-label--inactive {
     font-size: $md-text-field-desktop-font-size;
     transform: translate3d(0, 34px, 0);
@@ -962,11 +1006,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///   @include react-md-text-field-floating-label-media;
 @mixin react-md-text-field-floating-label-media {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-floating-label-mobile-media;
+    @include react-md-text-field-floating-label-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-floating-label-desktop-media;
+    @include react-md-text-field-floating-label-desktop;
   }
 }
 
@@ -1042,7 +1086,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-message(true);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 @mixin react-md-theme-text-field-message($light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
   @if $light-theme != $md-light-theme {
@@ -1065,8 +1109,8 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
-@mixin react-md-text-field-password($light-theme: $md-light-theme, $include-media: true) {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
+@mixin react-md-text-field-password($light-theme: $md-light-theme, $include-media: $md-media-included) {
   @if $include-media {
     @include react-md-text-field-password-media;
   }
@@ -1139,7 +1183,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     @include react-md-theme-text-field-password(true);
 ///   }
 ///
-/// @see react-md-theme-text-fields
+/// @see {mixin} react-md-theme-text-fields
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 @mixin react-md-theme-text-field-password($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
@@ -1166,9 +1210,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-password-mobile-media;
+///     @include react-md-text-field-password-mobile;
 ///   }
-@mixin react-md-text-field-password-mobile-media {
+@mixin react-md-text-field-password-mobile {
   .md-password-btn {
     bottom: 14px;
   }
@@ -1179,9 +1223,9 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-password-desktop-media;
+///     @include react-md-text-field-password-desktop;
 ///   }
-@mixin react-md-text-field-password-desktop-media {
+@mixin react-md-text-field-password-desktop {
   .md-password-btn {
     bottom: 9px;
   }
@@ -1193,11 +1237,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///   @include react-md-text-field-password-media;
 @mixin react-md-text-field-password-media {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-password-mobile-media;
+    @include react-md-text-field-password-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-password-desktop-media;
+    @include react-md-text-field-password-desktop;
   }
 }
 
@@ -1206,14 +1250,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-custom-sizes-mobile-media;
+///     @include react-md-text-field-custom-sizes-mobile;
 ///   }
 ///
 /// @param {String} name - The name of the custom text field size.
 /// @param {Number} font-size - The font size for the custom text field size.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     custom text field size should include the styles for floating labels.
-@mixin react-md-text-field-custom-sizes-mobile-media($name, $font-size, $include-floating-label: true) {
+@mixin react-md-text-field-custom-sizes-mobile($name, $font-size, $include-floating-label: true) {
   $font-difference: $font-size - $md-text-field-mobile-font-size;
   $floating-height: $md-text-field-mobile-floating-height + $font-difference;
 
@@ -1237,14 +1281,14 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-custom-sizes-desktop-media;
+///     @include react-md-text-field-custom-sizes-desktop;
 ///   }
 ///
 /// @param {String} name - The name of the custom text field size.
 /// @param {Number} font-size - The font size for the custom text field size.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     custom text field size should include the styles for floating labels.
-@mixin react-md-text-field-custom-sizes-desktop-media($name, $font-size, $include-floating-label: true) {
+@mixin react-md-text-field-custom-sizes-desktop($name, $font-size, $include-floating-label: true) {
   $font-difference: $font-size - $md-text-field-desktop-font-size;
   $floating-height: $md-text-field-desktop-floating-height + $font-difference;
 
@@ -1275,11 +1319,11 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///     custom text field size should include the styles for floating labels.
 @mixin react-md-text-field-custom-sizes-media($name, $font-size, $include-floating-label: true) {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-custom-sizes-mobile-media($name, $font-size, $include-floating-label);
+    @include react-md-text-field-custom-sizes-mobile($name, $font-size, $include-floating-label);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-custom-sizes-desktop-media($name, $font-size, $include-floating-label);
+    @include react-md-text-field-custom-sizes-desktop($name, $font-size, $include-floating-label);
   }
 }
 
@@ -1299,10 +1343,10 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 ///   }
 ///
 /// @param {Map} font-sizes [$md-text-field-custom-sizes] - A map of size names with font sizes.
-/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
 /// @param {Boolean} include-floating-label [$md-text-field-include-floating-label] - Boolean if the
 ///     custom text field size should include the styles for floating labels.
-@mixin react-md-text-field-custom-sizes($font-sizes: $md-text-field-custom-sizes, $include-media: true, $include-floating-label: true) {
+@mixin react-md-text-field-custom-sizes($font-sizes: $md-text-field-custom-sizes, $include-media: $md-media-included, $include-floating-label: true) {
   @if $font-sizes != null {
     @each $name, $font-size in $font-sizes {
       @if $include-media {

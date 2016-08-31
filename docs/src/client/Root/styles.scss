@@ -4,8 +4,8 @@
 
 @import '~react-md-scss';
 
-@include react-md-avatars;
-@include react-md-text-fields;
+@include react-md-everything;
+
 
 .btn-group {
   display: flex;
@@ -170,9 +170,7 @@
 
 .phone-size-container {
   @extend %centered;
-  @include md-typography-mobile();
   @include md-tab-mobile();
-  // @include md-text-field-mobile();
   @include md-lists-mobile();
   @include md-snackbar-mobile();
   @include md-toolbar-mobile-portrait();
