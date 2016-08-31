@@ -25,17 +25,12 @@ $md-secondary-color-hue-1: $md-pink-a-100 !default;
 
 /// Boolean if the application is to be themed with the light theme.
 /// @type Boolean
-/// @group theme
 $md-light-theme: true !default;
 
 /// The default transition time to use on most animations/transitions.
 /// @type Number
-/// @group transitions
 $md-transition-time: .15s !default;
 
-/// The default transition function to apply to most animations/transitions.
-/// @type String
-/// @group transitions
 $md-transition-func: cubic-bezier(.23, 1, .32, 1);
 
 $md-height: 48px;
