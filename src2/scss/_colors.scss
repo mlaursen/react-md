@@ -1165,6 +1165,7 @@ $md-light-theme-colors: (
   hint: $md-light-theme-hint-text-color,
   divider: $md-light-theme-divider-color,
   background: $md-light-theme-background-color,
+  card: $md-light-theme-card-color,
 );
 
 /// A mapping of all the dark-theme colors.
@@ -1177,6 +1178,7 @@ $md-dark-theme-colors: (
   hint: $md-dark-theme-hint-text-color,
   divider: $md-dark-theme-divider-color,
   background: $md-dark-theme-background-color,
+  card: $md-dark-theme-card-color,
 );
 
 

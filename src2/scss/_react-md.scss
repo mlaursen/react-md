@@ -7,3 +7,22 @@
 @import 'components/avatars';
 @import 'components/sliders';
 @import 'components/text-fields';
+
+@mixin react-md-everything {
+  @include react-md-typography;
+
+  @include react-md-icons;
+  @include react-md-avatars;
+  @include react-md-sliders;
+  @include react-md-text-fields;
+}
+
+@mixin react-md-theme-everything($primary-color, $primary-hue-1, $secondary-color, $secondary-hue-1, $light-theme: $md-light-theme) {
+  @include react-md-theme-text-fields($primary-color, $light-theme);
+  @include react-md-theme-sliders($primary-color, $light-theme);
+}
+
+// @mixin react-md-mobile {
+//   @include react-md-text-fields-mobile;
+//   @include react-md-typography-mobile;
+// }

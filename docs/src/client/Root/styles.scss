@@ -4,8 +4,7 @@
 
 @import '~react-md-scss';
 
-@include react-md-avatars;
-@include react-md-text-fields;
+@include react-md-everything;
 
 .btn-group {
   display: flex;
@@ -64,17 +63,6 @@
     max-width: 50%;
   }
 
-  .text-container,
-  .prop-description {
-    p {
-      font-size: $md-body-mobile-font-size;
-    }
-
-    h5 {
-      font-size: $md-subheading-mobile-font-size;
-    }
-  }
-
   .list-dialog-fix .md-list-tile {
     height: $md-list-mobile-height;
   }
@@ -115,17 +103,6 @@
 
   .react-doc {
     margin: 1em 2em;
-  }
-
-  .text-container,
-  .prop-description {
-    p {
-      font-size: $md-body-desktop-font-size;
-    }
-
-    h5 {
-      font-size: $md-subheading-desktop-font-size;
-    }
   }
 
   .list-dialog-fix .md-list-tile {
@@ -170,9 +147,10 @@
 
 .phone-size-container {
   @extend %centered;
-  @include md-typography-mobile();
+  // @include react-md-mobile;
+
+
   @include md-tab-mobile();
-  // @include md-text-field-mobile();
   @include md-lists-mobile();
   @include md-snackbar-mobile();
   @include md-toolbar-mobile-portrait();

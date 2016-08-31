@@ -336,15 +336,20 @@ $md-line-height: 20 / $md-font-size-base;
 /// the `h1` - `h5`, `p`, and `caption` tags will be updated with the
 /// corresponding css class name.
 ///
-/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the application
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the application
 ///     is using the light theme.
-/// @param {Boolean} $extend-html-tags [true] - Boolean if the base html tags should
+/// @param {Boolean} extend-html-tags [true] - Boolean if the base html tags should
 ///     be updated or not.
-@mixin react-md-typography($light-theme: $md-light-theme, $extend-html-tags: true) {
+/// @param {Boolean} include-media [true] - Boolean if the media queries should be included.
+@mixin react-md-typography($light-theme: $md-light-theme, $extend-html-tags: true, $include-media: true) {
   $md-text-color: if($light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
   $md-secondary-text-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
   $md-hint-text-color: if($light-theme, $md-light-theme-hint-text-color, $md-dark-theme-hint-text-color);
   $md-disabled-text-color: $md-hint-text-color;
+
+  @if $include-media {
+    @include react-md-typography-media;
+  }
 
   *,
   *::before,
@@ -352,7 +357,7 @@ $md-line-height: 20 / $md-font-size-base;
     box-sizing: border-box;
     // scss-lint:disable ColorVariable
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    transition-timing-function: $md-trasition-func;
+    transition-timing-function: $md-transition-func;
   }
 
   * {
@@ -374,7 +379,9 @@ $md-line-height: 20 / $md-font-size-base;
   %md-headline,
   %md-title,
   %md-subheading-2,
-  %md-subheading-1 {
+  %md-subheading-1,
+  %md-body-2,
+  %md-body-1 {
     color: $md-text-color;
   }
 
@@ -458,5 +465,129 @@ $md-line-height: 20 / $md-font-size-base;
 
   .md-caption {
     @extend %md-caption;
+  }
+}
+
+/// Creates the css for typography on mobile devices. This should be used in
+/// a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-typography-mobile;
+///   }
+@mixin react-md-typography-mobile {
+  .md-subheading-1,
+  .md-subheading-2 {
+    font-size: $md-subheading-mobile-font-size;
+  }
+
+  .md-body-1,
+  .md-body-2 {
+    font-size: $md-body-desktop-font-size;
+  }
+}
+
+/// Creates the css for typography on desktop screens. This should be used in
+/// a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-typography-desktop;
+///   }
+@mixin react-md-typography-desktop {
+  .md-subheading-1,
+  .md-subheading-2 {
+    font-size: $md-subheading-desktop-font-size;
+  }
+
+  .md-body-1,
+  .md-body-2 {
+    font-size: $md-body-desktop-font-size;
+  }
+}
+
+
+/// Includes the css for typography on mobile and desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-typography-media;
+/// }
+@mixin react-md-typography-media {
+  // @media #{$md-mobile-media} {
+  //   @include react-md-typography-mobile;
+  // }
+
+  // @media #{$md-desktop-media} {
+  //   @include react-md-typography-desktop;
+  // }
+}
+
+/// Themes the typography in react-md only if `$light-theme` does not equal `$md-light-theme`.
+/// This goes into effect by modifying the base html tag with the `$html-class-name` you give.
+///
+/// @example scss - Basic Usage SCSS
+///   @include react-md-theme-typography(dark-theme, false, false);
+///
+/// @example scss - Basic Usage CSS Output
+///  .dark-theme {
+///     background: #303030;
+///  }
+///
+///  .dark-theme .md-headline,
+///  .dark-theme .md-title,
+///  .dark-theme .md-subheading-2,
+///  .dark-theme .md-subheading-1 {
+///     color: #ffffff;
+///   }
+///
+///  .dark-theme .md-display-4,
+///  .dark-theme .md-display-3,
+///  .dark-theme .md-display-2,
+///  .dark-theme .md-display-1,
+///  .dark-theme .md-caption {
+///     color: rgba(#ffffff, .7);
+///  }
+///
+/// @param {String} html-class-name - The class name to use for the base html tag to override styles.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light them.
+/// @param {Boolean} extend-html-tags [true] - Boolean if the base html tags should get styled as well.
+@mixin react-md-theme-typography($html-class-name, $light-theme: $md-light-theme, $extend-html-tags: true) {
+  @if $light-theme != $md-light-theme {
+    $md-text-color: if($light-theme, $md-light-theme-text-color, $md-dark-theme-text-color);
+    $md-secondary-text-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+    .#{$html-class-name} {
+      background: if($light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
+
+      .md-headline,
+      .md-title,
+      .md-subheading-2,
+      .md-subheading-1 {
+        color: $md-text-color;
+      }
+
+      .md-display-4,
+      .md-display-3,
+      .md-display-2,
+      .md-display-1,
+      .md-caption {
+        color: $md-secondary-text-color;
+      }
+
+      @if $extend-html-tags {
+        h2,
+        h3,
+        h4,
+        h5,
+        p {
+          color: $md-text-color;
+        }
+
+        h1,
+        caption {
+          color: $md-secondary-text-color;
+        }
+      }
+    }
   }
 }

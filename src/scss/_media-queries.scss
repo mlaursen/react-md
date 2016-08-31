@@ -3,7 +3,7 @@
 $md-mobile-max-width: $md-desktop-min-width - 1;
 
 @media only screen and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
-  @include md-typography-mobile();
+  // @include md-typography-mobile();
   @include md-lists-mobile();
   @include md-select-field-mobile();
   @include md-sidebar-mobile();
@@ -15,7 +15,7 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
 }
 
 @media only screen and (min-width: #{$md-desktop-min-width}) {
-  @include md-typography-desktop();
+  // @include md-typography-desktop();
   @include md-navigation-drawer-desktop();
   @include md-buttons-desktop();
   @include md-lists-desktop();
