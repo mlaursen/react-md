@@ -4,18 +4,19 @@ import TextField from 'react-md/lib/TextFields';
 const SingleLineExamples = () => (
   <div className="block-text-field-examples">
     <TextField
-      label="Title"
+      id="singleRightTitle"
+      placeholder="Title"
       size={10}
       customSize="title"
       lineDirection="right"
     />
-    <TextField label="Title" floatingLabel={false} />
+    <TextField id="singleTitle" placeholder="Title" />
     <TextField
-      label="Type many letters"
-      multiline
-      maxRows={4}
+      id="singleMultiline"
+      placeholder="Type many letters"
+      rows={2}
     />
-    <TextField label="Enter your password" type="password" floatingLabel={false} />
+    <TextField id="singlePassword" placeholder="Enter your password" type="password" />
   </div>
 );
 

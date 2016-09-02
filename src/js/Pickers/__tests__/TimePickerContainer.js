@@ -23,6 +23,7 @@ describe('TimePickerContainer', () => {
     const pickerClassName = 'picker-test';
     const container = renderIntoDocument(
       <TimePickerContainer
+        id="test"
         style={style}
         className={className}
         pickerStyle={pickerStyle}
@@ -43,14 +44,14 @@ describe('TimePickerContainer', () => {
 
   it('renders a transition group if displayed inline', () => {
     let container = renderIntoDocument(
-      <TimePickerContainer inline locales="en-US" />
+      <TimePickerContainer id="test" inline locales="en-US" />
     );
 
     let transitions = scryRenderedComponentsWithType(container, TransitionGroup);
     expect(transitions.length).toBe(1);
 
     container = renderIntoDocument(
-      <TimePickerContainer inline={false} locales="en-US" />
+      <TimePickerContainer id="test" inline={false} locales="en-US" />
     );
 
     transitions = scryRenderedComponentsWithType(container, TransitionGroup);
@@ -58,11 +59,11 @@ describe('TimePickerContainer', () => {
   });
 
   it('passes the correct props to the TimePicker when open', () => {
-    let container = renderIntoDocument(<TimePickerContainer locales="en-US" />);
+    let container = renderIntoDocument(<TimePickerContainer id="test" locales="en-US" />);
     let pickers = scryRenderedComponentsWithType(container, TimePicker);
     expect(pickers.length).toBe(0);
 
-    container = renderIntoDocument(<TimePickerContainer initiallyOpen locales="en-US" />);
+    container = renderIntoDocument(<TimePickerContainer id="test" initiallyOpen locales="en-US" />);
     pickers = scryRenderedComponentsWithType(container, TimePicker);
     expect(pickers.length).toBe(1);
 
@@ -87,6 +88,7 @@ describe('TimePickerContainer', () => {
       onChange: jest.fn(),
       value: new Date(2016, 3, 15, 3, 15),
       locales: 'en-US',
+      id: 'test',
     };
 
     const container = renderIntoDocument(<TimePickerContainer {...props} />);

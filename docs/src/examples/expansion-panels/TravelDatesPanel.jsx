@@ -97,6 +97,7 @@ export default class TravelDatesPanel extends PureComponent {
         onCancel={this._resetDates}
       >
         <DatePicker
+          id="travelStartDate"
           name="start"
           label="Start date"
           value={tempStartDate}
@@ -105,6 +106,7 @@ export default class TravelDatesPanel extends PureComponent {
           fullWidth
         />
         <DatePicker
+          id="travelEndDate"
           name="end"
           label="End date"
           value={tempEndDate}

@@ -170,6 +170,10 @@
 
 .phone-size-container {
   @extend %centered;
+  @include react-md-typography-mobile;
+  @include react-md-text-fields-mobile;
+  @include react-md-text-field-custom-sizes;
+
   @include md-tab-mobile();
   @include md-lists-mobile();
   @include md-snackbar-mobile();

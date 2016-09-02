@@ -3,24 +3,24 @@ import cn from 'classnames';
 
 export default class FloatingLabel extends PureComponent {
   static propTypes = {
-    label: PropTypes.node,
+    style: PropTypes.object,
     className: PropTypes.string,
-    children: PropTypes.node,
+    label: PropTypes.string,
     floating: PropTypes.bool,
-    floatingLabel: PropTypes.bool,
     error: PropTypes.bool,
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     iconOffset: PropTypes.bool,
     customSize: PropTypes.string,
+    htmlFor: PropTypes.string,
   };
 
   render() {
     const {
       label,
+      htmlFor,
       className,
       floating,
-      floatingLabel,
       active,
       error,
       disabled,
@@ -28,25 +28,29 @@ export default class FloatingLabel extends PureComponent {
       customSize,
       ...props,
     } = this.props;
-    if (!label || !floatingLabel) {
+
+    if (!label) {
       return null;
     }
 
     return (
-      <span
+      <label
         {...props}
-        className={cn('md-floating-label', className, {
+        htmlFor={htmlFor}
+        className={cn('md-floating-label', {
           'md-floating-label--active': !error && active,
-          'md-floating-label--error': error,
-          'md-floating-label--inactive': !floating && !customSize,
+          'md-floating-label--error': !disabled && error,
+          'md-floating-label--inactive': !floating,
+          'md-floating-label--inactive-sized': !floating && !customSize,
+          [`md-floating-label--${customSize}`]: customSize,
+          [`md-floating-label--inactive-${customSize}`]: customSize && !floating,
           'md-floating-label--floating': floating,
           'md-floating-label--disabled': disabled,
           'md-floating-label--icon-offset': iconOffset,
-          [`md-floating-label--${customSize}`]: customSize && !floating,
-        })}
+        }, className)}
       >
         {label}
-      </span>
+      </label>
     );
   }
 }

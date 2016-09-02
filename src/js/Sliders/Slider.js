@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { getField } from '../utils';
 import { isValidClick } from '../utils/EventUtils';
@@ -28,15 +29,10 @@ export default class Slider extends PureComponent {
         return PropTypes.string(props, propName, component, ...others);
       }
 
-      const err = PropTypes.string.isRequired(props, propName, component, ...others);
-      if (err) {
-        return new Error(
-          `The '${propName}' prop is required for the '${component}' when the 'label' ` +
-          'prop is defined. This will be used for the \'htmlFor\' prop of the label.'
-        );
-      }
-
-      return err;
+      return isRequiredForA11y(PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ]))(props, propName, component, ...others);
     },
 
     /**
@@ -914,12 +910,12 @@ export default class Slider extends PureComponent {
     if (editable) {
       rightChildren = (
         <TextField
+          id={`${id}Editor`}
           ref="textField"
           type="number"
           value={value}
           inputClassName="md-slider-editor"
           inputStyle={{ width: inputWidth }}
-          floatingLabel={false}
           onChange={this._handleTextFieldChange}
           step={step}
         />

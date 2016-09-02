@@ -51,6 +51,7 @@ export default class ControlledExample extends PureComponent {
   render() {
     return (
       <DatePicker
+        id="controlledAppointment"
         label="Select your appointment date"
         value={this.state.date}
         onChange={this._selectAppointment}

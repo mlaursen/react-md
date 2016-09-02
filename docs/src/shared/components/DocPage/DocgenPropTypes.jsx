@@ -80,10 +80,10 @@ export default class DocgenPropTypes extends PureComponent {
     if (tablet || !mobile) {
       filter = (
         <TextField
-          label="Filter properties"
+          id={`${component}PropFilter`}
+          placeholder="Filter properties"
           value={propFilter}
           onChange={this._filterProperties}
-          floatingLabel={false}
         />
       );
     }

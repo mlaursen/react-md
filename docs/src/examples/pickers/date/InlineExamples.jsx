@@ -6,8 +6,9 @@ import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 
 const InlineExamples = () => (
   <div>
-    <DatePicker label="Select a date" inline fullWidth lineDirection="center" />
+    <DatePicker id="inlineCenter" label="Select a date" inline fullWidth lineDirection="center" />
     <DatePicker
+      id="customFormat"
       label="Custom Format Options"
       formatOptions={{
         weekday: 'long',

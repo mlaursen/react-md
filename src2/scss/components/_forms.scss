@@ -1,0 +1,23 @@
+////
+/// @group forms
+////
+
+
+/// Includes basic styles for forms.
+@mixin react-md-forms {
+  .md-form {
+    .md-text-field-container {
+      width: 100%;
+    }
+
+    @if $md-text-field-include-password or $md-text-field-include-icon {
+      .md-text-field-divider-container {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .md-form--padded {
+    padding: $md-default-padding;
+  }
+}

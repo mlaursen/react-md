@@ -80,10 +80,10 @@ export default class ToDoList extends PureComponent {
         <h3 className="md-headline todo-headline">todos</h3>
         <Paper zDepth={1} className="todo-list-container">
           <TextField
+            id="createTodo"
             block
             fullWidth
-            label="What needs to be done?"
-            floatingLabel={false}
+            placeholder="What needs to be done?"
             value={value}
             onKeyDown={this._handleKeyDown}
             onChange={this._handleChange}

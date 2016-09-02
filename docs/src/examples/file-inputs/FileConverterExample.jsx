@@ -74,16 +74,16 @@ export default class FileConverterExample extends PureComponent {
     return (
       <form className="converter-form">
         <SelectField
+          id="videoIn"
           label="Input file"
-          floatingLabel
           defaultValue={FILE_TYPES[0]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
           fullWidth
         />
         <SelectField
+          id="videoOut"
           label="Output file"
-          floatingLabel
           defaultValue={FILE_TYPES[FILE_TYPES.length - 1]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
@@ -91,15 +91,16 @@ export default class FileConverterExample extends PureComponent {
         />
         <div className="file-block">
           <FileInput
+            id="videoFile"
             secondary
             label="Video"
             accept="video/*"
             onChange={this._selectFile}
           />
           <TextField
+            id="videoFileName"
             fullWidth
             value={fileName}
-            floatingLabel={false}
             onChange={this._updateFileName}
             disabled={!file}
             helpText="You can rename the new file blah blah"

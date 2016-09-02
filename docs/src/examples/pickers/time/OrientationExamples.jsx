@@ -8,16 +8,18 @@ import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 const OrientationExamples = () => (
   <div>
     <TimePicker
-      label="Select an appointment time"
-      floatingLabel={false}
+      id="appointment"
+      placeholder="Select an appointment time"
       adjustMinWidth
     />
     <TimePicker
+      id="appointmentPortrait"
       label="Portrait Mode"
       displayMode="portrait"
       adjustMinWidth
     />
     <TimePicker
+      id="appointmentLandscape"
       label="Landscape Mode"
       displayMode="landscape"
       adjustMinWidth

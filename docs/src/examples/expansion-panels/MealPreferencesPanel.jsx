@@ -54,6 +54,7 @@ export default class MealPreferencesPanel extends PureComponent {
         contentClassName="meal-preference-container"
       >
         <SelectField
+          id="mealPreferences"
           label="Meal Preferences"
           menuItems={preferences}
           value={tempPreference.label}

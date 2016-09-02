@@ -23,6 +23,7 @@ describe('DatePickerContainer', () => {
     const pickerClassName = 'picker-test';
     const datePickerContainer = renderIntoDocument(
       <DatePickerContainer
+        id="test"
         style={style}
         className={className}
         pickerStyle={pickerStyle}
@@ -47,7 +48,7 @@ describe('DatePickerContainer', () => {
 
   it('renders a text field that opens the date picker when clicked', () => {
     const container = renderIntoDocument(
-      <DatePickerContainer locales="en-US" />
+      <DatePickerContainer id="test" locales="en-US" />
     );
 
     const textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -61,7 +62,7 @@ describe('DatePickerContainer', () => {
     const DateTimeFormat = require('intl').DateTimeFormat;
     const stringValue = '3/17/2017';
     let container = renderIntoDocument(
-      <DatePickerContainer value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     let textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -69,14 +70,14 @@ describe('DatePickerContainer', () => {
 
     const dateValue = new Date(2017, 2, 17);
     container = renderIntoDocument(
-      <DatePickerContainer value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
     expect(textField.value).toBe(stringValue);
 
     container = renderIntoDocument(
-      <DatePickerContainer value={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -87,7 +88,7 @@ describe('DatePickerContainer', () => {
     const DateTimeFormat = require('intl').DateTimeFormat;
     const stringValue = '3/17/2017';
     let container = renderIntoDocument(
-      <DatePickerContainer defaultValue={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" defaultValue={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     let textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -95,14 +96,14 @@ describe('DatePickerContainer', () => {
 
     const dateValue = new Date(2017, 2, 17);
     container = renderIntoDocument(
-      <DatePickerContainer defaultValue={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" defaultValue={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
     expect(textField.value).toBe(stringValue);
 
     container = renderIntoDocument(
-      <DatePickerContainer defaultValue={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" defaultValue={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -116,6 +117,7 @@ describe('DatePickerContainer', () => {
     const onChange = jest.fn();
     const container = renderIntoDocument(
       <DatePickerContainer
+        id="test"
         locales="en-US"
         onChange={onChange}
         defaultValue={defaultValue}
@@ -137,6 +139,7 @@ describe('DatePickerContainer', () => {
 
     let container = renderIntoDocument(
       <DatePickerContainer
+        id="test"
         locales="en-US"
         onChange={onChange}
         defaultValue={defaultValue}
@@ -151,6 +154,7 @@ describe('DatePickerContainer', () => {
 
     container = renderIntoDocument(
       <DatePickerContainer
+        id="test"
         locales="en-US"
         onChange={onChange}
         defaultValue={defaultValue}
@@ -173,6 +177,7 @@ describe('DatePickerContainer', () => {
     const props = {
       locales: 'en-US',
       initialCalendarDate: initialCalendarDateStr,
+      id: 'test',
     };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
@@ -183,7 +188,7 @@ describe('DatePickerContainer', () => {
 
   it('allows for an initial calendar date as a Date object', () => {
     const initialCalendarDate = new Date(2016, 2, 18);
-    const props = { locales: 'en-US', initialCalendarDate };
+    const props = { locales: 'en-US', initialCalendarDate, id: 'test' };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
@@ -195,7 +200,7 @@ describe('DatePickerContainer', () => {
     const minDate = new Date();
     minDate.setDate(minDate.getDate() + 2);
 
-    const props = { minDate, locales: 'en-US' };
+    const props = { minDate, locales: 'en-US', id: 'test' };
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
     expect(container.state.calendarDate).toEqual(minDate);
@@ -206,7 +211,7 @@ describe('DatePickerContainer', () => {
     const maxDate = new Date();
     maxDate.setDate(maxDate.getDate() - 2);
 
-    const props = { maxDate, locales: 'en-US' };
+    const props = { maxDate, locales: 'en-US', id: 'test' };
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
     expect(container.state.calendarDate).toEqual(maxDate);

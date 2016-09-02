@@ -32,9 +32,9 @@ export default class Divider extends PureComponent {
     delete props.expanderIconClassName;
 
     const dividerProps = {
-      role: 'divider',
-      className: cn('md-divider', className, { inset, vertical }),
       ...props,
+      role: 'divider',
+      className: cn('md-divider', { inset, vertical }, className),
     };
 
     return React.createElement(vertical ? 'div' : 'hr', dividerProps);

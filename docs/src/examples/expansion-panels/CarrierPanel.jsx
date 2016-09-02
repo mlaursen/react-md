@@ -53,6 +53,7 @@ export default class CarrierPanel extends PureComponent {
         onCancel={this._resetCarrier}
       >
         <SelectField
+          id="carriers"
           menuItems={carriers}
           label="Select a carrier"
           value={tempCarrier}

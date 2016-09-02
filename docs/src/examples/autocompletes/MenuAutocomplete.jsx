@@ -61,6 +61,7 @@ export default class MenuAutocomplete extends PureComponent {
           <Radio value="fuse" label="Fuse Filter (3rd party lib)" />
         </RadioGroup>
         <Autocomplete
+          id="programmingLanguages"
           label="Type a programming language"
           data={programmingLanguages}
           filter={filterType}
