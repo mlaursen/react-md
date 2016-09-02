@@ -4,6 +4,7 @@
 
 @import 'components/icons';
 
+@import 'components/autocompletes';
 @import 'components/avatars';
 @import 'components/sliders';
 @import 'components/text-fields';
@@ -24,6 +25,7 @@
 
   @include react-md-icons;
   @include react-md-text-fields;
+  @include react-md-autocompletes;
   @include react-md-sliders;
   @include react-md-avatars;
   @include react-md-forms;
@@ -108,6 +110,7 @@
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-avatars($light-theme);
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+    @include react-md-theme-autocompletes($light-theme);
   }
 
 }

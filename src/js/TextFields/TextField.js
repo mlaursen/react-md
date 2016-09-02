@@ -56,7 +56,17 @@ export default class TextField extends PureComponent {
      * the `full width` text field in the Material Design specs. This view will disable
      * floating labels and remove the text divider from the component.
      */
-    block: PropTypes.bool,
+    block: (props, propName, component, ...others) => {
+      let err = PropTypes.bool(props, propName, component, ...others);
+      if (!err && props[propName] && props.label) {
+        err = new Error(
+          `The \`${component}\` is unable to have a \`label\` and be displayed as \`block\`. ` +
+          `If you would like a \`label\` for the block \`${component}\`, please use the \`placeholder\` prop.`
+        );
+      }
+
+      return err;
+    },
 
     /**
      * Boolean if the `block` text field should include padding to the left and right of
@@ -325,7 +335,7 @@ export default class TextField extends PureComponent {
       window.addEventListener('resize', this._updateMultilineHeight);
     }
 
-    if (this.props.adjustMinWidth && (!this.props.block || !this.props.fullWidth)) {
+    if (this.props.adjustMinWidth && (!this.props.block && !this.props.fullWidth)) {
       this._setMinWidth();
     }
   }
@@ -706,11 +716,11 @@ export default class TextField extends PureComponent {
         style={Object.assign({}, style, { minWidth, height })}
         className={cn('md-text-field-container', {
           'md-text-field-container--disabled': disabled,
-          'md-text-field-container--input': typeof props.rows === 'undefined',
           'md-text-field-container--full-width': block || fullWidth,
-          'md-text-field-container--multiline': multiline,
-          'md-text-field-container--block': block,
+          'md-text-field-container--input': typeof props.rows === 'undefined',
           'md-text-field-container--input-block': block && !multiline,
+          'md-text-field-container--multiline': multiline,
+          'md-text-field-container--multiline-block': multiline && block,
           'md-text-field-container--padded-block': block && paddedBlock,
         }, className)}
         onClick={this._handleContainerClick}

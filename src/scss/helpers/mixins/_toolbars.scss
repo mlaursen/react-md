@@ -23,27 +23,17 @@
 
 @mixin md-toolbar-mobile-landscape() {
   .md-toolbar,
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
+  .md-toolbar .md-text-field-container,
+  .md-navigation-drawer-toolbar .md-text-field-container {
     height: $md-toolbar-mobile-landscape-height;
-  }
-
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
-    line-height: $md-toolbar-mobile-landscape-height;
   }
 }
 
 @mixin md-toolbar-mobile-portrait() {
   .md-toolbar,
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
+  .md-toolbar .md-text-field-container,
+  .md-navigation-drawer-toolbar .md-text-field-container {
     height: $md-toolbar-mobile-portrait-height;
-  }
-
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
-    line-height: $md-toolbar-mobile-portrait-height;
   }
 }
 
@@ -52,13 +42,8 @@
 /// @group toolbars
 @mixin md-toolbar-desktop() {
   .md-toolbar,
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
+  .md-navigation-drawer-toolbar .md-text-field-container,
+  .md-toolbar .md-text-field-container {
     height: $md-toolbar-desktop-height;
-  }
-
-  .md-navigation-drawer-toolbar .md-text-field:not(.multi-line),
-  .md-toolbar .md-text-field:not(.multi-line) {
-    line-height: $md-toolbar-desktop-height;
   }
 }

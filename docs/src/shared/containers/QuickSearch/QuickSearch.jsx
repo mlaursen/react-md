@@ -30,7 +30,7 @@ export default class QuickSearch extends PureComponent {
       <Autocomplete
         {...props}
         id="quickSearch"
-        label="Search documentation"
+        placeholder="Search documentation"
         block
         fullWidth={mobile}
         filter={null}

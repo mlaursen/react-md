@@ -644,8 +644,8 @@ export default class SelectField extends PureComponent {
         id={id}
         inputStyle={style}
         inputClassName={cn(className, droppingClassName)}
-        label={label}
-        placeholder={placeholder}
+        label={below ? null : label}
+        placeholder={below ? placeholder || label : placeholder}
         value={displayLabel}
         block={below}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}

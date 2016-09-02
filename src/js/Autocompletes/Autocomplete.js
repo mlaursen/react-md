@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
+import { controlled } from '../utils/PropTypes';
 import { ListItem } from '../Lists';
 import Menu from '../Menus';
 import TextField from '../TextFields';
@@ -72,21 +73,10 @@ export default class Autocomplete extends PureComponent {
      * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
-    value: (props, propName, component, ...others) => {
-      let err;
-      if (typeof props[propName] !== 'undefined') {
-        err = PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-        ])(props, propName, component, ...others);
-
-        if (!err) {
-          err = PropTypes.func.isRequired(props, 'onChange', component, ...others);
-        }
-      }
-
-      return err;
-    },
+    value: controlled('onChange', PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
 
     /**
      * The default value for the autocomplete's text field.
@@ -249,6 +239,7 @@ export default class Autocomplete extends PureComponent {
   };
 
   static defaultProps = {
+    defaultValue: '',
     dataLabel: 'primaryText',
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
@@ -721,11 +712,12 @@ export default class Autocomplete extends PureComponent {
 
       if (context) { // context doesn't exist in jsdom with jest
         context.font = font;
+        const padding = this.props.block ? (fontSize * 1.5) : 8;
 
         // Update suggestion style to be offset and not expand past text field
-        const left = context.measureText(value).width + (fontSize * 1.5);
+        const left = context.measureText(value).width + padding;
         const width = this._textField.offsetWidth - left / 2;
-        suggestionStyle = Object.assign({}, suggestionStyle, { left, width });
+        suggestionStyle = Object.assign({}, suggestionStyle, { left });
       }
     }
 
@@ -821,6 +813,7 @@ export default class Autocomplete extends PureComponent {
       ...props,
     } = this.props;
     delete props.value;
+    delete props.defaultValue;
     delete props.dataLabel;
     delete props.dataValue;
     delete props.filter;
@@ -838,8 +831,6 @@ export default class Autocomplete extends PureComponent {
     delete props.deleteKeys;
 
     const value = this._getValue(this.props, this.state);
-
-    const mergedClassName = cn('md-autocomplete', containerClassName);
 
     const autocomplete = (
       <TextField
@@ -859,16 +850,14 @@ export default class Autocomplete extends PureComponent {
 
     if (inline) {
       let suggestion;
-      if (this.state.suggestion && focus) {
+      if (this.state.suggestion) {
         suggestion = (
           <span
             ref="suggestion"
             key="suggestion"
             style={suggestionStyle}
             className={cn('md-autocomplete-suggestion', {
-              block,
-              'single-line': !props.label && !block,
-              'floating': props.label && !block,
+              'md-autocomplete-suggestion--block': block,
             })}
           >
             {this.state.suggestion}
@@ -880,7 +869,7 @@ export default class Autocomplete extends PureComponent {
         <CSSTransitionGroup
           component="div"
           style={containerStyle}
-          className={cn(mergedClassName, { 'full-width': fullWidth })}
+          className={cn('md-menu-container', containerClassName, { 'full-width': fullWidth || block })}
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}
@@ -901,9 +890,9 @@ export default class Autocomplete extends PureComponent {
         onClick={this._handleClick}
         onKeyDown={this._handleMenuKeyDown}
         position={Menu.Positions.BELOW}
-        fullWidth={fullWidth}
+        fullWidth={fullWidth || block}
         style={containerStyle}
-        className={mergedClassName}
+        className={containerClassName}
         listStyle={listStyle}
         listClassName={listClassName}
         limitHeight

@@ -15,7 +15,7 @@ const StatefulExamples = () => (
     />
     <TextField
       id="iconRightPhone"
-      label="Phone"
+      placeholder="Phone"
       type="tel"
       rightIcon={<FontIcon>phone</FontIcon>}
       size={10}
