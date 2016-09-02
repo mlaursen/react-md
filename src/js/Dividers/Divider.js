@@ -34,7 +34,10 @@ export default class Divider extends PureComponent {
     const dividerProps = {
       ...props,
       role: 'divider',
-      className: cn('md-divider', { inset, vertical }, className),
+      className: cn('md-divider', {
+        'md-divider--inset': inset,
+        'md-divider--vertical': vertical,
+      }, className),
     };
 
     return React.createElement(vertical ? 'div' : 'hr', dividerProps);

@@ -1,0 +1,45 @@
+////
+/// @group dividers
+////
+
+/// The height for a Divider
+/// @type Number
+$md-divider-height: 1px;
+
+/// Includes the Divider styles
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-dividers;
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+@mixin react-md-dividers($light-theme: $md-light-theme) {
+  .md-divider {
+    background: get-color('divider', $light-theme);
+    border: 0;
+    content: '';
+    display: block;
+    height: $md-divider-height;
+    margin: 0;
+    width: 100%;
+  }
+
+  .md-divider--vertical {
+    height: 100%;
+    width: $md-divider-height;
+  }
+}
+
+/// Updates the background color of dividers ONLY if the `$light-theme` does
+/// not equal the `$md-light-theme`.
+///
+/// @example scss - Example Usage SCS
+///   @include react-md-theme-dividers;
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+@mixin react-md-theme-dividers($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-divider {
+      background: get-color('divider', $light-theme);
+    }
+  }
+}
