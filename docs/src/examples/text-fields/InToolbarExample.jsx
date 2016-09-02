@@ -44,7 +44,8 @@ export default class InToolbarExample extends PureComponent {
         <Toolbar primary={false}>
           <IconButton className="action-left">arrow_back</IconButton>
           <TextField
-            label="Search"
+            id="searchFakePeople"
+            placeholder="Search"
             onChange={this._handleChange}
             value={value}
             onFocus={this._handleFocus}

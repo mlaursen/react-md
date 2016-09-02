@@ -23,7 +23,7 @@ export default class FullPageDialogExamples extends PureComponent {
   render() {
     const { isOpen, pageX, pageY } = this.state;
     const actionLeft = <IconButton onClick={this.closeDialog}>close</IconButton>;
-    const actionRight = <FlatButton label="Save" onClick={this.closeDialog} className="justify-end md-toolbar-item" />;
+    const actionRight = <FlatButton label="Save" onClick={this.closeDialog} className="mla md-toolbar-item" />;
 
     return (
       <div>
@@ -39,23 +39,24 @@ export default class FullPageDialogExamples extends PureComponent {
         >
           <form>
             <TextField
-              label="Email"
+              id="eventEmail"
+              placeholder="Email"
               defaultValue="heyfromjonathan@gmail.com"
               block
-              floatingLabel={false}
             />
             <Divider />
             <TextField
-              label="Event name"
+              id="eventName"
+              placeholder="Event name"
               block
-              floatingLabel={false}
             />
             <Divider />
             <TextField
+              id="eventDescription"
               placeholder="Description"
               block
               rows={4}
-              maxRows={-1}
+              multiline
             />
           </form>
         </Dialog>

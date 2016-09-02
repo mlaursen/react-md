@@ -41,6 +41,7 @@ export default class ChipsWithTextField extends PureComponent {
       >
         {chips}
         <Autocomplete
+          id="states"
           label="Select some states"
           data={states}
           dataLabel="name"

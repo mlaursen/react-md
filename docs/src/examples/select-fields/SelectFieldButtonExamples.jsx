@@ -7,12 +7,14 @@ export default class SelectFieldButtonExamples extends PureComponent {
     return (
       <div>
         <SelectField
+          id="selectButtonStates"
           label="State"
           menuItems={states}
           itemLabel="abbreviation"
           position={SelectField.Positions.BELOW}
         />
         <SelectField
+          id="selectButtonNumbers"
           label="Number"
           position={SelectField.Positions.BELOW}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}

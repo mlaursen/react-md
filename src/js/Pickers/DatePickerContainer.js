@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import FontIcon from '../FontIcons';
 import DatePicker from './DatePicker';
@@ -65,10 +66,9 @@ export default class DatePickerContainer extends PureComponent {
     label: PropTypes.string,
 
     /**
-     * Boolean if the label for the date picker's text field should
-     * be a floating label.
+     * An optional placeholder to be displayed in the date picker's text field.
      */
-    floatingLabel: PropTypes.bool,
+    placeholder: PropTypes.string,
 
     /**
      * The value of the date picker. This will make the date picker
@@ -242,6 +242,14 @@ export default class DatePickerContainer extends PureComponent {
      * in the date picker gains focus.
      */
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+
+    /**
+     * An id for the text field in the date picker. This is require for a11u.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
   };
 
   static defaultProps = {
@@ -525,13 +533,14 @@ export default class DatePickerContainer extends PureComponent {
       pickerStyle,
       pickerClassName,
       label,
-      floatingLabel,
+      placeholder,
       icon,
       inline,
       displayMode,
       fullWidth,
       adjustMinWidth,
       lineDirection,
+      id,
       ...props,
     } = this.props;
     delete props.value;
@@ -571,10 +580,11 @@ export default class DatePickerContainer extends PureComponent {
     return (
       <div className={cn('md-picker-container', className)} ref="container" style={style}>
         <TextField
-          icon={icon}
+          id={id}
+          leftIcon={icon}
           onClick={this._toggleOpen}
           label={label}
-          floatingLabel={floatingLabel}
+          placeholder={placeholder}
           value={this._getValue(this.props, this.state)}
           readOnly
           fullWidth={fullWidth}

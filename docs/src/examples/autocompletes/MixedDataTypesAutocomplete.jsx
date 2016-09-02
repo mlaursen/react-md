@@ -35,6 +35,7 @@ export default class MixedDataTypesAutocomplete extends PureComponent {
   render() {
     return (
       <Autocomplete
+        id="programmingLanguageMixed"
         label="Type a programming language"
         data={this.state.data}
         filter={null}

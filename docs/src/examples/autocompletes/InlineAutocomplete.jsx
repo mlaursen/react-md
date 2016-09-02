@@ -65,6 +65,7 @@ export default class InlineAutocomplete extends PureComponent {
         <h3 className="md-title">Never Gonna Bake You Up</h3>
         <div className="form-block">
           <Autocomplete
+            id="pastry"
             label="Specify your pastry"
             data={pastries}
             inline
@@ -75,6 +76,7 @@ export default class InlineAutocomplete extends PureComponent {
             onChange={this._selectPastry}
           />
           <TextField
+            id="pastryAmount"
             type="number"
             label="Quantity"
             min={1}

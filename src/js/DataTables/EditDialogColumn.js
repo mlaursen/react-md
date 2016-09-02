@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import FlatButton from '../Buttons/FlatButton';
 import TableColumn from './TableColumn';
@@ -89,6 +90,14 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if the edit dialog should be large.
      */
     large: PropTypes.bool,
+
+    /**
+     * An id for the text field in the edit dialog column.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
 
     /**
      * The title for the large edit dialog. The custom validation changes to required
@@ -356,7 +365,6 @@ export default class EditDialogColumn extends PureComponent {
           <TextField
             {...props}
             ref="textField"
-            floatingLabel={false}
             onKeyDown={this._handleKeyDown}
             onFocus={this._handleFocus}
             value={value}

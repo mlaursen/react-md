@@ -178,6 +178,8 @@ export default class SpotifySearch extends PureComponent {
     return (
       <div className="spotify-example">
         <Autocomplete
+          id="searchSpotify"
+          type="search"
           label="Type an artist name"
           data={artists}
           dataLabel="name"

@@ -5,13 +5,15 @@ import React from 'react';
 export default class TextField extends React.Component {
   render() {
     const { ...props } = this.props;
-    delete props.floatingLabel;
     delete props.fullWidth;
     delete props.block;
     delete props.adjustMinWidth;
     delete props.lineDirection;
     delete props.inputStyle;
     delete props.inputClassName;
+    delete props.label;
+    delete props.leftIcon;
+    delete props.rightIcon;
 
     return <input type="input" {...props} />;
   }

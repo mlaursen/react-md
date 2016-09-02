@@ -19,6 +19,9 @@ import FullWidthExamplesRaw from '!!raw!./FullWidthExamples';
 import InToolbarExample from './InToolbarExample';
 import InToolbarExampleRaw from '!!raw!./InToolbarExample';
 
+import FormExample from './FormExample';
+import FormExampleRaw from '!!raw!./FormExample';
+
 export default [{
   title: 'Floating Label Examples',
   code: FloatingLabelExamplesRaw,
@@ -41,9 +44,8 @@ export default [{
 A \`block\` text fields is equivalent to the \`full width\` text field
 in the Material Design specifications. A \`block\`-ed text field will
 have not have the focus indicator divider below the text field and only
-allows single line labels. This is handled by the component itself, so
-specifically stating \`floatingLabel={false}\` is unnecessary if the \`block\`
-prop is enabled.
+allows single line labels. Since this is handled by the component, if you
+give a \`label\` prop, it will be used as the placeholder instead.
 
 The reason it is named \`block\` is because it is a bit more accurate of a
 description of what the text field will look like. If the \`fullWidth\` prop
@@ -51,6 +53,10 @@ is set to true, the text field will just span the entire width.
 `,
   code: FullWidthExamplesRaw,
   children: <FullWidthExamples />,
+}, {
+  title: 'Form Example',
+  code: FormExampleRaw,
+  children: <FormExample />,
 }, {
   title: 'In Toolbars',
   code: InToolbarExampleRaw,

@@ -13,6 +13,7 @@ const InboxHeader = () => (
     <h3 className="account-name">Jonathan Lee</h3>
     <SelectField
       fullWidth
+      id="emailSwitcher"
       defaultValue="heyfromjonathan@gmail.com"
       menuItems={['heyfromjonathan@gmail.com', 'altemail@gmail.com']}
       position={SelectField.Positions.BELOW}

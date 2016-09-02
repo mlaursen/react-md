@@ -69,6 +69,7 @@ export default class NavigationDrawerDemo extends PureComponent {
     const { drawerType, updateDrawerType } = this.props;
     return (
       <SelectField
+        id="drawerSwitcher"
         value={drawerType}
         onChange={item => updateDrawerType(item.value)}
         menuItems={menuItems}

@@ -7,6 +7,7 @@
 @import 'components/avatars';
 @import 'components/sliders';
 @import 'components/text-fields';
+@import 'components/forms';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -25,6 +26,7 @@
   @include react-md-text-fields;
   @include react-md-sliders;
   @include react-md-avatars;
+  @include react-md-forms;
 }
 
 /// Updates the styles of every component with the new theme colors. If there
@@ -84,6 +86,7 @@
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {String} html-class-name [null] - The html className to nest every component
 ///     in. This should really be used if switching from the light or dark theme.
+/// @group base
 @mixin react-md-theme-everything(
   $primary-color,
   $primary-hue-1,
@@ -96,9 +99,11 @@
   @if $html-class-name != null {
     @include react-md-theme-typography($html-class-name, $light-theme);
 
-    @include react-md-theme-icons($light-theme);
-    @include react-md-theme-avatars($light-theme);
-    @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+    .#{$html-class-name} {
+      @include react-md-theme-icons($light-theme);
+      @include react-md-theme-avatars($light-theme);
+      @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+    }
   } @else {
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-avatars($light-theme);

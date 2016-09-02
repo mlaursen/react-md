@@ -1,0 +1,16 @@
+@import '~react-md-scss';
+
+.email-chip-container {
+  align-items: center;
+  display: flex;
+  padding-left: $md-text-field-mobile-block-padding;
+  padding-right: $md-text-field-mobile-block-padding;
+
+  .md-chip-container {
+    flex-shrink: 0;
+
+    + .md-chip-container {
+      margin-left: $md-default-padding;
+    }
+  }
+}

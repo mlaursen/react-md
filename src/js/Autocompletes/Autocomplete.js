@@ -59,11 +59,6 @@ export default class Autocomplete extends PureComponent {
     listStyle: PropTypes.object,
 
     /**
-     * Boolean if the label for the text field should be floating.
-     */
-    floatingLabel: PropTypes.bool.isRequired,
-
-    /**
      * Boolean if the autocomplete is disabled.
      */
     disabled: PropTypes.bool,
@@ -255,7 +250,6 @@ export default class Autocomplete extends PureComponent {
 
   static defaultProps = {
     dataLabel: 'primaryText',
-    floatingLabel: true,
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
   };
@@ -824,7 +818,6 @@ export default class Autocomplete extends PureComponent {
       containerStyle,
       containerClassName,
       inline,
-      floatingLabel,
       ...props,
     } = this.props;
     delete props.value;
@@ -861,7 +854,6 @@ export default class Autocomplete extends PureComponent {
         onBlur={this._handleBlur}
         fullWidth={fullWidth}
         block={block}
-        floatingLabel={floatingLabel}
       />
     );
 
@@ -875,8 +867,8 @@ export default class Autocomplete extends PureComponent {
             style={suggestionStyle}
             className={cn('md-autocomplete-suggestion', {
               block,
-              'single-line': !floatingLabel && !block,
-              'floating': floatingLabel && !block,
+              'single-line': !props.label && !block,
+              'floating': props.label && !block,
             })}
           >
             {this.state.suggestion}

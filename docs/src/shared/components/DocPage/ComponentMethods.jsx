@@ -33,7 +33,7 @@ export default class ComponentMethods extends PureComponent {
           <TableColumn>
             <Markdown markdown={`\`\`\`js\n${prefix}${name}\n\`\`\``} />
           </TableColumn>
-          <TableColumn>
+          <TableColumn style={{ whiteSpace: 'initial' }}>
             <Markdown markdown={description + definition} />
           </TableColumn>
         </TableRow>

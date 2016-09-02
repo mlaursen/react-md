@@ -8,16 +8,18 @@ import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 const OrientationExamples = () => (
   <div>
     <DatePicker
+      id="appointment"
       label="Select an appointment date"
-      floatingLabel={false}
       adjustMinWidth
     />
     <DatePicker
+      id="appointmentPortrait"
       label="Portrait Mode"
       displayMode="portrait"
       adjustMinWidth
     />
     <DatePicker
+      id="appointmentLandscape"
       label="Landscape Mode"
       displayMode="landscape"
       adjustMinWidth

@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { isObject } from '../utils';
 import { isBetween } from '../utils/NumberUtils';
@@ -24,6 +25,14 @@ export default class SelectField extends PureComponent {
   };
 
   static propTypes = {
+    /**
+     * An id for the select field. This is used for accessibility.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
     /**
      * An optional style to apply to the text field's input in the select field.
      */
@@ -62,15 +71,14 @@ export default class SelectField extends PureComponent {
     initiallyOpen: PropTypes.bool,
 
     /**
-     * A boolean if the text field should have a floating label instead of
-     * an inline label.
-     */
-    floatingLabel: PropTypes.bool,
-
-    /**
      * The label to apply to the text field.
      */
     label: PropTypes.string,
+
+    /**
+     * An optional placeholder for the text field.
+     */
+    placeholder: PropTypes.string,
 
     /**
      * An optional key to use to extract a `menuItem`'s label if the
@@ -181,7 +189,6 @@ export default class SelectField extends PureComponent {
 
   static defaultProps = {
     initiallyOpen: false,
-    floatingLabel: false,
     itemLabel: 'label',
     menuItems: [],
     iconClassName: 'material-icons',
@@ -603,7 +610,7 @@ export default class SelectField extends PureComponent {
     let { lineDirection } = this.props;
     const {
       label,
-      floatingLabel,
+      placeholder,
       menuItems,
       itemLabel,
       position,
@@ -616,6 +623,7 @@ export default class SelectField extends PureComponent {
       disabled,
       fullWidth,
       adjustMinWidth,
+      id,
       ...props,
     } = this.props;
     delete props.value;
@@ -633,11 +641,13 @@ export default class SelectField extends PureComponent {
 
     const toggle = (
       <SelectFieldControl
+        id={id}
         inputStyle={style}
         inputClassName={cn(className, droppingClassName)}
         label={label}
+        placeholder={placeholder}
         value={displayLabel}
-        floatingLabel={floatingLabel}
+        block={below}
         rightIcon={<FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>}
         size={size}
         disabled={disabled}
@@ -672,7 +682,7 @@ export default class SelectField extends PureComponent {
         'full-width': fullWidth,
       }),
       listClassName: cn('md-select-field-menu', listClassName, {
-        'single-line': !floatingLabel,
+        'single-line': !label,
         'full-width': fullWidth,
       }),
       toggle,

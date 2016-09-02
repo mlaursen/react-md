@@ -48,6 +48,7 @@ export default class TripNamePanel extends PureComponent {
         onCancel={this._resetName}
       >
         <TextField
+          id="tripName"
           label="Trip name"
           value={tempName}
           onChange={this._handleChange}

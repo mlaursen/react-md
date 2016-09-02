@@ -92,6 +92,7 @@ export default class DestinationsPanel extends PureComponent {
               />
             ))}
             <Autocomplete
+              id="destinations"
               label="Search for a destination"
               onAutocomplete={this._addDestination}
               clearOnAutocomplete

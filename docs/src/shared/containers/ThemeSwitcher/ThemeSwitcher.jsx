@@ -19,6 +19,7 @@ export default class ThemeSwitcher extends PureComponent {
 
     return (
       <SelectField
+        id="themeSwitcher"
         label="Theme"
         menuClassName="fr theme-switcher"
         value={value}

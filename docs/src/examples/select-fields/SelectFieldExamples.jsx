@@ -17,13 +17,14 @@ export default class SelectFieldExamples extends PureComponent {
     return (
       <div>
         <SelectField
-          label="Select a State"
+          id="states"
+          placeholder="Select a State"
           menuItems={states}
           itemLabel="name"
           position={SelectField.Positions.TOP_LEFT}
         />
         <SelectField
-          floatingLabel
+          id="statesControlled"
           label="State"
           menuItems={states}
           position={SelectField.Positions.TOP_RIGHT}
@@ -32,12 +33,13 @@ export default class SelectFieldExamples extends PureComponent {
           itemLabel="abbreviation"
         />
         <SelectField
+          id="numbers"
           defaultValue={1}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
         />
         <SelectField
+          id="disabledNumbers"
           label="Disabled"
-          floatingLabel
           disabled
           defaultValue={1}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}

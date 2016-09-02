@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { ESC } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
@@ -65,10 +66,9 @@ export default class TimePickerContainer extends PureComponent {
     label: PropTypes.string,
 
     /**
-     * Boolean if the label for the time picker's text field should
-     * be a floating label.
+     * An optional placeholder to be displayed in the time picker's text field.
      */
-    floatingLabel: PropTypes.bool,
+    placeholder: PropTypes.string,
 
     /**
      * The value of the time picker. This will make the time picker
@@ -173,6 +173,14 @@ export default class TimePickerContainer extends PureComponent {
      * in the date picker gains focus.
      */
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+
+    /**
+     * An id for the text field in the time picker. This is require for a11u.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
   };
 
   static defaultProps = {
@@ -320,7 +328,7 @@ export default class TimePickerContainer extends PureComponent {
 
     const {
       label,
-      floatingLabel,
+      placeholder,
       icon,
       inline,
       displayMode,
@@ -375,10 +383,10 @@ export default class TimePickerContainer extends PureComponent {
         ref="container"
       >
         <TextField
-          icon={icon}
+          leftIcon={icon}
           onClick={this._toggleOpen}
           label={label}
-          floatingLabel={floatingLabel}
+          placeholder={placeholder}
           value={this._getTextFieldValue(this.props, this.state)}
           readOnly
           fullWidth={fullWidth}

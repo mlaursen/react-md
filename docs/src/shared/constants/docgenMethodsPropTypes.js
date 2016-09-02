@@ -8,7 +8,7 @@ const methods = PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     description: PropTypes.string,
     type: PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
     }),
   })).isRequired,
   returns: PropTypes.shape({

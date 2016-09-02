@@ -62,6 +62,7 @@ export default class ComplexDataTableComments extends PureComponent {
           <TableColumn>{title}</TableColumn>
           <TableColumn numeric>{year}</TableColumn>
           <EditDialogColumn
+            id={`comment${key}`}
             label="Add a comment"
             maxLength={140}
             title="Add a comment"

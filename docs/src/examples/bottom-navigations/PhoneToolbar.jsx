@@ -23,7 +23,7 @@ export default class PhoneToolbar extends PureComponent {
     if (inset) {
       actionsRight = (
         <div className="action-area">
-          <TextField label="Search" block />
+          <TextField label="Search" block id="demoingSearch" />
           {kebab}
         </div>
       );
