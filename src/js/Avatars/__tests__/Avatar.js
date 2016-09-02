@@ -48,7 +48,7 @@ describe('Avatar', () => {
     expect(img).toBeDefined();
     expect(img.getAttribute('src')).toBe('../image.jpg');
     expect(img.getAttribute('alt')).toBe('Nothing');
-    expect(img.classList.contains('md-img-avatar')).toBe(true);
+    expect(img.classList.contains('md-avatar-img')).toBe(true);
   });
 
   it('can apply a specific color suffix', () => {
@@ -58,7 +58,7 @@ describe('Avatar', () => {
 
     const avatarNode = ReactDOM.findDOMNode(avatar);
 
-    expect(avatarNode.classList.contains('md-avatar-color-1')).toBe(true);
+    expect(avatarNode.classList.contains('md-avatar--color-1')).toBe(true);
   });
 
   it('can apply a random color with the random prop', () => {
@@ -68,7 +68,7 @@ describe('Avatar', () => {
 
     const avatarNode = ReactDOM.findDOMNode(avatar);
 
-    expect(avatarNode.className.indexOf('md-avatar-color')).not.toBe(-1);
+    expect(avatarNode.className.indexOf('--')).not.toBe(-1);
   });
 
   it('can apply a random color with custom suffixes', () => {
@@ -78,7 +78,7 @@ describe('Avatar', () => {
 
     const avatarNode = ReactDOM.findDOMNode(avatar);
 
-    expect(avatarNode.className).toMatch(/md-avatar-(wat-wat|oh-no)/);
+    expect(avatarNode.className).toMatch(/md-avatar--(wat-wat|oh-no)/);
   });
 
   it('will apply the style prop to the md-avatar div', () => {
