@@ -150,7 +150,7 @@ describe('Chip', () => {
 
     const [avatar, label] = chipNode.childNodes;
 
-    expect(avatar.className).toBe('md-avatar');
+    expect(avatar.className).toContain('md-avatar');
     expect(label.textContent).toBe('Test');
   });
 });
