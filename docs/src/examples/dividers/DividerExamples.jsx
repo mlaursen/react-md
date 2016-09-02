@@ -11,9 +11,9 @@ const avatars = randomAvatars(3);
 const DividerExamples = () => (
   <div>
     <form className="divider-example-container">
-      <TextField id="something" label="Something" block />
+      <TextField id="something" placeholder="Something" block />
       <Divider />
-      <TextField id="somethingElse" label="Something else" block />
+      <TextField id="somethingElse" placeholder="Something else" block />
       <Divider />
     </form>
 

@@ -6,6 +6,7 @@
 
 @import 'components/autocompletes';
 @import 'components/avatars';
+@import 'components/dividers';
 @import 'components/sliders';
 @import 'components/text-fields';
 @import 'components/forms';
@@ -24,6 +25,7 @@
   @include react-md-typography;
 
   @include react-md-icons;
+  @include react-md-dividers;
   @include react-md-text-fields;
   @include react-md-autocompletes;
   @include react-md-sliders;
@@ -102,11 +104,13 @@
     @include react-md-theme-typography($html-class-name, $light-theme);
 
     .#{$html-class-name} {
+      @include react-md-dividers($light-theme);
       @include react-md-theme-icons($light-theme);
       @include react-md-theme-avatars($light-theme);
       @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     }
   } @else {
+    @include react-md-dividers($light-theme);
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-avatars($light-theme);
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
