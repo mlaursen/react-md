@@ -433,7 +433,12 @@ $md-text-field-desktop-block-padding: 16px;
 ///     be included.
 @mixin react-md-text-field-container-mobile($include-block: $md-text-field-include-block) {
   @if $include-block {
-    .md-text-field-container--block {
+    .md-text-field-container--input-block {
+      padding-bottom: $md-text-field-mobile-block-padding;
+      padding-top: $md-text-field-mobile-block-padding;
+    }
+
+    .md-text-field-container--multiline-block {
       margin-bottom: $md-text-field-mobile-block-padding;
       margin-top: $md-text-field-mobile-block-padding;
     }
@@ -458,7 +463,12 @@ $md-text-field-desktop-block-padding: 16px;
 ///     be included.
 @mixin react-md-text-field-container-desktop($include-block: $md-text-field-include-block) {
   @if $include-block {
-    .md-text-field-container--block {
+    .md-text-field-container--input-block {
+      padding-bottom: $md-text-field-desktop-block-padding;
+      padding-top: $md-text-field-desktop-block-padding;
+    }
+
+    .md-text-field-container--multiline-block {
       margin-bottom: $md-text-field-desktop-block-padding;
       margin-top: $md-text-field-desktop-block-padding;
     }
