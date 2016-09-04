@@ -18,16 +18,16 @@ $ npm i -S react \
            react-md
 ```
 
-You can also use the UMD build from [npmcdn](https://npmcdn.com/#/):
+You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 
 ```html
 <!-- Production Version -->
-<link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min.css">
-<script src="https://npmcdn.com/react-md/dist/react-md.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
+<script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
 
 <!-- Development Version -->
-<link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.css">
-<script src="https://npmcdn.com/react-md/dist/react-md.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.css">
+<script src="https://unpkg.com/react-md/dist/react-md.js"></script>
 ```
 
 ## Getting Started
@@ -106,13 +106,13 @@ export default class MyAwesomeComponent extends Component {
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://npmcdn.com/react-md/dist/react-md.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
   </head>
   <body>
     <div id="app"></div>
-    <script src="https://npmcdn.com/react/dist/react-with-addons.min.js"></script>
-    <script src="https://npmcdn.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://npmcdn.com/react-md/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
+    <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
+    <script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.7.7/babel.min.js"></script>
     <script>
 const input = `
