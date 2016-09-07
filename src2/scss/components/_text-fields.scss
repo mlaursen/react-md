@@ -858,6 +858,7 @@ $md-text-field-desktop-block-padding: 16px;
     margin-top: $md-text-field-divider-top-padding;
 
     &::after {
+      background: $primary-color;
       content: '';
       display: block;
       height: $md-text-field-divider-active-height;
@@ -874,10 +875,6 @@ $md-text-field-desktop-block-padding: 16px;
   .md-divider--text-field-error,
   .md-divider--text-field-error::after {
     background: $error-color;
-  }
-
-  .md-divider--text-field-active::after {
-    background: $primary-color;
   }
 
   .md-divider--expand-from-left::after {
@@ -910,7 +907,7 @@ $md-text-field-desktop-block-padding: 16px;
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
 @mixin react-md-theme-text-field-divider($primary-color: $md-primary-color, $error-color: $md-text-field-error-color) {
   @if $primary-color != $md-primary-color {
-    .md-divider--text-field-active::after {
+    .md-divider--text-field::after {
       background: $primary-color;
     }
   }
