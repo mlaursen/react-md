@@ -1,12 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
-import cn from 'classnames';
 
 import Button from './Button';
+import deprecated from './_deprecated';
 
-/**
- * Any other props such as style or event listeners will also
- * be applied to the button.
- */
 export default class RaisedButton extends PureComponent {
   static propTypes = {
     /**
@@ -59,6 +55,8 @@ export default class RaisedButton extends PureComponent {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
+
+    _deprecated: deprecated('raised'),
   };
 
   static defaultProps = {
@@ -67,7 +65,6 @@ export default class RaisedButton extends PureComponent {
   };
 
   render() {
-    const { className, ...props } = this.props;
-    return <Button {...props} className={cn('md-raised-btn', className)} />;
+    return <Button {...this.props} raised />;
   }
 }

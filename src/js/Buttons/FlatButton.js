@@ -1,12 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
-import cn from 'classnames';
 
 import Button from './Button';
 
-/**
- * Any other props such as style or event listeners will also
- * be applied to the button.
- */
 export default class FlatButton extends PureComponent {
   static propTypes = {
     /**
@@ -59,6 +54,11 @@ export default class FlatButton extends PureComponent {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
+
+    _deprecated: (props, propName, component) => new Error(
+      `The \`${component}\` has been deprecated and will be removed in the next release ` +
+      'in favor of the `Button` component.'
+    ),
   };
 
   static defaultProps = {
@@ -67,7 +67,6 @@ export default class FlatButton extends PureComponent {
   };
 
   render() {
-    const { className, ...props } = this.props;
-    return <Button {...props} className={cn('md-flat-btn', className)} />;
+    return <Button {...this.props} flat />;
   }
 }

@@ -1,12 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import TextField from 'react-md/lib/TextFields';
 import Toolbar from 'react-md/lib/Toolbars';
 
-const actionLeft = <IconButton key="menu">menu</IconButton>;
-const kebab = <IconButton key="kebab">more_vert</IconButton>;
+const actionLeft = <Button key="menu" icon>menu</Button>;
+const kebab = <Button key="kebab" icon>more_vert</Button>;
 
 export default class PhoneToolbar extends PureComponent {
   static propTypes = {
@@ -30,7 +30,7 @@ export default class PhoneToolbar extends PureComponent {
     } else {
       actionsRight = (
         <div className="action-area">
-          <IconButton>refresh</IconButton>
+          <Button key="refresh" icon>refresh</Button>
           {kebab}
         </div>
       );

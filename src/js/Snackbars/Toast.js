@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 
 export default class Toast extends PureComponent {
   static propTypes = {
@@ -31,13 +31,14 @@ export default class Toast extends PureComponent {
       };
     }
 
+    console.log('Button:', Button);
     return (
       <section
         {...props}
         className={cn('md-snackbar', className, { multiline })}
       >
         <p>{text}</p>
-        {action && <FlatButton {...btnProps} />}
+        {action && <Button flat removedOnClick {...btnProps} />}
       </section>
     );
   }

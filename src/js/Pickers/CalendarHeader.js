@@ -1,7 +1,7 @@
 /* eslint-disable new-cap */
 import React, { PureComponent, PropTypes } from 'react';
 
-import IconButton from '../Buttons/IconButton';
+import Button from '../Buttons';
 import { isMonthBefore, getDayOfWeek, addDate } from '../utils/dates';
 
 /**
@@ -72,11 +72,11 @@ export default class CalendarHeader extends PureComponent {
     return (
       <header className="md-calendar-header">
         <div className="md-calendar-controls">
-          <IconButton onClick={onPreviousClick} disabled={isPreviousDisabled}>{previousIcon}</IconButton>
+          <Button icon onClick={onPreviousClick} disabled={isPreviousDisabled}>{previousIcon}</Button>
           <h4 className="md-subtitle">
             {DateTimeFormat(locales, { month: 'long', year: 'numeric' }).format(date)}
           </h4>
-          <IconButton onClick={onNextClick} disabled={isNextDisabled}>{nextIcon}</IconButton>
+          <Button icon onClick={onNextClick} disabled={isNextDisabled}>{nextIcon}</Button>
         </div>
         <div className="md-dows">
           {dows}

@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 
 /**
  * A simple component for converting action objects into `FlatButton`
@@ -35,7 +35,7 @@ export default class DialogFooter extends PureComponent {
 
   _actionToElement(action, key) {
     if (!React.isValidElement(action)) {
-      return <FlatButton key={key} {...action} />;
+      return <Button flat key={key} {...action} />;
     } else {
       return action;
     }

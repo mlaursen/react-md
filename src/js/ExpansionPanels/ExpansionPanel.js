@@ -6,7 +6,7 @@ import cn from 'classnames';
 import FontIcon from '../FontIcons';
 import Height from '../Transitions/Height';
 import PanelContent from './PanelContent';
-import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
+import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 
 const LABEL_FONT_SIZE = 15;
 const LINE_HEIGHT = 1.42857;

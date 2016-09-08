@@ -18,20 +18,20 @@ describe('Divider', () => {
     divider = renderIntoDocument(<Divider inset />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(false);
+    expect(dividerNode.className).toContain('--inset');
+    expect(dividerNode.className).not.toContain('--vertical');
 
     divider = renderIntoDocument(<Divider inset vertical />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
+    expect(dividerNode.className).toContain('--inset');
+    expect(dividerNode.className).toContain('--vertical');
 
     divider = renderIntoDocument(<Divider vertical />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(false);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
+    expect(dividerNode.className).not.toContain('--inset');
+    expect(dividerNode.className).toContain('--vertical');
   });
 
   it('passes all remaining props to the divider', () => {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import { RaisedButton, IconButton, FlatButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
 
@@ -22,12 +22,12 @@ export default class FullPageDialogExamples extends PureComponent {
 
   render() {
     const { isOpen, pageX, pageY } = this.state;
-    const actionLeft = <IconButton onClick={this.closeDialog}>close</IconButton>;
-    const actionRight = <FlatButton label="Save" onClick={this.closeDialog} className="mla md-toolbar-item" />;
+    const actionLeft = <Button icon onClick={this.closeDialog}>close</Button>;
+    const actionRight = <Button flat label="Save" onClick={this.closeDialog} className="mla md-toolbar-item" />;
 
     return (
       <div>
-        <RaisedButton label="Open full page dialog" onClick={this.openDialog} />
+        <Button raised label="Open full page dialog" onClick={this.openDialog} />
         <Dialog
           isOpen={isOpen}
           pageX={pageX}

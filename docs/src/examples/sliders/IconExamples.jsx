@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
 import Slider from 'react-md/lib/Sliders';
 import FontIcon from 'react-md/lib/FontIcons';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
+import Button from 'react-md/lib/Buttons';
 
 export default class IconExamples extends PureComponent {
   constructor(props) {
@@ -26,7 +26,8 @@ export default class IconExamples extends PureComponent {
 
     return (
       <div>
-        <RaisedButton
+        <Button
+          raised
           label="Change Some Volues"
           onClick={this._openVolumes}
           secondary

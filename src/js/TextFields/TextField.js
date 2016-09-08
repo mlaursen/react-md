@@ -371,7 +371,8 @@ export default class TextField extends PureComponent {
       || this.state.active !== prevState.active
     ) {
       const fn = window[`${(active || this.state.active) ? 'add' : 'remove'}EventListener`];
-      fn('click', this._handleOutsideClick);
+      fn('mousedown', this._handleOutsideClick);
+      fn('touchstart', this._handleOutsideClick);
     }
 
     if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
@@ -383,7 +384,8 @@ export default class TextField extends PureComponent {
     const { active } = this.props;
     const rm = window.removeEventListener;
     if (active || this.state.active) {
-      rm('click', this._handleOutsideClick);
+      rm('mousedown', this._handleOutsideClick);
+      rm('touchstart', this._handleOutsideClick);
     }
 
     if (this._isMultiline(this.props)) {

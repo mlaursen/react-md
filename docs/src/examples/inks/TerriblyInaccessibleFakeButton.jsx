@@ -11,8 +11,6 @@ export default class TerriblyInaccessibleFakeButton extends PureComponent {
     children: PropTypes.node,
     disabled: PropTypes.bool,
 
-    // Injected from injectInk
-    ink: PropTypes.node,
     // It is required to pass all these event listeners onto your component to
     // get the full ink effect
     onMouseDown: PropTypes.func,
@@ -26,7 +24,7 @@ export default class TerriblyInaccessibleFakeButton extends PureComponent {
   };
 
   render() {
-    const { ink, children, className, ...props } = this.props;
+    const { children, className, ...props } = this.props;
     return (
       <div
         {...props}
@@ -34,7 +32,6 @@ export default class TerriblyInaccessibleFakeButton extends PureComponent {
           'disabled': props.disabled,
         })}
       >
-        {ink}
         {children}
       </div>
     );

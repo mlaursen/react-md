@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import { IconButton } from '../Buttons';
+import Button from '../Buttons';
 
 /**
  * The `DrawerToolbar` component is the Toolbar that gets rendered to the right
@@ -85,7 +85,8 @@ export default class DrawerToolbar extends PureComponent {
     let menuBtn;
     if (temporary || (!isOpen && persistent)) {
       menuBtn = (
-        <IconButton
+        <Button
+          icon
           key="menu-btn"
           onClick={openDrawer}
           children={menuIconChildren}

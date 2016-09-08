@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import { FloatingButton } from '../Buttons';
+import Button from '../Buttons';
 
 /**
  * Any props such as style or event listeners will be applied to the
@@ -191,12 +191,13 @@ export default class SpeedDial extends PureComponent {
           fn = React.cloneElement;
           fabProps = fab.props;
         } else {
-          el = FloatingButton;
+          el = Button;
           fn = React.createElement;
           fabProps = fab;
         }
 
         const created = fn(el, {
+          floating: true,
           mini: true,
           ...fabProps,
         });
@@ -225,8 +226,9 @@ export default class SpeedDial extends PureComponent {
         >
           {speedDialFabs}
         </CSSTransitionGroup>
-        <FloatingButton
+        <Button
           {...props}
+          floating
           key={`${isOpen ? 'open' : 'closed'}-fab`}
           onClick={this._handleClick}
         />

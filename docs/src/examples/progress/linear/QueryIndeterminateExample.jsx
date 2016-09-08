@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { LinearProgress } from 'react-md/lib/Progress';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import LoremIpsum from 'components/LoremIpsum';
 
@@ -82,7 +82,7 @@ export default class QueryIndeterminateExample extends PureComponent {
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
       >
-        <RaisedButton label="Fake load a new page" onClick={this._startFakeProgress} />
+        <Button raised label="Fake load a new page" onClick={this._startFakeProgress} />
         <h3 className="md-title" style={{ marginTop: '2em' }}>Some Amazing Content</h3>
         <CSSTransitionGroup
           component="article"

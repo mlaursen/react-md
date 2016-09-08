@@ -10,7 +10,7 @@ import {
 } from 'react-addons-test-utils';
 
 import CalendarHeader from '../CalendarHeader';
-import IconButton from '../../Buttons/IconButton';
+import Button from '../../Buttons';
 
 describe('CalendarHeader', () => {
   it('renders the day of week abbreviations', () => {
@@ -65,7 +65,7 @@ describe('CalendarHeader', () => {
     };
 
     const header = renderIntoDocument(<CalendarHeader {...props} />);
-    const iconBtns = scryRenderedComponentsWithType(header, IconButton);
+    const iconBtns = scryRenderedComponentsWithType(header, Button);
     expect(iconBtns.length).toBe(2);
     expect(iconBtns[0].props.onClick).toBe(props.onPreviousClick);
     expect(iconBtns[0].props.children).toBe(props.previousIcon);

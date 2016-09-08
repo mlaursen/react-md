@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { Card, CardMedia, CardTitle } from 'react-md/lib/Cards';
 import FontIcon from 'react-md/lib/FontIcons';
 
@@ -69,7 +69,7 @@ export default class UploadedFileCard extends PureComponent {
     return (
       <Card className={classnames('uploaded', { application })}>
         <CardMedia overlay={title}>
-          <IconButton data-name={name} className="close-btn">close</IconButton>
+          <Button icon data-name={name} className="close-btn">close</Button>
           {content}
         </CardMedia>
       </Card>

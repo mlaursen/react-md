@@ -2,7 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import NavigationDrawer from 'react-md/lib//NavigationDrawers';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import NewPage from './NewPage';
 import LoremIpsum from 'components/LoremIpsum';
@@ -59,14 +59,15 @@ export default class NewPageDemo extends PureComponent {
           desktopDrawerType={NavigationDrawer.DrawerType.PERSISTENT_MINI}
           navItems={navItems}
           toolbarChildren={
-            <IconButton
+            <Button
+              icon
               onClick={this.closeDemo}
               tooltipLabel="Close Demo"
               tooltipPosition="left"
               className="md-navigation-drawer-btn fr"
             >
               close
-            </IconButton>
+            </Button>
           }
         >
           <section key={page} className="container text-container">

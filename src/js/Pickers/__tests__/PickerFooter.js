@@ -8,7 +8,7 @@ import {
 } from 'react-addons-test-utils';
 
 import PickerFooter from '../PickerFooter';
-import FlatButton from '../../Buttons/FlatButton';
+import Button from '../../Buttons';
 
 describe('PickerFooter', () => {
   it('renders two flat buttons', () => {
@@ -30,7 +30,7 @@ describe('PickerFooter', () => {
       />
     );
 
-    const buttons = scryRenderedComponentsWithType(pickerFooter, FlatButton);
+    const buttons = scryRenderedComponentsWithType(pickerFooter, Button);
     expect(buttons.length).toBe(2);
 
     const [cancel, ok] = buttons;

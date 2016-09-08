@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import AccessibleFakeButton from '../Buttons/AccessibleFakeButton';
+import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 
 /**
  * The `Thumb` component is the little ball for the slider.

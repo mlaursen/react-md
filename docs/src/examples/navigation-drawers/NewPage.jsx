@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { setOverflow } from 'react-md/lib/utils';
 
 import './_new-page.scss';
@@ -55,7 +55,7 @@ export default class NewPage extends PureComponent {
         component="section"
         className="new-page-demo-container"
       >
-        <RaisedButton label="Open the NavigationDrawer demo" onClick={this.openDemo} />
+        <Button raised label="Open the NavigationDrawer demo" onClick={this.openDemo} />
         {demo}
       </CSSTransitionGroup>
     );

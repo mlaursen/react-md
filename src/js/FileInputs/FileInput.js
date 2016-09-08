@@ -88,11 +88,6 @@ class FileInput extends PureComponent {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * Injected from `injectInk`
-     */
-    ink: PropTypes.node,
-
-    /**
      * An optional id for the file input field.
      */
     id: PropTypes.string,
@@ -129,7 +124,6 @@ class FileInput extends PureComponent {
       primary,
       secondary,
       flat,
-      ink,
       id,
       ...props,
     } = this.props;
@@ -145,7 +139,6 @@ class FileInput extends PureComponent {
         disabled={props.disabled}
         htmlFor={id}
       >
-        {ink}
         <input
           {...props}
           id={id}

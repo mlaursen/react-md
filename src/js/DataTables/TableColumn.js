@@ -69,11 +69,6 @@ class TableColumn extends PureComponent {
      * The position of the tooltip.
      */
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-
-    /**
-     * The optionally injected tooltip from the `injectTooltip` higher order component.
-     */
-    tooltip: PropTypes.node,
   };
 
   static defaultProps = {
@@ -89,7 +84,6 @@ class TableColumn extends PureComponent {
       adjusted,
       header,
       children,
-      tooltip,
       sorted,
       sortIconChildren,
       sortIconClassName,
@@ -97,7 +91,7 @@ class TableColumn extends PureComponent {
     } = this.props;
     const sortable = typeof sorted === 'boolean';
 
-    let displayedChildren = [children, tooltip];
+    let displayedChildren = [children];
     if (sortable) {
       displayedChildren = [
         <FontIcon
@@ -107,7 +101,6 @@ class TableColumn extends PureComponent {
           children={sortIconChildren}
         />,
         <span key="children" className="inline-top">{children}</span>,
-        tooltip,
       ];
     }
 

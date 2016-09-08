@@ -4,8 +4,7 @@ jest.unmock('../ListItem');
 jest.unmock('../ListTile');
 jest.unmock('../ListItemText');
 jest.unmock('../../Buttons');
-jest.unmock('../../Buttons/IconButton');
-jest.unmock('../../Buttons/AccessibleFakeButton');
+jest.unmock('../../Helpers/AccessibleFakeButton');
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../../Transitions');
 jest.unmock('../../Transitions/Height');
@@ -23,7 +22,7 @@ import ListItem from '../ListItem';
 import ListTile from '../ListTile';
 import ListItemText from '../ListItemText';
 import { Height } from '../../Transitions';
-import { IconButton } from '../../Buttons';
+import Button from '../../Buttons';
 import { LEFT_MOUSE } from '../../constants/keyCodes';
 
 describe('ListItem', () => {
@@ -224,7 +223,7 @@ describe('ListItem', () => {
       />
     );
 
-    let btn = findRenderedComponentWithType(li, IconButton);
+    let btn = findRenderedComponentWithType(li, Button);
     expect(btn.props.children).toBe(ListItem.defaultProps.expanderIconChildren);
     expect(btn.props.iconClassName).toBe(ListItem.defaultProps.expanderIconClassName);
 
@@ -239,7 +238,7 @@ describe('ListItem', () => {
       />
     );
 
-    btn = findRenderedComponentWithType(custom, IconButton);
+    btn = findRenderedComponentWithType(custom, Button);
     expect(btn.props.children).toBe(null);
     expect(btn.props.iconClassName).toBe('fa fa-arrow-down');
   });
@@ -317,7 +316,7 @@ describe('ListItem', () => {
     );
 
     const tile = findDOMNode(findRenderedComponentWithType(li, ListTile));
-    const btn = findDOMNode(findRenderedComponentWithType(li, IconButton));
+    const btn = findDOMNode(findRenderedComponentWithType(li, Button));
 
     Simulate.click(tile, { button: LEFT_MOUSE });
     expect(findDOMNode(li).childNodes.length).toBe(1);
@@ -336,7 +335,7 @@ describe('ListItem', () => {
       />
     );
 
-    const btn = findDOMNode(findRenderedComponentWithType(li, IconButton));
+    const btn = findDOMNode(findRenderedComponentWithType(li, Button));
     Simulate.click(btn, { button: LEFT_MOUSE });
 
     expect(onExpanderClick).toBeCalled();

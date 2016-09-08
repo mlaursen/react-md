@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
+import Button from 'react-md/lib/Buttons';
 import Slider from 'react-md/lib/Sliders';
 
 import './_editable-example.scss';
@@ -47,7 +47,8 @@ export default class EditableExample extends PureComponent {
     const { r, g, b, isOpen } = this.state;
     return (
       <div>
-        <RaisedButton
+        <Button
+          raised
           label="Open Color Changer"
           secondary
           onClick={this._openColorChanger}

@@ -1,0 +1,340 @@
+////
+/// @group buttons
+////
+
+$md-buttons-include-flat: true !default;
+$md-buttons-include-raised: true !default;
+$md-buttons-include-icon: true !default;
+$md-buttons-include-floating: true !default;
+
+$md-btn-accessible-height: 48px;
+
+$md-btn-mobile-font-size: 14px;
+$md-btn-mobile-height: 36px;
+$md-btn-desktop-font-size: 13px;
+$md-btn-desktop-height: 32px;
+$md-btn-lr-padding: 16px;
+$md-btn-min-width: 88px;
+$md-btn-floating-size: 56px;
+$md-btn-floating-mini-size: 40px;
+
+$md-btn-icon-size: $md-font-icon-size * 2;
+$md-btn-icon-padding: $md-btn-icon-size / 4;
+
+$md-btn-light-theme-base-color: #999;
+$md-btn-light-theme-hover-color: rgba($md-btn-light-theme-base-color, .12);
+$md-btn-light-theme-disabled-color: rgba($md-btn-light-theme-base-color, .2);
+$md-btn-light-theme-pressed-color: rgba($md-btn-light-theme-base-color, .4);
+$md-btn-dark-theme-base-color: #ccc;
+$md-btn-dark-theme-hover-color: rgba($md-btn-dark-theme-base-color, .12);
+$md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2);
+$md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
+
+@mixin react-md-buttons($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-icon: $md-buttons-include-icon, $include-floating: $md-buttons-include-floating) {
+  @if $include-media {
+    @include react-md-buttons-media($include-flat, $include-raised);
+  }
+
+  // scss-lint:disable QualifyingElement
+  a.md-btn,
+  .md-btn {
+    color: get-color('text', $light-theme);
+  }
+
+  a.md-btn {
+    text-decoration: none;
+  }
+
+  .md-btn {
+    background: transparent;
+    border: 0;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    transition-duration: $md-transition-time;
+    transition-property: background, color;
+    vertical-align: top;
+
+    &[disabled] {
+      color: get-color('disabled', $light-theme);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:not([disabled]):hover {
+      cursor: pointer;
+    }
+
+    .md-icon {
+      color: inherit;
+    }
+  }
+
+  .md-btn--hover {
+    background: if($light-theme, $md-btn-light-theme-hover-color, $md-btn-dark-theme-hover-color);
+  }
+
+  .md-btn--color-primary {
+    color: $primary-color;
+
+    .md-ink {
+      background: rgba($primary-color, .26);
+    }
+  }
+
+  .md-btn--color-primary-active {
+    background: rgba($primary-color, .12);
+  }
+
+  .md-btn--color-secondary {
+    color: $secondary-color;
+
+    .md-ink {
+      background: rgba($secondary-color, .26);
+    }
+  }
+
+  .md-btn--color-secondary-active {
+    background: rgba($secondary-color, .12);
+  }
+
+  .md-icon-separator {
+    align-items: center;
+    display: flex;
+    text-align: left;
+
+    .md-icon-text {
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      &:first-child {
+        padding-right: $md-default-padding;
+      }
+
+      &:last-child {
+        padding-left: $md-default-padding;
+      }
+    }
+
+    .md-icon {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  @if $include-flat or $include-raised {
+    $accessible-padding: ($md-btn-accessible-height - $md-btn-height) / 2;
+
+    .md-btn--text {
+      font-weight: $md-font-medium;
+      margin-bottom: $accessible-padding;
+      margin-top: $accessible-padding;
+      min-height: $md-btn-height;
+      min-width: $md-btn-min-width;
+      padding-left: $md-btn-lr-padding;
+      padding-right: $md-btn-lr-padding;
+      text-transform: uppercase;
+      transition-duration: $md-transition-time;
+
+      &[disabled] {
+        background: get-color('divider', $light-theme);
+      }
+    }
+  }
+
+  @if $include-raised or $include-floating {
+    .md-btn--raised {
+      @include md-box-shadow(1);
+
+      transition: background $md-transition-time, box-shadow $md-transition-time * 2, color $md-transition-time;
+    }
+
+    .md-btn--raised-active {
+      @include md-box-shadow(2);
+    }
+
+    .md-btn--raised-primary,
+    .md-btn--raised-secondary {
+      color: $md-white-base;
+
+      .md-ink {
+        background: rgba($md-white-base, .2);
+      }
+    }
+
+    .md-btn--raised-primary {
+      background: $primary-color;
+
+      &:hover {
+        background: rgba($primary-color, .9);
+      }
+    }
+
+    .md-btn--raised-secondary {
+      background: $secondary-color;
+
+      &:hover {
+        background: rgba($secondary-color, .9);
+      }
+    }
+  }
+
+  @if $include-icon or $include-floating {
+    .md-btn--icon {
+      border-radius: 50%;
+      height: $md-btn-icon-size;
+      padding: $md-btn-icon-padding;
+      width: $md-btn-icon-size;
+
+      .md-icon {
+        color: inherit;
+      }
+    }
+  }
+
+  @if $include-floating {
+    .md-btn--floating {
+      @include md-box-shadow(2);
+      height: $md-btn-floating-size;
+      padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
+      transition-property: background, box-shadow, color;
+      width: $md-btn-floating-size;
+    }
+
+    .md-btn--floating-pressed {
+      @include md-box-shadow(4);
+    }
+
+    .md-btn--floating-mini {
+      height: $md-btn-floating-mini-size;
+      padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
+      width: $md-btn-floating-mini-size;
+    }
+  }
+}
+
+@mixin react-md-theme-buttons($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-icon: $md-buttons-include-icon, $include-floating: $md-buttons-include-floating) {
+  @if $light-theme != $md-light-theme {
+    // scss-lint:disable QualifyingElement
+    .md-btn,
+    a.md-btn {
+      color: get-color('text', $light-theme);
+    }
+
+    @if $include-flat or $include-raised {
+      .md-btn--text[disabled] {
+        background: get-color('divider', $light-theme);
+      }
+    }
+  }
+
+  @if $primary-color != $md-primary-color {
+    .md-btn--color-primary {
+      color: $primary-color;
+
+      .md-ink {
+        background: rgba($primary-color, .26);
+      }
+    }
+
+    .md-btn--color-primary-active {
+      background: rgba($primary-color, .12);
+    }
+
+    @if $include-raised or $include-floating {
+      .md-btn--raised-primary {
+        background: $primary-color;
+
+        &:hover {
+          background: rgba($primary-color, .9);
+        }
+      }
+    }
+  }
+
+  @if $secondary-color != $md-secondary-color {
+    .md-btn--color-secondary {
+      color: $secondary-color;
+
+      .md-ink {
+        background: rgba($secondary-color, .26);
+      }
+    }
+
+    .md-btn--color-secondary-active {
+      background: rgba($secondary-color, .12);
+    }
+
+    @if $include-raised or $include-floating {
+      .md-btn--raised-secondary {
+        background: $secondary-color;
+
+        &:hover {
+          background: rgba($secondary-color, .9);
+        }
+      }
+    }
+  }
+}
+
+@mixin react-md-buttons-mobile($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+  @if $include-flat or $include-raised {
+    $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
+
+    .md-btn--text {
+      font-size: $md-btn-mobile-font-size;
+      height: $md-btn-mobile-height;
+      margin-bottom: $accessible-padding;
+      margin-top: $accessible-padding;
+
+      // The accessible height is supposed to be 48px while the button height is supposed
+      // to be 36px.. So hack for touch by adding some margin for the difference and adding
+      // ::before/::after absolutely positioned so they can be touched as well? Iunno
+      &::before,
+      &::after {
+        content: '';
+        height: $accessible-padding;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      &::before {
+        top: -$accessible-padding;
+      }
+
+      &::after {
+        bottom: -$accessible-padding;
+      }
+    }
+  }
+}
+
+@mixin react-md-buttons-desktop($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+  @if $include-flat or $include-raised {
+    .md-btn--text {
+      font-size: $md-btn-desktop-font-size;
+      height: $md-btn-desktop-height;
+      margin-bottom: initial;
+      margin-top: initial;
+
+      &::before,
+      &::after {
+        display: none;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+@mixin react-md-buttons-media($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+  @media #{$md-mobile-media} {
+    @include react-md-buttons-mobile($include-flat, $include-raised);
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-buttons-desktop($include-flat, $include-raised);
+  }
+}

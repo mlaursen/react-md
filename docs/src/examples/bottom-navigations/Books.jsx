@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Divider from 'react-md/lib/Dividers';
 import { Card, CardMedia, CardTitle, CardActions } from 'react-md/lib/Cards';
-import { FlatButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import { randomImages } from 'utils/RandomUtils';
 
@@ -59,8 +59,8 @@ export default class Books extends PureComponent {
           <CardTitle {...titleProps} />
           <Divider />
           <CardActions>
-            <FlatButton label="Free Sample" primary />
-            <FlatButton label="Review" primary />
+            <Button flat label="Free Sample" primary />
+            <Button flat label="Review" primary />
           </CardActions>
         </div>
       </Card>

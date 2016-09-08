@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
 import IconButton from './IconButton';
+import deprecated from './_deprecated';
 
 /**
  * A `FloatingButton` is an extension of the `IconButton`.
@@ -87,6 +88,8 @@ export default class FloatingButton extends PureComponent {
      * Boolean if the floating button should be styled with the secondary color.
      */
     secondary: PropTypes.bool,
+
+    _deprecated: deprecated('floating'),
   };
 
   render() {
@@ -94,8 +97,6 @@ export default class FloatingButton extends PureComponent {
       className,
       fixed,
       mini,
-      primary,
-      secondary,
       children,
       iconClassName,
       ...props,
@@ -103,13 +104,12 @@ export default class FloatingButton extends PureComponent {
     return (
       <IconButton
         {...props}
-        className={cn('md-floating-btn', className, {
-          mini,
-          fixed,
-          'md-primary': primary,
-          'md-secondary': secondary,
-        })}
+        className={cn({
+          'md-btn--floating-fixed': fixed,
+          'md-btn--floating-mini': mini,
+        }, className)}
         iconClassName={iconClassName}
+        floating
       >
         {children}
       </IconButton>

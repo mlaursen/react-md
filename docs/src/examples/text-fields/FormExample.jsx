@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from 'react-md/lib/TextFields';
-import IconButton from 'react-md/lib/Buttons/IconButton';
+import Button from 'react-md/lib/Buttons';
 
 import PhoneSize from 'components/PhoneSize';
 import './_application.scss';
@@ -9,7 +9,7 @@ const FormExample = () => (
   <PhoneSize
     title="Application"
     iconLeft="arrow_back"
-    actionsRight={<IconButton className="mla">more_vert</IconButton>}
+    actionsRight={<Button icon className="mla">more_vert</Button>}
   >
     <form className="md-form md-form--padded">
       <TextField

@@ -1,5 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
-import IconButton from 'react-md/lib/Buttons/IconButton';
+import Button from 'react-md/lib/Buttons';
 import QuickSearch from 'containers/QuickSearch';
 
 export default class ToolbarChildren extends PureComponent {
@@ -27,25 +27,27 @@ export default class ToolbarChildren extends PureComponent {
       return (
         <div style={{ display: 'flex', width: '100%' }}>
           {search}
-          <IconButton
+          <Button
+            icon
             key="close"
             tooltipLabel="Close Quick Search"
             onClick={this._closeMobileSearch}
           >
             close
-          </IconButton>
+          </Button>
         </div>
       );
     } else {
       return (
-        <IconButton
+        <Button
+          icon
           key="toggle-quick-search"
           tooltipLabel="Search for documentation"
           onClick={this._startMobileSearch}
           className="mla"
         >
           search
-        </IconButton>
+        </Button>
       );
     }
   }

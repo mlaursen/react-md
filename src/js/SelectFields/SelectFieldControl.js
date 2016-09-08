@@ -9,15 +9,13 @@ class SelectFieldControl extends PureComponent {
     inputClassName: PropTypes.string,
     below: PropTypes.bool,
     open: PropTypes.bool.isRequired,
-    ink: PropTypes.node,
     disabled: PropTypes.bool,
   };
 
   render() {
-    const { inputClassName, below, open, ink, ...props } = this.props;
-    delete props.inkDisabled;
+    const { inputClassName, below, open, ...props } = this.props;
 
-    const control = (
+    return (
       <TextField
         {...props}
         className={cn('md-select-field-container', {
@@ -29,8 +27,6 @@ class SelectFieldControl extends PureComponent {
         readOnly
       />
     );
-
-    return ink ? <div>{control}{ink}</div> : control;
   }
 }
 

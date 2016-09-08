@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardMedia, CardTitle, CardActions } from 'react-md/lib/Cards';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import { randomImage } from 'utils/RandomUtils';
 
@@ -17,9 +17,9 @@ const CardListExample = () => {
         />
       </CardMedia>
       <CardActions centered>
-        <IconButton>favorite</IconButton>
-        <IconButton>bookmark</IconButton>
-        <IconButton>reply</IconButton>
+        <Button icon>favorite</Button>
+        <Button icon>bookmark</Button>
+        <Button icon>reply</Button>
       </CardActions>
     </Card>
   ));

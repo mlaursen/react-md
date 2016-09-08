@@ -24,7 +24,7 @@ import FileInput from './FileInput';
  *
  * ```js
  * <FileUpload ref="upload" />
- * <RaisedButton onClick={() => this.refs.upload.abort()} label="Abort! Abort!" />
+ * <Button raised onClick={() => this.refs.upload.abort()} label="Abort! Abort!" />
  * ```
  */
 export default class FileUpload extends PureComponent {

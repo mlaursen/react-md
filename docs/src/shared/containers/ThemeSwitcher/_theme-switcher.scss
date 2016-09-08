@@ -1,6 +1,7 @@
 @import '~react-md-scss';
 @import '~sass-utils';
 
+// scss-lint:disable IdSelector
 .theme-1 {
   @include md-theme-most(
     $md-light-blue-500,
@@ -19,6 +20,11 @@
   .banner {
     background: $md-light-blue-500;
   }
+
+  #table-of-contents,
+  #table-of-contents + ul {
+    border-left-color: $md-light-blue-500;
+  }
 }
 
 .theme-2 {
@@ -35,6 +41,11 @@
     $md-light-green-a-700,
     $md-light-green-a-200
   );
+
+  #table-of-contents,
+  #table-of-contents + ul {
+    border-left-color: $md-purple-500;
+  }
 }
 
 .theme-3 {
@@ -51,6 +62,11 @@
     $md-amber-a-200,
     $md-amber-a-100
   );
+
+  #table-of-contents,
+  #table-of-contents + ul {
+    border-left-color: $md-blue-500;
+  }
 }
 
 .theme-4 {
@@ -67,6 +83,11 @@
     $md-yellow-a-700,
     $md-yellow-a-200
   );
+
+  #table-of-contents,
+  #table-of-contents + ul {
+    border-left-color: $md-cyan-500;
+  }
 }
 
 .theme-5 {
@@ -83,6 +104,11 @@
     $md-deep-purple-a-200,
     $md-deep-purple-a-100
   );
+
+  #table-of-contents,
+  #table-of-contents + ul {
+    border-left-color: $md-orange-500;
+  }
 }
 
 // .theme-dark {

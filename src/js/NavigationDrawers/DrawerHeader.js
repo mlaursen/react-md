@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import { IconButton } from '../Buttons';
+import Button from '../Buttons';
 import Divider from '../Dividers';
 
 /**
@@ -73,7 +73,8 @@ export default class DrawerHeader extends PureComponent {
     let closeBtn;
     if (persistent || temporary) {
       closeBtn = (
-        <IconButton
+        <Button
+          icon
           key="close-btn"
           className="md-drawer-toggle"
           onClick={closeDrawer}

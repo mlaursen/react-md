@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import SelectField from '../SelectFields';
-import IconButton from '../Buttons/IconButton';
+import Button from '../Buttons';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps
@@ -223,13 +223,15 @@ export default class TablePagination extends PureComponent {
                 onChange={this._setRowsPerPage}
               />
               <span className="pagination">{pagination}</span>
-              <IconButton
+              <Button
+                icon
                 onClick={this._decrement}
                 disabled={start === 0}
                 children={decrementIconChildren}
                 iconClassName={decrementIconClassName}
               />
-              <IconButton
+              <Button
+                icon
                 onClick={this._increment}
                 disabled={start + rowsPerPage >= rows}
                 children={incrementIconChildren}

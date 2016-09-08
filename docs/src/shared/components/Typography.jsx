@@ -5,57 +5,25 @@ const markdown = `
 # Material Design Typography
 
 The typography has been built off of the [typography specs](https://www.google.com/design/spec/style/typography.html).
-Class extenders and default classes have been included by default. To help with
-conflicting css frameworks, no default html tags have been updated with these
-classes. You can manually add each class or do a global extend.
+The base html tags will be modified by default unless you set the sass variable \`$md-typography-extended\`
+to \`false\`.
 
-Here is a list of the classes/extenders:
-- md-display-4
-- md-display-3
-- md-display-2
-- md-display-1
-- md-headline
-- md-title
-- md-subheading-2
-- md-subheading-1
-- md-body-2
-- md-body-1
-- md-caption
+The tags will be implemented as:
+- \`h1\` - \`.md-display-1\`
+- \`h2\` - \`.md-headline\`
+- \`h3\` - \`.md-title\`
+- \`h4\` - \`.md-subheading-2\`
+- \`h5\` - \`.md-subheading-1\`
+- \`p\` - \`.md-body-1\`
+- \`caption\` - \`.md-caption\`
 
 
-#### Example extends
+All the class names in order of largest to smallest are:
+\`.md-display-4\`, \`.md-display-3\`, \`.md-display-2\`, \`.md-display-1\`, \`.md-headline\`,
+\`.md-title\`, \`.md-subheading-2\`, \`.md-subheading-1\`, \`.md-body-2\`, \`.md-body-1\`,
+and \`.md-caption\`.
 
-\`\`\`scss
-h1 {
-  @extend %md-display-1;
-}
-
-h2 {
-  @extend %md-headline;
-}
-
-h3 {
-  @extend %md-title;
-}
-
-h4 {
-  @extend %md-subheading-2;
-}
-
-h5 {
-  @extend %md-subheading-1;
-}
-
-p {
-  @extend %md-body-1;
-}
-
-caption {
-  @extend %md-caption;
-}
-\`\`\`
-
-#### Examples in order
+#### Examples
 `;
 
 export default class Typography extends PureComponent {

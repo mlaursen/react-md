@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import loremIpsum from 'lorem-ipsum';
 
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import Paper from 'react-md/lib/Papers';
 import TextField from 'react-md/lib/TextFields';
 import Toolbar from 'react-md/lib/Toolbars';
@@ -42,7 +42,7 @@ export default class InToolbarExample extends PureComponent {
     return (
       <Paper className="phone-size-container">
         <Toolbar primary={false}>
-          <IconButton className="action-left">arrow_back</IconButton>
+          <Button icon className="action-left">arrow_back</Button>
           <TextField
             id="searchFakePeople"
             placeholder="Search"
@@ -53,7 +53,7 @@ export default class InToolbarExample extends PureComponent {
             block
             fullWidth
           />
-          <IconButton className="md-toolbar-item" onClick={this._resetValue}>close</IconButton>
+          <Button icon className="md-toolbar-item" onClick={this._resetValue}>close</Button>
         </Toolbar>
         <Menu isOpen={focus && !!value.length} position={Menu.Positions.TOP_LEFT}>
           <ListItem primaryText="Aaron Bennett" rightAvatar={avatars[0]} />

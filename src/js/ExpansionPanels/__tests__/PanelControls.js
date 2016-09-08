@@ -8,7 +8,7 @@ import {
 } from 'react-addons-test-utils';
 
 import PanelControls from '../PanelControls';
-import FlatButton from '../../Buttons/FlatButton';
+import Button from '../../Buttons';
 
 describe('PanelControls', () => {
   it('renders two FlatButtons', () => {
@@ -20,7 +20,7 @@ describe('PanelControls', () => {
     };
 
     const controls = renderIntoDocument(<PanelControls {...props} />);
-    const buttons = scryRenderedComponentsWithType(controls, FlatButton);
+    const buttons = scryRenderedComponentsWithType(controls, Button);
 
     expect(buttons.length).toBe(2);
   });
@@ -37,7 +37,7 @@ describe('PanelControls', () => {
     };
 
     const controls = renderIntoDocument(<PanelControls {...props} />);
-    const [cancel] = scryRenderedComponentsWithType(controls, FlatButton);
+    const [cancel] = scryRenderedComponentsWithType(controls, Button);
 
     expect(cancel.props.type).toBe(props.cancelType);
     expect(cancel.props.label).toBe(props.cancelLabel);
@@ -57,7 +57,7 @@ describe('PanelControls', () => {
     };
 
     const controls = renderIntoDocument(<PanelControls {...props} />);
-    const save = scryRenderedComponentsWithType(controls, FlatButton)[1];
+    const save = scryRenderedComponentsWithType(controls, Button)[1];
 
     expect(save.props.type).toBe(props.saveType);
     expect(save.props.label).toBe(props.saveLabel);
