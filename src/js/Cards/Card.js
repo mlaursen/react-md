@@ -70,6 +70,11 @@ export default class Card extends PureComponent {
     expanderTooltipLabel: PropTypes.string,
 
     /**
+     * An optional delay before the tooltip appears for the expander icon on hover.
+     */
+    expanderTooltipDelay: PropTypes.number,
+
+    /**
      * Boolean if the card contains a table. It will update the styling accordingly.
      * When using the `DataTable` component, do not wrap it in a `CardText` component.
      *
@@ -108,6 +113,7 @@ export default class Card extends PureComponent {
       iconChildren,
       isExpanded,
       expanderTooltipLabel,
+      expanderTooltipDelay,
       expanderTooltipPosition,
     } = this.props;
 
@@ -117,6 +123,7 @@ export default class Card extends PureComponent {
       iconClassName,
       iconChildren,
       tooltipLabel: expanderTooltipLabel,
+      tooltipDelay: expanderTooltipDelay,
       tooltipPosition: expanderTooltipPosition,
     };
   }
@@ -138,6 +145,7 @@ export default class Card extends PureComponent {
     delete props.iconClassName;
     delete props.initiallyExpanded;
     delete props.expanderTooltipLabel;
+    delete props.expanderTooltipDelay;
     delete props.expanderTooltipPosition;
     delete props.onExpanderClick;
 

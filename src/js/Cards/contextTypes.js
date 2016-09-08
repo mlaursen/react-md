@@ -7,4 +7,5 @@ export default {
   iconChildren: PropTypes.string,
   tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
   tooltipLabel: PropTypes.string,
+  tooltipDelay: PropTypes.number,
 };
