@@ -1,0 +1,151 @@
+////
+/// @group tooltips
+////
+
+$md-tooltip-mobile-font-size: 14px;
+$md-tooltip-mobile-tile-height: 32px;
+$md-tooltip-mobile-lr-padding: 16px;
+$md-tooltip-mobile-top-margin: 24px;
+
+$md-tooltip-desktop-font-size: 10px;
+$md-tooltip-desktop-tile-height: 22px;
+$md-tooltip-desktop-lr-padding: 8px;
+$md-tooltip-desktop-top-margin: 14px;
+
+
+$md-tooltip-color: $md-grey-700;
+$md-tooltip-opacity: .9;
+
+@mixin react-md-tooltips($media-included: $md-media-included) {
+  @if $media-included {
+    @include react-md-tooltips-media;
+  }
+
+  .md-tooltip-container {
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    user-select: none;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .md-tooltip {
+    align-items: center;
+    background: $md-tooltip-color;
+    color: $md-white-base;
+    display: inline-flex;
+    font-weight: $md-font-medium;
+    opacity: $md-tooltip-opacity;
+    outline: none;
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .md-tooltip--active {
+    transition-duration: $md-transition-time;
+    transition-property: opacity, transform;
+  }
+
+  .md-tooltip--enter,
+  .md-tooltip--leave-active {
+    opacity: 0;
+  }
+
+  .md-tooltip--enter-active {
+    opacity: $md-tooltip-opacity;
+    transition-timing-function: $md-transition-deceleration;
+  }
+
+  .md-tooltip--leave-active {
+    transition-timing-function: $md-transition-acceleration;
+  }
+
+  .md-tooltip--horizontal {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .md-tooltip--vertical {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  .md-tooltip--top-active {
+    transform: translate3d(-50%, -100%, 0);
+  }
+
+  .md-tooltip--right-active {
+    transform: translate3d(100%, -50%, 0);
+  }
+
+  .md-tooltip--bottom-active {
+    transform: translate3d(-50%, 100%, 0);
+  }
+
+  .md-tooltip--left-active {
+    transform: translate3d(-100%, -50%, 0);
+  }
+}
+
+@mixin react-md-tooltips-mobile {
+  .md-tooltip {
+    font-size: $md-tooltip-mobile-font-size;
+    height: $md-tooltip-mobile-tile-height;
+    padding-left: $md-tooltip-mobile-lr-padding;
+    padding-right: $md-tooltip-mobile-lr-padding;
+  }
+
+  .md-tooltip--top {
+    top: -$md-tooltip-mobile-top-margin;
+  }
+
+  .md-tooltip--right {
+    right: -$md-tooltip-mobile-top-margin;
+  }
+
+  .md-tooltip--bottom {
+    bottom: -$md-tooltip-mobile-top-margin;
+  }
+
+  .md-tooltip--left {
+    left: -$md-tooltip-mobile-top-margin;
+  }
+}
+
+@mixin react-md-tooltips-desktop {
+  .md-tooltip {
+    font-size: $md-tooltip-desktop-font-size;
+    height: $md-tooltip-desktop-tile-height;
+    padding-left: $md-tooltip-desktop-lr-padding;
+    padding-right: $md-tooltip-desktop-lr-padding;
+  }
+
+  .md-tooltip--top {
+    top: -$md-tooltip-desktop-top-margin;
+  }
+
+  .md-tooltip--right {
+    right: -$md-tooltip-desktop-top-margin;
+  }
+
+  .md-tooltip--bottom {
+    bottom: -$md-tooltip-desktop-top-margin;
+  }
+
+  .md-tooltip--left {
+    left: -$md-tooltip-desktop-top-margin;
+  }
+}
+
+@mixin react-md-tooltips-media {
+  @media #{$md-mobile-media} {
+    @include react-md-tooltips-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-tooltips-desktop;
+  }
+}

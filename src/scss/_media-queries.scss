@@ -8,7 +8,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
   @include md-sidebar-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
-  @include md-tooltips-mobile();
   @include md-navigation-drawer-mobile();
 }
 
@@ -21,7 +20,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
   @include md-snackbar-desktop();
   @include md-tab-desktop();
   @include md-toolbar-desktop();
-  @include md-tooltips-desktop();
 
   .md-picker:not(.portrait) {
     @include md-pickers-landscape();

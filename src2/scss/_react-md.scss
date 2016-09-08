@@ -11,6 +11,7 @@
 @import 'components/sliders';
 @import 'components/text-fields';
 @import 'components/forms';
+@import 'components/tooltips';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -33,6 +34,7 @@
   @include react-md-sliders;
   @include react-md-avatars;
   @include react-md-forms;
+  @include react-md-tooltips;
 }
 
 /// Updates the styles of every component with the new theme colors. If there
