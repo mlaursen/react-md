@@ -1,0 +1,66 @@
+$md-ink-transition-time: .45s !default;
+$md-ink-pulse-time: 1.5s !default;
+
+@mixin react-md-inks($light-theme: $md-light-theme) {
+  .md-ink-container {
+    border-radius: inherit;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .md-ink {
+    background: get-color('divider', $light-theme);
+    border-radius: 50%;
+    display: block;
+    opacity: 1;
+    position: absolute;
+    transform: scale(0);
+    z-index: -1;
+  }
+
+  .md-ink--active {
+    transition-duration: $md-ink-transition-time;
+    transition-property: opacity, transform;
+    transition-timing-function: $md-transition-acceleration;
+  }
+
+  .md-ink--pulse-active {
+    transition-duration: $md-ink-transition-time / 2;
+  }
+
+  .md-ink--expanded {
+    transform: scale(.9);
+  }
+
+  .md-ink--pulse {
+    animation-duration: $md-ink-pulse-time;
+    animation-iteration-count: infinite;
+    animation-name: md-ink-pulse;
+    animation-timing-function: $md-transition-standard;
+  }
+
+  .md-ink--leaving {
+    opacity: 0;
+    transition-timing-function: $md-transition-deceleration;
+  }
+
+  @keyframes md-ink-pulse {
+    0% {
+      transform: scale(.9);
+    }
+
+    66% {
+      transform: scale(.85);
+    }
+
+    100% {
+      transform: scale(.9);
+    }
+  }
+}
