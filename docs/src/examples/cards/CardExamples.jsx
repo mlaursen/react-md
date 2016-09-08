@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardTitle, CardActions, CardText } from 'react-md/lib/Cards';
 import Avatar from 'react-md/lib/Avatars';
-import { FlatButton, IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import LoremIpsum from 'components/LoremIpsum';
 
@@ -14,7 +14,7 @@ const CardExamples = () => {
       title="Such nature"
       subtitle="Wow!"
     >
-      <IconButton className="margin-left-auto">star_outline</IconButton>
+      <Button className="margin-left-auto" icon>star_outline</Button>
     </CardTitle>
   );
   return (
@@ -31,8 +31,8 @@ const CardExamples = () => {
         subtitle="Card Subtitle"
       />
       <CardActions isExpander>
-        <FlatButton label="Action 1" />
-        <FlatButton label="Action 2" />
+        <Button flat label="Action 1" />
+        <Button flat label="Action 2" />
       </CardActions>
       <CardText expandable>
         <LoremIpsum units="paragraphs" count={4} />

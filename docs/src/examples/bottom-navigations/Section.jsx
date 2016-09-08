@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
-import { IconButton, FlatButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { Card, CardTitle, CardMedia } from 'react-md/lib/Cards';
 
 export default class Section extends PureComponent {
@@ -21,7 +21,7 @@ export default class Section extends PureComponent {
 
     let titleChildren;
     if (titleIcon) {
-      titleChildren = <IconButton>{titleIcon}</IconButton>;
+      titleChildren = <Button icon>{titleIcon}</Button>;
     }
 
     const cards = data.map(({ img, ...props }, i) => (
@@ -37,7 +37,7 @@ export default class Section extends PureComponent {
       <section className={classnames('fun-section', className)}>
         <header className="title">
           <h1 className="md-title">{title}</h1>
-          <FlatButton label="More" primary />
+          <Button flat label="More" primary />
         </header>
         <div className={classnames('md-card-list', listClassName)}>
           {cards}

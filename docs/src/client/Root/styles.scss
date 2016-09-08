@@ -249,17 +249,6 @@
   overflow-y: auto;
 }
 
-.doc-component-flat-buttons,
-.doc-component-raised-buttons {
-  .md-card-text .md-btn {
-    @extend %doc-btn;
-  }
-}
-
-.floating-btn-examples .md-btn {
-  @extend %doc-btn;
-}
-
 .example-list {
   @include md-box-shadow(1);
 

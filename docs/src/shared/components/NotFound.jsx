@@ -3,8 +3,7 @@ import { withRouter } from 'react-router';
 
 import './_not-found.scss';
 import { Card, CardTitle, CardMedia, CardActions } from 'react-md/lib/Cards';
-import { FlatButton } from 'react-md/lib/Buttons';
-import FontIcon from 'react-md/lib/FontIcons';
+import Button from 'react-md/lib/Buttons';
 
 @withRouter
 export default class extends PureComponent {
@@ -32,9 +31,7 @@ export default class extends PureComponent {
             <img src="https://unsplash.it/600/337?image=957" role="presentation" />
           </CardMedia>
           <CardActions>
-            <FlatButton primary label="Navigate to Home page" onClick={this._navigateHome}>
-              <FontIcon>home</FontIcon>
-            </FlatButton>
+            <Button primary label="Navigate to Home page" onClick={this._navigateHome} flat>home</Button>
           </CardActions>
         </Card>
       </main>

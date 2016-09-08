@@ -1,4 +1,5 @@
 @import '~sass-utils';
+@import '~react-md-scss';
 
 .component-info {
   width: 100%;
@@ -53,19 +54,19 @@
   }
 
   .prop-type {
-    @extend %md-secondary-text;
+    color: get-color('secondary', false);
 
     padding-right: 1em;
   }
 
   .prop-required::before {
-    color: $md-secondary-text-color;
+    color: get-color('secondary', false);
     content: '(isRequired)';
     padding-left: .5em;
   }
 
   .prop-is-required {
-    @extend %md-secondary-text;
+    color: get-color('secondary', false);
   }
 }
 

@@ -8,7 +8,6 @@ jest.unmock('../CardText');
 jest.unmock('../../Transitions');
 jest.unmock('../../Transitions/Height');
 jest.unmock('../../Buttons');
-jest.unmock('../../Buttons/IconButton');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 

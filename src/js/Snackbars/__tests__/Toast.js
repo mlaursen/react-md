@@ -1,7 +1,5 @@
 /* eslint-env jest*/
 jest.unmock('../Toast');
-jest.unmock('../../Buttons/Button');
-jest.unmock('../../Buttons/FlatButton');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
@@ -12,7 +10,7 @@ import {
 } from 'react-addons-test-utils';
 
 import Toast from '../Toast';
-import FlatButton from '../../Buttons/FlatButton';
+import Button from '../../Buttons';
 
 describe('Toast', () => {
   it('merges className and style', () => {
@@ -50,7 +48,7 @@ describe('Toast', () => {
       <Toast toast={t} dismiss={dismiss} />
     );
 
-    const btn = findRenderedComponentWithType(toast, FlatButton);
+    const btn = findRenderedComponentWithType(toast, Button);
     expect(btn.props.onClick).toBe(dismiss);
     expect(btn.props.label).toBe('Ok');
 

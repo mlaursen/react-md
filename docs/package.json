@@ -77,6 +77,7 @@
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
     "json-loader": "^0.5.4",
+    "loader-utils": "^0.2.15",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "postcss-loader": "^0.9.1",

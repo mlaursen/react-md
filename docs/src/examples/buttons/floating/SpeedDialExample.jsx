@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { SpeedDial } from 'react-md/lib/FABTransitions';
 import { getOffset } from 'react-md/lib/utils';
 
@@ -105,7 +105,8 @@ export default class SpeedDialExample extends PureComponent {
         {(demoActive || moving) &&
           /* fake size of floating button */
           <div style={{ margin: '1em', height: 56 }}>
-            <RaisedButton
+            <Button
+              raised
               onClick={this.endDemo}
               label="End Speed Dial Demo"
               ref="end"

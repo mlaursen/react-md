@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import loremIpsum from 'lorem-ipsum';
 import { setOverflow } from 'react-md/lib/utils';
-import { RaisedButton, IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import Divider from 'react-md/lib/Dividers';
 import { List, ListItem } from 'react-md/lib/Lists';
 import Sidebar from 'react-md/lib/Sidebars';
@@ -62,8 +62,8 @@ export default class SidebarExample extends PureComponent {
     });
     return (
       <div className="sidebar-fixed-example">
-        <RaisedButton label="Toggled Fixed Sidebar Left" onClick={this._toggleOpenLeft} />
-        <RaisedButton label="Toggled Fixed Sidebar Right" onClick={this._toggleOpenRight} />
+        <Button raised label="Toggled Fixed Sidebar Left" onClick={this._toggleOpenLeft} />
+        <Button raised label="Toggled Fixed Sidebar Right" onClick={this._toggleOpenRight} />
         <Sidebar
           {...this.state}
           fixed
@@ -72,7 +72,7 @@ export default class SidebarExample extends PureComponent {
           onOverlayClick={this._close}
           header={(
             <Toolbar
-              actionLeft={<IconButton onClick={this._close}>arrow_back</IconButton>}
+              actionLeft={<Button icon onClick={this._close}>arrow_back</Button>}
               title="Wow!"
             />
           )}

@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 
 /**
  * The `PanelControls` component is used for rendering the two buttons
@@ -38,14 +38,16 @@ export default class PanelControls extends PureComponent {
 
     return (
       <div className={cn('md-panel-controls', className)}>
-        <FlatButton
+        <Button
+          flat
           type={cancelType}
           label={cancelLabel}
           onClick={onCancel}
           primary={cancelPrimary}
           secondary={cancelSecondary}
         />
-        <FlatButton
+        <Button
+          flat
           type={saveType}
           label={saveLabel}
           onClick={onSave}

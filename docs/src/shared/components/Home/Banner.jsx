@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { withRouter } from 'react-router';
 import logo from '../../imgs/logo.png';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
+import Button from 'react-md/lib/Buttons';
 
 @withRouter
 export default class Banner extends PureComponent {
@@ -18,7 +18,7 @@ export default class Banner extends PureComponent {
       <section className="banner">
         <h1 className="md-display-2">react-md</h1>
         <img src={logo} alt="react-md logo" className="logo" />
-        <RaisedButton onClick={this._viewDemo} label="View Demo" secondary />
+        <Button raised onClick={this._viewDemo} label="View Demo" secondary />
       </section>
     );
   }

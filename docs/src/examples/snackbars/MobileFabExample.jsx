@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
 import loremIpsum from 'lorem-ipsum';
 import Snackbar from 'react-md/lib/Snackbars';
-import { FloatingButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import PhoneSize from 'components/PhoneSize';
 
@@ -45,7 +45,7 @@ export default class MobileFabExample extends PureComponent {
           When you include a reference to a FAB, it will be moved when a
           toast is created.
         </p>
-        <FloatingButton ref="fab" fixed secondary onClick={this._addToast}>add</FloatingButton>
+        <Button floating ref="fab" fixed secondary onClick={this._addToast}>add</Button>
         <Snackbar toasts={toasts} dismiss={this._dismiss} fab={fab} />
       </PhoneSize>
     );

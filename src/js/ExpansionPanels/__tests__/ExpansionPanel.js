@@ -11,7 +11,7 @@ import {
 } from 'react-addons-test-utils';
 
 import ExpansionPanel from '../ExpansionPanel';
-import AccessibleFakeButton from '../../Buttons/AccessibleFakeButton';
+import AccessibleFakeButton from '../../Helpers/AccessibleFakeButton';
 import Height from '../../Transitions/Height';
 
 describe('ExpansionPanel', () => {

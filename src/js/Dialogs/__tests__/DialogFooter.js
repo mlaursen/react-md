@@ -9,7 +9,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DialogFooter from '../DialogFooter';
-import FlatButton from '../../Buttons/FlatButton';
+import Button from '../../Buttons';
 
 describe('DialogFooter', () => {
   it('renders an actions object prop as a flat button', () => {
@@ -22,7 +22,7 @@ describe('DialogFooter', () => {
       <DialogFooter actions={actions} />
     );
 
-    const buttons = scryRenderedComponentsWithType(footer, FlatButton);
+    const buttons = scryRenderedComponentsWithType(footer, Button);
     expect(buttons.length).toBe(1);
   });
 
@@ -49,7 +49,7 @@ describe('DialogFooter', () => {
       <DialogFooter actions={actions} />
     );
 
-    const buttons = scryRenderedComponentsWithType(footer, FlatButton);
+    const buttons = scryRenderedComponentsWithType(footer, Button);
     expect(buttons.length).toBe(2);
   });
 
@@ -79,7 +79,7 @@ describe('DialogFooter', () => {
       <DialogFooter actions={actions} />
     );
 
-    const flats = scryRenderedComponentsWithType(footer, FlatButton);
+    const flats = scryRenderedComponentsWithType(footer, Button);
     const buttons = scryRenderedDOMComponentsWithTag(footer, 'button');
     expect(flats.length).toBe(1);
     expect(buttons.length).toBe(1);

@@ -20,11 +20,6 @@
 
   .md-primary {
     @include md-theme-toolbars($primary, $md-white-base);
-    @include md-theme-buttons($primary);
     @include md-theme-tabs($primary, $secondary);
-  }
-
-  .md-secondary {
-    @include md-theme-buttons($secondary);
   }
 }

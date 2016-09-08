@@ -10,7 +10,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DrawerToolbar from '../DrawerToolbar';
-import { IconButton } from '../../Buttons';
+import Button from '../../Buttons';
 
 describe('DrawerToolbar', () => {
   it('merges className and style', () => {
@@ -61,7 +61,7 @@ describe('DrawerToolbar', () => {
       openDrawer: jest.fn(),
     };
     let toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    let btns = scryRenderedComponentsWithType(toolbar, IconButton);
+    let btns = scryRenderedComponentsWithType(toolbar, Button);
 
     expect(btns.length).toBe(0);
 
@@ -71,7 +71,7 @@ describe('DrawerToolbar', () => {
       temporary: true,
     });
     toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, IconButton);
+    btns = scryRenderedComponentsWithType(toolbar, Button);
 
     expect(btns.length).toBe(1);
 
@@ -83,7 +83,7 @@ describe('DrawerToolbar', () => {
       isOpen: false,
     });
     toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, IconButton);
+    btns = scryRenderedComponentsWithType(toolbar, Button);
 
     expect(btns.length).toBe(1);
 
@@ -92,7 +92,7 @@ describe('DrawerToolbar', () => {
       isOpen: true,
     });
     toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, IconButton);
+    btns = scryRenderedComponentsWithType(toolbar, Button);
 
     expect(btns.length).toBe(0);
   });

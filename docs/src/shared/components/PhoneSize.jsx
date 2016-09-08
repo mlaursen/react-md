@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Paper from 'react-md/lib/Papers';
 import Toolbar from 'react-md/lib/Toolbars';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 export default class PhoneSize extends PureComponent {
   static propTypes = {
@@ -48,7 +48,7 @@ export default class PhoneSize extends PureComponent {
         <Toolbar
           primary={primary}
           title={title}
-          actionLeft={<IconButton>{iconLeft}</IconButton>}
+          actionLeft={<Button icon>{iconLeft}</Button>}
           actionsRight={actionsRight}
         />
         {content}

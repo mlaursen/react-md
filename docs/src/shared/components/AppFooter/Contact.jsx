@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
-import FlatButton from 'react-md/lib/Buttons/FlatButton';
+import Button from 'react-md/lib/Buttons';
 
 export default class Contact extends PureComponent {
   render() {
     return (
       <div className="contact">
         <h4 className="md-title">Contact</h4>
-        <FlatButton primary label="Mikkel Laursen" href="mailto:mlaursen03@gmail.com" type={null}>
+        <Button primary label="Mikkel Laursen" href="mailto:mlaursen03@gmail.com" flat>
           <FontIcon>mail</FontIcon>
-        </FlatButton>
+        </Button>
       </div>
     );
   }

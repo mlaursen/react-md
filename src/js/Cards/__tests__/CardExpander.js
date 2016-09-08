@@ -3,7 +3,6 @@ jest.unmock('../CardExpander');
 jest.unmock('../Card');
 jest.unmock('../CardActions');
 jest.unmock('../../Buttons');
-jest.unmock('../../Buttons/IconButton');
 jest.unmock('../../FontIcons');
 jest.unmock('../../FontIcons/FontIcon');
 

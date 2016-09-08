@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 
 /**
  * The `CardActionOverlay` component is a simple wrapper for generating an overlay
@@ -40,7 +40,7 @@ export default class CardActionOverlay extends PureComponent {
       <span>
         <CardTitle {...titleProps} />
         <CardActions>
-          {actions.map((actionProps, i) => <FlatButton key={i} {...actionProps} />)}
+          {actions.map((actionProps, i) => <Button flat key={i} {...actionProps} />)}
         </CardActions>
       </span>
     );

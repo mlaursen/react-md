@@ -85,10 +85,8 @@ const components = {
   nestedItems: [
     'autocompletes',
     'avatars',
-    'bottom-navigations', {
-      path: 'buttons',
-      nestedItems: ['flat', 'raised', 'floating', 'icon'],
-    },
+    'bottom-navigations',
+    'buttons',
     'cards',
     'chips',
     'data-tables',

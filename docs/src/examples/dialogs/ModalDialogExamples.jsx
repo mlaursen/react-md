@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import './_speed-boost.scss';
 
@@ -23,7 +23,7 @@ export default class ModalDialogExamples extends PureComponent {
     const { isOpen } = this.state;
     return (
       <div>
-        <RaisedButton onClick={this.openDialog} label="Open Modal Dialog" />
+        <Button raised onClick={this.openDialog} label="Open Modal Dialog" />
         <Dialog
           isOpen={isOpen}
           dialogClassName="speed-boost"

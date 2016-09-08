@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
-import FlatButton from 'react-md/lib/Buttons/FlatButton';
+import Button from 'react-md/lib/Buttons';
 
 import { GITHUB_LINK } from 'constants';
 
@@ -13,9 +13,9 @@ export default class Contribute extends PureComponent {
           This project is currently developed by a single person. Feel free
           to contribute!
         </p>
-        <FlatButton secondary label="Github" href={GITHUB_LINK} type={null}>
+        <Button flat secondary label="Github" href={GITHUB_LINK}>
           <FontIcon iconClassName="fa fa-github" />
-        </FlatButton>
+        </Button>
       </div>
     );
   }

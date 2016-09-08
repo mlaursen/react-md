@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 import CardText from 'react-md/lib/Cards/CardText';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
+import Button from 'react-md/lib/Buttons';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import { FOOD_DATA_URL } from 'constants';
 
@@ -36,7 +36,7 @@ export default class PaginationLoader extends PureComponent {
             on <a href="http://catalog.data.gov/dataset">data.gov</a>. Click the load
             button to see an example of pagination.
           </p>
-          <RaisedButton primary label="Load Data" onClick={onLoad} />
+          <Button raised primary label="Load Data" onClick={onLoad} />
         </CardText>
       );
     } else {

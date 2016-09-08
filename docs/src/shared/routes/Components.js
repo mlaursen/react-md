@@ -8,6 +8,11 @@ export default {
     },
   },
   childRoutes: [{
+    path: 'buttons/*',
+    onEnter(state, replace) {
+      replace('/components/buttons');
+    },
+  }, {
     path: ':component',
     getComponent(state, cb) {
       if (__CLIENT__) {

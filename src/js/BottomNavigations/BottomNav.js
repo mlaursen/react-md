@@ -73,11 +73,6 @@ class BottomNav extends PureComponent {
     fixed: PropTypes.bool.isRequired,
 
     /**
-     * Ink injected from `injectInk`.
-     */
-    ink: PropTypes.node,
-
-    /**
      * The component to render as.
      */
     component: PropTypes.oneOfType([
@@ -114,7 +109,6 @@ class BottomNav extends PureComponent {
       colored,
       active,
       fixed,
-      ink,
       component,
       ...props,
     } = this.props;
@@ -145,7 +139,6 @@ class BottomNav extends PureComponent {
         {...props}
         onClick={this._handleClick}
       >
-        {ink}
         <FontIcon key="icon" iconClassName={iconClassName}>{iconChildren}</FontIcon>
         {displayLabel}
       </CSSTransitionGroup>

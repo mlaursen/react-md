@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import FileInput from 'react-md/lib/FileInputs';
 import SelectField from 'react-md/lib/SelectFields';
 import TextField from 'react-md/lib/TextFields';
@@ -110,7 +110,8 @@ export default class FileConverterExample extends PureComponent {
           <i className="md-body-1">
             Note: Converted file will be in the same folder as the input file.
           </i>
-          <RaisedButton
+          <Button
+            raised
             secondary
             type="submit"
             label="Submit"

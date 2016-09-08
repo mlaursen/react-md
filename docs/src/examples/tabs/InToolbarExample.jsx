@@ -1,7 +1,7 @@
 import React from 'react';
 import { Tabs, Tab } from 'react-md/lib/Tabs';
 import Toolbar from 'react-md/lib/Toolbars';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import Paper from 'react-md/lib/Papers';
 import FontIcon from 'react-md/lib/FontIcons';
 
@@ -12,8 +12,8 @@ const InToolbarExample = () => (
     <Toolbar
       primary
       title="Page Title"
-      actionLeft={<IconButton>menu</IconButton>}
-      actionsRight={<IconButton className="md-toolbar-item margin-left-auto">search</IconButton>}
+      actionLeft={<Button icon>menu</Button>}
+      actionsRight={<Button icon className="md-toolbar-item margin-left-auto">search</Button>}
     >
       <Tabs primary fixedWidth>
         <Tab label="Recents" icon={<FontIcon>phone</FontIcon>}>

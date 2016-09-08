@@ -1,9 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
-import cn from 'classnames';
 
 import FontIcon from '../FontIcons';
-import injectInk from '../Inks';
 import injectTooltip from '../Tooltips';
+import Button from './Button';
+import deprecated from './_deprecated';
 
 /**
  * The `IconButton` component automatically includes ink and a tooltip.
@@ -48,6 +48,9 @@ class IconButton extends PureComponent {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
+    /**
+     * Boolean if the IconButton is floating
+    floating: PropTypes.bool,
 
     /**
      * An optional label to use if you would like a tooltip to display
@@ -66,11 +69,11 @@ class IconButton extends PureComponent {
      */
     tooltipDelay: PropTypes.number,
 
-    // Injected from injectInk
-    ink: PropTypes.node,
-
     // Inject from injectTooltip
     tooltip: PropTypes.node,
+    floating: PropTypes.bool,
+
+    _deprecated: deprecated('icon'),
   };
 
   static defaultProps = {
@@ -81,36 +84,20 @@ class IconButton extends PureComponent {
     const {
       iconClassName,
       children,
-      className,
-      href,
-      type,
       tooltip,
-      disabled,
-      ink,
+      floating,
       ...props,
     } = this.props;
     delete props.tooltipLabel;
     delete props.tooltipPosition;
 
-    const btnProps = {
-      ...props,
-      disabled,
-      className: cn('md-btn md-icon-btn', className),
-    };
-
-    if (href) {
-      btnProps.href = href;
-    } else {
-      btnProps.type = type;
-    }
-
-    let displayedChildren = children;
-    if (!(children && children.type && children.type === FontIcon)) {
-      displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
-    }
-
-    return React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren, tooltip]);
+    return (
+      <Button {...props} icon={!floating} floating={floating}>
+        {tooltip}
+        <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
+      </Button>
+    );
   }
 }
 
-export default injectTooltip(injectInk(IconButton));
+export default injectTooltip(IconButton);

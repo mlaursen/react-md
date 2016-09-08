@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { LinearProgress } from 'react-md/lib/Progress';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import LoremIpsum from 'components/LoremIpsum';
 
@@ -36,7 +36,7 @@ export default class IndeterminateExample extends PureComponent {
   render() {
     return (
       <div>
-        <RaisedButton label="Refresh Lorem Ipsum" onClick={this.refreshLoremIpsum} />
+        <Button raised label="Refresh Lorem Ipsum" onClick={this.refreshLoremIpsum} />
         <h3 className="md-title" style={{ marginTop: '2em' }}>Some Amazing Content</h3>
         <CSSTransitionGroup
           component="div"

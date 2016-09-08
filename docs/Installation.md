@@ -33,7 +33,7 @@ import WebFontLoader from 'webfontloader';
 
 import 'index.scss';
 import { Card, CardTitle, CardText, CardActions } from 'react-md/lib/Cards';
-import { FlatButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 WebFontLoader.load({
   google: {
@@ -51,8 +51,8 @@ class App extends Component {
             Lorem ipsum... pretend more ...
           </CardText>
           <CardActions>
-            <FlatButton label="Action 1" />
-            <FlatButton label="Action 2" />
+            <Button flat label="Action 1" />
+            <Button flat label="Action 2" />
           </CardActions>
         </Card>
       </div>

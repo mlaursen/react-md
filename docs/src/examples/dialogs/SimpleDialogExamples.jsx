@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { List, ListItem } from 'react-md/lib/Lists';
 
 export default class SimpleDialogExamples extends PureComponent {
@@ -38,7 +38,7 @@ export default class SimpleDialogExamples extends PureComponent {
     ));
     return (
       <div>
-        <RaisedButton label="Open Simple Dialog" onClick={this.openDialog} />
+        <Button raised label="Open Simple Dialog" onClick={this.openDialog} />
         <Dialog
           isOpen={isOpen}
           title="Simple Title"

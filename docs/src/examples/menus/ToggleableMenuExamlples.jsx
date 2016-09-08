@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Menu from 'react-md/lib/Menus';
-import { RaisedButton, IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { ListItem } from 'react-md/lib/Lists';
 
 const kebabMenu = 'more_vert';
@@ -34,7 +34,8 @@ export default class ToggleableMenuExamlples extends PureComponent {
         <Menu
           isOpen={this.state.open}
           toggle={(
-            <RaisedButton
+            <Button
+              raised
               onClick={this.toggle}
               label="Toggle open a menu"
             />
@@ -50,7 +51,7 @@ export default class ToggleableMenuExamlples extends PureComponent {
         <Menu
           isOpen={this.state.open2}
           toggle={(
-            <IconButton onClick={this.toggle2} tooltipLabel="More options">{kebabMenu}</IconButton>
+            <Button icon onClick={this.toggle2} tooltipLabel="More options">{kebabMenu}</Button>
           )}
           close={this.close2}
         >

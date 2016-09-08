@@ -1,12 +1,11 @@
 import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
 import BottomNavigation from './BottomNavigations';
-import {
+import Button, {
   FlatButton,
   FloatingButton,
   IconButton,
   RaisedButton,
-  AccessibleFakeButton,
 } from './Buttons';
 import {
   Card,
@@ -31,8 +30,10 @@ import Divider from './Dividers';
 import { SpeedDial } from './FABTransitions';
 import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
-import Ink from './Inks';
+import injectInk from './Inks';
 import { List, ListItem } from './Lists';
+import AccessibleFakeButton from './Helpers/AccessibleFakeButton';
+import IconSeparator from './Helpers/IconSeparator';
 import Menu from './Menus';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
@@ -47,11 +48,12 @@ import Subheader from './Subheaders';
 import { Tab, Tabs } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
-import Tooltip from './Tooltips';
+import injectTooltip from './Tooltips';
 
 export { AccessibleFakeButton };
 export { Autocomplete };
 export { Avatar };
+export { Button };
 export { BottomNavigation };
 export { Card };
 export { CardActions };
@@ -74,7 +76,8 @@ export { FileInput };
 export { FileUpload };
 export { FontIcon };
 export { IconButton };
-export { Ink };
+export { injectInk };
+export { IconSeparator };
 export { LinearProgress };
 export { List };
 export { ListItem };
@@ -99,12 +102,13 @@ export { Tabs };
 export { TextField };
 export { TimePicker };
 export { Toolbar };
-export { Tooltip };
+export { injectTooltip };
 
 export default {
   Autocomplete,
   Avatar,
   BottomNavigation,
+  Button,
   AccessibleFakeButton,
   FlatButton,
   RaisedButton,
@@ -122,6 +126,7 @@ export default {
   EditDialogColumn,
   List,
   ListItem,
+  IconSeparator,
   CircularProgress,
   LinearProgress,
   Checkbox,
@@ -138,7 +143,7 @@ export default {
   FontIcon,
   Menu,
   NavigationDrawer,
-  Ink,
+  injectInk,
   Paper,
   SelectField,
   Slider,
@@ -153,5 +158,5 @@ export default {
   TextField,
   TimePicker,
   Toolbar,
-  Tooltip,
+  injectTooltip,
 };

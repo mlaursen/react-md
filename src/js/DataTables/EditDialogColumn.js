@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 import TableColumn from './TableColumn';
 import TextField from '../TextFields';
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
@@ -331,8 +331,9 @@ export default class EditDialogColumn extends PureComponent {
     if (large && active) {
       actions = (
         <footer className="md-dialog-footer">
-          <FlatButton label={cancelLabel} onClick={this._handleCancelClick} primary />
-          <FlatButton
+          <Button flat label={cancelLabel} onClick={this._handleCancelClick} primary />
+          <Button
+            flat
             ref="okButton"
             label={okLabel}
             onClick={this._save}

@@ -47,25 +47,19 @@ class Tab extends PureComponent {
     onChange: PropTypes.func,
 
     /**
-     * Ink that has been injected from the `injectInk` HOC. Do not use.
-     */
-    ink: PropTypes.node.isRequired,
-
-    /**
      * An optional id for the tab.
      */
     id: PropTypes.string,
   };
 
   render() {
-    const { className, icon, label, label2, checked, ink, onChange, id, ...props } = this.props;
+    const { className, icon, label, label2, checked, onChange, id, ...props } = this.props;
 
     return (
       <div
         className={cn('md-tab', className, { 'active': checked })}
         {...props}
       >
-        {ink}
         <label
           className={cn('md-tab-label', {
             'multiline': !!label && !!label2,

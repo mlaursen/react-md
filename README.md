@@ -85,13 +85,11 @@ render(<App />, document.getElementById('app'));
 /* MyAwesomeComponent.jsx */
 
 import React, { Component }  from 'react';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
-// or
-// import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 export default class MyAwesomeComponent extends Component {
   render() {
-		return <RaisedButton label="Hello, World!" />;
+		return <Button raised label="Hello, World!" />;
 	}
 }
 ```
@@ -119,9 +117,9 @@ export default class MyAwesomeComponent extends Component {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.7.7/babel.min.js"></script>
     <script>
 const input = `
-const { RaisedButton } = ReactMD;
+const { Button } = ReactMD;
 const MyAwesomeComponent = () => (
-  <RaisedButton label="Hello, World!" />
+  <Button raised label="Hello, World!" />
 );
 
 React.render(<MyAwesomeComponent />, document.getElementById('app'));`

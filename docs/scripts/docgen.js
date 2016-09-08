@@ -15,10 +15,7 @@ const docgens = {};
   'Autocompletes/Autocomplete',
   'Avatars/Avatar',
   'BottomNavigations/BottomNavigation',
-  'Buttons/FlatButton',
-  'Buttons/FloatingButton',
-  'Buttons/IconButton',
-  'Buttons/RaisedButton',
+  'Buttons/Button',
   'Cards/Card',
   'Cards/CardActionOverlay',
   'Cards/CardActions',
@@ -42,6 +39,8 @@ const docgens = {};
   'FileInputs/FileUpload',
   'FontIcons/FontIcon',
   'Inks/Ink',
+  'Helpers/AccessibleFakeButton',
+  'Helpers/IconSeparator',
   'Lists/List',
   'Lists/ListItem',
   'Lists/ListItemControl',
@@ -75,11 +74,7 @@ const docgens = {};
       return prev + prefix + curr.toLowerCase();
     }, '');
 
-  if (component === 'SpeedDial' || component === 'FloatingButton') {
-    folder = 'buttons/floating';
-  } else if (component.match('Button')) {
-    folder = 'buttons/' + component.replace('Button', '').toLowerCase();
-  } else if (component.match('Picker')) {
+  if (component.match('Picker')) {
     folder = 'pickers/' + component.replace('PickerContainer', '').toLowerCase();
   } else if (folder.match('selection-controls')) {
     folder += '/' + pluralize(component.replace('Group', '').toLowerCase());
@@ -119,6 +114,11 @@ const docgens = {};
     generated.source = `src/js/${sourceFolder}/${file}.js`;
     generated.component = component.replace(/Container/, '');
     generated.methods = generated.methods.filter(method => method.name.charAt(0) !== '_');
+    Object.keys(generated.props).forEach(key => {
+      if (key.charAt(0) === '_') {
+        delete generated.props[key];
+      }
+    });
 
 
     docgens[folder] = docgens[folder] || {

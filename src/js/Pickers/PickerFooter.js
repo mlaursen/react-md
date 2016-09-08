@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons';
 
 /**
  * The `PickerFooter` component is a dialog footer for the `Picker` components.
@@ -31,13 +31,15 @@ export default class PickerFooter extends PureComponent {
 
     return (
       <footer className={cn('md-dialog-footer', className)}>
-        <FlatButton
+        <Button
+          flat
           primary={cancelPrimary}
           secondary={!cancelPrimary}
           label={cancelLabel}
           onClick={onCancelClick}
         />
-        <FlatButton
+        <Button
+          flat
           primary={okPrimary}
           secondary={!okPrimary}
           label={okLabel}

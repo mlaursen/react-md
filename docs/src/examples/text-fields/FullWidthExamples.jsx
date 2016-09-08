@@ -1,7 +1,7 @@
 import React from 'react';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import Chip from 'react-md/lib/Chips';
 
 import './_email.scss';
@@ -18,7 +18,7 @@ I just wanted to check in and see if you had any plans this upcoming weekend. ` 
 const BlockExamples = () => (
   <PhoneSize
     iconLeft="arrow_back"
-    actionsRight={<IconButton className="md-toolbar-item margin-left-auto">send</IconButton>}
+    actionsRight={<Button icon className="md-toolbar-item margin-left-auto">send</Button>}
     contentComponent="form"
   >
     <div className="email-chip-container">

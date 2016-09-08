@@ -1,5 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
-import IconButton from 'react-md/lib/Buttons/IconButton';
+import Button from 'react-md/lib/Buttons';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
@@ -104,7 +104,8 @@ export default class DocgenPropTypes extends PureComponent {
       >
         <CardTitle title={component}>
           {filter}
-          <IconButton
+          <Button
+            icon
             href={`${GITHUB_LINK}/blob/master/${source}`}
             iconClassName="fa fa-github"
             tooltipLabel={`Github source for ${component}`}

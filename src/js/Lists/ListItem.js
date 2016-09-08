@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
-import { IconButton } from '../Buttons';
+import Button from '../Buttons';
 import { Height } from '../Transitions';
 import List from './List';
 import ListTile from './ListTile';
@@ -185,7 +185,8 @@ export default class ListItem extends Component {
       const className = cn('md-list-expander', { 'active': this._isOpen(this.props, this.state) });
       if (!rightIcon) {
         return (
-          <IconButton
+          <Button
+            icon
             key="toggle"
             disabled={disabled}
             onClick={this._toggleNestedItems}

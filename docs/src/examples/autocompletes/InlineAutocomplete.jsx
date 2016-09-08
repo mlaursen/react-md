@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
 import TextField from 'react-md/lib/TextFields';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 import pastries from 'constants/pastries';
 import { addToast } from 'actions/ui';
@@ -86,7 +86,7 @@ export default class InlineAutocomplete extends PureComponent {
             onBlur={this._fixQuantity}
           />
         </div>
-        <RaisedButton label="Order" type="submit" secondary />
+        <Button raised label="Order" type="submit" secondary />
       </form>
     );
   }

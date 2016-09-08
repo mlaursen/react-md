@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind,no-alert */
 import React, { PureComponent } from 'react';
 import Snackbar from 'react-md/lib/Snackbars';
-import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 export default class SnackbarExamples extends PureComponent {
   constructor(props) {
@@ -59,19 +59,23 @@ export default class SnackbarExamples extends PureComponent {
 
     return (
       <div className="btn-group">
-        <RaisedButton
+        <Button
+          raised
           label="Toast Hello, world!"
           onClick={this._addToast.bind(this, 'Hello, World!', null)}
         />
-        <RaisedButton
+        <Button
+          raised
           label="Require action to dismiss"
           onClick={this._addToast.bind(this, 'Something Happend', 'Retry')}
         />
-        <RaisedButton
+        <Button
+          raised
           label="Mutliple Line Toast"
           onClick={this._addToast.bind(this, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non metus finibus, ultrices odio eget.', 'Ok')}
         />
-        <RaisedButton
+        <Button
+          raised
           label="Chained Toasts"
           onClick={this._addToasts}
         />

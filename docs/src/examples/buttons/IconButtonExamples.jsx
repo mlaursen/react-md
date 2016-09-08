@@ -1,29 +1,31 @@
 import React from 'react';
-import { IconButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 import { GITHUB_LINK } from 'constants';
 
 const IconButtonExamples = () => (
-  <div>
+  <div className="btn-example">
     <p>
       Icon buttons can not be unstyled or styled with the primary/secondary color.
       However, they can use any font-icon library just like any other <code>FontIcon</code>
     </p>
-    <IconButton>favorite</IconButton>
-    <IconButton iconClassName="fa fa-star-o" />
+    <Button icon primary>favorite</Button>
+    <Button icon secondary iconClassName="fa fa-star-o" />
+    <Button icon>aspect_ratio</Button>
 
     <p>
       When an icon button is disabled, any styling will be overridden and they
       will not be clickable.
     </p>
-    <IconButton disabled>favorite</IconButton>
-    <IconButton disabled>accessible</IconButton>
+    <Button icon disabled>favorite</Button>
+    <Button icon disabled>accessible</Button>
 
     <p>
-      An <code>IconButton</code> can be rendered as a link. Tooltips
+      An <code>Button</code> can be rendered as a link. Tooltips
       are also built in. They will appear on hover or touch hold.
     </p>
-    <IconButton href={GITHUB_LINK} iconClassName="fa fa-github" />
-    <IconButton
+    <Button icon href={GITHUB_LINK} iconClassName="fa fa-github" />
+    <Button
+      icon
       tooltipLabel="Click to favorite something imaginary"
       children="favorite"
     />

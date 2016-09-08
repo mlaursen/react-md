@@ -1,4 +1,4 @@
-@import '~sass-utils';
+@import '~react-md-scss';
 
 %monospace {
   font-family: 'Source Code Pro', monospace;
@@ -48,42 +48,68 @@ pre {
   }
 
   .hljs-comment {
-    color: $md-text-color;
+    color: get-color('text', true);
   }
 
 }
 
 blockquote {
-  border-left: 4px solid $md-border-color;
+  border-left: 4px solid get-color('divider', true);
   margin-left: 0;
   padding-left: 1.5em;
 
   p {
-    @extend %md-secondary-text;
+    color: get-color('secondary', $md-light-theme);
     margin: 0;
-  }
-}
-
-.text-container {
-
-  h1 {
-    @extend %md-display-1;
-  }
-
-  h3 {
-    @extend %md-headline;
-  }
-
-  h4 {
-    @extend %md-title;
-  }
-
-  p {
-    @extend %md-body-1;
   }
 }
 
 .markdown-page {
   background: $md-white-base;
   padding: 2em 0;
+}
+
+// scss-lint:disable IdSelector, NestingDepth
+#table-of-contents,
+#table-of-contents + ul {
+  border-left: 5px solid $md-deep-purple-500;
+  padding-left: 40px;
+}
+
+
+#table-of-contents {
+  margin-bottom: 0;
+  padding-bottom: 14px;
+
+  + ul,
+  + ul ul {
+    list-style: none;
+  }
+
+  + ul {
+    margin-top: 0;
+
+    a {
+      @extend %md-subheading-2;
+
+      color: $md-deep-purple-500;
+      text-decoration: none;
+
+      &:visited {
+        color: $md-deep-purple-400;
+      }
+    }
+  }
+}
+
+@media #{$md-mobile-media} {
+  #table-of-contents + ul a {
+    font-size: $md-subheading-mobile-font-size;
+  }
+}
+
+@media #{$md-desktop-media} {
+  #table-of-contents + ul a {
+    font-size: $md-subheading-desktop-font-size;
+  }
 }

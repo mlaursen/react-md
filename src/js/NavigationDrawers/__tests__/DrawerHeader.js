@@ -9,7 +9,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DrawerHeader from '../DrawerHeader';
-import { IconButton } from '../../Buttons';
+import Button from '../../Buttons';
 
 describe('DrawerHeader', () => {
   it('allows for a className to be passed it', () => {
@@ -48,7 +48,7 @@ describe('DrawerHeader', () => {
     };
 
     const header = renderIntoDocument(<DrawerHeader {...props} />);
-    const btns = scryRenderedComponentsWithType(header, IconButton);
+    const btns = scryRenderedComponentsWithType(header, Button);
     expect(btns.length).toBe(1);
     expect(btns[0].props.children).toBe(props.closeIconChildren);
     expect(btns[0].props.onClick).toBe(props.closeDrawer);

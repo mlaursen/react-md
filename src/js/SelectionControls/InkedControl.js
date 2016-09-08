@@ -9,16 +9,12 @@ class InkedControl extends PureComponent {
     type: PropTypes.string.isRequired,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
-
-    // Injected from injectInk
-    ink: PropTypes.node,
   };
 
   render() {
-    const { children, checked, disabled, type, ink, ...props } = this.props;
+    const { children, checked, disabled, type, ...props } = this.props;
     return (
       <div className={cn(`md-${type}`, { 'active': checked, disabled })} {...props}>
-        {ink}
         {children}
       </div>
     );

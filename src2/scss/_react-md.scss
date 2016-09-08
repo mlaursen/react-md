@@ -1,4 +1,5 @@
 @import 'globals';
+@import 'elevation';
 @import 'typography';
 
 
@@ -7,6 +8,7 @@
 @import 'components/autocompletes';
 @import 'components/avatars';
 @import 'components/inks';
+@import 'components/buttons';
 @import 'components/dividers';
 @import 'components/sliders';
 @import 'components/text-fields';
@@ -28,6 +30,7 @@
 
   @include react-md-icons;
   @include react-md-inks;
+  @include react-md-buttons;
   @include react-md-dividers;
   @include react-md-text-fields;
   @include react-md-autocompletes;
@@ -112,6 +115,7 @@
       @include react-md-theme-icons($light-theme);
       @include react-md-theme-avatars($light-theme);
       @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
+      @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     }
   } @else {
     @include react-md-theme-dividers($light-theme);
@@ -119,6 +123,7 @@
     @include react-md-theme-avatars($light-theme);
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     @include react-md-theme-autocompletes($light-theme);
+    @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
   }
 
 }
