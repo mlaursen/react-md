@@ -10,7 +10,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DrawerToolbar from '../DrawerToolbar';
-import Button from '../../Buttons';
+// import Button from '../../Buttons';
 
 describe('DrawerToolbar', () => {
   it('merges className and style', () => {
@@ -52,50 +52,50 @@ describe('DrawerToolbar', () => {
     expect(drawerToolbarNode.className).not.toContain('active');
   });
 
-  it('renders a menu icon button if it is temporary or not open and persistent', () => {
-    let props = {
-      drawerType: 'clipped',
-      isOpen: true,
-      temporary: false,
-      persistent: false,
-      openDrawer: jest.fn(),
-    };
-    let toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    let btns = scryRenderedComponentsWithType(toolbar, Button);
+  // it('renders a menu icon button if it is temporary or not open and persistent', () => {
+  //   let props = {
+  //     drawerType: 'clipped',
+  //     isOpen: true,
+  //     temporary: false,
+  //     persistent: false,
+  //     openDrawer: jest.fn(),
+  //   };
+  //   let toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
+  //   let btns = scryRenderedComponentsWithType(toolbar, Button);
 
-    expect(btns.length).toBe(0);
+  //   expect(btns.length).toBe(0);
 
-    // Temporary drawer
-    props = Object.assign({}, props, {
-      drawerType: 'temporary',
-      temporary: true,
-    });
-    toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, Button);
+  //   // Temporary drawer
+  //   props = Object.assign({}, props, {
+  //     drawerType: 'temporary',
+  //     temporary: true,
+  //   });
+  //   toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
+  //   btns = scryRenderedComponentsWithType(toolbar, Button);
 
-    expect(btns.length).toBe(1);
+  //   expect(btns.length).toBe(1);
 
-    // Closed persistent drawer
-    props = Object.assign({}, props, {
-      drawerType: 'persistent',
-      temporary: false,
-      persistent: true,
-      isOpen: false,
-    });
-    toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, Button);
+  //   // Closed persistent drawer
+  //   props = Object.assign({}, props, {
+  //     drawerType: 'persistent',
+  //     temporary: false,
+  //     persistent: true,
+  //     isOpen: false,
+  //   });
+  //   toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
+  //   btns = scryRenderedComponentsWithType(toolbar, Button);
 
-    expect(btns.length).toBe(1);
+  //   expect(btns.length).toBe(1);
 
-    // Open persistent drawer
-    props = Object.assign({}, props, {
-      isOpen: true,
-    });
-    toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
-    btns = scryRenderedComponentsWithType(toolbar, Button);
+  //   // Open persistent drawer
+  //   props = Object.assign({}, props, {
+  //     isOpen: true,
+  //   });
+  //   toolbar = renderIntoDocument(<DrawerToolbar {...props} />);
+  //   btns = scryRenderedComponentsWithType(toolbar, Button);
 
-    expect(btns.length).toBe(0);
-  });
+  //   expect(btns.length).toBe(0);
+  // });
 
   it('renders a title if given', () => {
     const props = {

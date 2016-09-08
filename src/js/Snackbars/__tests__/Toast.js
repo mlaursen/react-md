@@ -4,13 +4,13 @@ jest.unmock('../Toast');
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
-  Simulate,
+  // Simulate,
   renderIntoDocument,
-  findRenderedComponentWithType,
+  // findRenderedComponentWithType,
 } from 'react-addons-test-utils';
 
 import Toast from '../Toast';
-import Button from '../../Buttons';
+// import Button from '../../Buttons';
 
 describe('Toast', () => {
   it('merges className and style', () => {
@@ -37,22 +37,22 @@ describe('Toast', () => {
     expect(toastNode.textContent).toBe('Toast');
   });
 
-  it('automatically dismisses a toast that has an action of a string', () => {
-    const dismiss = jest.fn();
-    const t = {
-      text: 'Toast',
-      action: 'Ok',
-    };
+  // it('automatically dismisses a toast that has an action of a string', () => {
+  //   const dismiss = jest.fn();
+  //   const t = {
+  //     text: 'Toast',
+  //     action: 'Ok',
+  //   };
 
-    const toast = renderIntoDocument(
-      <Toast toast={t} dismiss={dismiss} />
-    );
+  //   const toast = renderIntoDocument(
+  //     <Toast toast={t} dismiss={dismiss} />
+  //   );
 
-    const btn = findRenderedComponentWithType(toast, Button);
-    expect(btn.props.onClick).toBe(dismiss);
-    expect(btn.props.label).toBe('Ok');
+  //   const btn = findRenderedComponentWithType(toast, Button);
+  //   expect(btn.props.onClick).toBe(dismiss);
+  //   expect(btn.props.label).toBe('Ok');
 
-    Simulate.click(findDOMNode(btn));
-    expect(dismiss.mock.calls.length).toBe(1);
-  });
+  //   Simulate.click(findDOMNode(btn));
+  //   expect(dismiss.mock.calls.length).toBe(1);
+  // });
 });

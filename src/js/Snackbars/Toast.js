@@ -31,7 +31,6 @@ export default class Toast extends PureComponent {
       };
     }
 
-    console.log('Button:', Button);
     return (
       <section
         {...props}
