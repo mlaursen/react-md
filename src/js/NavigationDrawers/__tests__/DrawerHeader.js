@@ -9,7 +9,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DrawerHeader from '../DrawerHeader';
-import Button from '../../Buttons';
+// import Button from '../../Buttons';
 
 describe('DrawerHeader', () => {
   it('allows for a className to be passed it', () => {
@@ -39,18 +39,18 @@ describe('DrawerHeader', () => {
     expect(headerNode.textContent).toBe(props.title);
   });
 
-  it('renders a close button when persistent', () => {
-    const props = {
-      closeDrawer: jest.fn(),
-      closeIconChildren: 'close',
-      persistent: true,
-      temporary: false,
-    };
+  // it('renders a close button when persistent', () => {
+  //   const props = {
+  //     closeDrawer: jest.fn(),
+  //     closeIconChildren: 'close',
+  //     persistent: true,
+  //     temporary: false,
+  //   };
 
-    const header = renderIntoDocument(<DrawerHeader {...props} />);
-    const btns = scryRenderedComponentsWithType(header, Button);
-    expect(btns.length).toBe(1);
-    expect(btns[0].props.children).toBe(props.closeIconChildren);
-    expect(btns[0].props.onClick).toBe(props.closeDrawer);
-  });
+  //   const header = renderIntoDocument(<DrawerHeader {...props} />);
+  //   const btns = scryRenderedComponentsWithType(header, Button);
+  //   expect(btns.length).toBe(1);
+  //   expect(btns[0].props.children).toBe(props.closeIconChildren);
+  //   expect(btns[0].props.onClick).toBe(props.closeDrawer);
+  // });
 });

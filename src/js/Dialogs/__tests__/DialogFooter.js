@@ -4,27 +4,27 @@ jest.unmock('../DialogFooter');
 import React from 'react';
 import {
   renderIntoDocument,
-  scryRenderedComponentsWithType,
+    // scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
 import DialogFooter from '../DialogFooter';
-import Button from '../../Buttons';
+// import Button from '../../Buttons';
 
 describe('DialogFooter', () => {
-  it('renders an actions object prop as a flat button', () => {
-    const actions = {
-      onClick: jest.fn(),
-      label: 'Test',
-    };
+  // it('renders an actions object prop as a flat button', () => {
+  //   const actions = {
+  //     onClick: jest.fn(),
+  //     label: 'Test',
+  //   };
 
-    const footer = renderIntoDocument(
-      <DialogFooter actions={actions} />
-    );
+  //   const footer = renderIntoDocument(
+  //     <DialogFooter actions={actions} />
+  //   );
 
-    const buttons = scryRenderedComponentsWithType(footer, Button);
-    expect(buttons.length).toBe(1);
-  });
+  //   const buttons = scryRenderedComponentsWithType(footer, Button);
+  //   expect(buttons.length).toBe(1);
+  // });
 
   it('renders an actions element in the footer', () => {
     const actions = <button>Hello</button>;
@@ -36,22 +36,22 @@ describe('DialogFooter', () => {
     expect(buttons.length).toBe(1);
   });
 
-  it('renders a list of action objects as flat buttons', () => {
-    const actions = [{
-      onClick: jest.fn(),
-      label: 'Test 1',
-    }, {
-      onClick: jest.fn(),
-      label: 'Test 2',
-    }];
+  // it('renders a list of action objects as flat buttons', () => {
+  //   const actions = [{
+  //     onClick: jest.fn(),
+  //     label: 'Test 1',
+  //   }, {
+  //     onClick: jest.fn(),
+  //     label: 'Test 2',
+  //   }];
 
-    const footer = renderIntoDocument(
-      <DialogFooter actions={actions} />
-    );
+  //   const footer = renderIntoDocument(
+  //     <DialogFooter actions={actions} />
+  //   );
 
-    const buttons = scryRenderedComponentsWithType(footer, Button);
-    expect(buttons.length).toBe(2);
-  });
+  //   const buttons = scryRenderedComponentsWithType(footer, Button);
+  //   expect(buttons.length).toBe(2);
+  // });
 
   it('renders a list of elements in the footer', () => {
     const actions = [
@@ -67,21 +67,21 @@ describe('DialogFooter', () => {
     expect(buttons.length).toBe(2);
   });
 
-  it('renders a mixed list of action objects and valid elements', () => {
-    const actions = [{
-      onClick: jest.fn(),
-      label: 'Test 1',
-    },
-      <button key={2}>Test 2</button>,
-    ];
+  // it('renders a mixed list of action objects and valid elements', () => {
+  //   const actions = [{
+  //     onClick: jest.fn(),
+  //     label: 'Test 1',
+  //   },
+  //     <button key={2}>Test 2</button>,
+  //   ];
 
-    const footer = renderIntoDocument(
-      <DialogFooter actions={actions} />
-    );
+  //   const footer = renderIntoDocument(
+  //     <DialogFooter actions={actions} />
+  //   );
 
-    const flats = scryRenderedComponentsWithType(footer, Button);
-    const buttons = scryRenderedDOMComponentsWithTag(footer, 'button');
-    expect(flats.length).toBe(1);
-    expect(buttons.length).toBe(1);
-  });
+  //   const flats = scryRenderedComponentsWithType(footer, Button);
+  //   const buttons = scryRenderedDOMComponentsWithTag(footer, 'button');
+  //   expect(flats.length).toBe(1);
+  //   expect(buttons.length).toBe(1);
+  // });
 });

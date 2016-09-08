@@ -17,6 +17,8 @@ export default jest.fn(({ label, iconClassName, children, ...props }) => {
   delete props.tooltipLabel;
   delete props.tooltipPosition;
   delete props.tooltipTouchTimeout;
+  delete props.removedOnClick;
+
   return (
     <button {...props}>
       {label}
