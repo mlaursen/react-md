@@ -36,3 +36,4 @@ dist
 
 .jest-cache
 prod-config.json
+docs/src/docgens
