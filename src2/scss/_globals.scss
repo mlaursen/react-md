@@ -31,9 +31,27 @@ $md-light-theme: true !default;
 /// @type Number
 $md-transition-time: .15s !default;
 
-/// The default transition function to use on most animations/transitions.
-/// @type String
-$md-transition-func: cubic-bezier(.23, 1, .32, 1) !default;
+/// The transition function for objects that may return to the screen at any time.
+/// @type Number
+/// @link https://material.google.com/motion/duration-easing.html#duration-easing-common-durations
+$md-transition-sharp: cubix-bezier(.4, 0, .6, 1);
+
+/// The transition function for growing and shrinking material, among other property changes. This
+/// is the most common and applied to every element by default.
+/// @type Number
+/// @link https://material.google.com/motion/duration-easing.html#duration-easing-common-durations
+$md-transition-standard: cubic-bezier(.4, 0, .2, 1);
+
+/// The transition function for objects that enter the screen at full velocity from off-screen
+/// and slowly decelerate to a resting point.
+/// @type Number
+/// @link https://material.google.com/motion/duration-easing.html#duration-easing-common-durations
+$md-transition-acceleration: cubic-bezier(.4, 0, 1, 1);
+
+/// The transition function for objects that leave the screen at full velocity.
+/// @type Number
+/// @link https://material.google.com/motion/duration-easing.html#duration-easing-common-durations
+$md-transition-deceleration: cubic-bezier(0, 0, .2, 1);
 
 /// The default min width for a mobile device.
 /// @type Number
