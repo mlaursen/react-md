@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
 import contextTypes from './contextTypes';
-import IconButton from '../Buttons/IconButton';
+import Button from '../Buttons';
 
 /**
  * The CardExpander component is just a simple `IconButton` that
@@ -26,10 +26,12 @@ export default class CardExpander extends PureComponent {
       iconChildren,
       tooltipPosition,
       tooltipLabel,
+      tooltipDelay,
     } = this.context;
 
     return (
-      <IconButton
+      <Button
+        icon
         className={cn('md-card-expander', {
           'flipped': isExpanded,
         })}
@@ -37,6 +39,7 @@ export default class CardExpander extends PureComponent {
         iconClassName={iconClassName}
         children={iconChildren}
         tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
       />
     );
