@@ -1,4 +1,4 @@
-const childRoutes = ['community', 'contributing'].map(route => ({
+const childRoutes = ['upgrade-guide', 'community', 'contributing'].map(route => ({
   path: route,
   getComponent(nextState, cb) {
     if (__CLIENT__) {
