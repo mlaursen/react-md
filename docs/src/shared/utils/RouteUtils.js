@@ -141,7 +141,7 @@ const routes = [{
 }, {
   path: 'discover-more',
   icon: 'search',
-  nestedItems: ['community', 'contributing'],
+  nestedItems: ['upgrade-guide', 'community', 'contributing'],
 }, components, { divider: true }, {
   subheader: true,
   primaryText: 'References',
