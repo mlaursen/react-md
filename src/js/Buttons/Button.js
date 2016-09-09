@@ -52,8 +52,30 @@ class Button extends PureComponent {
     /**
      * A label to display on a `FlatButton` or a `RaisedButton`. This text can either
      * be placed before or after an optional `FontIcon` using the `iconBefore` prop.
+     * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
+     * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
      */
-    label: PropTypes.string,
+    label: (props, propName, component, ...others) => {
+      if (!props.icon && !props.floating) {
+        let err = PropTypes.string.isRequired(props, propName, component, ...others);
+        if (err) {
+          err = new Error(
+            `The required \`${propName}\` prop was not specified for a \`${props.flat ? 'flat' : 'raised'}\` ` +
+            'Button.'
+          );
+        }
+
+        return err;
+      } else if (PropTypes.string(props, propName, component, ...others)) {
+        return new Error(
+          `The \`${propName}\` prop was given for a \`${props.icon ? 'icon' : 'floating'}\` ` +
+          `Button. The \`${propName}\` prop can only be used on a \`flat\` or \`raised\` ` +
+          'Button.'
+        );
+      }
+
+      return null;
+    },
 
     /**
      * An optional style to apply to the button.
@@ -219,11 +241,6 @@ class Button extends PureComponent {
     floating: PropTypes.bool,
 
     /**
-     * The injected tooltip from `injectTooltip`.
-     */
-    tooltip: PropTypes.node,
-
-    /**
      * An optional label to use for the tooltip. This is normally only used for
      * `IconButton`s or `FloatingButton`s, but can be used on `FlatButton`s and
      * `RaisedButton`s if you wish. Knock yourself out!
@@ -236,11 +253,6 @@ class Button extends PureComponent {
      * An optional delay before the tooltip appears on mouse over.
      */
     tooltipDelay: PropTypes.number,
-
-    /**
-     * The timeout to use for displaying the tooltip when using a touch device.
-     */
-    tooltipTouchTimeout: PropTypes.number,
 
     /**
      * The position for the tooltip.
@@ -428,7 +440,6 @@ class Button extends PureComponent {
       fixed,
       fixedPosition,
       disabled,
-      tooltip,
       component,
       ...props,
     } = this.props;
@@ -486,7 +497,6 @@ class Button extends PureComponent {
           'md-btn--floating-pressed': floating && pressed,
         }, className)}
       >
-        {tooltip}
         {children}
       </Component>
     );
