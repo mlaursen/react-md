@@ -9,22 +9,23 @@ export default class StateChip extends PureComponent {
       name: PropTypes.string.isRequired,
       abbreviation: PropTypes.string.isRequired,
     }).isRequired,
-    onRemove: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
   };
 
-  _remove = () => {
-    this.props.onRemove(this.props.state);
+  _handleRemove = () => {
+    this.props.onClick(this.props.state);
   };
 
   render() {
-    const { name, abbreviation } = this.props.state;
+    const { state: { name, abbreviation }, ...props } = this.props;
     return (
       <Chip
+        {...props}
+        onClick={this._handleRemove}
+        removable
         label={name}
-        remove={this._remove}
-      >
-        <Avatar random>{abbreviation.charAt(0)}</Avatar>
-      </Chip>
+        avatar={<Avatar random>{abbreviation.charAt(0)}</Avatar>}
+      />
     );
   }
 }
