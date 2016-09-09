@@ -12,6 +12,14 @@ import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
 import InputField from './InputField';
 
+/**
+ * The `TextField` component can either be a single line `input` field or a multiline
+ * `textarea` field. `FontIcon`s, messages, and password indicators can also be added
+ * to this field.
+ *
+ * The optional mouse and touch events will be added to the entire container while the
+ * text specific events will be added to the `input` or `textarea` tags.
+ */
 export default class TextField extends PureComponent {
   static propTypes = {
     /**
@@ -122,9 +130,63 @@ export default class TextField extends PureComponent {
     ]).isRequired,
 
     /**
-     * An optional function to call when the text field is clicked.
+     * An optional function to call when the text field's container triggers the `click` event.
      */
     onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `doubleclick`
+     * event.
+     */
+    onDoubleClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `touchstart`
+     * event.
+     */
+    onTouchStart: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `touchmove`
+     * event.
+     */
+    onTouchMove: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `touchcancel`
+     * event.
+     */
+    onTouchCancel: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `touchend`
+     * event.
+     */
+    onTouchEnd: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `mousedown`
+     * event.
+     */
+    onMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `mouseup`
+     * event.
+     */
+    onMouseUp: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `mouseover`
+     * event.
+     */
+    onMouseOver: PropTypes.func,
+
+    /**
+     * An optional function to call when the text field's container triggers the `mouseleave`
+     * event.
+     */
+    onMouseLeave: PropTypes.func,
 
     /**
      * An optional onChange function to call. If the `value` prop is true, this is
@@ -132,6 +194,10 @@ export default class TextField extends PureComponent {
      *
      * When the value changes in the text field, this will be called with the new text
      * field's value and the change event.
+     *
+     * ```js
+     * onChange(e.target.value, e);
+     * ```
      */
     onChange: PropTypes.func,
 
@@ -139,11 +205,6 @@ export default class TextField extends PureComponent {
      * An optional function to call when the text field is focused.
      */
     onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field is blurred.
-     */
-    onBlur: PropTypes.func,
 
     /**
      * An optional function to call when the text field has the `keydown` event.
@@ -449,7 +510,11 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _handleContainerClick() {
+  _handleContainerClick(e) {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
+
     if (!this.props.disabled) {
       this.focus();
     }
@@ -591,6 +656,15 @@ export default class TextField extends PureComponent {
       passwordIconClassName,
       lineDirection,
       paddedBlock,
+      onDoubleClick,
+      onTouchStart,
+      onTouchMove,
+      onTouchCancel,
+      onTouchEnd,
+      onMouseDown,
+      onMouseUp,
+      onMouseOver,
+      onMouseLeave,
       ...props,
     } = this.props;
     delete props.label;
@@ -600,6 +674,10 @@ export default class TextField extends PureComponent {
     delete props.leftIcon;
     delete props.rightIcon;
     delete props.adjustMinWidth;
+    delete props.onClick;
+    delete props.onChange;
+    delete props.onKeyDown;
+    delete props.onFocus;
 
     let {
       label,
@@ -754,6 +832,15 @@ export default class TextField extends PureComponent {
           'md-text-field-container--padded-block': block && paddedBlock,
         }, className)}
         onClick={this._handleContainerClick}
+        onDoubleClick={onDoubleClick}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchCancel}
+        onTouchMove={onTouchMove}
       >
         {children}
       </div>
