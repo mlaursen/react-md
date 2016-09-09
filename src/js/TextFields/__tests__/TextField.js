@@ -4,6 +4,7 @@ jest.unmock('../TextField');
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
+  Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
@@ -95,37 +96,139 @@ describe('TextField', () => {
     expect(className).toContain('md-divider--text-field-error');
   });
 
-  it('passes all event listeners to the InputField component', () => {
+  it('passes the mouse and touch events to the TextField container', () => {
     const onClick = jest.fn();
-    const onInput = jest.fn();
+    const onDoubleClick = jest.fn();
+    const onMouseOver = jest.fn();
     const onMouseDown = jest.fn();
     const onMouseUp = jest.fn();
+    const onMouseLeave = jest.fn();
     const onTouchStart = jest.fn();
-    const onTouchEnd = jest.fn();
+    const onTouchMove = jest.fn();
     const onTouchCancel = jest.fn();
-    const onKeyUp = jest.fn();
-
+    const onTouchEnd = jest.fn();
     const props = {
       onClick,
-      onInput,
+      onDoubleClick,
       onMouseDown,
+      onMouseOver,
       onMouseUp,
+      onMouseLeave,
       onTouchStart,
-      onTouchEnd,
+      onTouchMove,
       onTouchCancel,
-      onKeyUp,
+      onTouchEnd,
     };
 
     const field = renderIntoDocument(<TextField {...props} />);
-    const fieldNode = findRenderedComponentWithType(field, InputField);
-    expect(fieldNode.props.onClick).toBe(props.onClick);
-    expect(fieldNode.props.onInput).toBe(props.onInput);
-    expect(fieldNode.props.onMouseDown).toBe(props.onMouseDown);
-    expect(fieldNode.props.onMouseUp).toBe(props.onMouseUp);
-    expect(fieldNode.props.onTouchStart).toBe(props.onTouchStart);
-    expect(fieldNode.props.onTouchEnd).toBe(props.onTouchEnd);
-    expect(fieldNode.props.onTouchCancel).toBe(props.onTouchCancel);
-    expect(fieldNode.props.onKeyUp).toBe(props.onKeyUp);
+    const container = findDOMNode(field);
+
+    Simulate.click(container);
+    expect(onClick).toBeCalled();
+
+    Simulate.doubleClick(container);
+    expect(onDoubleClick).toBeCalled();
+
+    Simulate.mouseOver(container);
+    expect(onMouseOver).toBeCalled();
+
+    Simulate.mouseDown(container);
+    expect(onMouseDown).toBeCalled();
+
+    Simulate.mouseUp(container);
+    expect(onMouseUp).toBeCalled();
+
+    Simulate.mouseLeave(container);
+    expect(onMouseLeave).toBeCalled();
+
+    Simulate.touchStart(container);
+    expect(onTouchStart).toBeCalled();
+
+    Simulate.touchMove(container);
+    expect(onTouchMove).toBeCalled();
+
+    Simulate.touchCancel(container);
+    expect(onTouchCancel).toBeCalled();
+
+    Simulate.touchEnd(container);
+    expect(onTouchEnd).toBeCalled();
+  });
+
+  it('passes the keyboard and typing events to the InputField component', () => {
+    const onKeyPress = jest.fn();
+    const onKeyUp = jest.fn();
+    const onCopy = jest.fn();
+    const onCut = jest.fn();
+    const onPaste = jest.fn();
+    const onBlur = jest.fn();
+    const onInput = jest.fn();
+    const onSelect = jest.fn();
+    const onCompositionStart = jest.fn();
+    const onCompositionUpdate = jest.fn();
+    const onCompositionEnd = jest.fn();
+
+    const props = {
+      onKeyPress,
+      onKeyUp,
+      onCopy,
+      onCut,
+      onPaste,
+      onBlur,
+      onInput,
+      onSelect,
+      onCompositionStart,
+      onCompositionUpdate,
+      onCompositionEnd,
+    };
+
+    const container = renderIntoDocument(<TextField {...props} />);
+    const input = findRenderedComponentWithType(container, InputField);
+
+    expect(input.props.onKeyPress).toBe(onKeyPress);
+    expect(input.props.onKeyUp).toBe(onKeyUp);
+    expect(input.props.onCopy).toBe(onCopy);
+    expect(input.props.onCut).toBe(onCut);
+    expect(input.props.onPaste).toBe(onPaste);
+    expect(input.props.onBlur).toBe(onBlur);
+    expect(input.props.onInput).toBe(onInput);
+    expect(input.props.onSelect).toBe(onSelect);
+    expect(input.props.onCompositionStart).toBe(onCompositionStart);
+    expect(input.props.onCompositionUpdate).toBe(onCompositionUpdate);
+    expect(input.props.onCompositionEnd).toBe(onCompositionEnd);
+  });
+
+  it('calls the onFocus prop when the _handleFocus function is called', () => {
+    const props = { onFocus: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
+
+    field._handleFocus();
+    expect(props.onFocus).toBeCalled();
+  });
+
+  it('calls the onKeyDown prop when the _handleKeyDown function is called', () => {
+    const props = { onKeyDown: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
+
+    field._handleKeyDown({ which: 2, keyCode: 2 });
+    expect(props.onKeyDown).toBeCalled();
+  });
+
+  it('calls the onChange prop when the _handleChange function is called', () => {
+    const props = { onChange: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
+
+    field._handleChange({ target: { value: '' } });
+    expect(props.onChange).toBeCalled();
+  });
+
+  it('calls the onChange prop with the new value and change event', () => {
+    const props = { onChange: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
+
+    const event = { target: { value: 'wow' } };
+    field._handleChange(event);
+    expect(props.onChange.mock.calls[0][0]).toBe('wow');
+    expect(props.onChange.mock.calls[0][1]).toEqual(event);
   });
 
   it('adds the PasswordButton component when the type is password', () => {
