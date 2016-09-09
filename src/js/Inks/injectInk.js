@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
-import { TAB, LEFT_MOUSE } from '../constants/keyCodes';
+import { TAB, LEFT_MOUSE, UP, DOWN } from '../constants/keyCodes';
 import { getOffset } from '../utils';
 import { calcHypotenuse } from '../utils/NumberUtils';
 
@@ -168,6 +168,12 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     return !e.shiftKey && !e.ctrlKey && e.button === LEFT_MOUSE;
   }
 
+  _isValidKey(e, component) {
+    const key = e.which || e.keyCode;
+    return key === TAB ||
+      ([UP, DOWN].indexOf(key) !== -1 && document.activeElement === component);
+  }
+
   _createInk(pageX, pageY, pulse) {
     const { offsetWidth, offsetHeight } = this._component;
     const inkContainer = this._getOrCreateInkContainer(this._component);
@@ -286,12 +292,10 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       this.props.onKeyUp(e);
     }
 
-    if ((e.which || e.keyCode) !== TAB) {
-      return;
+    if (this._isValidKey(e, this._component)) {
+      this._createInk(e.pageX, e.pageY, true);
+      window.addEventListener('click', this._removeInk);
     }
-
-    this._createInk(e.pageX, e.pageY, true);
-    window.addEventListener('click', this._removeInk);
   }
 
   _handleKeyDown(e) {
@@ -299,12 +303,10 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       this.props.onKeyDown(e);
     }
 
-    if ((e.which || e.keyCode) !== TAB) {
-      return;
+    if (this._isValidKey(e, this._component)) {
+      this._removeInk();
+      window.removeEventListener('click', this._removeInk);
     }
-
-    this._removeInk();
-    window.removeEventListener('click', this._removeInk);
   }
 
   _handleMouseUp(e) {
@@ -329,6 +331,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       return;
     }
 
+    // Prevent parent inks to be triggered as well.
+    e.stopPropagation();
     this._createInk(e.pageX, e.pageY);
     this._component.addEventListener('mouseleave', this._removeInk);
   }
@@ -338,6 +342,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       this.props.onTouchStart(e);
     }
 
+    // Prevent parent inks to be triggered as well.
+    e.stopPropagation();
     const { pageX, pageY } = e.changedTouches[0];
     this._createInk(pageX, pageY);
     window.addEventListener('touchmove', this._handleTouchMove);

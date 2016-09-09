@@ -317,6 +317,7 @@ export default class TextField extends PureComponent {
     };
 
     this.focus = this.focus.bind(this);
+    this.getField = this.getField.bind(this);
     this._blur = this._blur.bind(this);
     this._setMinWidth = this._setMinWidth.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
@@ -393,6 +394,33 @@ export default class TextField extends PureComponent {
     }
   }
 
+  /**
+   * A helper function for getting the specific `input` field or the `textarea` in the `TextField`.
+   * This is accessible if you use `refs`.
+   *
+   * Example:
+   *
+   * ```js
+   * <TextField ref={field => this._field = field;} label="Hello" />;
+   *
+   * this._field.getField(); // `input` node
+   * ```
+   */
+  getField() {
+    return this._field.getField();
+  }
+
+  /**
+   * A helper function for focusing the `input` field or the `textarea` in the `TextField`.
+   * This is accessibile if you use `refs`.
+   * Example:
+   *
+   * ```js
+   * <TextField ref={field => this._field = field;} label="Hello" />;
+   *
+   * this._field.focus(); // `input` node
+   * ```
+   */
   focus() {
     this._field.focus();
   }
