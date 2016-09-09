@@ -9,7 +9,9 @@ Table of Contents
   * [Text Fields](#text-fields)
     * [Controllable States](#controllable-states)
     * [Labels](#labels)
-  * [Ink](#ink)
+  * [Inks](#inks)
+  * [Tooltips](#tooltips)
+  * [Chips](#chips)
 * [Upgrading from 0.2.x to 0.3.x](#upgrading-from-0-2-x-to-0-3-x)
   * [NavigationDrawer](#navigationdrawer)
     * [Responsive Drawer Changes](#responsive-drawer-changes)
@@ -106,7 +108,7 @@ use a floating label. This means if you do not want the floating label `TextFiel
 the `placeholder` prop instead. In addition, the `block` styling will need to use the `placeholder`
 prop instead of the `label` prop.
 
-### Ink
+### Inks
 The `injectInk` HOC no longer injects an `ink` prop into the composed component. It handles the ink
 automagically now by injecting in as the first child. So there is a bit less control of where the ink
 goes.
@@ -115,6 +117,15 @@ goes.
 The `injectTooltip` HOC no longer injects a `tooltip` prop into the composed component. It handles the
 tooltip automagically now by injeting a container as the first child. There is a bit less controll of
 where the tooltip goes. It also requires your main component to have `position: relative;`.
+
+### Chips
+Chips were trashed and remade from the ground up. The `Chip` is now just a single `button` tag.
+
+- The `remove` prop was discarded, and a `removable` prop was added to replace it. The `remove` will now
+be handled by the base `onClick` function.
+- The `removeIconClassName` and `removeIconChildren` were renamed `iconClassName` and `children`
+respectively.
+- To include an `Avatar`, you must now place it with the `avatar` prop instead of the `children`.
 
 ## Upgrading from 0.2.x to 0.3.x
 

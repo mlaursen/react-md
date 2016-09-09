@@ -1,0 +1,142 @@
+////
+/// @group chips
+////
+
+/// Boolean if the remove icon styling should be included for chips.
+/// @type Boolean
+$md-chip-include-remove: true !default;
+
+/// Boolean if the chip avatar styling should be included for chips.
+/// @type Boolean
+$md-chip-include-avatar: true !default;
+
+/// Boolean if the chip contact styling should be included for chips.
+/// @type Boolean
+$md-chip-include-contact: true !default;
+
+$md-chip-color: rgba($md-black-base, .87);
+$md-chip-height: 32px;
+$md-chip-font-size: 13px;
+$md-chip-icon-color: rgba($md-black-base, .54);
+$md-chip-default-padding: 12px;
+$md-chip-avatar-left-padding: 8px;
+$md-chip-icon-padding: 4px;
+$md-chip-contact-font-size: 14px;
+
+/// Includes the styles for chips. The remove, avatar, and contact styles can be excluded.
+/// If the `$include-contact` param is true, the avatar styles will always be included even
+/// if `$include-avatar` is false.
+///
+/// @example scss - Example Usage SCSS
+///   include react-md-chips;
+///
+/// @param {Boolean} include-remove [$md-chip-include-remove] - Boolean if the remove styles
+///     should be included.
+/// @param {Boolean} include-avatar [$md-chip-include-avatar] - Boolean if the avatar styles
+///     should be included.
+/// @param {Boolean} include-contact [$md-chip-include-contact] - Boolean if the contact styles
+///     should be included.
+@mixin react-md-chips($include-remove: $md-chip-include-remove, $include-avatar: $md-chip-include-avatar, $include-contact: $md-chip-include-contact) {
+  .md-chip {
+    align-items: center;
+    background: $md-grey-300;
+    border: 0;
+    border-radius: $md-chip-height / 2;
+    display: inline-flex;
+    height: $md-chip-height;
+    padding-left: $md-chip-default-padding;
+    padding-right: $md-chip-default-padding;
+    position: relative;
+    transition-duration: $md-transition-time;
+    transition-property: box-shadow, background;
+    vertical-align: top;
+
+    &:focus {
+      @include md-box-shadow(1);
+      outline: none;
+    }
+  }
+
+  .md-chip--hover {
+    background: $md-grey-700;
+  }
+
+  .md-chip-text {
+    color: $md-chip-color;
+    font-size: $md-chip-font-size;
+    transition-duration: $md-transition-time;
+    transition-property: color;
+  }
+
+  @if $include-avatar or $include-contact {
+    @include react-md-chips-avatar;
+  }
+
+  @if $include-remove {
+    @include react-md-chips-remove;
+  }
+
+  @if $include-contact {
+    @include react-md-chips-contact;
+  }
+
+  // has to go last so it has higher precidence.
+  .md-chip-text--hover {
+    color: $md-white-base;
+  }
+}
+
+/// Includes the styles for the avatars in chips.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-chips-avatar;
+@mixin react-md-chips-avatar {
+  .md-chip .md-avatar {
+    border: 0;
+    height: $md-chip-height;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $md-chip-height;
+  }
+
+  .md-chip--avatar {
+    padding-left: $md-chip-height + $md-chip-avatar-left-padding;
+  }
+}
+
+
+/// Includes the styles for the remove icons in chips.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-chips-remove;
+@mixin react-md-chips-remove {
+  .md-chip-icon {
+    color: $md-chip-icon-color;
+    margin-left: $md-chip-icon-padding;
+    margin-right: $md-chip-icon-padding;
+    position: absolute;
+    right: 0;
+    top: ($md-chip-height - $md-font-icon-size) / 2;
+    z-index: 1;
+  }
+
+  .md-chip-icon--rotate {
+    transform: rotate3d(0, 0, 1, 45deg);
+  }
+
+  .md-chip--remove {
+    padding-right: $md-font-icon-size + ($md-chip-icon-padding * 2);
+  }
+}
+
+
+/// Includes the styles for the contact chips.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-chips-contact;
+@mixin react-md-chips-contact {
+  .md-chip-text--contact {
+    font-size: $md-chip-contact-font-size;
+  }
+}

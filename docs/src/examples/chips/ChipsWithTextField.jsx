@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { uniqBy } from 'lodash/array';
@@ -6,13 +5,21 @@ import { uniqBy } from 'lodash/array';
 import Autocomplete from 'react-md/lib/Autocompletes';
 import StateChip from './StateChip';
 
-import states from 'constants/states';
+import STATES from 'constants/states';
 
 export default class ChipsWithTextField extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { states: [] };
+    this.state = { states: [], filteredStates: STATES };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.states !== nextState.states) {
+      this.setState({
+        filteredStates: STATES.filter(state => nextState.states.indexOf(state) === -1),
+      });
+    }
   }
 
   _addState = (state, stateIndex, states) => {
@@ -29,7 +36,7 @@ export default class ChipsWithTextField extends PureComponent {
 
   render() {
     const chips = this.state.states.map(state => (
-      <StateChip key={state.name} state={state} onRemove={this._removeState} />
+      <StateChip key={state.name} state={state} onClick={this._removeState} />
     ));
     return (
       <CSSTransitionGroup
@@ -43,7 +50,7 @@ export default class ChipsWithTextField extends PureComponent {
         <Autocomplete
           id="states"
           label="Select some states"
-          data={states}
+          data={this.state.filteredStates}
           dataLabel="name"
           onAutocomplete={this._addState}
           clearOnAutocomplete

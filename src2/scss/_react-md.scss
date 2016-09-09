@@ -7,6 +7,7 @@
 
 @import 'components/autocompletes';
 @import 'components/avatars';
+@import 'components/chips';
 @import 'components/inks';
 @import 'components/buttons';
 @import 'components/dividers';
@@ -31,6 +32,7 @@
   @include react-md-icons;
   @include react-md-inks;
   @include react-md-buttons;
+  @include react-md-chips;
   @include react-md-dividers;
   @include react-md-text-fields;
   @include react-md-autocompletes;

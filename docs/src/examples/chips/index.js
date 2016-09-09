@@ -1,7 +1,7 @@
 import React from 'react';
-import ChipExamples from './ChipExamples';
-import ChipExamplesRaw from '!!raw!./ChipExamples';
 
+import SimpleExamples from './SimpleExamples';
+import SimpleExamplesRaw from '!!raw!./SimpleExamples';
 import ChipsWithTextField from './ChipsWithTextField';
 import ChipsWithTextFieldRaw from '!!raw!./ChipsWithTextField';
 import StateChipRaw from '!!raw!./StateChip';
@@ -9,8 +9,9 @@ import StateChipRaw from '!!raw!./StateChip';
 import './_chips.scss';
 
 export default [{
-  code: ChipExamplesRaw,
-  children: <ChipExamples />,
+  title: 'Simple Examples',
+  code: SimpleExamplesRaw,
+  children: <SimpleExamples />,
 }, {
   title: 'Chips with a Text Field',
   code: `
