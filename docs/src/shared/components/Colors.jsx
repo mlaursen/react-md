@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Markdown from './Markdown';
 import ColorPalette from './ColorPalette';
 
-import markdown from '../../../Colors.md';
+import markdown from '../../readmes/Colors.md';
 
 export default class Colors extends PureComponent {
   render() {
