@@ -261,7 +261,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
           }
 
           if (removedOnClick && onClick) {
-            onClick();
+            this._component.click();
           }
         }, inkLeaveTimeout);
       }, inkEnterTimeout);
@@ -385,7 +385,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
 
     // Prevent the click event if the tooltip was called beforehand.
     if (!removedOnClick && onClick && !e.defaultPrevented) {
-      onClick(e);
+      this._component.click();
     }
 
     // Stops the mousedown, mouseup, and click events from triggering
