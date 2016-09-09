@@ -263,9 +263,11 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
 
     if (this._timeout) {
       clearTimeout(this._timeout);
+      this._timeout = null;
+    } else {
+      e.preventDefault();
     }
 
-    e.preventDefault();
     this._timeout = setTimeout(() => {
       this._timeout = null;
       this._touched = false;
