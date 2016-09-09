@@ -30,7 +30,14 @@ export default class InputField extends PureComponent {
     super(props);
 
     this.getValue = this.getValue.bind(this);
+    this.getField = this.getField.bind(this);
     this.focus = this.focus.bind(this);
+  }
+
+  getField() {
+    return typeof this.props.rows === 'undefined'
+      ? this._field
+      : this._field.getField();
   }
 
   getValue() {

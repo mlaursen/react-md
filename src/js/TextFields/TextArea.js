@@ -27,6 +27,7 @@ export default class TextArea extends PureComponent {
 
     this.state = { height: null };
     this.focus = this.focus.bind(this);
+    this.getField = this.getField.bind(this);
     this.getValue = this.getValue.bind(this);
     this._handleChange = this._handleChange.bind(this);
     this._handleResize = this._handleResize.bind(this);
@@ -51,6 +52,10 @@ export default class TextArea extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this._handleResize);
+  }
+
+  getField() {
+    return this._field;
   }
 
   getValue() {

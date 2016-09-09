@@ -399,6 +399,9 @@ export default class Autocomplete extends PureComponent {
       suggestionIndex: -1,
     };
 
+    this._setField = this._setField.bind(this);
+    this._setMenu = this._setMenu.bind(this);
+    this._setSuggestion = this._setSuggestion.bind(this);
     this._updateFont = this._updateFont.bind(this);
     this._handleBlur = this._handleBlur.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
@@ -418,11 +421,7 @@ export default class Autocomplete extends PureComponent {
 
 
   componentDidMount() {
-    this._menu = findDOMNode(this.refs.menu);
-    this._textField = findDOMNode(this.refs.textField).querySelector('input');
-
     if (this.props.inline) {
-      this._updateFont();
       window.addEventListener('resize', this._updateFont);
     }
   }
@@ -483,7 +482,7 @@ export default class Autocomplete extends PureComponent {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');
 
       if (msg) {
-        const cs = window.getComputedStyle(this.refs.suggestion);
+        const cs = window.getComputedStyle(this._suggestion);
         const bottom = parseInt(cs.getPropertyValue('bottom'), 10) + msg.offsetHeight;
 
         this.setState({
@@ -499,11 +498,13 @@ export default class Autocomplete extends PureComponent {
   }
 
   _updateFont() {
-    const cs = window.getComputedStyle(this._textField);
-    this.setState({
-      fontSize: parseInt(cs.getPropertyValue('font-size'), 10),
-      font: cs.getPropertyValue('font'),
-    });
+    if (this._field) {
+      const cs = window.getComputedStyle(this._field);
+      this.setState({
+        fontSize: parseInt(cs.getPropertyValue('font-size'), 10),
+        font: cs.getPropertyValue('font'),
+      });
+    }
   }
 
   _handleOutsideClick(e) {
@@ -645,7 +646,7 @@ export default class Autocomplete extends PureComponent {
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
     }, () => {
-      this.refs.textField.focus();
+      this._field.focus();
     });
   }
 
@@ -660,14 +661,14 @@ export default class Autocomplete extends PureComponent {
     } else if (negative) {
       index = matchIndex - 1;
       if (index === -1) {
-        this.refs.textField.focus();
+        this._field.focus();
       }
     } else {
       index = Math.min(l, matchIndex + 1);
     }
 
     if (index !== -1 && index !== matchIndex) {
-      const item = findDOMNode(this.refs.menu).querySelectorAll('.md-list-tile')[index];
+      const item = this._menu.querySelectorAll('.md-list-tile')[index];
       if (item) {
         item.focus();
       }
@@ -716,7 +717,6 @@ export default class Autocomplete extends PureComponent {
 
         // Update suggestion style to be offset and not expand past text field
         const left = context.measureText(value).width + padding;
-        const width = this._textField.offsetWidth - left / 2;
         suggestionStyle = Object.assign({}, suggestionStyle, { left });
       }
     }
@@ -800,8 +800,26 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
+  _setField(field) {
+    if (field) {
+      this._field = field.getField();
+
+      if (this.props.inline) {
+        this._updateFont();
+      }
+    }
+  }
+
+  _setMenu(menu) {
+    this._menu = findDOMNode(menu);
+  }
+
+  _setSuggestion(suggestion) {
+    this._suggestion = suggestion;
+  }
+
   render() {
-    const { isOpen, matches, focus, tabbed, suggestionStyle } = this.state;
+    const { isOpen, matches, tabbed, suggestionStyle } = this.state;
     const {
       fullWidth,
       block,
@@ -836,7 +854,7 @@ export default class Autocomplete extends PureComponent {
       <TextField
         {...props}
         key="autocomplete"
-        ref="textField"
+        ref={this._setField}
         value={value}
         onKeyDown={this._handleTextFieldKeyDown}
         onMouseDown={this._toggleMenu}
@@ -853,7 +871,7 @@ export default class Autocomplete extends PureComponent {
       if (this.state.suggestion) {
         suggestion = (
           <span
-            ref="suggestion"
+            ref={this._setSuggestion}
             key="suggestion"
             style={suggestionStyle}
             className={cn('md-autocomplete-suggestion', {
@@ -884,7 +902,7 @@ export default class Autocomplete extends PureComponent {
 
     return (
       <Menu
-        ref="menu"
+        ref={this._setMenu}
         toggle={autocomplete}
         isOpen={isOpen}
         onClick={this._handleClick}
