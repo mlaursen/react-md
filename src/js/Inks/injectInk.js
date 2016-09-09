@@ -139,7 +139,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * @return {DOMNode} the ink container node or null.
    */
   _getInkContainer(container) {
-    return Array.prototype.slice.call(container.childNodes)
+    return container && Array.prototype.slice.call(container.childNodes)
       .filter(node => node.className && node.className.indexOf('md-ink-container') !== -1)[0];
   }
 
