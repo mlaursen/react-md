@@ -3,15 +3,28 @@ import React, { PureComponent, PropTypes } from 'react';
 import Markdown from 'components/Markdown';
 import { getMarkdownFileName } from 'utils/StringUtils';
 
-export default class MarkdownPage extends PureComponent {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      markdown: '',
-    };
+function getMarkdown(pathname) {
+  if (__CLIENT__) {
+    const context = require.context('../../readmes', false, /\.md/);
+    const fileName = `./${getMarkdownFileName(pathname)}.md`;
+
+    let file = context(fileName);
+    if (module.hot) {
+      module.hot.accept(context.id, () => {
+        const reloadedContext = require.context('../../readmes', false, /\.md$/);
+
+        file = reloadedContext(fileName);
+      });
+    }
+
+    return file;
+  } else {
+    return require(`../../readmes/${getMarkdownFileName(pathname)}.md`);
   }
+}
 
+export default class MarkdownPage extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
@@ -20,16 +33,18 @@ export default class MarkdownPage extends PureComponent {
     }).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      markdown: '',
+    };
+  }
+
   componentWillMount() {
     const { location: { pathname } } = this.props;
 
-    if (__CLIENT__) {
-      require.ensure([], require => {
-        this.setState({ markdown: require(`../../../${getMarkdownFileName(pathname)}.md`) });
-      });
-    } else {
-      this.setState({ markdown: require(`../../../${getMarkdownFileName(pathname)}.md`) });
-    }
+    this.setState({ markdown: getMarkdown(pathname) });
   }
 
   render() {
