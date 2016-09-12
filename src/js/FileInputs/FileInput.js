@@ -1,8 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import injectInk from '../Inks';
 import FontIcon from '../FontIcons';
+import IconSeparator from '../Helpers/IconSeparator';
 
 /**
  * The `FileInput` component is used as simple styling for the `<input type="file" />`.
@@ -59,6 +61,8 @@ class FileInput extends PureComponent {
      */
     label: PropTypes.string.isRequired,
 
+    iconBefore: PropTypes.bool,
+
     /**
      * The icon children to use for the upload icon.
      */
@@ -88,9 +92,15 @@ class FileInput extends PureComponent {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * An optional id for the file input field.
+     * The id for the text field. This is required for a11y and to get the `input type="file"` to
+     * open.
      */
-    id: PropTypes.string,
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -101,6 +111,7 @@ class FileInput extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = { hover: false, active: false };
     this._handleChange = this._handleChange.bind(this);
   }
 
@@ -115,6 +126,7 @@ class FileInput extends PureComponent {
   }
 
   render() {
+    const { active, hover } = this.state;
     const {
       style,
       className,
@@ -125,33 +137,48 @@ class FileInput extends PureComponent {
       secondary,
       flat,
       id,
+      iconBefore,
+      disabled,
+      accept,
       ...props,
     } = this.props;
     delete props.onChange;
 
+    const icon = <FontIcon iconClassName={iconClassName} children={iconChildren} />;
     return (
-      <label
+      <div
+        {...props}
         style={style}
-        className={cn(`md-btn md-${flat ? 'flat' : 'raised'}-btn md-file-input-btn`, className, {
-          'md-primary': primary,
-          'md-secondary': secondary,
-        })}
-        disabled={props.disabled}
-        htmlFor={id}
+        className={cn('md-file-input-container', className)}
       >
+        <IconSeparator
+          component="label"
+          htmlFor={id}
+          label={label}
+          iconBefore={iconBefore}
+          children={icon}
+          disabled={disabled}
+          className={cn(`md-btn md-btn--${flat ? 'flat' : 'raised'} md-btn--text`, {
+            'md-btn--color-primary': !disabled && flat && primary,
+            'md-btn--color-secondary': !disabled && flat && secondary,
+            'md-btn--color-primary-active': !disabled && flat && hover && primary,
+            'md-btn--color-secondary-active': !disabled && flat && hover && secondary,
+            'md-btn--raised-primary': !disabled && !flat && primary,
+            'md-btn--raised-secondary': !disabled && !flat && secondary,
+            'md-btn--raised-active': !disabled && !flat && active,
+          })}
+        />
         <input
-          {...props}
+          disabled={disabled}
           id={id}
+          accept={accept}
+          type="file"
           aria-hidden="true"
           type="file"
           className="md-file-input"
           onChange={this._handleChange}
         />
-        <div className="icon-separator">
-          <FontIcon iconClassName={iconClassName} children={iconChildren} />
-          <span className="text">{label}</span>
-        </div>
-      </label>
+      </div>
     );
   }
 }

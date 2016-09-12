@@ -88,6 +88,7 @@ export default class FileUploadExample extends PureComponent {
       <div>
         {stats}
         <FileUpload
+          id="multiFileUpload"
           multiple
           secondary
           ref="upload"

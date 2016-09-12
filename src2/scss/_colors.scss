@@ -1165,6 +1165,8 @@ $md-light-theme-colors: (
   hint: $md-light-theme-hint-text-color,
   divider: $md-light-theme-divider-color,
   background: $md-light-theme-background-color,
+  card: $md-light-theme-card-color,
+  hover: $md-light-theme-divider-color,
 );
 
 /// A mapping of all the dark-theme colors.
@@ -1177,6 +1179,8 @@ $md-dark-theme-colors: (
   hint: $md-dark-theme-hint-text-color,
   divider: $md-dark-theme-divider-color,
   background: $md-dark-theme-background-color,
+  card: $md-dark-theme-card-color,
+  hover: rgba($md-black-base, .12),
 );
 
 
@@ -1194,4 +1198,111 @@ $md-dark-theme-colors: (
   }
 
   @return map-get($map, $name);
+}
+
+@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+  .md-text-color {
+    color: get-color('text', $light-theme);
+  }
+
+  .md-text-color--secondary {
+    color: get-color('secondary', $light-theme);
+  }
+
+  .md-color--primary {
+    color: $primary-color;
+
+    .md-ink {
+      background: rgba($primary-color, .26);
+    }
+  }
+
+  .md-color--secondary {
+    color: $secondary-color;
+
+    .md-ink {
+      background: rgba($secondary-color, .26);
+    }
+  }
+
+  .md-background {
+    background: get-color('background', $light-theme);
+  }
+
+  .md-background--primary,
+  .md-background--secondary {
+    .md-ink {
+      background: rgba($md-white-base, .2);
+    }
+  }
+
+  .md-background--primary {
+    background: $primary-color;
+    color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
+  }
+
+  .md-background--primary-hover:hover {
+    background: rgba($primary-color, .9);
+  }
+
+  .md-background--secondary {
+    background: $secondary-color;
+    color: if(lightness($secondary-color) > 40, $md-white-base, $md-black-base);
+  }
+
+  .md-background--secondary-hover:hover {
+    background: rgba($secondary-color, .9);
+  }
+}
+
+@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+  @if $primary-color != $md-primary-color {
+    .md-color--primary {
+      color: $primary-color;
+
+      .md-ink {
+        background: rgba($primary-color, .26);
+      }
+    }
+
+    .md-background--primary {
+      background: $primary-color;
+    }
+
+    .md-background--primary-hover:hover {
+      background: rgba($primary-color, .9);
+    }
+  }
+
+  @if $secondary-color != $md-secondary-color {
+    .md-color--secondary {
+      color: $secondary-color;
+
+      .md-ink {
+        background: rgba($secondary-color, .26);
+      }
+    }
+
+    .md-background--secondary {
+      background: $secondary-color;
+    }
+
+    .md-background--secondary-hover:hover {
+      background: rgba($secondary-color, .9);
+    }
+  }
+
+  @if $light-theme != $md-light-theme {
+    .md-text-color {
+      color: get-color('text', $light-theme);
+    }
+
+    .md-text-color--secondary {
+      color: get-color('secondary', $light-theme);
+    }
+
+    .md-background {
+      background: get-color('background', $light-theme);
+    }
+  }
 }

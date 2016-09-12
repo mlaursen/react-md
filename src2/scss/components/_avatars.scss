@@ -80,7 +80,7 @@ $md-avatar-colors: (
     width: 100%;
   }
 
-  @include react-md-theme-avatar($md-avatar-default-background, $md-avatar-default-background, default);
+  @include react-md-theme-avatar($md-avatar-default-background, $md-avatar-default-color, default);
 
   @if $include-suffixes {
     @each $suffix, $colors in $md-avatar-colors {

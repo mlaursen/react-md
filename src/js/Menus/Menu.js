@@ -71,7 +71,8 @@ export default class Menu extends PureComponent {
       Menu.Positions.TOP_RIGHT,
       Menu.Positions.TOP_LEFT,
       Menu.Positions.BOTTOM_RIGHT,
-      Menu.Positions.BOTTOM_LEFT, Menu.Positions.BELOW,
+      Menu.Positions.BOTTOM_LEFT,
+      Menu.Positions.BELOW,
     ]),
 
     /**

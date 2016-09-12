@@ -36,10 +36,19 @@ export default class FileInputExamples extends PureComponent {
     return (
       <div>
         <FileInput
+          id="imageInput"
           label="Select an image from your computer"
           onChange={this._handleFileSelect}
           accept="image/*"
           primary
+        />
+        <FileInput
+          id="imageInput2"
+          label="Select an image from your computer"
+          onChange={this._handleFileSelect}
+          accept="image/*"
+          secondary
+          flat
         />
         <Snackbar toasts={toasts} dismiss={this._dismiss} />
       </div>

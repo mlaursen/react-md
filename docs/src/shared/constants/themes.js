@@ -5,5 +5,5 @@ export default [
   'theme-3',
   'theme-4',
   'theme-5',
-  // 'theme-dark',
+  'theme-dark',
 ];

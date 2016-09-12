@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, cloneElement, isValidElement } from 'react';
 import cn from 'classnames';
 
 /**
@@ -32,16 +32,34 @@ export default class IconSeparator extends PureComponent {
      * Boolean if the icon should appear before or after the text
      */
     iconBefore: PropTypes.bool,
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
+  };
+
+  static defaultProps = {
+    component: 'div',
   };
 
   render() {
-    const { label, iconBefore, children, className, ...props } = this.props;
+    const { component, label, iconBefore, children, className, ...props } = this.props;
+
+    let text;
+    if (isValidElement(label)) {
+      text = cloneElement(label, { className: 'md-icon-text' });
+    } else {
+      text = <span className="md-icon-text">{label}</span>;
+    }
+
+    const Component = component;
+
     return (
-      <div {...props} className={cn('md-icon-separator', className)}>
+      <Component {...props} className={cn('md-icon-separator', className)}>
         {iconBefore && children}
-        <span className="md-icon-text">{label}</span>
+        {text}
         {!iconBefore && children}
-      </div>
+      </Component>
     );
   }
 }
