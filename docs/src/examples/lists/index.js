@@ -1,11 +1,11 @@
 import React from 'react';
-import SimpleExample from './SimpleExample';
-import SimpleExampleRaw from '!!raw!./SimpleExample';
+import SimpleExamples from './SimpleExamples';
+import SimpleExamplesRaw from '!!raw!./SimpleExamples';
 
 export default [{
   title: 'Simple Example',
-  code: SimpleExampleRaw,
-  children: <SimpleExample />,
+  code: SimpleExamplesRaw,
+  children: <SimpleExamples />,
 }];
 // import ListExamples from './ListExamples';
 // import ListExamplesRaw from '!!raw!./ListExamples';

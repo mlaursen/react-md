@@ -96,6 +96,11 @@
   }
 }
 
+.prop-name--deprecated {
+  color: get-color('hint', $md-light-theme);
+  text-decoration: line-through;
+}
+
 .example-code {
   background: $md-background-color;
   border-top: 1px solid $md-border-color;

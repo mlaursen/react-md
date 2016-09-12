@@ -53,6 +53,12 @@ export default class Avatar extends PureComponent {
      * *should* be one of the available `suffixes`.
      */
     suffix: PropTypes.string,
+
+    /**
+     * Boolean if the `Avatar` should be sized to a `FontIcon` size. This
+     * will just set the width and height to the `$md-font-icon-size`.
+     */
+    iconSized: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -99,13 +105,16 @@ export default class Avatar extends PureComponent {
       suffix,
       suffixes,
       random,
+      iconSized,
       ...props,
     } = this.props;
 
     return (
       <div
         {...props}
-        className={cn('md-avatar', className, this._getColor(suffix, suffixes, random))}
+        className={cn('md-avatar', this._getColor(suffix, suffixes, random), {
+          'md-avatar--icon-sized': iconSized,
+        }, className)}
       >
         {src && <img src={src} alt={alt} className="md-avatar-img" />}
         {!src &&

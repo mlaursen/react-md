@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 export default class ListItemText extends PureComponent {
   static propTypes = {
+    active: PropTypes.bool,
+    activeClassName: PropTypes.string,
     primaryText: PropTypes.node.isRequired,
     secondaryText: PropTypes.node,
     className: PropTypes.string,
@@ -10,7 +12,15 @@ export default class ListItemText extends PureComponent {
   };
 
   render() {
-    const { primaryText, secondaryText, className, threeLines, ...props } = this.props;
+    const {
+      active,
+      activeClassName,
+      primaryText,
+      secondaryText,
+      className,
+      threeLines,
+      ...props,
+    } = this.props;
 
     let secondaryTextNode;
     if (secondaryText) {
@@ -27,7 +37,14 @@ export default class ListItemText extends PureComponent {
 
     return (
       <div {...props} className={cn('md-tile-content', className)}>
-        <div className="md-text-color md-tile-text--primary">{primaryText}</div>
+        <div
+          className={cn('md-tile-text--primary', {
+            'md-text-color': !active,
+            [activeClassName]: active,
+          })}
+        >
+          {primaryText}
+        </div>
         {secondaryTextNode}
       </div>
     );

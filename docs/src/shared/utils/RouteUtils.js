@@ -1,5 +1,4 @@
 import React from 'react';
-import cn from 'classnames';
 import Avatar from 'react-md/lib/Avatars';
 import FontIcon from 'react-md/lib/FontIcons';
 import { Link, IndexLink } from 'react-router';
@@ -52,7 +51,7 @@ function mapToNavItems(route, parents = []) {
   }
 
   if (avatarProps) {
-    resolvedAvatar = <Avatar {...avatarProps} className={cn('fake-icon', avatarProps.className)} />;
+    resolvedAvatar = <Avatar {...avatarProps} iconSized />;
   }
 
   if (component) {
@@ -207,7 +206,7 @@ function updateActiveRoutes(route, pathname) {
     to,
     initiallyOpen: nestedItems && isActive,
     nestedItems: nestedItems && nestedItems.map(route => updateActiveRoutes(route, pathname)),
-    tileClassName: isActive ? 'active' : null,
+    active: isActive,
   };
 }
 

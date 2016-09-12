@@ -6,6 +6,8 @@ $md-list-include-icon: true !default;
 $md-list-include-avatar: true !default;
 $md-list-include-two-lines: true !default;
 $md-list-include-three-lines: true !default;
+$md-list-nested-items-increment: .5 !default;
+$md-list-nested-items-depth: 2 !default;
 
 $md-list-left-padding: 72px;
 
@@ -27,6 +29,8 @@ $md-list-desktop-three-line-height: 76px;
 @mixin react-md-lists(
   $primary-color: $md-primary-color,
   $light-theme: $md-light-theme,
+  $nested-items-depth: $md-list-nested-items-depth,
+  $nested-items-increment: $md-list-nested-items-increment,
   $include-media: $md-media-included,
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
@@ -57,6 +61,7 @@ $md-list-desktop-three-line-height: 76px;
     padding-left: $md-default-padding;
     padding-right: $md-default-padding;
     position: relative;
+    text-decoration: none;
     transition-duration: $md-transition-time;
     transition-property: background;
 
@@ -65,9 +70,12 @@ $md-list-desktop-three-line-height: 76px;
     }
 
     &:hover:not([disabled]) {
-      background: get-color('hover', $light-theme);
       cursor: pointer;
     }
+  }
+
+  .md-list-tile--active {
+    background: get-color('hover', $light-theme);
   }
 
   .md-tile-content {
@@ -87,6 +95,14 @@ $md-list-desktop-three-line-height: 76px;
   }
 
   @if $include-icon or $include-avatar {
+    .md-tile-addon--icon {
+      height: $md-font-icon-size;
+    }
+
+    .md-tile-addon--avatar {
+      height: $md-avatar-size;
+    }
+
     .md-tile-content--right-padding {
       padding-right: $md-default-padding;
     }
@@ -119,6 +135,16 @@ $md-list-desktop-three-line-height: 76px;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
     }
+
+    @if $include-icon or $include-avatar {
+      .md-list-tile--three-lines .md-tile-addon {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  @if $nested-items-depth != null and $nested-items-depth > 0 {
+    @include react-md-lists-nested($nested-items-depth, $nested-items-increment);
   }
 }
 
@@ -181,6 +207,12 @@ $md-list-desktop-three-line-height: 76px;
       .md-tile-text--secondary {
         height: $md-line-height * $md-list-mobile-secondary-font-size * 2;
       }
+
+      @if $include-icon or $include-avatar {
+        .md-tile-addon {
+          margin-top: 14px;
+        }
+      }
     }
   }
 }
@@ -233,6 +265,12 @@ $md-list-desktop-three-line-height: 76px;
       .md-tile-text--secondary {
         height: $md-line-height * $md-list-desktop-font-size * 2;
       }
+
+      @if $include-icon or $include-avatar {
+        .md-tile-addon {
+          margin-top: 12px;
+        }
+      }
     }
   }
 }
@@ -249,5 +287,32 @@ $md-list-desktop-three-line-height: 76px;
 
   @media #{$md-desktop-media} {
     @include react-md-lists-desktop($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+  }
+}
+
+@mixin react-md-lists-nested($nested-items-depth: $md-list-nested-items-depth, $nested-items-increment: $md-list-nested-items-increment) {
+  @if $nested-items-depth != null and $nested-items-depth > 0 {
+    .md-list-expander {
+      transition-duration: $md-transition-time;
+      transition-property: transform;
+    }
+
+    .md-list-expander--flipped {
+      transform: rotate3d(0, 0, 1, 180deg);
+    }
+
+    $selector: '+ .md-list .md-list-tile';
+    $full-selector: '';
+    $multiplier: 1;
+
+    @for $i from 1 through $nested-items-depth {
+      $full-selector: '#{$full-selector} #{$selector}';
+
+      .md-list-tile #{$full-selector} {
+        padding-left: $md-list-tile-left-padding * $multiplier;
+      }
+
+      $multiplier: $multiplier + $nested-items-increment;
+    }
   }
 }

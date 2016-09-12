@@ -1,10 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import { TableRow, TableColumn } from 'react-md/lib/DataTables';
 
-import { getAdditionalPropTypeDescriptions } from 'utils/StringUtils';
+import { getDeprecatedReason, getPropTypeString, getAdditionalPropTypeDescriptions } from 'utils/StringUtils';
 import Markdown from 'components/Markdown';
 import PropType from './PropType';
 import DefaultValue from './DefaultValue';
+
 
 export default class PropTypeRow extends PureComponent {
   static propTypes = {
@@ -27,16 +29,28 @@ export default class PropTypeRow extends PureComponent {
   };
 
   render() {
-    const { description, required, type, name, defaultValue } = this.props;
+    const { description, required, name, defaultValue } = this.props;
+    const type = getPropTypeString(this.props.type);
+    const deprecated = type === 'deprecated';
 
     const additionalDescriptions = getAdditionalPropTypeDescriptions(type, name);
+    let markdown = description + additionalDescriptions;
+    if (deprecated) {
+      markdown += getDeprecatedReason(name, this.props.type);
+    }
     return (
       <TableRow autoAdjust={false}>
-        <TableColumn className="prop-name justified">{name}</TableColumn>
+        <TableColumn
+          className={cn('prop-name justified', {
+            'prop-name--deprecated': type === 'deprecated',
+          })}
+        >
+          {name}
+        </TableColumn>
         <PropType type={type} required={required} />
         <TableColumn className="prop-info grow">
           <DefaultValue defaultValue={defaultValue} />
-          <Markdown markdown={description + additionalDescriptions} className="prop-description" />
+          <Markdown markdown={markdown} className="prop-description" />
         </TableColumn>
       </TableRow>
     );
