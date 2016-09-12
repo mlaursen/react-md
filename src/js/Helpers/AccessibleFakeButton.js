@@ -46,11 +46,18 @@ export default class AccessibleFakeButton extends PureComponent {
      * Boolean if the Button is disabled. This will prevent tab focus.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * The role for the accessible fake button. It is recommended to keep it
+     * the default of `button` unless you are rendering it as an `a` tag.
+     */
+    role: PropTypes.string,
   };
 
   static defaultProps = {
     component: 'div',
     tabIndex: 0,
+    role: 'button',
   };
 
   constructor(props) {
@@ -101,7 +108,6 @@ export default class AccessibleFakeButton extends PureComponent {
       ...props,
       disabled,
       tabIndex: disabled ? null : tabIndex,
-      role: 'button',
       onClick: this._handleClick,
       onKeyUp: this._handleKeyUp,
       'aria-pressed': this.state.pressed,

@@ -37,7 +37,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     onTouchEnd: PropTypes.func,
 
     /**
-     * An optional onClick function to call. If the `removedOnClick` boolean is set to true,
+     * An optional onClick function to call. If the `waitForInk` boolean is set to true,
      * this function will be called after the ink completes its transition instead of the
      * default onClick event.
      */
@@ -54,10 +54,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     onKeyDown: PropTypes.func,
 
     /**
-     * Boolean if the composed component gets removed on click. This will wait for the
-     * ink transitions to complete before triggering the `onClick` prop.
+     * Boolean if the composed component should trigger the `click` event only after the ink
+     * has finished animating. This is really just useful for components that will remove the
+     * button from the screen once clicked. It is a bit more fluid of a transition.
      */
-    removedOnClick: PropTypes.bool,
+    waitForInk: PropTypes.bool,
 
     /**
      * Boolean if the ink or the composed component is disabled.
@@ -87,7 +88,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   };
 
   static defaultProps = {
-    inkEnterTimeout: 150,
+    inkEnterTimeout: 450,
     inkLeaveTimeout: 450,
   };
 
@@ -235,7 +236,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * @param {DOMNode} container the container node to use.
    */
   _removeInk() {
-    const { inkEnterTimeout, inkLeaveTimeout, removedOnClick, onClick } = this.props;
+    const { inkEnterTimeout, inkLeaveTimeout, waitForInk, onClick } = this.props;
     let transition;
     this._transitions.some(t => {
       if (!t.ink.classList.contains('md-ink--leaving') && !t.leaving) {
@@ -260,7 +261,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
             this._removeAllInks();
           }
 
-          if (removedOnClick && onClick) {
+          if (waitForInk && onClick) {
             this._component.click();
           }
         }, inkLeaveTimeout);
@@ -281,8 +282,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   }
 
   _handleClick(e) {
-    const { removedOnClick, onClick } = this.props;
-    if (!removedOnClick && onClick) {
+    const { waitForInk, onClick } = this.props;
+    if (!waitForInk && onClick) {
       onClick(e);
     }
   }
@@ -373,7 +374,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   }
 
   _handleTouchEnd(e) {
-    const { onTouchEnd, onClick, removedOnClick } = this.props;
+    const { onTouchEnd, onClick, waitForInk } = this.props;
     if (onTouchEnd) {
       onTouchEnd(e);
     }
@@ -384,7 +385,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     }
 
     // Prevent the click event if the tooltip was called beforehand.
-    if (!removedOnClick && onClick && !e.defaultPrevented) {
+    if (!waitForInk && onClick && !e.defaultPrevented) {
       this._component.click();
     }
 
@@ -418,7 +419,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     const { inkDisabled, ...props } = this.props;
     delete props.inkEnterTimeout;
     delete props.inkLeaveTimeout;
-    delete props.removedOnClick;
+    delete props.waitForInk;
 
     if (props.disabled || inkDisabled) {
       return <ComposedComponent {...props} />;

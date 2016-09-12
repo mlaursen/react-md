@@ -12,8 +12,7 @@ import ToolbarChildren from 'components/ToolbarChildren';
 import { getNavItems } from 'utils/RouteUtils';
 import { mediaChange, setMobileSearch } from 'actions/ui';
 
-@connect(({ ui: { drawer, media, theme } }) => ({
-  theme,
+@connect(({ ui: { drawer, media } }) => ({
   themeable: drawer.themeable,
   includeHeader: drawer.includeHeader,
   initialDrawerType: drawer.initialDrawerType,
@@ -33,7 +32,6 @@ export default class App extends PureComponent {
     children: PropTypes.node,
 
     location: PropTypes.object.isRequired,
-    theme: PropTypes.string.isRequired,
     themeable: PropTypes.bool.isRequired,
     includeHeader: PropTypes.bool.isRequired,
     initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
@@ -64,7 +62,6 @@ export default class App extends PureComponent {
       tabletDrawerType,
       desktopDrawerType,
       setMobileSearch,
-      theme,
       themeable,
       includeHeader,
     } = this.props;
@@ -97,7 +94,6 @@ export default class App extends PureComponent {
     }
 
     const props = {
-      className: theme,
       initialDrawerType,
       drawerTitle: 'react-md',
       drawerClassName: 'fixed-drawer',

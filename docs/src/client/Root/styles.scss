@@ -7,6 +7,11 @@
 @include react-md-everything;
 
 
+.md-icon.fa {
+  height: $md-font-icon-size;
+  width: $md-font-icon-size;
+}
+
 .btn-group {
   display: flex;
   flex-wrap: wrap;
@@ -259,22 +264,38 @@
   width: 100%;
 }
 
-.doc-component-lists,
-.doc-component-subheaders {
-  .md-avatar .md-icon {
-    color: $md-white-base;
-  }
-
-  .avatar-blue {
-    background: $md-light-blue-500;
-  }
-
-  .avatar-amber {
-    background: $md-amber-500;
-  }
-}
-
 html, body {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+.list-examples {
+  display: flex;
+  justify-content: space-around;
+
+  .md-list {
+    @include md-box-shadow(1);
+
+    flex-basis: 100%;
+    margin-bottom: .5em;
+    margin-top: .5em;
+  }
+}
+
+@media #{$md-mobile-media} {
+  .list-examples {
+    flex-direction: column;
+  }
+}
+
+@media #{$md-desktop-media} {
+  .list-examples {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .md-list {
+      max-width: 300px;
+    }
+  }
 }

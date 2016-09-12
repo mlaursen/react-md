@@ -50,6 +50,7 @@ $md-chip-contact-font-size: 14px;
     transition-duration: $md-transition-time;
     transition-property: box-shadow, background;
     vertical-align: top;
+    white-space: nowrap;
 
     &:focus {
       @include md-box-shadow(1);

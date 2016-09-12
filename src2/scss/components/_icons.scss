@@ -16,12 +16,10 @@ $md-font-icon-size: 24px;
   .md-icon {
     color: $md-icon-color;
     font-size: $md-font-icon-size;
-    height: $md-font-icon-size;
     text-align: center;
     transition-duration: $md-transition-time;
     transition-property: color;
     user-select: none;
-    width: $md-font-icon-size;
   }
 }
 

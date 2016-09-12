@@ -293,7 +293,7 @@ class Button extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { active: false, pressed: false };
+    this.state = { pressed: false };
 
     this._blur = this._blur.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
@@ -304,6 +304,19 @@ class Button extends PureComponent {
     this._handleTouchStart = this._handleTouchStart.bind(this);
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (!this.state.pressed && nextState.pressed) {
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+        if (this._attemptedBlur) {
+          this._attemptedBlur = false;
+
+          this.setState({ pressed: false });
+        }
+      }, 450);
+    }
   }
 
   componentWillUnmount() {
@@ -333,14 +346,10 @@ class Button extends PureComponent {
     }
 
     if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
-
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
+      this._attemptedBlur = true;
+    } else {
       this.setState({ pressed: false });
-    }, 450);
-    this.setState({ active: false });
+    }
   }
 
   _handleMouseUp(e) {
@@ -357,7 +366,7 @@ class Button extends PureComponent {
     }
 
     if (!this.props.disabled) {
-      this.setState({ active: false, pressed: true, time: Date.now() });
+      this.setState({ pressed: true, time: Date.now() });
     }
   }
 
@@ -368,7 +377,7 @@ class Button extends PureComponent {
 
     if (!this.props.disabled) {
       this._touched = true;
-      this.setState({ active: true, pressed: true, time: Date.now() });
+      this.setState({ pressed: true, time: Date.now() });
     }
   }
 
@@ -453,7 +462,7 @@ class Button extends PureComponent {
     }
 
     let { children } = this.props;
-    const { pressed, active, hover } = this.state;
+    const { pressed, hover } = this.state;
     const mdBtnType = this._getType(this.props);
 
     const Component = component || (href ? 'a' : 'button');
@@ -482,15 +491,17 @@ class Button extends PureComponent {
         onMouseLeave={this._handleMouseLeave}
         href={href}
         className={cn(`md-btn md-btn--${mdBtnType}`, {
+          'md-color--primary': !disabled && !raisedStyles && primary,
+          'md-color--secondary': !disabled && !raisedStyles && secondary,
+          'md-background--primary': !disabled && raisedStyles && primary,
+          'md-background--secondary': !disabled && raisedStyles && secondary,
+          'md-background--primary-hover': !disabled && raisedStyles && primary,
+          'md-background--secondary-hover': !disabled && raisedStyles && secondary,
           'md-btn--text': flat || raised,
           'md-btn--hover': hover,
-          'md-btn--color-primary': !disabled && !raisedStyles && primary,
-          'md-btn--color-secondary': !disabled && !raisedStyles && secondary,
           'md-btn--color-primary-active': !disabled && !raisedStyles && hover && primary,
           'md-btn--color-secondary-active': !disabled && !raisedStyles && hover && secondary,
-          'md-btn--raised-primary': !disabled && raisedStyles && primary,
-          'md-btn--raised-secondary': !disabled && raisedStyles && secondary,
-          'md-btn--raised-active': !disabled && raisedStyles && active,
+          'md-btn--raised-pressed': !disabled && raisedStyles && pressed,
           'md-btn--fixed': fixed,
           [`md-btn--fixed-${fixedPosition}`]: floating && fixed,
           'md-btn--floating-mini': floating && mini,

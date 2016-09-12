@@ -821,7 +821,7 @@ export default class Autocomplete extends PureComponent {
   }
 
   render() {
-    const { isOpen, matches, tabbed, suggestionStyle } = this.state;
+    const { isOpen, matches, tabbed, focus, suggestionStyle } = this.state;
     const {
       fullWidth,
       block,
@@ -870,7 +870,7 @@ export default class Autocomplete extends PureComponent {
 
     if (inline) {
       let suggestion;
-      if (this.state.suggestion) {
+      if (focus && this.state.suggestion) {
         suggestion = (
           <span
             ref={this._setSuggestion}

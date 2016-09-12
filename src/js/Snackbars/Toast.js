@@ -37,7 +37,7 @@ export default class Toast extends PureComponent {
         className={cn('md-snackbar', className, { multiline })}
       >
         <p>{text}</p>
-        {action && <Button flat removedOnClick {...btnProps} />}
+        {action && <Button flat waitForInk {...btnProps} />}
       </section>
     );
   }

@@ -23,8 +23,8 @@ const BlockExamples = () => (
   >
     <div className="email-chip-container">
       <TextField placeholder="To" type="email" block id="emailTo" paddedBlock={false} />
-      <Chip label="Trevor Hansen">{trevor}</Chip>
-      <Chip label="Alex Nelson">{alex}</Chip>
+      <Chip label="Trevor Hansen" avatar={trevor} />
+      <Chip label="Alex Nelson" avatar={alex} />
     </div>
     <Divider className="md-divider--text-field" />
     <TextField placeholder="Subject" maxLength={80} block id="emailSubject" defaultValue="Plans for the weekend" />

@@ -2,7 +2,7 @@ import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 
 const FontIconExamples = () => (
-  <div>
+  <div className="icon-examples">
     <p>FontIcons from Material Icons</p>
     <FontIcon>home</FontIcon>
     <FontIcon>favorite</FontIcon>

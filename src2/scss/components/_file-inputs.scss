@@ -1,0 +1,20 @@
+////
+/// @group file-inputs
+////
+
+
+@mixin react-md-file-inputs {
+  .md-file-input {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+    z-index: -1;
+  }
+
+  .md-file-input-container {
+    display: inline-block;
+    position: relative;
+  }
+}

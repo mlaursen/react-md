@@ -76,24 +76,8 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
     background: if($light-theme, $md-btn-light-theme-hover-color, $md-btn-dark-theme-hover-color);
   }
 
-  .md-btn--color-primary {
-    color: $primary-color;
-
-    .md-ink {
-      background: rgba($primary-color, .26);
-    }
-  }
-
   .md-btn--color-primary-active {
     background: rgba($primary-color, .12);
-  }
-
-  .md-btn--color-secondary {
-    color: $secondary-color;
-
-    .md-ink {
-      background: rgba($secondary-color, .26);
-    }
   }
 
   .md-btn--color-secondary-active {
@@ -129,8 +113,6 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 
     .md-btn--text {
       font-weight: $md-font-medium;
-      margin-bottom: $accessible-padding;
-      margin-top: $accessible-padding;
       min-height: $md-btn-height;
       min-width: $md-btn-min-width;
       padding-left: $md-btn-lr-padding;
@@ -151,33 +133,8 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       transition: background $md-transition-time, box-shadow $md-transition-time * 2, color $md-transition-time;
     }
 
-    .md-btn--raised-active {
+    .md-btn--raised-pressed {
       @include md-box-shadow(2);
-    }
-
-    .md-btn--raised-primary,
-    .md-btn--raised-secondary {
-      color: $md-white-base;
-
-      .md-ink {
-        background: rgba($md-white-base, .2);
-      }
-    }
-
-    .md-btn--raised-primary {
-      background: $primary-color;
-
-      &:hover {
-        background: rgba($primary-color, .9);
-      }
-    }
-
-    .md-btn--raised-secondary {
-      background: $secondary-color;
-
-      &:hover {
-        background: rgba($secondary-color, .9);
-      }
     }
   }
 
@@ -231,50 +188,14 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
   }
 
   @if $primary-color != $md-primary-color {
-    .md-btn--color-primary {
-      color: $primary-color;
-
-      .md-ink {
-        background: rgba($primary-color, .26);
-      }
-    }
-
     .md-btn--color-primary-active {
       background: rgba($primary-color, .12);
-    }
-
-    @if $include-raised or $include-floating {
-      .md-btn--raised-primary {
-        background: $primary-color;
-
-        &:hover {
-          background: rgba($primary-color, .9);
-        }
-      }
     }
   }
 
   @if $secondary-color != $md-secondary-color {
-    .md-btn--color-secondary {
-      color: $secondary-color;
-
-      .md-ink {
-        background: rgba($secondary-color, .26);
-      }
-    }
-
     .md-btn--color-secondary-active {
       background: rgba($secondary-color, .12);
-    }
-
-    @if $include-raised or $include-floating {
-      .md-btn--raised-secondary {
-        background: $secondary-color;
-
-        &:hover {
-          background: rgba($secondary-color, .9);
-        }
-      }
     }
   }
 }
@@ -324,6 +245,14 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       &::after {
         display: none;
         visibility: hidden;
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        bottom: 0;
       }
     }
   }

@@ -1071,6 +1071,11 @@ $md-text-field-desktop-block-padding: 16px;
     display: inline-block;
   }
 
+  .md-text-field-divider-container--grow {
+    display: block;
+    flex-grow: 1;
+  }
+
   .md-text-field-icon + .md-text-field-divider-container,
   .md-text-field-divider-container + .md-text-field-icon {
     margin-left: 16px;
