@@ -14,7 +14,7 @@
     "server:build": "webpack --config webpack-dev.server.config.js --progress --colors",
     "server:watch": "webpack --config webpack-dev.server.config.js --watch",
     "server:dev": "concurrently --kill-others 'npm run server:watch' 'npm run start:dev'",
-    "dev": "npm run docgen && npm run sassdoc && npm run server:dev"
+    "dev": "./scripts/dev.sh"
   },
   "repository": {
     "type": "git",

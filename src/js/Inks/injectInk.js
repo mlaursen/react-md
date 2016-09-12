@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
-import { TAB, LEFT_MOUSE, UP, DOWN } from '../constants/keyCodes';
+import { TAB, LEFT_MOUSE } from '../constants/keyCodes';
 import { getOffset } from '../utils';
 import { calcHypotenuse } from '../utils/NumberUtils';
 
@@ -14,7 +14,7 @@ import { calcHypotenuse } from '../utils/NumberUtils';
  * @return the ComposedComponent with inks.
  * ```
  */
-export default ComposedComponent => class InkedComponent extends PureComponent {
+export default (ComposedComponent, additionalKeys) => class InkedComponent extends PureComponent {
   static propTypes = {
     /**
      * An optional function to call when the `mouseup` event occurs.
@@ -172,7 +172,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   _isValidKey(e, component) {
     const key = e.which || e.keyCode;
     return key === TAB ||
-      ([UP, DOWN].indexOf(key) !== -1 && document.activeElement === component);
+      (additionalKeys && (additionalKeys.indexOf(key) !== -1 && document.activeElement === component));
   }
 
   _createInk(pageX, pageY, pulse) {
@@ -247,6 +247,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     });
 
     if (transition) {
+      const time = Date.now() - transition.key;
       transition.leaving = true;
       transition.timeout = setTimeout(() => {
         transition.ink.classList.add('md-ink--leaving');
@@ -265,7 +266,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
             this._component.click();
           }
         }, inkLeaveTimeout);
-      }, inkEnterTimeout);
+      }, time > inkEnterTimeout ? 0 : inkEnterTimeout - time);
     }
   }
 

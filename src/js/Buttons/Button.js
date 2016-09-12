@@ -492,7 +492,9 @@ class Button extends PureComponent {
         href={href}
         className={cn(`md-btn md-btn--${mdBtnType}`, {
           'md-color--primary': !disabled && !raisedStyles && primary,
+          'md-color--primary-ink': !disabled && !raisedStyles && primary,
           'md-color--secondary': !disabled && !raisedStyles && secondary,
+          'md-color--secondary-ink': !disabled && !raisedStyles && secondary,
           'md-background--primary': !disabled && raisedStyles && primary,
           'md-background--secondary': !disabled && raisedStyles && secondary,
           'md-background--primary-hover': !disabled && raisedStyles && primary,

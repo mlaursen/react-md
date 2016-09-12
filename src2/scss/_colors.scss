@@ -1211,7 +1211,9 @@ $md-dark-theme-colors: (
 
   .md-color--primary {
     color: $primary-color;
+  }
 
+  .md-color--primary-ink {
     .md-ink {
       background: rgba($primary-color, .26);
     }
@@ -1219,7 +1221,9 @@ $md-dark-theme-colors: (
 
   .md-color--secondary {
     color: $secondary-color;
+  }
 
+  .md-color--secondary-ink {
     .md-ink {
       background: rgba($secondary-color, .26);
     }
@@ -1260,6 +1264,9 @@ $md-dark-theme-colors: (
     .md-color--primary {
       color: $primary-color;
 
+    }
+
+    .md-color--primary-ink {
       .md-ink {
         background: rgba($primary-color, .26);
       }
@@ -1277,7 +1284,9 @@ $md-dark-theme-colors: (
   @if $secondary-color != $md-secondary-color {
     .md-color--secondary {
       color: $secondary-color;
+    }
 
+    .md-color--secondary-ink {
       .md-ink {
         background: rgba($secondary-color, .26);
       }

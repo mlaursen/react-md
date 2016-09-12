@@ -229,6 +229,23 @@ function getComputedPropType(name, value) {
   }
 }
 
+function getCustomPropType(raw) {
+  if (raw.match(/controlled|minNumber|maxNumber/)) {
+    return raw;
+  } else if (raw.match(/deprecated/)) {
+    return 'deprecated';
+  }
+
+  return 'custom';
+}
+
+export function getDeprecatedReason(propName, { raw }) {
+  return `The \`${propName}\` prop has been deprecated and will be removed in the next release.
+
+${raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}
+`;
+}
+
 /**
  * Converts a docgen prop type into a string.
  *
@@ -236,7 +253,7 @@ function getComputedPropType(name, value) {
  * @param {Number} tabs? The current number of tabs.
  * @return {String} a formatted markdown string to represent the prop type.
  */
-export function getPropTypeString({ name, value, computed }, tabs = 0) {
+export function getPropTypeString({ name, value, computed, raw }, tabs = 0) {
   if (computed) {
     return getComputedPropType(name, value);
   }
@@ -252,6 +269,8 @@ export function getPropTypeString({ name, value, computed }, tabs = 0) {
       return getShapePropType(value, tabs + 1);
     case 'instanceOf':
       return `${name}(${value})`;
+    case 'custom':
+      return getCustomPropType(raw);
     default:
       return name;
   }
