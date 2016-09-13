@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
-import { controlled } from '../utils/PropTypes';
+import controlled from '../utils/PropTypes/controlled';
 import { getField } from '../utils';
 import { TAB } from '../constants/keyCodes';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
@@ -137,7 +137,7 @@ export default class ListItem extends PureComponent {
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
      * and require the `onClick` function to be defined.
      */
-    isOpen: controlled('onClick', PropTypes.bool),
+    isOpen: controlled(PropTypes.bool, 'onClick'),
 
     /**
      * Any children used to render the expander icon.

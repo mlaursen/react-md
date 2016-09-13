@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import { controlled } from '../utils/PropTypes';
+import controlled from '../utils/PropTypes/controlled';
 import { ListItem } from '../Lists';
 import Menu from '../Menus';
 import TextField from '../TextFields';
@@ -73,10 +73,10 @@ export default class Autocomplete extends PureComponent {
      * An optional value to use for the text field. This will force this component
      * to be controlled and require the `onChange` function.
      */
-    value: controlled('onChange', PropTypes.oneOfType([
+    value: controlled(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ])),
+    ]), 'onChange'),
 
     /**
      * The default value for the autocomplete's text field.

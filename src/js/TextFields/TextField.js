@@ -3,7 +3,8 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { controlled, minNumber } from '../utils/PropTypes';
+import controlled from '../utils/PropTypes/controlled';
+import minNumber from '../utils/PropTypes/minNumber';
 import { addSuffix } from '../utils/StringUtils';
 import { TAB } from '../constants/keyCodes';
 import Divider from '../Dividers';
@@ -46,10 +47,10 @@ export default class TextField extends PureComponent {
      * An optional value to apply to the text field. This will make the component
      * controlled and require the `onChange` prop.
      */
-    value: controlled('onChange', PropTypes.oneOfType([
+    value: controlled(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
-    ])),
+    ]), 'onChange'),
 
     /**
      * An optional default value for the text field.
