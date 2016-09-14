@@ -11,6 +11,8 @@ import TextField from '../TextFields';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
 
+const ADDITIONAL_INK_TRIGGER_KEYS = [UP, DOWN];
+
 /**
  * The `Autocomplete` component is useful for presenting real-time suggestions, completions,
  * or filtering.
@@ -757,7 +759,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
-    return <ListItem tabIndex={-1} {...props} additionalInkTriggerKeys={[UP, DOWN]} />;
+    return <ListItem tabIndex={-1} {...props} additionalInkTriggerKeys={ADDITIONAL_INK_TRIGGER_KEYS} />;
   }
 
   /**
