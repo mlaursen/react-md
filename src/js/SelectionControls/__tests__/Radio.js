@@ -1,38 +1,28 @@
 /* eslint-env jest*/
 jest.unmock('../Radio');
-jest.unmock('../ControlContainer');
 
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+import { renderIntoDocument, findRenderedComponentWithType } from 'react-addons-test-utils';
 
 import Radio from '../Radio';
+import SelectionControl from '../SelectionControl';
 
 describe('Radio', () => {
-  it('merges className and style', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const radio = renderIntoDocument(
-      <Radio style={style} className={className} value="A" />
-    );
+  it('renders the SelectionControl component with the correct props', () => {
+    const props = {
+      id: 'test',
+      name: 'test',
+      value: 'what',
+      label: 'Test',
+      checked: false,
+    };
 
-    const radioNode = findDOMNode(radio);
-    expect(radioNode.style.display).toBe(style.display);
-    expect(radioNode.classList.contains(className)).toBe(true);
-  });
-
-  it('calls the onChange function prop with the current value and the event', () => {
-    const onChange = jest.fn();
-    const radio = renderIntoDocument(<Radio onChange={onChange} value="A" />);
-
-    const input = findRenderedDOMComponentWithTag(radio, 'input');
-    Simulate.change(input, { target: { checked: true } });
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toBe('A');
+    const radio = renderIntoDocument(<Radio {...props} />);
+    const control = findRenderedComponentWithType(radio, SelectionControl);
+    expect(control.props.id).toBe(props.id);
+    expect(control.props.name).toBe(props.name);
+    expect(control.props.value).toBe(props.value);
+    expect(control.props.type).toBe('radio');
+    expect(control.props.__superSecreteProp).toBe(true);
   });
 });

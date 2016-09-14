@@ -1201,12 +1201,16 @@ $md-dark-theme-colors: (
 }
 
 @mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
-  .md-text-color {
+  .md-color--text {
     color: get-color('text', $light-theme);
   }
 
-  .md-text-color--secondary {
+  .md-color--secondary-text {
     color: get-color('secondary', $light-theme);
+  }
+
+  .md-color--disabled {
+    color: get-color('disabled', $light-theme);
   }
 
   .md-color--primary {
@@ -1302,16 +1306,63 @@ $md-dark-theme-colors: (
   }
 
   @if $light-theme != $md-light-theme {
-    .md-text-color {
+    .md-color--text {
       color: get-color('text', $light-theme);
     }
 
-    .md-text-color--secondary {
+    .md-color--secondary-text {
       color: get-color('secondary', $light-theme);
+    }
+
+    .md-color--disabled {
+      color: get-color('disabled', $light-theme);
     }
 
     .md-background {
       background: get-color('background', $light-theme);
     }
   }
+}
+
+@function get-swatch($color, $swatch, $accent: false) {
+  $index: index(map-values($md-color-map), $color);
+  @if $index == null or $index < 1 {
+    @warn 'The given color "#{$color}" is not a valid material design color. Unable to get a swatch.';
+    @return $color;
+  }
+
+  $current-color-name: nth(map-keys($md-color-map), $index);
+  $colors: (
+    'red'
+    'pink'
+    'purple'
+    'deep-purple'
+    'indigo'
+    'blue'
+    'light-blue'
+    'cyan'
+    'teal'
+    'green'
+    'light-green'
+    'lime'
+    'yellow'
+    'amber'
+    'orange'
+    'deep-orange'
+    'brown'
+    'grey'
+    'blue-grey'
+  );
+  $color-name: null;
+  $index: 1;
+  @while $color-name == null and $index < length($colors) {
+    $md-color: nth($colors, $index);
+    @if str-index($current-color-name, $md-color) != null {
+      $color-name: $md-color;
+    }
+
+    $index: $index + 1;
+  }
+
+  @return map-get($md-color-map, "md-#{$color-name}-#{if($accent, 'a-', '')}#{$swatch}");
 }

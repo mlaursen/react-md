@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Fuse from 'fuse.js';
 
 import Autocomplete from 'react-md/lib/Autocompletes';
-import { RadioGroup, Radio } from 'react-md/lib/SelectionControls';
+import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
 
 import programmingLanguages from 'constants/programmingLanguages';
 
@@ -55,11 +55,22 @@ export default class MenuAutocomplete extends PureComponent {
     const { filterType } = this.state;
     return (
       <div>
-        <RadioGroup name="filterType" onChange={this._handleFilterChange}>
-          <Radio value="case" label="Case Insensitive Filter" />
-          <Radio value="fuzzy" label="Fuzzy Filter" />
-          <Radio value="fuse" label="Fuse Filter (3rd party lib)" />
-        </RadioGroup>
+        <SelectionControlGroup
+          id="filterType"
+          name="filterType"
+          type="radio"
+          onChange={this._handleFilterChange}
+          controls={[{
+            label: 'Case Insensitive Filter',
+            value: 'case',
+          }, {
+            label: 'Fuzzy Filter',
+            value: 'fuzzy',
+          }, {
+            label: 'Fuse Filter (3rd party lib)',
+            value: 'fuse',
+          }]}
+        />
         <Autocomplete
           id="programmingLanguages"
           label="Type a programming language"

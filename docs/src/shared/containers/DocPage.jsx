@@ -23,7 +23,10 @@ export default class DocPageContainer extends PureComponent {
 
   componentWillMount() {
     const { component, section } = this.props.params;
-    const folder = (section ? `${section}/` : '') + component;
+    let folder = (section ? `${section}/` : '') + component;
+    if (component === 'selection-control') {
+      folder = `${component}s`;
+    }
     // Can not have the examples in the redux state since it is not serializable.
     // So either async require example for client, or bundle for server.
     if (__CLIENT__) {

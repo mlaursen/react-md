@@ -180,6 +180,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       color: get-color('text', $light-theme);
     }
 
+    .md-btn[disabled] {
+      color: get-color('disabled', $light-theme);
+    }
+
     @if $include-flat or $include-raised {
       .md-btn--text[disabled] {
         background: get-color('divider', $light-theme);

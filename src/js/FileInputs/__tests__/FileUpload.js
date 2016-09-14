@@ -26,7 +26,7 @@ describe('FileUpload', () => {
     const style = { display: 'block' };
     const className = 'test';
     const fileUpload = renderIntoDocument(
-      <FileUpload style={style} className={className} onChange={jest.fn()} />
+      <FileUpload id="test" style={style} className={className} onChange={jest.fn()} />
     );
 
     const fileUploadNode = findDOMNode(fileUpload);
@@ -36,7 +36,7 @@ describe('FileUpload', () => {
 
   it('calls the onChange function still', () => {
     const onChange = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onChange={onChange} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onChange={onChange} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
@@ -48,7 +48,7 @@ describe('FileUpload', () => {
 
   it('prevents any files with a size greater than the maxSize', () => {
     const onSizeError = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload maxSize={1024} onSizeError={onSizeError} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" maxSize={1024} onSizeError={onSizeError} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File()];
@@ -77,7 +77,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onError = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onError={onError} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onError={onError} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -102,7 +102,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onAbort = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onAbort={onAbort} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onAbort={onAbort} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -126,7 +126,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onLoadStart = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onLoadStart={onLoadStart} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onLoadStart={onLoadStart} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -150,7 +150,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onLoadEnd = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onLoadEnd={onLoadEnd} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onLoadEnd={onLoadEnd} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -175,7 +175,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onLoad = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onLoad={onLoad} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onLoad={onLoad} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -200,7 +200,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const onProgress = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload onProgress={onProgress} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" onProgress={onProgress} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 
@@ -222,7 +222,7 @@ describe('FileUpload', () => {
     };
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
-    const fileUpload = renderIntoDocument(<FileUpload />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File()];
 
@@ -260,7 +260,7 @@ describe('FileUpload', () => {
     };
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
-    const fileUpload = renderIntoDocument(<FileUpload />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File(1024, 'application/gzip')];
 
@@ -300,7 +300,7 @@ describe('FileUpload', () => {
     };
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
-    const fileUpload = renderIntoDocument(<FileUpload />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     let files = [new File(1024, 'text/x-java')];
 
@@ -330,7 +330,7 @@ describe('FileUpload', () => {
     };
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
-    let fileUpload = renderIntoDocument(<FileUpload readAs="DataURL" />);
+    let fileUpload = renderIntoDocument(<FileUpload id="test" readAs="DataURL" />);
     let input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File(2024, 'application/javascript')];
 
@@ -339,7 +339,7 @@ describe('FileUpload', () => {
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(0);
     expect(frMock.readAsText.mock.calls.length).toBe(0);
 
-    fileUpload = renderIntoDocument(<FileUpload readAs="ArrayBuffer" />);
+    fileUpload = renderIntoDocument(<FileUpload id="test" readAs="ArrayBuffer" />);
     input = findRenderedDOMComponentWithTag(fileUpload, 'input');
 
     Simulate.change(input, { target: { files } });
@@ -347,7 +347,7 @@ describe('FileUpload', () => {
     expect(frMock.readAsArrayBuffer.mock.calls.length).toBe(1);
     expect(frMock.readAsText.mock.calls.length).toBe(0);
 
-    fileUpload = renderIntoDocument(<FileUpload readAs="Text" />);
+    fileUpload = renderIntoDocument(<FileUpload id="test" readAs="Text" />);
     input = findRenderedDOMComponentWithTag(fileUpload, 'input');
 
     Simulate.change(input, { target: { files } });
@@ -368,7 +368,7 @@ describe('FileUpload', () => {
     spyOn(window, 'FileReader').and.returnValue(frMock);
 
     const readAs = jest.fn();
-    const fileUpload = renderIntoDocument(<FileUpload readAs={readAs} />);
+    const fileUpload = renderIntoDocument(<FileUpload id="test" readAs={readAs} />);
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
     const files = [new File()];
 

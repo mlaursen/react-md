@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
-import FontIcon from 'react-md/lib/FontIcons';
 // or
 // import { Checkbox } from 'react-md/lib/SelectionControls';
 
@@ -23,11 +22,13 @@ export default class StatefulExample extends PureComponent {
       <div className="text-container">
         <p>Wow, you have {checked ? '' : 'not '} checked the Checkbox!</p>
         <Checkbox
+          id="favorite"
+          name="favorite"
           label="Favorite this!"
           checked={checked}
           onChange={this._handleChange}
-          checkedIcon={<FontIcon>favorite</FontIcon>}
-          uncheckedIcon={<FontIcon>favorite_border</FontIcon>}
+          checkedIconChildren="favorite"
+          uncheckedIconChildren="favorite_border"
           value="favorite"
         />
       </div>

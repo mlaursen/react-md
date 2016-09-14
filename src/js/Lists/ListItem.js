@@ -402,7 +402,7 @@ export default class ListItem extends PureComponent {
           onKeyUp={this._handleKeyUp}
           disabled={disabled}
           style={tileStyle}
-          className={cn('md-list-tile md-text-color', {
+          className={cn('md-list-tile md-color--text', {
             'md-list-tile--active': this.state.active,
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,

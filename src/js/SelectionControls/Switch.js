@@ -1,54 +1,36 @@
 import React, { PureComponent, PropTypes } from 'react';
-import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { LEFT_MOUSE } from '../constants/keyCodes';
+import controlled from '../utils/PropTypes/controlled';
+import SelectionControl from './SelectionControl';
 
 export default class Switch extends PureComponent {
   static propTypes = {
     /**
-     * An optional style to apply.
+     * An id to use with the switch. This is used for accessibility and so that the label
+     * triggers the switch toggle.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
+     * An optional style to apply to the switch's container.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply.
+     * An optional className to apply to the switch's container.
      */
     className: PropTypes.string,
 
     /**
-     * Boolean if the switch is disabled.
+     * A label to display with the switch. This is required for accessibility and triggering
+     * the toggle.
      */
-    disabled: PropTypes.bool,
-
-    /**
-     * Boolean if the switch is toggled on by default.
-     */
-    defaultToggled: PropTypes.bool.isRequired,
-
-    /**
-     * Boolean if the switch is toggled on. This will make the switch
-     * a controlled component which requires the `onChange` prop to be
-     * set.
-     */
-    toggled: PropTypes.bool,
-
-    /**
-     * An optional function to call when the toggled state changes.
-     * It will be called with the next toggled state and the click event.
-     *
-     * `onChange(!toggled, event)`.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * An optional value to apply to the switch.
-     */
-    value: PropTypes.string,
-
-    /**
-     * An optional label to display with the switch.
-     */
-    label: PropTypes.node,
+    label: PropTypes.string.isRequired,
 
     /**
      * Boolean if the label should appear before the switch.
@@ -56,92 +38,71 @@ export default class Switch extends PureComponent {
     labelBefore: PropTypes.bool,
 
     /**
-     * An optional id for the switch.
+     * A name to use for the `Switch`. This is required for accessibility since behind the scenes
+     * the `Switch` is renders as an `<input type="checkbox" />`.
      */
-    id: PropTypes.string,
+    name: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
+     * Boolean if the `Switch` is disabled.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * An optional function to call when the `checked` state of the `Switch` changes.
+     * The callback will incude the new checked state and the changeEvent.
+     *
+     * ```js
+     * onChange(changeEvent.target.checked, changeEvent);
+     * ```
+     */
+    onChange: PropTypes.func,
+
+    /**
+     * An optional value for the `Switch`. It is recommended to use a value though.
+     */
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * Boolean if the `Switch` is checked by default.
+     */
+    defaultChecked: PropTypes.bool,
+
+    /**
+     * A boolean if the `Switch` is currently checked. This will required the `onChange` prop
+     * to be defined.
+     */
+    checked: controlled(PropTypes.bool, 'onChange'),
+
+    /**
+     * Boolean if the `Checkbox` should be displayed inline.
+     */
+    inline: PropTypes.bool,
+    defaultToggled: deprecated(PropTypes.bool, 'Use the `defaultChecked` prop instead.'),
+    toggled: deprecated(PropTypes.bool, 'Use the `checked` prop instead.'),
   };
-
-  static defaultProps = {
-    defaultToggled: false,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = { toggled: props.defaultToggled, active: false, leaving: false };
-    this._toggleCheck = this._toggleCheck.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-  }
-
-  _isToggled(props, state) {
-    return typeof props.toggled === 'undefined' ? state.toggled : props.toggled;
-  }
-
-  _toggleCheck(e) {
-    const { onChange } = this.props;
-    const toggled = !this._isToggled(this.props, this.state);
-    if (onChange) {
-      onChange(toggled, e);
-    }
-
-    if (typeof this.props.toggled === 'undefined') {
-      this.setState({ toggled });
-    }
-  }
-
-  _handleMouseDown(e) {
-    if (!this.props.disabled && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
-      this.setState({ active: true, leaving: false });
-    }
-  }
-
-  _handleMouseUp(e) {
-    if (!this.props.disabled && this.state.active && !this.timeout && e.button === LEFT_MOUSE && !e.ctrlKey) {
-      this.timeout = setTimeout(() => {
-        this.timeout = null;
-        this.setState({ active: false, leaving: false });
-      }, 600);
-
-      this.setState({ leaving: true });
-    }
-  }
 
   render() {
-    const { active, leaving } = this.state;
-    const { className, label, labelBefore, disabled, style, id, ...props } = this.props;
-    delete props.toggled;
-    delete props.defaultToggled;
+    const {
+      toggled,
+      defaultToggled,
+      ...props,
+    } = this.props;
 
-    const labelClassName = cn('md-control-container', className, { disabled });
+    if (typeof toggled !== 'undefined' && typeof props.checked === 'undefined') {
+      props.checked = toggled;
+    }
 
-    const spanLabel = label ? <span className="label">{label}</span> : null;
-    return (
-      <label
-        className={labelClassName}
-        onMouseDown={this._handleMouseDown}
-        onMouseUp={this._handleMouseUp}
-        style={style}
-        htmlFor={id}
-      >
-        {labelBefore && spanLabel}
-        <div className="md-switch-container">
-          <input
-            {...props}
-            id={id}
-            type="checkbox"
-            checked={this._isToggled(this.props, this.state)}
-            className="md-control-input"
-            onChange={this._toggleCheck}
-            disabled={disabled}
-          />
-          <div className="md-switch">
-            <span className={cn('md-ink', { active, leaving })} />
-          </div>
-        </div>
-        {!labelBefore && spanLabel}
-      </label>
-    );
+    if (typeof defaultToggled !== 'undefined' && typeof props.defaultChecked === 'undefined') {
+      props.defaultChecked = defaultToggled;
+    }
+
+    return <SelectionControl type="switch" {...props} __superSecreteProp />;
   }
 }
-
