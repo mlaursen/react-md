@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import { isBetween } from '../utils/NumberUtils';
+import isBetween from '../utils/NumberUtils/isBetween';
 import BottomNav from './BottomNav';
 
 /**

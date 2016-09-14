@@ -1,16 +1,4 @@
 /**
- * Checks if a number is between a min and maximum (inclusive)
- *
- * @param {Number} num the number to check
- * @param {Number} min the minimum
- * @param {Number} max the maximum
- * @return {Boolean} true if the number is between the min and max (inclusive)
- */
-export function isBetween(num, min, max) {
-  return num >= min && num <= max;
-}
-
-/**
  * This calculates the distance from a screen x location to a position in some element
  * by comparing the width of the element and the element's page position to the screen
  * x position.
@@ -55,7 +43,7 @@ function calculateDistance(x, width, left, normalize) {
  *
  * @return {Object} an object with the value and distance.
  */
-export function calculateValueDistance(x, width, left, scale, step, min, max, normalize) {
+export default function calculateValueDistance(x, width, left, scale, step, min, max, normalize) {
   let value;
   let distance = calculateDistance(x, width, left, normalize);
   if (normalize) {
@@ -83,43 +71,4 @@ export function calculateValueDistance(x, width, left, scale, step, min, max, no
     distance: Math.max(0, Math.min(100, distance)),
     value: Math.max(min, Math.min(max, value)),
   };
-}
-
-/**
- * Takes in a css unit (px, rem, em, etc) or a number and applies a function to the
- * number part of the unit.
- *
- * If the unit was a number to start with and a `toUnit` is given, the number will
- * be given the `toUnit`. Otherwise the number will be returned.
- *
- * If the unit was a string, the original units will be applied back to the updated
- * unit's value.
- *
- * @param {number|String} unit - the unit to apply a function to.
- * @param {function} fn - the function to apply to the number.
- * @param {String=} toUnit - an optional unit to cast the updated unit to.
- *
- * @return {String|number} the updated unit.
- */
-export function updateUnit(unit, fn, toUnit) {
-  const updated = fn(parseInt(unit, 10));
-
-  if (typeof unit === 'number') {
-    return toUnit
-      ? `${updated}${toUnit}`
-      : updated;
-  }
-
-  return `${updated}${unit.replace(/[0-9]/g, '')}`;
-}
-
-/**
- * Calculates the hypotenuse using the x and y coordinates given.
- *
- * @param {number} a the x coordinate
- * @param {number} b the y coordinate
- * @return {number} the hypotenuse length for the given x and y coordinates.
- */
-export function calcHypotenuse(a, b) {
-  return Math.sqrt((a * a) + (b * b));
 }
