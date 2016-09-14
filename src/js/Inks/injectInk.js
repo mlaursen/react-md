@@ -1,7 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
-import { TAB, LEFT_MOUSE } from '../constants/keyCodes';
+import isValidClick from '../utils/EventUtils/isValidClick';
+import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 import { getOffset } from '../utils';
 import { calcHypotenuse } from '../utils/NumberUtils';
 
@@ -14,7 +15,7 @@ import { calcHypotenuse } from '../utils/NumberUtils';
  * @return the ComposedComponent with inks.
  * ```
  */
-export default (ComposedComponent, additionalKeys) => class InkedComponent extends PureComponent {
+export default ComposedComponent => class InkedComponent extends PureComponent {
   static propTypes = {
     /**
      * An optional function to call when the `mouseup` event occurs.
@@ -79,6 +80,11 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
      * The transition leave timeout for the ink.
      */
     inkLeaveTimeout: PropTypes.number.isRequired,
+
+    /**
+     * An optional list of additional key codes that can be used to trigger the ink.
+     */
+    additionalInkTriggerKeys: PropTypes.arrayOf(PropTypes.number),
 
     /**
      * If the component is a button or any element that uses the `html` `type` attribute,
@@ -163,16 +169,6 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
     }
 
     return inkContainer;
-  }
-
-  _isValidClick(e) {
-    return !e.shiftKey && !e.ctrlKey && e.button === LEFT_MOUSE;
-  }
-
-  _isValidKey(e, component) {
-    const key = e.which || e.keyCode;
-    return key === TAB ||
-      (additionalKeys && (additionalKeys.indexOf(key) !== -1 && document.activeElement === component));
   }
 
   _createInk(pageX, pageY, pulse) {
@@ -294,7 +290,7 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
       this.props.onKeyUp(e);
     }
 
-    if (this._isValidKey(e, this._component)) {
+    if (isValidFocusKeypress(e, this.props.additionalInkTriggerKeys)) {
       this._createInk(e.pageX, e.pageY, true);
       window.addEventListener('click', this._removeInk);
     }
@@ -305,7 +301,7 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
       this.props.onKeyDown(e);
     }
 
-    if (this._isValidKey(e, this._component)) {
+    if (isValidFocusKeypress(e, this.props.additionalInkTriggerKeys)) {
       this._removeInk();
       window.removeEventListener('click', this._removeInk);
     }
@@ -316,7 +312,7 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
       this.props.onMouseUp(e);
     }
 
-    if (!this._isValidClick(e)) {
+    if (!isValidClick(e)) {
       return;
     }
 
@@ -329,7 +325,7 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
       this.props.onMouseDown(e);
     }
 
-    if (!this._isValidClick(e)) {
+    if (!isValidClick(e)) {
       return;
     }
 
@@ -409,17 +405,14 @@ export default (ComposedComponent, additionalKeys) => class InkedComponent exten
       return;
     }
 
-    this._createInk();
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
-      this._removeInk();
-    }, 300);
+    this.createInk();
   }
 
   render() {
     const { inkDisabled, ...props } = this.props;
     delete props.inkEnterTimeout;
     delete props.inkLeaveTimeout;
+    delete props.additionalInkTriggerKeys;
     delete props.waitForInk;
 
     if (props.disabled || inkDisabled) {

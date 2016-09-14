@@ -4,7 +4,7 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { getField } from '../utils';
-import { isValidClick } from '../utils/EventUtils';
+import isValidClick from '../utils/EventUtils/isValidClick';
 import { calculateValueDistance } from '../utils/NumberUtils';
 import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import SliderLabel from './SliderLabel';

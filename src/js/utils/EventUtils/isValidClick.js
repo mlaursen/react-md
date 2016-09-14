@@ -1,4 +1,4 @@
-import { LEFT_MOUSE } from '../constants/keyCodes';
+import { LEFT_MOUSE } from '../../constants/keyCodes';
 
 /**
  * Checks if an event is a valid click event by ignoring
@@ -10,7 +10,7 @@ import { LEFT_MOUSE } from '../constants/keyCodes';
  *    verify
  * @return {Boolean} true if the event is valid.
  */
-export function isValidClick(e, type) {
+export default function isValidClick(e, type) {
   return (type ? e.type === type : true)
     && e.button === LEFT_MOUSE
     && !e.shiftKey;
