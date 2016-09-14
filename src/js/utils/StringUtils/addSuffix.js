@@ -7,7 +7,7 @@
  *
  * @return {String} the string with a suffix
  */
-export function addSuffix(str, suffix) {
+export default function addSuffix(str, suffix) {
   if (!str) {
     return str;
   }

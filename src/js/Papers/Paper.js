@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import { isBetween } from '../utils/NumberUtils';
+import isBetween from '../utils/NumberUtils/isBetween';
 
 /**
  * The `Paper` component is a simple wrappper that adds box-shadow.

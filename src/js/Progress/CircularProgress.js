@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import { isBetween } from '../utils/NumberUtils';
+import isBetween from '../utils/NumberUtils/isBetween';
 
 const ROATE_DISTANCE = 360 * 1.75;
 const BASE_SIZE = 24; // font-icon font size

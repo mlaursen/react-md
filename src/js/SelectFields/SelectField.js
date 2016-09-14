@@ -4,7 +4,7 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { isObject } from '../utils';
-import { isBetween } from '../utils/NumberUtils';
+import isBetween from '../utils/NumberUtils/isBetween';
 import { SPACE, TAB, ENTER, UP, DOWN, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 
 import ListItem from '../Lists/ListItem';

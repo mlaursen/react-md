@@ -11,5 +11,5 @@ import { TAB } from '../../constants/keyCodes';
 export default function isValidFocusKeypress(event, additionalKeys) {
   const key = event.which || event.keyCode;
   return key === TAB ||
-    (additionalKeys && additionalKeys.indexof(key) !== -1);
+    (additionalKeys && additionalKeys.indexOf(key) !== -1);
 }
