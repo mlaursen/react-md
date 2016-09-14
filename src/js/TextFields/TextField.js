@@ -5,7 +5,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import controlled from '../utils/PropTypes/controlled';
 import minNumber from '../utils/PropTypes/minNumber';
-import { addSuffix } from '../utils/StringUtils';
+import addSuffix from '../utils/StringUtils/addSuffix';
 import { TAB } from '../constants/keyCodes';
 import Divider from '../Dividers';
 import FloatingLabel from './FloatingLabel';
