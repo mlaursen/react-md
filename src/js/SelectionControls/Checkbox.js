@@ -1,87 +1,148 @@
 import React, { PureComponent, PropTypes } from 'react';
-import FontIcon from '../FontIcons';
-import ControlContainer from './ControlContainer';
+import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import controlled from '../utils/PropTypes/controlled';
+import SelectionControl from './SelectionControl';
 
 /**
- * Checkboxes can be toggle by clicking the label of the checkbox or the
- * checkbox itself. If the icon itself is clicked, ink will appear. There
- * will be no ink when the label is clicked.
+ * The `Checkbox` component is used for the selection of multiple options from a set.
  */
 export default class Checkbox extends PureComponent {
   static propTypes = {
     /**
-     * The optional className to apply to the surrounding label.
+     * An id to use with the checkbox. This is used for accessibility and so that the label
+     * triggers the checkbox toggle.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
+     * An optional style to apply to the checkbox's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the checkbox's container.
      */
     className: PropTypes.string,
 
     /**
-     * Boolean if the checkbox is disabled.
+     * A label to display with the checkbox. This is required for accessibility and triggering
+     * the toggle.
+     */
+    label: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the label should appear before the checkbox icon.
+     */
+    labelBefore: PropTypes.bool,
+
+    /**
+     * A name to use for the `Checkbox`. This is required for accessibility. If the checkbox is
+     * part of a group, it is recommended to make this a string ending in `[]` so that the
+     * value can be found from `document.querySelector('input[name="someName[]"]').value`.
+     */
+    name: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
+     * Boolean if the `Checkbox` is disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * An optional function to call when the checked state is called.
-     * The next checked state and change event will be passed.
+     * An optional function to call when the `checked` state of the `Checkbox` changes.
+     * The callback will incude the new checked state and the changeEvent.
      *
-     * `onChange(!checked, event)`.
+     * ```js
+     * onChange(changeEvent.target.checked, changeEvent);
+     * ```
      */
     onChange: PropTypes.func,
 
     /**
-     * An optional value for the checkbox.
+     * An optional value for the `Checkbox`. It is recommended to use a value though.
      */
     value: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
     ]),
 
     /**
-     * Boolean if the checkbox is checked by default.
+     * Boolean if the `Checkbox` is checked by default.
      */
-    defaultChecked: PropTypes.bool.isRequired,
+    defaultChecked: PropTypes.bool,
 
     /**
-     * Boolean if this checkbox is currently checked. This will
-     * require the `onChange` prop to be defined since it will
-     * become a controlled component.
+     * A boolean if the `Checkbox` is currently checked. This will required the `onChange` prop
+     * to be defined.
      */
-    checked: PropTypes.bool,
+    checked: controlled(PropTypes.bool, 'onChange'),
 
     /**
-     * The icon to use for the checked state.
+     * Boolean if the `Checkbox` should be displayed inline.
      */
-    checkedIcon: PropTypes.node.isRequired,
+    inline: PropTypes.bool,
 
     /**
-     * The icon to use for the unchecked state.
+     * Any children to use for the checked `FontIcon` of the `Checkbox`.
      */
-    uncheckedIcon: PropTypes.node.isRequired,
+    checkedIconChildren: PropTypes.node,
 
     /**
-     * An optional label to display with the checkbox.
+     * An icon className to use for the checked `FontIcon` of the `Checkbox`.
      */
-    label: PropTypes.node,
+    checkedIconClassName: PropTypes.string,
 
     /**
-     * Boolean if the label should be displayed before or after the checkbox.
+     * Any children to use for the unchecked `FontIcon` of the `Checkbox`.
      */
-    labelBefore: PropTypes.bool.isRequired,
+    uncheckedIconChildren: PropTypes.node,
 
     /**
-     * An optional form name to give to the checkbox.
+     * An icon className to use for the unchecked `FontIcon` of the `Checkbox`.
      */
-    name: PropTypes.string,
+    uncheckedIconClassName: PropTypes.string,
+
+    checkedIcon: deprecated(
+      PropTypes.node,
+      'Use the `checkedIconChildren` and `checkedIconClassName` props instead.'
+    ),
+    uncheckedIcon: deprecated(
+      PropTypes.node,
+      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead.'
+    ),
   };
 
   static defaultProps = {
-    defaultChecked: false,
-    labelBefore: false,
-    checkedIcon: <FontIcon>check_box</FontIcon>,
-    uncheckedIcon: <FontIcon>check_box_outline_blank</FontIcon>,
+    checkedIconChildren: 'check_box',
+    uncheckedIconChildren: 'check_box_outline_blank',
   };
 
   render() {
-    return <ControlContainer {...this.props} type="checkbox" />;
+    const {
+      checkedIconChildren,
+      checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      ...props,
+    } = this.props;
+
+    return (
+      <SelectionControl
+        type="checkbox"
+        checkedCheckboxIconChildren={checkedIconChildren}
+        checkedCheckboxIconClassName={checkedIconClassName}
+        uncheckedCheckboxIconChildren={uncheckedIconChildren}
+        uncheckedCheckboxIconClassName={uncheckedIconClassName}
+        __superSecreteProp
+        {...props}
+      />
+    );
   }
 }

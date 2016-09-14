@@ -38,6 +38,8 @@ export default class ToDoList extends PureComponent {
       const key = Date.now();
       const todo = {
         key,
+        id: `todo-${key}`,
+        name: 'todos[]',
         todo: { todo: this.state.value, key },
         checked: false,
       };

@@ -15,7 +15,6 @@
   @include md-theme-pickers($primary, $primary-hue-1);
   @include md-theme-progress($secondary, $secondary-hue-1);
   @include md-theme-subheaders($primary);
-  @include md-theme-selection-controls($secondary);
 
   .md-primary {
     @include md-theme-toolbars($primary, $md-white-base);

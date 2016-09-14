@@ -106,7 +106,7 @@ const components = {
       nestedItems: ['circular', 'linear'],
     }, 'select-fields', {
       path: 'selection-controls',
-      nestedItems: ['checkboxes', 'radios', 'switches'],
+      nestedItems: ['selection-control', 'checkboxes', 'radios', 'switches'],
     },
     'sidebars',
     'sliders',

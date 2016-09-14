@@ -26,7 +26,7 @@ export default class ListItemText extends PureComponent {
     if (secondaryText) {
       secondaryTextNode = (
         <div
-          className={cn('md-text-color--secondary md-tile-text--secondary', {
+          className={cn('md-color--secondary-text md-tile-text--secondary', {
             'md-tile-text--three-lines': threeLines,
           })}
         >
@@ -39,7 +39,7 @@ export default class ListItemText extends PureComponent {
       <div {...props} className={cn('md-tile-content', className)}>
         <div
           className={cn('md-tile-text--primary', {
-            'md-text-color': !active,
+            'md-color--text': !active,
             [activeClassName]: active,
           })}
         >

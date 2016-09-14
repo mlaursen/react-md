@@ -14,10 +14,14 @@ export function loadDocumentation(component, section) {
       return;
     }
 
+    let folder = (section ? `${section}/` : '') + component;
+    if (component === 'selection-control') {
+      folder = `${component}s`;
+    }
+
     // Have to copy for client and other cuz wepback whines otherwise.
     if (__CLIENT__) {
       require.ensure([], require => {
-        const folder = (section ? `${section}/` : '') + component;
         const docgens = require(`docgens/${toJsonName(section ? `${component}-${section}` : component)}`);
         const description = require(`examples/${folder}/README.md`);
 
@@ -39,7 +43,6 @@ export function loadDocumentation(component, section) {
         });
       });
     } else {
-      const folder = (section ? `${section}/` : '') + component;
       const docgens = require(`docgens/${toJsonName(section ? `${component}-${section}` : component)}`);
       const description = require(`examples/${folder}/README.md`);
 

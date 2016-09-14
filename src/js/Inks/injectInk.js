@@ -102,6 +102,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     super(props);
 
     this._transitions = [];
+    this.createInk = this.createInk.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleMouseUp = this._handleMouseUp.bind(this);
@@ -136,6 +137,14 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
         clearTimeout(timeout);
       }
     });
+  }
+
+  createInk(e = {}) {
+    this._createInk(e.pageX, e.pageY);
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this._removeInk();
+    }, 300);
   }
 
   /**

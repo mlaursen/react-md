@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import Switch from 'react-md/lib/SelectionControls/Switch';
-
 // or
 // import { Switch } from 'react-md/lib/SelectionControls';
 
@@ -8,22 +7,21 @@ export default class SimpleExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { toggled: false };
+    this.state = { checked: false };
   }
 
-  _handleChange = (toggled) => {
-    this.setState({ toggled });
+  _handleChange = (checked) => {
+    this.setState({ checked });
   };
 
   render() {
-    const { toggled } = this.state;
+    const { checked } = this.state;
 
     return (
       <div>
-        <Switch />
-        <Switch label="Turn the lights on" defaultToggled />
-        <Switch label="Power outage" disabled labelBefore />
-        <Switch label="I am controlled" toggled={toggled} onChange={this._handleChange} />
+        <Switch id="switch1" name="lights" label="Turn the lights on" defaultChecked />
+        <Switch id="switch2" name="power" label="Power outage" disabled labelBefore />
+        <Switch id="switch3" name="controlledSwitch" label="I am controlled" checked={checked} onChange={this._handleChange} />
       </div>
     );
   }

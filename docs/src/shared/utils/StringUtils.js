@@ -85,12 +85,17 @@ export function toPageName(str) {
  * @returns {String} a Docgen.json filename for the component.
  */
 export function toJsonName(component) {
-  let name = toTitle(component).replace(/(Selection Controls)/, '').replace(/ /g, '');
+  let name = toTitle(component);
+  if (name.match(/Selection Control/)) {
+    name = name.replace('Selection Controls', '');
+  }
+
+  name = name.replace(/ /g, '');
 
   let lastIndex = name.length;
   if (name.endsWith('es') && !name.match(/Table|Auto/)) {
     lastIndex -= 2;
-  } else if (!name.match(/Progress/)) {
+  } else if (!name.match(/Progress|SelectionControl/)) {
     lastIndex -= 1;
   }
 

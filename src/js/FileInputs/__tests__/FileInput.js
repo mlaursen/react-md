@@ -25,7 +25,7 @@ describe('FileInput', () => {
     const style = { display: 'block' };
     const className = 'test';
     const fileInput = renderIntoDocument(
-      <FileInput style={style} className={className} onChange={jest.fn()} />
+      <FileInput id="test" style={style} className={className} onChange={jest.fn()} />
     );
 
     const fileInputNode = findDOMNode(fileInput);
@@ -35,7 +35,7 @@ describe('FileInput', () => {
 
   it('returns a single file when multiple is false onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} />);
+    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
 
@@ -50,7 +50,7 @@ describe('FileInput', () => {
 
   it('returns null when the user cancel\'s a file selection when multiple is false onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} />);
+    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
     // Cancel returns empty list
@@ -64,7 +64,7 @@ describe('FileInput', () => {
 
   it('returns a list of files when multiple is true onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple />);
+    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} multiple />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
 
@@ -79,7 +79,7 @@ describe('FileInput', () => {
 
   it('returns an empty list of files when the user cancels an upload and multiple is true onChange', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput onChange={onChange} multiple />);
+    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} multiple />);
 
     const input = findRenderedDOMComponentWithTag(fileInput, 'input');
     const files = [];
