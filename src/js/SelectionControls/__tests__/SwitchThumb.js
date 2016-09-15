@@ -9,19 +9,19 @@ import {
 } from 'react-addons-test-utils';
 
 import SwitchThumb from '../SwitchThumb';
-import AccessibleFakeButton from '../../Helpers/AccessibleFakeButton';
+import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
 
 describe('SwitchThumb', () => {
-  it('renders an AccessibleFakeButton', () => {
+  it('renders an AccessibleFakeInkedButton', () => {
     const thumb = renderIntoDocument(<SwitchThumb />);
-    const btns = scryRenderedComponentsWithType(thumb, AccessibleFakeButton);
+    const btns = scryRenderedComponentsWithType(thumb, AccessibleFakeInkedButton);
     expect(btns.length).toBe(1);
   });
 
-  it('renders an AccessibleFakeButton with the correct classNames', () => {
+  it('renders an AccessibleFakeInkedButton with the correct classNames', () => {
     const props = { disabled: false, checked: false };
     let thumb = renderIntoDocument(<SwitchThumb {...props} />);
-    let btn = findRenderedComponentWithType(thumb, AccessibleFakeButton);
+    let btn = findRenderedComponentWithType(thumb, AccessibleFakeInkedButton);
     expect(btn.props.className).toContain('md-switch-thumb');
     expect(btn.props.className).not.toContain('--disabled');
     expect(btn.props.className).not.toContain('--on');
@@ -29,7 +29,7 @@ describe('SwitchThumb', () => {
 
     props.disabled = true;
     thumb = renderIntoDocument(<SwitchThumb {...props} />);
-    btn = findRenderedComponentWithType(thumb, AccessibleFakeButton);
+    btn = findRenderedComponentWithType(thumb, AccessibleFakeInkedButton);
     expect(btn.props.className).toContain('md-switch-thumb');
     expect(btn.props.className).toContain('--disabled');
     expect(btn.props.className).not.toContain('--on');
@@ -37,7 +37,7 @@ describe('SwitchThumb', () => {
 
     props.checked = true;
     thumb = renderIntoDocument(<SwitchThumb {...props} />);
-    btn = findRenderedComponentWithType(thumb, AccessibleFakeButton);
+    btn = findRenderedComponentWithType(thumb, AccessibleFakeInkedButton);
     expect(btn.props.className).toContain('md-switch-thumb');
     expect(btn.props.className).toContain('--disabled');
     expect(btn.props.className).toContain('--on');
