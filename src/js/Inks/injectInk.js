@@ -1,441 +1,158 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 
-import isValidClick from '../utils/EventUtils/isValidClick';
-import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
-import { getOffset } from '../utils';
-import { calcHypotenuse } from '../utils/NumberUtils';
+import InkContainer from './InkContainer';
 
 /**
- * Takes any component and injects an ink container along with event listeners for handling
- * those inks.
+ * Takes any component and injects an ink container for having the Material Design Ink effect.
+ *
+ * The default triggers for an ink are:
+ * - mouse down event
+ * - touch start event
+ * - keyboard focus with tab key
+ * - form submit
+ *
+ * The form submit ink will only be triggered if the `ComposedComponent` has the attribute
+ * `type="submit"`, the `ComposedComponent` is in a form, and the user hits the `enter` key
+ * while not actively focusing the `ComposedComponent`.
+ *
+ * Any additional keyboard focus keys can also be added.
  *
  * ```js
- * @param ComposedComponent the component to compose with the ink functionality.
- * @return the ComposedComponent with inks.
+ * @param {function} ComposedComponent - The React Component to inject an `ink` prop into.
+ * @return {function} a new React class rendering the `ComposedComponent` and adding an
+ *    `ink` pop.
  * ```
  */
 export default ComposedComponent => class InkedComponent extends PureComponent {
   static propTypes = {
     /**
-     * An optional function to call when the `mouseup` event occurs.
+     * An optional style to apply to each ink that gets generated.
      */
-    onMouseUp: PropTypes.func,
+    inkStyle: PropTypes.object,
 
     /**
-     * An optional function to call when the `mousedown` event occurs.
+     * An optional className to apply to each ink that gets generated.
      */
-    onMouseDown: PropTypes.func,
+    inkClassName: PropTypes.string,
 
     /**
-     * An optional function to call when the `touchstart` event occurs.
+     * An optional style to apply to the ink's container.
      */
-    onTouchStart: PropTypes.func,
+    inkContainerStyle: PropTypes.object,
 
     /**
-     * An optional function to call when the `touchend` event occurs.
+     * An optional className to apply to the ink's container.
      */
-    onTouchEnd: PropTypes.func,
+    inkContainerClassName: PropTypes.string,
 
     /**
-     * An optional onClick function to call. If the `waitForInk` boolean is set to true,
-     * this function will be called after the ink completes its transition instead of the
-     * default onClick event.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * An optional function to call when the `keyup` event occurs.
-     */
-    onKeyUp: PropTypes.func,
-
-    /**
-     * An optional function to call when the `keydown` event occurs.
-     */
-    onKeyDown: PropTypes.func,
-
-    /**
-     * Boolean if the composed component should trigger the `click` event only after the ink
-     * has finished animating. This is really just useful for components that will remove the
-     * button from the screen once clicked. It is a bit more fluid of a transition.
-     */
-    waitForInk: PropTypes.bool,
-
-    /**
-     * Boolean if the ink or the composed component is disabled.
+     * Boolean if the composed component or the ink is disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * Boolean if only the ink is disabled.
+     * Boolean if only the ink is disabled for the composed component.
      */
     inkDisabled: PropTypes.bool,
 
     /**
-     * The transition enter timeout for the ink.
-     */
-    inkEnterTimeout: PropTypes.number.isRequired,
-
-    /**
-     * The transition leave timeout for the ink.
-     */
-    inkLeaveTimeout: PropTypes.number.isRequired,
-
-    /**
-     * An optional list of additional key codes that can be used to trigger the ink.
+     * An optional array of additional key codes that can trigger the ink creationg.
+     * The default is to only work with the tab key.
      */
     additionalInkTriggerKeys: PropTypes.arrayOf(PropTypes.number),
 
     /**
-     * If the component is a button or any element that uses the `html` `type` attribute,
-     * the ink will be triggered when the user hits enter inside a form.
+     * The time (in ms) that the enter and leave transitions for the ink should overlap.
+     * This really just allows for a more _fluid_ looking ink when something is quickly
+     * touched or clicked by having it fade out while growing.
      */
-    type: PropTypes.string,
+    inkTransitionOverlap: PropTypes.number.isRequired,
+
+    /**
+     * The transition time for the ink to be considered fully entered. This should really
+     * map up to whatever value you set for `$md-ink-enter-transition-time`.
+     */
+    inkTransitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The transition time for the ink to be considered fully leaved (left?). This should really
+     * map up to whatever value you set for `$md-ink-leave-transition-time`.
+     */
+    inkTransitionLeaveTimeout: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the `ComposedComponent`'s click event only after the ink has finished transitioning
+     * in and out. This is really only to get a more _fluid_ looking click event when clicking on
+     * the `ComposedComponent` ends up taking it out of the view. (ex: Closing a Dialog).
+     */
+    waitForInkTransition: PropTypes.bool,
+
+    /**
+     * An optional array of interactions that can be disabled for the ink. This is a *very* limited
+     * use case where `Switches` needed the ink disabled only when using a mouse.
+     */
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'mouse', 'touch'])),
   };
 
   static defaultProps = {
-    inkEnterTimeout: 450,
-    inkLeaveTimeout: 450,
+    inkTransitionOverlap: 150,
+    inkTransitionEnterTimeout: 450,
+    inkTransitionLeaveTimeout: 300,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._transitions = [];
-    this.createInk = this.createInk.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._createInk = this._createInk.bind(this);
-    this._removeInk = this._removeInk.bind(this);
-    this._removeAllInks = this._removeAllInks.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleContextMenu = this._handleContextMenu.bind(this);
-  }
-
-  componentDidMount() {
-    if (this.props.type === 'submit') {
-      window.addEventListener('submit', this._handleSubmit);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.type === 'submit') {
-      window.removeEventListener('submit', this._handleSubmit);
-    }
-
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
-    this._transitions.forEach(({ timeout }) => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    });
-  }
-
-  createInk(e = {}) {
-    this._createInk(e.pageX, e.pageY);
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
-      this._removeInk();
-    }, 300);
-  }
+  _setInkRef = (inkContainer) => {
+    this._inkContainer = inkContainer;
+  };
 
   /**
-   * Takes an ink target container and attempts to find the ink container inside. It will only
-   * check the direct children.
+   * A publically accessible way to manually create an ink. This can be used with the `refs`.
+   * The ink can either be created by using the `pageX` and `pageY` from a click/touch event
+   * or it will be created in the center of the `ComposedComponent`.
    *
-   * @param {DOMNode} container the container node to check.
-   * @return {DOMNode} the ink container node or null.
+   * @param {number=} pageX - An optional pageX of the click or touch event.
+   * @param {number=} pageY - An optional pageY of the click or touch event.
    */
-  _getInkContainer(container) {
-    return container && Array.prototype.slice.call(container.childNodes)
-      .filter(node => node.className && node.className.indexOf('md-ink-container') !== -1)[0];
-  }
-
-  /**
-   * Attempts to find an ink container inside the given container element. If it does not
-   * exist, a new ink container will be created and inserted as the first child in
-   * the main container.
-   *
-   * @param {DOMNode} container the container node to check.
-   * @return {DOMNode} the existing or newly created ink container node.
-   */
-  _getOrCreateInkContainer(container) {
-    let inkContainer = this._getInkContainer(container);
-
-    if (!inkContainer) {
-      inkContainer = document.createElement('div');
-      inkContainer.className = 'md-ink-container';
-
-      container.insertBefore(inkContainer, container.firstChild);
+  createInk(pageX, pageY) {
+    if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
+      this._inkContainer.createInk(pageX, pageY);
     }
-
-    return inkContainer;
-  }
-
-  _createInk(pageX, pageY, pulse) {
-    const { offsetWidth, offsetHeight } = this._component;
-    const inkContainer = this._getOrCreateInkContainer(this._component);
-
-    let x;
-    let y;
-    if (typeof pageX !== 'undefined' && typeof pageY !== 'undefined') {
-      const offset = getOffset(inkContainer);
-
-      x = pageX - offset.left;
-      y = pageY - offset.top;
-    } else {
-      x = offsetWidth / 2;
-      y = offsetHeight / 2;
-    }
-
-    const r = Math.max(
-      calcHypotenuse(x, y),
-      calcHypotenuse(offsetWidth - x, y),
-      calcHypotenuse(offsetWidth - x, offsetHeight - y),
-      calcHypotenuse(x, offsetHeight - y)
-    );
-    const left = x - r;
-    const top = y - r;
-    const size = r * 2;
-
-    const ink = document.createElement('span');
-    ink.className = 'md-ink';
-    ink.style = `left:${left}px;top:${top}px;width:${size}px;height:${size}px`;
-    inkContainer.insertBefore(ink, null);
-
-    const transition = {
-      ink,
-      key: Date.now(),
-      timeout: setTimeout(() => {
-        transition.key += 50;
-        transition.ink.classList.add('md-ink--active');
-        transition.ink.classList.add('md-ink--expanded');
-
-        transition.timeout = null;
-        if (pulse) {
-          transition.ink.classList.add('md-ink--pulse-active');
-
-          transition.timeout = setTimeout(() => {
-            transition.ink.classList.add('md-ink--pulse');
-            transition.ink.classList.remove('md-ink--expanded');
-            transition.timeout = null;
-          }, this.props.inkEnterTimeout + this.props.inkLeaveTimeout);
-        }
-      }, 50),
-    };
-
-    this._transitions.push(transition);
-  }
-
-  /**
-   * Attempts to remove the next ink from a container node.
-   *
-   * @param {DOMNode} container the container node to use.
-   */
-  _removeInk() {
-    const { inkEnterTimeout, inkLeaveTimeout, waitForInk, onClick } = this.props;
-    let transition;
-    this._transitions.some(t => {
-      if (!t.ink.classList.contains('md-ink--leaving') && !t.leaving) {
-        transition = t;
-      }
-
-      return transition;
-    });
-
-    if (transition) {
-      const time = Date.now() - transition.key;
-      transition.leaving = true;
-      transition.timeout = setTimeout(() => {
-        transition.ink.classList.add('md-ink--leaving');
-
-        transition.timeout = setTimeout(() => {
-          const inkContainer = this._getInkContainer(this._component);
-
-          try {
-            inkContainer.removeChild(transition.ink);
-            this._transitions.shift();
-          } catch (e) {
-            this._removeAllInks();
-          }
-
-          if (waitForInk && onClick) {
-            this._component.click();
-          }
-        }, inkLeaveTimeout);
-      }, time > inkEnterTimeout ? 0 : inkEnterTimeout - time);
-    }
-  }
-
-  _removeAllInks() {
-    this._transitions.forEach(({ ink, timeout }) => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-
-      ink.parentNode.removeChild(ink);
-    });
-
-    this._transitions = [];
-  }
-
-  _handleClick(e) {
-    const { waitForInk, onClick } = this.props;
-    if (!waitForInk && onClick) {
-      onClick(e);
-    }
-  }
-
-  _handleKeyUp(e) {
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(e);
-    }
-
-    if (isValidFocusKeypress(e, this.props.additionalInkTriggerKeys)) {
-      this._createInk(e.pageX, e.pageY, true);
-      window.addEventListener('click', this._removeInk);
-    }
-  }
-
-  _handleKeyDown(e) {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-
-    if (isValidFocusKeypress(e, this.props.additionalInkTriggerKeys)) {
-      this._removeInk();
-      window.removeEventListener('click', this._removeInk);
-    }
-  }
-
-  _handleMouseUp(e) {
-    if (this.props.onMouseUp) {
-      this.props.onMouseUp(e);
-    }
-
-    if (!isValidClick(e)) {
-      return;
-    }
-
-    this._removeInk();
-    this._component.removeEventListener('mouseleave', this._removeInk);
-  }
-
-  _handleMouseDown(e) {
-    if (this.props.onMouseDown) {
-      this.props.onMouseDown(e);
-    }
-
-    if (!isValidClick(e)) {
-      return;
-    }
-
-    // Prevent parent inks to be triggered as well.
-    e.stopPropagation();
-    this._createInk(e.pageX, e.pageY);
-    this._component.addEventListener('mouseleave', this._removeInk);
-  }
-
-  _handleTouchStart(e) {
-    if (this.props.onTouchStart) {
-      this.props.onTouchStart(e);
-    }
-
-    // Prevent parent inks to be triggered as well.
-    e.stopPropagation();
-    const { pageX, pageY } = e.changedTouches[0];
-    this._createInk(pageX, pageY);
-    window.addEventListener('touchmove', this._handleTouchMove);
-    window.addEventListener('contextmenu', this._handleContextMenu);
-  }
-
-  _handleTouchMove() {
-    const lastTransition = this._transitions[this._transitions.length - 1];
-    if (!lastTransition) {
-      return;
-    }
-
-    const { key, timeout, ink } = lastTransition;
-    if (Date.now() < (key + 200)) {
-      this._cancelled = true;
-
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-
-      ink.parentNode.removeChild(ink);
-      this._transitions.pop();
-    }
-
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('contextmenu', this._handleContextMenu);
-  }
-
-  _handleTouchEnd(e) {
-    const { onTouchEnd, onClick, waitForInk } = this.props;
-    if (onTouchEnd) {
-      onTouchEnd(e);
-    }
-
-    if (this._cancelled) {
-      this._cancelled = false;
-      return;
-    }
-
-    // Prevent the click event if the tooltip was called beforehand.
-    if (!waitForInk && onClick && !e.defaultPrevented) {
-      this._component.click();
-    }
-
-    // Stops the mousedown, mouseup, and click events from triggering
-    e.preventDefault();
-
-
-    this._removeInk();
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('contextmenu', this._handleContextMenu);
-  }
-
-  _handleContextMenu() {
-    window.removeEventListener('contextmenu', this._handleContextMenu);
-    this._removeInk();
-  }
-
-  _handleSubmit(e) {
-    if (!e.target.contains(this._component) || document.activeElement === this._component) {
-      return;
-    }
-
-    this.createInk();
   }
 
   render() {
-    const { inkDisabled, ...props } = this.props;
-    delete props.inkEnterTimeout;
-    delete props.inkLeaveTimeout;
-    delete props.additionalInkTriggerKeys;
-    delete props.waitForInk;
+    const {
+      inkDisabled,
+      additionalInkTriggerKeys,
+      inkTransitionOverlap: transitionOverlap,
+      inkTransitionEnterTimeout: transitionEnterTimeout,
+      inkTransitionLeaveTimeout: transitionLeaveTimeout,
+      inkStyle,
+      inkClassName,
+      inkContainerStyle,
+      inkContainerClassName,
+      disabledInteractions,
+      waitForInkTransition,
+      ...props,
+    } = this.props;
 
-    if (props.disabled || inkDisabled) {
-      return <ComposedComponent {...props} />;
+    if (!(props.disabled || inkDisabled)) {
+      props.ink = (
+        <InkContainer
+          ref={this._setInkRef}
+          key="ink-container"
+          style={inkContainerStyle}
+          className={inkContainerClassName}
+          inkStyle={inkStyle}
+          inkClassName={inkClassName}
+          disabledInteractions={disabledInteractions}
+          additionalTriggerKeys={additionalInkTriggerKeys}
+          transitionOverlap={transitionOverlap}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+          waitForInkTransition={waitForInkTransition}
+        />
+      );
     }
 
-    props.onKeyDown = this._handleKeyDown;
-    props.onKeyUp = this._handleKeyUp;
-    props.onMouseUp = this._handleMouseUp;
-    props.onMouseDown = this._handleMouseDown;
-    props.onTouchStart = this._handleTouchStart;
-    props.onTouchEnd = this._handleTouchEnd;
-    props.onClick = this._handleClick;
-
-    return <ComposedComponent {...props} ref={c => { this._component = findDOMNode(c); }} />;
+    return <ComposedComponent {...props} />;
   }
 };

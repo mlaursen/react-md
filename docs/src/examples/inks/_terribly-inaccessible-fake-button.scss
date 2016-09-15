@@ -5,6 +5,7 @@
 
   background: $md-white-base;
   display: inline-block;
+  margin: 1em;
   min-height: 40px;
   min-width: 40px;
   overflow: hidden;
@@ -21,7 +22,7 @@
     cursor: pointer;
   }
 
-  + .terribly-inaccessible-fake-button {
-    margin-left: 1em;
+  &:focus {
+    outline: none;
   }
 }

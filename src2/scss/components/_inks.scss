@@ -1,4 +1,11 @@
-$md-ink-transition-time: .45s !default;
+////
+/// @group inks
+////
+
+
+
+$md-ink-enter-transition-time: .45s !default;
+$md-ink-leave-transition-time: .3s !default;
 $md-ink-pulse-time: 1.5s !default;
 
 @mixin react-md-inks($light-theme: $md-light-theme) {
@@ -14,6 +21,13 @@ $md-ink-pulse-time: 1.5s !default;
     z-index: 1;
   }
 
+  .md-ink-container--2x {
+    height: 200%;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+  }
+
   .md-ink {
     background: get-color('divider', $light-theme);
     border-radius: 50%;
@@ -25,20 +39,16 @@ $md-ink-pulse-time: 1.5s !default;
   }
 
   .md-ink--active {
-    transition-duration: $md-ink-transition-time;
+    transition-duration: $md-ink-enter-transition-time;
     transition-property: opacity, transform;
     transition-timing-function: $md-transition-acceleration;
-  }
-
-  .md-ink--pulse-active {
-    transition-duration: $md-ink-transition-time / 2;
   }
 
   .md-ink--expanded {
     transform: scale(.9);
   }
 
-  .md-ink--pulse {
+  .md-ink--pulsing {
     animation-duration: $md-ink-pulse-time;
     animation-iteration-count: infinite;
     animation-name: md-ink-pulse;
@@ -47,6 +57,7 @@ $md-ink-pulse-time: 1.5s !default;
 
   .md-ink--leaving {
     opacity: 0;
+    transition-duration: .3s;
     transition-timing-function: $md-transition-deceleration;
   }
 

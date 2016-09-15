@@ -260,6 +260,12 @@ class Button extends PureComponent {
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
+     * An ink from `injectInk`.
+     * @access private
+     */
+    ink: PropTypes.node,
+
+    /**
      * Custom validator for verifying that only one type is defined and that
      * at one type is defined.
      */
@@ -450,6 +456,7 @@ class Button extends PureComponent {
       fixedPosition,
       disabled,
       component,
+      ink,
       ...props,
     } = this.props;
     delete props.children;
@@ -510,6 +517,7 @@ class Button extends PureComponent {
           'md-btn--floating-pressed': floating && pressed,
         }, className)}
       >
+        {ink}
         {children}
       </Component>
     );
