@@ -174,10 +174,6 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
     transition-duration: $md-transition-time;
     transition-property: background, transform;
     width: $md-switch-thumb-size;
-
-    &:focus {
-      outline: none;
-    }
   }
 
   .md-switch-thumb--on {

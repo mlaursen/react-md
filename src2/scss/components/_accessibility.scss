@@ -1,0 +1,15 @@
+////
+/// @group accessibility
+////
+
+
+@mixin react-md-accessibility {
+  .md-fake-btn {
+    background: transparent;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

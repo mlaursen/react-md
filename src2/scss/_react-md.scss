@@ -5,6 +5,7 @@
 
 @import 'components/icons';
 
+@import 'components/accessibility';
 @import 'components/autocompletes';
 @import 'components/avatars';
 @import 'components/chips';
@@ -32,6 +33,7 @@
 @mixin react-md-everything {
   @include react-md-typography;
 
+  @include react-md-accessibility;
   @include react-md-icons;
   @include react-md-inks;
   @include react-md-buttons;
