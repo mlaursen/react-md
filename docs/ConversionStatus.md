@@ -10,7 +10,7 @@
 - File Inputs/Uploads
 - Font Icons
 - Ink
-- Lists/List Items
+- Lists/List Items/List Item Controls
 - Selection Controls
 - Sliders
 - Text Fields
@@ -21,7 +21,6 @@
 - Data Tables
 - Dialogs
 - Expansion Panels
-- List Item Controls
 - Menus
 - Navigation Drawers
   - Deprecate Sidebar and implement standalone Drawer

@@ -1,8 +1,14 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+/**
+ * The `TileAddon` component is used to render either a `FontIcon` or an `Avatar`
+ * next to the `ListTileText` for a `ListItem`.
+ */
 export default class TileAddon extends PureComponent {
   static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
     active: PropTypes.bool,
     activeClassName: PropTypes.string,
     icon: PropTypes.node,
@@ -10,7 +16,7 @@ export default class TileAddon extends PureComponent {
   };
 
   render() {
-    const { icon, avatar, active, activeClassName } = this.props;
+    const { icon, avatar, active, activeClassName, style, className } = this.props;
     if (!icon && !avatar) {
       return null;
     }
@@ -24,11 +30,12 @@ export default class TileAddon extends PureComponent {
     }
     return (
       <div
+        style={style}
         className={cn('md-tile-addon', {
           'md-tile-addon--icon': icon || avatarIcon,
           'md-tile-addon--avatar': avatar && !avatarIcon,
           [activeClassName]: active,
-        })}
+        }, className)}
       >
         {icon || avatar}
       </div>

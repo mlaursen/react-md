@@ -1,5 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+import Subheader from '../Subheaders';
 
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -34,10 +35,17 @@ export default class List extends PureComponent {
   };
 
   render() {
-    const { className, ordered, children, ...props } = this.props;
+    const { className, ordered, children, subheader, primarySubheader, ...props } = this.props;
+
+    let subheaderEl;
+    if (subheader) {
+      subheaderEl = <Subheader key="subheader" primaryText={subheader} primary={primarySubheader} />;
+    }
+
     const Component = ordered ? 'ol' : 'ul';
     return (
       <Component {...props} className={cn('md-list', className)}>
+        {subheaderEl}
         {children}
       </Component>
     );

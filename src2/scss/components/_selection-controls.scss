@@ -127,6 +127,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 
   .md-switch-track {
     border-radius: $md-switch-track-radius;
+    flex-shrink: 0;
     height: $md-switch-track-height;
     margin-left: 12px;
     margin-right: 12px;
