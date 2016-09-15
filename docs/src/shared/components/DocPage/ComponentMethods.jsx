@@ -20,8 +20,10 @@ export default class ComponentMethods extends PureComponent {
       }
 
       if (returns) {
-        definition += `\n\n@return ${returns.type ? `{${returns.type.name}} ` : ''}${returns.description}\n\`\`\``;
+        definition += `\n\n@return ${returns.type ? `{${returns.type.name}} ` : ''}${returns.description}`;
       }
+
+      definition += '\n```';
 
       let prefix = modifiers.join(' ');
       if (prefix) {

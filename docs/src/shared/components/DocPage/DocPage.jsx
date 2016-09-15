@@ -44,7 +44,7 @@ export default class DocPage extends PureComponent {
         style={style}
         className={cn(`react-doc doc-component-${toClassName(name)}`, className)}
       >
-        <Header name={name} description={description} />
+        <Header name={name.replace(' Helpers', '')} description={description} />
         <div className="md-card-list">
           {examples.map((example, key) => <Example key={key} {...example} fallbackId={`example-${key}`} />)}
         </div>

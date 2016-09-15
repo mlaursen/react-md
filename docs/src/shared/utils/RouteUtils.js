@@ -15,7 +15,7 @@ function mapToNavItems(route, parents = []) {
     return {
       component: Link,
       to: `${prefix}${route}`,
-      primaryText: toTitle(route),
+      primaryText: toTitle(route).replace(' Helper', 's'),
     };
   }
 
@@ -93,8 +93,10 @@ const components = {
     'dividers',
     'expansion-panels',
     'file-inputs',
-    'font-icons',
-    'lists',
+    'font-icons', {
+      path: 'helpers',
+      nestedItems: ['accessible-fake-button', 'icon-separator'],
+    }, 'lists',
     'inks',
     'menus',
     'navigation-drawers',
@@ -232,7 +234,7 @@ function extractRealRoutes(route) {
   } else if (route.to && route.to !== '/') {
     let primaryText = route.primaryText;
     if (route.to.indexOf('components') !== -1) {
-      primaryText = toTitle(toPropTypeId(route.to));
+      primaryText = toTitle(toPropTypeId(route.to)).replace(' Helper', '');
     }
 
     return {
