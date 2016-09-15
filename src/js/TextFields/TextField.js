@@ -346,6 +346,13 @@ export default class TextField extends PureComponent {
      * max of the floating label's width or the placeholder's width.
      */
     adjustMinWidth: PropTypes.bool,
+
+    /**
+     * The ink when there is an injectInk above the text field. Used from the SelectField.
+     *
+     * @access private
+     */
+    ink: PropTypes.node,
   };
 
   static defaultProps = {
@@ -666,6 +673,7 @@ export default class TextField extends PureComponent {
       onMouseUp,
       onMouseOver,
       onMouseLeave,
+      ink,
       ...props,
     } = this.props;
     delete props.label;
@@ -843,6 +851,7 @@ export default class TextField extends PureComponent {
         onTouchCancel={onTouchCancel}
         onTouchMove={onTouchMove}
       >
+        {ink}
         {children}
       </div>
     );

@@ -1,4 +1,4 @@
-import { PureComponent, PropTypes, createElement } from 'react';
+import { PureComponent, PropTypes, createElement, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import { SPACE, ENTER } from '../constants/keyCodes';
 
@@ -52,6 +52,12 @@ export default class AccessibleFakeButton extends PureComponent {
      * the default of `button` unless you are rendering it as an `a` tag.
      */
     role: PropTypes.string,
+
+    /**
+     * The ink when coming from the AccessibleFakeInkedButton
+     * @access private
+     */
+    ink: PropTypes.node,
   };
 
   static defaultProps = {
@@ -100,9 +106,15 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   render() {
-    const { component, children, disabled, tabIndex, ...props } = this.props;
+    const { component, children, disabled, tabIndex, ink, ...props } = this.props;
     delete props.onClick;
     delete props.onKeyUp;
+
+    let childElements = children;
+    if (ink) {
+      childElements = Children.toArray(children);
+      childElements.unshift(ink);
+    }
 
     return createElement(component, {
       ...props,
@@ -111,6 +123,6 @@ export default class AccessibleFakeButton extends PureComponent {
       onClick: this._handleClick,
       onKeyUp: this._handleKeyUp,
       'aria-pressed': this.state.pressed,
-    }, children);
+    }, childElements);
   }
 }

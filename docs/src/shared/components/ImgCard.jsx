@@ -10,12 +10,14 @@ export default class ImgCard extends PureComponent {
     alt: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     to: PropTypes.string.isRequired,
+    ink: PropTypes.node,
   };
 
   render() {
-    const { src, alt, title, to, ...props } = this.props;
+    const { src, alt, title, to, ink, ...props } = this.props;
     return (
       <Link to={`/${to}`} className="md-card raise ink-item img-card" {...props}>
+        {ink}
         <CardTitle title={title} />
         <CardMedia aspectRatio={CardMedia.aspect.equal}>
           <img src={src} alt={alt} />
