@@ -1,5 +1,6 @@
 import { PureComponent, PropTypes, createElement, Children } from 'react';
 import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 import { SPACE, ENTER } from '../constants/keyCodes';
 
 /**
@@ -13,6 +14,16 @@ import { SPACE, ENTER } from '../constants/keyCodes';
  */
 export default class AccessibleFakeButton extends PureComponent {
   static propTypes = {
+    /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply.
+     */
+    className: PropTypes.string,
+
     /**
      * Any children to display in the Accessible Fake Button.
      */
@@ -106,7 +117,7 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   render() {
-    const { component, children, disabled, tabIndex, ink, ...props } = this.props;
+    const { component, children, className, disabled, tabIndex, ink, ...props } = this.props;
     delete props.onClick;
     delete props.onKeyUp;
 
@@ -118,6 +129,7 @@ export default class AccessibleFakeButton extends PureComponent {
 
     return createElement(component, {
       ...props,
+      className: cn('md-fake-btn', className),
       disabled,
       tabIndex: disabled ? null : tabIndex,
       onClick: this._handleClick,

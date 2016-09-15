@@ -57,17 +57,11 @@ $md-list-desktop-three-line-height: 76px;
   .md-list-tile {
     align-items: center;
     display: flex;
-    overflow: hidden;
     padding-left: $md-default-padding;
     padding-right: $md-default-padding;
-    position: relative;
     text-decoration: none;
     transition-duration: $md-transition-time;
     transition-property: background;
-
-    &:focus {
-      outline: none;
-    }
 
     &:hover:not([disabled]) {
       cursor: pointer;
