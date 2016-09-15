@@ -88,6 +88,8 @@ export function toJsonName(component) {
   let name = toTitle(component);
   if (name.match(/Selection Control/)) {
     name = name.replace('Selection Controls', '');
+  } else if (name.match(/Helper/)) {
+    name = name.replace('Helper', '');
   }
 
   name = name.replace(/ /g, '');

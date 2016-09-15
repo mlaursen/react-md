@@ -5,8 +5,8 @@
   display: flex;
   flex-wrap: nowrap;
   height: $quick-nav-height;
-  justify-content: space-around;
-  padding: 1em;
+  justify-content: space-between;
+  padding: 1em 2.5em;
   width: 100%;
 
   .md-headline,
@@ -29,8 +29,11 @@
 }
 
 .quick-nav-link {
+  min-height: 48px;
+  min-width: 48px;
+  overflow: hidden;
   text-decoration: none;
-  width: 33%;
+  white-space: nowrap;
 
   *:first-child {
     margin-right: .5em;

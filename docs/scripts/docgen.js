@@ -38,7 +38,7 @@ const docgens = {};
   'FileInputs/FileInput',
   'FileInputs/FileUpload',
   'FontIcons/FontIcon',
-  // 'Inks/Ink',
+  'Inks/Ink',
   'Helpers/AccessibleFakeButton',
   'Helpers/IconSeparator',
   'Lists/List',
@@ -52,8 +52,9 @@ const docgens = {};
   'Progress/CircularProgress',
   'Progress/LinearProgress',
   'SelectFields/SelectField',
+  'SelectionControls/SelectionControl',
+  'SelectionControls/SelectionControlGroup',
   'SelectionControls/Checkbox',
-  'SelectionControls/RadioGroup',
   'SelectionControls/Radio',
   'SelectionControls/Switch',
   'Sidebars/Sidebar',
@@ -76,10 +77,12 @@ const docgens = {};
 
   if (component.match('Picker')) {
     folder = 'pickers/' + component.replace('PickerContainer', '').toLowerCase();
-  } else if (folder.match('selection-controls')) {
-    folder += '/' + pluralize(component.replace('Group', '').toLowerCase());
   } else if (folder === 'progress') {
     folder += '/' + component.replace('Progress', '').toLowerCase();
+  } else if (component.match(/Checkbox|Switch|Radio/)) {
+    folder += '/' + pluralize(component).toLowerCase();
+  } else if (folder.match(/helpers/)) {
+    folder += '/' + pluralize(component).split(/(?=[A-Z])/).join('-').toLowerCase();
   }
 
   let file = component;
@@ -95,6 +98,10 @@ const docgens = {};
 
   if (temp) {
     const from = path.resolve(reactMD, sourceFolder, file + '.js');
+    if (temp.match(/Ink/)) {
+      temp = `_${temp}`;
+    }
+
     temp = path.resolve(reactMD, sourceFolder, temp + '.js');
     fs.copySync(from, temp);
 
@@ -115,7 +122,7 @@ const docgens = {};
     generated.component = component.replace(/Container/, '');
     generated.methods = generated.methods.filter(method => method.name.charAt(0) !== '_');
     Object.keys(generated.props).forEach(key => {
-      if (key.charAt(0) === '_') {
+      if (key.charAt(0) === '_' || generated.props[key].description.match(/@access private/)) {
         delete generated.props[key];
       }
     });

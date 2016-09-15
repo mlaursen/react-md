@@ -109,9 +109,8 @@ the `placeholder` prop instead. In addition, the `block` styling will need to us
 prop instead of the `label` prop.
 
 ### Inks
-The `injectInk` HOC no longer injects an `ink` prop into the composed component. It handles the ink
-automagically now by injecting in as the first child. So there is a bit less control of where the ink
-goes.
+The `injectInk` HOC no longer requires the composed component to pass the `...props` or the event listeners
+as props. The inks are fairly more accurate as well.
 
 ### Tooltips
 The `injectTooltip` HOC no longer injects a `tooltip` prop into the composed component. It handles the

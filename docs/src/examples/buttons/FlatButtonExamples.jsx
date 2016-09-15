@@ -5,7 +5,12 @@ import TextField from 'react-md/lib/TextFields';
 const FlatButtonExamples = () => (
   <div className="btn-example">
     <p>Flat buttons can be unstyled or styled with the primary/secondary color.</p>
-    <Button flat label="Hello, World!" />
+    <Button
+      flat
+      label="Hello, World!"
+      onClick={function handleClick() { console.log('CLICK'); }}
+      waitForInkTransition
+    />
     <Button flat primary label="Talk Dirty to Me">chat_bubble_outline</Button>
     <Button flat secondary iconBefore={false} label="Talk Dirty to Me">chat_bubble_outline</Button>
 
