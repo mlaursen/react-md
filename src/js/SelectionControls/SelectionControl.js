@@ -59,7 +59,7 @@ export default class SelectionControl extends PureComponent {
      * A label to display with the selection control. This is required for accessibility and triggering
      * the toggle.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node,
 
     /**
      * Boolean if the label should appear before the checkbox/radio icon or switch.

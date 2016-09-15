@@ -6,6 +6,7 @@ $md-list-include-icon: true !default;
 $md-list-include-avatar: true !default;
 $md-list-include-two-lines: true !default;
 $md-list-include-three-lines: true !default;
+$md-list-include-controls: true !default;
 $md-list-nested-items-increment: .5 !default;
 $md-list-nested-items-depth: 2 !default;
 
@@ -35,7 +36,8 @@ $md-list-desktop-three-line-height: 76px;
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
   $include-two-lines: $md-list-include-two-lines,
-  $include-three-lines: $md-list-include-three-lines
+  $include-three-lines: $md-list-include-three-lines,
+  $include-controls: $md-list-include-controls
 ) {
   @if $include-media {
     @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
@@ -139,6 +141,32 @@ $md-list-desktop-three-line-height: 76px;
 
   @if $nested-items-depth != null and $nested-items-depth > 0 {
     @include react-md-lists-nested($nested-items-depth, $nested-items-increment);
+  }
+
+  @if $include-controls {
+    .md-list-control {
+      flex-grow: 1;
+
+      .md-selection-control-label {
+        width: 100%;
+      }
+    }
+
+    .md-tile-content--left-button {
+      padding-left: $md-list-tile-left-padding - $md-font-icon-size * 2;
+    }
+
+    .md-list-control--right {
+      justify-content: flex-end;
+    }
+
+    .md-list-tile--control-left {
+      padding-left: 0;
+    }
+
+    .md-list-tile--control-right {
+      padding-right: 0;
+    }
   }
 }
 

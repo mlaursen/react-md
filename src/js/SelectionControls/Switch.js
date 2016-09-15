@@ -30,7 +30,7 @@ export default class Switch extends PureComponent {
      * A label to display with the switch. This is required for accessibility and triggering
      * the toggle.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node,
 
     /**
      * Boolean if the label should appear before the switch.

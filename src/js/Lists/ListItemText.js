@@ -1,6 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+/**
+ * The `ListItemText` component is used to render the `primaryText` and an optional
+ * `secondaryText` for a `ListItem`.
+ */
 export default class ListItemText extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,

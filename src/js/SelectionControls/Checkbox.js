@@ -33,7 +33,7 @@ export default class Checkbox extends PureComponent {
      * A label to display with the checkbox. This is required for accessibility and triggering
      * the toggle.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node,
 
     /**
      * Boolean if the label should appear before the checkbox icon.
