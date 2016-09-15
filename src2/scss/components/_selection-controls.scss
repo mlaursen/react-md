@@ -125,23 +125,6 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
     height: $md-switch-height;
   }
 
-  .md-ink-container--switch {
-    height: $md-switch-thumb-size * 2;
-    left: 50%;
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    width: $md-switch-thumb-size * 2;
-
-    .md-ink {
-      height: $md-switch-thumb-size * 2;
-      width: $md-switch-thumb-size * 2;
-    }
-
-    .md-ink--active {
-      transition-duration: .3s;
-    }
-  }
-
   .md-switch-track {
     border-radius: $md-switch-track-radius;
     height: $md-switch-track-height;
