@@ -14,7 +14,6 @@
   @include md-theme-snackbars($primary);
   @include md-theme-pickers($primary, $primary-hue-1);
   @include md-theme-progress($secondary, $secondary-hue-1);
-  @include md-theme-subheaders($primary);
 
   .md-primary {
     @include md-theme-toolbars($primary, $md-white-base);
