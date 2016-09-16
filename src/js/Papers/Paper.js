@@ -1,12 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import isBetween from '../utils/NumberUtils/isBetween';
+
+import between from '../utils/PropTypes/between';
 
 /**
  * The `Paper` component is a simple wrappper that adds box-shadow.
  *
- * You can use the sass mixin instead to get the same functionality
- * without an additional div.
+ * You can also use the scss mixin instead of paper.
  *
  * ```scss
  * @include md-box-shadow(5);
@@ -14,6 +14,14 @@ import isBetween from '../utils/NumberUtils/isBetween';
  */
 export default class Paper extends PureComponent {
   static propTypes = {
+    /**
+     * The component to render the paper as.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
     /**
      * An optional className to apply.
      */
@@ -23,18 +31,7 @@ export default class Paper extends PureComponent {
      * The depth of the paper. This should be a number between 0 - 5. If
      * the depth is 0, it will raise to a depth of 3 on hover.
      */
-    zDepth: (props, propName, component, ...others) => {
-      const err = PropTypes.number.isRequired(props, propName, component, ...others);
-      if (err) {
-        return err;
-      }
-
-      if (!isBetween(props[propName], 0, 5)) {
-        return new Error(`The zDepth of 'Paper' must be a number between 0 and 5 but '${props[propName]}' was given.`);
-      }
-
-      return null;
-    },
+    zDepth: between(PropTypes.number.isRequired, 0, 5),
 
     /**
      * Any children to display in the paper.
@@ -44,11 +41,17 @@ export default class Paper extends PureComponent {
 
   static defaultProps = {
     zDepth: 1,
+    component: 'div',
   };
 
   render() {
-    const { children, zDepth, ...props } = this.props;
-    const className = cn(`paper-${zDepth}`, props.className);
-    return <div {...props} className={className}>{children}</div>;
+    const { component: Component, zDepth, className, ...props } = this.props;
+
+    return (
+      <Component
+        {...props}
+        className={cn(`md-paper md-paper--${zDepth}`, className)}
+      />
+    );
   }
 }

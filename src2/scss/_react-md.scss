@@ -1,8 +1,8 @@
 @import 'globals';
-@import 'elevation';
 @import 'typography';
 
 
+@import 'components/papers';
 @import 'components/icons';
 
 @import 'components/accessibility';
@@ -36,6 +36,7 @@
   @include react-md-typography;
 
   @include react-md-accessibility;
+  @include react-md-papers;
   @include react-md-icons;
   @include react-md-inks;
   @include react-md-buttons;

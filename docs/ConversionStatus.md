@@ -12,6 +12,7 @@
 - Ink
 - Lists/List Items/List Item Controls
 - Menus
+- Papers
 - Selection Controls
 - Sliders
 - Subheaders
@@ -26,7 +27,6 @@
 - Navigation Drawers
   - Deprecate Sidebar and implement standalone Drawer
   - Use Toolbar instead of DrawerToolbar
-- Papers
 - Pickers
 - Progress
 - Select Fields (depends on menus and lists)
