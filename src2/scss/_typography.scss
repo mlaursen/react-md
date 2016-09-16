@@ -459,7 +459,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 /// the `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
-/// @example scss - Examle Usage SCSS
+/// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
 ///     @include react-md-typography-mobile;
 ///   }
@@ -493,7 +493,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 /// the `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
-/// @example scss - Examle Usage SCSS
+/// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-typography-desktop;
 ///   }

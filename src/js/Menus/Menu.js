@@ -1,229 +1,243 @@
 import React, { PureComponent, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
-import { List } from '../Lists';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import { onOutsideClick } from '../utils';
+import contextTypes from './contextTypes';
+import Positions from './Positions';
+import List from '../Lists/List';
 
 /**
- * The Menu component is a controlled component. It requires a boolean `isOpen`
- * to determinte its state.
- *
- * Menus allow users to take an action by selecting from a list of choices revealed
- * upon opening a temporary, new sheet of material.
+ * The `Menu` component is a controlled component that will display
+ * a `List` of `ListItem` once it has been toggled open.
  */
 export default class Menu extends PureComponent {
-  static Positions = {
-    TOP_RIGHT: 'tr',
-    TOP_LEFT: 'tl',
-    BOTTOM_RIGHT: 'br',
-    BOTTOM_LEFT: 'bl',
-    BELOW: 'below',
-  };
+  static Positions = Positions;
 
   static propTypes = {
     /**
-     * The optional className for the menu container.
-     */
-    className: PropTypes.string,
-
-    /**
-     * The optional style to apply to the menu container.
+     * An optional style to apply to the main container for a menu.
      */
     style: PropTypes.object,
 
     /**
-     * The optional className to apply to the opened menu List.
+     * An optional className to apply to the main container for a menu.
      */
-    listClassName: PropTypes.string,
+    className: PropTypes.string,
 
     /**
-     * The optional style to apply to the opened menu List.
+     * An optional style to apply to the menu's `List` once it has been toggled open.
      */
     listStyle: PropTypes.object,
 
     /**
-     * An array of `ListItem`, `ListItemControl`, `Divider`, `Subheader`, or react element
-     * to display when the menu is open.
+     * An optional className to apply to the menu's `List` once it has been toggled open.
      */
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element),
-    ]),
+    listClassName: PropTypes.string,
 
     /**
-     * The component to use that will toggle the `isOpen` prop. This will make
-     * the menu relative to this component. An example would be using an `IconButton`,
-     * or another button as a toggle.
+     * The component to render the container as.
      */
-    toggle: PropTypes.node,
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
 
     /**
-     * Boolean if the menu is currently open.
+     * An array of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` to display
+     * when the menu is open.
+     */
+    children: PropTypes.arrayOf(PropTypes.element),
+
+    /**
+     * Boolean if the `Menu` is currently open.
      */
     isOpen: PropTypes.bool.isRequired,
+
+    /**
+     * The transition name to use for the menu's enter and leave transitions
+     */
+    transitionName: PropTypes.string.isRequired,
+
+    /**
+     * The timeout for the enter transition.
+     */
+    transitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The timeout for the leave transition.
+     */
+    transitionLeaveTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The node to use as the toggle for the menu.
+     */
+    toggle: PropTypes.node,
 
     /**
      * The position that the menu should appear from.
      */
     position: PropTypes.oneOf([
-      Menu.Positions.TOP_RIGHT,
-      Menu.Positions.TOP_LEFT,
-      Menu.Positions.BOTTOM_RIGHT,
-      Menu.Positions.BOTTOM_LEFT,
-      Menu.Positions.BELOW,
-    ]),
+      Positions.TOP_LEFT,
+      Positions.TOP_RIGHT,
+      Positions.BOTTOM_LEFT,
+      Positions.BOTTOM_RIGHT,
+      Positions.BELOW,
+    ]).isRequired,
 
     /**
-     * An optional function that will force the menu to close. This is used so that the
-     * menu will be closed when an element outside the menu is clicked.
+     * A function used to close the menu. This is used when the user clicks
+     * outside of the menu or any list item inside.
      */
-    close: PropTypes.func,
+    close: PropTypes.func.isRequired,
 
     /**
-     * Boolean if the menu should autoclose when one of the items are clicked.
-     * This will only work if the `close` function is given as well.
-     */
-    autoclose: PropTypes.bool,
-
-    /**
-     * Boolean if there are any nested items in the menu items. This will apply additional
-     * styling and position for the nested items.
+     * Boolean if the menu is cascading. This isn't really working too well yet.
      */
     cascading: PropTypes.bool,
 
     /**
-     * Any children needed to display the expander icon for nested `ListItem`.
+     * Boolean if the width of the `List` should be limited to the width of the `toggle`
      */
-    expanderIconChildren: PropTypes.node,
+    contained: PropTypes.bool,
 
     /**
-     * The icon className to use for the expander icon.
-     */
-    expanderIconClassName: PropTypes.string,
-
-    /**
-     * Boolean if the height of the open menu should be limited to the `$md-dropdown-max-height`
-     * and enable scrolling in the menu.
-     */
-    limitHeight: PropTypes.bool,
-
-    /**
-     * Boolean if the menu should span the full width.
+     * Boolean if the menu should be displayed full width instead of inline.
      */
     fullWidth: PropTypes.bool,
+
+    autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs.'),
+    limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs.'),
+    expanderIconClassName: deprecated(
+      PropTypes.node,
+      'The expander for cascading menus will now just be a simple rotate of the existing `ListItem` ' +
+      'expander icon.'
+    ),
+    expanderIconChildren: deprecated(
+      PropTypes.node,
+      'The expander for cascading menus will now just be a simple rotate of the existing `ListItem` ' +
+      'expander icon.'
+    ),
   };
 
   static defaultProps = {
-    position: Menu.Positions.TOP_RIGHT,
-    autoclose: true,
-    expanderIconChildren: 'keyboard_arrow_right',
-    expanderIconClassName: 'material-icons',
+    component: 'div',
+    transitionName: 'md-menu',
+    transitionEnterTimeout: 200,
+    transitionLeaveTimeout: 200,
+    position: Positions.TOP_RIGHT,
   };
 
+  static childContextTypes = contextTypes;
+
+  constructor(props) {
+    super(props);
+
+    this._setContainer = this._setContainer.bind(this);
+    this._handleListClick = this._handleListClick.bind(this);
+    this._handleOutsideClick = this._handleOutsideClick.bind(this);
+  }
+
+  getChildContext() {
+    const { cascading: menuCascading, position: menuPosition } = this.props;
+    return {
+      menuCascading,
+      menuPosition,
+      listLevel: 0,
+    };
+  }
+
   componentDidMount() {
-    const { isOpen, autoclose, close } = this.props;
-    if (isOpen && autoclose && close) {
-      window.addEventListener('click', this.closeOnOutsideClick);
+    const { isOpen } = this.props;
+    if (isOpen) {
+      window.addEventListener('click', this._handleOutsideClick);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { isOpen, autoclose, close } = this.props;
-    if (!close || !autoclose || isOpen === prevProps.isOpen) { return; }
-    if (isOpen) {
-      window.addEventListener('click', this.closeOnOutsideClick);
-    } else {
-      window.removeEventListener('click', this.closeOnOutsideClick);
+    const { isOpen } = this.props;
+    if (isOpen === prevProps.isOpen) {
+      return;
     }
+
+    window[`${isOpen ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.closeOnOutsideClick);
+    const { isOpen, close } = this.props;
+    if (isOpen && close) {
+      window.removeEventListener('click', this._handleOutsideClick);
+    }
   }
 
-  closeOnOutsideClick = (e) => onOutsideClick(e, ReactDOM.findDOMNode(this.refs.container), this.props.close);
+  _setContainer(container) {
+    if (container !== null) {
+      this._container = findDOMNode(container);
+    }
+  }
 
-  /**
-   * Checks if a list item was the target of a click event. Closes the menu if it was.
-   *
-   * There is only a single event listener to help with giant lists always rerendering since the
-   * onClick functions were not equal with autobinding.
-   *
-   * @param {Object} e the click event.
-   */
-  handleListClick = (e) => {
+  _handleOutsideClick(e) {
+    if (!this._container.contains(e.target)) {
+      this.props.close();
+    }
+  }
+
+  _handleListClick(e) {
+    const { close } = this.props;
+
     let node = e.target;
-    while (node) {
-      if (node.classList.contains('md-list-item')) {
-        this.props.close();
+    while (this._container.contains(node)) {
+      if (!node.classList.contains('md-list-item--nested-container') && node.classList.contains('md-list-item')) {
+        this._timeout = setTimeout(() => {
+          this._timeout = null;
+          close();
+        }, 300);
+
         return;
       }
-
       node = node.parentNode;
     }
-  };
+  }
 
   render() {
     const {
       className,
-      listClassName,
       listStyle,
-      children,
-      toggle,
+      listClassName,
       isOpen,
-      position,
-      close,
-      autoclose,
-      cascading,
-      expanderIconChildren,
-      expanderIconClassName,
       fullWidth,
-      limitHeight,
+      toggle,
+      contained,
+      children,
       ...props,
     } = this.props;
+    delete props.close;
+    delete props.position;
+    delete props.cascading;
+    delete props.autoclose;
 
     let menuItems;
     if (isOpen) {
-      const listProps = {
-        ref: 'list',
-        className: cn('md-menu', listClassName, `md-transition-${position}`, {
-          cascading,
-          'limit-height': limitHeight,
-        }),
-        style: listStyle,
-      };
-
-      if (autoclose && close) {
-        listProps.onClick = this.handleListClick;
-      }
-
-      const items = React.Children.map(children, (child, key) => {
-        if (!child) { return child; }
-
-        return React.cloneElement(child, {
-          key: child.key || key,
-          expanderIconChildren,
-          expanderIconClassName,
-        });
-      });
-
       menuItems = (
-        <List {...listProps}>
-          {items}
+        <List
+          key="menu-list"
+          style={listStyle}
+          className={cn({ 'md-list--menu-contained': contained }, listClassName)}
+          onClick={this._handleListClick}
+        >
+          {children}
         </List>
       );
     }
+
     return (
       <CSSTransitionGroup
-        ref="container"
-        component="div"
-        transitionName="md-menu"
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}
-        className={cn('md-menu-container', className, { 'full-width': fullWidth })}
         {...props}
+        ref={this._setContainer}
+        className={cn('md-menu-container', {
+          'md-menu-container--full-width': fullWidth,
+        }, className)}
       >
         {toggle}
         {menuItems}

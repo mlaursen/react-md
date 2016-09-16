@@ -4,10 +4,25 @@
 
 
 
+/// The transition time for an ink to fully appear.
+/// @type Number
 $md-ink-enter-transition-time: .45s !default;
+
+/// The transition time for an ink to fully disappear.
+/// @type Number
 $md-ink-leave-transition-time: .3s !default;
+
+/// The animation time for the ink's pulsing.
+/// @type Number
 $md-ink-pulse-time: 1.5s !default;
 
+/// Creates the styles for material design ink.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-inks;
+///
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the ink should be styled
+///     for the light theme.
 @mixin react-md-inks($light-theme: $md-light-theme) {
   .md-ink-container {
     border-radius: inherit;
@@ -72,6 +87,19 @@ $md-ink-pulse-time: 1.5s !default;
 
     100% {
       transform: scale(.9);
+    }
+  }
+}
+
+/// Themes the ink color for the given theme ONLY if the `$light-theme` does not equal the
+/// `$md-light-theme`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-inks(!$md-light-theme);
+@mixin react-md-theme-inks($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-ink {
+      background: get-color('divider', $light-theme);
     }
   }
 }

@@ -45,6 +45,7 @@ const docgens = {};
   'Lists/ListItem',
   // 'Lists/ListItemControl',
   'Menus/Menu',
+  'Menus/MenuButton',
   'NavigationDrawers/NavigationDrawer',
   'Papers/Paper',
   'Pickers/DatePickerContainer',

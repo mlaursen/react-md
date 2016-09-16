@@ -3,6 +3,13 @@
 ////
 
 
+/// Creates the _accessible_ styles and class names.
+///
+/// This will create the following class names:
+/// - .md-fake-btn
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-accessibility;
 @mixin react-md-accessibility {
   .md-fake-btn {
     background: transparent;

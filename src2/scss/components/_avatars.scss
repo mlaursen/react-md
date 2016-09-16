@@ -98,7 +98,7 @@ $md-avatar-colors: (
 @mixin react-md-theme-avatars($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-avatar {
-      border-color: get-color('border', $light-theme);
+      border-color: get-color('divider', $light-theme);
     }
   }
 }

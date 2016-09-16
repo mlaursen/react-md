@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
-import Menu from 'react-md/lib/Menus';
-import { ListItem } from 'react-md/lib/Lists';
+import Menu from 'react-md/lib/Menus/Menu';
+import ListItem from 'react-md/lib/Lists/ListItem';
 import Divider from 'react-md/lib/Dividers';
 
 const command = <span>&#x2318;</span>;
 
+const noop = () => {};
+
 export default class MenuExamples extends PureComponent {
   render() {
     return (
-      <div className="static-menu-examples">
-        <Menu isOpen>
+      <div>
+        <Menu isOpen className="menu-example menu-example--static" close={noop}>
           <ListItem primaryText="Undo" />
           <ListItem primaryText="Redo" disabled />
           <Divider />
@@ -17,7 +19,7 @@ export default class MenuExamples extends PureComponent {
           <ListItem primaryText="Copy" disabled />
           <ListItem primaryText="Paste" />
         </Menu>
-        <Menu isOpen cascading>
+        <Menu isOpen cascading className="menu-example menu-example--static" close={noop}>
           <ListItem primaryText="Bold" rightIcon={<div>{command}B</div>} />
           <ListItem primaryText="Italic" rightIcon={<div>{command}I</div>} />
           <ListItem primaryText="Underline" rightIcon={<div>{command}U</div>} />
@@ -26,7 +28,7 @@ export default class MenuExamples extends PureComponent {
           <ListItem primaryText="Subscript" rightIcon={<div>{command},</div>} />
           <Divider />
           <ListItem
-            primaryText="Paragraph styles"
+            primaryText="Format"
             nestedItems={[
               <ListItem primaryText="Single" key={0} />,
               <ListItem primaryText="1.15" key={1} />,

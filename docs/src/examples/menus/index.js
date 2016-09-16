@@ -3,8 +3,8 @@ import React from 'react';
 import MenuExamples from './MenuExamples';
 import MenuExamplesRaw from '!!raw!./MenuExamples';
 
-import ToggleableMenuExamlples from './ToggleableMenuExamlples';
-import ToggleableMenuExamlplesRaw from '!!raw!./ToggleableMenuExamlples';
+import MenuButtonExamples from './MenuButtonExamples';
+import MenuButtonExamplesRaw from '!!raw!./MenuButtonExamples';
 
 import './_menus.scss';
 
@@ -13,7 +13,7 @@ export default [{
   code: MenuExamplesRaw,
   children: <MenuExamples />,
 }, {
-  title: 'Button Toggleable Menus',
-  code: ToggleableMenuExamlplesRaw,
-  children: <ToggleableMenuExamlples />,
+  title: 'Menu Button Examples',
+  code: MenuButtonExamplesRaw,
+  children: <MenuButtonExamples />,
 }];

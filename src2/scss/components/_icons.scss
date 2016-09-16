@@ -2,6 +2,13 @@
 /// @group icons
 ////
 
+/// Boolean if the icon separator styles should be included by default.
+/// @type Boolean
+$md-font-icon-include-separators: true !default;
+
+/// The amount of padding to put between an icon and any text.
+/// @type Number
+$md-font-icon-separator-padding: $md-default-padding !default;
 
 /// The font icon size.
 /// @type Number
@@ -10,7 +17,7 @@ $md-font-icon-size: 24px;
 /// Includes the css for using `md-icon`.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
 ///     application is using the light-theme or not.
-@mixin react-md-icons($light-theme: $md-light-theme) {
+@mixin react-md-icons($light-theme: $md-light-theme, $include-separators: $md-font-icon-include-separators) {
   $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
 
   .md-icon {
@@ -20,6 +27,10 @@ $md-font-icon-size: 24px;
     transition-duration: $md-transition-time;
     transition-property: color;
     user-select: none;
+  }
+
+  @if $include-separators {
+    @include react-md-icon-separators;
   }
 }
 
@@ -34,6 +45,36 @@ $md-font-icon-size: 24px;
   @if $light-theme != $md-light-theme {
     .md-icon {
       color: $md-icon-color;
+    }
+  }
+}
+
+/// Includes the styles for the `IconSeparator` component.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-icon-separators;
+@mixin react-md-icon-separators {
+  .md-icon-separator {
+    align-items: center;
+    display: flex;
+    text-align: left;
+
+    .md-icon-text {
+      flex-grow: 1;
+      flex-shrink: 0;
+
+      &:first-child {
+        padding-right: $md-font-icon-separator-padding;
+      }
+
+      &:last-child {
+        padding-left: $md-font-icon-separator-padding;
+      }
+    }
+
+    .md-icon {
+      flex-grow: 0;
+      flex-shrink: 0;
     }
   }
 }

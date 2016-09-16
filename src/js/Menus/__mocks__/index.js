@@ -1,21 +1,20 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types */
+jest.unmock('../Positions');
+
 import React from 'react';
+
+import Positions from '../Positions';
 
 // Have to do class since it is used as refs
 export default class Menu extends React.Component {
-  static Positions = {
-    TOP_RIGHT: 'tr',
-    TOP_LEFT: 'tl',
-    BOTTOM_RIGHT: 'br',
-    BOTTOM_LEFT: 'bl',
-    BELOW: 'below',
-  };
+  static Positions = Positions;
   render() {
     const { isOpen, toggle, children, listStyle, listClassName, ...props } = this.props;
     delete props.position;
     delete props.fullWidth;
-    delete props.limitHeight;
+    delete props.close;
+    delete props.contained;
 
     let items;
     if (isOpen) {
