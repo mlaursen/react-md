@@ -3,7 +3,6 @@
 $md-mobile-max-width: $md-desktop-min-width - 1;
 
 @media only screen and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
-  @include md-select-field-mobile();
   @include md-sidebar-mobile();
   @include md-snackbar-mobile();
   @include md-tab-mobile();
@@ -12,7 +11,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
 
 @media only screen and (min-width: #{$md-desktop-min-width}) {
   @include md-navigation-drawer-desktop();
-  @include md-select-field-desktop();
   @include md-sidebar-desktop();
   @include md-snackbar-desktop();
   @include md-tab-desktop();

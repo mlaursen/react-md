@@ -178,9 +178,9 @@
   @include react-md-typography-mobile;
   @include react-md-text-fields-mobile;
   @include react-md-text-field-custom-sizes;
+  @include react-md-lists-mobile;
 
   @include md-tab-mobile();
-  @include md-lists-mobile();
   @include md-snackbar-mobile();
   @include md-toolbar-mobile-portrait();
 
