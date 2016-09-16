@@ -30,7 +30,7 @@
 }
 
 .md-sidebar {
-  @include make-paper(2);
+  @include md-box-shadow(2);
 
   min-height: 100%;
   overflow-y: hidden;

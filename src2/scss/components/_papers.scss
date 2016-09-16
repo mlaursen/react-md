@@ -1,26 +1,48 @@
 ////
-/// @group elevation
+/// @group papers
 ////
 
+
+/// The defualt transition time for the paper to raise from 0 to 3
+/// @type Number
+$md-paper-transition-time: $md-transition-time * 2 !default;
+
+/// Creates the styles for paper.
+@mixin react-md-papers {
+  @for $i from 0 through 5 {
+    .md-paper--#{$i} {
+      @include md-box-shadow($i);
+
+      @if $i == 0 {
+        transition-duration: $md-paper-transition-time;
+        transition-property: box-shadow;
+
+        &:hover {
+          @include md-box-shadow(3);
+        }
+      }
+    }
+  }
+}
 
 
 /// Generates the box shadow for material design
 ///
 /// @example scss - Basic Usage Sass
-///   .paper-1 {
+///   .md-paper--1 {
 ///     @include md-box-shadow(1);
 ///   }
 ///
-///   .paper-5 {
+///   .md-paper--5 {
 ///     @include md-box-shadow(5);
 ///   }
 ///
 /// @example scss - Basic Usage CSS Output
-///   .paper-1 {
+///   .md-paper--1 {
 ///     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14). 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
 ///   }
 ///
-///   .paper-5 {
+///   .md-paper--5 {
 ///     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
 ///   }
 ///
