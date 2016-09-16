@@ -1,0 +1,21 @@
+////
+/// @group subheaders
+////
+
+$md-subheader-height: 48px;
+$md-subheader-font-size: 14px;
+
+/// Includes the styles for the subheaders.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-subheaders;
+@mixin react-md-subheaders {
+  .md-subheader {
+    font-size: $md-subheader-font-size;
+    font-weight: $md-font-medium;
+    height: $md-subheader-height;
+    line-height: $md-subheader-height;
+    padding-left: $md-default-padding;
+    padding-right: $md-default-padding;
+  }
+}

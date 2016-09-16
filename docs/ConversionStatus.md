@@ -13,6 +13,7 @@
 - Lists/List Items/List Item Controls
 - Selection Controls
 - Sliders
+- Subheaders
 - Text Fields
 
 ## Components to Convert
@@ -31,7 +32,6 @@
 - Select Fields (depends on menus and lists)
 - Sidebars (deprecate and use Drawer instead)
 - Snackbars
-- Subheaders
 - Tabs (reinvent..)
 - Toolbars
 - Tooltips (Go back to prop injection version)

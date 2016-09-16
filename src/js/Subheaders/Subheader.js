@@ -7,17 +7,9 @@ import cn from 'classnames';
 export default class Subheader extends PureComponent {
   static propTypes = {
     /**
-     * The text to display as a subheader.
+     * An optional style to apply to the subheader.
      */
-    primaryText: PropTypes.string.isRequired,
-
-    /**
-     * The component to render the Subheader as.
-     */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]).isRequired,
+    style: PropTypes.object,
 
     /**
      * An optional className to apply to the subheader.
@@ -30,10 +22,29 @@ export default class Subheader extends PureComponent {
     primary: PropTypes.bool,
 
     /**
-     * Boolean if the Subheader is inset in the list. This will add additional
+     * Boolean if the subheader is inset in the list. This will add additional
      * spacing to align the subheader.
      */
     inset: PropTypes.bool,
+
+    /**
+     * The primary text to use in the subheader.
+     */
+    primaryText: PropTypes.node.isRequired,
+
+    /**
+     * Any optional children to display after the `primaryText`. This prop is
+     * unrecommended.
+     */
+    children: PropTypes.node,
+
+    /**
+     * The component to render the Subheader as.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
   };
 
   static defaultProps = {
@@ -41,16 +52,28 @@ export default class Subheader extends PureComponent {
   };
 
   render() {
-    const { component, inset, primary, primaryText, className, ...props } = this.props;
-    delete props.expanderIconChildren;
-    delete props.expanderIconClassName;
-
-    return React.createElement(component, {
+    const {
+      component: Component,
+      inset,
+      primary,
+      primaryText,
+      className,
+      children,
       ...props,
-      className: cn('md-subheader', className, {
-        inset,
-        'md-primary': primary,
-      }),
-    }, primaryText);
+    } = this.props;
+
+    return (
+      <Component
+        {...props}
+        className={cn('md-subheader', {
+          'md-color--secondary-text': !primary,
+          'md-color--primary': primary,
+          'md-list-item--inset': inset,
+        }, className)}
+      >
+        {primaryText}
+        {children}
+      </Component>
+    );
   }
 }

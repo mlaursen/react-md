@@ -8,6 +8,7 @@
 @import 'components/accessibility';
 @import 'components/autocompletes';
 @import 'components/avatars';
+@import 'components/lists';
 @import 'components/chips';
 @import 'components/inks';
 @import 'components/buttons';
@@ -16,9 +17,9 @@
 @import 'components/text-fields';
 @import 'components/forms';
 @import 'components/tooltips';
-@import 'components/lists';
 @import 'components/file-inputs';
 @import 'components/selection-controls';
+@import 'components/subheaders';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -47,6 +48,7 @@
   @include react-md-tooltips;
   @include react-md-file-inputs;
   @include react-md-lists;
+  @include react-md-subheaders;
   @include react-md-selection-controls;
 
   @include react-md-colors;

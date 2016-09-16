@@ -78,6 +78,10 @@ $md-list-desktop-three-line-height: 76px;
     flex-grow: 1;
   }
 
+  .md-list-item--inset {
+    padding-left: $md-list-tile-left-padding;
+  }
+
   @if $include-icon {
     .md-tile-content--left-icon {
       padding-left: $md-list-left-padding - $md-font-icon-size - $md-default-padding;
