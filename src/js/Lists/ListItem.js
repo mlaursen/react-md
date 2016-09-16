@@ -255,7 +255,9 @@ export default class ListItem extends PureComponent {
       this.props.onMouseOver(e);
     }
 
-    this.setState({ active: true });
+    if (!this.props.disabled) {
+      this.setState({ active: true });
+    }
   }
 
   _handleMouseLeave(e) {
@@ -263,7 +265,9 @@ export default class ListItem extends PureComponent {
       this.props.onMouseLeave(e);
     }
 
-    this.setState({ active: false });
+    if (!this.props.disabled) {
+      this.setState({ active: false });
+    }
   }
 
   _handleTouchStart(e) {
@@ -388,7 +392,9 @@ export default class ListItem extends PureComponent {
       <TransitionGroup
         component="li"
         style={style}
-        className={cn('md-list-item', className)}
+        className={cn('md-list-item', {
+          'md-list-item--nested-container': nestedItems,
+        }, className)}
         ref={this._setContainer}
       >
         <AccessibleFakeInkedButton
@@ -402,7 +408,9 @@ export default class ListItem extends PureComponent {
           onKeyUp={this._handleKeyUp}
           disabled={disabled}
           style={tileStyle}
-          className={cn('md-list-tile md-color--text', {
+          className={cn('md-list-tile', {
+            'md-color--text': !disabled,
+            'md-color--disabled': disabled,
             'md-list-tile--active': this.state.active,
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,
@@ -414,6 +422,7 @@ export default class ListItem extends PureComponent {
           <ListItemText
             active={active}
             activeClassName={activeClassName}
+            disabled={disabled}
             primaryText={primaryText}
             secondaryText={secondaryText}
             threeLines={threeLines}

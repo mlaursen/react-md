@@ -3,6 +3,10 @@
 ////
 
 
+/// Includes the styles for file inputs.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-file-inputs;
 @mixin react-md-file-inputs {
   .md-file-input {
     height: 0;

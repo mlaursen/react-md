@@ -489,7 +489,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
     }
   }
 
-  @warn "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix. The primary color must be a non-accent -200 color when using the dark theme sliders.";
+  @error "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix. The primary color must be a non-accent -200 color when using the dark theme sliders.";
 
   @return false;
 }

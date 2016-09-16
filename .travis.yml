@@ -1,5 +1,6 @@
 language: node_js
 before_install:
+  - rvm install ruby-head
   - gem install sass scss_lint
 node_js:
   - "4"

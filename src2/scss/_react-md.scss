@@ -9,6 +9,7 @@
 @import 'components/autocompletes';
 @import 'components/avatars';
 @import 'components/lists';
+@import 'components/menus';
 @import 'components/chips';
 @import 'components/inks';
 @import 'components/buttons';
@@ -38,6 +39,8 @@
   @include react-md-icons;
   @include react-md-inks;
   @include react-md-buttons;
+  @include react-md-lists;
+  @include react-md-menus;
   @include react-md-chips;
   @include react-md-dividers;
   @include react-md-text-fields;
@@ -47,7 +50,6 @@
   @include react-md-forms;
   @include react-md-tooltips;
   @include react-md-file-inputs;
-  @include react-md-lists;
   @include react-md-subheaders;
   @include react-md-selection-controls;
 
@@ -125,18 +127,20 @@
     @include react-md-theme-typography($html-class-name, $light-theme);
 
     .#{$html-class-name} {
+      @include react-md-theme-inks($light-theme);
       @include react-md-theme-dividers($light-theme);
       @include react-md-theme-icons($light-theme);
       @include react-md-theme-avatars($light-theme);
       @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
       @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
-      @include react-md-theme-lists($primary-color, $light-theme);
+      @include react-md-theme-lists($light-theme);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
 
       @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
     }
   } @else {
+    @include react-md-theme-inks($light-theme);
     @include react-md-theme-dividers($light-theme);
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-avatars($light-theme);
@@ -144,7 +148,7 @@
     @include react-md-theme-autocompletes($light-theme);
     @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
-    @include react-md-theme-lists($primary-color, $light-theme);
+    @include react-md-theme-lists($light-theme);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
 
     @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);

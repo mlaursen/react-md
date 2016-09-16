@@ -11,6 +11,7 @@
 - Font Icons
 - Ink
 - Lists/List Items/List Item Controls
+- Menus
 - Selection Controls
 - Sliders
 - Subheaders
@@ -22,7 +23,6 @@
 - Data Tables
 - Dialogs
 - Expansion Panels
-- Menus
 - Navigation Drawers
   - Deprecate Sidebar and implement standalone Drawer
   - Use Toolbar instead of DrawerToolbar

@@ -4,12 +4,11 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
-import { ListItem } from '../Lists';
+import ListItem from '../Lists/ListItem';
 import Menu from '../Menus';
 import TextField from '../TextFields';
 
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
-import { onOutsideClick } from '../utils';
 
 const ADDITIONAL_INK_TRIGGER_KEYS = [UP, DOWN];
 
@@ -404,6 +403,7 @@ export default class Autocomplete extends PureComponent {
     this._setField = this._setField.bind(this);
     this._setMenu = this._setMenu.bind(this);
     this._setSuggestion = this._setSuggestion.bind(this);
+    this._close = this._close.bind(this);
     this._updateFont = this._updateFont.bind(this);
     this._handleBlur = this._handleBlur.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
@@ -411,7 +411,6 @@ export default class Autocomplete extends PureComponent {
     this._handleChange = this._handleChange.bind(this);
     this._handleItemClick = this._handleItemClick.bind(this);
     this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
     this._handleMenuKeyDown = this._handleMenuKeyDown.bind(this);
     this._handleTextFieldKeyDown = this._handleTextFieldKeyDown.bind(this);
     this._focusSuggestion = this._focusSuggestion.bind(this);
@@ -430,9 +429,6 @@ export default class Autocomplete extends PureComponent {
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.isOpen !== nextState.isOpen) {
-      const key = `${nextState.isOpen ? 'add' : 'remove'}EventListener`;
-      window[key]('click', this._handleOutsideClick);
-
       const menuFn = nextProps[`onMenu${nextState.isOpen ? 'Open' : 'Close'}`];
       if (menuFn) {
         menuFn();
@@ -509,14 +505,12 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
-  _handleOutsideClick(e) {
-    onOutsideClick(e, this._menu, () => {
-      if (this.props.onBlur) {
-        this.props.onBlur();
-      }
+  _close() {
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
 
-      this.setState({ isOpen: false });
-    });
+    this.setState({ isOpen: false });
   }
 
   _handleChange(value, event) {
@@ -910,6 +904,7 @@ export default class Autocomplete extends PureComponent {
         toggle={autocomplete}
         isOpen={isOpen}
         onClick={this._handleClick}
+        close={this._close}
         onKeyDown={this._handleMenuKeyDown}
         position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}
@@ -917,7 +912,7 @@ export default class Autocomplete extends PureComponent {
         className={containerClassName}
         listStyle={listStyle}
         listClassName={listClassName}
-        limitHeight
+        contained
       >
         {matches.map(this._mapToListItem)}
       </Menu>

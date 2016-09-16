@@ -1,4 +1,13 @@
-.static-menu-examples .md-menu {
+.static-menu-examples .md-list--menu:not(.md-list--menu-nested) {
   margin: 1em;
-  position: initial;
+  position: static;
+}
+
+.menu-example {
+  margin: 1em;
+  vertical-align: top;
+}
+
+.menu-example--static > .md-list--menu {
+  position: static;
 }

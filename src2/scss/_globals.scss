@@ -25,6 +25,7 @@ $md-secondary-color-hue-1: $md-pink-a-100 !default;
 
 /// Boolean if the application is to be themed with the light theme.
 /// @type Boolean
+/// @group theme
 $md-light-theme: true !default;
 
 /// The default transition time to use on most animations/transitions.
@@ -108,6 +109,7 @@ $md-desktop-media: only screen and (min-width: $md-desktop-min-width) !default;
 /// if you want to join all media queries into one, but you can always use a postcss plugin
 /// to combine them if you are worried about bundle size.
 /// @type Boolean
+/// @group media-queries
 $md-media-included: true !default;
 
 

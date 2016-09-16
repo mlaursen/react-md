@@ -12,6 +12,7 @@ Table of Contents
   * [Inks](#inks)
   * [Tooltips](#tooltips)
   * [Chips](#chips)
+  * [Menus](#menus)
 * [Upgrading from 0.2.x to 0.3.x](#upgrading-from-0-2-x-to-0-3-x)
   * [NavigationDrawer](#navigationdrawer)
     * [Responsive Drawer Changes](#responsive-drawer-changes)
@@ -125,6 +126,15 @@ be handled by the base `onClick` function.
 - The `removeIconClassName` and `removeIconChildren` were renamed `iconClassName` and `children`
 respectively.
 - To include an `Avatar`, you must now place it with the `avatar` prop instead of the `children`.
+
+### Menus
+The prop requirements changed a little bit with this release.
+
+- `close` - required
+- `autoclose` - deprecated. Always autocloses
+- `limitHeight` - deprecated. Always limits height.
+- `expanderIconChildren` - deprecated. Uses css rotate instead of a separate icon.
+- `expanderIconClassName` - deprecated. Uses css rotate instead of a separate icon.
 
 ## Upgrading from 0.2.x to 0.3.x
 

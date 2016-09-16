@@ -7,6 +7,11 @@ import cn from 'classnames';
  */
 export default class Divider extends PureComponent {
   static propTypes = {
+    /*
+     * An optional style to apply to the divider.
+     */
+    style: PropTypes.object,
+
     /**
      * An optional className to apply to the divider.
      */
@@ -27,19 +32,17 @@ export default class Divider extends PureComponent {
 
   render() {
     const { className, inset, vertical, ...props } = this.props;
-    // When in a list
-    delete props.expanderIconChildren;
-    delete props.expanderIconClassName;
 
-    const dividerProps = {
-      ...props,
-      role: 'divider',
-      className: cn('md-divider', {
-        'md-divider--inset': inset,
-        'md-divider--vertical': vertical,
-      }, className),
-    };
+    const Component = vertical ? 'div' : 'hr';
 
-    return React.createElement(vertical ? 'div' : 'hr', dividerProps);
+    return (
+      <Component
+        {...props}
+        className={cn('md-divider', {
+          'md-divider--vertical': vertical,
+          'md-divider--inset': inset,
+        }, className)}
+      />
+    );
   }
 }

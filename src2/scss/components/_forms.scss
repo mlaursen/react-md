@@ -3,7 +3,11 @@
 ////
 
 
-/// Includes basic styles for forms.
+/// Includes basic styles for forms. This will mimic the styles for bootstrap forms.
+/// Text fields inside a form with `.md-form` will all be full width.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-forms;
 @mixin react-md-forms {
   .md-form {
     .md-text-field-container {
