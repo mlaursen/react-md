@@ -15,7 +15,7 @@
     "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
     "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
     "styles": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
-    "lint:styles": "scss-lint src/scss",
+    "lint:styles": "scss-lint src2/scss",
     "lint:scripts": "eslint -c .eslintrc src",
     "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src",
