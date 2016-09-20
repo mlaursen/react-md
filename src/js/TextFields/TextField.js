@@ -353,6 +353,12 @@ export default class TextField extends PureComponent {
      * @access private
      */
     ink: PropTypes.node,
+
+    /**
+     * An optional element to display inside of the `TextField` to the farthest right. This will
+     * position the indicator absolutely and add some additional padding to the `TextField`.
+     */
+    inlineIndicator: PropTypes.element,
   };
 
   static defaultProps = {
@@ -716,6 +722,7 @@ export default class TextField extends PureComponent {
       onMouseOver,
       onMouseLeave,
       ink,
+      inlineIndicator,
       ...props,
     } = this.props;
     delete props.label;
@@ -770,10 +777,18 @@ export default class TextField extends PureComponent {
           iconClassName={passwordIconClassName}
         />
       );
+    } else if (inlineIndicator) {
+      const el = Children.only(inlineIndicator);
+      rightIcon = cloneElement(inlineIndicator, {
+        key: 'icon-right',
+        className: cn('md-text-field-inline-indicator', {
+          'md-text-field-inline-indicator--block': block,
+        }, el.props.className),
+      });
     } else {
       rightIcon = this._cloneIcon(rightIcon, active, error, disabled, rightIconStateful, 'right');
     }
-    const rightIconed = !!rightIcon && type !== 'password';
+    const rightIconed = !!rightIcon && type !== 'password' && !inlineIndicator;
 
     const floatingLabel = (
       <FloatingLabel
@@ -827,6 +842,7 @@ export default class TextField extends PureComponent {
         onKeyDown={this._handleKeyDown}
         onChange={this._handleChange}
         onHeightChange={this._handleHeightChange}
+        inlineIndicator={!!inlineIndicator}
       />
     );
 

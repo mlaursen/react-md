@@ -24,6 +24,7 @@ export default class InputField extends PureComponent {
     fullWidth: PropTypes.bool,
     customSize: PropTypes.string,
     passwordVisible: PropTypes.bool,
+    inlineIndicator: PropTypes.bool,
   };
 
   constructor(props) {
@@ -53,7 +54,18 @@ export default class InputField extends PureComponent {
   }
 
   render() {
-    const { className, rows, label, customSize, fullWidth, type, passwordVisible, block, ...props } = this.props;
+    const {
+      className,
+      rows,
+      label,
+      customSize,
+      fullWidth,
+      type,
+      passwordVisible,
+      block,
+      inlineIndicator,
+      ...props,
+    } = this.props;
 
     const multiline = typeof rows !== 'undefined';
     const Component = multiline ? TextArea : 'input';
@@ -72,7 +84,8 @@ export default class InputField extends PureComponent {
       rows,
       ref: field => { this._field = field; },
       className: cn('md-text-field', {
-        'md-text-field--password': !multiline && type === 'password',
+        'md-color--disabled': props.disabled,
+        'md-text-field--inline-indicator': inlineIndicator || (!multiline && type === 'password'),
         'md-text-field--multiline': multiline,
         'md-text-field--full-width': fullWidth,
         'md-text-field--margin': !block && !multiline && !label,

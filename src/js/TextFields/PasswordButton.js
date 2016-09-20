@@ -18,7 +18,7 @@ export default class PasswordButton extends PureComponent {
       <button
         {...props}
         type="button"
-        className={cn('md-password-btn md-pointer--hover', {
+        className={cn('md-text-field-inline-indicator md-password-btn md-pointer--hover', {
           'md-password-btn--active': active,
           'md-password-btn--invisible': active && !passwordVisible,
         })}
