@@ -51,6 +51,10 @@ $md-text-field-include-message: true !default;
 /// @type Boolean
 $md-text-field-include-password: true !default;
 
+/// Boolean if the minimal styling for inline indicators for text fields should be included by default.
+/// @type Boolean
+$md-text-field-include-inline-indicator: true !default;
+
 
 
 /// The font size for the text field messages.
@@ -166,6 +170,9 @@ $md-text-field-desktop-block-padding: 16px;
 ///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
+///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 @mixin react-md-text-fields-mobile(
@@ -173,6 +180,7 @@ $md-text-field-desktop-block-padding: 16px;
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
   $include-password: $md-text-field-include-password,
+  $include-inline-indicator: $md-text-field-include-inline-indicator,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @include react-md-text-field-container-mobile($include-block);
@@ -187,8 +195,8 @@ $md-text-field-desktop-block-padding: 16px;
     @include react-md-text-field-icon-mobile;
   }
 
-  @if $include-password {
-    @include react-md-text-field-password-mobile;
+  @if $include-password or $include-inline-indicator {
+    @include react-md-text-field-inline-indicator-mobile;
   }
 
   @include react-md-text-field-custom-sizes-mobile($custom-sizes, $include-floating-label);
@@ -218,6 +226,9 @@ $md-text-field-desktop-block-padding: 16px;
 ///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
+///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 @mixin react-md-text-fields-desktop(
@@ -225,6 +236,7 @@ $md-text-field-desktop-block-padding: 16px;
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
   $include-password: $md-text-field-include-password,
+  $include-inline-indicator: $md-text-field-include-inline-indicator,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @include react-md-text-field-container-desktop($include-block);
@@ -239,8 +251,8 @@ $md-text-field-desktop-block-padding: 16px;
     @include react-md-text-field-icon-desktop;
   }
 
-  @if $include-password {
-    @include react-md-text-field-password-desktop;
+  @if $include-password or $include-inline-indicator {
+    @include react-md-text-field-inline-indicator-desktop;
   }
 
   @include react-md-text-field-custom-sizes-desktop($custom-sizes, $include-floating-label);
@@ -268,6 +280,9 @@ $md-text-field-desktop-block-padding: 16px;
 ///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
+///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 @mixin react-md-text-fields-media(
@@ -275,6 +290,7 @@ $md-text-field-desktop-block-padding: 16px;
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
   $include-password: $md-text-field-include-password,
+  $include-inline-indicator: $md-text-field-include-inline-indicator,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @media #{$md-mobile-media} {
@@ -322,6 +338,9 @@ $md-text-field-desktop-block-padding: 16px;
 ///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
+/// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
+///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
+///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - This is a map of size names and font sizes
 ///     to apply as custom sizes for the text field.
 @mixin react-md-text-fields(
@@ -335,6 +354,7 @@ $md-text-field-desktop-block-padding: 16px;
   $include-icon: $md-text-field-include-icon,
   $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
+  $include-inline-indicator: $md-text-field-include-inline-indicator,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @if $include-media {
@@ -355,6 +375,10 @@ $md-text-field-desktop-block-padding: 16px;
 
   @if $include-password or $include-icon {
     @include react-md-text-field-icon($primary-color, $light-theme, $error-color);
+  }
+
+  @if $include-password or $include-inline-indicator {
+    @include react-md-text-field-inline-indicator;
   }
 
   @if $include-password {
@@ -1190,8 +1214,6 @@ $md-text-field-desktop-block-padding: 16px;
     color: get-color('hint', $light-theme);
     height: $md-font-icon-size;
     padding: 0;
-    position: absolute;
-    right: 0;
     width: $md-font-icon-size;
 
     &:focus {
@@ -1231,10 +1253,6 @@ $md-text-field-desktop-block-padding: 16px;
       transform: translate3d(1px, -50%, 0) rotate3d(0, 0, 1, 45deg);
     }
   }
-
-  .md-text-field--password {
-    padding-right: $md-font-icon-size;
-  }
 }
 
 
@@ -1270,43 +1288,80 @@ $md-text-field-desktop-block-padding: 16px;
   }
 }
 
-/// Creates the styles for a password text field on mobile devices. This should
+/// Creates teh styles for the text field's inline indicator. This is is for showing a password button
+/// or some other icon within the text field.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-text-field-inline-indicator;
+@mixin react-md-text-field-inline-indicator {
+  .md-text-field-inline-indicator {
+    position: absolute;
+    right: 0;
+  }
+
+  .md-text-field--inline-indicator {
+    padding-right: $md-font-icon-size;
+  }
+}
+
+/// Creates the styles for showing inline indicators in text fields on mobile devices. This should
 /// be used within a media query.
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-mobile-media} {
-///     @include react-md-text-field-password-mobile;
+///     @include react-md-text-field-inline-indicator-mobile;
 ///   }
-@mixin react-md-text-field-password-mobile {
-  .md-password-btn {
+///
+/// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
+///     be included
+@mixin react-md-text-field-inline-indicator-mobile($include-block: $md-text-field-include-block) {
+  .md-text-field-inline-indicator {
     bottom: 14px;
+  }
+
+  @if $include-block {
+    .md-text-field-inline-indicator--block {
+      bottom: 16px;
+    }
   }
 }
 
-/// Creates the styles for a password text field on desktop screens. This should
+/// Creates the styles for showing inline indicators in text fields on desktop screens. This should
 /// be used within a media query.
 ///
 /// @example scss - Example Usage SCSS
 ///   @media #{$md-desktop-media} {
-///     @include react-md-text-field-password-desktop;
+///     @include react-md-text-field-inline-indicator-desktop;
 ///   }
-@mixin react-md-text-field-password-desktop {
-  .md-password-btn {
+///
+/// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
+///     be included
+@mixin react-md-text-field-inline-indicator-desktop($include-block: $md-text-field-include-block) {
+  .md-text-field-inline-indicator {
     bottom: 9px;
+  }
+
+  @if $include-block {
+    .md-text-field-inline-indicator--block {
+      bottom: 11px;
+    }
   }
 }
 
-/// Includes the media queries for the password text field.
+/// Includes the media queries for showing inline indicators in text fields.
 ///
 /// @example scss - Example Usage SCSS
-///   @include react-md-text-field-password-media;
-@mixin react-md-text-field-password-media {
+///   @include react-md-text-field-inline-indicator-media;
+///
+/// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
+///     be included
+@mixin react-md-text-field-inline-indicator-media($include-block: $md-text-field-include-block) {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-password-mobile;
+    @include react-md-text-field-inline-indicator-mobile($include-block);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-password-desktop;
+    @include react-md-text-field-inline-indicator-desktop($include-block);
   }
 }
 
