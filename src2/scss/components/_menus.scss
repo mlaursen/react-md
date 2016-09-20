@@ -3,7 +3,7 @@
 ////
 
 $md-menu-include-cascading: true !default;
-$md-menu-z-index: 28 !default;
+$md-menu-z-index: 105 !default;
 $md-menu-transition-time: .2s !default;
 
 $md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2;
@@ -70,6 +70,10 @@ $md-menu-cascading-list-padding: 16px;
 
   .md-list--menu-bl {
     transform-origin: 0 100%;
+  }
+
+  .md-list--menu-context {
+    transform-origin: 50% 0;
   }
 
   .md-list--menu-nested {
