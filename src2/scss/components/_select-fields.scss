@@ -2,13 +2,21 @@
 /// @group select-fields
 ////
 
+/// The amount of distance a new value should drop into the select field.
+/// @type Number
 $md-select-field-drop-distance: -10px !default;
-$md-select-field-drop-transition-time: $md-transition-time * 2;
 
+/// The transition time to use for the drop transition
+/// @type Number
+$md-select-field-drop-transition-time: $md-transition-time * 2;
 $md-select-field-left-padding: 24px;
 $md-select-field-right-padding: 16px;
 
-@mixin react-md-select-fields($include-media: $md-media-included) {
+/// Creates the styles for select fields.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-select-fields;
+@mixin react-md-select-fields {
   .md-select-field {
     cursor: inherit;
     user-select: none;

@@ -2,8 +2,16 @@
 /// @group menus
 ////
 
+/// Boolean if the cascading styles for menus should be included
+/// @type {Boolean}
 $md-menu-include-cascading: true !default;
+
+/// The z-index to use for menus
+/// type Number
 $md-menu-z-index: 105 !default;
+
+/// The transition time to use for menus
+/// type Number
 $md-menu-transition-time: .2s !default;
 
 $md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2;
@@ -14,7 +22,16 @@ $md-menu-cascading-padding: 24px;
 $md-menu-cascading-height: 32px;
 $md-menu-cascading-list-padding: 16px;
 
-@mixin react-md-menus($light-theme: $md-light-theme, $include-media: $md-media-included, $include-cascading: $md-menu-include-cascading) {
+/// Includes the styles for menus.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-menus;
+///
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries are included
+///     for menus.
+/// @param {Boolean} include-cascading [$md-menu-include-cascading] - Boolean if the desktop cascading
+///     styles for menus should be included.
+@mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading) {
   @if $include-media {
     @include react-md-menus-media;
   }
@@ -169,18 +186,36 @@ $md-menu-cascading-list-padding: 16px;
   }
 }
 
+/// Creates the styles for menus on mobile devices. This should _normally_
+/// be used a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-menus-mobile;
+///   }
 @mixin react-md-menus-mobile {
   .md-list--menu-scrollable {
     max-height: $md-menu-mobile-max-height;
   }
 }
 
+/// Creates the styles for menus on desktop screens. This should _normally_
+/// be used a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-menus-desktop;
+///   }
 @mixin react-md-menus-desktop {
   .md-list--menu-scrollable {
     max-height: $md-menu-desktop-max-height;
   }
 }
 
+/// Includes the media queries for menus on mobile devices and desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-menus-media;
 @mixin react-md-menus-media {
   @media #{$md-mobile-media} {
     @include react-md-menus-mobile;

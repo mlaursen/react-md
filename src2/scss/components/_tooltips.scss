@@ -16,6 +16,13 @@ $md-tooltip-desktop-top-margin: 14px;
 $md-tooltip-color: $md-grey-700;
 $md-tooltip-opacity: .9;
 
+/// Creates the styles for tooltips.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-tooltips;
+///
+/// @param {Boolean} media-included [$md-media-included] - Boolean if the
+///     media queries should be included.
 @mixin react-md-tooltips($media-included: $md-media-included) {
   @if $media-included {
     @include react-md-tooltips-media;
@@ -90,6 +97,13 @@ $md-tooltip-opacity: .9;
   }
 }
 
+/// Creates the styles for tooltips on mobile devices. This should _normally_
+/// be used in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-tooltips-mobile;
+///   }
 @mixin react-md-tooltips-mobile {
   .md-tooltip {
     font-size: $md-tooltip-mobile-font-size;
@@ -115,6 +129,13 @@ $md-tooltip-opacity: .9;
   }
 }
 
+/// Creates the styles for tooltips on desktop screens. This should _normally_
+/// be used in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-tooltips-desktop;
+///   }
 @mixin react-md-tooltips-desktop {
   .md-tooltip {
     font-size: $md-tooltip-desktop-font-size;
@@ -140,6 +161,11 @@ $md-tooltip-opacity: .9;
   }
 }
 
+/// Includes the media queries for tooltips on mobile devices and desktop
+/// screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-tooltips-media;
 @mixin react-md-tooltips-media {
   @media #{$md-mobile-media} {
     @include react-md-tooltips-mobile;
