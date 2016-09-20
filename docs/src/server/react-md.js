@@ -76,6 +76,7 @@ export default function reactMD(req, res) {
       res.render('index', {
         initialState: JSON.stringify(store.getState()),
         html: renderToString(<Root store={store} {...renderProps} />),
+        htmlClassName: 'theme-1',
       });
     } else {
       res.status(404).send('Not Found');

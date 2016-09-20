@@ -72,7 +72,13 @@ module.exports = function(templateParams) {
   }
 
   var body = '<body>' + entry + js + '</body>';
+  var html = '<html';
+  if (options.isomorphicHtmlClassName) {
+    html += ' class="<%= ' + options.isomorphicHtmlClassName + ' %>"';
+  }
+
+  html += '>' + head + body + '</html>';
 
 
-  return '<!DOCTYPE html><html>' + head + body + '</html>';
+  return '<!DOCTYPE html>' + html;
 };
