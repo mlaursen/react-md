@@ -14,6 +14,14 @@ $md-font-icon-separator-padding: $md-default-padding !default;
 /// @type Number
 $md-font-icon-size: 24px;
 
+/// The light theme's disabled color for icons.
+/// @type Color
+$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26);
+
+/// The dark theme's disabled color for icons.
+/// @type Color
+$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
+
 /// Includes the css for using `md-icon`.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
 ///     application is using the light-theme or not.
@@ -27,6 +35,10 @@ $md-font-icon-size: 24px;
     transition-duration: $md-transition-time;
     transition-property: color;
     user-select: none;
+  }
+
+  .md-icon--disabled {
+    color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
   }
 
   @if $include-separators {
@@ -45,6 +57,10 @@ $md-font-icon-size: 24px;
   @if $light-theme != $md-light-theme {
     .md-icon {
       color: $md-icon-color;
+    }
+
+    .md-icon--disabled {
+      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
     }
   }
 }
