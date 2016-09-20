@@ -34,6 +34,11 @@ export default class FontIcon extends PureComponent {
      * An optional className to apply to the `FontIcon`.
      */
     className: PropTypes.string,
+
+    /**
+     * Boolean if the `FontIcon` should gain the disabled colors.
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -41,7 +46,16 @@ export default class FontIcon extends PureComponent {
   };
 
   render() {
-    const { iconClassName, className, children, ...props } = this.props;
-    return <i className={cn('md-icon', iconClassName, className)} {...props}>{children}</i>;
+    const { iconClassName, className, children, disabled, ...props } = this.props;
+    return (
+      <i
+        {...props}
+        className={cn('md-icon', iconClassName, {
+          'md-icon--disabled': disabled,
+        }, className)}
+      >
+        {children}
+      </i>
+    );
   }
 }
