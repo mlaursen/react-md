@@ -213,6 +213,8 @@ export default class ListItem extends PureComponent {
       this.state.isOpen = !!props.initiallyOpen;
     }
 
+    this.focusWithInk = this.focusWithInk.bind(this);
+    this._setTile = this._setTile.bind(this);
     this._setContainer = this._setContainer.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
     this._handleClick = this._handleClick.bind(this);
@@ -230,8 +232,26 @@ export default class ListItem extends PureComponent {
     }
   }
 
+  /**
+   * A utility function to focus the `AccessibleFakeInkedButton` in the `ListItem` and also
+   * inject an ink to indicate focus.
+   */
+  focusWithInk() {
+    if (this._tile) {
+      this._tile.focusWithInk();
+    }
+  }
+
+  _setTile(tile) {
+    if (tile) {
+      this._tile = tile;
+    }
+  }
+
   _setContainer(container) {
-    this._container = findDOMNode(container);
+    if (container) {
+      this._container = findDOMNode(container);
+    }
   }
 
   _handleOutsideClick(e) {
@@ -399,6 +419,8 @@ export default class ListItem extends PureComponent {
       >
         <AccessibleFakeInkedButton
           {...props}
+          __SUPER_SECRET_REF__={this._setTile}
+          key="tile"
           onClick={this._handleClick}
           onMouseOver={this._handleMouseOver}
           onMouseLeave={this._handleMouseLeave}
