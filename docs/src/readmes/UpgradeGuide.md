@@ -130,7 +130,8 @@ respectively.
 ### Menus
 The prop requirements changed a little bit with this release.
 
-- `close` - required
+- `close` - depreacted. Use `onClose` instead.
+- `onClose` - required.
 - `autoclose` - deprecated. Always autocloses
 - `limitHeight` - deprecated. Always limits height.
 - `expanderIconChildren` - deprecated. Uses css rotate instead of a separate icon.

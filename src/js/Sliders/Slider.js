@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { getField } from '../utils';
+import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import calculateValueDistance from '../utils/NumberUtils/calculdateValueDistance';
 import { LEFT, RIGHT, TAB } from '../constants/keyCodes';

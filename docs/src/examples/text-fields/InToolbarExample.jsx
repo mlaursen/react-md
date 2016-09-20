@@ -11,6 +11,7 @@ import { List, ListItem } from 'react-md/lib/Lists';
 
 import { randomAvatars } from 'utils/RandomUtils';
 
+const noop = () => {};
 const avatars = randomAvatars(8);
 const items = [0, 1, 2, 3];
 const primaryTexts = items.map(() => {
@@ -55,7 +56,7 @@ export default class InToolbarExample extends PureComponent {
           />
           <Button icon className="md-toolbar-item" onClick={this._resetValue}>close</Button>
         </Toolbar>
-        <Menu isOpen={focus && !!value.length} position={Menu.Positions.TOP_LEFT}>
+        <Menu isOpen={focus && !!value.length} position={Menu.Positions.TOP_LEFT} onClose={noop}>
           <ListItem primaryText="Aaron Bennett" rightAvatar={avatars[0]} />
           <ListItem primaryText="Abbey Christensen" rightAvatar={avatars[1]} />
           <ListItem primaryText="Ali Connors" rightAvatar={avatars[2]} />

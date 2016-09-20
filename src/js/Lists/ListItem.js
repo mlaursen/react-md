@@ -3,8 +3,8 @@ import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
-import { getField } from '../utils';
 import { TAB } from '../constants/keyCodes';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import FontIcon from '../FontIcons';

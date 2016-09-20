@@ -22,8 +22,6 @@ export default class ThemeSwitcher extends PureComponent {
     if (this.props.value !== nextProps.value) {
       const { classList } = document.querySelector('html');
 
-      console.log('this.props.value:', this.props.value);
-      console.log('nextProps.value:', nextProps.value);
       classList.remove(this.props.value);
       classList.add(nextProps.value);
     }

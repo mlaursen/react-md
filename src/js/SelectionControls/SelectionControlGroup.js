@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import { getField } from '../utils';
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
 
