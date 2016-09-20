@@ -57,6 +57,7 @@ export default class InkContainer extends PureComponent {
     this._handleTouchEnd = this._handleTouchEnd.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._getKeyboardContainer = this._getKeyboardContainer.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,7 +69,7 @@ export default class InkContainer extends PureComponent {
 
     if (this._isListeneredDisabledDiff('keyboard', di, ndi)) {
       const fn = `${this._isListeneredDisabled('keyboard', ndi) ? 'remove' : 'add'}EventListener`;
-      this._container[fn]('keyup', this._handleKeyUp);
+      this._getKeyboardContainer()[fn]('keyup', this._handleKeyUp);
 
       if (this._container.getAttribute('type') === 'submit') {
         window[fn]('submit', this._handleSubmit);
@@ -96,8 +97,8 @@ export default class InkContainer extends PureComponent {
     if (this._container) {
       const { disabledInteractions } = this.props;
       if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-        this._container.removeEventListener('keyup', this._handleKeyUp);
-        this._container.removeEventListener('blur', this._handleBlur);
+        this._getKeyboardContainer().removeEventListener('keyup', this._handleKeyUp);
+        this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
 
         if (this._container.getAttribute('type') === 'submit') {
           window.removeEventListener('submit', this._handleSubmit);
@@ -191,6 +192,14 @@ export default class InkContainer extends PureComponent {
     this.setState({ inks });
   }
 
+  _getKeyboardContainer() {
+    if (this._container.classList.contains('md-text-field-container')) {
+      return this._container.querySelector('.md-text-field');
+    }
+
+    return this._container;
+  }
+
   _setContainers(inkContainer) {
     if (inkContainer !== null) {
       this._inkContainer = findDOMNode(inkContainer);
@@ -199,7 +208,7 @@ export default class InkContainer extends PureComponent {
       if (this._container) {
         const { disabledInteractions } = this.props;
         if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-          this._container.addEventListener('keyup', this._handleKeyUp);
+          this._getKeyboardContainer().addEventListener('keyup', this._handleKeyUp);
 
           if (this._container.getAttribute('type') === 'submit') {
             window.addEventListener('submit', this._handleSubmit);
@@ -251,7 +260,7 @@ export default class InkContainer extends PureComponent {
   }
 
   _handleBlur() {
-    this._container.removeEventListener('blur', this._handleBlur);
+    this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
     this._removeInk();
   }
 
@@ -260,7 +269,7 @@ export default class InkContainer extends PureComponent {
       return;
     }
 
-    this._container.addEventListener('blur', this._handleBlur);
+    this._getKeyboardContainer().addEventListener('blur', this._handleBlur);
     this._createInk();
   }
 
