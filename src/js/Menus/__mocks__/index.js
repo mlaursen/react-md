@@ -13,6 +13,7 @@ export default class Menu extends React.Component {
     const { isOpen, toggle, children, listStyle, listClassName, ...props } = this.props;
     delete props.position;
     delete props.fullWidth;
+    delete props.onClose;
     delete props.close;
     delete props.contained;
 
