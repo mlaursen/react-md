@@ -61,6 +61,9 @@ class FileInput extends PureComponent {
      */
     label: PropTypes.string.isRequired,
 
+    /**
+     * Boolean if the icons hould appear before the label.
+     */
     iconBefore: PropTypes.bool,
 
     /**
@@ -100,7 +103,15 @@ class FileInput extends PureComponent {
       PropTypes.number,
     ])),
 
+    /**
+     * Boolean if the `FileInput` is currently disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * @access private
+     */
+    ink: PropTypes.node,
   };
 
   static defaultProps = {
@@ -140,6 +151,7 @@ class FileInput extends PureComponent {
       iconBefore,
       disabled,
       accept,
+      ink,
       ...props,
     } = this.props;
     delete props.onChange;
@@ -151,6 +163,7 @@ class FileInput extends PureComponent {
         style={style}
         className={cn('md-file-input-container', className)}
       >
+        {ink}
         <IconSeparator
           component="label"
           htmlFor={id}
