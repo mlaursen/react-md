@@ -90,7 +90,13 @@ export default class Menu extends PureComponent {
      * A function used to close the menu. This is used when the user clicks
      * outside of the menu or any list item inside.
      */
-    close: PropTypes.func.isRequired,
+    close: deprecated(PropTypes.func, 'Use `onClose` instead.'),
+
+    /**
+     * A function used to close the menu. This is used when the user clicks outside
+     * of the menu or when a `ListItem` is clicked.
+     */
+    onClose: PropTypes.func.isRequired,
 
     /**
      * Boolean if the menu is cascading. This isn't really working too well yet.
@@ -179,19 +185,29 @@ export default class Menu extends PureComponent {
 
   _handleOutsideClick(e) {
     if (!this._container.contains(e.target)) {
-      this.props.close();
+      const { onClose, close } = this.props;
+      if (close) {
+        close(e);
+      } else if (onClose) {
+        onClose(e);
+      }
     }
   }
 
   _handleListClick(e) {
-    const { close } = this.props;
+    const { onClose, close } = this.props;
 
     let node = e.target;
     while (this._container.contains(node)) {
       if (!node.classList.contains('md-list-item--nested-container') && node.classList.contains('md-list-item')) {
         this._timeout = setTimeout(() => {
           this._timeout = null;
-          close();
+
+          if (close) {
+            close(e);
+          } else if (onClose) {
+            onClose(e);
+          }
         }, 300);
 
         return;
@@ -214,6 +230,7 @@ export default class Menu extends PureComponent {
     } = this.props;
     delete props.close;
     delete props.position;
+    delete props.onClose;
     delete props.cascading;
     delete props.autoclose;
 

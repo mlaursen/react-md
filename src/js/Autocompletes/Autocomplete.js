@@ -904,7 +904,7 @@ export default class Autocomplete extends PureComponent {
         toggle={autocomplete}
         isOpen={isOpen}
         onClick={this._handleClick}
-        close={this._close}
+        onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
         position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}

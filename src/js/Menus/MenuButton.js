@@ -179,7 +179,7 @@ export default class MenuButton extends PureComponent {
         className={menuClassName}
         toggle={toggle}
         isOpen={isOpen}
-        close={this._closeMenu}
+        onClose={this._closeMenu}
         contained={contained}
         autoclose={autoclose}
         position={position}
