@@ -119,7 +119,8 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   }
 
   .md-slider-track--full-width {
-    @extend %full-width;
+    display: block;
+    width: 100%;
   }
 
   .md-slider-track-fill {

@@ -12,9 +12,7 @@
 
   @include react-md-theme-everything(
     $md-light-blue-500,
-    $md-light-blue-300,
-    $md-deep-orange-a-200,
-    $md-deep-orange-a-100
+    $md-deep-orange-a-200
   );
 
   .banner {
@@ -37,9 +35,8 @@
 
   @include react-md-theme-everything(
     $md-purple-500,
-    $md-purple-300,
     $md-light-green-a-700,
-    $md-light-green-a-200
+    200
   );
 
   #table-of-contents,
@@ -58,9 +55,7 @@
 
   @include react-md-theme-everything(
     $md-blue-500,
-    $md-blue-300,
-    $md-amber-a-200,
-    $md-amber-a-100
+    $md-amber-a-200
   );
 
   #table-of-contents,
@@ -79,9 +74,8 @@
 
   @include react-md-theme-everything(
     $md-cyan-500,
-    $md-cyan-300,
     $md-yellow-a-700,
-    $md-yellow-a-200
+    200
   );
 
   #table-of-contents,
@@ -100,9 +94,7 @@
 
   @include react-md-theme-everything(
     $md-orange-500,
-    $md-orange-300,
-    $md-deep-purple-a-200,
-    $md-deep-purple-a-100
+    $md-deep-purple-a-200
   );
 
   #table-of-contents,
@@ -113,9 +105,8 @@
 
 @include react-md-theme-everything(
   $md-light-blue-500,
-  $md-light-blue-300,
   $md-deep-orange-a-200,
-  $md-deep-orange-a-100,
+  $md-linear-progress-swatch,
   $md-text-field-error-color,
   false,
   'theme-dark'

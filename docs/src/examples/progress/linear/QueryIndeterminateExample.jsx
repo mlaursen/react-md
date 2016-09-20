@@ -4,6 +4,7 @@ import { LinearProgress } from 'react-md/lib/Progress';
 import Button from 'react-md/lib/Buttons';
 
 import LoremIpsum from 'components/LoremIpsum';
+const progressId = 'queryContentProgress';
 
 // Since this isn't the best example since it isn't real world... Here
 // is basically what is happening..
@@ -75,13 +76,16 @@ export default class QueryIndeterminateExample extends PureComponent {
 
   render() {
     const { progress, active, key } = this.state;
+    let accessibilityProps;
+    if (active) {
+      accessibilityProps = {
+        'aria-busy': true,
+        'aria-describedby': progressId,
+      };
+    }
+
     return (
-      <CSSTransitionGroup
-        component="div"
-        transitionName="opacity"
-        transitionEnterTimeout={150}
-        transitionLeaveTimeout={150}
-      >
+      <div>
         <Button raised label="Fake load a new page" onClick={this._startFakeProgress} />
         <h3 className="md-title" style={{ marginTop: '2em' }}>Some Amazing Content</h3>
         <CSSTransitionGroup
@@ -90,11 +94,12 @@ export default class QueryIndeterminateExample extends PureComponent {
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
+          {...accessibilityProps}
         >
-          {active && <LinearProgress value={progress} query />}
+          {active && <LinearProgress id={progressId} value={progress} query />}
           <LoremIpsum key={key} units="paragraphs" count={2} />
         </CSSTransitionGroup>
-      </CSSTransitionGroup>
+      </div>
     );
   }
 }

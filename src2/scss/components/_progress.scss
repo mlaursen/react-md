@@ -2,13 +2,21 @@
 /// @group progress
 ////
 
+/// Boolean if the circular progress bars should be included.
+/// @type Boolean
 $md-progress-include-circular: true !default;
+
+/// Boolean if the linear progress bars should be included.
+/// @type Boolean
 $md-progress-include-linear: true !default;
 
-/// The duration for one cycle of the circular progress animation.
-/// @type {Number}
-$md-circular-progress-duration: 2.4s !default;
+/// The top and bottom margin to apply to the circular and linear progress.
+/// @type Number
+$md-progress-margin: 1em !default;
 
+/// The duration for one cycle of the circular progress animation.
+/// @type Number
+$md-progress-duration: 2.4s !default;
 
 /// The initial stroke-dasharray for the indetermate progress.
 /// I have no idea how this stuff works.. So change have fun changing that.
@@ -16,16 +24,42 @@ $md-circular-progress-duration: 2.4s !default;
 /// @type Number
 $md-circular-progress-stroke-dasharray: 187px !default;
 
-/// The top and bottom margin to apply to the circular progress.
+/// The linear progress's bar height.
 /// @type Number
-$md-circular-progress-margin: 1em !default;
-
 $md-linear-progress-height: 3px !default;
 
-@mixin react-md-progress($secondary-color: $md-secondary-color, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
+/// The amount of time the animation should delay for linear progress bars.
+/// @type Number
+$md-linear-progress-delay: 1.15s !default;
+
+/// The default swatch to use for the default linear progress bar background.
+/// This should be either: 100, 200, 400, or 700.
+/// @type Number
+$md-linear-progress-swatch: 100 !default;
+
+
+
+/// Includes the styles for progress bars if either `$include-circular` and/or `$include-linear`
+/// are `true`.
+///
+/// Progress bars are always styled with the `secondary-color`. When using a `linear` progress bar,
+/// the default background will be a swatch that is ligher than the `secondary-color`.
+///
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress
+///     bars with.
+/// @param {Number} linear-swatch [$md-linear-progress-swatch] - The swatch number to use for
+///     a linear progress bar's default background. This should be either 100, 200, 400, or 700.
+/// @param {Boolean} include-circular [$md-progress-include-circular] - Boolean if the circular
+///     progress styles should be included.
+/// @param {Boolean} include-linear [$md-progress-include-linear] - Boolean if the linear
+///     progress styles should be included.
+@mixin react-md-progress($secondary-color: $md-secondary-color, $linear-swatch: $md-linear-progress-swatch, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
   @if $include-circular or $include-linear {
     .md-progress {
       display: block;
+      margin-bottom: $md-progress-margin;
+      margin-top: $md-progress-margin;
     }
 
     .md-progress--centered {
@@ -43,19 +77,20 @@ $md-linear-progress-height: 3px !default;
   }
 }
 
+/// Creates the styles for a circular progress bar.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-progress-circular;
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 @mixin react-md-progress-circular($secondary-color: $md-secondary-color) {
-  .md-progress--circular {
-    margin-bottom: $md-circular-progress-margin;
-    margin-top: $md-circular-progress-margin;
-  }
-
   .md-progress--circular-determinate {
     transition-duration: $md-transition-time;
     transition-property: transform;
   }
 
   .md-progress--circular-indeterminate {
-    animation-duration: $md-circular-progress-duration;
+    animation-duration: $md-progress-duration;
     animation-iteration-count: infinite;
     animation-name: md-circular-progress;
     animation-timing-function: linear;
@@ -68,7 +103,7 @@ $md-linear-progress-height: 3px !default;
   }
 
   .md-circular-progress-path--animated {
-    animation-duration: $md-circular-progress-duration;
+    animation-duration: $md-progress-duration;
     animation-iteration-count: infinite;
     animation-name: md-circular-progress-dash;
     animation-timing-function: ease-ine-out;
@@ -100,14 +135,66 @@ $md-linear-progress-height: 3px !default;
   }
 }
 
-@mixin react-md-progress-linear($secondary-color: $md-secondary-color) {
+/// Creates the styles for a linear progress bar.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-progress-linear;
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
+/// @param {Number} swatch [$md-linear-progress-swatch] - The swatch to use for the unmoving
+///     background.
+@mixin react-md-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch) {
   .md-progress--linear {
-    background: get-swatch($secondary-color, 300, true);
+    background: get-swatch($secondary-color, $swatch, true);
     height: $md-linear-progress-height;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
   }
 
   .md-progress--linear-active {
     background: $secondary-color;
+  }
+
+  .md-progress--linear-determinate {
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .md-progress--linear-indeterminate {
+    &::before,
+    &::after {
+      background: inherit;
+      bottom: 0;
+      content: '';
+      position: absolute;
+      top: 0;
+      will-change: left, right;
+      z-index: 1;
+    }
+
+    &::before {
+      animation-duration: $md-progress-duration;
+      animation-iteration-count: infinite;
+      animation-name: md-linear-indeterminate;
+      animation-timing-function: $md-transition-standard;
+    }
+
+    &::after {
+      animation-delay: $md-linear-progress-delay;
+      animation-duration: $md-progress-duration;
+      animation-iteration-count: infinite;
+      animation-name: md-linear-indeterminate-short;
+      animation-timing-function: $md-transition-acceleration;
+    }
+  }
+
+  .md-progress--linear-query {
+    &::before,
+    &::after {
+      animation-direction: reverse;
+    }
   }
 
 
@@ -142,6 +229,69 @@ $md-linear-progress-height: 3px !default;
     100% {
       left: 107%;
       right: -8%;
+    }
+  }
+}
+
+/// Updates the theme for progress bars.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-progress($md-deep-orange-a-700, 200);
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress
+///     bars with.
+/// @param {Number} linear-swatch [$md-linear-progress-swatch] - The swatch number to use for
+///     a linear progress bar's default background. This should be either 100, 200, 400, or 700.
+/// @param {Boolean} include-circular [$md-progress-include-circular] - Boolean if the circular
+///     progress styles should be included.
+/// @param {Boolean} include-linear [$md-progress-include-linear] - Boolean if the linear
+///     progress styles should be included.
+@mixin react-md-theme-progress($secondary-color: $md-secondary-color, $linear-swatch: $md-linear-progress-swatch, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
+  @if $include-circular {
+    @include react-md-theme-progress-circular($secondary-color);
+  }
+
+  @if $include-linear {
+    @include react-md-theme-progress-linear($secondary-color, $linear-swatch);
+  }
+}
+
+/// Themes the circular progress bars only when the `$secondary-color` does not equal
+/// the `$md-secondary-color`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-progress-circular($md-orange-a-700);
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress
+///     bars with.
+@mixin react-md-theme-progress-circular($secondary-color: $md-secondary-color) {
+  @if $secondary-color != $md-secondary-color {
+    .md-circular-progress-path {
+      stroke: $secondary-color;
+    }
+  }
+}
+
+/// Themes only the linear progress bars when the `$secondary-color` does not equal
+/// the `$md-secondary-color` OR the `$swatch` does not equal the `$md-linear-progress-swatch`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-progress-linear($md-orange-a-700, 200);
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress
+///     bars with.
+/// @param {Number} swatch [$md-linear-progress-swatch] - The swatch number to use for
+///     a linear progress bar's default background. This should be either 100, 200, 400, or 700.
+@mixin react-md-theme-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch) {
+  @if $secondary-color != $md-secondary-color {
+    .md-progress--linear-active {
+      background: $secondary-color;
+    }
+  }
+
+  @if $secondary-color != $md-secondary-color or $swatch != $md-linear-progress-swatch {
+    .md-progress--linear {
+      background: get-swatch($secondary-color, $swatch, true);
     }
   }
 }

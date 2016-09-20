@@ -33,7 +33,7 @@ $md-divider-height: 1px;
   }
 
   .md-divider--inset {
-    margin-left: $md-list-tile-left-padding;
+    margin-left: $md-list-left-padding;
   }
 
   @if $include-borders {

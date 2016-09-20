@@ -94,26 +94,20 @@
 /// @example scss - Example Dark Theme Change SCSS
 ///   @import 'react-md';
 ///   $md-primary-color: $md-deep-purple-500;
-///   $md-primary-color-hue-1: $md-deep-purple-200;
 ///   $md-secondary-color: $md-orange-a-400;
-///   $md-secondary-color-hue-1: $md-orange-a-200;
 ///
 ///   @include react-md-everything;
 ///
 ///   @include react-md-theme-everything(
 ///     $md-primary-color,
-///     $md-primary-color-hue-1,
 ///     $md-secondary-color,
-///     $md-secondary-color-hue-1,
 ///     $md-text-field-error-color,
 ///     false,
 ///     dark-theme
 ///   );
 ///
 /// @param {Color} primary-color - The primary color to use.
-/// @param {Color} primary-hue-1 - A lighter version of the primary color to use.
 /// @param {Color} secondary-color - The secondary color to use.
-/// @param {Color} secondary-hue-1 - A lighter version of the secondary color to use.
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {String} html-class-name [null] - The html className to nest every component
@@ -121,9 +115,8 @@
 /// @group base
 @mixin react-md-theme-everything(
   $primary-color,
-  $primary-hue-1,
   $secondary-color,
-  $secondary-hue-1,
+  $progress-swatch: $md-linear-progress-swatch,
   $error-color: $md-text-field-error-color,
   $light-theme: $md-light-theme,
   $html-class-name: null
@@ -141,6 +134,7 @@
       @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-lists($light-theme);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
+      @include react-md-theme-progress($secondary-color, $progress-swatch);
 
       @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
     }
@@ -155,6 +149,7 @@
     @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-lists($light-theme);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
+    @include react-md-theme-progress($secondary-color, $progress-swatch);
 
     @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
   }

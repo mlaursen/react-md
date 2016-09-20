@@ -13,6 +13,7 @@
 - Lists/List Items/List Item Controls
 - Menus
 - Papers
+- Progress
 - Selection Controls
 - Select Fields (depends on menus and lists)
 - Sliders
@@ -29,7 +30,6 @@
   - Deprecate Sidebar and implement standalone Drawer
   - Use Toolbar instead of DrawerToolbar
 - Pickers
-- Progress
 - Sidebars (deprecate and use Drawer instead)
 - Snackbars
 - Tabs (reinvent..)

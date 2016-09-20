@@ -65,15 +65,15 @@ export default class LinearProgress extends PureComponent {
     return (
       <div
         {...props}
-        className={cn('md-linear-progress-container', className)}
+        className={cn('md-progress md-progress--linear', className)}
       >
         <div
           {...accessibilityProps}
           style={style}
-          className={cn('md-linear-progress', {
-            query,
-            'determinate': isDeterminate,
-            'indeterminate': !isDeterminate,
+          className={cn('md-progress--linear-active', {
+            'md-progress--linear-query': query,
+            'md-progress--linear-determinate': isDeterminate,
+            'md-progress--linear-indeterminate': !isDeterminate,
           })}
         />
       </div>
