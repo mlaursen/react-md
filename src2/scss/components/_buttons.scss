@@ -148,11 +148,8 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
   }
 
   @if $include-flat or $include-raised {
-    $accessible-padding: ($md-btn-accessible-height - $md-btn-height) / 2;
-
     .md-btn--text {
       font-weight: $md-font-medium;
-      min-height: $md-btn-height;
       min-width: $md-btn-min-width;
       padding-left: $md-btn-lr-padding;
       padding-right: $md-btn-lr-padding;

@@ -44,6 +44,7 @@ export default class IndeterminateExample extends PureComponent {
         'aria-describedby': progressId,
       };
     }
+
     return (
       <div>
         <Button raised label="Refresh Lorem Ipsum" onClick={this.refreshLoremIpsum} />

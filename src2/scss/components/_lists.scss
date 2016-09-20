@@ -45,8 +45,8 @@ $md-list-desktop-padding: 4px;
 $md-list-desktop-font-size: 13px;
 $md-list-desktop-height: 40px;
 $md-list-desktop-avatar-height: 48px;
-$md-list-desktop-two-line-height: 60px;
-$md-list-desktop-three-line-height: 76px;
+$md-list-desktop-two-lines-height: 60px;
+$md-list-desktop-three-lines-height: 76px;
 
 /// Includes the styles for lists.
 ///
@@ -118,7 +118,7 @@ $md-list-desktop-three-line-height: 76px;
   }
 
   .md-list-item--inset {
-    padding-left: $md-list-tile-left-padding;
+    padding-left: $md-list-left-padding;
   }
 
   @if $include-icon {
@@ -196,7 +196,7 @@ $md-list-desktop-three-line-height: 76px;
     }
 
     .md-tile-content--left-button {
-      padding-left: $md-list-tile-left-padding - $md-font-icon-size * 2;
+      padding-left: $md-list-left-padding - $md-font-icon-size * 2;
     }
 
     .md-list-control--right {
@@ -282,13 +282,13 @@ $md-list-desktop-three-line-height: 76px;
 
   @if $include-two-lines {
     .md-list-tile--two-lines {
-      height: $md-list-mobile-2-line-height;
+      height: $md-list-mobile-two-lines-height;
     }
   }
 
   @if $include-three-lines {
     .md-list-tile--three-lines {
-      height: $md-list-mobile-3-line-height;
+      height: $md-list-mobile-three-lines-height;
 
       .md-tile-text--secondary {
         height: $md-line-height * $md-list-mobile-secondary-font-size * 2;
@@ -356,13 +356,13 @@ $md-list-desktop-three-line-height: 76px;
 
   @if $include-two-lines {
     .md-list-tile--two-lines {
-      height: $md-list-desktop-2-line-height;
+      height: $md-list-desktop-two-lines-height;
     }
   }
 
   @if $include-three-lines {
     .md-list-tile--three-lines {
-      height: $md-list-desktop-3-line-height;
+      height: $md-list-desktop-three-lines-height;
 
       .md-tile-text--secondary {
         height: $md-line-height * $md-list-desktop-font-size * 2;
@@ -407,7 +407,7 @@ $md-list-desktop-three-line-height: 76px;
 
 /// Creates the styles for nested lists. It basically loops over the `$nested-items-depth` param
 /// and adds `padding-left` to each nested list equal to the
-/// `$md-list-tile-left-padding * (1 + $depth * $nested-items-increment)`.
+/// `$md-list-left-padding * (1 + $depth * $nested-items-increment)`.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-lists-nested;
@@ -430,7 +430,7 @@ $md-list-desktop-three-line-height: 76px;
 
     @for $i from 1 through $nested-items-depth {
       .md-list--nested-#{$i} .md-list-tile {
-        padding-left: $md-list-tile-left-padding * $multiplier;
+        padding-left: $md-list-left-padding * $multiplier;
       }
 
       $multiplier: $multiplier + $nested-items-increment;

@@ -63,7 +63,7 @@ export default class DeterminateExample extends PureComponent {
         transitionLeaveTimeout={150}
       >
         {typeof progress === 'number' && <LinearProgress value={progress} />}
-        <FileInput onChange={this._startFakeProgress} label="Select a file to upload" />
+        <FileInput id="fileUpload" onChange={this._startFakeProgress} label="Select a file to upload" />
       </CSSTransitionGroup>
     );
   }
