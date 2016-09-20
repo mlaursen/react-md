@@ -2,5 +2,37 @@
 /// @group select-fields
 ////
 
+$md-select-field-drop-distance: -10px !default;
+$md-select-field-drop-transition-time: $md-transition-time * 2;
+
+$md-select-field-left-padding: 24px;
+$md-select-field-right-padding: 16px;
+
 @mixin react-md-select-fields($include-media: $md-media-included) {
+  .md-select-field {
+    cursor: inherit;
+    user-select: none;
+  }
+
+  .md-select-field-container--below {
+    padding-left: $md-select-field-left-padding;
+    padding-right: $md-font-icon-size + $md-select-field-right-padding;
+    transition-duration: $md-transition-time;
+    transition-property: box-shadow;
+
+    .md-text-field-inline-indicator {
+      right: $md-select-field-right-padding;
+    }
+  }
+
+  .md-drop-enter {
+    transform: translate3d(0, $md-select-field-drop-distance, 0);
+
+    &.md-drop-enter-active {
+      transform: translate3d(0, 0, 0);
+      transition-duration: $md-select-field-drop-transition-time;
+      transition-property: transform;
+    }
+  }
+
 }

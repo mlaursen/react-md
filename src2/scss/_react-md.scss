@@ -35,12 +35,13 @@
 /// @group base
 @mixin react-md-everything {
   @include react-md-typography;
-
   @include react-md-accessibility;
+
   @include react-md-papers;
-  @include react-md-icons;
   @include react-md-inks;
   @include react-md-buttons;
+  @include react-md-file-inputs;
+  @include react-md-icons;
   @include react-md-lists;
   @include react-md-menus;
   @include react-md-chips;
@@ -51,7 +52,6 @@
   @include react-md-avatars;
   @include react-md-forms;
   @include react-md-tooltips;
-  @include react-md-file-inputs;
   @include react-md-subheaders;
   @include react-md-selection-controls;
   @include react-md-select-fields;

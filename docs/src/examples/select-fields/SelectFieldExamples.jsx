@@ -15,7 +15,7 @@ export default class SelectFieldExamples extends PureComponent {
 
   render() {
     return (
-      <div>
+      <form className="md-form md-form--padded">
         <SelectField
           id="states"
           placeholder="Select a State"
@@ -44,7 +44,7 @@ export default class SelectFieldExamples extends PureComponent {
           defaultValue={1}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
         />
-      </div>
+      </form>
     );
   }
 }
