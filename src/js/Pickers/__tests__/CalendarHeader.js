@@ -5,7 +5,7 @@ jest.unmock('../CalendarHeader');
 import React from 'react';
 import {
   renderIntoDocument,
-  scryRenderedComponentsWithType,
+// scryRenderedComponentsWithType,
   findRenderedDOMComponentWithClass,
 } from 'react-addons-test-utils';
 
