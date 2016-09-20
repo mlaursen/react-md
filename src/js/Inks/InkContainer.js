@@ -89,28 +89,29 @@ export default class InkContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this._timeout) {
-      clearTimeout(this._timeout);
+    if (this._removeTimeout) {
+      clearTimeout(this._removeTimeout);
     }
 
     if (this._container) {
       const { disabledInteractions } = this.props;
       if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-        this._container.addEventListener('keyup', this._handleKeyUp);
+        this._container.removeEventListener('keyup', this._handleKeyUp);
+        this._container.removeEventListener('blur', this._handleBlur);
 
         if (this._container.getAttribute('type') === 'submit') {
-          window.addEventListener('submit', this._handleSubmit);
+          window.removeEventListener('submit', this._handleSubmit);
         }
       }
 
       if (!this._isListeneredDisabled('mouse', disabledInteractions)) {
-        this._container.addEventListener('mousedown', this._handleMouseDown);
-        this._container.addEventListener('mouseup', this._handleMouseUp);
+        this._container.removeEventListener('mousedown', this._handleMouseDown);
+        this._container.removeEventListener('mouseup', this._handleMouseUp);
       }
 
       if (!this._isListeneredDisabled('touch', disabledInteractions)) {
-        this._container.addEventListener('touchstart', this._handleTouchStart);
-        this._container.addEventListener('touchend', this._handleTouchEnd);
+        this._container.removeEventListener('touchstart', this._handleTouchStart);
+        this._container.removeEventListener('touchend', this._handleTouchEnd);
       }
     }
   }
