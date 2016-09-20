@@ -130,10 +130,6 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       outline: none;
     }
 
-    &:not([disabled]):hover {
-      cursor: pointer;
-    }
-
     .md-icon {
       color: inherit;
     }

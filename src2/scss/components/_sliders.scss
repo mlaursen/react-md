@@ -90,16 +90,6 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   .md-slider-container {
     display: flex;
     flex-wrap: wrap;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .md-slider-container--disabled {
-    &:hover {
-      cursor: initial;
-    }
   }
 
   .md-slider-label {

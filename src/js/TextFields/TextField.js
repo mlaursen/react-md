@@ -388,6 +388,12 @@ export default class TextField extends PureComponent {
     this.focus = this.focus.bind(this);
     this.getField = this.getField.bind(this);
     this._blur = this._blur.bind(this);
+    this._setField = this._setField.bind(this);
+    this._setDivider = this._setDivider.bind(this);
+    this._setMessage = this._setMessage.bind(this);
+    this._setContainer = this._setContainer.bind(this);
+    this._setPasswordBtn = this._setPasswordBtn.bind(this);
+    this._setFloatingLabel = this._setFloatingLabel.bind(this);
     this._setMinWidth = this._setMinWidth.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
@@ -515,6 +521,42 @@ export default class TextField extends PureComponent {
       });
     } catch (e) {
       return icon;
+    }
+  }
+
+  _setField(field) {
+    if (field !== null) {
+      this._field = field;
+    }
+  }
+
+  _setMessage(message) {
+    if (message !== null) {
+      this._message = findDOMNode(message);
+    }
+  }
+
+  _setDivider(divider) {
+    if (divider !== null) {
+      this._divider = findDOMNode(divider);
+    }
+  }
+
+  _setContainer(container) {
+    if (container !== null) {
+      this._node = container;
+    }
+  }
+
+  _setPasswordBtn(btn) {
+    if (btn !== null) {
+      this._password = findDOMNode(btn);
+    }
+  }
+
+  _setFloatingLabel(label) {
+    if (label !== null) {
+      this._label = findDOMNode(label);
     }
   }
 
@@ -720,7 +762,7 @@ export default class TextField extends PureComponent {
       rightIcon = (
         <PasswordButton
           key="password-btn"
-          ref={p => { this._password = findDOMNode(p); }}
+          ref={this._setPasswordBtn}
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
@@ -736,7 +778,7 @@ export default class TextField extends PureComponent {
     const floatingLabel = (
       <FloatingLabel
         key="label"
-        ref={l => { this._label = findDOMNode(l); }}
+        ref={this._setFloatingLabel}
         label={label}
         htmlFor={id}
         active={active}
@@ -751,7 +793,7 @@ export default class TextField extends PureComponent {
     const message = (
       <TextFieldMessage
         key="message"
-        ref={m => { this._message = findDOMNode(m); }}
+        ref={this._setMessage}
         active={active}
         error={error}
         errorText={errorText}
@@ -769,7 +811,7 @@ export default class TextField extends PureComponent {
       <InputField
         {...props}
         key="field"
-        ref={f => { this._field = f; }}
+        ref={this._setField}
         id={id}
         type={type}
         label={label}
@@ -793,7 +835,7 @@ export default class TextField extends PureComponent {
       divider = (
         <Divider
           key="text-divider"
-          ref={d => { this._divider = findDOMNode(d); }}
+          ref={this._setDivider}
           className={cn(`md-divider--text-field md-divider--expand-from-${lineDirection}`, {
             'md-divider--text-field-expanded': active,
             'md-divider--text-field-active': !error && active,
@@ -829,7 +871,7 @@ export default class TextField extends PureComponent {
     const multiline = this._isMultiline(this.props);
     return (
       <div
-        ref={node => { this._node = findDOMNode(node); }}
+        ref={this._setContainer}
         style={Object.assign({}, style, { minWidth, height })}
         className={cn('md-text-field-container', {
           'md-text-field-container--disabled': disabled,

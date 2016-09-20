@@ -926,7 +926,7 @@ export default class Slider extends PureComponent {
       <div
         {...props}
         className={cn('md-slider-container', className, {
-          'md-slider-container--disabled': disabled,
+          'md-pointer--hover': !disabled,
         })}
         onMouseDown={this._handleDragStart}
         onTouchStart={this._handleDragStart}

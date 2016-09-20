@@ -526,7 +526,7 @@ $md-text-field-desktop-block-padding: 16px;
 
     display: inline-block;
     position: relative;
-    vertical-align: top;
+    vertical-align: bottom;
 
     // scss-lint:disable VendorPrefix, PseudoElement
     :-moz-placeholder {
@@ -544,14 +544,6 @@ $md-text-field-desktop-block-padding: 16px;
     ::-webkit-input-placeholder {
       opacity: 1;
     }
-
-    &:hover {
-      cursor: text;
-    }
-  }
-
-  .md-text-field-container--disabled:hover {
-    cursor: default;
   }
 
   .md-text-field-container--input {
@@ -611,6 +603,10 @@ $md-text-field-desktop-block-padding: 16px;
     &:-webkit-autofill:focus {
       box-shadow: 0 0 0 50px $md-white-base inset;
     }
+  }
+
+  .md-text-field--margin {
+    margin-top: 13px;
   }
 
   @if $include-multiline {
@@ -1202,10 +1198,6 @@ $md-text-field-desktop-block-padding: 16px;
       outline: none;
     }
 
-    &:hover {
-      cursor: pointer;
-    }
-
     .md-icon {
       color: inherit;
     }
@@ -1217,10 +1209,6 @@ $md-text-field-desktop-block-padding: 16px;
     &::before {
       background: get-color('secondary', $light-theme);
     }
-  }
-
-  .md-text-field--margin {
-    margin-top: 13px;
   }
 
   .md-password-btn--invisible {

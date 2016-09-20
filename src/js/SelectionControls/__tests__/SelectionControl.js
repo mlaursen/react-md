@@ -48,7 +48,7 @@ describe('SelectionControl', () => {
     expect(className).toContain('md-selection-control-label');
     expect(className).toContain('md-color--text');
     expect(className).not.toContain('md-color--disabled');
-    expect(className).toContain('md-selection-control--cursor');
+    expect(className).toContain('md-pointer--hover');
 
     props.disabled = true;
     control = renderIntoDocument(<SelectionControl {...props} />);
@@ -57,7 +57,7 @@ describe('SelectionControl', () => {
     expect(className).toContain('md-selection-control-label');
     expect(className).not.toContain('md-color--text');
     expect(className).toContain('md-color--disabled');
-    expect(className).not.toContain('md-selection-control--cursor');
+    expect(className).not.toContain('md-pointer--hover');
   });
 
   it('renders an input tag with the correct props', () => {

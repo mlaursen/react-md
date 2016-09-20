@@ -107,10 +107,6 @@ $md-list-desktop-three-line-height: 76px;
     text-decoration: none;
     transition-duration: $md-transition-time;
     transition-property: background;
-
-    &:hover:not([disabled]) {
-      cursor: pointer;
-    }
   }
 
   .md-list-tile--active {
