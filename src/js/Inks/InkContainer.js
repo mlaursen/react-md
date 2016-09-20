@@ -260,15 +260,17 @@ export default class InkContainer extends PureComponent {
   }
 
   _handleBlur() {
+    this._keyboardFocus = false;
     this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
     this._removeInk();
   }
 
   _handleKeyUp(e) {
-    if (!isValidFocusKeypress(e, this.props.additionalTriggerKeys)) {
+    if (this._keyboardFocus || !isValidFocusKeypress(e, this.props.additionalTriggerKeys)) {
       return;
     }
 
+    this._keyboardFocus = true;
     this._getKeyboardContainer().addEventListener('blur', this._handleBlur);
     this._createInk();
   }
