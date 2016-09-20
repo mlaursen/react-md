@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, cloneElement, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
@@ -16,6 +16,25 @@ export default class Menu extends PureComponent {
   static Positions = Positions;
 
   static propTypes = {
+    /**
+     * An optional id to give to the menu's container. This is used for accessibility and is
+     * generally recommended.
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to give to the `List` that gets generated when open. This is used for
+     * accessibility and generally recommended. If this prop is given, the `aria-owns` attribute
+     * will be added to the list.
+     */
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the main container for a menu.
      */
@@ -45,10 +64,14 @@ export default class Menu extends PureComponent {
     ]).isRequired,
 
     /**
-     * An array of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` to display
-     * when the menu is open.
+     * This can either be a single `List` component or an array of `ListItem`, `ListItemControl`,
+     * `Divider`, or `Subheader` to display when the menu is open. If it is the `List` component,
+     * it will be cloned with some additional class names.
      */
-    children: PropTypes.arrayOf(PropTypes.element),
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]),
 
     /**
      * Boolean if the `Menu` is currently open.
@@ -218,6 +241,7 @@ export default class Menu extends PureComponent {
 
   render() {
     const {
+      listId,
       className,
       listStyle,
       listClassName,
@@ -236,16 +260,28 @@ export default class Menu extends PureComponent {
 
     let menuItems;
     if (isOpen) {
-      menuItems = (
-        <List
-          key="menu-list"
-          style={listStyle}
-          className={cn({ 'md-list--menu-contained': contained }, listClassName)}
-          onClick={this._handleListClick}
-        >
-          {children}
-        </List>
-      );
+      const menuClassName = cn({ 'md-list--menu-contained': contained }, listClassName);
+      try {
+        const list = Children.only(children);
+
+        menuItems = cloneElement(children, {
+          key: 'menu-list',
+          className: cn(menuClassName, list.props.className),
+          onClick: this._handleListClick,
+        });
+      } catch (e) {
+        menuItems = (
+          <List
+            key="menu-list"
+            id={listId}
+            style={listStyle}
+            className={menuClassName}
+            onClick={this._handleListClick}
+          >
+            {children}
+          </List>
+        );
+      }
     }
 
     return (
@@ -254,7 +290,11 @@ export default class Menu extends PureComponent {
         ref={this._setContainer}
         className={cn('md-menu-container', {
           'md-menu-container--full-width': fullWidth,
+          'md-menu-container--menu-below': position === Positions.BELOW,
         }, className)}
+        aria-haspopup
+        aria-expanded={isOpen}
+        aria-owns={listId}
       >
         {toggle}
         {menuItems}
