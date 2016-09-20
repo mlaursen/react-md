@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import invariant from 'invariant';
 
 import InkContainer from './InkContainer';
 import getDisplayName from '../utils/StringUtils/getDisplayName';
@@ -94,6 +95,17 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
      * use case where `Switches` needed the ink disabled only when using a mouse.
      */
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'mouse', 'touch'])),
+
+    /**
+     * When using inked components in a `TransitionGroup`, the ref callback is not actually invoked.
+     * This is a little _hack_ to get it to work by not using `ref`, but this name.
+     */
+    __SUPER_SECRET_REF__: PropTypes.func,
+
+    /**
+     * Boolean if the `getComposedComponent` function will be visible via refs.
+     */
+    withRef: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -102,9 +114,30 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     inkTransitionLeaveTimeout: 300,
   };
 
-  _setInkRef = (inkContainer) => {
-    this._inkContainer = inkContainer;
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    this.createInk = this.createInk.bind(this);
+    this.getComposedComponent = this.getComposedComponent.bind(this);
+    this._setInkRef = this._setInkRef.bind(this);
+    this._setComposedComponent = this._setComposedComponent.bind(this);
+  }
+
+  componentDidMount() {
+    const { __SUPER_SECRET_REF__: ref } = this.props;
+    // Emulate the ref callback...
+    if (ref) {
+      ref(this);
+    }
+  }
+
+  componentWillUnmount() {
+    const { __SUPER_SECRET_REF__: ref } = this.props;
+    // Emulate the ref callback...
+    if (ref) {
+      ref(null);
+    }
+  }
 
   /**
    * A publically accessible way to manually create an ink. This can be used with the `refs`.
@@ -120,6 +153,39 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     }
   }
 
+  /**
+   * Gets the composed component as a ref. This will require the `withRef` prop to be `true` to
+   * get anything other than `undefined`. This is usefull if you need to access the ref of the
+   * composed component instead of the `injectInk` HOC to use some publically accessible methods.
+   *
+   * ```js
+   * <SomeInkedComponent
+   *   withRef
+   *   ref={inkHOC => {
+   *     inkHOC.getComposedComponent().focus();
+   *   }}
+   * />
+   * ```
+   */
+  getComposedComponent() {
+    invariant(
+      this.props.withRef,
+      'To access the composed component, you need to specify the `withRef` prop as true.'
+    );
+
+    return this._composed;
+  }
+
+  _setInkRef(inkContainer) {
+    if (inkContainer) {
+      this._inkContainer = inkContainer;
+    }
+  }
+
+  _setComposedComponent(component) {
+    this._composed = component;
+  }
+
   render() {
     const {
       inkDisabled,
@@ -133,8 +199,10 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkContainerClassName,
       disabledInteractions,
       waitForInkTransition,
+      withRef,
       ...props,
     } = this.props;
+    delete props.__SUPER_SECRET_REF__;
 
     if (!(props.disabled || inkDisabled)) {
       props.ink = (
@@ -153,6 +221,10 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
           waitForInkTransition={waitForInkTransition}
         />
       );
+    }
+
+    if (withRef) {
+      props.ref = this._setComposedComponent;
     }
 
     return <ComposedComponent {...props} />;
