@@ -22,6 +22,7 @@ module.exports = () => ({
       var: '__INITIAL_STATE__',
       val: 'initialState',
     },
+    isomorphicHtmlClassName: 'htmlClassName',
     description: 'Google\'s Material Design UI components built with React and sass.',
     keywords: 'material design,react,sass,material,ui,components,material-design',
   },
