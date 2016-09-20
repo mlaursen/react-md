@@ -32,6 +32,10 @@ export default class IconSeparator extends PureComponent {
      * Boolean if the icon should appear before or after the text
      */
     iconBefore: PropTypes.bool,
+
+    /**
+     * The component to be rendered as.
+     */
     component: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
