@@ -118,6 +118,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     super(props, context);
 
     this.createInk = this.createInk.bind(this);
+    this.focusWithInk = this.focusWithInk.bind(this);
     this.getComposedComponent = this.getComposedComponent.bind(this);
     this._setInkRef = this._setInkRef.bind(this);
     this._setComposedComponent = this._setComposedComponent.bind(this);
@@ -150,6 +151,16 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   createInk(pageX, pageY) {
     if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
       this._inkContainer.createInk(pageX, pageY);
+    }
+  }
+
+  /**
+   * Attempts to focus the composed component and inject an ink when focused. This
+   * will not do anything if the `disabled` or `inkDisabled` props are false.
+   */
+  focusWithInk() {
+    if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
+      this._inkContainer.focus();
     }
   }
 

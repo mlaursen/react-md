@@ -43,6 +43,7 @@ export default class InkContainer extends PureComponent {
 
     this.state = { inks: [] };
     this.createInk = this.createInk.bind(this);
+    this.focus = this.focus.bind(this);
     this._createInk = this._createInk.bind(this);
     this._removeInk = this._removeInk.bind(this);
     this._setContainers = this._setContainers.bind(this);
@@ -136,6 +137,12 @@ export default class InkContainer extends PureComponent {
       this._removeTimeout = null;
       this._removeInk();
     }, this.props.transitionOverlap);
+  }
+
+  focus() {
+    this._createInk();
+    this._container.focus();
+    this._container.addEventListener('blur', this._handleBlur);
   }
 
   /**
