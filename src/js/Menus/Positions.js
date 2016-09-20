@@ -3,5 +3,6 @@ export default {
   TOP_LEFT: 'tl',
   BOTTOM_RIGHT: 'br',
   BOTTOM_LEFT: 'bl',
+  CONTEXT: 'context',
   BELOW: 'below',
 };

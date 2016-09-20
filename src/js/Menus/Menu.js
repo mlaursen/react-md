@@ -99,14 +99,17 @@ export default class Menu extends PureComponent {
     toggle: PropTypes.node,
 
     /**
-     * The position that the menu should appear from.
+     * The position that the menu should appear from. If the position is set to
+     * `Menu.Positions.CONTEXT`, the `onClose` function will be called when something
+     * outside of the `List` is clicked instead of something outside of the `Menu`.
      */
     position: PropTypes.oneOf([
-      Positions.TOP_LEFT,
-      Positions.TOP_RIGHT,
-      Positions.BOTTOM_LEFT,
-      Positions.BOTTOM_RIGHT,
-      Positions.BELOW,
+      Menu.Positions.TOP_LEFT,
+      Menu.Positions.TOP_RIGHT,
+      Menu.Positions.BOTTOM_LEFT,
+      Menu.Positions.BOTTOM_RIGHT,
+      Menu.Positions.CONTEXT,
+      Menu.Positions.BELOW,
     ]).isRequired,
 
     /**
@@ -163,6 +166,7 @@ export default class Menu extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._setList = this._setList.bind(this);
     this._setContainer = this._setContainer.bind(this);
     this._handleListClick = this._handleListClick.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
@@ -200,6 +204,12 @@ export default class Menu extends PureComponent {
     }
   }
 
+  _setList(list) {
+    if (list !== null) {
+      this._list = findDOMNode(list);
+    }
+  }
+
   _setContainer(container) {
     if (container !== null) {
       this._container = findDOMNode(container);
@@ -207,7 +217,10 @@ export default class Menu extends PureComponent {
   }
 
   _handleOutsideClick(e) {
-    if (!this._container.contains(e.target)) {
+    const isInContextMenu = this.props.position === Positions.CONTEXT
+      && !this._list.contains(e.target);
+
+    if (isInContextMenu || !this._container.contains(e.target)) {
       const { onClose, close } = this.props;
       if (close) {
         close(e);
@@ -250,10 +263,10 @@ export default class Menu extends PureComponent {
       toggle,
       contained,
       children,
+      position,
       ...props,
     } = this.props;
     delete props.close;
-    delete props.position;
     delete props.onClose;
     delete props.cascading;
     delete props.autoclose;
@@ -268,6 +281,7 @@ export default class Menu extends PureComponent {
           key: 'menu-list',
           className: cn(menuClassName, list.props.className),
           onClick: this._handleListClick,
+          ref: this._setList,
         });
       } catch (e) {
         menuItems = (
@@ -277,6 +291,7 @@ export default class Menu extends PureComponent {
             style={listStyle}
             className={menuClassName}
             onClick={this._handleListClick}
+            ref={this._setList}
           >
             {children}
           </List>

@@ -9,6 +9,7 @@ export default {
     Positions.TOP_RIGHT,
     Positions.BOTTOM_LEFT,
     Positions.BOTTOM_RIGHT,
+    Positions.CONTEXT,
     Positions.BELOW,
   ]),
   listLevel: PropTypes.number,
