@@ -37,6 +37,12 @@ export default class Paper extends PureComponent {
      * Any children to display in the paper.
      */
     children: PropTypes.node,
+
+    /**
+     * Boolean if the paper should raise to the `zDepth` of `3` on hover when the initial
+     * `zDepth` is `0`.
+     */
+    raiseOnHover: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -45,12 +51,14 @@ export default class Paper extends PureComponent {
   };
 
   render() {
-    const { component: Component, zDepth, className, ...props } = this.props;
+    const { component: Component, zDepth, className, raiseOnHover, ...props } = this.props;
 
     return (
       <Component
         {...props}
-        className={cn(`md-paper md-paper--${zDepth}`, className)}
+        className={cn(`md-paper md-paper--${zDepth}`, {
+          'md-paper--0-hover': zDepth === 0 && raiseOnHover,
+        }, className)}
       />
     );
   }

@@ -12,8 +12,10 @@ $md-paper-transition-time: $md-transition-time * 2 !default;
   @for $i from 0 through 5 {
     .md-paper--#{$i} {
       @include md-box-shadow($i);
+    }
 
-      @if $i == 0 {
+    @if $i == 0 {
+      .md-paper--#{$i}-hover {
         transition-duration: $md-paper-transition-time;
         transition-property: box-shadow;
 
