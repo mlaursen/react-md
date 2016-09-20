@@ -2,6 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
 import { TAB } from '../constants/keyCodes';
+import getDisplayName from '../utils/StringUtils/getDisplayName';
+
 const CONTEXT_TIMEOUT = 687;
 
 /**
@@ -14,11 +16,12 @@ const CONTEXT_TIMEOUT = 687;
  * be included.
  *
  * ```js
- * @param ComposedComponent the component to compose with the tooltip functionality.
- * @return the ComposedComponent with a tooltip.
+ * @param {function} ComposedComponent the component to compose with the tooltip functionality.
+ * @return {function} the ComposedComponent with a tooltip.
  * ```
  */
 export default ComposedComponent => class TooltipedComponent extends PureComponent {
+  static displayName = getDisplayName(ComposedComponent, 'Tooltiped');
   static propTypes = {
     /**
      * The tooltip to display.
