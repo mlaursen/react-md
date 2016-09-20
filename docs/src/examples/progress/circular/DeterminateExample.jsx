@@ -7,6 +7,8 @@ import FileInput from 'react-md/lib/FileInputs';
 
 import { addToast } from 'actions/ui';
 
+const progressId = 'fileUploadProgress';
+
 @connect(() => ({}), {
   addToast,
 })
@@ -55,6 +57,7 @@ export default class DeterminateExample extends PureComponent {
 
   render() {
     const { progress } = this.state;
+
     return (
       <CSSTransitionGroup
         component="div"
@@ -62,8 +65,8 @@ export default class DeterminateExample extends PureComponent {
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
       >
-        {typeof progress === 'number' && <CircularProgress value={progress} />}
-        <FileInput onChange={this._startFakeProgress} label="Select a file to upload" />
+        {typeof progress === 'number' && <CircularProgress key="progress" id={progressId} value={progress} />}
+        <FileInput id="upload" onChange={this._startFakeProgress} label="Select a file to upload" />
       </CSSTransitionGroup>
     );
   }

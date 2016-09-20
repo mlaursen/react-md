@@ -16,6 +16,7 @@
 @import 'components/dividers';
 @import 'components/sliders';
 @import 'components/text-fields';
+@import 'components/progress';
 @import 'components/forms';
 @import 'components/tooltips';
 @import 'components/file-inputs';
@@ -55,6 +56,7 @@
   @include react-md-subheaders;
   @include react-md-selection-controls;
   @include react-md-select-fields;
+  @include react-md-progress;
 
   @include react-md-colors;
 }
