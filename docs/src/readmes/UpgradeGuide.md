@@ -137,6 +137,10 @@ The prop requirements changed a little bit with this release.
 - `expanderIconChildren` - deprecated. Uses css rotate instead of a separate icon.
 - `expanderIconClassName` - deprecated. Uses css rotate instead of a separate icon.
 
+### Select Fields
+- The `initiallyOpen` prop has been deprecated and renamed to `defaultOpen`.
+- The `noAutoAdjust` prop now is a trigger for if the `size` should be calculated.
+
 ## Upgrading from 0.2.x to 0.3.x
 
 ### NavigationDrawer

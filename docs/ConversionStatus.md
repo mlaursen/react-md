@@ -14,6 +14,7 @@
 - Menus
 - Papers
 - Selection Controls
+- Select Fields (depends on menus and lists)
 - Sliders
 - Subheaders
 - Text Fields
@@ -29,7 +30,6 @@
   - Use Toolbar instead of DrawerToolbar
 - Pickers
 - Progress
-- Select Fields (depends on menus and lists)
 - Sidebars (deprecate and use Drawer instead)
 - Snackbars
 - Tabs (reinvent..)

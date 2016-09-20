@@ -33,13 +33,12 @@ export default class ThemeSwitcher extends PureComponent {
     return (
       <SelectField
         id="themeSwitcher"
-        label="Theme"
-        menuClassName="fr theme-switcher"
+        placeholder="Theme"
+        menuClassName="theme-switcher"
         value={value}
         onChange={onChange}
         menuItems={themes}
         position={SelectField.Positions.BELOW}
-        noAutoAdjust
       />
     );
   }
