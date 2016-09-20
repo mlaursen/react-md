@@ -5,7 +5,7 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
-  scryRenderedComponentsWithType,
+//  scryRenderedComponentsWithType,
   findRenderedDOMComponentWithClass,
 } from 'react-addons-test-utils';
 

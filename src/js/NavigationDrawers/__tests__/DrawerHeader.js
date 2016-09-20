@@ -5,7 +5,7 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
-  scryRenderedComponentsWithType,
+// scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
 import DrawerHeader from '../DrawerHeader';
