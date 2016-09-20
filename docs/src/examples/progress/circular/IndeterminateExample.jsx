@@ -4,6 +4,7 @@ import { CircularProgress } from 'react-md/lib/Progress';
 import Button from 'react-md/lib/Buttons';
 
 import LoremIpsum from 'components/LoremIpsum';
+const progressId = 'contentLoadingProgress';
 
 export default class IndeterminateExample extends PureComponent {
   constructor(props) {
@@ -34,6 +35,15 @@ export default class IndeterminateExample extends PureComponent {
   };
 
   render() {
+    const { refreshing, key } = this.state;
+
+    let accessibilityProps;
+    if (refreshing) {
+      accessibilityProps = {
+        'aria-busy': true,
+        'aria-describedby': progressId,
+      };
+    }
     return (
       <div>
         <Button raised label="Refresh Lorem Ipsum" onClick={this.refreshLoremIpsum} />
@@ -44,9 +54,10 @@ export default class IndeterminateExample extends PureComponent {
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}
+          {...accessibilityProps}
         >
-          {this.state.refreshing && <CircularProgress key="progress" />}
-          <LoremIpsum key={this.state.key} units="paragraphs" count={2} />
+          {refreshing && <CircularProgress key="progress" id={progressId} />}
+          <LoremIpsum key={key} units="paragraphs" count={2} />
         </CSSTransitionGroup>
       </div>
     );

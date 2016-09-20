@@ -1,0 +1,147 @@
+////
+/// @group progress
+////
+
+$md-progress-include-circular: true !default;
+$md-progress-include-linear: true !default;
+
+/// The duration for one cycle of the circular progress animation.
+/// @type {Number}
+$md-circular-progress-duration: 2.4s !default;
+
+
+/// The initial stroke-dasharray for the indetermate progress.
+/// I have no idea how this stuff works.. So change have fun changing that.
+///
+/// @type Number
+$md-circular-progress-stroke-dasharray: 187px !default;
+
+/// The top and bottom margin to apply to the circular progress.
+/// @type Number
+$md-circular-progress-margin: 1em !default;
+
+$md-linear-progress-height: 3px !default;
+
+@mixin react-md-progress($secondary-color: $md-secondary-color, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
+  @if $include-circular or $include-linear {
+    .md-progress {
+      display: block;
+    }
+
+    .md-progress--centered {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @if $include-circular {
+    @include react-md-progress-circular($secondary-color);
+  }
+
+  @if $include-linear {
+    @include react-md-progress-linear($secondary-color);
+  }
+}
+
+@mixin react-md-progress-circular($secondary-color: $md-secondary-color) {
+  .md-progress--circular {
+    margin-bottom: $md-circular-progress-margin;
+    margin-top: $md-circular-progress-margin;
+  }
+
+  .md-progress--circular-determinate {
+    transition-duration: $md-transition-time;
+    transition-property: transform;
+  }
+
+  .md-progress--circular-indeterminate {
+    animation-duration: $md-circular-progress-duration;
+    animation-iteration-count: infinite;
+    animation-name: md-circular-progress;
+    animation-timing-function: linear;
+  }
+
+  .md-circular-progress-path {
+    fill: none;
+    stroke: $secondary-color;
+    stroke-dasharray: $md-circular-progress-stroke-dasharray;
+  }
+
+  .md-circular-progress-path--animated {
+    animation-duration: $md-circular-progress-duration;
+    animation-iteration-count: infinite;
+    animation-name: md-circular-progress-dash;
+    animation-timing-function: ease-ine-out;
+    stroke-dashoffset: 0;
+  }
+
+  @keyframes md-circular-progress {
+    0% { transform: rotate(0deg); }
+
+    50% { transform: rotate(135deg); }
+
+    75% { transform: rotate(450deg); }
+
+    100% { transform: rotate(720deg); }
+  }
+
+  @keyframes md-circular-progress-dash {
+    0% {
+      stroke-dashoffset: $md-circular-progress-stroke-dasharray;
+    }
+
+    50% {
+      stroke-dashoffset: $md-circular-progress-stroke-dasharray / 4;
+    }
+
+    100% {
+      stroke-dashoffset: $md-circular-progress-stroke-dasharray;
+    }
+  }
+}
+
+@mixin react-md-progress-linear($secondary-color: $md-secondary-color) {
+  .md-progress--linear {
+    background: get-swatch($secondary-color, 300, true);
+    height: $md-linear-progress-height;
+  }
+
+  .md-progress--linear-active {
+    background: $secondary-color;
+  }
+
+
+  @keyframes md-linear-indeterminate {
+    0% {
+      left: -35%;
+      right: 100%;
+    }
+
+    60% {
+      left: 100%;
+      right: -90%;
+    }
+
+    100% {
+      left: 100%;
+      right: -90%;
+    }
+  }
+
+  @keyframes md-linear-indeterminate-short {
+    0% {
+      left: -200%;
+      right: 100%;
+    }
+
+    60% {
+      left: 107%;
+      right: -8%;
+    }
+
+    100% {
+      left: 107%;
+      right: -8%;
+    }
+  }
+}

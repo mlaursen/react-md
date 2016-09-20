@@ -1,7 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-
-import isBetween from '../utils/NumberUtils/isBetween';
+import between from '../utils/PropTypes/between';
 
 /**
  * There are 3 different types of linear progress bars: `Determinate`,
@@ -35,20 +34,7 @@ export default class LinearProgress extends PureComponent {
      *
      * This value should also be a number between 0 and 100.
      */
-    value: (props, propName, component, ...others) => {
-      if (typeof props[propName] === 'undefined') { return null; }
-      let err = PropTypes.number(props, propName, component, ...others);
-      if (!err) {
-        const value = props[propName];
-        if (!isBetween(value, 0, 100)) {
-          err = new Error(
-            `A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`
-          );
-        }
-      }
-
-      return err;
-    },
+    value: between(PropTypes.number, 0, 100),
 
     /**
      * Boolean if this should be a query indeterminate progress bar.
@@ -64,14 +50,25 @@ export default class LinearProgress extends PureComponent {
     const { className, value, query, ...props } = this.props;
     const isDeterminate = typeof value === 'number';
 
+    const accessibilityProps = {
+      role: 'progressbar',
+      'aria-valuemin': 0,
+      'aria-valuemax': 100,
+    };
+
     let style;
     if (isDeterminate) {
       style = { width: `${value}%` };
+      accessibilityProps['aria-valuenow'] = value;
     }
 
     return (
-      <div className={cn('md-linear-progress-container', className)} {...props}>
+      <div
+        {...props}
+        className={cn('md-linear-progress-container', className)}
+      >
         <div
+          {...accessibilityProps}
           style={style}
           className={cn('md-linear-progress', {
             query,
