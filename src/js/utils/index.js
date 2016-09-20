@@ -1,19 +1,5 @@
 /* eslint-disable no-param-reassign */
 
-/**
- * Gets the current field for a component that can the field
- * as either uncontrolled or controlled.
- *
- * @param {Object} props - the props object.
- * @param {Object} state = the state object.
- * @param {string=} field - the field to extract a value from. Defaults to 'value'.
- *
- * @return the field's value.
- */
-export function getField(props, state, field = 'value') {
-  return typeof props[field] !== 'undefined' ? props[field] : state[field];
-}
-
 export function setOverflow(enabled, selector) {
   const el = selector ? document.querySelector(selector) : document.body;
   if (enabled) {
@@ -21,28 +7,6 @@ export function setOverflow(enabled, selector) {
   } else {
     el.classList.remove('hide-overflow');
   }
-}
-
-/**
- * Checkis of the given thing is an object
- * @param thing the thing to check
- * @return true if the thing is an object
- */
-export function isObject(thing) {
-  return Object.prototype.toString.call(thing) === '[object Object]';
-}
-
-function getScrollProp(key) {
-  // document.body is deprecated for some browsers
-  return Math.max(document.body[key], document.documentElement[key]);
-}
-
-export function getOffset(el) {
-  const rect = el.getBoundingClientRect();
-  return {
-    left: rect.left + getScrollProp('scrollLeft'),
-    top: rect.top + getScrollProp('scrollTop'),
-  };
 }
 
 /**

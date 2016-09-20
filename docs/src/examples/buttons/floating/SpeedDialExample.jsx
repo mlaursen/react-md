@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Button from 'react-md/lib/Buttons';
 import { SpeedDial } from 'react-md/lib/FABTransitions';
-import { getOffset } from 'react-md/lib/utils';
+import calcPageOffset from 'react-md/lib/utils/calcPageOffset';
 
 function getViewSize() {
   const w = window;
@@ -33,7 +33,7 @@ export default class SpeedDialExample extends PureComponent {
     if (nextState.demoActive) {
       this.animateToBottom();
     } else {
-      this.animateTo(getOffset(ReactDOM.findDOMNode(this.refs.end)));
+      this.animateTo(calcPageOffset(ReactDOM.findDOMNode(this.refs.end)));
     }
   }
 
@@ -44,7 +44,7 @@ export default class SpeedDialExample extends PureComponent {
   }
 
   animateTo = ({ left, top }) => {
-    const offset = getOffset(ReactDOM.findDOMNode(this.refs.speedDial));
+    const offset = calcPageOffset(ReactDOM.findDOMNode(this.refs.speedDial));
     const styleKey = 'controlledStyle';
 
     this.setState({
@@ -62,7 +62,7 @@ export default class SpeedDialExample extends PureComponent {
   };
 
   animateToBottom = () => {
-    const offset = getOffset(ReactDOM.findDOMNode(this.refs.speedDial));
+    const offset = calcPageOffset(ReactDOM.findDOMNode(this.refs.speedDial));
     const { width, height } = getViewSize();
 
     this.animateTo({

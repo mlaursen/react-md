@@ -23,7 +23,9 @@ export default class ComponentMethods extends PureComponent {
         definition += `\n\n@return ${returns.type ? `{${returns.type.name}} ` : ''}${returns.description}`;
       }
 
-      definition += '\n```';
+      if (definition) {
+        definition += '\n```';
+      }
 
       let prefix = modifiers.join(' ');
       if (prefix) {
