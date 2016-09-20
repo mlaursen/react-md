@@ -304,7 +304,7 @@ export default class SelectionControl extends PureComponent {
         key="label"
         htmlFor={id}
         className={cn('md-selection-control-label', {
-          'md-selection-control--cursor': !disabled,
+          'md-pointer--hover': !disabled,
           'md-color--disabled': disabled,
           'md-color--text': !disabled,
         })}

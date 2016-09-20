@@ -504,6 +504,7 @@ class Button extends PureComponent {
           'md-color--secondary': !disabled && !raisedStyles && secondary,
           'md-color--secondary-ink': !disabled && !raisedStyles && secondary,
           'md-color--disabled': disabled,
+          'md-pointer--hover': !disabled,
           'md-background--primary': !disabled && raisedStyles && primary,
           'md-background--secondary': !disabled && raisedStyles && secondary,
           'md-background--primary-hover': !disabled && raisedStyles && primary,

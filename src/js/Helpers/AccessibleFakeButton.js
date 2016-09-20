@@ -1,4 +1,4 @@
-import { PureComponent, PropTypes, createElement, Children } from 'react';
+import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import { SPACE, ENTER } from '../constants/keyCodes';
@@ -81,12 +81,15 @@ export default class AccessibleFakeButton extends PureComponent {
     super(props);
 
     this.state = { pressed: false };
+    this._setNode = this._setNode.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
   }
 
-  componentDidMount() {
-    this._node = findDOMNode(this);
+  _setNode(node) {
+    if (node) {
+      this._node = findDOMNode(node);
+    }
   }
 
   _handleClick(e) {
@@ -117,7 +120,15 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   render() {
-    const { component, children, className, disabled, tabIndex, ink, ...props } = this.props;
+    const {
+      component: Component,
+      children,
+      className,
+      disabled,
+      tabIndex,
+      ink,
+      ...props,
+    } = this.props;
     delete props.onClick;
     delete props.onKeyUp;
 
@@ -127,14 +138,21 @@ export default class AccessibleFakeButton extends PureComponent {
       childElements.unshift(ink);
     }
 
-    return createElement(component, {
-      ...props,
-      className: cn('md-fake-btn', className),
-      disabled,
-      tabIndex: disabled ? null : tabIndex,
-      onClick: this._handleClick,
-      onKeyUp: this._handleKeyUp,
-      'aria-pressed': this.state.pressed,
-    }, childElements);
+    return (
+      <Component
+        {...props}
+        ref={this._setNode}
+        className={cn('md-fake-btn', {
+          'md-pointer--hover': !disabled,
+        }, className)}
+        disabled={disabled}
+        tabIndex={disabled ? null : tabIndex}
+        onClick={this._handleClick}
+        onKeyUp={this._handleKeyUp}
+        aria-pressed={this.state.pressed}
+      >
+        {childElements}
+      </Component>
+    );
   }
 }
