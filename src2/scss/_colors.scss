@@ -1200,6 +1200,27 @@ $md-dark-theme-colors: (
   @return map-get($map, $name);
 }
 
+/// A mixin for generating the base color class names to be used
+/// on multiple components. This will generate the following class names:
+/// - md-color--text - Styles the `color` to be the text color.
+/// - md-color--secondary-text - Styles the `color` to be the secondary text color.
+/// - md-color--disabled - Styles the `color` to be the disabled text color.
+/// - md-color--primary - Styles the `color` to be the `primary` color.
+/// - md-color--secondary - Styles the `color` to be the `secondary` color.
+/// - md-background - Styles the `background` to be the base background color.
+/// - md-background--primary - Styles the `background` to be the `primary` color.
+/// - md-background--primary-hover - Styles the `background` to be the `primary` color with some opacity.
+/// - md-background--secondary - Styles the `background` to be the `secondary` color.
+/// - md-background--secondary-hover - Styles the `background` to be the `secondary` color with some opacity.
+/// - md-color--primary-ink - Styles any ink inside this class to use the `primary` color.
+/// - md-color--secondary-ink - Styles any ink inside this class to use the `secondary` color.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-colors;
+///
+/// @param {Color} primary-color [$md-primary-color] - The primary color to use.
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
 @mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
   .md-color--text {
     color: get-color('text', $light-theme);
@@ -1263,6 +1284,15 @@ $md-dark-theme-colors: (
   }
 }
 
+/// This will conditionally update theme colors. The theme colors will only
+/// be updated if their value does not equal the global value.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-colors($md-blue-500, $md-red-a-200, false);
+///
+/// @param {Color} primary-color [$md-primary-color] - The primary color to use.
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
 @mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
   @if $primary-color != $md-primary-color {
     .md-color--primary {
@@ -1324,6 +1354,12 @@ $md-dark-theme-colors: (
   }
 }
 
+/// A utility function to take a color and get a different swatch/accent color
+/// in the same family.
+/// @param {Color} color - The material design color to get a swatch for.
+/// @param {Number} swatch - The swatch to get.
+/// @param {Boolean} accent [false] - Boolean if the swatch is the accent color.
+/// @return {Color} the color with the correct swatch.
 @function get-swatch($color, $swatch, $accent: false) {
   $index: index(map-values($md-color-map), $color);
   @if $index == null or $index < 1 {
