@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
 import InkContainer from './InkContainer';
+import getDisplayName from '../utils/StringUtils/getDisplayName';
 
 /**
  * Takes any component and injects an ink container for having the Material Design Ink effect.
@@ -24,6 +25,7 @@ import InkContainer from './InkContainer';
  * ```
  */
 export default ComposedComponent => class InkedComponent extends PureComponent {
+  static displayName = getDisplayName(ComposedComponent, 'Inked');
   static propTypes = {
     /**
      * An optional style to apply to each ink that gets generated.
