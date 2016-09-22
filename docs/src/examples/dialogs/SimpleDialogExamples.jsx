@@ -18,13 +18,6 @@ export default class SimpleDialogExamples extends PureComponent {
     this.setState({ isOpen: false });
   };
 
-  handleItemClick = () => {
-    // close after ripple for fun..
-    setTimeout(() => {
-      this.closeDialog();
-    }, 300);
-  };
-
   render() {
     const { isOpen } = this.state;
 
@@ -34,15 +27,21 @@ export default class SimpleDialogExamples extends PureComponent {
       'Single line text goes here',
       'Three line wrapped text goes here making it wrap to the next line and continues longer to be here',
     ].map((primaryText, i) => (
-      <ListItem key={i} onClick={this.handleItemClick} primaryText={primaryText} />
+      <ListItem
+        key={i}
+        onClick={this.closeDialog}
+        waitForInkTransition
+        primaryText={primaryText}
+      />
     ));
     return (
       <div>
         <Button raised label="Open Simple Dialog" onClick={this.openDialog} />
         <Dialog
+          id="simpleDialogExample"
           isOpen={isOpen}
           title="Simple Title"
-          close={this.closeDialog}
+          onClose={this.closeDialog}
           dialogStyle={{ maxWidth: 320 }}
         >
           <List>

@@ -25,11 +25,13 @@ export default class ModalDialogExamples extends PureComponent {
       <div>
         <Button raised onClick={this.openDialog} label="Open Modal Dialog" />
         <Dialog
+          id="speedBoost"
           isOpen={isOpen}
           dialogClassName="speed-boost"
           contentClassName="speed-boost-content"
           title="Use Google's location service?"
-          close={this.closeDialog}
+          onClose={this.closeDialog}
+          aria-labelledby="speedBoostDescription"
           modal
           actions={[{
             onClick: this.closeDialog,
@@ -41,7 +43,7 @@ export default class ModalDialogExamples extends PureComponent {
             label: 'No thanks',
           }]}
         >
-          <p>
+          <p id="speedBoostDescription" className="md-color--secondary-text">
             Let Google help apps determine location. This means sending anonymouse
             location data to Google, even when no apps are running.
           </p>

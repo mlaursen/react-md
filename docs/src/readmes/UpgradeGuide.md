@@ -13,6 +13,8 @@ Table of Contents
   * [Tooltips](#tooltips)
   * [Chips](#chips)
   * [Menus](#menus)
+  * [Select Fields](#select-fields)
+  * [Dialogs](#dialogs)
 * [Upgrading from 0.2.x to 0.3.x](#upgrading-from-0-2-x-to-0-3-x)
   * [NavigationDrawer](#navigationdrawer)
     * [Responsive Drawer Changes](#responsive-drawer-changes)
@@ -140,6 +142,17 @@ The prop requirements changed a little bit with this release.
 ### Select Fields
 - The `initiallyOpen` prop has been deprecated and renamed to `defaultOpen`.
 - The `noAutoAdjust` prop now is a trigger for if the `size` should be calculated.
+
+### Dialogs
+The `close` prop has been deprecated and renamed to `onClose`. In addition, and `id` prop is not required
+for accessibility. When there is a dialog without a `title`, the `aria-label` or `aria-labelledby` props
+must be specified instead.
+
+Full Page dialogs have been redone. A full page dialog will now be activated by adding a prop `fullPage`
+set to true. The full page dialog will no longer include a title, content, or actions for you as well.
+So the `actionLeft` and `actionRight` props have been deprecated. Now whatever you want in the dialog
+should be created in the `children` prop. Since the full page dialog no longer renders a title, the `aria-label`
+or `aria-labelledby` prop must be specified for full page dialogs.
 
 ## Upgrading from 0.2.x to 0.3.x
 

@@ -3,40 +3,53 @@ import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
+import Toolbar from 'react-md/lib/Toolbars';
+import loremIpsum from 'lorem-ipsum';
 
 export default class FullPageDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false };
+    this.state = { isOpen: false, pageX: null, pageY: null };
+    this._openDialog = this._openDialog.bind(this);
+    this._closeDialog = this._closeDialog.bind(this);
   }
 
-  openDialog = (e) => {
-    const { pageX, pageY } = e.changedTouches ? e.changedTouches[0] : e;
-    this.setState({ isOpen: true, pageX, pageY });
-  };
+  _openDialog(e) {
+    let { pageX, pageY } = e;
+    if (e.changedTouches) {
+      const [touch] = e.changedTouches;
+      pageX = touch.pageX;
+      pageY = touch.pageY;
+    }
 
-  closeDialog = () => {
+    this.setState({ isOpen: true, pageX, pageY });
+  }
+
+  _closeDialog() {
     this.setState({ isOpen: false });
-  };
+  }
 
   render() {
-    const { isOpen, pageX, pageY } = this.state;
-    const actionLeft = <Button icon onClick={this.closeDialog}>close</Button>;
-    const actionRight = <Button flat label="Save" onClick={this.closeDialog} className="mla md-toolbar-item" />;
+    const actionLeft = <Button waitForInkTransition icon onClick={this._closeDialog}>close</Button>;
+    const actionRight = <Button waitForInkTransition flat label="Save" onClick={this._closeDialog} className="mla md-toolbar-item" />;
 
     return (
       <div>
-        <Button raised label="Open full page dialog" onClick={this.openDialog} />
+        <Button raised label="Open full page dialog" onClick={this._openDialog} />
         <Dialog
-          isOpen={isOpen}
-          pageX={pageX}
-          pageY={pageY}
-          title="New Event"
-          close={this.closeDialog}
-          actionLeft={actionLeft}
-          actionRight={actionRight}
+          id="fullPageExample"
+          {...this.state}
+          onClose={this._closeDialog}
+          fullPage
+          aria-label="New Event"
         >
+          <Toolbar
+            actionLeft={actionLeft}
+            actionsRight={actionRight}
+            title="New Event"
+            fixed
+          />
           <form>
             <TextField
               id="eventEmail"
@@ -56,7 +69,7 @@ export default class FullPageDialogExamples extends PureComponent {
               placeholder="Description"
               block
               rows={4}
-              multiline
+              defaultValue={loremIpsum({ count: 20, units: 'paragraphs' })}
             />
           </form>
         </Dialog>

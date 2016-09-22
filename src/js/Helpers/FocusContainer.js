@@ -26,6 +26,16 @@ export default class FocusContainer extends PureComponent {
     ]).isRequired,
 
     /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply.
+     */
+    className: PropTypes.string,
+
+    /**
      * The children to display.
      */
     children: PropTypes.node,
