@@ -23,4 +23,9 @@
   .md-pointer--hover:hover {
     cursor: pointer;
   }
+
+  .md-overflow-hidden {
+    max-height: 100vh;
+    overflow: hidden;
+  }
 }
