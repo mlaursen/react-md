@@ -36,9 +36,9 @@ export default class AccessibleFakeButton extends PureComponent {
     onClick: PropTypes.func,
 
     /**
-     * An optional onKeyUp function to call.
+     * An optional onKeyDown function to call.
      */
-    onKeyUp: PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * The component to render the Fake button as.
@@ -83,7 +83,7 @@ export default class AccessibleFakeButton extends PureComponent {
     this.state = { pressed: false };
     this._setNode = this._setNode.bind(this);
     this._handleClick = this._handleClick.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
   _setNode(node) {
@@ -105,16 +105,17 @@ export default class AccessibleFakeButton extends PureComponent {
     this.setState({ pressed: !this.state.pressed });
   }
 
-  _handleKeyUp(e) {
+  _handleKeyDown(e) {
     if (this.props.disabled) {
       return;
     }
 
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(e);
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
     }
 
     if ([SPACE, ENTER].indexOf(e.which || e.keyCode) !== -1) {
+      e.preventDefault();
       this._handleClick(e);
     }
   }
@@ -130,7 +131,7 @@ export default class AccessibleFakeButton extends PureComponent {
       ...props,
     } = this.props;
     delete props.onClick;
-    delete props.onKeyUp;
+    delete props.onKeyDown;
 
     let childElements = children;
     if (ink) {
@@ -148,7 +149,7 @@ export default class AccessibleFakeButton extends PureComponent {
         disabled={disabled}
         tabIndex={disabled ? null : tabIndex}
         onClick={this._handleClick}
-        onKeyUp={this._handleKeyUp}
+        onKeyDown={this._handleKeyDown}
         aria-pressed={this.state.pressed}
       >
         {childElements}
