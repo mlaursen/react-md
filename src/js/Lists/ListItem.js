@@ -256,6 +256,7 @@ export default class ListItem extends PureComponent {
 
   _handleOutsideClick(e) {
     if (this._container && !this._container.contains(e.target)) {
+      window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ active: false });
     }
   }

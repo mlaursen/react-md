@@ -86,14 +86,13 @@ ${code}
       <Card
         {...props}
         tableCard={tableCard}
-        id={title ? toClassName(title) : fallbackId}
         className={cn('component-example', className)}
         raise={false}
         iconChildren="code"
         expanderTooltipLabel="View the source code for this example"
         expanderTooltipDelay={300}
       >
-        <CardTitle title={title || 'Example'} isExpander />
+        <CardTitle id={title ? toClassName(title) : fallbackId} title={title || 'Example'} isExpander />
         <Markdown markdown={markdown} expandable component={CardText} className="example-code" />
         {resolvedChildren}
       </Card>

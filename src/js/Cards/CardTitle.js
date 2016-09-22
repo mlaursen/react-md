@@ -50,6 +50,14 @@ export default class CardTitle extends PureComponent {
      * above it in the `Card`.
      */
     expandable: PropTypes.bool,
+
+    /**
+     * An optional id to give the primary title
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
   };
 
   static defaultProps = {
@@ -59,7 +67,7 @@ export default class CardTitle extends PureComponent {
   static contextTypes = contextTypes;
 
   render() {
-    const { title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
+    const { id, title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
     delete props.expandable;
 
     return (
@@ -72,7 +80,7 @@ export default class CardTitle extends PureComponent {
       >
         {avatar}
         <div className="titles">
-          <h2 className="md-headline">{title}</h2>
+          <h2 id={id} className="md-headline">{title}</h2>
           {subtitle && <h3 className="md-subheader">{subtitle}</h3>}
         </div>
         {children}
