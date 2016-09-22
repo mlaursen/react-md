@@ -213,7 +213,7 @@ export default class ListItem extends PureComponent {
       this.state.isOpen = !!props.initiallyOpen;
     }
 
-    this.focusWithInk = this.focusWithInk.bind(this);
+    this.focus = this.focus.bind(this);
     this._setTile = this._setTile.bind(this);
     this._setContainer = this._setContainer.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
@@ -236,9 +236,9 @@ export default class ListItem extends PureComponent {
    * A utility function to focus the `AccessibleFakeInkedButton` in the `ListItem` and also
    * inject an ink to indicate focus.
    */
-  focusWithInk() {
+  focus() {
     if (this._tile) {
-      this._tile.focusWithInk();
+      this._tile.focus();
     }
   }
 
@@ -328,7 +328,7 @@ export default class ListItem extends PureComponent {
     }
 
     if ((e.which || e.keyCode) === TAB) {
-      window.addEventListener('click', this._handleOutsideClick);
+      window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ active: false });
     }
   }
