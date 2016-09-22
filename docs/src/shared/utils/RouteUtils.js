@@ -95,7 +95,7 @@ const components = {
     'file-inputs',
     'font-icons', {
       path: 'helpers',
-      nestedItems: ['accessible-fake-button', 'icon-separator'],
+      nestedItems: ['accessible-fake-button', 'focus-container', 'icon-separator'],
     }, 'lists',
     'inks',
     'menus',

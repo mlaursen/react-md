@@ -40,6 +40,7 @@ const docgens = {};
   'FontIcons/FontIcon',
   'Inks/Ink',
   'Helpers/AccessibleFakeButton',
+  'Helpers/FocusContainer',
   'Helpers/IconSeparator',
   'Lists/List',
   'Lists/ListItem',
@@ -120,7 +121,7 @@ const docgens = {};
   try {
     const generated = docgen.parse(rawFile, docgen.resolver.findAllComponentDefinitions)[0];
     generated.source = `src/js/${sourceFolder}/${file}.js`;
-    generated.component = component.replace(/Container/, '');
+    generated.component = component.replace(/(?=Focus)Container/, '');
     generated.methods = generated.methods.filter(method => method.name.charAt(0) !== '_');
     Object.keys(generated.props).forEach(key => {
       if (key.charAt(0) === '_' || generated.props[key].description.match(/@access private/)) {
