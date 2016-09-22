@@ -237,7 +237,7 @@ function getComputedPropType(name, value) {
 }
 
 function getCustomPropType(raw) {
-  if (raw.match(/controlled|minNumber|maxNumber/)) {
+  if (raw.match(/controlled|minNumber|maxNumber|oneRequiredForA11y|between/)) {
     return raw;
   } else if (raw.match(/deprecated/)) {
     return 'deprecated';
