@@ -15,7 +15,7 @@ describe('LinearProgress', () => {
     const style = { display: 'block' };
     const className = 'test';
     const progress = renderIntoDocument(
-      <LinearProgress style={style} className={className} />
+      <LinearProgress id="test" style={style} className={className} />
     );
 
     const progressNode = findDOMNode(progress);
@@ -25,29 +25,28 @@ describe('LinearProgress', () => {
 
   it('converts to a determinate progress if there is a value', () => {
     const progress = renderIntoDocument(
-      <LinearProgress value={0} />
+      <LinearProgress id="test" value={0} />
     );
 
-    const progressNode = findRenderedDOMComponentWithClass(progress, 'md-linear-progress');
-    expect(progressNode.classList.contains('determinate')).toBe(true);
-    expect(progressNode.style.width).toBe('0%');
+    const node = findDOMNode(progress).childNodes[0];
+    expect(node.className).toContain('determinate');
   });
 
   it('updates the progress width based on the current value', () => {
     let value = 12;
     let progress = renderIntoDocument(
-      <LinearProgress value={value} />
+      <LinearProgress id="test" value={value} />
     );
 
-    let progressNode = findRenderedDOMComponentWithClass(progress, 'md-linear-progress');
+    let progressNode = findRenderedDOMComponentWithClass(progress, 'md-progress--linear-determinate');
     expect(progressNode.style.width).toBe(`${value}%`);
 
     value = 0;
     progress = renderIntoDocument(
-      <LinearProgress value={value} />
+      <LinearProgress id="test" value={value} />
     );
 
-    progressNode = findRenderedDOMComponentWithClass(progress, 'md-linear-progress');
+    progressNode = findRenderedDOMComponentWithClass(progress, 'md-progress--linear-determinate');
     expect(progressNode.style.width).toBe(`${value}%`);
   });
 });
