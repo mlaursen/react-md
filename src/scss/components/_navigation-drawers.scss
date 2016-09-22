@@ -5,6 +5,7 @@
   left: 0;
   overflow-y: auto;
   position: fixed;
+  top: 0;
   z-index: $md-navigation-drawer-z-index;
 
   &.active,

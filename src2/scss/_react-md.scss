@@ -11,6 +11,7 @@
 @import 'components/lists';
 @import 'components/menus';
 @import 'components/chips';
+@import 'components/dialogs';
 @import 'components/inks';
 @import 'components/buttons';
 @import 'components/dividers';
@@ -23,6 +24,7 @@
 @import 'components/selection-controls';
 @import 'components/subheaders';
 @import 'components/select-fields';
+@import 'components/overlays';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -38,6 +40,7 @@
   @include react-md-typography;
   @include react-md-accessibility;
 
+  @include react-md-overlays;
   @include react-md-papers;
   @include react-md-inks;
   @include react-md-buttons;
@@ -57,6 +60,7 @@
   @include react-md-selection-controls;
   @include react-md-select-fields;
   @include react-md-progress;
+  @include react-md-dialogs;
 
   @include react-md-colors;
 }

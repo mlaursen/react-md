@@ -1,58 +1,102 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
 import cn from 'classnames';
 
-import Button from '../Buttons';
+import Button from '../Buttons/Button';
 
-/**
- * A simple component for converting action objects into `FlatButton`
- * or just rendering the actions that are valid elements.
- */
+const FOOTER_PADDING = 8;
+
 export default class DialogFooter extends PureComponent {
   static propTypes = {
-    /**
-     * The optional className to apply.
-     */
+    style: PropTypes.object,
     className: PropTypes.string,
-
-    /**
-     * The list of actions or a single action to display in the footer.
-     */
+    children: PropTypes.node,
     actions: PropTypes.oneOfType([
-      PropTypes.shape({
-        onClick: PropTypes.func.isRequired,
-        label: PropTypes.string.isRequired,
-      }),
       PropTypes.element,
+      PropTypes.object,
       PropTypes.arrayOf(PropTypes.oneOfType([
         PropTypes.element,
-        PropTypes.shape({
-          onClick: PropTypes.func.isRequired,
-          label: PropTypes.string.isRequired,
-        }),
+        PropTypes.object,
       ])),
-    ]).isRequired,
+    ]),
   };
 
-  _actionToElement(action, key) {
-    if (!React.isValidElement(action)) {
-      return <Button flat key={key} {...action} />;
-    } else {
-      return action;
+  constructor(props) {
+    super(props);
+
+    this.state = { stacked: false };
+
+    this._focused = false;
+    this._toElement = this._toElement.bind(this);
+    this._generateActions = this._generateActions.bind(this);
+    this._setContainer = this._setContainer.bind(this);
+  }
+
+  _setContainer(container) {
+    if (container !== null) {
+      this._container = container;
+      const maxWidth = (this._container.offsetWidth - (FOOTER_PADDING * 3)) / 2;
+
+      let stacked = false;
+      Array.prototype.slice.call(this._container.querySelectorAll('.md-btn'))
+        .some(({ offsetWidth }) => {
+          stacked = offsetWidth > maxWidth;
+          return stacked;
+        });
+
+      this.setState({ stacked });
     }
   }
 
-  render() {
-    const { className, actions } = this.props;
+  _toElement(action, index) {
+    if (isValidElement(action)) {
+      const button = Children.only(action);
 
-    let children;
-    if (Array.isArray(actions)) {
-      children = actions.map(this._actionToElement);
-    } else {
-      children = this._actionToElement(actions);
+      return cloneElement(action, {
+        key: button.props.key || index,
+        className: cn('md-btn--dialog', button.props.className),
+        waitForInkTransition: true,
+      });
     }
 
     return (
-      <footer className={cn('md-dialog-footer', className)}>
+      <Button
+        key={index}
+        flat
+        {...action}
+        className={cn('md-btn--dialog', action.className)}
+        waitForInkTransition
+      />
+    );
+  }
+
+  _generateActions() {
+    const { actions } = this.props;
+    if (Array.isArray(actions)) {
+      return actions.map(this._toElement);
+    }
+
+    return this._toElement(actions);
+  }
+
+  render() {
+    const { stacked } = this.state;
+    let { className } = this.props;
+    const { children, actions, ...props } = this.props;
+    delete props.className;
+    delete props.onActionMount;
+
+    if (!actions || (Array.isArray(actions) && !actions.length)) {
+      return null;
+    }
+
+    className = cn('md-dialog-footer', {
+      'md-dialog-footer--inline': !stacked,
+      'md-dialog-footer--stacked': stacked,
+    }, className);
+
+    return (
+      <footer {...props} className={className} ref={this._setContainer}>
+        {this._generateActions()}
         {children}
       </footer>
     );

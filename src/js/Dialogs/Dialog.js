@@ -1,43 +1,33 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import Toolbar from '../Toolbars/Toolbar';
-import Divider from '../Dividers/Divider';
 
+import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
+import FocusContainer from '../Helpers/FocusContainer';
+import Paper from '../Papers';
+import DialogTitle from './DialogTitle';
 import DialogFooter from './DialogFooter';
 
-const DIALOG_PADDING = 8;
-
-/**
- * This is the Dialog that appears when the `DialogContainer` component has
- * a true value for `isOpen`.
- */
 export default class Dialog extends PureComponent {
   static propTypes = {
-    /**
-     * Boolean if it is a simple dialog.
-     */
-    isSimple: PropTypes.bool.isRequired,
-
-    /**
-     * Boolean if it is a full page dialog.
-     */
-    isFullPage: PropTypes.bool.isRequired,
-
-    /**
-     * A transform-origin string to use for a full page dialog. This will
-     * allow the dialog to appear from that origin.
-     */
-    transformOrigin: PropTypes.string,
-
-    /**
-     * An optional title to display above the content or in the `Toolbar` of a `Dialog`.
-     */
-    title: PropTypes.string,
-
-    /**
-     * A single action or a list of actions to display in the Dialog.
-     * This can either be a list of `FlatButton` props or `FlatButton` elements.
-     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    'aria-labelledby': PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    style: PropTypes.object,
+    className: PropTypes.string,
+    contentStyle: PropTypes.object,
+    contentClassName: PropTypes.string,
+    title: PropTypes.node,
+    children: PropTypes.node,
+    contentComponent: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
     actions: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.object,
@@ -46,138 +36,122 @@ export default class Dialog extends PureComponent {
         PropTypes.object,
       ])),
     ]),
+    initialFocus: PropTypes.string,
+    pageX: PropTypes.number,
+    pageY: PropTypes.number,
+    fullPage: PropTypes.bool,
+  };
 
-    /**
-     * Any action to display to the left of the title in a full page dialog's toolbar.
-     * See the [Toolbar's actionLeft](/components/toolbars) documentation for more information.
-     */
-    actionLeft: PropTypes.node,
-
-    /**
-     * Any action to display to the right of the title in a full page dialog's toolbar.
-     * See the [Toolbar actionsRight](/components/toolbars) documentation for more information.
-     */
-    actionRight: PropTypes.node,
-
-    /**
-     * An optional style to apply to the `Dialog`.
-     */
-    style: PropTypes.object,
-
-    /**
-     * An optional className to apply to the `Dialog`.
-     */
-    className: PropTypes.string,
-
-    /**
-     * An optional style to apply to the dialog's content.
-     */
-    contentStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the dialog's content.
-     */
-    contentClassName: PropTypes.string,
-
-    /**
-     * Any children to display in the `Dialog`.
-     */
-    children: PropTypes.node,
+  static defaultProps = {
+    contentComponent: 'section',
   };
 
   constructor(props) {
     super(props);
 
-    this.state = { stacked: false };
+    this.state = { transformOrigin: null };
+    this._setContent = this._setContent.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
-  componentDidMount() {
-    const state = {};
-    const { dialog, content } = this.refs;
-
-    if (content.scrollHeight > content.clientHeight) {
-      state.divided = true;
+  componentWillMount() {
+    const { pageX, pageY } = this.props;
+    if (!pageX || !pageY) {
+      return;
     }
 
-    if (this.props.actions) {
-      const maxButtonWidth = (dialog.offsetWidth - DIALOG_PADDING * 3) / 2;
-      const actions = dialog.querySelectorAll('.md-btn');
-      for (const action of actions) {
-        if (action.offsetWidth > maxButtonWidth) {
-          state.stacked = true;
-          break;
-        }
-      }
+    this.setState({
+      transformOrigin: `${pageX - window.scrollX}px ${pageY - window.scrollY}px`,
+    });
+  }
+
+  _setContent(content) {
+    if (content !== null) {
+      this._content = findDOMNode(content);
+      const contentPadded = this._content.querySelectorAll('.md-list').length === 0;
+
+      this.setState({ contentPadded });
+    }
+  }
+
+  _handleKeyDown(e) {
+    if (!isValidFocusKeypress(e)) {
+      return;
     }
 
-    this.setState(state); // eslint-disable-line react/no-did-mount-set-state
+    const { target, shiftKey } = e;
+    const [first, ...focusables] = this._innerFocusables;
+    const last = focusables[focusables.length - 1];
+
+    if (shiftKey && target === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!shiftKey && target === last) {
+      e.preventDefault();
+      first.focus();
+    }
   }
 
   render() {
+    const { contentPadded, transformOrigin } = this.state;
     const {
-      title,
-      children,
+      id,
       className,
       contentStyle,
       contentClassName,
+      title,
+      contentComponent: Content,
       actions,
-      actionLeft,
-      actionRight,
-      style,
-      transformOrigin,
-      isSimple,
-      isFullPage,
+      children,
+      fullPage,
       ...props,
     } = this.props;
     delete props.pageX;
     delete props.pageY;
+    delete props.style;
 
-    const { stacked, divided } = this.state;
-
-    let header;
-    let footer;
-    if (!isFullPage && title) {
-      header = <h1 className="md-title">{title}</h1>;
-    } else if (isFullPage) {
-      header = (
-        <Toolbar
-          primary
-          fixed
-          actionLeft={actionLeft}
-          title={title}
-          actionsRight={actionRight}
-        />
-      );
+    let { 'aria-labelledby': labelledBy, style } = this.props;
+    const titleId = `${id}Title`;
+    if (!labelledBy && title) {
+      labelledBy = titleId;
     }
 
-    if (actions && actions.length) {
-      footer = <DialogFooter className={cn({ stacked })} actions={actions} />;
+    const dialogChildren = fullPage
+      ? children
+      : [
+        <DialogTitle key="title" id={titleId}>{title}</DialogTitle>,
+        <Content
+          ref={this._setContent}
+          key="content"
+          style={contentStyle}
+          className={cn('md-dialog-content', {
+            'md-dialog-content--padded': contentPadded,
+          }, contentClassName)}
+        >
+          {children}
+        </Content>,
+        <DialogFooter key="footer" actions={actions} />,
+      ];
+    if (transformOrigin) {
+      style = Object.assign({}, style, { transformOrigin });
     }
 
     return (
-      <div
-        ref="dialog"
-        className={cn('md-dialog', className, {
-          'full-page': isFullPage,
-          'dialog-centered': !isFullPage,
-        })}
-        style={Object.assign({}, style, { transformOrigin })}
+      <Paper
         {...props}
+        component={FocusContainer}
+        style={style}
+        className={cn('md-background--card md-dialog', {
+          'md-dialog--full-page': fullPage,
+          'md-dialog--centered': !fullPage,
+        }, className)}
+        zDepth={5}
+        role="dialog"
+        aria-labelledby={labelledBy}
+        focusOnMount
       >
-        {header}
-        {header && divided && <Divider />}
-        <section
-          ref="content"
-          style={contentStyle}
-          className={cn('md-dialog-content', contentClassName, {
-            'simple': isSimple,
-          })}
-        >
-          {children}
-        </section>
-        {footer && divided && <Divider />}
-        {footer}
-      </div>
+        {dialogChildren}
+      </Paper>
     );
   }
 }

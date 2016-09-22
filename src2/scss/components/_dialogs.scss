@@ -1,0 +1,193 @@
+////
+/// @group dialogs
+////
+
+/// The transition time for the dialogs to enter or leave.
+/// @type Number
+$md-dialog-transition-time: $md-transition-time * 2 !default;
+
+/// The distance that the dialog should move downwards when entering
+/// and leaving.
+/// @type Number
+$md-dialog-translate-distance: -30px !default;
+
+/// The z-index to use for full page dialogs. This should be the biggest z-index
+/// in the application.
+/// @type Number
+$md-dialog-full-page-z-index: 110 !default;
+
+
+$md-dialog-btn-height: 36px;
+$md-dialog-btn-min-width: 64px;
+$md-dialog-btn-padding: 8px;
+$md-dialog-min-width: 56px * 5;
+$md-dialog-padding: 24px;
+$md-dialog-title-padding-bottom: 20px;
+
+/// A dialog can not be less than this distance from the top / and bottom of the page.
+/// @type Number
+$md-dialog-vertical-keyline: 24px;
+
+/// A dialog can not be less than this distance from the left / right of the page.
+/// @type Number
+$md-dialog-horizontal-keyline: 40px;
+
+
+/// Includes the styles for dialogs
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-dialogs;
+@mixin react-md-dialogs {
+  .md-dialog-container.md-overlay {
+    transition-duration: $md-dialog-transition-time;
+  }
+
+  .md-dialog {
+    cursor: initial;
+    min-width: $md-dialog-min-width;
+    position: absolute;
+
+    .md-list {
+      padding-bottom: $md-dialog-padding - $md-default-padding;
+      padding-top: 0;
+    }
+
+    .md-list-tile {
+      height: initial;
+      padding: $md-default-padding $md-dialog-padding;
+    }
+
+    .md-tile-text--primary {
+      white-space: normal;
+    }
+  }
+
+  .md-dialog--centered {
+    left: 50%;
+    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
+    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  .md-dialog--centered-enter {
+    transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+
+    &.md-dialog--centered-enter-active {
+      transform: translate3d(-50%, -50%, 0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--centered-leave {
+    transform: translate3d(-50%, -50%, 0);
+
+    &.md-dialog--centered-leave-active {
+      transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--full-page {
+    height: 100vh;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: $md-dialog-full-page-z-index;
+  }
+
+  .md-dialog--full-page-enter {
+    transform: scale(0);
+
+    &.md-dialog--full-page-enter-active {
+      transform: scale(1);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--full-page-leave {
+    transform: scale(1);
+
+    &.md-dialog--full-page-leave-active {
+      transform: scale(0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  @include react-md-dialogs-header;
+  @include react-md-dialogs-content;
+  @include react-md-dialogs-footer;
+}
+
+/// Includes the styles for the header content for dialogs only.
+/// @access private
+@mixin react-md-dialogs-header {
+  .md-title--dialog {
+    margin-bottom: 0;
+    padding: $md-dialog-padding;
+    padding-bottom: $md-dialog-title-padding-bottom;
+    white-space: initial;
+  }
+}
+
+
+/// Includes the styles for the content in dialogs only.
+/// @access private
+@mixin react-md-dialogs-content {
+  .md-dialog-content {
+    overflow: auto;
+  }
+
+  .md-dialog-content--padded {
+    padding: $md-dialog-padding;
+    padding-top: 0;
+  }
+}
+
+/// This includes the styles for the footer in dialogs. It also creates an additional
+/// button class name for buttons in dialogs. This is generally used in the `md-react-md-dialogs`
+/// mixin.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-dialogs-footer;
+@mixin react-md-dialogs-footer {
+  .md-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .md-dialog-footer--inline {
+    padding: $md-dialog-btn-padding;
+
+    .md-btn--dialog + .md-btn--dialog {
+      margin-left: $md-dialog-btn-padding;
+    }
+  }
+
+  .md-dialog-footer--stacked {
+    align-items: flex-end;
+    flex-direction: column;
+    padding-bottom: $md-dialog-btn-padding;
+    padding-right: $md-dialog-btn-padding;
+
+    .md-btn--dialog {
+      $margin: (48px - $md-dialog-btn-height) / 2;
+
+      margin-bottom: $margin;
+      margin-top: $margin;
+    }
+  }
+
+  .md-btn--dialog {
+    height: $md-dialog-btn-height;
+    min-width: $md-dialog-btn-min-width;
+    padding-left: $md-dialog-btn-padding;
+    padding-right: $md-dialog-btn-padding;
+  }
+}

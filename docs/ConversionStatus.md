@@ -6,6 +6,7 @@
 - Avatars
 - Buttons
 - Chips
+- Dialogs
 - Dividers
 - File Inputs/Uploads
 - Font Icons
@@ -24,7 +25,6 @@
 
 - Cards
 - Data Tables
-- Dialogs
 - Expansion Panels
 - Navigation Drawers
   - Deprecate Sidebar and implement standalone Drawer

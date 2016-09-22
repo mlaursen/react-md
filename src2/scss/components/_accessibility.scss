@@ -24,8 +24,8 @@
     cursor: pointer;
   }
 
-  .md-overflow-hidden {
-    max-height: 100vh;
-    overflow: hidden;
+  .md-no-scroll {
+    overflow-y: scroll;
+    position: fixed;
   }
 }

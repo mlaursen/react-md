@@ -1,20 +1,23 @@
-function findPagePosition(direction) {
-  const key = `scroll${direction}`;
-  return Math.max(
-    document.body[key],
-    document.documentElement[key]
-  );
-}
+import getPagePosition from './getPagePosition';
 
-
+/**
+ * Calculates the page offset of an element. If the element
+ * is false-ish, an empty object will be returned.
+ *
+ * This is really only used for calculating an ink position.
+ *
+ * @param {Node} el - An html node to find a page offset for.
+ * @return {Object} an object with a left and top attribute for the page
+ *    offset.
+ */
 export default function calcPageOffset(el) {
   if (!el) {
-    return null;
+    return { left: null, right: null };
   }
 
   const rect = el.getBoundingClientRect();
   return {
-    left: rect.left + findPagePosition('Left'),
-    top: rect.top + findPagePosition('Top'),
+    left: rect.left + getPagePosition('x'),
+    top: rect.top + getPagePosition('y'),
   };
 }

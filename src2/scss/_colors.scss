@@ -1265,6 +1265,10 @@ $md-dark-theme-colors: (
     }
   }
 
+  .md-background--card {
+    background: get-color('card', $light-theme);
+  }
+
   .md-background--primary {
     background: $primary-color;
     color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
@@ -1350,6 +1354,10 @@ $md-dark-theme-colors: (
 
     .md-background {
       background: get-color('background', $light-theme);
+    }
+
+    .md-background--card {
+      background: get-color('card', $light-theme);
     }
   }
 }
