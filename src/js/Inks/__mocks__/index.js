@@ -13,7 +13,6 @@ export default jest.fn(ComposedComponent =>
       delete props.inkContainerStyle;
       delete props.inkContainerClassName;
       delete props.inkDisabled;
-      delete props.additionalInkTriggerKeys;
       delete props.inkTransitionOverlap;
       delete props.inkTransitionEnterTimeout;
       delete props.inkTransitionLeaveTimeout;

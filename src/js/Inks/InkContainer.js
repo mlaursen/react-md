@@ -4,7 +4,6 @@ import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
 import isValidClick from '../utils/EventUtils/isValidClick';
-import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 import calcPageOffset from '../utils/calcPageOffset';
 import calculateHypotenuse from '../utils/NumberUtils/calculateHypotenuse';
 
@@ -24,7 +23,6 @@ export default class InkContainer extends PureComponent {
     className: PropTypes.string,
     inkStyle: PropTypes.object,
     inkClassName: PropTypes.string,
-    additionalTriggerKeys: PropTypes.arrayOf(PropTypes.number),
     waitForInkTransition: PropTypes.bool,
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'mouse', 'touch'])),
     transitionOverlap: PropTypes.number.isRequired,
@@ -44,12 +42,12 @@ export default class InkContainer extends PureComponent {
     this.state = { inks: [] };
     this.createInk = this.createInk.bind(this);
     this.focus = this.focus.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
     this._createInk = this._createInk.bind(this);
     this._removeInk = this._removeInk.bind(this);
     this._setContainers = this._setContainers.bind(this);
     this._maybeDelayClick = this._maybeDelayClick.bind(this);
     this._handleBlur = this._handleBlur.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
     this._handleMouseDown = this._handleMouseDown.bind(this);
     this._handleMouseUp = this._handleMouseUp.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
@@ -70,7 +68,7 @@ export default class InkContainer extends PureComponent {
 
     if (this._isListeneredDisabledDiff('keyboard', di, ndi)) {
       const fn = `${this._isListeneredDisabled('keyboard', ndi) ? 'remove' : 'add'}EventListener`;
-      this._getKeyboardContainer()[fn]('keyup', this._handleKeyUp);
+      this._getKeyboardContainer()[fn]('focus', this._handleFocus);
 
       if (this._container.getAttribute('type') === 'submit') {
         window[fn]('submit', this._handleSubmit);
@@ -98,7 +96,7 @@ export default class InkContainer extends PureComponent {
     if (this._container) {
       const { disabledInteractions } = this.props;
       if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-        this._getKeyboardContainer().removeEventListener('keyup', this._handleKeyUp);
+        this._getKeyboardContainer().removeEventListener('focus', this._handleFocus);
         this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
 
         if (this._container.getAttribute('type') === 'submit') {
@@ -140,9 +138,7 @@ export default class InkContainer extends PureComponent {
   }
 
   focus() {
-    this._createInk();
-    this._container.focus();
-    this._container.addEventListener('blur', this._handleBlur);
+    this._getKeyboardContainer().focus();
   }
 
   /**
@@ -215,7 +211,7 @@ export default class InkContainer extends PureComponent {
       if (this._container) {
         const { disabledInteractions } = this.props;
         if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-          this._getKeyboardContainer().addEventListener('keyup', this._handleKeyUp);
+          this._getKeyboardContainer().addEventListener('focus', this._handleFocus);
 
           if (this._container.getAttribute('type') === 'submit') {
             window.addEventListener('submit', this._handleSubmit);
@@ -261,25 +257,25 @@ export default class InkContainer extends PureComponent {
   }
 
   _handleRemove() {
-    if (this.props.waitForInkTransition) {
+    if (this._clicked && this.props.waitForInkTransition) {
       this._container.click();
     }
+
+    this._clicked = false;
   }
 
-  _handleBlur() {
-    this._keyboardFocus = false;
-    this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
-    this._removeInk();
-  }
-
-  _handleKeyUp(e) {
-    if (this._keyboardFocus || !isValidFocusKeypress(e, this.props.additionalTriggerKeys)) {
+  _handleFocus() {
+    if (this._clicked) {
       return;
     }
 
-    this._keyboardFocus = true;
-    this._getKeyboardContainer().addEventListener('blur', this._handleBlur);
     this._createInk();
+    this._getKeyboardContainer().addEventListener('blur', this._handleBlur);
+  }
+
+  _handleBlur() {
+    this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
+    this._removeInk();
   }
 
   _handleMouseDown(e) {
@@ -289,6 +285,7 @@ export default class InkContainer extends PureComponent {
     }
 
     e.stopPropagation();
+    this._clicked = true;
     this._mouseLeave = false;
     this._container.addEventListener('mouseleave', this._handleMouseLeave);
     this._createInk(e.pageX, e.pageY);
@@ -312,6 +309,7 @@ export default class InkContainer extends PureComponent {
 
   _handleTouchStart(e) {
     this._aborted = false;
+    this._clicked = true;
     e.stopPropagation();
     window.addEventListener('touchmove', this._handleTouchMove);
 

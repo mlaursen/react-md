@@ -10,14 +10,12 @@ import getDisplayName from '../utils/StringUtils/getDisplayName';
  * The default triggers for an ink are:
  * - mouse down event
  * - touch start event
- * - keyboard focus with tab key
+ * - keyboard focus
  * - form submit
  *
  * The form submit ink will only be triggered if the `ComposedComponent` has the attribute
  * `type="submit"`, the `ComposedComponent` is in a form, and the user hits the `enter` key
  * while not actively focusing the `ComposedComponent`.
- *
- * Any additional keyboard focus keys can also be added.
  *
  * ```js
  * @param {function} ComposedComponent - The React Component to inject an `ink` prop into.
@@ -57,12 +55,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
      * Boolean if only the ink is disabled for the composed component.
      */
     inkDisabled: PropTypes.bool,
-
-    /**
-     * An optional array of additional key codes that can trigger the ink creationg.
-     * The default is to only work with the tab key.
-     */
-    additionalInkTriggerKeys: PropTypes.arrayOf(PropTypes.number),
 
     /**
      * The time (in ms) that the enter and leave transitions for the ink should overlap.
@@ -117,8 +109,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
+    this.focus = this.focus.bind(this);
     this.createInk = this.createInk.bind(this);
-    this.focusWithInk = this.focusWithInk.bind(this);
     this.getComposedComponent = this.getComposedComponent.bind(this);
     this._setInkRef = this._setInkRef.bind(this);
     this._setComposedComponent = this._setComposedComponent.bind(this);
@@ -145,6 +137,10 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * The ink can either be created by using the `pageX` and `pageY` from a click/touch event
    * or it will be created in the center of the `ComposedComponent`.
    *
+   * ```js
+   * <SomeInkedComponent ref={inkHOC => inkHOC.createInk()} />
+   * ```
+   *
    * @param {number=} pageX - An optional pageX of the click or touch event.
    * @param {number=} pageY - An optional pageY of the click or touch event.
    */
@@ -155,11 +151,16 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   }
 
   /**
-   * Attempts to focus the composed component and inject an ink when focused. This
-   * will not do anything if the `disabled` or `inkDisabled` props are false.
+   * This will attempt to focus the composed component. If the component is disabled, nothing
+   * will happen. If the `disabled` and `inkDisabled` props are not set to `true`, an ink will
+   * also be created.
+   *
+   * ```js
+   * <SomeInkedComponent ref={inkHOC => inkHOC.focus()} />
+   * ```
    */
-  focusWithInk() {
-    if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
+  focus() {
+    if (this._inkContainer) {
       this._inkContainer.focus();
     }
   }
@@ -200,7 +201,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   render() {
     const {
       inkDisabled,
-      additionalInkTriggerKeys,
       inkTransitionOverlap: transitionOverlap,
       inkTransitionEnterTimeout: transitionEnterTimeout,
       inkTransitionLeaveTimeout: transitionLeaveTimeout,
@@ -225,7 +225,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
           inkStyle={inkStyle}
           inkClassName={inkClassName}
           disabledInteractions={disabledInteractions}
-          additionalTriggerKeys={additionalInkTriggerKeys}
           transitionOverlap={transitionOverlap}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
