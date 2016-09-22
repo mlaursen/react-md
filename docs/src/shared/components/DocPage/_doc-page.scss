@@ -113,3 +113,21 @@
     }
   }
 }
+
+@media #{$md-mobile-media} {
+  .prop-type pre {
+    max-width: 120px;
+  }
+}
+
+@media #{$md-desktop-media} {
+  .prop-type pre {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .prop-type pre {
+    max-width: 280px;
+  }
+}
