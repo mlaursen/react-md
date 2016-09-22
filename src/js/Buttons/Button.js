@@ -528,4 +528,4 @@ class Button extends PureComponent {
   }
 }
 
-export default injectTooltip(injectInk(Button));
+export default injectInk(injectTooltip(Button));

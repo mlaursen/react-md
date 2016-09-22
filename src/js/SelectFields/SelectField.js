@@ -337,7 +337,7 @@ export default class SelectField extends PureComponent {
 
   /**
    * A list of `ListItem` that gets repopulated each time the menu items appear.
-   * This is used so that the `focusWithInk` method can be accessed.
+   * This is used so that the `focus` method can be accessed.
    */
   _items = [];
 
@@ -490,7 +490,7 @@ export default class SelectField extends PureComponent {
     const { primaryText } = item.props;
     if (getField(this.props, this.state, 'value') === primaryText) {
       this._activeItem = findDOMNode(item);
-      item.focusWithInk();
+      item.focus();
     }
 
     this._items.push(item);
@@ -508,7 +508,7 @@ export default class SelectField extends PureComponent {
 
     const item = this._items[index];
     if (item) {
-      item.focusWithInk();
+      item.focus();
     }
   }
 
