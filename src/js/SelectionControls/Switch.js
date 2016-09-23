@@ -84,8 +84,8 @@ export default class Switch extends PureComponent {
      * Boolean if the `Checkbox` should be displayed inline.
      */
     inline: PropTypes.bool,
-    defaultToggled: deprecated(PropTypes.bool, 'Use the `defaultChecked` prop instead.'),
-    toggled: deprecated(PropTypes.bool, 'Use the `checked` prop instead.'),
+    defaultToggled: deprecated(PropTypes.bool, 'Use the `defaultChecked` prop instead'),
+    toggled: deprecated(PropTypes.bool, 'Use the `checked` prop instead'),
   };
 
   render() {

@@ -77,6 +77,8 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
   constructor(props, context) {
     super(props, context);
 
+    this.getComposedComponent = this.getComposedComponent.bind(this);
+    this._setComposedComponent = this._setComposedComponent.bind(this);
     this._showTooltip = this._showTooltip.bind(this);
     this._handleBlur = this._handleBlur.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
@@ -89,6 +91,26 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
 
   componentDidMount() {
     this._component = findDOMNode(this);
+  }
+
+  /**
+   * Gets the composed component as a ref. This is usefull if you need to access the ref of the
+   * composed component instead of the `injectInk` HOC to use some publically accessible methods.
+   *
+   * ```js
+   * <SomeInkedComponent
+   *   ref={inkHOC => {
+   *     inkHOC.getComposedComponent().focus();
+   *   }}
+   * />
+   * ```
+   */
+  getComposedComponent() {
+    return this._composed;
+  }
+
+  _setComposedComponent(component) {
+    this._composed = component;
   }
 
   /**
@@ -286,6 +308,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
     const { tooltipLabel, ...props } = this.props;
     delete props.tooltipPosition;
     delete props.tooltipDelay;
+    props.ref = this._setComposedComponent;
 
     if (!tooltipLabel) {
       return <ComposedComponent {...props} />;
@@ -294,6 +317,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
     return (
       <ComposedComponent
         {...props}
+        ref={this._setComposedComponent}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
         onKeyUp={this._handleKeyUp}

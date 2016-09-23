@@ -27,7 +27,7 @@ export default class RadioGroup extends PureComponent {
     name: PropTypes.string,
     value: PropTypes.string,
 
-    _deprecated: deprecated(PropTypes.bool, 'Use the `SelectionControlGroup` component instead.'),
+    _deprecated: deprecated(PropTypes.bool, 'Use the `SelectionControlGroup` component instead'),
   };
 
   render() {

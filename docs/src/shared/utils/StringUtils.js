@@ -249,7 +249,7 @@ function getCustomPropType(raw) {
 export function getDeprecatedReason(propName, { raw }) {
   return `The \`${propName}\` prop has been deprecated and will be removed in the next release.
 
-${raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}
+${raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.
 `;
 }
 

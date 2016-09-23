@@ -7,11 +7,11 @@
   z-index: $md-fab-z-index;
 
   &.snackbar-adjust {
-    bottom: $md-default-padding + $md-snackbar-height;
+    bottom: $md-default-padding + 48px;
   }
 
   &.snackbar-multiline-adjust {
-    bottom: $md-default-padding + $md-snackbar-multiline-height;
+    bottom: $md-default-padding + 68px;
   }
 }
 

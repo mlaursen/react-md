@@ -32,6 +32,10 @@ $md-btn-mobile-font-size: 14px;
 /// @type Number
 $md-btn-mobile-height: 36px;
 
+/// The minimum margin to use for fixed floating buttons on mobile-devices.
+/// @type Number
+$md-btn-mobile-floating-margin: 16px;
+
 /// The font size for buttons on desktop screens.
 /// @type Number
 $md-btn-desktop-font-size: 13px;
@@ -39,6 +43,10 @@ $md-btn-desktop-font-size: 13px;
 /// The height for buttons on desktop screens.
 /// @type Number
 $md-btn-desktop-height: 32px;
+
+/// The minimum margin to use for fixed floating buttons on desktop screens.
+/// @type Number
+$md-btn-desktop-floating-margin: 24px;
 
 
 /// The left and right padding for a button.
@@ -73,6 +81,8 @@ $md-btn-dark-theme-base-color: #ccc;
 $md-btn-dark-theme-hover-color: rgba($md-btn-dark-theme-base-color, .12);
 $md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2);
 $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
+
+
 
 /// Includes the styles for material design buttons. Each button type can optionally
 /// be excluded. However, if the `floating` styles are included, the `icon` styles
@@ -206,6 +216,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
       width: $md-btn-floating-mini-size;
     }
+
+    .md-btn--fixed {
+      position: fixed;
+    }
   }
 }
 
@@ -272,7 +286,9 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-@mixin react-md-buttons-mobile($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+///     buttons should be included.
+@mixin react-md-buttons-mobile($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
   @if $include-flat or $include-raised {
     $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
 
@@ -303,6 +319,28 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       }
     }
   }
+
+  @if $include-floating {
+    .md-btn--fixed-tr {
+      right: $md-btn-mobile-floating-margin;
+      top: $md-btn-mobile-floating-margin;
+    }
+
+    .md-btn--fixed-tl {
+      left: $md-btn-mobile-floating-margin;
+      top: $md-btn-mobile-floating-margin;
+    }
+
+    .md-btn--fixed-br {
+      bottom: $md-btn-mobile-floating-margin;
+      right: $md-btn-mobile-floating-margin;
+    }
+
+    .md-btn--fixed-bl {
+      bottom: $md-btn-mobile-floating-margin;
+      left: $md-btn-mobile-floating-margin;
+    }
+  }
 }
 
 /// Creates the styes for buttons on desktop screens.
@@ -316,7 +354,9 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-@mixin react-md-buttons-desktop($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+///     buttons should be included.
+@mixin react-md-buttons-desktop($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
   @if $include-flat or $include-raised {
     .md-btn--text {
       font-size: $md-btn-desktop-font-size;
@@ -339,6 +379,28 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
       }
     }
   }
+
+  @if $include-floating {
+    .md-btn--fixed-tr {
+      right: $md-btn-desktop-floating-margin;
+      top: $md-btn-desktop-floating-margin;
+    }
+
+    .md-btn--fixed-tl {
+      left: $md-btn-desktop-floating-margin;
+      top: $md-btn-desktop-floating-margin;
+    }
+
+    .md-btn--fixed-br {
+      bottom: $md-btn-desktop-floating-margin;
+      right: $md-btn-desktop-floating-margin;
+    }
+
+    .md-btn--fixed-bl {
+      bottom: $md-btn-desktop-floating-margin;
+      left: $md-btn-desktop-floating-margin;
+    }
+  }
 }
 
 /// Creates the media queries and styles for buttons for mobile and desktop.
@@ -350,12 +412,14 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-@mixin react-md-buttons-media($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised) {
+/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+///     buttons should be included.
+@mixin react-md-buttons-media($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
   @media #{$md-mobile-media} {
-    @include react-md-buttons-mobile($include-flat, $include-raised);
+    @include react-md-buttons-mobile($include-flat, $include-raised, $include-floating);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-buttons-desktop($include-flat, $include-raised);
+    @include react-md-buttons-desktop($include-flat, $include-raised, $include-floating);
   }
 }

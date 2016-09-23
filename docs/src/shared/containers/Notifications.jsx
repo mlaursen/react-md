@@ -5,12 +5,12 @@ import Snackbar from 'react-md/lib/Snackbars';
 import { dismissToast } from 'actions/ui';
 
 @connect(({ ui: { snackbar } }) => ({ toasts: snackbar }), {
-  dismiss: dismissToast,
+  onDismiss: dismissToast,
 })
 export default class Notifications extends PureComponent {
   static propTypes = {
     toasts: PropTypes.array.isRequired,
-    dismiss: PropTypes.func.isRequired,
+    onDismiss: PropTypes.func.isRequired,
   };
 
   render() {

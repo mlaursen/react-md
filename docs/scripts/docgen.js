@@ -61,7 +61,7 @@ const docgens = {};
   'SelectionControls/Switch',
   'Sidebars/Sidebar',
   'Sliders/Slider',
-  'Snackbars/Snackbar',
+  'Snackbars/SnackbarContainer',
   'Subheaders/Subheader',
   'Tabs/Tab',
   'Tabs/Tabs',
@@ -131,7 +131,7 @@ const docgens = {};
 
 
     docgens[folder] = docgens[folder] || {
-      name: generated.component.replace('Group', ''),
+      name: generated.component.replace('Group', '').replace(/(?!Snackbar)Container/, ''),
       docgens: [],
     };
 

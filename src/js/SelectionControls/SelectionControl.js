@@ -180,12 +180,12 @@ export default class SelectionControl extends PureComponent {
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
-      '`checkedRadioIconChildren` and `checkedRadioIconClassName` props instead.'
+      '`checkedRadioIconChildren` and `checkedRadioIconClassName` props instead'
     )),
     uncheckedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `uncheckedCheckboxIconChildren` and `uncheckedCheckboxIconClassName`  or the ' +
-      '`uncheckedRadioIconChildren` and `uncheckedRadioIconClassName` props instead.'
+      '`uncheckedRadioIconChildren` and `uncheckedRadioIconClassName` props instead'
     )),
 
     /* maybe removed once upgrade again? */

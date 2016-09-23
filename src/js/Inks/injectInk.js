@@ -1,5 +1,4 @@
 import React, { PureComponent, PropTypes } from 'react';
-import invariant from 'invariant';
 
 import InkContainer from './InkContainer';
 import getDisplayName from '../utils/StringUtils/getDisplayName';
@@ -93,11 +92,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
      * This is a little _hack_ to get it to work by not using `ref`, but this name.
      */
     __SUPER_SECRET_REF__: PropTypes.func,
-
-    /**
-     * Boolean if the `getComposedComponent` function will be visible via refs.
-     */
-    withRef: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -166,13 +160,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
   }
 
   /**
-   * Gets the composed component as a ref. This will require the `withRef` prop to be `true` to
-   * get anything other than `undefined`. This is usefull if you need to access the ref of the
+   * Gets the composed component as a ref. This is usefull if you need to access the ref of the
    * composed component instead of the `injectInk` HOC to use some publically accessible methods.
    *
    * ```js
    * <SomeInkedComponent
-   *   withRef
    *   ref={inkHOC => {
    *     inkHOC.getComposedComponent().focus();
    *   }}
@@ -180,11 +172,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * ```
    */
   getComposedComponent() {
-    invariant(
-      this.props.withRef,
-      'To access the composed component, you need to specify the `withRef` prop as true.'
-    );
-
     return this._composed;
   }
 
@@ -210,7 +197,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkContainerClassName,
       disabledInteractions,
       waitForInkTransition,
-      withRef,
       ...props,
     } = this.props;
     delete props.__SUPER_SECRET_REF__;
@@ -233,9 +219,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       );
     }
 
-    if (withRef) {
-      props.ref = this._setComposedComponent;
-    }
+    props.ref = this._setComposedComponent;
 
     return <ComposedComponent {...props} />;
   }

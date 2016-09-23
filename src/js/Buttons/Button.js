@@ -6,6 +6,7 @@ import FontIcon from '../FontIcons';
 import IconSeparator from '../Helpers/IconSeparator';
 import injectInk from '../Inks';
 import injectTooltip from '../Tooltips';
+const TICK = 17;
 
 /**
  * Takes a validator function for a prop, and warns if the prop is used on a button type
@@ -209,7 +210,7 @@ class Button extends PureComponent {
     /**
      * The position that the `FloatingButton` should be fixed to the page. It will
      * either be fixed to the top right, top left, bottom right, or bottom left of
-     * the page. This prop is ony used if the `floating` prop and `fixed` rpop are
+     * the page. This prop is ony used if the `floating` prop and `fixed` prop are
      * `true`.
      */
     fixedPosition: PropTypes.oneOf(['tr', 'tl', 'br', 'bl']).isRequired,
@@ -299,9 +300,14 @@ class Button extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { pressed: false };
+    this.state = {
+      pressed: false,
+      snackbar: false,
+      snackbarType: null,
+    };
 
     this._blur = this._blur.bind(this);
+    this._animateForSnackbar = this._animateForSnackbar.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleMouseUp = this._handleMouseUp.bind(this);
@@ -329,6 +335,11 @@ class Button extends PureComponent {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
+
+    if (this._snackbarTimeout) {
+      clearTimeout(this._snackbarTimeout);
+    }
+
     window.removeEventListener('click', this._blur);
   }
 
@@ -439,6 +450,26 @@ class Button extends PureComponent {
     }
   }
 
+  _animateForSnackbar(multiline, leaveTimeout) {
+    if (typeof leaveTimeout === 'number') {
+      this._snackbarTimeout = setTimeout(() => {
+        this._snackbarTimeout = setTimeout(() => {
+          this._snackbarTimeout = null;
+
+          this.setState({ snackbar: false });
+        }, leaveTimeout + 150);
+
+        this.setState({ snackbarType: null });
+      }, 17);
+    } else {
+      this._snackbarTimeout = setTimeout(() => {
+        this._snackbarTimeout = null;
+
+        this.setState({ snackbar: true, snackbarType: multiline ? 'multiline-' : '' });
+      }, TICK);
+    }
+  }
+
   render() {
     const {
       className,
@@ -469,7 +500,7 @@ class Button extends PureComponent {
     }
 
     let { children } = this.props;
-    const { pressed, hover } = this.state;
+    const { pressed, hover, snackbar, snackbarType } = this.state;
     const mdBtnType = this._getType(this.props);
 
     const Component = component || (href ? 'a' : 'button');
@@ -519,6 +550,8 @@ class Button extends PureComponent {
           [`md-btn--fixed-${fixedPosition}`]: floating && fixed,
           'md-btn--floating-mini': floating && mini,
           'md-btn--floating-pressed': floating && pressed,
+          'md-btn--snackbar-floating': snackbar,
+          [`md-btn--snackbar-floating-${snackbarType}adjust`]: snackbar && snackbarType !== null,
         }, className)}
       >
         {ink}
