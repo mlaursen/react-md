@@ -139,17 +139,17 @@ export default class Menu extends PureComponent {
      */
     fullWidth: PropTypes.bool,
 
-    autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs.'),
-    limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs.'),
+    autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),
+    limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs'),
     expanderIconClassName: deprecated(
       PropTypes.node,
       'The expander for cascading menus will now just be a simple rotate of the existing `ListItem` ' +
-      'expander icon.'
+      'expander icon'
     ),
     expanderIconChildren: deprecated(
       PropTypes.node,
       'The expander for cascading menus will now just be a simple rotate of the existing `ListItem` ' +
-      'expander icon.'
+      'expander icon'
     ),
   };
 

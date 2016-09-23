@@ -25,6 +25,7 @@
 @import 'components/subheaders';
 @import 'components/select-fields';
 @import 'components/overlays';
+@import 'components/snackbars';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -61,6 +62,7 @@
   @include react-md-select-fields;
   @include react-md-progress;
   @include react-md-dialogs;
+  @include react-md-snackbars;
 
   @include react-md-colors;
 }

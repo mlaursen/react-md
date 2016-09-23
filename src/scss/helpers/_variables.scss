@@ -181,12 +181,6 @@ $md-fab-z-index: 8 !default;
 /// @group navigation-drawers
 $md-navigation-drawer-z-index: $md-overlay-z-index + 1 !default;
 
-/// The default z-index for the snackbar component.
-///
-/// @type Number
-/// @group snackbars
-$md-snackbar-z-index: 11 !default;
-
 /// The default z-index for the temporary navigation-drawer
 ///
 /// @type Number
@@ -853,86 +847,6 @@ $md-sidebar-mobile-max-width: $md-navigation-drawer-mobile-max-width;
 /// @group sidebars
 /// @alias md-navigation-drawer-desktop-max-width
 $md-sidebar-desktop-max-width: $md-navigation-drawer-desktop-max-width;
-
-
-
-// ===================================================================================
-// Snackbars
-// ===================================================================================
-
-/// The background color for snackbars.
-///
-/// @link https://www.google.com/design/spec/components/snackbars-toasts.html#snackbars-toasts-specs
-/// @type String
-/// @group snackbars
-$md-snackbar-bg-color: #323232;
-
-/// The snackbar height.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-height: $md-height;
-
-/// The height for a snackbar that is multiple lines.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-multiline-height: 80px;
-
-/// The left and right padding for the snackbar.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-lr-padding: 24px;
-
-/// The top and bottom badding for the snackbar.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-tb-padding: 14px;
-
-/// The margin left for the action button in a snackbar.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-action-left-margin: 48px;
-
-/// The min width for a snackbar on a desktop screen.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-desktop-min-width: 288px;
-
-/// The max width for a snackbar on a desktop screen.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-desktop-max-width: 568px;
-
-/// The border radius for a snackbar on a desktop screen.
-///
-/// @type String
-/// @group snackbars
-$md-snackbar-desktop-border-radius: 2px;
-
-/// The transition time for the snackbar appearing.
-///
-/// @type Time
-/// @group snackbars
-$md-snackbar-transition-time: $md-transition-time * 2 !default;
-
-/// The transition time for the snackbar's children appearing.
-///
-/// @type Time
-/// @group snackbars
-$md-snackbar-opacity-transition-time: $md-transition-time * 3 !default;
-
-/// The transition delay for chained toasts.
-///
-/// @type Time
-/// @group snackbars
-$md-snackbar-chained-transition-delay: $md-transition-time * 3 !default;
-
 
 
 

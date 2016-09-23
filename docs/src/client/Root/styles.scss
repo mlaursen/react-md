@@ -179,15 +179,39 @@
   @include react-md-text-fields-mobile;
   @include react-md-text-field-custom-sizes;
   @include react-md-lists-mobile;
+  @include react-md-buttons-mobile;
+  @include react-md-snackbars-mobile;
 
   @include md-tab-mobile();
-  @include md-snackbar-mobile();
   @include md-toolbar-mobile-portrait();
 
   height: 600px;
   overflow-y: auto;
   position: relative;
   width: 360px;
+
+  .md-btn--fixed,
+  .md-snackbar,
+  .md-snackbar-container {
+    position: absolute;
+  }
+
+  .md-snackbar-container {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .md-snackbar {
+    border-radius: 0;
+    max-width: initial;
+    min-width: initial;
+    width: 100%;
+
+    &:not(.md-snackbar-enter):not(.md-snackbar-leave) {
+      transform: none;
+    }
+  }
 
   &.noscroll .phone-size-content {
     overflow-y: hidden;
@@ -216,18 +240,6 @@
     position: absolute;
     width: 100%;
     z-index: $md-toolbar-z-index - 6;
-  }
-
-  .md-floating-btn.fixed {
-    position: absolute;
-  }
-
-  .md-snackbar {
-    position: absolute;
-
-    &:not(.snackbar-enter):not(.snackbar-leave) {
-      transform: none;
-    }
   }
 
   .md-tabs-container {

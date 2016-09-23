@@ -24,4 +24,12 @@
   .md-form--padded {
     padding: $md-default-padding;
   }
+
+  .md-form-group {
+    display: flex;
+  }
+
+  .md-form-group--controls {
+    justify-content: flex-end;
+  }
 }

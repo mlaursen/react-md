@@ -1,9 +1,18 @@
-/* eslint-disable react/jsx-no-bind,no-alert */
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import Button from 'react-md/lib/Buttons/Button';
 import Snackbar from 'react-md/lib/Snackbars';
-import Button from 'react-md/lib/Buttons';
 
-export default class SnackbarExamples extends PureComponent {
+const MOBILE_MULTILINE = 'This item has the label "travel". You can add a new label.';
+const DESKTOP_MULTILINE = `There aren't really any examples of a multiline snackbar on non-mobile devices.
+I am not sure if it is really supported since these are supposed to be short messages.`;
+
+@connect(({ ui: { media: { mobile } } }) => ({ mobile }))
+export default class SimpleExamples extends PureComponent {
+  static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -11,79 +20,66 @@ export default class SnackbarExamples extends PureComponent {
       toasts: [],
       autohide: true,
     };
+
+    this._addToast = this._addToast.bind(this);
+    this._removeToast = this._removeToast.bind(this);
+    this._toastHello = this._toastHello.bind(this);
+    this._toastRetry = this._toastRetry.bind(this);
+    this._toastMultiple = this._toastMultiple.bind(this);
+    this._toastMultiline = this._toastMultiline.bind(this);
   }
 
-  _addToast = (text, action) => {
+  _addToast(text, action) {
     const toasts = this.state.toasts.slice();
-    toasts.push({
-      key: Date.now(),
-      text,
-      action,
-    });
-    const autohide = action === null || action === 'Ok';
+    toasts.push({ text, action });
+    const autohide = !action || action === 'Ok';
 
     this.setState({ toasts, autohide });
-  };
+  }
 
-  _addToasts = () => {
+  _removeToast() {
+    const [, ...toasts] = this.state.toasts;
+    this.setState({ toasts });
+  }
+
+  _toastHello() {
+    this._addToast('Hello, World!');
+  }
+
+  _toastRetry() {
+    this._addToast('Something Happened.', 'Retry');
+  }
+
+  _toastMultiple() {
     const toasts = this.state.toasts.slice();
-    toasts.push({
-      text: 'Sent',
-      action: 'Undo',
-    });
+    toasts.push({ text: 'Sent', action: 'Undo' });
 
     toasts.push({
       text: 'Connection timed out. Showing limited messages.',
       action: {
         label: 'Retry',
         onClick: () => {
-          alert('You tried again for some reason..');
+          alert('You tried again for some reason..'); // eslint-disable-line no-alert
         },
       },
     });
 
     this.setState({ toasts, autohide: true });
-  };
+  }
 
-  // Pops the first toast off of the stack of toasts.
-  // Make sure to make a new array object since it won't update
-  // the snackbar otherwise.
-  _dismissToast = () => {
-    const toasts = this.state.toasts.slice();
-    toasts.shift();
-    this.setState({ toasts });
-  };
+
+  _toastMultiline() {
+    this._addToast(this.props.mobile ? MOBILE_MULTILINE : DESKTOP_MULTILINE);
+  }
 
   render() {
-    const { toasts, autohide } = this.state;
-
     return (
       <div className="btn-group">
-        <Button
-          raised
-          label="Toast Hello, world!"
-          onClick={this._addToast.bind(this, 'Hello, World!', null)}
-        />
-        <Button
-          raised
-          label="Require action to dismiss"
-          onClick={this._addToast.bind(this, 'Something Happend', 'Retry')}
-        />
-        <Button
-          raised
-          label="Mutliple Line Toast"
-          onClick={this._addToast.bind(this, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non metus finibus, ultrices odio eget.', 'Ok')}
-        />
-        <Button
-          raised
-          label="Chained Toasts"
-          onClick={this._addToasts}
-        />
-        <Snackbar
-          toasts={toasts}
-          dismiss={this._dismissToast}
-          autohide={autohide}
-        />
+        <Button raised label="Toast Hello, World" onClick={this._toastHello} />
+        <Button raised label="Toast Multiple Lines" onClick={this._toastMultiline} />
+        <Button raised label="Require Action to Dismiss" onClick={this._toastRetry} />
+        <Button raised label="Chain Toasts" onClick={this._toastMultiple} />
+        <Snackbar {...this.state} onDismiss={this._removeToast} />
       </div>
     );
   }

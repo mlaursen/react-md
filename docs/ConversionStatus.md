@@ -33,7 +33,7 @@
 - Sidebars (deprecate and use Drawer instead)
 - Snackbars
 - Tabs (reinvent..)
-- Toolbars
+- Toolbars (depends on tabs)
 - Tooltips (Go back to prop injection version)
 
 

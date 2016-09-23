@@ -31,8 +31,8 @@ export default class List extends PureComponent {
      * `Subheader`.
      */
     children: PropTypes.node,
-    subheader: deprecated(PropTypes.string, 'Use the `Subheader` component as a child instead.'),
-    primarySubheader: deprecated(PropTypes.bool, 'Use the `Subheader` component as a child instead.'),
+    subheader: deprecated(PropTypes.string, 'Use the `Subheader` component as a child instead'),
+    primarySubheader: deprecated(PropTypes.bool, 'Use the `Subheader` component as a child instead'),
   };
 
   static childContextTypes = contextTypes;

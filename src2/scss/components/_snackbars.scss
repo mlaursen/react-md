@@ -1,0 +1,169 @@
+////
+/// @group snackbars
+////
+
+$md-snackbar-z-index: 10 !default;
+$md-snackbar-transition-time: $md-transition-time * 2 !default;
+
+$md-snackbar-color: #323232;
+$md-snackbar-horizontal-padding: 24px;
+$md-snackbar-vertical-padding: 14px;
+$md-snackbar-vertical-multiline-padding: 24px;
+
+$md-snackbar-mobile-button-left-margin: 24px;
+$md-snackbar-mobile-height: 48px;
+$md-snackbar-mobile-multiline-height: 80px;
+
+$md-snackbar-desktop-border-radius: 2px;
+$md-snackbar-desktop-button-left-margin: 48px;
+$md-snackbar-desktop-min-width: 288px;
+$md-snackbar-desktop-max-width: 568px;
+
+
+@mixin react-md-snackbars($include-media: $md-media-included) {
+  .md-snackbar-container {
+    position: absolute;
+  }
+
+  .md-snackbar {
+    align-items: center;
+    background: $md-snackbar-color;
+    bottom: 0;
+    display: flex;
+    height: $md-snackbar-mobile-height;
+    justify-content: space-between;
+    position: fixed;
+    transform-origin: 0 100%;
+    z-index: $md-snackbar-z-index;
+  }
+
+  .md-snackbar--multiline {
+    height: $md-snackbar-mobile-multiline-height;
+  }
+
+  .md-snackbar--toast {
+    color: $md-white-base;
+    margin-bottom: 0;
+    padding-left: $md-snackbar-horizontal-padding;
+    padding-right: $md-snackbar-horizontal-padding;
+  }
+
+  .md-snackbar-enter-active,
+  .md-snackbar-leave-active {
+    transition-duration: $md-snackbar-transition-time;
+    transition-property: transform;
+
+    * {
+      transition-duration: $md-snackbar-transition-time;
+      transition-property: opacity;
+    }
+  }
+
+  .md-snackbar-enter.md-snackbar-enter-active {
+    transition-timing-function: $md-transition-deceleration;
+  }
+
+  .md-snackbar-leave.md-snackbar-leave-active {
+    transition-timing-function: $md-transition-acceleration;
+  }
+
+  .md-snackbar-enter,
+  .md-snackbar-leave.md-snackbar-leave-active {
+    * {
+      opacity: 0;
+    }
+  }
+
+  .md-snackbar-enter.md-snackbar-enter-active,
+  .md-snackbar-leave {
+    * {
+      opacity: 1;
+    }
+  }
+
+  .md-btn--snackbar {
+    padding-left: $md-snackbar-horizontal-padding;
+    padding-right: $md-snackbar-horizontal-padding;
+  }
+
+  @if $include-media {
+    @include react-md-snackbars-media;
+  }
+}
+
+@mixin react-md-snackbars-mobile {
+  .md-snackbar {
+    left: 0;
+    right: 0;
+  }
+
+  .md-snackbar-enter,
+  .md-snackbar-leave.md-snackbar-leave-active {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  .md-snackbar-enter.md-snackbar-enter-active,
+  .md-snackbar-leave {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .md-snackbar--action {
+    padding-right: 0;
+  }
+
+  .md-btn--snackbar-floating {
+    transition: bottom $md-snackbar-transition-time, background $md-transition-time, box-shadow $md-transition-time, color $md-transition-time;
+    will-change: bottom;
+  }
+
+  .md-btn--snackbar-floating-adjust {
+    bottom: $md-btn-mobile-floating-margin + $md-snackbar-mobile-height;
+  }
+
+  .md-btn--snackbar-floating-multiline-adjust {
+    bottom: $md-btn-mobile-floating-margin + $md-snackbar-mobile-multiline-height;
+  }
+}
+
+@mixin react-md-snackbars-desktop {
+  .md-snackbar {
+    border-radius: $md-snackbar-desktop-border-radius;
+    left: 50%;
+    max-width: $md-snackbar-desktop-max-width;
+    min-width: $md-snackbar-desktop-min-width;
+    right: initial;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .md-snackbar-enter,
+  .md-snackbar-leave.md-snackbar-leave-active {
+    transform: translate3d(-50%, 100%, 0);
+  }
+
+  .md-snackbar-enter.md-snackbar-enter-active,
+  .md-snackbar-leave {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .md-snackbar--action {
+    padding-right: $md-snackbar-horizontal-padding;
+  }
+
+  .md-btn--snackbar-floating-adjust {
+    bottom: $md-btn-desktop-floating-margin;
+  }
+
+  .md-btn--snackbar-floating-multiline-adjust {
+    bottom: $md-btn-desktop-floating-margin;
+  }
+}
+
+@mixin react-md-snackbars-media {
+  @media #{$md-mobile-media} {
+    @include react-md-snackbars-mobile;
+  }
+
+  @media #{$md-tablet-media} {
+    @include react-md-snackbars-desktop;
+  }
+}

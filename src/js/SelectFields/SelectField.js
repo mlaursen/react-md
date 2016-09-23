@@ -241,7 +241,7 @@ export default class SelectField extends PureComponent {
      */
     keyboardMatchingTimeout: PropTypes.number.isRequired,
 
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead.'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
@@ -785,7 +785,6 @@ export default class SelectField extends PureComponent {
         id={id}
         size={size}
         ref={this._setField}
-        withRef
         key="select-field"
         label={label}
         placeholder={placeholder}

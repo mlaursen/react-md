@@ -111,11 +111,11 @@ export default class Checkbox extends PureComponent {
 
     checkedIcon: deprecated(
       PropTypes.node,
-      'Use the `checkedIconChildren` and `checkedIconClassName` props instead.'
+      'Use the `checkedIconChildren` and `checkedIconClassName` props instead'
     ),
     uncheckedIcon: deprecated(
       PropTypes.node,
-      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead.'
+      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead'
     ),
   };
 
