@@ -15,6 +15,7 @@ Table of Contents
   * [Menus](#menus)
   * [Select Fields](#select-fields)
   * [Dialogs](#dialogs)
+  * [Snackbars](#snackbars)
 * [Upgrading from 0.2.x to 0.3.x](#upgrading-from-0-2-x-to-0-3-x)
   * [NavigationDrawer](#navigationdrawer)
     * [Responsive Drawer Changes](#responsive-drawer-changes)
@@ -153,6 +154,14 @@ set to true. The full page dialog will no longer include a title, content, or ac
 So the `actionLeft` and `actionRight` props have been deprecated. Now whatever you want in the dialog
 should be created in the `children` prop. Since the full page dialog no longer renders a title, the `aria-label`
 or `aria-labelledby` prop must be specified for full page dialogs.
+
+### Snackbars
+
+- Renamed the `Snackbar` as a `SnackbarContainer` so if the snackbar was being imported as `react-md/lib/Snackbars/Snackbar`, it
+will need to be changed to `react-md/lib/Snackbars/SnackbarContainer`.
+- Deprecated the `dismiss` prop and renamed to `onDismiss`.
+- When using a FAB, the `fab` prop now should be a `ref` to the fab instead of a `findDOMNode(this.refs.fab)`.
+
 
 ## Upgrading from 0.2.x to 0.3.x
 

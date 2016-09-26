@@ -7,10 +7,11 @@ const MOBILE_MULTILINE = 'This item has the label "travel". You can add a new la
 const DESKTOP_MULTILINE = `There aren't really any examples of a multiline snackbar on non-mobile devices.
 I am not sure if it is really supported since these are supposed to be short messages.`;
 
-@connect(({ ui: { media: { mobile } } }) => ({ mobile }))
+@connect(({ ui: { media: { mobile, tablet } } }) => ({ mobile, tablet }))
 export default class SimpleExamples extends PureComponent {
   static propTypes = {
     mobile: PropTypes.bool.isRequired,
+    tablet: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -29,12 +30,22 @@ export default class SimpleExamples extends PureComponent {
     this._toastMultiline = this._toastMultiline.bind(this);
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    const { toasts } = nextState;
+    const [toast] = toasts;
+    if (this.state.toasts === toasts || !toast) {
+      return;
+    }
+
+    const autohide = toast.action !== 'Retry';
+    this.setState({ autohide });
+  }
+
   _addToast(text, action) {
     const toasts = this.state.toasts.slice();
     toasts.push({ text, action });
-    const autohide = !action || action === 'Ok';
 
-    this.setState({ toasts, autohide });
+    this.setState({ toasts });
   }
 
   _removeToast() {
@@ -64,12 +75,12 @@ export default class SimpleExamples extends PureComponent {
       },
     });
 
-    this.setState({ toasts, autohide: true });
+    this.setState({ toasts });
   }
 
 
   _toastMultiline() {
-    this._addToast(this.props.mobile ? MOBILE_MULTILINE : DESKTOP_MULTILINE);
+    this._addToast(this.props.mobile && !this.props.tablet ? MOBILE_MULTILINE : DESKTOP_MULTILINE);
   }
 
   render() {

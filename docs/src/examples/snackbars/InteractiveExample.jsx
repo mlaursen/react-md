@@ -37,7 +37,6 @@ export default class SimpleExamples extends PureComponent {
     const { text, action } = this.state;
     const toasts = this.state.toasts.slice();
     toasts.push({ text, action });
-    const autohide = !action || action === 'Ok';
 
     const words = text.split(' ').length;
     const autohideTimeout = Math.max(
@@ -45,7 +44,7 @@ export default class SimpleExamples extends PureComponent {
       (words / AVERAGE_WPS) * 1000
     );
 
-    this.setState({ toasts, autohide, autohideTimeout });
+    this.setState({ toasts, autohideTimeout });
   }
 
   _removeToast() {
