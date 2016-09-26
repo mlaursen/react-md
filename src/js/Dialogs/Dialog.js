@@ -40,6 +40,7 @@ export default class Dialog extends PureComponent {
     pageX: PropTypes.number,
     pageY: PropTypes.number,
     fullPage: PropTypes.bool,
+    onLeave: PropTypes.func,
   };
 
   static defaultProps = {
@@ -63,6 +64,12 @@ export default class Dialog extends PureComponent {
     this.setState({
       transformOrigin: `${pageX - window.scrollX}px ${pageY - window.scrollY}px`,
     });
+  }
+
+  componentWillUnmount() {
+    if (this.props.onLeave) {
+      this.props.onLeave();
+    }
   }
 
   _setContent(content) {
@@ -109,6 +116,7 @@ export default class Dialog extends PureComponent {
     delete props.pageX;
     delete props.pageY;
     delete props.style;
+    delete props.onLeave;
 
     let { 'aria-labelledby': labelledBy, style } = this.props;
     const titleId = `${id}Title`;

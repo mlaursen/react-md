@@ -161,8 +161,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
     .md-btn--text {
       font-weight: $md-font-medium;
       min-width: $md-btn-min-width;
-      padding-left: $md-btn-lr-padding;
-      padding-right: $md-btn-lr-padding;
+      padding: 8px $md-btn-lr-padding;
       text-transform: uppercase;
       transition-duration: $md-transition-time;
     }

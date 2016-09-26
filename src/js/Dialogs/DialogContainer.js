@@ -8,6 +8,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import toggleScroll from '../utils/toggleScroll';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import Dialog from './Dialog';
+import Portal from '../Helpers/Portal';
 
 // The same tick amount ReactCSSTransitionGroup uses
 const TICK = 17;
@@ -209,16 +210,27 @@ export default class DialogContainer extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      active: props.isOpen && !props.fullPage,
+      overlay: props.isOpen && !props.fullPage,
+      portalVisible: props.isOpen,
+      dialogVisible: false,
+    };
     this._setContainer = this._setContainer.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._handleDialogMounting = this._handleDialogMounting.bind(this);
+    this._mountPortal = this._mountPortal.bind(this);
+    this._mountDialog = this._mountDialog.bind(this);
+    this._unmountPortal = this._unmountPortal.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.isOpen) {
-      toggleScroll(true);
+    if (!this.props.isOpen) {
+      return;
     }
+
+    toggleScroll(true);
+    this._mountDialog(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -226,30 +238,18 @@ export default class DialogContainer extends PureComponent {
       return;
     }
 
-    const { isOpen, onOpen, fullPage } = nextProps;
-    if (isOpen && onOpen) {
-      onOpen();
-    }
-
+    const { isOpen, onOpen } = nextProps;
     toggleScroll(isOpen);
 
     if (isOpen) {
+      if (onOpen) {
+        onOpen();
+      }
+
       this._activeElement = document.activeElement;
-    }
-
-    if (fullPage) {
-      return;
-    }
-
-    if (!isOpen) {
-      this.setState({ active: false });
+      this._mountPortal(nextProps);
     } else {
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-
-        this.setState({ active: true });
-      }, TICK);
-      this.setState({ overlay: true });
+      this.setState({ dialogVisible: false, active: false });
     }
   }
 
@@ -258,8 +258,8 @@ export default class DialogContainer extends PureComponent {
       toggleScroll(false);
     }
 
-    if (this._timeout) {
-      clearTimeout(this._timeout);
+    if (this._inTimeout) {
+      clearTimeout(this._inTimeout);
     }
   }
 
@@ -267,6 +267,26 @@ export default class DialogContainer extends PureComponent {
     if (container !== null) {
       this._container = findDOMNode(container);
     }
+  }
+
+  _mountPortal(props) {
+    this._mountDialog(props);
+    this.setState({ portalVisible: true });
+  }
+
+  _mountDialog(props) {
+    const { fullPage } = props;
+    this._inTimeout = setTimeout(() => {
+      this._inTimeout = fullPage ? null : setTimeout(() => {
+        this._inTimeout = null;
+        this.setState({ active: true });
+      }, TICK);
+      this.setState({ dialogVisible: true, overlay: !fullPage });
+    }, TICK);
+  }
+
+  _unmountPortal() {
+    this.setState({ portalVisible: false });
   }
 
   _handleClick(e) {
@@ -290,8 +310,8 @@ export default class DialogContainer extends PureComponent {
   }
 
   render() {
+    const { overlay, active, dialogVisible, portalVisible } = this.state;
     const {
-      isOpen,
       style,
       className,
       dialogStyle,
@@ -302,12 +322,13 @@ export default class DialogContainer extends PureComponent {
       ...props,
     } = this.props;
     delete props.close;
+    delete props.isOpen;
     delete props.onClose;
     delete props.actionLeft;
     delete props.actionRight;
 
     let dialog;
-    if (isOpen) {
+    if (dialogVisible) {
       dialog = (
         <Dialog
           key="dialog"
@@ -316,28 +337,30 @@ export default class DialogContainer extends PureComponent {
           ref={this._handleDialogMounting}
           fullPage={fullPage}
           {...props}
+          onLeave={this._unmountPortal}
         />
       );
     }
 
-    const { overlay, active } = this.state;
     return (
-      <CSSTransitionGroup
-        component={component}
-        ref={this._setContainer}
-        style={style}
-        className={cn('md-dialog-container', {
-          'md-overlay': !fullPage && overlay,
-          'md-pointer--hover': !fullPage && overlay && !modal,
-          'md-overlay--active': !fullPage && active && overlay,
-        }, className)}
-        transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}
-        onClick={this._handleClick}
-      >
-        {dialog}
-      </CSSTransitionGroup>
+      <Portal visible={portalVisible}>
+        <CSSTransitionGroup
+          component={component}
+          ref={this._setContainer}
+          style={style}
+          className={cn('md-dialog-container', {
+            'md-overlay': !fullPage && overlay,
+            'md-pointer--hover': !fullPage && overlay && !modal,
+            'md-overlay--active': !fullPage && active && overlay,
+          }, className)}
+          transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
+          onClick={this._handleClick}
+        >
+          {dialog}
+        </CSSTransitionGroup>
+      </Portal>
     );
   }
 }
