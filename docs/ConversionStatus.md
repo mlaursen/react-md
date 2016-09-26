@@ -18,6 +18,7 @@
 - Selection Controls
 - Select Fields (depends on menus and lists)
 - Sliders
+- Snackbars
 - Subheaders
 - Text Fields
 
@@ -31,7 +32,6 @@
   - Use Toolbar instead of DrawerToolbar
 - Pickers
 - Sidebars (deprecate and use Drawer instead)
-- Snackbars
 - Tabs (reinvent..)
 - Toolbars (depends on tabs)
 - Tooltips (Go back to prop injection version)

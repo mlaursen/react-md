@@ -6,10 +6,32 @@ import deprecated from 'react-prop-types/lib/deprecated';
 // Sane as CSSTransitionGroup
 const TICK = 17;
 import isInvalidAnimate from './isInvalidAnimate';
+import Portal from '../Helpers/Portal';
 import Snackbar from './Snackbar';
 
+const CHAINED_TOAST_DELAY = 50;
+
+/**
+ * The `Snackbar` component is used for displaying a concise and small message to the user about
+ * an operation performed.
+ *
+ * > The main component for the `Snackbar` is actually named the `SnackbarContainer`, so you need
+ * to make sure the import is `react-md/lib/Snackbars` or `react-md/lib/Snackbars/SnackbarContainer`.
+ * The first import is preferable.
+ */
 export default class SnackbarContainer extends PureComponent {
   static propTypes = {
+    /**
+     * An id for the Snackbar once a toast has been added and is visible. This is a recommended
+     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbarAlert'`
+     * when there is no action on the toast, or `'snackbarAlertDialog'` when there is an action
+     * on the toast.
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the snackbar once it appears.
      */
@@ -133,6 +155,7 @@ export default class SnackbarContainer extends PureComponent {
 
     this._isMultiline = this._isMultiline.bind(this);
     this._initAndToast = this._initAndToast.bind(this);
+    this._setContainer = this._setContainer.bind(this);
     this._createSwapTimer = this._createSwapTimer.bind(this);
     this._createLeaveTimer = this._createLeaveTimer.bind(this);
   }
@@ -177,6 +200,10 @@ export default class SnackbarContainer extends PureComponent {
     }
   }
 
+  _setContainer(container) {
+    this._container = findDOMNode(container);
+  }
+
   /**
    * This function takes in a new toast object and checks if the message will span
    * multiple lines of text by creating the new snackbar before the `Snackbar` component
@@ -184,7 +211,7 @@ export default class SnackbarContainer extends PureComponent {
    * snackbar.
    */
   _isMultiline(toast) {
-    const container = findDOMNode(this);
+    const container = this._container;
     if (container === null) {
       return false;
     }
@@ -195,6 +222,8 @@ export default class SnackbarContainer extends PureComponent {
 
     let snackbar;
     if (toast.action) {
+      message.classList.add('md-snackbar--action');
+
       snackbar = document.createElement('section');
       snackbar.className = 'md-snackbar';
       snackbar.appendChild(message);
@@ -206,6 +235,9 @@ export default class SnackbarContainer extends PureComponent {
     } else {
       snackbar = message;
     }
+
+    // Only style we really want from the .md-snackbar
+    snackbar.style.maxWidth = '568px';
 
     container.appendChild(snackbar);
     const multiline = message.offsetHeight > 20;
@@ -239,18 +271,14 @@ export default class SnackbarContainer extends PureComponent {
     this._swapTimeout = setTimeout(() => {
       this._swapTimeout = null;
 
-      this.setState({ toast });
-    }, this.props.transitionLeaveTimeout + 50);
+      this.setState({ toast, multiline: this._isMultiline(toast) });
+    }, this.props.transitionLeaveTimeout + CHAINED_TOAST_DELAY);
 
     this.setState({ toast: null });
   }
 
   render() {
     const { visible, toast, multiline } = this.state;
-    if (!visible) {
-      return null;
-    }
-
     const {
       transitionEnterTimeout,
       transitionLeaveTimeout,
@@ -265,6 +293,7 @@ export default class SnackbarContainer extends PureComponent {
       snackbar = (
         <Snackbar
           {...props}
+          key="snackbar"
           leaveTimeout={transitionLeaveTimeout}
           toast={toast}
           multiline={multiline}
@@ -274,14 +303,18 @@ export default class SnackbarContainer extends PureComponent {
     }
 
     return (
-      <CSSTransitionGroup
-        className="md-snackbar-container"
-        transitionName="md-snackbar"
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-      >
-        {snackbar}
-      </CSSTransitionGroup>
+      <Portal visible={visible}>
+        <CSSTransitionGroup
+          ref={this._setContainer}
+          key="container"
+          className="md-snackbar-container"
+          transitionName="md-snackbar"
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+        >
+          {snackbar}
+        </CSSTransitionGroup>
+      </Portal>
     );
   }
 }

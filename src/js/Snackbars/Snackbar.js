@@ -6,6 +6,10 @@ import isInvalidAnimate from './isInvalidAnimate';
 
 export default class Snackbar extends PureComponent {
   static propTypes = {
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
     style: PropTypes.object,
     className: PropTypes.string,
     children: PropTypes.node,
@@ -19,6 +23,7 @@ export default class Snackbar extends PureComponent {
           onClick: PropTypes.func,
         }),
       ]),
+      onAppear: PropTypes.func,
     }).isRequired,
     multiline: PropTypes.bool,
     autohide: PropTypes.bool,
@@ -38,7 +43,11 @@ export default class Snackbar extends PureComponent {
   }
 
   componentWillMount() {
-    const { fab, multiline } = this.props;
+    const { fab, multiline, toast: { onAppear } } = this.props;
+    if (onAppear) {
+      onAppear();
+    }
+
     if (!fab || isInvalidAnimate(fab)) {
       return;
     }
@@ -124,12 +133,14 @@ export default class Snackbar extends PureComponent {
       multiline,
       ...props,
     } = this.props;
+    delete props.id;
+    delete props.fab;
     delete props.onDismiss;
     delete props.autohide;
     delete props.autohideTimeout;
-    delete props.fab;
     delete props.leaveTimeout;
     let { text, action } = toast;
+    let { id } = this.props;
 
     let Component = 'p';
     if (action) {
@@ -154,10 +165,16 @@ export default class Snackbar extends PureComponent {
       action = <Button {...btnProps} />;
     }
 
+    if (!id) {
+      id = `snackbarAlert${action ? 'Dialog' : ''}`;
+    }
+
+    const role = `alert${action ? 'dialog' : ''}`;
     return (
       <Component
         {...props}
-        role="alert"
+        id={id}
+        role={role}
         className={cn('md-snackbar', {
           'md-snackbar--multiline': multiline,
           'md-snackbar--toast': !action,
