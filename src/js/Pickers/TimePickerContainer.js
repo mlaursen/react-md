@@ -373,7 +373,7 @@ export default class TimePickerContainer extends PureComponent {
       picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
       content = <TransitionGroup>{picker}</TransitionGroup>;
     } else {
-      content = <Dialog isOpen={isOpen} close={this._close}>{picker}</Dialog>;
+      content = <Dialog isOpen={isOpen} onClose={this._close}>{picker}</Dialog>;
     }
 
     return (

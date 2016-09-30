@@ -12,7 +12,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
   @include md-navigation-drawer-desktop();
   @include md-sidebar-desktop();
   @include md-tab-desktop();
-  @include md-toolbar-desktop();
 
   .md-picker:not(.portrait) {
     @include md-pickers-landscape();
@@ -20,7 +19,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
 }
 
 @media only screen and (orientation: portrait) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
-  @include md-toolbar-mobile-portrait();
   @include md-navigation-drawer-mobile-portrait();
 
   .md-picker:not(.landscape) {
@@ -29,7 +27,6 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
 }
 
 @media only screen and (orientation: landscape) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
-  @include md-toolbar-mobile-landscape();
   @include md-navigation-drawer-mobile-landscape();
 
   .md-picker:not(.portrait) {
