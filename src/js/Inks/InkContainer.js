@@ -57,6 +57,8 @@ export default class InkContainer extends PureComponent {
     this._handleRemove = this._handleRemove.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
     this._getKeyboardContainer = this._getKeyboardContainer.bind(this);
+    this._stopPropagationToFocus = this._stopPropagationToFocus.bind(this);
+    this._initOrRemoveEvents = this._initOrRemoveEvents.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,26 +68,10 @@ export default class InkContainer extends PureComponent {
       return;
     }
 
-    if (this._isListeneredDisabledDiff('keyboard', di, ndi)) {
-      const fn = `${this._isListeneredDisabled('keyboard', ndi) ? 'remove' : 'add'}EventListener`;
-      this._getKeyboardContainer()[fn]('focus', this._handleFocus);
-
-      if (this._container.getAttribute('type') === 'submit') {
-        window[fn]('submit', this._handleSubmit);
-      }
-    }
-
-    if (this._isListeneredDisabledDiff('mouse', di, ndi)) {
-      const fn = `${this._isListeneredDisabled('mouse', ndi) ? 'remove' : 'add'}EventListener`;
-      this._container[fn]('mousedown', this._handleMouseDown);
-      this._container[fn]('mouseup', this._handleMouseUp);
-    }
-
-    if (this._isListeneredDisabledDiff('touch', di, ndi)) {
-      const fn = `${this._isListeneredDisabled('touch', ndi) ? 'remove' : 'add'}EventListener`;
-      this._container[fn]('touchstart', this._handleTouchStart);
-      this._container[fn]('touchend', this._handleTouchEnd);
-    }
+    const mouseDisabledDiff = this._isListenerDisabledDiff('mouse', di, ndi);
+    const touchDisabledDiff = this._isListenerDisabledDiff('touch', di, ndi);
+    const keyboardDisabledDiff = this._isListenerDisabledDiff('keyboard', di, ndi);
+    this._initOrRemoveEvents(nextProps, keyboardDisabledDiff, mouseDisabledDiff, touchDisabledDiff);
   }
 
   componentWillUnmount() {
@@ -94,25 +80,7 @@ export default class InkContainer extends PureComponent {
     }
 
     if (this._container) {
-      const { disabledInteractions } = this.props;
-      if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-        this._getKeyboardContainer().removeEventListener('focus', this._handleFocus);
-        this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
-
-        if (this._container.getAttribute('type') === 'submit') {
-          window.removeEventListener('submit', this._handleSubmit);
-        }
-      }
-
-      if (!this._isListeneredDisabled('mouse', disabledInteractions)) {
-        this._container.removeEventListener('mousedown', this._handleMouseDown);
-        this._container.removeEventListener('mouseup', this._handleMouseUp);
-      }
-
-      if (!this._isListeneredDisabled('touch', disabledInteractions)) {
-        this._container.removeEventListener('touchstart', this._handleTouchStart);
-        this._container.removeEventListener('touchend', this._handleTouchEnd);
-      }
+      this._initOrRemoveEvents({ disabledInteractions: ['keyboard', 'mouse', 'touch'] });
     }
   }
 
@@ -209,36 +177,53 @@ export default class InkContainer extends PureComponent {
       this._container = this._inkContainer.parentNode;
 
       if (this._container) {
-        const { disabledInteractions } = this.props;
-        if (!this._isListeneredDisabled('keyboard', disabledInteractions)) {
-          this._getKeyboardContainer().addEventListener('focus', this._handleFocus);
-
-          if (this._container.getAttribute('type') === 'submit') {
-            window.addEventListener('submit', this._handleSubmit);
-          }
-        }
-
-        if (!this._isListeneredDisabled('mouse', disabledInteractions)) {
-          this._container.addEventListener('mousedown', this._handleMouseDown);
-          this._container.addEventListener('mouseup', this._handleMouseUp);
-        }
-
-        if (!this._isListeneredDisabled('touch', disabledInteractions)) {
-          this._container.addEventListener('touchstart', this._handleTouchStart);
-          this._container.addEventListener('touchend', this._handleTouchEnd);
-        }
+        this._initOrRemoveEvents(this.props);
       }
     }
   }
 
-  _isListeneredDisabledDiff(interaction, disabledInteractions, nextDisabledInteractions) {
+  _initOrRemoveEvents(props, keyboardDiff = true, mouseDiff = true, touchDiff = true) {
+    const mouseDisabled = this._isListenerDisabled('mouse', props.disabledInteractions);
+    const touchDisabled = this._isListenerDisabled('touch', props.disabledInteractions);
+    const keyboardDisabled = this._isListenerDisabled('keyboard', props.disabledInteractions);
+
+    if (keyboardDiff) {
+      const fn = `${keyboardDisabled ? 'remove' : 'add'}EventListener`;
+      this._getKeyboardContainer()[fn]('focus', this._handleFocus);
+
+      if (this._container.getAttribute('type') === 'submit') {
+        window[fn]('submit', this._handleSubmit);
+      }
+
+      if (mouseDiff) {
+        this._container[`${mouseDisabled ? 'add' : 'remove'}EventListener`]('mousedown', this._stopPropagationToFocus);
+      }
+
+      if (touchDiff) {
+        this._container[`${touchDisabled ? 'add' : 'remove'}EventListener`]('touchstart', this._stopPropagationToFocus);
+      }
+    }
+    if (mouseDiff) {
+      const fn = `${mouseDisabled ? 'remove' : 'add'}EventListener`;
+      this._container[fn]('mousedown', this._handleMouseDown);
+      this._container[fn]('mouseup', this._handleMouseUp);
+    }
+
+    if (touchDiff) {
+      const fn = `${touchDisabled ? 'remove' : 'add'}EventListener`;
+      this._container[fn]('touchstart', this._handleTouchStart);
+      this._container[fn]('touchend', this._handleTouchEnd);
+    }
+  }
+
+  _isListenerDisabledDiff(interaction, disabledInteractions, nextDisabledInteractions) {
     const i = disabledInteractions.indexOf(interaction);
     const ni = nextDisabledInteractions.indexOf(interaction);
 
     return (i < 0 && ni >= 0) || (i >= 0 && ni < 0);
   }
 
-  _isListeneredDisabled(interaction, disabledInteractions) {
+  _isListenerDisabled(interaction, disabledInteractions) {
     return disabledInteractions && disabledInteractions.indexOf(interaction) !== -1;
   }
 
@@ -310,7 +295,7 @@ export default class InkContainer extends PureComponent {
   _handleTouchStart(e) {
     this._aborted = false;
     this._clicked = true;
-    e.stopPropagation();
+    this._skipNextMouse = true;
     window.addEventListener('touchmove', this._handleTouchMove);
 
     const { pageX, pageY } = e.changedTouches[0];
@@ -360,6 +345,18 @@ export default class InkContainer extends PureComponent {
 
     this._maybeDelayClick();
     this.createInk();
+  }
+
+  _stopPropagationToFocus(e) {
+    const { type } = e;
+    const mousedown = type === 'mousedown';
+    this._clicked = mousedown || type === 'touchstart';
+
+    if (this._clicked) {
+      window.addEventListener(mousedown ? 'mouseup' : 'touchend', this._stopPropagationToFocus, true);
+    } else {
+      window.removeEventListener(e.type, this._stopPropagationToFocus, true);
+    }
   }
 
   render() {
