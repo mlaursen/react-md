@@ -46,6 +46,12 @@ export default class Portal extends PureComponent {
      * An optional function to call when the portal is closed
      */
     onClose: PropTypes.func,
+
+    /**
+     * An optional DOM Node to render the portal into. The default is to render as
+     * the last child in the `body`.
+     */
+    renderNode: PropTypes.object,
   };
 
   static defaultProps = {
@@ -71,7 +77,7 @@ export default class Portal extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { visible, onOpen } = nextProps;
-    if (this.props.visible === visible) {
+    if (this.props.visible === visible && this._container) {
       // Need to just re-render the subtree
       this._renderPortal(nextProps);
       return;
@@ -110,7 +116,7 @@ export default class Portal extends PureComponent {
       this._container = document.createElement(props.component);
 
       this._applyStyles(props);
-      document.body.appendChild(this._container);
+      (props.renderNode || document.body).appendChild(this._container);
     } else {
       this._applyStyles(props);
     }
@@ -125,7 +131,7 @@ export default class Portal extends PureComponent {
 
     if (this._container) {
       unmount(this._container);
-      document.body.removeChild(this._container);
+      (this.props.renderNode || document.body).removeChild(this._container);
     }
 
     this._portal = null;
