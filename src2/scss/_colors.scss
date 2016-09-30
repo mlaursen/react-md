@@ -1221,7 +1221,7 @@ $md-dark-theme-colors: (
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
-@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included) {
   .md-color--text {
     color: get-color('text', $light-theme);
   }
@@ -1258,13 +1258,6 @@ $md-dark-theme-colors: (
     background: get-color('background', $light-theme);
   }
 
-  .md-background--primary,
-  .md-background--secondary {
-    .md-ink {
-      background: rgba($md-white-base, .2);
-    }
-  }
-
   .md-background--card {
     background: get-color('card', $light-theme);
   }
@@ -1274,17 +1267,21 @@ $md-dark-theme-colors: (
     color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
   }
 
-  .md-background--primary-hover:hover {
-    background: rgba($primary-color, .9);
-  }
-
   .md-background--secondary {
     background: $secondary-color;
     color: if(lightness($secondary-color) > 40, $md-white-base, $md-black-base);
   }
 
-  .md-background--secondary-hover:hover {
-    background: rgba($secondary-color, .9);
+  @if $include-media {
+    @media #{$md-desktop-media} {
+      .md-background--primary-hover:hover {
+        background: rgba($primary-color, .9);
+      }
+
+      .md-background--secondary-hover:hover {
+        background: rgba($secondary-color, .9);
+      }
+    }
   }
 }
 
@@ -1297,7 +1294,7 @@ $md-dark-theme-colors: (
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
-@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included) {
   @if $primary-color != $md-primary-color {
     .md-color--primary {
       color: $primary-color;
@@ -1312,10 +1309,6 @@ $md-dark-theme-colors: (
 
     .md-background--primary {
       background: $primary-color;
-    }
-
-    .md-background--primary-hover:hover {
-      background: rgba($primary-color, .9);
     }
   }
 
@@ -1332,10 +1325,6 @@ $md-dark-theme-colors: (
 
     .md-background--secondary {
       background: $secondary-color;
-    }
-
-    .md-background--secondary-hover:hover {
-      background: rgba($secondary-color, .9);
     }
   }
 
@@ -1358,6 +1347,22 @@ $md-dark-theme-colors: (
 
     .md-background--card {
       background: get-color('card', $light-theme);
+    }
+  }
+
+  @if $include-media and ($primary-color != $md-primary-color or $secondary-color != $md-secondary-color) {
+    @media #{$md-desktop-media} {
+      @if $primary-color != $md-primary-color {
+        .md-background--primary-hover:hover {
+          background: rgba($primary-color, .9);
+        }
+      }
+
+      @if $secondary-color != $md-secondary-color {
+        .md-background--secondary-hover:hover {
+          background: rgba($secondary-color, .9);
+        }
+      }
     }
   }
 }

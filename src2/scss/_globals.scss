@@ -72,37 +72,37 @@ $md-desktop-min-width: 1025px !default;
 /// The default mobile media query.
 /// @type String
 /// @group media-queries
-$md-mobile-media: only screen and (min-width: $md-mobile-min-width) !default;
+$md-mobile-media: 'only screen and (min-width: #{$md-mobile-min-width})' !default;
 
 /// The default media query for a portrait mobile device.
 /// @type String
 /// @group media-queries
-$md-mobile-portrait-media: only screen and (min-width: $md-mobile-min-width) and (orientation: portrait) !default;
+$md-mobile-portrait-media: 'only screen and (min-width: #{$md-mobile-min-width}) and (orientation: portrait)' !default;
 
 /// The default media query for a landscape mobile device.
 /// @type String
 /// @group media-queries
-$md-mobile-landscape-media: only screen and (min-width: $md-mobile-min-width) and (orientation: landscape) !default;
+$md-mobile-landscape-media: 'only screen and (min-width: #{$md-mobile-min-width}) and (orientation: landscape)' !default;
 
 /// The default media query for a tablet device.
 /// @type String
 /// @group media-queries
-$md-tablet-media: only screen and (min-width: $md-tablet-min-width) !default;
+$md-tablet-media: 'only screen and (min-width: #{$md-tablet-min-width})' !default;
 
 /// The default media query for a portrait tablet device.
 /// @type String
 /// @group media-queries
-$md-tablet-portrait-media: only screen and (min-width: $md-tablet-min-width) and (orientation: protrait) !default;
+$md-tablet-portrait-media: 'only screen and (min-width: #{$md-tablet-min-width}) and (orientation: protrait)' !default;
 
 /// The default media query for a landscape tablet device.
 /// @type String
 /// @group media-queries
-$md-tablet-landscape-media: only screen and (min-width: $md-tablet-min-width) and (orientation: landscape) !default;
+$md-tablet-landscape-media: 'only screen and (min-width: #{$md-tablet-min-width}) and (orientation: landscape)' !default;
 
 /// The default media query for a desktop device.
 /// @type String
 /// @group media-queries
-$md-desktop-media: only screen and (min-width: $md-desktop-min-width) !default;
+$md-desktop-media: 'only screen and (min-width: #{$md-desktop-min-width})' !default;
 
 /// Boolean if the media queries should be included by default for all component mixins.
 /// Set this to false if you want to manually include them. It is really only beneficial

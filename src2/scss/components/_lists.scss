@@ -97,6 +97,11 @@ $md-list-desktop-three-lines-height: 76px;
     .md-icon {
       flex-shrink: 0;
     }
+
+    .md-divider {
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
   }
 
   .md-list-tile {
@@ -113,12 +118,13 @@ $md-list-desktop-three-lines-height: 76px;
     background: get-color('hover', $light-theme);
   }
 
-  .md-tile-content {
-    flex-grow: 1;
-  }
-
   .md-list-item--inset {
     padding-left: $md-list-left-padding;
+  }
+
+  .md-tile-content {
+    flex-grow: 1;
+    overflow: hidden;
   }
 
   @if $include-icon {

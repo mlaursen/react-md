@@ -546,7 +546,7 @@ $md-text-field-desktop-block-padding: 16px;
 ) {
 
   .md-text-field-container {
-    @include react-md-theme-text-field-placeholders(get-color('secondary', $light-theme));
+    @include react-md-theme-placeholders(get-color('secondary', $light-theme));
 
     display: inline-block;
     position: relative;
@@ -1508,7 +1508,7 @@ $md-text-field-desktop-block-padding: 16px;
 ///
 /// @example scss - Basic Usage SASS
 ///   .md-primary.md-toolbar {
-///     @include md-theme-text-field-placeholders($md-dark-theme-help-text-color);
+///     @include md-theme-placeholders($md-dark-theme-help-text-color);
 ///   }
 ///
 /// @example scss - Basic Usage CSS Output
@@ -1531,7 +1531,7 @@ $md-text-field-desktop-block-padding: 16px;
 ///   }
 ///
 /// @param {Color} color - The placeholder color to use
-@mixin react-md-theme-text-field-placeholders($color) {
+@mixin react-md-theme-placeholders($color) {
   // scss-lint:disable VendorPrefix, PseudoElement
 
   :-moz-placeholder {
