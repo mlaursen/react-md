@@ -1,116 +1,53 @@
 @import '~react-md-scss';
 @import '~sass-utils';
 
-// scss-lint:disable IdSelector
-.theme-1 {
-  @include md-theme-most(
-    $md-light-blue-500,
-    $md-light-blue-300,
-    $md-deep-orange-a-200,
-    $md-deep-orange-a-100
-  );
-
-  @include react-md-theme-everything(
-    $md-light-blue-500,
-    $md-deep-orange-a-200
-  );
-
-  .banner {
-    background: $md-light-blue-500;
+@mixin create-theme($name, $primary, $primary-hue, $secondary, $secondary-hue, $light-theme: $md-light-theme) {
+  @if not $light-theme {
+    @include react-md-theme-everything(
+      $primary,
+      $secondary,
+      $md-linear-progress-swatch,
+      $md-text-field-error-color,
+      false,
+      $name
+    );
   }
 
-  #table-of-contents,
-  #table-of-contents + ul {
-    border-left-color: $md-light-blue-500;
-  }
-}
 
-.theme-2 {
-  @include md-theme-most(
-    $md-purple-500,
-    $md-purple-300,
-    $md-light-green-a-700,
-    $md-light-green-a-200
-  );
+  .#{$name} {
+    @if $light-theme {
+      @include md-theme-most(
+        $primary,
+        $primary-hue,
+        $secondary,
+        $secondary-hue
+      );
 
-  @include react-md-theme-everything(
-    $md-purple-500,
-    $md-light-green-a-700,
-    200
-  );
+      @include react-md-theme-everything($primary, $secondary);
+    }
 
-  #table-of-contents,
-  #table-of-contents + ul {
-    border-left-color: $md-purple-500;
+    .banner {
+      background: $primary;
+    }
+
+    // scss-lint:disable IdSelector
+    #table-of-contents,
+    #table-of-contents + ul {
+      border-left-color: $primary;
+    }
+
+    .phone-size-container .md-toolbar--fixed::before {
+      background: $primary;
+    }
   }
 }
 
-.theme-3 {
-  @include md-theme-most(
-    $md-blue-500,
-    $md-blue-300,
-    $md-amber-a-200,
-    $md-amber-a-100
-  );
-
-  @include react-md-theme-everything(
-    $md-blue-500,
-    $md-amber-a-200
-  );
-
-  #table-of-contents,
-  #table-of-contents + ul {
-    border-left-color: $md-blue-500;
-  }
-}
-
-.theme-4 {
-  @include md-theme-most(
-    $md-cyan-500,
-    $md-cyan-300,
-    $md-yellow-a-700,
-    $md-yellow-a-200
-  );
-
-  @include react-md-theme-everything(
-    $md-cyan-500,
-    $md-yellow-a-700,
-    200
-  );
-
-  #table-of-contents,
-  #table-of-contents + ul {
-    border-left-color: $md-cyan-500;
-  }
-}
-
-.theme-5 {
-  @include md-theme-most(
-    $md-orange-500,
-    $md-orange-300,
-    $md-deep-purple-a-200,
-    $md-deep-purple-a-100
-  );
-
-  @include react-md-theme-everything(
-    $md-orange-500,
-    $md-deep-purple-a-200
-  );
-
-  #table-of-contents,
-  #table-of-contents + ul {
-    border-left-color: $md-orange-500;
-  }
-}
-
-@include react-md-theme-everything(
-  $md-light-blue-500,
-  $md-deep-orange-a-200,
-  $md-linear-progress-swatch,
-  $md-text-field-error-color,
-  false,
-  'theme-dark'
-);
+@include create-theme('theme-1', $md-light-blue-500, $md-light-blue-300, $md-deep-orange-a-200, $md-deep-orange-a-100);
+@include create-theme('theme-2', $md-purple-500, $md-purple-300, $md-light-green-a-700, $md-light-green-a-200);
+@include create-theme('theme-3', $md-blue-500, $md-blue-300, $md-amber-a-200, $md-amber-a-100);
+@include create-theme('theme-4', $md-cyan-500, $md-cyan-300, $md-yellow-a-700, $md-yellow-a-200);
+@include create-theme('theme-5', $md-orange-500, $md-orange-300, $md-deep-purple-a-200, $md-deep-purple-a-100);
+@include create-theme('theme-dark', $md-light-blue-500, $md-light-blue-300, $md-deep-orange-a-200, $md-deep-orange-a-100, false);
 
 .theme-switcher {
   height: $md-toolbar-desktop-height;

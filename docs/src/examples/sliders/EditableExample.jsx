@@ -55,10 +55,11 @@ export default class EditableExample extends PureComponent {
           className="margin-centered"
         />
         <Dialog
+          id="colorChanger"
           isOpen={isOpen}
-          isSimple={false}
-          close={this._closeColorChanger}
+          onClose={this._closeColorChanger}
           dialogClassName="color-changer-dialog"
+          aria-label="Color Changer"
         >
           <header
             className="color-changer"

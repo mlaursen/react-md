@@ -1,5 +1,7 @@
 export const SHOW_OVERLAY = Symbol('SHOW_OVERLAY');
 export const HIDE_OVERLAY = Symbol('HIDE_OVERLAY');
+export const SHOW_PHONE_DEMO = Symbol('SHOW_PHONE_DEMO');
+export const HIDE_PHONE_DEMO = Symbol('HIDE_PHONE_DEMO');
 export const ADD_TOAST = Symbol('ADD_TOAST');
 export const DISMISS_TOAST = Symbol('DISMISS_TOAST');
 export const MEDIA_CHANGE = Symbol('MEDIA_CHANGE');

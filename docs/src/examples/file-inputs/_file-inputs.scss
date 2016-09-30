@@ -44,8 +44,8 @@
 .file-block {
   @extend %flex-nowrap;
 
-  .md-file-input-btn {
-    flex-shrink: 0;
+  .md-file-input-container {
+    margin-right: $md-default-padding;
   }
 }
 
