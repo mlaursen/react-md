@@ -8,19 +8,21 @@
 $md-paper-transition-time: $md-transition-time * 2 !default;
 
 /// Creates the styles for paper.
-@mixin react-md-papers {
+@mixin react-md-papers($include-media: $md-media-included) {
   @for $i from 0 through 5 {
     .md-paper--#{$i} {
       @include md-box-shadow($i);
     }
 
-    @if $i == 0 {
-      .md-paper--#{$i}-hover {
-        transition-duration: $md-paper-transition-time;
-        transition-property: box-shadow;
+    @if $i == 0 and $include-media {
+      @media #{$md-desktop-media} {
+        .md-paper--#{$i}-hover {
+          transition-duration: $md-paper-transition-time;
+          transition-property: box-shadow;
 
-        &:hover {
-          @include md-box-shadow(3);
+          &:hover {
+            @include md-box-shadow(3);
+          }
         }
       }
     }
