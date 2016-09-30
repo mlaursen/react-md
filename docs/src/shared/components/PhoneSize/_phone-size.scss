@@ -1,0 +1,152 @@
+@import '~react-md-scss';
+
+$phone-size-height: 580px;
+$phone-size-max-width: 360px;
+$phone-status-bar-height: 24px;
+
+.phone-size-container {
+  display: block;
+  overflow: hidden;
+
+  // Fixes for fixed pieces
+  .md-btn--fixed,
+  .md-toolbar--fixed,
+  .md-snackbar {
+    position: absolute;
+  }
+
+  // Fixes for full width fixed
+  .md-toolbar--fixed,
+  .md-snackbar-container {
+    left: 0;
+    width: 100%;
+  }
+
+  .md-snackbar-container {
+    bottom: 0;
+  }
+
+  .md-snackbar {
+    z-index: 300;
+  }
+}
+
+.flexible-toolbar-example {
+  color: $md-white-base;
+}
+
+.phone-size-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.phone-size-text {
+  padding-top: $md-default-padding;
+}
+
+.phone-status-bar {
+  align-items: center;
+  background: rgba($md-black-base, .32);
+  color: $md-white-base;
+  display: flex;
+  height: $phone-status-bar-height;
+  justify-content: flex-end;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+
+  .md-icon {
+    color: inherit;
+  }
+}
+
+.phone-time {
+  color: inherit;
+  font-weight: $md-font-medium;
+  padding-right: 6px;
+}
+
+.phone-demo-snackbar {
+  z-index: 300;
+}
+
+@media #{$md-mobile-media} {
+  .phone-size-container {
+    height: 100%;
+  }
+
+  .toolbar-offset {
+    padding-top: $md-toolbar-mobile-portrait-height;
+  }
+
+  .flexible-toolbar-img-container {
+    height: 100%;
+  }
+}
+
+@media #{$md-tablet-media} {
+  .phone-size-container {
+    @include react-md-toolbars-mobile-portait;
+
+    height: $phone-size-height;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: $phone-size-max-width;
+
+    .md-toolbar {
+      top: $phone-status-bar-height;
+
+      &::before {
+        background: $md-primary-color;
+        content: '';
+        height: $phone-status-bar-height;
+        position: absolute;
+        top: -$phone-status-bar-height;
+        width: 100%;
+      }
+
+      .md-autocomplete-list {
+        left: -54px;
+        position: absolute;
+        width: $phone-size-max-width;
+      }
+    }
+
+    .container {
+      width: 300px;
+    }
+
+  }
+
+  .toolbar-offset {
+    padding-top: $md-toolbar-mobile-portrait-height + $phone-status-bar-height;
+  }
+
+  .flexible-toolbar-img-container {
+    height: calc(100% + #{$phone-status-bar-height});
+    top: -$phone-status-bar-height;
+  }
+}
+
+@media #{$md-desktop-media} {
+  .phone-size-container {
+    @include react-md-typography-mobile;
+    @include react-md-text-fields-mobile;
+    @include react-md-text-field-custom-sizes;
+    @include react-md-lists-mobile;
+    @include react-md-buttons-mobile;
+    @include react-md-snackbars-mobile;
+
+    // Override styles again afte rmedia query.
+    .md-toolbar .md-text-field {
+      font-size: 20px;
+    }
+
+    .md-snackbar:not(.md-snackbar-enter):not(.md-snackbar-leave) {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

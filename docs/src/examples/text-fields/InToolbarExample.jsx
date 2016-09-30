@@ -1,86 +1,59 @@
-import React, { PureComponent, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import loremIpsum from 'lorem-ipsum';
-
-import Button from 'react-md/lib/Buttons';
-import Paper from 'react-md/lib/Papers';
-import TextField from 'react-md/lib/TextFields';
+import React, { PureComponent } from 'react';
+import Autocomplete from 'react-md/lib/Autocompletes';
+// import TextField from 'react-md/lib/TextFields';
+import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
-import Menu from 'react-md/lib/Menus';
-import { List, ListItem } from 'react-md/lib/Lists';
 
+import states from 'constants/states';
 import { randomAvatars } from 'utils/RandomUtils';
+import PhoneSizeDemo from 'containers/PhoneSizeDemo';
+import CloseButton from 'containers/PhoneSizeDemo/CloseButton';
+import ItemList from './ItemList';
 
-const noop = () => {};
-const avatars = randomAvatars(8);
-const items = [0, 1, 2, 3];
-const primaryTexts = items.map(() => {
-  const s = loremIpsum({ count: 5, units: 'words' });
-  return s.charAt(0).toUpperCase() + s.substring(1, s.length);
-});
-const secondaryTexts = items.map(() => loremIpsum());
+
+const avatars = randomAvatars(states.length);
+const data = states.map(({ name }, i) => ({ name, rightAvatar: avatars[i] }));
 
 export default class InToolbarExample extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { focus: false, value: '' };
+    this.state = { value: '' };
+    this._reset = this._reset.bind(this);
+    this._handleChange = this._handleChange.bind(this);
   }
 
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
+  _handleChange(value) {
+    this.setState({ value });
+  }
 
-  _handleChange = value => this.setState({ value });
-  _resetValue = () => this.setState({ value: '' });
-  _handleFocus = () => this.setState({ focus: true });
-  _handleBlur = () => this.setState({ focus: false });
+  _reset() {
+    this.setState({ value: '' });
+  }
 
   render() {
-    const { focus, value } = this.state;
-
     return (
-      <Paper className="phone-size-container">
-        <Toolbar primary={false}>
-          <Button icon className="action-left">arrow_back</Button>
-          <TextField
-            id="searchFakePeople"
+      <PhoneSizeDemo toolbar={false}>
+        <Toolbar
+          colored
+          fixed
+          nav={<CloseButton icon />}
+          actions={<Button icon onClick={this._reset}>close</Button>}
+        >
+          <Autocomplete
+            id="searchPeople"
             placeholder="Search"
+            data={data}
+            dataLabel="name"
+            value={this.state.value}
             onChange={this._handleChange}
-            value={value}
-            onFocus={this._handleFocus}
-            onBlur={this._handleBlur}
+            onAutocomplete={this._handleChange}
             block
             fullWidth
           />
-          <Button icon className="md-toolbar-item" onClick={this._resetValue}>close</Button>
         </Toolbar>
-        <Menu isOpen={focus && !!value.length} position={Menu.Positions.TOP_LEFT} onClose={noop}>
-          <ListItem primaryText="Aaron Bennett" rightAvatar={avatars[0]} />
-          <ListItem primaryText="Abbey Christensen" rightAvatar={avatars[1]} />
-          <ListItem primaryText="Ali Connors" rightAvatar={avatars[2]} />
-          <ListItem primaryText="Alex Nelson" rightAvatar={avatars[3]} />
-        </Menu>
-        <List>
-          {items.map(key => (
-            <ListItem
-              key={key}
-              primaryText={primaryTexts[key]}
-              secondaryText={secondaryTexts[key]}
-              leftAvatar={avatars[key + 4]}
-            />
-          ))}
-        </List>
-        <CSSTransitionGroup
-          component="div"
-          transitionName="md-overlay"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={150}
-        >
-          {focus && <div key="overlay" className="md-overlay" />}
-        </CSSTransitionGroup>
-      </Paper>
+        <ItemList />
+      </PhoneSizeDemo>
     );
   }
 }
