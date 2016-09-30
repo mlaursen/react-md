@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
+const disabledInteractions = ['mouse'];
+
 /**
  * This is the `Thumb` for the switch. The `ink` in the Thumb is only active on touch and keyboard
  * interactions, so the `AccessibleFakeInkButton` does not work for this case.
@@ -14,8 +16,6 @@ export default class SwitchThumb extends PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
-    onFocus: PropTypes.bool,
-    onBlur: PropTypes.bool,
   };
 
   render() {
@@ -24,7 +24,7 @@ export default class SwitchThumb extends PureComponent {
       <AccessibleFakeInkedButton
         {...props}
         disabled={disabled}
-        disabledInteractions={['mouse']}
+        disabledInteractions={disabledInteractions}
         inkContainerClassName="md-ink-container--2x"
         className={cn('md-switch-thumb', {
           'md-switch-thumb--disabled': disabled,
