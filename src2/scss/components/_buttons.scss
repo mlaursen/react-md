@@ -4,19 +4,23 @@
 
 /// Boolean if the flat button styles should be included.
 /// @type Boolean
-$md-buttons-include-flat: true !default;
+$md-btn-include-flat: true !default;
 
 /// Boolean if the raised button styles should be included.
 /// @type Boolean
-$md-buttons-include-raised: true !default;
+$md-btn-include-raised: true !default;
 
 /// Boolean if the icon button styles should be included.
 /// @type Boolean
-$md-buttons-include-icon: true !default;
+$md-btn-include-icon: true !default;
 
 /// Boolean if the floating button styles should be included.
 /// @type Boolean
-$md-buttons-include-floating: true !default;
+$md-btn-include-floating: true !default;
+
+/// The default z index for fixed floating buttons
+/// @type Number
+$md-btn-fixed-z-index: 22 !default;
 
 
 /// The height for buttons to make them accessible for touch devices.
@@ -99,23 +103,23 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     for the light theme.
 /// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should
 ///     also be included in this mixin.
-/// @param {Boolean} include-flat [$md-buttons-include-flat] - Boolean if the flat styles for
+/// @param {Boolean} include-flat [$md-btn-include-flat] - Boolean if the flat styles for
 ///     buttons should be included.
-/// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
+/// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-/// @param {Boolean} include-icon [$md-buttons-include-icon] - Boolean if the icon styles for
+/// @param {Boolean} include-icon [$md-btn-include-icon] - Boolean if the icon styles for
 ///     buttons should be included.
-/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+/// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
 @mixin react-md-buttons(
   $primary-color: $md-primary-color,
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
   $include-media: $md-media-included,
-  $include-flat: $md-buttons-include-flat,
-  $include-raised: $md-buttons-include-raised,
-  $include-icon: $md-buttons-include-icon,
-  $include-floating: $md-buttons-include-floating
+  $include-flat: $md-btn-include-flat,
+  $include-raised: $md-btn-include-raised,
+  $include-icon: $md-btn-include-icon,
+  $include-floating: $md-btn-include-floating
 ) {
   @if $include-media {
     @include react-md-buttons-media($include-flat, $include-raised);
@@ -142,6 +146,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 
     .md-icon {
       color: inherit;
+    }
+
+    .md-icon-separator {
+      height: 100%;
     }
   }
 
@@ -186,13 +194,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
   @if $include-icon or $include-floating {
     .md-btn--icon {
       border-radius: 50%;
+      color: get-color('icon', $light-theme);
       height: $md-btn-icon-size;
       padding: $md-btn-icon-padding;
       width: $md-btn-icon-size;
-
-      .md-icon {
-        color: inherit;
-      }
     }
   }
 
@@ -218,6 +223,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 
     .md-btn--fixed {
       position: fixed;
+      z-index: $md-btn-fixed-z-index;
     }
   }
 }
@@ -235,27 +241,33 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     the buttons with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the buttons should be styled
 ///     for the light theme.
-/// @param {Boolean} include-flat [$md-buttons-include-flat] - Boolean if the flat styles for
+/// @param {Boolean} include-flat [$md-btn-include-flat] - Boolean if the flat styles for
 ///     buttons should be included.
-/// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
+/// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-/// @param {Boolean} include-icon [$md-buttons-include-icon] - Boolean if the icon styles for
+/// @param {Boolean} include-icon [$md-btn-include-icon] - Boolean if the icon styles for
 ///     buttons should be included.
-/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+/// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
 @mixin react-md-theme-buttons(
   $primary-color: $md-primary-color,
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
-  $include-flat: $md-buttons-include-flat,
-  $include-raised: $md-buttons-include-raised,
-  $include-icon: $md-buttons-include-icon,
-  $include-floating: $md-buttons-include-floating
+  $include-flat: $md-btn-include-flat,
+  $include-raised: $md-btn-include-raised,
+  $include-icon: $md-btn-include-icon,
+  $include-floating: $md-btn-include-floating
 ) {
   @if $light-theme != $md-light-theme {
     @if $include-flat or $include-raised {
       .md-btn--raised-disabled {
         background: get-color('divider', $light-theme);
+      }
+    }
+
+    @if $include-icon or $include-floating {
+      .md-btn--icon {
+        color: get-color('icon', $light-theme);
       }
     }
   }
@@ -281,13 +293,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     @include react-md-buttons-mobile;
 ///   }
 ///
-/// @param {Boolean} include-flat [$md-buttons-include-flat] - Boolean if the flat styles for
+/// @param {Boolean} include-flat [$md-btn-include-flat] - Boolean if the flat styles for
 ///     buttons should be included.
-/// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
+/// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+/// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
-@mixin react-md-buttons-mobile($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
+@mixin react-md-buttons-mobile($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @if $include-flat or $include-raised {
     $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
 
@@ -349,13 +361,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     @include react-md-buttons-desktop;
 ///   }
 ///
-/// @param {Boolean} include-flat [$md-buttons-include-flat] - Boolean if the flat styles for
+/// @param {Boolean} include-flat [$md-btn-include-flat] - Boolean if the flat styles for
 ///     buttons should be included.
-/// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
+/// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+/// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
-@mixin react-md-buttons-desktop($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
+@mixin react-md-buttons-desktop($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @if $include-flat or $include-raised {
     .md-btn--text {
       font-size: $md-btn-desktop-font-size;
@@ -407,13 +419,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 /// @example scss - Example Usage SCSS
 ///   @include react-md-buttons-media;
 ///
-/// @param {Boolean} include-flat [$md-buttons-include-flat] - Boolean if the flat styles for
+/// @param {Boolean} include-flat [$md-btn-include-flat] - Boolean if the flat styles for
 ///     buttons should be included.
-/// @param {Boolean} include-raised [$md-buttons-include-raised] - Boolean if the raised styles for
+/// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
-/// @param {Boolean} include-floating [$md-buttons-include-floating] - Boolean if the floating styles for
+/// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
-@mixin react-md-buttons-media($include-flat: $md-buttons-include-flat, $include-raised: $md-buttons-include-raised, $include-floating: $md-buttons-include-floating) {
+@mixin react-md-buttons-media($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @media #{$md-mobile-media} {
     @include react-md-buttons-mobile($include-flat, $include-raised, $include-floating);
   }
