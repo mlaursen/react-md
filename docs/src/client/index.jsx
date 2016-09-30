@@ -15,7 +15,7 @@ WebFont.load({
   },
   custom: {
     families: ['FontAwesome'],
-    urls: ['https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'],
+    urls: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'],
   },
 });
 

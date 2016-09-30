@@ -1,11 +1,16 @@
 export function isMobile() {
   return typeof window !== 'undefined'
-    && window.matchMedia('only screen and (min-width: 320px) and (max-width: 1024px)').matches;
+    && window.matchMedia('only screen and (min-width: 320px)').matches;
 }
 
 export function isTablet() {
   return typeof window !== 'undefined'
-    && window.matchMedia('only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)').matches;
+    && window.matchMedia('only screen and (min-width: 768px)').matches;
+}
+
+export function isDesktop() {
+  return typeof window !== 'undefined'
+    && window.matchMedia('only screen and (min-width: 1025px)').matches;
 }
 
 export function getDrawerType(mobile, tablet) {

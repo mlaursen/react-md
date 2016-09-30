@@ -34,9 +34,9 @@ export default class IconExamples extends PureComponent {
           className="margin-centered"
         />
         <Dialog
+          id="volumeChanger"
           isOpen={isOpen}
-          isSimple={false}
-          close={this._closeVolumes}
+          onClose={this._closeVolumes}
           dialogStyle={{ width: 320 }}
           title="Volumes"
           contentClassName="padding-top-24"

@@ -10,7 +10,7 @@ import {
   UPDATE_THEME,
 } from 'constants/ActionTypes';
 
-import { isMobile, isTablet } from 'utils/MediaUtils';
+import { isMobile, isTablet, isDesktop } from 'utils/MediaUtils';
 
 export function setToolbarInactive(inactive) {
   return { type: SET_TOOLBAR_INACTIVE, inactive };
@@ -35,7 +35,7 @@ export function dismissToast() {
 export function mediaChange() {
   const mobile = isMobile();
   const tablet = isTablet();
-  const desktop = !mobile && !tablet;
+  const desktop = isDesktop();
 
   return {
     type: MEDIA_CHANGE,

@@ -6,7 +6,7 @@ import {
   MEDIA_CHANGE,
 } from 'constants/ActionTypes';
 import { getPageTitle } from 'utils/StringUtils';
-import { isMobile, isTablet, getDrawerType } from 'utils/MediaUtils';
+import { isMobile, isTablet, isDesktop, getDrawerType } from 'utils/MediaUtils';
 
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
@@ -47,7 +47,7 @@ function updateDrawerType(state, drawerType) {
     return Object.assign({}, state, {
       tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
       desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
-      themeable: !isMobile(),
+      themeable: isDesktop() || isTablet(),
       includeHeader: true,
     });
   } else if (state.tabletDrawerType === drawerType && state.desktopDrawerType === drawerType) {
@@ -75,14 +75,14 @@ function setMobileSearch(state, mobileSearch) {
 }
 
 const initialState = {
-  initialDrawerType: getDrawerType(isMobile(), isTablet()),
+  initialDrawerType: getDrawerType(isMobile(), isTablet() && !isDesktop()),
   toolbarTitle: '',
   inactive: true,
   tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
   desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
   mobileSearch: false,
   includeHeader: true,
-  themeable: !isMobile(),
+  themeable: isDesktop() || isTablet(),
 };
 
 export default function drawer(state = initialState, action) {

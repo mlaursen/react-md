@@ -31,8 +31,8 @@ export default class FullPageDialogExamples extends PureComponent {
   }
 
   render() {
-    const actionLeft = <Button waitForInkTransition icon onClick={this._closeDialog}>close</Button>;
-    const actionRight = <Button waitForInkTransition flat label="Save" onClick={this._closeDialog} className="mla md-toolbar-item" />;
+    const nav = <Button waitForInkTransition icon onClick={this._closeDialog}>close</Button>;
+    const action = <Button waitForInkTransition flat label="Save" onClick={this._closeDialog} />;
 
     return (
       <div>
@@ -45,8 +45,9 @@ export default class FullPageDialogExamples extends PureComponent {
           aria-label="New Event"
         >
           <Toolbar
-            actionLeft={actionLeft}
-            actionsRight={actionRight}
+            colored
+            nav={nav}
+            actions={action}
             title="New Event"
             fixed
           />
