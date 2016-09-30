@@ -133,6 +133,7 @@ export default class SnackbarContainer extends PureComponent {
 
       return null;
     },
+    renderNode: PropTypes.object,
     dismiss: deprecated(PropTypes.func, 'Use `onDismiss` instead'),
   };
 
@@ -284,6 +285,7 @@ export default class SnackbarContainer extends PureComponent {
       transitionLeaveTimeout,
       dismiss,
       onDismiss,
+      renderNode,
       ...props,
     } = this.props;
     delete props.toasts;
@@ -303,7 +305,7 @@ export default class SnackbarContainer extends PureComponent {
     }
 
     return (
-      <Portal visible={visible}>
+      <Portal visible={visible} renderNode={renderNode}>
         <CSSTransitionGroup
           ref={this._setContainer}
           key="container"

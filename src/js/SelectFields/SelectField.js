@@ -54,6 +54,11 @@ export default class SelectField extends PureComponent {
     menuClassName: PropTypes.string,
 
     /**
+     * Boolean if the text field in the select field should be displayed as a `block`.
+     */
+    block: PropTypes.bool,
+
+    /**
      * An optional style to apply to the list that gets created when the `SelectField`
      * is open.
      */
@@ -240,6 +245,16 @@ export default class SelectField extends PureComponent {
      * can start matching with different letters.
      */
     keyboardMatchingTimeout: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the text field should be a padded block when the `block` prop is true.
+     */
+    paddedBlock: PropTypes.bool,
+
+    /**
+     * Boolean if the SelectField should span the entire width.
+     */
+    fullWidth: PropTypes.bool,
 
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
@@ -758,6 +773,9 @@ export default class SelectField extends PureComponent {
       menuItems,
       iconChildren,
       iconClassName,
+      block,
+      paddedBlock,
+      fullWidth,
       ...props,
     } = this.props;
     delete props.value;
@@ -788,7 +806,8 @@ export default class SelectField extends PureComponent {
         key="select-field"
         label={label}
         placeholder={placeholder}
-        block={below}
+        block={block || below}
+        paddedBlock={block && paddedBlock}
         value={value}
         disabled={disabled}
         inkDisabled={!below}
@@ -799,6 +818,7 @@ export default class SelectField extends PureComponent {
         }, className)}
         inputStyle={inputStyle}
         inputClassName={cn(droppingClassName, inputClassName)}
+        fullWidth={fullWidth}
         inlineIndicator={
           <FontIcon
             key="indicator"
@@ -831,6 +851,7 @@ export default class SelectField extends PureComponent {
         onClick={this._handleClick}
         onKeyDown={this._handleKeyDown}
         position={position}
+        fullWidth={fullWidth}
         contained
       >
         <List
