@@ -25,6 +25,8 @@ describe('Autocomplete', () => {
     const props = {
       style: { display: 'block' },
       className: 'test',
+      containerStyle: { background: 'red' },
+      containerClassName: 'woop-woop',
       data: [],
     };
 
@@ -33,10 +35,10 @@ describe('Autocomplete', () => {
     const menu = findRenderedComponentWithType(autocomplete, Menu);
 
     expect(field.props.style).toEqual(props.style);
-    expect(field.props.className).toBe(props.className);
+    expect(field.props.className).toContain(props.className);
 
     expect(menu.props.style).toEqual(props.containerStyle);
-    expect(menu.props.className).toBe(props.containerClassName);
+    expect(menu.props.className).toContain(props.containerClassName);
   });
 
   it('passes the new value and the change event to the onChangeProp', () => {

@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
+import getField from '../utils/getField';
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus';
 import TextField from '../TextFields';
@@ -442,12 +443,13 @@ export default class Autocomplete extends PureComponent {
       }
     }
 
-    if (nextProps.data !== this.props.data) {
+    if (nextProps.data !== this.props.data || nextProps.value !== this.props.value) {
       const { data, filter, dataLabel } = nextProps;
+      const value = getField(nextProps, nextState, 'value');
 
-      const matches = filter ? filter(data, nextState.value, dataLabel) : data;
+      const matches = filter ? filter(data, value, dataLabel) : data;
       const next = { matches };
-      if (nextState.focus && matches.length) {
+      if (value && nextState.focus && matches.length) {
         next.isOpen = true;
       }
 
@@ -508,7 +510,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur();
     }
 
-    this.setState({ isOpen: false });
+    this.setState({ focus: false, isOpen: false });
   }
 
   _handleChange(value, event) {
@@ -819,6 +821,7 @@ export default class Autocomplete extends PureComponent {
     const {
       fullWidth,
       block,
+      className,
       listStyle,
       listClassName,
       containerStyle,
@@ -849,6 +852,7 @@ export default class Autocomplete extends PureComponent {
     const autocomplete = (
       <TextField
         {...props}
+        className={cn('md-autocomplete', className)}
         key="autocomplete"
         ref={this._setField}
         value={value}
@@ -883,7 +887,9 @@ export default class Autocomplete extends PureComponent {
         <CSSTransitionGroup
           component="div"
           style={containerStyle}
-          className={cn('md-menu-container', containerClassName, { 'full-width': fullWidth || block })}
+          className={cn('md-menu-container md-autocomplete-container', containerClassName, {
+            'full-width': fullWidth || block,
+          })}
           transitionName="opacity"
           transitionEnterTimeout={150}
           transitionLeave={!tabbed}
@@ -907,10 +913,9 @@ export default class Autocomplete extends PureComponent {
         position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}
         style={containerStyle}
-        className={containerClassName}
+        className={cn('md-autocomplete-container', containerClassName)}
         listStyle={listStyle}
-        listClassName={listClassName}
-        contained
+        listClassName={cn('md-autocomplete-list', listClassName)}
       >
         {matches.map(this._mapToListItem)}
       </Menu>
