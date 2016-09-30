@@ -488,10 +488,10 @@ class Button extends PureComponent {
       disabled,
       component,
       ink,
+      icon,
       ...props,
     } = this.props;
     delete props.children;
-    delete props.icon;
     delete props.tooltipLabel;
     delete props.tooltipPosition;
 
@@ -529,7 +529,7 @@ class Button extends PureComponent {
         onMouseLeave={this._handleMouseLeave}
         href={href}
         className={cn(`md-btn md-btn--${mdBtnType}`, {
-          'md-color--text': !disabled && !primary && !secondary,
+          'md-color--text': !disabled && !primary && !secondary && !icon && !floating,
           'md-color--primary': !disabled && !raisedStyles && primary,
           'md-color--primary-ink': !disabled && !raisedStyles && primary,
           'md-color--secondary': !disabled && !raisedStyles && secondary,
