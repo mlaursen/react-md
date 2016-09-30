@@ -26,6 +26,7 @@
 @import 'components/select-fields';
 @import 'components/overlays';
 @import 'components/snackbars';
+@import 'components/toolbars';
 
 /// Includes every component, transition, and typography including their
 /// media queries if the `$md-media-included` variable is `true`. You can
@@ -63,6 +64,7 @@
   @include react-md-progress;
   @include react-md-dialogs;
   @include react-md-snackbars;
+  @include react-md-toolbars;
 
   @include react-md-colors;
 }
@@ -141,6 +143,7 @@
       @include react-md-theme-lists($light-theme);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
       @include react-md-theme-progress($secondary-color, $progress-swatch);
+      @include react-md-theme-toolbars($light-theme);
 
       @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
     }
@@ -156,6 +159,7 @@
     @include react-md-theme-lists($light-theme);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
     @include react-md-theme-progress($secondary-color, $progress-swatch);
+    @include react-md-theme-toolbars($light-theme);
 
     @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
   }

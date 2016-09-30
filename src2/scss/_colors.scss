@@ -1167,6 +1167,7 @@ $md-light-theme-colors: (
   background: $md-light-theme-background-color,
   card: $md-light-theme-card-color,
   hover: $md-light-theme-divider-color,
+  toolbar: $md-light-theme-app-bar-color,
 );
 
 /// A mapping of all the dark-theme colors.
@@ -1181,6 +1182,7 @@ $md-dark-theme-colors: (
   background: $md-dark-theme-background-color,
   card: $md-dark-theme-card-color,
   hover: rgba($md-black-base, .12),
+  toolbar: $md-dark-theme-app-bar-color,
 );
 
 

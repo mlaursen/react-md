@@ -20,6 +20,10 @@
     }
   }
 
+  .md-no-scroll {
+    overflow-y: scroll;
+    position: fixed;
+  }
 
   @if $include-media {
     @include react-md-accessibility-media;

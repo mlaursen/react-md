@@ -7,7 +7,6 @@ import media from './media';
 import overlay from './overlay';
 import quickNav from './quickNav';
 import quickSearch from './quickSearch';
-import phoneDemo from './phoneDemo';
 import snackbar from './snackbar';
 import theme from './theme';
 
@@ -15,7 +14,6 @@ export default combineReducers({
   documentation,
   quickSearch,
   routing,
-  phoneDemo,
   ui: combineReducers({
     drawer,
     media,

@@ -576,6 +576,7 @@ $md-text-field-desktop-block-padding: 16px;
 
   .md-text-field-container--full-width {
     display: block;
+    width: 100%;
   }
 
   @if $include-block {
