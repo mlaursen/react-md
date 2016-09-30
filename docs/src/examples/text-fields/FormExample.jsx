@@ -2,14 +2,14 @@ import React from 'react';
 import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons';
 
-import PhoneSize from 'components/PhoneSize';
+import PhoneSizeDemo from 'containers/PhoneSizeDemo';
 import './_application.scss';
 
 const FormExample = () => (
-  <PhoneSize
+  <PhoneSizeDemo
     title="Application"
     iconLeft="arrow_back"
-    actionsRight={<Button icon className="mla">more_vert</Button>}
+    toolbarActions={<Button icon>more_vert</Button>}
   >
     <form className="md-form md-form--padded">
       <TextField
@@ -42,7 +42,7 @@ const FormExample = () => (
         defaultValue="Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures."
       />
     </form>
-  </PhoneSize>
+  </PhoneSizeDemo>
 );
 
 export default FormExample;
