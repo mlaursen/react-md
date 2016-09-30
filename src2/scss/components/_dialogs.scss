@@ -46,6 +46,14 @@ $md-dialog-horizontal-keyline: 40px;
     cursor: initial;
     min-width: $md-dialog-min-width;
     position: absolute;
+  }
+
+  .md-dialog--centered {
+    left: 50%;
+    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
+    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
 
     .md-list {
       padding-bottom: $md-dialog-padding - $md-default-padding;
@@ -60,14 +68,6 @@ $md-dialog-horizontal-keyline: 40px;
     .md-tile-text--primary {
       white-space: normal;
     }
-  }
-
-  .md-dialog--centered {
-    left: 50%;
-    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
-    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
-    top: 50%;
-    transform: translate3d(-50%, -50%, 0);
   }
 
   .md-dialog--centered-enter {

@@ -78,6 +78,7 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
     .md-icon-text {
       flex-grow: 1;
       flex-shrink: 0;
+      line-height: inherit;
 
       &:first-child {
         padding-right: $md-font-icon-separator-padding;

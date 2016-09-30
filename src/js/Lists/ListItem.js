@@ -82,6 +82,12 @@ export default class ListItem extends PureComponent {
     leftIcon: PropTypes.node,
 
     /**
+     * Boolean if the list item should be inset as if there is a `leftIcon` or a `leftAvatar`.
+     * This is used for some lists where only a parent contains the icon.
+     */
+    inset: PropTypes.bool,
+
+    /**
      * An optional `Avatar` to display to the left of the text. If you have a mixed `List` of
      * `FontIcon` and `Avatar`, it is recommended to set the `iconSized` prop on the `Avatar` to
      * `true` so that the `Avatar` will be scaled down to the `FontIcon` size.
@@ -230,6 +236,10 @@ export default class ListItem extends PureComponent {
     if (this.state.active) {
       window.removeEventListener('click', this._handleOutsideClick);
     }
+
+    if (this._touchTimeout) {
+      clearTimeout(this._touchTimeout);
+    }
   }
 
   /**
@@ -296,6 +306,8 @@ export default class ListItem extends PureComponent {
       this.props.onTouchStart(e);
     }
 
+    this._touched = true;
+
     this.setState({ active: true, touchedAt: Date.now() });
   }
 
@@ -343,6 +355,7 @@ export default class ListItem extends PureComponent {
       disabled,
       leftIcon,
       leftAvatar,
+      inset,
       rightIcon,
       rightAvatar,
       primaryText,
@@ -434,11 +447,12 @@ export default class ListItem extends PureComponent {
           className={cn('md-list-tile', {
             'md-color--text': !disabled,
             'md-color--disabled': disabled,
-            'md-list-tile--active': this.state.active,
+            'md-list-tile--active': this.state.active && !this._touched,
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,
             'md-list-tile--two-lines': secondaryText && !threeLines,
             'md-list-tile--three-lines': secondaryText && threeLines,
+            'md-list-item--inset': inset && !leftIcon && !leftAvatar,
           }, tileClassName)}
         >
           {leftNode}
