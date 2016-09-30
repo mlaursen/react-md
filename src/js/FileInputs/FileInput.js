@@ -2,15 +2,15 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import injectInk from '../Inks';
 import FontIcon from '../FontIcons';
 import IconSeparator from '../Helpers/IconSeparator';
+import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
 /**
  * The `FileInput` component is used as simple styling for the `<input type="file" />`.
  * It will style the input as a raised button by default.
  */
-class FileInput extends PureComponent {
+export default class FileInput extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -107,11 +107,6 @@ class FileInput extends PureComponent {
      * Boolean if the `FileInput` is currently disabled.
      */
     disabled: PropTypes.bool,
-
-    /**
-     * @access private
-     */
-    ink: PropTypes.node,
   };
 
   static defaultProps = {
@@ -151,7 +146,6 @@ class FileInput extends PureComponent {
       iconBefore,
       disabled,
       accept,
-      ink,
       ...props,
     } = this.props;
     delete props.onChange;
@@ -163,13 +157,9 @@ class FileInput extends PureComponent {
         style={style}
         className={cn('md-file-input-container', className)}
       >
-        {ink}
-        <IconSeparator
+        <AccessibleFakeInkedButton
           component="label"
           htmlFor={id}
-          label={label}
-          iconBefore={iconBefore}
-          children={icon}
           disabled={disabled}
           className={cn(`md-btn md-btn--${flat ? 'flat' : 'raised'} md-btn--text`, {
             'md-btn--color-primary': !disabled && flat && primary,
@@ -180,7 +170,13 @@ class FileInput extends PureComponent {
             'md-btn--raised-secondary': !disabled && !flat && secondary,
             'md-btn--raised-active': !disabled && !flat && active,
           })}
-        />
+        >
+          <IconSeparator
+            label={label}
+            iconBefore={iconBefore}
+            children={icon}
+          />
+        </AccessibleFakeInkedButton>
         <input
           disabled={disabled}
           id={id}
@@ -195,5 +191,3 @@ class FileInput extends PureComponent {
     );
   }
 }
-
-export default injectInk(FileInput);

@@ -4,7 +4,7 @@ import FileInput from 'react-md/lib/FileInputs';
 import SelectField from 'react-md/lib/SelectFields';
 import TextField from 'react-md/lib/TextFields';
 import Dialog from 'react-md/lib/Dialogs';
-import { LinearProgress } from 'react-md/lib/Progress';
+import LinearProgress from 'react-md/lib/Progress/LinearProgress';
 
 const FILE_TYPES = ['webm', 'mkv', 'flv', 'avi', 'mov', 'mp4'];
 
@@ -57,8 +57,9 @@ export default class FileConverterExample extends PureComponent {
   render() {
     const { file, fileName, isOpen, progress } = this.state;
     const dialogProps = {
+      id: 'fileConverterDialog',
       isOpen,
-      close: this._close,
+      onClose: this._close,
       title: 'Converting...',
       actions: [{ onClick: this._close, primary: true, label: 'Cancel' }],
       dialogStyle: { width: 360 },

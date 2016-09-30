@@ -50,7 +50,7 @@ export default class FileInputExamples extends PureComponent {
           secondary
           flat
         />
-        <Snackbar toasts={toasts} dismiss={this._dismiss} />
+        <Snackbar toasts={toasts} onDismiss={this._dismiss} />
       </div>
     );
   }
