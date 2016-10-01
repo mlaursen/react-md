@@ -27,16 +27,16 @@ export default class PhoneDemo extends PureComponent {
     hideDemo: PropTypes.func.isRequired,
   };
 
-  getChildContext() {
-    return { hideDemo: this._handleHide };
-  }
-
   constructor(props) {
     super(props);
 
     this.state = { visible: false };
     this._handleShow = this._handleShow.bind(this);
     this._handleHide = this._handleHide.bind(this);
+  }
+
+  getChildContext() {
+    return { hideDemo: this._handleHide };
   }
 
   _handleShow(e) {

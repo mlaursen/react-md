@@ -11,24 +11,33 @@ import { randomAvatars } from 'utils/RandomUtils';
 const avatars = randomAvatars(3, 'fake-icon');
 
 export default class NewPageDemo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { page: 1 };
-  }
-
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
   };
 
-  closeDemo = () => {
-    this.refs.newPage.closeDemo();
-  };
+  constructor(props) {
+    super(props);
 
-  fakeChangePage = (page) => {
+    this.state = { page: 1 };
+    this._setNewPage = this._setNewPage.bind(this);
+    this._closeDemo = this._closeDemo.bind(this);
+    this._fakeChangePage = this._fakeChangePage.bind(this);
+  }
+
+  _setNewPage(newPage) {
+    this._newPage = newPage;
+  }
+
+  _closeDemo() {
+    if (this._newPage) {
+      this._newPage.closeDemo();
+    }
+  }
+
+  _fakeChangePage(page) {
     this.setState({ page });
-  };
+  }
 
   render() {
     const { page } = this.state;
@@ -51,7 +60,7 @@ export default class NewPageDemo extends PureComponent {
     }];
 
     return (
-      <NewPage ref="newPage">
+      <NewPage ref={this._setNewPage}>
         <NavigationDrawer
           drawerTitle="Navigation Title"
           toolbarTitle="Main Toolbar Title"

@@ -11,12 +11,6 @@ const PROGRESS_INCREMENT = 100 / (30000 / PROGRESS_INTERVAL);
 
 @connect(({ ui }) => ({ ...ui.media }))
 export default class SpotifyAlbum extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { progress: 0, hover: false };
-  }
-
   static propTypes = {
     // Spotify album props
     id: PropTypes.string.isRequired,
@@ -43,6 +37,12 @@ export default class SpotifyAlbum extends PureComponent {
     songName: PropTypes.string,
     songDuration: PropTypes.number,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = { progress: 0, hover: false };
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.playing && !this.props.playing) {

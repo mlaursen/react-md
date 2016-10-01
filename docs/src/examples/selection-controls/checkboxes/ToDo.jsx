@@ -3,12 +3,6 @@ import ListItemControl from 'react-md/lib/Lists/ListItemControl';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 
 export default class ToDo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this._handleChange = this._handleChange.bind(this);
-  }
-
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     todo: PropTypes.shape({
@@ -17,6 +11,12 @@ export default class ToDo extends PureComponent {
     }).isRequired,
     checked: PropTypes.bool.isRequired,
   };
+
+  constructor(props) {
+    super(props);
+
+    this._handleChange = this._handleChange.bind(this);
+  }
 
   _handleChange(checked) {
     this.props.onClick(checked, this.props.todo);

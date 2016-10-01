@@ -8,7 +8,7 @@ import injectTooltip from 'react-md/lib/Tooltips';
 // around the two.
 const TooltipFontIcon = injectTooltip(({ children, iconClassName, className, ...props }) => (
   <div {...props} className={classnames(className, 'inline-rel-container')}>
-    <FontIcon iconClassName={iconClassName} children={children} />
+    <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
   </div>
 ));
 

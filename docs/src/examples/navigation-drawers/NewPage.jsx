@@ -6,15 +6,15 @@ import { setOverflow } from 'react-md/lib/utils';
 import './_new-page.scss';
 
 export default class NewPage extends PureComponent {
+  static propTypes = {
+    children: PropTypes.node,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = { isOpen: false };
   }
-
-  static propTypes = {
-    children: PropTypes.node,
-  };
 
   componentWillUpdate(nextProps, nextState) {
     if (this.state.isOpen === nextState.isOpen) { return; }

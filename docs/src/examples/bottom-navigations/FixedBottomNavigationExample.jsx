@@ -11,17 +11,22 @@ export default class SimpleExample extends PureComponent {
     super(props);
 
     this.state = { page: 0, bottomNav: null };
+    this._setPage = this._setPage.bind(this);
+    this._setBottomNav = this._setBottomNav.bind(this);
   }
 
   componentDidMount() {
     this.content = findDOMNode(this).querySelector('.demo-content');
-    this.setState({ bottomNav: this.refs.bottomNav }); // eslint-disable-line react/no-did-mount-set-state
   }
 
-  setPage = (page) => {
+  _setBottomNav(bottomNav) {
+    this.setState({ bottomNav });
+  }
+
+  _setPage(page) {
     this.content.scrollTop = 0;
     this.setState({ page });
-  };
+  }
 
   render() {
     const { bottomNav, page } = this.state;
@@ -48,9 +53,9 @@ export default class SimpleExample extends PureComponent {
         </CSSTransitionGroup>
         <BottomNavigation
           actions={actions}
-          ref="bottomNav"
+          ref={this._setBottomNav}
           dynamic={false}
-          onChange={this.setPage}
+          onChange={this._setPage}
         />
       </PhoneDemo>
     );

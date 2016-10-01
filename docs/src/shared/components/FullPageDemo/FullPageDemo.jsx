@@ -4,17 +4,17 @@ import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons';
 
 export default class FullPageDemo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { isOpen: false, pageX: null, pageY: null };
-  }
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     children: PropTypes.node,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = { isOpen: false, pageX: null, pageY: null };
+  }
 
   _launch = (e) => {
     const { pageX, pageY } = e.changedTouches ? e.changedTouches[0] : e;

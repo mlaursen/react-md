@@ -13,6 +13,10 @@ const progressId = 'fileUploadProgress';
   addToast,
 })
 export default class DeterminateExample extends PureComponent {
+  static propTypes = {
+    addToast: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -20,10 +24,6 @@ export default class DeterminateExample extends PureComponent {
     this._interval = null;
     this._timeout = null;
   }
-
-  static propTypes = {
-    addToast: PropTypes.func.isRequired,
-  };
 
   componentWillUnmount() {
     if (this._interval) { clearInterval(this._interval); }

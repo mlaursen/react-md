@@ -24,11 +24,9 @@ const IconButtonExamples = () => (
       are also built in. They will appear on hover or touch hold.
     </p>
     <Button icon href={GITHUB_LINK} iconClassName="fa fa-github" />
-    <Button
-      icon
-      tooltipLabel="Click to favorite something imaginary"
-      children="favorite"
-    />
+    <Button icon tooltipLabel="Click to favorite something imaginary">
+      favorite
+    </Button>
   </div>
 );
 

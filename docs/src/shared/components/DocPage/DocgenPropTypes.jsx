@@ -16,6 +16,16 @@ import ComponentMethods from './ComponentMethods';
 import docgenMethodsPropTypes from 'constants/docgenMethodsPropTypes';
 
 export default class DocgenPropTypes extends PureComponent {
+  static propTypes = {
+    mobile: PropTypes.bool.isRequired,
+    tablet: PropTypes.bool.isRequired,
+    component: PropTypes.string.isRequired,
+    source: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    props: PropTypes.object.isRequired,
+    methods: docgenMethodsPropTypes,
+  };
+
   constructor(props) {
     super(props);
 
@@ -28,16 +38,6 @@ export default class DocgenPropTypes extends PureComponent {
       visibleProps: sort(propList, 'name', true),
     };
   }
-
-  static propTypes = {
-    mobile: PropTypes.bool.isRequired,
-    tablet: PropTypes.bool.isRequired,
-    component: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    props: PropTypes.object.isRequired,
-    methods: docgenMethodsPropTypes,
-  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.props !== nextProps.props) {
