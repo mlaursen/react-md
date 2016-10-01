@@ -10,6 +10,11 @@ import './_todo-list.scss';
 import ToDo from './ToDo';
 
 export default class ToDoList extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,11 +28,6 @@ export default class ToDoList extends PureComponent {
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleClick = this._handleClick.bind(this);
   }
-
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
 
   _handleChange(value) {
     this.setState({ value });

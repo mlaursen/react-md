@@ -51,8 +51,7 @@ export default class PhoneSize extends PureComponent {
       className: cn('phone-size-content', {
         'toolbar-offset': toolbar,
       }, contentClassName),
-      children,
-    });
+    }, children);
 
     let toolbarNode;
     if (toolbar) {

@@ -22,7 +22,7 @@ const StatefulExamples = () => (
     />
     <p>
       When a text field is set to required, the label is automatically
-      updated to include the '*' icon for floating labels onl.
+      updated to include the '*' icon for floating labels only.
     </p>
     <TextField id="requiredField" label="I am required" required />
     <TextField

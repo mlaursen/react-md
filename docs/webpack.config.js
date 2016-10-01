@@ -50,6 +50,10 @@ module.exports = () => ({
     }],
 
     loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+    }, {
       test: /\.md$/,
       exclude: /node_modules/,
       loader: 'raw',

@@ -29,7 +29,7 @@ export default class Section extends PureComponent {
         <CardMedia aspectRatio={CardMedia.aspect.equal}>
           <img src={img} role="presentation" />
         </CardMedia>
-        <CardTitle {...props} children={titleChildren} className={titleIcon ? 'with-icon' : null} />
+        <CardTitle {...props} className={titleIcon ? 'with-icon' : null}>{titleChildren}</CardTitle>
       </Card>
     ));
 

@@ -19,36 +19,44 @@ export default class ShiftingBottomNavigationExample extends PureComponent {
       activeIndex: 0,
       bottomNav: null,
     };
+
+    this._handleActionClick = this._handleActionClick.bind(this);
+    this._setBottomNav = this._setBottomNav.bind(this);
   }
 
   componentDidMount() {
     this.content = findDOMNode(this).querySelector('.demo-content');
-    this.setState({ bottomNav: this.refs.bottomNav }); // eslint-disable-line react/no-did-mount-set-state
   }
 
-  handleActionClick = (activeIndex) => {
+  _setBottomNav(bottomNav) {
+    if (bottomNav) {
+      this.setState({ bottomNav });
+    }
+  }
+
+  _handleActionClick(activeIndex) {
     this.content.scrollTop = 0;
     this.setState({ activeIndex, className: themeClassNames[activeIndex] });
-  };
+  }
 
   render() {
     const { className, activeIndex, bottomNav } = this.state;
     const actions = [{
       label: 'Movies & TV',
       iconChildren: 'ondemand_video',
-      onClick: this.handleActionClick,
+      onClick: this._handleActionClick,
     }, {
       label: 'Music',
       iconChildren: 'music_note',
-      onClick: this.handleActionClick,
+      onClick: this._handleActionClick,
     }, {
       label: 'Books',
       iconChildren: 'book',
-      onClick: this.handleActionClick,
+      onClick: this._handleActionClick,
     }, {
       label: 'Newsstand',
       iconClassName: 'fa fa-newspaper-o',
-      onClick: this.handleActionClick,
+      onClick: this._handleActionClick,
     }];
 
     let content;
@@ -67,7 +75,7 @@ export default class ShiftingBottomNavigationExample extends PureComponent {
     }
 
     return (
-      <PhoneDemo inset={activeIndex !== 3} className={`demoing demo-${className}`} ref="demo" bottomNav={bottomNav}>
+      <PhoneDemo inset={activeIndex !== 3} className={`demoing demo-${className}`} bottomNav={bottomNav}>
         <CSSTransitionGroup
           component="div"
           transitionName="cross-fade"
@@ -76,7 +84,7 @@ export default class ShiftingBottomNavigationExample extends PureComponent {
         >
           {content}
         </CSSTransitionGroup>
-        <BottomNavigation actions={actions} colored ref="bottomNav" />
+        <BottomNavigation actions={actions} colored ref={this._setBottomNav} />
       </PhoneDemo>
     );
   }

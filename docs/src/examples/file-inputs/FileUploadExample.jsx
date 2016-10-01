@@ -12,13 +12,23 @@ export default class FileUploadExample extends PureComponent {
 
     this.state = { files: {} };
     this._timeout = null;
+    this._onLoad = this._onLoad.bind(this);
+    this._setFile = this._setFile.bind(this);
+    this._setUpload = this._setUpload.bind(this);
+    this._abortUpload = this._abortUpload.bind(this);
+    this._handleListClick = this._handleListClick.bind(this);
+    this._handleProgress = this._handleProgress.bind(this);
   }
 
   componentWillUnmount() {
     this._timeout && clearTimeout(this._timeout);
   }
 
-  _onLoad = (file, uploadResult) => {
+  _setUpload(upload) {
+    this._upload = upload;
+  }
+
+  _onLoad(file, uploadResult) {
     const { name, size, type, lastModifiedDate } = file;
 
     const files = Object.assign({}, this.state.files);
@@ -36,29 +46,32 @@ export default class FileUploadExample extends PureComponent {
     }, 2000);
 
     this.setState({ files, progress: 100 });
-  };
+  }
 
-  _setFile = (file) => {
+  _setFile(file) {
     this.setState({ file });
-  };
+  }
 
-  _handleProgress = (file, progress) => {
+  _handleProgress(file, progress) {
     // The progress event can sometimes happen once more after the abort
     // has been called. So this just a sanity check
     if (this.state.file === file) {
       this.setState({ progress });
     }
-  };
+  }
 
-  _abortUpload = () => {
-    this.refs.upload.abort();
+  _abortUpload() {
+    if (this._upload) {
+      this._upload.abort();
+    }
+
     this.setState({ file: null, progress: null });
-  };
+  }
 
   /**
    * Removes an uploaded file if the close IconButton is clicked.
    */
-  _handleListClick = (e) => {
+  _handleListClick(e) {
     let target = e.target;
     while (target && target.parentNode) {
       if (target.dataset.name) {
@@ -70,7 +83,7 @@ export default class FileUploadExample extends PureComponent {
 
       target = target.parentNode;
     }
-  };
+  }
 
   render() {
     const { files, progress } = this.state;
@@ -91,7 +104,7 @@ export default class FileUploadExample extends PureComponent {
           id="multiFileUpload"
           multiple
           secondary
-          ref="upload"
+          ref={this._setUpload}
           label="Select files to upload"
           onLoadStart={this._setFile}
           onProgress={this._handleProgress}

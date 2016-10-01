@@ -10,11 +10,7 @@ config.name = 'server';
 config.target = 'node';
 config.externals = [nodeExternals()];
 
-config.module.loaders = config.module.loaders.concat([{
-  test: /\.jsx?$/,
-  exclude: /node_modules/,
-  loader: 'babel',
-}, config.__imgLoader('url')]);
+config.module.loaders = config.module.loaders.concat([config.__imgLoader('url')]);
 
 config.output.filename = 'server.js';
 config.output.path = config.__serverDist;

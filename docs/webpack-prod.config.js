@@ -10,12 +10,6 @@ function makeConfig() {
     googleAnalytics: 'UA-76079335-1',
   });
 
-  config.module.loaders = config.module.loaders.concat([{
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    loader: 'babel',
-  }]);
-
   config.plugins = config.plugins.concat([
     new webpack.DefinePlugin({
       'process.env': {

@@ -8,6 +8,11 @@ import { addToast, dismissToast } from 'actions/ui';
 
 @connect(() => ({}), { addToast, dismissToast })
 export default class ControlledExample extends PureComponent {
+  static propTypes = {
+    addToast: PropTypes.func.isRequired,
+    dismissToast: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -16,11 +21,6 @@ export default class ControlledExample extends PureComponent {
       date: null,
     };
   }
-
-  static propTypes = {
-    addToast: PropTypes.func.isRequired,
-    dismissToast: PropTypes.func.isRequired,
-  };
 
   componentWillUpdate(nextProps, nextState) {
     const { date, formattedDate } = this.state;

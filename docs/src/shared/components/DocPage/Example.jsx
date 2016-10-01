@@ -66,7 +66,7 @@ ${code}
 `;
 
     let resolvedChildren;
-    let resolvedDescription = description && <Markdown key="desc" markdown={description} />;
+    const resolvedDescription = description && <Markdown key="desc" markdown={description} />;
     if (tableCard) {
       if (resolvedDescription) {
         resolvedChildren = [<CardText key="desc">{resolvedDescription}</CardText>, children];

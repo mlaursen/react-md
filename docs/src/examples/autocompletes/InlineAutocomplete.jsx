@@ -13,17 +13,22 @@ import './_style.scss';
 
 @connect(() => ({}), { addToast })
 export default class InlineAutocomplete extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { errorText: '', quantity: 1, pastry: '' };
-  }
-
   static propTypes = {
     addToast: PropTypes.func.isRequired,
   };
 
-  _handleSubmit = (e) => {
+  constructor(props) {
+    super(props);
+
+    this.state = { errorText: '', quantity: 1, pastry: '' };
+    this._handleBlur = this._handleBlur.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._fixQuantity = this._fixQuantity.bind(this);
+    this._updateQuantity = this._updateQuantity.bind(this);
+    this._selectPastry = this._selectPastry.bind(this);
+  }
+
+  _handleSubmit(e) {
     e.preventDefault();
 
     const { quantity, pastry } = this.state;
@@ -35,28 +40,28 @@ export default class InlineAutocomplete extends PureComponent {
     this.props.addToast({
       text: `You have ordered ${quantity} '${pastry}'`,
     });
-  };
+  }
 
-  _handleBlur = (e) => {
+  _handleBlur(e) {
     let errorText = '';
     if (!e.target.value) {
       errorText = 'A pastry is required!';
     }
 
     this.setState({ errorText, pastry: e.target.value });
-  };
+  }
 
-  _updateQuantity = (value) => {
+  _updateQuantity(value) {
     this.setState({ quantity: value });
-  };
+  }
 
-  _fixQuantity = () => {
+  _fixQuantity() {
     this.setState({ quantity: Math.min(50, Math.max(1, this.state.quantity)) });
-  };
+  }
 
-  _selectPastry = (pastry) => {
+  _selectPastry(pastry) {
     this.setState({ pastry });
-  };
+  }
 
   render() {
     const { quantity } = this.state;

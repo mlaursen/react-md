@@ -7,18 +7,18 @@ import { isTouchDevice } from 'react-md/lib/utils';
 import PhoneToolbar from './PhoneToolbar';
 
 export default class PhoneDemo extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { scrollTop: 0 };
-  }
-
   static propTypes = {
     inset: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.node,
     bottomNav: PropTypes.object,
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = { scrollTop: 0 };
+  }
 
   componentDidMount() {
     if (isTouchDevice()) {

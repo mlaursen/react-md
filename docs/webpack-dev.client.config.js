@@ -13,10 +13,6 @@ config.entry = [
 ];
 
 config.module.loaders = config.module.loaders.concat([{
-  test: /\.jsx?$/,
-  exclude: /node_modules/,
-  loader: 'react-hot!babel',
-}, {
   test: /\.scss$/,
   exclude: /node_modules/,
   loader: 'style!css?sourceMap!postcss!sass?outputStyle=expanded&sourceMap',

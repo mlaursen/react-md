@@ -15,6 +15,11 @@ const progressId = 'queryContentProgress';
 
 
 export default class QueryIndeterminateExample extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,11 +28,6 @@ export default class QueryIndeterminateExample extends PureComponent {
       key: Math.random(),
     };
   }
-
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
 
   componentWillUnmount() {
     if (this._interval) { clearInterval(this._interval); }

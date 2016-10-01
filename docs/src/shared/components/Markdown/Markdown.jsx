@@ -22,12 +22,6 @@ marked.setOptions({
 });
 
 export default class Markdown extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { markdown: marked(props.markdown) };
-  }
-
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
@@ -38,6 +32,12 @@ export default class Markdown extends PureComponent {
   static defaultProps = {
     component: 'div',
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = { markdown: marked(props.markdown) };
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.markdown !== nextProps.markdown) {
