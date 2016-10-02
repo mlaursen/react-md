@@ -6,12 +6,13 @@ import { randomImage } from 'utils/RandomUtils';
 
 const CardListExample = () => {
   const cards = Array.apply(null, new Array(10)).map((_, i) => (
-    <Card key={i} className="demo-list-card">
+    <Card key={i} className="md-cell md-cell--2 md-cell--4-tablet">
       <CardMedia
         aspectRatio={CardMedia.aspect.equal}
         overlay={<CardTitle title="Title" />}
       >
         <img
+          className="md-media-embedded"
           src={randomImage({ width: 220, time: i })}
           role="presentation"
         />

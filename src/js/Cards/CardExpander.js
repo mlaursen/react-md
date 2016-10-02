@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import cn from 'classnames';
 
 import contextTypes from './contextTypes';
-import Button from '../Buttons';
+import Button from '../Buttons/Button';
 
 /**
  * The CardExpander component is just a simple `IconButton` that
@@ -15,7 +15,7 @@ import Button from '../Buttons';
  * You can manually inject the `CardExpander` component yourself if you want to
  * use a component that is not a `CardActions` or a `CardTitle`.
  */
-export default class CardExpander extends PureComponent {
+export default class CardExpander extends Component {
   static contextTypes = contextTypes;
 
   render() {
@@ -32,16 +32,17 @@ export default class CardExpander extends PureComponent {
     return (
       <Button
         icon
-        className={cn('md-card-expander', {
-          'flipped': isExpanded,
+        className={cn('md-collapser md-collapser--card', {
+          'md-collapser--flipped': isExpanded,
         })}
         onClick={onExpandClick}
         iconClassName={iconClassName}
-        children={iconChildren}
         tooltipLabel={tooltipLabel}
         tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
-      />
+      >
+        {iconChildren}
+      </Button>
     );
   }
 }

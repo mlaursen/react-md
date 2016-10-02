@@ -11,6 +11,7 @@
 @import 'components/autocompletes';
 @import 'components/avatars';
 @import 'components/buttons';
+@import 'components/cards';
 @import 'components/chips';
 @import 'components/collapsers';
 @import 'components/dialogs';
@@ -19,6 +20,7 @@
 @import 'components/forms';
 @import 'components/inks';
 @import 'components/lists';
+@import 'components/media';
 @import 'components/menus';
 @import 'components/overlays';
 @import 'components/progress';
@@ -49,6 +51,7 @@
   @include react-md-autocompletes;
   @include react-md-avatars;
   @include react-md-buttons;
+  @include react-md-cards;
   @include react-md-chips;
   @include react-md-collapsers;
   @include react-md-dialogs;
@@ -58,6 +61,7 @@
   @include react-md-inks;
   @include react-md-icons;
   @include react-md-lists;
+  @include react-md-media;
   @include react-md-menus;
   @include react-md-overlays;
   @include react-md-papers;
@@ -140,6 +144,7 @@
 
     .#{$html-class-name} {
       @include react-md-theme-inks($light-theme);
+      @include react-md-theme-cards($light-theme);
       @include react-md-theme-dividers($light-theme);
       @include react-md-theme-icons($light-theme);
       @include react-md-theme-avatars($light-theme);
@@ -155,6 +160,7 @@
     }
   } @else {
     @include react-md-theme-inks($light-theme);
+    @include react-md-theme-cards($light-theme);
     @include react-md-theme-dividers($light-theme);
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-avatars($light-theme);

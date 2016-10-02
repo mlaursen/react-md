@@ -1,11 +1,22 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+function validateAspectRatio(props, propName, component, ...args) {
+  const value = props[propName];
+  let err = PropTypes.string.isRequired(props, propName, component, ...args);
+  if (!err && value.split('-').length !== 2) {
+    err = new Error(
+      `Your provided an \`${propName}\` prop to the ${component} that is not a valid ` +
+      `aspect ratio \`${value}\`. This should be in the form of '{width}-{height}'.`
+    );
+  }
+
+  return err;
+}
+
 /**
  * The `CardMedia` component is used to display images or some sort
  * media.
- *
- * The media can be forced to be 1:1 aspect ratio or a 16:9 aspect ratio.
  */
 export default class CardMedia extends PureComponent {
   static aspect = {
@@ -38,34 +49,47 @@ export default class CardMedia extends PureComponent {
     /**
      * The aspect ratio to use.
      */
-    aspectRatio: PropTypes.oneOf([CardMedia.aspect.equal, CardMedia.aspect.wide]).isRequired,
+    aspectRatio: validateAspectRatio,
 
     /**
      * Boolean if this component should be expandable when there is a `CardExpander`
      * above it in the `Card`.
      */
     expandable: PropTypes.bool,
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
   };
 
   static defaultProps = {
     forceAspect: true,
-    aspectRatio: CardMedia.aspect.wide,
+    aspectRatio: '16-9',
+    component: 'section',
   };
 
   render() {
-    const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;
+    const {
+      component: Component,
+      className,
+      overlay,
+      children,
+      forceAspect,
+      aspectRatio,
+      ...props,
+    } = this.props;
     delete props.expandable;
 
     return (
-      <section
+      <Component
         {...props}
-        className={cn('md-card-media', className, {
-          [`md-media-${aspectRatio}`]: forceAspect,
+        className={cn('md-media', className, {
+          [`md-media--${aspectRatio}`]: forceAspect,
         })}
       >
         {children}
-        {overlay && <div className="md-card-media-overlay">{overlay}</div>}
-      </section>
+        {overlay && <div className="md-media-overlay">{overlay}</div>}
+      </Component>
     );
   }
 }

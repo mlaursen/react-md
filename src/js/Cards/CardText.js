@@ -37,12 +37,9 @@ export default class CardText extends PureComponent {
   };
 
   render() {
-    const { component, className, children, ...props } = this.props;
+    const { component: Component, className, ...props } = this.props;
     delete props.expandable;
 
-    return React.createElement(component, {
-      className: cn('md-card-text', className),
-      ...props,
-    }, children);
+    return <Component {...props} className={cn('md-card-text', className)} />;
   }
 }
