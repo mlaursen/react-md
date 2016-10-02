@@ -1,17 +1,16 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import { TAB } from '../constants/keyCodes';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
+import Collapse from '../Helpers/Collapse';
 import Collapser from '../FontIcons/Collapser';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
-import Height from '../Transitions/Height';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -395,11 +394,7 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = isOpen && (
-        <Height key="nested-list">
-          <List>{nestedItems}</List>
-        </Height>
-      );
+      nestedList = <Collapse collapsed={!isOpen}><List>{nestedItems}</List></Collapse>;
 
       if (!rightIcon || !rightAvatar) {
         rightNode = (
@@ -419,8 +414,7 @@ export default class ListItem extends PureComponent {
     const avatard = !!leftAvatar || !!rightAvatar;
 
     return (
-      <TransitionGroup
-        component="li"
+      <li
         style={style}
         className={cn('md-list-item', {
           'md-list-item--nested-container': nestedItems,
@@ -469,7 +463,7 @@ export default class ListItem extends PureComponent {
           {children}
         </AccessibleFakeInkedButton>
         {nestedList}
-      </TransitionGroup>
+      </li>
     );
   }
 }
