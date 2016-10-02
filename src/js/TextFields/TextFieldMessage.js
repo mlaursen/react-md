@@ -82,7 +82,7 @@ export default class TextFieldMessage extends PureComponent {
           'md-text-field-message-container--count-only': !message || !isMessageVisible,
           'md-text-field-message-container--left-icon-offset': leftIcon,
           'md-text-field-message-container--right-icon-offset': rightIcon,
-          'md-text-field-message-container--full-width': !block,
+          'md-full-width': !block,
         }, className)}
       >
         <Message key="message" active={isMessageVisible}>{message}</Message>

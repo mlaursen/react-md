@@ -87,7 +87,7 @@ export default class InputField extends PureComponent {
         'md-color--disabled': props.disabled,
         'md-text-field--inline-indicator': inlineIndicator || (!multiline && type === 'password'),
         'md-text-field--multiline': multiline,
-        'md-text-field--full-width': fullWidth,
+        'md-full-width': fullWidth,
         'md-text-field--margin': !block && !multiline && !label,
         'md-text-field--floating-margin': !block && !multiline && label,
         [`md-text-field--${customSize}`]: customSize,

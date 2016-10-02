@@ -1,5 +1,6 @@
 @import 'globals';
 @import 'typography';
+@import 'helpers';
 
 
 @import 'components/papers';
@@ -68,6 +69,7 @@
   @include react-md-toolbars;
   @include react-md-tooltips;
 
+  @include react-md-helpers-everything;
   @include react-md-colors;
 }
 

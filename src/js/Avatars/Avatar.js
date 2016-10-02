@@ -112,7 +112,7 @@ export default class Avatar extends PureComponent {
     return (
       <div
         {...props}
-        className={cn('md-avatar', this._getColor(suffix, suffixes, random), {
+        className={cn('md-inline-block md-avatar', this._getColor(suffix, suffixes, random), {
           'md-avatar--icon-sized': iconSized,
         }, className)}
       >

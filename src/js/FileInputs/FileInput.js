@@ -155,7 +155,7 @@ export default class FileInput extends PureComponent {
       <div
         {...props}
         style={style}
-        className={cn('md-file-input-container', className)}
+        className={cn('md-inline-block md-file-input-container', className)}
       >
         <AccessibleFakeInkedButton
           component="label"

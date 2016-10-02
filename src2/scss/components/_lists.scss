@@ -124,7 +124,6 @@ $md-list-desktop-three-lines-height: 76px;
 
   .md-tile-content {
     flex-grow: 1;
-    overflow: hidden;
   }
 
   @if $include-icon {
@@ -423,15 +422,6 @@ $md-list-desktop-three-lines-height: 76px;
 ///     nested list's padding should be incremented at each step.
 @mixin react-md-lists-nested($nested-items-depth: $md-list-nested-items-depth, $nested-items-increment: $md-list-nested-items-increment) {
   @if $nested-items-depth != null and $nested-items-depth > 0 {
-    .md-list-expander {
-      transition-duration: $md-transition-time;
-      transition-property: transform;
-    }
-
-    .md-list-expander--flipped {
-      transform: rotate3d(0, 0, 1, 180deg);
-    }
-
     $multiplier: 1;
 
     @for $i from 1 through $nested-items-depth {
