@@ -21,14 +21,15 @@ WebFont.load({
 
 const store = configureStore(window.__INITIAL_STATE__);
 const history = syncHistoryWithStore(browserHistory, store);
+const root = document.getElementById('app');
 
 if (process.env.NODE_ENV === 'development') {
   window.Perf = require('react-addons-perf');
 
-  render(<Root store={store} history={history} routes={routes} />, document.getElementById('app'));
+  render(<Root store={store} history={history} routes={routes} />, root);
 } else {
   match({ history, routes }, (error, redirectLocation, renderProps) => {
-    render(<Root store={store} {...renderProps} />, document.getElementById('app'));
+    render(<Root store={store} {...renderProps} />, root);
   });
 }
 
