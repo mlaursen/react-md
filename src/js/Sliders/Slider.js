@@ -461,13 +461,9 @@ export default class Slider extends PureComponent {
     this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
     this._calcTrackWidth = this._calcTrackWidth.bind(this);
     this._animateDiscreteInk = this._animateDiscreteInk.bind(this);
-  }
-
-  componentDidMount() {
-    this._node = findDOMNode(this);
-    this._track = findDOMNode(this.refs.track);
-    this._textField = this.props.editable && findDOMNode(this.refs.textField);
-    this._calcTrackWidth(this.props);
+    this._setTrack = this._setTrack.bind(this);
+    this._setField = this._setField.bind(this);
+    this._setNode = this._setNode.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -505,13 +501,6 @@ export default class Slider extends PureComponent {
 
       this._dragAdded = addDrag;
     }
-
-    if (this.props.editable !== prevProps.editable) {
-      this._textField = this.props.editable
-        ? findDOMNode(this.refs.textField)
-        : null;
-      this._calcTrackWidth(this.props);
-    }
   }
 
   componentWillUnmount() {
@@ -519,7 +508,7 @@ export default class Slider extends PureComponent {
       const rm = window.removeEventListener;
       rm('mousemove', this._handleMouseMove);
       rm('mouseup', this._handleMouseUp);
-      rm('touchmove', this._handleTouchMove);
+      rm('touchmove', this._handleDragMove);
       rm('touchend', this._handleTouchEnd);
       rm('click', this._blurOnOutsideClick);
     }
@@ -648,7 +637,7 @@ export default class Slider extends PureComponent {
       this.props.onTouchStart(e);
     }
 
-    if (this.props.disabled || !isValidClick(e, 'mousedown')) {
+    if (this.props.disabled || (e.type === 'mousedown' && !isValidClick(e, 'mousedown'))) {
       return;
     }
 
@@ -661,6 +650,19 @@ export default class Slider extends PureComponent {
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
+  }
+
+  _setNode(node) {
+    this._node = findDOMNode(node);
+  }
+
+  _setTrack(track) {
+    this._track = findDOMNode(track);
+  }
+
+  _setField(field) {
+    this._field = findDOMNode(field);
+    this._calcTrackWidth(this.props);
   }
 
   _handleDragMove(e) {
@@ -911,7 +913,7 @@ export default class Slider extends PureComponent {
       rightChildren = (
         <TextField
           id={`${id}Editor`}
-          ref="textField"
+          ref={this._setField}
           type="number"
           value={value}
           inputClassName="md-slider-editor"
@@ -925,13 +927,14 @@ export default class Slider extends PureComponent {
     return (
       <div
         {...props}
+        ref={this._setNode}
         className={cn('md-slider-container', className, {
           'md-pointer--hover': !disabled,
         })}
         onMouseDown={this._handleDragStart}
         onTouchStart={this._handleDragStart}
       >
-        <SliderLabel htmlFor={id} children={label} />
+        <SliderLabel htmlFor={id}>{label}</SliderLabel>
         <input
           id={id}
           type="range"
@@ -944,7 +947,7 @@ export default class Slider extends PureComponent {
         />
         {leftIcon}
         <Track
-          ref="track"
+          ref={this._setTrack}
           style={Object.assign({}, trackStyle, { width: trackWidth })}
           className={cn(trackClassName, {
             'md-slider-track--ind-left': leftIcon,
