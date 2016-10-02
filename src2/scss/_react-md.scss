@@ -1,6 +1,7 @@
 @import 'globals';
 @import 'typography';
 @import 'helpers';
+@import 'grid';
 
 
 @import 'components/papers';
@@ -43,6 +44,7 @@
 @mixin react-md-everything {
   @include react-md-typography;
   @include react-md-accessibility;
+  @include react-md-grid;
 
   @include react-md-autocompletes;
   @include react-md-avatars;

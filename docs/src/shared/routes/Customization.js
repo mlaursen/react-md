@@ -21,6 +21,20 @@ const childRoutes = ['themes', 'media-queries'].map(route => ({
   },
 }));
 childRoutes.unshift(indexRoute);
+
+childRoutes.push({
+  path: 'grids',
+  getComponent(nextState, cb) {
+    if (__CLIENT__) {
+      require.ensure([], require => {
+        cb(null, require('components/Grids').default);
+      });
+    } else {
+      cb(null, require('components/Grids').default);
+    }
+  },
+});
+
 childRoutes.push({
   path: 'typography',
   getComponent(nextState, cb) {

@@ -126,7 +126,7 @@ export default class CircularProgress extends PureComponent {
         {...accessibilityProps}
         style={svgStyle}
         className={cn('md-progress md-progress--circular', {
-          'md-progress--centered': centered,
+          'md-block-centered': centered,
           'md-progress--circular-determinate': isDeterminate,
           'md-progress--circular-indeterminate': !isDeterminate,
         }, className)}

@@ -1,0 +1,124 @@
+////
+/// @group cards
+////
+
+$md-card-include-text: true !default;
+$md-card-include-title: true !default;
+$md-card-include-title-avatar: true !default;
+$md-card-include-actions: true !default;
+
+$md-card-media-overlay-color: rgba($md-black-base, .54) !default;
+
+$md-card-padding-extra: 24px;
+
+@mixin react-md-cards(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-text: $md-card-include-text,
+  $include-title: $md-card-include-title,
+  $include-title-avatar: $md-card-include-title-avatar,
+  $include-actions: $md-card-include-actions
+) {
+  .md-card {
+    background: get-color('card', $light-theme);
+  }
+
+  .md-card--raise {
+    transition-duration: $md-transition-time * 2;
+    transition-property: box-shadow;
+  }
+
+  .md-collapser--card {
+    @extend %md-cell--right;
+
+    transition-duration: .3s;
+    transition-property: background, transform;
+  }
+
+  @if $include-text {
+    @include react-md-cards-text;
+  }
+
+  @if $include-title {
+    @include react-md-cards-title;
+  }
+
+  @if $include-title-avatar {
+    @include react-md-cards-title-avatar;
+  }
+
+  @if $include-actions {
+    @include react-md-cards-actions;
+  }
+}
+
+@mixin react-md-theme-cards($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-card {
+      background: get-color('card', $light-theme);
+    }
+  }
+}
+
+@mixin react-md-cards-text {
+  .md-card-text {
+    font-size: 14px;
+    padding: $md-default-padding;
+
+    p {
+      font-size: inherit;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &:last-child {
+      padding-bottom: $md-card-padding-extra;
+    }
+  }
+}
+
+@mixin react-md-cards-title {
+  .md-card-title {
+    align-items: center;
+    display: flex;
+    padding: $md-default-padding;
+
+    &:last-child {
+      padding-bottom: $md-card-padding-extra;
+    }
+  }
+
+  .md-card-title--primary {
+    padding-top: $md-card-padding-extra;
+  }
+
+  .md-card-title--title {
+    font-size: 14px;
+    line-height: $md-line-height;
+    margin: 0;
+  }
+
+  .md-card-title--large {
+    font-size: 24px;
+  }
+}
+
+@mixin react-md-cards-title-avatar {
+  .md-avatar--card {
+    margin-right: $md-card-padding;
+  }
+}
+
+@mixin react-md-cards-actions {
+  .md-dialog-footer--card {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .md-dialog-footer--card-centered {
+    justify-content: center;
+  }
+}

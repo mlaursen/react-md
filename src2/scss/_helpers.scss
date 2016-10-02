@@ -2,20 +2,35 @@
 /// @group helpers
 ////
 
+%md-inline-block {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+%md-full-width {
+  width: 100%;
+}
+
+%md-block-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @mixin react-md-helpers-everything {
   @include react-md-helpers-blocks;
 }
 
 @mixin react-md-helpers-blocks {
-  %md-full-width,
-  .md-full-width {
-    display: block;
-    width: 100%;
+  .md-inline-block {
+    @extend %md-inline-block;
   }
 
-  .md-inline-block {
-    display: inline-block;
-    vertical-align: bottom;
+  .md-full-width {
+    @extend %md-full-width;
+  }
+
+  .md-block-centered {
+    @extend %md-block-centered;
   }
 }

@@ -5,7 +5,8 @@ $phone-size-max-width: 360px;
 $phone-status-bar-height: 24px;
 
 .phone-size-container {
-  display: block;
+  @extend %md-block-centered;
+
   overflow: hidden;
 
   // Fixes for fixed pieces
@@ -91,8 +92,6 @@ $phone-status-bar-height: 24px;
     @include react-md-toolbars-mobile-portait;
 
     height: $phone-size-height;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
     width: $phone-size-max-width;
 

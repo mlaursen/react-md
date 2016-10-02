@@ -195,7 +195,7 @@ export default class SpotifySearch extends PureComponent {
         {artistText}
         <CSSTransitionGroup
           component="output"
-          className="md-card-list around"
+          className="md-grid"
           transitionName="upload"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}

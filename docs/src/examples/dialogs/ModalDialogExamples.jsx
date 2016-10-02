@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons';
 
-import './_speed-boost.scss';
-
 export default class ModalDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
@@ -27,8 +25,6 @@ export default class ModalDialogExamples extends PureComponent {
         <Dialog
           id="speedBoost"
           isOpen={isOpen}
-          dialogClassName="speed-boost"
-          contentClassName="speed-boost-content"
           title="Use Google's location service?"
           onClose={this.closeDialog}
           aria-labelledby="speedBoostDescription"

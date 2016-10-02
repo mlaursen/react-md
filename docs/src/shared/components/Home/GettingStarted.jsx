@@ -8,7 +8,7 @@ import { FIRST_COMPONENT_LINK } from 'utils/RouteUtils';
 export default class GettingStarted extends PureComponent {
   render() {
     return (
-      <section className="getting-started md-card-list">
+      <section className="getting-started md-grid">
         <ImgCard
           to="getting-started/prerequisites"
           src={gettingStarted}

@@ -132,6 +132,7 @@ const routes = [{
     'colors',
     'themes',
     'media-queries',
+    'grids',
     'typography', {
       href: '/sassdoc',
       primaryText: 'SASS Doc',

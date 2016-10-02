@@ -44,8 +44,8 @@ WebFontLoader.load({
 class App extends Component {
   render() {
     return (
-      <div className="md-card-list">
-        <Card>
+      <div className="md-grid">
+        <Card className="md-cell">
           <CardTitle title="Hello, World!"  />
           <CardText>
             Lorem ipsum... pretend more ...

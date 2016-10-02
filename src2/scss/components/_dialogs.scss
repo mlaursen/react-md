@@ -20,7 +20,6 @@ $md-dialog-full-page-z-index: 110 !default;
 $md-dialog-btn-height: 36px;
 $md-dialog-btn-min-width: 64px;
 $md-dialog-btn-padding: 8px;
-$md-dialog-min-width: 56px * 5;
 $md-dialog-padding: 24px;
 $md-dialog-title-padding-bottom: 20px;
 
@@ -43,8 +42,9 @@ $md-dialog-horizontal-keyline: 40px;
   }
 
   .md-dialog {
+    @include react-md-dialog-width;
+
     cursor: initial;
-    min-width: $md-dialog-min-width;
     position: absolute;
   }
 
@@ -190,4 +190,17 @@ $md-dialog-horizontal-keyline: 40px;
     padding-left: $md-dialog-btn-padding;
     padding-right: $md-dialog-btn-padding;
   }
+}
+
+/// A simple mixin to set the width for a dialog.
+///
+/// @example scss - Example Usage SCSS
+///   .md-dialog--big {
+///      @include react-md-dialog-width(10);
+///   }
+///
+/// @param {Number} units [5] - The number of units for the dialog's width to be.
+///     this will be multiplied by `56px` since it is a single unit on a dialog.
+@mixin react-md-dialog-width($units: 5) {
+  width: $units * 56px;
 }

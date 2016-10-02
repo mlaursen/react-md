@@ -1,13 +1,6 @@
 @import '~sass-utils';
 
-.md-card-list .spotify-album {
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
 .spotify-album {
-  width: auto;
-
   &:hover {
     cursor: pointer;
   }
@@ -21,16 +14,6 @@
   .md-linear-progress.determinate {
     transition-duration: 0s;
   }
-
-  .md-card-media {
-    overflow: hidden;
-    transition-duration: .3s;
-    transition-property: height, width;
-  }
-}
-
-.md-card-list.around {
-  justify-content: space-around;
 }
 
 .spotify-example .md-subheading-1 {

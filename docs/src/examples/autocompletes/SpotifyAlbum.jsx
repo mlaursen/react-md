@@ -30,6 +30,7 @@ export default class SpotifyAlbum extends PureComponent {
     // From react-redux
     mobile: PropTypes.bool.isRequired,
     tablet: PropTypes.bool.isRequired,
+    desktop: PropTypes.bool.isRequired,
 
     // Normal props
     paused: PropTypes.bool,
@@ -87,9 +88,9 @@ export default class SpotifyAlbum extends PureComponent {
 
   render() {
     const { progress, hover } = this.state;
-    const { id, images, mobile, playing, paused, songName, songDuration } = this.props;
+    const { id, images, tablet, desktop, playing, paused, songName, songDuration } = this.props;
 
-    const img = images[(mobile && !playing ? 2 : 1)];
+    const img = images[(!desktop && !tablet && !playing ? 2 : 1)];
     let player;
     if (playing) {
       player = (
@@ -99,11 +100,6 @@ export default class SpotifyAlbum extends PureComponent {
         </div>
       );
     }
-
-    const style = {
-      height: img.width,
-      width: img.width,
-    };
 
     let hoverIcon;
     if (hover || playing) {
@@ -120,12 +116,12 @@ export default class SpotifyAlbum extends PureComponent {
     return (
       <Card
         tabIndex={0}
-        className="spotify-album"
+        className="md-cell md-cell--3 md-cell--4-tablet md-cell--1-phone spotify-album"
         data-album-id={id}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
       >
-        <CardMedia forceAspect={false} overlay={player} style={style}>
+        <CardMedia aspectRatio="1-1" overlay={player}>
           <img src={img.url} alt={`${name}'s album artwork'`} />
           <CSSTransitionGroup transitionName="play" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
             {hoverIcon}

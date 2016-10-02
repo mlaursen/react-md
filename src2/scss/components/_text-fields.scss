@@ -898,7 +898,8 @@ $md-text-field-desktop-block-padding: 16px;
   }
 
   .md-divider--expand-from-right::after {
-    margin-left: auto;
+    @extend %md-cell--right;
+
     right: 0;
   }
 }

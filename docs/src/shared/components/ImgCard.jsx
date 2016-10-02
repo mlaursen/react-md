@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CardTitle, CardMedia } from 'react-md/lib/Cards';
 import injectInk from 'react-md/lib/Inks';
+import Paper from 'react-md/lib/Papers';
 
 @injectInk
 export default class ImgCard extends PureComponent {
@@ -16,13 +17,19 @@ export default class ImgCard extends PureComponent {
   render() {
     const { src, alt, title, to, ink, ...props } = this.props;
     return (
-      <Link to={`/${to}`} className="md-card raise ink-item img-card" {...props}>
+      <Paper
+        {...props}
+        zDepth={1}
+        component={Link}
+        to={`/${to}`}
+        className="img-card md-cell"
+      >
         {ink}
         <CardTitle title={title} />
         <CardMedia aspectRatio={CardMedia.aspect.equal}>
           <img src={src} alt={alt} />
         </CardMedia>
-      </Link>
+      </Paper>
     );
   }
 }

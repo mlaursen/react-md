@@ -64,11 +64,6 @@ blockquote {
   }
 }
 
-.markdown-page {
-  background: $md-white-base;
-  padding: 2em 0;
-}
-
 // scss-lint:disable IdSelector, NestingDepth
 #table-of-contents,
 #table-of-contents + ul {

@@ -25,7 +25,7 @@ const CardListExample = () => {
   ));
 
   return (
-    <div className="md-card-list">
+    <div className="md-grid">
       {cards}
     </div>
   );

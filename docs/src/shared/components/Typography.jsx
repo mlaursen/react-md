@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Markdown from 'components/Markdown';
+import loremIpsum from 'lorem-ipsum';
 
 const markdown = `
 # Material Design Typography
@@ -26,49 +27,47 @@ and \`.md-caption\`.
 #### Examples
 `;
 
+const helperMarkdown = `
+There have also been some other utlity classes added.
+
+- \`.md-text-left\` - aligns text left
+- \`.md-text-center\` - aligns text center
+- \`.md-text-right\` - aligns text right
+- \`.md-text-justify\`, - aligns text by justify
+- \`.md-text-capitalize\` - capitlizes the text
+- \`.md-text-uppercase\` - uppercases the text
+- \`.md-text-lowercase\` - lowercases the text
+- \`.md-text-nowrap\` - does not allow line breaks
+
+In addition, a \`md-text-container\` class has been created. This class will
+center any text and prevent lines from extending the \`md-typography-max-line-length\`
+value.
+`;
+
 export default class Typography extends PureComponent {
   render() {
     return (
-      <main className="markdown-page">
-        <section className="text-container container">
-          <Markdown markdown={markdown} component="article" />
-          <h1 className="md-display-4">Lorem</h1>
-          <h2 className="md-display-3">Ipsum</h2>
-          <h3 className="md-display-2">Cras sed</h3>
-          <h4 className="md-display-1">Phasellus</h4>
-          <h5 className="md-headline">Ut convallis</h5>
-          <h6 className="md-title">Proin quis cursus purus. Fusce.</h6>
-          <h6 className="md-subheading-2">In in augue tincidunt, rhoncus.</h6>
-          <h6 className="md-subheading-1">Vivamus elementum ligula vel justo.</h6>
-          <p className="md-body-2">
-            Sed feugiat enim et pretium venenatis. Cras ac quam sodales,
-            rutrum turpis et, dignissim mauris. Fusce commodo aliquet efficitur.
-            Quisque fringilla ante dignissim libero commodo auctor. Sed ligula augue,
-            tincidunt sit amet leo ac, egestas vestibulum quam. Phasellus fermentum,
-            tortor non blandit gravida, massa mauris lacinia magna, in vestibulum justo
-            magna id odio. Morbi et felis urna. Integer eu ipsum ut ligula imperdiet
-            iaculis.
-          </p>
-          <p className="md-body-1">
-            Suspendisse feugiat viverra dui, rutrum eleifend urna lacinia sed. Sed
-            pharetra enim tellus, nec gravida sem viverra eu. Curabitur sagittis id
-            risus nec iaculis. In in mi sed lacus porta mattis. Phasellus mollis
-            dapibus efficitur. Integer ut ultricies lectus. Nunc non sollicitudin
-            augue. Nulla id mi nec justo sodales dignissim at et nibh. Maecenas nunc
-            lectus, bibendum in justo et, convallis euismod quam. In hendrerit libero
-            odio, eget consectetur ipsum dictum in. Pellentesque feugiat ex metus,
-            rhoncus venenatis diam ornare sit amet. Proin pretium finibus dui, at
-            ornare nibh suscipit ut. Etiam a erat in nisl sodales faucibus a nec nibh.
-            Phasellus in pulvinar nisl. Maecenas consectetur dolor faucibus nunc volutpat,
-            id consequat erat dignissim. Pellentesque faucibus pharetra sem vitae tempus.
-          </p>
-          <table style={{ width: '100%' }}>
-            <caption className="md-caption">
-              Vivamus interdum non justo non malesuada. Morbi pellentesque tellus ac arcu
-              sollicitudin, non porttitor purus convallis. Nulla ac nulla vestibulum.
-            </caption>
-          </table>
-        </section>
+      <main className="md-grid">
+        <div className="md-cell md-cell--12">
+          <section className="md-text-container">
+            <Markdown markdown={markdown} component="article" />
+            <h1 className="md-display-4">Lorem</h1>
+            <h2 className="md-display-3">Ipsum</h2>
+            <h3 className="md-display-2">Cras sed</h3>
+            <h4 className="md-display-1">Phasellus</h4>
+            <h5 className="md-headline">Ut convallis</h5>
+            <h6 className="md-title">Proin quis cursus purus. Fusce.</h6>
+            <h6 className="md-subheading-2">In in augue tincidunt, rhoncus.</h6>
+            <h6 className="md-subheading-1">Vivamus elementum ligula vel justo.</h6>
+            <p className="md-body-2">{loremIpsum({ count: 1, units: 'paragraphs' })}</p>
+            <p className="md-body-1">{loremIpsum({ count: 1, units: 'paragraphs' })}</p>
+            <table style={{ width: '100%' }}>
+              <caption className="md-caption md-text-left">{loremIpsum({ count: 1, units: 'paragraphs' })}</caption>
+            </table>
+            <h2>Helper Classes</h2>
+            <Markdown markdown={helperMarkdown} component="article" />
+          </section>
+        </div>
       </main>
     );
   }

@@ -40,6 +40,12 @@ export default class LinearProgress extends PureComponent {
      * Boolean if this should be a query indeterminate progress bar.
      */
     query: PropTypes.bool,
+
+    /**
+     * Boolean if the Linear Progress should be centered. This
+     * will only work if the `max-width` style is set.
+     */
+    centered: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -47,7 +53,7 @@ export default class LinearProgress extends PureComponent {
   };
 
   render() {
-    const { className, value, query, ...props } = this.props;
+    const { className, value, query, centered, ...props } = this.props;
     const isDeterminate = typeof value === 'number';
 
     const accessibilityProps = {
@@ -65,7 +71,7 @@ export default class LinearProgress extends PureComponent {
     return (
       <div
         {...props}
-        className={cn('md-progress md-progress--linear', className)}
+        className={cn('md-progress md-progress--linear', { 'md-block-centered': centered }, className)}
       >
         <div
           {...accessibilityProps}

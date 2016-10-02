@@ -1,0 +1,1088 @@
+[
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 7,
+            "start": 5
+        },
+        "context": {
+            "line": {
+                "end": 8,
+                "start": 8
+            },
+            "name": "md-grid-phone-columns",
+            "scope": "default",
+            "type": "variable",
+            "value": "4"
+        },
+        "description": "The number of columns to use for mobile devices. This _should_\nprobably not be changed.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 13,
+            "start": 10
+        },
+        "context": {
+            "line": {
+                "end": 14,
+                "start": 14
+            },
+            "name": "md-grid-phone-margin",
+            "scope": "default",
+            "type": "variable",
+            "value": "16px"
+        },
+        "description": "The margin to use for grids on mobile devices. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 19,
+            "start": 16
+        },
+        "context": {
+            "line": {
+                "end": 20,
+                "start": 20
+            },
+            "name": "md-grid-phone-gutter",
+            "scope": "default",
+            "type": "variable",
+            "value": "16px"
+        },
+        "description": "The gutter to use for grids on mobile devices. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 24,
+            "start": 23
+        },
+        "context": {
+            "line": {
+                "end": 25,
+                "start": 25
+            },
+            "name": "md-grid-tablet-breakpoint",
+            "scope": "default",
+            "type": "variable",
+            "value": "600px"
+        },
+        "description": "The breakpoint to use for modifying the grid for tablet devices.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "Number",
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @if $phone-columns > 0 {\n    @media (max-width: $md-grid-tablet-breakpoint - 1) {\n      @include react-md-make-grid('phone', $phone-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $tablet-columns > 0 {\n    @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n      @include react-md-make-grid('tablet', $tablet-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $desktop-columns > 0 {\n    @media (min-width: $md-grid-desktop-breakpoint) {\n      @include react-md-make-grid('desktop', $desktop-columns, $margin, $gutter, $suffix);\n    }\n  }\n",
+                    "line": {
+                        "end": 269,
+                        "start": 244
+                    },
+                    "name": "react-md-make-custom-grid",
+                    "type": "mixin"
+                },
+                "description": "This creates another custom grid with a suffix. This is really only useful if\nyou will have different grid layouts in your application depending on the page.\n\n"
+            },
+            {
+                "context": {
+                    "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+                    "line": {
+                        "end": 369,
+                        "start": 357
+                    },
+                    "name": "react-md-grid-media",
+                    "type": "mixin"
+                },
+                "description": "Includes all the media queries and styles for grids.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 29,
+            "start": 27
+        },
+        "context": {
+            "line": {
+                "end": 30,
+                "start": 30
+            },
+            "name": "md-grid-tablet-columns",
+            "scope": "default",
+            "type": "variable",
+            "value": "8"
+        },
+        "description": "The number of columns to use for tablet devices. This _should_\nprobably not be changed.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 35,
+            "start": 32
+        },
+        "context": {
+            "line": {
+                "end": 36,
+                "start": 36
+            },
+            "name": "md-grid-tablet-margin",
+            "scope": "default",
+            "type": "variable",
+            "value": "$md-grid-phone-gutter"
+        },
+        "description": "The margin to use for grids on tablet devices. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 41,
+            "start": 38
+        },
+        "context": {
+            "line": {
+                "end": 42,
+                "start": 42
+            },
+            "name": "md-grid-tablet-gutter",
+            "scope": "default",
+            "type": "variable",
+            "value": "$md-grid-phone-gutter"
+        },
+        "description": "The gutter to use for grids on tablet devices. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 47,
+            "start": 45
+        },
+        "context": {
+            "line": {
+                "end": 48,
+                "start": 48
+            },
+            "name": "md-grid-desktop-breakpoint",
+            "scope": "default",
+            "type": "variable",
+            "value": "840px"
+        },
+        "description": "The breakpoint to use for modifying the grid for desktop / larger\nscreens.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "Number",
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @if $phone-columns > 0 {\n    @media (max-width: $md-grid-tablet-breakpoint - 1) {\n      @include react-md-make-grid('phone', $phone-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $tablet-columns > 0 {\n    @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n      @include react-md-make-grid('tablet', $tablet-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $desktop-columns > 0 {\n    @media (min-width: $md-grid-desktop-breakpoint) {\n      @include react-md-make-grid('desktop', $desktop-columns, $margin, $gutter, $suffix);\n    }\n  }\n",
+                    "line": {
+                        "end": 269,
+                        "start": 244
+                    },
+                    "name": "react-md-make-custom-grid",
+                    "type": "mixin"
+                },
+                "description": "This creates another custom grid with a suffix. This is really only useful if\nyou will have different grid layouts in your application depending on the page.\n\n"
+            },
+            {
+                "context": {
+                    "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+                    "line": {
+                        "end": 369,
+                        "start": 357
+                    },
+                    "name": "react-md-grid-media",
+                    "type": "mixin"
+                },
+                "description": "Includes all the media queries and styles for grids.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 51,
+            "start": 50
+        },
+        "context": {
+            "line": {
+                "end": 52,
+                "start": 52
+            },
+            "name": "md-grid-desktop-columns",
+            "scope": "default",
+            "type": "variable",
+            "value": "12"
+        },
+        "description": "The number of columns to use for grids on desktop / larger screens.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 57,
+            "start": 54
+        },
+        "context": {
+            "line": {
+                "end": 58,
+                "start": 58
+            },
+            "name": "md-grid-desktop-margin",
+            "scope": "default",
+            "type": "variable",
+            "value": "$md-grid-phone-margin"
+        },
+        "description": "The margin to use for grids on desktop screens. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 63,
+            "start": 60
+        },
+        "context": {
+            "line": {
+                "end": 64,
+                "start": 64
+            },
+            "name": "md-grid-desktop-gutter",
+            "scope": "default",
+            "type": "variable",
+            "value": "$md-grid-phone-gutter"
+        },
+        "description": "The gutter to use for grids on desktop screens. This should be\none of the values in `$md-grid-available-margins-and-gutters`.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "see": [
+            {
+                "context": {
+                    "line": {
+                        "end": 68,
+                        "start": 68
+                    },
+                    "name": "md-grid-available-margins-and-gutters",
+                    "scope": "private",
+                    "type": "variable",
+                    "value": "(8px 16px 24px 40px)"
+                },
+                "description": "The possible margins and gutters that can be used in a grid.\n"
+            }
+        ],
+        "type": "Number"
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 67,
+            "start": 66
+        },
+        "context": {
+            "line": {
+                "end": 68,
+                "start": 68
+            },
+            "name": "md-grid-available-margins-and-gutters",
+            "scope": "private",
+            "type": "variable",
+            "value": "(8px 16px 24px 40px)"
+        },
+        "description": "The possible margins and gutters that can be used in a grid.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "type": "List",
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  $index: index($md-grid-available-margins-and-gutters, $margin);\n  @if not $index {\n    @warn 'The given `margin` is not a valid margin for a material design grid.';\n    @warn 'A valid margin is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $index: index($md-grid-available-margins-and-gutters, $gutter);\n  @if not $index {\n    @warn 'The given `gutter` is not a valid gutter for a material design grid.';\n    @warn 'A valid gutter is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $grid-padding: $margin - ($gutter / 2);\n  @if $suffix {\n    .md-grid--#{$suffix} {\n      @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n\n      padding: $grid-padding;\n    }\n  } @else {\n    .md-grid {\n      padding: $grid-padding;\n    }\n\n    @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n  }\n",
+                    "line": {
+                        "end": 310,
+                        "start": 283
+                    },
+                    "name": "react-md-make-grid",
+                    "type": "mixin"
+                },
+                "description": "Creates the grid with the given params.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 139,
+            "start": 78
+        },
+        "context": {
+            "code": "\n  .md-grid {\n    align-items: stretch;\n    display: flex;\n    flex-flow: row wrap;\n    margin: 0 auto;\n\n    &.md-grid--no-spacing {\n      padding: 0;\n    }\n  }\n\n  .md-cell--top {\n    align-self: flex-start;\n  }\n\n  .md-cell--middle {\n    align-self: center;\n  }\n\n  .md-cell--bottom {\n    align-self: flex-end;\n  }\n\n  .md-cell--stretch {\n    align-self: stretch;\n  }\n\n  .md-cell--right {\n    @extend %md-cell--right;\n  }\n\n  @if $include-media {\n    @include react-md-grid-media;\n  }\n",
+            "line": {
+                "end": 175,
+                "start": 140
+            },
+            "name": "react-md-grid",
+            "type": "mixin"
+        },
+        "description": "Creates the styles for grids in material design. This basically\ncreates a main flex container `.md-grid` that will style cells\nwith appropriate margins and widths.\n\nThe following classes will be created:\n\n`.md-grid` - The main flex container. You should use this along with the `.md-cell` to get\nthe correct gutter and margins for a material desing page.\n\n`.md-grid--no-spacing` - An optional class name to use with the `.md-grid`. When they are used\ntogether, all the margins and spacings will be removed from the grid.\n\n`.md-cell` - The main container for a column or cell in the grid. If this is used alone, the default\nbehavior is to display 1 cell per row on mobile devices, 2 cells per row on tablets, and 3 cells per row\non desktop / larger screens. For more fine tuning, it can be used along with one of the following.\n\n`.md-cell--NUMBER` - This is will allow a cell to span this many columns on all media sizes. When the `NUMBER`\nis greater than the number of columns allowed for a media device, it will span the entire row. This basically means\nthat if you are using the base configuration options and following the material design specs, mobile devices only\nallow 4 columns per row, tablets 8 per row, and desktops 12. So specifying `.md-cell .md-cell--6` would span an\nentire row on mobile devices, 3/4 of a row on tablets, and 1/2 of a row on desktops.\n\n`md-cell--order-NUMBER` - This is an optional class name you can apply if you want this item to appear in a different\norder on the grid.\n\n`.md-cell--NUMBER-offset` - This will offset the cell by the given number of columns. If the `number` is greater\nthan the maximum amount of columsn allowed for the device's screen size, an entire row will be blank.\n\n`.md-cell--right` - This simply applies `margin-left: auto` to a cell. This is basically the same as applying\n`float: right` in a row.\n\n`.md-cell--top` - This aligns the cell to the top of a row.\n\n`.md-cell--middle` - This aligns the cell to the middle of a row.\n\n`.md-cell--bottom` - This aligns the cell to the bottom of a row.\n\n`.md-cell--stretch` - This aligns the cell to stretch the entire height of a row. This is the default behavior.\n\n`.md-cell--NUMBER-phone` - This will set the cell's size only for mobile devices.\n\n`.md-cell--NUMBER-tablet` - This will set the cell's size only for tablet devices.\n\n`.md-cell--NUMBER-desktop` - This will set the cell's size only for desktop / large screens.\n\n`.md-cell--order-NUMBER-phone` - This will set the cell's order only for mobile devices.\n\n`.md-cell--order-NUMBER-tablet` - This will set the cell's order only for tablet devices.\n\n`.md-cell--order-NUMBER-desktop` - This will set the cell's order only for desktop / large screens.\n\n`.md-cell--NUMBER-offset-phone` - This will offset the cell's position only for mobile devices.\n\n`.md-cell--NUMBER-offset-tablet` - This will offset the cell's position for tablet devices.\n\n`.md-cell--NUMBER-offset-desktop` - This will offset the cell's position for desktop / large screens.\n\n",
+        "example": [
+            {
+                "code": "@include react-md-grid;",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "default": "$md-media-included",
+                "description": "Boolean if the media queries should be included as well.\n    If this is false, you will manually need to call the media mixins to get any useful grid.",
+                "name": "include-media",
+                "type": "Boolean"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-grid-media",
+                "type": "mixin"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 187,
+            "start": 177
+        },
+        "context": {
+            "code": "\n  @include react-md-make-grid('phone', $columns, $margin, $gutter);\n",
+            "line": {
+                "end": 190,
+                "start": 188
+            },
+            "name": "react-md-grid-mobile",
+            "type": "mixin"
+        },
+        "description": "Creates a grid for mobile devices. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n",
+        "example": [
+            {
+                "code": "@media (max-width: $md-grid-tablet-breakpoint - 1) {\n  @include react-md-grid-mobile;\n}",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "default": "$md-grid-phone-columns",
+                "description": "The number of columns to use.",
+                "name": "columns",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-phone-margin",
+                "description": "The margin to use.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-phone-gutter",
+                "description": "The gutter to use.",
+                "name": "gutter",
+                "type": "Number"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-make-grid",
+                "type": "mixin"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+                    "line": {
+                        "end": 369,
+                        "start": 357
+                    },
+                    "name": "react-md-grid-media",
+                    "type": "mixin"
+                },
+                "description": "Includes all the media queries and styles for grids.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 203,
+            "start": 193
+        },
+        "context": {
+            "code": "\n  @include react-md-make-grid('tablet', $columns, $margin, $gutter);\n",
+            "line": {
+                "end": 206,
+                "start": 204
+            },
+            "name": "react-md-grid-tablet",
+            "type": "mixin"
+        },
+        "description": "Creates a grid for tablet devices. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n",
+        "example": [
+            {
+                "code": "@media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n  @include react-md-grid-tablet;\n}",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "default": "$md-grid-tablet-columns",
+                "description": "The number of columns to use.",
+                "name": "columns",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-tablet-margin",
+                "description": "The margin to use.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-tablet-gutter",
+                "description": "The gutter to use.",
+                "name": "gutter",
+                "type": "Number"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-make-grid",
+                "type": "mixin"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+                    "line": {
+                        "end": 369,
+                        "start": 357
+                    },
+                    "name": "react-md-grid-media",
+                    "type": "mixin"
+                },
+                "description": "Includes all the media queries and styles for grids.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 219,
+            "start": 209
+        },
+        "context": {
+            "code": "\n  @include react-md-make-grid('desktop', $columns, $margin, $gutter);\n",
+            "line": {
+                "end": 222,
+                "start": 220
+            },
+            "name": "react-md-grid-desktop",
+            "type": "mixin"
+        },
+        "description": "Creates a grid for desktops and larger screens. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n",
+        "example": [
+            {
+                "code": "@media (min-width: $md-grid-desktop-breakpoint) {\n  @include react-md-grid-desktop;\n}",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "default": "$md-grid-desktop-columns",
+                "description": "The number of columns to use.",
+                "name": "columns",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-desktop-margin",
+                "description": "The margin to use.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-desktop-gutter",
+                "description": "The gutter to use.",
+                "name": "gutter",
+                "type": "Number"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-make-grid",
+                "type": "mixin"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+                    "line": {
+                        "end": 369,
+                        "start": 357
+                    },
+                    "name": "react-md-grid-media",
+                    "type": "mixin"
+                },
+                "description": "Includes all the media queries and styles for grids.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 243,
+            "start": 224
+        },
+        "context": {
+            "code": "\n  @if $phone-columns > 0 {\n    @media (max-width: $md-grid-tablet-breakpoint - 1) {\n      @include react-md-make-grid('phone', $phone-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $tablet-columns > 0 {\n    @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n      @include react-md-make-grid('tablet', $tablet-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $desktop-columns > 0 {\n    @media (min-width: $md-grid-desktop-breakpoint) {\n      @include react-md-make-grid('desktop', $desktop-columns, $margin, $gutter, $suffix);\n    }\n  }\n",
+            "line": {
+                "end": 269,
+                "start": 244
+            },
+            "name": "react-md-make-custom-grid",
+            "type": "mixin"
+        },
+        "description": "This creates another custom grid with a suffix. This is really only useful if\nyou will have different grid layouts in your application depending on the page.\n\n",
+        "example": [
+            {
+                "code": "@include react-md-custum-grid('24-40', 24px, 40px);",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            },
+            {
+                "code": ".md-grid--24-40 {\n  ... styles ...\n}",
+                "description": "Example Usage CSS Output",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "description": "The suffix to apply to the end of `.md-grid--`.",
+                "name": "suffix",
+                "type": "String"
+            },
+            {
+                "description": "The margin to use. This must be unitful number.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "description": "The gutter to use. This must be unitful number.",
+                "name": "gutter",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-phone-columns",
+                "description": "The number of columns to use on mobile\n    devices. If this value is less than or equal to 0, the phone media query will not be created.",
+                "name": "phone-columns",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-tablet-columns",
+                "description": "The number of columns to use on mobile\n    devices. If this value is less than or equal to 0, the tablet media query will not be created.",
+                "name": "tablet-columns",
+                "type": "Number"
+            },
+            {
+                "default": "$md-grid-desktop-columns",
+                "description": "The number of columns to use on mobile\n    devices. If this value is less than or equal to 0, the desktop media query will not be created.",
+                "name": "desktop-columns",
+                "type": "Number"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-make-grid",
+                "type": "mixin"
+            },
+            {
+                "name": "md-grid-tablet-breakpoint",
+                "type": "variable"
+            },
+            {
+                "name": "md-grid-desktop-breakpoint",
+                "type": "variable"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 282,
+            "start": 271
+        },
+        "context": {
+            "code": "\n  $index: index($md-grid-available-margins-and-gutters, $margin);\n  @if not $index {\n    @warn 'The given `margin` is not a valid margin for a material design grid.';\n    @warn 'A valid margin is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $index: index($md-grid-available-margins-and-gutters, $gutter);\n  @if not $index {\n    @warn 'The given `gutter` is not a valid gutter for a material design grid.';\n    @warn 'A valid gutter is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $grid-padding: $margin - ($gutter / 2);\n  @if $suffix {\n    .md-grid--#{$suffix} {\n      @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n\n      padding: $grid-padding;\n    }\n  } @else {\n    .md-grid {\n      padding: $grid-padding;\n    }\n\n    @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n  }\n",
+            "line": {
+                "end": 310,
+                "start": 283
+            },
+            "name": "react-md-make-grid",
+            "type": "mixin"
+        },
+        "description": "Creates the grid with the given params.\n\n",
+        "example": [
+            {
+                "code": "@include react-md-make-grid('phone', $md-grid-phone-columns, $md-grid-phone-margin, $md-grid-phone-gutter);",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "description": "The media type to create additional overrides for.",
+                "name": "media-type",
+                "type": "String"
+            },
+            {
+                "description": "The number of columns for this media type to create.",
+                "name": "columns",
+                "type": "Number"
+            },
+            {
+                "description": "The margin to use for this media type.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "description": "The gutter to use for this media type.",
+                "name": "gutter",
+                "type": "Number"
+            },
+            {
+                "default": "null",
+                "description": "An optional suffix to apply to the `.md-grid`. This is really\n    only used when using the `react-md-make-custom-grid` mixin.",
+                "name": "suffix",
+                "type": "String"
+            }
+        ],
+        "require": [
+            {
+                "name": "react-md-make-cells",
+                "type": "mixin"
+            },
+            {
+                "name": "md-grid-available-margins-and-gutters",
+                "type": "variable"
+            }
+        ],
+        "see": [
+            {
+                "context": {
+                    "code": "\n  @if $phone-columns > 0 {\n    @media (max-width: $md-grid-tablet-breakpoint - 1) {\n      @include react-md-make-grid('phone', $phone-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $tablet-columns > 0 {\n    @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n      @include react-md-make-grid('tablet', $tablet-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $desktop-columns > 0 {\n    @media (min-width: $md-grid-desktop-breakpoint) {\n      @include react-md-make-grid('desktop', $desktop-columns, $margin, $gutter, $suffix);\n    }\n  }\n",
+                    "line": {
+                        "end": 269,
+                        "start": 244
+                    },
+                    "name": "react-md-make-custom-grid",
+                    "type": "mixin"
+                },
+                "description": "This creates another custom grid with a suffix. This is really only useful if\nyou will have different grid layouts in your application depending on the page.\n\n"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  @include react-md-make-grid('phone', $columns, $margin, $gutter);\n",
+                    "line": {
+                        "end": 190,
+                        "start": 188
+                    },
+                    "name": "react-md-grid-mobile",
+                    "type": "mixin"
+                },
+                "description": "Creates a grid for mobile devices. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n"
+            },
+            {
+                "context": {
+                    "code": "\n  @include react-md-make-grid('tablet', $columns, $margin, $gutter);\n",
+                    "line": {
+                        "end": 206,
+                        "start": 204
+                    },
+                    "name": "react-md-grid-tablet",
+                    "type": "mixin"
+                },
+                "description": "Creates a grid for tablet devices. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n"
+            },
+            {
+                "context": {
+                    "code": "\n  @include react-md-make-grid('desktop', $columns, $margin, $gutter);\n",
+                    "line": {
+                        "end": 222,
+                        "start": 220
+                    },
+                    "name": "react-md-grid-desktop",
+                    "type": "mixin"
+                },
+                "description": "Creates a grid for desktops and larger screens. This should normally be used in a media query\nor the `react-md-grid-media` mixin.\n\n"
+            },
+            {
+                "context": {
+                    "code": "\n  @if $phone-columns > 0 {\n    @media (max-width: $md-grid-tablet-breakpoint - 1) {\n      @include react-md-make-grid('phone', $phone-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $tablet-columns > 0 {\n    @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n      @include react-md-make-grid('tablet', $tablet-columns, $margin, $gutter, $suffix);\n    }\n  }\n\n  @if $desktop-columns > 0 {\n    @media (min-width: $md-grid-desktop-breakpoint) {\n      @include react-md-make-grid('desktop', $desktop-columns, $margin, $gutter, $suffix);\n    }\n  }\n",
+                    "line": {
+                        "end": 269,
+                        "start": 244
+                    },
+                    "name": "react-md-make-custom-grid",
+                    "type": "mixin"
+                },
+                "description": "This creates another custom grid with a suffix. This is really only useful if\nyou will have different grid layouts in your application depending on the page.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 317,
+            "start": 312
+        },
+        "context": {
+            "code": "\n  .md-cell {\n    @include react-md-cell-size($md-grid-default-columns, $columns, $gutter);\n\n    margin: $gutter / 2;\n  }\n\n  @for $i from 1 through $md-grid-max-columns {\n    .md-cell--order-#{$i}.md-cell--order-#{$i}-#{$media-type} {\n      order: $i;\n    }\n  }\n\n  @for $i from 1 through ($columns - 1) {\n    .md-cell--#{$i},\n    .md-cell--#{$i}-#{$media-type}.md-cell--#{$i}-#{$media-type} {\n      @include react-md-cell-size($i, $columns, $gutter);\n    }\n  }\n\n  @for $i from $columns through $md-grid-max-columns {\n    .md-cell--#{$i},\n    .md-cell--#{$i}-#{$media-type}.md-cell--#{$i}-#{$media-type} {\n      @include react-md-grid-full($gutter);\n    }\n  }\n\n  @for $i from 1 through ($columns - 1) {\n    .md-cell--#{$i}-offset,\n    .md-cell--#{$i}-#{$media-type}-offset.md-cell--#{$i}-#{$media-type}-offset {\n      @include react-md-cell-offset($i, $columns, $gutter);\n    }\n  }\n",
+            "line": {
+                "end": 351,
+                "start": 318
+            },
+            "name": "react-md-make-cells",
+            "type": "mixin"
+        },
+        "description": "Creates the cells in a grid. This should normally only be used within the `react-md-make-grid` mixin.\n",
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "parameter": [
+            {
+                "description": "The number of columns for the given media type.",
+                "name": "columns",
+                "type": "Number"
+            },
+            {
+                "description": "The margin to use for the given media type.",
+                "name": "margin",
+                "type": "Number"
+            },
+            {
+                "description": "The gutter to use for the given media type.",
+                "name": "gutter",
+                "type": "Number"
+            },
+            {
+                "description": "The current media type.",
+                "name": "media-type",
+                "type": "String"
+            }
+        ],
+        "require": [],
+        "see": [
+            {
+                "context": {
+                    "code": "\n  $index: index($md-grid-available-margins-and-gutters, $margin);\n  @if not $index {\n    @warn 'The given `margin` is not a valid margin for a material design grid.';\n    @warn 'A valid margin is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $index: index($md-grid-available-margins-and-gutters, $gutter);\n  @if not $index {\n    @warn 'The given `gutter` is not a valid gutter for a material design grid.';\n    @warn 'A valid gutter is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $grid-padding: $margin - ($gutter / 2);\n  @if $suffix {\n    .md-grid--#{$suffix} {\n      @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n\n      padding: $grid-padding;\n    }\n  } @else {\n    .md-grid {\n      padding: $grid-padding;\n    }\n\n    @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n  }\n",
+                    "line": {
+                        "end": 310,
+                        "start": 283
+                    },
+                    "name": "react-md-make-grid",
+                    "type": "mixin"
+                },
+                "description": "Creates the grid with the given params.\n\n"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  $index: index($md-grid-available-margins-and-gutters, $margin);\n  @if not $index {\n    @warn 'The given `margin` is not a valid margin for a material design grid.';\n    @warn 'A valid margin is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $index: index($md-grid-available-margins-and-gutters, $gutter);\n  @if not $index {\n    @warn 'The given `gutter` is not a valid gutter for a material design grid.';\n    @warn 'A valid gutter is one of the following: #{$md-grid-available-margins-and-gutters}';\n  }\n\n  $grid-padding: $margin - ($gutter / 2);\n  @if $suffix {\n    .md-grid--#{$suffix} {\n      @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n\n      padding: $grid-padding;\n    }\n  } @else {\n    .md-grid {\n      padding: $grid-padding;\n    }\n\n    @include react-md-make-cells($columns, $margin, $gutter, $media-type);\n  }\n",
+                    "line": {
+                        "end": 310,
+                        "start": 283
+                    },
+                    "name": "react-md-make-grid",
+                    "type": "mixin"
+                },
+                "description": "Creates the grid with the given params.\n\n"
+            }
+        ]
+    },
+    {
+        "access": "public",
+        "commentRange": {
+            "end": 356,
+            "start": 353
+        },
+        "context": {
+            "code": "\n  @media (max-width: $md-grid-tablet-breakpoint - 1) {\n    @include react-md-grid-mobile;\n  }\n\n  @media (min-width: $md-grid-tablet-breakpoint) and (max-width: $md-grid-desktop-breakpoint - 1) {\n    @include react-md-grid-tablet;\n  }\n\n  @media (min-width: $md-grid-desktop-breakpoint) {\n    @include react-md-grid-desktop;\n  }\n",
+            "line": {
+                "end": 369,
+                "start": 357
+            },
+            "name": "react-md-grid-media",
+            "type": "mixin"
+        },
+        "description": "Includes all the media queries and styles for grids.\n\n",
+        "example": [
+            {
+                "code": "@include react-md-grid-media;",
+                "description": "Example Usage SCSS",
+                "type": "scss"
+            }
+        ],
+        "file": {
+            "name": "_grid.scss",
+            "path": "_grid.scss"
+        },
+        "group": [
+            "grid"
+        ],
+        "require": [
+            {
+                "name": "react-md-grid-mobile",
+                "type": "mixin"
+            },
+            {
+                "name": "react-md-grid-tablet",
+                "type": "mixin"
+            },
+            {
+                "name": "react-md-grid-desktop",
+                "type": "mixin"
+            },
+            {
+                "name": "md-grid-tablet-breakpoint",
+                "type": "variable"
+            },
+            {
+                "name": "md-grid-desktop-breakpoint",
+                "type": "variable"
+            }
+        ],
+        "usedBy": [
+            {
+                "context": {
+                    "code": "\n  .md-grid {\n    align-items: stretch;\n    display: flex;\n    flex-flow: row wrap;\n    margin: 0 auto;\n\n    &.md-grid--no-spacing {\n      padding: 0;\n    }\n  }\n\n  .md-cell--top {\n    align-self: flex-start;\n  }\n\n  .md-cell--middle {\n    align-self: center;\n  }\n\n  .md-cell--bottom {\n    align-self: flex-end;\n  }\n\n  .md-cell--stretch {\n    align-self: stretch;\n  }\n\n  .md-cell--right {\n    @extend %md-cell--right;\n  }\n\n  @if $include-media {\n    @include react-md-grid-media;\n  }\n",
+                    "line": {
+                        "end": 175,
+                        "start": 140
+                    },
+                    "name": "react-md-grid",
+                    "type": "mixin"
+                },
+                "description": "Creates the styles for grids in material design. This basically\ncreates a main flex container `.md-grid` that will style cells\nwith appropriate margins and widths.\n\nThe following classes will be created:\n\n`.md-grid` - The main flex container. You should use this along with the `.md-cell` to get\nthe correct gutter and margins for a material desing page.\n\n`.md-grid--no-spacing` - An optional class name to use with the `.md-grid`. When they are used\ntogether, all the margins and spacings will be removed from the grid.\n\n`.md-cell` - The main container for a column or cell in the grid. If this is used alone, the default\nbehavior is to display 1 cell per row on mobile devices, 2 cells per row on tablets, and 3 cells per row\non desktop / larger screens. For more fine tuning, it can be used along with one of the following.\n\n`.md-cell--NUMBER` - This is will allow a cell to span this many columns on all media sizes. When the `NUMBER`\nis greater than the number of columns allowed for a media device, it will span the entire row. This basically means\nthat if you are using the base configuration options and following the material design specs, mobile devices only\nallow 4 columns per row, tablets 8 per row, and desktops 12. So specifying `.md-cell .md-cell--6` would span an\nentire row on mobile devices, 3/4 of a row on tablets, and 1/2 of a row on desktops.\n\n`md-cell--order-NUMBER` - This is an optional class name you can apply if you want this item to appear in a different\norder on the grid.\n\n`.md-cell--NUMBER-offset` - This will offset the cell by the given number of columns. If the `number` is greater\nthan the maximum amount of columsn allowed for the device's screen size, an entire row will be blank.\n\n`.md-cell--right` - This simply applies `margin-left: auto` to a cell. This is basically the same as applying\n`float: right` in a row.\n\n`.md-cell--top` - This aligns the cell to the top of a row.\n\n`.md-cell--middle` - This aligns the cell to the middle of a row.\n\n`.md-cell--bottom` - This aligns the cell to the bottom of a row.\n\n`.md-cell--stretch` - This aligns the cell to stretch the entire height of a row. This is the default behavior.\n\n`.md-cell--NUMBER-phone` - This will set the cell's size only for mobile devices.\n\n`.md-cell--NUMBER-tablet` - This will set the cell's size only for tablet devices.\n\n`.md-cell--NUMBER-desktop` - This will set the cell's size only for desktop / large screens.\n\n`.md-cell--order-NUMBER-phone` - This will set the cell's order only for mobile devices.\n\n`.md-cell--order-NUMBER-tablet` - This will set the cell's order only for tablet devices.\n\n`.md-cell--order-NUMBER-desktop` - This will set the cell's order only for desktop / large screens.\n\n`.md-cell--NUMBER-offset-phone` - This will offset the cell's position only for mobile devices.\n\n`.md-cell--NUMBER-offset-tablet` - This will offset the cell's position for tablet devices.\n\n`.md-cell--NUMBER-offset-desktop` - This will offset the cell's position for desktop / large screens.\n\n"
+            }
+        ]
+    }
+]

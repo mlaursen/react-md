@@ -12,6 +12,7 @@ export default class PhoneSize extends PureComponent {
     className: PropTypes.string,
     title: PropTypes.string.isRequired,
     children: PropTypes.node,
+    contentStyle: PropTypes.object,
     contentComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
@@ -38,7 +39,8 @@ export default class PhoneSize extends PureComponent {
       children,
       title,
       className,
-      contentComponent,
+      contentComponent: Content,
+      contentStyle,
       contentClassName,
       toolbar,
       toolbarActions,
@@ -47,11 +49,16 @@ export default class PhoneSize extends PureComponent {
       ...props,
     } = this.props;
 
-    const content = React.createElement(contentComponent, {
-      className: cn('phone-size-content', {
-        'toolbar-offset': toolbar,
-      }, contentClassName),
-    }, children);
+    const content = (
+      <Content
+        style={contentStyle}
+        className={cn('phone-size-content', {
+          'toolbar-offset': toolbar,
+        }, contentClassName)}
+      >
+        {children}
+      </Content>
+    );
 
     let toolbarNode;
     if (toolbar) {

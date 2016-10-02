@@ -54,9 +54,9 @@ export default class ColorPalette extends PureComponent {
       ));
 
       return (
-        <ul key={colorHues[0].color} className="color-list">
+        <ul key={colorHues[0].color} className="md-cell md-cell--top color-list">
           <li key="primary" className={classnames('color primary', primary.name, { 'light': primary.light })}>
-            <div className="color-name">{primary.color.replace(/-/g, ' ')}</div>
+            <div className="color-name md-text-capitalize">{primary.color.replace(/-/g, ' ')}</div>
             <div className="sass-variable">{primary.name}</div>
           </li>
           {colorBlocks}
@@ -64,7 +64,7 @@ export default class ColorPalette extends PureComponent {
       );
     });
     return (
-      <section className="color-palette container">
+      <section className="md-grid md-grid--24-40">
         {palette}
       </section>
     );

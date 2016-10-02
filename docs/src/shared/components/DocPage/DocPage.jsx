@@ -42,14 +42,14 @@ export default class DocPage extends PureComponent {
     return (
       <main
         style={style}
-        className={cn(`react-doc doc-component-${toClassName(name)}`, className)}
+        className={cn(`doc-component-${toClassName(name)}`, className)}
       >
         <Header name={name.replace(' Helpers', '')} description={description} />
-        <div className="md-card-list">
+        <div className="md-grid">
           {examples.map((example, key) => <Example key={key} {...example} fallbackId={`example-${key}`} />)}
         </div>
-        <h2 className="md-headline">Prop Types</h2>
-        <div className="md-card-list">
+        <div className="md-grid">
+          <h2 className="md-headline md-cell md-cell--12">Prop Types</h2>
           {docgens.map((docgen, key) => <DocgenPropTypes key={key} {...docgen} mobile={mobile} tablet={tablet} />)}
         </div>
       </main>
