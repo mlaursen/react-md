@@ -11,10 +11,8 @@
     "sassdoc": "scripts/sassdoc.js",
     "docgen": "scripts/docgen.js",
     "build": "npm run docgen && npm run sassdoc && npm run scripts",
-    "server:build": "webpack --config webpack-dev.server.config.js --progress --colors",
-    "server:watch": "webpack --config webpack-dev.server.config.js --watch",
-    "server:dev": "concurrently --kill-others 'npm run server:watch' 'npm run start:dev'",
-    "dev": "./scripts/dev.sh"
+    "dev": "./scripts/dev.sh",
+    "server:dev": "webpack-dev-server --config webpack-dev.client.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -67,7 +65,7 @@
     "eslint": "^3.7.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-loader": "^1.5.0",
-    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "express-history-api-fallback": "^2.0.0",
@@ -84,7 +82,7 @@
     "raw-loader": "^0.5.1",
     "react-addons-perf": "^15.3.2",
     "react-docgen": "^2.10.0",
-    "react-hot-loader": "^3.0.0-beta.5",
+    "react-hot-loader": "^1.3.0",
     "redux-logger": "^2.6.1",
     "replace": "^0.3.0",
     "rimraf": "^2.5.4",
@@ -94,6 +92,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
+    "webpack-dev-server": "^1.16.1",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-node-externals": "^1.4.3"
   }
