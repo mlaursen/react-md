@@ -264,13 +264,13 @@ export default class InkContainer extends PureComponent {
   }
 
   _handleMouseDown(e) {
+    this._clicked = true;
     if (!isValidClick(e) || this._skipNextMouse) {
       this._skipNextMouse = false;
       return;
     }
 
     e.stopPropagation();
-    this._clicked = true;
     this._mouseLeave = false;
     this._container.addEventListener('mouseleave', this._handleMouseLeave);
     this._createInk(e.pageX, e.pageY);
