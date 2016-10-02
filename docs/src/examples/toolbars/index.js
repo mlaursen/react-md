@@ -28,7 +28,7 @@ export default [{
 This example only works when scrolling with the mouse, (or Mac trackpad) and
 touch devices because I was too lazy to implement keyboard and scrollback clicking.
 Just scroll anywhere in the _phone container_ to see how the flexible space changes.
-This is not built into the \`Toolbar\` because it involves scroll jacking and semi-complicated.
+It actually really only looks nice on mobile devices or a Mac's trackpad... Sigh.
 `,
   code: FlexibleSpaceExampleRaw,
   children: <FlexibleSpaceExample />,

@@ -6,6 +6,8 @@
 
 @include react-md-everything;
 
+@include react-md-make-custom-grid('24-40', 24px, 40px, 0, 0);
+@include react-md-make-custom-grid('40-16', 40px, 16px, 0, 0);
 
 .md-icon.fa {
   height: $md-font-icon-size;
@@ -57,14 +59,6 @@
     width: 300px;
   }
 
-  .component-info {
-    padding: 1em;
-  }
-
-  .react-doc {
-    margin: 4px;
-  }
-
   .demo-list-card {
     max-width: 50%;
   }
@@ -112,14 +106,6 @@
 @media only screen and (min-width: 992px) {
   .container {
     width: 952px - $md-navigation-drawer-desktop-width;
-  }
-
-  .component-info {
-    padding: 1em 2em;
-  }
-
-  .react-doc {
-    margin: 1em 2em;
   }
 
   .text-container,

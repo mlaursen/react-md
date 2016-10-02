@@ -49,8 +49,10 @@ export default class MarkdownPage extends PureComponent {
 
   render() {
     return (
-      <main className="markdown-page">
-        <Markdown markdown={this.state.markdown} className="container text-container" />
+      <main className="md-grid">
+        <div className="md-cell md-cell--12">
+          <Markdown markdown={this.state.markdown} className="md-text-container" />
+        </div>
       </main>
     );
   }

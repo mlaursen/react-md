@@ -9,8 +9,14 @@
   padding-bottom: 2em;
 }
 
-.img-card .md-ink {
-  background: rgba($md-white-base, .12);
+.img-card {
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+
+  .md-ink {
+    background: rgba($md-white-base, .12);
+  }
 }
 
 .banner {
@@ -28,18 +34,8 @@
   }
 }
 
-.getting-started {
-  justify-content: center;
-
-  .md-card {
-    max-width: 355px;
-    text-decoration: none;
-  }
-}
-
 .about {
   @extend %centered;
-  @extend %md-title;
 
   margin-bottom: 2em;
   padding: 1em 0;
@@ -48,9 +44,4 @@
 
 .md-navigation-drawer-toolbar.inactive {
   box-shadow: none;
-}
-
-.ink-item {
-  overflow: hidden;
-  position: relative;
 }

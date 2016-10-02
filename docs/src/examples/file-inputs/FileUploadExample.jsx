@@ -112,7 +112,7 @@ export default class FileUploadExample extends PureComponent {
         />
         <CSSTransitionGroup
           component="output"
-          className="md-card-list"
+          className="md-grid"
           transitionName="upload"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={150}

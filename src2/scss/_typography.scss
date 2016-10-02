@@ -18,6 +18,10 @@ $md-font-name: Roboto !default;
 /// @type String
 $md-font-family: '#{$md-font-name}', sans-serif !default;
 
+/// The max length a line of text can be.
+/// @type Number
+$md-typography-max-line-length: 640px !default;
+
 
 
 /// The light text weight.
@@ -452,6 +456,45 @@ $md-line-height: 20 / $md-font-size-base !default;
 
   .md-caption {
     @extend %md-caption;
+  }
+
+  .md-text-left {
+    text-align: left;
+  }
+
+  .md-text-center {
+    text-align: center;
+  }
+
+  .md-text-right {
+    text-align: right;
+  }
+
+  .md-text-justify {
+    text-align: justify;
+  }
+
+  .md-text-capitalize {
+    text-transform: capitalize;
+  }
+
+  .md-text-lowercalse {
+    text-transform: lowercase;
+  }
+
+  .md-text-uppercase {
+    text-transform: uppercase;
+  }
+
+  .md-text-nowrap {
+    white-space: nowrap;
+  }
+
+  .md-text-container {
+    @extend %md-block-centered;
+
+    max-width: $md-typography-max-line-length;
+    width: 100%;
   }
 }
 

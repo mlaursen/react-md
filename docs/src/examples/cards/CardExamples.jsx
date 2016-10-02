@@ -18,7 +18,7 @@ const CardExamples = () => {
     </CardTitle>
   );
   return (
-    <Card className="media-card">
+    <Card style={{ maxWidth: 600 }} className="md-block-centered">
       <CardMedia overlay={overlay}>
         <img
           src={randomImage({ width: 600, height: 337, section: 'nature' })}

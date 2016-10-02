@@ -7,8 +7,10 @@ import markdown from '../../readmes/Colors.md';
 export default class Colors extends PureComponent {
   render() {
     return (
-      <main className="markdown-page">
-        <Markdown markdown={markdown} component="article" className="container text-container" />
+      <main className="md-grid">
+        <div className="md-cell md-cell--12">
+          <Markdown markdown={markdown} component="article" className="md-text-container" />
+        </div>
         <ColorPalette />
       </main>
     );

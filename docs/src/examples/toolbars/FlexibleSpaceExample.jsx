@@ -92,8 +92,10 @@ export default class FlexibleSpaceExample extends PureComponent {
       imgOpacity = 0;
     }
 
-    // Throttle events a bit
-    if (!this._ticking) {
+    if (this._touchY) {
+      this.setState({ height, fontSize, btnTransform, imgOpacity });
+    } else if (!this._ticking) {
+      // Throttle events a bit
       requestAnimationFrame(() => {
         this._ticking = false;
         this.setState({ height, fontSize, btnTransform, imgOpacity });
@@ -115,8 +117,8 @@ export default class FlexibleSpaceExample extends PureComponent {
     // deltaMode of 0 means distance in px
     // deltaMode of 1 means in lines
     if (e.deltaMode === 1) {
-      // 20 is default line height for react-md
-      deltaY *= 20;
+      // Just multiply by line height
+      deltaY *= 1.42857;
     }
 
     deltaY *= (-1);
@@ -142,7 +144,7 @@ export default class FlexibleSpaceExample extends PureComponent {
     e.preventDefault();
 
     const { clientY } = e.changedTouches[0];
-    const diff = clientY - this._touchY;
+    const diff = (clientY - this._touchY);
     this._touchY = clientY;
     this._updateHeight(diff);
   }
@@ -175,6 +177,7 @@ export default class FlexibleSpaceExample extends PureComponent {
         onTouchStart={this._handleTouchStart}
         onTouchMove={this._handleTouchMove}
         toolbar={false}
+        contentStyle={{ overflowY: 'initial' }}
       >
         <Toolbar
           colored
@@ -215,6 +218,7 @@ export default class FlexibleSpaceExample extends PureComponent {
           style={{
             marginTop: height + (statusBar ? STATUS_BAR_HEIGHT : 0),
             height: `calc(100% - ${height}px)`,
+            overflowY: 'auto',
           }}
           className="phone-size-content"
           ref={this._setSection}

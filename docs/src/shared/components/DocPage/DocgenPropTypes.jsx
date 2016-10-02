@@ -84,6 +84,7 @@ export default class DocgenPropTypes extends PureComponent {
           placeholder="Filter properties"
           value={propFilter}
           onChange={this._filterProperties}
+          className="mla"
         />
       );
     }
@@ -98,7 +99,7 @@ export default class DocgenPropTypes extends PureComponent {
     return (
       <Card
         id={`prop-types-${toPropTypeId(component)}`}
-        className="component-prop-types"
+        className="md-cell md-cell--12 component-prop-types"
         raise={false}
         tableCard
       >

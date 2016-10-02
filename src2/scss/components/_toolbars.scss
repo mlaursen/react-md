@@ -81,10 +81,6 @@ $md-toolbar-tablet-title-keyline: 80px;
     display: flex;
   }
 
-  .md-toolbar-actions {
-    margin-left: auto;
-  }
-
   @if $include-themed {
     .md-toolbar--themed {
       background: get-color('toolbar', $light-theme);

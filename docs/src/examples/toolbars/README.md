@@ -1,4 +1,7 @@
-A toolbar is a container that has an optional title and 1 to many actionable areas.
+The `Toolbar` component can be used as a fixed `App Bar`, or just a simple container
+for a few actions.
 
-A toolbar can be used if you do not want to use the `NavigationDrawer` component that
-has this built in.
+When you are using a `fixed` Toolbar (aka `App Bar`), if you apply the `.md-toolbar-relative`
+class name to the main content of the page (or something you want adjusted), it will
+gain a margin-top equal to the current height of the toolbar based on the device/screen
+size.

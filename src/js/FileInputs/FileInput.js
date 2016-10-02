@@ -150,7 +150,7 @@ export default class FileInput extends PureComponent {
     } = this.props;
     delete props.onChange;
 
-    const icon = <FontIcon iconClassName={iconClassName} children={iconChildren} />;
+    const icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
     return (
       <div
         {...props}
@@ -171,11 +171,7 @@ export default class FileInput extends PureComponent {
             'md-btn--raised-active': !disabled && !flat && active,
           })}
         >
-          <IconSeparator
-            label={label}
-            iconBefore={iconBefore}
-            children={icon}
-          />
+          <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>
         </AccessibleFakeInkedButton>
         <input
           disabled={disabled}
@@ -183,7 +179,6 @@ export default class FileInput extends PureComponent {
           accept={accept}
           type="file"
           aria-hidden="true"
-          type="file"
           className="md-file-input"
           onChange={this._handleChange}
         />

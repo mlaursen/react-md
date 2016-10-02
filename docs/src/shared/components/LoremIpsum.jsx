@@ -5,19 +5,24 @@ import loremIpsum from 'lorem-ipsum';
 
 export default class LoremIpsum extends PureComponent {
   static propTypes = {
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
     count: PropTypes.number.isRequired,
     units: PropTypes.oneOf(['sentences', 'words', 'paragraphs']),
   };
 
   static defaultProps = {
+    component: 'section',
     count: 1,
     units: 'paragraphs',
   };
 
   render() {
-    const { count, units, ...props } = this.props;
+    const { component: Component, count, units, ...props } = this.props;
     return (
-      <div
+      <Component
         {...props}
         dangerouslySetInnerHTML={{
           __html: loremIpsum({ count, units, format: 'html' }),

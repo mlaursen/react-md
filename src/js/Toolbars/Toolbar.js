@@ -147,17 +147,16 @@ export default class Toolbar extends PureComponent {
       fixed,
       actionLeft,
       actionsRight,
+      children,
       ...props,
     } = this.props;
     delete props.nav;
     delete props.title;
     delete props.titleMenu;
     delete props.colored;
-    delete props.children;
     delete props.prominent;
 
     let {
-      children,
       colored,
       title,
       titleMenu,
@@ -184,7 +183,7 @@ export default class Toolbar extends PureComponent {
       }));
 
       rightActions = (
-        <div key="actions" className="md-toolbar-actions md-toolbar--action-right">
+        <div key="actions" className="md-cell--right md-toolbar--action-right">
           {rightActions}
         </div>
       );

@@ -67,7 +67,7 @@ export default class UploadedFileCard extends PureComponent {
     }
 
     return (
-      <Card className={classnames('uploaded', { application })}>
+      <Card className={classnames('md-cell uploaded', { application })}>
         <CardMedia overlay={title}>
           <Button icon data-name={name} className="close-btn">close</Button>
           {content}

@@ -86,9 +86,9 @@ ${code}
       <Card
         {...props}
         tableCard={tableCard}
-        className={cn('component-example', className)}
+        className={cn('md-cell md-cell--12 component-example', className)}
         raise={false}
-        iconChildren="code"
+        expanderIconChildren="code"
         expanderTooltipLabel="View the source code for this example"
         expanderTooltipDelay={300}
       >

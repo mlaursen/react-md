@@ -42,7 +42,6 @@ export default class SimpleDialogExamples extends PureComponent {
           isOpen={isOpen}
           title="Simple Title"
           onClose={this.closeDialog}
-          dialogStyle={{ maxWidth: 320 }}
         >
           <List>
             {items}

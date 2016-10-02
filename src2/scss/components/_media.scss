@@ -1,0 +1,115 @@
+////
+/// @group media
+////
+
+$md-media-aspect-ratios: ('16:9', '4:3', '1:1') !default;
+$md-media-include-overlay: true !default;
+$md-media-include-embedded: false !default;
+
+$md-media-overlay-color: rgba($md-black-base, .54) !default;
+
+%md-media-embedded {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+@mixin react-md-media($include-overlay: $md-media-include-overlay, $include-embedded: $md-media-include-embedded) {
+  .md-media {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+
+    img {
+      @extend %md-media-embedded;
+    }
+  }
+
+  .md-media--responsive {
+    display: block;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  @each $aspect-ratio in $md-media-aspect-ratios {
+    $map: extract-media($aspect-ratio);
+    $width: map-get($map, width);
+    $height: map-get($map, height);
+
+    @include react-md-aspect-ratio($width, $height);
+  }
+
+  @if $include-overlay {
+    @include react-md-media-overlay;
+  }
+
+  @if $include-embedded {
+    @include react-md-media-embedded;
+  }
+}
+
+@mixin react-md-aspect-ratio($width, $height) {
+  .md-media--#{$width}-#{$height} {
+    padding-bottom: ($height / $width) * 100%;
+  }
+}
+
+@mixin react-md-media-embedded {
+  .md-media-embedded {
+    @extend %md-media-embedded;
+  }
+}
+
+@mixin react-md-media-overlay {
+  .md-media-overlay {
+    background: $md-media-overlay-color;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+
+    .md-btn,
+    .md-color--text {
+      color: get-color('text', false);
+    }
+
+    .md-color--secondary-text {
+      color: get-color('secondary', false);
+    }
+  }
+}
+
+@function extract-media($string) {
+  $index: str-index($string, ':');
+  $width: str-slice($string, 1, $index - 1);
+  $height: str-slice($string, $index + 1);
+
+  @return (width: to-number($width), height: to-number($height));
+}
+
+@function to-number($string) {
+  $strings: ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+  $numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+  $result: 0;
+
+  @for $i from 1 through str-length($string) {
+    $character: str-slice($string, $i, $i);
+    $index: index($strings, $character);
+
+    @if not $index {
+      @warn "Unknown character '#{$character}'";
+      $index: 1;
+    }
+
+    $number: nth($numbers, $index);
+    $result: $result * 10 + $number;
+  }
+
+  @return $result;
+}

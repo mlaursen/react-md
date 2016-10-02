@@ -17,6 +17,7 @@
 
     "no-mixed-operators": 0,
     "global-require": 0,
+    "arrow-parens": 0,
 
     "prefer-spread": 0,
 
@@ -28,13 +29,23 @@
     "import/no-extraneous-dependencies": 0,
     "import/newline-after-import": 0,
     "import/no-named-as-default": 0,
+    "import/extensions": 0,
+
+    "class-methods-use-this": 0,
 
     // Jest does not work on stateless functions.
     "react/prefer-stateless-function": 0,
+
+    // Need to use it a lot..
     "react/no-find-dom-node": 0,
-    "react/no-string-refs": 0,
+    "react/no-string-refs": 1,
+    "react/no-unused-prop-types": 0,
+    // Use object for style..
+    "react/forbid-prop-types": 0,
 
     // Can't use .jsx if I want to support non-webpack builds.
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+
+    "jsx-a11y/no-static-element-interactions": 0
   }
 }

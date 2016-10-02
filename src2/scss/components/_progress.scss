@@ -61,11 +61,6 @@ $md-linear-progress-swatch: 100 !default;
       margin-bottom: $md-progress-margin;
       margin-top: $md-progress-margin;
     }
-
-    .md-progress--centered {
-      margin-left: auto;
-      margin-right: auto;
-    }
   }
 
   @if $include-circular {
