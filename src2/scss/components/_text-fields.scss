@@ -548,9 +548,7 @@ $md-text-field-desktop-block-padding: 16px;
   .md-text-field-container {
     @include react-md-theme-placeholders(get-color('secondary', $light-theme));
 
-    display: inline-block;
     position: relative;
-    vertical-align: bottom;
 
     // scss-lint:disable VendorPrefix, PseudoElement
     :-moz-placeholder {
@@ -572,11 +570,6 @@ $md-text-field-desktop-block-padding: 16px;
 
   .md-text-field-container--input {
     line-height: 1;
-  }
-
-  .md-text-field-container--full-width {
-    display: block;
-    width: 100%;
   }
 
   @if $include-block {
@@ -999,10 +992,6 @@ $md-text-field-desktop-block-padding: 16px;
 
   .md-text-field-message-container--error {
     color: $error-color;
-  }
-
-  .md-text-field-message-container--full-width {
-    width: 100%;
   }
 
   .md-text-field-message-container--count-only {

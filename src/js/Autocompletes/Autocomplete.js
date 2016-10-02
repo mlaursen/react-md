@@ -888,7 +888,7 @@ export default class Autocomplete extends PureComponent {
           component="div"
           style={containerStyle}
           className={cn('md-menu-container md-autocomplete-container', containerClassName, {
-            'full-width': fullWidth || block,
+            'md-full-width': fullWidth || block,
           })}
           transitionName="opacity"
           transitionEnterTimeout={150}

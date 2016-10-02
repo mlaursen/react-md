@@ -891,8 +891,9 @@ export default class TextField extends PureComponent {
         ref={this._setContainer}
         style={Object.assign({}, style, { minWidth, height })}
         className={cn('md-text-field-container', {
+          'md-inline-block': !fullWidth && !block,
+          'md-full-width': block || fullWidth,
           'md-text-field-container--disabled': disabled,
-          'md-text-field-container--full-width': block || fullWidth,
           'md-text-field-container--input': typeof props.rows === 'undefined',
           'md-text-field-container--input-block': block && !multiline,
           'md-text-field-container--multiline': multiline,

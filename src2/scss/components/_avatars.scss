@@ -50,7 +50,6 @@ $md-avatar-colors: (
   .md-avatar {
     border: 1px solid if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
     border-radius: 50%;
-    display: inline-block;
     height: $md-avatar-size;
     overflow: hidden;
     text-align: center;

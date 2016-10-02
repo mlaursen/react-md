@@ -303,8 +303,8 @@ export default class Menu extends PureComponent {
       <CSSTransitionGroup
         {...props}
         ref={this._setContainer}
-        className={cn('md-menu-container', {
-          'md-menu-container--full-width': fullWidth,
+        className={cn('md-inline-block md-menu-container', {
+          'md-full-width': fullWidth,
           'md-menu-container--menu-below': position === Positions.BELOW,
         }, className)}
         aria-haspopup

@@ -134,11 +134,9 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
     background: transparent;
     border: 0;
     border-radius: 2px;
-    display: inline-block;
     position: relative;
     transition-duration: $md-transition-time;
     transition-property: background, color;
-    vertical-align: top;
 
     &:focus {
       outline: none;

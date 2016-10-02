@@ -528,7 +528,7 @@ class Button extends PureComponent {
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
         href={href}
-        className={cn(`md-btn md-btn--${mdBtnType}`, {
+        className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, {
           'md-color--text': !disabled && !primary && !secondary && !icon && !floating,
           'md-color--primary': !disabled && !raisedStyles && primary,
           'md-color--primary-ink': !disabled && !raisedStyles && primary,

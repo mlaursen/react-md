@@ -37,7 +37,6 @@ $md-menu-cascading-list-padding: 16px;
   }
 
   .md-menu-container {
-    display: inline-block;
     position: relative;
   }
 
@@ -49,10 +48,6 @@ $md-menu-cascading-list-padding: 16px;
         transform: scaleY(1);
       }
     }
-  }
-
-  .md-menu-container--full-width {
-    display: block;
   }
 
   .md-list--menu {
@@ -175,11 +170,11 @@ $md-menu-cascading-list-padding: 16px;
         right: 100%;
       }
 
-      .md-list-expander {
+      .md-collapser {
         transform: rotate3d(0, 0, 1, -90deg);
       }
 
-      .md-list-expander--flipped {
+      .md-collapser--flipped {
         transform: rotate3d(0, 0, 1, 90deg);
       }
     }
