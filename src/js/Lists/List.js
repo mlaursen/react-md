@@ -24,7 +24,7 @@ export default class List extends PureComponent {
      * Boolean if this should be an ordered list (`<ol>`) component. Otherwise, it will
      * be rendered as `<ul>`.
      */
-    ordered: PropTypes.object,
+    ordered: PropTypes.bool,
 
     /**
      * This *should* be a list of `ListItem`, `ListItemControl`, `Divider`, or
