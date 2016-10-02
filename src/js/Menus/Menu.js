@@ -208,6 +208,14 @@ export default class Menu extends PureComponent {
     if (list !== null) {
       this._list = findDOMNode(list);
     }
+
+    try {
+      const children = Children.only(this.props.children);
+      if (typeof children.ref === 'function') {
+        children.ref(list);
+      }
+    } catch(e) {
+    }
   }
 
   _setContainer(container) {
