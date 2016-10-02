@@ -1,8 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import cn from 'classnames';
 
 import CardExpander from './CardExpander';
-import contextTypes from './contextTypes';
 
 /**
  * The `CardActions` component is used for adding actions on your card.
@@ -10,7 +9,7 @@ import contextTypes from './contextTypes';
  *
  * This component can act as a `CardExpander`.
  */
-export default class CardActions extends PureComponent {
+export default class CardActions extends Component {
   static propTypes = {
     /**
      * Boolean if this component should act as an expander and inject the
@@ -32,17 +31,28 @@ export default class CardActions extends PureComponent {
      * Boolean if the actions should be centered.
      */
     centered: PropTypes.bool,
+    stacked: PropTypes.bool,
   };
 
-  static contextTypes = contextTypes;
-
   render() {
-    const { className, children, isExpander, centered, ...props } = this.props;
+    const {
+      className,
+      children,
+      isExpander,
+      centered,
+      stacked,
+      ...props,
+    } = this.props;
     return (
-      <section {...props} className={cn('md-card-actions', className, { centered })}>
-        <div className="action-area">
-          {children}
-        </div>
+      <section
+        {...props}
+        className={cn('md-dialog-footer--card', {
+          'md-dialog-footer--inline': !stacked,
+          'md-dialog-footer--stacked': stacked,
+          'md-dialog-footer--centered': centered,
+        }, className)}
+      >
+        {children}
         {isExpander && <CardExpander />}
       </section>
     );

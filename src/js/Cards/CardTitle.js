@@ -1,88 +1,48 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { Component, PropTypes, Children, cloneElement } from 'react';
 import cn from 'classnames';
 
-import contextTypes from './contextTypes';
+import CardTitleBlock from './CardTitleBlock';
 import CardExpander from './CardExpander';
 
-/**
- * The `CardTitle` component is used to display the main content title for the card.
- *
- * This can include an optional `Avatar` to display before the title as well as
- * an optional subtitle.
- *
- * This component can also act as an expander which will inject the `CardExpander`.
- */
-export default class CardTitle extends PureComponent {
+export default class CardTitle extends Component {
   static propTypes = {
-    /**
-     * The main title to display.
-     */
-    title: PropTypes.string.isRequired,
-
-    /**
-     * An optional subtitle.
-     */
-    subtitle: PropTypes.string,
-
-    /**
-     * The optional className to apply.
-     */
-    className: PropTypes.string,
-
-    /**
-     * An optional `Avatar` to display before the titles.
-     */
-    avatar: PropTypes.node,
-
-    /**
-     * Any additional children to display after the titles.
-     */
-    children: PropTypes.node,
-
-    /**
-     * Boolean if this should act as an expander. This will inject the
-     * `CardExpander` after the titles and optional children.
-     */
-    isExpander: PropTypes.bool,
-
-    /**
-     * Boolean if this component should be expandable when there is a `CardExpander`
-     * above it in the `Card`.
-     */
-    expandable: PropTypes.bool,
-
-    /**
-     * An optional id to give the primary title
-     */
     id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
+    title: PropTypes.node.isRequired,
+    subtitle: PropTypes.node,
+    className: PropTypes.string,
+    style: PropTypes.object,
+    children: PropTypes.node,
+    avatar: PropTypes.element,
+    isExpander: PropTypes.bool,
   };
-
-  static defaultProps = {
-    avatar: null,
-  };
-
-  static contextTypes = contextTypes;
 
   render() {
-    const { id, title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
-    delete props.expandable;
-
+    const {
+      id,
+      title,
+      subtitle,
+      className,
+      isExpander,
+      children,
+    } = this.props;
+    let { avatar } = this.props;
+    if (avatar) {
+      const { className: avatarClassName } = Children.only(avatar).props;
+      avatar = cloneElement(avatar, {
+        className: cn('md-avatar--card', avatarClassName),
+      });
+    }
     return (
       <div
-        {...props}
-        className={cn('md-card-title', className, {
-          'title-large': !!avatar,
-          'card-expander': isExpander,
-        })}
+        className={cn('md-card-title', {
+          'md-card-title--primary': !avatar,
+        }, className)}
       >
         {avatar}
-        <div className="titles">
-          <h2 id={id} className="md-headline">{title}</h2>
-          {subtitle && <h3 className="md-subheader">{subtitle}</h3>}
-        </div>
+        <CardTitleBlock id={id} title={title} subtitle={subtitle} avatar={!!avatar} />
         {children}
         {isExpander && <CardExpander />}
       </div>
