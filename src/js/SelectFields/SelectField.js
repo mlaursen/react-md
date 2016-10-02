@@ -4,7 +4,7 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import FontIcon from '../FontIcons';
+import Collapser from '../FontIcons/Collapser';
 import Paper from '../Papers';
 import Menu from '../Menus/Menu';
 import Positions from '../Menus/Positions';
@@ -820,15 +820,13 @@ export default class SelectField extends PureComponent {
         inputClassName={cn(droppingClassName, inputClassName)}
         fullWidth={fullWidth}
         inlineIndicator={
-          <FontIcon
-            key="indicator"
-            children={iconChildren}
+          <Collapser
             disabled={disabled}
-            className={cn('md-list-expander', {
-              'md-list-expander--flipped': isOpen && below,
-            })}
+            flipped={isOpen && below}
             iconClassName={iconClassName}
-          />
+          >
+            {iconChildren}
+          </Collapser>
         }
       />
     );

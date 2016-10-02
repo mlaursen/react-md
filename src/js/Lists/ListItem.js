@@ -7,7 +7,7 @@ import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import { TAB } from '../constants/keyCodes';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
-import FontIcon from '../FontIcons';
+import Collapser from '../FontIcons/Collapser';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
@@ -406,13 +406,9 @@ export default class ListItem extends PureComponent {
           <TileAddon
             key="expander-addon"
             icon={(
-              <FontIcon
-                className={cn('md-list-expander', {
-                  'md-list-expander--flipped': isOpen,
-                })}
-                iconClassName={expanderIconClassName}
-                children={expanderIconChildren}
-              />
+              <Collapser flipped={isOpen} iconClassName={expanderIconClassName}>
+                {expanderIconChildren}
+              </Collapser>
             )}
             avatar={null}
           />
