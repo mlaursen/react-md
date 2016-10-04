@@ -3,7 +3,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import FontIcon from '../FontIcons';
 import injectTooltip from '../Tooltips';
 import Button from './Button';
-import deprecated from './_deprecated';
+import deprecated from '../utils/PropTypes/componentDeprecated';
 
 /**
  * The `IconButton` component automatically includes ink and a tooltip.
@@ -73,7 +73,11 @@ class IconButton extends PureComponent {
     tooltip: PropTypes.node,
     floating: PropTypes.bool,
 
-    _deprecated: deprecated('icon'),
+    deprecated: deprecated(
+      'The behavior of the `IconButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `icon`.'
+    ),
   };
 
   static defaultProps = {

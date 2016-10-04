@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
 import Button from './Button';
+import deprecated from '../utils/PropTypes/componentDeprecated';
 
 export default class FlatButton extends PureComponent {
   static propTypes = {
@@ -55,9 +56,10 @@ export default class FlatButton extends PureComponent {
      */
     onClick: PropTypes.func,
 
-    _deprecated: (props, propName, component) => new Error(
-      `The \`${component}\` has been deprecated and will be removed in the next release ` +
-      'in favor of the `Button` component.'
+    deprecated: deprecated(
+      'The behavior of the `FlatButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `flat`.'
     ),
   };
 
