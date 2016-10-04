@@ -1,7 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 import Button from 'react-md/lib/Buttons';
-import { Card, CardTitle, CardMedia } from 'react-md/lib/Cards';
+import { Card, CardTitle } from 'react-md/lib/Cards';
+import Media from 'react-md/lib/Media';
 
 export default class Section extends PureComponent {
   static propTypes = {
@@ -26,9 +27,9 @@ export default class Section extends PureComponent {
 
     const cards = data.map(({ img, ...props }, i) => (
       <Card raise={false} className={cardClassName} key={i}>
-        <CardMedia aspectRatio={CardMedia.aspect.equal}>
+        <Media aspectRatio="1-1">
           <img src={img} role="presentation" />
-        </CardMedia>
+        </Media>
         <CardTitle {...props} className={titleIcon ? 'with-icon' : null}>{titleChildren}</CardTitle>
       </Card>
     ));

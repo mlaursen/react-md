@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { CardTitle, CardMedia } from 'react-md/lib/Cards';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
+import Media from 'react-md/lib/Media';
 import injectInk from 'react-md/lib/Inks';
 import Paper from 'react-md/lib/Papers';
 
@@ -26,9 +27,9 @@ export default class ImgCard extends PureComponent {
       >
         {ink}
         <CardTitle title={title} />
-        <CardMedia aspectRatio={CardMedia.aspect.equal}>
+        <Media aspectRatio="1-1">
           <img src={src} alt={alt} />
-        </CardMedia>
+        </Media>
       </Paper>
     );
   }

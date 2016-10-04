@@ -1,6 +1,0 @@
-@import '~react-md-scss';
-
-// It isn't included by default. You can either manually include it
-// with the mixin, or by setting `$md-media-include-embedded: true`
-// before calling the `react-md-everything` or `react-md-media` mixins.
-@include react-md-media-embedded;

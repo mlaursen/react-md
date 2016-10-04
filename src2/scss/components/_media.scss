@@ -2,12 +2,30 @@
 /// @group media
 ////
 
+/// The default aspect ratios to include.
+/// @type List
 $md-media-aspect-ratios: ('16:9', '4:3', '1:1') !default;
+
+/// A boolean if the overlay styles should be included.
+/// @type Boolean
 $md-media-include-overlay: true !default;
+
+/// Boolean if the `.md-media-embedded` class name should be included.
+/// @type Boolean
 $md-media-include-embedded: false !default;
 
+/// A list of class name or html tags that will get the embedded media styles applied
+/// by default in the `.md-media` container.
+/// @type List
+$md-media-embedded-selectors: ('img' 'iframe') !default;
+
+/// The color to use for the media overlay's background color.
+/// @type Color
 $md-media-overlay-color: rgba($md-black-base, .54) !default;
 
+/// A placeholder for making a class or html element use the embedded styles. This class or
+/// element will need to be contained in a class containing `.md-media` to get the correct
+/// styles.
 %md-media-embedded {
   bottom: 0;
   height: 100%;
@@ -18,7 +36,17 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
   width: 100%;
 }
 
-@mixin react-md-media($include-overlay: $md-media-include-overlay, $include-embedded: $md-media-include-embedded) {
+/// Creates the styles for media.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-media;
+///
+/// @param {Boolean} include-overlay [$md-media-include-overlay] - Boolean if the overlay styles should be included.
+/// @param {Boolean} include-embedded [$md-media-include-embedded] - Boolean if the embedded class name should be included.
+///     This does not affect the `$embedded-selectors` param.
+/// @param {List} embedded-selectors [$md-media-embedded-selectors] - A list of class name or html tags to apply the
+///     embedded styles to by default within a `.md-media` container.
+@mixin react-md-media($include-overlay: $md-media-include-overlay, $include-embedded: $md-media-include-embedded, $embedded-selectors: $md-media-embedded-selectors) {
   .md-media {
     display: block;
     height: 0;
@@ -26,15 +54,13 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
     padding: 0;
     position: relative;
 
-    img {
-      @extend %md-media-embedded;
+    @if $embedded-selectors and length($embedded-selectors) {
+      @each $selector in $embedded-selectors {
+        #{$selector} {
+          @extend %md-media-embedded;
+        }
+      }
     }
-  }
-
-  .md-media--responsive {
-    display: block;
-    height: 100%;
-    max-width: 100%;
   }
 
   @each $aspect-ratio in $md-media-aspect-ratios {
@@ -54,18 +80,28 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
   }
 }
 
+/// Creates a media aspect ratio that will make the `.md-media-embedded\` or any of the
+/// `$md-media-embedded-selectors` children keep the aspect ratio.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-aspect-ratio(16, 9);
+///
+/// @param {Number} width - The width to enforce.
+/// @param {Number} height - The height to enforce.
 @mixin react-md-aspect-ratio($width, $height) {
   .md-media--#{$width}-#{$height} {
-    padding-bottom: ($height / $width) * 100%;
+    padding-bottom: percentage($height / $width);
   }
 }
 
+/// Very simple mixin to only include the `.md-media-embedded` class.
 @mixin react-md-media-embedded {
   .md-media-embedded {
     @extend %md-media-embedded;
   }
 }
 
+/// Creates the styles for the media overlay.
 @mixin react-md-media-overlay {
   .md-media-overlay {
     background: $md-media-overlay-color;
