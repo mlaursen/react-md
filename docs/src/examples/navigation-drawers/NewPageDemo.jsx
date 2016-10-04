@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
-import NavigationDrawer from 'react-md/lib//NavigationDrawers';
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import Button from 'react-md/lib/Buttons';
 
 import NewPage from './NewPage';

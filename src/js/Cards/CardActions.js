@@ -31,6 +31,10 @@ export default class CardActions extends Component {
      * Boolean if the actions should be centered.
      */
     centered: PropTypes.bool,
+
+    /**
+     * Boolean if the actions should be stacked.
+     */
     stacked: PropTypes.bool,
   };
 

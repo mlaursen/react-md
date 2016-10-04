@@ -80,8 +80,20 @@ export default class Card extends PureComponent {
      * ```
      */
     tableCard: PropTypes.bool,
+
+    /**
+     * An optional function to call when the mouseover event is triggered.
+     */
     onMouseOver: PropTypes.func,
+
+    /**
+     * An optional function to call when the mouseleave event is triggered.
+     */
     onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional function to call when the touchstart event is triggered.
+     */
     onTouchStart: PropTypes.func,
     iconChildren: deprecated(PropTypes.node, 'Use the `expanderIconChildren` prop instead'),
     iconClassName: deprecated(PropTypes.string, 'Use the `expanderIconClassName` prop instead'),

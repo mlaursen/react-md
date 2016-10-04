@@ -3,7 +3,8 @@ import cn from 'classnames';
 
 import deprecated from 'react-prop-types/lib/deprecated';
 import componentDeprecated from '../utils/PropTypes/componentDeprecated';
-import Media, { MediaOverlay } from '../Media';
+import Media from '../Media/Media';
+import MediaOverlay from '../Media/MediaOverlay';
 
 /**
  * The `CardMedia` component is used to display images or some sort
