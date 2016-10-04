@@ -6,22 +6,13 @@ import CardVideoExampleRaw from '!!raw!./CardVideoExample';
 import CardWeather from './CardWeather';
 import CardWeatherRaw from '!!raw!./CardWeather';
 
-import EmbeddedCSSRaw from '!!raw!./_embedded.scss';
-
 export default [{
   title: 'Expandable Card Example with Media',
   code: CardExamplesRaw,
   children: <CardExamples />,
 }, {
   title: 'Card With a Video',
-  code: `
-/* CardVideoExample.jsx */
-${CardVideoExampleRaw}
-\`\`\`
-
-\`\`\`scss
-${EmbeddedCSSRaw}
-`,
+  code: CardVideoExampleRaw,
   children: <CardVideoExample />,
 }, {
   code: CardWeatherRaw,

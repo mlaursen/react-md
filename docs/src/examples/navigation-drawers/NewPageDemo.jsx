@@ -44,17 +44,17 @@ export default class NewPageDemo extends PureComponent {
 
     const navItems = [{
       primaryText: 'Page 1',
-      onClick: this.fakeChangePage.bind(this, 1),
+      onClick: this._fakeChangePage.bind(this, 1),
       tileClassName: classnames({ active: page === 1 }),
       leftIcon: avatars[0],
     }, {
       primaryText: 'Page 2',
-      onClick: this.fakeChangePage.bind(this, 2),
+      onClick: this._fakeChangePage.bind(this, 2),
       tileClassName: classnames({ active: page === 2 }),
       leftIcon: avatars[1],
     }, {
       primaryText: 'Page 3',
-      onClick: this.fakeChangePage.bind(this, 3),
+      onClick: this._fakeChangePage.bind(this, 3),
       tileClassName: classnames({ active: page === 3 }),
       leftIcon: avatars[2],
     }];

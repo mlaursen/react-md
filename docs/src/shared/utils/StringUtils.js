@@ -92,6 +92,10 @@ export function toJsonName(component) {
     name = name.replace('Helper', '');
   }
 
+  if (name.match(/Focus/)) {
+    name = name.replace(/Container/, '');
+  }
+
   name = name.replace(/ /g, '');
 
   let lastIndex = name.length;

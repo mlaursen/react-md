@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Divider from 'react-md/lib/Dividers';
-import { Card, CardMedia, CardTitle, CardActions } from 'react-md/lib/Cards';
+import { Card, CardTitle, CardActions } from 'react-md/lib/Cards';
+import Media from 'react-md/lib/Media';
 import Button from 'react-md/lib/Buttons';
 
 import { randomImages } from 'utils/RandomUtils';
@@ -52,9 +53,9 @@ export default class Books extends PureComponent {
   render() {
     const cards = data.map(({ img, ...titleProps }, i) => (
       <Card raise={false} key={i} className="book-card">
-        <CardMedia forceAspect={false}>
+        <Media forceAspect={false}>
           <img src={img} role="presentation" />
-        </CardMedia>
+        </Media>
         <div className="action-right">
           <CardTitle {...titleProps} />
           <Divider />

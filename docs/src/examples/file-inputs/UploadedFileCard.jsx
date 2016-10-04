@@ -2,8 +2,9 @@ import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
 import Button from 'react-md/lib/Buttons';
-import { Card, CardMedia, CardTitle } from 'react-md/lib/Cards';
+import { Card, CardTitle } from 'react-md/lib/Cards';
 import FontIcon from 'react-md/lib/FontIcons';
+import Media, { MediaOverlay } from 'react-md/lib/Media';
 
 import Markdown from 'components/Markdown';
 
@@ -45,14 +46,6 @@ export default class UploadedFileCard extends PureComponent {
 
   render() {
     const { name, size, lastModified, type, uploadResult } = this.props.file;
-    const title = (
-      <CardTitle
-        key="title"
-        title={`${name} (${type})`}
-        subtitle={`Last Modified: ${Intl.DateTimeFormat('en-US').format(lastModified)}. Size: (${size} b)`}
-      />
-    );
-
     let content, application;
     if (type.match(/image/)) {
       content = <img src={uploadResult} alt={name} />;
@@ -68,10 +61,17 @@ export default class UploadedFileCard extends PureComponent {
 
     return (
       <Card className={classnames('md-cell uploaded', { application })}>
-        <CardMedia overlay={title}>
+        <Media>
+          <MediaOverlay>
+            <CardTitle
+              key="title"
+              title={`${name} (${type})`}
+              subtitle={`Last Modified: ${Intl.DateTimeFormat('en-US').format(lastModified)}. Size: (${size} b)`}
+            />
+          </MediaOverlay>
           <Button icon data-name={name} className="close-btn">close</Button>
           {content}
-        </CardMedia>
+        </Media>
       </Card>
     );
   }

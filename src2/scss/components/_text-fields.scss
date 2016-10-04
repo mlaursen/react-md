@@ -427,6 +427,12 @@ $md-text-field-desktop-block-padding: 16px;
   $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password
 ) {
+  @if $light-theme != $md-light-theme {
+    .md-text-field-container {
+      @include react-md-theme-placeholders(get-color('secondary', $light-theme));
+    }
+  }
+
   @include react-md-theme-text-field-divider($primary-color, $error-color);
 
   @if $include-floating-label {

@@ -2,7 +2,9 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 
-import { Card, CardTitle, CardMedia } from 'react-md/lib/Cards';
+import { Card, CardTitle } from 'react-md/lib/Cards';
+import Media from 'react-md/lib/Media';
+import MediaOverlay from 'react-md/lib/Media/MediaOverlay';
 import { LinearProgress } from 'react-md/lib/Progress';
 import FontIcon from 'react-md/lib/FontIcons';
 
@@ -94,10 +96,10 @@ export default class SpotifyAlbum extends PureComponent {
     let player;
     if (playing) {
       player = (
-        <div key={`player-${songName}`}>
+        <MediaOverlay key={`player-${songName}`}>
           <CardTitle title={songName} subtitle={this.formatTime(songDuration)} />
           <LinearProgress value={progress} key="progress" />
-        </div>
+        </MediaOverlay>
       );
     }
 
@@ -121,12 +123,13 @@ export default class SpotifyAlbum extends PureComponent {
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
       >
-        <CardMedia aspectRatio="1-1" overlay={player}>
+        <Media aspectRatio="1-1">
           <img src={img.url} alt={`${name}'s album artwork'`} />
+          {player}
           <CSSTransitionGroup transitionName="play" transitionEnterTimeout={150} transitionLeaveTimeout={150}>
             {hoverIcon}
           </CSSTransitionGroup>
-        </CardMedia>
+        </Media>
       </Card>
     );
   }

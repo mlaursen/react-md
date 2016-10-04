@@ -84,6 +84,7 @@ export default class InputField extends PureComponent {
       rows,
       ref: field => { this._field = field; },
       className: cn('md-text-field', {
+        'md-color--text': !props.disabled,
         'md-color--disabled': props.disabled,
         'md-text-field--inline-indicator': inlineIndicator || (!multiline && type === 'password'),
         'md-text-field--multiline': multiline,
