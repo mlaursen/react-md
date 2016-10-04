@@ -3,6 +3,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
 import Button from '../Buttons';
+import componentDeprecated from '../utils/PropTypes/componentDeprecated';
 
 /**
  * The `CardActionOverlay` component is a simple wrapper for generating an overlay
@@ -32,6 +33,9 @@ export default class CardActionOverlay extends PureComponent {
      * Any children to display in the `CardTitle` component.
      */
     children: PropTypes.node,
+    deprecated: componentDeprecated(
+      'It is not a worthwhile component since the same thing can be accomplished with the `MediaOverlay` component.'
+    ),
   };
 
   render() {

@@ -1,58 +1,30 @@
 /* eslint-env jest */
-/* eslint-disable max-len */
 jest.unmock('../Card');
-jest.unmock('../CardActions');
-jest.unmock('../CardTitle');
-jest.unmock('../CardExpander');
-jest.unmock('../CardText');
-jest.unmock('../../Transitions');
-jest.unmock('../../Transitions/Height');
-jest.unmock('../../Buttons');
-jest.unmock('../../FontIcons');
-jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-  findRenderedComponentWithType,
-  scryRenderedComponentsWithType,
-  scryRenderedDOMComponentsWithClass,
 } from 'react-addons-test-utils';
 
 import Card from '../Card';
-import CardActions from '../CardActions';
-import CardTitle from '../CardTitle';
-import CardText from '../CardText';
-import CardExpander from '../CardExpander';
-import Height from '../../Transitions/Height';
 
 describe('Card', () => {
-  it('merges className and style correctly', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const card = renderIntoDocument(
-      <Card className={className} style={style} />
-    );
+  it('merges className and style', () => {
+    const props = {
+      style: { background: 'black' },
+      className: 'test',
+    };
+
+    const card = renderIntoDocument(<Card {...props} />);
 
     const cardNode = findDOMNode(card);
-
-    expect(cardNode.style.display).toBe(style.display);
-    expect(cardNode.classList.contains(className)).toBe(true);
+    expect(cardNode.style.background).toBe(props.style.background);
+    expect(cardNode.className).toContain(props.className);
   });
 
-  it('adds the raise className unless disabled', () => {
-    let card = renderIntoDocument(<Card />);
-    let cardNode = findDOMNode(card);
-    expect(cardNode.className).toBe('md-card raise');
-
-    card = renderIntoDocument(<Card raise={false} />);
-    cardNode = findDOMNode(card);
-    expect(cardNode.className).toBe('md-card');
-  });
-
-  it('allows for normal event listeners to be passed to the card', () => {
+  it('passes event listeners correctly', () => {
     const onClick = jest.fn();
     const onMouseDown = jest.fn();
     const onMouseUp = jest.fn();
@@ -99,65 +71,5 @@ describe('Card', () => {
 
     Simulate.touchCancel(cardNode);
     expect(onTouchCancel).toBeCalled();
-  });
-
-  it('injects a card expander into the CardActions compoennt if the prop isExpander is true', () => {
-    const card = renderIntoDocument(
-      <Card>
-        <CardActions isExpander />
-      </Card>
-    );
-
-    const toggleNode = findRenderedComponentWithType(card, CardExpander);
-    expect(toggleNode).toBeDefined();
-  });
-
-  it('injects a card expander into the CardTitle component if the prop isExpander is true', () => {
-    const card = renderIntoDocument(
-      <Card>
-        <CardTitle title="Hello" isExpander />
-      </Card>
-    );
-
-    const toggleNode = findRenderedComponentWithType(card, CardExpander);
-    expect(toggleNode).toBeDefined();
-  });
-
-  it('hides a any component after an expander if the card is not expanded', () => {
-    const card = renderIntoDocument(
-      <Card>
-        <CardActions isExpander />
-        <CardText expandable>Hello, World</CardText>
-      </Card>
-    );
-
-    const text = scryRenderedComponentsWithType(card, CardText);
-    expect(text.length).toBe(0);
-  });
-
-  it('wraps a child with the height transition if there is an expander and the card is expanded', () => {
-    const card = renderIntoDocument(
-      <Card initiallyExpanded>
-        <CardActions isExpander />
-        <CardText expandable>Hello, World</CardText>
-      </Card>
-    );
-
-    const height = scryRenderedComponentsWithType(card, Height);
-    expect(height.length).toBe(1);
-  });
-
-  it('will still display any component that does not have expandabe set to true', () => {
-    const card = renderIntoDocument(
-      <Card>
-        <CardActions isExpander />
-        <CardText>Hello, World</CardText>
-        <CardText expandable>Goodbye, World</CardText>
-      </Card>
-    );
-
-    const cards = scryRenderedDOMComponentsWithClass(card, 'md-card-text');
-    expect(cards.length).toBe(1);
-    expect(cards[0].textContent).toBe('Hello, World');
   });
 });
