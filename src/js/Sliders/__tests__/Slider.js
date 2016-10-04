@@ -19,7 +19,7 @@ describe('Slider', () => {
     const props = {
       style: { display: 'block' },
       className: 'test',
-      trackStyle: { background: 'black', width: null },
+      trackStyle: { background: 'black' },
       trackClassName: 'test-2',
       thumbStyle: { background: 'red' },
       thumbClassName: 'test-3',
@@ -34,7 +34,7 @@ describe('Slider', () => {
     expect(sliderNode.style.display).toBe(props.style.display);
     expect(sliderNode.className).toContain(props.className);
 
-    expect(track.props.style).toEqual(props.trackStyle);
+    expect(track.props.style.background).toEqual(props.trackStyle.background);
     expect(track.props.className).toBe(props.trackClassName);
     expect(track.props.thumbStyle).toEqual(props.thumbStyle);
     expect(track.props.thumbClassName).toBe(props.thumbClassName);
