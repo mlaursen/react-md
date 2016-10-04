@@ -71,7 +71,7 @@ describe('Toolbar', () => {
   it('renders the actions in a div', () => {
     const props = { actions: <Button>menu</Button> };
     const toolbar = renderIntoDocument(<Toolbar {...props} />);
-    const actions = scryRenderedDOMComponentsWithClass(toolbar, 'md-toolbar-actions');
+    const actions = scryRenderedDOMComponentsWithClass(toolbar, 'md-toolbar--action-right');
     expect(actions.length).toBe(1);
   });
 
