@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
 import IconButton from './IconButton';
-import deprecated from './_deprecated';
+import deprecated from '../utils/PropTypes/componentDeprecated';
 
 /**
  * A `FloatingButton` is an extension of the `IconButton`.
@@ -89,7 +89,11 @@ export default class FloatingButton extends PureComponent {
      */
     secondary: PropTypes.bool,
 
-    _deprecated: deprecated('floating'),
+    deprecated: deprecated(
+      'The behavior of the `FloatingButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `floating`.'
+    ),
   };
 
   render() {

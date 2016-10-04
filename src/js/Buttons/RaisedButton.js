@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
 import Button from './Button';
-import deprecated from './_deprecated';
+import deprecated from '../utils/PropTypes/componentDeprecated';
 
 export default class RaisedButton extends PureComponent {
   static propTypes = {
@@ -56,7 +56,11 @@ export default class RaisedButton extends PureComponent {
      */
     onClick: PropTypes.func,
 
-    _deprecated: deprecated('raised'),
+    deprecated: deprecated(
+      'The behavior of the `RaisedButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `raised`.'
+    ),
   };
 
   static defaultProps = {

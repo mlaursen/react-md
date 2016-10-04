@@ -33,6 +33,7 @@ export default class DocgenPropTypes extends PureComponent {
 
     this.state = {
       propList,
+      deprecated: this._getDeprecated(props),
       propFilter: '',
       ascending: true,
       visibleProps: sort(propList, 'name', true),
@@ -44,6 +45,7 @@ export default class DocgenPropTypes extends PureComponent {
       const propList = this._makePropList(nextProps);
       this.setState({
         propList,
+        deprecated: this._getDeprecated(nextProps),
         propFilter: '',
         ascending: true,
         visibleProps: sort(propList, 'name', true),
@@ -51,8 +53,21 @@ export default class DocgenPropTypes extends PureComponent {
     }
   }
 
+  _getDeprecated(props) {
+    let deprecated;
+    Object.keys(props.props).some(name => {
+      if (name.indexOf('deprecated') !== -1) {
+        deprecated = `> The \`${props.component}\` component has been deprecated and will be removed in the next release.`;
+        deprecated += props.props[name].type.raw.replace(/(component)?deprecated|[()'+]|\r?\n/ig, '');
+      }
+
+      return deprecated;
+    });
+    return deprecated;
+  }
+
   _makePropList(props) {
-    return Object.keys(props.props).map(name => ({ name, ...props.props[name] }));
+    return Object.keys(props.props).filter(name => name.indexOf('deprecated') === -1).map(name => ({ name, ...props.props[name] }));
   }
 
   _sort = () => {
@@ -71,8 +86,12 @@ export default class DocgenPropTypes extends PureComponent {
   };
 
   render() {
-    const { ascending, visibleProps, propFilter } = this.state;
-    const { component, source, description, mobile, tablet, methods } = this.props;
+    const { ascending, visibleProps, propFilter, deprecated } = this.state;
+    const { component, source, mobile, tablet, methods } = this.props;
+    let { description } = this.props;
+    if (deprecated) {
+      description = description ? `${deprecated}\n\n${description}` : description;
+    }
 
     const rows = visibleProps.map(props => <PropTypesRow key={props.name} {...props} />);
 
