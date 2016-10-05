@@ -51,6 +51,7 @@ export default class ControlledExample extends PureComponent {
   render() {
     return (
       <TimePicker
+        id="controlled"
         label="Select your appointment time"
         value={this.state.time}
         onChange={this._selectAppointment}

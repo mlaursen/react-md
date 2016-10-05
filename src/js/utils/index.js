@@ -9,38 +9,6 @@ export function setOverflow(enabled, selector) {
   }
 }
 
-/**
- * Generates an object of an offsetX and offsetY from
- * a mouse or touch event.
- *
- * @param {Object} event The event to extract data from
- * @return {Object} an object holding the offsetX and offsetY of the event.
- */
-export function getTouchOffset(event) {
-  const el = event.target;
-  const rect = el.getBoundingClientRect();
-  const { clientX, clientY } = event.changedTouches ? event.changedTouches[0] : event;
-  return {
-    offsetX: clientX - rect.left,
-    offsetY: clientY - rect.top,
-  };
-}
-
-/**
- * Determines if a point is in a circle.
- *
- * @param {Number} cx the center X coordinate in the circle
- * @param {Number} cy the center Y coordinate in the circle
- * @param {Number} r the radius of the circle
- * @param {Number} x the x coordinate to check
- * @param {Number} y the y coordinate to check
- * @return {bool} true if the given x and y coordinates are in the circle.
- */
-export function isPointInCircle(cx, cy, r, x, y) {
-  const distance = Math.pow(cx - x, 2) + Math.pow(cy - y, 2);
-  return distance <= Math.pow(r, 2);
-}
-
 export function easeInOut(currentTime, start, change, duration) {
   currentTime /= duration / 2;
   if (currentTime < 1) {

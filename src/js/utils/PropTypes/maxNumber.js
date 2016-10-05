@@ -1,3 +1,4 @@
+/** @module PropTypes/maxNumber */
 import { PropTypes } from 'react';
 
 /**

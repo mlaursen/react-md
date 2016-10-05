@@ -1,20 +1,17 @@
 /* eslint-env jest*/
-/* eslint-disable global-require */
 jest.unmock('../CalendarHeader');
 
 import React from 'react';
 import {
   renderIntoDocument,
-// scryRenderedComponentsWithType,
   findRenderedDOMComponentWithClass,
 } from 'react-addons-test-utils';
 
 import CalendarHeader from '../CalendarHeader';
-// import Button from '../../Buttons';
 
 describe('CalendarHeader', () => {
   it('renders the day of week abbreviations', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
 
     const props = {
       DateTimeFormat,
@@ -32,7 +29,7 @@ describe('CalendarHeader', () => {
   });
 
   it('formats the date with a month and year', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
 
     const props = {
       DateTimeFormat,

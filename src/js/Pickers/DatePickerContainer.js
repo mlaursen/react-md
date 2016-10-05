@@ -9,7 +9,10 @@ import DatePicker from './DatePicker';
 
 import { ESC } from '../constants/keyCodes';
 import { onOutsideClick } from '../utils';
-import { addDate, subtractDate, DateTimeFormat, isMonthBefore, isDateEqual } from '../utils/dates';
+import isDateEqual from '../utils/DateUtils/isDateEqual';
+import addDate from '../utils/DateUtils/addDate';
+import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
+import isMonthBefore from '../utils/DateUtils/isMonthBefore';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
 import Height from '../Transitions/Height';
@@ -411,7 +414,7 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   _previousMonth() {
-    const calendarDate = subtractDate(this.state.calendarDate, 1, 'M');
+    const calendarDate = addDate(this.state.calendarDate, -1, 'M');
     this.setState({ calendarDate });
   }
 

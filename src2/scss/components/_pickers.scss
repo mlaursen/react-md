@@ -1,0 +1,351 @@
+////
+/// @group pickers
+////
+
+$md-picker-include-date: true !default;
+$md-picker-include-time: true !default;
+$md-picker-inline-z-index: 12 !default;
+$md-picker-include-forceful-classes: false !default;
+
+$md-picker-portrait-width: 320px !default;
+$md-picker-portrait-content-height: 340px !default;
+$md-picker-portrait-header-height: 110px !default;
+
+$md-picker-landscape-width: 560px !default;
+$md-picker-landscape-content-height: 280px !default;
+$md-picker-landscape-header-width: 180px !default;
+
+$md-clock-portrait-size: $md-picker-portrait-width - $md-dialog-padding * 2 !default;
+$md-clock-landscape-size: $md-picker-landscape-content-height - $md-dialog-padding - ($md-dialog-padding / 2) !default;
+$md-clock-time-size: 36px;
+$md-clock-hand-ball-size: 6px !default;
+$md-clock-hand-ball-scale: .4 !default;
+$md-clock-hand-ball-border-size: $md-clock-time-size / 4 !default;
+$md-clock-time-font-size: 16px !default;
+
+$md-calendar-date-font-size: 13px !default;
+$md-calendar-circle-size: 36px !default;
+$md-picker-year-font-size: 16px !default;
+$md-picker-year-focus-font-size: 20px !default;
+$md-picker-year-activefont-size: 24px !default;
+
+@mixin react-md-pickers($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-date: $md-picker-include-date, $include-time: $md-picker-include-time, $include-forceful-classes: $md-picker-include-forceful-classes) {
+  @if $include-date or $include-time {
+    .md-picker-container {
+      position: relative;
+    }
+
+    .md-picker-content-container {
+      background: if($light-theme, get-color('card', true), get-color('background', false));
+    }
+
+    .md-picker--inline {
+      @include md-box-shadow(3);
+
+      position: absolute;
+      z-index: $md-picker-inline-z-index;
+    }
+
+    .md-picker--inline-icon {
+      left: $md-font-icon-size + $md-default-padding;
+    }
+
+    .md-picker-text {
+      color: get-color('secondary', false);
+
+      .md-display-3 {
+        color: inherit;
+        margin: 0;
+      }
+    }
+
+    .md-picker-text--active {
+      color: get-color('text', false);
+    }
+
+    .md-dialog--picker {
+      max-width: calc(100vw - 16px);
+      width: auto;
+    }
+
+    .md-dialog-content--picker {
+      padding: 0;
+    }
+
+    .md-picker-header {
+      background: if($light-theme, $primary-color, get-color('card', false));
+      padding: $md-dialog-padding;
+    }
+
+    @if $include-forceful-classes {
+      .md-picker.md-picker--portrait {
+        @include react-md-pickers-make-portrait;
+
+        display: block;
+
+        .md-picker-content {
+          width: $md-picker-portrait-width;
+        }
+
+        &.md-picker--time .md-picker-header {
+          padding-top: $md-dialog-padding;
+          width: 100%;
+        }
+      }
+
+      .md-picker.md-picker--landscape {
+        @include react-md-pickers-make-landscape;
+
+        .md-picker-header {
+          height: initial;
+        }
+      }
+    }
+
+    @if $include-media {
+      @include react-md-pickers-media($include-date, $include-time);
+    }
+  }
+
+  @if $include-date {
+    @include react-md-pickers-date;
+  }
+
+  @if $include-time {
+    @include react-md-pickers-time($primary-color, $light-theme);
+  }
+}
+
+@mixin react-md-theme-pickers($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-date: $md-picker-include-date, $include-time: $md-picker-include-time) {
+  $themed: $light-theme != $md-light-theme;
+
+  @if $primary-color != $md-primary-color {
+    @if not $light-theme and $themed {
+      .md-picker-header {
+        background: get-color('card', false);
+      }
+    } @else if $light-theme {
+      .md-picker-header {
+        background: $primary-color;
+      }
+    }
+
+    @if $include-time {
+      .md-clock-hand {
+        &::before,
+        &::after {
+          background: $primary-color;
+        }
+      }
+    }
+  }
+
+  @if $themed {
+    .md-picker-content-container {
+      background: if($light-theme, get-color('card', true), get-color('background', false));
+    }
+
+    @if $include-time {
+      .md-clock-face {
+        background: if($light-theme, $md-grey-100, get-color('card', false));
+      }
+    }
+  }
+}
+
+@mixin react-md-pickers-date {
+}
+
+@mixin react-md-pickers-time($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
+  .md-picker--time {
+    .md-picker-control {
+      padding: 0;
+    }
+  }
+
+  .md-picker-content--clock {
+    padding: $md-dialog-padding;
+    padding-bottom: $md-dialog-padding / 2;
+  }
+
+  .md-time-periods .md-picker-control {
+    display: block;
+  }
+
+  .md-time-period {
+    font-size: 16em / $md-font-size-base;
+    font-weight: $md-font-medium;
+    margin: 0;
+    padding: 0;
+  }
+
+  .md-clock-face {
+    background: if($light-theme, $md-grey-100, get-color('card', false));
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .md-clock-hand {
+    height: 2px;
+    position: absolute;
+    transform-origin: 0 0;
+    transition-duration: $md-transition-time;
+    transition-property: width;
+    z-index: 1;
+
+    &--active {
+      transition-property: transform, width;
+    }
+
+    &::before,
+    &::after {
+      background: $primary-color;
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+    }
+
+    &::before {
+      height: $md-clock-hand-ball-size;
+      left: -$md-clock-hand-ball-size / 2;
+      // no idea why
+      top: -2px;
+      width: $md-clock-hand-ball-size;
+    }
+
+    &::after {
+      height: $md-clock-time-size;
+      right: -$md-clock-time-size / 2 + $md-clock-padding / 2;
+      top: -$md-clock-time-size / 2;
+      transition-duration: $md-transition-time;
+      transition-property: background, border, transform;
+      width: $md-clock-time-size;
+    }
+
+    &--minute-hover::after {
+      transform: scale($md-clock-hand-ball-scale);
+    }
+  }
+
+  .md-clock-time {
+    align-items: center;
+    display: flex;
+    height: $md-clock-time-size;
+    justify-content: center;
+    position: absolute;
+    width: $md-clock-time-size;
+    z-index: 8;
+  }
+}
+
+@mixin react-md-pickers-media($include-date: $md-picker-include-date, $include-time: $md-picker-include-time) {
+  @if $include-date or $include-time {
+    @media (orientation: portrait) {
+      .md-picker {
+        @include react-md-pickers-make-portrait($include-date, $include-time);
+      }
+    }
+
+    @media (orientation: landscape) {
+      .md-picker {
+        @include react-md-pickers-make-landscape($include-date, $include-time);
+      }
+    }
+  }
+}
+
+@mixin react-md-pickers-make-portrait($include-date: $md-picker-include-date, $include-time: $md-picker-include-time) {
+  width: $md-picker-portrait-width;
+
+  .md-picker-header {
+    height: $md-picker-portrait-header-height;
+  }
+
+  .md-time-periods {
+    display: inline-block;
+    padding-left: 1em;
+    padding-right: $md-dialog-padding;
+  }
+
+  .md-picker-content {
+    height: $md-picker-portrait-content-height;
+  }
+
+  .md-display-3 {
+    font-size: 4.8em;
+    line-height: 1;
+  }
+
+  .md-dows {
+    padding-bottom: $md-dialog-padding / 2;
+  }
+
+  @if $include-date {
+    &.md-picker--date {
+      .md-display-1 {
+        display: inline-block;
+      }
+    }
+  }
+
+  @if $include-time {
+    .md-clock-face {
+      height: $md-clock-portrait-size;
+      width: $md-clock-portrait-size;
+    }
+
+    .md-clock-hand {
+      width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+      &--inner {
+        width: ($md-clock-portrait-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+      }
+    }
+  }
+}
+
+@mixin react-md-pickers-make-landscape($include-date: $md-picker-include-date, $include-time: $md-picker-include-time) {
+  display: flex;
+  width: $md-picker-landscape-width;
+
+  .md-picker-header {
+    width: $md-picker-landscape-header-width;
+  }
+
+  .md-picker-content {
+    height: $md-picker-landscape-content-height;
+    width: $md-picker-landscape-width - $md-picker-landscape-header-width;
+  }
+
+  @if $include-date {
+  }
+
+  @if $include-time {
+    &.md-picker--time .md-picker-header {
+      padding-top: $md-picker-landscape-content-height / 3;
+    }
+
+    .md-clock-face {
+      height: $md-clock-landscape-size;
+      width: $md-clock-landscape-size;
+    }
+
+    .md-clock-hand {
+      width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size) / 2;
+
+      &--inner {
+        width: ($md-clock-landscape-size - $md-clock-padding - $md-clock-time-size * 3) / 2;
+      }
+    }
+
+    .md-time-periods {
+      margin-left: auto;
+      margin-right: 2.5em;
+      width: 35px;
+    }
+
+    .md-display-3 {
+      font-size: 3.25em;
+    }
+  }
+}

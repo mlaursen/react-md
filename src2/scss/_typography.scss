@@ -490,6 +490,10 @@ $md-line-height: 20 / $md-font-size-base !default;
     white-space: nowrap;
   }
 
+  .md-text-no-select {
+    user-select: none;
+  }
+
   .md-text-container {
     @extend %md-block-centered;
 

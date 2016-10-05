@@ -13,7 +13,7 @@ import PickerControl from '../PickerControl';
 
 describe('DatePickerHeader', () => {
   it('displays a picker control for selecting the year and a picker control for selecting the calendar', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
 
     const props = {
       changeCalendarMode: jest.fn(),
@@ -33,7 +33,7 @@ describe('DatePickerHeader', () => {
   });
 
   it('formats the calendar temp date', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
       locales: 'en-US',

@@ -1,3 +1,4 @@
+/** @module PropTypes/controlled */
 import { PropTypes } from 'react';
 
 /**

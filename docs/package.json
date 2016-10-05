@@ -10,6 +10,7 @@
     "scripts": "webpack --config webpack-prod.config.js --progress --colors",
     "sassdoc": "scripts/sassdoc.js",
     "docgen": "scripts/docgen.js",
+    "jsdoc": "jsdoc ../src/js/utils -r -c conf.json -d dist",
     "build": "npm run docgen && npm run sassdoc && npm run scripts",
     "dev": "./scripts/dev.sh",
     "server:dev": "webpack-dev-server --config webpack-dev.client.config.js --progress --colors"
@@ -74,6 +75,7 @@
     "html-webpack-harddisk-plugin": "0.0.2",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
+    "jsdoc": "^3.4.2",
     "json-loader": "^0.5.4",
     "loader-utils": "^0.2.16",
     "node-sass": "^3.10.1",

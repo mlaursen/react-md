@@ -4,6 +4,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
 import isValidClick from '../utils/EventUtils/isValidClick';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calcPageOffset from '../utils/calcPageOffset';
 import calculateHypotenuse from '../utils/NumberUtils/calculateHypotenuse';
 
@@ -232,13 +233,7 @@ export default class InkContainer extends PureComponent {
       return;
     }
 
-    const captured = e => {
-      e.stopPropagation();
-      this._container.removeEventListener('click', captured, true);
-    };
-
-    // Prevent the next click event on the container only during the bubbling phase
-    this._container.addEventListener('click', captured, true);
+    captureNextEvent('click', this._container);
   }
 
   _handleRemove() {

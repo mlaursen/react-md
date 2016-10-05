@@ -40,22 +40,26 @@ export default class ClockTime extends PureComponent {
       size: 18,
     };
 
+    this._setTime = this._setTime.bind(this);
     this._setPosition = this._setPosition.bind(this);
-  }
-
-  componentDidMount() {
-    this._setPosition(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
-      this._setPosition(nextProps);
+      this._setPosition(nextProps, this._time);
     }
   }
 
-  _setPosition({ radius, index }) {
+  _setTime(time) {
+    this._time = time;
+    if (time !== null) {
+      this._setPosition(this.props, time);
+    }
+  }
+
+  _setPosition({ radius, index }, time) {
     // 36 is default size for the time
-    const size = (this.refs.time.offsetWidth || 36) / 2;
+    const size = (time.offsetWidth || 36) / 2;
     const timeRadians = (Math.PI / 2) - index * (Math.PI / 6);
     const innerCircle = index > 12;
 
@@ -74,8 +78,11 @@ export default class ClockTime extends PureComponent {
     const { time, active } = this.props;
     return (
       <div
-        ref="time"
-        className={cn('md-clock-time', { active })}
+        ref={this._setTime}
+        className={cn('md-clock-time md-text-no-select md-pointer--none', {
+          'md-color--text': !active,
+          'md-picker-text--active': active,
+        })}
         style={this.state.style}
       >
         <span className="md-clock-time-value">{time}</span>

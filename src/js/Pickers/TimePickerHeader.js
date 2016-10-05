@@ -72,7 +72,7 @@ export default class TimePickerHeader extends PureComponent {
     }
 
     return (
-      <header className="md-picker-header">
+      <header className="md-picker-header md-text-right">
         <PickerControl onClick={this._setHour} active={timeMode === 'hour'}>
           <h4 className="md-display-3">
             {hours}

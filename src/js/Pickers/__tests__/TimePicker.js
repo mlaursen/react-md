@@ -1,142 +1,102 @@
-/* eslint-env jest*/
+/* eslint-env jest */
 jest.unmock('../TimePicker');
 
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
 } from 'react-addons-test-utils';
 
 import TimePicker from '../TimePicker';
-import DateTimeFormat from '../__mocks__/DateTimeFormat';
 import TimePickerHeader from '../TimePickerHeader';
-import PickerFooter from '../PickerFooter';
 import ClockFace from '../ClockFace';
+import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
+import DialogFooter from '../../Dialogs/DialogFooter';
 
-const commonProps = {
-  className: 'a',
+const threeFiftyFive = new Date(2016, 3, 15, 3, 55);
+const PROPS = {
   okLabel: 'Ok',
-  okPrimary: false,
+  okPrimary: true,
   onOkClick: jest.fn(),
   cancelLabel: 'Cancel',
-  cancelPrimary: false,
+  cancelPrimary: true,
   onCancelClick: jest.fn(),
   DateTimeFormat,
   locales: 'en-US',
   setTimeMode: jest.fn(),
   setTempTime: jest.fn(),
   timeMode: 'hour',
-  tempTime: new Date(2016, 3, 15, 3, 55),
+  tempTime: threeFiftyFive,
   hours: '3',
   minutes: ':55',
   timePeriod: 'AM',
 };
 
 describe('TimePicker', () => {
+  it('merges className and style', () => {
+    const props = Object.assign({}, PROPS, {
+      style: { background: 'black' },
+      className: 'test',
+    });
+
+    const timePicker = renderIntoDocument(<TimePicker {...props} />);
+
+    const timePickerNode = findDOMNode(timePicker);
+    expect(timePickerNode.style.background).toBe(props.style.background);
+    expect(timePickerNode.className).toContain(props.className);
+  });
+
   it('renders the TimePickerHeader component with the correct props', () => {
-    const props = Object.assign({}, commonProps);
-    const picker = renderIntoDocument(<TimePicker {...props} />);
+    const picker = renderIntoDocument(<TimePicker {...PROPS} />);
     const header = findRenderedComponentWithType(picker, TimePickerHeader);
-
-    expect(header.props.tempTime).toEqual(props.tempTime);
-    expect(header.props.timeMode).toBe(props.timeMode);
-    expect(header.props.setTimeMode).toBe(props.setTimeMode);
-    expect(header.props.setTempTime).toBe(props.setTempTime);
-    expect(header.props.hours).toBe(props.hours);
-    expect(header.props.minutes).toBe(props.minutes);
-    expect(header.props.timePeriod).toBe(props.timePeriod);
+    expect(header.props.tempTime).toEqual(PROPS.tempTime);
+    expect(header.props.timeMode).toBe(PROPS.timeMode);
+    expect(header.props.setTempTime).toBe(PROPS.setTempTime);
+    expect(header.props.hours).toBe(PROPS.hours);
+    expect(header.props.minutes).toBe(PROPS.minutes);
+    expect(header.props.timePeriod).toBe(PROPS.timePeriod);
   });
 
-  it('renders the PickerFooter component with the correct props', () => {
-    const props = Object.assign({}, commonProps);
-    const picker = renderIntoDocument(<TimePicker {...props} />);
-    const footer = findRenderedComponentWithType(picker, PickerFooter);
-
-    expect(footer.props.okLabel).toEqual(props.okLabel);
-    expect(footer.props.okPrimary).toBe(props.okPrimary);
-    expect(footer.props.onOkClick).toBe(props.onOkClick);
-    expect(footer.props.onOkClick).toBe(props.onOkClick);
-    expect(footer.props.cancelLabel).toBe(props.cancelLabel);
-    expect(footer.props.cancelPrimary).toBe(props.cancelPrimary);
-    expect(footer.props.onCancelClick).toBe(props.onCancelClick);
-  });
-
-  it('renders the ClockFace component with the correct props depending on the timeMode', () => {
-    let props = Object.assign({}, commonProps);
-    let picker = renderIntoDocument(<TimePicker {...props} />);
-    let face = findRenderedComponentWithType(picker, ClockFace);
-
-    expect(face.props.time).toBe(3);
+  it('renders a ClockFace component with the correct props', () => {
+    const picker = renderIntoDocument(<TimePicker {...PROPS} />);
+    const face = findRenderedComponentWithType(picker, ClockFace);
+    expect(face.props.timePeriod).toBe(PROPS.timePeriod);
+    expect(face.props.onChange).toBe(picker._updateTime);
     expect(face.props.minutes).toBe(false);
-    expect(face.props.onClick).toBe(picker._updateTime);
-    expect(face.props.timePeriod).toBe(props.timePeriod);
-
-    props = Object.assign({}, commonProps, { timeMode: 'minute' });
-    picker = renderIntoDocument(<TimePicker {...props} />);
-    face = findRenderedComponentWithType(picker, ClockFace);
-
-    expect(face.props.time).toBe(55);
-    expect(face.props.minutes).toBe(true);
-    expect(face.props.onClick).toBe(picker._updateTime);
-    expect(face.props.timePeriod).toBe(props.timePeriod);
+    // Really an int version of the hours
+    expect(face.props.time).toBeDefined();
   });
 
-  it('calls the setTempTime function with a new updated date object of the new time', () => {
-    const props = Object.assign({}, commonProps, { setTempTime: jest.fn() });
-    let picker = renderIntoDocument(<TimePicker {...props} />);
+  it('renders the DialogFooter component with an array of actions from the ok and cancel props', () => {
+    const picker = renderIntoDocument(<TimePicker {...PROPS} />);
+    const actions = findRenderedComponentWithType(picker, DialogFooter).props.actions;
+    expect(actions.length).toBe(2);
 
-    picker._updateTime(11);
-    expect(props.setTempTime.mock.calls.length).toBe(1);
-    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 11, 55));
-
-    props.timeMode = 'minute';
-    picker = renderIntoDocument(<TimePicker {...props} />);
-
-    picker._updateTime(32);
-    expect(props.setTempTime.mock.calls.length).toBe(2);
-    expect(props.setTempTime.mock.calls[1][0]).toEqual(new Date(2016, 3, 15, 3, 32));
+    const [cancel, ok] = actions;
+    expect(cancel.onClick).toBe(PROPS.onCancelClick);
+    expect(cancel.primary).toBe(PROPS.cancelPrimary);
+    expect(cancel.secondary).toBe(!PROPS.cancelPrimary);
+    expect(cancel.label).toBe(PROPS.cancelLabel);
+    expect(ok.onClick).toBe(PROPS.onOkClick);
+    expect(ok.primary).toBe(PROPS.okPrimary);
+    expect(ok.secondary).toBe(!PROPS.okPrimary);
+    expect(ok.label).toBe(PROPS.okLabel);
   });
 
-  it('calls the setTempTime function with the correct hour to adjust for 12 hour clocks', () => {
-    const props = Object.assign({}, commonProps, {
-      setTempTime: jest.fn(),
-      // 3 PM
-      tempTime: new Date(2016, 3, 15, 15, 55),
-      timePeriod: 'PM',
-    });
-    let picker = renderIntoDocument(<TimePicker {...props} />);
-
-    picker._updateTime(12);
-    expect(props.setTempTime.mock.calls.length).toBe(1);
-    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 12, 55));
-
-    picker._updateTime(5);
-    expect(props.setTempTime.mock.calls.length).toBe(2);
-    expect(props.setTempTime.mock.calls[1][0]).toEqual(new Date(2016, 3, 15, 17, 55));
-
-    props.timePeriod = 'AM';
-    props.tempTime = new Date(2016, 3, 15, 3, 55);
-    picker = renderIntoDocument(<TimePicker {...props} />);
-
-    picker._updateTime(12);
-    expect(props.setTempTime.mock.calls.length).toBe(3);
-    expect(props.setTempTime.mock.calls[2][0]).toEqual(new Date(2016, 3, 15, 0, 55));
-
-    picker._updateTime(5);
-    expect(props.setTempTime.mock.calls.length).toBe(4);
-    expect(props.setTempTime.mock.calls[3][0]).toEqual(new Date(2016, 3, 15, 5, 55));
-  });
-
-  it('calls the setTempTime function with the correct hour for a 24 hour clock', () => {
-    const props = Object.assign({}, commonProps, {
-      setTempTime: jest.fn(),
-      tempTime: new Date(2016, 3, 15, 15, 55),
-    });
-    delete props.timePeriod;
-
+  it('updates the hours for the time when _updateTime is called and the timeMode is hours', () => {
+    const props = Object.assign({}, PROPS, { setTempTime: jest.fn() });
     const picker = renderIntoDocument(<TimePicker {...props} />);
-    picker._updateTime(22);
+    picker._updateTime(2);
     expect(props.setTempTime.mock.calls.length).toBe(1);
-    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 22, 55));
+    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 2, 55));
+  });
+
+  it('updates the minutes for the time when _updateTime is called and the timeMode is hours', () => {
+    const props = Object.assign({}, PROPS, { setTempTime: jest.fn(), timeMode: 'minute' });
+    const picker = renderIntoDocument(<TimePicker {...props} />);
+    picker._updateTime(2);
+    expect(props.setTempTime.mock.calls.length).toBe(1);
+    expect(props.setTempTime.mock.calls[0][0]).toEqual(new Date(2016, 3, 15, 3, 2));
   });
 });

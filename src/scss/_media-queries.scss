@@ -12,26 +12,14 @@ $md-mobile-max-width: $md-desktop-min-width - 1;
   @include md-navigation-drawer-desktop();
   @include md-sidebar-desktop();
   @include md-tab-desktop();
-
-  .md-picker:not(.portrait) {
-    @include md-pickers-landscape();
-  }
 }
 
 @media only screen and (orientation: portrait) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
   @include md-navigation-drawer-mobile-portrait();
-
-  .md-picker:not(.landscape) {
-    @include md-pickers-portrait();
-  }
 }
 
 @media only screen and (orientation: landscape) and (min-width: #{$md-mobile-min-width}) and (max-width: #{$md-mobile-max-width}) {
   @include md-navigation-drawer-mobile-landscape();
-
-  .md-picker:not(.portrait) {
-    @include md-pickers-landscape();
-  }
 }
 
 @media only screen and (orientation: landscape) and (min-width: #{$md-tablet-min-width}) and (max-width: #{$md-mobile-max-width}) {

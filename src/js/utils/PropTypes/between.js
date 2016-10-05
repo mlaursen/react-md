@@ -1,3 +1,5 @@
+/** @module PropTypes/between */
+
 import isBetween from '../NumberUtils/isBetween';
 
 /**
@@ -6,6 +8,7 @@ import isBetween from '../NumberUtils/isBetween';
  * @param {function} validator - The number validator to use.
  * @param {number} min - The min number to use.
  * @param {number} max - The max number to use.
+ * @return {Error} the prop type error or null
  */
 export default function between(validator, min, max) {
   return function validate(props, propName, componentName, location, propFullName, ...args) {

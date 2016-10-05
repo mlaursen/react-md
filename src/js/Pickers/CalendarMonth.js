@@ -1,7 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils/dates';
+import addDate from '../utils/DateUtils/addDate';
+import stripTime from '../utils/DateUtils/stripTime';
+import getLastDay from '../utils/DateUtils/getLastDay';
+import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
 import CalendarDate from './CalendarDate';
 
 /**

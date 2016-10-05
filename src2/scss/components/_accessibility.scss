@@ -34,6 +34,10 @@
   .md-pointer--hover:hover {
     cursor: pointer;
   }
+
+  .md-pointer--none {
+    pointer-events: none;
+  }
 }
 
 @mixin react-md-accessibility-media {

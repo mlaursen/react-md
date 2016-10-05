@@ -2,7 +2,9 @@
 import React, { PureComponent, PropTypes } from 'react';
 
 import Button from '../Buttons';
-import { isMonthBefore, getDayOfWeek, addDate } from '../utils/dates';
+import isMonthBefore from '../utils/DateUtils/isMonthBefore';
+import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
+import addDate from '../utils/DateUtils/addDate';
 
 /**
  * This component renders the controls for a `DatePicker`'s Calendar.
