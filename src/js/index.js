@@ -32,8 +32,11 @@ import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
 import injectInk from './Inks';
 import { List, ListItem } from './Lists';
+import Media, { MediaOverlay } from './Media';
 import AccessibleFakeButton from './Helpers/AccessibleFakeButton';
 import IconSeparator from './Helpers/IconSeparator';
+import FocusContainer from './Helpers/FocusContainer';
+import Collapse from './Helpers/Collapse';
 import Menu from './Menus';
 import NavigationDrawer from './NavigationDrawers';
 import Paper from './Papers';
@@ -75,8 +78,12 @@ export { FloatingButton };
 export { FileInput };
 export { FileUpload };
 export { FontIcon };
+export { Collapse };
+export { FocusContainer };
 export { IconButton };
 export { injectInk };
+export { Media };
+export { MediaOverlay };
 export { IconSeparator };
 export { LinearProgress };
 export { List };
@@ -121,12 +128,16 @@ export default {
   CardActions,
   CardText,
   CardActionOverlay,
+  Collapse,
   DatePicker,
   DataTable,
   EditDialogColumn,
   List,
   ListItem,
   IconSeparator,
+  FocusContainer,
+  Media,
+  MediaOverlay,
   CircularProgress,
   LinearProgress,
   Checkbox,

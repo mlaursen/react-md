@@ -23,6 +23,7 @@
 @import 'components/media';
 @import 'components/menus';
 @import 'components/overlays';
+@import 'components/pickers';
 @import 'components/progress';
 @import 'components/select-fields';
 @import 'components/selection-controls';
@@ -65,6 +66,7 @@
   @include react-md-menus;
   @include react-md-overlays;
   @include react-md-papers;
+  @include react-md-pickers;
   @include react-md-progress;
   @include react-md-select-fields;
   @include react-md-selection-controls;
@@ -153,6 +155,7 @@
       @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-lists($light-theme);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
+      @include react-md-theme-pickers($primary-color, $light-theme);
       @include react-md-theme-progress($secondary-color, $progress-swatch);
       @include react-md-theme-toolbars($light-theme);
 
@@ -170,6 +173,7 @@
     @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-lists($light-theme);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
+    @include react-md-theme-pickers($primary-color, $light-theme);
     @include react-md-theme-progress($secondary-color, $progress-swatch);
     @include react-md-theme-toolbars($light-theme);
 

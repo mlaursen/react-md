@@ -4,6 +4,7 @@
 
 @import '~react-md-scss';
 
+$md-picker-include-forceful-classes: true;
 @include react-md-everything;
 
 @include react-md-make-custom-grid('24-40', 24px, 40px, 0, 0);

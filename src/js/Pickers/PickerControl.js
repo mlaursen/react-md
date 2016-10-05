@@ -17,16 +17,15 @@ export default class PickerControl extends PureComponent {
   };
 
   render() {
-    const { className, onClick, active, children, ...props } = this.props;
+    const { className, active, ...props } = this.props;
     return (
       <button
-        type="button"
-        className={cn('md-picker-control', className, { active })}
-        onClick={onClick}
         {...props}
-      >
-        {children}
-      </button>
+        type="button"
+        className={cn('md-btn md-pointer--hover md-picker-control md-picker-text', {
+          'md-picker-text--active': active,
+        }, className)}
+      />
     );
   }
 }

@@ -3,7 +3,7 @@
  * other given prop names are defined. If it fails it returns an error for a11y.
  *
  * @param {function} validator - The React PropTypes validator to use for the given prop.
- * @param {String...} otherPropNames - Any other prop names to validate against.
+ * @param {String[]} otherPropNames - Any other prop names to validate against.
  * @return {Error} an error or null
  */
 export default function oneRequiredForA11y(validator, ...otherPropNames) {

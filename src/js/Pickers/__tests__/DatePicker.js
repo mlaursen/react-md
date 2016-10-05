@@ -16,7 +16,7 @@ import YearPicker from '../YearPicker';
 
 describe('DatePicker', () => {
   it('renders a DatePickerHeader and a PickerFooter', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
       okLabel: 'a',
@@ -43,7 +43,7 @@ describe('DatePicker', () => {
   });
 
   it('renders a calendar when the calendarMode is calendar', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
       okLabel: 'a',
@@ -69,7 +69,7 @@ describe('DatePicker', () => {
   });
 
   it('renders a year picker when the calendarMode is year', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
       okLabel: 'a',

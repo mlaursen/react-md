@@ -1,3 +1,5 @@
+/** @module PropTypes/minNumber */
+
 import { PropTypes } from 'react';
 
 /**

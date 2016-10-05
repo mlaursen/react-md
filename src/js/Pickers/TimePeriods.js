@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import { addHours, subtractHours } from '../utils/dates';
+import addHours from '../utils/DateUtils/addHours';
 import PickerControl from './PickerControl';
 
 /**
@@ -40,7 +40,7 @@ export default class TimePeriods extends PureComponent {
 
   _setPM() {
     if (this.props.timePeriod !== 'PM') {
-      this.props.setTempTime(subtractHours(this.props.tempTime, 12));
+      this.props.setTempTime(addHours(this.props.tempTime, -12));
     }
   }
 
@@ -49,10 +49,10 @@ export default class TimePeriods extends PureComponent {
     return (
       <div className="md-time-periods">
         <PickerControl onClick={this._setAM} active={timePeriod === 'AM'}>
-          <h6 className="md-subtitle">AM</h6>
+          <h6 className="md-time-period">AM</h6>
         </PickerControl>
         <PickerControl onClick={this._setPM} active={timePeriod === 'PM'}>
-          <h6 className="md-subtitle">PM</h6>
+          <h6 className="md-time-period">PM</h6>
         </PickerControl>
       </div>
     );

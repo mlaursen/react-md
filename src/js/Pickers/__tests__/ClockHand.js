@@ -25,7 +25,7 @@ describe('ClockHand', () => {
 
     let className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).not.toContain('inner-hour');
+    expect(className).not.toContain('inner');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={13} minutes={false} />
@@ -33,7 +33,7 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).toContain('inner-hour');
+    expect(className).toContain('inner');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={24} minutes={false} />
@@ -41,7 +41,7 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).toContain('inner-hour');
+    expect(className).toContain('inner');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={1} minutes={false} />
@@ -49,17 +49,17 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).not.toContain('inner-hour');
+    expect(className).not.toContain('inner');
   });
 
-  it('adds the className invisible-minute when the hand is on a minute that is not divisible by 5', () => {
+  it('adds the className minute-hover when the hand is on a minute that is not divisible by 5', () => {
     let hand = renderIntoDocument(
       <ClockHand coords={136} time={0} minutes />
     );
 
     let className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).not.toContain('invisible-minute');
+    expect(className).not.toContain('minute-hover');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={2} minutes />
@@ -67,7 +67,7 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).toContain('invisible-minute');
+    expect(className).toContain('minute-hover');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={59} minutes />
@@ -75,7 +75,7 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).toContain('invisible-minute');
+    expect(className).toContain('minute-hover');
 
     hand = renderIntoDocument(
       <ClockHand coords={136} time={30} minutes />
@@ -83,7 +83,7 @@ describe('ClockHand', () => {
 
     className = findDOMNode(hand).className;
     expect(className).toContain('md-clock-hand');
-    expect(className).not.toContain('invisible-minute');
+    expect(className).not.toContain('minute-hover');
   });
 
   it('sets the transform style to the correct degrees for a time', () => {

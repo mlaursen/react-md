@@ -64,10 +64,10 @@ export default class ClockHand extends PureComponent {
     const rotateTransform = `rotate3d(0, 0, 1, ${degrees}deg)`;
     return (
       <div
-        className={cn('md-clock-hand', {
-          'active': this.state.active,
-          'invisible-minute': invisibleMinute,
-          'inner-hour': !minutes && (time > 12 || time === 0),
+        className={cn('md-clock-hand md-background--primary', {
+          'md-clock-hand--active': this.state.active,
+          'md-clock-hand--minute-hover': invisibleMinute,
+          'md-clock-hand--inner': !minutes && (time > 12 || time === 0),
         })}
         style={{
           left: coords,
