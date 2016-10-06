@@ -319,6 +319,51 @@ $md-line-height: 20 / $md-font-size-base !default;
   font-size: $md-caption-font-size;
 }
 
+/// A simple placeholder for aligning text left.
+%md-text-left {
+  text-align: left;
+}
+
+/// A simple placeholder for aligning text center.
+%md-text-center {
+  text-align: center;
+}
+
+/// A simple placeholder for aligning text right.
+%md-text-right {
+  text-align: right;
+}
+
+/// A simple placeholder for aligning text by `text-align: justify`.
+%md-text-justify {
+  text-align: justify;
+}
+
+/// A simple placeholder for capitalizing text.
+%md-text-capitalize {
+  text-transform: capitalize;
+}
+
+/// A simple placeholder for lowercasing text.
+%md-text-lowercalse {
+  text-transform: lowercase;
+}
+
+/// A simple placeholder for uppercasing text.
+%md-text-uppercase {
+  text-transform: uppercase;
+}
+
+/// A simple placeholder for allowing no white space wrap.
+%md-text-nowrap {
+  white-space: nowrap;
+}
+
+/// A simple placeholder for setting `user-select: none`.
+%md-text-no-select {
+  user-select: none;
+}
+
 /// This includes the css for simple typography in react-md. It will
 /// update all items to use `box-sizing: border-box`, set the font
 /// family, set the line-height, text-rendering, and create the base
@@ -459,39 +504,39 @@ $md-line-height: 20 / $md-font-size-base !default;
   }
 
   .md-text-left {
-    text-align: left;
+    @extend %md-text-left;
   }
 
   .md-text-center {
-    text-align: center;
+    @extend %md-text-center;
   }
 
   .md-text-right {
-    text-align: right;
+    @extend %md-text-right;
   }
 
   .md-text-justify {
-    text-align: justify;
+    @extend %md-text-justify;
   }
 
   .md-text-capitalize {
-    text-transform: capitalize;
+    @extend %md-text-capitalize;
   }
 
   .md-text-lowercalse {
-    text-transform: lowercase;
+    @extend %md-text-lowercalse;
   }
 
   .md-text-uppercase {
-    text-transform: uppercase;
+    @extend %md-text-uppercase;
   }
 
   .md-text-nowrap {
-    white-space: nowrap;
+    @extend %md-text-nowrap;
   }
 
   .md-text-no-select {
-    user-select: none;
+    @extend %md-text-no-select;
   }
 
   .md-text-container {
