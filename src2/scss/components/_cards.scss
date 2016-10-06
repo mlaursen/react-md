@@ -107,7 +107,7 @@ $md-card-padding-extra: 24px;
 
 @mixin react-md-cards-title-avatar {
   .md-avatar--card {
-    margin-right: $md-card-padding;
+    margin-right: $md-default-padding;
   }
 }
 

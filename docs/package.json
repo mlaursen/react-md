@@ -32,6 +32,7 @@
     "express": "^4.14.0",
     "fuse.js": "^2.5.0",
     "highlight.js": "^9.7.0",
+    "intl": "^1.2.5",
     "lodash": "^4.16.2",
     "lorem-ipsum": "^1.0.3",
     "marked": "^0.3.6",

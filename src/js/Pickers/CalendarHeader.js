@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 import React, { PureComponent, PropTypes } from 'react';
 
 import Button from '../Buttons';
@@ -33,30 +32,37 @@ export default class CalendarHeader extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = this._generateDows(props);
+    this.state = this._createState(props);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { DateTimeFormat, locales } = this.props;
-    if (DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales) {
-      this.setState(this._generateDows(nextProps));
+    const { DateTimeFormat, locales, date } = this.props;
+    if (DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales || date !== nextProps.date) {
+      this.setState(this._createState(nextProps));
     }
   }
 
-  _generateDows({ DateTimeFormat, locales, date } = this.props) {
+  _createState({ DateTimeFormat, locales, date } = this.props) {
     const sunday = getDayOfWeek(date, 0);
-    const formatter = DateTimeFormat(locales, { weekday: 'narrow' });
+    const formatter = new DateTimeFormat(locales, { weekday: 'narrow' });
     const dows = [];
     for (let i = 0; i < 7; i++) {
       const dow = formatter.format(addDate(sunday, i, 'D'));
-      dows.push(<h4 className="dow" key={i}>{dow}</h4>);
+      dows.push(
+        <h4 className="md-calendar-date md-color--disabled md-calendar-dow" key={i}>
+          {dow}
+        </h4>
+      );
     }
 
-    return { dows };
+    return {
+      dows,
+      title: new DateTimeFormat(locales, { month: 'long', year: 'numeric' }).format(date),
+    };
   }
 
   render() {
-    const { dows } = this.state;
+    const { dows, title } = this.state;
     const {
       date,
       minDate,
@@ -65,8 +71,6 @@ export default class CalendarHeader extends PureComponent {
       previousIcon,
       onNextClick,
       nextIcon,
-      DateTimeFormat,
-      locales,
     } = this.props;
 
     const isPreviousDisabled = isMonthBefore(minDate, date);
@@ -74,13 +78,15 @@ export default class CalendarHeader extends PureComponent {
     return (
       <header className="md-calendar-header">
         <div className="md-calendar-controls">
-          <Button icon onClick={onPreviousClick} disabled={isPreviousDisabled}>{previousIcon}</Button>
-          <h4 className="md-subtitle">
-            {DateTimeFormat(locales, { month: 'long', year: 'numeric' }).format(date)}
-          </h4>
-          <Button icon onClick={onNextClick} disabled={isNextDisabled}>{nextIcon}</Button>
+          <Button icon onClick={onPreviousClick} disabled={isPreviousDisabled} className="md-calendar-control">
+            {previousIcon}
+          </Button>
+          <h4 className="md-title">{title}</h4>
+          <Button icon onClick={onNextClick} disabled={isNextDisabled} className="md-calendar-control">
+            {nextIcon}
+          </Button>
         </div>
-        <div className="md-dows">
+        <div className="md-calendar-dows">
           {dows}
         </div>
       </header>

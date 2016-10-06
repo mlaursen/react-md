@@ -43,20 +43,23 @@ export default class YearPicker extends PureComponent {
     }
 
     this.state = { startYear, endYear };
+    this._setContainer = this._setContainer.bind(this);
   }
 
-  componentDidMount() {
-    const { container } = this.refs;
-    const active = container.querySelector('.md-year.active');
-
-    // Position the active year in the center of the picker
-    let scrollTop = active.offsetTop - (container.offsetHeight * 1.5);
-    if (container.offsetHeight < container.offsetWidth) {
-      // Landscape is off by a bit for some reason
-      scrollTop -= (active.offsetHeight / 2);
+  _setContainer(container) {
+    if (container === null) {
+      return;
     }
 
-    container.scrollTop = scrollTop;
+    const { offsetHeight, offsetWidth } = container;
+    const { offsetTop: top, offsetHeight: height } = container.querySelector('.md-year--active');
+
+    // Portrait seems to be 3/4 of the way while landscape is about 1/2
+    if (offsetHeight > offsetWidth) {
+      container.scrollTop = top - (offsetHeight * 3 / 4);
+    } else {
+      container.scrollTop = top - (offsetHeight / 2) + (height / 2);
+    }
   }
 
   render() {
@@ -75,7 +78,7 @@ export default class YearPicker extends PureComponent {
       );
     }
     return (
-      <section className="md-picker-content md-year-picker" ref="container">
+      <section className="md-picker-content md-picker-content--year" ref={this._setContainer}>
         <ol className="md-years">
           {years}
         </ol>

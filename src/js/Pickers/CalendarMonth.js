@@ -76,15 +76,14 @@ export default class CalendarMonth extends PureComponent {
 
       let date;
       if (currentDate.getMonth() === calendarDate.getMonth()) {
-        const isMinDateDisabled = minDate && minDate.getTime() > currentDate.getTime();
-        const isMaxDateDisbaled = maxDate && maxDate.getTime() < currentDate.getTime();
+        const time = currentDate.getTime();
+        const isMinDateDisabled = minDate && minDate.getTime() > time;
+        const isMaxDateDisbaled = maxDate && maxDate.getTime() < time;
         date = (
           <CalendarDate
             key={key}
-            className={cn({
-              'today': currentDate.getTime() === today.getTime(),
-              'active': currentDate.getTime() === activeDate.getTime(),
-            })}
+            today={time === today.getTime()}
+            active={time === activeDate.getTime()}
             disabled={isMinDateDisabled || isMaxDateDisbaled}
             onClick={onCalendarDateClick}
             date={currentDate}
@@ -93,7 +92,7 @@ export default class CalendarMonth extends PureComponent {
           />
         );
       } else {
-        date = <div key={key} className="md-calendar-date-placeholder" />;
+        date = <div key={key} className="md-calendar-date" />;
       }
 
       days.push(date);

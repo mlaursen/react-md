@@ -10,12 +10,12 @@ import {
 
 import DatePicker from '../DatePicker';
 import DatePickerHeader from '../DatePickerHeader';
-import PickerFooter from '../PickerFooter';
 import DatePickerCalendar from '../DatePickerCalendar';
 import YearPicker from '../YearPicker';
+import DialogFooter from '../../Dialogs/DialogFooter';
 
 describe('DatePicker', () => {
-  it('renders a DatePickerHeader and a PickerFooter', () => {
+  it('renders a DatePickerHeader and a DialogFooter', () => {
     const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
@@ -38,7 +38,7 @@ describe('DatePicker', () => {
     const headers = scryRenderedComponentsWithType(picker, DatePickerHeader);
     expect(headers.length).toBe(1);
 
-    const footers = scryRenderedComponentsWithType(picker, PickerFooter);
+    const footers = scryRenderedComponentsWithType(picker, DialogFooter);
     expect(footers.length).toBe(1);
   });
 

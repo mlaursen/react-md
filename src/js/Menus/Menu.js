@@ -214,7 +214,8 @@ export default class Menu extends PureComponent {
       if (typeof children.ref === 'function') {
         children.ref(list);
       }
-    } catch(e) {
+    } catch (e) {
+      // do nothing
     }
   }
 

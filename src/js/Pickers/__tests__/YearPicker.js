@@ -10,6 +10,9 @@ import {
 import YearPicker from '../YearPicker';
 import Year from '../Year';
 
+// Can't do the query selector stuff
+YearPicker.prototype._setContainer = jest.fn();
+
 describe('YearPicker', () => {
   it('renders the number of years from initialYearsDisplayed', () => {
     const props = {
@@ -18,7 +21,6 @@ describe('YearPicker', () => {
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.fn();
     let yearPicker = renderIntoDocument(<YearPicker {...props} />);
     let years = scryRenderedComponentsWithType(yearPicker, Year);
 
@@ -39,7 +41,6 @@ describe('YearPicker', () => {
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
@@ -58,7 +59,6 @@ describe('YearPicker', () => {
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
@@ -77,7 +77,6 @@ describe('YearPicker', () => {
       initialYearsDisplayed: 100,
     };
 
-    YearPicker.prototype.componentDidMount = jest.fn();
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
     expect(years.length).toBe(props.maxDate.getFullYear() - props.minDate.getFullYear() + 1);

@@ -1,21 +1,20 @@
 /* eslint-disable new-cap,no-shadow */
 import React, { PureComponent, PropTypes } from 'react';
-import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import FontIcon from '../FontIcons';
-import DatePicker from './DatePicker';
-
 import { ESC } from '../constants/keyCodes';
-import { onOutsideClick } from '../utils';
+import getField from '../utils/getField';
+import controlled from '../utils/PropTypes/controlled';
 import isDateEqual from '../utils/DateUtils/isDateEqual';
 import addDate from '../utils/DateUtils/addDate';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
-import isMonthBefore from '../utils/DateUtils/isMonthBefore';
+
+import Collapse from '../Helpers/Collapse';
+import FontIcon from '../FontIcons';
 import TextField from '../TextFields';
 import Dialog from '../Dialogs';
-import Height from '../Transitions/Height';
+import DatePicker from './DatePicker';
 
 /**
  * The `DatePickerContainer` component is a wrapper for the main `DatePicker` component
@@ -32,6 +31,19 @@ import Height from '../Transitions/Height';
  */
 export default class DatePickerContainer extends PureComponent {
   static propTypes = {
+    /**
+     * An id for the text field in the date picker. This is require for a11u.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
+     * An aria label for the dialog. This is required for a11y.
+     */
+    'aria-label': isRequiredForA11y(PropTypes.string),
+
     /**
      * An optional style to apply to the date picker's container.
      */
@@ -235,24 +247,31 @@ export default class DatePickerContainer extends PureComponent {
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the date picker should automatically increase it's text field's
-     * min width to the max size of it's label or placeholder text.
-     */
-    adjustMinWidth: PropTypes.bool,
-
-    /**
      * The direction that the text field divider expands from when the text field
      * in the date picker gains focus.
      */
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
 
     /**
-     * An id for the text field in the date picker. This is require for a11u.
+     * An optional boolean if the time picker is current visible by dialog or inline.
+     * If this is set, the `onOpenToggle` function is required.
      */
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ])),
+    isOpen: controlled(PropTypes.bool, 'onOpenToggle'),
+
+    /**
+     * An optional function to call when the date picker is opened in either a dialog, or
+     * inline. The callback will include the next state.
+     *
+     * ```js
+     * onOpenToggle(!isOpen, e);
+     * ```
+     */
+    onOpenToggle: PropTypes.func,
+
+    /**
+     * Boolean if the time picker is disabled.
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -271,6 +290,7 @@ export default class DatePickerContainer extends PureComponent {
     okPrimary: true,
     cancelLabel: 'Cancel',
     cancelPrimary: true,
+    'aria-label': 'Pick a date',
   };
 
   constructor(props) {
@@ -308,6 +328,9 @@ export default class DatePickerContainer extends PureComponent {
         ? new Date(initialCalendarDate)
         : initialCalendarDate;
       date = calendarTempDate;
+    } else if (calendarTempDate === null) {
+      calendarTempDate = new Date();
+      date = new Date();
     }
 
     this.state = {
@@ -316,13 +339,12 @@ export default class DatePickerContainer extends PureComponent {
       calendarDate: date,
       calendarTempDate,
       calendarMode: props.initialCalendarMode,
-      transitionName: 'md-swipe-left',
     };
 
-    this._close = this._close.bind(this);
+    this._setContainer = this._setContainer.bind(this);
     this._toggleOpen = this._toggleOpen.bind(this);
     this._closeOnEsc = this._closeOnEsc.bind(this);
-    this._closeOnOutside = this._closeOnOutside.bind(this);
+    this._handleOutsideClick = this._handleOutsideClick.bind(this);
     this._handleOkClick = this._handleOkClick.bind(this);
     this._handleCancelClick = this._handleCancelClick.bind(this);
     this._changeCalendarMode = this._changeCalendarMode.bind(this);
@@ -330,7 +352,6 @@ export default class DatePickerContainer extends PureComponent {
     this._previousMonth = this._previousMonth.bind(this);
     this._setCalendarTempDate = this._setCalendarTempDate.bind(this);
     this._setCalendarTempYear = this._setCalendarTempYear.bind(this);
-    this._handleSwipeChange = this._handleSwipeChange.bind(this);
     this._validateDateRange = this._validateDateRange.bind(this);
   }
 
@@ -344,53 +365,57 @@ export default class DatePickerContainer extends PureComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.isOpen && !nextState.isOpen) {
-      if (nextProps.inline) {
-        window.removeEventListener('click', this._closeOnOutside);
-      }
-
-      window.removeEventListener('keydown', this._closeOnEsc);
-    } else if (!this.state.isOpen && nextState.isOpen) {
-      if (nextProps.inline) {
-        window.addEventListener('click', this._closeOnOutside);
-      }
-
-      window.addEventListener('keydown', this._closeOnEsc);
+  componentDidUpdate(prevProps, prevState) {
+    const { inline } = this.props;
+    const isOpen = getField(this.props, this.state, 'isOpen');
+    if (isOpen === getField(prevProps, prevState, 'isOpen')) {
+      return;
     }
 
-    const { calendarDate } = this.state;
-    if (calendarDate === nextState.calendarDate) { return; }
-
-    this.setState({ transitionName: `md-swipe-${calendarDate < nextState.calendarDate ? 'left' : 'right'}` });
+    if (isOpen) {
+      if (inline) {
+        window.addEventListener('click', this._handleOutsideClick);
+        window.addEventListener('keydown', this._closeOnEsc);
+      }
+    } else if (inline) {
+      window.removeEventListener('click', this._handleOutsideClick);
+      window.removeEventListener('keydown', this._closeOnEsc);
+    }
   }
 
   componentWillUnmount() {
-    if (this.state.isOpen) {
-      if (this.props.inline) {
-        window.removeEventListener('click', this._closeOnOutside);
-      }
-
+    if (getField(this.props, this.state, 'isOpen') && this.props.inline) {
+      window.removeEventListener('click', this._handleOutsideClick);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
+  }
+
+  _setContainer(container) {
+    this._container = container;
   }
 
   _closeOnEsc(e) {
     if ((e.which || e.keyCode) === ESC) {
-      this._handleCancelClick();
+      this._handleCancelClick(e);
     }
   }
 
-  _closeOnOutside(e) {
-    onOutsideClick(e, this.refs.container, this._close);
+  _handleOutsideClick(e) {
+    if (this._container && !this._container.contains(e.target)) {
+      this._handleCancelClick(e);
+    }
   }
 
-  _toggleOpen() {
-    this.setState({ isOpen: !this.state.isOpen });
-  }
+  _toggleOpen(e) {
+    const isOpen = !getField(this.props, this.state, 'isOpen');
 
-  _close() {
-    this.setState({ isOpen: false });
+    if (this.props.onOpenToggle) {
+      this.props.onOpenToggle(isOpen, e);
+    }
+
+    if (typeof this.props.isOpen === 'undefined') {
+      this.setState({ isOpen });
+    }
   }
 
   _handleOkClick(e) {
@@ -469,21 +494,6 @@ export default class DatePickerContainer extends PureComponent {
     });
   }
 
-  _handleSwipeChange(index, distance) {
-    const { minDate, maxDate } = this.props;
-    const { calendarDate } = this.state;
-    const isPreviousDisabled = isMonthBefore(minDate, calendarDate);
-    const isNextDisabled = isMonthBefore(calendarDate, maxDate);
-
-    if (distance === 0) {
-      return;
-    } else if (!isPreviousDisabled && distance < 0) {
-      this._previousMonth();
-    } else if (!isNextDisabled && distance > 0) {
-      this._nextMonth();
-    }
-  }
-
   /**
    * Gets the current value from the date picker as a formatted string.
    *
@@ -491,9 +501,9 @@ export default class DatePickerContainer extends PureComponent {
    * @param {Object} state? the state object to use.
    * @return {String} a formatted date string or the empty string.
    */
-  _getValue(props, state) {
+  _getFormattedValue(props, state) {
     const { DateTimeFormat, locales, formatOptions } = props;
-    const value = typeof props.value !== 'undefined' ? props.value : state.value;
+    const value = getField(props, state, 'value');
     if (!value) {
       return '';
     } else if (value instanceof Date) {
@@ -529,7 +539,6 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   render() {
-    const { isOpen, ...state } = this.state;
     const {
       style,
       className,
@@ -541,57 +550,71 @@ export default class DatePickerContainer extends PureComponent {
       inline,
       displayMode,
       fullWidth,
-      adjustMinWidth,
       lineDirection,
       id,
+      disabled,
+      'aria-label': ariaLabel,
       ...props,
     } = this.props;
     delete props.value;
     delete props.onChange;
+    delete props.isOpen;
+    delete props.onOpenToggle;
+    delete props.defaultValue;
 
-    let picker;
-    if (isOpen) {
-      picker = (
-        <DatePicker
-          {...state}
-          {...props}
-          style={pickerStyle}
-          className={cn('md-picker', displayMode, pickerClassName, {
-            inline,
-            'with-icon': inline && icon,
-          })}
-          onCancelClick={this._handleCancelClick}
-          onOkClick={this._handleOkClick}
-          changeCalendarMode={this._changeCalendarMode}
-          onPreviousClick={this._previousMonth}
-          onNextClick={this._nextMonth}
-          onCalendarDateClick={this._setCalendarTempDate}
-          onCalendarYearClick={this._setCalendarTempYear}
-          onSwipeChange={this._handleSwipeChange}
-        />
-      );
-    }
+    const isOpen = getField(this.props, this.state, 'isOpen');
+
+    const picker = (
+      <DatePicker
+        {...this.state}
+        {...props}
+        icon={!!icon}
+        inline={inline}
+        style={pickerStyle}
+        className={pickerClassName}
+        displayMode={displayMode}
+        onCancelClick={this._handleCancelClick}
+        onOkClick={this._handleOkClick}
+        changeCalendarMode={this._changeCalendarMode}
+        onPreviousClick={this._previousMonth}
+        onNextClick={this._nextMonth}
+        onCalendarDateClick={this._setCalendarTempDate}
+        onCalendarYearClick={this._setCalendarTempYear}
+      />
+    );
 
     let content;
     if (inline) {
-      picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
-      content = <TransitionGroup>{picker}</TransitionGroup>;
+      content = <Collapse collapsed={!isOpen}>{picker}</Collapse>;
     } else {
-      content = <Dialog isOpen={isOpen} onClose={this._close}>{picker}</Dialog>;
+      content = (
+        <Dialog
+          id={`${id}Dialog`}
+          isOpen={isOpen}
+          onClose={this._handleCancelClick}
+          dialogClassName="md-dialog--picker"
+          contentClassName="md-dialog-content--picker"
+          aria-label={ariaLabel}
+        >
+          {picker}
+        </Dialog>
+      );
     }
 
     return (
-      <div className={cn('md-picker-container', className)} ref="container" style={style}>
+      <div style={style} className={cn('md-picker-container', className)} ref={this._setContainer}>
         <TextField
           id={id}
           leftIcon={icon}
+          disabled={disabled}
+          className={cn({ 'md-pointer--hover': !disabled })}
+          inputClassName={cn({ 'md-pointer--hover': !disabled })}
           onClick={this._toggleOpen}
           label={label}
           placeholder={placeholder}
-          value={this._getValue(this.props, this.state)}
+          value={this._getFormattedValue(this.props, this.state)}
           readOnly
           fullWidth={fullWidth}
-          adjustMinWidth={adjustMinWidth}
           lineDirection={lineDirection}
         />
         {content}
