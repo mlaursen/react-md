@@ -3,8 +3,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import getField from '../utils/getField';
 import { ESC } from '../constants/keyCodes';
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 import formatTime from '../utils/DateUtils/formatTime';
@@ -12,8 +12,8 @@ import extractTimeParts from '../utils/DateUtils/extractTimeParts';
 import Dialog from '../Dialogs';
 import FontIcon from '../FontIcons';
 import TextField from '../TextFields';
-import TimePicker from './TimePicker';
 import Collapse from '../Helpers/Collapse';
+import TimePicker from './TimePicker';
 
 /**
  * The `TimePickerContainer` component is a wrapper for the main `TimePicker` component
@@ -38,6 +38,12 @@ export default class TimePickerContainer extends PureComponent {
       PropTypes.string,
       PropTypes.number,
     ])),
+
+    /**
+     * An aria-label to apply to the dialog when it has been opened. This is required for
+     * a11y.
+     */
+    'aria-label': isRequiredForA11y(PropTypes.string),
 
     /**
      * An optional style to apply to the time picker's container.
@@ -173,12 +179,6 @@ export default class TimePickerContainer extends PureComponent {
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the time picker should automatically increase it's text field's
-     * min width to the max size of it's label or placeholder text.
-     */
-    adjustMinWidth: PropTypes.bool,
-
-    /**
      * The direction that the text field divider expands from when the text field
      * in the date picker gains focus.
      */
@@ -204,12 +204,6 @@ export default class TimePickerContainer extends PureComponent {
      * Boolean if the time picker is disabled.
      */
     disabled: PropTypes.bool,
-
-    /**
-     * An aria-label to apply to the dialog when it has been opened. This is required for
-     * a11y.
-     */
-    'aria-label': PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -409,7 +403,6 @@ export default class TimePickerContainer extends PureComponent {
       pickerStyle,
       pickerClassName,
       fullWidth,
-      adjustMinWidth,
       lineDirection,
       'aria-label': ariaLabel,
       ...props,
@@ -465,12 +458,8 @@ export default class TimePickerContainer extends PureComponent {
         <TextField
           id={id}
           disabled={disabled}
-          className={cn({
-            'md-pointer--hover': !disabled,
-          })}
-          inputClassName={cn({
-            'md-pointer--hover': !disabled,
-          })}
+          className={cn({ 'md-pointer--hover': !disabled })}
+          inputClassName={cn({ 'md-pointer--hover': !disabled })}
           leftIcon={icon}
           onClick={this._toggleOpen}
           label={label}
@@ -478,7 +467,6 @@ export default class TimePickerContainer extends PureComponent {
           value={this._getTextFieldValue(this.props, this.state)}
           readOnly
           fullWidth={fullWidth}
-          adjustMinWidth={adjustMinWidth}
           lineDirection={lineDirection}
         />
         {content}

@@ -52,7 +52,6 @@ export default class SearchToolbarExample extends PureComponent {
           placeholder="Search Pastries"
           block
           paddedBlock={false}
-          fullWidth
           data={pastries}
           value={this.state.value}
           onAutocomplete={this._handleSearchChange}

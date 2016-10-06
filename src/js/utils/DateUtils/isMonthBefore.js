@@ -14,5 +14,5 @@ export default function isMonthBefore(date, toCompare) {
 
   const d1 = stripTime(new Date(date.getFullYear(), date.getMonth(), 1));
   const d2 = stripTime(new Date(toCompare.getFullYear(), toCompare.getMonth() - 1, 1));
-  return date.getMonth() > toCompare.getMonth() && d1 > d2;
+  return d1 > d2;
 }

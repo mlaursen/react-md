@@ -4,8 +4,8 @@ import FontIcon from 'react-md/lib/FontIcons';
 
 
 const StatefulExamples = () => (
-  <div className="block-text-field-examples">
-    <p>Icons can be placed to the left of the text field as well.</p>
+  <div>
+    <p>Icons can be placed to the left or right of the text field as well.</p>
     <TextField
       id="iconLeftPhone"
       label="Phone"
@@ -22,7 +22,7 @@ const StatefulExamples = () => (
     />
     <p>
       When a text field is set to required, the label is automatically
-      updated to include the '*' icon for floating labels only.
+      updated to include the '*'.
     </p>
     <TextField id="requiredField" label="I am required" required />
     <TextField
@@ -43,14 +43,23 @@ const StatefulExamples = () => (
       size={10}
       disabled
     />
-    <TextField
-      id="disabledMultiline"
-      label="Try to type many letters"
-      placeholder="But you can't.."
-      rows={2}
-      maxRows={4}
-      disabled
-    />
+    <div className="md-grid no-padding">
+      <TextField
+        id="ddisabledMultiline"
+        label="Try to type many letters"
+        placeholder="But you can't.."
+        rows={2}
+        maxRows={4}
+      />
+      <TextField
+        id="disabledMultiline"
+        label="Try to type many letters"
+        placeholder="But you can't.."
+        rows={2}
+        maxRows={4}
+        disabled
+      />
+    </div>
   </div>
 );
 

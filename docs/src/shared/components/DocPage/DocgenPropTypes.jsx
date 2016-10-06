@@ -104,6 +104,7 @@ export default class DocgenPropTypes extends PureComponent {
           value={propFilter}
           onChange={this._filterProperties}
           className="mla"
+          fullWidth={false}
         />
       );
     }

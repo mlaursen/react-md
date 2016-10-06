@@ -33,7 +33,6 @@ describe('TimePickerContainer', () => {
       label: 'Woop',
       placeholder: 'Noop',
       fullWidth: false,
-      adjustMinWidth: false,
       lineDirection: 'center',
     };
 
@@ -45,7 +44,6 @@ describe('TimePickerContainer', () => {
     expect(field.props.placeholder).toBe(props.placeholder);
     expect(field.props.readOnly).toBe(true);
     expect(field.props.fullWidth).toBe(props.fullWidth);
-    expect(field.props.adjustMinWidth).toBe(props.adjustMinWidth);
     expect(field.props.lineDirection).toBe(props.lineDirection);
   });
 

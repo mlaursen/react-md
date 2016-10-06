@@ -1,8 +1,6 @@
 @import '~react-md-scss';
 
 .price {
-  margin-right: $md-default-padding;
-
   &::before {
     bottom: 17px;
     color: get-color('text', true);
@@ -15,14 +13,3 @@
     padding-left: .75em;
   }
 }
-
-.md-form {
-  .price {
-    width: 70px;
-  }
-
-  .location {
-    width: calc(100% - (#{$md-default-padding + 70}));
-  }
-}
-

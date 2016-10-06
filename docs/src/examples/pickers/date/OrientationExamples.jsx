@@ -6,23 +6,23 @@ import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 
 
 const OrientationExamples = () => (
-  <div>
+  <div className="md-grid" style={{ padding: 0 }}>
     <DatePicker
       id="appointment"
       label="Select an appointment date"
-      adjustMinWidth
+      className="md-cell"
     />
     <DatePicker
       id="appointmentPortrait"
       label="Portrait Mode"
       displayMode="portrait"
-      adjustMinWidth
+      className="md-cell"
     />
     <DatePicker
       id="appointmentLandscape"
       label="Landscape Mode"
       displayMode="landscape"
-      adjustMinWidth
+      className="md-cell"
     />
   </div>
 );

@@ -6,6 +6,7 @@ import FontIcon from '../FontIcons';
 import IconSeparator from '../Helpers/IconSeparator';
 import injectInk from '../Inks';
 import injectTooltip from '../Tooltips';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 const TICK = 17;
 
 /**
@@ -318,6 +319,12 @@ class Button extends PureComponent {
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.disabled && !nextProps.disabled && this.state.hover) {
+      this.setState({ hover: false });
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if (!this.state.pressed && nextState.pressed) {
       this._timeout = setTimeout(() => {
@@ -393,7 +400,6 @@ class Button extends PureComponent {
     }
 
     if (!this.props.disabled) {
-      this._touched = true;
       this.setState({ pressed: true, time: Date.now() });
     }
   }
@@ -403,8 +409,8 @@ class Button extends PureComponent {
       this.props.onTouchEnd(e);
     }
 
-    this._touched = false;
     this._blur();
+    captureNextEvent('mouseover');
   }
 
   _handleKeyUp(e) {
@@ -435,7 +441,7 @@ class Button extends PureComponent {
       this.props.onMouseOver(e);
     }
 
-    if (!this.props.disabled && !this._touched) {
+    if (!this.props.disabled) {
       this.setState({ hover: true });
     }
   }
@@ -445,7 +451,7 @@ class Button extends PureComponent {
       this.props.onMouseLeave(e);
     }
 
-    if (!this.props.disabled && !this._touched) {
+    if (!this.props.disabled) {
       this.setState({ hover: false });
     }
   }
@@ -541,7 +547,7 @@ class Button extends PureComponent {
           'md-background--primary-hover': !disabled && raisedStyles && primary,
           'md-background--secondary-hover': !disabled && raisedStyles && secondary,
           'md-btn--text': flat || raised,
-          'md-btn--hover': hover,
+          'md-btn--hover': hover && !disabled,
           'md-btn--color-primary-active': !disabled && !raisedStyles && hover && primary,
           'md-btn--color-secondary-active': !disabled && !raisedStyles && hover && secondary,
           'md-btn--raised-disabled': raised && disabled,

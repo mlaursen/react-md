@@ -54,7 +54,6 @@ export default class ChipsWithTextField extends PureComponent {
           dataLabel="name"
           onAutocomplete={this._addState}
           clearOnAutocomplete
-          fullWidth
           deleteKeys="abbreviation"
         />
       </CSSTransitionGroup>

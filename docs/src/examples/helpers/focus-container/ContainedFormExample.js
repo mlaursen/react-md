@@ -20,13 +20,14 @@ export default class ContainedFormExample extends PureComponent {
       <FocusContainer
         focusOnMount
         component="form"
-        className="md-form"
+        className="md-grid"
         onSubmit={function noSubmit(e) { e.preventDefault(); }}
         aria-labelledby="contained-form-example"
       >
         <TextField id="look" label="Look at me!" />
         <TextField id="dontLook" label="But not me.." disabled rows={4} />
         <DialogFooter
+          className="md-cell md-cell--12"
           actions={[{
             label: 'Submit',
             type: 'submit',

@@ -49,7 +49,6 @@ export default class InToolbarExample extends PureComponent {
             onChange={this._handleChange}
             onAutocomplete={this._handleChange}
             block
-            fullWidth
           />
         </Toolbar>
         <ItemList />

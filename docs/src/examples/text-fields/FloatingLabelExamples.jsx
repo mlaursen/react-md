@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'react-md/lib/TextFields';
 
 const FloatingLabelExamples = () => (
-  <div className="block-text-field-examples">
+  <div className="md-grid no-padding">
     <TextField
       id="floatingTitle"
       label="Title"

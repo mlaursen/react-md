@@ -16,9 +16,9 @@ describe('isMonthBefore', () => {
     expect(isMonthBefore(march14, april1)).toBe(false);
   });
 
-  it('returns false if they are the same month', () => {
+  it('returns true if they are the same month', () => {
     const march28 = new Date(2016, 2, 28);
-    expect(isMonthBefore(march14, march28)).toBe(false);
+    expect(isMonthBefore(march14, march28)).toBe(true);
   });
 
   it('returns false if the month is before but in a later year', () => {

@@ -5,11 +5,18 @@ import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 // import { DatePicker } from 'react-md/lib/Pickers';
 
 const InlineExamples = () => (
-  <div>
-    <DatePicker id="inlineCenter" label="Select a date" inline fullWidth lineDirection="center" />
+  <div className="md-grid no-padding">
+    <DatePicker
+      id="inlineCenter"
+      label="Select a date"
+      inline
+      lineDirection="center"
+      className="md-cell md-cell--12"
+    />
     <DatePicker
       id="customFormat"
       label="Custom Format Options"
+      className="md-cell md-cell--12"
       formatOptions={{
         weekday: 'long',
         era: 'narrow',
@@ -21,7 +28,6 @@ const InlineExamples = () => (
         second: 'numeric',
         timeZoneName: 'long',
       }}
-      adjustMinWidth
     />
   </div>
 );

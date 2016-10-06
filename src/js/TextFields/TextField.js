@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import controlled from '../utils/PropTypes/controlled';
@@ -342,12 +343,6 @@ export default class TextField extends PureComponent {
     maxLength: PropTypes.number,
 
     /**
-     * Boolean if the min width of the text field should automatically be adjusted to be the
-     * max of the floating label's width or the placeholder's width.
-     */
-    adjustMinWidth: PropTypes.bool,
-
-    /**
      * The ink when there is an injectInk above the text field. Used from the SelectField.
      *
      * @access private
@@ -359,6 +354,13 @@ export default class TextField extends PureComponent {
      * position the indicator absolutely and add some additional padding to the `TextField`.
      */
     inlineIndicator: PropTypes.element,
+
+    icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
+    floatingLabel: deprecated(
+      PropTypes.bool,
+      'The `label` prop is now always floating. To create a non-floating text field, only use the `placeholder` prop'
+    ),
+    adjustMinWidth: deprecated(PropTypes.bool, 'Manually add a min width style instead'),
   };
 
   static defaultProps = {
@@ -368,7 +370,7 @@ export default class TextField extends PureComponent {
     paddedBlock: true,
     leftIconStateful: true,
     rightIconStateful: true,
-    adjustMinWidth: true,
+    fullWidth: true,
   };
 
   constructor(props) {
@@ -416,10 +418,6 @@ export default class TextField extends PureComponent {
       this._updateMultilineHeight();
       window.addEventListener('resize', this._updateMultilineHeight);
     }
-
-    if (this.props.adjustMinWidth && (!this.props.block && !this.props.fullWidth)) {
-      this._setMinWidth();
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -441,7 +439,7 @@ export default class TextField extends PureComponent {
 
       this.setState({
         error,
-        floating: !!value,
+        floating: !!value || this.state.floating,
         currentLength: value.length,
       });
     }
@@ -724,6 +722,7 @@ export default class TextField extends PureComponent {
       onMouseLeave,
       ink,
       inlineIndicator,
+      icon,
       ...props,
     } = this.props;
     delete props.label;
@@ -737,6 +736,7 @@ export default class TextField extends PureComponent {
     delete props.onChange;
     delete props.onKeyDown;
     delete props.onFocus;
+    delete props.floatingLabel;
 
     let {
       label,
@@ -765,7 +765,7 @@ export default class TextField extends PureComponent {
       placeholder = null;
     }
 
-    leftIcon = this._cloneIcon(leftIcon, active, error, disabled, leftIconStateful, 'left');
+    leftIcon = this._cloneIcon(icon || leftIcon, active, error, disabled, leftIconStateful, 'left');
     if (type === 'password' && !disabled) {
       rightIcon = (
         <PasswordButton
