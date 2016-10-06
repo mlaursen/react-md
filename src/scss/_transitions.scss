@@ -1,25 +1,3 @@
-.opacity-enter,
-.opacity-enter *,
-.opacity-leave.opacity-leave-active,
-.opacity-leave.opacity-leave-active * {
-  opacity: .01;
-}
-
-.opacity-enter.opacity-enter-active,
-.opacity-enter.opacity-enter-active *,
-.opacity-leave,
-.opacity-leave * {
-  opacity: 1;
-}
-
-.opacity-enter.opacity-enter-active,
-.opacity-enter.opacity-enter-active *,
-.opacity-leave.opacity-leave-active,
-.opacity-leave.opacity-leave-active * {
-  transition: opacity $md-transition-time;
-}
-
-
 .tab-enter,
 .tab-enter * {
   opacity: .01;
@@ -50,14 +28,5 @@
     opacity: 1;
     transform: translate3d(0, 0, 0);
     transition: transform $md-transition-time, opacity $md-transition-time;
-  }
-}
-
-.drop-enter {
-  transform: translate3d(0, $md-select-field-drop-distance, 0);
-
-  &.drop-enter-active {
-    transform: translate3d(0, 0, 0);
-    transition: transform $md-select-field-drop-transition-time;
   }
 }
