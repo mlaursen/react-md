@@ -16,7 +16,7 @@ describe('Menu', () => {
       listStyle: { background: 'orange' },
       listClassName: 'wowww',
       isOpen: true,
-      close: jest.fn(),
+      onClose: jest.fn(),
     };
 
     const menu = renderIntoDocument(<Menu {...props} />);

@@ -40,7 +40,6 @@ export default class MixedDataTypesAutocomplete extends PureComponent {
         data={this.state.data}
         filter={null}
         onChange={this._handleChange}
-        fullWidth
         onAutocomplete={this._handleChange}
       />
     );

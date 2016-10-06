@@ -187,7 +187,6 @@ export default class SpotifySearch extends PureComponent {
           filter={null}
           onChange={this._handleChange}
           value={value}
-          fullWidth
           onMenuOpen={this._startLazyLoad}
           onAutocomplete={this._fetchArtistAlbums}
         />

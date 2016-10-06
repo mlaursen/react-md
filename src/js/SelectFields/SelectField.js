@@ -260,6 +260,7 @@ export default class SelectField extends PureComponent {
   };
 
   static defaultProps = {
+    fullWidth: true,
     menuItems: [],
     keyboardMatchingTimeout: 1000,
     iconChildren: 'arrow_drop_down',
@@ -273,7 +274,6 @@ export default class SelectField extends PureComponent {
       value: props.defaultValue || '',
       listStyle: null,
       activeIndex: this._getActiveIndex(props, { value: props.defaultValue }),
-      size: this._getTextFieldSize(props),
       match: -1,
       lastSearch: null,
     };
@@ -293,14 +293,6 @@ export default class SelectField extends PureComponent {
     this._highlightNextItem = this._highlightNextItem.bind(this);
     this._selectItemByLetter = this._selectItemByLetter.bind(this);
     this._selectFirstMatch = this._selectFirstMatch.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { menuItems: currItems } = this.props;
-    const { menuItems: nextItems } = nextProps;
-    if (currItems !== nextItems || currItems.length !== nextItems.length) {
-      this.setState({ size: this._getTextFieldSize(nextProps) });
-    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -362,35 +354,6 @@ export default class SelectField extends PureComponent {
    * menu items appear.
    */
   _activeItem = null;
-
-  /**
-   * Calculates the size for the text field by checking each label for the  menu items,
-   * the label, and the placeholder text for the longest string.
-   *
-   * If the `noAutoAdjust` prop is true, `null` will be returned.
-   *
-   * @param {Object} props - The props object to use
-   * @return {number} the biggest size or null
-   */
-  _getTextFieldSize({ menuItems, itemLabel, label, placeholder, noAutoAdjust }) {
-    if (noAutoAdjust) {
-      return null;
-    }
-
-    const items = menuItems.slice();
-    if (label) {
-      items.push(label);
-    }
-
-    if (placeholder) {
-      items.push(placeholder);
-    }
-
-    return items.reduce((biggest, item) => {
-      const value = String(typeof item === 'object' && item ? item[itemLabel] : item);
-      return Math.max(biggest, value ? value.length : 0);
-    }, 0);
-  }
 
   /**
    * Finds the current active index for the select field by searching the `menuItems` for
@@ -776,6 +739,7 @@ export default class SelectField extends PureComponent {
       block,
       paddedBlock,
       fullWidth,
+      size,
       ...props,
     } = this.props;
     delete props.value;
@@ -785,13 +749,11 @@ export default class SelectField extends PureComponent {
     delete props.itemLabel;
     delete props.noAutoAdjust;
     delete props.lineDirection;
-    delete props.size;
     delete props.keyboardMatchingTimeout;
 
     const below = position === SelectField.Positions.BELOW;
     const value = getField(this.props, this.state, 'value');
     const isOpen = getField(this.props, this.state, 'isOpen');
-    const size = getField(this.props, this.state, 'size');
 
     let { lineDirection } = this.props;
     if (!lineDirection && !below) {

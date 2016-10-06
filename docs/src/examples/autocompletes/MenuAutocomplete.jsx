@@ -76,7 +76,6 @@ export default class MenuAutocomplete extends PureComponent {
           label="Type a programming language"
           data={programmingLanguages}
           filter={filterType}
-          fullWidth
         />
       </div>
     );

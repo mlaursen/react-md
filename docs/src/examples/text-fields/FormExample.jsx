@@ -11,12 +11,13 @@ const FormExample = () => (
     iconLeft="arrow_back"
     toolbarActions={<Button icon>more_vert</Button>}
   >
-    <form className="md-form md-form--padded">
+    <form className="md-grid">
       <TextField
         id="applicationTitle"
         label="Title"
         defaultValue="Vintage 50's Dress"
         customSize="title"
+        className="md-cell md-cell--12"
         required
       />
       <TextField
@@ -27,13 +28,13 @@ const FormExample = () => (
         step={0.01}
         min={0}
         pattern="^\d+(\.|\,)\d{2}"
-        className="price"
+        className="price md-cell md-cell--3"
       />
       <TextField
         id="applicationLocation"
         label="Location (optional)"
         defaultValue="Fremont Bridge"
-        className="location"
+        className="location md-cell md-cell--9"
       />
       <TextField
         id="applicationDescription"

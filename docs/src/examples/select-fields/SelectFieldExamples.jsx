@@ -15,13 +15,14 @@ export default class SelectFieldExamples extends PureComponent {
 
   render() {
     return (
-      <form className="md-form md-form--padded">
+      <form className="md-grid">
         <SelectField
           id="states"
           placeholder="Select a State"
           menuItems={states}
           itemLabel="name"
           position={SelectField.Positions.TOP_LEFT}
+          menuClassName="md-cell md-cell--bottom"
         />
         <SelectField
           id="statesControlled"
@@ -31,11 +32,13 @@ export default class SelectFieldExamples extends PureComponent {
           value={this.state.value}
           onChange={this._handleChange}
           itemLabel="abbreviation"
+          menuClassName="md-cell"
         />
         <SelectField
           id="numbers"
           defaultValue={1}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          menuClassName="md-cell md-cell--bottom"
         />
         <SelectField
           id="disabledNumbers"
@@ -43,6 +46,7 @@ export default class SelectFieldExamples extends PureComponent {
           disabled
           defaultValue={1}
           menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          menuClassName="md-cell md-cell--bottom"
         />
       </form>
     );

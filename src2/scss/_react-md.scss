@@ -17,7 +17,6 @@
 @import 'components/dialogs';
 @import 'components/dividers';
 @import 'components/file-inputs';
-@import 'components/forms';
 @import 'components/inks';
 @import 'components/lists';
 @import 'components/media';
@@ -58,7 +57,6 @@
   @include react-md-dialogs;
   @include react-md-dividers;
   @include react-md-file-inputs;
-  @include react-md-forms;
   @include react-md-inks;
   @include react-md-icons;
   @include react-md-lists;

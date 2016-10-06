@@ -4,8 +4,6 @@ import Snackbar from 'react-md/lib/Snackbars';
 import TextField from 'react-md/lib/TextFields';
 import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 
-import './_toast-generator.scss';
-
 // https://en.wikipedia.org/wiki/Speed_reading
 const AVERAGE_WPM = 200;
 const AVERAGE_WPS = AVERAGE_WPM / 60;
@@ -71,10 +69,25 @@ export default class SimpleExamples extends PureComponent {
   render() {
     const { text, action, toasts, autohide } = this.state;
     return (
-      <form className="md-form container snackbar-generator" onSubmit={noop}>
-        <TextField id="toastText" label="Toast's Text" value={text} onChange={this._handleTextChange} />
-        <TextField id="toastAction" label="Toast's Action" value={action} onChange={this._handleActionChange} />
-        <footer className="md-dialog-footer md-dialog-footer--inline">
+      <form className="md-grid md-text-container" onSubmit={noop}>
+        <TextField
+          id="toastText"
+          label="Toast's Text"
+          value={text}
+          className="md-cell md-cell--4 md-cell--6-desktop"
+          onChange={this._handleTextChange}
+        />
+        <TextField
+          id="toastAction"
+          label="Toast's Action"
+          value={action}
+          className="md-cell md-cell--4 md-cell--6-desktop"
+          onChange={this._handleActionChange}
+        />
+        <footer
+          className="md-cell md-cell--12 md-dialog-footer md-dialog-footer--inline"
+          style={{ alignItems: 'center', margin: 0 }}
+        >
           <SelectionControl
             id="toastAutohide"
             type="checkbox"
@@ -92,7 +105,7 @@ export default class SimpleExamples extends PureComponent {
             type="submit"
             label="Toast"
             onClick={this._addToast}
-            className="md-btn--dialog"
+            className="md-btn--dialog md-cell--right"
           />
           <Button
             raised

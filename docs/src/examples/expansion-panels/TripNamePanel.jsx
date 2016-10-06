@@ -52,7 +52,6 @@ export default class TripNamePanel extends PureComponent {
           label="Trip name"
           value={tempName}
           onChange={this._handleChange}
-          fullWidth
           maxLength={80}
         />
       </ExpansionPanel>

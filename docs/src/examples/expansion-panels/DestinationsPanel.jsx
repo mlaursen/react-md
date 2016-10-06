@@ -97,7 +97,6 @@ export default class DestinationsPanel extends PureComponent {
               onAutocomplete={this._addDestination}
               clearOnAutocomplete
               data={filteredVacationSpots}
-              fullWidth
               containerClassName="align-end"
             />
           </CSSTransitionGroup>

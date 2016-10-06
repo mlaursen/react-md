@@ -80,7 +80,6 @@ export default class FileConverterExample extends PureComponent {
           defaultValue={FILE_TYPES[0]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
-          fullWidth
         />
         <SelectField
           id="videoOut"
@@ -88,7 +87,6 @@ export default class FileConverterExample extends PureComponent {
           defaultValue={FILE_TYPES[FILE_TYPES.length - 1]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
-          fullWidth
         />
         <div className="file-block">
           <FileInput
@@ -100,7 +98,6 @@ export default class FileConverterExample extends PureComponent {
           />
           <TextField
             id="videoFileName"
-            fullWidth
             value={fileName}
             onChange={this._updateFileName}
             disabled={!file}

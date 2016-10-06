@@ -55,7 +55,6 @@ export default class ControlledExample extends PureComponent {
         label="Select your appointment date"
         value={this.state.date}
         onChange={this._selectAppointment}
-        fullWidth
       />
     );
   }

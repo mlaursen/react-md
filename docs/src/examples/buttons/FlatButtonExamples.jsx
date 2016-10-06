@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'react-md/lib/Buttons';
-import TextField from 'react-md/lib/TextFields';
 
 const FlatButtonExamples = () => (
   <div className="btn-example">
@@ -17,13 +16,6 @@ const FlatButtonExamples = () => (
     <p>When a flat button is disabled, any styling will be overridden and they will not be clickable.</p>
     <Button flat disabled label="But I am Disabled" />
     <Button flat disabled label="But I am Disabled">accessible</Button>
-    <form className="md-form" onSubmit={e => { e.preventDefault(); }}>
-      <TextField
-        id="test"
-        label="Test Thing"
-      />
-      <Button flat type="submit" label="Submit" onClick={() => { console.log('Submitted.'); }} />
-    </form>
   </div>
 );
 

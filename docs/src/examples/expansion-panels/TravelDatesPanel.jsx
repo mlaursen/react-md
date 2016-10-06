@@ -103,7 +103,6 @@ export default class TravelDatesPanel extends PureComponent {
           value={tempStartDate}
           formatOptions={formatOptions}
           onChange={this._setStartDate}
-          fullWidth
         />
         <DatePicker
           id="travelEndDate"
@@ -112,7 +111,6 @@ export default class TravelDatesPanel extends PureComponent {
           value={tempEndDate}
           formatOptions={formatOptions}
           onChange={this._setEndDate}
-          fullWidth
           minDate={minEndDate}
           initialCalendarDate={minEndDate}
         />

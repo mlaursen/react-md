@@ -23,7 +23,6 @@ export default class TextField extends React.Component {
     const { ...props } = this.props;
     delete props.fullWidth;
     delete props.block;
-    delete props.adjustMinWidth;
     delete props.lineDirection;
     delete props.inputStyle;
     delete props.inputClassName;

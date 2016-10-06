@@ -11,6 +11,12 @@
       false,
       $name
     );
+
+    .#{$name} {
+      .price::before {
+        color: get-color('text', false);
+      }
+    }
   }
 
 
