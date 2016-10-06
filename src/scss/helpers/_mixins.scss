@@ -1,10 +1,7 @@
 @import 'mixins/bottom-navigations';
-@import 'mixins/cards';
 @import 'mixins/navigation-drawers';
-@import 'mixins/pickers';
 @import 'mixins/sidebars';
 @import 'mixins/tabs';
-@import 'mixins/toolbars';
 @import 'mixins/theme';
 
 /// Generates the box shadow for material design
@@ -51,44 +48,4 @@
       box-shadow: 0 16px 24px 2px $top-shadow-color, 0 6px 30px 5px $middle-shadow-color, 0 8px 10px -5px $bottom-shadow-color;
     }
   }
-}
-
-
-@mixin absolute-center($top: true, $left: false, $additional-transform: null) {
-  @if $top {
-    top: 50%;
-  }
-
-  @if $left {
-    left: 50%;
-  }
-
-  transform: translate3d(if($left, -50%, 0), if($top, -50%, 0), 0) $additional-transform;
-}
-
-
-/// Replace `$search` with `$replace` in `$string`
-/// @author Hugo Giraudel
-/// @link https://css-tricks.com/snippets/sass/str-replace-function
-/// @param {String} $string - Initial string
-/// @param {String} $search - Substring to replace
-/// @param {String} $replace ('') - New value
-/// @return {String} - Updated string
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-  }
-
-  @return $string;
-}
-
-/// Gets a character at the given index from a string.
-/// If the index 0, it gets the last character of the string.
-/// @param {String} $string - The string to get a character from
-/// @param {String} $i [0] - The index to get a character for
-@function char-at($string, $i: 0) {
-  $index: if($i == 0, str-length($string), $i);
-  @return str-slice($string, $index, $index + 1);
 }
