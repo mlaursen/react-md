@@ -1,8 +1,6 @@
-/* eslint-disable new-cap */
 import React, { PureComponent, PropTypes } from 'react';
 
 import CalendarMonth from './CalendarMonth';
-import SwipeableView from '../SwipeableViews';
 import CalendarHeader from './CalendarHeader';
 
 export default class DatePickerCalendar extends PureComponent {
@@ -21,8 +19,6 @@ export default class DatePickerCalendar extends PureComponent {
     ]).isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    onSwipeChange: PropTypes.func.isRequired,
-    transitionName: PropTypes.string.isRequired,
   };
 
   render() {
@@ -38,12 +34,10 @@ export default class DatePickerCalendar extends PureComponent {
       locales,
       minDate,
       maxDate,
-      onSwipeChange,
-      transitionName,
     } = this.props;
 
     return (
-      <section className="md-picker-content md-calendar">
+      <section className="md-picker-content md-picker-content--calendar">
         <CalendarHeader
           date={calendarDate}
           minDate={minDate}
@@ -55,23 +49,16 @@ export default class DatePickerCalendar extends PureComponent {
           onNextClick={onNextClick}
           nextIcon={nextIcon}
         />
-        <SwipeableView
-          onChange={onSwipeChange}
-          transitionName={transitionName}
-          transitionEnterTimeout={150}
-          transitionLeave={false}
-        >
-          <CalendarMonth
-            key={DateTimeFormat(locales).format(calendarDate)}
-            calendarDate={calendarDate}
-            calendarTempDate={calendarTempDate}
-            onCalendarDateClick={onCalendarDateClick}
-            minDate={minDate}
-            maxDate={maxDate}
-            DateTimeFormat={DateTimeFormat}
-            locales={locales}
-          />
-        </SwipeableView>
+        <CalendarMonth
+          key={new DateTimeFormat(locales).format(calendarDate)}
+          calendarDate={calendarDate}
+          calendarTempDate={calendarTempDate}
+          onCalendarDateClick={onCalendarDateClick}
+          minDate={minDate}
+          maxDate={maxDate}
+          DateTimeFormat={DateTimeFormat}
+          locales={locales}
+        />
       </section>
     );
   }

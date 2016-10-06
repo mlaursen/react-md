@@ -52,6 +52,6 @@ describe('CalendarMonth', () => {
     const calendarMonth = renderIntoDocument(<CalendarMonth {...props} />);
     const days = scryRenderedComponentsWithType(calendarMonth, CalendarDate);
     expect(days.length).toBe(30);
-    expect(days[11].props.className).toContain('active');
+    expect(days[11].props.active).toBe(true);
   });
 });

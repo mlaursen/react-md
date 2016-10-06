@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
@@ -16,13 +15,18 @@ export default class CalendarDate extends PureComponent {
     ]).isRequired,
     disabled: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
+    active: PropTypes.bool,
+    today: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
 
     this.state = this._getFormattedDate(props);
+    this.state.desktopActive = false;
     this._handleClick = this._handleClick.bind(this);
+    this._setActive = this._setActive.bind(this);
+    this._setInactive = this._setInactive.bind(this);
   }
 
   componentWillUpdate(nextProps) {
@@ -34,7 +38,7 @@ export default class CalendarDate extends PureComponent {
 
   _getFormattedDate({ DateTimeFormat, locales, date }) {
     return {
-      date: DateTimeFormat(locales, { day: 'numeric' }).format(date),
+      date: new DateTimeFormat(locales, { day: 'numeric' }).format(date),
     };
   }
 
@@ -42,17 +46,39 @@ export default class CalendarDate extends PureComponent {
     this.props.onClick(new Date(this.props.date), e);
   }
 
+  _setActive() {
+    if (!this.props.disabled) {
+      this.setState({ desktopActive: true });
+    }
+  }
+
+  _setInactive() {
+    if (!this.props.disabled) {
+      this.setState({ desktopActive: false });
+    }
+  }
+
   render() {
-    const { date } = this.state;
-    const { disabled, className } = this.props;
+    const { date, desktopActive } = this.state;
+    const { disabled, active, today, className } = this.props;
     return (
       <button
         type="button"
-        className={cn('md-calendar-date', className)}
+        onFocus={this._setActive}
+        onBlur={this._setInactive}
+        onMouseOver={this._setActive}
+        onMouseLeave={this._setInactive}
+        className={cn('md-btn md-calendar-date md-calendar-date--btn', {
+          'md-pointer--hover': !disabled,
+          'md-calendar-date--today': today && !active && !desktopActive,
+          'md-calendar-date--btn-active': active || desktopActive,
+        }, className)}
         onClick={this._handleClick}
         disabled={disabled}
       >
-        <span className="date">{date}</span>
+        <span className={cn('md-calendar-date--date', { 'md-picker-text--active': active || desktopActive })}>
+          {date}
+        </span>
       </button>
     );
   }

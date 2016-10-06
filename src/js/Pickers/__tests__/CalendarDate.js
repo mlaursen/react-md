@@ -13,7 +13,7 @@ import CalendarDate from '../CalendarDate';
 
 describe('CalendarDate', () => {
   it('calls the onClick prop with the date prop when not disabled', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',
@@ -36,7 +36,7 @@ describe('CalendarDate', () => {
   });
 
   it('formats the date as the state', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',

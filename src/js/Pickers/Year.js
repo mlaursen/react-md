@@ -16,20 +16,35 @@ export default class Year extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = { desktopActive: false };
     this._handleClick = this._handleClick.bind(this);
+    this._setActive = this._setActive.bind(this);
+    this._setInactive = this._setInactive.bind(this);
   }
 
+  _setActive() {
+    this.setState({ desktopActive: true });
+  }
+
+  _setInactive() {
+    this.setState({ desktopActive: false });
+  }
 
   _handleClick(e) {
     this.props.onClick(this.props.year, e);
   }
 
   render() {
+    const { desktopActive } = this.state;
     const { active, className, year } = this.props;
     return (
       <button
         type="button"
-        className={cn('md-year', className, { active })}
+        className={cn('md-btn md-pointer--hover md-full-width md-year', {
+          'md-color--text': !active && !desktopActive,
+          'md-color--primary': active || desktopActive,
+          'md-year--active': active,
+        }, className)}
         onClick={this._handleClick}
       >
         {year}

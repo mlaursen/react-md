@@ -60,7 +60,7 @@ export default class DatePickerHeader extends PureComponent {
     return (
       <header className="md-picker-header">
         <PickerControl onClick={this._selectYear} active={calendarMode === 'year'}>
-          <h6 className="md-subtitle">{year}</h6>
+          <h6 className="md-subheading-1">{year}</h6>
         </PickerControl>
         <PickerControl onClick={this._selectCalendar} active={calendarMode === 'calendar'}>
           <h4 className="md-display-1">{`${weekday},`}&nbsp;</h4>
