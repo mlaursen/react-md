@@ -143,36 +143,37 @@
     @include react-md-theme-typography($html-class-name, $light-theme);
 
     .#{$html-class-name} {
-      @include react-md-theme-inks($light-theme);
+      @include react-md-theme-avatars($light-theme);
+      @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-cards($light-theme);
+      @include react-md-theme-chips($light-theme);
       @include react-md-theme-dividers($light-theme);
       @include react-md-theme-icons($light-theme);
-      @include react-md-theme-avatars($light-theme);
-      @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
-      @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
-      @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+      @include react-md-theme-inks($light-theme);
       @include react-md-theme-lists($light-theme);
-      @include react-md-theme-selection-controls($secondary-color, $light-theme);
       @include react-md-theme-pickers($primary-color, $light-theme);
       @include react-md-theme-progress($secondary-color, $progress-swatch);
+      @include react-md-theme-selection-controls($secondary-color, $light-theme);
+      @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+      @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
       @include react-md-theme-toolbars($light-theme);
 
       @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
     }
   } @else {
-    @include react-md-theme-inks($light-theme);
+    @include react-md-theme-avatars($light-theme);
+    @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-cards($light-theme);
+    @include react-md-theme-chips($light-theme);
     @include react-md-theme-dividers($light-theme);
     @include react-md-theme-icons($light-theme);
-    @include react-md-theme-avatars($light-theme);
-    @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
-    @include react-md-theme-autocompletes($light-theme);
-    @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
-    @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+    @include react-md-theme-inks($light-theme);
     @include react-md-theme-lists($light-theme);
-    @include react-md-theme-selection-controls($secondary-color, $light-theme);
     @include react-md-theme-pickers($primary-color, $light-theme);
     @include react-md-theme-progress($secondary-color, $progress-swatch);
+    @include react-md-theme-selection-controls($secondary-color, $light-theme);
+    @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+    @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     @include react-md-theme-toolbars($light-theme);
 
     @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
