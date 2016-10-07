@@ -48,6 +48,13 @@ $md-list-desktop-avatar-height: 48px;
 $md-list-desktop-two-lines-height: 60px;
 $md-list-desktop-three-lines-height: 76px;
 
+/// A placeholder for removing the default margin, padding and list styles
+%md-list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
 /// Includes the styles for lists.
 ///
 /// @example scss - Example Usage SCSS
@@ -87,10 +94,8 @@ $md-list-desktop-three-lines-height: 76px;
   }
 
   .md-list {
+    @extend %md-list-unstyled;
     background: get-color('card', $light-theme);
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
     user-select: none;
 
     .md-avatar,

@@ -1,112 +1,12 @@
-@import '~sass-utils';
+@import '~react-md-scss';
 
-.md-panel-content .md-text-field-container {
-  padding-left: 0;
-  padding-right: 0;
-}
+.opacity-enter {
+  opacity: 0;
 
-.destination-content {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.destinations {
-  display: flex;
-  flex-wrap: wrap;
-  padding-right: $md-default-padding;
-
-  .md-chip-container {
-    margin: .5em;
-  }
-}
-
-.align-end {
-  align-self: flex-end;
-}
-
-.dot-overflow {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.destination-info {
-  border-left: 1px solid $md-border-color;
-  padding-left: $md-default-padding;
-}
-
-.flex-between {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  .md-picker-container {
-    flex-grow: 1;
-    flex-shrink: 0;
-    margin: 1em;
-    min-width: 240px;
-  }
-}
-
-.meal-preference-container {
-  display: flex;
-  flex-wrap: wrap;
-
-  .opacity-enter-active {
-    transition: opacity 1s;
-  }
-}
-
-.meal-preference-select {
-  width: 100%;
-}
-
-.meal-preference {
-  flex-grow: 1;
-}
-
-@media only screen and (min-width: $md-mobile-min-width) {
-  .destinations {
-    min-height: $md-chip-height + $md-text-field-mobile-height;
-  }
-
-  .md-panel-column:nth-child(n+2) {
-    display: none;
-  }
-
-  .meal-preference {
-    margin-top: 2em;
-  }
-}
-
-@media only screen and (min-width: $md-mobile-min-width + 100) {
-  .destinations {
-    flex-basis: 60%;
-  }
-}
-
-@media only screen and (min-width: $md-tablet-min-width) {
-  .meal-preference-select {
-    width: initial;
-  }
-
-  .meal-preference {
-    margin-left: 2em;
-    margin-top: 0;
-  }
-}
-
-@media only screen and (min-width: $md-desktop-min-width) {
-  .destinations {
-    min-height: $md-chip-height + $md-text-field-desktop-height + $md-body-desktop-font-size;
-  }
-
-  .md-panel-column:nth-child(n+2) {
-    display: initial;
-  }
-
-  .meal-preference-container {
-    flex-wrap: nowrap;
+  &.opacity-enter-active {
+    opacity: 1;
+    transition-duration: 1000ms;
+    transition-property: opacity;
+    transition-timing-function: $md-transition-deceleration;
   }
 }

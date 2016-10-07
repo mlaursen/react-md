@@ -1,8 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import PanelControls from './PanelControls';
-import Divider from '../Dividers';
+import DialogFooter from '../Dialogs/DialogFooter';
 
 /**
  * The `PanelContent` component is for displaying the expanded content
@@ -13,6 +12,7 @@ export default class PanelContent extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
+    contentStyle: PropTypes.object,
     children: PropTypes.node,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
@@ -29,6 +29,7 @@ export default class PanelContent extends PureComponent {
   render() {
     const {
       style,
+      contentStyle,
       className,
       children,
       onSave,
@@ -43,24 +44,26 @@ export default class PanelContent extends PureComponent {
       cancelSecondary,
     } = this.props;
 
+    const actions = [{
+      type: cancelType,
+      label: cancelLabel,
+      onClick: onCancel,
+      primary: cancelPrimary,
+      secondary: cancelSecondary,
+    }, {
+      type: saveType,
+      label: saveLabel,
+      onClick: onSave,
+      primary: savePrimary,
+      secondary: saveSecondary,
+    }];
+
     return (
-      <div>
-        <div className={cn('md-panel-content', className)} style={style}>
+      <div style={style}>
+        <div className={cn('md-panel-content', className)} style={contentStyle}>
           {children}
         </div>
-        <Divider className="md-panel-divider" />
-        <PanelControls
-          onSave={onSave}
-          onCancel={onCancel}
-          saveType={saveType}
-          saveLabel={saveLabel}
-          savePrimary={savePrimary}
-          saveSecondary={saveSecondary}
-          cancelType={cancelType}
-          cancelLabel={cancelLabel}
-          cancelPrimary={cancelPrimary}
-          cancelSecondary={cancelSecondary}
-        />
+        <DialogFooter actions={actions} className="md-divider--border-top" />
       </div>
     );
   }

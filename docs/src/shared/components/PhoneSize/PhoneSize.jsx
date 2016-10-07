@@ -25,6 +25,8 @@ export default class PhoneSize extends PureComponent {
       PropTypes.arrayOf(PropTypes.element),
     ]),
     mobile: PropTypes.bool,
+    tablet: PropTypes.bool,
+    mobileOnly: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -46,8 +48,14 @@ export default class PhoneSize extends PureComponent {
       toolbarActions,
       iconLeft,
       mobile,
+      tablet,
+      mobileOnly,
       ...props,
     } = this.props;
+
+    if (mobileOnly && tablet) {
+      return children;
+    }
 
     const content = (
       <Content

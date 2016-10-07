@@ -17,6 +17,8 @@ export default class CarrierPanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
+
+    tablet: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -42,13 +44,13 @@ export default class CarrierPanel extends PureComponent {
 
   render() {
     const { carrier, tempCarrier } = this.state;
-    const { focused, columnWidths } = this.props;
+    const { focused, columnWidths, tablet } = this.props;
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Carrier"
-        secondaryLabel={carrier}
+        secondaryLabel={tablet ? carrier : null}
         onSave={this._setCarrier}
         onCancel={this._resetCarrier}
       >

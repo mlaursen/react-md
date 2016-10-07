@@ -12,7 +12,7 @@ import {
 
 import ExpansionPanel from '../ExpansionPanel';
 import AccessibleFakeButton from '../../Helpers/AccessibleFakeButton';
-import Height from '../../Transitions/Height';
+import Collapse from '../../Helpers/Collapse';
 
 describe('ExpansionPanel', () => {
   it('merges className and style', () => {
@@ -128,15 +128,22 @@ describe('ExpansionPanel', () => {
     expect(btn.props.children.length).toBe(2);
   });
 
-  it('renders the Height component witht he PanelContent component when expanded', () => {
+  it('renders the Collapse component', () => {
     const panel = renderIntoDocument(<ExpansionPanel label="test" />);
 
-    let heights = scryRenderedComponentsWithType(panel, Height);
-    expect(heights.length).toBe(0);
+    const collapses = scryRenderedComponentsWithType(panel, Collapse);
+    expect(collapses.length).toBe(1);
+  });
 
+  it('updates the Collase component\'s collapsed prop', () => {
+    const panel = renderIntoDocument(<ExpansionPanel label="test" />);
+
+    let collapse = findRenderedComponentWithType(panel, Collapse);
+    expect(collapse.props.collapsed).toBe(true);
     panel._handleClick();
-    heights = scryRenderedComponentsWithType(panel, Height);
-    expect(heights.length).toBe(1);
+
+    collapse = findRenderedComponentWithType(panel, Collapse);
+    expect(collapse.props.collapsed).toBe(false);
   });
 
   it('calls the onExpandToggle prop when toggled with the next expanded state', () => {

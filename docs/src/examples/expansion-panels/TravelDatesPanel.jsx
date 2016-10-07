@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import ExpansionPanel from 'react-md/lib/ExpansionPanels';
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
@@ -8,6 +9,7 @@ const formatOptions = {
   day: '2-digit',
   year: 'numeric',
 };
+@connect(({ ui: { media: { tablet } } }) => ({ tablet }))
 export default class TravelDatesPanel extends PureComponent {
   static propTypes = {
     // These two props get injected from `ExpansionList`. You need to
@@ -15,6 +17,8 @@ export default class TravelDatesPanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
+
+    tablet: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -81,18 +85,21 @@ export default class TravelDatesPanel extends PureComponent {
 
   render() {
     const { formattedStartDate, tempStartDate, formattedEndDate, tempEndDate, minEndDate } = this.state;
-    const { columnWidths, focused } = this.props;
+    const { columnWidths, focused, tablet } = this.props;
+
+    let secondaryLabel;
+    if (tablet) {
+      secondaryLabel = [`Start Date: ${formattedStartDate}`, `End Date: ${formattedEndDate}`];
+    }
+
 
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Start and end dates"
-        secondaryLabel={[
-          `Start Date: ${formattedStartDate}`,
-          `End Date: ${formattedEndDate}`,
-        ]}
-        contentClassName="flex-between"
+        secondaryLabel={secondaryLabel}
+        contentClassName="md-grid"
         onSave={this._saveDates}
         onCancel={this._resetDates}
       >
@@ -100,6 +107,7 @@ export default class TravelDatesPanel extends PureComponent {
           id="travelStartDate"
           name="start"
           label="Start date"
+          className="md-cell md-cell--6"
           value={tempStartDate}
           formatOptions={formatOptions}
           onChange={this._setStartDate}
@@ -109,6 +117,7 @@ export default class TravelDatesPanel extends PureComponent {
           name="end"
           label="End date"
           value={tempEndDate}
+          className="md-cell md-cell--6"
           formatOptions={formatOptions}
           onChange={this._setEndDate}
           minDate={minEndDate}

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import ExpansionList from 'react-md/lib/ExpansionPanels/ExpansionList';
 
+import PhoneSizeDemo from 'containers/PhoneSizeDemo';
 import TripNamePanel from './TripNamePanel';
 import DestinationsPanel from './DestinationsPanel';
 import TravelDatesPanel from './TravelDatesPanel';
@@ -9,14 +11,20 @@ import MealPreferencesPanel from './MealPreferencesPanel';
 
 import './_expansion-panels.scss';
 
-const ComplexExample = () => (
-  <ExpansionList>
-    <TripNamePanel />
-    <DestinationsPanel />
-    <TravelDatesPanel />
-    <CarrierPanel />
-    <MealPreferencesPanel />
-  </ExpansionList>
+const ComplexExample = ({ tablet }) => (
+  <PhoneSizeDemo mobileOnly>
+    <ExpansionList style={{ padding: 16 }}>
+      <TripNamePanel tablet={tablet} />
+      <DestinationsPanel tablet={tablet} />
+      <TravelDatesPanel tablet={tablet} />
+      <CarrierPanel tablet={tablet} />
+      <MealPreferencesPanel tablet={tablet} />
+    </ExpansionList>
+  </PhoneSizeDemo>
 );
 
-export default ComplexExample;
+ComplexExample.propTypes = {
+  tablet: PropTypes.bool.isRequired,
+};
+
+export default connect(({ ui: { media: { tablet } } }) => ({ tablet }))(ComplexExample);

@@ -51,18 +51,14 @@ export default class ExpansionList extends PureComponent {
 
     this.state = { columnWidths: [], focusedIndex: -1 };
 
+    this._setContainer = this._setContainer.bind(this);
     this._removeFocus = this._removeFocus.bind(this);
     this._calcColumnWidths = this._calcColumnWidths.bind(this);
     this._determineTabFocus = this._determineTabFocus.bind(this);
   }
 
-  componentDidMount() {
-    this._calcColumnWidths();
-    window.addEventListener('keyup', this._determineTabFocus);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (this.props.children !== nextProps.chilren) {
+    if (this.props.children !== nextProps.children) {
       this._calcColumnWidths();
     }
   }
@@ -84,6 +80,15 @@ export default class ExpansionList extends PureComponent {
     window.removeEventListener('keyup', this._determineTabFocus);
   }
 
+  _setContainer(container) {
+    if (container !== null) {
+      this._container = findDOMNode(container);
+      window.addEventListener('keyup', this._determineTabFocus);
+
+      this._calcColumnWidths();
+    }
+  }
+
   _determineTabFocus(e) {
     if ((e.which || e.keyCode) === TAB) {
       const panels = Array.prototype.slice.call(findDOMNode(this).querySelectorAll('.md-panel-header'));
@@ -100,7 +105,11 @@ export default class ExpansionList extends PureComponent {
    * on the panel's header and apply that as a min width for the other panels.
    */
   _calcColumnWidths() {
-    const columnWidths = Array.prototype.slice.call(findDOMNode(this).querySelectorAll('.md-panel-header'))
+    if (!this._container) {
+      return;
+    }
+
+    const columnWidths = Array.prototype.slice.call(this._container.querySelectorAll('.md-panel-header'))
       .reduce((maxes, row) => {
         const columns = row.querySelectorAll('.md-panel-column');
         for (let i = 0; i < columns.length; i++) {
@@ -125,6 +134,7 @@ export default class ExpansionList extends PureComponent {
 
     return createElement(component, {
       ...props,
+      ref: this._setContainer,
       className: cn('md-expansion-panel-list', className),
     }, Children.map(children, (child, i) => (
       cloneElement(child, {

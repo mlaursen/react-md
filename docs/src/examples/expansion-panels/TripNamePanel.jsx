@@ -10,6 +10,8 @@ export default class TripNamePanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
+
+    tablet: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -36,14 +38,14 @@ export default class TripNamePanel extends PureComponent {
 
   render() {
     const { name, tempName } = this.state;
-    const { columnWidths, focused } = this.props;
+    const { columnWidths, focused, tablet } = this.props;
 
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Trip name"
-        secondaryLabel={name}
+        secondaryLabel={tablet ? name : null}
         onSave={this._saveName}
         onCancel={this._resetName}
       >

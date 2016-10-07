@@ -5,6 +5,7 @@ import ExpansionPanel from 'react-md/lib/ExpansionPanels';
 import FontIcon from 'react-md/lib/FontIcons';
 import Chip from 'react-md/lib/Chips';
 import Autocomplete from 'react-md/lib/Autocompletes';
+import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
 
 import vacationSpots from 'constants/vacationSpots';
 
@@ -15,6 +16,7 @@ export default class DestinationsPanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
+    tablet: PropTypes.bool,
   };
 
   constructor(props) {
@@ -60,50 +62,57 @@ export default class DestinationsPanel extends PureComponent {
 
   render() {
     const { destinations, tempDestinations, filteredVacationSpots } = this.state;
-    const { focused, columnWidths } = this.props;
+    const { focused, columnWidths, tablet } = this.props;
+
+    let secondaryLabel;
+    let expandedSecondaryLabel;
+    if (tablet) {
+      secondaryLabel = <span className="dot-overflow">{destinations.join(', ')}</span>;
+      expandedSecondaryLabel = (
+        <IconSeparator label="Select trip destination">
+          <FontIcon>info_outline</FontIcon>
+        </IconSeparator>
+      );
+    }
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Location"
-        secondaryLabel={<span className="dot-overflow">{destinations.join(', ')}</span>}
-        expandedSecondaryLabel={(
-          <div className="icon-separator">
-            <span className="text">Select trip destination</span>
-            <FontIcon>info_outline</FontIcon>
-          </div>
-        )}
+        secondaryLabel={secondaryLabel}
+        expandedSecondaryLabel={expandedSecondaryLabel}
         onSave={this._setDestinations}
         onCancel={this._resetDestinations}
+        className="md-cell-md-cell--12"
+        contentClassName="md-grid"
       >
-        <div className="destination-content">
-          <CSSTransitionGroup
-            className="destinations"
-            component="div"
-            transitionName="upload"
-            transitionEnterTimeout={150}
-            transitionLeaveTimeout={150}
-          >
-            {tempDestinations.map((destination, i) => (
-              <Chip
-                key={destination}
-                label={destination}
-                remove={this._remove.bind(this, i)}
-              />
-            ))}
-            <Autocomplete
-              id="destinations"
-              label="Search for a destination"
-              onAutocomplete={this._addDestination}
-              clearOnAutocomplete
-              data={filteredVacationSpots}
-              containerClassName="align-end"
+        <CSSTransitionGroup
+          className="md-cell md-cell--7 md-cell--5-tablet"
+          component="div"
+          transitionName="opacity"
+          transitionEnterTimeout={150}
+          transitionLeave={false}
+        >
+          {tempDestinations.map((destination, i) => (
+            <Chip
+              key={destination}
+              label={destination}
+              onClick={this._remove.bind(this, i)}
+              removable
             />
-          </CSSTransitionGroup>
-          <div className="md-panel-secondary-label destination-info">
-            Select your destination of choice.
-            <a href="#" style={{ display: 'block' }}>Learn more</a>
-          </div>
+          ))}
+          <Autocomplete
+            id="destinations"
+            label="Search for a destination"
+            onAutocomplete={this._addDestination}
+            clearOnAutocomplete
+            data={filteredVacationSpots}
+            containerClassName="align-end"
+          />
+        </CSSTransitionGroup>
+        <div className="md-cell md-cell--5 md-cell--3-tablet md-panel-secondary-label">
+          Select your destination of choice.
+          <a href="#" style={{ display: 'block' }}>Learn more</a>
         </div>
       </ExpansionPanel>
     );

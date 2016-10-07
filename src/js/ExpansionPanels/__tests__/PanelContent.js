@@ -1,4 +1,5 @@
 /* eslint-env jest */
+/* eslint-disable max-len */
 jest.unmock('../PanelContent');
 
 import React from 'react';
@@ -10,8 +11,7 @@ import {
 } from 'react-addons-test-utils';
 
 import PanelContent from '../PanelContent';
-import PanelControls from '../PanelControls';
-import Divider from '../../Dividers';
+import DialogFooter from '../../Dialogs/DialogFooter';
 
 const PROPS = {
   onSave: jest.fn(),
@@ -21,41 +21,33 @@ const PROPS = {
 };
 
 describe('PanelContent', () => {
-  it('passes the style and className to the md-panel-content container', () => {
-    const props = Object.assign({}, PROPS, { style: { display: 'block' }, className: 'test' });
+  it('passes the contentStyle and className to the md-panel-content container and the style to the containing div', () => {
+    const props = Object.assign({}, PROPS, {
+      style: { display: 'block' },
+      contentStyle: { background: 'black' },
+      className: 'test',
+    });
     const content = renderIntoDocument(<PanelContent {...props} />);
     const contentNode = findDOMNode(content);
     const panelContent = contentNode.querySelector('.md-panel-content');
 
-    expect(contentNode.style.display).not.toBe(props.style.display);
+    expect(contentNode.style.display).toBe(props.style.display);
+    expect(contentNode.style.background).not.toBe(props.contentStyle.background);
     expect(contentNode.className).not.toContain(props.className);
 
-    expect(panelContent.style.display).toBe(props.style.display);
+    expect(panelContent.style.display).not.toBe(props.style.display);
+    expect(panelContent.style.background).toBe(props.contentStyle.background);
     expect(panelContent.className).toContain(props.className);
   });
 
-  it('renders a divider component', () => {
+  it('renders the DialogFooter component', () => {
     const content = renderIntoDocument(<PanelContent {...PROPS} />);
-    const dividers = scryRenderedComponentsWithType(content, Divider);
-
-    expect(dividers.length).toBe(1);
-  });
-
-  it('renders a divider component with the md-panel-divider className', () => {
-    const content = renderIntoDocument(<PanelContent {...PROPS} />);
-    const divider = findRenderedComponentWithType(content, Divider);
-
-    expect(divider.props.className).toBe('md-panel-divider');
-  });
-
-  it('renders the PanelControls component', () => {
-    const content = renderIntoDocument(<PanelContent {...PROPS} />);
-    const controls = scryRenderedComponentsWithType(content, PanelControls);
+    const controls = scryRenderedComponentsWithType(content, DialogFooter);
 
     expect(controls.length).toBe(1);
   });
 
-  it('renders the PanelControls component with the correct props', () => {
+  it('renders the DialogFooter component with the correct props', () => {
     const props = Object.assign({}, PROPS, {
       style: { display: 'block' },
       className: 'test',
@@ -68,17 +60,21 @@ describe('PanelContent', () => {
     });
 
     const content = renderIntoDocument(<PanelContent {...props} />);
-    const controls = findRenderedComponentWithType(content, PanelControls);
+    const controls = findRenderedComponentWithType(content, DialogFooter);
+    const { actions } = controls.props;
+    expect(actions.length).toBe(2);
+    const [cancel, save] = actions;
 
-    expect(controls.props.onSave).toBe(props.onSave);
-    expect(controls.props.onCancel).toBe(props.onCancel);
-    expect(controls.props.saveType).toBe(props.saveType);
-    expect(controls.props.saveLabel).toBe(props.saveLabel);
-    expect(controls.props.savePrimary).toBe(props.savePrimary);
-    expect(controls.props.saveSecondary).toBe(props.saveSecondary);
-    expect(controls.props.cancelType).toBe(props.cancelType);
-    expect(controls.props.cancelLabel).toBe(props.cancelLabel);
-    expect(controls.props.cancelPrimary).toBe(props.cancelPrimary);
-    expect(controls.props.cancelSecondary).toBe(props.cancelSecondary);
+    expect(cancel.type).toBe(props.cancelType);
+    expect(cancel.label).toBe(props.cancelLabel);
+    expect(cancel.onClick).toBe(props.onCancel);
+    expect(cancel.primary).toBe(props.cancelPrimary);
+    expect(cancel.secondary).toBe(props.cancelSecondary);
+
+    expect(save.type).toBe(props.saveType);
+    expect(save.label).toBe(props.saveLabel);
+    expect(save.onClick).toBe(props.onSave);
+    expect(save.primary).toBe(props.savePrimary);
+    expect(save.secondary).toBe(props.saveSecondary);
   });
 });
