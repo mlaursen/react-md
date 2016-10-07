@@ -322,6 +322,11 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
     margin: $gutter / 2;
   }
 
+  .md-cell--#{$media-type}-hidden {
+    // scss-lint:disable ImportantRule
+    display: none !important;
+  }
+
   @for $i from 1 through $md-grid-max-columns {
     .md-cell--order-#{$i}.md-cell--order-#{$i}-#{$media-type} {
       order: $i;

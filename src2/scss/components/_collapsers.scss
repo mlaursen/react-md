@@ -4,11 +4,14 @@
 
 @mixin react-md-collapsers {
   .md-collapser {
-    transition-duration: $md-transition-time;
-    transition-property: transform;
-  }
 
-  .md-collapser--flipped {
-    transform: rotate3d(0, 0, 1, 180deg);
+    &.md-collapser {
+      transition-duration: $md-transition-time;
+      transition-property: transform;
+    }
+
+    &--flipped {
+      transform: rotate3d(0, 0, 1, 180deg);
+    }
   }
 }

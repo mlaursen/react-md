@@ -14,7 +14,18 @@ $md-chip-include-avatar: true !default;
 /// @type Boolean
 $md-chip-include-contact: true !default;
 
-$md-chip-color: rgba($md-black-base, .87);
+$md-chip-light-theme-color: rgba($md-black-base, .87);
+$md-chip-light-theme-bg-color: $md-grey-300;
+
+/// The dark theme text color of a chip. This is configurable because it is not actually
+/// specified in the docs.
+/// @type Color
+$md-chip-dark-theme-color: get-color('secondary', false) !default;
+
+/// The dark theme background color of a chip. This is configurable because it is not actually
+/// specified in the docs.
+/// @type Color
+$md-chip-dark-theme-bg-color: $md-grey-600 !default;
 $md-chip-height: 32px;
 $md-chip-font-size: 13px;
 $md-chip-icon-color: rgba($md-black-base, .54);
@@ -36,10 +47,10 @@ $md-chip-contact-font-size: 14px;
 ///     should be included.
 /// @param {Boolean} include-contact [$md-chip-include-contact] - Boolean if the contact styles
 ///     should be included.
-@mixin react-md-chips($include-remove: $md-chip-include-remove, $include-avatar: $md-chip-include-avatar, $include-contact: $md-chip-include-contact) {
+@mixin react-md-chips($light-theme: $md-light-theme, $include-remove: $md-chip-include-remove, $include-avatar: $md-chip-include-avatar, $include-contact: $md-chip-include-contact) {
   .md-chip {
     align-items: center;
-    background: $md-grey-300;
+    background: if($light-theme, $md-chip-light-theme-bg-color, $md-chip-dark-theme-bg-color);
     border: 0;
     border-radius: $md-chip-height / 2;
     display: inline-flex;
@@ -58,12 +69,12 @@ $md-chip-contact-font-size: 14px;
     }
   }
 
-  .md-chip--hover {
+  .md-chip--hover.md-chip--hover {
     background: $md-grey-700;
   }
 
   .md-chip-text {
-    color: $md-chip-color;
+    color: if($light-theme, $md-chip-light-theme-color, $md-chip-dark-theme-color);
     font-size: $md-chip-font-size;
     transition-duration: $md-transition-time;
     transition-property: color;
@@ -139,5 +150,21 @@ $md-chip-contact-font-size: 14px;
 @mixin react-md-chips-contact {
   .md-chip-text--contact {
     font-size: $md-chip-contact-font-size;
+  }
+}
+
+/// Updates the styles for chips based on the theme. If the `light-theme` equals the `md-light-theme`,
+/// no styles will be included.
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling for the light theme.
+@mixin react-md-theme-chips($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-chip {
+      background: if($light-theme, $md-chip-light-theme-bg-color, $md-chip-dark-theme-bg-color);
+    }
+
+    .md-chip-text {
+      color: if($light-theme, $md-chip-light-theme-color, $md-chip-dark-theme-color);
+    }
   }
 }
