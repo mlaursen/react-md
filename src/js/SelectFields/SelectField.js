@@ -260,6 +260,7 @@ export default class SelectField extends PureComponent {
   };
 
   static defaultProps = {
+    itemLabel: 'label',
     fullWidth: true,
     menuItems: [],
     keyboardMatchingTimeout: 1000,
