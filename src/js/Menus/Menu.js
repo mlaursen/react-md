@@ -280,32 +280,30 @@ export default class Menu extends PureComponent {
     delete props.cascading;
     delete props.autoclose;
 
+    const menuClassName = cn({ 'md-list--menu-contained': contained }, listClassName);
     let menuItems;
-    if (isOpen) {
-      const menuClassName = cn({ 'md-list--menu-contained': contained }, listClassName);
-      try {
-        const list = Children.only(children);
+    try {
+      const list = Children.only(children);
 
-        menuItems = cloneElement(children, {
-          key: 'menu-list',
-          className: cn(menuClassName, list.props.className),
-          onClick: this._handleListClick,
-          ref: this._setList,
-        });
-      } catch (e) {
-        menuItems = (
-          <List
-            key="menu-list"
-            id={listId}
-            style={listStyle}
-            className={menuClassName}
-            onClick={this._handleListClick}
-            ref={this._setList}
-          >
-            {children}
-          </List>
-        );
-      }
+      menuItems = cloneElement(children, {
+        key: 'menu-list',
+        className: cn(menuClassName, list.props.className),
+        onClick: this._handleListClick,
+        ref: this._setList,
+      });
+    } catch (e) {
+      menuItems = (
+        <List
+          key="menu-list"
+          id={listId}
+          style={listStyle}
+          className={menuClassName}
+          onClick={this._handleListClick}
+          ref={this._setList}
+        >
+          {children}
+        </List>
+      );
     }
 
     return (
@@ -321,7 +319,7 @@ export default class Menu extends PureComponent {
         aria-owns={listId}
       >
         {toggle}
-        {menuItems}
+        {isOpen ? menuItems : null}
       </CSSTransitionGroup>
     );
   }
