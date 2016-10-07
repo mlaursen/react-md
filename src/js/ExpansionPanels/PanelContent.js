@@ -63,7 +63,7 @@ export default class PanelContent extends PureComponent {
         <div className={cn('md-panel-content', className)} style={contentStyle}>
           {children}
         </div>
-        <DialogFooter actions={actions} className="md-divider--border-top" />
+        <DialogFooter actions={actions} className="md-divider-border md-divider-border--top" />
       </div>
     );
   }
