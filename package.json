@@ -58,6 +58,7 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.1.0",
     "eslint-plugin-react": "^6.1.2",
+    "intl": "^1.2.5",
     "jest-cli": "^14.1.0",
     "react": "^15.3.x",
     "react-addons-css-transition-group": "^15.3.x",

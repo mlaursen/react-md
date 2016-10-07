@@ -16,6 +16,7 @@
 @import 'components/collapsers';
 @import 'components/dialogs';
 @import 'components/dividers';
+@import 'components/expansion-panels';
 @import 'components/file-inputs';
 @import 'components/inks';
 @import 'components/lists';
@@ -56,6 +57,7 @@
   @include react-md-collapsers;
   @include react-md-dialogs;
   @include react-md-dividers;
+  @include react-md-expansion-panels;
   @include react-md-file-inputs;
   @include react-md-inks;
   @include react-md-icons;
@@ -148,6 +150,7 @@
       @include react-md-theme-cards($light-theme);
       @include react-md-theme-chips($light-theme);
       @include react-md-theme-dividers($light-theme);
+      @include react-md-theme-expansion-panels($light-theme);
       @include react-md-theme-icons($light-theme);
       @include react-md-theme-inks($light-theme);
       @include react-md-theme-lists($light-theme);
@@ -166,6 +169,7 @@
     @include react-md-theme-cards($light-theme);
     @include react-md-theme-chips($light-theme);
     @include react-md-theme-dividers($light-theme);
+    @include react-md-theme-expansion-panels($light-theme);
     @include react-md-theme-icons($light-theme);
     @include react-md-theme-inks($light-theme);
     @include react-md-theme-lists($light-theme);

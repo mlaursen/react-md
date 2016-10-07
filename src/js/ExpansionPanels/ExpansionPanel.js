@@ -1,12 +1,12 @@
 import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
-import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
-import FontIcon from '../FontIcons';
-import Height from '../Transitions/Height';
+import Paper from '../Papers';
+import Collapser from '../FontIcons/Collapser';
 import PanelContent from './PanelContent';
 import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
+import Collapse from '../Helpers/Collapse';
 
 const LABEL_FONT_SIZE = 15;
 const LINE_HEIGHT = 1.42857;
@@ -262,12 +262,6 @@ export default class ExpansionPanel extends PureComponent {
     this._determineIfTwoLine();
   }
 
-  componentWillUnmount() {
-    if (this._delayed) {
-      clearTimeout(this._delayed);
-    }
-  }
-
   _isExpanded(props, state) {
     return typeof props.expanded === 'undefined' ? state.expanded : props.expanded;
   }
@@ -299,17 +293,13 @@ export default class ExpansionPanel extends PureComponent {
     }
 
     if (closeOnSave) {
-      this._delayed = setTimeout(() => {
-        this._delayed = null;
+      if (onExpandToggle) {
+        onExpandToggle(false);
+      }
 
-        if (onExpandToggle) {
-          onExpandToggle(false);
-        }
-
-        if (typeof this.props.expanded === 'undefined') {
-          this.setState({ expanded: false });
-        }
-      }, 300);
+      if (typeof this.props.expanded === 'undefined') {
+        this.setState({ expanded: false });
+      }
     }
   }
 
@@ -320,17 +310,13 @@ export default class ExpansionPanel extends PureComponent {
     }
 
     if (closeOnCancel) {
-      this._delayed = setTimeout(() => {
-        this._delayed = null;
+      if (onExpandToggle) {
+        onExpandToggle(false);
+      }
 
-        if (onExpandToggle) {
-          onExpandToggle(false);
-        }
-
-        if (typeof this.props.expanded === 'undefined') {
-          this.setState({ expanded: false });
-        }
-      }, 300);
+      if (typeof this.props.expanded === 'undefined') {
+        this.setState({ expanded: false });
+      }
     }
   }
 
@@ -372,31 +358,28 @@ export default class ExpansionPanel extends PureComponent {
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);
 
-    let visibleChildren;
-    if (expanded) {
-      visibleChildren = (
-        <Height key="content">
-          <PanelContent
-            style={contentStyle}
-            className={contentClassName}
-            children={children}
-            onSave={this._handleSave}
-            onCancel={this._handleCancel}
-            saveType={saveType}
-            saveLabel={saveLabel}
-            savePrimary={savePrimary}
-            saveSecondary={saveSecondary}
-            cancelType={cancelType}
-            cancelLabel={cancelLabel}
-            cancelPrimary={cancelPrimary}
-            cancelSecondary={cancelSecondary}
-          />
-        </Height>
-      );
-    }
+    const content = (
+      <Collapse collapsed={!expanded}>
+        <PanelContent
+          style={contentStyle}
+          className={contentClassName}
+          children={children}
+          onSave={this._handleSave}
+          onCancel={this._handleCancel}
+          saveType={saveType}
+          saveLabel={saveLabel}
+          savePrimary={savePrimary}
+          saveSecondary={saveSecondary}
+          cancelType={cancelType}
+          cancelLabel={cancelLabel}
+          cancelPrimary={cancelPrimary}
+          cancelSecondary={cancelSecondary}
+        />
+      </Collapse>
+    );
 
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
-      <div className="md-panel-column" style={{ minWidth: columnWidths[i + 1] }}>
+      <div className="md-panel-column md-color--text" style={{ minWidth: columnWidths[i + 1] }}>
         {panelLabel}
       </div>
     ));
@@ -406,33 +389,35 @@ export default class ExpansionPanel extends PureComponent {
     }
 
     columns.unshift((
-      <div className="md-panel-column md-panel-label" style={{ minWidth: columnWidths[0] }} key="main-label">
+      <div className="md-panel-column md-color--text" style={{ minWidth: columnWidths[0] }} key="main-label">
         {label}
       </div>
     ));
 
     return (
-      <TransitionGroup
-        className={cn('md-expansion-panel', className, { expanded })}
-        component="li"
+      <Paper
         {...props}
+        className={cn('md-expansion-panel', {
+          'md-expansion-panel--expanded': expanded,
+        }, className)}
         aria-expanded={expanded}
       >
         <AccessibleFakeButton
           onClick={this._handleClick}
           style={headerStyle}
-          className={cn('md-panel-header', headerClassName, { 'expanded': expanded || twoLine, focused })}
+          className={cn('md-panel-header', {
+            'md-panel-header--expanded': expanded || twoLine,
+            'md-panel-header--focused': focused,
+          }, headerClassName)}
           tabIndex={tabIndex}
         >
           {columns}
-          <FontIcon
-            className={cn('md-panel-expander', { 'flipped': expanded })}
-            iconClassName={expandIconClassName}
-            children={expandIconChildren}
-          />
+          <Collapser flipped={expanded} iconClassName={expandIconClassName} className="md-cell--right">
+            {expandIconChildren}
+          </Collapser>
         </AccessibleFakeButton>
-        {visibleChildren}
-      </TransitionGroup>
+        {content}
+      </Paper>
     );
   }
 }

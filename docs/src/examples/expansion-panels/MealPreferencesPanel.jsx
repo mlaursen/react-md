@@ -13,6 +13,7 @@ export default class MealPreferencesPanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
+    tablet: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -32,12 +33,12 @@ export default class MealPreferencesPanel extends PureComponent {
     this.setState({ tempPreference: this.state.preference });
   };
 
-  _handleChange = (tempPreference) => {
-    this.setState({ tempPreference });
+  _handleChange = (label, index) => {
+    this.setState({ tempPreference: preferences[index] });
   };
 
   render() {
-    const { columnWidths, focused } = this.props;
+    const { columnWidths, focused, tablet } = this.props;
     const { preference, tempPreference } = this.state;
     const label = [
       'Meal preferences',
@@ -48,10 +49,10 @@ export default class MealPreferencesPanel extends PureComponent {
         focused={focused}
         columnWidths={columnWidths}
         label={label}
-        secondaryLabel={preference.label}
+        secondaryLabel={tablet ? preference.label : null}
         onSave={this._setPreference}
         onCancel={this._resetPreference}
-        contentClassName="meal-preference-container"
+        contentClassName="md-grid"
       >
         <SelectField
           id="mealPreferences"
@@ -60,11 +61,11 @@ export default class MealPreferencesPanel extends PureComponent {
           value={tempPreference.label}
           onChange={this._handleChange}
           lineDirection="right"
-          menuClassName="meal-preference-select"
+          menuClassName="md-cell md-cell--5"
         />
         <CSSTransitionGroup
-          component="article"
-          className="meal-preference"
+          component="section"
+          className="md-cell md-cell--7"
           transitionName="opacity"
           transitionEnterTimeout={1000}
           transitionLeave={false}

@@ -9,6 +9,8 @@ export default class PhoneSizeDemo extends PureComponent {
     mobile: PropTypes.bool.isRequired,
     tablet: PropTypes.bool.isRequired,
     desktop: PropTypes.bool.isRequired,
+
+    mobileOnly: PropTypes.bool,
   };
 
   constructor(props) {
@@ -56,7 +58,6 @@ export default class PhoneSizeDemo extends PureComponent {
 
     const { ...props } = this.props;
     delete props.mobile;
-    delete props.tablet;
     delete props.desktop;
     delete props.dispatch;
 
