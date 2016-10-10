@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, Children } from 'react';
 import cn from 'classnames';
 
 import contextTypes from './contextTypes';
@@ -31,14 +31,14 @@ export default class TableBody extends Component {
     const { children, className, ...props } = this.props;
     const { selectedRows, toggleSelectedRow } = this.context;
 
-    const rows = React.Children.map(children, (row, i) => {
+    const rows = Children.map(children, (row, i) => {
       const uncontrolled = typeof row.props.selected === 'undefined';
 
       // Update the row to inject the selected prop from context if it is uncontrolled.
       // Also update the onCheckbox click function to additionally toggle the row if uncontrolled.
       return React.cloneElement(row, {
         ...row.props,
-        key: row.key || i,
+        index: i,
         selected: uncontrolled ? selectedRows[i] : row.props.selected,
         onCheckboxClick: e => {
           if (row.props.onCheckboxClick) {
@@ -54,7 +54,7 @@ export default class TableBody extends Component {
 
     return (
       <tbody {...props} className={cn('md-table-body', className)}>
-      {rows}
+        {rows}
       </tbody>
     );
   }

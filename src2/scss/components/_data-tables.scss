@@ -1,0 +1,317 @@
+////
+/// @group data-tables
+////
+
+/// Boolean if the plain table styles should be included.
+/// @type Boolean
+$md-data-table-include-plain: true !default;
+
+/// Boolean if the checkbox styles should be included.
+/// @type Boolean
+$md-data-table-include-checkboxes: true !default;
+
+/// Boolean if the edit dialog styles should be included.
+/// @type Boolean
+$md-data-table-include-edit-dialog: true !default;
+
+/// Boolean if the table pagination styles should be included.
+/// @type Boolean
+$md-data-table-include-pagination: true !default;
+
+/// The min width for an edit dialog's column.
+/// @type Number
+$md-edit-dialog-min-width: 300px !default;
+
+/// The default left/right padding for a `TableColumn`.
+/// @type String
+$md-data-table-padding: 24px;
+
+/// The minimum distance between a cell's content and the next cell.
+/// @type String
+$md-data-table-min-padding: 56px;
+
+/// The font size for content inside of the `TableBody` component.
+/// @type String
+$md-data-table-content-font-size: 13px;
+
+/// The font size for the content inside of the `TableHeader` component.
+/// @type String
+$md-data-table-header-font-size: 12px;
+
+/// The height for the `TableHeader`'s row.
+/// @type String
+$md-data-table-header-height: 56px;
+
+/// The font size for a font-icon in the `md-table-column--header`.
+/// @type Number
+$md-data-table-header-icon-font-size: 16px;
+
+/// The height for a column in a data table.
+/// @type Number
+$md-data-table-column-height: 48px;
+
+/// The hover color for a row when using the light theme.
+/// @type Color
+$md-data-table-hover-color: $md-grey-200;
+
+/// The selected color for a row when using the light theme.
+/// @type Color
+$md-data-table-selected-color: $md-grey-100;
+
+/// The hover color for a row when using the dark theme. This is configurable since
+/// the dark theme data table specs are not defined in the material design documentation
+/// at this point.
+/// @type Color
+$md-data-table-dark-theme-hover-color: $md-grey-800 !default;
+
+/// The selected color for a row when using the dark theme. This is configurable since
+/// the dark theme data table specs are not defined in the material design documentation
+/// at this point.
+/// @type Color
+$md-data-table-dark-theme-selected-color: $md-grey-700 !default;
+
+/// The width for the select field in the table's pagination.
+/// @type Number
+$md-data-table-pagination-select-field-width: 40px !default;
+
+/// The margin between the select field and the pagination's label.
+/// @type Number
+$md-data-table-pagination-margin: 32px;
+
+/// A selector for creating a plain styled column. This is used to update all
+/// the `md-table-column--data` in a `.md-data-table--plain` and to create a
+/// `md-table-column--plain` class. The `white-space` will still need to manually
+/// be changed from `nowrap` to `initial` if you want line wrapping.
+%md-table-column--plain {
+  height: initial;
+  min-height: $md-data-table-column-height;
+  padding-bottom: $md-default-padding;
+  padding-top: $md-default-padding;
+  vertical-align: top;
+}
+
+/// Includes the styles for the data tables.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-data-tables;
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the tables should be styled
+///     for the light theme.
+/// @param {Boolean} include-plain [$md-data-table-include-plain] - Boolean if the plain data
+///     table styles should be included.
+/// @param {Boolean} include-checkboes [$md-data-table-include-checkboxes] - Boolean if the checkbox
+///     styles should be included.
+/// @param {Boolean} include-edit-dialog [$md-data-table-include-edit-dialog] - Boolean if the edit
+///     dialog styles should be included.
+/// @param {Boolean} include-pagination [$md-data-table-include-pagination] - Boolean if the pagination
+///     styles should be included.
+@mixin react-md-data-tables(
+  $light-theme: $md-light-theme,
+  $include-plain: $md-data-table-include-plain,
+  $include-checkboxes: $md-data-table-include-checkboxes,
+  $include-edit-dialog: $md-data-table-include-edit-dialog,
+  $include-pagination: $md-data-table-include-pagination
+) {
+  @include react-md-data-table($include-plain);
+  @include react-md-data-table-rows($light-theme);
+  @include react-md-data-table-column;
+
+  @if $include-checkboxes {
+    @include react-md-data-table-checkboxes;
+  }
+
+  @if $include-edit-dialog {
+    @include react-md-data-table-edit-dialogs;
+  }
+
+  @if $include-pagination {
+    @include react-md-data-table-paginations;
+  }
+}
+
+/// Updates the styles for data tables only if the `$light-theme` does not equal the
+/// `$md-light-theme`. The only styles realy updated are the border colors and the
+/// hover/selected row background colors.
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the styles for
+///     the light theme.
+@mixin react-md-theme-data-tables($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    thead .md-table-row,
+    tbody .md-table-row:not(:last-child) {
+      border-bottom-color: get-color('divider', $light-theme);
+    }
+
+    .md-table-row {
+
+      &--active {
+        background: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
+      }
+
+      &--hover {
+        background: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
+      }
+    }
+  }
+}
+
+/// Creates the styles for the data table. It will also create the styles for
+/// plain data tables if the param is true.
+///
+/// @param {Boolean} include-plain [$md-data-table-include-plain] - Boolean if the plain data
+///     table styles should be included.
+@mixin react-md-data-table($include-plain: $md-data-table-include-plain) {
+  .md-data-table {
+    border-collapse: collapse;
+    max-width: 100%;
+
+    &--responsive {
+      overflow-x: auto;
+
+      .md-data-table {
+        width: 100%;
+      }
+    }
+
+    @if $include-plain {
+      &--plain .md-table-column--data {
+        @extend %md-table-column--plain;
+      }
+
+      .md-table-column--plain {
+        @extend %md-table-column--plain;
+
+        white-space: initial;
+      }
+    }
+
+    td {
+      padding-bottom: 0;
+      padding-top: 0;
+    }
+  }
+}
+
+/// Creates the styles for a row in the data table.
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling for the light
+///     theme.
+@mixin react-md-data-table-rows($light-theme: $md-light-theme) {
+  thead .md-table-row,
+  tbody .md-table-row:not(:last-child) {
+    border-bottom: 1px solid get-color('divider', $light-theme);
+  }
+
+  tbody .md-table-row {
+    transition-duration: $md-transition-time;
+    transition-property: background;
+
+    &--active {
+      background: if($light-theme, $md-data-table-selected-color, $md-data-table-dark-theme-selected-color);
+    }
+
+    &--hover {
+      background: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
+    }
+  }
+}
+
+/// Creates the styles for a column in a data table.
+@mixin react-md-data-table-column {
+  .md-table-column {
+    padding-right: $md-data-table-padding;
+    position: relative;
+    white-space: nowrap;
+
+    &:first-child {
+      padding-left: $md-data-table-padding;
+    }
+
+    &--adjusted {
+      padding-right: $md-data-table-min-padding;
+    }
+
+    &--header {
+      font-size: $md-data-table-header-font-size;
+      font-weight: $md-font-medium;
+      height: $md-data-table-header-height;
+
+      .md-icon {
+        font-size: $md-data-table-header-icon-font-size;
+      }
+    }
+
+    &--data {
+      font-size: $md-data-table-content-font-size;
+    }
+
+    &--grow {
+      width: 100%;
+    }
+  }
+}
+
+/// Creates the styles for a table checkbox column in a data table.
+@mixin react-md-data-table-checkboxes {
+  $margin: $md-data-table-padding - $md-icon-btn-padding;
+
+  .md-table-checkbox .md-selection-control-container {
+    margin-left: $margin;
+    margin-right: $margin;
+  }
+}
+
+/// Creates the styles for edit dialogs in a data table.
+@mixin react-md-data-table-edit-dialogs {
+  .md-edit-dialog-column {
+    padding-right: 0;
+  }
+
+  .md-edit-dialog {
+    left: 0;
+    min-width: $md-edit-dialog-min-width;
+    padding-right: $md-data-table-padding;
+    top: 0;
+    transition-duration: .3s;
+    transition-property: background, box-shadow, padding;
+
+    &--active {
+      @include md-box-shadow(1);
+
+      padding: $md-data-table-padding;
+      padding-bottom: 0;
+      z-index: 2;
+    }
+
+    .md-title {
+      margin: 0;
+    }
+
+    .md-dialog-footer {
+      margin-right: -$md-data-table-padding;
+    }
+  }
+}
+
+/// Creates the styles for table pagination.
+@mixin react-md-data-table-paginations {
+  .md-table-pagination {
+    height: $md-data-table-header-height;
+
+    &--controls {
+      align-items: center;
+      display: inline-flex;
+      justify-content: flex-start;
+      position: absolute;
+      white-space: nowrap;
+    }
+
+    &--label {
+      margin-left: $md-data-table-pagination-margin;
+    }
+  }
+
+  .md-select-field.md-select-field--pagination {
+    width: $md-data-table-pagination-select-field-width;
+  }
+}

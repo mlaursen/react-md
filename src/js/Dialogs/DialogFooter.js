@@ -25,7 +25,6 @@ export default class DialogFooter extends PureComponent {
 
     this.state = { stacked: false };
 
-    this._focused = false;
     this._toElement = this._toElement.bind(this);
     this._generateActions = this._generateActions.bind(this);
     this._setContainer = this._setContainer.bind(this);

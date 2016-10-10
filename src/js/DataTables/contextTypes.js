@@ -10,4 +10,9 @@ export default {
   selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
   toggleAllRows: PropTypes.func.isRequired,
   toggleSelectedRow: PropTypes.func.isRequired,
+  baseId: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  baseName: PropTypes.string,
 };

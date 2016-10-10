@@ -1,15 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import FontIcon from '../FontIcons';
-import Checkbox from '../SelectionControls/Checkbox';
+import SelectionControl from '../SelectionControls/SelectionControl';
 
-import contextTypes from './contextTypes';
+import checkboxContextTypes from './checkboxContextTypes';
 
 export default class TableCheckbox extends Component {
   static propTypes = {
     checked: PropTypes.bool,
   };
 
-  static contextTypes = contextTypes;
+  static contextTypes = checkboxContextTypes;
 
   render() {
     const { checked, ...props } = this.props;
@@ -18,28 +17,22 @@ export default class TableCheckbox extends Component {
       uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
+      rowId,
+      baseName,
     } = this.context;
-
-    const checkedIcon = (
-      <FontIcon
-        iconClassName={checkedIconClassName}
-        children={checkedIconChildren}
-      />
-    );
-    const uncheckedIcon = (
-      <FontIcon
-        iconClassName={uncheckedIconClassName}
-        children={uncheckedIconChildren}
-      />
-    );
 
     return (
       <td className="md-table-checkbox">
-        <Checkbox
-          checked={checked}
+        <SelectionControl
           {...props}
-          checkedIcon={checkedIcon}
-          uncheckedIcon={uncheckedIcon}
+          id={rowId}
+          name={`${baseName}-checkbox`}
+          type="checkbox"
+          checked={checked}
+          uncheckedCheckboxIconChildren={uncheckedIconChildren}
+          uncheckedCheckboxIconClassName={uncheckedIconClassName}
+          checkedCheckboxIconChildren={checkedIconChildren}
+          checkedCheckboxIconClassName={checkedIconClassName}
         />
       </td>
     );

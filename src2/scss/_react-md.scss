@@ -14,6 +14,7 @@
 @import 'components/cards';
 @import 'components/chips';
 @import 'components/collapsers';
+@import 'components/data-tables';
 @import 'components/dialogs';
 @import 'components/dividers';
 @import 'components/expansion-panels';
@@ -55,6 +56,7 @@
   @include react-md-cards;
   @include react-md-chips;
   @include react-md-collapsers;
+  @include react-md-data-tables;
   @include react-md-dialogs;
   @include react-md-dividers;
   @include react-md-expansion-panels;
@@ -149,6 +151,7 @@
       @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-cards($light-theme);
       @include react-md-theme-chips($light-theme);
+      @include react-md-theme-data-tables($light-theme);
       @include react-md-theme-dividers($light-theme);
       @include react-md-theme-expansion-panels($light-theme);
       @include react-md-theme-icons($light-theme);
@@ -168,6 +171,7 @@
     @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-cards($light-theme);
     @include react-md-theme-chips($light-theme);
+    @include react-md-theme-data-tables($light-theme);
     @include react-md-theme-dividers($light-theme);
     @include react-md-theme-expansion-panels($light-theme);
     @include react-md-theme-icons($light-theme);

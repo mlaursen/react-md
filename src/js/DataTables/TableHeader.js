@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import cn from 'classnames';
 import contextTypes from './contextTypes';
 import headerContextTypes from './headerContextTypes';
 
 /**
- * A `thead` component ot use in the `DataTable` component. This
+ * A `thead` component to use in the `DataTable` component. This
  * will automatically update the header row to check if it is selected
  * and inject a function to toggle all rows selected if the row is
  * uncontrolled. It will also automatically attempt to set the `TableColumn`
@@ -43,7 +44,7 @@ export default class TableHeader extends Component {
   }
 
   render() {
-    const { children, ...props } = this.props;
+    const { className, children, ...props } = this.props;
     const { toggleAllRows, allSelected } = this.context;
     const header = React.Children.only(children);
     const selected = typeof header.props.selected === 'undefined'
@@ -65,7 +66,7 @@ export default class TableHeader extends Component {
     });
 
     return (
-      <thead {...props}>
+      <thead {...props} className={cn('md-table-header', className)}>
         {row}
       </thead>
     );

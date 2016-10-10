@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react';
 import { CardText } from 'react-md/lib/Cards';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from 'react-md/lib/DataTables';
-import { RadioGroup, Radio, Switch } from 'react-md/lib/SelectionControls';
+import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
+import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
 import FontIcon from 'react-md/lib/FontIcons';
+import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
 import { sort } from 'utils/ListUtils';
 
 import movies from 'constants/movies';
@@ -13,7 +15,7 @@ export default class ComplexDataTableComments extends PureComponent {
 
     this.state = {
       large: false,
-      sortedMovies: sort(movies, 'title', true).map(movie => ({ ...movie, comment: '' })),
+      sortedMovies: sort(movies, 'title', true).map(movie => ({ ...movie })),
       titleSorted: true,
       yearSorted: null,
       okOnOutsideClick: true,
@@ -43,60 +45,64 @@ export default class ComplexDataTableComments extends PureComponent {
     this.setState({ large: !this.state.large });
   };
 
-  handleCommentChange = (index, comment) => {
-    const sortedMovies = this.state.sortedMovies.slice();
-    sortedMovies[index] = Object.assign({}, sortedMovies[index], { comment });
-
-    this.setState({ sortedMovies });
-  };
-
   handleOutsideClickChange = () => {
     this.setState({ okOnOutsideClick: !this.state.okOnOutsideClick });
   };
 
   render() {
     const { sortedMovies, titleSorted, yearSorted, large, okOnOutsideClick } = this.state;
-    const rows = sortedMovies.map(({ title, year, comment }, key) => {
+    const rows = sortedMovies.map(({ title, year }) => {
       return (
-        <TableRow key={key}>
+        <TableRow key={title}>
           <TableColumn>{title}</TableColumn>
           <TableColumn numeric>{year}</TableColumn>
           <EditDialogColumn
-            id={`comment${key}`}
             label="Add a comment"
             maxLength={140}
             title="Add a comment"
             large={large}
-            value={comment}
             okOnOutsideClick={okOnOutsideClick}
-            onChange={() => this.handleCommentChange(key)}
-            onCancelClick={() => this.handleCommentChange(key)}
           />
         </TableRow>
       );
     });
 
+    const controls = [{
+      label: 'Sort by movie title',
+      value: 'title',
+    }, {
+      label: 'Sort by movie year',
+      value: 'year',
+    }];
+
     return (
       <div>
         <CardText className="table-controls">
-          <h3 className="md-title">Table Props</h3>
-          <div>
-            {/* Set to inline block so the label is a bit shorter so clicking anywhere in the line won't toggle. */}
-            <RadioGroup onChange={this.handleSortTypeChange} className="inline-block">
-              <Radio value="title" label="Sort by movie title" />
-              <Radio value="year" label="Sort by movie year" />
-            </RadioGroup>
-          </div>
-          <div>
-            {/* Set to inline flex so the label is a bit shorter so clicking anywhere in the line won't toggle. */}
-            <Switch className="inline-flex" label="Use large Edit Dialog" onClick={this.handleDialogSizeChange} />
-          </div>
-          <div>
-            {/* Set to inline flex so the label is a bit shorter so clicking anywhere in the line won't toggle. */}
-            <Switch className="inline-flex" label="Save comment on outside click" toggled={okOnOutsideClick} onChange={this.handleOutsideClickChange} />
-          </div>
+          <SelectionControlGroup
+            id="complexControl"
+            name="complex-controls"
+            type="radio"
+            label="Table Props"
+            onChange={this.handleSortTypeChange}
+            controls={controls}
+          />
+          <SelectionControl
+            type="switch"
+            id="useEditDialog"
+            label="Use large Edit Dialog"
+            name="edit-dialog"
+            onChange={this.handleDialogSizeChange}
+          />
+          <SelectionControl
+            type="switch"
+            id="saveOnOutside"
+            label="Save comment on outside click"
+            name="save-on-outside"
+            checked={okOnOutsideClick}
+            onChange={this.handleOutsideClickChange}
+          />
         </CardText>
-        <DataTable className="complex-table">
+        <DataTable className="complex-table" baseId="complex">
           <TableHeader>
             <TableRow>
               <TableColumn
@@ -115,8 +121,9 @@ export default class ComplexDataTableComments extends PureComponent {
                 Year
               </TableColumn>
               <TableColumn className="prevent-grow">
-                <FontIcon>chat</FontIcon>
-                <span className="inline-top">Comments</span>
+                <IconSeparator label="Comments" iconBefore>
+                  <FontIcon>chat</FontIcon>
+                </IconSeparator>
               </TableColumn>
             </TableRow>
           </TableHeader>

@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import headerContextTypes from './headerContextTypes';
+import rowContextTypes from './rowContextTypes';
 import TableCheckbox from './TableCheckbox';
 
 /**
@@ -63,6 +64,8 @@ export default class TableRow extends Component {
      * An optional function to call onMouseLeave.
      */
     onMouseLeave: PropTypes.func,
+
+    index: PropTypes.number,
   };
 
   static defaultProps = {
@@ -70,6 +73,7 @@ export default class TableRow extends Component {
   };
 
   static contextTypes = headerContextTypes;
+  static childContextTypes = rowContextTypes;
 
   constructor(props, context) {
     super(props, context);
@@ -83,6 +87,14 @@ export default class TableRow extends Component {
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
     this._setLongestColumn = this._setLongestColumn.bind(this);
+  }
+
+  getChildContext() {
+    const { baseId, ...context } = this.context;
+    return {
+      ...context,
+      rowId: context.header ? `${baseId}CheckboxToggleAll` : `${baseId}${this.props.index}`,
+    };
   }
 
   componentDidMount() {
@@ -108,21 +120,30 @@ export default class TableRow extends Component {
       this.props.onMouseOver(e);
     }
 
+    if (this.context.header) {
+      return;
+    }
+
     let target = e.target;
     while (target && target.parentNode) {
       if (target.classList && this._ignoreHoverState(target.classList)) {
-        return this.setState({ hover: false });
+        this.setState({ hover: false });
+        return;
       }
 
       target = target.parentNode;
     }
 
-    return this.setState({ hover: true });
+    this.setState({ hover: true });
   }
 
   _handleMouseLeave(e) {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
+    }
+
+    if (this.context.header) {
+      return;
     }
 
     this.setState({ hover: false });
@@ -151,31 +172,31 @@ export default class TableRow extends Component {
     const { biggest, widths, hover } = this.state;
     const { className, children, selected, onCheckboxClick, ...props } = this.props;
     delete props.autoAdjust;
+    delete props.index;
 
     let checkbox;
     if (!this.context.plain) {
       checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 
-    const columns = React.Children.map(children, (column, i) => React.cloneElement(column, {
-      key: column.key || i,
+    const columns = Children.map(children, (column, i) => React.cloneElement(column, {
       ...column.props,
       header: typeof column.props.header === 'undefined'
         ? this.context.header
         : column.props.header,
-      className: cn(column.props.className, {
-        'grow': biggest && biggest.i === i,
+      className: cn({
+        'md-table-column--grow': biggest && biggest.i === i,
         // Not last item and the biggest width is greater than this item
-        'adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
-      }),
+        'md-table-column--adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
+      }, column.props.className),
     }));
 
     return (
       <tr
         {...props}
         className={cn('md-table-row', className, {
-          hover,
-          'active': selected,
+          'md-table-row--hover': hover,
+          'md-table-row--active': !this.context.header && selected,
         })}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}

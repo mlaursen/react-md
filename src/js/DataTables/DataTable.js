@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import contextTypes from './contextTypes';
+import requiredForA11yIf from '../utils/PropTypes/requiredForA11yIf';
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -13,6 +14,11 @@ import contextTypes from './contextTypes';
  */
 export default class DataTable extends PureComponent {
   static propTypes = {
+    baseId: requiredForA11yIf(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]), 'plain'),
+
     /**
      * An optional className to apply to the table.
      */
@@ -105,6 +111,7 @@ export default class DataTable extends PureComponent {
       checkedIconChildren,
       checkedIconClassName,
       plain,
+      baseId,
     } = this.props;
 
     return {
@@ -117,12 +124,15 @@ export default class DataTable extends PureComponent {
       selectedRows: this.state.selectedRows,
       toggleAllRows: this._toggleAllRows,
       toggleSelectedRow: this._toggleSelectedRow,
+      baseId,
+      baseName: `${baseId}-control`,
     };
   }
 
   componentDidMount() {
     this._initializeRows();
   }
+
   _toggleAllRows() {
     const allSelected = !this.state.allSelected;
     this.setState({
@@ -168,13 +178,19 @@ export default class DataTable extends PureComponent {
     delete props.uncheckedIconChildren;
     delete props.uncheckedIconClassName;
     delete props.defaultSelectedRows;
+    delete props.baseId;
 
     const table = (
-      <table className={cn('md-data-table', className, { 'md-plain-table': plain })} {...props}>
+      <table
+        className={cn('md-data-table', {
+          'md-data-table--plain': plain,
+        }, className)}
+        {...props}
+      >
         {children}
       </table>
     );
 
-    return responsive ? <div className="md-data-table-container">{table}</div> : table;
+    return responsive ? <div className="md-data-table--responsive">{table}</div> : table;
   }
 }

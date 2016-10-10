@@ -5,15 +5,18 @@
 - Autocomplete
 - Avatars
 - Buttons
+- Cards
 - Chips
 - Dialogs
 - Dividers
+- Expansion Panels
 - File Inputs/Uploads
 - Font Icons
 - Ink
 - Lists/List Items/List Item Controls
 - Menus
 - Papers
+- Pickers
 - Progress
 - Selection Controls
 - Select Fields (depends on menus and lists)
@@ -21,19 +24,16 @@
 - Snackbars
 - Subheaders
 - Text Fields
+- Toolbars
 
 ## Components to Convert
 
-- Cards
 - Data Tables
-- Expansion Panels
 - Navigation Drawers
   - Deprecate Sidebar and implement standalone Drawer
   - Use Toolbar instead of DrawerToolbar
-- Pickers
 - Sidebars (deprecate and use Drawer instead)
 - Tabs (reinvent..)
-- Toolbars (depends on tabs)
 - Tooltips (Go back to prop injection version)
 
 

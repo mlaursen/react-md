@@ -3,8 +3,6 @@ jest.unmock('../DataTable');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
 jest.unmock('../TableColumn');
-jest.unmock('../../FontIcons');
-jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
 import {
