@@ -111,8 +111,8 @@ export default class TableRow extends Component {
    * @return {Boolean} true if the hover state should be ignored for this classList
    */
   _ignoreHoverState(classList) {
-    return classList.contains('md-menu')
-      || ['md-edit-dialog', 'active'].every(className => classList.contains(className));
+    return classList.contains('md-list--menu')
+      || ['md-edit-dialog', 'md-edit-dialog--active'].every(className => classList.contains(className));
   }
 
   _handleMouseOver(e) {

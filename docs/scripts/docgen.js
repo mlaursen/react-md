@@ -30,6 +30,7 @@ const docgens = {};
   'DataTables/TableHeader',
   'DataTables/TableRow',
   'DataTables/EditDialogColumn',
+  'DataTables/SelectFieldColumn',
   'Dialogs/DialogContainer',
   'Dividers/Divider',
   'ExpansionPanels/ExpansionPanel',

@@ -1,14 +1,22 @@
 import React, { PureComponent } from 'react';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
+import { DataTable, TableHeader, TableBody, TableRow, TableColumn, SelectFieldColumn } from 'react-md/lib/DataTables';
+
+const types = ['Ice cream', 'Pastry', 'Other'];
 
 import nutritionFacts from 'constants/nutritionFacts';
 
 export default class DataTableExamples extends PureComponent {
   render() {
-    const facts = nutritionFacts.map(({ name, calories, fat, carbs, protein, sodium, calcium, iron }, key) => {
+    const facts = nutritionFacts.map(({ name, type, calories, fat, carbs, protein, sodium, calcium, iron }) => {
       return (
-        <TableRow key={key}>
+        <TableRow key={name}>
           <TableColumn>{name}</TableColumn>
+          <SelectFieldColumn
+            id={`${name.replace(/ /g, '-')}-type`}
+            defaultValue={type}
+            menuItems={types}
+            inputStyle={{ width: 100 }}
+          />
           <TableColumn numeric>{calories}</TableColumn>
           <TableColumn numeric>{fat}</TableColumn>
           <TableColumn numeric>{carbs}</TableColumn>
@@ -21,10 +29,11 @@ export default class DataTableExamples extends PureComponent {
     });
 
     return (
-      <DataTable className="nutrition-table">
+      <DataTable baseId="nutrition" className="nutrition-table">
         <TableHeader>
           <TableRow>
             <TableColumn>Dessert (100g serving)</TableColumn>
+            <TableColumn className="md-table-column--select-header">Type</TableColumn>
             <TableColumn numeric>Calories</TableColumn>
             <TableColumn numeric>Fat (g)</TableColumn>
             <TableColumn numeric>Carbs (g)</TableColumn>

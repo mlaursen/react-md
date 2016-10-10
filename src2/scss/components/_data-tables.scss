@@ -248,6 +248,10 @@ $md-data-table-pagination-margin: 32px;
     &--grow {
       width: 100%;
     }
+
+    &--select-header {
+      padding-left: $md-default-padding;
+    }
   }
 }
 
