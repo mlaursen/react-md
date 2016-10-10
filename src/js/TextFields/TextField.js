@@ -729,6 +729,7 @@ export default class TextField extends PureComponent {
     delete props.placeholder;
     delete props.error;
     delete props.active;
+    delete props.floating;
     delete props.leftIcon;
     delete props.rightIcon;
     delete props.adjustMinWidth;

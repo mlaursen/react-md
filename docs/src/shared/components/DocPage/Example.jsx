@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, Children } from 'react';
 import cn from 'classnames';
 import { Card, CardTitle, CardText } from 'react-md/lib/Cards';
 
@@ -69,7 +69,7 @@ ${code}
     const resolvedDescription = description && <Markdown key="desc" markdown={description} />;
     if (tableCard) {
       if (resolvedDescription) {
-        resolvedChildren = [<CardText key="desc">{resolvedDescription}</CardText>, children];
+        resolvedChildren = Children.map([<CardText key="desc">{resolvedDescription}</CardText>, children], child => child);
       } else {
         resolvedChildren = children;
       }

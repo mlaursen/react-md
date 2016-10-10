@@ -1,39 +1,28 @@
 /* eslint-env jest*/
 /* eslint-disable react/prop-types,react/prefer-stateless-function */
-jest.unmock('../DataTable');
-jest.unmock('../TableBody');
-jest.unmock('../TableRow');
 jest.unmock('../TableColumn');
-jest.unmock('../../FontIcons');
-jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-  scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
-import DataTable from '../DataTable';
-import TableBody from '../TableBody';
-import TableRow from '../TableRow';
 import TableColumn from '../TableColumn';
-import FontIcon from '../../FontIcons/FontIcon';
 
 // need valid table nesting
 class Table extends React.Component {
   render() {
     return (
-      <DataTable>
-        <TableBody>
-          <TableRow>
+      <table>
+        <tbody>
+          <tr>
             {this.props.children}
             <TableColumn>dummy</TableColumn>
-          </TableRow>
-        </TableBody>
-      </DataTable>
+          </tr>
+        </tbody>
+      </table>
     );
   }
 }
@@ -114,46 +103,5 @@ describe('TableColumn', () => {
 
     const ths = scryRenderedDOMComponentsWithTag(table, 'th');
     expect(ths.length).toBe(1);
-  });
-
-  it('injects a sorting icon if it sorted prop is defined as a boolean', () => {
-    const table = renderIntoDocument(
-      <Table>
-        <TableColumn sorted>c</TableColumn>
-      </Table>
-    );
-
-    const icons = scryRenderedComponentsWithType(table, FontIcon);
-    expect(icons.length).toBe(1);
-
-    const icon = findDOMNode(icons[0]);
-    expect(icon.classList.contains('material-icons')).toBe(true);
-    expect(icon.textContent).toBe('arrow_upward');
-  });
-
-  it('adds a the flipped className to the sort icon when the sorted prop is false', () => {
-    let table = renderIntoDocument(
-      <Table>
-        <TableColumn sorted={false}>c</TableColumn>
-      </Table>
-    );
-
-    let icons = scryRenderedComponentsWithType(table, FontIcon);
-    expect(icons.length).toBe(1);
-
-    let icon = findDOMNode(icons[0]);
-    expect(icon.classList.contains('flipped')).toBe(true);
-
-    table = renderIntoDocument(
-      <Table>
-        <TableColumn sorted>c</TableColumn>
-      </Table>
-    );
-
-    icons = scryRenderedComponentsWithType(table, FontIcon);
-    expect(icons.length).toBe(1);
-
-    icon = findDOMNode(icons[0]);
-    expect(icon.classList.contains('flipped')).toBe(false);
   });
 });

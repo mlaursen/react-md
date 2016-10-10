@@ -1,7 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import injectTooltip from '../Tooltips';
-import FontIcon from '../FontIcons';
+import Collapser from '../FontIcons/Collapser';
+import IconSeparator from '../Helpers/IconSeparator';
 
 /**
  * A column in a table. This is either the `th` or `td` component. This column
@@ -91,28 +92,30 @@ class TableColumn extends PureComponent {
     } = this.props;
     const sortable = typeof sorted === 'boolean';
 
-    let displayedChildren = [children];
+    let displayedChildren = children;
     if (sortable) {
-      displayedChildren = [
-        <FontIcon
-          key="sort-icon"
-          className={!sorted ? 'flipped' : null}
-          iconClassName={sortIconClassName}
-          children={sortIconChildren}
-        />,
-        <span key="children" className="inline-top">{children}</span>,
-      ];
+      displayedChildren = (
+        <IconSeparator label={children} iconBefore>
+          <Collapser flipped={!sorted} iconClassName={sortIconClassName}>
+            {sortIconChildren}
+          </Collapser>
+        </IconSeparator>
+      );
     }
 
     return React.createElement(header ? 'th' : 'td', {
       ...props,
-      className: cn(`md-table-${header ? 'header' : 'data'}`, className, {
-        numeric,
-        adjusted,
-        sortable,
-      }),
-      children: displayedChildren,
-    });
+      className: cn('md-table-column', {
+        'md-table-column--header': header,
+        'md-table-column--data': !header,
+        'md-table-column--adjusted': adjusted,
+        'md-table-column--sortable md-pointer--hover': sortable,
+        'md-color--text': !header,
+        'md-color--secondary-text': header,
+        'md-text-left': !numeric,
+        'md-text-right': numeric,
+      }, className),
+    }, displayedChildren);
   }
 }
 

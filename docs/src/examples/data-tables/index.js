@@ -22,6 +22,15 @@ export default [{
   tableCard: true,
 }, {
   title: 'Complex Table Example',
+  description: `
+When using an edit dialog in the \`DataTable\`, the default behavior is to prevent the user to tab away
+once they have focused a dialog. The user must either press \`enter\` or \`esc\` to save or cancel their
+edit respectively.
+
+If the \`EditDialog\` is \`large\`, the user's focus will be contained between the text field, the cancel button,
+and the save button. In all cases, the user can click away from the dialog to close it. The text can either
+be saved or cancelled when this happens by using the \`okOnOutsideClick\` prop.
+`,
   code: ComplexDataTableCommentsRaw,
   children: <ComplexDataTableComments />,
   tableCard: true,

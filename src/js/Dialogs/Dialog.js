@@ -41,10 +41,12 @@ export default class Dialog extends PureComponent {
     pageY: PropTypes.number,
     fullPage: PropTypes.bool,
     onLeave: PropTypes.func,
+    zDepth: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
     contentComponent: 'section',
+    zDepth: 5,
   };
 
   constructor(props) {
@@ -153,7 +155,6 @@ export default class Dialog extends PureComponent {
           'md-dialog--full-page': fullPage,
           'md-dialog--centered': !fullPage,
         }, className)}
-        zDepth={5}
         role="dialog"
         aria-labelledby={labelledBy}
         focusOnMount

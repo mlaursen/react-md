@@ -15,14 +15,13 @@ describe('DataTable', () => {
   it('merges className and style', () => {
     const style = { display: 'block' };
     const className = 'test';
-    // added c to make required children prop happy
     const table = renderIntoDocument(
-      <DataTable style={style} className={className}>c</DataTable>
+      <DataTable style={style} className={className} baseId="woop"><tbody><tr><td>c</td></tr></tbody></DataTable>
     );
 
     const tableNode = findRenderedDOMComponentWithTag(table, 'table');
     expect(tableNode.style.display).toBe(style.display);
-    expect(tableNode.classList.contains(className)).toBe(true);
+    expect(tableNode.className).toContain(className);
   });
 
   it('adds any event listeners', () => {
@@ -37,6 +36,7 @@ describe('DataTable', () => {
 
     const table = renderIntoDocument(
       <DataTable
+        baseId="woop"
         onClick={onClick}
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
@@ -45,8 +45,9 @@ describe('DataTable', () => {
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         onTouchCancel={onTouchCancel}
-        children="c"
-      />
+      >
+        <tbody><tr><td>c</td></tr></tbody>
+      </DataTable>
     );
 
     const tableNode = findRenderedDOMComponentWithTag(table, 'table');
@@ -76,12 +77,18 @@ describe('DataTable', () => {
   });
 
   it('wraps the table in a responsive container when the responsive prop is true', () => {
-    let table = renderIntoDocument(<DataTable>c</DataTable>);
+    const props = {
+      baseId: 'woop',
+      responsive: true,
+      children: <tbody><tr><td>C</td></tr></tbody>,
+    };
+    let table = renderIntoDocument(<DataTable {...props} />);
     let tableNode = findDOMNode(table);
-    expect(tableNode.className).toBe('md-data-table-container');
+    expect(tableNode.className).toBe('md-data-table--responsive');
     expect(tableNode.nodeName).toBe('DIV');
 
-    table = renderIntoDocument(<DataTable responsive={false}>c</DataTable>);
+    props.responsive = false;
+    table = renderIntoDocument(<DataTable {...props} />);
     tableNode = findDOMNode(table);
     expect(tableNode.className).toBe('md-data-table');
     expect(tableNode.nodeName).toBe('TABLE');

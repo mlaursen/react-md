@@ -14,7 +14,6 @@ export default class PaginationExample extends PureComponent {
       data: [],
       start: 0,
       rowsPerPage: 10,
-      controlsMarginLeft: 0,
     };
 
     this._load = this._load.bind(this);
@@ -80,13 +79,13 @@ export default class PaginationExample extends PureComponent {
           <TableColumn key={fieldName} numeric={dataTypeName === 'number'}>
             {this._formattedColumn(datum[fieldName], dataTypeName, subColumnTypes)}
           </TableColumn>
-        ))}
+      ))}
       </TableRow>
     ));
 
     return (
       <PaginationLoader fetching={fetching} loaded={!!data.length} onLoad={this._load}>
-        <DataTable className="pagination-table">
+        <DataTable className="pagination-table" baseId="pagination">
           <TableHeader>
             <TableRow>
               {headers}

@@ -132,7 +132,7 @@ export default class SelectField extends PureComponent {
     /**
      * Boolean if the `SelectField` is open by default.
      */
-    defaultOpen: PropTypes.bool,
+    efaultOpen: PropTypes.bool,
 
     /**
      * An optional function to call when the select field's container is clicked.
@@ -748,6 +748,7 @@ export default class SelectField extends PureComponent {
     delete props.defaultOpen;
     delete props.initiallyOpen;
     delete props.itemLabel;
+    delete props.onMenuToggle;
     delete props.noAutoAdjust;
     delete props.lineDirection;
     delete props.keyboardMatchingTimeout;

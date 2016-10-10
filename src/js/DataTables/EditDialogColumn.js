@@ -1,13 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import Button from '../Buttons';
+import getField from '../utils/getField';
+import DialogFooter from '../Dialogs/DialogFooter';
 import TableColumn from './TableColumn';
 import TextField from '../TextFields';
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
-import { onOutsideClick } from '../utils';
 
 /**
  * A Text Edit dialog for tables. This can either be a small
@@ -92,14 +91,6 @@ export default class EditDialogColumn extends PureComponent {
     large: PropTypes.bool,
 
     /**
-     * An id for the text field in the edit dialog column.
-     */
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ])),
-
-    /**
      * The title for the large edit dialog. The custom validation changes to required
      * when the `large` prop is set to true.
      */
@@ -149,17 +140,28 @@ export default class EditDialogColumn extends PureComponent {
      * be called.
      */
     okOnOutsideClick: PropTypes.bool.isRequired,
+
+    label: PropTypes.node,
+    placeholder: PropTypes.node,
+  };
+
+  static contextTypes = {
+    rowId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
   };
 
   static defaultProps = {
+    defaultValue: '',
     transitionDuration: 300,
     okOnOutsideClick: true,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
   };
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       value: props.defaultValue,
@@ -167,8 +169,10 @@ export default class EditDialogColumn extends PureComponent {
       animating: false,
     };
 
+    this._setColumn = this._setColumn.bind(this);
+    this._setField = this._setField.bind(this);
+    this._setOkButton = this._setOkButton.bind(this);
     this._save = this._save.bind(this);
-    this._getValue = this._getValue.bind(this);
     this._overrideTab = this._overrideTab.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
@@ -186,26 +190,39 @@ export default class EditDialogColumn extends PureComponent {
       window.removeEventListener('click', this._handleClickOutside);
     }
 
-    this.setState({
-      animating: true,
-      timeout: setTimeout(() => {
-        if (!nextState.active) {
-          findDOMNode(this).querySelector('input').blur();
-        }
+    this._timeout = setTimeout(() => {
+      if (!nextState.active && this._field) {
+        this._field.blur();
+      }
 
-        this.setState({ animating: false, timeout: null });
-      }, nextProps.transitionDuration),
-    });
+      this._timeout = null;
+      this.setState({ animating: false });
+    }, nextProps.transitionDuration);
+    this.setState({ animating: true });
   }
 
   componentWillUnmount() {
-    if (this.statetimeout) {
-      clearTimeout(this.state.timeout);
+    if (this._timeout) {
+      clearTimeout(this._timeout);
     }
   }
 
+  _setColumn(column) {
+    this._column = findDOMNode(column);
+  }
+
+  _setField(field) {
+    if (field) {
+      this._field = field.getField();
+    }
+  }
+
+  _setOkButton(okButton) {
+    this._okButton = findDOMNode(okButton);
+  }
+
   _handleClickOutside(e) {
-    onOutsideClick(e, findDOMNode(this.refs.column), () => {
+    if (this._column && !this._column.contains(e.target)) {
       if (this.props.onOutsideClick) {
         this.props.onOutsideClick(e);
       }
@@ -215,7 +232,7 @@ export default class EditDialogColumn extends PureComponent {
       } else {
         this._handleCancelClick(e);
       }
-    });
+    }
   }
 
   _handleFocus(e) {
@@ -225,7 +242,7 @@ export default class EditDialogColumn extends PureComponent {
 
     const state = { active: true };
     if (!this.state.active) {
-      state.cancelValue = this._getValue() || '';
+      state.cancelValue = getField(this.props, this.state, 'value');
     }
 
     this.setState(state);
@@ -247,9 +264,37 @@ export default class EditDialogColumn extends PureComponent {
     }
   }
 
+  _overrideTab(e) {
+    const { large } = this.props;
+    const key = e.which || e.keyCode;
+    if (key !== TAB) {
+      return;
+    }
+
+    if (!large) {
+      e.preventDefault();
+      return;
+    }
+
+    const { shiftKey } = e;
+    const { classList } = e.target;
+
+    let nextFocus;
+    if (classList.contains('md-text-field') && shiftKey) {
+      nextFocus = this._okButton;
+    } else if (classList.contains('md-btn') && !shiftKey) {
+      nextFocus = this._field;
+    }
+
+    if (nextFocus) {
+      e.preventDefault();
+      nextFocus.focus();
+    }
+  }
+
   _save(e) {
     if (this.props.onOkClick) {
-      this.props.onOkClick(this._getValue(), e);
+      this.props.onOkClick(getField(this.props, this.state, 'value'), e);
     }
 
     this.setState({ active: false });
@@ -263,10 +308,6 @@ export default class EditDialogColumn extends PureComponent {
     this.setState({ active: false, value: this.state.cancelValue });
   }
 
-  _getValue() {
-    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
-  }
-
   _handleChange(value, e) {
     if (this.props.onChange) {
       this.props.onChange(value, e);
@@ -277,33 +318,8 @@ export default class EditDialogColumn extends PureComponent {
     }
   }
 
-  _overrideTab(e) {
-    const { large } = this.props;
-    const key = e.which || e.keyCode;
-    if (key !== TAB) { return; }
-
-    if (!large) {
-      e.preventDefault();
-      return;
-    }
-
-    const { shiftKey } = e;
-    const { classList } = e.target;
-
-    let nextFocus;
-    if (classList.contains('md-text-field') && shiftKey) {
-      nextFocus = findDOMNode(this.refs.okButton);
-    } else if (classList.contains('md-btn') && !shiftKey) {
-      nextFocus = findDOMNode(this.refs.textField).querySelector('.md-text-field');
-    }
-
-    if (nextFocus) {
-      e.preventDefault();
-      nextFocus.focus();
-    }
-  }
-
   render() {
+    const { rowId } = this.context;
     const { active, animating } = this.state;
     const {
       columnStyle,
@@ -315,9 +331,12 @@ export default class EditDialogColumn extends PureComponent {
       okLabel,
       cancelLabel,
       large,
+      label,
+      placeholder,
       ...props,
     } = this.props;
 
+    delete props.value;
     delete props.defaultValue;
     delete props.onOkClick;
     delete props.onCancelClick;
@@ -325,47 +344,59 @@ export default class EditDialogColumn extends PureComponent {
     delete props.okOnOutsideClick;
     delete props.transitionDuration;
 
-    const value = this._getValue();
+    const value = getField(this.props, this.state, 'value');
+
     let actions;
     let largeTitle;
     if (large && active) {
-      actions = (
-        <footer className="md-dialog-footer">
-          <Button flat label={cancelLabel} onClick={this._handleCancelClick} primary />
-          <Button
-            flat
-            ref="okButton"
-            label={okLabel}
-            onClick={this._save}
-            primary
-            onKeyDown={this._overrideTab}
-          />
-        </footer>
-      );
+      actions = [{
+        label: cancelLabel,
+        onClick: this._handleCancelClick,
+        primary: true,
+      }, {
+        label: okLabel,
+        onClick: this._save,
+        primary: true,
+        ref: this._setOkButton,
+        onKeyDown: this._overrideTab,
+      }];
+
+      actions = <DialogFooter actions={actions} />;
 
       largeTitle = (
         <h3 className="md-title">{title}</h3>
       );
     }
 
+    const pointer = cn({ 'md-pointer--hover': !active });
+
     return (
       <TableColumn
-        className={cn('prevent-grow md-edit-dialog-column', columnClassName)}
-        ref="column"
         style={columnStyle}
+        className={cn('prevent-grow md-edit-dialog-column', columnClassName)}
+        ref={this._setColumn}
       >
         <div
-          className={cn('md-edit-dialog', className, {
-            animating,
-            active,
-            large,
-          })}
-          style={style}
+          style={active || animating ? Object.assign({}, style, { position: 'absolute' }) : style}
+          className={cn('md-edit-dialog', {
+            'md-edit-dialog--inactive': !active,
+            'md-edit-dialog--active': active,
+            'md-background': active,
+          }, className)}
         >
           {largeTitle}
           <TextField
+            id={`${rowId}-edit-dialog`}
             {...props}
-            ref="textField"
+            ref={this._setField}
+            label={active ? label : null}
+            active={active}
+            floating={active}
+            placeholder={active ? placeholder : label}
+            block={!active}
+            paddedBlock={false}
+            className={pointer}
+            inputClassName={pointer}
             onKeyDown={this._handleKeyDown}
             onFocus={this._handleFocus}
             value={value}

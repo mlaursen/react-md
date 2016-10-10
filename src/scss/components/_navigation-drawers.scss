@@ -69,6 +69,9 @@
 }
 
 .md-drawer-header {
+  // added just for switching themes
+  display: flex;
+
   .md-icon-btn + .md-title {
     padding-left: 12px;
   }

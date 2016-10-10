@@ -25,7 +25,7 @@ export default class PaginationLoader extends PureComponent {
             Fetching data from <a href={FOOD_DATA_URL}>{FOOD_DATA_URL}</a>. This will
             take awhile...
           </p>
-          <CircularProgress />
+          <CircularProgress id="pagination-loader" />
         </CardText>
       );
     } else if (!loaded) {

@@ -84,6 +84,13 @@ export default class TablePagination extends PureComponent {
     decrementIconClassName: PropTypes.string,
   };
 
+  static contextTypes = {
+    baseId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+  }
+
   static defaultProps = {
     defaultPage: 1,
     defaultRowsPerPage: 10,
@@ -93,8 +100,8 @@ export default class TablePagination extends PureComponent {
     decrementIconChildren: 'keyboard_arrow_left',
   };
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
@@ -102,6 +109,7 @@ export default class TablePagination extends PureComponent {
       controlsMarginLeft: 0,
     };
 
+    this._setControls = this._setControls.bind(this);
     this._position = this._position.bind(this);
     this._increment = this._increment.bind(this);
     this._decrement = this._decrement.bind(this);
@@ -128,6 +136,10 @@ export default class TablePagination extends PureComponent {
     window.removeEventListener('resize', this._position);
   }
 
+  _setControls(controls) {
+    this._controls = findDOMNode(controls);
+  }
+
   _findTable(el) {
     let table;
     let node = el;
@@ -136,7 +148,7 @@ export default class TablePagination extends PureComponent {
         // Attempt to check one more element up to see if there is a table-container
         // for responsive tables.
         table = node;
-      } else if (node.classList && node.classList.contains('md-data-table-container')) {
+      } else if (node.classList && node.classList.contains('md-data-table--responsive')) {
         return node;
       } else if (table) {
         return table;
@@ -152,7 +164,7 @@ export default class TablePagination extends PureComponent {
     const table = this._findTable(findDOMNode(this));
     if (table) {
       this.setState({
-        controlsMarginLeft: table.offsetWidth - this.refs.controls.offsetWidth,
+        controlsMarginLeft: table.offsetWidth - this._controls.offsetWidth,
       });
     }
   }
@@ -210,19 +222,21 @@ export default class TablePagination extends PureComponent {
           {/* colspan 100% so footer columns do not align with body and header */}
           <td colSpan="100%">
             <div
-              ref="controls"
-              className="md-table-footer-controls"
+              ref={this._setControls}
+              className="md-table-pagination md-table-pagination--controls md-color--text"
               style={{ marginLeft: controlsMarginLeft }}
             >
               {rowsPerPageLabel}
               <SelectField
-                ref="selectField"
+                id={`${this.context.baseId}-pagination`}
                 menuItems={rowsPerPageItems}
                 position={SelectField.Positions.BELOW}
+                inputClassName="md-select-field--pagination"
                 value={rowsPerPage}
                 onChange={this._setRowsPerPage}
+                fullWidth={false}
               />
-              <span className="pagination">{pagination}</span>
+              <span className="md-table-pagination--label">{pagination}</span>
               <Button
                 icon
                 onClick={this._decrement}
@@ -242,7 +256,7 @@ export default class TablePagination extends PureComponent {
               * Since the footer controls is positioned absolutely for a persistent footer,
               * we have a mask to correctly set the height of the footer.
               */}
-            <div className="md-table-footer-controls-mask" />
+            <div className="md-table-pagination" />
           </td>
         </tr>
       </tfoot>
