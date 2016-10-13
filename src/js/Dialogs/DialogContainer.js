@@ -197,6 +197,25 @@ export default class DialogContainer extends PureComponent {
      * the dialog should appear from.
      */
     pageY: PropTypes.number,
+
+    /**
+     * Boolean if the dialog should focus one of children once it has mounted.
+     */
+    focusOnMount: PropTypes.bool.isRequired,
+
+    /**
+     * The transition enter timeout for the dialog.
+     */
+    transitionEnterTimeout: PropTypes.number.isRequired,
+
+    /**
+     * The transition leave timeout for the dialog.
+     */
+    transitionLeaveTimeout: PropTypes.number.isRequired,
+
+    transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
+    transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
+    transitionLeave: deprecated(PropTypes.bool, 'The transition will always be enforced'),
     actionLeft: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
     actionRight: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead.'),
@@ -205,6 +224,9 @@ export default class DialogContainer extends PureComponent {
   static defaultProps = {
     component: 'span',
     contentComponent: 'section',
+    focusOnMount: true,
+    transitionEnterTimeout: 300,
+    transitionLeaveTimeout: 300,
   };
 
   constructor(props) {
@@ -238,14 +260,10 @@ export default class DialogContainer extends PureComponent {
       return;
     }
 
-    const { isOpen, onOpen } = nextProps;
+    const { isOpen } = nextProps;
     toggleScroll(isOpen);
 
     if (isOpen) {
-      if (onOpen) {
-        onOpen();
-      }
-
       this._activeElement = document.activeElement;
       this._mountPortal(nextProps);
     } else {
@@ -326,6 +344,9 @@ export default class DialogContainer extends PureComponent {
     delete props.onClose;
     delete props.actionLeft;
     delete props.actionRight;
+    delete props.transitionName;
+    delete props.transitionEnter;
+    delete props.transitionLeave;
 
     let dialog;
     if (dialogVisible) {

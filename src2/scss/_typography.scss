@@ -544,6 +544,11 @@ $md-line-height: 20 / $md-font-size-base !default;
 
     max-width: $md-typography-max-line-length;
     width: 100%;
+
+    &.md-cell {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 

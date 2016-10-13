@@ -132,7 +132,7 @@ export default class SelectField extends PureComponent {
     /**
      * Boolean if the `SelectField` is open by default.
      */
-    efaultOpen: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
 
     /**
      * An optional function to call when the select field's container is clicked.
@@ -150,7 +150,7 @@ export default class SelectField extends PureComponent {
      * menu items. If this prop is set, it makes the select field controlled and requires
      * the `onMenuToggle` prop to be defined.
      */
-    isOpen: controlled(PropTypes.bool, 'onMenuToggle'),
+    isOpen: controlled(PropTypes.bool, 'onMenuToggle', 'defaultOpen'),
 
     /**
      * An optional function to call when the select field's `isOpen` state changes.
@@ -255,7 +255,6 @@ export default class SelectField extends PureComponent {
      * Boolean if the SelectField should span the entire width.
      */
     fullWidth: PropTypes.bool,
-
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 

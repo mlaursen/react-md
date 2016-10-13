@@ -14,20 +14,24 @@ import requiredForA11yIf from '../utils/PropTypes/requiredForA11yIf';
  */
 export default class DataTable extends PureComponent {
   static propTypes = {
+    /**
+     * A base id to use for every checkbox or `EditDialogColumn` in the data table. This is
+     * required for a11y if the data table is not plain.
+     */
     baseId: requiredForA11yIf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]), 'plain'),
 
     /**
-     * An optional className to apply to the table.
-     */
-    className: PropTypes.string,
-
-    /**
      * Optional style to apply to the table.
      */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the table.
+     */
+    className: PropTypes.string,
 
     /**
      * The table contents to display. This *should* be a list of `TableHeader` and `TableBody`

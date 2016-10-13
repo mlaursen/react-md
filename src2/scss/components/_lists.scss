@@ -148,6 +148,10 @@ $md-list-desktop-three-lines-height: 76px;
       height: $md-font-icon-size;
     }
 
+    .md-color--primary .md-icon {
+      color: inherit;
+    }
+
     .md-tile-addon--avatar {
       height: $md-avatar-size;
     }

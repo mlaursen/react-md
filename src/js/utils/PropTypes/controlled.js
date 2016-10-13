@@ -10,7 +10,7 @@ import { PropTypes } from 'react';
  * @param {function} validator - The PropTypes validator to use for the given prop.
  * @return {Error} an error or null.
  */
-export default function controlled(validator, funcName) {
+export default function controlled(validator, funcName, fallbackPropName = 'defaultValue') {
   return function validate(props, propName, componentName, location, propFullName, ...args) {
     const componentNameSafe = componentName || '<<anonymous>>';
     const propFullNameSafe = propFullName || propName;
@@ -22,7 +22,7 @@ export default function controlled(validator, funcName) {
         err = new Error(
           `You provided a \`${propFullNameSafe}\` ${location} to the ${componentNameSafe} without a ` +
           `\`${funcName}\` handler. This will render a read only field. Set either the \`${funcName}\` ` +
-          'or use the `defaultValue` instead.'
+          `or use the \`${fallbackPropName}\` instead.`
         );
       }
     }

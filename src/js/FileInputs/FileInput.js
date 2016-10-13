@@ -13,6 +13,15 @@ import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 export default class FileInput extends PureComponent {
   static propTypes = {
     /**
+     * The id for the text field. This is required for a11y and to get the `input type="file"` to
+     * open.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
      * An optional style to apply.
      */
     style: PropTypes.object,
@@ -48,6 +57,8 @@ export default class FileInput extends PureComponent {
      * - video/*
      * - image/*
      * - any valid [IANA Media Type](http://www.iana.org/assignments/media-types/media-types.xhtml)
+     *
+     * > NOTE: IE does not enforce this.
      */
     accept: PropTypes.string,
 
@@ -93,15 +104,6 @@ export default class FileInput extends PureComponent {
      * ```
      */
     onChange: PropTypes.func.isRequired,
-
-    /**
-     * The id for the text field. This is required for a11y and to get the `input type="file"` to
-     * open.
-     */
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ])),
 
     /**
      * Boolean if the `FileInput` is currently disabled.

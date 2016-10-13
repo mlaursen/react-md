@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ESC } from '../constants/keyCodes';
 import getField from '../utils/getField';
@@ -71,9 +72,9 @@ export default class TimePickerContainer extends PureComponent {
     icon: PropTypes.node,
 
     /**
-     * Boolean if the time picker is initially open.
+     * Boolean if the time picker is open by default.
      */
-    initiallyOpen: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
 
     /**
      * An optional label to be displayed in the time picker's text
@@ -188,7 +189,7 @@ export default class TimePickerContainer extends PureComponent {
      * An optional boolean if the time picker is current visible by dialog or inline.
      * If this is set, the `onOpenToggle` function is required.
      */
-    isOpen: controlled(PropTypes.bool, 'onOpenToggle'),
+    isOpen: controlled(PropTypes.bool, 'onOpenToggle', 'defaultOpen'),
 
     /**
      * An optional function to call when the date picker is opened in either a dialog, or
@@ -204,10 +205,10 @@ export default class TimePickerContainer extends PureComponent {
      * Boolean if the time picker is disabled.
      */
     disabled: PropTypes.bool,
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
-    initiallyOpen: false,
     initialTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
@@ -236,7 +237,7 @@ export default class TimePickerContainer extends PureComponent {
     this.state = {
       ...this._getTimeParts(initialDate, props),
       value: props.defaultValue,
-      isOpen: props.initiallyOpen,
+      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen,
       time: initialDate,
       timeMode: props.initialTimeMode,
       tempTime: initialDate,
@@ -412,6 +413,8 @@ export default class TimePickerContainer extends PureComponent {
     delete props.onOpenToggle;
     delete props.onChange;
     delete props.defaultValue;
+    delete props.initiallyOpen;
+    delete props.defaultOpen;
 
     const isOpen = getField(this.props, this.state, 'isOpen');
 

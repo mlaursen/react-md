@@ -7,7 +7,7 @@ const UncontrolledNestedExample = () => {
     return (
       <ListItem
         key={i}
-        initiallyOpen={i === 0}
+        defaultOpen={i === 0}
         primaryText="Single-line item"
         nestedItems={[
           <ListItem key={i} primaryText="Revealed single-line item" />,

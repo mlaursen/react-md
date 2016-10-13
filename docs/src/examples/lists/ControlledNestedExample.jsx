@@ -6,11 +6,16 @@ const ITEMS = Array.apply(null, new Array(5)).map(() => 'Single-line item');
 const NESTED_ITEMS = ['Revealed single-line item', 'Revealed single-line item'];
 
 export default class ControlledNestedExample extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+  };
+
   constructor(props) {
     super(props);
 
 
-    // Horrible example of nested state.. It's easier to use initiallyOpen instead
+    // Horrible example of nested state.. It's easier to use defaultOpen instead
     // of controlling everything.
     const state = {};
     ITEMS.forEach((_, i) => {
@@ -21,11 +26,6 @@ export default class ControlledNestedExample extends PureComponent {
     });
     this.state = state;
   }
-
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
 
   toggle = (i, bool) => {
     const key = `li${i}`;

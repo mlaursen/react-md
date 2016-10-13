@@ -207,7 +207,7 @@ function updateActiveRoutes(route, pathname) {
   return {
     ...props,
     to,
-    initiallyOpen: nestedItems && isActive,
+    defaultOpen: nestedItems && isActive,
     nestedItems: nestedItems && nestedItems.map(route => updateActiveRoutes(route, pathname)),
     active: isActive,
   };

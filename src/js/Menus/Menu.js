@@ -263,7 +263,7 @@ export default class Menu extends PureComponent {
 
   render() {
     const {
-      listId,
+      id,
       className,
       listStyle,
       listClassName,
@@ -279,6 +279,12 @@ export default class Menu extends PureComponent {
     delete props.onClose;
     delete props.cascading;
     delete props.autoclose;
+    delete props.listId;
+
+    let { listId } = this.props;
+    if (!listId) {
+      listId = `${id}List`;
+    }
 
     const menuClassName = cn({ 'md-list--menu-contained': contained }, listClassName);
     let menuItems;
@@ -309,6 +315,7 @@ export default class Menu extends PureComponent {
     return (
       <CSSTransitionGroup
         {...props}
+        id={id}
         ref={this._setContainer}
         className={cn('md-inline-block md-menu-container', {
           'md-full-width': fullWidth,

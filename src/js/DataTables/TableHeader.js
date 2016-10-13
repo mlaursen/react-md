@@ -15,6 +15,11 @@ export default class TableHeader extends Component {
   static childContextTypes = headerContextTypes;
   static propTypes = {
     /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
      * An optional className to apply to the table header
      */
     className: PropTypes.string,

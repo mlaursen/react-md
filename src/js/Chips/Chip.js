@@ -1,5 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
+
 import FontIcon from '../FontIcons';
 
 export default class Chip extends PureComponent {
@@ -47,10 +49,6 @@ export default class Chip extends PureComponent {
 
     /**
      * An optional function to call when the `click` event is triggered.
-     *
-     * ```js
-     * onClick(event);
-     * ```
      */
     onClick: PropTypes.func,
 
@@ -63,6 +61,9 @@ export default class Chip extends PureComponent {
      * An optional function to call when the `mouseleave` event is triggered.
      */
     onMouseLeave: PropTypes.func,
+    remove: deprecated(PropTypes.func, 'Use `removable` and `onClick` instead'),
+    removeIconChildren: deprecated(PropTypes.node, 'Use `iconChildren` instead'),
+    removeIconClassName: deprecated(PropTypes.string, 'Use `iconClassName` instead'),
   };
 
   static defaultProps = {
@@ -74,16 +75,8 @@ export default class Chip extends PureComponent {
     super(props);
 
     this.state = { hover: false };
-    this._handleClick = this._handleClick.bind(this);
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
-
-  _handleClick(e) {
-    const { onClick } = this.props;
-    if (onClick) {
-      onClick(e);
-    }
   }
 
   _handleMouseOver(e) {
@@ -111,12 +104,16 @@ export default class Chip extends PureComponent {
       avatar,
       children,
       removable,
+      remove,
+      onClick,
       rotateIcon,
       ...props,
     } = this.props;
+    delete props.removeIconChildren;
+    delete props.removeIconClassName;
 
     let icon;
-    if (removable) {
+    if (removable || remove) {
       icon = (
         <FontIcon
           className={cn('md-chip-icon', {
@@ -138,7 +135,7 @@ export default class Chip extends PureComponent {
           'md-chip--remove': removable,
           'md-chip--hover': hover,
         }, className)}
-        onClick={this._handleClick}
+        onClick={remove || onClick}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
       >

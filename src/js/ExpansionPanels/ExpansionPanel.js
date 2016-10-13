@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import controlled from '../utils/PropTypes/controlled';
 import Paper from '../Papers';
 import Collapser from '../FontIcons/Collapser';
 import PanelContent from './PanelContent';
@@ -88,7 +89,7 @@ export default class ExpansionPanel extends PureComponent {
      * A boolean if the panel is currently expanded. This will force the component
      * to be controlled and require's the `onExpandToggle` function to be defined.
      */
-    expanded: PropTypes.bool,
+    expanded: controlled(PropTypes.bool, 'onExpandToggle', 'defaultExpanded'),
 
     /**
      * Boolean if an uncontrolled panel should be expanded by default.
@@ -123,13 +124,7 @@ export default class ExpansionPanel extends PureComponent {
      *
      * `onExpandToggle(expanded)`
      */
-    onExpandToggle: (props, propName, component, ...others) => {
-      if (typeof props.expanded !== 'undefined') {
-        return PropTypes.func.isRequired(props, propName, component, ...others);
-      } else {
-        return PropTypes.func(props, propName, component, ...others);
-      }
-    },
+    onExpandToggle: PropTypes.func,
 
     /**
      * An optional function to call when the Save button is clicked on the expanded panel.
