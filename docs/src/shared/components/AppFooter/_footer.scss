@@ -1,3 +1,4 @@
+@import '~react-md-scss';
 @import '~sass-utils';
 
 .react-doc-footer {
@@ -11,7 +12,7 @@
   }
 
   .container {
-    @extend %centered;
+    @extend %md-block-centered;
 
     display: flex;
     flex-wrap: wrap;

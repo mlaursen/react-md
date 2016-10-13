@@ -13,12 +13,12 @@ export function isDesktop() {
     && window.matchMedia('only screen and (min-width: 1025px)').matches;
 }
 
-export function getDrawerType(mobile, tablet) {
-  if (mobile) {
-    return 'mobile';
+export function getDrawerType(tablet, desktop) {
+  if (desktop) {
+    return 'desktop';
   } else if (tablet) {
     return 'tablet';
-  } else {
-    return 'desktop';
   }
+
+  return 'mobile';
 }

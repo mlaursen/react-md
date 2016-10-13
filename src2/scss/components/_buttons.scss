@@ -20,7 +20,12 @@ $md-btn-include-floating: true !default;
 
 /// The default z index for fixed floating buttons
 /// @type Number
-$md-btn-fixed-z-index: 22 !default;
+/// @see md-drawer-z-index
+/// @see md-menu-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+$md-btn-fixed-z-index: 10 !default;
 
 
 /// The height for buttons to make them accessible for touch devices.

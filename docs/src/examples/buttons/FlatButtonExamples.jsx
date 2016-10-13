@@ -7,7 +7,6 @@ const FlatButtonExamples = () => (
     <Button
       flat
       label="Hello, World!"
-      onClick={function handleClick() { console.log('CLICK'); }}
       waitForInkTransition
     />
     <Button flat primary label="Talk Dirty to Me">chat_bubble_outline</Button>

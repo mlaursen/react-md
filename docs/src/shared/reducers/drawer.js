@@ -75,7 +75,7 @@ function setMobileSearch(state, mobileSearch) {
 }
 
 const initialState = {
-  initialDrawerType: getDrawerType(isMobile(), isTablet() && !isDesktop()),
+  initialDrawerType: getDrawerType(isTablet(), isDesktop()),
   toolbarTitle: '',
   inactive: true,
   tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,

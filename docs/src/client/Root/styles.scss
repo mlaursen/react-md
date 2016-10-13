@@ -56,109 +56,26 @@ $md-picker-include-forceful-classes: true;
 
 // Custom, iPhone Retina
 @media only screen and (min-width: 320px) {
-  .container {
-    width: 300px;
-  }
-
-  .demo-list-card {
-    max-width: 50%;
-  }
-
-  .text-container,
-  .prop-description {
-    p {
-      font-size: $md-body-mobile-font-size;
-    }
-
-    h5 {
-      font-size: $md-subheading-mobile-font-size;
-    }
-  }
-
   .list-dialog-fix .md-list-tile {
     height: $md-list-mobile-height;
   }
 }
 
-// Extra small devices, Phones
-@media only screen and (min-width: 480px) {
-  .container {
-    width: 460px;
-  }
-}
 
 // Small devices, tablets
 @media only screen and (min-width: 768px) {
-  .container {
-    width: 732px - $md-navigation-drawer-desktop-width;
-  }
-
   .demo-list-card {
     max-width: 220px;
-  }
-
-  .md-toolbar-container ~ * .md-sidebar-container .md-sidebar {
-    margin-top: $md-toolbar-height;
-    max-height: calc(100vh - #{$md-toolbar-height});
   }
 }
 
 // Medium devices, laptops
 @media only screen and (min-width: 992px) {
-  .container {
-    width: 952px - $md-navigation-drawer-desktop-width;
-  }
-
-  .text-container,
-  .prop-description {
-    p {
-      font-size: $md-body-desktop-font-size;
-    }
-
-    h5 {
-      font-size: $md-subheading-desktop-font-size;
-    }
-  }
-
   .list-dialog-fix .md-list-tile {
     height: $md-list-desktop-height;
   }
 }
 
-// Large devices, Wide screens
-@media only screen and (min-width: 1200px) {
-  .container {
-    width: 1152px - $md-navigation-drawer-desktop-width;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .container {
-    width: 1160px;
-  }
-
-}
-
-@media only screen and (orientation: portrait) and (max-width: 599px) {
-  .not-found,
-  main {
-    min-height: calc(100vh - #{$footer-min-height + $md-toolbar-mobile-portrait-height + $quick-nav-height});
-  }
-}
-
-@media only screen and (orientation: landscape) and (max-width: 599px) {
-  .not-found,
-  main {
-    min-height: calc(100vh - #{$footer-min-height + $md-toolbar-mobile-landscape-height + $quick-nav-height});
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  .not-found,
-  main {
-    min-height: calc(100vh - #{$footer-min-height + $md-toolbar-desktop-height + $quick-nav-height});
-  }
-}
 
 .example-list {
   @include md-box-shadow(1);

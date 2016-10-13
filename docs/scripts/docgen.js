@@ -33,6 +33,7 @@ const docgens = {};
   'DataTables/SelectFieldColumn',
   'Dialogs/DialogContainer',
   'Dividers/Divider',
+  'Drawers/Drawer',
   'ExpansionPanels/ExpansionPanel',
   'ExpansionPanels/ExpansionList',
   'FABTransitions/SpeedDial',

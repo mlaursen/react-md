@@ -1,0 +1,99 @@
+////
+/// @group navigation-drawers
+////
+
+$md-navigation-drawer-enforce-height: true !default;
+$md-navigation-drawer-include-cross-fade: true !default;
+$md-cross-fade-transition-time: $md-transition-time * 2 !default;
+$md-cross-fade-distance: 16px !default;
+
+@mixin react-md-navigation-drawers($include-media: $md-media-included, $include-cross-fade: $md-navigation-drawer-include-cross-fade, $enforce-height: $md-navigation-drawer-enforce-height) {
+  @if $include-media {
+    @include react-md-navigation-drawers-media($enforce-height);
+  }
+
+  .md-toolbar {
+    &.md-toolbar--over-drawer {
+      z-index: $md-drawer-z-index + 2;
+    }
+  }
+
+  .md-navigation-drawer-content {
+    transition-duration: $md-drawer-transition-time;
+    transition-property: margin-left;
+
+    @if $md-navigation-drawer-enforce-height {
+      overflow-y: auto;
+    }
+
+    &--inactive {
+      margin-left: 0;
+    }
+  }
+
+  .md-title.md-title--permanent-offset {
+    margin-left: $md-drawer-tablet-width + $md-default-padding;
+  }
+
+  .md-drawer .md-title--toolbar-offset {
+    margin-left: $md-default-padding;
+  }
+
+  @if $include-cross-fade {
+    .md-cross-fade-enter {
+      opacity: .01;
+      transform: translate3d(0, $md-cross-fade-distance, 0);
+
+      &.md-cross-fade-enter-active {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition-duration: $md-cross-fade-transition-time;
+        transition-property: transform, opacity;
+      }
+    }
+  }
+}
+
+@mixin react-md-navigation-drawers-tablet($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-tablet-height});
+
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
+
+    &--prominent-offset {
+      $height: calc(100vh - #{$md-toolbar-mobile-prominent-height});
+
+      @if $md-navigation-drawer-enforce-height {
+        height: $height;
+      } @else {
+        min-height: $height;
+      }
+    }
+  }
+
+  .md-title.md-title--persistent-offset {
+    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - 6px + $md-default-padding;
+  }
+}
+
+@mixin react-md-navigation-drawers-desktop {
+  .md-title.md-title--persistent-offset {
+    margin-left: $md-drawer-desktop-width - $md-btn-icon-size - 6px + $md-default-padding;
+  }
+}
+
+@mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height) {
+  @media #{$md-tablet-media} {
+    @include react-md-navigation-drawers-tablet($enforce-height);
+  }
+
+  @if $md-drawer-tablet-width != $md-drawer-desktop-width {
+    @media #{$md-desktop-media} {
+      @include react-md-navigation-drawers-desktop;
+    }
+  }
+}

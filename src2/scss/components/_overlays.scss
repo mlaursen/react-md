@@ -2,7 +2,9 @@
 /// @group overlays
 ////
 
-$md-overlay-z-index: 105;
+/// The z-index to use for overlays.
+/// @type Number
+$md-overlay-z-index: 15 !default;
 $md-overlay-color: rgba($md-black-base, .4) !default;
 
 @mixin react-md-overlays {

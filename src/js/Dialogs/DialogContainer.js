@@ -337,6 +337,8 @@ export default class DialogContainer extends PureComponent {
       modal,
       fullPage,
       component,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
       ...props,
     } = this.props;
     delete props.close;
@@ -375,8 +377,8 @@ export default class DialogContainer extends PureComponent {
             'md-overlay--active': !fullPage && active && overlay,
           }, className)}
           transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
           onClick={this._handleClick}
         >
           {dialog}

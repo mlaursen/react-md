@@ -113,5 +113,12 @@ $md-desktop-media: 'only screen and (min-width: #{$md-desktop-min-width})' !defa
 $md-media-included: true !default;
 
 
+/// The default accessible height for a lot of material design components.
+/// @type Number
+/// @group defaults
 $md-height: 48px;
+
+/// The default padding used for most material design components.
+/// @type Number
+/// @group defaults
 $md-default-padding: 16px;
