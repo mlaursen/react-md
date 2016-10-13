@@ -1,11 +1,12 @@
 @import 'globals';
+@import 'components/icons'; // need font-icon-size
 @import 'typography';
+@import 'transitions';
 @import 'helpers';
 @import 'grid';
 
 
 @import 'components/papers';
-@import 'components/icons';
 
 @import 'components/accessibility';
 @import 'components/autocompletes';
@@ -17,12 +18,14 @@
 @import 'components/data-tables';
 @import 'components/dialogs';
 @import 'components/dividers';
+@import 'components/drawers';
 @import 'components/expansion-panels';
 @import 'components/file-inputs';
 @import 'components/inks';
 @import 'components/lists';
 @import 'components/media';
 @import 'components/menus';
+@import 'components/navigation-drawers';
 @import 'components/overlays';
 @import 'components/pickers';
 @import 'components/progress';
@@ -49,6 +52,7 @@
   @include react-md-typography;
   @include react-md-accessibility;
   @include react-md-grid;
+  @include react-md-transitions;
 
   @include react-md-autocompletes;
   @include react-md-avatars;
@@ -59,6 +63,7 @@
   @include react-md-data-tables;
   @include react-md-dialogs;
   @include react-md-dividers;
+  @include react-md-drawers;
   @include react-md-expansion-panels;
   @include react-md-file-inputs;
   @include react-md-inks;
@@ -66,6 +71,7 @@
   @include react-md-lists;
   @include react-md-media;
   @include react-md-menus;
+  @include react-md-navigation-drawers;
   @include react-md-overlays;
   @include react-md-papers;
   @include react-md-pickers;

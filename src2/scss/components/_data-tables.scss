@@ -257,7 +257,7 @@ $md-data-table-pagination-margin: 32px;
 
 /// Creates the styles for a table checkbox column in a data table.
 @mixin react-md-data-table-checkboxes {
-  $margin: $md-data-table-padding - $md-icon-btn-padding;
+  $margin: $md-data-table-padding - $md-btn-icon-padding;
 
   .md-table-checkbox .md-selection-control-container {
     margin-left: $margin;

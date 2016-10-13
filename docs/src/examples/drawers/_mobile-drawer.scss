@@ -1,0 +1,8 @@
+@import '~react-md-scss';
+
+.hacked-title {
+  color: get-color('secondary', false);
+  left: -92px;
+  position: absolute;
+  top: 14px;
+}

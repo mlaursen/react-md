@@ -12,6 +12,7 @@ $phone-status-bar-height: 24px;
   // Fixes for fixed pieces
   .md-btn--fixed,
   .md-toolbar--fixed,
+  .md-drawer--fixed,
   .md-snackbar {
     position: absolute;
   }
@@ -29,6 +30,16 @@ $phone-status-bar-height: 24px;
 
   .md-snackbar {
     z-index: 300;
+  }
+
+  .md-toolbar--fixed {
+    z-index: 1;
+  }
+
+  .md-drawer--right {
+    overflow-y: auto;
+    width: 100%;
+    z-index: 200;
   }
 }
 
@@ -76,6 +87,10 @@ $phone-status-bar-height: 24px;
 @media #{$md-mobile-media} {
   .phone-size-container {
     height: 100%;
+
+    .md-btn--fixed-tl {
+      top: $md-toolbar-mobile-prominent-height - $md-btn-floating-mini-size / 2;
+    }
   }
 
   .toolbar-offset {
@@ -118,6 +133,19 @@ $phone-status-bar-height: 24px;
       width: 300px;
     }
 
+    .md-toolbar-relative--prominent {
+      margin-top: $phone-status-bar-height + $md-toolbar-mobile-prominent-height;
+    }
+
+    .md-btn--fixed-tl {
+      top: $md-toolbar-mobile-prominent-height;
+    }
+
+    .md-drawer--right {
+      height: $phone-size-height;
+      max-width: $phone-size-max-width;
+      top: $phone-status-bar-height;
+    }
   }
 
   .toolbar-offset {
@@ -142,6 +170,10 @@ $phone-status-bar-height: 24px;
     // Override styles again afte rmedia query.
     .md-toolbar .md-text-field {
       font-size: 20px;
+    }
+
+    .md-btn--fixed-tl {
+      top: $md-toolbar-mobile-prominent-height;
     }
 
     .md-snackbar:not(.md-snackbar-enter):not(.md-snackbar-leave) {

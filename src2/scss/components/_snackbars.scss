@@ -2,6 +2,13 @@
 /// @group snackbars
 ////
 
+/// The z-index to use for snackbars.
+/// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-drawer-z-index
+/// @see md-menu-z-index
+/// @see md-picker-inline-z-index
+/// @see md-toolbar-z-index
 $md-snackbar-z-index: 10 !default;
 $md-snackbar-transition-time: $md-transition-time * 2 !default;
 

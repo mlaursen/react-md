@@ -1,0 +1,130 @@
+////
+/// @group drawers
+////
+
+/// The z-index to use for fixed navigation drawers.
+/// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-menu-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+$md-drawer-z-index: 16 !default;
+
+$md-drawer-transition-time: $md-transition-time * 2 !default;
+$md-drawer-mobile-max-width: 320px;
+$md-drawer-mobile-margin: 56px;
+
+$md-drawer-tablet-width: 256px !default;
+$md-drawer-desktop-width: $md-drawer-tablet-width !default;
+$md-drawer-desktop-left-max-width: 400px;
+
+$md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
+
+
+@mixin react-md-drawers($include-media: $md-media-included) {
+  @if $include-media {
+    @include react-md-drawers-media;
+  }
+
+  .md-drawer {
+    transition-duration: $md-drawer-transition-time;
+    transition-property: transform;
+
+    &--fixed {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      z-index: $md-drawer-z-index;
+    }
+
+    &--inline {
+      display: inline-block;
+      height: 100%;
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &--active {
+      transform: translate3d(0, 0, 0);
+    }
+
+    &--mini {
+      width: $md-drawer-mini-width;
+    }
+  }
+
+  .md-list--drawer {
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .md-drawer-relative--mini.md-drawer-relative--mini {
+    margin-left: $md-drawer-mini-width;
+  }
+}
+
+@mixin react-md-drawers-mobile {
+  .md-drawer {
+
+    &--left {
+      max-width: $md-drawer-mobile-max-width;
+      transform: translate3d(-100vw, 0, 0);
+      width: calc(100vw - #{$md-drawer-mobile-margin});
+    }
+
+    &--right {
+      transform: translate3d(100vw, 0, 0);
+      width: 100vw;
+    }
+  }
+}
+
+@mixin react-md-drawers-tablet {
+  .md-drawer {
+
+    &--left {
+      max-width: $md-drawer-desktop-left-max-width;
+      transform: translate3d(-$md-drawer-desktop-width, 0, 0);
+      width: $md-drawer-tablet-width;
+    }
+
+    &--right {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  .md-drawer-relative {
+    margin-left: $md-drawer-tablet-width;
+  }
+}
+
+@mixin react-md-drawers-desktop {
+  .md-drawer--left {
+    width: $md-drawer-desktop-width;
+  }
+
+  .md-drawer-relative {
+    margin-left: $md-drawer-desktop-width;
+  }
+}
+
+@mixin react-md-drawers-media {
+  @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
+    @include react-md-drawers-mobile;
+  }
+
+  @media #{$md-tablet-media} {
+    @include react-md-drawers-tablet;
+  }
+
+  @if $md-drawer-desktop-width != $md-drawer-tablet-width {
+    @include react-md-drawers-desktop;
+  }
+}

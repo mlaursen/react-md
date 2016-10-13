@@ -31,7 +31,14 @@ $md-toolbar-include-autocompletes: true !default;
 /// @type Boolean
 $md-toolbar-include-select-fields: true !default;
 
-$md-toolbar-z-index: 20 !default;
+/// The z-index for a `fixed` toolbar.
+/// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-drawer-z-index
+/// @see md-menu-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+$md-toolbar-z-index: 15 !default;
 
 $md-toolbar-mobile-portrait-height: 56px;
 $md-toolbar-mobile-landscape-height: 48px;

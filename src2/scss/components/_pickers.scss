@@ -18,6 +18,11 @@ $md-picker-include-forceful-classes: false !default;
 
 /// The z-index for inline pickers.
 /// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-drawer-z-index
+/// @see md-menu-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
 $md-picker-inline-z-index: 12 !default;
 
 
