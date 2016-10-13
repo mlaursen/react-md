@@ -21,6 +21,16 @@ import cn from 'classnames';
 export default class FontIcon extends PureComponent {
   static propTypes = {
     /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `FontIcon`.
+     */
+    className: PropTypes.string,
+
+    /**
      * The icon font library className to use to display the icon.
      */
     iconClassName: PropTypes.string.isRequired,
@@ -29,11 +39,6 @@ export default class FontIcon extends PureComponent {
      * Any children required to display the icon with the font library.
      */
     children: PropTypes.node,
-
-    /**
-     * An optional className to apply to the `FontIcon`.
-     */
-    className: PropTypes.string,
 
     /**
      * Boolean if the `FontIcon` should gain the disabled colors.

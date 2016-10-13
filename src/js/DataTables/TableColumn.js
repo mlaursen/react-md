@@ -15,6 +15,11 @@ import IconSeparator from '../Helpers/IconSeparator';
 class TableColumn extends PureComponent {
   static propTypes = {
     /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
      * The optional className for the table column
      */
     className: PropTypes.string,

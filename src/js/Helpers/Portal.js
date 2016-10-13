@@ -30,7 +30,7 @@ export default class Portal extends PureComponent {
     /**
      * The children to render when visible.
      */
-    children: PropTypes.node,
+    children: PropTypes.element,
 
     /**
      * The component to render as. This should be a valid DOM element.

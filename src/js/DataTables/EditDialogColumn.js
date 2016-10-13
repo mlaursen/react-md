@@ -69,7 +69,6 @@ export default class EditDialogColumn extends PureComponent {
      */
     defaultValue: PropTypes.string,
 
-
     /**
      * An optional onFocus function to call.
      */
@@ -141,8 +140,15 @@ export default class EditDialogColumn extends PureComponent {
      */
     okOnOutsideClick: PropTypes.bool.isRequired,
 
+    /**
+     * An optional label for the text field.
+     */
     label: PropTypes.node,
-    placeholder: PropTypes.node,
+
+    /**
+     * An optional placeholder for the text field.
+     */
+    placeholder: PropTypes.string,
   };
 
   static contextTypes = {

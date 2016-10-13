@@ -17,6 +17,16 @@ export default class Toolbar extends PureComponent {
      */
     className: PropTypes.string,
 
+    /*
+     * An optional style to apply to the `h2` surroudning the `title` prop.
+     */
+    titleStyle: PropTypes.object,
+
+    /*
+     * An optional className to apply to the `h2` surroudning the `title` prop.
+     */
+    titleClassName: PropTypes.string,
+
     /**
      * Boolean if the toolbar should more prominent. This will double the height of the toolbar.
      */
@@ -138,6 +148,8 @@ export default class Toolbar extends PureComponent {
     const {
       style,
       className,
+      titleStyle,
+      titleClassName,
       prominentTitle,
       primary,
       secondary,
@@ -167,7 +179,16 @@ export default class Toolbar extends PureComponent {
     colored = colored || primary || secondary;
     prominent = prominent || prominentTitle;
 
-    title = <ToolbarTitle key="title" prominent={prominentTitle} offset={!nav} title={title} />;
+    title = (
+      <ToolbarTitle
+        key="title"
+        style={titleStyle}
+        className={titleClassName}
+        prominent={prominentTitle}
+        offset={!nav}
+        title={title}
+      />
+    );
 
     if (nav || actionLeft) {
       const navEl = Children.only(nav || actionLeft);
@@ -200,6 +221,7 @@ export default class Toolbar extends PureComponent {
         }, titleMenu.props.menuClassname),
         block: true,
         paddedBlock: false,
+        fullWidth: false,
         position: titleMenu.props.position || 'tl',
       });
     }

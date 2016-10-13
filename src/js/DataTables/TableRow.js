@@ -18,10 +18,9 @@ import TableCheckbox from './TableCheckbox';
 export default class TableRow extends Component {
   static propTypes = {
     /**
-     * Boolean if the row is currently selected. If this value will be
-     * injected by the `TableHeader` or `TableBody` component.
+     * An optional style to apply.
      */
-    selected: PropTypes.bool,
+    style: PropTypes.object,
 
     /**
      * An optional className to apply to the row.
@@ -33,7 +32,7 @@ export default class TableRow extends Component {
      *
      * > There should be at least 3 columns in a Data table (non plain)
      */
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
+    children: PropTypes.arrayOf(PropTypes.element).isRequired,
 
     /**
      * An optional onClick function to call when a row is clicked.
@@ -65,6 +64,15 @@ export default class TableRow extends Component {
      */
     onMouseLeave: PropTypes.func,
 
+    /**
+     * Boolean if the row is currently selected. If this value will be
+     * injected by the `TableHeader` or `TableBody` component.
+     */
+    selected: PropTypes.bool,
+
+    /**
+     * The row's index in the table. This is injected via the `TableBody` component.
+     */
     index: PropTypes.number,
   };
 

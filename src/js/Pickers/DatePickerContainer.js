@@ -2,6 +2,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ESC } from '../constants/keyCodes';
 import getField from '../utils/getField';
@@ -70,9 +71,9 @@ export default class DatePickerContainer extends PureComponent {
     icon: PropTypes.node,
 
     /**
-     * Boolean if the date picker is initially open.
+     * Boolean if the date picker is open by default.
      */
-    initiallyOpen: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
 
     /**
      * An optional label to be displayed in the date picker's text
@@ -256,7 +257,7 @@ export default class DatePickerContainer extends PureComponent {
      * An optional boolean if the time picker is current visible by dialog or inline.
      * If this is set, the `onOpenToggle` function is required.
      */
-    isOpen: controlled(PropTypes.bool, 'onOpenToggle'),
+    isOpen: controlled(PropTypes.bool, 'onOpenToggle', 'defaultOpen'),
 
     /**
      * An optional function to call when the date picker is opened in either a dialog, or
@@ -272,10 +273,10 @@ export default class DatePickerContainer extends PureComponent {
      * Boolean if the time picker is disabled.
      */
     disabled: PropTypes.bool,
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
-    initiallyOpen: false,
     previousIcon: <FontIcon>chevron_left</FontIcon>,
     nextIcon: <FontIcon>chevron_right</FontIcon>,
     autoOk: false,
@@ -335,7 +336,7 @@ export default class DatePickerContainer extends PureComponent {
 
     this.state = {
       value,
-      isOpen: props.initiallyOpen,
+      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen,
       calendarDate: date,
       calendarTempDate,
       calendarMode: props.initialCalendarMode,
@@ -561,6 +562,8 @@ export default class DatePickerContainer extends PureComponent {
     delete props.isOpen;
     delete props.onOpenToggle;
     delete props.defaultValue;
+    delete props.initiallyOpen;
+    delete props.defaultOpen;
 
     const isOpen = getField(this.props, this.state, 'isOpen');
 

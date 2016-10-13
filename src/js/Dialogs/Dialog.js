@@ -42,6 +42,8 @@ export default class Dialog extends PureComponent {
     fullPage: PropTypes.bool,
     onLeave: PropTypes.func,
     zDepth: PropTypes.number.isRequired,
+    focusOnMount: PropTypes.bool,
+    onOpen: PropTypes.func,
   };
 
   static defaultProps = {
@@ -66,6 +68,12 @@ export default class Dialog extends PureComponent {
     this.setState({
       transformOrigin: `${pageX - window.scrollX}px ${pageY - window.scrollY}px`,
     });
+  }
+
+  componentDidMount() {
+    if (this.props.onOpen) {
+      this.props.onOpen();
+    }
   }
 
   componentWillUnmount() {
@@ -118,6 +126,7 @@ export default class Dialog extends PureComponent {
     delete props.pageX;
     delete props.pageY;
     delete props.style;
+    delete props.onOpen;
     delete props.onLeave;
 
     let { 'aria-labelledby': labelledBy, style } = this.props;
@@ -157,7 +166,6 @@ export default class Dialog extends PureComponent {
         }, className)}
         role="dialog"
         aria-labelledby={labelledBy}
-        focusOnMount
       >
         {dialogChildren}
       </Paper>

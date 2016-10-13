@@ -1,6 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import oneRequiredForA11yIf from '../utils/PropTypes/oneRequiredForA11yIf';
+
 /**
  * The avatar component is used to convert a `FontIcon`, an image, or
  * a letter into an avatar.
@@ -59,6 +61,12 @@ export default class Avatar extends PureComponent {
      * will just set the width and height to the `$md-font-icon-size`.
      */
     iconSized: PropTypes.bool,
+
+    /**
+     * A role for the avatar's image. When the `src` prop is set, either a `role` of `presentation`
+     * or the `alt` prop must be defined for a11y.
+     */
+    role: oneRequiredForA11yIf(PropTypes.oneOf(['presentation']), 'src', 'alt'),
   };
 
   static defaultProps = {
@@ -106,6 +114,7 @@ export default class Avatar extends PureComponent {
       suffixes,
       random,
       iconSized,
+      role,
       ...props,
     } = this.props;
 
@@ -116,7 +125,7 @@ export default class Avatar extends PureComponent {
           'md-avatar--icon-sized': iconSized,
         }, className)}
       >
-        {src && <img src={src} alt={alt} className="md-avatar-img" />}
+        {src && <img src={src} alt={alt} role={role} className="md-avatar-img" />}
         {!src &&
           <div className="md-avatar-content">
             {icon || children}

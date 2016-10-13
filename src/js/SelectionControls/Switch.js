@@ -78,7 +78,7 @@ export default class Switch extends PureComponent {
      * A boolean if the `Switch` is currently checked. This will required the `onChange` prop
      * to be defined.
      */
-    checked: controlled(PropTypes.bool, 'onChange'),
+    checked: controlled(PropTypes.bool, 'onChange', 'defaultChecked'),
 
     /**
      * Boolean if the `Checkbox` should be displayed inline.

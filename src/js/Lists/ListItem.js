@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
@@ -128,15 +129,15 @@ export default class ListItem extends PureComponent {
      *
      * The nested items will be visible once the user clicks on the `ListItem`.
      *
-     * @see `initiallyOpen`
+     * @see `defaultOpen`
      * @see `isOpen`
      */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
     /**
-     * Boolean if the `nestedItems` are initially visible by default.
+     * Boolean if the `nestedItems` are visible by default.
      */
-    initiallyOpen: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
 
     /**
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
@@ -201,6 +202,7 @@ export default class ListItem extends PureComponent {
      * prop is `true`.
      */
     activeClassName: PropTypes.string,
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
@@ -215,7 +217,7 @@ export default class ListItem extends PureComponent {
     this.state = { active: false };
 
     if (typeof props.isOpen === 'undefined') {
-      this.state.isOpen = !!props.initiallyOpen;
+      this.state.isOpen = typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen;
     }
 
     this.focus = this.focus.bind(this);
@@ -369,6 +371,7 @@ export default class ListItem extends PureComponent {
       ...props,
     } = this.props;
     delete props.isOpen;
+    delete props.defaultOpen;
     delete props.initiallyOpen;
 
     const isOpen = getField(this.props, this.state, 'isOpen');

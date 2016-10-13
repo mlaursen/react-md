@@ -1,6 +1,6 @@
 /**
  * This validator checks that the given prop is valid. If any of the `otherPropNames` are true,
- * it alsy requires this to be defined for a11y.
+ * it also requires this to be defined for a11y.
  *
  * @param {function} validator - The React PropTypes validator to use for the given prop.
  * @param {String[]} otherPropNames - Any other prop names to validate against.
