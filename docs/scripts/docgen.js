@@ -123,7 +123,9 @@ const docgens = {};
 
   const rawFile = fs.readFileSync(path.resolve(reactMD, sourceFolder, temp || file + '.js'));
   try {
-    const generated = docgen.parse(rawFile, docgen.resolver.findAllComponentDefinitions)[0];
+    // For some reason there are 2 entries in the navigation drawer
+    const docgenIndex = file === 'NavigationDrawer' ? 1 : 0;
+    const generated = docgen.parse(rawFile, docgen.resolver.findAllComponentDefinitions)[docgenIndex];
     generated.source = `src/js/${sourceFolder}/${file}.js`;
     generated.component = component.replace(/(?=Focus)Container/, '');
     generated.methods = generated.methods.filter(method => method.name.charAt(0) !== '_');

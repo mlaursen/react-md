@@ -1,9 +1,11 @@
 import React, { PureComponent, PropTypes, cloneElement } from 'react';
 import { connect } from 'react-redux';
-import NavDrawer from 'react-md/lib/NavigationDrawers/NavDrawer';
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { getNavItems } from 'utils/RouteUtils';
 import { mediaChange, setMobileSearch } from 'actions/ui';
+import AppFooter from 'components/AppFooter';
+import ThemeSwitcher from 'containers/ThemeSwitcher';
 
 @connect(({ ui: { drawer } }) => ({
   defaultMedia: drawer.initialDrawerType,
@@ -46,9 +48,10 @@ export default class App extends PureComponent {
     } = this.props;
 
     return (
-      <NavDrawer
+      <NavigationDrawer
         drawerTitle="react-md"
         defaultMedia={defaultMedia}
+        drawerHeaderChildren={<ThemeSwitcher />}
         tabletDrawerType={tabletDrawerType}
         desktopDrawerType={desktopDrawerType}
         toolbarTitle={toolbarTitle}
@@ -57,7 +60,8 @@ export default class App extends PureComponent {
         navItems={getNavItems(pathname)}
       >
         {children ? cloneElement(children, { key: pathname + 'woop' }) : null}
-      </NavDrawer>
+        <AppFooter />
+      </NavigationDrawer>
     );
   }
 }

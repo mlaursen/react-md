@@ -190,7 +190,7 @@ export default class Card extends PureComponent {
       onExpanderClick(expanded, e);
     }
 
-    if (typeof expanded === 'undefined') {
+    if (typeof this.props.expanded === 'undefined') {
       this.setState({ expanded });
     }
   }

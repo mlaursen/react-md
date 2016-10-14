@@ -1,41 +1,156 @@
-import React, { PureComponent, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { PureComponent, PropTypes, isValidElement } from 'react';
 import cn from 'classnames';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import Drawer from './Drawer';
-import DrawerToolbar from './DrawerToolbar';
-import Overlay from '../Transitions/Overlay';
+import getField from '../utils/getField';
+import controlled from '../utils/PropTypes/controlled';
+import invalidIf from '../utils/PropTypes/invalidIf';
+import Button from '../Buttons/Button';
+import Drawer from '../Drawers';
+import List from '../Lists/List';
+import Toolbar from '../Toolbars';
+
+const { DrawerTypes } = Drawer;
+import { isTemporary, isPersistent, isPermanent, isMini } from '../Drawers/isType';
+import CloseButton from './CloseButton';
+import MiniListItem from './MiniListItem';
+
+function getNonMiniType(type) {
+  const { PERSISTENT_MINI: pMini, TEMPORARY_MINI: tMini } = DrawerTypes;
+  if ([pMini, tMini].indexOf(type) === -1) {
+    return type;
+  }
+
+  return pMini === type ? DrawerTypes.PERSISTENT : DrawerTypes.TEMPORARY;
+}
+
+function toMiniListItem(item, index) {
+  if (isValidElement(item)) {
+    return item;
+  }
+
+  const { divider, subheader, key, ...itemProps } = item;
+  if (divider || subheader) {
+    return null;
+  }
+
+  delete itemProps.primaryText;
+  delete itemProps.secondaryText;
+  delete itemProps.rightIcon;
+  delete itemProps.rightAvatar;
+  delete itemProps.threeLines;
+  delete itemProps.nestedItems;
+  delete itemProps.expanderIconChildren;
+  delete itemProps.expanderIconClassName;
+  delete itemProps.children;
+
+  return <MiniListItem key={key || index} {...itemProps} />;
+}
 
 /**
- * Navigation Drawers are an excellent component to use to set up the initial
- * layout of your application. This component combines a Drawer
- * (a sidebar of nav items), an app bar, and displays any additional content.
+ * The `NavigationDrawer` is used when you want a full layout configuration. It is a combination
+ * of the `Toolbar` component and the `Drawer` component.
  *
- * The `NavigationDrawer` component is customizable to have different
- * display states for mobile, tablet, and desktop displays.
+ * The main benfit of using this component is that it will manage adding respective offset
+ * classes automatically for you to the content and the drawer. It will also manage using
+ * a mini drawer type for you.
  */
 export default class NavigationDrawer extends PureComponent {
-  static DrawerType = {
-    FULL_HEIGHT: 'full-height',
-    CLIPPED: 'clipped',
-    FLOATING: 'floating',
-    PERSISTENT: 'persistent',
-    PERSISTENT_MINI: 'mini',
-    TEMPORARY: 'temporary',
-    // want styles of temporary and mini. Little hacky.
-    TEMPORARY_MINI: 'temporary mini',
+  static DrawerType = { // deprecated
+    /* eslint-disable no-console */
+    _warned: false,
+    _msg: 'Invalid use of `NavigationDrawer.DrawerType.{{TYPE}}`. The `NavigationDrawer.DrawerType` ' +
+      'has been deprecated and will be removed in the next release. Please use the ' +
+      '`NavigationDrawer.DrawerTypes.{{TYPE}}` instead.',
+
+    get FULL_HEIGHT() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'FULL_HEIGHT'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.FULL_HEIGHT;
+    },
+
+    get CLIPPED() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'CLIPPED'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.CLIPPED;
+    },
+
+    get FLOATING() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'FLOATING'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.FLOATING;
+    },
+
+    get PERSISTENT() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'PERSISTENT'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.PERSISTENT;
+    },
+
+    get PERSISTENT_MINI() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'PERSISTENT_MINI'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.PERSISTENT_MINI;
+    },
+
+    get TEMPORARY() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'TEMPORARY'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.TEMPORARY;
+    },
+
+    get TEMPORARY_MINI() {
+      if (!this._warned) {
+        console.error(this._msg.replace(/{{TYPE}}/g, 'TEMPORARY_MINI'));
+      }
+      this._warned = true;
+
+      return DrawerTypes.TEMPORARY_MINI;
+    },
+    /* eslint-enable no-console */
   };
+
+  static DrawerTypes = DrawerTypes;
 
   static propTypes = {
     /**
-     * An optional style to apply to the entire container.
+     * An optional style to apply to the surrounding container.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the entire container.
+     * An optional className to apply to the surrounding container.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the main toolbar.
+     */
+    toolbarStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the toolbar.
+     */
+    toolbarClassName: PropTypes.string,
 
     /**
      * An optional style to apply to the drawer.
@@ -48,495 +163,568 @@ export default class NavigationDrawer extends PureComponent {
     drawerClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to the main content.
+     * An optional style to apply to the content. This is the container surrounding whatever
+     * `children` are passed in.
      */
     contentStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the main content.
+     * An optional className to apply to the content. This is the container surrounding whatever
+     * `children` are passed in.
      */
     contentClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to the main toolbar.
-     */
-    toolbarStyle: PropTypes.object,
-
-    /**
-     * An optional className to applt to the main toolbar.
-     */
-    toolbarClassName: PropTypes.string,
-
-    /**
-     * An optional title to display in the navigation drawer header.
-     */
-    drawerTitle: PropTypes.string,
-
-    /**
-     * Any additional children you want to display in the navigation drawer header after
-     * the optional title.
-     */
-    drawerChildren: PropTypes.node,
-
-    /**
-     * Boolean if the drawer header should be fixed to the top of the
-     * sliding drawer. This will add the `className` `md-drawer-scrolling-list`
-     * the list surrounding the `navItems`. The `md-drawer-scrolling-list`
-     * `className` adjusts the max-height for the list content for the different
-     * device sizes.
-     */
-    drawerHeaderFixed: PropTypes.bool,
-
-    /**
-     * An optional title to display in the toolbar.
-     */
-    toolbarTitle: PropTypes.string,
-
-    /**
-     * Any additional children you want to display in the main toolbar after the menu
-     * button (for persistent drawers) and the optional title.
-     */
-    toolbarChildren: PropTypes.node,
-
-    /**
-     * The main content to display.
+     * The children to display in the main content.
      */
     children: PropTypes.node,
 
     /**
-     * An optional boolean if the drawer is open for persistent or temporary
-     * drawers.
+     * An optional header to display in the drawer. This will normally be the `Toolbar` component
+     * or any other type of header. You can either use this prop with the `CloseButton` component
+     * when displaying a persistent drawer, or use the `drawerTitle` and `drawerHeaderChildren` prop
+     * to build a toolbar.
      */
-    initiallyOpen: PropTypes.bool,
+    drawerHeader: PropTypes.node,
 
     /**
-     * The initial drawer type to render. This is used for Server Side Rendering.
+     * An optional title to use for the drawer's header toolbar. If the `drawerHeader` prop is defined,
+     * this is invalid.
      */
-    initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
+    drawerTitle: invalidIf(PropTypes.node, 'drawerHeader'),
 
     /**
-     * The `DrawerType` to use for mobile devices. If the `mobileMinWidth` prop
-     * matches or the `tabletMinWidth` prop matches and the orientation is portrait,
-     * this drawer type will be used.
+     * Any additional children to display in the drawer's header `Toolbar`. If the `drawerHeader` prop is defined,
+     * this is invalud.
+     */
+    drawerHeaderChildren: invalidIf(PropTypes.node, 'drawerHeader'),
+
+    /**
+     * Any additional children to display after the `drawerHeader` and `navItems` list in the drawer.
+     */
+    drawerChildren: PropTypes.node,
+
+    /**
+     * The position for the drawer to be displayed.
+     */
+    position: PropTypes.oneOf(['left', 'right']).isRequired,
+
+    /**
+     * An optional list of elements or props to use to build a navigational list in the drawer.
+     * When the item is an object of props, it will build a `ListItem` component unless a key of
+     * `divider` or `subheader` is set to true. It will then create the Divider or Subheader component
+     * with any other remaining keys.
+     */
+    navItems: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.shape({
+        divider: PropTypes.bool,
+        subheader: PropTypes.bool,
+        primaryText: PropTypes.string,
+      }),
+    ])),
+
+    /**
+     * The drawer type to use for mobile devices.
      */
     mobileDrawerType: PropTypes.oneOf([
-      NavigationDrawer.DrawerType.TEMPORARY,
-      NavigationDrawer.DrawerType.TEMPORARY_MINI,
+      DrawerTypes.TEMPORARY,
+      DrawerTypes.TEMPORARY_MINI,
     ]).isRequired,
 
     /**
-     * The `DrawerType` to use for landscape oriented tablets. If the
-     * `tabletMinWidth` prop matches and the orientation is landscape, this drawer
-     * type will be used.
+     * The drawer tye to use for tablets.
      */
     tabletDrawerType: PropTypes.oneOf([
-      NavigationDrawer.DrawerType.FULL_HEIGHT,
-      NavigationDrawer.DrawerType.CLIPPED,
-      NavigationDrawer.DrawerType.FLOATING,
-      NavigationDrawer.DrawerType.PERSISTENT,
-      NavigationDrawer.DrawerType.PERSISTENT_MINI,
-      NavigationDrawer.DrawerType.TEMPORARY,
-      NavigationDrawer.DrawerType.TEMPORARY_MINI,
+      DrawerTypes.FULL_HEIGHT,
+      DrawerTypes.CLIPPED,
+      DrawerTypes.FLOATING,
+      DrawerTypes.PERSISTENT,
+      DrawerTypes.PERSISTENT_MINI,
+      DrawerTypes.TEMPORARY,
+      DrawerTypes.TEMPORARY_MINI,
     ]).isRequired,
 
     /**
-     * The `DrawerType` to use for desktop displays. If the `desktopMinWidth`
-     * prop matches, this drawer type will be used.
+     * The drawer type to use for desktop displays.
      */
     desktopDrawerType: PropTypes.oneOf([
-      NavigationDrawer.DrawerType.FULL_HEIGHT,
-      NavigationDrawer.DrawerType.CLIPPED,
-      NavigationDrawer.DrawerType.FLOATING,
-      NavigationDrawer.DrawerType.PERSISTENT,
-      NavigationDrawer.DrawerType.PERSISTENT_MINI,
-      NavigationDrawer.DrawerType.TEMPORARY,
-      NavigationDrawer.DrawerType.TEMPORARY_MINI,
+      DrawerTypes.FULL_HEIGHT,
+      DrawerTypes.CLIPPED,
+      DrawerTypes.FLOATING,
+      DrawerTypes.PERSISTENT,
+      DrawerTypes.PERSISTENT_MINI,
+      DrawerTypes.TEMPORARY,
+      DrawerTypes.TEMPORARY_MINI,
     ]).isRequired,
 
     /**
-     * The min width to use for a mobile media query.
+     * An optional drawer type to enforce on all screen sizes. If the drawer type is not
+     * `temporary`, you are required to define the `onMediaTypeChange` prop to handle switching
+     * to temporary when the media matches a mobile device.
+     * ```
+     */
+    drawerType: PropTypes.oneOf([
+      DrawerTypes.FULL_HEIGHT,
+      DrawerTypes.CLIPPED,
+      DrawerTypes.FLOATING,
+      DrawerTypes.PERSISTENT,
+      DrawerTypes.PERSISTENT_MINI,
+      DrawerTypes.TEMPORARY,
+      DrawerTypes.TEMPORARY_MINI,
+    ]),
+
+    /**
+     * The default media match for the drawer. This will be what is displayed on first render.
+     * The component will adjust itself to the current media after it has mounted, but this
+     * is mostly used for server side rendering.
+     */
+    defaultMedia: PropTypes.oneOf(['mobile', 'tablet', 'desktop']),
+
+    /**
+     * The min width to use for a mobile media query. This prop should match the `md-mobile-min-width`
+     * variable.
+     *
+     * The media query for a mobile device will be:
+     *
+     * ```js
+     * window.matchMedia(
+     *   `only screen and (min-width: ${mobileMinWidth}px) and (max-width: ${tabletMinWidth - 1}px`
+     * ).matches;
+     * ```
      */
     mobileMinWidth: PropTypes.number.isRequired,
 
     /**
-     * The min width to use for a tablet media query.
+     * The min width to use for a tablet media query. This prop should match the `md-tablet-min-width`
+     * variable.
+     *
+     * The media query for a tablet device will be:
+     *
+     * ```js
+     * window.matchMedia(
+     *   `only screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopWidth - 1}px`
+     * ).matches;
+     * ```
      */
     tabletMinWidth: PropTypes.number.isRequired,
 
     /**
-     * The min width to use for a desktop media query.
+     * The min width to use for a desktop media query. This prop should match the `md-desktop-min-width`
+     * variable.
+     *
+     * The media query for a tablet device will be:
+     *
+     * ```js
+     * window.matchMedia(`only screen and (min-width: ${tabletMinWidth}px)`).matches;
+     * ```
      */
     desktopMinWidth: PropTypes.number.isRequired,
 
     /**
-     * The icon className to use for the main menu icon.
+     * An optional DOM Node to render the portal into. The default is to render as
+     * the last child in the `body`.
      */
-    menuIconClassName: PropTypes.string,
+    renderNode: PropTypes.object,
 
     /**
-     * Any children required to render the main menu icon.
-     */
-    menuIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use for closing a persistent navigation drawer.
-     */
-    closeIconClassName: PropTypes.string,
-
-    /**
-     * Any children required to render the close icon for a persistent navigation drawer.
-     */
-    closeIconChildren: PropTypes.node,
-
-    /**
-     * Boolean if the sliding drawer should automatically close when a nav item
-     * is clicked for a temporary or temporary mini drawer.
-     */
-    autoclose: PropTypes.bool.isRequired,
-
-    /**
-     * An optional function to call when the sliding drawer's open state changes.
-     * This can happen from rotating a tablet, resizing the browser window,
-     * or toggling the drawer for persistent and temporary versions. The
-     * `onDrawerChange` prop will be given the new open state.
+     * An optional function to call when the type of the drawer changes because of the
+     * new media queries. The callback will include the newly selected drawer type
+     * and an object containing the media matches of `mobile`, `tablet`, and `desktop`.
      *
-     * `onDrawerChange(isOpen)`
+     * ```js
+     * this.props.onMediaTypeChange(NavigationDrawer.DrawerTypes.TEMPORARY, {
+     *   mobile: true,
+     *   tablet: false,
+     *   desktop: false,
+     * });
+     * ```
      */
-    onDrawerChange: PropTypes.func,
+    onMediaTypeChange: PropTypes.func,
 
     /**
-     * A list of items to render in the navigation drawer. If an item
-     * is a prop object, all props will be passed to either a `ListItem`,
-     * `Divider`, or `Subheader` component.
+     * Boolean if the temporary or persistent drawers are visible by default.
+     */
+    defaultVisible: PropTypes.bool,
+
+    /**
+     * Boolean if the temporary or persistent drawers are visible. If this is defined,
+     * it will make the component controlled and require the `onVisibilityToggle` prop
+     * to be defined.
+     */
+    visible: controlled(PropTypes.bool, 'onVisibilityToggle', 'defaultVisible'),
+
+    /**
+     * An optional function to call when the visibility of the drawer changes. The callback
+     * will include the new visibility and the event that triggered the change.
      *
-     * ##### Additional Info
+     * ```js
+     * this.props.onVisibilityToggle(false, event);
+     * ```
      */
-    navItems: PropTypes.arrayOf(PropTypes.oneOfType([
-      /**
-       * Any react component you want to render instead of using props
-       * to generate a component.
-       */
-      PropTypes.element,
-
-      /**
-       * An object of props to use that will generate either a `ListItem`, `Divider`,
-       * or a `Subheader` component. Any props not listed will be passed
-       * to the component.
-       */
-      PropTypes.shape({
-        /**
-         * Boolean if this item should be rendered as a divider.
-         */
-        divider: PropTypes.bool,
-
-        /**
-         * Boolean if this item should be rendered as a subheader.
-         */
-        subheader: PropTypes.bool,
-
-        /**
-         * An optional component to render the `ListItem` as.
-         */
-        component: PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.func,
-        ]),
-
-        /**
-         * The main text to be displayed in a `Subheader` or a `ListItem`.
-         */
-        primaryText: PropTypes.string,
-      }),
-    ])).isRequired,
+    onVisibilityToggle: PropTypes.func,
 
     /**
-     * The transition name to use for the drawer sliding in and out of view.
+     * A boolean if the mini drawer's list should be generated from the `navItems` prop. When building
+     * the list, it will extract the `leftIcon` or `leftAvatar` from the `navItem` and then create a
+     * mini `ListItem` containing only that icon or image. Any other event listeners will also be applied.
+     *
+     * @see miniDrawerHeader
+     * @see miniDrawerChildren
      */
-    transitionName: PropTypes.string.isRequired,
+    extractMini: PropTypes.bool,
 
     /**
-     * The transition enter duration for the drawer sliding in to view.
+     * An optional header to display in the mini drawer. This will be displayed above the optional
+     * mini nav list that get generated if the `extractMini` prop is `true` and the `miniDrawerChildren`.
+     *
+     * @see extractMini
      */
-    transitionEnterTimeout: PropTypes.number.isRequired,
+    miniDrawerHeader: PropTypes.node,
 
     /**
-     * The transition leave duration for the drawer sliding out of view.
+     * Any additional children to display in the mini drawer. This will be displayed after the `miniDrawerHeader`
+     * and the optional mini nav list that gets generated if the `extractMini` prop is `true`.
+     *
+     * @see extractMini
      */
-    transitionLeaveTimeout: PropTypes.number.isRequired,
+    miniDrawerChildren: PropTypes.node,
 
     /**
-     * An optional transition to use when the content changes. To disable this transition,
-     * set the enter and leave timeouts to `0`, `null`, or `undefined`. Make sure your
-     * child has a new key as well.
+     * Boolean if the drawer should automatically close after a nav item has been clicked for `temporary` drawers.
      */
-    contentTransitionName: PropTypes.string.isRequired,
+    autoclose: PropTypes.bool,
 
     /**
-     * The transition enter timeout for when the main content changes. Settings this value
-     * to `0`, `null`, or `undefined` will disable the enter transition.
+     * An optional title to display in the main toolbar. Either the `toolbarTitle` or the `toolbarTitleMenu`
+     * may be defined, not both.
      */
-    contentTransitionEnterTimeout: PropTypes.number,
+    toolbarTitle: invalidIf(PropTypes.node, 'toolbarTitleMenu'),
 
     /**
-     * The transition leave timeout for when the main content changes. Settings this value
-     * to `0`, `null`, or `undefined` will disable the leave transition.
+     * An optional select field menu to display in the main toolbar. Either the `toolbarTitle` or the `toolbarTitleMenu`
+     * may be defined, not both.
      */
-    contentTransitionLeaveTimeout: PropTypes.number,
+    toolbarTitleMenu: PropTypes.element,
+
+    /**
+     * The theme style for the main toolbar.
+     *
+     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     */
+    toolbarThemeType: PropTypes.oneOf(['default', 'colored', 'themed']).isRequired,
+    toolbarSingleColor: PropTypes.bool,
+    toolbarProminent: PropTypes.bool,
+    toolbarProminentTitle: PropTypes.bool,
+    toolbarActions: Toolbar.propTypes.actions,
+    contentComponent: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+    temporaryIconChildren: PropTypes.node,
+    temporaryIconClassName: PropTypes.string,
+    persistentIconChildren: PropTypes.node,
+    persistentIconClassName: PropTypes.string,
+    transitionName: PropTypes.string,
+    transitionEnterTimeout: PropTypes.number,
+    transitionLeaveTimeout: PropTypes.number,
+
+    menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
+    menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
+    closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
+    closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIconClassName` instead'),
+    onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityToggle` or `onMediaTypeChange` instead'),
+    contentTransitionName: deprecated(PropTypes.string, 'Use `transitionName` instead'),
+    contentTransitionEnterTimeout: deprecated(PropTypes.number, 'Use `transtionEnterTimeout` instead'),
+    contentTransitionLeaveTimeout: deprecated(PropTypes.number, 'Use `transtionLeaveTimeout` instead'),
+    initialDrawerType: deprecated(
+      PropTypes.oneOf(['mobile', 'tablet', 'desktop']),
+      'Use `defaultMedia` instead'
+    ),
   };
 
+  static childContextTypes = {
+    closeIconClassName: PropTypes.string,
+    closeChildren: PropTypes.node,
+    onCloseClick: PropTypes.func,
+  }
+
   static defaultProps = {
-    initialDrawerType: 'desktop',
-    mobileDrawerType: NavigationDrawer.DrawerType.TEMPORARY,
-    tabletDrawerType: NavigationDrawer.DrawerType.PERSISTENT,
-    desktopDrawerType: NavigationDrawer.DrawerType.FULL_HEIGHT,
-    mobileMinWidth: 320,
-    tabletMinWidth: 768,
-    desktopMinWidth: 1025,
-    menuIconChildren: 'menu',
-    autoclose: true,
-    closeIconChildren: 'keyboard_arrow_left',
-    transitionName: 'drawer',
+    autoclose: Drawer.defaultProps.autoclose,
+    extractMini: true,
+    position: Drawer.defaultProps.position,
+    defaultMedia: Drawer.defaultProps.defaultMedia,
+    mobileDrawerType: Drawer.defaultProps.mobileType,
+    tabletDrawerType: Drawer.defaultProps.tabletType,
+    desktopDrawerType: Drawer.defaultProps.desktopType,
+    mobileMinWidth: Drawer.defaultProps.mobileMinWidth,
+    tabletMinWidth: Drawer.defaultProps.tabletMinWidth,
+    desktopMinWidth: Drawer.defaultProps.desktopMinWidth,
+    contentComponent: 'main',
+    temporaryIconChildren: 'menu',
+    toolbarThemeType: 'colored',
+    persistentIconChildren: 'arrow_back',
+    transitionName: 'md-cross-fade',
     transitionEnterTimeout: 300,
-    transitionLeaveTimeout: 300,
-    contentTransitionName: 'cross-fade',
-    contentTransitionEnterTimeout: 300,
   };
 
   constructor(props) {
     super(props);
 
-    const { initiallyOpen, initialDrawerType } = props;
+    const { defaultMedia, defaultVisible, initialDrawerType } = props;
 
     this.state = {
-      isOpen: typeof initiallyOpen !== 'undefined'
-        ? initiallyOpen
-        : initialDrawerType !== 'mobile',
-      mobile: initialDrawerType === 'mobile',
-      tablet: initialDrawerType === 'tablet',
-      desktop: initialDrawerType === 'desktop',
-      drawerType: props[`${initialDrawerType}DrawerType`],
+      mobile: initialDrawerType || defaultMedia === 'mobile',
+      tablet: initialDrawerType || defaultMedia === 'tablet',
+      desktop: initialDrawerType || defaultMedia === 'desktop',
     };
 
-    this._openDrawer = this._openDrawer.bind(this);
-    this._closeDrawer = this._closeDrawer.bind(this);
-    this._updateMedia = this._updateMedia.bind(this);
-    this._updateDrawerType = this._updateDrawerType.bind(this);
+    if (typeof props.drawerType === 'undefined') {
+      this.state.drawerType = props[`${initialDrawerType || defaultMedia}DrawerType`];
+    }
+
+    const type = getField(props, this.state, 'drawerType');
+
+    if (typeof props.visible === 'undefined') {
+      this.state.visible = typeof defaultVisible !== 'undefined'
+        ? defaultVisible
+        : isPermanent(type);
+    }
+
+    this._handleTypeChange = this._handleTypeChange.bind(this);
+    this._handleVisibility = this._handleVisibility.bind(this);
+    this._toggleVisibility = this._toggleVisibility.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this._updateMedia);
-    this._updateMedia();
-  }
-
-  componentWillReceiveProps(nextProps) {
+  getChildContext() {
     const {
-      mobileMinWidth,
-      mobileDrawerType,
-      tabletMinWidth,
-      tabletDrawerType,
-      desktopMinWidth,
-      desktopDrawerType,
+      persistentIconChildren,
+      persistentIconClassName,
+      closeIconChildren,
+      closeIconClassName,
     } = this.props;
 
-    if (nextProps.mobileMinWidth !== mobileMinWidth || nextProps.mobileDrawerType !== mobileDrawerType
-      || nextProps.tabletMinWidth !== tabletMinWidth || nextProps.tabletDrawerType !== tabletDrawerType
-      || nextProps.desktopMinWidth !== desktopMinWidth || nextProps.desktopDrawerType !== desktopDrawerType) {
-      this._updateDrawerType(nextProps);
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.isOpen !== nextState.isOpen && nextProps.onDrawerChange) {
-      nextProps.onDrawerChange(nextState.isOpen);
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._updateMedia);
-  }
-
-  _matches(min, max, orientation) {
-    let media = 'only screen';
-    if (orientation) {
-      media += ` and (orientation: ${orientation})`;
-    }
-
-    media += ` and (min-width: ${min}px)`;
-
-    if (max) {
-      media += ` and (max-width: ${max}px)`;
-    }
-
-    return window.matchMedia(media).matches;
-  }
-
-  _isFullHeight(drawerType) {
-    const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.DrawerType;
-    return [FULL_HEIGHT, CLIPPED, FLOATING].indexOf(drawerType) !== -1;
-  }
-
-  _isPersistent(drawerType) {
-    const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
-    return [PERSISTENT, PERSISTENT_MINI].indexOf(drawerType) !== -1;
-  }
-
-  _isTemporary(drawerType) {
-    const { TEMPORARY, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
-    return [TEMPORARY, TEMPORARY_MINI].indexOf(drawerType) !== -1;
-  }
-
-  _isMini(drawerType) {
-    const { PERSISTENT_MINI, TEMPORARY_MINI } = NavigationDrawer.DrawerType;
-    return [PERSISTENT_MINI, TEMPORARY_MINI].indexOf(drawerType) !== -1;
-  }
-
-
-  _updateDrawerType(props) {
-    const {
-      mobileMinWidth,
-      mobileDrawerType,
-      tabletMinWidth,
-      tabletDrawerType,
-      desktopMinWidth,
-      desktopDrawerType,
-    } = props;
-
-    const nextState = {
-      mobile: this._matches(mobileMinWidth, desktopMinWidth - 1),
-      tablet: this._matches(tabletMinWidth, desktopMinWidth - 1, 'landscape'),
-      desktop: this._matches(desktopMinWidth),
+    return {
+      closeChildren: closeIconChildren || persistentIconChildren,
+      closeIconClassName: closeIconClassName || persistentIconClassName,
+      onCloseClick: this._toggleVisibility,
     };
+  }
 
-    if (nextState.tablet) {
-      nextState.drawerType = tabletDrawerType;
-    } else if (nextState.mobile) {
-      nextState.drawerType = mobileDrawerType;
-    } else {
-      nextState.drawerType = desktopDrawerType;
+  _toggleVisibility(e) {
+    const { onVisibilityToggle, onDrawerChange } = this.props;
+    const visible = !getField(this.props, this.state, 'visible');
+    if (onVisibilityToggle || onDrawerChange) {
+      (onDrawerChange || onVisibilityToggle)(visible, e);
     }
 
-    if (this._isFullHeight(nextState.drawerType) !== this._isFullHeight(this.state.drawerType)) {
-      nextState.isOpen = this._isFullHeight(nextState.drawerType);
+    if (typeof this.props.visible === 'undefined') {
+      this.setState({ visible });
+    }
+  }
+
+  _handleVisibility(visible, e) {
+    if (this.props.onVisibilityToggle) {
+      this.props.onVisibilityToggle(visible, e);
     }
 
-    this.setState(nextState);
+    if (typeof this.props.visible === 'undefined') {
+      this.setState({ visible });
+    }
   }
 
-  _updateMedia() {
-    this._updateDrawerType(this.props);
+  _handleTypeChange(drawerType, mediaState) {
+    const { onMediaTypeChange } = this.props;
+    if (onMediaTypeChange) {
+      onMediaTypeChange(drawerType, mediaState);
+    }
+
+    if (typeof this.props.drawerType === 'undefined') {
+      mediaState.drawerType = drawerType;
+    }
+
+    const { mobile, tablet, desktop } = this.state;
+    if (typeof this.props.visible === 'undefined'
+      && (mediaState.mobile !== mobile
+        || mediaState.tablet !== tablet
+        || mediaState.desktop !== desktop)
+    ) {
+      mediaState.visible = isPermanent(drawerType);
+    }
+
+    this.setState(mediaState);
   }
 
-  _openDrawer() {
-    this.setState({ isOpen: true });
-  }
-
-  _closeDrawer() {
-    this.setState({ isOpen: false });
-  }
   render() {
     const {
       style,
       className,
+      toolbarStyle,
+      toolbarClassName,
       drawerStyle,
       drawerClassName,
       contentStyle,
       contentClassName,
-      toolbarStyle,
-      toolbarClassName,
-      drawerTitle,
-      drawerHeaderFixed,
-      drawerChildren,
-      menuIconChildren,
-      menuIconClassName,
-      closeIconChildren,
-      closeIconClassName,
-      toolbarTitle,
-      toolbarChildren,
-      autoclose,
+      contentComponent: Content,
       navItems,
       children,
+      renderNode,
+      drawerTitle,
+      drawerChildren,
+      drawerHeaderChildren,
+      toolbarTitle,
+      toolbarTitleMenu,
+      toolbarActions,
+      toolbarProminent,
+      toolbarProminentTitle,
+      toolbarThemeType,
+      toolbarSingleColor,
+      mobileDrawerType: mobileType,
+      tabletDrawerType: tabletType,
+      desktopDrawerType: desktopType,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      contentTransitionName,
-      contentTransitionEnterTimeout,
-      contentTransitionLeaveTimeout,
+      extractMini,
+      miniDrawerHeader,
+      miniDrawerChildren,
+      temporaryIconChildren,
+      temporaryIconClassName,
+      menuIconChildren,
+      menuIconClassName,
+      ...props,
     } = this.props;
+    delete props.drawerType;
+    delete props.drawerHeader;
+    delete props.persistentIconChildren;
+    delete props.persistentIconClassName;
 
-    const { isOpen, drawerType, mobile } = this.state;
-    const persistent = this._isPersistent(drawerType);
-    const temporary = this._isTemporary(drawerType);
-    const mini = this._isMini(drawerType);
+    // Depreated deletes
+    delete props.onDrawerChange;
+    delete props.closeIconChildren;
+    delete props.closeIconClassName;
 
-    let drawer;
-    if (isOpen || mini || mobile) {
-      drawer = (
-        <Drawer
-          key="drawer"
-          style={drawerStyle}
-          className={drawerClassName}
-          drawerHeaderFixed={drawerHeaderFixed}
-          autoclose={autoclose}
+    let { drawerHeader } = this.props;
+    const { mobile } = this.state;
+
+    const drawerType = getField(this.props, this.state, 'drawerType');
+    const visible = getField(this.props, this.state, 'visible');
+    const mini = isMini(drawerType);
+    const temporary = isTemporary(drawerType);
+    const persistent = isPersistent(drawerType);
+
+    let nav;
+    if (temporary || persistent) {
+      nav = (
+        <Button
+          key="nav"
+          onClick={this._toggleVisibility}
+          disabled={persistent && visible}
+          icon
+          iconClassName={menuIconClassName || temporaryIconClassName}
+        >
+          {menuIconChildren || temporaryIconChildren}
+        </Button>
+      );
+    }
+
+    let closeButton;
+    if (persistent) {
+      closeButton = <CloseButton />;
+    }
+
+    if (!drawerHeader) {
+      drawerHeader = (
+        <Toolbar
+          key="drawer-header"
           title={drawerTitle}
-          closeDrawer={this._closeDrawer}
-          closeIconChildren={closeIconChildren}
-          closeIconClassName={closeIconClassName}
-          temporary={temporary}
-          persistent={persistent}
-          navItems={navItems}
-          drawerType={drawerType}
-          children={drawerChildren}
-          mini={mini}
-          isOpen={isOpen}
-          mobile={mobile}
+          children={drawerHeaderChildren}
+          actions={visible && nav ? closeButton : null}
+          className="md-divider-border md-divider-border--bottom"
         />
       );
     }
 
-    let overlay;
-    if (temporary) {
-      overlay = <Overlay isOpen={isOpen} onClick={this._closeDrawer} />;
+    const offset = visible || drawerType === DrawerTypes.FULL_HEIGHT;
+    const toolbarRelative = cn({
+      'md-toolbar-relative': !toolbarProminent && !toolbarProminentTitle,
+      'md-toolbar-relative--prominent': toolbarProminent || toolbarProminentTitle,
+    });
+    let miniDrawer;
+    if (mini) {
+      let miniList;
+      if (extractMini) {
+        miniList = navItems.map(toMiniListItem);
+        miniList = <List key="mini-nav-items" className={toolbarRelative}>{miniList}</List>;
+      }
+
+      miniDrawer = (
+        <Drawer key="mini-drawer" type={drawerType} renderNode={renderNode} aria-hidden={visible}>
+          {miniDrawerHeader}
+          {miniList}
+          {miniDrawerChildren}
+        </Drawer>
+      );
     }
 
     return (
-      <CSSTransitionGroup
-        style={style}
-        className={cn('md-navigation-drawer-container', className)}
-        component="div"
-        transitionName={transitionName}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-      >
-        {drawer}
-        <CSSTransitionGroup
-          style={contentStyle}
-          className={cn('md-navigation-drawer-content', contentClassName, drawerType, {
-            'active': isOpen && !temporary,
+      <div style={style} className={className}>
+        <Toolbar
+          colored={toolbarThemeType === 'colored'}
+          themed={toolbarThemeType === 'themed'}
+          singleColor={toolbarSingleColor}
+          style={toolbarStyle}
+          className={cn({
+            'md-toolbar--over-drawer': drawerType === DrawerTypes.CLIPPED || (mini && !visible),
+          }, toolbarClassName)}
+          title={toolbarTitle}
+          titleMenu={toolbarTitleMenu}
+          prominent={toolbarProminent}
+          prominentTitle={toolbarProminentTitle}
+          titleClassName={cn('md-title--drawer', {
+            'md-title--permanent-offset': offset && isPermanent(drawerType),
+            'md-title--persistent-offset': offset && isPersistent(drawerType),
           })}
-          component="div"
-          transitionName={contentTransitionName}
-          transitionEnter={!!contentTransitionEnterTimeout}
-          transitionEnterTimeout={contentTransitionEnterTimeout}
-          transitionLeave={!!contentTransitionLeaveTimeout}
-          transitionLeaveTimeout={contentTransitionLeaveTimeout}
+          nav={nav}
+          actions={toolbarActions}
+          fixed
+        />
+        {miniDrawer}
+        <Drawer
+          {...props}
+          header={drawerHeader}
+          style={drawerStyle}
+          className={drawerClassName}
+          navItems={navItems}
+          renderNode={renderNode}
+          mobileType={mobileType}
+          tabletType={tabletType}
+          desktopType={desktopType}
+          type={getNonMiniType(drawerType)}
+          visible={visible}
+          onVisibilityToggle={this._handleVisibility}
+          onMediaTypeChange={this._handleTypeChange}
         >
-          <DrawerToolbar
-            isOpen={isOpen}
-            drawerType={drawerType}
-            style={toolbarStyle}
-            className={toolbarClassName}
-            temporary={temporary}
-            persistent={persistent}
-            openDrawer={this._openDrawer}
-            menuIconChildren={menuIconChildren}
-            menuIconClassName={menuIconClassName}
-            title={toolbarTitle}
-            children={toolbarChildren}
-          />
+          {drawerChildren}
+        </Drawer>
+        <CSSTransitionGroup
+          component={Content}
+          transitionName={transitionName}
+          transitionEnter={!!transitionEnterTimeout}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeave={!!transitionLeaveTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+          style={contentStyle}
+          className={cn('md-navigation-drawer-content', {
+            'md-navigation-drawer-content--inactive': !visible,
+            'md-navigation-drawer-content--prominent-offset': toolbarProminent || toolbarProminentTitle,
+            'md-drawer-relative': offset,
+            'md-drawer-relative--mini': mini && (mobile || !visible),
+          }, toolbarRelative, contentClassName)}
+        >
           {children}
-          {overlay}
         </CSSTransitionGroup>
-      </CSSTransitionGroup>
+      </div>
     );
   }
 }

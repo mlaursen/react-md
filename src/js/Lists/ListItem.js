@@ -32,14 +32,14 @@ export default class ListItem extends PureComponent {
     /**
      * An optional style to apply to the `.md-list-tile`.
      *
-     * @see `component` prop
+     * @see `component`
      */
     tileStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the `.md-list-tile`.
      *
-     * @see `component` prop
+     * @see `component`
      */
     tileClassName: PropTypes.string,
 

@@ -8,13 +8,11 @@ import { version } from '../../../../../package.json';
 export default class AppFooter extends PureComponent {
   render() {
     return (
-      <footer className="react-doc-footer">
-        <div className="container">
-          <Contact />
-          <Contribute />
-          <div className="site-version">
-            Current version: <i>{`${version}`}</i>
-          </div>
+      <footer className="react-doc-footer md-grid">
+        <Contact />
+        <Contribute />
+        <div className="site-version md-text-right md-cell md-cell--12">
+          Current version: <i>{`${version}`}</i>
         </div>
       </footer>
     );

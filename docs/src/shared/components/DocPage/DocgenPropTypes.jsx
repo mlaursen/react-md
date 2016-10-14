@@ -1,9 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
+import Fuse from 'fuse.js';
 import Button from 'react-md/lib/Buttons';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
-import Autocomplete from 'react-md/lib/Autocompletes';
 import TextField from 'react-md/lib/TextFields';
 
 import { GITHUB_LINK } from 'constants';
@@ -30,6 +30,15 @@ export default class DocgenPropTypes extends PureComponent {
     super(props);
 
     const propList = this._makePropList(props);
+    this._fuse = new Fuse(this._makeFuseList(props), {
+      keys: [{
+        name: 'name',
+        weight: 0.75,
+      }, {
+        name: 'description',
+        weight: 0.25,
+      }],
+    });
 
     this.state = {
       propList,
@@ -43,6 +52,7 @@ export default class DocgenPropTypes extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (this.props.props !== nextProps.props) {
       const propList = this._makePropList(nextProps);
+      this._fuse.set(this._makeFuseList(nextProps));
       this.setState({
         propList,
         deprecated: this._getDeprecated(nextProps),
@@ -66,6 +76,10 @@ export default class DocgenPropTypes extends PureComponent {
     return deprecated;
   }
 
+  _makeFuseList(props) {
+    return Object.keys(props.props).map(name => ({ name, ...props.props[name] }));
+  }
+
   _makePropList(props) {
     return Object.keys(props.props).filter(name => name.indexOf('deprecated') === -1).map(name => ({ name, ...props.props[name] }));
   }
@@ -81,7 +95,9 @@ export default class DocgenPropTypes extends PureComponent {
   _filterProperties = (propFilter) => {
     this.setState({
       propFilter,
-      visibleProps: Autocomplete.fuzzyFilter(this.state.propList, propFilter, 'name'),
+      visibleProps: propFilter
+        ? this._fuse.search(propFilter)
+        : sort(this.state.propList, 'name', this.state.ascending),
     });
   };
 

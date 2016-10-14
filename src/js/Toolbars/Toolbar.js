@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import invalidIf from '../utils/PropTypes/invalidIf';
 import ToolbarTitle from './ToolbarTitle';
 import Paper from '../Papers';
 
@@ -42,19 +43,7 @@ export default class Toolbar extends PureComponent {
      * The current title of the page to show in the toolbar. It is invalid to specify both a
      * `title` and a `titleMenu`. Only one should be given.
      */
-    title: (props, propName, componentName, location, propFullName, ...args) => {
-      const componentNameSafe = componentName || '<<anonymous>>';
-      const propFullNameSafe = propFullName || propName;
-      let err = PropTypes.node(props, propName, componentName, location, propFullName, ...args);
-      if (!err && typeof props[propName] !== 'undefined' && typeof props.titleMenu !== 'undefined') {
-        err = new Error(
-          `You provided both a \`${propFullNameSafe}\` and a \`titleMenu\` ${location} to the ` +
-          `${componentNameSafe} but only one can be given.`
-        );
-      }
-
-      return err;
-    },
+    title: invalidIf(PropTypes.node, 'titleMenu'),
 
     /**
      * An optional title menu to display instead of the title. This should be a `SelectField` component.
@@ -108,18 +97,7 @@ export default class Toolbar extends PureComponent {
     /**
      * Boolean if the toolbar should be colored with the `$md-primary-color`.
      */
-    colored: (props, propName, componentName, ...args) => {
-      let err = PropTypes.bool(props, propName, componentName, ...args);
-
-      if (!err && typeof props[propName] !== 'undefined' && typeof props.theme !== 'undefined') {
-        err = new Error(
-          `You provided both a \`colored\` prop and a \`themed\` prop to the ${componentName} but ` +
-          'only one may be chosen.'
-        );
-      }
-
-      return err;
-    },
+    colored: invalidIf(PropTypes.bool, 'themed'),
     containerStyle: deprecated(
       PropTypes.object,
       'The `container` no longer exists in the `Toolbar`. Use the `style` prop instead'

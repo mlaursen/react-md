@@ -5,7 +5,7 @@ import Button from 'react-md/lib/Buttons';
 export default class Contact extends PureComponent {
   render() {
     return (
-      <div className="contact">
+      <div className="md-cell">
         <h4 className="md-title">Contact</h4>
         <Button primary label="Mikkel Laursen" href="mailto:mlaursen03@gmail.com" flat>
           <FontIcon>mail</FontIcon>
