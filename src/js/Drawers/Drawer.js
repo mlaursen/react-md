@@ -85,7 +85,7 @@ export default class Drawer extends PureComponent {
     /**
      * Boolean if a temporary drawer should close when a nav item is clicked.
      */
-    closeOnNavItemClick: PropTypes.bool,
+    autoclose: PropTypes.bool,
 
     /**
      * An optional header to display. This _should_ normally be a toolbar.
@@ -247,7 +247,7 @@ export default class Drawer extends PureComponent {
     desktopMinWidth: 1025,
     position: 'left',
     transitionTimeout: 300,
-    closeOnNavItemClick: true,
+    autoclose: true,
   };
 
   constructor(props) {
@@ -273,7 +273,7 @@ export default class Drawer extends PureComponent {
     if (typeof props.visible === 'undefined') {
       this.state.visible = typeof defaultVisible !== 'undefined'
         ? defaultVisible
-        : !isTemporary(type);
+        : isPermanent(type);
     }
 
     const visible = getField(props, this.state, 'visible');
@@ -320,14 +320,12 @@ export default class Drawer extends PureComponent {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const visible = getField(this.props, this.state, 'visible');
-    const nVisible = getField(nextProps, nextState, 'visible');
-    const nType = getField(nextProps, nextState, 'type');
-    if (visible === nVisible) {
+    const { visible } = nextState;
+    if (typeof nextProps.visible !== 'undefined' || this.state.visible === visible) {
       return;
     }
-
-    this._animate(nVisible, nType, nextProps.transitionTimeout, nextProps.overlay, nextState.desktop);
+    const type = getField(nextProps, nextState, 'type');
+    this._animate(visible, type, nextProps.transitionTimeout, nextProps.overlay, nextState.desktop);
   }
 
   componentWillUnmount() {
@@ -376,7 +374,9 @@ export default class Drawer extends PureComponent {
       state.type = mobileType;
     }
 
-    if (getField(this.props, this.state, 'type') !== state.type && onMediaTypeChange) {
+    if (onMediaTypeChange && (getField(this.props, this.state, 'type') !== state.type
+        || ['mobile', 'tablet', 'desktop'].filter(key => state[key] !== this.state[key]).length)
+    ) {
       onMediaTypeChange(state.type, { mobile: state.mobile, tablet: state.tablet, desktop: state.desktop });
     }
 
@@ -388,8 +388,6 @@ export default class Drawer extends PureComponent {
     if (typeof props.visible === 'undefined' && isPermanent(type) !== getField(this.props, this.state, 'type')) {
       state.visible = isPermanent(type);
     }
-
-    state.drawerActive = state.drawerActive || isPermanent(type);
 
     this.setState(state);
   }
@@ -467,7 +465,7 @@ export default class Drawer extends PureComponent {
       position,
       renderNode,
       overlay,
-      closeOnNavItemClick,
+      autoclose,
       ...props,
     } = this.props;
     delete props.visible;
@@ -507,7 +505,7 @@ export default class Drawer extends PureComponent {
           className={cn('md-list--drawer', {
             'md-toolbar-relative': mini && !visible,
           }, navClassName)}
-          onClick={closeOnNavItemClick ? this._handleNavClick : null}
+          onClick={autoclose ? this._handleNavClick : null}
         >
           {navItems.map(mapToListParts)}
         </List>

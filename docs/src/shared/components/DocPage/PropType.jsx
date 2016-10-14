@@ -14,7 +14,12 @@ export default class PropType extends PureComponent {
 
     const markdown = `\`\`\`js\n${type + (required ? ' *' : '')}\n\`\`\``;
     return (
-      <TableColumn className="prop-type justified" tooltipLabel={required ? 'Required' : null} tooltipPosition="top" tooltipDelay={300}>
+      <TableColumn
+        className="prop-type"
+        tooltipLabel={required ? 'Required' : null}
+        tooltipPosition="top"
+        tooltipDelay={300}
+      >
         <Markdown markdown={markdown} />
       </TableColumn>
     );

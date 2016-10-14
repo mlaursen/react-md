@@ -64,8 +64,8 @@ export default class NewPageDemo extends PureComponent {
         <NavigationDrawer
           drawerTitle="Navigation Title"
           toolbarTitle="Main Toolbar Title"
-          tabletDrawerType={NavigationDrawer.DrawerType.PERSISTENT_MINI}
-          desktopDrawerType={NavigationDrawer.DrawerType.PERSISTENT_MINI}
+          tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+          desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
           navItems={navItems}
           toolbarChildren={
             <Button

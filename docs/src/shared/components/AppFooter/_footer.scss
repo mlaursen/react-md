@@ -5,32 +5,9 @@
   background: $md-grey-900;
   color: $md-white-base;
   min-height: $footer-min-height;
-  padding: 2em;
 
-  .md-title {
+  .md-title,
+  .md-body-2 {
     color: inherit;
   }
-
-  .container {
-    @extend %md-block-centered;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    > div {
-      padding-top: 2em;
-    }
-  }
-
-  .contact {
-    flex-shrink: 0;
-    padding-right: 2em;
-  }
-}
-
-.site-version {
-  padding: 2em;
-  text-align: right;
-  width: 100%;
 }

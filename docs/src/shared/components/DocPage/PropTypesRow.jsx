@@ -42,6 +42,7 @@ export default class PropTypeRow extends PureComponent {
       <TableRow autoAdjust={false}>
         <TableColumn
           className={cn('prop-name justified', {
+            'md-color--disabled': type === 'deprecated',
             'prop-name--deprecated': type === 'deprecated',
           })}
         >

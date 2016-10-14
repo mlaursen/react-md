@@ -5,29 +5,29 @@ import { connect } from 'react-redux';
 
 import { updateDrawerType } from 'actions/ui';
 
-const DrawerType = NavigationDrawer.DrawerType;
+const DrawerTypes = NavigationDrawer.DrawerTypes;
 
 const menuItems = [{
   label: 'Full Height',
-  value: DrawerType.FULL_HEIGHT,
+  value: DrawerTypes.FULL_HEIGHT,
 }, {
   label: 'Clipped',
-  value: DrawerType.CLIPPED,
+  value: DrawerTypes.CLIPPED,
 }, {
   label: 'Floating',
-  value: DrawerType.FLOATING,
+  value: DrawerTypes.FLOATING,
 }, {
   label: 'Persistent',
-  value: DrawerType.PERSISTENT,
+  value: DrawerTypes.PERSISTENT,
 }, {
   label: 'Persistent Mini',
-  value: DrawerType.PERSISTENT_MINI,
+  value: DrawerTypes.PERSISTENT_MINI,
 }, {
   label: 'Temporary',
-  value: DrawerType.TEMPORARY,
+  value: DrawerTypes.TEMPORARY,
 }, {
   label: 'Temporary Mini',
-  value: DrawerType.TEMPORARY_MINI,
+  value: DrawerTypes.TEMPORARY_MINI,
 }];
 
 function getLabel(drawerType) {

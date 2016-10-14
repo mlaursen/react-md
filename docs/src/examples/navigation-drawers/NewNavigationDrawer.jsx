@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons/Button';
-import NavDrawer from 'react-md/lib/NavigationDrawers/NavDrawer';
+import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import SelectField from 'react-md/lib/SelectFields';
 import Avatar from 'react-md/lib/Avatars';
 
@@ -86,19 +86,20 @@ export default class NewNavigationDrawer extends PureComponent {
     );
 
     const navDrawer = (
-      <NavDrawer
+      <NavigationDrawer
         navItems={this._navItems}
         renderNode={dialog}
         contentClassName="md-grid"
         drawerHeaderChildren={drawerHeaderChildren}
-        mobileDrawerType={NavDrawer.DrawerTypes.TEMPORARY_MINI}
-        tabletDrawerType={NavDrawer.DrawerTypes.PERSISTENT_MINI}
-        desktopDrawerType={NavDrawer.DrawerTypes.PERSISTENT_MINI}
+        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
+        tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
+        desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
         toolbarTitle="Hello, World!"
         toolbarActions={closeButton}
+        toolbarProminentTitle
       >
         <LoremIpsum key={key} className="md-text-container md-cell md-cell--12" count={20} />
-      </NavDrawer>
+      </NavigationDrawer>
     );
 
     let dialogChildren;

@@ -15,26 +15,30 @@ pre {
 }
 
 pre {
+  @include md-box-shadow(1);
+
+  background: get-color('card', false);
   overflow-x: auto;
+  padding: $md-default-padding;
 }
 
 .lang-css,
 .lang-scss,
 .lang-js,
 [class^='lang-'] {
-  color: $md-black-base;
+  color: $md-white-base;
+
+  .hljs-selector-class,
+  .hljs-attr,
+  .hljs-keyword {
+    color: $md-yellow-500;
+  }
 
   // scss-lint:disable SelectorFormat
   .hljs-built_in,
   .hljs-doctag,
   .hljs-meta {
     color: $md-red-900;
-  }
-
-  .hljs-selector-class,
-  .hljs-attr,
-  .hljs-keyword {
-    color: $md-deep-orange-900;
   }
 
   .hljs-variable,

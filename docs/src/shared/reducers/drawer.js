@@ -23,7 +23,7 @@ function handleLocationChange(state, pathname) {
   const toolbarTitle = getPageTitle(pathname);
   const isHome = pathname === '/';
 
-  const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerType;
+  const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerTypes;
   const themeable = !isHome && !isMobile() && !isTablet()
     && [PERSISTENT, PERSISTENT_MINI].indexOf(state.desktopDrawerType) === -1;
 

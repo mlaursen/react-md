@@ -46,8 +46,6 @@
   }
 
   .prop-type {
-    color: get-color('secondary', false);
-
     padding-right: 1em;
   }
 
@@ -59,16 +57,6 @@
 
   .prop-is-required {
     color: get-color('secondary', false);
-  }
-}
-
-.prop-description {
-  p {
-    margin: 0;
-  }
-
-  h5 {
-    @extend %md-subheading-2;
   }
 }
 

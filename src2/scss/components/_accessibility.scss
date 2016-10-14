@@ -10,7 +10,7 @@
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-accessibility;
-@mixin react-md-accessibility($include-media: $md-media-included) {
+@mixin react-md-accessibility {
   .md-fake-btn {
     background: transparent;
     position: relative;
@@ -25,23 +25,11 @@
     position: fixed;
   }
 
-  @if $include-media {
-    @include react-md-accessibility-media;
-  }
-}
-
-@mixin react-md-accessibility-desktop {
   .md-pointer--hover:hover {
     cursor: pointer;
   }
 
   .md-pointer--none {
     pointer-events: none;
-  }
-}
-
-@mixin react-md-accessibility-media {
-  @media #{$md-desktop-media} {
-    @include react-md-accessibility-desktop;
   }
 }

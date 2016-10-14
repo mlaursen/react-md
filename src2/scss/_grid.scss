@@ -328,7 +328,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
   }
 
   @for $i from 1 through $md-grid-max-columns {
-    .md-cell--order-#{$i}.md-cell--order-#{$i}-#{$media-type} {
+    .md-cell--order-#{$i}-#{$media-type}.md-cell--order-#{$i}-#{$media-type} {
       order: $i;
     }
   }
