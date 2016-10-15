@@ -7,6 +7,11 @@ import { mediaChange, setMobileSearch } from 'actions/ui';
 import AppFooter from 'components/AppFooter';
 import ThemeSwitcher from 'containers/ThemeSwitcher';
 
+const ADJUSTED_PAGES = [
+  '/getting-started/prerequisites',
+  '/discover-more/community',
+];
+
 @connect(({ ui: { drawer } }) => ({
   defaultMedia: drawer.initialDrawerType,
   toolbarTitle: drawer.toolbarTitle,
@@ -47,6 +52,7 @@ export default class App extends PureComponent {
       toolbarTitle,
     } = this.props;
 
+    const footerAdjusted = ADJUSTED_PAGES.indexOf(pathname) !== -1;
     return (
       <NavigationDrawer
         drawerTitle="react-md"
@@ -58,9 +64,10 @@ export default class App extends PureComponent {
         toolbarStyle={{ boxShadow: inactive ? 'none' : undefined }}
         drawerChildren={<h1>Helo, World!</h1>}
         navItems={getNavItems(pathname)}
+        contentStyle={{ position: footerAdjusted ? 'relative' : null }}
       >
         {children ? cloneElement(children, { key: pathname + 'woop' }) : null}
-        <AppFooter />
+        <AppFooter adjusted={footerAdjusted} />
       </NavigationDrawer>
     );
   }

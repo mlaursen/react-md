@@ -4,10 +4,18 @@
 .react-doc-footer {
   background: $md-grey-900;
   color: $md-white-base;
+  margin: 0 -8px;
   min-height: $footer-min-height;
 
   .md-title,
   .md-body-2 {
     color: inherit;
+  }
+
+  &--bottom-adjust {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
   }
 }

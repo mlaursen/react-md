@@ -3,9 +3,11 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import DialogFooter from '../Dialogs/DialogFooter';
 import TableColumn from './TableColumn';
 import TextField from '../TextFields';
+import FontIcon from '../FontIcons';
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
 
 /**
@@ -149,6 +151,14 @@ export default class EditDialogColumn extends PureComponent {
      * An optional placeholder for the text field.
      */
     placeholder: PropTypes.string,
+
+    /**
+     * Boolean if the text field should not appear in a dialog.
+     */
+    inline: invalidIf(PropTypes.bool, 'title', 'large'),
+
+    inlineIconChildren: PropTypes.node,
+    inlineIconClassName: PropTypes.string,
   };
 
   static contextTypes = {
@@ -164,6 +174,7 @@ export default class EditDialogColumn extends PureComponent {
     okOnOutsideClick: true,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
+    inlineIconChildren: 'edit',
   };
 
   constructor(props, context) {
@@ -246,6 +257,10 @@ export default class EditDialogColumn extends PureComponent {
       this.props.onFocus(e);
     }
 
+    if (this.props.inline) {
+      return;
+    }
+
     const state = { active: true };
     if (!this.state.active) {
       state.cancelValue = getField(this.props, this.state, 'value');
@@ -271,13 +286,14 @@ export default class EditDialogColumn extends PureComponent {
   }
 
   _overrideTab(e) {
-    const { large } = this.props;
+    const { large, inline } = this.props;
     const key = e.which || e.keyCode;
     if (key !== TAB) {
       return;
-    }
-
-    if (!large) {
+    } else if (inline) {
+      this._save(e);
+      return;
+    } else if (!large) {
       e.preventDefault();
       return;
     }
@@ -339,6 +355,9 @@ export default class EditDialogColumn extends PureComponent {
       large,
       label,
       placeholder,
+      inline,
+      inlineIconChildren,
+      inlineIconClassName,
       ...props,
     } = this.props;
 
@@ -354,7 +373,7 @@ export default class EditDialogColumn extends PureComponent {
 
     let actions;
     let largeTitle;
-    if (large && active) {
+    if (!inline && large && active) {
       actions = [{
         label: cancelLabel,
         onClick: this._handleCancelClick,
@@ -375,6 +394,18 @@ export default class EditDialogColumn extends PureComponent {
     }
 
     const pointer = cn({ 'md-pointer--hover': !active });
+    let inlineEditIcon;
+    if (inline) {
+      inlineEditIcon = (
+        <FontIcon
+          key="edit-icon"
+          style={{ marginBottom: 0 }}
+          iconClassName={inlineIconClassName}
+        >
+          {inlineIconChildren}
+        </FontIcon>
+      );
+    }
 
     return (
       <TableColumn
@@ -398,7 +429,7 @@ export default class EditDialogColumn extends PureComponent {
             label={active ? label : null}
             active={active}
             floating={active}
-            placeholder={active ? placeholder : label}
+            placeholder={active ? placeholder : placeholder || label}
             block={!active}
             paddedBlock={false}
             className={pointer}
@@ -408,6 +439,7 @@ export default class EditDialogColumn extends PureComponent {
             value={value}
             onChange={this._handleChange}
             maxLength={active ? maxLength : null}
+            rightIcon={inlineEditIcon}
           />
           {actions}
         </div>

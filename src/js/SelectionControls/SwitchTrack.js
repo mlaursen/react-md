@@ -16,7 +16,7 @@ export default class SwitchTrack extends PureComponent {
       <div
         {...props}
         className={cn('md-switch-track', {
-          'md-selection-control--cursor': !disabled,
+          'md-pointer--hover': !disabled,
           'md-switch-track--disabled': disabled,
           'md-switch-track--on': checked,
           'md-switch-track--off': !checked,

@@ -32,14 +32,14 @@ export default class ListItem extends PureComponent {
     /**
      * An optional style to apply to the `.md-list-tile`.
      *
-     * @see `component`
+     * @see component
      */
     tileStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the `.md-list-tile`.
      *
-     * @see `component`
+     * @see component
      */
     tileClassName: PropTypes.string,
 
@@ -447,6 +447,7 @@ export default class ListItem extends PureComponent {
             'md-list-tile--three-lines': secondaryText && threeLines,
             'md-list-item--inset': inset && !leftIcon && !leftAvatar,
           }, tileClassName)}
+          aria-expanded={nestedList ? isOpen : null}
         >
           {leftNode}
           <ListItemText

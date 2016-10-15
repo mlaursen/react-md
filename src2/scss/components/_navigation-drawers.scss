@@ -29,6 +29,16 @@ $md-cross-fade-distance: 16px !default;
     &--inactive {
       margin-left: 0;
     }
+
+    &--prominent-offset {
+      $height: calc(100vh - #{$md-toolbar-mobile-prominent-height});
+
+      @if $md-navigation-drawer-enforce-height {
+        height: $height;
+      } @else {
+        min-height: $height;
+      }
+    }
   }
 
   .md-title.md-title--permanent-offset {
@@ -54,6 +64,30 @@ $md-cross-fade-distance: 16px !default;
   }
 }
 
+@mixin react-md-navigation-drawers-mobile-portrait($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
+
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
+  }
+}
+
+@mixin react-md-navigation-drawers-mobile-landscape($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
+
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
+  }
+}
+
 @mixin react-md-navigation-drawers-tablet($enforce-height: $md-navigation-drawer-enforce-height) {
   .md-navigation-drawer-content {
     $height: calc(100vh - #{$md-toolbar-tablet-height});
@@ -62,16 +96,6 @@ $md-cross-fade-distance: 16px !default;
       height: $height;
     } @else {
       min-height: $height;
-    }
-
-    &--prominent-offset {
-      $height: calc(100vh - #{$md-toolbar-mobile-prominent-height});
-
-      @if $md-navigation-drawer-enforce-height {
-        height: $height;
-      } @else {
-        min-height: $height;
-      }
     }
   }
 
@@ -87,6 +111,14 @@ $md-cross-fade-distance: 16px !default;
 }
 
 @mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height) {
+  @media #{$md-mobile-portrait-media} {
+    @include react-md-navigation-drawers-mobile-portrait($enforce-height);
+  }
+
+  @media #{$md-mobile-landscape-media} {
+    @include react-md-navigation-drawers-mobile-landscape($enforce-height);
+  }
+
   @media #{$md-tablet-media} {
     @include react-md-navigation-drawers-tablet($enforce-height);
   }

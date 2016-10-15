@@ -21,6 +21,13 @@ marked.setOptions({
   },
 });
 
+function formatMarkdown(props) {
+  return marked(props.markdown.replace(/(\r?\n)(@see)/g, '$1$1$2'))
+    .replace(/<pre><code/g, '<pre class="code-block"><code')
+    .replace(/<ul/g, '<ul class="md-color--text"')
+    .replace(/<p>@see/g, '<p style="margin-bottom:0">@see');
+}
+
 export default class Markdown extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
@@ -36,12 +43,12 @@ export default class Markdown extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { markdown: marked(props.markdown) };
+    this.state = { markdown: formatMarkdown(props) };
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.markdown !== nextProps.markdown) {
-      this.setState({ markdown: marked(nextProps.markdown) });
+      this.setState({ markdown: formatMarkdown(nextProps) });
     }
   }
 

@@ -8,7 +8,7 @@ export default function invalidIf(validator, ...ifDefinedProps) {
       return err;
     }
 
-    const defined = typeof props[propName] !== 'undefined';
+    const defined = typeof props[propName] !== 'undefined' && !!props[propName];
     const othersDefined = ifDefinedProps.filter(name => typeof props[name] !== 'undefined' && !!props[name]);
     if (defined && othersDefined.length) {
       const names = `\`${othersDefined.join('`, `')}\``;

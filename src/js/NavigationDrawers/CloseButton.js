@@ -2,9 +2,23 @@ import React, { PureComponent, PropTypes } from 'react';
 
 import Button from '../Buttons/Button';
 
+/**
+ * A button used to close the persistent navigation drawer. The button will
+ * be generated based on the `NavigationDrawer`'s `contextTypes`.
+ *
+ * This component is really only used if you are using a `persistent` drawer and you
+ * manually created the `drawerHeader` for the `NavigationDrawer`.
+ */
 export default class CloseButton extends PureComponent {
   static propTypes = {
+    /**
+     * An optional className to apply.
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional additional function to call when the `click` event is triggered.
+     */
     onClick: PropTypes.func,
   };
 
@@ -14,11 +28,26 @@ export default class CloseButton extends PureComponent {
     onCloseClick: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _handleClick(e) {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
+
+    if (this.context.onCloseClick) {
+      this.context.onCloseClick(e);
+    }
+  }
+
   render() {
     const {
       closeIconClassName: iconClassName,
       closeChildren: children,
-      onCloseClick: onClick,
     } = this.context;
 
     return (
@@ -27,7 +56,7 @@ export default class CloseButton extends PureComponent {
         icon
         key="close"
         iconClassName={iconClassName}
-        onClick={onClick}
+        onClick={this._handleClick}
       >
         {children}
       </Button>

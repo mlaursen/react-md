@@ -11,14 +11,31 @@
 /// @see md-toolbar-z-index
 $md-drawer-z-index: 16 !default;
 
+/// The transiiton time for the drawer to enter or leave the view.
+/// @type Number
 $md-drawer-transition-time: $md-transition-time * 2 !default;
+
+/// The drawer's max width on mobile devices when positioned to the left of the screen.
+/// @type Number
 $md-drawer-mobile-max-width: 320px;
+
+/// The margin for the drawer on mobile devices when positioned to the left of the screen.
+/// @type Number
 $md-drawer-mobile-margin: 56px;
 
+/// The drawer's default width on tablet devices when positioned to the left of the screen.
+/// @type Number
 $md-drawer-tablet-width: 256px !default;
+
+/// The drawer's default width on desktop screens when positioned to the left o fthe screen.
+/// @type Number
 $md-drawer-desktop-width: $md-drawer-tablet-width !default;
+
+/// The drawer's max width on desktop screens when positioned to the left of the screen.
 $md-drawer-desktop-left-max-width: 400px;
 
+/// The default mini drawer width.
+/// @type Number
 $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
 
 
@@ -86,6 +103,18 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
   }
 }
 
+@mixin react-md-drawers-mobile-portrait {
+  .md-toolbar ~ .md-list--drawer {
+    height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
+  }
+}
+
+@mixin react-md-drawers-mobile-landscape {
+  .md-toolbar ~ .md-list--drawer {
+    height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
+  }
+}
+
 @mixin react-md-drawers-tablet {
   .md-drawer {
 
@@ -103,6 +132,10 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
   .md-drawer-relative {
     margin-left: $md-drawer-tablet-width;
   }
+
+  .md-toolbar ~ .md-list--drawer {
+    height: calc(100vh - #{$md-toolbar-tablet-height});
+  }
 }
 
 @mixin react-md-drawers-desktop {
@@ -118,6 +151,14 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
 @mixin react-md-drawers-media {
   @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
     @include react-md-drawers-mobile;
+  }
+
+  @media #{$md-mobile-portrait-media} {
+    @include react-md-drawers-mobile-portrait;
+  }
+
+  @media #{$md-mobile-landscape-media} {
+    @include react-md-drawers-mobile-landscape;
   }
 
   @media #{$md-tablet-media} {

@@ -1,60 +1,62 @@
 @import '~react-md-scss';
 
 %monospace {
-  font-family: 'Source Code Pro', monospace;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
 
 code,
 pre {
   @extend %monospace;
-  margin: 0;
 
   * {
     @extend %monospace;
   }
 }
 
-pre {
-  @include md-box-shadow(1);
+.example-code {
+  background: rgba($md-black-base, .06);
 
-  background: get-color('card', false);
+  .code-block {
+    background: transparent;
+  }
+}
+
+.code-block {
+  background: rgba($md-black-base, .06);
   overflow-x: auto;
   padding: $md-default-padding;
 }
 
-.lang-css,
-.lang-scss,
-.lang-js,
 [class^='lang-'] {
-  color: $md-white-base;
+  color: $md-black-base;
 
   .hljs-selector-class,
   .hljs-attr,
-  .hljs-keyword {
-    color: $md-yellow-500;
+  .hljs-keyword,
+  .hljs-subst {
+    color: $md-red-800;
   }
 
   // scss-lint:disable SelectorFormat
   .hljs-built_in,
   .hljs-doctag,
   .hljs-meta {
-    color: $md-red-900;
+    color: $md-blue-900;
   }
 
   .hljs-variable,
   .hljs-attribute,
   .hljs-class {
-    color: $md-deep-purple-900;
+    color: $md-deep-purple-800;
   }
 
   .hljs-string {
-    color: $md-green-900;
+    color: $md-green-700;
   }
 
   .hljs-comment {
-    color: get-color('text', true);
+    color: get-color('secondary', true);
   }
-
 }
 
 blockquote {

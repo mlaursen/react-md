@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react';
-import { CardText } from 'react-md/lib/Cards';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from 'react-md/lib/DataTables';
-import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
-import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
 import FontIcon from 'react-md/lib/FontIcons';
 import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
 import { sort } from 'utils/ListUtils';
+import TableControls from './TableControls';
 
 import movies from 'constants/movies';
 
@@ -14,15 +12,23 @@ export default class ComplexDataTableComments extends PureComponent {
     super(props);
 
     this.state = {
+      inline: false,
       large: false,
       sortedMovies: sort(movies, 'title', true).map(movie => ({ ...movie })),
+      sortedType: 'title',
       titleSorted: true,
       yearSorted: null,
       okOnOutsideClick: true,
     };
+
+    this._sort = this._sort.bind(this);
+    this._handleSortChange = this._handleSortChange.bind(this);
+    this._handleDialogChange = this._handleDialogChange.bind(this);
+    this._handleInlineChange = this._handleInlineChange.bind(this);
+    this._handleSaveChange = this._handleSaveChange.bind(this);
   }
 
-  sort = () => {
+  _sort() {
     const key = typeof this.state.titleSorted === 'boolean' ? 'title' : 'year';
     const sorted = !this.state[`${key}Sorted`];
 
@@ -30,84 +36,79 @@ export default class ComplexDataTableComments extends PureComponent {
       sortedMovies: sort(this.state.sortedMovies, key, sorted),
       [`${key}Sorted`]: sorted,
     });
-  };
+  }
 
-  handleSortTypeChange = (value) => {
+  _handleSortChange(value) {
     const key = value === 'year' ? 'title' : 'year';
     this.setState({
       [`${key}Sorted`]: null,
       [`${value}Sorted`]: true,
+      sortedType: value,
       sortedMovies: sort(this.state.sortedMovies, value, true),
     });
-  };
+  }
 
-  handleDialogSizeChange = () => {
-    this.setState({ large: !this.state.large });
-  };
+  _handleDialogChange(large) {
+    this.setState({ large });
+  }
 
-  handleOutsideClickChange = () => {
-    this.setState({ okOnOutsideClick: !this.state.okOnOutsideClick });
-  };
+  _handleInlineChange(inline) {
+    this.setState({ inline });
+  }
+
+  _handleSaveChange(okOnOutsideClick) {
+    this.setState({ okOnOutsideClick });
+  }
 
   render() {
-    const { sortedMovies, titleSorted, yearSorted, large, okOnOutsideClick } = this.state;
+    const {
+      sortedMovies,
+      titleSorted,
+      yearSorted,
+      sortedType,
+      large,
+      inline,
+      okOnOutsideClick,
+    } = this.state;
+
+    const label = 'Add a comment';
+
     const rows = sortedMovies.map(({ title, year }) => {
       return (
         <TableRow key={title}>
           <TableColumn>{title}</TableColumn>
           <TableColumn numeric>{year}</TableColumn>
           <EditDialogColumn
-            label="Add a comment"
-            maxLength={140}
-            title="Add a comment"
-            large={large}
+            label={inline ? null : label}
+            placeholder={label}
+            maxLength={inline ? null : 140}
+            title={inline ? null : 'Add some comment'}
+            large={inline ? null : large}
             okOnOutsideClick={okOnOutsideClick}
+            inline={inline}
           />
         </TableRow>
       );
     });
 
-    const controls = [{
-      label: 'Sort by movie title',
-      value: 'title',
-    }, {
-      label: 'Sort by movie year',
-      value: 'year',
-    }];
-
     return (
       <div>
-        <CardText className="table-controls">
-          <SelectionControlGroup
-            id="complexControl"
-            name="complex-controls"
-            type="radio"
-            label="Table Props"
-            onChange={this.handleSortTypeChange}
-            controls={controls}
-          />
-          <SelectionControl
-            type="switch"
-            id="useEditDialog"
-            label="Use large Edit Dialog"
-            name="edit-dialog"
-            onChange={this.handleDialogSizeChange}
-          />
-          <SelectionControl
-            type="switch"
-            id="saveOnOutside"
-            label="Save comment on outside click"
-            name="save-on-outside"
-            checked={okOnOutsideClick}
-            onChange={this.handleOutsideClickChange}
-          />
-        </CardText>
+        <TableControls
+          sorted={sortedType}
+          onSortChange={this._handleSortChange}
+          dialogChecked={large}
+          onDialogChange={this._handleDialogChange}
+          inlineChecked={inline}
+          onInlineChange={this._handleInlineChange}
+          saveChecked={okOnOutsideClick}
+          onSaveChange={this._handleSaveChange}
+        />
         <DataTable className="complex-table" baseId="complex">
           <TableHeader>
             <TableRow>
               <TableColumn
                 sorted={titleSorted}
-                onClick={typeof titleSorted === 'boolean' ? this.sort : null}
+                onClick={typeof titleSorted === 'boolean' ? this._sort : null}
                 tooltipLabel="The movie's title"
               >
                 Title
@@ -115,7 +116,7 @@ export default class ComplexDataTableComments extends PureComponent {
               <TableColumn
                 numeric
                 sorted={yearSorted}
-                onClick={typeof yearSorted === 'boolean' ? this.sort : null}
+                onClick={typeof yearSorted === 'boolean' ? this._sort : null}
                 tooltipLabel="The year the movie was released"
               >
                 Year
