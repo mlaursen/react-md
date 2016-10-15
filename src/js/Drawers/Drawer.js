@@ -174,7 +174,9 @@ export default class Drawer extends PureComponent {
     onMediaTypeChange: PropTypes.func,
 
     /**
-     * The default drawer type to display on initial render.
+     * The default drawer type to display on initial render. The drawer will automatically
+     * adjust itself to the correct media once it has mounted. This prop is really only useful
+     * for server side rendering.
      */
     defaultMedia: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
 
@@ -427,7 +429,12 @@ export default class Drawer extends PureComponent {
 
     let { target } = e;
     while (target && this._navigation.contains(target)) {
-      if (target.classList.contains('md-list-item')) {
+      if (target.classList.contains('md-list-tile')) {
+        // Clicked a nav item that has a nested list
+        if (target.getAttribute('aria-expanded') !== null) {
+          return;
+        }
+
         this._closeTimeout = setTimeout(() => {
           this._closeTimeout = null;
 

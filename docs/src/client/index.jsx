@@ -11,7 +11,7 @@ import Root from './Root';
 
 WebFont.load({
   google: {
-    families: ['Roboto:300,400,500,700', 'Material Icons', 'Source Code Pro'],
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
   },
   custom: {
     families: ['FontAwesome'],

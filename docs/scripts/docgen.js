@@ -52,6 +52,7 @@ const docgens = {};
   'Menus/Menu',
   'Menus/MenuButton',
   'NavigationDrawers/NavigationDrawer',
+  'NavigationDrawers/CloseButton',
   'Papers/Paper',
   'Pickers/DatePickerContainer',
   'Pickers/TimePickerContainer',

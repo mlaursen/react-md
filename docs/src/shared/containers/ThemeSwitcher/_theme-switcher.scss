@@ -16,6 +16,38 @@
       .price::before {
         color: get-color('text', false);
       }
+
+      .prop-type [class^='lang-'] {
+        color: get-color('text', false);
+      }
+
+      [class^='lang-'] {
+        color: $md-white-base;
+
+        .hljs-comment {
+          color: get-color('secondary', false);
+        }
+
+        .hljs-selector-class,
+        .hljs-attr,
+        .hljs-keyword {
+          color: $md-red-500;
+          font-weight: bold;
+        }
+
+        // scss-lint:disable SelectorFormat
+        .hljs-built_in,
+        .hljs-doctag,
+        .hljs-meta {
+          color: $md-blue-900;
+        }
+
+        .hljs-variable,
+        .hljs-attribute,
+        .hljs-class {
+          color: $md-purple-300;
+        }
+      }
     }
   }
 

@@ -698,12 +698,13 @@ $md-line-height: 20 / $md-font-size-base !default;
       }
 
       @if $extend-html-tags {
+        h5,
         h4,
         h3,
         h2,
         h1,
         p {
-          color: get-color('secondary', $light-theme);
+          color: get-color('text', $light-theme);
         }
 
         h1,

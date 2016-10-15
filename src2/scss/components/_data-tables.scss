@@ -294,6 +294,14 @@ $md-data-table-pagination-margin: 32px;
     .md-dialog-footer {
       margin-right: -$md-data-table-padding;
     }
+
+    .md-text-field-container {
+      padding: 0;
+    }
+
+    .md-text-field-icon-container {
+      align-items: center;
+    }
   }
 }
 

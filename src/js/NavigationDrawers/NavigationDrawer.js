@@ -369,6 +369,7 @@ export default class NavigationDrawer extends PureComponent {
      * the list, it will extract the `leftIcon` or `leftAvatar` from the `navItem` and then create a
      * mini `ListItem` containing only that icon or image. Any other event listeners will also be applied.
      *
+     *
      * @see miniDrawerHeader
      * @see miniDrawerChildren
      */
@@ -413,20 +414,96 @@ export default class NavigationDrawer extends PureComponent {
      * @see [toolbars](/components/toolbars#prop-types-toolbar)
      */
     toolbarThemeType: PropTypes.oneOf(['default', 'colored', 'themed']).isRequired,
+
+    /**
+     * Boolean if the toolbar's nav, actions, and title should share the same color.
+     */
     toolbarSingleColor: PropTypes.bool,
+
+    /**
+     * A boolean if the toolbar should be prominent.
+     */
     toolbarProminent: PropTypes.bool,
+
+    /**
+     * A boolean if the toolbar's title should be prominent.
+     */
     toolbarProminentTitle: PropTypes.bool,
+
+    /**
+     * A list of elements or a single element to display to the right of the
+     * toolbar's nav, title, and children.
+     *
+     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     */
     toolbarActions: Toolbar.propTypes.actions,
+
+    /**
+     * The component to render the content in.
+     */
     contentComponent: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+
+    /**
+     * An optional footer display after the main content.
+     */
+    footer: PropTypes.node,
+
+    /**
+     * Any children used to render a button that will toggle the visibility of the
+     * navigation drawer for `temporary` and `persistent` drawers. This is normally a
+     * hamburger menu.
+     */
     temporaryIconChildren: PropTypes.node,
+
+    /**
+     * The icon className used to render a button that will toggle the visibility of the
+     * navigation drawer for `temporary` and `persistent` drawers. This is normally a
+     * hamburger menu.
+     */
     temporaryIconClassName: PropTypes.string,
+
+    /**
+     * Any children used to render a button that appears on a persistent drawer's open
+     * header. This is used to create the `CloseButton` for drawers. When a persistent
+     * drawer is closed, the `temporaryIconChildren` and `temporaryIconClassName` props
+     * will be used to create a button to open the drawer.
+     *
+     * If the `drawerHeader` prop is defined, you will have to either include the `CloseButton`
+     * in your header manually, or create your own controlled button to close the drawer.
+     */
     persistentIconChildren: PropTypes.node,
+
+    /**
+     * The icon classNameused to render a button that appears on a persistent drawer's open
+     * header. This is used to create the `CloseButton` for drawers. When a persistent
+     * drawer is closed, the `temporaryIconChildren` and `temporaryIconClassName` props
+     * will be used to create a button to open the drawer.
+     *
+     * If the `drawerHeader` prop is defined, you will have to either include the `CloseButton`
+     * in your header manually, or create your own controlled button to close the drawer.
+     */
     persistentIconClassName: PropTypes.string,
-    transitionName: PropTypes.string,
+
+    /**
+     * The transition name to use when the page's content changes. If you want to disable
+     * transitions, set both the `transitionEnterTimeout` and `transitionLeaveTimeout` props
+     * to a false-ish value. (`null`, `undefined`, or `0`).
+     */
+    transitionName: PropTypes.string.isRequired,
+
+    /**
+     * The transition enter timeout when the page's content changes. If you want to disable
+     * the enter transition, set this to a false-ish value (`null`, `undefined`, or `0`).
+     */
     transitionEnterTimeout: PropTypes.number,
+
+    /**
+     * The transition leave timeout when the page's content changes. If you want to disable
+     * the leave transition, set this to a false-ish value (`null`, `undefined`, or `0`).
+     */
     transitionLeaveTimeout: PropTypes.number,
 
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
@@ -592,6 +669,7 @@ export default class NavigationDrawer extends PureComponent {
       temporaryIconClassName,
       menuIconChildren,
       menuIconClassName,
+      footer,
       ...props,
     } = this.props;
     delete props.drawerType;
@@ -638,10 +716,11 @@ export default class NavigationDrawer extends PureComponent {
         <Toolbar
           key="drawer-header"
           title={drawerTitle}
-          children={drawerHeaderChildren}
           actions={visible && nav ? closeButton : null}
           className="md-divider-border md-divider-border--bottom"
-        />
+        >
+          {drawerHeaderChildren}
+        </Toolbar>
       );
     }
 
@@ -724,6 +803,7 @@ export default class NavigationDrawer extends PureComponent {
         >
           {children}
         </CSSTransitionGroup>
+        {footer}
       </div>
     );
   }

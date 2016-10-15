@@ -71,7 +71,7 @@ export default class TextFieldMessage extends PureComponent {
     } = this.props;
     const { isMessageVisible, message } = this.state;
 
-    if (typeof currentLength === 'undefined' || (!helpText && !errorText && typeof maxLength === 'undefined')) {
+    if (currentLength === 'undefined' || (!helpText && !errorText && !maxLength)) {
       return null;
     }
 
