@@ -100,7 +100,7 @@ export default class MiniListItem extends PureComponent {
         <AccessibleFakeInkedButton
           {...props}
           style={tileStyle}
-          className={cn('md-list-tile md-list-tile--icon', {
+          className={cn('md-list-tile md-list-tile--icon md-list-tile--mini', {
             'md-list-tile--active': this.state.active && !this._touched,
           }, tileClassName)}
           onMouseOver={this._handleMouseOver}

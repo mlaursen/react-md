@@ -406,6 +406,7 @@ export default class Drawer extends PureComponent {
         this.setState({
           overlayActive: overlay || (isTemporary(type) && !desktop),
           drawerActive: true,
+          animating: true,
         });
       }, 17);
     } else {
@@ -553,7 +554,7 @@ export default class Drawer extends PureComponent {
         {children}
         <Portal visible={(overlay || temporary) && (animating || visible)} renderNode={renderNode}>
           <div
-            className={cn('md-overlay md-pointer--hover', {
+            className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
               'md-overlay--active': overlayActive,
             })}
             onClick={this._closeDrawer}

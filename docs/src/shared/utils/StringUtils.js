@@ -332,3 +332,12 @@ export function getAdditionalPropTypeDescriptions(propType, propName) {
     return prev + `\`${propName}\`: ${description}\n\n`;
   }, '\n\n');
 }
+
+const NUMBER_WORDS = [
+  'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven',
+  'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen',
+];
+
+export function numberToString(number) {
+  return NUMBER_WORDS[number];
+}

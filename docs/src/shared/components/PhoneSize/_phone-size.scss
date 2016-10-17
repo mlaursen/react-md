@@ -161,6 +161,7 @@ $phone-status-bar-height: 24px;
 @media #{$md-desktop-media} {
   .phone-size-container {
     @include react-md-typography-mobile;
+    @include react-md-tabs-mobile;
     @include react-md-text-fields-mobile;
     @include react-md-text-field-custom-sizes;
     @include react-md-lists-mobile;

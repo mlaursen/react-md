@@ -20,6 +20,8 @@ export default class PhoneSize extends PureComponent {
     iconLeft: PropTypes.node,
     contentClassName: PropTypes.string,
     toolbar: PropTypes.bool,
+    toolbarProminent: PropTypes.bool,
+    toolbarProminentTitle: PropTypes.bool,
     toolbarActions: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.arrayOf(PropTypes.element),
@@ -46,6 +48,8 @@ export default class PhoneSize extends PureComponent {
       contentClassName,
       toolbar,
       toolbarActions,
+      toolbarProminent,
+      toolbarProminentTitle,
       iconLeft,
       mobile,
       tablet,
@@ -74,6 +78,8 @@ export default class PhoneSize extends PureComponent {
         <Toolbar
           title={title}
           colored
+          prominent={toolbarProminent}
+          prominentTitle={toolbarProminentTitle}
           nav={<CloseButton icon>{iconLeft}</CloseButton>}
           actions={toolbarActions}
           className="md-toolbar--fixed-phone"

@@ -1,0 +1,126 @@
+////
+/// @group tabs
+////
+
+$md-tab-height: 48px;
+$md-tab-icon-height: 72px;
+$md-tab-max-width: 264px;
+$md-tab-indicator-height: 2px;
+$md-tab-indicator-transition-time: $md-transition-time * 2 !default;
+$md-tab-multiline-font-size: 12px;
+$md-tab-padding: 12px;
+$md-tab-single-line-padding-bottom: 20px;
+$md-tab-icon-padding-bottom: 16px;
+
+$md-tab-mobile-min-width: 72px;
+$md-tab-mobile-font-size: 14px;
+
+$md-tab-desktop-font-size: 13px;
+$md-tab-desktop-min-width: 160px;
+$md-tab-desktop-padding: 24px;
+
+
+
+@mixin react-md-tabs($secondary-color: $md-secondary-color, $include-media: $md-media-included) {
+  .md-tabs {
+    @extend %md-list-unstyled;
+
+    display: flex;
+    position: relative;
+
+    &.md-background--primary {
+      .md-ink {
+        background: rgba($md-white-base, .12);
+      }
+    }
+  }
+
+  @include react-md-tabs-tab;
+  @include react-md-tabs-indicator;
+
+  @if $include-media {
+    @include react-md-tabs-media;
+  }
+}
+
+@mixin react-md-theme-tabs($secondary-color: $md-secondary-color) {
+  @if $secondary-color != $md-secondary-color {
+    .md-tab-indicator {
+      background: $secondary-color;
+    }
+  }
+}
+
+@mixin react-md-tabs-tab {
+  .md-tab {
+    flex-grow: 1;
+    font-weight: $md-font-medium;
+    height: $md-tab-height;
+    overflow: hidden;
+    padding: $md-tab-padding;
+    padding-bottom: $md-tab-single-line-padding-bottom;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    &--multiline {
+      font-size: $md-tab-multiline-font-size;
+      padding-bottom: $md-tab-padding;
+    }
+
+    &--icon {
+      height: $md-tab-icon-height;
+      padding-bottom: $md-tab-icon-padding-bottom;
+    }
+
+    &--inactive {
+      color: get-color('secondary', false);
+    }
+
+    .md-icon {
+      color: inherit;
+    }
+  }
+}
+
+@mixin react-md-tabs-indicator($secondary-color: $md-secondary-color) {
+  .md-tab-indicator {
+    bottom: 0;
+    content: '';
+    height: $md-tab-indicator-height;
+    left: 0;
+    position: absolute;
+    transition-duration: $md-tab-indicator-transition-time;
+    transition-property: transform, width;
+  }
+}
+
+@mixin react-md-tabs-mobile {
+  .md-tab {
+    font-size: $md-tab-mobile-font-size;
+    min-width: $md-tab-mobile-min-width;
+  }
+}
+
+@mixin react-md-tabs-desktop {
+  .md-tab {
+    font-size: $md-tab-desktop-font-size;
+    min-width: $md-tab-desktop-min-width;
+    padding-left: $md-tab-desktop-padding;
+    padding-right: $md-tab-desktop-padding;
+
+    &--first {
+      padding-left: 80px;
+    }
+  }
+}
+
+@mixin react-md-tabs-media {
+  @media #{$md-mobile-media} {
+    @include react-md-tabs-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-tabs-desktop;
+  }
+}

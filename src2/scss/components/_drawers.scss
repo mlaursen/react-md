@@ -23,6 +23,8 @@ $md-drawer-mobile-max-width: 320px;
 /// @type Number
 $md-drawer-mobile-margin: 56px;
 
+$md-drawer-mobile-mini-width: $md-font-icon-size + 24px !default;
+
 /// The drawer's default width on tablet devices when positioned to the left of the screen.
 /// @type Number
 $md-drawer-tablet-width: 256px !default;
@@ -36,7 +38,7 @@ $md-drawer-desktop-left-max-width: 400px;
 
 /// The default mini drawer width.
 /// @type Number
-$md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
+$md-drawer-desktop-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
 
 
 @mixin react-md-drawers($include-media: $md-media-included) {
@@ -71,10 +73,6 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
     &--active {
       transform: translate3d(0, 0, 0);
     }
-
-    &--mini {
-      width: $md-drawer-mini-width;
-    }
   }
 
   .md-list--drawer {
@@ -82,8 +80,8 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
     overflow-y: auto;
   }
 
-  .md-drawer-relative--mini.md-drawer-relative--mini {
-    margin-left: $md-drawer-mini-width;
+  .md-overlay--drawer.md-overlay--drawer {
+    transition-duration: $md-drawer-transition-time;
   }
 }
 
@@ -100,6 +98,19 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
       transform: translate3d(100vw, 0, 0);
       width: 100vw;
     }
+
+    &--mini {
+      width: $md-drawer-mobile-mini-width;
+    }
+  }
+
+  .md-list-tile--mini.md-list-tile--mini {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .md-drawer-relative--mini.md-drawer-relative--mini {
+    margin-left: $md-drawer-mobile-mini-width;
   }
 }
 
@@ -139,12 +150,31 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
 }
 
 @mixin react-md-drawers-desktop {
-  .md-drawer--left {
-    width: $md-drawer-desktop-width;
+  $diff-width: $md-drawer-tablet-width != $md-drawer-desktop-width;
+
+  .md-drawer {
+    @if $diff-width {
+      width: $md-drawer-desktop-width;
+    }
+
+    &--mini {
+      width: $md-drawer-desktop-mini-width;
+    }
   }
 
-  .md-drawer-relative {
-    margin-left: $md-drawer-desktop-width;
+  .md-list-tile--mini {
+    padding-left: $md-default-padding;
+    padding-right: $md-default-padding;
+  }
+
+  @if $diff-width {
+    .md-drawer-relative {
+      margin-left: $md-drawer-desktop-width;
+    }
+  }
+
+  .md-drawer-relative--mini.md-drawer-relative--mini {
+    margin-left: $md-drawer-mobile-mini-width;
   }
 }
 
@@ -165,7 +195,7 @@ $md-drawer-mini-width: $md-font-icon-size + $md-default-padding * 2 !default;
     @include react-md-drawers-tablet;
   }
 
-  @if $md-drawer-desktop-width != $md-drawer-tablet-width {
+  @media #{$md-desktop-media} {
     @include react-md-drawers-desktop;
   }
 }
