@@ -105,3 +105,89 @@
 .md-tab-content-container .md-swipeable-item:not(.swiping) {
   transition-duration: $md-tab-indicator-transition-time;
 }
+
+
+/// Themes the tabs with the given colors
+/// @example scss - Example Basic Usage SASS
+///   .md-primary {
+///     $primary: $md-cyan-500;
+///     $secondary: $md-yellow-a-200;
+///     @include md-theme-tabs($primary, $secondary);
+///    }
+///
+/// @example scss - Example Basic Usage CSS Output
+///   .md-primary.md-tabs-scroll-container {
+///     background: #00bcd4;
+///   }
+///
+///   .md-primary.md-tabs-scroll-container .md-tab {
+///     color: rgba(#fff, .7);
+///   }
+///
+///  .md-primary.md-tabs-scroll-container .md-tab.active {
+///    color: #fff;
+///  }
+///
+///  .md-primary.md-tabs-scroll-container .md-tab-indicator {
+///    background: #ffea00;
+///  }
+///
+///  .md-primary.md-tabs-scroll-container .md-ink {
+///    background: rgba(#fff, .15);
+///  }
+///
+/// @param {String} $primary-color - The primary color to use for a tab
+/// @param {String} $secondary-color - The secondary color to use for a tab
+/// @group tabs
+@mixin md-theme-tabs($primary-color, $secondary-color) {
+  &.md-tabs-scroll-container {
+    background: $primary-color;
+
+    .md-tab {
+      color: $md-dark-theme-secondary-text-color;
+
+      &.active {
+        color: $md-dark-theme-text-color;
+      }
+    }
+
+    .md-tab-indicator {
+      background: $secondary-color;
+    }
+  }
+}
+
+/// Adds additional css for the material design tabs for a mobile device
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 0px) and (max-width: 599px) {
+///     @include md-tab-mobile();
+///   }
+///
+/// @group tabs
+@mixin md-tab-mobile() {
+  .md-tab {
+    font-size: $md-tab-mobile-font-size;
+    min-width: $md-tab-mobile-min-width;
+  }
+}
+
+/// Adds additional css for the material design tabs for a desktop
+///
+/// @example scss - Example Usage SASS
+///   @media only screen and (min-width: 600px) {
+///     @include md-tab-desktop();
+///   }
+///
+/// @group tabs
+@mixin md-tab-desktop() {
+  .md-tab {
+    font-size: $md-tab-desktop-font-size;
+    min-width: $md-tab-desktop-min-width;
+  }
+
+  .md-tab-label {
+    padding: $md-tab-desktop-padding;
+  }
+}
+

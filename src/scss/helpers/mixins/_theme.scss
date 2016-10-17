@@ -10,9 +10,4 @@
 /// @group colors
 @mixin md-theme-most($primary: $md-primary-color, $primary-hue-1: $md-primary-color-hue-1, $secondary: $md-secondary-color, $secondary-hue-1: $md-secondary-color-hue-1) {
   @include md-theme-bottom-navigations($primary);
-  @include md-theme-navigation-drawers($primary);
-
-  .md-primary {
-    @include md-theme-tabs($primary, $secondary);
-  }
 }

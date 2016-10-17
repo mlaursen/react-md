@@ -3,6 +3,15 @@ import loremIpsum from 'lorem-ipsum';
 
 /* eslint-disable react/no-danger */
 
+function makeLorem({ count, units, paragraphClassName }) {
+  const ipsum = loremIpsum({ count, units, format: 'html' });
+  if (!paragraphClassName) {
+    return ipsum;
+  }
+
+  return ipsum.replace(/<p/g, `<p class="${paragraphClassName}"`);
+}
+
 export default class LoremIpsum extends PureComponent {
   static propTypes = {
     component: PropTypes.oneOfType([
@@ -19,15 +28,24 @@ export default class LoremIpsum extends PureComponent {
     units: 'paragraphs',
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { lorem: makeLorem(props) };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.count !== nextProps.count || this.props.units !== nextProps.units) {
+      this.setState({ lorem: makeLorem(nextProps) });
+    }
+  }
+
   render() {
-    const { component: Component, count, units, ...props } = this.props;
-    return (
-      <Component
-        {...props}
-        dangerouslySetInnerHTML={{
-          __html: loremIpsum({ count, units, format: 'html' }),
-        }}
-      />
-    );
+    const { lorem } = this.state;
+    const { component: Component, ...props } = this.props;
+    delete props.count;
+    delete props.units;
+
+    return <Component {...props} dangerouslySetInnerHTML={{ __html: lorem }} />;
   }
 }

@@ -1,86 +1,58 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import injectInk from '../Inks';
 
-/**
- * The `Tab` component should be rendered inside the `Tabs` component.
- * It is used for generating a tab and holding some sort of content
- * to be displayed when active.
- */
-class Tab extends PureComponent {
+import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
+
+export default class Tab extends PureComponent {
   static propTypes = {
-    /**
-     * An optional className to apply.
-     */
+    style: PropTypes.object,
     className: PropTypes.string,
-
-    /**
-     * The content to display when the tab is active.
-     */
+    label: PropTypes.node,
+    icon: PropTypes.node,
+    onClick: PropTypes.func,
     children: PropTypes.node,
 
-    /**
-     * An optional icon to display in the tab.
-     */
-    icon: PropTypes.node,
-
-    /**
-     * An optional label to display in the tab.
-     */
-    label: PropTypes.string,
-
-    /**
-     * An optional second line label to display in the tab.
-     */
-    label2: PropTypes.string,
-
-    /**
-     * Boolean if the Tab is currently active. This is managed by the
-     * `Tabs` component.
-     */
-    checked: PropTypes.bool,
-
-    /**
-     * A function to call when the tab is clicked. This is managed by the
-     * `Tabs` component.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * An optional id for the tab.
-     */
-    id: PropTypes.string,
+    active: PropTypes.bool,
+    index: PropTypes.number,
+    onTabClick: PropTypes.func,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _handleClick(e) {
+    const { index, onTabClick, onClick, children } = this.props;
+    if (onClick) {
+      onClick(index, e);
+    }
+
+    if (onTabClick) {
+      onTabClick(index, children, e);
+    }
+  }
+
   render() {
-    const { className, icon, label, label2, checked, onChange, id, ...props } = this.props;
+    const { className, label, icon, active, index, ...props } = this.props;
+    delete props.onTabClick;
 
     return (
-      <div
-        className={cn('md-tab', className, { 'active': checked })}
+      <AccessibleFakeInkedButton
         {...props}
+        onClick={this._handleClick}
+        className={cn('md-tab', {
+          'md-tab--first': index === 0,
+          'md-tab--active': active,
+          'md-tab--inactive': !active,
+          'md-tab--icon': label && icon,
+        }, className)}
       >
-        <label
-          className={cn('md-tab-label', {
-            'multiline': !!label && !!label2,
-            'with-icon': !!label && !!icon,
-          })}
-          htmlFor={id}
-        >
-          {icon}
-          {label && <div>{label}</div>}
-          {label2 && <div>{label2}</div>}
-          <input
-            id={id}
-            type="radio"
-            className="md-tab-control"
-            checked={checked}
-            onChange={onChange}
-          />
-        </label>
-      </div>
+        {icon}
+        {label ? <div>{label}</div> : null}
+      </AccessibleFakeInkedButton>
     );
   }
 }
-
-export default injectInk(Tab);

@@ -34,6 +34,7 @@
 @import 'components/sliders';
 @import 'components/snackbars';
 @import 'components/subheaders';
+@import 'components/tabs';
 @import 'components/text-fields';
 @import 'components/toolbars';
 @import 'components/tooltips';
@@ -81,6 +82,7 @@
   @include react-md-sliders;
   @include react-md-subheaders;
   @include react-md-snackbars;
+  @include react-md-tabs;
   @include react-md-text-fields;
   @include react-md-toolbars;
   @include react-md-tooltips;
@@ -167,6 +169,7 @@
       @include react-md-theme-progress($secondary-color, $progress-swatch);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
       @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+      @include react-md-theme-tabs($secondary-color);
       @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
       @include react-md-theme-toolbars($light-theme);
 
@@ -187,6 +190,7 @@
     @include react-md-theme-progress($secondary-color, $progress-swatch);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
     @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+    @include react-md-theme-tabs($secondary-color);
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     @include react-md-theme-toolbars($light-theme);
 

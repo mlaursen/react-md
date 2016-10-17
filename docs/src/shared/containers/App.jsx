@@ -12,12 +12,15 @@ const ADJUSTED_PAGES = [
   '/discover-more/community',
 ];
 
-@connect(({ ui: { drawer } }) => ({
+@connect(({ ui: { drawer, media } }) => ({
   defaultMedia: drawer.initialDrawerType,
   toolbarTitle: drawer.toolbarTitle,
   tabletDrawerType: drawer.tabletDrawerType,
   desktopDrawerType: drawer.desktopDrawerType,
   inactive: drawer.inactive,
+  mobile: media.mobile,
+  tablet: media.tablet,
+  desktop: media.desktop,
 }), { mediaChange, setMobileSearch })
 export default class App extends PureComponent {
   static propTypes = {
@@ -33,12 +36,25 @@ export default class App extends PureComponent {
     inactive: PropTypes.bool.isRequired,
     tabletDrawerType: PropTypes.string.isRequired,
     desktopDrawerType: PropTypes.string.isRequired,
+    mobile: PropTypes.bool.isRequired,
+    tablet: PropTypes.bool.isRequired,
+    desktop: PropTypes.bool.isRequired,
+    mediaChange: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {};
+  }
+
+  componentDidMount() {
+    this.props.mediaChange();
+    window.addEventListener('resize', this.props.mediaChange);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.props.mediaChange);
   }
 
   render() {
@@ -50,9 +66,10 @@ export default class App extends PureComponent {
       tabletDrawerType,
       desktopDrawerType,
       toolbarTitle,
+      tablet,
     } = this.props;
 
-    const footerAdjusted = ADJUSTED_PAGES.indexOf(pathname) !== -1;
+    const footerAdjusted = ADJUSTED_PAGES[0] === pathname && tablet || ADJUSTED_PAGES[1] === pathname;
     return (
       <NavigationDrawer
         drawerTitle="react-md"
