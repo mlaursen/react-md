@@ -22,20 +22,20 @@ Here is an example application that only uses `DatePickers`, `Buttons`, `TextFie
 @import '~react-md/src/scss/components/pickers';
 @import '~react-md/src/scss/components/text-fields';
 
-@media only screen and (orientation: portrait) and (max-width: 599px) {
+@media screen and (orientation: portrait) and (max-width: 599px) {
   @include md-pickers-portrait();
 }
 
-@media only screen and (orientation: portrait) and (max-width: 599px) {
+@media screen and (orientation: portrait) and (max-width: 599px) {
   @include md-pickers-landscape();
 }
 
-@media only screen and (min-width: 0) and (max-width: 599px) {
+@media screen and (min-width: 0) and (max-width: 599px) {
   @include md-lists-desktop();
   @include md-text-field-mobile();
 }
 
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
   @include md-lists-desktop();
   @include md-text-field-desktop();
   @include md-pickers-landscape();

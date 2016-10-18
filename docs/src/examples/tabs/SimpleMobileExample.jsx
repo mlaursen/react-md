@@ -16,15 +16,16 @@ const toolbarActions = [
 const tabs = [{
   label: 'Recents',
   icon: <FontIcon>phone</FontIcon>,
-  children: <LoremIpsum key="recent" className="md-grid" />,
+  children: <LoremIpsum key="recent" className="md-cell md-cell--12" count={20} />,
 }, {
   label: 'Favorites',
+  // Its width is off for some reason
   icon: <FontIcon style={{ width: 24 }}>favorites</FontIcon>,
-  children: <LoremIpsum key="favorites" className="md-grid" />,
+  children: <LoremIpsum key="favorites" className="md-cell md-cell--12" count={20} />,
 }, {
   label: 'Nearby',
   icon: <FontIcon>person</FontIcon>,
-  children: <LoremIpsum key="nearby" className="md-grid" />,
+  children: <LoremIpsum key="nearby" className="md-cell md-cell--12" count={20} />,
 }];
 
 export default class SimpleMobileExample extends PureComponent {
@@ -41,6 +42,23 @@ export default class SimpleMobileExample extends PureComponent {
       content: tabs[0].children,
     };
     this._handleChange = this._handleChange.bind(this);
+    this._setTabs = this._setTabs.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+  }
+
+  _setTabs(tabs) {
+    if (tabs) {
+      // Have to wait for the mobile hacking styles to load
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+        tabs._positionElements();
+      }, 300);
+    }
   }
 
   _handleChange(activeTabIndex, content) {
@@ -50,9 +68,15 @@ export default class SimpleMobileExample extends PureComponent {
   render() {
     const { activeTabIndex, content } = this.state;
     return (
-      <PhoneSizeDemo title="Page title" toolbarActions={toolbarActions}>
-        <Tabs activeTabIndex={activeTabIndex} onChange={this._handleChange} tabs={tabs} />
-        <CSSTransitionGroup transitionName="md-cross-fade" transitionEnterTimeout={300} transitionLeave={false}>
+      <PhoneSizeDemo title="Page title" toolbarActions={toolbarActions} zDepth={0}>
+        <Tabs activeTabIndex={activeTabIndex} onChange={this._handleChange} tabs={tabs} ref={this._setTabs} />
+        <CSSTransitionGroup
+          component="div"
+          className="md-grid md-tab-toolbar--icon-relative"
+          transitionName="md-cross-fade"
+          transitionEnterTimeout={300}
+          transitionLeave={false}
+        >
           {content}
         </CSSTransitionGroup>
       </PhoneSizeDemo>

@@ -2,6 +2,8 @@
 /// @group tabs
 ////
 
+$md-tab-include-toolbars: true !default;
+
 $md-tab-height: 48px;
 $md-tab-icon-height: 72px;
 $md-tab-max-width: 264px;
@@ -21,7 +23,7 @@ $md-tab-desktop-padding: 24px;
 
 
 
-@mixin react-md-tabs($secondary-color: $md-secondary-color, $include-media: $md-media-included) {
+@mixin react-md-tabs($secondary-color: $md-secondary-color, $include-media: $md-media-included, $include-toolbars: $md-tab-include-toolbars) {
   .md-tabs {
     @extend %md-list-unstyled;
 
@@ -33,10 +35,62 @@ $md-tab-desktop-padding: 24px;
         background: rgba($md-white-base, .12);
       }
     }
+
+    &--centered {
+      justify-content: center;
+
+      .md-tab {
+        flex-grow: initial;
+      }
+    }
+
+    &--pagination {
+      .md-tab {
+        flex-grow: 0;
+      }
+    }
+  }
+
+  .md-icon--tab {
+    color: inherit;
+    margin-bottom: 10px;
+  }
+
+  .md-btn--tab-overflow {
+    position: absolute;
+
+    &-left {
+      left: 6px;
+      z-index: 3;
+    }
+
+    &-right {
+      right: 12px;
+    }
+  }
+
+  .md-menu--tab {
+    margin-right: 100%;
+
+    .md-list--menu {
+      width: 100%;
+    }
+
+    .md-icon {
+      color: inherit;
+    }
+
+    .md-tab {
+      padding-top: 12px;
+    }
   }
 
   @include react-md-tabs-tab;
-  @include react-md-tabs-indicator;
+  @include react-md-tabs-indicator($secondary-color);
+
+  @if $include-toolbars {
+    @include react-md-tabbed-toolbars;
+  }
 
   @if $include-media {
     @include react-md-tabs-media;
@@ -53,12 +107,18 @@ $md-tab-desktop-padding: 24px;
 
 @mixin react-md-tabs-tab {
   .md-tab {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
+    flex-shrink: 0;
     font-weight: $md-font-medium;
     height: $md-tab-height;
+    justify-content: flex-end;
     overflow: hidden;
-    padding: $md-tab-padding;
     padding-bottom: $md-tab-single-line-padding-bottom;
+    padding-left: $md-tab-padding;
+    padding-right: $md-tab-padding;
     position: relative;
     text-align: center;
     text-transform: uppercase;
@@ -76,42 +136,57 @@ $md-tab-desktop-padding: 24px;
     &--inactive {
       color: get-color('secondary', false);
     }
-
-    .md-icon {
-      color: inherit;
-    }
   }
 }
 
 @mixin react-md-tabs-indicator($secondary-color: $md-secondary-color) {
   .md-tab-indicator {
+    background: $secondary-color;
     bottom: 0;
     content: '';
     height: $md-tab-indicator-height;
     left: 0;
     position: absolute;
-    transition-duration: $md-tab-indicator-transition-time;
-    transition-property: transform, width;
+  }
+}
+
+@mixin react-md-tabbed-toolbars {
+  .md-tab-toolbar {
+    width: 100%;
   }
 }
 
 @mixin react-md-tabs-mobile {
+  .md-tabs {
+    overflow-x: auto;
+  }
+
   .md-tab {
-    font-size: $md-tab-mobile-font-size;
+    max-width: calc(100vw - 56px);
     min-width: $md-tab-mobile-min-width;
+  }
+
+  .md-tab-label {
+    font-size: $md-tab-mobile-font-size;
+    line-height: $md-tab-mobile-font-size;
   }
 }
 
 @mixin react-md-tabs-desktop {
+  .md-tabs {
+    overflow: visible;
+  }
+
   .md-tab {
-    font-size: $md-tab-desktop-font-size;
+    max-width: $md-tab-max-width;
     min-width: $md-tab-desktop-min-width;
     padding-left: $md-tab-desktop-padding;
     padding-right: $md-tab-desktop-padding;
+  }
 
-    &--first {
-      padding-left: 80px;
-    }
+  .md-tab-label {
+    font-size: $md-tab-desktop-font-size;
+    line-height: $md-tab-desktop-font-size;
   }
 }
 

@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
 import mapToListParts from '../utils/mapToListParts';
 import controlled from '../utils/PropTypes/controlled';
@@ -236,19 +237,19 @@ export default class Drawer extends PureComponent {
     /**
      * The `$md-drawer-transition-time` value from sass.
      */
-    transitionTimeout: PropTypes.number.isRequired,
+    transitionDuration: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
     defaultMedia: 'mobile',
     mobileType: Drawer.DrawerTypes.TEMPORARY,
-    mobileMinWidth: 320,
+    mobileMinWidth: MOBILE_MIN_WIDTH,
     tabletType: Drawer.DrawerTypes.PERSISTENT,
-    tabletMinWidth: 768,
+    tabletMinWidth: TABLET_MIN_WIDTH,
     desktopType: Drawer.DrawerTypes.FULL_HEIGHT,
-    desktopMinWidth: 1025,
+    desktopMinWidth: DESKTOP_MIN_WIDTH,
     position: 'left',
-    transitionTimeout: 300,
+    transitionDuration: 300,
     autoclose: true,
   };
 
@@ -312,13 +313,13 @@ export default class Drawer extends PureComponent {
       this._updateType(nextProps);
     }
 
-    const { visible, transitionTimeout, overlay } = nextProps;
+    const { visible, transitionDuration, overlay } = nextProps;
     if (this.props.visible === nextProps.visible) {
       return;
     }
 
     const type = getField(nextProps, this.state, 'type');
-    this._animate(visible, type, transitionTimeout, overlay, this.state.desktop);
+    this._animate(visible, type, transitionDuration, overlay, this.state.desktop);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -327,7 +328,7 @@ export default class Drawer extends PureComponent {
       return;
     }
     const type = getField(nextProps, nextState, 'type');
-    this._animate(visible, type, nextProps.transitionTimeout, nextProps.overlay, nextState.desktop);
+    this._animate(visible, type, nextProps.transitionDuration, nextProps.overlay, nextState.desktop);
   }
 
   componentWillUnmount() {
@@ -343,7 +344,7 @@ export default class Drawer extends PureComponent {
   }
 
   _matches(min, max) {
-    let media = `only screen and (min-width: ${min}px)`;
+    let media = `screen and (min-width: ${min}px)`;
     if (max) {
       media += ` and (max-width: ${max}px)`;
     }
@@ -368,7 +369,9 @@ export default class Drawer extends PureComponent {
       desktop: this._matches(desktopMinWidth),
     };
 
-    if (state.desktop) {
+    if (typeof props.type !== 'undefined') {
+      state.type = props.type;
+    } else if (state.desktop) {
       state.type = desktopType;
     } else if (state.tablet) {
       state.type = tabletType;
@@ -486,7 +489,7 @@ export default class Drawer extends PureComponent {
     delete props.tabletMinWidth;
     delete props.desktopType;
     delete props.desktopMinWidth;
-    delete props.transitionTimeout;
+    delete props.transitionDuration;
     delete props.onVisibilityToggle;
     delete props.onMediaTypeChange;
 

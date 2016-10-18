@@ -18,16 +18,23 @@ $md-cross-fade-distance: 16px !default;
     }
   }
 
-  .md-navigation-drawer-content {
+  .md-title--drawer-active.md-title--drawer-active {
     transition-duration: $md-drawer-transition-time;
     transition-property: margin-left;
+  }
 
+  .md-navigation-drawer-content {
     @if $md-navigation-drawer-enforce-height {
       overflow-y: auto;
     }
 
     &--inactive {
       margin-left: 0;
+    }
+
+    &--active {
+      transition-duration: $md-drawer-transition-time;
+      transition-property: margin-left;
     }
 
     &--prominent-offset {

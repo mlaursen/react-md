@@ -180,5 +180,10 @@ $phone-status-bar-height: 24px;
     .md-snackbar:not(.md-snackbar-enter):not(.md-snackbar-leave) {
       transform: translate3d(0, 0, 0);
     }
+
+    .md-btn--tab-overflow {
+      display: none;
+      visibility: hidden;
+    }
   }
 }
