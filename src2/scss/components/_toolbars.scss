@@ -40,6 +40,11 @@ $md-toolbar-include-select-fields: true !default;
 /// @see md-snackbar-z-index
 $md-toolbar-z-index: 15 !default;
 
+/// The toolbar's prominent title font size. This will only be included if it does not equal the
+/// `$md-title-font-size` variable.
+/// @type Number
+$md-toolbar-prominent-title-font-size: $md-title-font-size !default;
+
 $md-toolbar-mobile-portrait-height: 56px;
 $md-toolbar-mobile-landscape-height: 48px;
 $md-toolbar-mobile-prominent-height: 128px;
@@ -90,6 +95,7 @@ $md-toolbar-tablet-title-keyline: 80px;
     display: flex;
 
     &--fixed {
+      left: 0;
       position: fixed;
       top: 0;
       width: 100vw;
@@ -112,6 +118,12 @@ $md-toolbar-tablet-title-keyline: 80px;
     margin-bottom: 0;
     transition-duration: $md-transition-time;
     transition-property: transform;
+  }
+
+  @if $include-prominent and $md-toolbar-prominent-title-font-size != $md-title-font-size {
+    .md-title--toolbar-prominent {
+      font-size: $md-toolbar-prominent-title-font-size;
+    }
   }
 
   .md-toolbar--text-white {

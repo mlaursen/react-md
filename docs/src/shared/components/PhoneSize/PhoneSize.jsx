@@ -20,6 +20,8 @@ export default class PhoneSize extends PureComponent {
     iconLeft: PropTypes.node,
     contentClassName: PropTypes.string,
     toolbar: PropTypes.bool,
+    toolbarStyle: PropTypes.object,
+    toolbarClassName: PropTypes.string,
     toolbarProminent: PropTypes.bool,
     toolbarProminentTitle: PropTypes.bool,
     toolbarActions: PropTypes.oneOfType([
@@ -28,6 +30,7 @@ export default class PhoneSize extends PureComponent {
     ]),
     mobile: PropTypes.bool,
     tablet: PropTypes.bool,
+    zDepth: PropTypes.number,
     mobileOnly: PropTypes.bool,
   };
 
@@ -47,6 +50,8 @@ export default class PhoneSize extends PureComponent {
       contentStyle,
       contentClassName,
       toolbar,
+      toolbarStyle,
+      toolbarClassName,
       toolbarActions,
       toolbarProminent,
       toolbarProminentTitle,
@@ -54,6 +59,7 @@ export default class PhoneSize extends PureComponent {
       mobile,
       tablet,
       mobileOnly,
+      zDepth,
       ...props,
     } = this.props;
 
@@ -78,11 +84,13 @@ export default class PhoneSize extends PureComponent {
         <Toolbar
           title={title}
           colored
+          style={toolbarStyle}
           prominent={toolbarProminent}
           prominentTitle={toolbarProminentTitle}
           nav={<CloseButton icon>{iconLeft}</CloseButton>}
           actions={toolbarActions}
-          className="md-toolbar--fixed-phone"
+          className={cn('md-toolbar--fixed-phone', toolbarClassName)}
+          zDepth={zDepth}
           fixed
         />
       );

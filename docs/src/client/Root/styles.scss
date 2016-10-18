@@ -55,7 +55,7 @@ $md-picker-include-forceful-classes: true;
 }
 
 // Custom, iPhone Retina
-@media only screen and (min-width: 320px) {
+@media screen and (min-width: 320px) {
   .list-dialog-fix .md-list-tile {
     height: $md-list-mobile-height;
   }
@@ -63,14 +63,14 @@ $md-picker-include-forceful-classes: true;
 
 
 // Small devices, tablets
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .demo-list-card {
     max-width: 220px;
   }
 }
 
 // Medium devices, laptops
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .list-dialog-fix .md-list-tile {
     height: $md-list-desktop-height;
   }

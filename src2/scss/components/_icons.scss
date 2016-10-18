@@ -35,10 +35,14 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
     transition-duration: $md-transition-time;
     transition-property: color;
     user-select: none;
-  }
 
-  .md-icon--disabled {
-    color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
+    &--disabled {
+      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
+    }
+
+    &--inherit {
+      color: inherit;
+    }
   }
 
   @if $include-separators {

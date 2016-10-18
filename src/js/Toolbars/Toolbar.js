@@ -3,6 +3,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import invalidIf from '../utils/PropTypes/invalidIf';
+import between from '../utils/PropTypes/between';
 import ToolbarTitle from './ToolbarTitle';
 import Paper from '../Papers';
 
@@ -98,6 +99,20 @@ export default class Toolbar extends PureComponent {
      * Boolean if the toolbar should be colored with the `$md-primary-color`.
      */
     colored: invalidIf(PropTypes.bool, 'themed'),
+
+    /**
+     * The component to render the toolbar as.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * An optional zDepth to enforce for the toolbar. This should be a number between 0 and 5.
+     * If this is omitted, the toolbar will gain a zDepth of 2 when `fixed`.
+     */
+    zDepth: between(PropTypes.number, 0, 5),
     containerStyle: deprecated(
       PropTypes.object,
       'The `container` no longer exists in the `Toolbar`. Use the `style` prop instead'
@@ -120,12 +135,14 @@ export default class Toolbar extends PureComponent {
 
   static defaultProps = {
     singleColor: true,
+    component: 'header',
   };
 
   render() {
     const {
       style,
       className,
+      component,
       titleStyle,
       titleClassName,
       prominentTitle,
@@ -143,6 +160,7 @@ export default class Toolbar extends PureComponent {
     delete props.nav;
     delete props.title;
     delete props.titleMenu;
+    delete props.zDepth;
     delete props.colored;
     delete props.prominent;
 
@@ -152,6 +170,7 @@ export default class Toolbar extends PureComponent {
       titleMenu,
       nav,
       prominent,
+      zDepth,
     } = this.props;
 
     colored = colored || primary || secondary;
@@ -204,11 +223,15 @@ export default class Toolbar extends PureComponent {
       });
     }
 
+    if (typeof zDepth !== 'number') {
+      zDepth = fixed ? 2 : 0;
+    }
+
     return (
       <Paper
         {...props}
-        component="header"
-        zDepth={fixed ? 2 : 0}
+        component={component}
+        zDepth={zDepth}
         style={style}
         className={cn('md-toolbar', {
           'md-background--primary': colored,

@@ -289,7 +289,7 @@ export default class NavigationDrawer extends PureComponent {
      *
      * ```js
      * window.matchMedia(
-     *   `only screen and (min-width: ${mobileMinWidth}px) and (max-width: ${tabletMinWidth - 1}px`
+     *   `screen and (min-width: ${mobileMinWidth}px) and (max-width: ${tabletMinWidth - 1}px`
      * ).matches;
      * ```
      */
@@ -303,7 +303,7 @@ export default class NavigationDrawer extends PureComponent {
      *
      * ```js
      * window.matchMedia(
-     *   `only screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopWidth - 1}px`
+     *   `screen and (min-width: ${tabletMinWidth}px) and (max-width: ${desktopWidth - 1}px`
      * ).matches;
      * ```
      */
@@ -316,7 +316,7 @@ export default class NavigationDrawer extends PureComponent {
      * The media query for a tablet device will be:
      *
      * ```js
-     * window.matchMedia(`only screen and (min-width: ${tabletMinWidth}px)`).matches;
+     * window.matchMedia(`screen and (min-width: ${tabletMinWidth}px)`).matches;
      * ```
      */
     desktopMinWidth: PropTypes.number.isRequired,
@@ -506,6 +506,11 @@ export default class NavigationDrawer extends PureComponent {
      */
     transitionLeaveTimeout: PropTypes.number,
 
+    /**
+     * The transition duration for the drawer when sliding in and out of view.
+     */
+    drawerTransitionDuration: PropTypes.number.isRequired,
+
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
@@ -543,6 +548,7 @@ export default class NavigationDrawer extends PureComponent {
     persistentIconChildren: 'arrow_back',
     transitionName: 'md-cross-fade',
     transitionEnterTimeout: 300,
+    drawerTransitionDuration: Drawer.defaultProps.transitionDuration,
   };
 
   constructor(props) {
@@ -586,6 +592,30 @@ export default class NavigationDrawer extends PureComponent {
       closeIconClassName: closeIconClassName || persistentIconClassName,
       onCloseClick: this._toggleVisibility,
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const visible = getField(this.props, this.state, 'visible');
+    const nVisible = getField(nextProps, nextState, 'visible');
+    const drawerType = getField(nextProps, nextState, 'drawerType');
+
+    if (!isTemporary(drawerType) && visible !== nVisible) {
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+      }
+
+      this._timeout = setTimeout(() => {
+        this.setState({ contentActive: false });
+      }, nextProps.drawerTransitionDuration);
+
+      this.setState({ contentActive: true });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
   }
 
   _toggleVisibility(e) {
@@ -649,6 +679,7 @@ export default class NavigationDrawer extends PureComponent {
       drawerTitle,
       drawerChildren,
       drawerHeaderChildren,
+      drawerTransitionDuration,
       toolbarTitle,
       toolbarTitleMenu,
       toolbarActions,
@@ -683,7 +714,7 @@ export default class NavigationDrawer extends PureComponent {
     delete props.closeIconClassName;
 
     let { drawerHeader } = this.props;
-    const { mobile } = this.state;
+    const { mobile, contentActive } = this.state;
 
     const drawerType = getField(this.props, this.state, 'drawerType');
     const visible = getField(this.props, this.state, 'visible');
@@ -760,7 +791,10 @@ export default class NavigationDrawer extends PureComponent {
           titleMenu={toolbarTitleMenu}
           prominent={toolbarProminent}
           prominentTitle={toolbarProminentTitle}
-          titleClassName={cn('md-title--drawer', {
+          titleClassName={cn({
+            'md-title--drawer-active': contentActive,
+            'md-transition--decceleration': offset && visible,
+            'md-transition--acceleration': offset && !visible,
             'md-title--permanent-offset': offset && isPermanent(drawerType),
             'md-title--persistent-offset': offset && isPersistent(drawerType),
           })}
@@ -771,6 +805,7 @@ export default class NavigationDrawer extends PureComponent {
         {miniDrawer}
         <Drawer
           {...props}
+          transitionDuration={drawerTransitionDuration}
           header={drawerHeader}
           style={drawerStyle}
           className={drawerClassName}
@@ -795,8 +830,11 @@ export default class NavigationDrawer extends PureComponent {
           transitionLeaveTimeout={transitionLeaveTimeout}
           style={contentStyle}
           className={cn('md-navigation-drawer-content', {
+            'md-navigation-drawer-content--active': contentActive,
             'md-navigation-drawer-content--inactive': !visible,
             'md-navigation-drawer-content--prominent-offset': toolbarProminent || toolbarProminentTitle,
+            'md-transition--decceleration': visible,
+            'md-transition--acceleration': !visible,
             'md-drawer-relative': offset,
             'md-drawer-relative--mini': mini && (mobile || !visible),
           }, toolbarRelative, contentClassName)}
