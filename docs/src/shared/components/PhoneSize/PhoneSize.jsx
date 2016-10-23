@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes, Children } from 'react';
 import cn from 'classnames';
 import Paper from 'react-md/lib/Papers';
 import Toolbar from 'react-md/lib/Toolbars';
@@ -64,6 +64,14 @@ export default class PhoneSize extends PureComponent {
     } = this.props;
 
     if (mobileOnly && tablet) {
+      if (Children.count(children) > 1) {
+        return (
+          <Content contentStyle={contentStyle} className={contentClassName}>
+            {children}
+          </Content>
+        );
+      }
+
       return children;
     }
 

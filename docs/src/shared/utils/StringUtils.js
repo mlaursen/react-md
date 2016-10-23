@@ -101,7 +101,7 @@ export function toJsonName(component) {
   let lastIndex = name.length;
   if (name.endsWith('es') && !name.match(/Table|Auto/)) {
     lastIndex -= 2;
-  } else if (!name.match(/Progress|SelectionControl/)) {
+  } else if (!name.match(/Progress|SelectionControl|Tab/)) {
     lastIndex -= 1;
   }
 

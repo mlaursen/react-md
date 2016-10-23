@@ -14,6 +14,8 @@ function makeLorem({ count, units, paragraphClassName }) {
 
 export default class LoremIpsum extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
+    paragraphClassName: PropTypes.string,
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
@@ -45,6 +47,7 @@ export default class LoremIpsum extends PureComponent {
     const { component: Component, ...props } = this.props;
     delete props.count;
     delete props.units;
+    delete props.paragraphClassName;
 
     return <Component {...props} dangerouslySetInnerHTML={{ __html: lorem }} />;
   }

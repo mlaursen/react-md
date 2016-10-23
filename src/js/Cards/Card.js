@@ -108,7 +108,6 @@ export default class Card extends PureComponent {
   };
 
   static defaultProps = {
-    raise: true,
     expanderIconChildren: 'keyboard_arrow_down',
     expanderIconClassName: 'material-icons',
     expanderTooltipPosition: 'left',

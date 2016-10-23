@@ -1,46 +1,109 @@
-import React, { PureComponent, PropTypes, Children, isValidElement, cloneElement } from 'react';
+import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
 import cn from 'classnames';
 
+import oneRequired from '../utils/PropTypes/oneRequired';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
+/**
+ * The `Tab` component is used for rendering a single tab in the `Tabs` component.
+ * It can opionally have either a `label`, an `icon` or both.
+ */
 export default class Tab extends PureComponent {
   static propTypes = {
+    /**
+     * An id for the tab. This is required for a11y. If you use the `Tabs` component, this
+     * will automatically be generated for you and injected into this component.
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An id for a `TabPanel` that holds the children from this tab. This is required for a11y.
+     * If you use the `Tabs` component, this will automatically be generated for you and injected
+     * into this component.
+     */
+    controlsId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional style to apply.
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply.
+     */
     className: PropTypes.string,
-    label: PropTypes.node,
-    icon: PropTypes.element,
-    onClick: PropTypes.func,
+
+    /**
+     * Any children to display once the tab has been selected.
+     */
     children: PropTypes.node,
 
+    /**
+     * An optional icon to display in the tab. This can either be used alone, or it
+     * will be placed above the `label` if both are given.
+     */
+    icon: PropTypes.element,
+
+    /**
+     * An optional label to display in the tab. This can either be used alone, or it
+     * will be placed below the `icon` if both are given.
+     */
+    label: oneRequired(PropTypes.node, 'icon'),
+
+    /**
+     * An optional function to call when the tab is clicked. The callback includes this tab's index,
+     * id, controlsId, children, and finally click event. All the additional parameters are included
+     * if you are not using the `TabsContainer` component. The `id` and `controlsId` are mainly passed
+     * for accessibility.
+     *
+     * ```js
+     * onClick(index, id, controlsId, children, event);
+     * ```
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * Boolean if the tab is currently active. If you use the `Tabs` component, this is automatically
+     * injected.
+     */
     active: PropTypes.bool,
+
+    /**
+     * Boolean if the tab is currently active. If you use the `Tabs` component, this is automatically
+     * injected.
+     */
     index: PropTypes.number,
-    onTabClick: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
 
-    this.state = {};
     this._handleClick = this._handleClick.bind(this);
   }
 
   _handleClick(e) {
-    const { index, onTabClick, onClick, children } = this.props;
-    if (onClick) {
-      onClick(index, e);
-    }
-
-    if (onTabClick) {
-      onTabClick(index, children, e);
+    if (this.props.onClick) {
+      this.props.onClick(this.props.index, this.props.id, this.props.controlsId, this.props.children, e);
     }
   }
 
   render() {
-    const { className, active, ...props } = this.props;
-    delete props.icon;
+    const {
+      id,
+      controlsId,
+      className,
+      active,
+      ...props,
+    } = this.props;
     delete props.index;
+    delete props.icon;
     delete props.label;
-    delete props.onTabClick;
 
     let { icon, label } = this.props;
     if (icon) {
@@ -58,17 +121,20 @@ export default class Tab extends PureComponent {
     } else {
       label = <div className="md-tab-label">{label}</div>;
     }
-
-
     return (
       <AccessibleFakeInkedButton
         {...props}
+        id={id}
+        role="tab"
         onClick={this._handleClick}
+        component="li"
         className={cn('md-tab', {
           'md-tab--active': active,
           'md-tab--inactive': !active,
           'md-tab--icon': label && icon,
         }, className)}
+        aria-controls={controlsId}
+        aria-selected={active}
       >
         {icon}
         {label}

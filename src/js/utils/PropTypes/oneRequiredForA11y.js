@@ -15,7 +15,7 @@ export default function oneRequiredForA11y(validator, ...otherPropNames) {
     let err = validator(props, propName, componentName, location, propFullName, ...args);
     if (!err && !allPropNames.filter(pn => typeof props[pn] !== 'undefined').length) {
       err = new Error(
-        `One of the following props are required to make \`${componentNameSafe}\` accessible ` +
+        `One of the following props are required to make ${componentNameSafe} accessible ` +
         `for users of assistive technologies such as screen readers. \`${allPropNames.join('`, ')}\`.`
       );
     }

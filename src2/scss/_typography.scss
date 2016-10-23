@@ -26,23 +26,19 @@ $md-typography-max-line-length: 640px !default;
 
 /// The light text weight.
 /// @type Number
-/// @access private
-$md-font-light: 300;
+$md-font-light: 300 !default;
 
 /// The regular text weight.
 /// @type Number
-/// @access private
-$md-font-regular: 400;
+$md-font-regular: 400 !default;
 
 /// The medium text weight.
 /// @type Number
-/// @access private
-$md-font-medium: 500;
+$md-font-medium: 500 !default;
 
 /// The bold text weight.
 /// @type Number
-/// @access private
-$md-font-bold: 700;
+$md-font-bold: 700 !default;
 
 /// A list of all the text weights. This is mainly used so you can
 /// loop over the weights and include locally hosted fonts.
@@ -364,11 +360,31 @@ $md-line-height: 20 / $md-font-size-base !default;
   user-select: none;
 }
 
+/// A simple placeholder for setting the font weight to the material design's light weight.
+%md-font-light {
+  font-weight: $md-font-light;
+}
+
+/// A simple placeholder for setting the font weight to the material design's regular weight.
+%md-font-regular {
+  font-weight: $md-font-regular;
+}
+
+/// A simple placeholder for setting the font weight to the material design's medium weight.
+%md-font-medium {
+  font-weight: $md-font-medium;
+}
+
+/// A simple placeholder for setting the font weight to the material design's bold weight.
+%md-font-bold {
+  font-weight: $md-font-bold;
+}
+
 /// This includes the css for simple typography in react-md. It will
 /// update all items to use `box-sizing: border-box`, set the font
 /// family, set the line-height, text-rendering, and create the base
 /// class names for the typography. If the `$extend-html-tags` is true,
-/// the `h1` - `h5`, `p`, and `caption` tags will be updated with the
+/// the `h1` - `h6`, `p`, and `caption` tags will be updated with the
 /// corresponding css class name.
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the application
@@ -448,6 +464,10 @@ $md-line-height: 20 / $md-font-size-base !default;
 
     h5 {
       @extend %md-subheading-1;
+    }
+
+    h6 {
+      @extend %md-body-2;
     }
 
     p {
@@ -539,6 +559,22 @@ $md-line-height: 20 / $md-font-size-base !default;
     @extend %md-text-no-select;
   }
 
+  .md-font-light {
+    @extend %md-font-light;
+  }
+
+  .md-font-regular {
+    @extend %md-font-regular;
+  }
+
+  .md-font-medium {
+    @extend %md-font-medium;
+  }
+
+  .md-font-bold {
+    @extend %md-font-bold;
+  }
+
   .md-text-container {
     @extend %md-block-centered;
 
@@ -553,7 +589,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 }
 
 /// Creates the css for typography on mobile devices. If the `$extend-html-tags` param is true,
-/// the `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
+/// the `h6`, `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
 /// @example scss - Example Usage SCSS
@@ -580,6 +616,7 @@ $md-line-height: 20 / $md-font-size-base !default;
       font-size: $md-subheading-mobile-font-size;
     }
 
+    h6,
     p {
       font-size: $md-body-mobile-font-size;
     }
@@ -587,7 +624,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 }
 
 /// Creates the css for typography on desktop screens. If the `$extend-html-tags` param is true,
-/// the `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
+/// the `h6`, `h5`, `h4`, and `p` tags will also be modified. This should most likely be used within
 /// a media query.
 ///
 /// @example scss - Example Usage SCSS
@@ -614,6 +651,7 @@ $md-line-height: 20 / $md-font-size-base !default;
       font-size: $md-subheading-desktop-font-size;
     }
 
+    h6,
     p {
       font-size: $md-body-desktop-font-size;
     }
@@ -621,7 +659,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 }
 
 /// Includes the mobile and desktop media queries for typography. If the `$extend-html-tags` param is true,
-/// the `h5`, `h4`, and `p` tags will also be modified.
+/// the `h6`, `h5`, `h4`, and `p` tags will also be modified.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-typography-media;
@@ -698,6 +736,7 @@ $md-line-height: 20 / $md-font-size-base !default;
       }
 
       @if $extend-html-tags {
+        h6,
         h5,
         h4,
         h3,

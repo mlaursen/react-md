@@ -26,7 +26,7 @@ export default class Section extends PureComponent {
     }
 
     const cards = data.map(({ img, ...props }, i) => (
-      <Card raise={false} className={cardClassName} key={i}>
+      <Card className={cardClassName} key={i}>
         <Media aspectRatio="1-1">
           <img src={img} role="presentation" />
         </Media>

@@ -2,7 +2,10 @@
 /// @group tabs
 ////
 
+$md-tab-include-icons: true !default;
 $md-tab-include-toolbars: true !default;
+$md-tab-include-overflow: true !default;
+$md-tab-include-swipeable: true !default;
 
 $md-tab-height: 48px;
 $md-tab-icon-height: 72px;
@@ -23,7 +26,14 @@ $md-tab-desktop-padding: 24px;
 
 
 
-@mixin react-md-tabs($secondary-color: $md-secondary-color, $include-media: $md-media-included, $include-toolbars: $md-tab-include-toolbars) {
+@mixin react-md-tabs(
+  $secondary-color: $md-secondary-color,
+  $include-media: $md-media-included,
+  $include-icons: $md-tab-include-icons,
+  $include-toolbars: $md-tab-include-toolbars,
+  $include-overflow: $md-tab-include-overflow,
+  $include-swipeable: $md-tab-include-swipeable
+) {
   .md-tabs {
     @extend %md-list-unstyled;
 
@@ -44,20 +54,109 @@ $md-tab-desktop-padding: 24px;
       }
     }
 
-    &--pagination {
-      .md-tab {
-        flex-grow: 0;
+    @if $include-overflow {
+      &--pagination {
+        .md-tab {
+          flex-grow: 0;
+        }
       }
     }
   }
 
-  .md-icon--tab {
-    color: inherit;
-    margin-bottom: 10px;
+  @include react-md-tabs-tab($include-icons);
+  @include react-md-tabs-indicator($secondary-color);
+
+  @if $include-icons {
+    @include react-md-tabs-icon;
   }
 
-  .md-btn--tab-overflow {
+  @if $include-toolbars {
+    @include react-md-tabbed-toolbars;
+  }
+
+  @if $include-overflow {
+    @include react-md-tabs-overflow;
+  }
+
+  @if $include-swipeable {
+    @include react-md-tabs-swipeable;
+  }
+
+
+  @if $include-media {
+    @include react-md-tabs-media($include-icons, $include-toolbars, $include-swipeable);
+  }
+}
+
+@mixin react-md-theme-tabs($secondary-color: $md-secondary-color) {
+  @if $secondary-color != $md-secondary-color {
+    .md-tab-indicator {
+      background: $secondary-color;
+    }
+  }
+}
+
+@mixin react-md-tabs-tab($include-icon: $md-tab-include-icons) {
+  .md-tab {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-weight: $md-font-medium;
+    height: $md-tab-height;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding-bottom: $md-tab-single-line-padding-bottom;
+    padding-left: $md-tab-padding;
+    padding-right: $md-tab-padding;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    &--multiline {
+      font-size: $md-tab-multiline-font-size;
+      padding-bottom: $md-tab-padding;
+    }
+
+    @if $include-icon {
+      &--icon {
+        height: $md-tab-icon-height;
+        padding-bottom: $md-tab-icon-padding-bottom;
+      }
+    }
+
+    &--inactive {
+      color: get-color('secondary', false);
+    }
+  }
+}
+
+@mixin react-md-tabs-indicator($secondary-color: $md-secondary-color) {
+  .md-tab-indicator {
+    background: $secondary-color;
+    bottom: 0;
+    content: '';
+    height: $md-tab-indicator-height;
+    left: 0;
     position: absolute;
+  }
+}
+
+@mixin react-md-tabbed-toolbars {
+  .md-tab-toolbar {
+    width: 100%;
+  }
+}
+
+@mixin react-md-tabs-overflow {
+  .md-btn--tab-overflow {
+    bottom: 2px;
+    position: absolute;
+
+    &--icon {
+      bottom: 8px;
+    }
 
     &-left {
       left: 6px;
@@ -85,78 +184,41 @@ $md-tab-desktop-padding: 24px;
     }
   }
 
-  @include react-md-tabs-tab;
-  @include react-md-tabs-indicator($secondary-color);
-
-  @if $include-toolbars {
-    @include react-md-tabbed-toolbars;
-  }
-
-  @if $include-media {
-    @include react-md-tabs-media;
-  }
 }
 
-@mixin react-md-theme-tabs($secondary-color: $md-secondary-color) {
-  @if $secondary-color != $md-secondary-color {
-    .md-tab-indicator {
-      background: $secondary-color;
+@mixin react-md-tabs-swipeable {
+  .md-tabs-container {
+    &-fixed {
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .md-tabs-content {
+    &--offset {
+      margin-top: $md-tab-height;
+
+      &-icon {
+        margin-top: $md-tab-icon-height;
+      }
     }
   }
 }
 
-@mixin react-md-tabs-tab {
-  .md-tab {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 0;
-    font-weight: $md-font-medium;
-    height: $md-tab-height;
-    justify-content: flex-end;
-    overflow: hidden;
-    padding-bottom: $md-tab-single-line-padding-bottom;
-    padding-left: $md-tab-padding;
-    padding-right: $md-tab-padding;
-    position: relative;
-    text-align: center;
-    text-transform: uppercase;
-
-    &--multiline {
-      font-size: $md-tab-multiline-font-size;
-      padding-bottom: $md-tab-padding;
-    }
-
-    &--icon {
-      height: $md-tab-icon-height;
-      padding-bottom: $md-tab-icon-padding-bottom;
-    }
-
-    &--inactive {
-      color: get-color('secondary', false);
-    }
-  }
-}
-
-@mixin react-md-tabs-indicator($secondary-color: $md-secondary-color) {
-  .md-tab-indicator {
-    background: $secondary-color;
-    bottom: 0;
-    content: '';
-    height: $md-tab-indicator-height;
-    left: 0;
-    position: absolute;
-  }
-}
-
-@mixin react-md-tabbed-toolbars {
-  .md-tab-toolbar {
-    width: 100%;
+@mixin react-md-tabs-icon {
+  .md-icon--tab {
+    color: inherit;
+    margin-bottom: 10px;
   }
 }
 
 @mixin react-md-tabs-mobile {
+  .md-toolbar ~ .md-tabs {
+    margin-top: -1px;
+  }
+
   .md-tabs {
     overflow-x: auto;
   }
@@ -172,7 +234,53 @@ $md-tab-desktop-padding: 24px;
   }
 }
 
+@mixin react-md-tabs-mobile-portrait($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-swipeable: $md-tab-include-swipeable) {
+  @if $include-toolbars and $include-swipeable {
+    .md-tabs-content--offset-toolbar {
+      margin-top: $md-tab-height + $md-toolbar-mobile-portrait-height;
+
+      @if $include-icons {
+        &-icon {
+          margin-top: $md-tab-icon-height + $md-toolbar-mobile-portrait-height;
+        }
+      }
+    }
+  }
+}
+
+@mixin react-md-tabs-mobile-landscape($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-swipeable: $md-tab-include-swipeable) {
+  @if $include-toolbars and $include-swipeable {
+    .md-tabs-content--offset-toolbar {
+      margin-top: $md-tab-height + $md-toolbar-mobile-landscape-height;
+
+      @if $include-icons {
+        &-icon {
+          margin-top: $md-tab-icon-height + $md-toolbar-mobile-landscape-height;
+        }
+      }
+    }
+  }
+}
+
+@mixin react-md-tabs-tablet($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-swipeable: $md-tab-include-swipeable) {
+  @if $include-toolbars and $include-swipeable {
+    .md-tabs-content--offset-toolbar {
+      margin-top: $md-tab-height + $md-toolbar-tablet-height;
+
+      @if $include-icons {
+        &-icon {
+          margin-top: $md-tab-icon-height + $md-toolbar-tablet-height;
+        }
+      }
+    }
+  }
+}
+
 @mixin react-md-tabs-desktop {
+  .md-toolbar ~ .md-tabs {
+    margin-top: 0;
+  }
+
   .md-tabs {
     overflow: visible;
   }
@@ -190,9 +298,23 @@ $md-tab-desktop-padding: 24px;
   }
 }
 
-@mixin react-md-tabs-media {
+@mixin react-md-tabs-media($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-swipeable: $md-tab-include-swipeable) {
   @media #{$md-mobile-media} {
     @include react-md-tabs-mobile;
+  }
+
+  @if $include-toolbars and $include-swipeable {
+    @media #{$md-mobile-portrait-media} {
+      @include react-md-tabs-mobile-portrait($include-icons, $include-toolbars, $include-swipeable);
+    }
+
+    @media #{$md-mobile-landscape-media} {
+      @include react-md-tabs-mobile-landscape($include-icons, $include-toolbars, $include-swipeable);
+    }
+
+    @media #{$md-tablet-media} {
+      @include react-md-tabs-tablet($include-icons, $include-toolbars, $include-swipeable);
+    }
   }
 
   @media #{$md-desktop-media} {
