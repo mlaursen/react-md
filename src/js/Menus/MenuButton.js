@@ -16,6 +16,21 @@ export default class MenuButton extends PureComponent {
   static Positions = Positions;
 
   static propTypes = {
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    menuId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the button.
      */
@@ -159,6 +174,8 @@ export default class MenuButton extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      listId,
+      menuId,
       ...props,
     } = this.props;
     delete props.onClick;
@@ -175,6 +192,8 @@ export default class MenuButton extends PureComponent {
 
     return (
       <Menu
+        id={menuId}
+        listId={listId}
         style={menuStyle}
         className={menuClassName}
         toggle={toggle}

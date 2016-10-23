@@ -52,7 +52,7 @@ data.forEach((datum, i) => {
 export default class Books extends PureComponent {
   render() {
     const cards = data.map(({ img, ...titleProps }, i) => (
-      <Card raise={false} key={i} className="book-card">
+      <Card key={i} className="book-card">
         <Media forceAspect={false}>
           <img src={img} role="presentation" />
         </Media>

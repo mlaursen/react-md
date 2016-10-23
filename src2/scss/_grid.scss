@@ -146,6 +146,10 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 
     &.md-grid--no-spacing {
       padding: 0;
+
+      > .md-cell {
+        margin: 0;
+      }
     }
   }
 

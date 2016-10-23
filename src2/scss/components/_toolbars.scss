@@ -415,7 +415,7 @@ $md-toolbar-tablet-title-keyline: 80px;
     margin-top: $toolbar-btn-margin;
   }
 
-  $toolbar-btn-margin: ($md-toolbar-tablet-btn-keyline - $md-btn-icon-padding) / 2;
+  $toolbar-btn-margin: $md-toolbar-tablet-btn-keyline - $md-btn-icon-padding;
 
   .md-toolbar--action-left {
     margin-left: $toolbar-btn-margin;
@@ -427,7 +427,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 
   .md-title--toolbar {
     line-height: $md-toolbar-tablet-height;
-    margin-left: $md-toolbar-tablet-title-keyline - $md-btn-icon-size - ($toolbar-btn-margin * 2);
+    margin-left: $md-toolbar-tablet-title-keyline - $md-btn-icon-size - $toolbar-btn-margin;
   }
 
   .md-title--toolbar-offset {

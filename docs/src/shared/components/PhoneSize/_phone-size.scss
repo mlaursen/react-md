@@ -84,6 +84,10 @@ $phone-status-bar-height: 24px;
   z-index: 300;
 }
 
+.phone-tab-content {
+  overflow-y: auto;
+}
+
 @media #{$md-mobile-media} {
   .phone-size-container {
     height: 100%;
@@ -91,6 +95,10 @@ $phone-status-bar-height: 24px;
     .md-btn--fixed-tl {
       top: $md-toolbar-mobile-prominent-height - $md-btn-floating-mini-size / 2;
     }
+  }
+
+  .phone-tab-content {
+    height: $phone-size-height - $md-toolbar-mobile-portrait-height - $md-tab-icon-height;
   }
 
   .toolbar-offset {
@@ -133,6 +141,10 @@ $phone-status-bar-height: 24px;
       width: 300px;
     }
 
+    .md-tabs-container {
+      padding-top: $phone-status-bar-height;
+    }
+
     .md-toolbar-relative--prominent {
       margin-top: $phone-status-bar-height + $md-toolbar-mobile-prominent-height;
     }
@@ -146,6 +158,10 @@ $phone-status-bar-height: 24px;
       max-width: $phone-size-max-width;
       top: $phone-status-bar-height;
     }
+  }
+
+  .phone-tab-content {
+    height: $phone-size-height - $md-toolbar-mobile-portrait-height - $md-tab-icon-height - $phone-status-bar-height;
   }
 
   .toolbar-offset {
@@ -184,6 +200,10 @@ $phone-status-bar-height: 24px;
     .md-btn--tab-overflow {
       display: none;
       visibility: hidden;
+    }
+
+    .md-toolbar-relative {
+      margin-top: $md-toolbar-mobile-portrait-height + $phone-status-bar-height;
     }
   }
 }

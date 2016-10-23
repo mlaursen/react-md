@@ -4,7 +4,7 @@ import CardTitle from 'react-md/lib/Cards/CardTitle';
 import Media from 'react-md/lib/Media';
 
 const CardVideoExample = () => (
-  <Card raise={false}>
+  <Card>
     <Media>
       <iframe allowFullScreen src="https://www.youtube.com/embed/kyAn3fSs8_A" />
     </Media>

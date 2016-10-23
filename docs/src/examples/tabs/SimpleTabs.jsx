@@ -1,49 +1,72 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Tabs from 'react-md/lib/Tabs/Tabs';
+import Tab from 'react-md/lib/Tabs/Tab';
+// import TabPanel from 'react-md/lib/Tabs/TabPanel';
+import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
+import Slider from 'react-md/lib/Sliders';
 
+import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import LoremIpsum from 'components/LoremIpsum';
-import { numberToString } from 'utils/StringUtils';
-
-const tabs = [...new Array(3)].map((_, i) => ({
-  label: `Tab ${numberToString(i + 1)}`,
-  children: (
-    <section key={numberToString(i + 1)} className="md-cell md-cell--12">
-      <h2 className="md-text-capitalize">Item {numberToString(i + 1)}</h2>
-      <LoremIpsum key={numberToString(i)} count={2} />
-    </section>
-  ),
-}));
-import './_styles.scss';
 
 export default class SimpleTabs extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node,
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = { activeTabIndex: 0, children: tabs[0].children, direction: 'left' };
-    this._handleChange = this._handleChange.bind(this);
+    this.state = { activeTabIndex: 0, tabTwoChildren: null };
+    this._handleTabChange = this._handleTabChange.bind(this);
   }
 
-  _handleChange(activeTabIndex, children) {
-    this.setState({ activeTabIndex, children, direction: activeTabIndex > this.state.activeTabIndex ? 'left' : 'right' });
+  _handleTabChange(activeTabIndex) {
+    if (activeTabIndex === 1 && !this.state.tabTwoChildren) {
+      // Fake async loading
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+
+        this.setState({
+          tabTwoChildren: [
+            <LoremIpsum key="ipsum" paragraphClassName="md-text-container" />,
+            <Slider id="slider" defaultValue={30} key="slider" className="md-cell md-cell--12" />,
+          ],
+        });
+      }, 3000);
+    }
+
+    this.setState({ activeTabIndex });
   }
 
   render() {
-    const { activeTabIndex, children, direction } = this.state;
+    const { activeTabIndex } = this.state;
+    let { tabTwoChildren } = this.state;
+
+    if (!tabTwoChildren && activeTabIndex === 1) {
+      tabTwoChildren = <CircularProgress id="loading-tab-two" key="loading" />;
+    }
+
     return (
-      <div>
-        <Tabs tabs={tabs} onChange={this._handleChange} activeTabIndex={activeTabIndex} />
-        <CSSTransitionGroup
-          component="div"
-          className="md-grid"
-          style={{ overflowX: 'hidden', position: 'relative' }}
-          transitionName={`swipe-${direction}`}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
-        >
-          {children}
-        </CSSTransitionGroup>
-      </div>
+      <TabsContainer onTabChange={this._handleTabChange} activeTabIndex={activeTabIndex} panelClassName="md-grid" colored>
+        <Tabs tabId="tab">
+          <Tab label="Tab One">
+            <h3 className="md-cell md-cell--12">Hello, World!</h3>
+          </Tab>
+          <Tab label="Tab Two">
+            <CSSTransitionGroup
+              component="div"
+              className="md-cell md-cell--12"
+              transitionName="md-cross-fade"
+              transitionEnterTimeout={300}
+              transitionLeave={false}
+            >
+              {tabTwoChildren}
+            </CSSTransitionGroup>
+          </Tab>
+        </Tabs>
+      </TabsContainer>
     );
   }
 }

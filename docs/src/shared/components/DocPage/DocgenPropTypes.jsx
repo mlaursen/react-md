@@ -136,7 +136,6 @@ export default class DocgenPropTypes extends PureComponent {
       <Card
         id={`prop-types-${toPropTypeId(component)}`}
         className="md-cell md-cell--12 component-prop-types"
-        raise={false}
         tableCard
       >
         <CardTitle title={component}>
@@ -149,7 +148,6 @@ export default class DocgenPropTypes extends PureComponent {
             tooltipPosition="left"
           />
         </CardTitle>
-        <Markdown markdown={description} className="md-card-text" />
         <DataTable plain>
           <TableHeader>
             <TableRow autoAdjust={false}>
@@ -164,6 +162,7 @@ export default class DocgenPropTypes extends PureComponent {
         </DataTable>
         {methodsTitle}
         {methodsTable}
+        <Markdown markdown={description} className="md-card-text" />
       </Card>
     );
   }
