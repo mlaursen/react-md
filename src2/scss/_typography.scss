@@ -144,6 +144,11 @@ $md-body-1-line-height: 20px;
 /// @type Number
 $md-caption-font-size: 12px;
 
+/// The font icon size.
+/// @type Number
+/// @group icons
+$md-font-icon-size: 24px;
+
 /// The line height to use on almost all elements.
 /// @type Number
 $md-line-height: 20 / $md-font-size-base !default;

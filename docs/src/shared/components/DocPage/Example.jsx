@@ -66,10 +66,13 @@ ${code}
 `;
 
     let resolvedChildren;
-    const resolvedDescription = description && <Markdown key="desc" markdown={description} />;
+    const resolvedDescription = description && <Markdown key="desc" markdown={description} className="md-text-container" style={{ marginBottom: 16 }} />;
     if (tableCard) {
       if (resolvedDescription) {
-        resolvedChildren = Children.map([<CardText key="desc">{resolvedDescription}</CardText>, children], child => child);
+        resolvedChildren = Children.map([
+          <CardText key="desc">{resolvedDescription}</CardText>,
+          children,
+        ], child => child);
       } else {
         resolvedChildren = children;
       }

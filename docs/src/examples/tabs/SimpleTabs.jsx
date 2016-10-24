@@ -1,8 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
-// import TabPanel from 'react-md/lib/Tabs/TabPanel';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
 import Slider from 'react-md/lib/Sliders';
 
@@ -10,16 +9,17 @@ import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import LoremIpsum from 'components/LoremIpsum';
 
 export default class SimpleTabs extends PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
-
   constructor(props) {
     super(props);
 
     this.state = { activeTabIndex: 0, tabTwoChildren: null };
     this._handleTabChange = this._handleTabChange.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeut);
+    }
   }
 
   _handleTabChange(activeTabIndex) {
