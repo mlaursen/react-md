@@ -42,12 +42,6 @@ export default class App extends PureComponent {
     mediaChange: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
     this.props.mediaChange();
     window.addEventListener('resize', this.props.mediaChange);

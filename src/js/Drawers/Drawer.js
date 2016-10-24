@@ -361,6 +361,7 @@ export default class Drawer extends PureComponent {
       desktopMinWidth,
       desktopType,
       onMediaTypeChange,
+      onVisibilityToggle,
     } = props;
 
     const state = {
@@ -369,9 +370,7 @@ export default class Drawer extends PureComponent {
       desktop: this._matches(desktopMinWidth),
     };
 
-    if (typeof props.type !== 'undefined') {
-      state.type = props.type;
-    } else if (state.desktop) {
+    if (state.desktop) {
       state.type = desktopType;
     } else if (state.tablet) {
       state.type = tabletType;
@@ -379,8 +378,10 @@ export default class Drawer extends PureComponent {
       state.type = mobileType;
     }
 
-    if (onMediaTypeChange && (getField(this.props, this.state, 'type') !== state.type
-        || ['mobile', 'tablet', 'desktop'].filter(key => state[key] !== this.state[key]).length)
+    const diffType = getField(props, this.state, 'type') !== state.type;
+
+    if (onMediaTypeChange && (diffType ||
+      ['mobile', 'tablet', 'desktop'].filter(key => state[key] !== this.state[key]).length)
     ) {
       onMediaTypeChange(state.type, { mobile: state.mobile, tablet: state.tablet, desktop: state.desktop });
     }
@@ -390,8 +391,13 @@ export default class Drawer extends PureComponent {
     }
 
     const type = getField(props, state, 'type');
-    if (typeof props.visible === 'undefined' && isPermanent(type) !== getField(this.props, this.state, 'type')) {
-      state.visible = isPermanent(type);
+    const visible = isPermanent(type);
+    if (getField(props, this.state, 'visible') !== visible) {
+      onVisibilityToggle(visible);
+    }
+
+    if (typeof props.visible === 'undefined' && diffType) {
+      state.visible = visible;
     }
 
     this.setState(state);
