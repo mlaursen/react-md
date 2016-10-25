@@ -1,4 +1,9 @@
 const webpack = require('webpack');
+const fs = require('fs');
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 function makeConfig() {
   return {
@@ -44,6 +49,11 @@ function makeConfig() {
   };
 }
 
+const entries = {};
+fs.readdirSync(path.resolve(process.cwd(), 'src', 'scss', 'bundles')).forEach(file => {
+  entries[file.replace('.scss', '')] = path.resolve(process.cwd(), 'src', 'scss', 'bundles', file);
+});
+
 const devConfig = makeConfig();
 devConfig.output.filename = 'react-md.js';
 devConfig.devtool = 'source-map';
@@ -70,4 +80,37 @@ prodConfig.plugins = prodConfig.plugins.concat([
   }),
 ]);
 
-module.exports = [devConfig, prodConfig];
+const prodSassConfig = {
+  entry: entries,
+  devtool: 'source-map',
+  output: {
+    publicPath: '/',
+    path: './dist',
+    filename: 'react-md.[name].min.css',
+  },
+  module: {
+    loaders: [{
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract(
+        'style',
+        'css!postcss!sass?outputStyle=compressed&sourceMap'
+      ),
+    }],
+  },
+  plugins: [
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin('react-md.[name].min.css'),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false },
+      output: { comments: false },
+    }),
+  ],
+  postcss() {
+    return [autoprefixer({ browsers: ['last 2 version', 'ie >= 10'] })];
+  },
+};
+
+module.exports = [devConfig, prodConfig, prodSassConfig];

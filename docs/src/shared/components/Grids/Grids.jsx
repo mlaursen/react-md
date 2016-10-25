@@ -61,7 +61,7 @@ than the maximum amount of columsn allowed for the device's screen size, an enti
 const Grids = () => (
   <main>
     <header className="md-grid">
-      <h1 className="md-cell md-text-container">Grids</h1>
+      <h1 className="md-cell">Grids</h1>
     </header>
     <div className="md-grid grid-example">
       {[...Array(12)].map((_, i) => <div key={i} className="md-cell md-cell--1">1</div>)}

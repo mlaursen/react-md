@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import Button from 'react-md/lib/Buttons/Button';
+import Button from '../Buttons/Button';
 
 export default class TabOverflowButton extends PureComponent {
   static propTypes = {

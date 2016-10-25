@@ -15,6 +15,7 @@ The tags will be implemented as:
 - \`h3\` - \`.md-title\`
 - \`h4\` - \`.md-subheading-2\`
 - \`h5\` - \`.md-subheading-1\`
+- \`h6\` - \`.md-body-2\`
 - \`p\` - \`.md-body-1\`
 - \`caption\` - \`.md-caption\`
 
@@ -38,6 +39,12 @@ There have also been some other utlity classes added.
 - \`.md-text-uppercase\` - uppercases the text
 - \`.md-text-lowercase\` - lowercases the text
 - \`.md-text-nowrap\` - does not allow line breaks
+- \`.md-text-no-select\` - Does not allow use-select
+- \`.md-font-light\` - the material design light font weight.
+- \`.md-font-regular\` - the material design regular font weight.
+- \`.md-font-medium\` - the material design medium font weight.
+- \`.md-font-bold\` - the material design bold font weight.
+
 
 In addition, a \`md-text-container\` class has been created. This class will
 center any text and prevent lines from extending the \`md-typography-max-line-length\`

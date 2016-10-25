@@ -7,65 +7,55 @@ The default color palette is defined as:
 
 ```scss
 $md-primary-color: $md-indigo-500 !default;
-$md-primary-color-hue-1: $md-indigo-400 !default;
-
 $md-secondary-color: $md-pink-a-200 !default;
-$md-secondary-color-hue-1: $md-pink-a-100 !default;
 ```
 
-#### Updating/Changing the Theme
-The theme can be changed at a global level or at a section level. To override
-the theme at a global level, you can do the following:
+If you change these variables before the `react-md-everything` mixin is included, your entire
+application will be styled with your new theme.
 
 ```scss
-@import '~react-md/src/scss/helpers/all';
+@import '~react-md/src/scss/react-md';
 
 $md-primary-color: $md-teal-500;
-$md-primary-color-hue-1: $md-teal-700;
 $md-secondary-color: $md-lime-a-400;
-$md-secondary-color-hue-1: $md-lime-a-200;
 
+@include react-md-everything;
+```
+
+### Updating/Modifying the Theme
+There can be times where your application's theme will change depending on the current navigation.
+To help with minimizing bundles and not having to recompile all the styles just for a new theme,
+every themeable component has a mixin to update the colors. In addition, the new styles will only
+be created if the new values do not match the global `$md-primary-color`, `$md-secondary-color`,
+or `$md-light-theme` variables.
+
+The a component that is themeable will have a mixin name `react-md-theme-COMPONENT`. For simplicity,
+there is also a `react-md-theme-everything` mixin that can be used.
+
+Example usage:
+
+```scss
 @import '~react-md/src/scss/react-md';
+
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-lime-a-400;
+@include react-md-everything;
+
+// All the components will now be themed using teal and lime.
+// Now we want a dark theme using the same colors
+
+@include react-md-theme-everything($md-primary-color, $md-secondary-color, $md-linear-progress-swatch, $md-text-field-error-color, false, 'dark-theme');
+
+// If you add the `dark-theme` class name to your `body` or `html` tags, your app will now
+// be updated with the minimal amount of styles to theme to the dark theme.
 ```
 
-Your application should now be using `teal` as a primary color and `lime` as
-a secondary color.
-
-If you would like to do it at a section level, you can use the
-[md-theme-most](/sassdoc/#colors-mixin-md-theme-most) mixin.
+#### Theme a Single Component
+If all the components will not be used, and only a few should be updated with the new theme, you
+can update them at a component level.
 
 ```scss
-@import '~react-md/src/scss/helpers/all';
+@import '~react-md/src/scss/react-md';
 
-.alternative-theme {
-  @include md-theme-most($md-deep-orange-500, $md-deep-orange-400, $md-light-blue-a-200, $md-light-blue-a-100);
-}
-```
-
-#### Updating Theme Component at a Time
-If you are not using all the components, it is recommended to not import the
-entire `rect-md.scss` file. You will then need to include the specific components
-and utilities you will be using.
-
-If a component is styled based on the theme, there will be a mixin named `md-theme-COMPONENT`.
-
-```scss
-@import '~react-md/src/scss/helpers/all';
-@import '~react-md/src/scss/utils';
-@import '~react-md/src/scss/typography';
-@import '~react-md/src/scss/components/buttons';
-@import '~react-md/src/scss/components/inks';
-@import '~react-md/src/scss/components/pickers';
-@import '~react-md/src/scss/components/text-fields';
-
-$md-primary-color: $md-deep-orange-500;
-$md-primary-color-hue-1: $md-deep-orange-a-100;
-$md-secondary-color: $md-light-blue-a-400;
-$md-secondary-color-hue-1: $md-light-blue-a-200;
-
-@include md-theme-pickers($md-primary-color, $md-primary-color-hue-1);
-
-.md-secondary {
-  @include md-theme-buttons($md-primary-color);
-}
+@include react-md-theme-colors($md-light-blue-500, $md-orange-a-200, false);
 ```

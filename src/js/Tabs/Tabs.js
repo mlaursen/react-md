@@ -10,7 +10,7 @@ import TabIndicator from './TabIndicator';
 import MenuTab from './MenuTab';
 import TabOverflowButton from './TabOverflowButton';
 import IconSeparator from '../Helpers/IconSeparator';
-import FontIcon from 'react-md/lib/FontIcons';
+import FontIcon from '../FontIcons';
 
 const MOBILE_PADDING = 72;
 const DESKTOP_PADDING = 80;
