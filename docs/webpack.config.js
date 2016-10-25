@@ -75,8 +75,7 @@ module.exports = () => ({
       'react': path.join(nodeModules, 'react'),
       'react-dom': path.join(nodeModules, 'react-dom'),
       'react-md': path.resolve(process.cwd(), '..'),
-      'md-scss': path.resolve(process.cwd(), '..', 'src', 'scss', 'react-md.scss'),
-      'react-md-scss': path.resolve(process.cwd(), '..', 'src2', 'scss', '_react-md.scss'),
+      'react-md-scss': path.resolve(process.cwd(), '..', 'src', 'scss', '_react-md.scss'),
       'react-doc-page': path.resolve(process.cwd(), 'src', 'shared', 'components', 'DocPage.jsx'),
 
       'sass-utils': path.join(shared, '_sass-utils.scss'),

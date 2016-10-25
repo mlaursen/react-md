@@ -4,7 +4,7 @@
   max-width: calc(50% - 8px);
 
   &.application {
-    background: $md-dark-theme-background-color;
+    background: get-color('background', false);
   }
 
   .text-source {
@@ -18,7 +18,7 @@
   }
 
   .dummy-file {
-    color: $md-dark-theme-secondary-text-color;
+    color: get-color('secondary', false);
     font-size: 3em;
     left: 50%;
     position: absolute;
@@ -28,7 +28,7 @@
 }
 
 .close-btn {
-  background: $md-secondary-text-color;
+  background: get-color('secondary', false);
   color: $md-white-base;
   position: absolute;
   right: 0;

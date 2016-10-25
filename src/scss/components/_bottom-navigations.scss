@@ -1,87 +1,142 @@
-$md-font-icon-size: 24px;
+////
+/// @group bottom-navigations
+////
 
-.md-bottom-navigation {
-  @include md-box-shadow(1);
 
-  bottom: 0;
-  display: flex;
-  left: 0;
-  position: fixed;
-  width: 100%;
-}
+$md-bottom-navigation-shifting-ink-color: rgba($md-white-base, .12) !default;
+$md-bottom-navigation-transition-time: $md-transition-time * 2 !default;
 
-.md-bottom-nav {
-  @extend %button-unstyled;
-  @extend %clickable;
+$md-bottom-navigation-height: 56px;
+$md-bottom-navigation-max-width: 168px;
+$md-bottom-navigation-top-padding-active: 6px;
+$md-bottom-navigation-top-padding-inactive: 8px;
+$md-bottom-navigation-bottom-padding: 10px;
+$md-bottom-navigation-lr-padding: 12px;
 
-  flex-grow: 1;
-  font-size: $md-bottom-nav-inactive-font-size;
-  height: $md-bottom-navigation-height;
-  padding: $md-bottom-nav-padding;
-  text-align: center;
-  text-decoration: none;
-  transition-duration: $md-transition-time;
-  transition-property: color, font-size;
-  user-select: none;
+$md-bottom-navigation-active-font-size: 14px;
+$md-bottom-navigation-inactive-font-size: 12px;
 
-  &.active {
-    flex-shrink: 0;
-    font-size: $md-bottom-nav-active-font-size;
-  }
+$md-bottom-navigation-fixed-min-width: 80px;
+$md-bottom-navigation-shifting-active-min-width: 96px;
+$md-bottom-navigation-shifting-inactive-min-width: 56px;
+$md-bottom-navigation-shifting-inactive-max-width: 96px;
 
-  &.fixed {
-    max-width: $md-bottom-nav-fixed-max-width;
-    min-width: $md-bottom-nav-fixed-min-width;
-  }
 
-  &.shifting {
-    max-width: $md-bottom-nav-shifting-inactive-max-width;
-    min-width: $md-bottom-nav-shifting-inactive-min-width;
-    transition-property: color, font-size, max-width;
+@mixin react-md-bottom-navigations {
+  .md-bottom-navigation {
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 
-    &.active {
-      max-width: $md-bottom-nav-fixed-max-width;
-      min-width: $md-bottom-nav-shifting-active-min-width;
+    &--shifting {
+      transition-duration: $md-bottom-navigation-transition-time;
+      transition-property: background;
+    }
+
+    &--dynamic {
+      transform: translate3d(0, 0, 0);
+      transition-duration: $md-bottom-navigation-transition-time;
+      transition-property: background, transform;
+
+      &-inactive {
+        transform: translate3d(0, 100%, 0);
+      }
     }
   }
 
-  .md-icon {
-    color: inherit;
+  .md-bottom-navigation-offset {
+    padding-bottom: $md-bottom-navigation-height;
+  }
+
+  @include react-md-bottom-navigations-nav;
+}
+
+@mixin react-md-bottom-navigations-nav {
+  .md-bottom-nav {
     display: block;
+    flex-grow: 1;
+    font-size: $md-bottom-navigation-inactive-font-size;
+    height: $md-bottom-navigation-height;
+    max-width: $md-bottom-navigation-max-width;
+    padding: $md-bottom-navigation-top-padding-inactive $md-bottom-navigation-lr-padding $md-bottom-navigation-bottom-padding;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+
+    &--active {
+      flex-shrink: 0;
+      font-size: $md-bottom-navigation-active-font-size;
+      padding-top: $md-bottom-navigation-top-padding-active;
+    }
+
+    &--fixed {
+      min-width: $md-bottom-navigation-fixed-min-width;
+    }
+
+    &--shifting {
+      min-width: $md-bottom-navigation-shifting-active-min-width;
+      position: initial;
+      transition-duration: $md-transition-time;
+      transition-property: max-width;
+
+      &-inactive {
+        max-width: $md-bottom-navigation-shifting-inactive-max-width;
+        min-width: $md-bottom-navigation-shifting-inactive-min-width;
+        padding-top: 16px;
+      }
+
+      .md-ink-container {
+        overflow: visible;
+      }
+
+      .md-ink {
+        background: $md-bottom-navigation-shifting-ink-color;
+      }
+    }
+
+    &-label {
+      transition-duration: $md-transition-time;
+      transition-property: color, font-size;
+
+      &--shifting-inactive {
+        max-width: $md-bottom-navigation-shifting-inactive-min-width - $md-bottom-navigation-lr-padding * 2;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    .md-icon {
+      @extend %md-block-centered;
+    }
+
+    // scss-lint:disable QualifyingElement
+    // don't know why links render incorrectly
+    a.md-bottom-nav {
+      .md-icon {
+        margin-top: ($md-bottom-navigation-height - $md-font-icon-size - 16px) / 2;
+      }
+    }
   }
 }
 
-// scss-lint:disable QualifyingElement
-// Need this hack to get links to display correctly.
-a.md-bottom-nav.shifting:not(.active) .md-icon {
-  margin-top: ($md-bottom-navigation-height - $md-font-icon-size - 16px) / 2;
-}
-
-
-.bottom-nav-enter {
-  max-height: 0;
-  overflow: hidden;
-
-  &.bottom-nav-enter-active {
-    max-height: 16px;
-    transition: max-height $md-bottom-nav-transition-time;
+@mixin react-md-theme-bottom-navigations-colored($bg-color, $text-color: $md-white-base, $ink-color: $md-bottom-navigation-shifting-ink-color) {
+  .md-bottom-navigation.md-background--primary {
+    background: $bg-color;
   }
-}
 
-.bottom-navigation-enter {
-  max-height: 0;
-
-  &.bottom-navigation-enter-active {
-    max-height: $md-bottom-navigation-height;
-    transition: max-height $md-bottom-navigation-transition-time;
+  @if $text-color != $md-white-base {
+    .md-bottom-nav-label {
+      color: $text-color;
+    }
   }
-}
 
-.bottom-navigation-leave {
-  max-height: $md-bottom-navigation-height;
-
-  &.bottom-navigation-leave-active {
-    max-height: 0;
-    transition: max-height $md-bottom-navigation-transition-time;
+  @if $ink-color != $md-bottom-navigation-shifting-ink-color {
+    .md-bottom-navigation .md-ink {
+      background: $ink-color;
+    }
   }
 }

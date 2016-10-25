@@ -1,31 +1,17 @@
 import React from 'react';
 
-import FixedBottomNavigationExample from './FixedBottomNavigationExample';
-import FixedBottomNavigationExampleRaw from '!!raw!./FixedBottomNavigationExample';
+import FixedExample from './FixedExample';
+import FixedExampleRaw from '!!raw!./FixedExample';
 
-import ShiftingBottomNavigationExample from './ShiftingBottomNavigationExample';
-import ShiftingBottomNavigationExampleRaw from '!!raw!./ShiftingBottomNavigationExample';
-
-import './_bottom-nav.scss';
-import BottomNavSCSS from '!!raw!./_bottom-nav.scss';
-
-const shiftingCode = `
-/* ShiftingBottomNavigationExample.jsx */
-${ShiftingBottomNavigationExampleRaw}
-\`\`\`
-
-\`\`\`scss
-/* _bottom-nav.scss */
-${BottomNavSCSS}
-\`\`\`
-`;
+import ShiftingExample from './ShiftingExample';
+import ShiftingExampleRaw from './ShiftingExample/code';
 
 export default [{
-  title: 'Fixed Bottom Navigation',
-  code: FixedBottomNavigationExampleRaw,
-  children: <FixedBottomNavigationExample />,
+  title: 'Fixed Example',
+  code: FixedExampleRaw,
+  children: <FixedExample />,
 }, {
-  title: 'Shifting Bottom Navigation',
-  code: shiftingCode,
-  children: <ShiftingBottomNavigationExample />,
+  title: 'Shifting Example',
+  code: ShiftingExampleRaw,
+  children: <ShiftingExample />,
 }];

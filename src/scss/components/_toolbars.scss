@@ -31,6 +31,10 @@ $md-toolbar-include-autocompletes: true !default;
 /// @type Boolean
 $md-toolbar-include-select-fields: true !default;
 
+/// The amount of margin for an inset toolbar.
+/// @type Number
+$md-toolbar-inset-margin: 8px !default;
+
 /// The z-index for a `fixed` toolbar.
 /// @type Number
 /// @see md-btn-fixed-z-index
@@ -100,6 +104,11 @@ $md-toolbar-tablet-title-keyline: 80px;
       top: 0;
       width: 100vw;
       z-index: $md-toolbar-z-index;
+    }
+
+    &--inset {
+      margin: $md-toolbar-inset-margin;
+      max-width: calc(100vw - #{$md-toolbar-inset-margin * 2});
     }
   }
 
