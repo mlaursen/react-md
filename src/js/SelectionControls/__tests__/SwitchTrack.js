@@ -29,7 +29,7 @@ describe('SwitchTrack', () => {
     let className = findDOMNode(track).className;
 
     expect(className).toContain('md-switch-track');
-    expect(className).toContain('md-selection-control--cursor');
+    expect(className).toContain('md-pointer--hover');
     expect(className).not.toContain('--disabled');
     expect(className).not.toContain('--on');
     expect(className).toContain('--off');
@@ -39,7 +39,7 @@ describe('SwitchTrack', () => {
     className = findDOMNode(track).className;
 
     expect(className).toContain('md-switch-track');
-    expect(className).not.toContain('md-selection-control--cursor');
+    expect(className).not.toContain('md-pointer--hover');
     expect(className).toContain('--disabled');
     expect(className).not.toContain('--on');
     expect(className).toContain('--off');
@@ -49,7 +49,7 @@ describe('SwitchTrack', () => {
     className = findDOMNode(track).className;
 
     expect(className).toContain('md-switch-track');
-    expect(className).not.toContain('md-selection-control--cursor');
+    expect(className).not.toContain('md-pointer--hover');
     expect(className).toContain('--disabled');
     expect(className).toContain('--on');
     expect(className).not.toContain('--off');
