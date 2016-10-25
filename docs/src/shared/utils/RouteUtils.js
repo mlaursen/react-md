@@ -110,7 +110,6 @@ const components = {
       path: 'selection-controls',
       nestedItems: ['selection-control', 'checkboxes', 'radios', 'switches'],
     },
-    'sidebars',
     'sliders',
     'snackbars',
     'subheaders',

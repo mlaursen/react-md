@@ -6,6 +6,7 @@ import { getNavItems } from 'utils/RouteUtils';
 import { mediaChange, setMobileSearch } from 'actions/ui';
 import AppFooter from 'components/AppFooter';
 import ThemeSwitcher from 'containers/ThemeSwitcher';
+import QuickSearch from 'containers/QuickSearch';
 
 const ADJUSTED_PAGES = [
   '/getting-started/prerequisites',
@@ -70,6 +71,7 @@ export default class App extends PureComponent {
         drawerTitle="react-md"
         defaultMedia={defaultMedia}
         drawerHeaderChildren={<ThemeSwitcher />}
+        toolbarChildren={<QuickSearch />}
         tabletDrawerType={tabletDrawerType}
         desktopDrawerType={desktopDrawerType}
         toolbarTitle={toolbarTitle}

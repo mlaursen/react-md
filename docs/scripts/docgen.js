@@ -141,7 +141,7 @@ const docgens = {};
 
 
     docgens[folder] = docgens[folder] || {
-      name: generated.component.replace('Group', '').replace(/(?!Snackbar)Container/, ''),
+      name: generated.component.replace(/((?!Snackbar)Container|Group)/, ''),
       docgens: [],
     };
 

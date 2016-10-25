@@ -439,6 +439,12 @@ export default class NavigationDrawer extends PureComponent {
     toolbarActions: Toolbar.propTypes.actions,
 
     /**
+     * Any children to display in the toolbar. This will be displayed between the optional title and
+     * actions.
+     */
+    toolbarChildren: Toolbar.propTypes.children,
+
+    /**
      * The component to render the content in.
      */
     contentComponent: PropTypes.oneOfType([
@@ -687,6 +693,7 @@ export default class NavigationDrawer extends PureComponent {
       toolbarProminentTitle,
       toolbarThemeType,
       toolbarSingleColor,
+      toolbarChildren,
       mobileDrawerType: mobileType,
       tabletDrawerType: tabletType,
       desktopDrawerType: desktopType,
@@ -801,7 +808,9 @@ export default class NavigationDrawer extends PureComponent {
           nav={nav}
           actions={toolbarActions}
           fixed
-        />
+        >
+          {toolbarChildren}
+        </Toolbar>
         {miniDrawer}
         <Drawer
           {...props}

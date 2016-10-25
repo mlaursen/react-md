@@ -8,7 +8,7 @@
 /// the `max-height`. When this is true, only the content will be scrollable instead of the
 /// entire window.
 /// @type Boolean
-$md-navigation-drawer-enforce-height: true !default;
+$md-navigation-drawer-enforce-height: false !default;
 
 /// Boolean if the cross-fade transiiton should be included. This is used when the content
 /// changes.

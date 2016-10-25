@@ -392,7 +392,7 @@ export default class Drawer extends PureComponent {
 
     const type = getField(props, state, 'type');
     const visible = isPermanent(type);
-    if (getField(props, this.state, 'visible') !== visible) {
+    if (onVisibilityToggle && getField(props, this.state, 'visible') !== visible) {
       onVisibilityToggle(visible);
     }
 
