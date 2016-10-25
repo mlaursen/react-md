@@ -27,11 +27,11 @@ function handleLocationChange(state, pathname) {
   const themeable = !isHome && !isMobile() && !isTablet()
     && [PERSISTENT, PERSISTENT_MINI].indexOf(state.desktopDrawerType) === -1;
 
-  if (state.toolbarTitle === toolbarTitle && state.themeable === themeable) {
+  if (state.toolbarTitle === toolbarTitle && state.themeable === themeable && state.inactive === isHome) {
     return state;
   }
 
-  return Object.assign({}, state, { toolbarTitle, themeable });
+  return Object.assign({}, state, { toolbarTitle, themeable, inactive: isHome });
 }
 
 function updateToolbarInactivity(state, { inactive }) {
