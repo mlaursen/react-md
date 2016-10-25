@@ -57,18 +57,75 @@ export default class ShiftingExample extends PureComponent {
       visible: true,
     };
 
+    this._previousScroll = 0;
     this._setContent = this._setContent.bind(this);
+    this._setNavigation = this._setNavigation.bind(this);
+    this._stopScroll = this._stopScroll.bind(this);
+    this._enableScroll = this._enableScroll.bind(this);
+    this._handleScroll = this._handleScroll.bind(this);
     this._handleNavChange = this._handleNavChange.bind(this);
     this._handleVisibilityChange = this._handleVisibilityChange.bind(this);
   }
 
+  componentDidMount() {
+    window.addEventListener('touchstart', this._stopScroll);
+    window.addEventListener('mousemove', this._enableScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('touchstart', this._stopScroll);
+    window.removeEventListener('mousemove', this._enableScroll);
+  }
+
   _setContent(content) {
-    this._content = findDOMNode(content);
-    if (this._content) {
-      this.setState({ phone: this._content.parentNode.parentNode });
+    if (content) {
+      this._content = findDOMNode(content).parentNode;
+
+      this.setState({ phone: this._content.parentNode });
     } else {
       this.setState({ phone: null });
     }
+  }
+
+  _setNavigation(nav) {
+    this._nav = nav;
+  }
+
+  _stopScroll() {
+    if (this._enabled) {
+      this._content.removeEventListener('scroll', this._handleScroll);
+    }
+    this._enabled = false;
+  }
+
+  _enableScroll() {
+    if (!this._enabled) {
+      this._content.addEventListener('scroll', this._handleScroll);
+    }
+
+    this._enabled = true;
+  }
+
+  _handleScroll(e) {
+    if (!this._nav) {
+      return;
+    }
+    if (typeof this._nav._pageY !== 'number') {
+      this._nav._pageY = 0;
+    }
+
+
+    const scrollTop = -e.target.scrollTop;
+    if (this._previousScroll < scrollTop && !this._switched) {
+      this._nav._pageY = this._previousScroll;
+      this._switched = true;
+    } else if (this._previousScroll > scrollTop) {
+      this._switched = false;
+    }
+
+    this._nav._scrolling = true;
+    this._nav._handleTouchMove({ changedTouches: [{ pageY: scrollTop }] });
+    this._previousScroll = scrollTop;
   }
 
   _handleNavChange(activeIndex) {
@@ -99,6 +156,7 @@ export default class ShiftingExample extends PureComponent {
         onNavChange={this._handleNavChange}
         onVisibilityChange={this._handleVisibilityChange}
         renderNode={this.state.phone}
+        ref={this._setNavigation}
       />
     );
 

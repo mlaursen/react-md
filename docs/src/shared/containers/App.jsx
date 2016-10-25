@@ -61,9 +61,10 @@ export default class App extends PureComponent {
       desktopDrawerType,
       toolbarTitle,
       tablet,
+      desktop,
     } = this.props;
 
-    const footerAdjusted = ADJUSTED_PAGES[0] === pathname && tablet || ADJUSTED_PAGES[1] === pathname;
+    const footerAdjusted = ADJUSTED_PAGES[0] === pathname && tablet && !desktop || ADJUSTED_PAGES[1] === pathname;
     return (
       <NavigationDrawer
         drawerTitle="react-md"
@@ -77,7 +78,7 @@ export default class App extends PureComponent {
         navItems={getNavItems(pathname)}
         contentStyle={{ position: footerAdjusted ? 'relative' : null }}
       >
-        {children ? cloneElement(children, { key: pathname + 'woop' }) : null}
+        {children ? cloneElement(children, { key: pathname }) : null}
         <AppFooter adjusted={footerAdjusted} />
       </NavigationDrawer>
     );

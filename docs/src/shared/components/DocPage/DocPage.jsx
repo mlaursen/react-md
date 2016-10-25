@@ -40,7 +40,7 @@ export default class DocPage extends PureComponent {
     const { name, description, examples, docgens, style, className, mobile, tablet } = this.props;
 
     return (
-      <main
+      <section
         style={style}
         className={cn(`doc-component-${toClassName(name)}`, className)}
       >
@@ -52,7 +52,7 @@ export default class DocPage extends PureComponent {
           <h2 className="md-headline md-cell md-cell--12">Prop Types</h2>
           {docgens.map((docgen, key) => <DocgenPropTypes key={key} {...docgen} mobile={mobile} tablet={tablet} />)}
         </div>
-      </main>
+      </section>
     );
   }
 }
