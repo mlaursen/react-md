@@ -51,7 +51,7 @@ export default class FullPageDialogExamples extends PureComponent {
             title="New Event"
             fixed
           />
-          <form>
+          <form className="md-toolbar-relative">
             <TextField
               id="eventEmail"
               placeholder="Email"

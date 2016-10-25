@@ -29,11 +29,11 @@ export function randomImages(amt, options = { width: 40 }) {
 
 export function randomAvatar(className) {
   const src = randomImage();
-  return <Avatar key={src} src={src} alt="Some Avatar" className={className} />;
+  return <Avatar key={src} src={src} role="presentation" className={className} />;
 }
 
 export function randomAvatars(amt, className) {
-  return randomImages(amt).map(src => <Avatar key={src} src={src} className={className} />);
+  return randomImages(amt).map(src => <Avatar key={src} src={src} className={className} role="presentation" />);
 }
 
 export function getRandomBoolean() {

@@ -1,20 +1,15 @@
 import React, { PureComponent, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import cn from 'classnames';
 
-import Divider from '../Dividers';
-import List from '../Lists/List';
-import ListItem from '../Lists/ListItem';
-import Subheader from '../Subheaders';
+import Drawer from '../Drawers';
+import componentDeprecated from '../utils/PropTypes/componentDeprecated';
 
-/**
- * The `Sidebar` component is related to the `SideNav` component
- * fromt he Material Design Docs.
- *
- * A sidebar can be docked tot he left or right of the screen.
- */
 export default class Sidebar extends PureComponent {
   static propTypes = {
+    deprecated: componentDeprecated(
+      'All the functionality and responsiveness of a `Sidebar` can be handled by the `Drawer` instead.' +
+      ' Switch to the `Drawer` component instead.'
+    ),
+
     /**
      * Boolean if the overlay should appear when opened.
      */
@@ -102,30 +97,13 @@ export default class Sidebar extends PureComponent {
 
   static defaultProps = {
     align: 'left',
-    responsive: true,
-    transitionName: 'md-overlay',
-    transitionEnterTimeout: 150,
-    transitionLeaveTimeout: 150,
   };
-
-  _itemToComponent({ divider, subheader, ...itemProps }) {
-    let component = ListItem;
-    if (divider) {
-      component = Divider;
-    } else if (subheader) {
-      component = Subheader;
-    }
-
-    return React.createElement(component, itemProps);
-  }
 
   render() {
     const {
       isOpen,
       header,
       overlay,
-      responsive,
-      className,
       children,
       onOverlayClick,
       align,
@@ -133,31 +111,21 @@ export default class Sidebar extends PureComponent {
       fixed,
       ...props,
     } = this.props;
-    const isOverlayVisible = isOpen && (responsive || overlay);
+    delete props.responsive;
 
-    let listItems;
-    if (items) {
-      listItems = (
-        <List>
-          {items.map(this._itemToComponent)}
-        </List>
-      );
-    }
     return (
-      <CSSTransitionGroup
-        component="div"
-        className={cn('md-sidebar-container', `md-sidebar-${align}`, className, { fixed, responsive })}
+      <Drawer
         {...props}
+        visible={isOpen}
+        onVisibilityChange={onOverlayClick}
+        navItems={items}
+        position={align}
+        overflay={overlay}
+        header={header}
+        inline={!fixed}
       >
-        <nav className={cn('md-sidebar', { 'active': isOpen })}>
-          {header}
-          {listItems}
-          {children}
-        </nav>
-        {isOverlayVisible &&
-          <div className="md-overlay" onClick={onOverlayClick} />
-        }
-      </CSSTransitionGroup>
+        {children}
+      </Drawer>
     );
   }
 }

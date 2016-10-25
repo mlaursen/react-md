@@ -41,6 +41,7 @@ export default class MobileRightDrawerExample extends PureComponent {
     super(props);
 
     this.state = { images: [], visible: false, stats: null };
+    this._first = true;
     this._setRenderNode = this._setRenderNode.bind(this);
     this._fetchImages = this._fetchImages.bind(this);
     this._closeDrawer = this._closeDrawer.bind(this);
@@ -82,7 +83,13 @@ export default class MobileRightDrawerExample extends PureComponent {
   }
 
   _handleVisibility(visible) {
-    this.setState({ visible });
+    // When it first mounts, it sets it to visible on desktop screens since the media
+    // matches a desktop screen and it thinks it is a full height drawer
+    if (!this._first) {
+      this.setState({ visible });
+    }
+
+    this._first = false;
   }
 
   render() {

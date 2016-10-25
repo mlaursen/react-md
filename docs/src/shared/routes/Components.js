@@ -13,6 +13,11 @@ export default {
       replace('/components/buttons');
     },
   }, {
+    path: 'sidebars',
+    onEnter(state, replace) {
+      replace('/components/drawers');
+    },
+  }, {
     path: ':component',
     getComponent(state, cb) {
       if (__CLIENT__) {
