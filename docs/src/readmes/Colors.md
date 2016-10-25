@@ -9,12 +9,10 @@
 
 #### Using react-md's color palette
 All colors are defined as `.md-COLOR_NAME-HUE` or if it is an accent color `.md-COLOR_NAME-a-HUE`.
-So if you wanted to use purple as a primary clor, you could reference it as:
+So if you wanted to use purple as a primary color, you could reference it as:
 
 ```scss
 background: $md-purple-500;
 ```
-
-You can use the select field in the navigation drawer to quickly change between a few themes.
 
 All the colors are displayed below.

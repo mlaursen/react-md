@@ -108,18 +108,14 @@
 /// @example scss - Example Theme Change SCSS
 ///   @import 'react-md';
 ///   $md-primary-color: $md-deep-purple-500;
-///   $md-primary-color-hue-1: $md-deep-purple-200;
 ///   $md-secondary-color: $md-orange-a-400;
-///   $md-secondary-color-hue-1: $md-orange-a-200;
 ///
 ///   @include react-md-everything;
 ///
 ///   .blue-theme {
 ///     @include react-md-theme-everything(
 ///       $md-cyan-500,
-///       $md-cyan-200,
 ///       $md-yellow-a-700,
-///       $md-yellow-a-200,
 ///     );
 ///   }
 ///
@@ -133,6 +129,7 @@
 ///   @include react-md-theme-everything(
 ///     $md-primary-color,
 ///     $md-secondary-color,
+///     $md-linear-progress-swatch,
 ///     $md-text-field-error-color,
 ///     false,
 ///     dark-theme

@@ -8,7 +8,6 @@ $ npm install -S react \
                  react-dom \
                  react-addons-transition-group \
                  react-addons-css-transition-group \
-                 react-addons-pure-render-mixin \
                  react-md
 ```
 
@@ -66,20 +65,58 @@ render(document.getElementById('app'), <App />);
 ```scss
 // index.scss
 @import '~normalize.css';
-
-// Include all components and defaults
 @import '~react-md/src/scss/react-md';
 
-// If you want to reduce bundle size, you can include specific components instead:
-@import '~react-md/src/scss/helpers/all';
-@import '~react-md/src/scss/typography';
-@import '~react-md/src/scss/components/cards';
-@import '~react-md/src/scss/components/buttons';
-@import '~react-md/src/scss/components/inks';
+// Include all components
+@include react-md-everything;
 
-@import '~react-md/src/scss/media-queries';
+// Or only a few
+@include react-md-typography;
+@include react-md-grid;
+@include react-md-buttons;
+```
 
-.md-primary {
-  @include md-theme-buttons($md-primary-color);
+### UMD
+react-md is also available as a UMD bundle. This can either be found in the `dist` folder or from [unpkg](https://unpkg.com).
+
+```js
+/* index.js */
+import { Card, CardTitle, CardText, CardActions, Button } from ReactMD;
+
+class App extends React.Component {
+  render() {
+    return (
+      <div className="md-grid">
+        <Card className="md-cell">
+          <CardTitle title="Hello, World!"  />
+          <CardText>
+            Lorem ipsum... pretend more ...
+          </CardText>
+          <CardActions>
+            <Button flat label="Action 1" />
+            <Button flat label="Action 2" />
+          </CardActions>
+        </Card>
+      </div>
+    );
+  }
 }
+
+ReactDOM.render(document.getElementById('app'), <App />);
+```
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head><link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.indigo-pink.min.css"></head>
+  <body>
+    <script async src="https://unpkg.com/react/dist/react.min.js"></script>
+    <script async src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
+    <script async src="https://unpkg.com/react-addons-css-transition-group/dist/react-addons-css-transition-group.min.js"></script>
+    <script async src="https://unpkg.com/react-addons-transition-group/dist/react-addons-transition-group.min.js"></script>
+    <script async src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
+    <script async src="/bundle.js"></script>
+  </body>
+</html>
 ```

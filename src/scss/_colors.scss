@@ -6,6 +6,10 @@
 // Material Design color palette variables
 // @link https://www.google.com/design/spec/style/color.html#color-color-palette
 
+/// Boolean if a class name for each color should be created.
+/// @type Boolean
+$md-colors-include-class-names: false !default;
+
 /// @type Color
 $md-red-50: #ffebee;
 
@@ -1223,7 +1227,9 @@ $md-dark-theme-colors: (
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
-@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included) {
+/// @param {Boolean} include-color-class-names [$md-colors-include-class-names] - Boolean if a class name
+///     should be created for every color as well.
+@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-color-class-names: $md-colors-include-class-names) {
   .md-color--text {
     color: get-color('text', $light-theme);
   }
@@ -1284,6 +1290,10 @@ $md-dark-theme-colors: (
         background: rgba($secondary-color, .9);
       }
     }
+  }
+
+  @if $include-color-class-names {
+    @include react-md-color-class-names;
   }
 }
 
@@ -1416,4 +1426,31 @@ $md-dark-theme-colors: (
   }
 
   @return map-get($md-color-map, "md-#{$color-name}-#{if($accent, 'a-', '')}#{$swatch}");
+}
+
+/// This will create two class names for every material design color. The first
+/// class name can be used to style any text with that color, while the other will
+/// be used to style the background color.
+///
+/// @example scss - Example Usage SCSS
+///    @include react-md-color-class-names;
+///
+/// @example scss - Example Usage CSS Output
+///    .md-red-50--color {
+///      color: #ffebee;
+///    }
+///
+///    .md-red-50--background {
+///      background: #ffebee;
+///    }
+@mixin react-md-color-class-names {
+  @each $name, $color in $md-color-map {
+    .#{$name}--text {
+      color: $color;
+    }
+
+    .#{$name}--background {
+      background: $color;
+    }
+  }
 }
