@@ -1,8 +1,0 @@
-.icon-separator {
-  @extend %icon-separator;
-}
-
-.flipped {
-  transform: rotateZ(180deg);
-  transition: transform $md-transition-time;
-}

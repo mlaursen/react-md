@@ -213,6 +213,12 @@ export default class DialogContainer extends PureComponent {
      */
     transitionLeaveTimeout: PropTypes.number.isRequired,
 
+    /**
+     * Since the `Dialog` uses the `Portal` component, you can pass an optional HTML Node to render
+     * the dialog in instead of the `document.body`.
+     */
+    renderNode: PropTypes.object,
+
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
     transitionLeave: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -339,6 +345,7 @@ export default class DialogContainer extends PureComponent {
       component,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      renderNode,
       ...props,
     } = this.props;
     delete props.close;
@@ -366,7 +373,7 @@ export default class DialogContainer extends PureComponent {
     }
 
     return (
-      <Portal visible={portalVisible}>
+      <Portal visible={portalVisible} renderNode={renderNode}>
         <CSSTransitionGroup
           component={component}
           ref={this._setContainer}

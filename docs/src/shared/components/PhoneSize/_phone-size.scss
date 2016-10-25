@@ -13,7 +13,8 @@ $phone-status-bar-height: 24px;
   .md-btn--fixed,
   .md-toolbar--fixed,
   .md-drawer--fixed,
-  .md-snackbar {
+  .md-snackbar,
+  .md-bottom-navigation {
     position: absolute;
   }
 
@@ -121,7 +122,7 @@ $phone-status-bar-height: 24px;
     .md-toolbar {
       top: $phone-status-bar-height;
 
-      &::before {
+      &:not(.md-toolbar--inset)::before {
         background: $md-primary-color;
         content: '';
         height: $phone-status-bar-height;
@@ -134,6 +135,10 @@ $phone-status-bar-height: 24px;
         left: -54px;
         position: absolute;
         width: $phone-size-max-width;
+      }
+
+      &--inset {
+        max-width: $phone-size-max-width - 16px;
       }
     }
 

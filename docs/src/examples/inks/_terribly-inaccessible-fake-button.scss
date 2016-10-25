@@ -1,4 +1,4 @@
-@import '~sass-utils';
+@import '~react-md-scss';
 
 .terribly-inaccessible-fake-button {
   @include md-box-shadow(2);
@@ -15,7 +15,7 @@
 
   &.disabled {
     box-shadow: none;
-    color: $md-disabled-color;
+    color: get-color('disabled', $md-light-theme);
   }
 
   &:not(.disabled):hover {

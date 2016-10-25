@@ -109,6 +109,12 @@ export default class Toolbar extends PureComponent {
     ]).isRequired,
 
     /**
+     * Boolean if the toolbar is inset in the page. This will just add some margin around
+     * it.
+     */
+    inset: PropTypes.bool,
+
+    /**
      * An optional zDepth to enforce for the toolbar. This should be a number between 0 and 5.
      * If this is omitted, the toolbar will gain a zDepth of 2 when `fixed`.
      */
@@ -155,6 +161,7 @@ export default class Toolbar extends PureComponent {
       actionLeft,
       actionsRight,
       children,
+      inset,
       ...props,
     } = this.props;
     delete props.nav;
@@ -240,6 +247,7 @@ export default class Toolbar extends PureComponent {
           'md-toolbar--discreet': !prominent,
           'md-toolbar--prominent': prominent,
           'md-toolbar--fixed': fixed,
+          'md-toolbar--inset': inset,
         }, className)}
       >
         {nav}

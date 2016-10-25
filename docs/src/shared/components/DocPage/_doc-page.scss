@@ -91,8 +91,8 @@
 }
 
 .example-code {
-  background: $md-background-color;
-  border-top: 1px solid $md-border-color;
+  background: get-color('background', $md-light-theme);
+  border-top: 1px solid get-color('divider', $md-light-theme);
 
   pre {
     margin: 0;

@@ -1,93 +1,44 @@
-import React, { PureComponent, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { PureComponent, PropTypes, Children, isValidElement, cloneElement } from 'react';
 import cn from 'classnames';
+
+import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
+import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons';
-import injectInk from '../Inks';
 
 /**
- * The `BottomNav` component is used for rendering one of the nav items
- * in the `BottomNavigation` component. This is used for switching the view.
+ * The `BottomNav` component is used for rendering the navigation tab/link in the `BottomNavigation`
+ * component.
  */
-class BottomNav extends PureComponent {
+export default class BottomNav extends PureComponent {
   static propTypes = {
-    /**
-     * An optional style to apply.
-     */
     style: PropTypes.object,
-
-    /**
-     * An optional className to apply.
-     */
     className: PropTypes.string,
-
-    /**
-     * The label for the navigation.
-     */
-    label: PropTypes.string.isRequired,
-
-    /**
-     * Any children used to display the icon.
-     */
-    iconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use.
-     */
-    iconClassName: PropTypes.string,
-
-    /**
-     * The index of this nav tab.
-     */
-    index: PropTypes.number.isRequired,
-
-    /**
-     * Boolean if this nav is currently active.
-     */
-    active: PropTypes.bool.isRequired,
-
-    /**
-     * Boolean if the nav is colored.
-     */
-    colored: PropTypes.bool,
-
-    /**
-     * An optional function to call onClick. It is called
-     * with the label and click event.
-     *
-     * `onClick(index, event)`
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * A function injected from the `BottomNavigation` component.
-     * It is called with the label and click event.
-     *
-     * `onClick(index, event)`
-     */
-    onNavChange: PropTypes.func.isRequired,
-
-    /**
-     * Boolean if the tabs are fixed sizes. This will be true
-     * if there are only three BottomNavs.
-     */
-    fixed: PropTypes.bool.isRequired,
-
-    /**
-     * The component to render as.
-     */
     component: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.func,
-    ]).isRequired,
+      PropTypes.string,
+    ]),
+    active: PropTypes.bool,
+    fixed: PropTypes.bool,
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    label: PropTypes.node.isRequired,
+    colored: PropTypes.bool,
+    iconChildren: PropTypes.node,
+    iconClassName: PropTypes.string,
+    onClick: PropTypes.func,
+    onNavChange: PropTypes.func,
+    role: PropTypes.string,
   };
 
   static defaultProps = {
-    component: 'button',
+    component: 'a',
+    role: null,
   };
 
   constructor(props) {
     super(props);
 
+    this.state = {};
     this._handleClick = this._handleClick.bind(this);
   }
 
@@ -97,53 +48,56 @@ class BottomNav extends PureComponent {
       onClick(index, e);
     }
 
-    onNavChange(index, e);
+    if (onNavChange) {
+      onNavChange(index, e);
+    }
   }
 
   render() {
     const {
+      active,
+      fixed,
       className,
-      label,
       iconClassName,
       iconChildren,
       colored,
-      active,
-      fixed,
-      component,
       ...props,
     } = this.props;
-    delete props.onClick;
     delete props.index;
+    delete props.label;
+    delete props.onClick;
     delete props.onNavChange;
 
-
-    let displayLabel;
-    if (fixed || active) {
-      displayLabel = <span key="label">{label}</span>;
+    let { label } = this.props;
+    const labelClassName = cn('md-bottom-nav-label', { 'md-bottom-nav-label--shifting-inactive': !active && !fixed });
+    if (Children.count(label) === 1 && isValidElement(label)) {
+      const labelEl = Children.only(label);
+      label = cloneElement(label, {
+        className: cn(labelClassName, labelEl.props.className),
+      });
+    } else {
+      label = <div className={labelClassName}>{label}</div>;
     }
 
     return (
-      <CSSTransitionGroup
-        type={component === 'button' ? 'button' : null}
-        component={component}
-        transitionName="bottom-nav"
-        transitionEnterTimeout={150}
-        transitionLeave={false}
-        className={cn('md-bottom-nav', className, {
-          active,
-          colored,
-          fixed,
-          'shifting': !fixed,
-          'default': !colored,
-        })}
+      <AccessibleFakeInkedButton
         {...props}
         onClick={this._handleClick}
+        className={cn('md-bottom-nav', {
+          'md-bottom-nav--active': active,
+          'md-bottom-nav--fixed': fixed,
+          'md-bottom-nav--shifting': !fixed,
+          'md-bottom-nav--shifting-active': !fixed && active,
+          'md-bottom-nav--shifting-inactive': !fixed && !active,
+          'md-color--text': !active && !colored,
+          'md-color--primary': active && !colored,
+        }, className)}
       >
-        <FontIcon key="icon" iconClassName={iconClassName}>{iconChildren}</FontIcon>
-        {displayLabel}
-      </CSSTransitionGroup>
+        <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>
+        <Collapse collapsed={!fixed && !active}>
+          {label}
+        </Collapse>
+      </AccessibleFakeInkedButton>
     );
   }
 }
-
-export default injectInk(BottomNav);

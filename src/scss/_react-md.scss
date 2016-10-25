@@ -10,6 +10,7 @@
 @import 'components/accessibility';
 @import 'components/autocompletes';
 @import 'components/avatars';
+@import 'components/bottom-navigations';
 @import 'components/buttons';
 @import 'components/cards';
 @import 'components/chips';
@@ -57,6 +58,7 @@
 
   @include react-md-autocompletes;
   @include react-md-avatars;
+  @include react-md-bottom-navigations;
   @include react-md-buttons;
   @include react-md-cards;
   @include react-md-chips;

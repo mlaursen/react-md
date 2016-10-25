@@ -46,7 +46,7 @@ export default class Music extends PureComponent {
   render() {
     return (
       <div>
-        <Section title="New Releases" data={releasesData} cardClassName="release-card" titleIcon="more_vert" />
+        <Section title="New Releases" data={releasesData} cardClassName="md-cell md-cell--2-phone md-cell--4-tablet md-cell--6-desktop" titleIcon="more_vert" />
         <Section title="Recommended" data={recommendedData} cardClassName="recommended-card" />
         <Section title={loremTitle} data={lorems} className="lorems" cardClassName="lorem-card" />
       </div>

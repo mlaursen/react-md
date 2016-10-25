@@ -11,7 +11,7 @@
 }
 
 .strikethrough {
-  color: $md-disabled-color;
+  color: get-color('secondary', $md-light-theme);
   text-decoration: line-through;
 }
 
