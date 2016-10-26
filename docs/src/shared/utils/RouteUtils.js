@@ -300,7 +300,6 @@ export const fuseRoutes = routes.reduce((searchables, route) => {
  */
 export function onUpdate() {
   const { hash } = window.location;
-  const selector = document.querySelector('.md-navigation-drawer-content');
   if (hash) {
     setTimeout(() => {
       const el = document.getElementById(hash.replace('#', ''));
@@ -309,9 +308,9 @@ export function onUpdate() {
         position = el.offsetTop;
       }
 
-      selector.scrollTop = position;
+      window.scrollTo(0, position);
     }, 300);
   } else {
-    selector.scrollTop = 0;
+    window.scrollTo(0, 0);
   }
 }

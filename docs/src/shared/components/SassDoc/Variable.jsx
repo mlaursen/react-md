@@ -1,10 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
-import Paper from 'react-md/lib/Papers';
 
-import extractSource from './extractSource';
 import variableShape from './variableShape';
-import ScssMarkdown from './ScssMarkdown';
 import Markdown from 'components/Markdown';
+import ExpandableSource from './ExpandableSource';
 
 export default class Variable extends PureComponent {
   static propTypes = {
@@ -14,17 +12,11 @@ export default class Variable extends PureComponent {
 
   render() {
     const { variable, rawFile } = this.props;
-    const { name } = variable.context;
+    const { name, line } = variable.context;
     return (
       <div className="sassdoc-group">
         <h3 id={name} className="md-headline">{name}</h3>
-        <ScssMarkdown
-          component={Paper}
-          zDepth={1}
-          style={{ marginBottom: 16 }}
-          className="md-card-text"
-          markdown={extractSource(rawFile, variable.context.line)}
-        />
+        <ExpandableSource rawFile={rawFile} line={line} commentRange={variable.commentRange} />
         <h4 className="md-title">Description</h4>
         <Markdown markdown={variable.description} />
         <h4 className="md-title">Variable</h4>

@@ -8,7 +8,7 @@ import NewReleases from '!!raw!./NewReleases';
 import TopSongs from '!!raw!./TopSongs';
 import CardGrid from '!!raw!./CardGrid';
 import AlbumCard from '!!raw!./AlbumCard';
-import styles from '!!raw!./_styles';
+import styles from '!!raw!./_styles.scss';
 
 export default `
 /* MusicTabExample.jsx */

@@ -22,7 +22,7 @@ export default class SwitchTrack extends PureComponent {
           'md-switch-track--off': !checked,
         }, className)}
       >
-        <SwitchThumb disabled={disabled} checked={checked} />
+        <SwitchThumb disabled={disabled} checked={checked} onClick={props.onClick} />
       </div>
     );
   }

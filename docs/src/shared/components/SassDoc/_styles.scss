@@ -2,4 +2,24 @@
 
 .sassdoc-group {
   margin-bottom: 6em;
+
+  .code-block {
+    background: transparent;
+    margin: 0;
+  }
+}
+
+.stop-pre-margins {
+  .code-block {
+    padding: 0;
+  }
+
+  .lang-scss {
+    margin: 0;
+  }
+}
+
+.expandable-source {
+  margin-bottom: $md-default-padding;
+  overflow: hidden;
 }

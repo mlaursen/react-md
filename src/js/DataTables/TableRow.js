@@ -160,10 +160,12 @@ export default class TableRow extends Component {
   _setLongestColumn() {
     const widths = [];
     const biggest = Array.prototype.slice.call(
-      findDOMNode(this).querySelectorAll(
-        '.md-table-data:not(.prevent-grow),.md-table-header:not(.prevent-grow)'
-      )
+      findDOMNode(this).querySelectorAll('.md-table-column')
     ).reduce((prev, curr, i) => {
+      if (curr.classList.contains('prevent-grow')) {
+        return prev;
+      }
+
       const width = curr.offsetWidth;
       widths.push(width);
       if (prev.width < width) {

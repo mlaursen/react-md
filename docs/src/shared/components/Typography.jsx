@@ -2,6 +2,10 @@ import React, { PureComponent } from 'react';
 import Markdown from 'components/Markdown';
 import loremIpsum from 'lorem-ipsum';
 
+import TypographyRaw from '!!raw!react-md/src/scss/_typography.scss';
+import sassdoc from '../../sassdocs/typography.json';
+import SassDoc from 'components/SassDoc';
+
 const markdown = `
 # Material Design Typography
 
@@ -75,6 +79,7 @@ export default class Typography extends PureComponent {
             <Markdown markdown={helperMarkdown} component="article" />
           </section>
         </div>
+        <SassDoc rawFile={TypographyRaw} sassdoc={sassdoc} />
       </main>
     );
   }

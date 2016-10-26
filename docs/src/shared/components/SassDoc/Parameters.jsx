@@ -31,16 +31,16 @@ export default class Parameters extends PureComponent {
       <DataTable plain>
         <TableHeader>
           <TableRow>
-            <TableColumn>Name</TableColumn>
+            <TableColumn className="prevent-grow">Name</TableColumn>
             <TableColumn>Description</TableColumn>
             <TableColumn>Type</TableColumn>
             <TableColumn>Default value</TableColumn>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className="stop-pre-margins">
           {parameters.map(param => (
             <TableRow key={param.name}>
-              <TableColumn>
+              <TableColumn className="prevent-grow">
                 <VariableFormat>{param.name.indexOf('$') === -1 ? `$${param.name}` : param.name}</VariableFormat>
               </TableColumn>
               <TableColumn style={{ whiteSpace: 'initial' }}><Markdown markdown={param.description} /></TableColumn>

@@ -9,47 +9,26 @@ import Variables from './Variables';
 import Functions from './Functions';
 import Mixins from './Mixins';
 
-function extractTypes(sassdocs) {
-  const variables = [];
-  const mixins = [];
-  const placeholders = [];
-  const functions = [];
-
-  sassdocs.forEach(sassdoc => {
-    switch (sassdoc.context.type) {
-      case 'variable':
-        variables.push(sassdoc);
-        break;
-      case 'mixin':
-        mixins.push(sassdoc);
-        break;
-      case 'placeholder':
-        placeholders.push(sassdoc);
-        break;
-      case 'function':
-        functions.push(sassdoc);
-        break;
-      default:
-        console.log('Unknown type: ', sassdoc.context.type);
-    }
-  });
-
-  return { variables, mixins, placeholders, functions };
-}
-
 export default class SassDoc extends PureComponent {
   static propTypes = {
     rawFile: PropTypes.string.isRequired,
-    sassdoc: PropTypes.arrayOf(PropTypes.oneOfType([
-      placeholderShape,
-      variableShape,
-      mixinShape,
-    ])).isRequired,
+    sassdoc: PropTypes.shape({
+      placeholders: PropTypes.arrayOf(placeholderShape).isRequired,
+      variables: PropTypes.arrayOf(variableShape).isRequired,
+      mixins: PropTypes.arrayOf(mixinShape).isRequired,
+    }).isRequired,
   };
 
   render() {
-    const { rawFile } = this.props;
-    const { variables, mixins, functions, placeholders } = extractTypes(this.props.sassdoc);
+    const {
+      rawFile,
+      sassdoc: {
+        variables,
+        mixins,
+        functions,
+        placeholders,
+      },
+    } = this.props;
 
     return (
       <section className="md-grid md-grid--40-16">
