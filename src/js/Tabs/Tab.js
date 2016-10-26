@@ -39,6 +39,11 @@ export default class Tab extends PureComponent {
      */
     className: PropTypes.string,
 
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
     /**
      * Any children to display once the tab has been selected.
      */
@@ -79,6 +84,10 @@ export default class Tab extends PureComponent {
      * injected.
      */
     index: PropTypes.number,
+  };
+
+  static defaultProps = {
+    component: 'li',
   };
 
   constructor(props) {
@@ -127,7 +136,6 @@ export default class Tab extends PureComponent {
         id={id}
         role="tab"
         onClick={this._handleClick}
-        component="li"
         className={cn('md-tab', {
           'md-tab--active': active,
           'md-tab--inactive': !active,

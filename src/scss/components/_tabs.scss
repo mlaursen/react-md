@@ -194,6 +194,7 @@ $md-tab-desktop-padding: 24px;
 @mixin react-md-tabs-tab($include-icons: $md-tab-include-icons) {
   .md-tab {
     align-items: center;
+    color: inherit;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -207,6 +208,7 @@ $md-tab-desktop-padding: 24px;
     padding-right: $md-tab-padding;
     position: relative;
     text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
 
     &--multiline {

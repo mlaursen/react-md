@@ -424,7 +424,13 @@ export default class Tabs extends PureComponent {
       nextIconClassName,
       previousIconChildren,
       previousIconClassName,
+      ...props,
     } = this.props;
+    delete props.activeTabIndex;
+    delete props.defaultTabIndex;
+    delete props.defaultMedia;
+    delete props.desktopMinWidth;
+    delete props.onTabChange;
 
     const activeTabIndex = getField(this.props, this.state, 'activeTabIndex');
 
@@ -495,6 +501,7 @@ export default class Tabs extends PureComponent {
 
     return (
       <Component
+        {...props}
         ref={this._setContainer}
         style={{ ...style, paddingLeft }}
         className={cn('md-tabs', {
