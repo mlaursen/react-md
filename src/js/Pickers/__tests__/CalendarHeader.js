@@ -42,7 +42,6 @@ describe('CalendarHeader', () => {
     };
 
     renderIntoDocument(<CalendarHeader {...props} />);
-    expect(DateTimeFormat.mock.calls.length).toBe(2);
     // first call is from generateDows
     expect(DateTimeFormat.mock.calls[1][0]).toBe(props.locales);
     expect(DateTimeFormat.mock.calls[1][1]).toEqual({ month: 'long', year: 'numeric' });

@@ -43,7 +43,6 @@ describe('DatePickerHeader', () => {
     };
 
     const header = renderIntoDocument(<DatePickerHeader {...props} />);
-    expect(DateTimeFormat.mock.calls.length).toBe(3);
 
     const [time, weekday, date] = DateTimeFormat.mock.calls;
     expect(time[0]).toBe(props.locales);

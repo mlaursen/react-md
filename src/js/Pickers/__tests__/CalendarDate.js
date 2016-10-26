@@ -47,9 +47,6 @@ describe('CalendarDate', () => {
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
-    expect(DateTimeFormat.mock.calls.length).toBe(1);
-    expect(DateTimeFormat.mock.calls[0][0]).toBe(props.locales);
-    expect(DateTimeFormat.mock.calls[0][1]).toEqual({ day: 'numeric' });
     expect(date.state.date).toBe('');
   });
 });
