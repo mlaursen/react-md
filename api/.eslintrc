@@ -1,0 +1,21 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": false,
+    "node": true,
+  },
+  "rules": {
+    // Don't feel like wrapping every arrow in paren
+    "arrow-parens": 0,
+
+    // Console valid
+    "no-console": 0,
+
+    // Disables for express.Router()
+    "new-cap": 0,
+
+    // Don't care too much about shadow
+    "no-shadow": 0
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "react-md-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Read in CRUD for react-md",
+  "main": "src/server/index.js",
+  "scripts": {
+    "start": "node src/server/index.js",
+    "dev": "nodemon src/server/index.js",
+    "test": "test"
+  },
+  "author": "Mikkel Laursen <mlaursen03@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "dependencies": {
+    "apicache": "^0.3.4",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "react-docgen": "^2.12.1",
+    "sassdoc": "^2.1.20"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

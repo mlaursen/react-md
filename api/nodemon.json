@@ -1,0 +1,9 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ignore": [
+    "localdb.json",
+    "woop.json"
+  ]
+}
