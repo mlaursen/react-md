@@ -38,5 +38,5 @@ src/scss/bundles
 prod-config.json
 docs/src/docgens
 docs/src/sassdocs
-doscs/src/shared/components/Grids/grid-sassdoc.json
+docs/src/shared/components/Grids/grid-sassdoc.json
 yarn.lock
