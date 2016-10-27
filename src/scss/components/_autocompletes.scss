@@ -81,7 +81,7 @@ $md-inline-autocomplete: true !default;
 @mixin react-md-autocompletes-desktop($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     .md-autocomplete-suggestion {
-      bottom: 10px;
+      bottom: 6px;
       font-size: $md-text-field-desktop-font-size;
     }
 

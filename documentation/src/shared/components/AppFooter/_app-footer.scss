@@ -1,0 +1,50 @@
+@import '~react-md-scss';
+
+.app-footer {
+  background: $md-grey-800;
+  color: $md-white-base;
+
+  p,
+  .md-title,
+  .md-body-2 {
+    color: inherit;
+  }
+}
+
+.md-cell.quick-nav {
+  align-items: center;
+  background: $md-deep-purple-500;
+  height: 88px;
+  margin-left: -8px;
+  margin-right: -8px;
+  margin-top: -8px;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  width: calc(100% + 16px);
+
+  .md-headline,
+  .md-subheading-2 {
+    margin-bottom: 0;
+  }
+
+  .md-icon,
+  .md-subheading-2 {
+    color: $md-dark-theme-secondary-text-color;
+  }
+
+  .md-headline {
+    color: $md-white-base;
+  }
+}
+
+.quick-nav-link {
+  text-decoration: none;
+
+  .md-icon {
+    padding: $md-btn-icon-padding;
+  }
+}
+
+.nav-titles {
+  display: inline-block;
+}

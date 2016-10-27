@@ -16,6 +16,7 @@
     "new-cap": 0,
 
     // Don't care too much about shadow
-    "no-shadow": 0
+    "no-shadow": 0,
+    "max-len": [140, 1]
   }
 }

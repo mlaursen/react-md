@@ -180,18 +180,24 @@ export default class TabsContainer extends PureComponent {
 
     const tabsEl = Children.only(children);
     const tabId = tabsEl.props.tabId;
-    const content = Children.map(tabsEl.props.children, (tab, index) => (
-      <TabPanel
-        id={tab.props.controlsId || `${tabId}-panel-${index}`}
-        active={activeTabIndex === index}
-        style={panelStyle}
-        className={panelClassName}
-        component={panelComponent}
-        controlledById={tab.props.id || `${tabId}-${index}`}
-      >
-        {tab.props.children}
-      </TabPanel>
-    ));
+    const content = Children.map(tabsEl.props.children, (tab, index) => {
+      if (!tab) {
+        return tab;
+      }
+
+      return (
+        <TabPanel
+          id={tab.props.controlsId || `${tabId}-panel-${index}`}
+          active={activeTabIndex === index}
+          style={panelStyle}
+          className={panelClassName}
+          component={panelComponent}
+          controlledById={tab.props.id || `${tabId}-${index}`}
+        >
+          {tab.props.children}
+        </TabPanel>
+      );
+    });
 
     const childrenProps = Children.only(children).props;
     const tabs = cloneElement(children, {

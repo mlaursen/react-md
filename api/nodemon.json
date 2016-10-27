@@ -4,9 +4,9 @@
   },
   "watch": [
     "*",
-    "../src"
+    "../src/**/*"
   ],
   "ignore": [
-    "*localdb.json"
+    "**/*localdb.json"
   ]
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import { render } from 'react-dom';
+import { syncHistoryWithStore } from 'react-router-redux';
 import WebFont from 'webfontloader';
 
 import configureStore from 'stores/configureStore';
@@ -17,8 +18,8 @@ WebFont.load({
   },
 });
 
-const history = browserHistory;
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
+const history = syncHistoryWithStore(browserHistory, store);
 const root = document.getElementById('app');
 if (process.env.NODE_ENV === 'development') {
   window.Perf = require('react-addons-perf');

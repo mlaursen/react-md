@@ -14,6 +14,7 @@ const JS_FOLDER = path.resolve(process.cwd(), '..', 'src', 'js');
 
 const LOCAL_DB = {};
 const GROUPS = [];
+const NESTED_GROUPS = [];
 
 function buildLocalDB() {
   return readdir(JS_FOLDER).then(files => {
@@ -22,8 +23,17 @@ function buildLocalDB() {
         .map(folder => extractReactModules(JS_FOLDER, folder))
     ).then(exports => Promise.all(exports.map(createReactDocgen))).then(docgens => {
       docgens.forEach(({ group, docgens }) => {
-        LOCAL_DB[group] = docgens;
-        GROUPS.push(group);
+        if (group.match(/helpers|selection/i)) {
+          LOCAL_DB[group] = {};
+          NESTED_GROUPS.push(group);
+          docgens.forEach(docgen => {
+            const name = docgen.component.split(/(?=[A-Z])/).join('-').toLowerCase();
+            LOCAL_DB[group][name] = docgen;
+          });
+        } else {
+          GROUPS.push(group);
+          LOCAL_DB[group] = docgens;
+        }
       });
 
       if (process.env.NODE_ENV === 'development') {
@@ -36,14 +46,18 @@ function buildLocalDB() {
   });
 }
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  if (GROUPS.indexOf(id) === -1) {
+function findDocgen(req, res) {
+  const { id, section } = req.params;
+  const isNested = NESTED_GROUPS.indexOf(section) !== -1 && LOCAL_DB[section][id];
+  if (GROUPS.indexOf(id) === -1 && !isNested) {
     return res.sendStatus(404);
   }
 
-  return res.json(LOCAL_DB[id]);
-});
+  return res.json(isNested ? LOCAL_DB[section][id] : LOCAL_DB[id]);
+}
+
+router.get('/:section/:id', findDocgen);
+router.get('/:id', findDocgen);
 
 module.exports = router;
 module.exports.buildLocalDB = buildLocalDB;

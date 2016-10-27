@@ -4,3 +4,21 @@
 $md-primary-color: $md-light-blue-500;
 $md-secondary-color: $md-orange-a-200;
 @include react-md-everything;
+@include react-md-make-custom-grid('40-16', 40px, 16px, 0);
+
+.md-title--toolbar {
+  ~ .documentation-tabs {
+    left: 0;
+  }
+
+  &-offset ~ .documentation-tabs {
+    left: $md-drawer-tablet-width;
+  }
+}
+
+.documentation-tabs {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+}
+

@@ -12,6 +12,8 @@
     // Don't feel like wrapping every arrow in paren
     "arrow-parens": 0,
 
+    "max-len": [140, 1],
+
     // Console valid
     "no-console": 0,
 

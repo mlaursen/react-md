@@ -15,6 +15,14 @@ const API_URL = 'http://localhost:3000/api';
 const BASE_URL = 'http://localhost:8080';
 const PROXY_URL = `${BASE_URL}/proxy?url=`;
 
+/**
+ * This function fetches data from an endpoint with options using the native fetch (when possible)
+ * or async loading `isomorphic-fetch` to do the api call when run on the server or not competent browsers.
+ *
+ * @param {String} endpoint - The endpoint to fetch from
+ * @param {Object=} options - Any additional options to send with the request.
+ * @return {Promise} a Promise containing the json
+ */
 export default function fetch(endpoint, options) {
   return new Promise(resolve => {
     if (global.fetch) {
@@ -26,10 +34,24 @@ export default function fetch(endpoint, options) {
     } else {
       resolve(require('isomorphic-fetch'));
     }
-  }).then(fetch => fetch(endpoint, options).then(response => response.json()));
+  }).then(fetch => fetch(encodeURI(endpoint), options).then(response => response.json()));
 }
 
-/* eslint-disable no-param-reassign */
+/**
+ * Wraps the fetch function to be used with redux. Basically dispatches an action on request, success,
+ * and failure. If the store already contains data with the `stateKey`, the fetch will also not occur.
+ *
+ * When dispatched, the action creator will contain the type (request || success || failure), the `id`.
+ * If the type is `success`, there will be an additional key for `data` while if it is a failure, there
+ * will be an additional key with the `error`.
+ *
+ * @param {String} endpoint - The endpoint to fetch
+ * @param {Object} options - Any additional options to pass.
+ * @param {String} id - An id to associate with this request.
+ * @param {String} stateKey - A period delimited string to access the redux state for this api call,
+ * @param {Object} types - An object containing a key for `request`, `success`, and `failure` that should
+ *    map to a redux type.
+ */
 export function fetchCreator(endpoint, options, id, stateKey, { request, success, failure } = {}) {
   if (!request) {
     request = FETCH_REQUEST;
@@ -44,7 +66,7 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
   }
 
   return (dispatch, getState) => {
-    if (getState()[stateKey]) {
+    if (key.split('.').reduce((state, key) => state[key]), getState()) {
       return;
     }
 
@@ -59,24 +81,61 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
   };
 }
 
+/**
+ * Fetches data from the proxy server.
+ *
+ * @param {String} url - The url to fetch from
+ * @param {Object=} options - Any additional options to use.
+ * @return {Promise} a promise containing the json data.
+ */
 export function fetchProxy(url, options) {
   return fetch(`${PROXY_URL}${url}`, options);
 }
 
-export function fetchProxyCreator(id, url, options) {
-  return fetchCreator(`${PROXY_URL}${url}`, options, id);
+/**
+ * Fetches data fromthe proxy server but wraps with redux dispatces.
+ *
+ * @param {String} id - An id to associate with this request.
+ * @param {String} stateKey - A period delimited string to access the redux state for this api call,
+ * @param {String} url - A url to fetch
+ * @param {Object=} options - any additional options
+ * @param {Object=} types - Optional redux action types to associate with.
+ */
+export function fetchProxyCreator(id, stateKey, url, options, types) {
+  return fetchCreator(`${PROXY_URL}${url}`, options, id, stateKey, types);
 }
 
-export function fetchSassDoc(id, options) {
-  return fetchCreator(`${PROXY_URL}${API_URL}/sassdocs/${id}`, options, id, 'documentation.sassdocs', {
-    request: FETCH_SASSDOC_REQUEST,
-    success: FETCH_SASSDOC_SUCCESS,
-    failure: FETCH_SASSDOC_FAILURE,
-  });
+/**
+ * Fetches the sassdoc from the api server.
+ *
+ * @param {String} id - the id for the sassdoc
+ * @param {String} section - An optional subsection for the sassdoc. This will be set
+ *    when the component routes had a `nestedItems` created.
+ * @param {Object=} options - Any additional options to use.
+ */
+export function fetchSassDoc(id, section, options) {
+  return fetchProxyCreator(id, 'documentation.sassdocs',
+    `${PROXY_URL}${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`,
+    options, {
+      request: FETCH_SASSDOC_REQUEST,
+      success: FETCH_SASSDOC_SUCCESS,
+      failure: FETCH_SASSDOC_FAILURE,
+    },
+  );
 }
 
-export function fetchDocgen(id, options) {
-  return fetchCreator(`${PROXY_URL}${API_URL}/docgens/${id}`, options, id, 'documentation.docgens', {
+/**
+ * Fetches the react docgen from the api server.
+ *
+ * @param {String} id - the id for the react docgen
+ * @param {String} section - An optional subsection for the react docgen. This will be set
+ *    when the component routes had a `nestedItems` created.
+ * @param {Object=} options - Any additional options to use.
+ */
+export function fetchDocgen(id, section, options) {
+  return fetchProxyCreator(id, 'documentation.docgens',
+    `${PROXY_URL}${API_URL}/docgens/${section ? `${section}/` : ''}${id}`,
+    options, {
     request: FETCH_DOCGEN_REQUEST,
     success: FETCH_DOCGEN_SUCCESS,
     failure: FETCH_DOCGEN_FAILURE,

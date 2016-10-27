@@ -32,9 +32,17 @@ module.exports = () => ({
 
   module: {
     loaders: [{
-      text: /\.jsx?$/,
+      test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel',
+    }, {
+      test: /\.md$/,
+      exclude: /node_modules/,
+      loader: 'raw',
+    }, {
+      test: /\.json$/,
+      exclude: /node_modules/,
+      loader: 'json',
     }],
   },
 
@@ -58,6 +66,7 @@ module.exports = () => ({
       'reducers': path.join(shared, 'reducers'),
       'routes': path.join(shared, 'routes'),
       'stores': path.join(shared, 'stores'),
+      'utils': path.join(shared, 'utils'),
     },
 
     fallback: nodeModules, // So that dependencies fall back to this node modules

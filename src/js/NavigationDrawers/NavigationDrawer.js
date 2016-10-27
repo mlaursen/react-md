@@ -153,6 +153,16 @@ export default class NavigationDrawer extends PureComponent {
     toolbarClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the main toolbar's title.
+     */
+    toolbarTitleStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the main toolbar's title.
+     */
+    toolbarTitleClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the drawer.
      */
     drawerStyle: PropTypes.object,
@@ -688,6 +698,8 @@ export default class NavigationDrawer extends PureComponent {
       drawerTransitionDuration,
       toolbarTitle,
       toolbarTitleMenu,
+      toolbarTitleStyle,
+      toolbarTitleClassName,
       toolbarActions,
       toolbarProminent,
       toolbarProminentTitle,
@@ -798,13 +810,14 @@ export default class NavigationDrawer extends PureComponent {
           titleMenu={toolbarTitleMenu}
           prominent={toolbarProminent}
           prominentTitle={toolbarProminentTitle}
+          titleStyle={toolbarTitleStyle}
           titleClassName={cn({
             'md-title--drawer-active': contentActive,
             'md-transition--decceleration': offset && visible,
             'md-transition--acceleration': offset && !visible,
             'md-title--permanent-offset': offset && isPermanent(drawerType),
             'md-title--persistent-offset': offset && isPersistent(drawerType),
-          })}
+          }, toolbarTitleClassName)}
           nav={nav}
           actions={toolbarActions}
           fixed

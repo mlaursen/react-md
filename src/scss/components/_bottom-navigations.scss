@@ -3,7 +3,13 @@
 ////
 
 
+/// The default ink color to use for a shifting bottom navigation.
+/// @type Color
 $md-bottom-navigation-shifting-ink-color: rgba($md-white-base, .12) !default;
+
+/// The transition time it takes for the bottom navigation to slide out of view when
+/// it is dynamic. It is also the transition time for switching the background color.
+/// @type Number
 $md-bottom-navigation-transition-time: $md-transition-time * 2 !default;
 
 $md-bottom-navigation-height: 56px;
@@ -22,6 +28,7 @@ $md-bottom-navigation-shifting-inactive-min-width: 56px;
 $md-bottom-navigation-shifting-inactive-max-width: 96px;
 
 
+/// Creates the styles for bottom navigations.
 @mixin react-md-bottom-navigations {
   .md-bottom-navigation {
     bottom: 0;
@@ -55,6 +62,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px;
   @include react-md-bottom-navigations-nav;
 }
 
+/// Creates the styles for a tab in the bottom navigation.
 @mixin react-md-bottom-navigations-nav {
   .md-bottom-nav {
     display: block;
@@ -123,14 +131,36 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px;
   }
 }
 
-@mixin react-md-theme-bottom-navigations-colored($bg-color, $text-color: $md-white-base, $ink-color: $md-bottom-navigation-shifting-ink-color) {
+/// Styles a bottom navigation that is colored to update the `.md-background--primary` color to a new color. It also will
+/// optionally update the label's color and the ink's color if they do not equal the defaults. This is mostly used when
+/// you want to update the navigation drawer's color when a new tab is clicked.
+///
+/// @example scss - Example Usage SCSS
+///   .another-theme {
+///     @inclue react-md-theme-bottom-navigations-color($md-deep-purple-500);
+///   }
+///
+/// @example javascript - Example Usage React Components
+///   <div className={cn({ 'another-theme': themeTabActive })}>
+///     <BottomNavigation
+///       links={[{ label: 'Woop', }, { label: 'Theme Tab', }, { label: 'Noop' }]}
+///       onNavChange={activeTabIndex => this.setState({ themeTabActive: activeTabIndex === 1 })}
+///     />
+///   </div>
+///
+/// @param {Color} bg-color - The background color to force for the `.md-background--primary` of the bottom navigation.
+/// @param {Color} label-color [$md-white-base] - The color to style the label. If this is equal to `$md-white-base`, the styles
+///     will not be created.
+/// @param {Color} ink-color [$md-bottom-navigation-shifting-ink-color] - The ink color to use for this theme. If it equals the
+///     `$md-bottom-navigation-shifting-ink-color`, the styles will not be included.
+@mixin react-md-theme-bottom-navigations-colored($bg-color, $label-color: $md-white-base, $ink-color: $md-bottom-navigation-shifting-ink-color) {
   .md-bottom-navigation.md-background--primary {
     background: $bg-color;
   }
 
-  @if $text-color != $md-white-base {
+  @if $label-color != $md-white-base {
     .md-bottom-nav-label {
-      color: $text-color;
+      color: $label-color;
     }
   }
 

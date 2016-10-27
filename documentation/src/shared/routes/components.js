@@ -16,14 +16,35 @@ export default {
       replace('/components/drawers');
     },
   }, {
-    path: ':component',
+    path: '(:section/):component',
     getComponent(state, cb) {
-      if (__CLIENT__) {
-        require.ensure(['containers/DocPage'], require => {
-          cb(null, require('containers/DocPage').default);
-        });
-      } else {
-        cb(null, require('containers/DocPage').default);
+      switch (state.location.query.tab) {
+        case '1':
+          if (__CLIENT__) {
+            require.ensure(['containers/PropTypesPage'], require => {
+              cb(null, require('containers/PropTypesPage').default);
+            });
+          } else {
+            cb(null, require('containers/PropTypesPage').default);
+          }
+          break;
+        case '2':
+          if (__CLIENT__) {
+            require.ensure(['containers/SassDocPage'], require => {
+              cb(null, require('containers/SassDocPage').default);
+            });
+          } else {
+            cb(null, require('containers/SassDocPage').default);
+          }
+          break;
+        default:
+          if (__CLIENT__) {
+            require.ensure(['components/ExamplesPage'], require => {
+              cb(null, require('components/ExamplesPage').default);
+            });
+          } else {
+            cb(null, require('components/ExamplesPage').default);
+          }
       }
     },
   }],
