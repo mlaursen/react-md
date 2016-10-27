@@ -1,0 +1,6 @@
+@import '~normalize.css';
+@import '~react-md-scss';
+
+$md-primary-color: $md-light-blue-500;
+$md-secondary-color: $md-orange-a-200;
+@include react-md-everything;

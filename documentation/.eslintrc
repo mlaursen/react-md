@@ -1,0 +1,34 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+  },
+  "globals": {
+      "__CLIENT__": true
+  },
+  "rules": {
+    // Don't feel like wrapping every arrow in paren
+    "arrow-parens": 0,
+
+    // Console valid
+    "no-console": 0,
+
+    // Disables for express.Router()
+    "new-cap": 0,
+
+    // Don't care too much about shadow
+    "no-shadow": 0,
+
+    "global-require": 0, // want some requires when dev only
+    "import/extensions": 0, // No extension is always js
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0, // doesn't work with webpack aliases
+
+    "react/no-unused-prop-types": 0,
+    "react/forbid-prop-types": 0,
+    "react/prefer-stateless-function": 0
+  }
+}

@@ -2,11 +2,8 @@
   "env": {
     "NODE_ENV": "development"
   },
-  "watch": [
-    "*",
-    "../src"
-  ],
   "ignore": [
-    "*localdb.json"
+    "dist",
+    "src/shared"
   ]
 }
