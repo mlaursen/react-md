@@ -253,6 +253,53 @@ export default class Drawer extends PureComponent {
     autoclose: true,
   };
 
+  /**
+   * Determines the current media and returns an object containing matches for `mobile`, `tablet`, `desktop`,
+   * and the current drawer type. This expects a `props` object of the drawer.
+   *
+   * If this is used server side, it will default to only matching mobile.
+   *
+   * @param {Object} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min widths
+   * @return {Object} an object containing the media matches and the current type to use for the drawer.
+   */
+  static getCurrentMedia({ mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType }) {
+    if (typeof window === 'undefined') {
+      return { mobile: true, tablet: false, desktop: false, type: mobileType };
+    }
+
+    const mobile = Drawer.matchesMedia(mobileMinWidth, tabletMinWidth - 1);
+    const tablet = Drawer.matchesMedia(tabletMinWidth, desktopMinWidth);
+    const desktop = Drawer.matchesMedia(desktopMinWidth);
+
+    let type;
+    if (desktop) {
+      type = desktopType;
+    } else if (tablet) {
+      type = tabletType;
+    } else {
+      type = mobileType;
+    }
+
+    return { type, mobile, tablet, desktop };
+  }
+
+  /**
+   * Simply does a `window.matchMedia(query)` where the query gets defined as a min width
+   * and optional max width.
+   *
+   * @param {Number} min - The min width for the media query.
+   * @param {Number=} max - An optional max width to include for the media query.
+   * @return true if the media matches.
+   */
+  static matchesMedia(min, max) {
+    let media = `screen and (min-width: ${min}px)`;
+    if (max) {
+      media += ` and (max-width: ${max}px)`;
+    }
+
+    return window.matchMedia(media).matches;
+  }
+
   constructor(props) {
     super(props);
 
@@ -347,41 +394,13 @@ export default class Drawer extends PureComponent {
     window.removeEventListener('resize', this._updateMedia);
   }
 
-  _matches(min, max) {
-    let media = `screen and (min-width: ${min}px)`;
-    if (max) {
-      media += ` and (max-width: ${max}px)`;
-    }
-
-    return window.matchMedia(media).matches;
-  }
-
   _updateType(props) {
     const {
-      mobileMinWidth,
-      mobileType,
-      tabletMinWidth,
-      tabletType,
-      desktopMinWidth,
-      desktopType,
       onMediaTypeChange,
       onVisibilityToggle,
     } = props;
 
-    const state = {
-      mobile: this._matches(mobileMinWidth, tabletMinWidth - 1),
-      tablet: this._matches(tabletMinWidth, desktopMinWidth),
-      desktop: this._matches(desktopMinWidth),
-    };
-
-    if (state.desktop) {
-      state.type = desktopType;
-    } else if (state.tablet) {
-      state.type = tabletType;
-    } else {
-      state.type = mobileType;
-    }
-
+    const state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
 
     if (onMediaTypeChange && (diffType ||

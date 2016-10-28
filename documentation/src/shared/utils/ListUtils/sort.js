@@ -8,9 +8,9 @@ export default function sort(arr, key, ascending) {
 
     if (typeof v1 === 'number') {
       return v1 < v2 ? 1 : -1;
-    } else {
-      return v1.localeCompare(v2) * multiplier;
     }
+
+    return v1.localeCompare(v2) * multiplier;
   });
 
   return list;

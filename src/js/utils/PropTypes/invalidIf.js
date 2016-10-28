@@ -1,3 +1,10 @@
+/**
+ * A custom validator that will throw an error if any of the `ifDefinedProps` are also defined.
+ *
+ * @param {function} validator - The PropTypes validator to use.
+ * @param {String...} ifDefinedProps - any othe rprop names to validate against
+ * @return {Error} an error or null
+ */
 export default function invalidIf(validator, ...ifDefinedProps) {
   return function validate(props, propName, componentName, location, propFullName, ...args) {
     const componentNameSafe = componentName || '<<anonymous>>';

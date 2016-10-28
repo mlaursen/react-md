@@ -6,8 +6,11 @@ import navItems from 'constants/navItems';
 import DocumentationTabs from 'containers/DocumentationTabs';
 import Notifications from 'containers/Notifications';
 import AppFooter from 'containers/AppFooter';
+import { updateMedia } from 'actions/ui';
 
-@connect(({ ui: { drawer } }) => ({ ...drawer }))
+@connect(({ ui: { drawer } }) => ({ ...drawer }), {
+  onMediaTypeChange: updateMedia,
+})
 export default class App extends PureComponent {
   static propTypes = {
     // Injected from connect and drawer state
@@ -15,6 +18,7 @@ export default class App extends PureComponent {
     visibleBoxShadow: PropTypes.bool.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
+    onMediaTypeChange: PropTypes.func.isRequired,
 
     params: PropTypes.shape({
       component: PropTypes.string,
@@ -35,6 +39,7 @@ export default class App extends PureComponent {
       visibleBoxShadow,
       toolbarTitle,
       toolbarProminent,
+      onMediaTypeChange,
     } = this.props;
 
     let { children } = this.props;
@@ -55,8 +60,9 @@ export default class App extends PureComponent {
         toolbarTitleClassName="md-text-capitalize"
         toolbarProminent={toolbarProminent}
         toolbarChildren={tabs}
-        navItems={navItems}
+        navItems={navItems(pathname)}
         toolbarStyle={!visibleBoxShadow ? { boxShadow: 'none' } : null}
+        onMediaTypeChange={onMediaTypeChange}
       >
         {children}
         <AppFooter key="footer" />

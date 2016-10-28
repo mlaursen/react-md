@@ -74,7 +74,7 @@ export default class MenuAutocomplete extends PureComponent {
         <Autocomplete
           id="programmingLanguages"
           label="Type a programming language"
-          containerClassName="md-cell md-cell--4"
+          className="md-cell md-cell--4"
           data={programmingLanguages}
           filter={filterType}
         />

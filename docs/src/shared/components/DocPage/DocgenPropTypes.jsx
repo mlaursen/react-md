@@ -81,7 +81,8 @@ export default class DocgenPropTypes extends PureComponent {
   }
 
   _makePropList(props) {
-    return Object.keys(props.props).filter(name => name.indexOf('deprecated') === -1).map(name => ({ name, ...props.props[name] }));
+    return Object.keys(props.props).filter(name => name.indexOf('deprecated') === -1)
+      .map(name => ({ name, ...props.props[name] }));
   }
 
   _sort = () => {

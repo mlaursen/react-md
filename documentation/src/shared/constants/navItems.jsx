@@ -177,7 +177,33 @@ routes.unshift({
   leftIcon: <FontIcon>home</FontIcon>,
 });
 
-export default routes;
+function isNestedActive(nestedItems, pathname) {
+  return nestedItems && nestedItems.some(({ to, nestedItems }) => to === pathname || isNestedActive(nestedItems, pathname));
+}
+
+function updateActiveRoutes(route, pathname) {
+  if (route.divider || route.subheader) {
+    return route;
+  }
+
+  const { to, nestedItems, ...props } = route;
+  const active = to === pathname || isNestedActive(nestedItems, pathname);
+  return {
+    ...props,
+    to,
+    active,
+    defaultOpen: nestedItems && active,
+    nestedItems: nestedItems && nestedItems.map(route => updateActiveRoutes(route, pathname)),
+  };
+}
+
+export default function getNavItems(pathname = '') {
+  if (!pathname || pathname === '') {
+    return routes;
+  }
+
+  return routes.map(route => updateActiveRoutes(route, pathname));
+}
 export const FIRST_ROUTE = 'components/autocompletes';
 
 

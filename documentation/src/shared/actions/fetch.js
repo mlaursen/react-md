@@ -10,6 +10,7 @@ import {
   FETCH_SASSDOC_FAILURE,
 } from 'constants/ActionTypes';
 import { addNotification } from 'actions/notifications';
+import reduceKey from 'utils/StateUtils/reduceKey';
 
 const API_URL = 'http://localhost:3000/api';
 const BASE_URL = 'http://localhost:8080';
@@ -66,7 +67,7 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
   }
 
   return (dispatch, getState) => {
-    if (stateKey.split('.').reduce((state, key) => state[key], getState())) {
+    if (reduceKey(getState(), stateKey)) {
       return;
     }
 
@@ -75,6 +76,7 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
     fetch(endpoint, options).then(data => {
       dispatch({ type: success, id, data });
     }).catch(error => {
+      console.log('error:', error);
       dispatch(addNotification({ text: `Failed to fetch from endpoint: ${endpoint}` }));
       dispatch({ type: failure, id, error });
     });

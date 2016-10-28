@@ -27,7 +27,7 @@ ${code}
       displayedChildren = children;
     }
   } else {
-    displayedChildren = <CardText>{displayedChildren}{children}</CardText>;
+    displayedChildren = <CardText>{exampleDescription}{children}</CardText>;
   }
 
   return (

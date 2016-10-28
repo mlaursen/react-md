@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 
 import { TAB } from '../constants/keyCodes';
 import getDisplayName from '../utils/StringUtils/getDisplayName';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 
 const CONTEXT_TIMEOUT = 687;
 
@@ -273,6 +274,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
 
     this._timeout = setTimeout(() => {
       this._timeout = null;
+      captureNextEvent('click');
       this._showTooltip();
     }, CONTEXT_TIMEOUT);
     this._touched = true;

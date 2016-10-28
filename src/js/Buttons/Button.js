@@ -2,36 +2,13 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import FontIcon from '../FontIcons';
 import IconSeparator from '../Helpers/IconSeparator';
 import injectInk from '../Inks';
 import injectTooltip from '../Tooltips';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 const TICK = 17;
-
-/**
- * Takes a validator function for a prop, and warns if the prop is used on a button type
- * that is not `floating`.
- *
- * @param {function} validator - The base PropType validator to use.
- * @return {Error} an error or null.
- */
-function floatingOnly(validator) {
-  return function validate(props, propName, componentName, location, propFullName, ...args) {
-    const componentNameSafe = componentName || '<<anonymous>>';
-    const propFullNameSafe = propFullName || propName;
-    let err = validator(props, propName, componentName, location, propFullName, ...args);
-
-    if (!err && typeof props[propName] !== 'undefined' && (props.flat || props.raised || props.icon)) {
-      err = new Error(
-        `You provided a \`${propFullNameSafe}\` ${location} to the \`${componentNameSafe}\` ` +
-        'when the type was not `icon` or `floating`.'
-      );
-    }
-
-    return err;
-  };
-}
 
 /**
  * The `Button` component can either be a `FlatButton`, `RaisedButton`, `IconButton`, or a
@@ -52,34 +29,6 @@ function floatingOnly(validator) {
 class Button extends PureComponent {
   static propTypes = {
     /**
-     * A label to display on a `FlatButton` or a `RaisedButton`. This text can either
-     * be placed before or after an optional `FontIcon` using the `iconBefore` prop.
-     * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
-     * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
-     */
-    label: (props, propName, component, ...others) => {
-      if (!props.icon && !props.floating) {
-        let err = PropTypes.string.isRequired(props, propName, component, ...others);
-        if (err) {
-          err = new Error(
-            `The required \`${propName}\` prop was not specified for a \`${props.flat ? 'flat' : 'raised'}\` ` +
-            'Button.'
-          );
-        }
-
-        return err;
-      } else if (PropTypes.string(props, propName, component, ...others)) {
-        return new Error(
-          `The \`${propName}\` prop was given for a \`${props.icon ? 'icon' : 'floating'}\` ` +
-          `Button. The \`${propName}\` prop can only be used on a \`flat\` or \`raised\` ` +
-          'Button.'
-        );
-      }
-
-      return null;
-    },
-
-    /**
      * An optional style to apply to the button.
      */
     style: PropTypes.object,
@@ -88,6 +37,14 @@ class Button extends PureComponent {
      * An optional className to apply to the button.
      */
     className: PropTypes.string,
+
+    /**
+     * A label to display on a `FlatButton` or a `RaisedButton`. This text can either
+     * be placed before or after an optional `FontIcon` using the `iconBefore` prop.
+     * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
+     * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
+     */
+    label: invalidIf(PropTypes.string, 'icon', 'floating'),
 
     /**
      * A boolean if the icon should appear before or after the text for a `FlatButton` or
@@ -121,7 +78,7 @@ class Button extends PureComponent {
 
     /**
      * An icon className to use in an optional `FontIcon` in any version of the button. This will
-     * be used with the `children` prop. IF the `floating` or `icon` props are set to true, this or
+     * be used with the `children` prop. If the `floating` or `icon` props are set to true, this or
      * the children are required.
      */
     iconClassName: PropTypes.string,
@@ -155,7 +112,10 @@ class Button extends PureComponent {
      * An optional component to render the button as. This allows you to get all the styles and functionality
      * of the Button, but as a custom React component.
      */
-    component: PropTypes.func,
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]),
 
     /**
      * An optional function to call when the `click` event is triggered.
@@ -206,7 +166,7 @@ class Button extends PureComponent {
      * Boolean if the `FloatingButton` should be fixed to the page. This prop can
      * only be enabled if the `floating` prop is true.
      */
-    fixed: floatingOnly(PropTypes.bool),
+    fixed: invalidIf(PropTypes.bool, 'flat', 'raised', 'icon'),
 
     /**
      * The position that the `FloatingButton` should be fixed to the page. It will
@@ -220,7 +180,7 @@ class Button extends PureComponent {
      * Boolean if the `FloatingButton` should be `mini`. This prop can only be used
      * when the `floating` prop is true.
      */
-    mini: floatingOnly(PropTypes.bool),
+    mini: invalidIf(PropTypes.bool, 'flat', 'raised', 'icon'),
 
     /**
      * Boolean if the `Button` should be styled as a `FlatButton`.
@@ -290,6 +250,13 @@ class Button extends PureComponent {
 
       return null;
     },
+
+    /**
+     * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
+     * to enforce. This is useful when using other font icon libraries that do not have a consistent
+     * size.
+     */
+    forceIconSize: FontIcon.propTypes.forceSize,
   };
 
   static defaultProps = {
@@ -495,6 +462,7 @@ class Button extends PureComponent {
       component,
       ink,
       icon,
+      forceIconSize,
       ...props,
     } = this.props;
     delete props.children;
@@ -511,7 +479,7 @@ class Button extends PureComponent {
 
     const Component = component || (href ? 'a' : 'button');
     if (children || iconClassName) {
-      children = <FontIcon iconClassName={iconClassName}>{children}</FontIcon>;
+      children = <FontIcon iconClassName={iconClassName} forceSize={forceIconSize}>{children}</FontIcon>;
     }
 
     if (children && label) {

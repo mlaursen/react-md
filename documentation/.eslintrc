@@ -25,6 +25,8 @@
     // Don't care too much about shadow
     "no-shadow": 0,
 
+    // Doesn't work in react classes ?
+    "class-methods-use-this": 0,
     "global-require": 0, // want some requires when dev only
     "import/extensions": 0, // No extension is always js
     "import/no-dynamic-require": 0,

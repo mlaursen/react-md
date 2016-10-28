@@ -44,6 +44,16 @@ export default class FontIcon extends PureComponent {
      * Boolean if the `FontIcon` should gain the disabled colors.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
+     * to enforce. This is useful when using other font icon libraries that do not have a consistent
+     * size.
+     */
+    forceSize: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.number,
+    ]),
   };
 
   static defaultProps = {
@@ -51,10 +61,17 @@ export default class FontIcon extends PureComponent {
   };
 
   render() {
-    const { iconClassName, className, children, disabled, ...props } = this.props;
+    const { iconClassName, className, children, disabled, style, forceSize, ...props } = this.props;
+    let mergedStyles = style;
+    if (typeof forceSize === 'boolean') {
+      mergedStyles = Object.assign({}, mergedStyles, { width: 24, height: 24 });
+    } else if (typeof forceSize === 'number') {
+      mergedStyles = Object.assign({}, mergedStyles, { width: forceSize, height: forceSize });
+    }
     return (
       <i
         {...props}
+        style={mergedStyles}
         className={cn('md-icon', iconClassName, {
           'md-icon--disabled': disabled,
         }, className)}
