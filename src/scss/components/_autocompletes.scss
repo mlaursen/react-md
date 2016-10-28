@@ -2,6 +2,7 @@
 /// @group autocompletes
 ////
 
+@import 'text-fields';
 
 /// Boolean if the inline autocompletes should be included by default.
 /// @type Boolean
@@ -18,15 +19,16 @@ $md-inline-autocomplete: true !default;
 ///     for autocompletes should be included.
 @mixin react-md-autocompletes($light-theme: $md-light-theme, $include-media: $md-media-included, $include-inline: $md-inline-autocomplete) {
   @if $include-inline {
-    @if $include-media {
-      @include react-md-autocompletes-media;
-    }
-
     .md-autocomplete-suggestion {
       color: get-color('secondary', $light-theme);
       overflow: hidden;
       position: absolute;
+      top: 12px;
       white-space: nowrap;
+    }
+
+    @if $include-media {
+      @include react-md-autocompletes-media;
     }
   }
 }
@@ -58,12 +60,15 @@ $md-inline-autocomplete: true !default;
 @mixin react-md-autocompletes-mobile($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     .md-autocomplete-suggestion {
-      bottom: 14px;
       font-size: $md-text-field-mobile-font-size;
-    }
 
-    .md-autocomplete-suggestion--block {
-      bottom: 18px;
+      &--floating {
+        top: $md-text-field-mobile-floating-label-margin;
+      }
+
+      &--block {
+        top: 18px;
+      }
     }
   }
 }
@@ -81,12 +86,15 @@ $md-inline-autocomplete: true !default;
 @mixin react-md-autocompletes-desktop($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     .md-autocomplete-suggestion {
-      bottom: 6px;
       font-size: $md-text-field-desktop-font-size;
-    }
 
-    .md-autocomplete-suggestion--block {
-      bottom: 14px;
+      &--floating {
+        top: $md-text-field-desktop-floating-label-margin;
+      }
+
+      &--block {
+        top: 15px;
+      }
     }
   }
 }

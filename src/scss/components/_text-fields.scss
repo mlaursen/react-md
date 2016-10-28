@@ -145,6 +145,16 @@ $md-text-field-desktop-divider-bottom-padding: 4px;
 // @type Number
 $md-text-field-desktop-block-padding: 16px;
 
+/// This is the position from the top of the text field's container that the floating
+/// label should appear.
+/// @type Number
+$md-text-field-mobile-floating-label-margin: 37px;
+
+/// This is the position from the top of the text field's container that the floating
+/// label should appear for desktop screens.
+/// @type Number
+$md-text-field-desktop-floating-label-margin: 33px;
+
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,
 /// icons, or password styles can be ommitted by disabling the defaults or passing
@@ -627,10 +637,10 @@ $md-text-field-desktop-block-padding: 16px;
     &:-webkit-autofill:focus {
       box-shadow: 0 0 0 50px $md-white-base inset;
     }
-  }
 
-  .md-text-field--margin {
-    margin-top: 13px;
+    &--margin {
+      margin-top: 13px;
+    }
   }
 
   @if $include-multiline {
@@ -666,7 +676,7 @@ $md-text-field-desktop-block-padding: 16px;
 
   @if $include-floating-label {
     .md-text-field--floating-margin {
-      margin-top: 37px;
+      margin-top: $md-text-field-mobile-floating-label-margin;
     }
   }
 
@@ -689,7 +699,7 @@ $md-text-field-desktop-block-padding: 16px;
 
   @if $include-floating-label {
     .md-text-field--floating-margin {
-      margin-top: 33px;
+      margin-top: $md-text-field-desktop-floating-label-margin;
     }
   }
 }

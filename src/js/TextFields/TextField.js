@@ -367,7 +367,6 @@ export default class TextField extends PureComponent {
     type: 'text',
     lineDirection: 'left',
     passwordIconChildren: 'remove_red_eye',
-    paddedBlock: true,
     leftIconStateful: true,
     rightIconStateful: true,
     fullWidth: true,

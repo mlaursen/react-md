@@ -18,46 +18,46 @@ import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 export default class Autocomplete extends PureComponent {
   static propTypes = {
     /**
-     * An optional style to apply to the `Autocomplete`'s text field's container.
+     * An optional style to apply to the menu that contains the autocomplete.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the `Autocomplete`'s text field's container.
+     * An optional className to apply to the menu that contains the autocomplete.
      */
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the `Autocomplete`'s container.
+     * An optional style to apply to the autocomplete's text field.
      */
-    containerStyle: PropTypes.object,
+    textFieldStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the `Autocomplete`'s container.
+     * An optional className to apply to the autocomplete's text field.
      */
-    containerClassName: PropTypes.string,
+    textFieldClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to the `Autocomplete`'s text field input itself.
+     * An optional style to apply to the autocomplete's text field input itself.
      */
     inputStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the `Autocomplete`'s input field iteself.
+     * An optional className to apply to the autocomplete's input field iteself.
      */
     inputClassName: PropTypes.string,
-
-    /**
-     * The optional className to apply to the opened menu List if the
-     * `Autocomplete` is not using `inline` suggestions.
-     */
-    listClassName: PropTypes.string,
 
     /**
      * The optional style to apply to the opened menu List if the
      * `Autocomplete` is not using `inline` suggestions.
      */
     listStyle: PropTypes.object,
+
+    /**
+     * The optional className to apply to the opened menu List if the
+     * `Autocomplete` is not using `inline` suggestions.
+     */
+    listClassName: PropTypes.string,
 
     /**
      * Boolean if the autocomplete is disabled.
@@ -547,7 +547,7 @@ export default class Autocomplete extends PureComponent {
         this.props.onBlur(e);
       }
 
-      // this.setState({ focus: false });
+      this.setState({ focus: false });
     }
   }
 
@@ -774,7 +774,7 @@ export default class Autocomplete extends PureComponent {
     const { target } = e;
     const { data, dataLabel, onAutocomplete } = this.props;
     const { suggestionIndex, suggestion } = this.state;
-    if (target.classList.contains('md-autocomplete-suggestion') || suggestion) {
+    if (target.classList.contains('md-autocomplete-suggestion') && suggestion) {
       let value = data[suggestionIndex];
       if (typeof value === 'object') {
         value = value[dataLabel];
@@ -816,11 +816,12 @@ export default class Autocomplete extends PureComponent {
     const {
       fullWidth,
       block,
+      style,
       className,
       listStyle,
       listClassName,
-      containerStyle,
-      containerClassName,
+      textFieldStyle,
+      textFieldClassName,
       inline,
       ...props,
     } = this.props;
@@ -847,7 +848,8 @@ export default class Autocomplete extends PureComponent {
     const autocomplete = (
       <TextField
         {...props}
-        className={cn('md-autocomplete', className)}
+        style={textFieldStyle}
+        className={cn('md-autocomplete', textFieldClassName)}
         key="autocomplete"
         ref={this._setField}
         value={value}
@@ -870,6 +872,7 @@ export default class Autocomplete extends PureComponent {
             key="suggestion"
             style={suggestionStyle}
             className={cn('md-autocomplete-suggestion', {
+              'md-autocomplete-suggestion--floating': props.label,
               'md-autocomplete-suggestion--block': block,
             })}
           >
@@ -881,8 +884,8 @@ export default class Autocomplete extends PureComponent {
       return (
         <CSSTransitionGroup
           component="div"
-          style={containerStyle}
-          className={cn('md-menu-container md-autocomplete-container', containerClassName, {
+          style={style}
+          className={cn('md-menu-container md-autocomplete-container', className, {
             'md-full-width': fullWidth || block,
           })}
           transitionName="opacity"
@@ -907,8 +910,8 @@ export default class Autocomplete extends PureComponent {
         onKeyDown={this._handleMenuKeyDown}
         position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}
-        style={containerStyle}
-        className={cn('md-autocomplete-container', containerClassName)}
+        style={style}
+        className={cn('md-autocomplete-container', className)}
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
       >
