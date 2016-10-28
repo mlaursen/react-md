@@ -242,7 +242,7 @@ export default class Card extends PureComponent {
         className={cn('md-card', {
           'md-card--raise': raise,
           'md-card--table': tableCard,
-        }, className)}
+        }, 'md-background--card', className)}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
         onTouchStart={this._handleTouchStart}

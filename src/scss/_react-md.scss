@@ -49,7 +49,7 @@
 ///   @import 'react-md';
 ///   @include react-md-everything;
 ///
-/// @group base
+/// @group base, themes
 @mixin react-md-everything {
   @include react-md-typography;
   @include react-md-accessibility;
@@ -156,7 +156,6 @@
     .#{$html-class-name} {
       @include react-md-theme-avatars($light-theme);
       @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
-      @include react-md-theme-cards($light-theme);
       @include react-md-theme-chips($light-theme);
       @include react-md-theme-data-tables($light-theme);
       @include react-md-theme-dividers($light-theme);
@@ -177,7 +176,6 @@
   } @else {
     @include react-md-theme-avatars($light-theme);
     @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
-    @include react-md-theme-cards($light-theme);
     @include react-md-theme-chips($light-theme);
     @include react-md-theme-data-tables($light-theme);
     @include react-md-theme-dividers($light-theme);

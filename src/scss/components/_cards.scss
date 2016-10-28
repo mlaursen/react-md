@@ -2,17 +2,58 @@
 /// @group cards
 ////
 
+/// Boolean if the styles for the `CardText` component should be included by default.
+/// @type Boolean
 $md-card-include-text: true !default;
+
+/// Boolean if the styles for the `CardTitle` component should be included by default.
+/// @type Boolean
 $md-card-include-title: true !default;
+
+/// Boolean if the styles for having an icon in the `CardTitle` component should be included
+/// by default. IF this is set, the `$md-card-include-title` will automatically be true.
+/// @type Boolean
 $md-card-include-title-avatar: true !default;
+
+/// A boolean if teh styles for the `CardActions` component should be included by default.
+/// @type Boolean
 $md-card-include-actions: true !default;
 
-$md-card-media-overlay-color: rgba($md-black-base, .54) !default;
-
+/// When the card part is either the first or last in the card, this padding will be applied
+/// instead of the `$md-default-padding`.
+/// @type Number
+/// @see md-default-padding
 $md-card-padding-extra: 24px;
 
+/// Includes the styles for cards. The different sections can be excluded by setting the parameter
+/// to false. If the `react-md-everything` mixin is being used, set the corresponding variables to
+/// false before including the mixin.
+///
+/// @example scss - All Defaults
+///   @include react-md-cards;
+///
+/// @example scss - Excluding Some In Mixin
+///   @include react-md-cards(true, true, false, false, false);
+///
+/// @example scss - Excluding Some With react-md-everything
+///   @import '~react-md/src/scss/react-md';
+///
+///   $md-card-include-actions: false;
+///   $md-card-include-title-avatar: false;
+///   @include react-md-everything;
+///
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should
+///     also be included.
+/// @param {Boolean} include-text [$md-card-include-text] - Boolean if the `CardText` component styles
+///     should be included.
+/// @param {Boolean} include-title [$md-card-include-title] - Boolean if the `CardTitle` component
+///     styles should be included.
+/// @param {Boolean} include-title-avatar [$md-card-include-title-avatar] - Boolean if the styles for
+///     an avatar in the `CardTitle` component should also be included. If this is `true`, and the
+///     `include-title` param is false, it will behave as if the `include-title` was also set to `true`.
+/// @param {Boolean} include-actions [$md-card-include-actions] - Boolean if the `CardActions` component
+///     styles should be included.
 @mixin react-md-cards(
-  $light-theme: $md-light-theme,
   $include-media: $md-media-included,
   $include-text: $md-card-include-text,
   $include-title: $md-card-include-title,
@@ -20,18 +61,18 @@ $md-card-padding-extra: 24px;
   $include-actions: $md-card-include-actions
 ) {
   .md-card {
-    background: get-color('card', $light-theme);
-  }
+    display: block;
 
-  .md-card--raise {
-    transition-duration: $md-transition-time * 2;
-    transition-property: box-shadow;
+    &--raise {
+      transition-duration: $md-transition-time * 2;
+      transition-property: box-shadow;
+    }
   }
 
   .md-collapser--card {
     @extend %md-cell--right;
 
-    transition-duration: .3s;
+    transition-duration: $md-transition-time * 2;
     transition-property: background, transform;
   }
 
@@ -39,7 +80,7 @@ $md-card-padding-extra: 24px;
     @include react-md-cards-text;
   }
 
-  @if $include-title {
+  @if $include-title or $include-title-avatar {
     @include react-md-cards-title;
   }
 
@@ -52,14 +93,7 @@ $md-card-padding-extra: 24px;
   }
 }
 
-@mixin react-md-theme-cards($light-theme: $md-light-theme) {
-  @if $light-theme != $md-light-theme {
-    .md-card {
-      background: get-color('card', $light-theme);
-    }
-  }
-}
-
+/// Includes the styles for the `CardText` component only.
 @mixin react-md-cards-text {
   .md-card-text {
     font-size: 14px;
@@ -79,6 +113,7 @@ $md-card-padding-extra: 24px;
   }
 }
 
+/// Includes the styles for the `CardTitle` component only.
 @mixin react-md-cards-title {
   .md-card-title {
     align-items: center;
@@ -88,37 +123,41 @@ $md-card-padding-extra: 24px;
     &:last-child {
       padding-bottom: $md-card-padding-extra;
     }
-  }
 
-  .md-card-title--primary {
-    padding-top: $md-card-padding-extra;
-  }
+    &--primary {
+      padding-top: $md-card-padding-extra;
+    }
 
-  .md-card-title--title {
-    font-size: 14px;
-    line-height: $md-line-height;
-    margin: 0;
-  }
+    &--title {
+      font-size: 14px;
+      line-height: $md-line-height;
+      margin: 0;
+    }
 
-  .md-card-title--large {
-    font-size: 24px;
+    &--large {
+      font-size: 24px;
+    }
   }
 }
 
+/// Includes the styles for an avatar in the `CardTitle` component only.
 @mixin react-md-cards-title-avatar {
   .md-avatar--card {
     margin-right: $md-default-padding;
   }
 }
 
+// Includes the styles for the `CardActions` component only.
 @mixin react-md-cards-actions {
-  .md-dialog-footer--card {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
-  }
+  .md-dialog-footer {
+    &--card {
+      align-items: center;
+      display: flex;
+      justify-content: flex-start;
+    }
 
-  .md-dialog-footer--card-centered {
-    justify-content: center;
+    &--card-centered {
+      justify-content: center;
+    }
   }
 }
