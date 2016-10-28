@@ -24,12 +24,12 @@ export default class AjaxAutocomplete extends PureComponent {
 
     fetchSpotify.search(value)
       .then(results => {
-        const { limit, total, offset, items } = results;
+        const { items } = results;
 
         const artists = items.map(artist => {
           let leftAvatar;
           if (artist.images.length) {
-            leftAvatar = <Avatar key={artist.id} src={artist.images[artist.images.length - 1].url} role="presentation" />
+            leftAvatar = <Avatar key={artist.id} src={artist.images[artist.images.length - 1].url} role="presentation" />;
           } else {
             let letter = artist.name.replace(/ /g, '').toUpperCase();
             letter = letter.charAt(randomInt({ min: 0, max: letter.length - 1 }));
@@ -54,7 +54,7 @@ export default class AjaxAutocomplete extends PureComponent {
     fetchSpotify.getArtistAlbums(this.state.artists[index])
       .then(albums => Promise.all(albums.map(fetchSpotify.getAlbum)))
       .then(albums => this.setState({ albums }));
-    this.setState({ artist })
+    this.setState({ artist });
   }
 
   render() {

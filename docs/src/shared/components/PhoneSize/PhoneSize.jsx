@@ -60,7 +60,7 @@ export default class PhoneSize extends PureComponent {
       tablet,
       mobileOnly,
       zDepth,
-      ...props,
+      ...props
     } = this.props;
 
     if (mobileOnly && tablet) {

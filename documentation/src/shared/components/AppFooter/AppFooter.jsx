@@ -7,7 +7,7 @@ import QuickNavLink from './QuickNavLink';
 import Contact from './Contact';
 import Contribute from './Contribute';
 
-const AppFooter = ({ className, previousTo, previousName, nextTo, nextName, dispatch, ...props }) => (
+const AppFooter = ({ className, previousTo, previousName, nextTo, nextName, dispatch, ...props }) => ( // eslint-disable-line no-unused-vars
   <footer className={cn('md-grid app-footer', className)} {...props}>
     <nav className="quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing">
       <QuickNavLink to={previousTo} name={previousName} label="Previous" icon="arrow_back" left />
@@ -20,11 +20,12 @@ const AppFooter = ({ className, previousTo, previousName, nextTo, nextName, disp
 );
 
 AppFooter.propTypes = {
+  dispatch: PropTypes.func,
   className: PropTypes.string,
   previousTo: PropTypes.string,
   previousName: PropTypes.string,
   nextTo: PropTypes.string,
   nextName: PropTypes.string,
-}
+};
 
 export default AppFooter;

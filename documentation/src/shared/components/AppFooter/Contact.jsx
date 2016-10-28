@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 
 const Contact = () => (

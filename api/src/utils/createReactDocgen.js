@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Promise = require('bluebird');
 const { parse } = require('react-docgen');
+const GITHUB_URL = require('../../../package.json').bugs.url.replace('/issues', '');
 
 const readFile = Promise.promisify(fs.readFile);
 const CONTAINERS = ['Dialog', 'DatePicker', 'TimePicker'];
@@ -17,7 +18,7 @@ module.exports = function createReactDocgen({ folder, fullPath, exports }) {
       return readFile(sourcePath, 'utf-8')
         .then(source => parse(source.replace(/ComposedComponent => /, '')))
         .then(({ description, methods, props }) => ({
-          source: sourcePath,
+          source: `${GITHUB_URL}/blob/master/src/js/${folder}/${file}.js`,
           component: file,
           description,
           // Remove private methods

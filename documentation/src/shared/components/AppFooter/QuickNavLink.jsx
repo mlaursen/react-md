@@ -11,6 +11,7 @@ const QuickNavLink = ({ to, className, label, icon, name, left, ...props }) => {
   const fi = <FontIcon>{icon}</FontIcon>;
   return (
     <Link
+      {...props}
       to={to}
       className={cn('quick-nav-link', {
         'md-cell--right': !left,

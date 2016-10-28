@@ -30,7 +30,7 @@ function mapToNavItems(route, parents = []) {
     avatarProps,
     nestedItems,
     component,
-    ...props,
+    ...props
   } = route;
 
   if (divider) {

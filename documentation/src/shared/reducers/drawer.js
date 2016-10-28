@@ -2,8 +2,12 @@ import { SET_DRAWER_TOOLBAR_BOX_SHADOW, LOCATION_CHANGE } from 'constants/Action
 import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from 'react-md/lib/constants/media';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
 
+function isBoxShadowVisible(pathname) {
+  return pathname && pathname !== '/' && !pathname.match(/components|customization/);
+}
+
 function setDrawerToolbarBoxShadow(state, visibleBoxShadow) {
-  if (state.visibleBoxShadow == visibleBoxShadow) {
+  if (state.visibleBoxShadow === visibleBoxShadow) {
     return state;
   }
 
@@ -21,7 +25,6 @@ function handleLocationChange(state, { payload: { pathname } }) {
 
   return Object.assign({}, state, { toolbarTitle, visibleBoxShadow, toolbarProminent });
 }
-
 
 
 function matches(min, max) {
@@ -43,10 +46,6 @@ function getDefaultMedia() {
   return 'desktop';
 }
 
-function isBoxShadowVisible(pathname) {
-  return pathname && pathname !== '/' && !pathname.match(/components|customization/);
-}
-
 const pathname = (window && window.location && window.location.pathname) || '';
 const initialState = {
   toolbarTitle: toPageTitle(pathname),
@@ -56,7 +55,7 @@ const initialState = {
 };
 
 export default function drawer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case SET_DRAWER_TOOLBAR_BOX_SHADOW:
       return setDrawerToolbarBoxShadow(state, action.visible);
     case LOCATION_CHANGE:

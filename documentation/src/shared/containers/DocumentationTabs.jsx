@@ -41,7 +41,7 @@ export default class DocumentationTabs extends PureComponent {
   }
 
   render() {
-    const { router: { location: { pathname, query: { tab } }, params: { section } } } = this.props;
+    const { router: { location: { query: { tab } }, params: { section } } } = this.props;
     let sassdocTab;
     if (section !== 'helpers') {
       sassdocTab = (

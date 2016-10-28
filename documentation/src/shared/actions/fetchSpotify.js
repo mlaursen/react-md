@@ -1,5 +1,6 @@
-const SPOTIFY_API = 'https://api.spotify.com/v1';
 import fetch from './fetch';
+
+const SPOTIFY_API = 'https://api.spotify.com/v1';
 
 function addLimit(limit, delimiter = '&') {
   if (!limit) {

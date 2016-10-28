@@ -56,7 +56,7 @@ export default class Example extends PureComponent {
       fallbackId,
       description,
       tableCard,
-      ...props,
+      ...props
     } = this.props;
 
     const markdown = `

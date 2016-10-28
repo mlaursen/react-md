@@ -30,7 +30,17 @@ module.exports = () => ({
     loader: `${loader}?name=imgs/[hash].[ext]!image-webpack`,
   }),
 
+  eslint: {
+    configFile: path.resolve(process.cwd(), '.eslintrc'),
+  },
+
   module: {
+    preLoaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules|lib/,
+      loader: 'eslint',
+    }],
+
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,

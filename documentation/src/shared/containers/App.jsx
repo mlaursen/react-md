@@ -1,6 +1,5 @@
 import React, { PureComponent, PropTypes, cloneElement } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import navItems from 'constants/navItems';
@@ -8,7 +7,7 @@ import DocumentationTabs from 'containers/DocumentationTabs';
 import Notifications from 'containers/Notifications';
 import AppFooter from 'containers/AppFooter';
 
-@connect(({ ui: { drawer }}) => ({ ...drawer }))
+@connect(({ ui: { drawer } }) => ({ ...drawer }))
 export default class App extends PureComponent {
   static propTypes = {
     // Injected from connect and drawer state

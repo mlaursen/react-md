@@ -16,9 +16,9 @@ marked.setOptions({
   highlight: (code, lang) => {
     if (lang) {
       return highlight.highlight(lang, code).value;
-    } else {
-      return code;
     }
+
+    return code;
   },
 });
 
@@ -47,7 +47,8 @@ export default class Markdown extends PureComponent {
       }
 
       return null;
-    }
+    },
+    markdown: PropTypes.string.isRequired,
   };
 
   static defaultProps = {

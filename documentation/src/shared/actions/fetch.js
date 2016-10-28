@@ -66,7 +66,7 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
   }
 
   return (dispatch, getState) => {
-    if (key.split('.').reduce((state, key) => state[key]), getState()) {
+    if (stateKey.split('.').reduce((state, key) => state[key], getState())) {
       return;
     }
 
@@ -115,7 +115,7 @@ export function fetchProxyCreator(id, stateKey, url, options, types) {
  */
 export function fetchSassDoc(id, section, options) {
   return fetchProxyCreator(id, 'documentation.sassdocs',
-    `${PROXY_URL}${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`,
+    `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`,
     options, {
       request: FETCH_SASSDOC_REQUEST,
       success: FETCH_SASSDOC_SUCCESS,
@@ -133,11 +133,11 @@ export function fetchSassDoc(id, section, options) {
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchDocgen(id, section, options) {
-  return fetchProxyCreator(id, 'documentation.docgens',
-    `${PROXY_URL}${API_URL}/docgens/${section ? `${section}/` : ''}${id}`,
+  return fetchProxyCreator(id, `documentation.docgens.${section ? `${section}.` : ''}${id}`,
+    `${API_URL}/docgens/${section ? `${section}/` : ''}${id}`,
     options, {
-    request: FETCH_DOCGEN_REQUEST,
-    success: FETCH_DOCGEN_SUCCESS,
-    failure: FETCH_DOCGEN_FAILURE,
-  });
+      request: FETCH_DOCGEN_REQUEST,
+      success: FETCH_DOCGEN_SUCCESS,
+      failure: FETCH_DOCGEN_FAILURE,
+    });
 }

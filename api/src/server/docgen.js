@@ -16,19 +16,37 @@ const LOCAL_DB = {};
 const GROUPS = [];
 const NESTED_GROUPS = [];
 
+function toPrettyName({ component }) {
+  return component.split(/(?=[A-Z])/).join('-').toLowerCase();
+}
+
 function buildLocalDB() {
   return readdir(JS_FOLDER).then(files => {
     Promise.all(
-      files.filter(file => file.match(/^(?!(Transitions|FAB))[A-Z]/))
+      files.filter(file => file.match(/^(?!(Transitions|FAB|Sidebar))[A-Z]/))
         .map(folder => extractReactModules(JS_FOLDER, folder))
     ).then(exports => Promise.all(exports.map(createReactDocgen))).then(docgens => {
       docgens.forEach(({ group, docgens }) => {
-        if (group.match(/helpers|selection/i)) {
+        if (group.match(/selection/i)) {
+          // Need to group selection-control and selection-controls together while remainders are alone
+          LOCAL_DB[group] = {
+            'selection-control': [],
+          };
+          NESTED_GROUPS.push(group);
+          docgens.forEach(docgen => {
+            if (docgen.component.match(/selection/i)) {
+              LOCAL_DB[group]['selection-control'].push(docgen)
+            } else {
+              const name = toPrettyName(docgen);
+              LOCAL_DB[group][`${name}${name.match(/radio/) ? '' : 'e'}s`] = [docgen];
+            }
+          });
+        } else if (group.match(/helpers|picker/i)) {
           LOCAL_DB[group] = {};
           NESTED_GROUPS.push(group);
           docgens.forEach(docgen => {
-            const name = docgen.component.split(/(?=[A-Z])/).join('-').toLowerCase();
-            LOCAL_DB[group][name] = docgen;
+            const name = toPrettyName(docgen);
+            LOCAL_DB[group][name] = [docgen];
           });
         } else {
           GROUPS.push(group);

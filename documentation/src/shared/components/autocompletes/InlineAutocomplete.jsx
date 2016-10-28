@@ -31,10 +31,13 @@ export default class InlineAutocomplete extends PureComponent {
 
     const { quantity, pastry } = this.state;
     if (!pastry || !quantity) {
-      return this.setState({
+      this.setState({
         errorText: 'A pastry is required!',
       });
+
+      return;
     }
+
     this.props.addNotification({
       text: `You have ordered ${quantity} '${pastry}'`,
     });

@@ -53,7 +53,7 @@ export default class PhoneDemo extends PureComponent {
     const {
       buttonLabel,
       description,
-      ...props,
+      ...props
     } = this.props;
 
     let markdown;

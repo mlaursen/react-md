@@ -11,8 +11,10 @@
   "rules": {
     // Don't feel like wrapping every arrow in paren
     "arrow-parens": 0,
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
 
-    "max-len": [140, 1],
+    "max-len": 0,
 
     // Console valid
     "no-console": 0,
@@ -26,11 +28,14 @@
     "global-require": 0, // want some requires when dev only
     "import/extensions": 0, // No extension is always js
     "import/no-dynamic-require": 0,
+    "import/imports-first": 0, // don't care about doing absolute paths 
     "import/no-extraneous-dependencies": 0,
     "import/no-unresolved": 0, // doesn't work with webpack aliases
+    "import/newline-after-import": 0, // I want to allow import-> export right after each other
 
     "react/no-unused-prop-types": 0,
     "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0, // allow jsx in plain .js files
     "react/prefer-stateless-function": 0
   }
 }

@@ -1,7 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import toPageTitle from 'utils/StringUtils/toPageTitle';
 import Markdown from 'components/Markdown';
 import ExampleCard from './ExampleCard';
 
@@ -17,7 +16,6 @@ export default class ExamplesPage extends PureComponent {
       pathname: PropTypes.string.isRequired,
     }).isRequired,
 
-    className: PropTypes.string,
     children: PropTypes.node,
   };
 
@@ -48,8 +46,7 @@ export default class ExamplesPage extends PureComponent {
 
   render() {
     const { readme } = this.state;
-    const { style, className, params } = this.props;
-    const component = toPageTitle(params.component);
+    const { style, className } = this.props;
     const examples = this.state.examples.map((example, i) => (
       <ExampleCard key={example.title || i} {...example} fallbackId={`example-${i}`} />
     ));
