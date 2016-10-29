@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import classnames from 'classnames';
 
-import './_colors.scss';
+import './_color-palette.scss';
 
 const PRIMARY_INDEX = 5;
 const primaries = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
@@ -53,7 +53,7 @@ export default class ColorPalette extends PureComponent {
 
       return (
         <ul key={colorHues[0].color} className="md-cell md-cell--top color-list">
-          <li key="primary" className={classnames('color primary', primary.name, { 'light': primary.light })}>
+          <li key="primary" className={classnames('color primary', primary.name, { light: primary.light })}>
             <div className="color-name md-text-capitalize">{primary.color.replace(/-/g, ' ')}</div>
             <div className="sass-variable">{primary.name}</div>
           </li>

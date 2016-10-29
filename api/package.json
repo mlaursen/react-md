@@ -21,6 +21,7 @@
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
+    "node-sass": "^3.10.1",
     "react-docgen": "^2.12.1",
     "sassdoc": "^2.1.20"
   },

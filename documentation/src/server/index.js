@@ -4,12 +4,16 @@ const compression = require('compression');
 const logger = require('morgan');
 const fetch = require('isomorphic-fetch');
 
+const theme = require('./theme');
+
 const app = express();
 
 const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
 app.set('view engine', 'ejs');
 app.set('views', clientRoot);
 app.use(compression());
+
+app.get('/themes/*.css', theme);
 
 app.get('/proxy', (req, res) => {
   const { url } = req.query;

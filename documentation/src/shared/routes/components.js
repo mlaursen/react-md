@@ -1,3 +1,5 @@
+import getSassDocPage from './getSassDocPage';
+
 export default {
   path: 'components',
   indexRoute: {
@@ -29,13 +31,7 @@ export default {
           }
           break;
         case '2':
-          if (__CLIENT__) {
-            require.ensure(['containers/SassDocPage'], require => {
-              cb(null, require('containers/SassDocPage').default);
-            });
-          } else {
-            cb(null, require('containers/SassDocPage').default);
-          }
+          getSassDocPage(state, cb);
           break;
         default:
           if (__CLIENT__) {

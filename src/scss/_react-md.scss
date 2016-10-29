@@ -137,17 +137,19 @@
 ///
 /// @param {Color} primary-color - The primary color to use.
 /// @param {Color} secondary-color - The secondary color to use.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @param {Color} progress-swatch [$md-linear-progress-swatch] - The color for the linear progress
+///     swatch color.
+/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
 /// @param {String} html-class-name [null] - The html className to nest every component
 ///     in. This should really be used if switching from the light or dark theme.
 /// @group base
 @mixin react-md-theme-everything(
   $primary-color,
   $secondary-color,
+  $light-theme: $md-light-theme,
   $progress-swatch: $md-linear-progress-swatch,
   $error-color: $md-text-field-error-color,
-  $light-theme: $md-light-theme,
   $html-class-name: null
 ) {
   @if $html-class-name != null {

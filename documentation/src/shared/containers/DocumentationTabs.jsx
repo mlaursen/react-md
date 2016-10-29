@@ -20,6 +20,7 @@ export default class DocumentationTabs extends PureComponent {
       }).isRequired,
     }).isRequired,
     className: PropTypes.string,
+    pathname: PropTypes.string.isRequired,
     children: PropTypes.node,
   };
 
@@ -41,12 +42,33 @@ export default class DocumentationTabs extends PureComponent {
   }
 
   render() {
-    const { router: { location: { query: { tab } }, params: { section } } } = this.props;
+    const {
+      router: {
+        location: { query: { tab } },
+        params: { section },
+      },
+      pathname,
+    } = this.props;
+    const colors = pathname.indexOf('colors') !== -1;
+    const themes = pathname.indexOf('themes') !== -1;
+    const customization = pathname.match(/customization/);
+    const firstTabLabel = customization && !pathname.match(/grid/) ? 'Info' : 'Examples';
+
+    let propTypesTab;
+    if (!customization) {
+      propTypesTab = <Tab label="Prop Types" id="documentation-prop-types" />;
+    }
+
     let sassdocTab;
-    if (section !== 'helpers') {
+    if (section !== 'helpers' || colors) {
       sassdocTab = (
         <Tab label="SassDoc" id="documentation-sassdoc" />
       );
+    }
+
+    let themer;
+    if (themes) {
+      themer = <Tab label="Theme Builder" id="theme-builder" />;
     }
 
     return (
@@ -57,8 +79,9 @@ export default class DocumentationTabs extends PureComponent {
         onTabChange={this._handleTabChange}
         colored
       >
-        <Tab label="Examples" id="documentation-examples" />
-        <Tab label="Prop Types" id="documentation-prop-types" />
+        <Tab label={firstTabLabel} id={`documentation-${firstTabLabel.toLowerCase()}`} />
+        {propTypesTab}
+        {themer}
         {sassdocTab}
       </Tabs>
     );

@@ -2,9 +2,10 @@ const express = require('express');
 const compression = require('compression');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const sassdoc = require('./sassdoc');
-const docgen = require('./docgen');
 const Promise = require('bluebird');
+
+const docgen = require('./docgen');
+const sassdoc = require('./sassdoc');
 const config = require('../../serverConfig.json');
 
 const { port } = config;
