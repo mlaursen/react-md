@@ -1,12 +1,19 @@
 import { FETCH_SASSDOC_REQUEST, FETCH_SASSDOC_SUCCESS, FETCH_SASSDOC_FAILURE } from 'constants/ActionTypes';
 
+const DEFAULT_STATE = {
+  placeholders: [],
+  variables: [],
+  functions: [],
+  mixins: [],
+};
+
 function request(state, { id }) {
   const doc = state[id] || {};
   if (doc.fetching === true) {
     return state;
   }
 
-  return Object.assign({}, state, { [id]: { fetching: true } });
+  return Object.assign({}, state, { [id]: { fetching: true, ...DEFAULT_STATE } });
 }
 
 function success(state, { id, data }) {
@@ -14,7 +21,7 @@ function success(state, { id, data }) {
     return state;
   }
 
-  return Object.assign({}, state, { [id]: { fetching: false, sassdoc: data } });
+  return Object.assign({}, state, { [id]: { fetching: false, ...data } });
 }
 
 function failure(state, { id }) {
@@ -22,7 +29,7 @@ function failure(state, { id }) {
     return state;
   }
 
-  return Object.assign({}, state, { [id]: { fetching: false, sassdoc: [] } });
+  return Object.assign({}, state, { [id]: { fetching: false, ...DEFAULT_STATE } });
 }
 
 

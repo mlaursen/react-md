@@ -20,7 +20,7 @@ export default class HomeContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.updateToolbar(false);
+    this.props.updateToolbar(true);
     window.removeEventListener('scroll', this._updateToolbar);
   }
 
@@ -30,7 +30,6 @@ export default class HomeContainer extends PureComponent {
     }
 
     this._bannerHeight = Math.max(findDOMNode(home).querySelector('.banner').offsetHeight, 400);
-    console.log('this._bannerHeight:', this._bannerHeight);
   };
 
   _updateToolbar = () => {

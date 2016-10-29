@@ -116,7 +116,7 @@ export function fetchProxyCreator(id, stateKey, url, options, types) {
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchSassDoc(id, section, options) {
-  return fetchProxyCreator(id, 'documentation.sassdocs',
+  return fetchProxyCreator(id, `documentation.sassdocs.${section ? `${section}.` : ''}${id}`,
     `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`,
     options, {
       request: FETCH_SASSDOC_REQUEST,

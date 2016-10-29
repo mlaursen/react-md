@@ -3,7 +3,12 @@ import getSassDocPage from './getSassDocPage';
 
 const indexRoute = {
   path: 'colors',
-  getComponent(nextState, cb) {
+  getComponent(state, cb) {
+    if (state.location.query.tab === '1') {
+      getSassDocPage(state, cb);
+      return;
+    }
+
     if (__CLIENT__) {
       require.ensure(['components/Customization/Colors'], require => {
         cb(null, require('components/Customization/Colors').default);
