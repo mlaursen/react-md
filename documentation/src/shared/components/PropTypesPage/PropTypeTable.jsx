@@ -1,10 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import DataTable from 'react-md/lib/DataTables/DataTable';
+import TableBody from 'react-md/lib/DataTables/TableBody';
 import TableHeader from 'react-md/lib/DataTables/TableHeader';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 
 import propsShape from './propsShape';
+import PropTypeRow from './PropTypeRow';
 
 export default class PropTypeTable extends PureComponent {
   static propTypes = {
@@ -16,7 +18,9 @@ export default class PropTypeTable extends PureComponent {
   };
 
   render() {
-    const { sortProps, ascending } = this.props;
+    const { sortProps, ascending, props } = this.props;
+
+    const rows = props.map(prop => <PropTypeRow key={prop.propName} prop={prop} />);
     return (
       <DataTable plain>
         <TableHeader>
@@ -26,6 +30,7 @@ export default class PropTypeTable extends PureComponent {
             <TableColumn className="md-table-column--grow">Description</TableColumn>
           </TableRow>
         </TableHeader>
+        <TableBody>{rows}</TableBody>
       </DataTable>
     );
   }

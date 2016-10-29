@@ -20,48 +20,67 @@ function toPrettyName({ component }) {
   return component.split(/(?=[A-Z])/).join('-').toLowerCase();
 }
 
-function buildLocalDB() {
-  return readdir(JS_FOLDER).then(files => {
-    Promise.all(
-      files.filter(file => file.match(/^(?!(Transitions|FAB|Sidebar))[A-Z]/))
-        .map(folder => extractReactModules(JS_FOLDER, folder))
-    ).then(exports => Promise.all(exports.map(createReactDocgen))).then(docgens => {
-      docgens.forEach(({ group, docgens }) => {
-        if (group.match(/selection/i)) {
-          // Need to group selection-control and selection-controls together while remainders are alone
-          LOCAL_DB[group] = {
-            'selection-control': [],
-          };
-          NESTED_GROUPS.push(group);
-          docgens.forEach(docgen => {
-            if (docgen.component.match(/selection/i)) {
-              LOCAL_DB[group]['selection-control'].push(docgen)
-            } else {
-              const name = toPrettyName(docgen);
-              LOCAL_DB[group][`${name}${name.match(/radio/) ? '' : 'e'}s`] = [docgen];
-            }
-          });
-        } else if (group.match(/helpers|picker/i)) {
-          LOCAL_DB[group] = {};
-          NESTED_GROUPS.push(group);
-          docgens.forEach(docgen => {
-            const name = toPrettyName(docgen);
-            LOCAL_DB[group][name] = [docgen];
-          });
-        } else {
-          GROUPS.push(group);
-          LOCAL_DB[group] = docgens;
-        }
-      });
+function findCustomPropTypes() {
+  return readdir(path.join(JS_FOLDER, 'utils', 'PropTypes'))
+    .then(files => files.filter(file => file.charAt(0) !== '_')
+      .map(file => file.replace('.js', ''))
+      .concat(['deprecated', 'requiredForA11y'])
+    );
+}
 
-      if (process.env.NODE_ENV === 'development') {
-        fs.writeFile(path.resolve(process.cwd(), 'docgen.localdb.json'), JSON.stringify(LOCAL_DB, null, '  '));
-      }
-
-      console.log('Built Docgens DB');
-      return null;
-    });
+function insertSelectionControls(group, docgens) {
+  // Need to group selection-control and selection-controls together while remainders are alone
+  LOCAL_DB[group] = {
+    'selection-control': [],
+  };
+  NESTED_GROUPS.push(group);
+  docgens.forEach(docgen => {
+    if (docgen.component.match(/selection/i)) {
+      LOCAL_DB[group]['selection-control'].push(docgen)
+    } else {
+      const name = toPrettyName(docgen);
+      LOCAL_DB[group][`${name}${name.match(/radio/) ? '' : 'e'}s`] = [docgen];
+    }
   });
+}
+function insertIntoDB({ group, docgens }) {
+  if (group.match(/selection/i)) {
+    insertSelectionControls(group, docgens);
+  } else if (group.match(/helpers|picker/i)) {
+    LOCAL_DB[group] = {};
+    NESTED_GROUPS.push(group);
+
+    docgens.forEach(docgen => {
+      const name = toPrettyName(docgen);
+      LOCAL_DB[group][name] = [docgen];
+    });
+  } else {
+    GROUPS.push(group);
+    LOCAL_DB[group] = docgens;
+  }
+}
+
+function findDocgenComponents() {
+  return readdir(JS_FOLDER).then(files => Promise.all(
+    files.filter(file => file.match(/^(?!(Transitions|FAB|Sidebar))[A-Z]/))
+      .map(folder => extractReactModules(JS_FOLDER, folder)))
+  );
+}
+
+function buildLocalDB() {
+  return findCustomPropTypes()
+    .then(customPropTypes => readdir(JS_FOLDER).then(files => {
+      findDocgenComponents().then(exports => Promise.all(exports.map(e => createReactDocgen(e, customPropTypes)))).then(docgens => {
+        docgens.forEach(insertIntoDB);
+
+        if (process.env.NODE_ENV === 'development') {
+          fs.writeFile(path.resolve(process.cwd(), 'docgen.localdb.json'), JSON.stringify(LOCAL_DB, null, '  '));
+        }
+
+        console.log('Built Docgens DB');
+        return null;
+      });
+  }))
 }
 
 function findDocgen(req, res) {

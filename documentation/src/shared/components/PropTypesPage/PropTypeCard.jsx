@@ -2,11 +2,16 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import Fuse from 'fuse.js';
 import Card from 'react-md/lib/Cards/Card';
+import CardText from 'react-md/lib/Cards/CardText';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
 
 import sort from 'utils/ListUtils/sort';
+import toClassName from 'utils/StringUtils/toClassName';
+import Markdown from 'components/Markdown';
 import docgenShape from './docgenShape';
 import ComponentTitle from './ComponentTitle';
 import PropTypeTable from './PropTypeTable';
+import MethodsTable from './MethodsTable';
 
 export default class PropTypeCard extends PureComponent {
   static propTypes = {
@@ -14,6 +19,7 @@ export default class PropTypeCard extends PureComponent {
     mobile: PropTypes.bool.isRequired,
     tablet: PropTypes.bool.isRequired,
     desktop: PropTypes.bool.isRequired,
+    style: PropTypes.object,
     className: PropTypes.string,
   };
 
@@ -86,34 +92,52 @@ export default class PropTypeCard extends PureComponent {
   }
 
   render() {
+    const { propFilter, ascending, visibleProps } = this.state;
     const {
+      style,
       className,
       docgen: {
         component,
         source,
+        methods,
       },
       mobile,
       tablet,
       desktop,
     } = this.props;
-    const { propFilter, ascending, visibleProps } = this.state;
+    const baseId = toClassName(component);
+
+    let { description } = this.props.docgen;
+    if (description) {
+      description = [
+        <CardTitle key="description-title" id={`${baseId}-info`} title="Additional Info" />,
+        <Markdown key="description-markdown" component={CardText} markdown={description} className="md-text-container" />,
+      ];
+    }
+
+    let remainingChildren;
+    if (methods.length) {
+      remainingChildren = [
+        <CardTitle key="methods-title" id={`${baseId}-methods`} title="Methods" />,
+        <MethodsTable key="methods-table" methods={methods} />,
+      ];
+    }
 
     return (
-      <Card
-        id={`#${component}-prop-types`}
-        className={cn('md-cell md-cell--12', className)}
-        tableCard
-      >
+      <Card style={style} className={cn('md-cell md-cell--12', className)} tableCard>
         <ComponentTitle
           mobile={mobile}
           tablet={tablet}
           desktop={desktop}
           source={source}
+          baseId={baseId}
           component={component}
           propFilter={propFilter}
           onPropFilter={this._filterProperties}
         />
         <PropTypeTable ascending={ascending} sortProps={this._sortProps} props={visibleProps} />
+        {remainingChildren}
+        {description}
       </Card>
     );
   }

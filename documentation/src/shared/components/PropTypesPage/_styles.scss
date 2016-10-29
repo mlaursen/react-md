@@ -1,11 +1,14 @@
 @import '~react-md-scss';
 
 .filter-toolbar {
-  left: $md-default-padding;
+  align-items: center;
+  height: 85px;
+  left: 0;
+  padding: $md-default-padding;
   position: absolute;
   right: 0;
-  top: $md-card-padding-extra;
-  z-index: $md-toolbar-z-index;
+  top: 0;
+  z-index: 1;
 }
 
 .drop-down-enter {
@@ -29,5 +32,35 @@
     transform: translate3d(0, -100%, 0);
     transition-duration: $md-transition-time;
     transition-property: transform;
+  }
+}
+
+.md-data-table {
+  .example-code,
+  .code-block {
+    background: transparent;
+    margin: 0;
+  }
+
+  .code-block {
+    padding: 0;
+  }
+}
+
+@media #{$md-mobile-media} {
+  .prop-type pre {
+    max-width: 120px;
+  }
+}
+
+@media #{$md-desktop-media} {
+  .prop-type pre {
+    max-width: 200px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .prop-type pre {
+    max-width: 280px;
   }
 }

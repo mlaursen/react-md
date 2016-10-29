@@ -14,6 +14,7 @@ export default class ComponentTitle extends PureComponent {
     component: PropTypes.string.isRequired,
     propFilter: PropTypes.string.isRequired,
     onPropFilter: PropTypes.func.isRequired,
+    baseId: PropTypes.string.isRequired,
     style: PropTypes.object,
     className: PropTypes.string,
   };
@@ -48,6 +49,7 @@ export default class ComponentTitle extends PureComponent {
       propFilter,
       onPropFilter,
       mobile,
+      baseId,
     } = this.props;
 
     let filter;
@@ -96,7 +98,7 @@ export default class ComponentTitle extends PureComponent {
       );
 
       filter = (
-        <Toolbar key="toolbar" className="md-background--card filter-toolbar" actions={back}>
+        <Toolbar key="toolbar" className="filter-toolbar" actions={back} themed>
           {filter}
         </Toolbar>
       );
@@ -104,6 +106,7 @@ export default class ComponentTitle extends PureComponent {
 
     return (
       <CSSTransitionGroup
+        id={`${baseId}-proptypes`}
         component={CardTitle}
         transitionName="drop-down"
         transitionEnterTimeout={150}

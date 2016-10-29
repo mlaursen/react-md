@@ -4,6 +4,7 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 
 import propsShape from './propsShape';
+import Markdown from 'components/Markdown';
 
 export default class PropTypeRow extends PureComponent {
   static propTypes = {
@@ -14,19 +15,35 @@ export default class PropTypeRow extends PureComponent {
     const {
       prop: {
         propName,
+        description,
+        type,
+        required,
+        // defaultValue,
       },
     } = this.props;
-    const type = '';
+
+    const deprecated = type.indexOf('deprecated') !== -1;
 
     return (
       <TableRow autoAdjust={false}>
         <TableColumn
           className={cn('prop-name', {
-            'prop-name--deprecated': type === 'deprecated',
-            'md-color--disabled': type === 'deprecated',
+            'prop-name--deprecated': deprecated,
+            'md-color--disabled': deprecated,
           })}
         >
           {propName}
+        </TableColumn>
+        <TableColumn
+          className="prop-type"
+          tooltipLabel={required ? 'Required' : null}
+          tooltipDelay={300}
+          tooltipPosition="top"
+        >
+          <Markdown markdown={`\`\`\`js\n${type}${required ? ' *' : ''}\n\`\`\``} />
+        </TableColumn>
+        <TableColumn className="md-table-column--grow" style={{ whiteSpace: 'initial' }}>
+          <Markdown markdown={description} />
         </TableColumn>
       </TableRow>
     );
