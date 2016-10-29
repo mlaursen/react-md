@@ -65,7 +65,7 @@ export default class App extends PureComponent {
         onMediaTypeChange={onMediaTypeChange}
       >
         {children}
-        <AppFooter key="footer" />
+        <AppFooter key="footer" home={pathname === '/'} />
         <Notifications key="notifications" />
       </NavigationDrawer>
     );

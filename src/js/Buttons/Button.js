@@ -84,9 +84,18 @@ class Button extends PureComponent {
     iconClassName: PropTypes.string,
 
     /**
-     * The type for the button.
+     * The type for the button. This is required when the `component` prop is not
+     * the 'a' tag, a `function`, or when the `href` prop is defined.
      */
-    type: PropTypes.oneOf(['button', 'submit', 'reset']).isRequired,
+    type: (props, propName, component, ...args) => {
+      const c = props.component;
+      let validator = PropTypes.oneOf(['button', 'submit', 'reset']);
+      if (!props.href && c !== 'a' && typeof c !== 'function') {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, component, ...args);
+    },
 
     /**
      * Boolean if the button should be styled with the primary color.

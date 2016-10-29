@@ -1,0 +1,33 @@
+@import '~react-md-scss';
+
+.banner {
+  align-items: center;
+  background: $md-light-blue-500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2em;
+
+  .md-display-2,
+  .md-subheading-2 {
+    color: $md-white-base;
+  }
+}
+
+.about {
+  line-height: $md-line-height;
+  padding-bottom: 3em;
+  padding-top: 1em;
+  white-space: initial;
+}
+
+.img-card {
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+
+  .md-ink {
+    background: rgba($md-white-base, .12);
+  }
+}

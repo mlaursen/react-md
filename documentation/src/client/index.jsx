@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureStore from 'stores/configureStore';
+import smoothScroll from 'utils/smoothScroll';
 import routes from 'routes';
 import Root from './Root';
 
@@ -13,5 +14,5 @@ const root = document.getElementById('app');
 if (process.env.NODE_ENV === 'development') {
   window.Perf = require('react-addons-perf');
 
-  render(<Root store={store} history={history} routes={routes} />, root);
+  render(<Root store={store} history={history} routes={routes} onUpdate={smoothScroll} />, root);
 }

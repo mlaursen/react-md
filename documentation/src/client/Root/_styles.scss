@@ -2,7 +2,7 @@
 @import '~react-md-scss';
 
 $md-primary-color: $md-light-blue-500;
-$md-secondary-color: $md-orange-a-200;
+$md-secondary-color: $md-deep-orange-a-200;
 @include react-md-everything;
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
 
