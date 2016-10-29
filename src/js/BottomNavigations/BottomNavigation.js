@@ -26,10 +26,11 @@ export default class BottomNavigation extends PureComponent {
 
     /**
      * A list of objects to generate a bottom navigation link. There must be at least 3 and no more
-     * than 5 links. A link has a shape of:
+     * than 5 links. A link gets rendered as the `AccessibleFakeButton` component, so any additional
+     * props in the link's shape will be passed along.
      *
-     * ```js
-     * link: {
+     * ```docgen
+     * PropTypes.arrayOf(PropTypes.shape({
      *   label: PropTypes.node.isRequired,
      *   iconChildren: PropTypes.node,
      *   iconClassName: PropTypes.string,
@@ -37,11 +38,8 @@ export default class BottomNavigation extends PureComponent {
      *      PropTypes.func,
      *      PropTypes.string,
      *   ]),
-     * },
+     * }).isRequired
      * ```
-     *
-     * A link gets rendered as the `AccessibleFakeButton` component, so any additional props
-     * in the link's shape will be passed along.
      */
     links: (props, propName, component, ...args) => {
       const links = props[propName] || props.actions;
@@ -61,6 +59,10 @@ export default class BottomNavigation extends PureComponent {
         label: PropTypes.node.isRequired,
         iconChildren: PropTypes.node,
         iconClassName: PropTypes.string,
+        component: PropTypes.oneOfType([
+          PropTypes.func,
+          PropTypes.string,
+        ]),
       })).isRequired(props, propName, component, ...args);
     },
 

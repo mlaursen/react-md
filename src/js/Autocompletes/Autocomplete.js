@@ -114,13 +114,18 @@ export default class Autocomplete extends PureComponent {
      * an array of string, number, or object. If it is an array of objects, the key
      * `dataLabel` is required.
      *
-     * ```js
-     * PropTypes.shape({
-     *   [dataLabel]: PropTypes.oneOfType([
-     *     PropTypes.string,
-     *     PropTypes.number,
-     *   ]).isRequired,
-     * }),
+     * ```docgen
+     * PropTypes.arrayOf(PropTypes.oneOfType([
+     *   PropTypes.element,
+     *   PropTypes.string,
+     *   PropTypes.number,
+     *   PropTypes.shape({
+     *     [dataLabel]: PropTypes.oneOfType([
+     *       PropTypes.string,
+     *       PropTypes.number,
+     *     ]).isRequired,
+     *   }),
+     * ])).isRequired
      * ```
      */
     data: (props, propName, component, ...others) => {

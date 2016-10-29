@@ -39,6 +39,9 @@ export default class Tab extends PureComponent {
      */
     className: PropTypes.string,
 
+    /**
+     * The component to render as.
+     */
     component: PropTypes.oneOfType([
       PropTypes.func,
       PropTypes.string,
