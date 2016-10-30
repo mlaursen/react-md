@@ -49,7 +49,7 @@ export default class CalendarHeader extends PureComponent {
     for (let i = 0; i < 7; i++) {
       const dow = formatter.format(addDate(sunday, i, 'D'));
       dows.push(
-        <h4 className="md-calendar-date md-color--disabled md-calendar-dow" key={i}>
+        <h4 className="md-calendar-date md-text--disabled md-calendar-dow" key={i}>
           {dow}
         </h4>
       );

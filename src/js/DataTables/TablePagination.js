@@ -223,7 +223,7 @@ export default class TablePagination extends PureComponent {
           <td colSpan="100%">
             <div
               ref={this._setControls}
-              className="md-table-pagination md-table-pagination--controls md-color--text"
+              className="md-table-pagination md-table-pagination--controls md-text"
               style={{ marginLeft: controlsMarginLeft }}
             >
               {rowsPerPageLabel}

@@ -89,8 +89,8 @@ export default class BottomNav extends PureComponent {
           'md-bottom-nav--shifting': !fixed,
           'md-bottom-nav--shifting-active': !fixed && active,
           'md-bottom-nav--shifting-inactive': !fixed && !active,
-          'md-color--text': !active && !colored,
-          'md-color--primary': active && !colored,
+          'md-text': !active && !colored,
+          'md-text--theme-primary': active && !colored,
         }, className)}
       >
         <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>

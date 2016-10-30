@@ -512,12 +512,12 @@ class Button extends PureComponent {
         onMouseLeave={this._handleMouseLeave}
         href={href}
         className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, {
-          'md-color--text': !disabled && !primary && !secondary && !icon && !floating,
-          'md-color--primary': !disabled && !raisedStyles && primary,
-          'md-color--primary-ink': !disabled && !raisedStyles && primary,
-          'md-color--secondary': !disabled && !raisedStyles && secondary,
-          'md-color--secondary-ink': !disabled && !raisedStyles && secondary,
-          'md-color--disabled': disabled,
+          'md-text': !disabled && !primary && !secondary && !icon && !floating,
+          'md-text--theme-primary': !disabled && !raisedStyles && primary,
+          'md-ink--primary': !disabled && !raisedStyles && primary,
+          'md-text--theme-secondary': !disabled && !raisedStyles && secondary,
+          'md-ink--secondary': !disabled && !raisedStyles && secondary,
+          'md-text--disabled': disabled,
           'md-pointer--hover': !disabled,
           'md-background--primary': !disabled && raisedStyles && primary,
           'md-background--secondary': !disabled && raisedStyles && secondary,

@@ -41,8 +41,8 @@ export default class Year extends PureComponent {
       <button
         type="button"
         className={cn('md-btn md-pointer--hover md-full-width md-year', {
-          'md-color--text': !active && !desktopActive,
-          'md-color--primary': active || desktopActive,
+          'md-text': !active && !desktopActive,
+          'md-text--theme-primary': active || desktopActive,
           'md-year--active': active,
         }, className)}
         onClick={this._handleClick}

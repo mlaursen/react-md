@@ -206,7 +206,7 @@ export default class ListItem extends PureComponent {
   };
 
   static defaultProps = {
-    activeClassName: 'md-color--primary',
+    activeClassName: 'md-text--theme-primary',
     component: 'div',
     expanderIconChildren: 'keyboard_arrow_down',
   };
@@ -438,8 +438,8 @@ export default class ListItem extends PureComponent {
           disabled={disabled}
           style={tileStyle}
           className={cn('md-list-tile', {
-            'md-color--text': !disabled,
-            'md-color--disabled': disabled,
+            'md-text': !disabled,
+            'md-text--disabled': disabled,
             'md-list-tile--active': this.state.active && !this._touched,
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,

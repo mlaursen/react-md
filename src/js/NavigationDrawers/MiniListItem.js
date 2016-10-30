@@ -26,7 +26,7 @@ export default class MiniListItem extends PureComponent {
   };
 
   static defaultProps = {
-    activeClassName: 'md-color--primary',
+    activeClassName: 'md-text--theme-primary',
     component: 'div',
   };
 

@@ -110,11 +110,11 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
     width: 100%;
 
     .md-btn,
-    .md-color--text {
+    .md-text {
       color: get-color('text', false);
     }
 
-    .md-color--secondary-text {
+    .md-text--secondary {
       color: get-color('secondary', false);
     }
   }

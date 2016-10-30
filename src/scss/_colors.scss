@@ -832,9 +832,13 @@ $md-black-base: #000;
 /// @type Color
 $md-white-base: #fff;
 
-/// This is a map of all the material design base colors
-/// so that you can programatically get variables with the
-/// neat sass-map functions.
+/// This is a map of all the material design base colors so that you can programatically get
+/// variables with the neat sass-map functions.
+///
+/// @example scss - Example Usage SCSS
+///   .error-field {
+///     background: map-get(md-red-300, $md-color-map);
+///   }
 ///
 /// @type Map
 $md-color-map: (
@@ -1208,18 +1212,18 @@ $md-dark-theme-colors: (
 
 /// A mixin for generating the base color class names to be used
 /// on multiple components. This will generate the following class names:
-/// - md-color--text - Styles the `color` to be the text color.
-/// - md-color--secondary-text - Styles the `color` to be the secondary text color.
-/// - md-color--disabled - Styles the `color` to be the disabled text color.
-/// - md-color--primary - Styles the `color` to be the `primary` color.
-/// - md-color--secondary - Styles the `color` to be the `secondary` color.
+/// - md-text - Styles the `color` to be the text color.
+/// - md-text--secondary - Styles the `color` to be the secondary text color.
+/// - md-text--disabled - Styles the `color` to be the disabled text color.
+/// - md-text--theme-primary - Styles the `color` to be the `primary` color.
+/// - md-text--theme-secondary - Styles the `color` to be the `secondary` color.
 /// - md-background - Styles the `background` to be the base background color.
 /// - md-background--primary - Styles the `background` to be the `primary` color.
 /// - md-background--primary-hover - Styles the `background` to be the `primary` color with some opacity.
 /// - md-background--secondary - Styles the `background` to be the `secondary` color.
 /// - md-background--secondary-hover - Styles the `background` to be the `secondary` color with some opacity.
-/// - md-color--primary-ink - Styles any ink inside this class to use the `primary` color.
-/// - md-color--secondary-ink - Styles any ink inside this class to use the `secondary` color.
+/// - md-text--theme-primary-ink - Styles any ink inside this class to use the `primary` color.
+/// - md-text--theme-secondary-ink - Styles any ink inside this class to use the `secondary` color.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-colors;
@@ -1229,55 +1233,55 @@ $md-dark-theme-colors: (
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
 /// @param {Boolean} include-color-class-names [$md-colors-include-class-names] - Boolean if a class name
 ///     should be created for every color as well.
-@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-color-class-names: $md-colors-include-class-names) {
-  .md-color--text {
+@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-color-class-names: $md-colors-include-class-names, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
+  .md-text {
     color: get-color('text', $light-theme);
-  }
 
-  .md-color--secondary-text {
-    color: get-color('secondary', $light-theme);
-  }
+    &--secondary {
+      color: get-color('secondary', $light-theme);
+    }
 
-  .md-color--disabled {
-    color: get-color('disabled', $light-theme);
-  }
+    &--disabled {
+      color: get-color('disabled', $light-theme);
+    }
 
-  .md-color--primary {
-    color: $primary-color;
-  }
+    &--theme-primary {
+      color: $primary-color;
+    }
 
-  .md-color--primary-ink {
-    .md-ink {
-      background: rgba($primary-color, .26);
+    &--theme-secondary {
+      color: $secondary-color;
     }
   }
 
-  .md-color--secondary {
-    color: $secondary-color;
+  .md-ink--primary .md-ink {
+    background: rgba($primary-color, .26);
   }
 
-  .md-color--secondary-ink {
-    .md-ink {
-      background: rgba($secondary-color, .26);
-    }
+  .md-ink--secondary .md-ink {
+    background: rgba($secondary-color, .26);
   }
 
   .md-background {
     background: get-color('background', $light-theme);
+
+    &--card {
+      background: get-color('card', $light-theme);
+    }
+
+    &--primary {
+      background: $primary-color;
+      color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
+    }
+
+    &--secondary {
+      background: $secondary-color;
+      color: if(lightness($secondary-color) > 40, $md-white-base, $md-black-base);
+    }
   }
 
-  .md-background--card {
-    background: get-color('card', $light-theme);
-  }
-
-  .md-background--primary {
-    background: $primary-color;
-    color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
-  }
-
-  .md-background--secondary {
-    background: $secondary-color;
-    color: if(lightness($secondary-color) > 40, $md-white-base, $md-black-base);
+  @if $include-media {
+    @include react-md-colors-hover($primary-color, $primary-opacity, $secondary-color, $secondary-opacity);
   }
 
   @if $include-media {
@@ -1306,17 +1310,18 @@ $md-dark-theme-colors: (
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
-@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included) {
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for the hover effects should
+///     also be included
+/// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
+/// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
+@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
   @if $primary-color != $md-primary-color {
-    .md-color--primary {
+    .md-text--theme-primary {
       color: $primary-color;
-
     }
 
-    .md-color--primary-ink {
-      .md-ink {
-        background: rgba($primary-color, .26);
-      }
+    .md-ink--primary .md-ink {
+      background: rgba($primary-color, .26);
     }
 
     .md-background--primary {
@@ -1325,14 +1330,12 @@ $md-dark-theme-colors: (
   }
 
   @if $secondary-color != $md-secondary-color {
-    .md-color--secondary {
+    .md-text--theme-secondary {
       color: $secondary-color;
     }
 
-    .md-color--secondary-ink {
-      .md-ink {
-        background: rgba($secondary-color, .26);
-      }
+    .md-ink--secondary .md-ink {
+      background: rgba($secondary-color, .26);
     }
 
     .md-background--secondary {
@@ -1341,24 +1344,24 @@ $md-dark-theme-colors: (
   }
 
   @if $light-theme != $md-light-theme {
-    .md-color--text {
+    .md-text {
       color: get-color('text', $light-theme);
-    }
 
-    .md-color--secondary-text {
-      color: get-color('secondary', $light-theme);
-    }
+      &--secondary {
+        color: get-color('secondary', $light-theme);
+      }
 
-    .md-color--disabled {
-      color: get-color('disabled', $light-theme);
+      &--disabled {
+        color: get-color('disabled', $light-theme);
+      }
     }
 
     .md-background {
       background: get-color('background', $light-theme);
-    }
 
-    .md-background--card {
-      background: get-color('card', $light-theme);
+      &--card {
+        background: get-color('card', $light-theme);
+      }
     }
   }
 
@@ -1366,15 +1369,41 @@ $md-dark-theme-colors: (
     @media #{$md-desktop-media} {
       @if $primary-color != $md-primary-color {
         .md-background--primary-hover:hover {
-          background: rgba($primary-color, .9);
+          background: rgba($primary-color, $primary-opacity);
         }
       }
 
       @if $secondary-color != $md-secondary-color {
         .md-background--secondary-hover:hover {
-          background: rgba($secondary-color, .9);
+          background: rgba($secondary-color, $secondary-opacity);
         }
       }
+    }
+  }
+}
+
+/// Creates the two class names for getting a primary or secondary background hover effect,
+/// Since the `:hover` selector still gets applied on mobile devices, these styles are wrapped
+/// in the desktop media query.
+///
+/// @example markdown - Created Class Names
+///   - `.md-background--primary-hover`
+///   - `.md-background--secondary-hover`
+///
+/// @param {Color} primary-color [$md-primary-color] - The primary color to use as the base for the
+///     hover effect.
+/// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use as the base for the
+///     hover effect.
+/// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
+@mixin react-md-colors-hover($primary-color: $md-primary-color, $primary-opacity: $md-primary-hover-opacity, $secondary-color: $md-secondary-color, $secondary-opacity: $md-secondary-hover-opacity) {
+  @media #{$md-desktop-media} {
+    .md-background--primary-hover:hover {
+      background: rgba($primary-color, $primary-opacity);
+    }
+
+    .md-background--primary-hover:hover {
+      background: rgba($secondary-color, $secondary-opacity);
     }
   }
 }
@@ -1436,7 +1465,7 @@ $md-dark-theme-colors: (
 ///    @include react-md-color-class-names;
 ///
 /// @example scss - Example Usage CSS Output
-///    .md-red-50--color {
+///    .md-red-50--text {
 ///      color: #ffebee;
 ///    }
 ///
@@ -1445,12 +1474,15 @@ $md-dark-theme-colors: (
 ///    }
 @mixin react-md-color-class-names {
   @each $name, $color in $md-color-map {
-    .#{$name}--text {
-      color: $color;
-    }
+    .#{$name} {
 
-    .#{$name}--background {
-      background: $color;
+      &--text {
+        color: $color;
+      }
+
+      &--background {
+        background: $color;
+      }
     }
   }
 }

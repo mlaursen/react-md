@@ -46,8 +46,8 @@ describe('SelectionControl', () => {
     let className = findRenderedDOMComponentWithTag(control, 'label').className;
 
     expect(className).toContain('md-selection-control-label');
-    expect(className).toContain('md-color--text');
-    expect(className).not.toContain('md-color--disabled');
+    expect(className).toContain('md-text');
+    expect(className).not.toContain('md-text--disabled');
     expect(className).toContain('md-pointer--hover');
 
     props.disabled = true;
@@ -55,8 +55,8 @@ describe('SelectionControl', () => {
     className = findRenderedDOMComponentWithTag(control, 'label').className;
 
     expect(className).toContain('md-selection-control-label');
-    expect(className).not.toContain('md-color--text');
-    expect(className).toContain('md-color--disabled');
+    expect(className).not.toContain('md-text');
+    expect(className).toContain('md-text--disabled');
     expect(className).not.toContain('md-pointer--hover');
   });
 
@@ -247,9 +247,9 @@ describe('SelectionControl', () => {
 
     expect(btn.props.className).toContain('md-btn');
     expect(btn.props.className).toContain('md-btn--icon');
-    expect(btn.props.className).not.toContain('md-color--disabled');
-    expect(btn.props.className).not.toContain('md-color--secondary ');
-    expect(btn.props.className).toContain('md-color--secondary-text');
+    expect(btn.props.className).not.toContain('md-text--disabled');
+    expect(btn.props.className).not.toContain('md-text--theme-secondary ');
+    expect(btn.props.className).toContain('md-text--secondary');
 
     props.checked = true;
     control = renderIntoDocument(<SelectionControl {...props} />);
@@ -257,9 +257,9 @@ describe('SelectionControl', () => {
 
     expect(btn.props.className).toContain('md-btn');
     expect(btn.props.className).toContain('md-btn--icon');
-    expect(btn.props.className).not.toContain('md-color--disabled');
-    expect(btn.props.className).toContain('md-color--secondary');
-    expect(btn.props.className).not.toContain('md-color--secondary-text');
+    expect(btn.props.className).not.toContain('md-text--disabled');
+    expect(btn.props.className).toContain('md-text--theme-secondary');
+    expect(btn.props.className).not.toContain('md-text--secondary');
 
     props.disabled = true;
     control = renderIntoDocument(<SelectionControl {...props} />);
@@ -267,9 +267,9 @@ describe('SelectionControl', () => {
 
     expect(btn.props.className).toContain('md-btn');
     expect(btn.props.className).toContain('md-btn--icon');
-    expect(btn.props.className).toContain('md-color--disabled');
-    expect(btn.props.className).not.toContain('md-color--secondary');
-    expect(btn.props.className).not.toContain('md-color--secondary-text');
+    expect(btn.props.className).toContain('md-text--disabled');
+    expect(btn.props.className).not.toContain('md-text--theme-secondary');
+    expect(btn.props.className).not.toContain('md-text--secondary');
   });
 
   it('renders the correct checkbox FontIcon for the AccessibleFakeInkedButton children', () => {

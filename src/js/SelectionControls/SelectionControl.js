@@ -305,8 +305,8 @@ export default class SelectionControl extends PureComponent {
         htmlFor={id}
         className={cn('md-selection-control-label', {
           'md-pointer--hover': !disabled,
-          'md-color--disabled': disabled,
-          'md-color--text': !disabled,
+          'md-text--disabled': disabled,
+          'md-text': !disabled,
         })}
       >
         {this.props.label}
@@ -333,9 +333,9 @@ export default class SelectionControl extends PureComponent {
           disabled={disabled}
           onClick={this._handleControlClick}
           className={cn('md-btn md-btn--icon', {
-            'md-color--disabled': disabled,
-            'md-color--secondary': !disabled && checked,
-            'md-color--secondary-text': !disabled && !checked,
+            'md-text--disabled': disabled,
+            'md-text--theme-secondary': !disabled && checked,
+            'md-text--secondary': !disabled && !checked,
           })}
           role={type}
           aria-checked={checked}

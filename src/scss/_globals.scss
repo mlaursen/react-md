@@ -6,10 +6,10 @@
 /// @group theme
 $md-primary-color: $md-indigo-500 !default;
 
-/// A lighter version of the primary color to use throughout the app.
-/// @type Color
+/// The opacity to apply to the primary color with the `md-background--primary` class name.
+/// @type Number
 /// @group theme
-$md-primary-color-hue-1: $md-indigo-400 !default;
+$md-primary-hover-opacity: .9 !default;
 
 /// The secondary color to use throughout the app. This should be a color
 /// with a `-a-{NUMBER}` suffix.
@@ -17,11 +17,10 @@ $md-primary-color-hue-1: $md-indigo-400 !default;
 /// @group theme
 $md-secondary-color: $md-pink-a-200 !default;
 
-/// A lighter version of the primary color to use throughout the app. This should be a color
-/// with a `-a-{NUMBER}` suffix.
-/// @type Color
+/// The opacity to apply to the secondary color with the `md-background--secondary` class name.
+/// @type Number
 /// @group theme
-$md-secondary-color-hue-1: $md-pink-a-100 !default;
+$md-secondary-hover-opacity: .9 !default;
 
 /// Boolean if the application is to be themed with the light theme.
 /// @type Boolean

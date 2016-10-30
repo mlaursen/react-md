@@ -66,8 +66,8 @@ export default class Subheader extends PureComponent {
       <Component
         {...props}
         className={cn('md-subheader', {
-          'md-color--secondary-text': !primary,
-          'md-color--primary': primary,
+          'md-text--secondary': !primary,
+          'md-text--theme-primary': primary,
           'md-list-item--inset': inset,
         }, className)}
       >

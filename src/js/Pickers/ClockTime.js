@@ -80,7 +80,7 @@ export default class ClockTime extends PureComponent {
       <div
         ref={this._setTime}
         className={cn('md-clock-time md-text-no-select md-pointer--none', {
-          'md-color--text': !active,
+          'md-text': !active,
           'md-picker-text--active': active,
         })}
         style={this.state.style}

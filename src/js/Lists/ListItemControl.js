@@ -141,7 +141,7 @@ export default class ListItemControl extends PureComponent {
       <li {...props} className={cn('md-list-item', className)}>
         <div
           style={tileStyle}
-          className={cn('md-list-tile md-color--text', {
+          className={cn('md-list-tile md-text', {
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,
             'md-list-tile--two-lines': secondaryText && !threeLines,

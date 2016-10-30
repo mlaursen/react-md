@@ -374,7 +374,7 @@ export default class ExpansionPanel extends PureComponent {
     );
 
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
-      <div className="md-panel-column md-color--text" style={{ minWidth: columnWidths[i + 1] }}>
+      <div className="md-panel-column md-text" style={{ minWidth: columnWidths[i + 1] }}>
         {panelLabel}
       </div>
     ));
@@ -384,7 +384,7 @@ export default class ExpansionPanel extends PureComponent {
     }
 
     columns.unshift((
-      <div className="md-panel-column md-color--text" style={{ minWidth: columnWidths[0] }} key="main-label">
+      <div className="md-panel-column md-text" style={{ minWidth: columnWidths[0] }} key="main-label">
         {label}
       </div>
     ));
