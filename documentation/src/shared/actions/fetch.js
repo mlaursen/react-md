@@ -76,7 +76,10 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
     fetch(endpoint, options).then(data => {
       dispatch({ type: success, id, data });
     }).catch(error => {
-      console.log('error:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error(error);
+      }
+
       dispatch(addNotification({ text: `Failed to fetch from endpoint: ${endpoint}` }));
       dispatch({ type: failure, id, error });
     });

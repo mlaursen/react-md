@@ -1,3 +1,5 @@
+const GITHUB_URL = require('../../../package.json').bugs.url.replace('/issues', '');
+
 module.exports = function transformSassdocVariable(sassdoc, file) {
   const {
     context: {
@@ -9,6 +11,10 @@ module.exports = function transformSassdocVariable(sassdoc, file) {
     description,
     usedBy,
     file: { path },
+    type: variableType,
+    example: examples,
+    link: links,
+    see,
   } = sassdoc;
 
   let { code } = sassdoc.context;
@@ -20,9 +26,13 @@ module.exports = function transformSassdocVariable(sassdoc, file) {
   return {
     name,
     type,
+    variableType,
     code,
     description,
+    links,
+    examples,
+    see,
     usedBy: usedBy ? usedBy.map(({ context: { type, name } }) => ({ type, name })) : [],
-    path: `src/scss/${path}`,
+    path: `${GITHUB_URL}/blob/master/src/scss/${path}`,
   };
 };

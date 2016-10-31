@@ -9,7 +9,6 @@ module.exports = function transformSassdocFunction(sassdoc) {
     parameter: parameters,
     require: requires,
     return: returns,
-    example: examples,
     context: { name, type, code },
   } = sassdoc;
 
@@ -18,9 +17,8 @@ module.exports = function transformSassdocFunction(sassdoc) {
     : '';
 
   return Object.assign(transformSassdocVariable(sassdoc), {
-    code: `@${type} ${name}${params} {\n${code}\n}`,
-    examples,
-    parameters,
+    code: `@${type} ${name}${params} {${code}}`,
+    parameters: parameters || [],
     requires,
     returns,
   });
