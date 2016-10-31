@@ -92,6 +92,7 @@ $md-divider-height: 1px;
 ///   @include react-md-theme-dividers;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @group dividers, themes
 @mixin react-md-theme-dividers($light-theme: $md-light-theme, $include-borders: $md-divider-include-borders) {
   @if $light-theme != $md-light-theme {
     .md-divider {
@@ -110,6 +111,7 @@ $md-divider-height: 1px;
 ///   @include react-md-theme-divider-borders(!$md-light-theme);
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @group dividers, themes
 @mixin react-md-theme-divider-borders($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-divider-border {

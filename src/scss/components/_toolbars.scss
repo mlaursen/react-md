@@ -204,6 +204,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///     for the light theme.
 /// @param {Boolean} include-themed [$md-toolbar-include-themed] - Boolean if the themed toolbars
 ///     should be included.
+/// @group toolbars, themes
 @mixin react-md-theme-toolbars($light-theme: $md-light-theme, $include-themed: $md-toolbar-include-themed) {
   @if $light-theme != $md-light-theme {
     @if $include-themed {
@@ -226,7 +227,8 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///   }
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
+/// @group toolbars, media-queries
 @mixin react-md-toolbars-mobile($include-prominent: $md-toolbar-include-prominent) {
   @if $include-prominent {
     .md-toolbar--prominent {
@@ -271,6 +273,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
 ///     for autocompletes in toolbars should be included.
+/// @group toolbars, media-queries
 @mixin react-md-toolbars-mobile-portait(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
@@ -336,6 +339,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
 ///     for autocompletes in toolbars should be included.
+/// @group toolbars, media-queries
 @mixin react-md-toolbars-mobile-landscape(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
@@ -403,6 +407,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @group toolbars, media-queries
 @mixin react-md-toolbars-tablet(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
@@ -487,6 +492,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @group toolbars, media-queries
 @mixin react-md-toolbars-media(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,

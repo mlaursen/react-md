@@ -100,6 +100,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///   @media #{$md-mobile-media} {
 ///     @include react-md-drawers-mobile;
 ///   }
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-mobile {
   .md-drawer {
 
@@ -136,6 +138,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///   @media #{$md-mobile-portrait-media} {
 ///     @include react-md-drawers-mobile-portrait;
 ///   }
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-mobile-portrait {
   .md-toolbar ~ .md-list--drawer {
     height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
@@ -149,6 +153,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///   @media #{$md-mobile-landscape-media} {
 ///     @include react-md-drawers-mobile-landscape;
 ///   }
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-mobile-landscape {
   .md-toolbar ~ .md-list--drawer {
     height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
@@ -162,6 +168,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///   @media #{$md-tablet-media} {
 ///     @include react-md-drawers-tablet;
 ///   }
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-tablet {
   .md-drawer {
 
@@ -201,6 +209,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-drawers-desktop;
 ///   }
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-desktop {
   $diff-width: $md-drawer-tablet-width != $md-drawer-desktop-width;
 
@@ -225,6 +235,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-drawers-media;
+///
+/// @group drawers, media-queries
 @mixin react-md-drawers-media {
   @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
     @include react-md-drawers-mobile;

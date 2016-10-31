@@ -16,9 +16,7 @@ function buildLocalDB() {
         return;
       }
 
-      // console.log(JSON.stringify(sassdoc, null, '  '));
-
-      sassdoc.group.forEach(group => {
+      sassdoc.group[0].split(', ').forEach(group => {
         if (!LOCAL_DB[group]) {
           GROUPS.push(group);
           LOCAL_DB[group] = {

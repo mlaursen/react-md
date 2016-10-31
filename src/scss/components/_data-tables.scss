@@ -135,6 +135,7 @@ $md-data-table-pagination-margin: 32px;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the styles for
 ///     the light theme.
+/// @group data-tables, themes
 @mixin react-md-theme-data-tables($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     thead .md-table-row,

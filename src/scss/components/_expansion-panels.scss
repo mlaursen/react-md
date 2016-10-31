@@ -97,6 +97,7 @@ $md-expansion-panel-expanded-height: 64px;
 ///   @include react-md-expansion-panels;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @group expansion-panels, themes
 @mixin react-md-theme-expansion-panels($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-expansion-panel {

@@ -1233,6 +1233,7 @@ $md-dark-theme-colors: (
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
 /// @param {Boolean} include-color-class-names [$md-colors-include-class-names] - Boolean if a class name
 ///     should be created for every color as well.
+/// @group colors, themes
 @mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-color-class-names: $md-colors-include-class-names, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
   .md-text {
     color: get-color('text', $light-theme);
@@ -1314,6 +1315,7 @@ $md-dark-theme-colors: (
 ///     also be included
 /// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
 /// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
+/// @group colors, themes
 @mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
   @if $primary-color != $md-primary-color {
     .md-text--theme-primary {

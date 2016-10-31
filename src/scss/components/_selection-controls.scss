@@ -188,6 +188,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
 /// @param {Boolean} incude-switches [$md-selection-controls-include-switches] - Boolean if the switches
 ///     should be included.
+/// @group selection-controls, themes
 @mixin react-md-theme-selection-controls($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-switches: $md-selection-controls-include-switches) {
   @if $include-switches {
     @include react-md-theme-selection-controls-switch($secondary-color, $light-theme);
@@ -206,6 +207,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
+/// @group selection-controls, themes
 @mixin react-md-theme-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
   @if $secondary-color != $md-secondary-color {
     $swatch: get-swatch($secondary-color, if($light-theme, 500, 200));
@@ -239,6 +241,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 }
 
 /// Creates the styles for selection controls on mobile devices.
+/// @group selection-controls, media-queries
 @mixin react-md-selection-controls-mobile {
   .md-selection-control-label {
     font-size: $md-text-field-mobile-font-size;
@@ -246,6 +249,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 }
 
 /// Creates the styles for selection controls on desktop displays.
+/// @group selection-controls, media-queries
 @mixin react-md-selection-controls-desktop {
   .md-selection-control-label {
     font-size: $md-text-field-desktop-font-size;
@@ -253,6 +257,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 }
 
 /// Creates the media queries for selection controls for moble and desktop.
+/// @group selection-controls, media-queries
 @mixin react-md-selection-controls-media {
   @media #{$md-mobile-media} {
     @include react-md-selection-controls-mobile;

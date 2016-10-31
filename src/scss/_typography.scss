@@ -604,6 +604,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 ///
 /// @param {Boolean} extend-html-tags [$md-typography-extended] - Boolean if the base html tags should
 ///     be updated.
+/// @group typography, media-queries
 @mixin react-md-typography-mobile($extend-html-tags: $md-typography-extended) {
   .md-subheading-2,
   .md-subheading-1 {
@@ -639,6 +640,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 ///
 /// @param {Boolean} extend-html-tags [$md-typography-extended] - Boolean if the base html tags should
 ///     be updated.
+/// @group typography, media-queries
 @mixin react-md-typography-desktop($extend-html-tags: $md-typography-extended) {
   .md-subheading-2,
   .md-subheading-1 {
@@ -671,6 +673,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 ///
 /// @param {Boolean} extend-html-tags [$md-typography-extended] - Boolean if the base html tags should
 ///     be updated.
+/// @group typography, media-queries
 @mixin react-md-typography-media($extend-html-tags: $md-typography-extended) {
   @media #{$md-mobile-media} {
     @include react-md-typography-mobile($extend-html-tags);
@@ -718,6 +721,7 @@ $md-line-height: 20 / $md-font-size-base !default;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Boolean} extend-html-tags [$md-typography-extended] - Boolean if the base html tags should be
 ///     styled as well.
+/// @group typography, themes
 @mixin react-md-theme-typography($html-class-name, $light-theme: $md-light-theme, $extend-html-tags: $md-typography-extended) {
   @if $light-theme != $md-light-theme {
     .#{$html-class-name} {

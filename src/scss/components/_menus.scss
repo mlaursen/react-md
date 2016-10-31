@@ -193,6 +193,7 @@ $md-menu-cascading-list-padding: 16px;
 ///   @media #{$md-mobile-media} {
 ///     @include react-md-menus-mobile;
 ///   }
+/// @group menus, media-queries
 @mixin react-md-menus-mobile {
   .md-list--menu-scrollable {
     max-height: $md-menu-mobile-max-height;
@@ -206,6 +207,7 @@ $md-menu-cascading-list-padding: 16px;
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-menus-desktop;
 ///   }
+/// @group menus, media-queries
 @mixin react-md-menus-desktop {
   .md-list--menu-scrollable {
     max-height: $md-menu-desktop-max-height;
@@ -216,6 +218,7 @@ $md-menu-cascading-list-padding: 16px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-menus-media;
+/// @group menus, media-queries
 @mixin react-md-menus-media {
   @media #{$md-mobile-media} {
     @include react-md-menus-mobile;

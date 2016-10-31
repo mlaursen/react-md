@@ -1,5 +1,5 @@
 ////
-/// @group grid
+/// @group grids
 ////
 
 /// The number of columns to use for mobile devices. This _should_
@@ -189,6 +189,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 /// @param {Number} columns [$md-grid-phone-columns] - The number of columns to use.
 /// @param {Number} margin [$md-grid-phone-margin] - The margin to use.
 /// @param {Number} gutter [$md-grid-phone-gutter] - The gutter to use.
+/// @group grids, media-queries
 @mixin react-md-grid-mobile($columns: $md-grid-phone-columns, $margin: $md-grid-phone-margin, $gutter: $md-grid-phone-gutter) {
   @include react-md-make-grid('phone', $columns, $margin, $gutter);
 }
@@ -205,6 +206,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 /// @param {Number} columns [$md-grid-tablet-columns] - The number of columns to use.
 /// @param {Number} margin [$md-grid-tablet-margin] - The margin to use.
 /// @param {Number} gutter [$md-grid-tablet-gutter] - The gutter to use.
+/// @group grids, media-queries
 @mixin react-md-grid-tablet($columns: $md-grid-tablet-columns, $margin: $md-grid-tablet-margin, $gutter: $md-grid-tablet-gutter) {
   @include react-md-make-grid('tablet', $columns, $margin, $gutter);
 }
@@ -221,6 +223,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 /// @param {Number} columns [$md-grid-desktop-columns] - The number of columns to use.
 /// @param {Number} margin [$md-grid-desktop-margin] - The margin to use.
 /// @param {Number} gutter [$md-grid-desktop-gutter] - The gutter to use.
+/// @group grids, media-queries
 @mixin react-md-grid-desktop($columns: $md-grid-desktop-columns, $margin: $md-grid-desktop-margin, $gutter: $md-grid-desktop-gutter) {
   @include react-md-make-grid('desktop', $columns, $margin, $gutter);
 }
@@ -363,6 +366,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-grid-media;
+/// @group grids, media-queries
 @mixin react-md-grid-media {
   @media (max-width: $md-grid-tablet-breakpoint - 1) {
     @include react-md-grid-mobile;

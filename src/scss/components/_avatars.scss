@@ -94,6 +94,7 @@ $md-avatar-colors: (
 ///
 /// @see {mixin} react-md-theme-avatar
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @group avatars, themes
 @mixin react-md-theme-avatars($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-avatar {
@@ -118,6 +119,7 @@ $md-avatar-colors: (
 /// @param {Color} bg-color - The background color to use.
 /// @param {Color} text-color - The text color to use.
 /// @param {String} suffix - The class name suffix to use.
+/// @group avatars, themes
 @mixin react-md-theme-avatar($bg-color, $text-color, $suffix) {
   .md-avatar--#{$suffix} {
     background: $bg-color;

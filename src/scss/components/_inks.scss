@@ -96,6 +96,9 @@ $md-ink-pulse-time: 1.5s !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-theme-inks(!$md-light-theme);
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if stylign to the light theme.
+/// @group inks, themes
 @mixin react-md-theme-inks($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-ink {

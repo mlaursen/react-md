@@ -245,6 +245,7 @@ $md-list-desktop-three-lines-height: 76px;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the lists should be themed by
 ///     the light theme.
+/// @group lists, themes
 @mixin react-md-theme-lists($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-list {
@@ -274,6 +275,7 @@ $md-list-desktop-three-lines-height: 76px;
 ///     lists with two lines of text should be included.
 /// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
 ///     lists with three lines of text should be included.
+/// @group lists, media-queries
 @mixin react-md-lists-mobile(
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
@@ -344,6 +346,7 @@ $md-list-desktop-three-lines-height: 76px;
 ///     lists with two lines of text should be included.
 /// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
 ///     lists with three lines of text should be included.
+/// @group lists, media-queries
 @mixin react-md-lists-desktop(
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
@@ -415,6 +418,7 @@ $md-list-desktop-three-lines-height: 76px;
 ///     lists with two lines of text should be included.
 /// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
 ///     lists with three lines of text should be included.
+/// @group lists, media-queries
 @mixin react-md-lists-media(
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,

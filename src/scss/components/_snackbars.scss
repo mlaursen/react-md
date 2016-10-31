@@ -10,6 +10,8 @@
 /// @see md-picker-inline-z-index
 /// @see md-toolbar-z-index
 $md-snackbar-z-index: 10 !default;
+
+/// The default transiiton time for the snackbar to appear and disappear
 $md-snackbar-transition-time: $md-transition-time * 2 !default;
 
 $md-snackbar-color: #323232;
@@ -27,6 +29,10 @@ $md-snackbar-desktop-min-width: 288px;
 $md-snackbar-desktop-max-width: 568px;
 
 
+/// Creates the styles for snackbars
+///
+/// @param {Boolean} include-media [$md-media-included] - BOolean if the media queries should
+///   be included by default.
 @mixin react-md-snackbars($include-media: $md-media-included) {
   .md-snackbar-container {
     position: absolute;
@@ -98,6 +104,8 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
+/// Creates the styles for snackbars on mobile devices.
+/// @group snackbars, media-queries
 @mixin react-md-snackbars-mobile {
   .md-snackbar {
     left: 0;
@@ -132,6 +140,7 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
+/// @group snackbars, media-queries
 @mixin react-md-snackbars-desktop {
   .md-snackbar {
     border-radius: $md-snackbar-desktop-border-radius;
@@ -165,6 +174,7 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
+/// @group snackbars, media-queries
 @mixin react-md-snackbars-media {
   @media #{$md-mobile-media} {
     @include react-md-snackbars-mobile;

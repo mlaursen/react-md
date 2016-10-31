@@ -241,6 +241,7 @@ $md-linear-progress-swatch: 100 !default;
 ///     progress styles should be included.
 /// @param {Boolean} include-linear [$md-progress-include-linear] - Boolean if the linear
 ///     progress styles should be included.
+/// @group progress, themes
 @mixin react-md-theme-progress($secondary-color: $md-secondary-color, $linear-swatch: $md-linear-progress-swatch, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
   @if $include-circular {
     @include react-md-theme-progress-circular($secondary-color);
@@ -259,6 +260,7 @@ $md-linear-progress-swatch: 100 !default;
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme progress
 ///     bars with.
+/// @group progress, themes
 @mixin react-md-theme-progress-circular($secondary-color: $md-secondary-color) {
   @if $secondary-color != $md-secondary-color {
     .md-circular-progress-path {
@@ -277,6 +279,7 @@ $md-linear-progress-swatch: 100 !default;
 ///     bars with.
 /// @param {Number} swatch [$md-linear-progress-swatch] - The swatch number to use for
 ///     a linear progress bar's default background. This should be either 100, 200, 400, or 700.
+/// @group progress, themes
 @mixin react-md-theme-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch) {
   @if $secondary-color != $md-secondary-color {
     .md-progress--linear-active {

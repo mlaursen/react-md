@@ -5,8 +5,12 @@
 /// The z-index to use for overlays.
 /// @type Number
 $md-overlay-z-index: 15 !default;
+
+/// The default color for overlays.
+/// @type Color
 $md-overlay-color: rgba($md-black-base, .4) !default;
 
+/// Creates the styles for overlays
 @mixin react-md-overlays {
   .md-overlay {
     background: $md-overlay-color;

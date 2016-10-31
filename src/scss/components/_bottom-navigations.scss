@@ -153,6 +153,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px;
 ///     will not be created.
 /// @param {Color} ink-color [$md-bottom-navigation-shifting-ink-color] - The ink color to use for this theme. If it equals the
 ///     `$md-bottom-navigation-shifting-ink-color`, the styles will not be included.
+/// @group bottom-navigations, themes
 @mixin react-md-theme-bottom-navigations-colored($bg-color, $label-color: $md-white-base, $ink-color: $md-bottom-navigation-shifting-ink-color) {
   .md-bottom-navigation.md-background--primary {
     background: $bg-color;

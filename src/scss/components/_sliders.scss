@@ -354,6 +354,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///   @media #{$md-mobile-media} {
 ///     @include react-md-slider-indicators-mobile;
 ///   }
+/// @group sliders, media-queries
 @mixin react-md-slider-indicators-mobile {
   .md-slider-ind {
     font-size: $md-text-field-mobile-font-size;
@@ -368,6 +369,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-slider-indicators-desktop;
 ///   }
+/// @group sliders, media-queries
 @mixin react-md-slider-indicators-desktop {
   .md-slider-ind {
     font-size: $md-text-field-desktop-font-size;
@@ -379,6 +381,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///
 /// @example scss - Basic Usage SCSS
 ///   @include react-md-slider-indicators-media;
+/// @group sliders, media-queries
 @mixin react-md-slider-indicators-media {
   @media #{$md-mobile-media} {
     @include react-md-slider-indicators-mobile;
@@ -401,6 +404,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     light theme.
 /// @param {Boolean} $include-discrete [true] - A boolean if the discrete Slider scss should be
 ///     themed as well.
+/// @group sliders, themes
 @mixin react-md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: true) {
   $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 
@@ -442,6 +446,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     theme the discrete Slider with.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the discrete Slider
 ///     should be themed for the light or dark theme.
+/// @group sliders, themes
 @mixin react-md-theme-discrete-slider($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
   $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 

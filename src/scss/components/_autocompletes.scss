@@ -39,6 +39,7 @@ $md-inline-autocomplete: true !default;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
 ///     for autocompletes should be included.
+/// @group autocompletes, themes
 @mixin react-md-theme-autocompletes($light-theme: $md-light-theme, $include-inline: $md-inline-autocomplete) {
   @if $light-theme != $md-light-theme and $include-inline {
     .md-autocomplete-suggestion {
@@ -57,6 +58,7 @@ $md-inline-autocomplete: true !default;
 ///
 /// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
 ///     for autocompletes should be included.
+/// @group autocompletes, media-queries
 @mixin react-md-autocompletes-mobile($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     .md-autocomplete-suggestion {
@@ -83,6 +85,7 @@ $md-inline-autocomplete: true !default;
 ///
 /// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
 ///     for autocompletes should be included.
+/// @group autocompletes, media-queries
 @mixin react-md-autocompletes-desktop($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     .md-autocomplete-suggestion {
@@ -106,6 +109,7 @@ $md-inline-autocomplete: true !default;
 ///
 /// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
 ///     for autocompletes should be included.
+/// @group autocompletes, media-queries
 @mixin react-md-autocompletes-media($include-inline: $md-inline-autocomplete) {
   @if $include-inline {
     @media #{$md-mobile-media} {

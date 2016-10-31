@@ -252,6 +252,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @group buttons, themes
 @mixin react-md-theme-buttons(
   $primary-color: $md-primary-color,
   $secondary-color: $md-secondary-color,
@@ -302,6 +303,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @group buttons, media-queries
 @mixin react-md-buttons-mobile($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @if $include-flat or $include-raised {
     $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
@@ -370,6 +372,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @group buttons, media-queries
 @mixin react-md-buttons-desktop($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @if $include-flat or $include-raised {
     .md-btn--text {
@@ -428,6 +431,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
 ///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @group buttons, media-queries
 @mixin react-md-buttons-media($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @media #{$md-mobile-media} {
     @include react-md-buttons-mobile($include-flat, $include-raised, $include-floating);

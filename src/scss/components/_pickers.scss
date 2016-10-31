@@ -184,6 +184,7 @@ $md-clock-padding: 4px;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
 /// @param {Boolean} include-date [$md-picker-include-date] - Boolean if the date picker styles should be included.
 /// @param {Boolean} include-time [$md-picker-include-time] - Boolean if the time picker styles should be included.
+/// @group pickers, themes
 @mixin react-md-theme-pickers($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-date: $md-picker-include-date, $include-time: $md-picker-include-time) {
   @if $include-date or $include-time {
     $themed: $light-theme != $md-light-theme;
@@ -575,6 +576,7 @@ $md-clock-padding: 4px;
 ///   @include react-md-pickers-media;
 ///
 /// @see react-md-pickers
+/// @group pickers, media-queries
 @mixin react-md-pickers-media($include-date: $md-picker-include-date, $include-time: $md-picker-include-time, $mobile-max-size: $md-picker-mobile-max-size) {
   @if $include-date or $include-time {
     @media (orientation: portrait) {

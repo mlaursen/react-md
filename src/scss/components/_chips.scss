@@ -157,6 +157,7 @@ $md-chip-contact-font-size: 14px;
 /// no styles will be included.
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling for the light theme.
+/// @group chips, themes
 @mixin react-md-theme-chips($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
     .md-chip {
