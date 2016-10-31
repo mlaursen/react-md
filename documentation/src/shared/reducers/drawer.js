@@ -1,4 +1,5 @@
-import { SET_DRAWER_TOOLBAR_BOX_SHADOW, UPDATE_MEDIA, LOCATION_CHANGE } from 'constants/ActionTypes';
+import { SET_DRAWER_TOOLBAR_BOX_SHADOW, UPDATE_MEDIA, SET_CUSTOM_THEME, LOCATION_CHANGE } from 'constants/ActionTypes';
+import { CUSTOM_THEME_CLASS_NAME } from 'constants/application';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
 import Drawer from 'react-md/lib/Drawers';
 
@@ -24,6 +25,17 @@ function handleLocationChange(state, { payload: { pathname } }) {
   }
 
   return Object.assign({}, state, { toolbarTitle, visibleBoxShadow, toolbarProminent });
+}
+
+function setCustomTheme(state, { enabled }) {
+  const body = (document.body || document.documentElement);
+  if (!enabled) {
+    body.classList.remove(CUSTOM_THEME_CLASS_NAME);
+  } else if (enabled) {
+    body.classList.add(CUSTOM_THEME_CLASS_NAME);
+  }
+
+  return state;
 }
 
 
@@ -54,6 +66,8 @@ export default function drawer(state = initialState, action) {
       return Object.assign({}, state, { ...action.media });
     case LOCATION_CHANGE:
       return handleLocationChange(state, action);
+    case SET_CUSTOM_THEME:
+      return setCustomTheme(state, action);
     default:
       return state;
   }

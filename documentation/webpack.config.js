@@ -71,6 +71,7 @@ module.exports = () => ({
       // prevents multiple react versions when linked
       'react': path.join(nodeModules, 'react'),
       'react-dom': path.join(nodeModules, 'react-dom'),
+      'react-motion': path.join(nodeModules, 'react-motion'),
       'react-md': path.resolve(process.cwd(), '..'),
       'react-md-scss': path.resolve(process.cwd(), '..', 'src', 'scss', '_react-md.scss'),
 

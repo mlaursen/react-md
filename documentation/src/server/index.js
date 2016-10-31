@@ -12,6 +12,7 @@ const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
 app.set('view engine', 'ejs');
 app.set('views', clientRoot);
 app.use(compression());
+app.use(logger(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
 app.get('/themes/*.css', theme);
 
@@ -47,7 +48,6 @@ if (process.env.NODE_ENV === 'development') {
   }));
   app.use(webpackHotMiddleware(compiler));
 
-  app.use(logger('dev'));
   app.use(client);
   app.use('*', (req, res, next) => {
     const filename = path.join(compiler.outputPath, 'index.html');

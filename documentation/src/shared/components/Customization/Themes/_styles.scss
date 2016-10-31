@@ -1,0 +1,17 @@
+@import '~react-md-scss';
+
+.theme-preview {
+  @include md-box-shadow(1);
+
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+
+  .md-drawer,
+  .md-overlay,
+  .md-toolbar,
+  .md-btn--floating {
+    position: absolute;
+    z-index: 1;
+  }
+}

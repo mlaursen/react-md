@@ -26,11 +26,11 @@ const childRoutes = [
       switch (state.location.query.tab) {
         case '1':
           if (__CLIENT__) {
-            require.ensure(['components/Customization/Themes/Preview'], require => {
-              cb(null, require('components/Customization/Themes/Preview').default);
+            require.ensure(['containers/ThemeBuilder'], require => {
+              cb(null, require('containers/ThemeBuilder').default);
             });
           } else {
-            cb(null, require('components/Customization/Themes/Preview').default);
+            cb(null, require('containers/ThemeBuilder').default);
           }
           break;
         case '2':

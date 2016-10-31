@@ -1,5 +1,4 @@
 const path = require('path');
-const express = require('express');
 const nodeSass = require('node-sass');
 const Promise = require('bluebird');
 
@@ -24,18 +23,40 @@ function validateSecondary(color, hue) {
 
 module.exports = function theme(req, res) {
   const fileName = req.url.replace(/\/themes\/|\.css/g, '');
-  const [primary, secondaryColor, light] = fileName.split('.');
-  const [secondary, hue] = secondaryColor.split('-');
+  const [primary, secondaryColor, dark] = fileName.split('.');
+  const split = secondaryColor.split('-');
+  const secondary = split.slice(0, split.length - 1).join('-');
+  const hue = split[split.length - 1];
 
   if (!validatePrimary(primary) || !validateSecondary(secondary, parseInt(hue, 10))) {
     res.sendStatus(400);
     return;
   }
 
+  let codeUpdate = '';
+  if (dark) {
+    codeUpdate = `
+.custom-theme {
+  .example-code,
+  .code-block {
+    background: $md-grey-300;
+  }
+
+  a:not(.md-btn) {
+    color: $md-purple-a-400;
+
+    &:visited {
+      color: $md-purple-a-100;
+    }
+  }
+}
+`;
+  }
+
   sass({
-    data: `@import 'react-md';@include react-md-theme-everything($md-${primary}-500, $md-${secondary}-${hue}, ${!light}, $md-linear-progress-swatch, $md-text-field-error-color, 'custom-theme');`,
-  includePaths: [path.resolve(process.cwd(), '..', 'src', 'scss')],
-  outputStyle: 'compressed',
+    data: `@import 'react-md';@include react-md-theme-everything($md-${primary}-500, $md-${secondary}-${hue}, ${!dark}, 'custom-theme');${codeUpdate}`,
+    includePaths: [path.resolve(process.cwd(), '..', 'src', 'scss')],
+    outputStyle: 'compressed',
   }).then((stats, error) => {
     if (error) {
       res.sendStatus(500);
@@ -46,5 +67,4 @@ module.exports = function theme(req, res) {
     res.header('Content-Type', 'text/css');
     res.send(css.toString());
   });
-
 };
