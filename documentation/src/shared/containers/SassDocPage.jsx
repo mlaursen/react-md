@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import 'components/SassDocPage/_styles.scss';
 import { fetchSassDoc } from 'actions/fetch';
 import reduceKey from 'utils/StateUtils/reduceKey';
 import SassDocPage from 'components/SassDocPage';
@@ -32,7 +33,7 @@ export default class SassDocPageContainer extends PureComponent {
       component: PropTypes.string,
       section: PropTypes.string,
     }).isRequired,
-    sassdoc: PropTypes.object,
+    sassdoc: SassDocPage.propTypes.sassdoc,
   };
 
   componentWillMount() {

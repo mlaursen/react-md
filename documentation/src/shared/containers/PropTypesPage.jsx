@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { fetchDocgen } from 'actions/fetch';
 import reduceKey from 'utils/StateUtils/reduceKey';
 
+// For some reason if I add the styles ONLY for this one in the 'components/PropTypesPage',
+// webpack whines that it "Cannot read property 'apply' of undefined" so they have to be imported
+// here
 import 'components/PropTypesPage/_styles.scss';
 import PropTypesPage from 'components/PropTypesPage';
 

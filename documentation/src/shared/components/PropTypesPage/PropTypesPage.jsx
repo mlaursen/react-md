@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import docgenShape from './docgenShape';
 
+import docgenShape from './docgenShape';
 import PropTypeCard from './PropTypeCard';
 
 export default class PropTypesPage extends PureComponent {
