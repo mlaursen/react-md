@@ -6,8 +6,8 @@ import cn from 'classnames';
 import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
 import ListItem from '../Lists/ListItem';
-import Menu from '../Menus';
-import TextField from '../TextFields';
+import Menu from '../Menus/Menu';
+import TextField from '../TextFields/TextField';
 
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 

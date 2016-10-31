@@ -155,9 +155,17 @@ export default class DialogContainer extends PureComponent {
     onOpen: PropTypes.func,
 
     /**
-     * A function to call that will close the dialog.
+     * A function to call that will close the dialog. This is required when the `modal` prop is
+     * not `true`.
      */
-    onClose: PropTypes.func.isRequired,
+    onClose: (props, propName, ...args) => {
+      let validator = PropTypes.func;
+      if (!props.modal) {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, ...args);
+    },
 
     /**
      * Boolean if the dialog should behave like a modal. This means that the dialog can only

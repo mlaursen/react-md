@@ -2,6 +2,8 @@
 /// @group selection-controls
 ////
 
+@import 'text-fields';
+
 
 /// Boolean if the very minimal styles for the `.md-select-field-group` should be included.
 /// @type Boolean
@@ -66,6 +68,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 @mixin react-md-selection-controls(
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
   $include-group: $md-selection-controls-include-group,
   $include-switches: $md-selection-controls-include-switches
 ) {
@@ -100,6 +103,10 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 
   @if $include-switches {
     @include react-md-selection-controls-switch($secondary-color, $light-theme);
+  }
+
+  @if $include-media {
+    @include react-md-selection-controls-media;
   }
 }
 
@@ -228,5 +235,30 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
     .md-switch-thumb--disabled {
       background: if($light-theme, $md-switch-light-theme-thumb-disabled, $md-switch-dark-theme-thumb-disabled);
     }
+  }
+}
+
+/// Creates the styles for selection controls on mobile devices.
+@mixin react-md-selection-controls-mobile {
+  .md-selection-control-label {
+    font-size: $md-text-field-mobile-font-size;
+  }
+}
+
+/// Creates the styles for selection controls on desktop displays.
+@mixin react-md-selection-controls-desktop {
+  .md-selection-control-label {
+    font-size: $md-text-field-desktop-font-size;
+  }
+}
+
+/// Creates the media queries for selection controls for moble and desktop.
+@mixin react-md-selection-controls-media {
+  @media #{$md-mobile-media} {
+    @include react-md-selection-controls-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-selection-controls-desktop;
   }
 }

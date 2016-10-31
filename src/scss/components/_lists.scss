@@ -31,6 +31,10 @@ $md-list-nested-items-increment: .5 !default;
 /// @type Number
 $md-list-nested-items-depth: 2 !default;
 
+/// Boolean if the `.md-list-unstyled` should be included by default.
+/// @type Boolean
+$md-list-include-unstyled-class-name: true !default;
+
 $md-list-left-padding: 72px;
 
 $md-list-mobile-padding: 8px;
@@ -87,10 +91,17 @@ $md-list-desktop-three-lines-height: 76px;
   $include-avatar: $md-list-include-avatar,
   $include-two-lines: $md-list-include-two-lines,
   $include-three-lines: $md-list-include-three-lines,
-  $include-controls: $md-list-include-controls
+  $include-controls: $md-list-include-controls,
+  $include-unstyled: $md-list-include-unstyled-class-name
 ) {
   @if $include-media {
     @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+  }
+
+  @if $include-unstyled {
+    .md-list-unstyled {
+      @extend %md-list-unstyled;
+    }
   }
 
   .md-list {

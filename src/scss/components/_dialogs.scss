@@ -146,7 +146,10 @@ $md-dialog-horizontal-keyline: 40px;
 
   .md-dialog-content--padded {
     padding: $md-dialog-padding;
-    padding-top: 0;
+
+    &:not(:first-child) {
+      padding-top: 0;
+    }
   }
 }
 

@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
 import injectInk from '../Inks';
-import TextField from '../TextFields';
+import TextField from '../TextFields/TextField'; // Don't know why. Errors if the /TextField is removed
 
 class SelectFieldInput extends PureComponent {
   static propTypes = {
