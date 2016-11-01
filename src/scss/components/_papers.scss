@@ -50,7 +50,7 @@ $md-paper-transition-time: $md-transition-time * 2 !default;
 ///     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
 ///   }
 ///
-/// @link https://elements.polymer-project.org/elements/paper-card?view=demo:demo/index.html&active=paper-card
+/// @link https://elements.polymer-project.org/elements/paper-card?view=demo:demo/index.html&active=paper-card Polymer Box Shadow
 /// @param {Number} elevation - The material design elevation. This should be a number from 0 - 5.
 @mixin md-box-shadow($elevation) {
   @if $elevation < 0 or $elevation > 5 {

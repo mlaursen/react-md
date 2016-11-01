@@ -5,6 +5,8 @@ import injectInk from 'react-md/lib/Inks';
 import Media from 'react-md/lib/Media';
 import Paper from 'react-md/lib/Papers';
 
+import InlineSVG from 'components/InlineSVG';
+
 @injectInk
 export default class ImgCard extends PureComponent {
   static propTypes = {
@@ -35,9 +37,7 @@ export default class ImgCard extends PureComponent {
       >
         {ink}
         <CardTitle title={title} />
-        <Media aspectRatio="1-1">
-          <img src={src} alt={alt} />
-        </Media>
+        <Media aspectRatio="1-1" src={src} alt={alt} component={InlineSVG} />
       </Paper>
     );
   }

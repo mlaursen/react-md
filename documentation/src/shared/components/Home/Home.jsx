@@ -4,11 +4,12 @@ import Button from 'react-md/lib/Buttons/Button';
 
 import { FIRST_ROUTE } from 'constants/navItems';
 import './_home.scss';
-import logo from './logo.png';
+import logo from './logo.svg';
 import gettingStarted from './getting-started.svg';
 import customization from './customization.svg';
 import components from './components.svg';
 import ImgCard from './ImgCard';
+import InlineSVG from 'components/InlineSVG';
 
 const about = `
 This project's goal is to be able to quickly style and set up a material
@@ -22,7 +23,7 @@ const Home = () => (
   <section className="home">
     <header className="banner">
       <h1 className="md-display-2">react-md</h1>
-      <img src={logo} alt="react-md's logo" style={{ paddingBottom: '2em' }} />
+      <InlineSVG src={logo} className="react-md-logo" />
       <Button component={Link} to={FIRST_ROUTE} raised secondary label="View Demo" type={null} />
     </header>
     <h3 className="md-text-container about">{about}</h3>

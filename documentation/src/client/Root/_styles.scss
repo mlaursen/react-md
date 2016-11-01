@@ -21,3 +21,16 @@ $md-secondary-color: $md-deep-orange-a-200;
   position: absolute;
   right: 0;
 }
+
+.md-avatar--svg svg {
+  height: 22px;
+  width: 22px;
+}
+
+.google-logo {
+  background: $md-white-base;
+}
+
+.react-md-logo {
+  margin-bottom: 2em;
+}

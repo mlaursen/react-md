@@ -33,28 +33,46 @@ module.exports = function theme(req, res) {
     return;
   }
 
-  let codeUpdate = '';
+  const primaryVal = `$md-${primary}-500`;
+  const secondaryVal = `$md-${secondary}-${hue}`;
+
+  let darkThemeUpdate = '';
   if (dark) {
-    codeUpdate = `
-.custom-theme {
-  .example-code,
-  .code-block {
-    background: $md-grey-300;
-  }
+    darkThemeUpdate = `
+.example-code,
+.code-block {
+  background: $md-grey-300;
+}
 
-  a:not(.md-btn) {
-    color: $md-purple-a-400;
+a:not(.md-btn) {
+  color: $md-purple-a-400;
 
-    &:visited {
-      color: $md-purple-a-100;
-    }
+  &:visited {
+    color: $md-purple-a-100;
   }
 }
 `;
   }
 
+  const additionalStyles = `
+.custom-theme {
+  .banner {
+    background: ${primaryVal};
+  }
+
+  .react-md-logo {
+    text,
+    path#Oval-210 {
+      fill: ${secondaryVal};
+    }
+  }
+
+  ${darkThemeUpdate}
+}
+  `;
+
   sass({
-    data: `@import 'react-md';@include react-md-theme-everything($md-${primary}-500, $md-${secondary}-${hue}, ${!dark}, 'custom-theme');${codeUpdate}`,
+    data: `@import 'react-md';@include react-md-theme-everything(${primaryVal}, ${secondaryVal}, ${!dark}, 'custom-theme');${additionalStyles}`,
     includePaths: [path.resolve(process.cwd(), '..', 'src', 'scss')],
     outputStyle: 'compressed',
   }).then((stats, error) => {

@@ -83,7 +83,14 @@ const SassDoc = ({ sassdoc: { code, name, type, variableType, description, param
   }
 
   if (links) {
-    console.log('links:', links);
+    children.push(<h4 className="md-title" key="links-title">Links</h4>);
+    children.push(
+      <ul className="md-list-unstyled sassdoc-section-end" key="links">
+        {links.map(({ caption, url }) => (
+          <a href={url} key={`${url}`}>{caption || url}</a>
+        ))}
+      </ul>
+    );
   }
 
   return (

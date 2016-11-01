@@ -30,7 +30,7 @@ module.exports = () => ({
   },
 
   __imgLoader: (loader) => ({
-    test: /\.(png|jpe?g|svg)$/,
+    test: /\.(png|jpe?g)$/,
     exclude: /node_modules/,
     loader: `${loader}?name=imgs/[hash].[ext]!image-webpack`,
   }),
@@ -51,7 +51,7 @@ module.exports = () => ({
       exclude: /node_modules/,
       loader: 'babel',
     }, {
-      test: /\.md$/,
+      test: /\.(md|svg)$/,
       exclude: /node_modules/,
       loader: 'raw',
     }, {
