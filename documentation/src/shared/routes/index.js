@@ -17,14 +17,14 @@ export default {
       require.ensure([
         './gettingStarted',
         './customization',
-          // './DiscoverMore',
+        './discoverMore',
         './components',
           // './NotFouteRoute',
       ], require => {
         cb(null, [
           require('./gettingStarted').default,
           require('./customization').default,
-            // require('./DiscoverMore').default,
+          require('./discoverMore').default,
           require('./components').default,
             // require('./NotFoundRoute').default,
         ]);
@@ -33,7 +33,7 @@ export default {
       cb(null, [
         require('./gettingStarted').default,
         require('./customization').default,
-          // require('./DiscoverMore').default,
+        require('./discoverMore').default,
         require('./components').default,
           // require('./NotFoundRoute').default,
       ]);

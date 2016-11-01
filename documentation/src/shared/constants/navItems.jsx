@@ -101,7 +101,7 @@ const routes = [{
 }, {
   path: 'discover-more',
   icon: 'search',
-  nestedItems: ['whats-new', 'upgrade-guides', 'comminutiy', 'contributing'],
+  nestedItems: ['whats-new', 'upgrade-guides', 'community', 'contributing'],
 }, {
   path: 'components',
   icon: 'build',

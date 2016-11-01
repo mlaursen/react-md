@@ -49,6 +49,38 @@ const childRoutes = [
         getMarkdownPage(state, cb);
       }
     },
+  }, {
+    path: 'grids',
+    getComponent(state, cb) {
+      if (state.location.query.tab === '1') {
+        getSassDocPage(state, cb);
+        return;
+      }
+
+      if (__CLIENT__) {
+        require.ensure(['components/Customization/Grids'], require => {
+          cb(null, require('components/Customization/Grids').default);
+        });
+      } else {
+        cb(null, require('components/Customization/Grids').default);
+      }
+    },
+  }, {
+    path: 'typography',
+    getComponent(state, cb) {
+      if (state.location.query.tab === '1') {
+        getSassDocPage(state, cb);
+        return;
+      }
+
+      if (__CLIENT__) {
+        require.ensure(['components/Customization/Typography'], require => {
+          cb(null, require('components/Customization/Typography').default);
+        });
+      } else {
+        cb(null, require('components/Customization/Typography').default);
+      }
+    },
   },
 ];
 
