@@ -1,5 +1,7 @@
 # react-md
+
 ![react-md](/imgs/readme.svg)
+
 React Material Design - React components built with sass
 
 [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
@@ -15,20 +17,7 @@ $ npm i -S react \
            react-dom \
            react-addons-transition-group \
            react-addons-css-transition-group \
-           react-addons-pure-render-mixin \
            react-md
-```
-
-You can also use the UMD build from [unpkg](https://unpkg.com/#/):
-
-```html
-<!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
-<script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
-
-<!-- Development Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.css">
-<script src="https://unpkg.com/react-md/dist/react-md.js"></script>
 ```
 
 ## Getting Started
@@ -99,6 +88,20 @@ export default class MyAwesomeComponent extends Component {
 @import '~react-md/scss/react-md';
 ```
 
+
+You can also use the UMD build from [unpkg](https://unpkg.com/#/):
+
+```html
+<!-- Production Version -->
+<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
+<script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
+
+<!-- Development Version -->
+<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.css">
+<script src="https://unpkg.com/react-md/dist/react-md.js"></script>
+```
+
+
 #### UMD Usage
 
 ```html
@@ -129,33 +132,28 @@ eval(Babel.transform(input, { presets: ['es2015', 'react', 'stage-0'] }).code);
 ```
 
 ### Customizing the theme
+The application should define a `primary` and `secondary` color. The `primary` color
+should be chosen from one of the `'-500'` colors and the `secondary` should be one of
+the `'a-'` colors.
 
-Hopefully the [generated sassdoc](http://react-md.mlaursen.com/sassdoc) will help with
-mixin usage and sass documentation.
+The default color palette is defined as:
 
-The default colors are `indigo` and `pink` (hue A200). You can theme your application by either changing the default color variables:
-
-```
+```scss
 $md-primary-color: $md-indigo-500 !default;
-$md-primary-color-hue-1: $md-indigo-400 !default;
 $md-secondary-color: $md-pink-a-200 !default;
-$md-secondary-color-hue-1: $md-pink-a-100 !default;
 ```
 
-Or defining your own theme with the theme mixins.
-[Examples from Documentation website](http://react-md.mlaursen.com/customization/themes).
+If you change these variables before the `react-md-everything` mixin is included, your entire
+application will be styled with your new theme.
 
-### Media queries
+```scss
+@import '~react-md/src/scss/react-md';
 
-The default media queries for detecting if mobile are very simple. Anything below 600px is considered mobile.
-If these do not work for you, you can use the correct mixins for making a component styled
-for mobile/desktop.
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-lime-a-400;
 
-See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) source.
-
-### Upgrade Guide
-
-If you need to view any upgrading help, view the [upgrade guide](../master/docs/UpgradeGuide.md)
+@include react-md-everything;
+```
 
 ## Contributing
 
@@ -188,9 +186,6 @@ $ npm run test:watch
 
 ## Known Bugs/Works in Progress/Future Changes
 
-* Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
 * Bottom sheets
-* Grid lists
 * Steppers
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
-* Eventually update for dark themes
