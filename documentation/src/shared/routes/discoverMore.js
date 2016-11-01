@@ -1,11 +1,25 @@
 import getMarkdownPage from './getMarkdownPage';
 
-const childRoutes = ['whats-new', 'upgrade-guides', 'community', 'contributing'].map(path => ({
-  path,
-  getComponent(state, cb) {
-    getMarkdownPage(state, cb);
+function toMarkdownPage(path) {
+  return {
+    path,
+    getComponent(state, cb) {
+      getMarkdownPage(state, cb);
+    },
+  };
+}
+
+const childRoutes = ['whats-new', 'community', 'contributing'].map(toMarkdownPage);
+
+childRoutes.splice(1, 0, {
+  path: 'upgrade-guides',
+  indexRoute: {
+    onEnter(state, replace) {
+      replace('/upgrade-guids/v1.0.0');
+    },
   },
-}));
+  childRoutes: ['v1.0.0', 'v0.3.0'].map(toMarkdownPage),
+});
 
 export default {
   path: 'discover-more',

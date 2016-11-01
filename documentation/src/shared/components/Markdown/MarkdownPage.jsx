@@ -1,12 +1,19 @@
 import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
 
 import Markdown from './Markdown';
 
 function getMarkdown(pathname) {
-  const fileName = `./${toPageTitle(pathname).replace(/ /g, '')}.md`;
+  let fileName;
+  if (pathname.match(/upgrade-guides/)) {
+    fileName = `./upgrade-guides/${pathname.split('/').reverse()[0]}.md`;
+  } else {
+    fileName = `./${toPageTitle(pathname).replace(/ /g, '')}.md`;
+  }
+
   if (__CLIENT__) {
-    const context = require.context('readmes', false, /\.md$/);
+    const context = require.context('readmes', true, /\.md$/);
 
     return context(fileName);
   }
@@ -16,6 +23,8 @@ function getMarkdown(pathname) {
 
 export default class MarkdownPage extends PureComponent {
   static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
@@ -34,8 +43,10 @@ export default class MarkdownPage extends PureComponent {
   }
 
   render() {
+    const { style, className } = this.props;
+
     return (
-      <section className="md-grid">
+      <section style={style} className={cn('md-grid', className)}>
         <Markdown markdown={this.state.markdown} className="md-text-container md-cell md-cell--12" />
       </section>
     );

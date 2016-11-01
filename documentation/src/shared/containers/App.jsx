@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes, cloneElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
@@ -36,6 +37,18 @@ export default class App extends PureComponent {
     children: PropTypes.node,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      minOffset: 256 + 64,
+    };
+
+    this._setContainer = this._setContainer.bind(this);
+    this._calcMinHeight = this._calcMinHeight.bind(this);
+    this._handleMediaTypeChange = this._handleMediaTypeChange.bind(this);
+  }
+
   componentWillMount() {
     if (hasStorage() && localStorage.getItem(THEME_STORAGE_KEY) !== null) {
       this.props.setCustomTheme(true);
@@ -49,6 +62,26 @@ export default class App extends PureComponent {
     }
   }
 
+  _setContainer(container) {
+    this._container = findDOMNode(container);
+    this._calcMinHeight();
+  }
+
+  _calcMinHeight() {
+    if (!this._container) {
+      return;
+    }
+
+    const { offsetHeight: toolbarHeight } = this._container.querySelector('.main-toolbar');
+    const { offsetHeight: footerHeight } = this._container.querySelector('.app-footer');
+    this.setState({ minOffset: toolbarHeight + footerHeight });
+  }
+
+  _handleMediaTypeChange(drawerType, media) {
+    this._calcMinHeight();
+    this.props.onMediaTypeChange(drawerType, media);
+  }
+
   render() {
     const {
       params,
@@ -57,12 +90,13 @@ export default class App extends PureComponent {
       visibleBoxShadow,
       toolbarTitle,
       toolbarProminent,
-      onMediaTypeChange,
     } = this.props;
+
+    const { minOffset } = this.state;
 
     let { children } = this.props;
     if (children) {
-      children = cloneElement(children, { key: pathname });
+      children = cloneElement(children, { key: pathname, style: { minHeight: `calc(100vh - ${minOffset}px)` } });
     }
 
     let tabs;
@@ -72,15 +106,16 @@ export default class App extends PureComponent {
 
     return (
       <NavigationDrawer
+        ref={this._setContainer}
         drawerTitle="react-md"
         defaultMedia={defaultMedia}
+        toolbarClassName="main-toolbar"
         toolbarTitle={toolbarTitle}
-        toolbarTitleClassName="md-text-capitalize"
         toolbarProminent={toolbarProminent}
         toolbarChildren={tabs}
         navItems={navItems(pathname)}
         toolbarStyle={!visibleBoxShadow ? { boxShadow: 'none' } : null}
-        onMediaTypeChange={onMediaTypeChange}
+        onMediaTypeChange={this._handleMediaTypeChange}
       >
         {children}
         <AppFooter key="footer" home={pathname === '/'} />

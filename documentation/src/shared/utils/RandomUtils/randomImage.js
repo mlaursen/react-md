@@ -10,7 +10,7 @@ const defaults = { width: 40, height: 40, time: () => Date.now(), section: '' };
  * @param {Object} - an object of options for the random image.
  * @return {String} - a url for a random image
  */
-export default function randomImage(options}) {
+export default function randomImage(options = {}) {
   Object.keys(defaults).forEach(key => {
     if (typeof options[key] === 'undefined') {
       options[key] = typeof defaults[key] === 'function' ? defaults[key]() : defaults[key];

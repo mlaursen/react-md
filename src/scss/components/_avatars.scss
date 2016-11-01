@@ -58,11 +58,11 @@ $md-avatar-colors: (
     .md-icon {
       color: inherit;
     }
-  }
 
-  .md-avatar--icon-sized {
-    height: $md-font-icon-size;
-    width: $md-font-icon-size;
+    &--icon-sized {
+      height: $md-font-icon-size;
+      width: $md-font-icon-size;
+    }
   }
 
   .md-avatar-img {

@@ -74,7 +74,6 @@ function mapToNavItems(route, parents = []) {
   return {
     ...props,
     to,
-    className: 'md-text-capitalize',
     component: resolvedComponent,
     leftIcon: resolvedIcon,
     nestedItems: resolvedNestedItems,
@@ -99,7 +98,19 @@ const routes = [{
 }, {
   path: 'discover-more',
   icon: 'search',
-  nestedItems: ['whats-new', 'upgrade-guides', 'community', 'contributing'],
+  nestedItems: [
+    'whats-new', {
+      path: 'upgrade-guides',
+      nestedItems: [{
+        path: 'v1.0.0',
+        primaryText: 'Upgrading to v1.0.0',
+      }, {
+        path: 'v0.3.0',
+        primaryText: 'Upgrading to v0.3.0',
+      }],
+    }, 'community',
+    'contributing',
+  ],
 }, {
   path: 'components',
   icon: 'build',
@@ -203,7 +214,7 @@ export default function getNavItems(pathname = '') {
   return routes.map(route => updateActiveRoutes(route, pathname));
 }
 
-export const FIRST_ROUTE = 'components/autocompletes';
+export const FIRST_ROUTE = '/components/autocompletes';
 
 
 function extractRealRoutes(route) {
