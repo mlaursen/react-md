@@ -90,6 +90,9 @@ export default class ExpandableSource extends PureComponent {
                 style={style}
                 onClick={this._toggleSource}
               />
+              <h5 className="md-cell--right md-color--secondary-text md-text-right">
+                {`Click to ${collapsed ? 'expand' : 'collapse'}`}
+              </h5>
             </div>
           );
         }}
