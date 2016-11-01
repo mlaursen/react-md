@@ -4,7 +4,7 @@ import CardText from 'react-md/lib/Cards/CardText';
 import Slider from 'react-md/lib/Sliders';
 
 
-const ticks = [...Array(11)].map((_, i) => (
+const ticks = [...new Array(11)].map((_, i) => (
   <span key={i} className={cn('time-tick', { 'time-tick--valued': i % 2 !== 0 })} />
 ));
 

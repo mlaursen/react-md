@@ -17,7 +17,7 @@ $md-media-include-embedded: false !default;
 /// A list of class name or html tags that will get the embedded media styles applied
 /// by default in the `.md-media` container.
 /// @type List
-$md-media-embedded-selectors: ('img' 'iframe', 'svg') !default;
+$md-media-embedded-selectors: ('img' 'iframe' 'svg') !default;
 
 /// The color to use for the media overlay's background color.
 /// @type Color

@@ -7,7 +7,7 @@ import Button from 'react-md/lib/Buttons';
 import { randomImage } from 'utils/RandomUtils';
 
 const CardListExample = () => {
-  const cards = Array.apply(null, new Array(10)).map((_, i) => (
+  const cards = [...new Array(10)].map((_, i) => (
     <Card key={i} className="md-cell md-cell--2 md-cell--4-tablet">
       <Media aspectRatio="1-1">
         <MediaOverlay>

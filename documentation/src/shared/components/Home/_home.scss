@@ -17,8 +17,7 @@
 
 .about {
   line-height: $md-line-height;
-  padding-bottom: 3em;
-  padding-top: 1em;
+  padding: 1em $md-default-padding 3em;
   white-space: initial;
 }
 

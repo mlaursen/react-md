@@ -24,6 +24,10 @@ export default class Preview extends PureComponent {
 
   _setContainer(container) {
     this._container = container;
+    if (this._container) {
+      // trigger rerender
+      this.setState({ found: true });
+    }
   }
 
   _toggleDrawer() {

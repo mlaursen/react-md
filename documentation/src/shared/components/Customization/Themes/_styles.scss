@@ -12,6 +12,15 @@
   .md-toolbar,
   .md-btn--floating {
     position: absolute;
+  }
+
+  .md-overlay,
+  .md-btn--floating {
     z-index: 1;
+  }
+
+  .md-drawer,
+  .md-toolbar {
+    z-index: 2;
   }
 }
