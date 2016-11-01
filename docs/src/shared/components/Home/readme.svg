@@ -4,14 +4,9 @@
     <title>readme</title>
     <desc>Created with Sketch.</desc>
     <defs>
-      <style xmlns="http://www.w3.org/2000/svg" type="text/css">
-        <![CDATA[
-          @font-face {
-          font-family: 'Montserrat';
-          src: url('https://fonts.googleapis.com/css?family=Montserrat');
-          }
-        ]]>
-      </style>
+        <style type="text/css">
+          @import url('https://fonts.googleapis.com/css?family=Montserrat');
+        </style>
         <path d="M80.2808838,84.7519527 C82.5435699,80.7340944 87.8842773,72.8554687 87.8842773,72.8554687 C87.8842773,72.8554687 99.6246338,72.2043457 106.188477,72.5073242 C112.752319,72.8103027 115.466309,72.8554687 115.466309,72.8554687 L124.566284,86.7357173 L129.299927,97.2778316 L127.64502,101.902832 L120.147705,115.724855 L115.971069,121.007448 C115.971069,121.007448 112.063222,122.222032 103.079834,121.894655 C98.4725235,121.726753 89.2279053,121.514162 89.2279053,121.514162 C89.2279053,121.514162 87.8588571,121.767914 87.3814697,121.382692 C86.2800404,120.493907 84.4914551,117.69214 84.4914551,117.69214 L77.3773193,104.530519 L73.7930908,97.2778316 C73.7930908,97.2778316 77.837027,89.0915163 80.2808838,84.7519527 Z" id="path-1"></path>
         <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
             <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
