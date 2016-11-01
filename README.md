@@ -1,4 +1,5 @@
 # react-md
+![react-md](/readme.svg)
 React Material Design - React components built with sass
 
 [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
