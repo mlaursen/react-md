@@ -384,7 +384,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 @mixin react-md-cell-size($size, $columns, $gutter) {
   width: calc(#{percentage($size / $columns)} - #{$gutter});
 
-  .md-grid--no-spacing > & {
+  .md-grid.md-grid--no-spacing > & {
     width: percentage($size / $columns);
   }
 }

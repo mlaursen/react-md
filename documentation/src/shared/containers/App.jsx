@@ -62,6 +62,12 @@ export default class App extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.toolbarProminent !== prevProps.toolbarProminent) {
+      this._calcMinHeight();
+    }
+  }
+
   _setContainer(container) {
     this._container = findDOMNode(container);
     this._calcMinHeight();

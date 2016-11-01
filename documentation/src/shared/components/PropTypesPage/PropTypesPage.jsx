@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import cn from 'classnames';
 
 import docgenShape from './docgenShape';
@@ -17,13 +18,16 @@ export default class PropTypesPage extends PureComponent {
 
   render() {
     const { docgen, className, mobile, tablet, desktop, ...props } = this.props;
-    if (!docgen) {
-      return null;
+    let children;
+    if (!docgen || docgen.fetching) {
+      children = <CircularProgress id="loading-sassdoc" key="loader" />;
+    } else {
+      children = docgen.map(doc => <PropTypeCard key={doc.component} docgen={doc} mobile={mobile} tablet={tablet} desktop={desktop} />);
     }
 
     return (
       <section {...props} className={cn('prop-types-page md-grid md-grid--40-16', className)}>
-        {docgen.map(doc => <PropTypeCard key={doc.component} docgen={doc} mobile={mobile} tablet={tablet} desktop={desktop} />)}
+        {children}
       </section>
     );
   }

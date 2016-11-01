@@ -451,6 +451,19 @@ $md-line-height: 20 / $md-font-size-base !default;
   }
 
   @if $extend-html-tags {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    button,
+    input,
+    textarea,
+    html {
+      font-family: $md-font-family;
+    }
+
     h1 {
       @extend %md-display-1;
     }

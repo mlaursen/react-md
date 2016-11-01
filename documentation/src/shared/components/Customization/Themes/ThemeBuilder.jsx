@@ -1,5 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 
+import { ACCENTABLE_COLORS, PRIMARY_COLORS } from 'constants/colors';
 import hasStorage from 'utils/hasStorage';
 import loadCustomTheme from 'utils/loadCustomTheme';
 import { THEME_STORAGE_KEY } from 'constants/application';
@@ -7,15 +8,6 @@ import Markdown from 'components/Markdown';
 import Preview from './Preview';
 
 import Configuration from './Configuration';
-
-const ACCENTABLE_COLORS = [
-  'red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue',
-  'cyan', 'teal', 'green', 'light-green', 'lime', 'yellow', 'amber',
-  'orange', 'deep-orange',
-];
-
-const NOT_ACCENTABLE_COLORS = ['brown', 'grey', 'blue-grey'];
-const PRIMARY_COLORS = ACCENTABLE_COLORS.concat(NOT_ACCENTABLE_COLORS);
 
 const DEFAULT_STATE = {
   primary: 'light-blue',

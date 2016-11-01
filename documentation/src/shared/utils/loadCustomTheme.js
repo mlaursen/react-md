@@ -7,5 +7,5 @@ export default function loadCustomTheme(primary, secondary, hue, light) {
     document.getElementsByTagName('head')[0].appendChild(link);
   }
 
-  link.href = `/themes/${primary}.${secondary}-${hue}${light ? '' : '.dark'}.css`;
+  link.href = `/themes/${primary.replace('-', '_')}-${secondary.replace('-', '_')}-${hue}${light ? '' : '-dark'}.css`;
 }

@@ -25,7 +25,7 @@ marked.setOptions({
 function formatMarkdown(props) {
   return marked(props.markdown.replace(/(\r?\n)(@see)/g, '$1$1$2'))
     .replace(/<pre><code/g, '<pre class="code-block"><code')
-    .replace(/<ul/g, '<ul class="md-color--text"')
+    .replace(/<ul/g, '<ul class="md-text"')
     .replace(/<p>@see/g, '<p style="margin-bottom:0">@see')
     .replace(/<blockquote><p/g, '<blockquote class="md-divider-border md-divider-border--left"><p className="md-color--secondary-text"');
 }

@@ -3,6 +3,17 @@ import { browserHistory } from 'react-router';
 import { render } from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import WebFont from 'webfontloader';
+WebFont.load({
+  google: {
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
+  },
+  custom: {
+    families: ['FontAwesome'],
+    urls: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'],
+  },
+});
+
 import configureStore from 'stores/configureStore';
 import smoothScroll from 'utils/smoothScroll';
 import routes from 'routes';

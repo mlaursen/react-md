@@ -22,11 +22,6 @@ module.exports = () => ({
     isomorphicHtmlClassName: 'htmlClassName',
     description: 'Google\'s Material Design UI components built with React and sass.',
     keywords: 'material design,react,sass,material,ui,components,material-design',
-    externalCSS: [
-      'https://fonts.googleapis.com/icon?family=Material+Icons',
-      'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
-      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css',
-    ]
   },
 
   __imgLoader: (loader) => ({
