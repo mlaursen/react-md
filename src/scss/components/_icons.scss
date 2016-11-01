@@ -49,7 +49,7 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
 
 /// Updates the color of the base `md-icon` if the `$light-theme` paramater
 /// does not equal the global `$md-light-theme`.
-/// @param {Boolean{ $light-theme [$md-light-theme] - Boolean if using the
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if using the
 ///     light theme.
 /// @group icons, themes
 @mixin react-md-theme-icons($light-theme: $md-light-theme) {
