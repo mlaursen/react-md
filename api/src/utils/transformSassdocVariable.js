@@ -14,7 +14,6 @@ module.exports = function transformSassdocVariable(sassdoc, file) {
     type: variableType,
     example: examples,
     link: links,
-    see,
   } = sassdoc;
 
   let { code } = sassdoc.context;
@@ -23,6 +22,11 @@ module.exports = function transformSassdocVariable(sassdoc, file) {
     code = `$${name}: ${value}${scope === 'default' ? ' !default' : ''};`;
   } else if (type === 'placeholder') {
     code = `%${name} {${code}}`;
+  }
+
+  let { see } = sassdoc;
+  if (see && see.length) {
+    see = see.map(({ context: { name, type } }) => ({ name, type }));
   }
 
   return {

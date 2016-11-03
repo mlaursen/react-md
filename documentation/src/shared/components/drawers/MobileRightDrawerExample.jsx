@@ -11,13 +11,16 @@ import Media from 'react-md/lib/Media/Media';
 import MediaOverlay from 'react-md/lib/Media/MediaOverlay';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 
-import './_mobile-drawer.scss';
-import LoremIpsum from 'components//LoremIpsum';
-import PhoneSizeDemo from 'containers/PhoneSizeDemo';
-import CloseButton from 'containers/PhoneSizeDemo/CloseButton';
-import ToolbarMenu from '../toolbars/ToolbarMenu';
+import { fetchProxy } from 'actions/fetch';
 
-const nav = <CloseButton icon />;
+import './_mobile-drawer.scss';
+import randomInt from 'utils/RandomUtils/randomInt';
+import LoremIpsum from 'components/LoremIpsum';
+import KebabMenu from 'components/KebabMenu';
+import PhoneSizeDemo from 'containers/PhoneSizeDemo';
+import ClosePhoneSizeDemoButton from 'components/PhoneSizeDemo/ClosePhoneSizeDemoButton';
+
+const nav = <ClosePhoneSizeDemoButton icon />;
 const actions = [
   <Button key="search" icon>search</Button>,
   <Button key="windows?" icon>view_module</Button>,
@@ -26,7 +29,7 @@ const expandedActions = [
   <Button key="share" icon>person_add</Button>,
   <Button key="delete" icon>delete</Button>,
   <Button key="download" icon>file_download</Button>,
-  <ToolbarMenu key="menu" />,
+  <KebabMenu key="menu" />,
 ];
 const info = <FontIcon key="info">info</FontIcon>;
 
@@ -41,7 +44,7 @@ export default class MobileRightDrawerExample extends PureComponent {
     super(props);
 
     this.state = { images: [], visible: false, stats: null };
-    this._first = true;
+    this._visibilityCount = 0;
     this._setRenderNode = this._setRenderNode.bind(this);
     this._fetchImages = this._fetchImages.bind(this);
     this._closeDrawer = this._closeDrawer.bind(this);
@@ -50,14 +53,7 @@ export default class MobileRightDrawerExample extends PureComponent {
   }
 
   componentDidMount() {
-    if (!global.fetch) {
-      require.ensure(['whatwg-fetch'], require => {
-        require('whatwg-fetch');
-        this._fetchImages();
-      });
-    } else {
-      this._fetchImages();
-    }
+    this._fetchImages();
   }
 
   _setRenderNode(renderNode) {
@@ -71,10 +67,9 @@ export default class MobileRightDrawerExample extends PureComponent {
   }
 
   _fetchImages() {
-    fetch('https://unsplash.it/list')
-      .then(response => response.json())
+    fetchProxy('https://unsplash.it/list')
       .then(list => {
-        this.setState({ images: list.splice(500, 10) });
+        this.setState({ images: list.splice(randomInt({ min: 0, max: list.length - 11 }), 10) });
       });
   }
 
@@ -83,13 +78,11 @@ export default class MobileRightDrawerExample extends PureComponent {
   }
 
   _handleVisibility(visible) {
-    // When it first mounts, it sets it to visible on desktop screens since the media
-    // matches a desktop screen and it thinks it is a full height drawer
-    if (!this._first) {
+    if (this._visibilityCount < 2) {
+      this._visibilityCount = this._visibilityCount + 1;
+    } else {
       this.setState({ visible });
     }
-
-    this._first = false;
   }
 
   render() {
@@ -140,7 +133,7 @@ export default class MobileRightDrawerExample extends PureComponent {
             <span key="woop" className="hacked-title">Photos &gt;</span>,
             'Beach',
           ]}
-          titleStyle={{ marginLeft: 0 }}
+          titleStyle={{ marginLeft: 0, height: 56 }}
           colored
           prominentTitle
           nav={nav}

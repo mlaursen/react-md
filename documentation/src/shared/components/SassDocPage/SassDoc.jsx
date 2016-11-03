@@ -15,7 +15,22 @@ function preventDefault(e) {
   window.location = e.target.getAttribute('href');
 }
 
-const SassDoc = ({ sassdoc: { code, name, type, variableType, description, parameters, returns, examples, usedBy, requires, links } }) => {
+const SassDoc = ({
+  sassdoc: {
+    code,
+    name,
+    type,
+    variableType,
+    description,
+    parameters,
+    returns,
+    examples,
+    usedBy,
+    requires,
+    links,
+    see,
+  },
+}) => {
   const children = [];
   if (description) {
     children.push(<h4 className="md-title" key="description-title">Description</h4>);
@@ -80,6 +95,12 @@ const SassDoc = ({ sassdoc: { code, name, type, variableType, description, param
   if (usedBy && usedBy.length) {
     children.push(<h4 className="md-title" key="usedby-title">Used by</h4>);
     children.push(<ReferenceList key="usedby" references={usedBy} />);
+  }
+
+  if (see && see.length) {
+    console.log('see:', see);
+    children.push(<h4 className="md-title" key="see-title">See</h4>);
+    children.push(<ReferenceList key="see" references={see} />);
   }
 
   if (links) {

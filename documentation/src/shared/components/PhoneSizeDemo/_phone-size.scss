@@ -33,14 +33,9 @@ $phone-status-bar-height: 24px;
     z-index: 300;
   }
 
-  .md-toolbar--fixed {
-    z-index: 1;
-  }
-
   .md-drawer--right {
     overflow-y: auto;
     width: 100%;
-    z-index: 200;
   }
 }
 
@@ -95,6 +90,10 @@ $phone-status-bar-height: 24px;
 
     .md-btn--fixed-tl {
       top: $md-toolbar-mobile-prominent-height - $md-btn-floating-mini-size / 2;
+    }
+
+    .md-btn--fixed {
+      z-index: $md-toolbar-z-index + 1;
     }
   }
 
@@ -162,6 +161,15 @@ $phone-status-bar-height: 24px;
       height: $phone-size-height;
       max-width: $phone-size-max-width;
       top: $phone-status-bar-height;
+    }
+
+    .md-btn--fixed,
+    .md-toolbar--fixed {
+      z-index: 1;
+    }
+
+    .md-drawer--fixed {
+      z-index: 2;
     }
   }
 
