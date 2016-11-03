@@ -108,7 +108,7 @@ export default class ComponentTitle extends PureComponent {
       <CSSTransitionGroup
         id={`${baseId}-proptypes`}
         component={CardTitle}
-        transitionName="drop-down"
+        transitionName="md-drop-down"
         transitionEnterTimeout={150}
         transitionLeaveTimeout={150}
         title={component}

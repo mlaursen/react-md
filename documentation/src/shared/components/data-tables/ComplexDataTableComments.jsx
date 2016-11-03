@@ -1,11 +1,16 @@
 import React, { PureComponent } from 'react';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from 'react-md/lib/DataTables';
+import DataTable from 'react-md/lib/DataTables/DataTable';
+import TableHeader from 'react-md/lib/DataTables/TableHeader';
+import TableBody from 'react-md/lib/DataTables/TableBody';
+import TableRow from 'react-md/lib/DataTables/TableRow';
+import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
 import FontIcon from 'react-md/lib/FontIcons';
 import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
-import { sort } from 'utils/ListUtils';
-import TableControls from './TableControls';
 
 import movies from 'constants/movies';
+import sort from 'utils/ListUtils/sort';
+import TableControls from './TableControls';
 
 export default class ComplexDataTableComments extends PureComponent {
   constructor(props) {
@@ -73,23 +78,21 @@ export default class ComplexDataTableComments extends PureComponent {
 
     const label = 'Add a comment';
 
-    const rows = sortedMovies.map(({ title, year }) => {
-      return (
-        <TableRow key={title}>
-          <TableColumn>{title}</TableColumn>
-          <TableColumn numeric>{year}</TableColumn>
-          <EditDialogColumn
-            label={inline ? null : label}
-            placeholder={label}
-            maxLength={inline ? null : 140}
-            title={inline ? null : 'Add some comment'}
-            large={inline ? null : large}
-            okOnOutsideClick={okOnOutsideClick}
-            inline={inline}
-          />
-        </TableRow>
-      );
-    });
+    const rows = sortedMovies.map(({ title, year }) => (
+      <TableRow key={title}>
+        <TableColumn>{title}</TableColumn>
+        <TableColumn numeric>{year}</TableColumn>
+        <EditDialogColumn
+          label={inline ? null : label}
+          placeholder={label}
+          maxLength={inline ? null : 140}
+          title={inline ? null : 'Add some comment'}
+          large={inline ? null : large}
+          okOnOutsideClick={okOnOutsideClick}
+          inline={inline}
+        />
+      </TableRow>
+    ));
 
     return (
       <div>

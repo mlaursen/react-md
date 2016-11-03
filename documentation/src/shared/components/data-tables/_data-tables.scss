@@ -1,0 +1,19 @@
+@import '~react-md-scss';
+
+.contextual-header {
+  background: $md-deep-orange-50;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  .md-card-title--title {
+    color: $md-deep-orange-a-400;
+    font-size: 16px;
+    font-weight: $md-font-medium;
+    line-height: 54 - 16px;
+    margin-bottom: 0;
+    margin-left: 16px;
+  }
+}

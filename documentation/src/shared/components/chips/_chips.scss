@@ -1,5 +1,27 @@
+@import '~react-md-scss';
+
 .chip-list {
   .md-chip {
     margin: 1em;
+  }
+}
+
+.opacity-enter {
+  opacity: 0;
+
+  &.opacity-enter-active {
+    opacity: 1;
+    transition-duration: $md-transition-time;
+    transition-property: opacity;
+  }
+}
+
+.opacity-leave {
+  opacity: 1;
+
+  &.opacity-leave-active {
+    opacity: 0;
+    transition-duration: $md-transition-time;
+    transition-property: opacity;
   }
 }

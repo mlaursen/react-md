@@ -11,30 +11,6 @@
   z-index: 1;
 }
 
-.drop-down-enter {
-  transform: translate3d(0, -100%, 0);
-
-  &.drop-down-enter-active {
-    @extend %md-transition--decceleration;
-
-    transform: translate3d(0, 0, 0);
-    transition-duration: $md-transition-time;
-    transition-property: transform;
-  }
-}
-
-.drop-down-leave {
-  transform: translate3d(0, 0, 0);
-
-  &.drop-down-leave-active {
-    @extend %md-transition--acceleration;
-
-    transform: translate3d(0, -100%, 0);
-    transition-duration: $md-transition-time;
-    transition-property: transform;
-  }
-}
-
 .md-data-table {
   .example-code,
   .code-block {

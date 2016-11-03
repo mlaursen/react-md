@@ -457,6 +457,7 @@ export default class EditDialogColumn extends PureComponent {
           className={cn('md-edit-dialog', {
             'md-edit-dialog--inactive': !active,
             'md-edit-dialog--active': active,
+            'md-edit-dialog--inline': inline,
             'md-background': active,
           }, dialogClassName)}
         >

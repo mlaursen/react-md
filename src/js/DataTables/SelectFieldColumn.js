@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 import TableColumn from './TableColumn';
 import SelectField from '../SelectFields/SelectField';
@@ -89,7 +90,7 @@ export default class SelectFieldColumn extends PureComponent {
     return (
       <TableColumn
         style={{ ...style, ...styles[`${absolute ? 'absolute' : 'noop'}`] }}
-        className={className}
+        className={cn('prevent-grow', className)}
       >
         <SelectField
           {...props}

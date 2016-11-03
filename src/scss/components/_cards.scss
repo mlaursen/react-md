@@ -19,6 +19,10 @@ $md-card-include-title-avatar: true !default;
 /// @type Boolean
 $md-card-include-actions: true !default;
 
+/// Boolean if the styles for tables within cards should be included.
+/// @type Boolean
+$md-card-include-tables: true !default;
+
 /// When the card part is either the first or last in the card, this padding will be applied
 /// instead of the `$md-default-padding`.
 /// @type Number
@@ -58,7 +62,8 @@ $md-card-padding-extra: 24px;
   $include-text: $md-card-include-text,
   $include-title: $md-card-include-title,
   $include-title-avatar: $md-card-include-title-avatar,
-  $include-actions: $md-card-include-actions
+  $include-actions: $md-card-include-actions,
+  $include-tables: $md-card-include-tables
 ) {
   .md-card {
     display: block;
@@ -90,6 +95,10 @@ $md-card-padding-extra: 24px;
 
   @if $include-actions {
     @include react-md-cards-actions;
+  }
+
+  @if $include-tables {
+    @include react-md-cards-tables;
   }
 }
 
@@ -158,6 +167,14 @@ $md-card-padding-extra: 24px;
 
     &--card-centered {
       justify-content: center;
+    }
+  }
+}
+
+@mixin react-md-cards-tables {
+  .md-card--table {
+    .md-card-title {
+      padding-left: 24px;
     }
   }
 }

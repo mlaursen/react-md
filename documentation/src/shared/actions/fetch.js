@@ -35,7 +35,18 @@ export default function fetch(endpoint, options) {
     } else {
       resolve(require('isomorphic-fetch'));
     }
-  }).then(fetch => fetch(encodeURI(endpoint), options).then(response => response.json()));
+  }).then(fetch => fetch(encodeURI(endpoint), options)
+    .then(response => {
+      const { status } = response;
+      if (status >= 200 && status < 300) {
+        return response.json();
+      }
+
+      const error = new Error(response.statusText);
+      error.response = response;
+
+      throw error;
+    }));
 }
 
 /**
@@ -47,13 +58,15 @@ export default function fetch(endpoint, options) {
  * will be an additional key with the `error`.
  *
  * @param {String} endpoint - The endpoint to fetch
- * @param {Object} options - Any additional options to pass.
  * @param {String} id - An id to associate with this request.
- * @param {String} stateKey - A period delimited string to access the redux state for this api call,
+ * @param {String|Array.<String>} stateKey - A period delimited string to access the redux state for this api call
+ *    or a list of keys.
  * @param {Object} types - An object containing a key for `request`, `success`, and `failure` that should
  *    map to a redux type.
+ * @param {Boolean=} addId - Boolean if the id should be added to the end of the state key. Default: true
+ * @param {Object} options - Any additional options to pass.
  */
-export function fetchCreator(endpoint, options, id, stateKey, { request, success, failure } = {}) {
+export function fetchCreator(endpoint, id, stateKey, { request, success, failure } = {}, addId = true, options) {
   if (!request) {
     request = FETCH_REQUEST;
   }
@@ -66,8 +79,14 @@ export function fetchCreator(endpoint, options, id, stateKey, { request, success
     failure = FETCH_FAILURE;
   }
 
+  let fullStateKey = stateKey;
+  if (addId) {
+    fullStateKey = (typeof stateKey === 'string' ? stateKey.split('.') : stateKey);
+    fullStateKey.push(id);
+  }
+
   return (dispatch, getState) => {
-    if (reduceKey(getState(), stateKey)) {
+    if (reduceKey(getState(), fullStateKey)) {
       return;
     }
 
@@ -103,11 +122,12 @@ export function fetchProxy(url, options) {
  * @param {String} id - An id to associate with this request.
  * @param {String} stateKey - A period delimited string to access the redux state for this api call,
  * @param {String} url - A url to fetch
- * @param {Object=} options - any additional options
  * @param {Object=} types - Optional redux action types to associate with.
+ * @param {Boolean=} addId - Boolean if the id should be added to the end of the state key. Default: true
+ * @param {Object=} options - any additional options
  */
-export function fetchProxyCreator(id, stateKey, url, options, types) {
-  return fetchCreator(`${PROXY_URL}${url}`, options, id, stateKey, types);
+export function fetchProxyCreator(id, stateKey, url, types, addId = true, options) {
+  return fetchCreator(`${PROXY_URL}${url}`, id, stateKey, types, addId, options);
 }
 
 /**
@@ -119,14 +139,12 @@ export function fetchProxyCreator(id, stateKey, url, options, types) {
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchSassDoc(id, section, options) {
-  return fetchProxyCreator(id, `documentation.sassdocs.${section ? `${section}.` : ''}${id}`,
-    `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`,
-    options, {
+  return fetchProxyCreator(id, ['documentation', 'sassdocs', section, id],
+    `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`, {
       request: FETCH_SASSDOC_REQUEST,
       success: FETCH_SASSDOC_SUCCESS,
       failure: FETCH_SASSDOC_FAILURE,
-    },
-  );
+    }, false, options);
 }
 
 /**
@@ -138,11 +156,10 @@ export function fetchSassDoc(id, section, options) {
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchDocgen(id, section, options) {
-  return fetchProxyCreator(id, `documentation.docgens.${section ? `${section}.` : ''}${id}`,
-    `${API_URL}/docgens/${section ? `${section}/` : ''}${id}`,
-    options, {
+  return fetchProxyCreator(id, ['documentation', 'docgens', section, id],
+    `${API_URL}/docgens/${section ? `${section}/` : ''}${id}`, {
       request: FETCH_DOCGEN_REQUEST,
       success: FETCH_DOCGEN_SUCCESS,
       failure: FETCH_DOCGEN_FAILURE,
-    });
+    }, false, options);
 }

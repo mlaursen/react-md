@@ -2,6 +2,8 @@
 /// @group data-tables
 ////
 
+@import 'dialogs';
+
 /// Boolean if the plain table styles should be included.
 /// @type Boolean
 $md-data-table-include-plain: true !default;
@@ -17,6 +19,10 @@ $md-data-table-include-edit-dialog: true !default;
 /// Boolean if the table pagination styles should be included.
 /// @type Boolean
 $md-data-table-include-pagination: true !default;
+
+/// Boolean if the the table card header styles should be included.
+/// @type Boolean
+$md-data-table-include-table-card-headers: true !default;
 
 /// The min width for an edit dialog's column.
 /// @type Number
@@ -78,6 +84,14 @@ $md-data-table-pagination-select-field-width: 40px !default;
 /// @type Number
 $md-data-table-pagination-margin: 32px;
 
+/// The z-index to use for the contextual table card header.
+/// @type Number
+$md-data-table-card-header-z-index: 1 !default;
+
+/// The font size to use for the contextual table card header.
+/// @type Number
+$md-data-table-card-header-font-size: 16px !default;
+
 /// A selector for creating a plain styled column. This is used to update all
 /// the `md-table-column--data` in a `.md-data-table--plain` and to create a
 /// `md-table-column--plain` class. The `white-space` will still need to manually
@@ -95,6 +109,8 @@ $md-data-table-pagination-margin: 32px;
 /// @example scss - Example Usage SCSS
 ///   @include react-md-data-tables;
 ///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use to theme
+///     the table card headers with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the tables should be styled
 ///     for the light theme.
 /// @param {Boolean} include-plain [$md-data-table-include-plain] - Boolean if the plain data
@@ -105,12 +121,16 @@ $md-data-table-pagination-margin: 32px;
 ///     dialog styles should be included.
 /// @param {Boolean} include-pagination [$md-data-table-include-pagination] - Boolean if the pagination
 ///     styles should be included.
+/// @param {Boolean} include-table-card-headers [$md-data-table-include-table-card-headers] - Boolean if
+///     the table card header styles should be included.
 @mixin react-md-data-tables(
+  $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
   $include-plain: $md-data-table-include-plain,
   $include-checkboxes: $md-data-table-include-checkboxes,
   $include-edit-dialog: $md-data-table-include-edit-dialog,
-  $include-pagination: $md-data-table-include-pagination
+  $include-pagination: $md-data-table-include-pagination,
+  $include-table-card-headers: $md-data-table-include-table-card-headers
 ) {
   @include react-md-data-table($include-plain);
   @include react-md-data-table-rows($light-theme);
@@ -127,16 +147,21 @@ $md-data-table-pagination-margin: 32px;
   @if $include-pagination {
     @include react-md-data-table-paginations;
   }
+
+  @if $include-table-card-headers {
+    @include react-md-data-table-card-headers;
+  }
 }
 
 /// Updates the styles for data tables only if the `$light-theme` does not equal the
 /// `$md-light-theme`. The only styles realy updated are the border colors and the
 /// hover/selected row background colors.
 ///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the styles for
 ///     the light theme.
 /// @group data-tables, themes
-@mixin react-md-theme-data-tables($light-theme: $md-light-theme) {
+@mixin react-md-theme-data-tables($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-table-card-headers: $md-data-table-include-table-card-headers) {
   @if $light-theme != $md-light-theme {
     thead .md-table-row,
     tbody .md-table-row:not(:last-child) {
@@ -151,6 +176,22 @@ $md-data-table-pagination-margin: 32px;
 
       &--hover {
         background: if($light-theme, $md-data-table-hover-color, $md-data-table-dark-theme-hover-color);
+      }
+    }
+  }
+
+  @if $include-table-card-headers {
+    $bg-color: get-swatch($secondary-color, 50);
+
+    @if get-swatch($md-secondary-color, 50) != $bg-color {
+      .md-card-title--contextual {
+        background: $bg-color;
+      }
+    }
+
+    @if $secondary-color != $md-secondary-color {
+      .md-card-title--title-contextual {
+        color: $secondary-color;
       }
     }
   }
@@ -274,6 +315,7 @@ $md-data-table-pagination-margin: 32px;
 
   .md-edit-dialog {
     left: 0;
+    min-height: $md-data-table-column-height;
     min-width: $md-edit-dialog-min-width;
     padding-right: $md-data-table-padding;
     top: 0;
@@ -288,6 +330,13 @@ $md-data-table-pagination-margin: 32px;
       z-index: 2;
     }
 
+    &--inline {
+      .md-text-field-container--input-block {
+        padding-bottom: 12px;
+        padding-top: 12px;
+      }
+    }
+
     .md-title {
       margin: 0;
     }
@@ -296,9 +345,6 @@ $md-data-table-pagination-margin: 32px;
       margin-right: -$md-data-table-padding;
     }
 
-    .md-text-field-container {
-      padding: 0;
-    }
 
     .md-text-field-icon-container {
       align-items: center;
@@ -326,5 +372,76 @@ $md-data-table-pagination-margin: 32px;
 
   .md-select-field.md-select-field--pagination {
     width: $md-data-table-pagination-select-field-width;
+  }
+}
+
+/// Creates the styles for the `TableCardHeader` component only. The contextual
+/// header will have a background color of the secondary color's 50 swatch.
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme
+///     the contextual header's background color with.
+@mixin react-md-data-table-card-headers($secondary-color: $md-secondary-color) {
+  .md-table-card-header {
+    position: relative;
+
+    &--no-title {
+      align-items: center;
+      display: flex;
+      height: 80px;
+      padding-right: 2px;
+    }
+
+    .md-card-title {
+      padding-right: 2px;
+
+      &:last-child {
+        padding-bottom: $md-default-padding;
+      }
+    }
+
+    .md-btn--dialog + .md-btn--dialog {
+      margin-left: $md-dialog-btn-padding;
+    }
+  }
+
+  .md-card-title--contextual {
+    background: get-swatch($secondary-color, 50);
+    height: 100%;
+    left: 0;
+    line-height: 80px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: $md-data-table-card-header-z-index;
+  }
+
+  .md-card-title--title-contextual {
+    color: $secondary-color;
+    font-size: $md-data-table-card-header-font-size;
+    font-weight: $md-font-medium;
+  }
+
+  .md-drop-down-enter {
+    transform: translate3d(0, -100%, 0);
+
+    &.md-drop-down-enter-active {
+      @extend %md-transition--decceleration;
+
+      transform: translate3d(0, 0, 0);
+      transition-duration: $md-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-drop-down-leave {
+    transform: translate3d(0, 0, 0);
+
+    &.md-drop-down-leave-active {
+      @extend %md-transition--acceleration;
+
+      transform: translate3d(0, -100%, 0);
+      transition-duration: $md-transition-time;
+      transition-property: transform;
+    }
   }
 }

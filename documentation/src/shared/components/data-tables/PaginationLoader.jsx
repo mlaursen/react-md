@@ -1,10 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-
 import CardText from 'react-md/lib/Cards/CardText';
 import Button from 'react-md/lib/Buttons';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import { FOOD_DATA_URL } from 'constants';
+
+import { FOOD_DATA_URL } from 'constants/application';
 
 export default class PaginationLoader extends PureComponent {
   static propTypes = {
@@ -45,7 +45,7 @@ export default class PaginationLoader extends PureComponent {
 
     return (
       <CSSTransitionGroup
-        transitionName="cross-fade"
+        transitionName="md-cross-fade"
         component="div"
         transitionEnterTimeout={300}
         transitionLeave={false}

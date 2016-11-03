@@ -159,7 +159,7 @@
       @include react-md-theme-avatars($light-theme);
       @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-chips($light-theme);
-      @include react-md-theme-data-tables($light-theme);
+      @include react-md-theme-data-tables($secondary-color, $light-theme);
       @include react-md-theme-dividers($light-theme);
       @include react-md-theme-expansion-panels($light-theme);
       @include react-md-theme-icons($light-theme);
@@ -179,7 +179,7 @@
     @include react-md-theme-avatars($light-theme);
     @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-chips($light-theme);
-    @include react-md-theme-data-tables($light-theme);
+    @include react-md-theme-data-tables($secondary-color, $light-theme);
     @include react-md-theme-dividers($light-theme);
     @include react-md-theme-expansion-panels($light-theme);
     @include react-md-theme-icons($light-theme);
