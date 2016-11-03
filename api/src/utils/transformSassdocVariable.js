@@ -21,6 +21,8 @@ module.exports = function transformSassdocVariable(sassdoc, file) {
 
   if (!code) {
     code = `$${name}: ${value}${scope === 'default' ? ' !default' : ''};`;
+  } else if (type === 'placeholder') {
+    code = `%${name} {${code}}`;
   }
 
   return {

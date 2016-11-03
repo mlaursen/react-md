@@ -9,7 +9,7 @@ function trim(s) {
 export default function toOneLineCode(code) {
   let startDelimiter = MIXIN_DELIMITER;
   let endDelimiter = '}';
-  if (!code.match(/@(mixin|function)/)) {
+  if (!code.match(/^(@(mixin|function)|%)/)) {
     endDelimiter = ')';
     startDelimiter = MAP_DELIMETER;
   }
