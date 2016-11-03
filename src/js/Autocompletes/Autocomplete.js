@@ -81,7 +81,10 @@ export default class Autocomplete extends PureComponent {
     /**
      * The default value for the autocomplete's text field.
      */
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
 
     /**
      * An object key to use to extract the text to be compared for filtering.
@@ -316,7 +319,7 @@ export default class Autocomplete extends PureComponent {
     // Create an amazing regex that matches the letters in order
     // and escapes any strings that could be part of a regex.
     const reg = new RegExp(
-      needle.split('')
+      `${needle}`.split('')
         .join('\\w*')
         .replace(/(\(|\||\)|\\(?!w\*)|\[|\]|\-|\.|\^|\+|\$|\?|^(?!w)\*)/g, '\\$1')
         // Couldn't get the matching of two '*' working, so replace them here..
