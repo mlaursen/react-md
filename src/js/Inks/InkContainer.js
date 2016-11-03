@@ -82,6 +82,7 @@ export default class InkContainer extends PureComponent {
 
     if (this._container) {
       this._initOrRemoveEvents({ disabledInteractions: ['keyboard', 'mouse', 'touch'] });
+      this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
     }
   }
 
@@ -106,6 +107,9 @@ export default class InkContainer extends PureComponent {
     }, this.props.transitionOverlap);
   }
 
+  /**
+   * Focuses the main element.
+   */
   focus() {
     this._getKeyboardContainer().focus();
   }
