@@ -5,13 +5,11 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import TICK from '../constants/CSSTransitionGroupTick';
 import toggleScroll from '../utils/toggleScroll';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import Dialog from './Dialog';
 import Portal from '../Helpers/Portal';
-
-// The same tick amount ReactCSSTransitionGroup uses
-const TICK = 17;
 
 export default class DialogContainer extends PureComponent {
   /* eslint-disable max-len */

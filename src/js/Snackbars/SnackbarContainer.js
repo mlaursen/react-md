@@ -3,8 +3,7 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-// Sane as CSSTransitionGroup
-const TICK = 17;
+import TICK from '../constants/CSSTransitionGroupTick';
 import isInvalidAnimate from './isInvalidAnimate';
 import Portal from '../Helpers/Portal';
 import Snackbar from './Snackbar';

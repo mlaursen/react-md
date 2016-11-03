@@ -8,7 +8,7 @@ import IconSeparator from '../Helpers/IconSeparator';
 import injectInk from '../Inks';
 import injectTooltip from '../Tooltips';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
-const TICK = 17;
+import TICK from '../constants/CSSTransitionGroupTick';
 
 /**
  * The `Button` component can either be a `FlatButton`, `RaisedButton`, `IconButton`, or a

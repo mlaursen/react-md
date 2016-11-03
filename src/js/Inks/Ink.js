@@ -1,6 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import TICK from '../constants/CSSTransitionGroupTick';
+
 export default class Ink extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
@@ -64,7 +66,7 @@ export default class Ink extends PureComponent {
       }, transitionEnterTimeout - transitionOverlap);
 
       this.setState({ expanded: true });
-    }, 25);
+    }, TICK);
 
     this.setState({ active: true });
   }
