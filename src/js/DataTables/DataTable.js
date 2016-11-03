@@ -137,6 +137,12 @@ export default class DataTable extends PureComponent {
     this._initializeRows();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.children !== prevProps.children) {
+      this._initializeRows();
+    }
+  }
+
   _toggleAllRows() {
     const allSelected = !this.state.allSelected;
     this.setState({
@@ -148,15 +154,20 @@ export default class DataTable extends PureComponent {
   _toggleSelectedRow(row) {
     const selectedRows = this.state.selectedRows.slice();
     selectedRows[row] = !selectedRows[row];
+    const selectedCount = selectedRows.filter(selected => selected).length;
 
-    this.setState({
-      selectedRows,
-      allSelected: selectedRows.filter(selected => selected).length === selectedRows.length,
-    });
+    if (this.props.onRowToggle) {
+      this.props.onRowToggle(row, selectedRows[row], selectedCount);
+    }
+
+    this.setState({ selectedRows, allSelected: selectedCount === selectedRows.length });
   }
 
   _initializeRows() {
     const rows = findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
+    if (rows === this.state.selectedRows.length) {
+      return;
+    }
 
     const selectedRows = [];
     for (let i = 0; i < rows; i++) {
