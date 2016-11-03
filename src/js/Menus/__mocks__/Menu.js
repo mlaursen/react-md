@@ -16,6 +16,14 @@ export default class Menu extends React.Component {
     delete props.onClose;
     delete props.close;
     delete props.contained;
+    delete props.listId;
+    delete props.autoclose;
+    delete props.transitionName;
+    delete props.transitionEnterTimeout;
+    delete props.transitionLeaveTimeout;
+    delete props.component;
+    delete props.zDepth;
+
 
     let items;
     if (isOpen) {

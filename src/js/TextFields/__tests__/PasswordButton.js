@@ -10,7 +10,7 @@ import {
 } from 'react-addons-test-utils';
 
 import PasswordButton from '../PasswordButton';
-import FontIcon from '../../FontIcons';
+import FontIcon from '../../FontIcons/FontIcon';
 
 describe('PasswordButton', () => {
   it('uses the onClick prop', () => {

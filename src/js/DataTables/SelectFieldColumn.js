@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
 import TableColumn from './TableColumn';
-import SelectField from '../SelectFields';
+import SelectField from '../SelectFields/SelectField';
 
 // This is really half the time of the default menu transition. It seemed to be reasonable
 // enough

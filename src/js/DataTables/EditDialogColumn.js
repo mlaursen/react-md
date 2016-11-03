@@ -2,13 +2,13 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import { ENTER, TAB, ESC } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import DialogFooter from '../Dialogs/DialogFooter';
 import TableColumn from './TableColumn';
-import TextField from '../TextFields';
-import FontIcon from '../FontIcons';
-import { ENTER, TAB, ESC } from '../constants/keyCodes';
+import TextField from '../TextFields/TextField';
+import FontIcon from '../FontIcons/FontIcon';
 
 /**
  * A Text Edit dialog for tables. This can either be a small

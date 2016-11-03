@@ -11,8 +11,8 @@ import {
 
 import { TAB } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
-import TextField from '../../TextFields';
-import Menu from '../../Menus';
+import TextField from '../../TextFields/TextField';
+import Menu from '../../Menus/Menu';
 
 class Test extends React.Component {
   render() {
@@ -25,8 +25,8 @@ describe('Autocomplete', () => {
     const props = {
       style: { display: 'block' },
       className: 'test',
-      containerStyle: { background: 'red' },
-      containerClassName: 'woop-woop',
+      textFieldStyle: { background: 'red' },
+      textFieldClassName: 'woop-woop',
       data: [],
     };
 
@@ -34,11 +34,11 @@ describe('Autocomplete', () => {
     const field = findRenderedComponentWithType(autocomplete, TextField);
     const menu = findRenderedComponentWithType(autocomplete, Menu);
 
-    expect(field.props.style).toEqual(props.style);
-    expect(field.props.className).toContain(props.className);
+    expect(field.props.style).toEqual(props.textFieldStyle);
+    expect(field.props.className).toContain(props.textFieldClassName);
 
-    expect(menu.props.style).toEqual(props.containerStyle);
-    expect(menu.props.className).toContain(props.containerClassName);
+    expect(menu.props.style).toEqual(props.style);
+    expect(menu.props.className).toContain(props.className);
   });
 
   it('passes the new value and the change event to the onChangeProp', () => {

@@ -4,6 +4,7 @@ import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';
 import calcPageOffset from '../utils/calcPageOffset';
+
 import ClockTime from './ClockTime';
 import ClockHand from './ClockHand';
 

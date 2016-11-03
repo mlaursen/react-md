@@ -5,7 +5,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import Portal from '../Helpers/Portal';
-import Paper from '../Papers';
+import Paper from '../Papers/Paper';
 import BottomNav from './BottomNav';
 
 /**

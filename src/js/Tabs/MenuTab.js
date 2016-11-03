@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import Menu from '../Menus';
+import Menu from '../Menus/Menu';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import mapToListParts from '../utils/mapToListParts';
 

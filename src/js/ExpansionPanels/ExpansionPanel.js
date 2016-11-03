@@ -3,11 +3,11 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
-import Paper from '../Papers';
+import Paper from '../Papers/Paper';
 import Collapser from '../FontIcons/Collapser';
-import PanelContent from './PanelContent';
 import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 import Collapse from '../Helpers/Collapse';
+import PanelContent from './PanelContent';
 
 const LABEL_FONT_SIZE = 15;
 const LINE_HEIGHT = 1.42857;

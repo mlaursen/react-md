@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import Button from '../Buttons';
+import Button from '../Buttons/Button';
 
 /**
  * Any props such as style or event listeners will be applied to the

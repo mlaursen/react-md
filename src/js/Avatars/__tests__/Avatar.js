@@ -1,12 +1,11 @@
 /* eslint-env jest*/
 jest.unmock('../Avatar');
-jest.unmock('../../FontIcons');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import Avatar from '../Avatar';
-import FontIcon from '../../FontIcons';
+import FontIcon from '../../FontIcons/FontIcon';
 
 describe('Avatar', () => {
   it('merges additional class names with md-avatar', () => {

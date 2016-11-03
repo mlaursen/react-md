@@ -9,8 +9,8 @@ import {
 } from 'react-addons-test-utils';
 
 import NavigationDrawer from '../NavigationDrawer';
-import Toolbar from '../../Toolbars';
-import Drawer from '../../Drawers';
+import Toolbar from '../../Toolbars/Toolbar';
+import Drawer from '../../Drawers/Drawer';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Not sure what to _really_ test here.

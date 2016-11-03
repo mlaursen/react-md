@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import Button from './Button';
 import deprecated from '../utils/PropTypes/componentDeprecated';
+import Button from './Button';
 
 export default class RaisedButton extends PureComponent {
   static propTypes = {

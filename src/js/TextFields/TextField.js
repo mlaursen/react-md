@@ -4,11 +4,11 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
 import minNumber from '../utils/PropTypes/minNumber';
 import addSuffix from '../utils/StringUtils/addSuffix';
-import { TAB } from '../constants/keyCodes';
-import Divider from '../Dividers';
+import Divider from '../Dividers/Divider';
 import FloatingLabel from './FloatingLabel';
 import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';

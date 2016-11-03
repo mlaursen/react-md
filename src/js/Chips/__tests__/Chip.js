@@ -11,8 +11,8 @@ import {
 } from 'react-addons-test-utils';
 
 import Chip from '../Chip';
-import FontIcon from '../../FontIcons';
-import Avatar from '../../Avatars';
+import FontIcon from '../../FontIcons/FontIcon';
+import Avatar from '../../Avatars/Avatar';
 
 describe('Chip', () => {
   it('merges style and className', () => {

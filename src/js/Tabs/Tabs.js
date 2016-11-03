@@ -7,10 +7,10 @@ import { DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import TabIndicator from './TabIndicator';
+import IconSeparator from '../Helpers/IconSeparator';
+import FontIcon from '../FontIcons/FontIcon';
 import MenuTab from './MenuTab';
 import TabOverflowButton from './TabOverflowButton';
-import IconSeparator from '../Helpers/IconSeparator';
-import FontIcon from '../FontIcons';
 
 const MOBILE_PADDING = 72;
 const DESKTOP_PADDING = 80;

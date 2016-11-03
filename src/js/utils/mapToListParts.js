@@ -1,6 +1,6 @@
 import { createElement, isValidElement } from 'react';
-import Divider from '../Dividers';
-import Subheader from '../Subheaders';
+import Divider from '../Dividers/Divider';
+import Subheader from '../Subheaders/Subheader';
 import ListItem from '../Lists/ListItem';
 
 export default function mapToListParts(item, index) {

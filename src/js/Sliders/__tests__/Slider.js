@@ -12,7 +12,7 @@ import {
 
 import Slider from '../Slider';
 import Track from '../Track';
-import TextField from '../../TextFields';
+import TextField from '../../TextFields/TextField';
 
 describe('Slider', () => {
   it('merges and passes all styles and all classNames', () => {

@@ -5,11 +5,11 @@ import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
+import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
+
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
 import TextField from '../TextFields/TextField';
-
-import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 
 /**
  * The `Autocomplete` component is useful for presenting real-time suggestions, completions,

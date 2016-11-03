@@ -10,9 +10,9 @@ import controlled from '../utils/PropTypes/controlled';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 import formatTime from '../utils/DateUtils/formatTime';
 import extractTimeParts from '../utils/DateUtils/extractTimeParts';
-import Dialog from '../Dialogs';
-import FontIcon from '../FontIcons';
-import TextField from '../TextFields';
+import Dialog from '../Dialogs/DialogContainer';
+import FontIcon from '../FontIcons/FontIcon';
+import TextField from '../TextFields/TextField';
 import Collapse from '../Helpers/Collapse';
 import TimePicker from './TimePicker';
 

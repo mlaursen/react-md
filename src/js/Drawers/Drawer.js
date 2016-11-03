@@ -6,7 +6,7 @@ import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../consta
 import getField from '../utils/getField';
 import mapToListParts from '../utils/mapToListParts';
 import controlled from '../utils/PropTypes/controlled';
-import Paper from '../Papers';
+import Paper from '../Papers/Paper';
 import Portal from '../Helpers/Portal';
 import List from '../Lists/List';
 

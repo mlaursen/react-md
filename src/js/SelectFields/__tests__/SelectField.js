@@ -9,21 +9,21 @@ import {
 
 import SelectField from '../SelectField';
 import Menu from '../../Menus/Menu';
-import Paper from '../../Papers';
+import Paper from '../../Papers/Paper';
 
 const PROPS = { id: 'test' };
 describe('SelectField', () => {
   it('merges className and style', () => {
     const props = Object.assign({}, PROPS, {
-      menuStyle: { background: 'orange' },
-      menuClassName: 'woop-woop',
+      style: { background: 'orange' },
+      className: 'woop-woop',
       defaultOpen: true,
     });
 
     const field = renderIntoDocument(<SelectField {...props} />);
     const menu = findRenderedComponentWithType(field, Menu);
-    expect(menu.props.style).toBe(props.menuStyle);
-    expect(menu.props.className).toContain(props.menuClassName);
+    expect(menu.props.style).toBe(props.style);
+    expect(menu.props.className).toContain(props.className);
   });
 
   it('renders the Menu component as the Paper component', () => {

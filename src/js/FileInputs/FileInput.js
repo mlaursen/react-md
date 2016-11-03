@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
 import IconSeparator from '../Helpers/IconSeparator';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 

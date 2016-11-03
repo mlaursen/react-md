@@ -2,10 +2,11 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import invariant from 'invariant';
 
+import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
+
 const hrefables = ['a', 'area'].map(tag => `${tag}[href],`).join('');
 const disableables = ['button', 'input', 'textarea', 'select'].map(tag => `${tag}:not([disabled]),`).join('');
 const FOCUSABLE_QUERY = `${hrefables}${disableables}*[tabIndex]`;
-import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 
 /**
  * This component is used for keeping the focus within some container. When the container

@@ -6,7 +6,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import getField from '../utils/getField';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
 import SwitchTrack from './SwitchTrack';
 
 /**

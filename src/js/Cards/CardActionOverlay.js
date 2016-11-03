@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
-import Button from '../Buttons';
+import Button from '../Buttons/Button';
 import componentDeprecated from '../utils/PropTypes/componentDeprecated';
 
 /**

@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import injectTooltip from '../Tooltips';
+import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
 import IconSeparator from '../Helpers/IconSeparator';
 

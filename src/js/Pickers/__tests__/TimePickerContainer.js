@@ -9,7 +9,7 @@ import {
 } from 'react-addons-test-utils';
 
 import TimePickerContainer from '../TimePickerContainer';
-import TextField from '../../TextFields';
+import TextField from '../../TextFields/TextField';
 
 describe('TimePickerContainer', () => {
   it('merges className and style', () => {

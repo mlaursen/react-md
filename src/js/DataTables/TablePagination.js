@@ -1,8 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import SelectField from '../SelectFields';
-import Button from '../Buttons';
+import SelectField from '../SelectFields/SelectField';
+import Button from '../Buttons/Button';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps

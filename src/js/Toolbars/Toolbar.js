@@ -4,8 +4,8 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import invalidIf from '../utils/PropTypes/invalidIf';
 import between from '../utils/PropTypes/between';
+import Paper from '../Papers/Paper';
 import ToolbarTitle from './ToolbarTitle';
-import Paper from '../Papers';
 
 export default class Toolbar extends PureComponent {
   static propTypes = {

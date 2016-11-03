@@ -6,6 +6,10 @@ export default jest.fn(ComposedComponent =>
     createInk() {
     }
 
+    getComposedComponent() {
+      return this;
+    }
+
     render() {
       const { ...props } = this.props;
       delete props.inkStyle;

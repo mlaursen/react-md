@@ -2,13 +2,13 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
-import invalidIf from '../utils/PropTypes/invalidIf';
-import FontIcon from '../FontIcons';
-import IconSeparator from '../Helpers/IconSeparator';
-import injectInk from '../Inks';
-import injectTooltip from '../Tooltips';
-import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import TICK from '../constants/CSSTransitionGroupTick';
+import invalidIf from '../utils/PropTypes/invalidIf';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import FontIcon from '../FontIcons/FontIcon';
+import IconSeparator from '../Helpers/IconSeparator';
+import injectInk from '../Inks/injectInk';
+import injectTooltip from '../Tooltips/injectTooltip';
 
 /**
  * The `Button` component can either be a `FlatButton`, `RaisedButton`, `IconButton`, or a

@@ -12,9 +12,9 @@ import addDate from '../utils/DateUtils/addDate';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 
 import Collapse from '../Helpers/Collapse';
-import FontIcon from '../FontIcons';
-import TextField from '../TextFields';
-import Dialog from '../Dialogs';
+import FontIcon from '../FontIcons/FontIcon';
+import TextField from '../TextFields/TextField';
+import Dialog from '../Dialogs/DialogContainer';
 import DatePicker from './DatePicker';
 
 /**

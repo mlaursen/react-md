@@ -1,9 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import FontIcon from '../FontIcons';
-import injectTooltip from '../Tooltips';
-import Button from './Button';
 import deprecated from '../utils/PropTypes/componentDeprecated';
+import FontIcon from '../FontIcons/FontIcon';
+import injectTooltip from '../Tooltips/injectTooltip';
+import Button from './Button';
 
 /**
  * The `IconButton` component automatically includes ink and a tooltip.

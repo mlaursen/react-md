@@ -4,16 +4,16 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import Collapser from '../FontIcons/Collapser';
-import Paper from '../Papers';
-import Menu from '../Menus/Menu';
-import Positions from '../Menus/Positions';
-import List from '../Lists/List';
-import ListItem from '../Lists/ListItem';
 import { UP, DOWN, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import isBetween from '../utils/NumberUtils/isBetween';
+import Collapser from '../FontIcons/Collapser';
+import Paper from '../Papers/Paper';
+import Menu from '../Menus/Menu';
+import Positions from '../Menus/Positions';
+import List from '../Lists/List';
+import ListItem from '../Lists/ListItem';
 
 import SelectFieldInput from './SelectFieldInput';
 

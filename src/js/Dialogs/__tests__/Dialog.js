@@ -10,7 +10,7 @@ import {
 
 import Dialog from '../Dialog';
 import FocusContainer from '../../Helpers/FocusContainer';
-import Paper from '../../Papers';
+import Paper from '../../Papers/Paper';
 
 describe('Dialog', () => {
   it('renders as a Paper component', () => {

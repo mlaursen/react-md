@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import isValidFocusKeypress from '../utils/EventUtils/isValidFocusKeypress';
 import FocusContainer from '../Helpers/FocusContainer';
-import Paper from '../Papers';
+import Paper from '../Papers/Paper';
 import DialogTitle from './DialogTitle';
 import DialogFooter from './DialogFooter';
 

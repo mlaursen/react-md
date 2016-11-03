@@ -7,9 +7,9 @@ import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import Button from '../Buttons/Button';
-import Drawer from '../Drawers';
+import Drawer from '../Drawers/Drawer';
 import List from '../Lists/List';
-import Toolbar from '../Toolbars';
+import Toolbar from '../Toolbars/Toolbar';
 
 const { DrawerTypes } = Drawer;
 import { isTemporary, isPersistent, isPermanent, isMini } from '../Drawers/isType';

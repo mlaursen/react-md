@@ -12,7 +12,7 @@ import {
 } from 'react-addons-test-utils';
 
 import Button from '../Button';
-import FontIcon from '../../FontIcons';
+import FontIcon from '../../FontIcons/FontIcon';
 
 describe('Button', () => {
   it('merges className and style', () => {

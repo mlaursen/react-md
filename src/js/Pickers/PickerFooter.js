@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import Button from '../Buttons';
+import Button from '../Buttons/Button';
 
 /**
  * The `PickerFooter` component is a dialog footer for the `Picker` components.

@@ -55,7 +55,7 @@ describe('SelectionControl', () => {
     className = findRenderedDOMComponentWithTag(control, 'label').className;
 
     expect(className).toContain('md-selection-control-label');
-    expect(className).not.toContain('md-text');
+    expect(className).not.toContain('md-text ');
     expect(className).toContain('md-text--disabled');
     expect(className).not.toContain('md-pointer--hover');
   });

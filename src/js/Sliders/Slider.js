@@ -3,13 +3,13 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import calculateValueDistance from '../utils/NumberUtils/calculateValueDistance';
-import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import SliderLabel from './SliderLabel';
 import Track from './Track';
-import TextField from '../TextFields';
+import TextField from '../TextFields/TextField';
 
 /**
  * The `Slider` component is used to let users select a value from a continuous

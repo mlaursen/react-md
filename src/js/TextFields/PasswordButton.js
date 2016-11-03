@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
 
 export default class PasswordButton extends PureComponent {
   static propTypes = {

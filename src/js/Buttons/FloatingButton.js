@@ -1,8 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
-import IconButton from './IconButton';
 import deprecated from '../utils/PropTypes/componentDeprecated';
+import IconButton from './IconButton';
 
 /**
  * A `FloatingButton` is an extension of the `IconButton`.

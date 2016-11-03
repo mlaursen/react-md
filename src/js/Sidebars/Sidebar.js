@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import Drawer from '../Drawers';
+import Drawer from '../Drawers/Drawer';
 import componentDeprecated from '../utils/PropTypes/componentDeprecated';
 
 export default class Sidebar extends PureComponent {

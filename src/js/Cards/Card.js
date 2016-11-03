@@ -2,11 +2,11 @@ import React, { PureComponent, PropTypes, Children } from 'react';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import contextTypes from './contextTypes';
-import getField from '../utils/getField';
-import Paper from '../Papers';
-import Collapse from '../Helpers/Collapse';
 import controlled from '../utils/PropTypes/controlled';
+import getField from '../utils/getField';
+import contextTypes from './contextTypes';
+import Paper from '../Papers/Paper';
+import Collapse from '../Helpers/Collapse';
 
 export default class Card extends PureComponent {
   static propTypes = {

@@ -12,10 +12,10 @@ import {
 
 import TextField from '../TextField';
 import InputField from '../InputField';
-import Divider from '../../Dividers';
+import Divider from '../../Dividers/Divider';
 import PasswordButton from '../PasswordButton';
 import FloatingLabel from '../FloatingLabel';
-import FontIcon from '../../FontIcons';
+import FontIcon from '../../FontIcons/FontIcon';
 
 describe('TextField', () => {
   it('merges style and classNames correctly', () => {

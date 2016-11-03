@@ -12,8 +12,8 @@ import {
 
 import Toolbar from '../Toolbar';
 import ToolbarTitle from '../ToolbarTitle';
-import Paper from '../../Papers';
-import SelectField from '../../SelectFields';
+import Paper from '../../Papers/Paper';
+import SelectField from '../../SelectFields/SelectField';
 
 class Button extends React.PureComponent {
   render() {

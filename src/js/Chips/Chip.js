@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
 
 export default class Chip extends PureComponent {
   static propTypes = {
