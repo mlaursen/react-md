@@ -2,8 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
 import contextTypes from './contextTypes';
-import requiredForA11yIf from '../utils/PropTypes/requiredForA11yIf';
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -18,7 +18,7 @@ export default class DataTable extends PureComponent {
      * A base id to use for every checkbox or `EditDialogColumn` in the data table. This is
      * required for a11y if the data table is not plain.
      */
-    baseId: requiredForA11yIf(PropTypes.oneOfType([
+    baseId: requiredForA11yIfNot(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]), 'plain'),
