@@ -190,7 +190,6 @@ export default class EditDialogColumn extends PureComponent {
     this.state = {
       value: props.defaultValue,
       active: false,
-      animating: false,
     };
 
     this._setColumn = this._setColumn.bind(this);
@@ -203,10 +202,14 @@ export default class EditDialogColumn extends PureComponent {
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleCancelClick = this._handleCancelClick.bind(this);
     this._handleClickOutside = this._handleClickOutside.bind(this);
+    this._handleMouseOver = this._handleMouseOver.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.active === nextState.active) { return; }
+    if (this.state.active === nextState.active) {
+      return;
+    }
 
     if (nextState.active) {
       window.addEventListener('click', this._handleClickOutside);
@@ -214,11 +217,14 @@ export default class EditDialogColumn extends PureComponent {
       window.removeEventListener('click', this._handleClickOutside);
     }
 
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
     this._timeout = setTimeout(() => {
       if (!nextState.active && this._field) {
         this._field.blur();
       }
-
       this._timeout = null;
       this.setState({ animating: false });
     }, nextProps.transitionDuration);
@@ -347,9 +353,25 @@ export default class EditDialogColumn extends PureComponent {
     }
   }
 
+  _handleMouseOver() {
+    if (this.props.inline) {
+      return;
+    }
+
+    this.setState({ mouseover: true });
+  }
+
+  _handleMouseLeave() {
+    if (this.props.inline) {
+      return;
+    }
+
+    this.setState({ mouseover: false });
+  }
+
   render() {
     const { rowId } = this.context;
-    const { active, animating } = this.state;
+    const { active, mouseover, animating } = this.state;
     const {
       style,
       className,
@@ -414,14 +436,24 @@ export default class EditDialogColumn extends PureComponent {
       );
     }
 
+    let mergedStyles = style;
+    if (!inline && (mouseover || active || animating)) {
+      mergedStyles = Object.assign({}, mergedStyles, {
+        position: 'absolute',
+        zIndex: active ? 1 : undefined,
+      });
+    }
+
     return (
       <TableColumn
-        style={style}
+        style={mergedStyles}
         className={cn('prevent-grow md-edit-dialog-column', className)}
         ref={this._setColumn}
+        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
       >
         <div
-          style={active || animating ? Object.assign({}, dialogStyle, { position: 'absolute' }) : dialogStyle}
+          style={dialogStyle}
           className={cn('md-edit-dialog', {
             'md-edit-dialog--inactive': !active,
             'md-edit-dialog--active': active,
