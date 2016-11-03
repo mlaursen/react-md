@@ -828,7 +828,7 @@ export default class Autocomplete extends PureComponent {
       textFieldStyle,
       textFieldClassName,
       inline,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.defaultValue;

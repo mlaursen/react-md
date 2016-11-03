@@ -128,7 +128,7 @@ export default class AccessibleFakeButton extends PureComponent {
       disabled,
       tabIndex,
       ink,
-      ...props,
+      ...props
     } = this.props;
     delete props.onClick;
     delete props.onKeyDown;

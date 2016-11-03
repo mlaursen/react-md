@@ -176,7 +176,7 @@ export default class MenuButton extends PureComponent {
       transitionLeaveTimeout,
       listId,
       menuId,
-      ...props,
+      ...props
     } = this.props;
     delete props.onClick;
     delete props.defaultOpen;
@@ -186,8 +186,9 @@ export default class MenuButton extends PureComponent {
         key="menu-button"
         {...props}
         onClick={this._toggleMenu}
-        children={buttonChildren}
-      />
+      >
+        {buttonChildren}
+      </Button>
     );
 
     return (
@@ -203,11 +204,12 @@ export default class MenuButton extends PureComponent {
         autoclose={autoclose}
         position={position}
         fullWidth={fullWidth}
-        children={children}
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
-      />
+      >
+        {children}
+      </Menu>
     );
   }
 }

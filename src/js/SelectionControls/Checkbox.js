@@ -130,7 +130,7 @@ export default class Checkbox extends PureComponent {
       checkedIconClassName,
       uncheckedIconChildren,
       uncheckedIconClassName,
-      ...props,
+      ...props
     } = this.props;
 
     return (

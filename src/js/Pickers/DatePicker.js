@@ -48,7 +48,7 @@ export default class DatePicker extends PureComponent {
       inline,
       icon,
       displayMode,
-      ...props,
+      ...props
     } = this.props;
 
     let picker;

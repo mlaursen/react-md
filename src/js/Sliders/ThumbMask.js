@@ -31,7 +31,7 @@ export default class ThumbMask extends PureComponent {
       maskInked,
       discrete,
       leaving,
-      ...props,
+      ...props
     } = this.props;
 
     return (

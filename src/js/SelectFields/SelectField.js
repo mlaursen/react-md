@@ -740,7 +740,7 @@ export default class SelectField extends PureComponent {
       paddedBlock,
       fullWidth,
       size,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.defaultValue;

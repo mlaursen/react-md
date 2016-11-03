@@ -506,7 +506,7 @@ export default class Drawer extends PureComponent {
       renderNode,
       overlay,
       autoclose,
-      ...props,
+      ...props
     } = this.props;
     delete props.visible;
     delete props.defaultVisible;

@@ -90,7 +90,7 @@ class IconButton extends PureComponent {
       children,
       tooltip,
       floating,
-      ...props,
+      ...props
     } = this.props;
     delete props.tooltipLabel;
     delete props.tooltipPosition;

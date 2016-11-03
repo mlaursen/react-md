@@ -472,7 +472,7 @@ class Button extends PureComponent {
       ink,
       icon,
       forceIconSize,
-      ...props,
+      ...props
     } = this.props;
     delete props.children;
     delete props.tooltipLabel;
@@ -492,7 +492,7 @@ class Button extends PureComponent {
     }
 
     if (children && label) {
-      children = <IconSeparator label={label} iconBefore={iconBefore} children={children} />;
+      children = <IconSeparator label={label} iconBefore={iconBefore}>{children}</IconSeparator>;
     } else if (label) {
       children = label;
     }

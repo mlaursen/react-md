@@ -121,7 +121,7 @@ export default class Dialog extends PureComponent {
       actions,
       children,
       fullPage,
-      ...props,
+      ...props
     } = this.props;
     delete props.pageX;
     delete props.pageY;
@@ -135,22 +135,21 @@ export default class Dialog extends PureComponent {
       labelledBy = titleId;
     }
 
-    const dialogChildren = fullPage
-      ? children
-      : [
-        <DialogTitle key="title" id={titleId}>{title}</DialogTitle>,
-        <Content
-          ref={this._setContent}
-          key="content"
-          style={contentStyle}
-          className={cn('md-dialog-content', {
-            'md-dialog-content--padded': contentPadded,
-          }, contentClassName)}
-        >
-          {children}
-        </Content>,
-        <DialogFooter key="footer" actions={actions} />,
-      ];
+    const dialogChildren = fullPage ? children : [
+      <DialogTitle key="title" id={titleId}>{title}</DialogTitle>,
+      <Content
+        ref={this._setContent}
+        key="content"
+        style={contentStyle}
+        className={cn('md-dialog-content', {
+          'md-dialog-content--padded': contentPadded,
+        }, contentClassName)}
+      >
+        {children}
+      </Content>,
+      <DialogFooter key="footer" actions={actions} />,
+    ];
+
     if (transformOrigin) {
       style = Object.assign({}, style, { transformOrigin });
     }

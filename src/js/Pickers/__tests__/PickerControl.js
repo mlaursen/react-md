@@ -20,8 +20,9 @@ describe('PickerControl', () => {
         className={className}
         active={false}
         onClick={jest.fn()}
-        children="A"
-      />
+      >
+        A
+      </PickerControl>
     );
 
     const pickerControlNode = findDOMNode(pickerControl);
@@ -32,11 +33,7 @@ describe('PickerControl', () => {
   it('calls the onClick function when clicked', () => {
     const onClick = jest.fn();
     const pickerControl = renderIntoDocument(
-      <PickerControl
-        active={false}
-        onClick={onClick}
-        children="A"
-      />
+      <PickerControl active={false} onClick={onClick}>A</PickerControl>
     );
 
     const pickerControlNode = findDOMNode(pickerControl);

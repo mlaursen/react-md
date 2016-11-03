@@ -93,7 +93,7 @@ export default class MiniListItem extends PureComponent {
       leftAvatar,
       active,
       activeClassName,
-      ...props,
+      ...props
     } = this.props;
     return (
       <li style={style} className={className}>

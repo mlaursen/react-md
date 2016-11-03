@@ -171,7 +171,7 @@ export default class TabsContainer extends PureComponent {
       colored,
       fixed,
       labelAndIcon,
-      ...props,
+      ...props
     } = this.props;
     delete props.toolbar;
     let { toolbar } = this.props;

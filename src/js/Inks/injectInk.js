@@ -197,7 +197,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkContainerClassName,
       disabledInteractions,
       waitForInkTransition,
-      ...props,
+      ...props
     } = this.props;
     delete props.__SUPER_SECRET_REF__;
 

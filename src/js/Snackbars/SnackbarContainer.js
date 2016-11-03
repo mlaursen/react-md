@@ -285,7 +285,7 @@ export default class SnackbarContainer extends PureComponent {
       dismiss,
       onDismiss,
       renderNode,
-      ...props,
+      ...props
     } = this.props;
     delete props.toasts;
 

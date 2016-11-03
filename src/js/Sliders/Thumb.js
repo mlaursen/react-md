@@ -30,7 +30,7 @@ export default class Thumb extends PureComponent {
       dragging,
       thumbLeft,
       discrete,
-      ...props,
+      ...props
     } = this.props;
 
     return (

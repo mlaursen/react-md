@@ -59,7 +59,7 @@ export default class Subheader extends PureComponent {
       primaryText,
       className,
       children,
-      ...props,
+      ...props
     } = this.props;
 
     return (

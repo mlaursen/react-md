@@ -236,10 +236,9 @@ export default class SelectionControl extends PureComponent {
 
     const prefix = `${checked ? '' : 'un'}checked${capitalizeFirst(type)}Icon`;
     return (
-      <FontIcon
-        iconClassName={this.props[`${prefix}ClassName`]}
-        children={this.props[`${prefix}Children`]}
-      />
+      <FontIcon iconClassName={this.props[`${prefix}ClassName`]}>
+        {this.props[`${prefix}Children`]}
+      </FontIcon>
     );
   }
 
@@ -280,7 +279,7 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
-      ...props,
+      ...props
     } = this.props;
     delete props.label;
     delete props.checked;
@@ -339,8 +338,9 @@ export default class SelectionControl extends PureComponent {
           })}
           role={type}
           aria-checked={checked}
-          children={this._getIcon()}
-        />
+        >
+          {this._getIcon()}
+        </AccessibleFakeInkedButton>
       );
     }
 

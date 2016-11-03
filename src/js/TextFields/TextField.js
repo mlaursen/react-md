@@ -722,7 +722,7 @@ export default class TextField extends PureComponent {
       ink,
       inlineIndicator,
       icon,
-      ...props,
+      ...props
     } = this.props;
     delete props.label;
     delete props.placeholder;

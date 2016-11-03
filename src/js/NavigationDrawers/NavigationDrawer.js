@@ -720,7 +720,7 @@ export default class NavigationDrawer extends PureComponent {
       menuIconChildren,
       menuIconClassName,
       footer,
-      ...props,
+      ...props
     } = this.props;
     delete props.drawerType;
     delete props.drawerHeader;

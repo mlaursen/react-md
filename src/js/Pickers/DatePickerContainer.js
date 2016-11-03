@@ -555,7 +555,7 @@ export default class DatePickerContainer extends PureComponent {
       id,
       disabled,
       'aria-label': ariaLabel,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.onChange;

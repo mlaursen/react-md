@@ -65,7 +65,7 @@ export default class CardTitle extends Component {
       subtitle,
       isExpander,
       children,
-      ...props,
+      ...props
     } = this.props;
     delete props.avatar;
     let { avatar } = this.props;

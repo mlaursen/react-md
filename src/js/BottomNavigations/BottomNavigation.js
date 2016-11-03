@@ -292,7 +292,7 @@ export default class BottomNavigation extends PureComponent {
       colored,
       dynamic,
       renderNode,
-      ...props,
+      ...props
     } = this.props;
     delete props.links;
     delete props.activeIndex;

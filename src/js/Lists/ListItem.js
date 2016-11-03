@@ -368,7 +368,7 @@ export default class ListItem extends PureComponent {
       activeClassName,
       expanderIconChildren,
       expanderIconClassName,
-      ...props,
+      ...props
     } = this.props;
     delete props.isOpen;
     delete props.defaultOpen;

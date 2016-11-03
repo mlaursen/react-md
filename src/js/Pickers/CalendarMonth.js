@@ -62,7 +62,7 @@ export default class CalendarMonth extends PureComponent {
       DateTimeFormat,
       locales,
       className,
-      ...props,
+      ...props
     } = this.props;
 
     const days = [];

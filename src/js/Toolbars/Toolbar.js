@@ -162,7 +162,7 @@ export default class Toolbar extends PureComponent {
       actionsRight,
       children,
       inset,
-      ...props,
+      ...props
     } = this.props;
     delete props.nav;
     delete props.title;

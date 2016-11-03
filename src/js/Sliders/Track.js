@@ -75,7 +75,7 @@ export default class Track extends PureComponent {
       scale,
       step,
       valuePrecision,
-      ...props,
+      ...props
     } = this.props;
 
     const ticks = [];

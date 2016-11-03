@@ -63,8 +63,9 @@ describe('TableColumn', () => {
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onTouchCancel={onTouchCancel}
-          children="c"
-        />
+        >
+          c
+        </TableColumn>
       </Table>
     );
 

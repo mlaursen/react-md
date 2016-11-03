@@ -109,7 +109,7 @@ export default class Sidebar extends PureComponent {
       align,
       items,
       fixed,
-      ...props,
+      ...props
     } = this.props;
     delete props.responsive;
 

@@ -900,7 +900,7 @@ export default class Slider extends PureComponent {
       discreteTicks,
       tickWidth,
       valuePrecision,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.onChange;

@@ -103,7 +103,7 @@ export default class FloatingButton extends PureComponent {
       mini,
       children,
       iconClassName,
-      ...props,
+      ...props
     } = this.props;
     return (
       <IconButton

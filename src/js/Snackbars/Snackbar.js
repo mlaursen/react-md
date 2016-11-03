@@ -131,7 +131,7 @@ export default class Snackbar extends PureComponent {
       className,
       toast,
       multiline,
-      ...props,
+      ...props
     } = this.props;
     delete props.id;
     delete props.fab;

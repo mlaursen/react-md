@@ -221,8 +221,8 @@ export default class Tabs extends PureComponent {
       /* eslint-disable react/no-did-update-set-state */
       this.setState({ paddingLeft });
     } else {
-      const labels = Children.map(Children.toArray(this.props.children), ({ props: { label }}) => label)
-      const prevLabels = Children.map(Children.toArray(prevProps.children), ({ props: { label }}) => label);
+      const labels = Children.map(Children.toArray(this.props.children), ({ props: { label } }) => label);
+      const prevLabels = Children.map(Children.toArray(prevProps.children), ({ props: { label } }) => label);
       if (labels.length !== prevLabels.length || labels.filter((_, i) => labels[i] !== prevLabels[i]).length) {
         this.setState({
           ...this._calcIndicatorPosition(this._container, 0, this.props.activeTabIndex, this.state.overflowAtIndex),
@@ -312,7 +312,6 @@ export default class Tabs extends PureComponent {
     let paddingLeft;
     if (!centered && this._shouldAlign(this.props)) {
       paddingLeft = this._calcPaddingLeft(this._container, mobile);
-      console.log('paddingLeft:', paddingLeft);
     }
 
     let overflowAtIndex;
@@ -437,7 +436,7 @@ export default class Tabs extends PureComponent {
       nextIconClassName,
       previousIconChildren,
       previousIconClassName,
-      ...props,
+      ...props
     } = this.props;
     delete props.activeTabIndex;
     delete props.defaultTabIndex;

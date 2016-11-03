@@ -127,7 +127,7 @@ export default class TextArea extends PureComponent {
       className,
       label,
       block,
-      ...props,
+      ...props
     } = this.props;
     delete props.maxRows;
     delete props.onChange;

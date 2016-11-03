@@ -73,7 +73,7 @@ export default class CardMedia extends PureComponent {
     const {
       className,
       children,
-      ...props,
+      ...props
     } = this.props;
     delete props.overlay;
 

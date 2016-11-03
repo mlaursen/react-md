@@ -23,7 +23,7 @@ export default class DiscreteValue extends PureComponent {
       active,
       value,
       valuePrecision,
-      ...props,
+      ...props
     } = this.props;
 
     if (!discrete || !active) {

@@ -23,7 +23,7 @@ export default class PasswordButton extends PureComponent {
           'md-password-btn--invisible': active && !passwordVisible,
         })}
       >
-        <FontIcon iconClassName={iconClassName} children={iconChildren} />
+        <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
       </button>
     );
   }

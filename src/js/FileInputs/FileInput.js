@@ -148,7 +148,7 @@ export default class FileInput extends PureComponent {
       iconBefore,
       disabled,
       accept,
-      ...props,
+      ...props
     } = this.props;
     delete props.onChange;
 

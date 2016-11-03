@@ -406,7 +406,7 @@ export default class TimePickerContainer extends PureComponent {
       fullWidth,
       lineDirection,
       'aria-label': ariaLabel,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.isOpen;

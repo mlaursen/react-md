@@ -209,7 +209,7 @@ export default class TablePagination extends PureComponent {
       incrementIconClassName,
       decrementIconChildren,
       decrementIconClassName,
-      ...props,
+      ...props
     } = this.props;
     delete props.onPagination;
     delete props.defaultPage;
@@ -241,16 +241,18 @@ export default class TablePagination extends PureComponent {
                 icon
                 onClick={this._decrement}
                 disabled={start === 0}
-                children={decrementIconChildren}
                 iconClassName={decrementIconClassName}
-              />
+              >
+                {decrementIconChildren}
+              </Button>
               <Button
                 icon
                 onClick={this._increment}
                 disabled={start + rowsPerPage >= rows}
-                children={incrementIconChildren}
                 iconClassName={incrementIconClassName}
-              />
+              >
+                {incrementIconChildren}
+              </Button>
             </div>
             {/*
               * Since the footer controls is positioned absolutely for a persistent footer,

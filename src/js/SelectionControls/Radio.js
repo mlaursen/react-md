@@ -124,7 +124,7 @@ export default class Radio extends PureComponent {
       checkedIconClassName,
       uncheckedIconChildren,
       uncheckedIconClassName,
-      ...props,
+      ...props
     } = this.props;
 
     return (

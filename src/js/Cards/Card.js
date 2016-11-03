@@ -201,7 +201,7 @@ export default class Card extends PureComponent {
       raise,
       tableCard,
       children,
-      ...props,
+      ...props
     } = this.props;
     delete props.expanded;
     delete props.isExpanded;

@@ -115,7 +115,7 @@ export default class Avatar extends PureComponent {
       random,
       iconSized,
       role,
-      ...props,
+      ...props
     } = this.props;
 
     return (

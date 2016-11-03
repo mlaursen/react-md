@@ -107,7 +107,7 @@ export default class Chip extends PureComponent {
       remove,
       onClick,
       rotateIcon,
-      ...props,
+      ...props
     } = this.props;
     delete props.removeIconChildren;
     delete props.removeIconClassName;
@@ -121,8 +121,9 @@ export default class Chip extends PureComponent {
             'md-chip-text--hover': hover,
           })}
           iconClassName={iconClassName}
-          children={children}
-        />
+        >
+          {children}
+        </FontIcon>
       );
     }
 

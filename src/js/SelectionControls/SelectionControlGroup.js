@@ -246,7 +246,7 @@ export default class SelectionControlGroup extends PureComponent {
       component: Component,
       labelComponent: LabelComponent,
       inline,
-      ...props,
+      ...props
     } = this.props;
     delete props.value;
     delete props.controls;

@@ -273,7 +273,7 @@ export default class Menu extends PureComponent {
       contained,
       children,
       position,
-      ...props,
+      ...props
     } = this.props;
     delete props.close;
     delete props.onClose;

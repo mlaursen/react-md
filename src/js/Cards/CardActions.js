@@ -45,7 +45,7 @@ export default class CardActions extends Component {
       isExpander,
       centered,
       stacked,
-      ...props,
+      ...props
     } = this.props;
     return (
       <section

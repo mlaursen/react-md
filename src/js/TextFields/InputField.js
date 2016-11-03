@@ -64,7 +64,7 @@ export default class InputField extends PureComponent {
       passwordVisible,
       block,
       inlineIndicator,
-      ...props,
+      ...props
     } = this.props;
 
     const multiline = typeof rows !== 'undefined';

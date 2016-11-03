@@ -31,7 +31,7 @@ class SelectFieldInput extends PureComponent {
   render() {
     const {
       inputClassName,
-      ...props,
+      ...props
     } = this.props;
     return (
       <TextField

@@ -67,7 +67,7 @@ export default class Media extends PureComponent {
       children,
       forceAspect,
       aspectRatio,
-      ...props,
+      ...props
     } = this.props;
     delete props.expandable;
 

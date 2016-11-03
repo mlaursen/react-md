@@ -173,7 +173,7 @@ export default class SpeedDial extends PureComponent {
       speedDialTransitionEnterTimeout,
       speedDialTransitionLeaveTimeout,
       containerProps,
-      ...props,
+      ...props
     } = this.props;
     delete props.isOpen;
     delete props.initiallyOpen;

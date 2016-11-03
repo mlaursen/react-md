@@ -93,7 +93,7 @@ class TableColumn extends PureComponent {
       sorted,
       sortIconChildren,
       sortIconClassName,
-      ...props,
+      ...props
     } = this.props;
     const sortable = typeof sorted === 'boolean';
 

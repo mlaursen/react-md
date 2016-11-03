@@ -94,7 +94,7 @@ export default class ListItemControl extends PureComponent {
       leftAvatar,
       rightIcon,
       rightAvatar,
-      ...props,
+      ...props
     } = this.props;
 
     let control = Children.only(primaryAction || secondaryAction);

@@ -26,7 +26,7 @@ export default class FloatingLabel extends PureComponent {
       disabled,
       iconOffset,
       customSize,
-      ...props,
+      ...props
     } = this.props;
 
     if (!label) {

@@ -91,7 +91,7 @@ export default class CircularProgress extends PureComponent {
       value,
       determinateDashoffset,
       centered,
-      ...props,
+      ...props
     } = this.props;
 
     const isDeterminate = typeof value === 'number';

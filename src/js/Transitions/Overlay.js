@@ -82,7 +82,7 @@ export default class Overlay extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      ...props,
+      ...props
     } = this.props;
 
     let overlay;

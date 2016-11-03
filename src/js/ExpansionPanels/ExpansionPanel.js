@@ -339,7 +339,7 @@ export default class ExpansionPanel extends PureComponent {
       contentStyle,
       contentClassName,
       tabIndex,
-      ...props,
+      ...props
     } = this.props;
 
     delete props.defaultExpanded;
@@ -358,7 +358,6 @@ export default class ExpansionPanel extends PureComponent {
         <PanelContent
           style={contentStyle}
           className={contentClassName}
-          children={children}
           onSave={this._handleSave}
           onCancel={this._handleCancel}
           saveType={saveType}
@@ -369,7 +368,9 @@ export default class ExpansionPanel extends PureComponent {
           cancelLabel={cancelLabel}
           cancelPrimary={cancelPrimary}
           cancelSecondary={cancelSecondary}
-        />
+        >
+          {children}
+        </PanelContent>
       </Collapse>
     );
 

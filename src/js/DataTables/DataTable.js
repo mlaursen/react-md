@@ -175,7 +175,7 @@ export default class DataTable extends PureComponent {
       children,
       plain,
       responsive,
-      ...props,
+      ...props
     } = this.props;
     delete props.checkedIconChildren;
     delete props.checkedIconClassName;

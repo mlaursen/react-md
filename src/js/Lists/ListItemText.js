@@ -25,7 +25,7 @@ export default class ListItemText extends PureComponent {
       secondaryText,
       className,
       threeLines,
-      ...props,
+      ...props
     } = this.props;
 
     let secondaryTextNode;

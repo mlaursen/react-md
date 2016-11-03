@@ -352,7 +352,7 @@ export default class DialogContainer extends PureComponent {
       transitionEnterTimeout,
       transitionLeaveTimeout,
       renderNode,
-      ...props,
+      ...props
     } = this.props;
     delete props.close;
     delete props.isOpen;

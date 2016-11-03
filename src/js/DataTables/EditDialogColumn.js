@@ -358,7 +358,7 @@ export default class EditDialogColumn extends PureComponent {
       inline,
       inlineIconChildren,
       inlineIconClassName,
-      ...props,
+      ...props
     } = this.props;
 
     delete props.value;

@@ -61,7 +61,7 @@ export default class BottomNav extends PureComponent {
       iconClassName,
       iconChildren,
       colored,
-      ...props,
+      ...props
     } = this.props;
     delete props.index;
     delete props.label;

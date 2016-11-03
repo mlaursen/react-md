@@ -92,7 +92,7 @@ export default class Switch extends PureComponent {
     const {
       toggled,
       defaultToggled,
-      ...props,
+      ...props
     } = this.props;
 
     if (typeof toggled !== 'undefined' && typeof props.checked === 'undefined') {

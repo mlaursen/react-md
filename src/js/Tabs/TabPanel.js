@@ -69,7 +69,7 @@ export default class TabPanel extends PureComponent {
       className,
       controlledById,
       children,
-      ...props,
+      ...props
     } = this.props;
 
     return (

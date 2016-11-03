@@ -111,7 +111,7 @@ export default class Tab extends PureComponent {
       controlsId,
       className,
       active,
-      ...props,
+      ...props
     } = this.props;
     delete props.index;
     delete props.icon;

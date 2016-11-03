@@ -114,7 +114,7 @@ export default class MenuTab extends PureComponent {
       label,
       activeTabIndex,
       overflowAtIndex,
-      ...props,
+      ...props
     } = this.props;
     const active = activeTabIndex >= overflowAtIndex;
 
