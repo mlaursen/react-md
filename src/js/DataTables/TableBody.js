@@ -22,7 +22,10 @@ export default class TableBody extends Component {
     /**
      * A list or a single item of `TableRow` components to render.
      */
-    children: PropTypes.node.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]),
   };
 
   static contextTypes = contextTypes;
@@ -31,7 +34,7 @@ export default class TableBody extends Component {
     const { children, className, ...props } = this.props;
     const { selectedRows, toggleSelectedRow } = this.context;
 
-    const rows = Children.map(children, (row, i) => {
+    const rows = children ? Children.map(Children.toArray(children), (row, i) => {
       const uncontrolled = typeof row.props.selected === 'undefined';
 
       // Update the row to inject the selected prop from context if it is uncontrolled.
@@ -50,7 +53,7 @@ export default class TableBody extends Component {
           }
         },
       });
-    });
+    }) : null;
 
     return (
       <tbody {...props} className={cn('md-table-body', className)}>

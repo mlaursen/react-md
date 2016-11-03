@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import contextTypes from './contextTypes';
 
 /**
@@ -82,6 +83,19 @@ export default class DataTable extends PureComponent {
      * will be passed down as `context`.
      */
     checkedIconChildren: PropTypes.node,
+
+    /**
+     * An optional function to call when a non-plain data table has a row toggled.
+     * The callback will include the selected row id, the boolean if it is now selected,
+     * and the count of rows that are selected. If the checkbox in the `TableHeader` was
+     * clicked, the selected row id will be `-1`.
+     *
+     * ```js
+     * onRowToggle(3, true, 8); // 4th row was toggled
+     * onRowToggle(-1, true, 15); // select all checkbox was toggled on.
+     * ```
+     */
+    onRowToggle: invalidIf(PropTypes.func, 'plain'),
   };
 
   static defaultProps = {
@@ -145,6 +159,10 @@ export default class DataTable extends PureComponent {
 
   _toggleAllRows() {
     const allSelected = !this.state.allSelected;
+    if (this.props.onRowToggle) {
+      this.props.onRowToggle(-1, allSelected, allSelected ? this.state.selectedRows.length : 0);
+    }
+
     this.setState({
       allSelected,
       selectedRows: this.state.selectedRows.map(() => allSelected),
@@ -194,6 +212,7 @@ export default class DataTable extends PureComponent {
     delete props.uncheckedIconClassName;
     delete props.defaultSelectedRows;
     delete props.baseId;
+    delete props.onRowToggle;
 
     const table = (
       <table
