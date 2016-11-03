@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import cn from 'classnames';
+import React from 'react';
+import Avatar from 'react-md/lib/Avatars';
 
 import randomImage from 'utils/RandomUtils/randomImage';
 

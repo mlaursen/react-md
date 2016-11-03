@@ -10,5 +10,5 @@ import RandomAvatar from 'components/RandomAvatar';
  * @return {Array.<Component>} a list of random avatars.
  */
 export default function randomAvatars(amt, props) {
-  return [...new Array(amt)].map(<RandomAvatar key={props.key ? props.key + i : i} {...props} />);
+  return [...new Array(amt)].map((_, i) => <RandomAvatar key={props && props.key ? props.key + i : i} {...props} />);
 }

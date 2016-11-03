@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 
 export default class ModalDialogExamples extends PureComponent {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
 import Toolbar from 'react-md/lib/Toolbars';
@@ -57,20 +57,23 @@ export default class FullPageDialogExamples extends PureComponent {
               placeholder="Email"
               defaultValue="heyfromjonathan@gmail.com"
               block
+              paddedBlock
             />
             <Divider />
             <TextField
               id="eventName"
               placeholder="Event name"
               block
+              paddedBlock
             />
             <Divider />
             <TextField
               id="eventDescription"
               placeholder="Description"
               block
+              paddedBlock
               rows={4}
-              defaultValue={loremIpsum({ count: 20, units: 'paragraphs' })}
+              defaultValue={loremIpsum({ count: 1, units: 'paragraphs' })}
             />
           </form>
         </Dialog>

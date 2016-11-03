@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons';
-import { List, ListItem } from 'react-md/lib/Lists';
+import Button from 'react-md/lib/Buttons/Button';
+import List from 'react-md/lib/Lists/List';
+import ListItem from 'react-md/lib/Lists/ListItem';
 
 export default class SimpleDialogExamples extends PureComponent {
   constructor(props) {
