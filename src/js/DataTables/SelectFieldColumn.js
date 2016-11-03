@@ -7,6 +7,10 @@ import SelectField from '../SelectFields';
 // enough
 const ABSOLUTE_DELAY = 100;
 
+const styles = {
+  absolute: { position: 'absolute' },
+};
+
 /**
  * The `SelectFieldColumns` is a simple wrapper for the `SelectField` and `TableColumn`
  * components. The only purpose of this Component is to allow the select field's menu
@@ -31,12 +35,22 @@ export default class SelectFieldColumn extends PureComponent {
     /**
      * An optional style to apply to the column.
      */
-    columnStyle: PropTypes.object,
+    style: PropTypes.object,
 
     /**
      * An optional className to apply to the column.
      */
-    columnClassName: PropTypes.string,
+    className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field's menu in the table column.
+     */
+    menuStyle: PropTypes.object,
+
+    /**
+     * An optional class name to apply to the select field's menu in the table column.
+     */
+    menuClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -69,15 +83,18 @@ export default class SelectFieldColumn extends PureComponent {
 
   render() {
     const { absolute } = this.state;
-    const { columnStyle, columnClassName, ...props } = this.props;
+    const { style, className, menuStyle, menuClassName, ...props } = this.props;
     delete props.header;
 
-    const style = Object.assign({}, columnStyle, { position: absolute ? 'absolute' : null });
-
     return (
-      <TableColumn style={style} className={columnClassName}>
+      <TableColumn
+        style={{ ...style, ...styles[`${absolute ? 'absolute' : 'noop'}`] }}
+        className={className}
+      >
         <SelectField
           {...props}
+          style={menuStyle}
+          className={menuClassName}
           onMenuToggle={this._handleMenuToggle}
           position={SelectField.Positions.BELOW}
         />

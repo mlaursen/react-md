@@ -34,29 +34,14 @@ export default class SelectField extends PureComponent {
   static Positions = SelectFieldPositions;
   static propTypes = {
     /**
-     * An optional style to apply to the text field.
+     * An optional style to apply to the menu containing the select field.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the text field.
+     * An optional className to apply to the menu containing the select field.
      */
     className: PropTypes.string,
-
-    /**
-     * An optional style to apply to the main `Menu` component.
-     */
-    menuStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the main `Menu` component.
-     */
-    menuClassName: PropTypes.string,
-
-    /**
-     * Boolean if the text field in the select field should be displayed as a `block`.
-     */
-    block: PropTypes.bool,
 
     /**
      * An optional style to apply to the list that gets created when the `SelectField`
@@ -71,6 +56,16 @@ export default class SelectField extends PureComponent {
     listClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the select field itself.
+     */
+    selectFieldStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to select field itself.
+     */
+    selectFieldClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the text field's input.
      */
     inputStyle: PropTypes.object,
@@ -79,6 +74,11 @@ export default class SelectField extends PureComponent {
      * An optional className to apply to the text field's input.
      */
     inputClassName: PropTypes.string,
+
+    /**
+     * Boolean if the text field in the select field should be displayed as a `block`.
+     */
+    block: PropTypes.bool,
 
     /**
      * An id to use for the select field. This is used for multiple parts of accessibility.
@@ -721,12 +721,10 @@ export default class SelectField extends PureComponent {
     const { droppingClassName } = this.state;
     const {
       id,
-      style,
-      className,
-      menuStyle,
-      menuClassName,
       listStyle,
       listClassName,
+      selectFieldStyle,
+      selectFieldClassName,
       inputStyle,
       inputClassName,
       label,
@@ -774,11 +772,11 @@ export default class SelectField extends PureComponent {
         value={value}
         disabled={disabled}
         inkDisabled={!below}
-        style={style}
+        style={selectFieldStyle}
         className={cn('md-select-field-container', {
           'md-pointer--hover': !disabled,
           'md-select-field-container--below': below,
-        }, className)}
+        }, selectFieldClassName)}
         inputStyle={inputStyle}
         inputClassName={cn(droppingClassName, inputClassName)}
         fullWidth={fullWidth}
@@ -804,8 +802,6 @@ export default class SelectField extends PureComponent {
         component={Paper}
         zDepth={below && isOpen ? 2 : 0}
         ref={this._setMenu}
-        style={menuStyle}
-        className={menuClassName}
         isOpen={isOpen}
         onClose={this._handleClose}
         toggle={toggle}

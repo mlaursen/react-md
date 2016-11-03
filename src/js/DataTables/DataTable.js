@@ -186,10 +186,10 @@ export default class DataTable extends PureComponent {
 
     const table = (
       <table
+        {...props}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
         }, className)}
-        {...props}
       >
         {children}
       </table>

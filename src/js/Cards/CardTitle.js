@@ -77,11 +77,11 @@ export default class CardTitle extends Component {
     }
     return (
       <div
+        {...props}
         style={style}
         className={cn('md-card-title', {
           'md-card-title--primary': !avatar,
         }, className)}
-        {...props}
       >
         {avatar}
         <CardTitleBlock id={id} title={title} subtitle={subtitle} avatar={!!avatar} />

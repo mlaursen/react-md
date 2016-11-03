@@ -108,19 +108,25 @@ class TableColumn extends PureComponent {
       );
     }
 
-    return React.createElement(header ? 'th' : 'td', {
-      ...props,
-      className: cn('md-table-column', {
-        'md-table-column--header': header,
-        'md-table-column--data': !header,
-        'md-table-column--adjusted': adjusted,
-        'md-table-column--sortable md-pointer--hover': sortable,
-        'md-text': !header,
-        'md-text--secondary': header,
-        'md-text-left': !numeric,
-        'md-text-right': numeric,
-      }, className),
-    }, displayedChildren);
+    const Component = header ? 'th' : 'td';
+
+    return (
+      <Component
+        {...props}
+        className={cn('md-table-column', {
+          'md-table-column--header': header,
+          'md-table-column--data': !header,
+          'md-table-column--adjusted': adjusted,
+          'md-table-column--sortable md-pointer--hover': sortable,
+          'md-text': !header,
+          'md-text--secondary': header,
+          'md-text-left': !numeric,
+          'md-text-right': numeric,
+        }, className)}
+      >
+        {displayedChildren}
+      </Component>
+    );
   }
 }
 

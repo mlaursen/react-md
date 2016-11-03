@@ -18,24 +18,24 @@ import { ENTER, TAB, ESC } from '../constants/keyCodes';
 export default class EditDialogColumn extends PureComponent {
   static propTypes = {
     /**
-     * The optional style to apply to the edit dialog.
+     * The optional style to apply to the edit dialog's column.
      */
     style: PropTypes.object,
 
     /**
-     * The optional className to apply to the edit dialog.
+     * The optional className to apply to the edit dialog's column.
      */
     className: PropTypes.string,
 
     /**
-     * The optional style to apply to the column.
+     * The optional style to apply to the edit dialog.
      */
-    columnStyle: PropTypes.object,
+    dialogStyle: PropTypes.object,
 
     /**
-     * The optional className to apply to the column.
+     * The optional className to apply to the edit dialog.
      */
-    columnClassName: PropTypes.string,
+    dialogClassName: PropTypes.string,
 
     /**
      * The transition duration when the dialog is moving from
@@ -157,7 +157,14 @@ export default class EditDialogColumn extends PureComponent {
      */
     inline: invalidIf(PropTypes.bool, 'title', 'large'),
 
+    /**
+     * Any children used to display an inline edit dialog's edit icon.
+     */
     inlineIconChildren: PropTypes.node,
+
+    /**
+     * The icon className used to display the inline edit dialog's edit icon.
+     */
     inlineIconClassName: PropTypes.string,
   };
 
@@ -344,10 +351,10 @@ export default class EditDialogColumn extends PureComponent {
     const { rowId } = this.context;
     const { active, animating } = this.state;
     const {
-      columnStyle,
-      columnClassName,
       style,
       className,
+      dialogStyle,
+      dialogClassName,
       maxLength,
       title,
       okLabel,
@@ -409,17 +416,17 @@ export default class EditDialogColumn extends PureComponent {
 
     return (
       <TableColumn
-        style={columnStyle}
-        className={cn('prevent-grow md-edit-dialog-column', columnClassName)}
+        style={style}
+        className={cn('prevent-grow md-edit-dialog-column', className)}
         ref={this._setColumn}
       >
         <div
-          style={active || animating ? Object.assign({}, style, { position: 'absolute' }) : style}
+          style={active || animating ? Object.assign({}, dialogStyle, { position: 'absolute' }) : dialogStyle}
           className={cn('md-edit-dialog', {
             'md-edit-dialog--inactive': !active,
             'md-edit-dialog--active': active,
             'md-background': active,
-          }, className)}
+          }, dialogClassName)}
         >
           {largeTitle}
           <TextField

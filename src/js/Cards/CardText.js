@@ -8,6 +8,11 @@ import cn from 'classnames';
 export default class CardText extends PureComponent {
   static propTypes = {
     /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
+    /**
      * An optional className to apply.
      */
     className: PropTypes.string,
