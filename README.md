@@ -121,7 +121,7 @@ const MyAwesomeComponent = () => (
   <RaisedButton label="Hello, World!" />
 );
 
-React.render(<MyAwesomeComponent />, document.getElementById('app'));`
+ReactDOM.render(<MyAwesomeComponent />, document.getElementById('app'));`
 
 eval(Babel.transform(input, { presets: ['es2015', 'react', 'stage-0'] }).code);
     </script>
