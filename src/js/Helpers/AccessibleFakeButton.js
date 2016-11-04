@@ -86,6 +86,24 @@ export default class AccessibleFakeButton extends PureComponent {
     this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
+  /**
+   * Focuses the button.
+   */
+  focus() {
+    if (this._node) {
+      this._node.focus();
+    }
+  }
+
+  /**
+   * Blurs the button.
+   */
+  blur() {
+    if (this._node) {
+      this._node.blur();
+    }
+  }
+
   _setNode(node) {
     if (node) {
       this._node = findDOMNode(node);

@@ -38,10 +38,14 @@ $md-toolbar-inset-margin: 8px !default;
 /// The z-index for a `fixed` toolbar.
 /// @type Number
 /// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
 /// @see md-drawer-z-index
 /// @see md-menu-z-index
+/// @see md-overlay-z-index
 /// @see md-picker-inline-z-index
 /// @see md-snackbar-z-index
+/// @group toolbars, z-indexes
 $md-toolbar-z-index: 15 !default;
 
 /// The toolbar's prominent title font size. This will only be included if it does not equal the

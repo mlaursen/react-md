@@ -363,20 +363,17 @@ export default class DialogContainer extends PureComponent {
     delete props.transitionEnter;
     delete props.transitionLeave;
 
-    let dialog;
-    if (dialogVisible) {
-      dialog = (
-        <Dialog
-          key="dialog"
-          style={dialogStyle}
-          className={dialogClassName}
-          ref={this._handleDialogMounting}
-          fullPage={fullPage}
-          {...props}
-          onLeave={this._unmountPortal}
-        />
-      );
-    }
+    const dialog = (
+      <Dialog
+        key="dialog"
+        style={dialogStyle}
+        className={dialogClassName}
+        ref={this._handleDialogMounting}
+        fullPage={fullPage}
+        {...props}
+        onLeave={this._unmountPortal}
+      />
+    );
 
     return (
       <Portal visible={portalVisible} renderNode={renderNode}>
@@ -394,7 +391,7 @@ export default class DialogContainer extends PureComponent {
           transitionLeaveTimeout={transitionLeaveTimeout}
           onClick={this._handleClick}
         >
-          {dialog}
+          {dialogVisible ? dialog : null}
         </CSSTransitionGroup>
       </Portal>
     );

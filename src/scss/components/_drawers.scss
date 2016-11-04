@@ -5,10 +5,14 @@
 /// The z-index to use for fixed navigation drawers.
 /// @type Number
 /// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
 /// @see md-menu-z-index
+/// @see md-overlay-z-index
 /// @see md-picker-inline-z-index
 /// @see md-snackbar-z-index
 /// @see md-toolbar-z-index
+/// @group drawers, z-indexes
 $md-drawer-z-index: 16 !default;
 
 /// The transiiton time for the drawer to enter or leave the view.

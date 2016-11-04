@@ -4,10 +4,30 @@
 
 /// The z-index to use for overlays.
 /// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group overlays, z-indexes
 $md-overlay-z-index: 15 !default;
+
+/// The transition time for the overlay to transition the opacity.
+/// @type Number
+$md-overlay-transition-time: $md-transition-time !default;
 
 /// The default color for overlays.
 /// @type Color
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
+/// @see md-menu-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
 $md-overlay-color: rgba($md-black-base, .4) !default;
 
 /// Creates the styles for overlays
@@ -19,13 +39,13 @@ $md-overlay-color: rgba($md-black-base, .4) !default;
     opacity: 0;
     position: fixed;
     top: 0;
-    transition-duration: $md-transition-time;
+    transition-duration: $md-overlay-transition-time;
     transition-property: opacity;
     width: 100vw;
     z-index: $md-overlay-z-index;
-  }
 
-  .md-overlay--active {
-    opacity: 1;
+    &--active {
+      opacity: 1;
+    }
   }
 }

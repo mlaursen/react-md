@@ -148,6 +148,7 @@ export default class FileInput extends PureComponent {
       iconBefore,
       disabled,
       accept,
+      multiple,
       ...props
     } = this.props;
     delete props.onChange;
@@ -176,6 +177,7 @@ export default class FileInput extends PureComponent {
           <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>
         </AccessibleFakeInkedButton>
         <input
+          multiple={multiple}
           disabled={disabled}
           id={id}
           accept={accept}

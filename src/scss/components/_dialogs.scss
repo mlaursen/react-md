@@ -6,6 +6,18 @@
 /// @type Number
 $md-dialog-transition-time: $md-transition-time * 2 !default;
 
+/// The z index for a dialog's overlay.
+/// type Number
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group dialogs, z-indexes
+$md-dialog-overlay-z-index: 20 !default;
+
 /// The distance that the dialog should move downwards when entering
 /// and leaving.
 /// @type Number
@@ -14,6 +26,14 @@ $md-dialog-translate-distance: -30px !default;
 /// The z-index to use for full page dialogs. This should be the biggest z-index
 /// in the application.
 /// @type Number
+/// @see md-dialog-overlay-z-index
+/// @see md-btn-fixed-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group dialogs, z-indexes
 $md-dialog-full-page-z-index: 110 !default;
 
 
@@ -39,6 +59,7 @@ $md-dialog-horizontal-keyline: 40px;
 @mixin react-md-dialogs {
   .md-dialog-container.md-overlay {
     transition-duration: $md-dialog-transition-time;
+    z-index: $md-dialog-overlay-z-index;
   }
 
   .md-dialog {

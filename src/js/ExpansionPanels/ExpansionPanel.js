@@ -353,27 +353,6 @@ export default class ExpansionPanel extends PureComponent {
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);
 
-    const content = (
-      <Collapse collapsed={!expanded}>
-        <PanelContent
-          style={contentStyle}
-          className={contentClassName}
-          onSave={this._handleSave}
-          onCancel={this._handleCancel}
-          saveType={saveType}
-          saveLabel={saveLabel}
-          savePrimary={savePrimary}
-          saveSecondary={saveSecondary}
-          cancelType={cancelType}
-          cancelLabel={cancelLabel}
-          cancelPrimary={cancelPrimary}
-          cancelSecondary={cancelSecondary}
-        >
-          {children}
-        </PanelContent>
-      </Collapse>
-    );
-
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
       <div className="md-panel-column md-text" style={{ minWidth: columnWidths[i + 1] }}>
         {panelLabel}
@@ -412,7 +391,24 @@ export default class ExpansionPanel extends PureComponent {
             {expandIconChildren}
           </Collapser>
         </AccessibleFakeButton>
-        {content}
+        <Collapse collapsed={!expanded}>
+          <PanelContent
+            style={contentStyle}
+            className={contentClassName}
+            onSave={this._handleSave}
+            onCancel={this._handleCancel}
+            saveType={saveType}
+            saveLabel={saveLabel}
+            savePrimary={savePrimary}
+            saveSecondary={saveSecondary}
+            cancelType={cancelType}
+            cancelLabel={cancelLabel}
+            cancelPrimary={cancelPrimary}
+            cancelSecondary={cancelSecondary}
+          >
+            {children}
+          </PanelContent>
+        </Collapse>
       </Paper>
     );
   }

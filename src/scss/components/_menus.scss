@@ -9,10 +9,14 @@ $md-menu-include-cascading: true !default;
 /// The z-index to use for menus
 /// type Number
 /// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
 /// @see md-drawer-z-index
+/// @see md-overlay-z-index
 /// @see md-picker-inline-z-index
 /// @see md-snackbar-z-index
 /// @see md-toolbar-z-index
+/// @group menus, z-indexes
 $md-menu-z-index: 20 !default;
 
 /// The transition time to use for menus
