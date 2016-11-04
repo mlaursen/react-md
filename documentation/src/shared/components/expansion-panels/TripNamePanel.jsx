@@ -11,7 +11,7 @@ export default class TripNamePanel extends PureComponent {
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
 
-    tablet: PropTypes.bool.isRequired,
+    mobile: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -38,14 +38,14 @@ export default class TripNamePanel extends PureComponent {
 
   render() {
     const { name, tempName } = this.state;
-    const { columnWidths, focused, tablet } = this.props;
+    const { columnWidths, focused, mobile } = this.props;
 
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Trip name"
-        secondaryLabel={tablet ? name : null}
+        secondaryLabel={!mobile ? name : null}
         onSave={this._saveName}
         onCancel={this._resetName}
       >
@@ -55,6 +55,7 @@ export default class TripNamePanel extends PureComponent {
           value={tempName}
           onChange={this._handleChange}
           maxLength={80}
+          className="md-cell"
         />
       </ExpansionPanel>
     );

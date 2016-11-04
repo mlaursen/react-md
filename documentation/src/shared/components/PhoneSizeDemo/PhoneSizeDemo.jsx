@@ -92,7 +92,7 @@ export default class PhoneSizeDemo extends PureComponent {
       return cloneElement(children, {
         ...contentProps,
         style: { ...contentStyle, ...childEl.props.style },
-        className: cn(contentClassName, childEl.prop.className),
+        className: cn(contentClassName, childEl.props.className),
       });
     }
 

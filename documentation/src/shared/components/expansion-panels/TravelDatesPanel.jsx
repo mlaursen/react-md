@@ -1,5 +1,4 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { connect } from 'react-redux';
 
 import ExpansionPanel from 'react-md/lib/ExpansionPanels';
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
@@ -9,7 +8,6 @@ const formatOptions = {
   day: '2-digit',
   year: 'numeric',
 };
-@connect(({ ui: { media: { tablet } } }) => ({ tablet }))
 export default class TravelDatesPanel extends PureComponent {
   static propTypes = {
     // These two props get injected from `ExpansionList`. You need to
@@ -18,7 +16,7 @@ export default class TravelDatesPanel extends PureComponent {
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
 
-    tablet: PropTypes.bool.isRequired,
+    mobile: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -85,10 +83,10 @@ export default class TravelDatesPanel extends PureComponent {
 
   render() {
     const { formattedStartDate, tempStartDate, formattedEndDate, tempEndDate, minEndDate } = this.state;
-    const { columnWidths, focused, tablet } = this.props;
+    const { columnWidths, focused, mobile } = this.props;
 
     let secondaryLabel;
-    if (tablet) {
+    if (!mobile) {
       secondaryLabel = [`Start Date: ${formattedStartDate}`, `End Date: ${formattedEndDate}`];
     }
 

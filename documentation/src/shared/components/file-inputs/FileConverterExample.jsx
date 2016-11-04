@@ -27,7 +27,9 @@ export default class FileConverterExample extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._interval && clearInterval(this._interval);
+    if (this._interval) {
+      clearInterval(this._interval);
+    }
   }
 
   _selectFile = (file) => {
@@ -49,7 +51,10 @@ export default class FileConverterExample extends PureComponent {
   };
 
   _close = () => {
-    this._interval && clearInterval(this._interval);
+    if (this._interval) {
+      clearInterval(this._interval);
+    }
+
     this._interval = null;
     this.setState({ isOpen: false, progress: 0 });
   };
@@ -73,13 +78,14 @@ export default class FileConverterExample extends PureComponent {
     }
 
     return (
-      <form className="converter-form">
+      <form className="converter-form md-text-container md-grid">
         <SelectField
           id="videoIn"
           label="Input file"
           defaultValue={FILE_TYPES[0]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
+          className="md-cell md-cell--4 md-cell--6-desktop"
         />
         <SelectField
           id="videoOut"
@@ -87,8 +93,9 @@ export default class FileConverterExample extends PureComponent {
           defaultValue={FILE_TYPES[FILE_TYPES.length - 1]}
           menuItems={FILE_TYPES}
           position={SelectField.Positions.TOP_LEFT}
+          className="md-cell md-cell--4 md-cell--6-desktop"
         />
-        <div className="file-block">
+        <div className="file-block md-cell md-cell--12">
           <FileInput
             id="videoFile"
             secondary
@@ -104,7 +111,7 @@ export default class FileConverterExample extends PureComponent {
             helpText="You can rename the new file blah blah"
           />
         </div>
-        <div className="submit-block">
+        <div className="submit-block md-cell md-cell--12">
           <i className="md-body-1">
             Note: Converted file will be in the same folder as the input file.
           </i>

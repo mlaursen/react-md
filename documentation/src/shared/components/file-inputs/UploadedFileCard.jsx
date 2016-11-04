@@ -46,7 +46,8 @@ export default class UploadedFileCard extends PureComponent {
 
   render() {
     const { name, size, lastModified, type, uploadResult } = this.props.file;
-    let content, application;
+    let content;
+    let application;
     if (type.match(/image/)) {
       content = <img src={uploadResult} alt={name} />;
     } else if (type.match(/text/) || !type) {

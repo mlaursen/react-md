@@ -4,6 +4,13 @@ import reduceKey from 'utils/StateUtils/reduceKey';
 function addDocgen(state, { id, data: docgens }) {
   if (reduceKey(state, id) === docgens) {
     return state;
+  } else if (Array.isArray(id)) {
+    const [section, component] = id;
+    return Object.assign({}, state, Object.assign({}, state[section], {
+      [section]: {
+        [component]: docgens,
+      },
+    }));
   }
 
   return Object.assign({}, state, {

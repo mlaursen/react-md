@@ -11,20 +11,20 @@ import MealPreferencesPanel from './MealPreferencesPanel';
 
 import './_expansion-panels.scss';
 
-const ComplexExample = ({ tablet }) => (
+const ComplexExample = ({ mobile }) => (
   <PhoneSizeDemo mobileOnly>
     <ExpansionList style={{ padding: 16 }}>
-      <TripNamePanel tablet={tablet} />
-      <DestinationsPanel tablet={tablet} />
-      <TravelDatesPanel tablet={tablet} />
-      <CarrierPanel tablet={tablet} />
-      <MealPreferencesPanel tablet={tablet} />
+      <TripNamePanel mobile={mobile} />
+      <DestinationsPanel mobile={mobile} />
+      <TravelDatesPanel mobile={mobile} />
+      <CarrierPanel mobile={mobile} />
+      <MealPreferencesPanel mobile={mobile} />
     </ExpansionList>
   </PhoneSizeDemo>
 );
 
 ComplexExample.propTypes = {
-  tablet: PropTypes.bool.isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
-export default connect(({ ui: { media: { tablet } } }) => ({ tablet }))(ComplexExample);
+export default connect(({ ui: { drawer: { mobile } } }) => ({ mobile }))(ComplexExample);

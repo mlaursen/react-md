@@ -5,26 +5,26 @@ import { ExpansionList, ExpansionPanel } from 'react-md/lib/ExpansionPanels';
 import LoremIpsum from 'components/LoremIpsum';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
 
-@connect(({ ui: { media: { tablet } } }) => ({ tablet }))
+@connect(({ ui: { drawer: { mobile } } }) => ({ mobile }))
 export default class SimpleExample extends PureComponent {
   static propTypes = {
-    tablet: PropTypes.bool.isRequired,
+    mobile: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { tablet } = this.props;
-    const count2 = tablet ? 2 : 1;
-    const count3 = tablet ? 3 : 1;
+    const { mobile } = this.props;
+    const count2 = mobile ? 2 : 1;
+    const count3 = mobile ? 3 : 1;
 
-    let secondaryLabel1 = <LoremIpsum key="first" className="md-text-capitalize" units="words" count={count3} />;
-    let secondaryLabel2 = <LoremIpsum key="first" className="md-text-capitalize" units="words" count={count3} />;
-    if (tablet) {
+    let secondaryLabel1;
+    let secondaryLabel2;
+    if (!mobile) {
       secondaryLabel1 = [
-        secondaryLabel1,
+        <LoremIpsum key="first" className="md-text-capitalize" units="words" count={count3} />,
         <LoremIpsum key="second" className="md-text-capitalize" units="words" count={count3} />,
       ];
       secondaryLabel2 = [
-        secondaryLabel2,
+        <LoremIpsum key="first" className="md-text-capitalize" units="words" count={count3} />,
         <LoremIpsum key="second" className="md-text-capitalize" units="words" count={count3} />,
       ];
     }

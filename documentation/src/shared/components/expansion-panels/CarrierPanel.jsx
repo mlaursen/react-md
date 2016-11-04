@@ -18,7 +18,7 @@ export default class CarrierPanel extends PureComponent {
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
 
-    tablet: PropTypes.bool.isRequired,
+    mobile: PropTypes.bool.isRequired,
   };
 
   constructor(props) {
@@ -44,13 +44,13 @@ export default class CarrierPanel extends PureComponent {
 
   render() {
     const { carrier, tempCarrier } = this.state;
-    const { focused, columnWidths, tablet } = this.props;
+    const { focused, columnWidths, mobile } = this.props;
     return (
       <ExpansionPanel
         focused={focused}
         columnWidths={columnWidths}
         label="Carrier"
-        secondaryLabel={tablet ? carrier : null}
+        secondaryLabel={!mobile ? carrier : null}
         onSave={this._setCarrier}
         onCancel={this._resetCarrier}
       >
@@ -58,6 +58,7 @@ export default class CarrierPanel extends PureComponent {
           id="carriers"
           menuItems={carriers}
           label="Select a carrier"
+          className="md-cell"
           value={tempCarrier}
           onChange={this._setTempCarrier}
         />

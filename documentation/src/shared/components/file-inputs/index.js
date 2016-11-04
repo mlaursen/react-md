@@ -8,6 +8,10 @@ import FileUploadExampleRaw from '!!raw!./FileUploadExample';
 
 export default [{
   title: 'Basic File Input Example',
+  description: `
+The \`FileInput\` and \`FileUpload\` components gain the styles from the \`Button\` component.
+They can be styled as a raised or flat button.
+  `,
   code: FileInputExamplesRaw,
   children: <FileInputExamples />,
 }, {

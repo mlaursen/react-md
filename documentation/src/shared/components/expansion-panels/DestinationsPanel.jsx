@@ -16,7 +16,7 @@ export default class DestinationsPanel extends PureComponent {
     // keyboard accessibility
     focused: PropTypes.bool,
     columnWidths: PropTypes.arrayOf(PropTypes.number),
-    tablet: PropTypes.bool,
+    mobile: PropTypes.bool,
   };
 
   constructor(props) {
@@ -62,11 +62,11 @@ export default class DestinationsPanel extends PureComponent {
 
   render() {
     const { destinations, tempDestinations, filteredVacationSpots } = this.state;
-    const { focused, columnWidths, tablet } = this.props;
+    const { focused, columnWidths, mobile } = this.props;
 
     let secondaryLabel;
     let expandedSecondaryLabel;
-    if (tablet) {
+    if (!mobile) {
       secondaryLabel = <span className="dot-overflow">{destinations.join(', ')}</span>;
       expandedSecondaryLabel = (
         <IconSeparator label="Select trip destination">
@@ -89,8 +89,8 @@ export default class DestinationsPanel extends PureComponent {
         <CSSTransitionGroup
           className="md-cell md-cell--7 md-cell--5-tablet"
           component="div"
-          transitionName="opacity"
-          transitionEnterTimeout={150}
+          transitionName="md-cross-fade"
+          transitionEnterTimeout={300}
           transitionLeave={false}
         >
           {tempDestinations.map((destination, i) => (
@@ -107,7 +107,6 @@ export default class DestinationsPanel extends PureComponent {
             onAutocomplete={this._addDestination}
             clearOnAutocomplete
             data={filteredVacationSpots}
-            containerClassName="align-end"
           />
         </CSSTransitionGroup>
         <div className="md-cell md-cell--5 md-cell--3-tablet md-panel-secondary-label">

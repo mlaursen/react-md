@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Button from 'react-md/lib/Buttons';
-import { LinearProgress } from 'react-md/lib/Progress';
-import { FileUpload } from 'react-md/lib/FileInputs';
+import LinearProgress from 'react-md/lib/Progress/LinearProgress';
+import FileUpload from 'react-md/lib/FileInputs/FileUpload';
 
 import UploadedFileCard from './UploadedFileCard';
 
@@ -21,7 +21,9 @@ export default class FileUploadExample extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._timeout && clearTimeout(this._timeout);
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
   }
 
   _setUpload(upload) {
@@ -113,9 +115,9 @@ export default class FileUploadExample extends PureComponent {
         <CSSTransitionGroup
           component="output"
           className="md-grid"
-          transitionName="upload"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={150}
+          transitionName="md-cross-fade"
+          transitionEnterTimeout={300}
+          transitionLeave={false}
           onClick={this._handleListClick}
         >
           {cards}

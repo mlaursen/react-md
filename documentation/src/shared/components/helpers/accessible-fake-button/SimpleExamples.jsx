@@ -9,13 +9,13 @@ const SimpleExamples = () => (
     <AccessibleFakeButton className="fakey-fake md-btn md-btn--flat md-color--secondary">
       Something or Another
     </AccessibleFakeButton>
-    <AccessibleFakeButton className="fakey-fake md-btn md-color--disabled" disabled>
+    <AccessibleFakeButton className="fakey-fake md-btn md-text--disabled" disabled>
       I am disabled
     </AccessibleFakeButton>
     <AccessibleFakeInkedButton className="fakey-fake md-btn md-btn--raised md-background--secondary">
       Wow!
     </AccessibleFakeInkedButton>
-    <AccessibleFakeInkedButton className="fakey-fake md-color--disabled " disabled>
+    <AccessibleFakeInkedButton className="fakey-fake md-text--disabled " disabled>
       No way!
     </AccessibleFakeInkedButton>
   </div>

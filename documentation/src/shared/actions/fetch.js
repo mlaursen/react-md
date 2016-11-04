@@ -139,7 +139,7 @@ export function fetchProxyCreator(id, stateKey, url, types, addId = true, option
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchSassDoc(id, section, options) {
-  return fetchProxyCreator(id, ['documentation', 'sassdocs', section, id],
+  return fetchProxyCreator(section ? [section, id] : id, ['documentation', 'sassdocs', section, id],
     `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`, {
       request: FETCH_SASSDOC_REQUEST,
       success: FETCH_SASSDOC_SUCCESS,
@@ -156,7 +156,7 @@ export function fetchSassDoc(id, section, options) {
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchDocgen(id, section, options) {
-  return fetchProxyCreator(id, ['documentation', 'docgens', section, id],
+  return fetchProxyCreator(section ? [section, id] : id, ['documentation', 'docgens', section, id],
     `${API_URL}/docgens/${section ? `${section}/` : ''}${id}`, {
       request: FETCH_DOCGEN_REQUEST,
       success: FETCH_DOCGEN_SUCCESS,
