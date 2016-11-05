@@ -253,6 +253,15 @@ export default class ListItem extends PureComponent {
     }
   }
 
+  /**
+   * A utility function to blur the `AccessibleFakeInkedButton` in the `ListItem`.
+   */
+  blur() {
+    if (this._tile) {
+      this._tile.blur();
+    }
+  }
+
   _setTile(tile) {
     if (tile) {
       this._tile = tile;

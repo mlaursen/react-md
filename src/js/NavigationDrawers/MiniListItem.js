@@ -95,6 +95,7 @@ export default class MiniListItem extends PureComponent {
       activeClassName,
       ...props
     } = this.props;
+    delete props.defaultOpen;
     return (
       <li style={style} className={className}>
         <AccessibleFakeInkedButton

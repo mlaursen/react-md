@@ -23,14 +23,10 @@ app.get('/proxy', (req, res) => {
   } else {
     fetch(url).then(response => response.json()).then(data => {
       res.json(data);
-    }).catch(() => {
-      res.sendStatus(500);
+    }).catch(error => {
+      res.sendStatus(error.status || 500);
     });
   }
-});
-
-const client = express.static(clientRoot, {
-  maxAge: 3156000,
 });
 
 let port = 8080;
@@ -48,7 +44,6 @@ if (process.env.NODE_ENV === 'development') {
   }));
   app.use(webpackHotMiddleware(compiler));
 
-  app.use(client);
   app.use('*', (req, res, next) => {
     const filename = path.join(compiler.outputPath, 'index.html');
     compiler.outputFileSystem.readFile(filename, (err, file) => {
@@ -64,6 +59,12 @@ if (process.env.NODE_ENV === 'development') {
   });
 } else {
   port = 80;
+
+  const client = express.static(clientRoot, {
+    maxAge: 3156000,
+  });
+
+  app.use(client);
 }
 
 app.listen(port, err => {

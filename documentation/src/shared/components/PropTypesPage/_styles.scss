@@ -11,6 +11,10 @@
   z-index: 1;
 }
 
+.prop-name--deprecated {
+  text-decoration: line-through;
+}
+
 .md-data-table {
   .example-code,
   .code-block {

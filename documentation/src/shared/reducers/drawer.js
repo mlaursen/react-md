@@ -1,4 +1,10 @@
-import { SET_DRAWER_TOOLBAR_BOX_SHADOW, UPDATE_MEDIA, SET_CUSTOM_THEME, LOCATION_CHANGE } from 'constants/ActionTypes';
+import {
+  SET_DRAWER_TOOLBAR_BOX_SHADOW,
+  UPDATE_MEDIA,
+  SET_CUSTOM_THEME,
+  UPDATE_DRAWER_TYPE,
+  LOCATION_CHANGE,
+} from 'constants/ActionTypes';
 import { CUSTOM_THEME_CLASS_NAME } from 'constants/application';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
 import Drawer from 'react-md/lib/Drawers';
@@ -18,7 +24,7 @@ function setDrawerToolbarBoxShadow(state, visibleBoxShadow) {
 function handleLocationChange(state, { payload: { pathname } }) {
   const visibleBoxShadow = isBoxShadowVisible(pathname);
   const toolbarTitle = toPageTitle(pathname);
-  const toolbarProminent = !!pathname.match(/components|customization/);
+  const toolbarProminent = !pathname.match(/minimizing/) && !!pathname.match(/components|customization/);
 
   if (state.visibleBoxShadow === visibleBoxShadow && state.toolbarTitle === toolbarTitle && state.toolbarProminent === toolbarProminent) {
     return state;
@@ -38,6 +44,14 @@ function setCustomTheme(state, { enabled }) {
   return state;
 }
 
+function updateDrawerType(state, { drawerType }) {
+  if (state.customDrawerType === drawerType) {
+    return state;
+  }
+
+  return Object.assign({}, state, { customDrawerType: drawerType });
+}
+
 
 const pathname = (window && window.location && window.location.pathname) || '';
 const { mobile, tablet, desktop } = Drawer.getCurrentMedia(Drawer.defaultProps);
@@ -54,7 +68,7 @@ const initialState = {
   desktop,
   defaultMedia,
   toolbarTitle: toPageTitle(pathname),
-  toolbarProminent: !!pathname.match(/components|customization/),
+  toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
   visibleBoxShadow: isBoxShadowVisible(pathname),
 };
 
@@ -68,6 +82,8 @@ export default function drawer(state = initialState, action) {
       return handleLocationChange(state, action);
     case SET_CUSTOM_THEME:
       return setCustomTheme(state, action);
+    case UPDATE_DRAWER_TYPE:
+      return updateDrawerType(state, action);
     default:
       return state;
   }

@@ -733,7 +733,7 @@ export default class NavigationDrawer extends PureComponent {
     delete props.closeIconClassName;
 
     let { drawerHeader } = this.props;
-    const { mobile, contentActive } = this.state;
+    const { desktop, contentActive } = this.state;
 
     const drawerType = getField(this.props, this.state, 'drawerType');
     const visible = getField(this.props, this.state, 'visible');
@@ -774,7 +774,7 @@ export default class NavigationDrawer extends PureComponent {
       );
     }
 
-    const offset = visible || drawerType === DrawerTypes.FULL_HEIGHT;
+    const offset = (desktop ? !temporary && visible : visible) || drawerType === DrawerTypes.FULL_HEIGHT;
     const toolbarRelative = cn({
       'md-toolbar-relative': !toolbarProminent && !toolbarProminentTitle,
       'md-toolbar-relative--prominent': toolbarProminent || toolbarProminentTitle,
@@ -858,7 +858,7 @@ export default class NavigationDrawer extends PureComponent {
             'md-transition--decceleration': visible,
             'md-transition--acceleration': !visible,
             'md-drawer-relative': offset,
-            'md-drawer-relative--mini': mini && (mobile || !visible),
+            'md-drawer-relative--mini': mini,
           }, toolbarRelative, contentClassName)}
         >
           {children}

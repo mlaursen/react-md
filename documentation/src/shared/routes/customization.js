@@ -81,6 +81,16 @@ const childRoutes = [
         cb(null, require('components/Customization/Typography').default);
       }
     },
+  }, {
+    path: 'minimizing-bundle',
+    getComponent(state, cb) {
+      if (state.location.query.tab === '1') {
+        getSassDocPage(state, cb);
+        return;
+      }
+
+      getMarkdownPage(state, cb);
+    },
   },
 ];
 

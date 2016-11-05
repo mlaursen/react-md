@@ -17,7 +17,7 @@ const GROUPS = [];
 const NESTED_GROUPS = [];
 
 function toPrettyName({ component }) {
-  return component.split(/(?=[A-Z])/).join('-').toLowerCase();
+  return component.split(/(?=[A-Z])/).join('-').toLowerCase().replace(/-progress/, '');
 }
 
 function findCustomPropTypes() {
@@ -43,10 +43,11 @@ function insertSelectionControls(group, docgens) {
     }
   });
 }
+
 function insertIntoDB({ group, docgens }) {
   if (group.match(/selection/i)) {
     insertSelectionControls(group, docgens);
-  } else if (group.match(/helpers|picker/i)) {
+  } else if (group.match(/helpers|picker|progress/i)) {
     LOCAL_DB[group] = {};
     NESTED_GROUPS.push(group);
 

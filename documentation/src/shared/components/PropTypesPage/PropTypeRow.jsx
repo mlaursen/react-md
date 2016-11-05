@@ -15,12 +15,16 @@ export default class PropTypeRow extends PureComponent {
     const {
       prop: {
         propName,
-        description,
         type,
         required,
-        // defaultValue,
+        defaultValue,
       },
     } = this.props;
+
+    let { description } = this.props.prop;
+    if (defaultValue) {
+      description = `default: \`${defaultValue} \n\n${description}`;
+    }
 
     const deprecated = type.indexOf('deprecated') !== -1;
 
@@ -28,7 +32,7 @@ export default class PropTypeRow extends PureComponent {
       <TableRow autoAdjust={false}>
         <TableColumn
           className={cn('prop-name', {
-            'prop-name--deprecated': deprecated,
+            'prop-name--deprecated md-text--secondary': deprecated,
             'md-color--disabled': deprecated,
           })}
         >

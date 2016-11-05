@@ -113,12 +113,6 @@ export default class Menu extends PureComponent {
     ]).isRequired,
 
     /**
-     * A function used to close the menu. This is used when the user clicks
-     * outside of the menu or any list item inside.
-     */
-    close: deprecated(PropTypes.func, 'Use `onClose` instead.'),
-
-    /**
      * A function used to close the menu. This is used when the user clicks outside
      * of the menu or when a `ListItem` is clicked.
      */
@@ -139,6 +133,7 @@ export default class Menu extends PureComponent {
      */
     fullWidth: PropTypes.bool,
 
+    close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),
     limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs'),
     expanderIconClassName: deprecated(
@@ -282,7 +277,7 @@ export default class Menu extends PureComponent {
     delete props.listId;
 
     let { listId } = this.props;
-    if (!listId) {
+    if (!listId && id) {
       listId = `${id}List`;
     }
 

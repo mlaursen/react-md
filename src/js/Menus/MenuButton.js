@@ -1,5 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+
 import Menu from './Menu';
 import Button from '../Buttons/Button';
 import Positions from './Positions';
@@ -16,12 +18,15 @@ export default class MenuButton extends PureComponent {
   static Positions = Positions;
 
   static propTypes = {
-    id: PropTypes.oneOfType([
+    /**
+     * An id to use for the menu button. This is required for a11y
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ]),
+    ])),
 
-    menuId: PropTypes.oneOfType([
+    buttonId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -163,6 +168,9 @@ export default class MenuButton extends PureComponent {
   render() {
     const { isOpen } = this.state;
     const {
+      id,
+      listId,
+      buttonId,
       menuStyle,
       menuClassName,
       buttonChildren,
@@ -174,8 +182,6 @@ export default class MenuButton extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      listId,
-      menuId,
       ...props
     } = this.props;
     delete props.onClick;
@@ -185,6 +191,7 @@ export default class MenuButton extends PureComponent {
       <Button
         key="menu-button"
         {...props}
+        id={buttonId}
         onClick={this._toggleMenu}
       >
         {buttonChildren}
@@ -193,7 +200,7 @@ export default class MenuButton extends PureComponent {
 
     return (
       <Menu
-        id={menuId}
+        id={id}
         listId={listId}
         style={menuStyle}
         className={menuClassName}

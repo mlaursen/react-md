@@ -94,6 +94,7 @@ const routes = [{
     'media-queries',
     'grids',
     'typography',
+    'minimizing-bundle',
   ],
 }, {
   path: 'discover-more',
@@ -136,8 +137,8 @@ const routes = [{
         'icon-separator',
         'portal',
       ],
-    }, 'lists',
-    'inks',
+    }, 'inks',
+    'lists',
     'menus',
     'navigation-drawers',
     'papers', {

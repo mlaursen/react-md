@@ -25,6 +25,7 @@ export default class App extends PureComponent {
     toolbarProminent: PropTypes.bool.isRequired,
     onMediaTypeChange: PropTypes.func.isRequired,
     setCustomTheme: PropTypes.func.isRequired,
+    customDrawerType: PropTypes.string,
 
     params: PropTypes.shape({
       component: PropTypes.string,
@@ -96,6 +97,7 @@ export default class App extends PureComponent {
       visibleBoxShadow,
       toolbarTitle,
       toolbarProminent,
+      customDrawerType,
     } = this.props;
 
     const { minOffset } = this.state;
@@ -120,6 +122,7 @@ export default class App extends PureComponent {
         toolbarProminent={toolbarProminent}
         toolbarChildren={tabs}
         navItems={navItems(pathname)}
+        drawerType={customDrawerType}
         toolbarStyle={!visibleBoxShadow ? { boxShadow: 'none' } : null}
         onMediaTypeChange={this._handleMediaTypeChange}
       >

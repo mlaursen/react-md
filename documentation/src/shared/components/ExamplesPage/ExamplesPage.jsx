@@ -27,7 +27,12 @@ export default class ExamplesPage extends PureComponent {
 
   componentWillMount() {
     const { component, section } = this.props.params;
-    const folder = `${section ? `${section}/` : ''}${component}`;
+    let folder = component;
+    if (component === 'selection-control') {
+      folder = section;
+    } else if (section) {
+      folder = `${section}/${component}`;
+    }
 
     if (__CLIENT__) {
       require.ensure([], require => {
