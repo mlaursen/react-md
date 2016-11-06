@@ -33,6 +33,7 @@ export default class InputField extends PureComponent {
     this.getValue = this.getValue.bind(this);
     this.getField = this.getField.bind(this);
     this.focus = this.focus.bind(this);
+    this._setField = this._setField.bind(this);
   }
 
   getField() {
@@ -51,6 +52,10 @@ export default class InputField extends PureComponent {
 
   focus() {
     this._field.focus();
+  }
+
+  _setField(field) {
+    this._field = field;
   }
 
   render() {
@@ -82,7 +87,7 @@ export default class InputField extends PureComponent {
     return createElement(Component, {
       ...props,
       rows,
-      ref: field => { this._field = field; },
+      ref: this._setField,
       className: cn('md-text-field', {
         'md-text': !props.disabled,
         'md-text--disabled': props.disabled,

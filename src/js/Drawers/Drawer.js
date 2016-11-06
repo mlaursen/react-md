@@ -525,6 +525,8 @@ export default class Drawer extends PureComponent {
     const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);
+    const temporary = isTemporary(type);
+    const floating = DrawerTypes.FLOATING === type;
 
     let Component;
     if (component) {
@@ -544,6 +546,7 @@ export default class Drawer extends PureComponent {
           style={navStyle}
           className={cn('md-list--drawer', {
             'md-toolbar-relative': mini && !visible,
+            'md-background': floating,
           }, navClassName)}
           onClick={autoclose ? this._handleNavClick : null}
         >
@@ -551,9 +554,6 @@ export default class Drawer extends PureComponent {
         </List>
       );
     }
-
-    const temporary = isTemporary(type);
-    const floating = DrawerTypes.FLOATING === type;
     let zDepth = 1;
     if (floating || inline) {
       zDepth = 0;

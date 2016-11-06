@@ -28,7 +28,7 @@ export default class SliderLabel extends PureComponent {
       <label
         {...props}
         htmlFor={htmlFor}
-        className={cn('md-slider-label', className)}
+        className={cn('md-slider-label md-text', className)}
       >
         {children}
       </label>

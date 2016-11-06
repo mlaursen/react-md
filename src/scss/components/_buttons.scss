@@ -159,6 +159,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
     .md-icon-separator {
       height: 100%;
     }
+
+    .md-icon-text {
+      @extend %md-font-medium;
+    }
   }
 
   .md-btn--hover {

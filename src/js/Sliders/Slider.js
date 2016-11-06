@@ -637,7 +637,8 @@ export default class Slider extends PureComponent {
       this.props.onTouchStart(e);
     }
 
-    if (this.props.disabled || (e.type === 'mousedown' && !isValidClick(e, 'mousedown'))) {
+    if (this.props.disabled || (e.type === 'mousedown' && !isValidClick(e, 'mousedown'))
+      || e.target.className.match(/text-field/)) {
       return;
     }
 
@@ -917,7 +918,7 @@ export default class Slider extends PureComponent {
           type="number"
           value={value}
           inputClassName="md-slider-editor"
-          inputStyle={{ width: inputWidth }}
+          style={{ width: inputWidth }}
           onChange={this._handleTextFieldChange}
           step={step}
         />

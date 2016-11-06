@@ -571,6 +571,10 @@ $md-clock-padding: 4px;
     width: $md-clock-time-size;
     z-index: 8;
   }
+
+  .md-clock-time-value {
+    @extend %md-font-medium;
+  }
 }
 
 /// Includes the media queries for pickers only if `$include-date` or `$include-time` are true.

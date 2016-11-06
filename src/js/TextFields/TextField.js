@@ -6,6 +6,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
 import addSuffix from '../utils/StringUtils/addSuffix';
 import Divider from '../Dividers/Divider';
@@ -119,7 +120,9 @@ export default class TextField extends PureComponent {
     },
 
     /**
-     * The type for the text field.
+     * The type for the text field. This is one of the most import props for mobile accessibility
+     * as it will update the keyboard for the text type. This does not get applied on multiline
+     * text fields.
      */
     type: PropTypes.oneOf([
       'text',
@@ -323,13 +326,13 @@ export default class TextField extends PureComponent {
      * of the text field's value is greater than the `maxLength` prop, or the field is
      * required and the user blurs the text field with no value.
      */
-    errorText: PropTypes.string,
+    errorText: invalidIf(PropTypes.string, 'block'),
 
     /**
      * An optional help text to display below the text field. This will always be visible
      * unless the `helpOnFocus` prop is set to true. Otherwise it will appear on focus.
      */
-    helpText: PropTypes.string,
+    helpText: invalidIf(PropTypes.string, 'block'),
 
     /**
      * Boolean if the help text should display on focus only.

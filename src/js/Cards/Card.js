@@ -139,11 +139,13 @@ export default class Card extends PureComponent {
       expanderIconChildren,
     } = this.props;
 
-    const expanded = typeof this.props.isExpanded !== 'undefined' ? this.props.isExpanded : this.props.expanded;
+    const expanded = typeof this.props.isExpanded !== 'undefined'
+      ? this.props.isExpanded
+      : getField(this.props, this.state, 'expanded');
 
     return {
+      expanded,
       onExpandClick: this._handleExpandClick,
-      expanded: typeof expanded !== 'undefined' ? expanded : this.state.expanded,
       iconClassName: typeof iconClassName !== 'undefined' ? iconClassName : expanderIconClassName,
       iconChildren: typeof iconChildren !== 'undefined' ? iconChildren : expanderIconChildren,
       tooltipLabel: expanderTooltipLabel,

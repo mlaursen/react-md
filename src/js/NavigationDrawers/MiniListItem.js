@@ -40,6 +40,12 @@ export default class MiniListItem extends PureComponent {
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
+  componentWillUnmount() {
+    if (this._touchTimeout) {
+      clearTimeout(this._touchTimeout);
+    }
+  }
+
   _handleMouseOver(e) {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);

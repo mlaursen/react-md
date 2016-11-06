@@ -168,7 +168,7 @@
       @include react-md-theme-pickers($primary-color, $light-theme);
       @include react-md-theme-progress($secondary-color, $progress-swatch);
       @include react-md-theme-selection-controls($secondary-color, $light-theme);
-      @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+      @include react-md-theme-sliders($primary-color, $light-theme);
       @include react-md-theme-tabs($secondary-color);
       @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
       @include react-md-theme-toolbars($light-theme);
@@ -188,7 +188,7 @@
     @include react-md-theme-pickers($primary-color, $light-theme);
     @include react-md-theme-progress($secondary-color, $progress-swatch);
     @include react-md-theme-selection-controls($secondary-color, $light-theme);
-    @include react-md-theme-sliders($primary-color, $secondary-color, $light-theme);
+    @include react-md-theme-sliders($primary-color, $light-theme);
     @include react-md-theme-tabs($secondary-color);
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     @include react-md-theme-toolbars($light-theme);

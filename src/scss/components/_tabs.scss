@@ -200,7 +200,6 @@ $md-tab-desktop-padding: 24px;
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 0;
-    font-weight: $md-font-medium;
     height: $md-tab-height;
     justify-content: flex-end;
     overflow: hidden;
@@ -350,6 +349,7 @@ $md-tab-desktop-padding: 24px;
 
   .md-tab-label {
     font-size: $md-tab-mobile-font-size;
+    font-weight: $md-font-medium;
     line-height: $md-tab-mobile-font-size;
   }
 }

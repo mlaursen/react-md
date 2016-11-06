@@ -2,6 +2,20 @@
 /// @group sliders
 ////
 
+
+/// Boolean if the styles for discrete sliders should be included.
+/// @type Boolean
+$md-slider-include-discrete: true !default;
+
+/// Boolean if an editable slider's style should be included.
+/// @type Boolean
+$md-slider-include-editor: true !default;
+
+/// Boolean if the styles for displaying indicators and icons with a slider
+/// should be included
+/// @type Boolean
+$md-slider-include-indicators: true !default;
+
 /// The Side of the Thumb for the Slider.
 /// @type Number
 /// @access private
@@ -75,11 +89,18 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
 /// @param {Boolean} $inlude-media [$md-media-included] - Boolean if the media queries should be included.
-/// @param {Boolean} $include-discrete [true] - A boolean if the discrete slider's scss should be included.
-/// @param {Boolean} $include-editor [true] - A boolean if the editable slider's scss should be included.
-/// @param {Boolean} $include-indicators [true] - A boolean if the small scss for displaying indicators/icons
+/// @param {Boolean} $include-discrete [$md-slider-include-discrete] - A boolean if the discrete slider's scss should be included.
+/// @param {Boolean} $include-editor [$md-slider-include-editor] - A boolean if the editable slider's scss should be included.
+/// @param {Boolean} $include-indicators [$md-slider-include-indiccators] - A boolean if the small scss for displaying indicators/icons
 ///     with the slider should be included.
-@mixin react-md-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-discrete: true, $include-editor: true, $include-indicators: true) {
+@mixin react-md-sliders(
+  $primary-color: $md-primary-color,
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-discrete: $md-slider-include-discrete,
+  $include-editor: $md-slider-include-editor,
+  $include-indicators: $md-slider-include-indicators
+) {
   $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 
   $md-slider-on-color: $primary-color;
@@ -120,6 +141,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 
   .md-slider-track-fill {
     background: $md-slider-on-color;
+    border: 0;
     height: $md-slider-track-height;
     left: 0;
     margin: 0;
@@ -235,41 +257,38 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
       transition-property: border-top-color, transform;
       width: 0;
     }
-  }
 
-  .md-slider-thumb--discrete-active {
-    top: 0;
-    transform: scale(2) translate3d(0, -18px, 0);
+    &-active {
+      top: 0;
+      transform: scale(2) translate3d(0, -18px, 0);
+    }
 
-  }
-
-  .md-sider-thumb--discrete-on {
-    &::after {
+    &-on::after {
       border-top-color: $md-slider-on-color;
     }
-  }
 
-  .md-slider-thumb--discrete-off {
-    background: if($light-theme, $md-black-base, $md-white-base);
-  }
-
-  .md-slider-thumb--discrete-active-off {
-    background: $md-grey-400;
-
-    &::after {
-      border-top-color: $md-grey-400;
+    &-off {
+      background: if($light-theme, $md-black-base, $md-white-base);
     }
-  }
 
-  .md-slider-thumb--discrete-mask-inked {
-    transform: scale(2.5);
-    transition-duration: $md-slider-discrete-ink-transition-time;
-  }
+    &-active-off {
+      background: $md-grey-400;
 
-  .md-slider-thumb--discrete-mask-leaving {
-    background: $md-slider-discrete-mask-ink-color;
-    transition-duration: $md-slider-discrete-ink-transition-time;
-    z-index: $md-slider-thumb-z-index - 1;
+      &::after {
+        border-top-color: $md-grey-400;
+      }
+    }
+
+    &-mask-inked {
+      transform: scale(2.5);
+      transition-duration: $md-slider-discrete-ink-transition-time;
+    }
+
+    &-mask-leaving {
+      background: $md-slider-discrete-mask-ink-color;
+      transition-duration: $md-slider-discrete-ink-transition-time;
+      z-index: $md-slider-thumb-z-index - 1;
+    }
   }
 
   .md-slider-discrete-value {
@@ -402,10 +421,10 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     a `-200` suffix.
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the application using the
 ///     light theme.
-/// @param {Boolean} $include-discrete [true] - A boolean if the discrete Slider scss should be
+/// @param {Boolean} $include-discrete [$md-slider-include-discrete] - A boolean if the discrete Slider scss should be
 ///     themed as well.
 /// @group sliders, themes
-@mixin react-md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: true) {
+@mixin react-md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: $md-slider-include-discrete) {
   $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
 
   $md-slider-on-color: $primary-color;
@@ -420,6 +439,14 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   }
 
   @if $light-theme != $md-light-theme {
+    @if not $light-theme {
+      .md-background--card {
+        .md-slider-thumb--mask-disabled {
+          background: get-color('card', false);
+        }
+      }
+    }
+
     .md-slider-track,
     .md-slider-thumb--disabled {
       background: $md-slider-off-color;
@@ -436,7 +463,7 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   }
 
   @if $include-discrete {
-    @include react-md-theme-discrete-slider($primary-color);
+    @include react-md-theme-discrete-slider($primary-color, $light-theme);
   }
 }
 
@@ -457,7 +484,13 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
       &::after {
         border-top-color: $md-slider-on-color;
       }
+    }
   }
+
+  @if $light-theme != $md-light-theme and not $light-theme {
+    .md-slider-discrete-tick {
+      background: get-color('card', true);
+    }
   }
 }
 

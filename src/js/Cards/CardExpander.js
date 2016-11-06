@@ -20,7 +20,7 @@ export default class CardExpander extends Component {
 
   render() {
     const {
-      isExpanded,
+      expanded,
       onExpandClick,
       iconClassName,
       iconChildren,
@@ -33,7 +33,7 @@ export default class CardExpander extends Component {
       <Button
         icon
         className={cn('md-collapser md-collapser--card', {
-          'md-collapser--flipped': isExpanded,
+          'md-collapser--flipped': expanded,
         })}
         onClick={onExpandClick}
         iconClassName={iconClassName}

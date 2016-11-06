@@ -733,13 +733,21 @@ export default class NavigationDrawer extends PureComponent {
     delete props.closeIconClassName;
 
     let { drawerHeader } = this.props;
-    const { desktop, contentActive } = this.state;
+    const { desktop, tablet, contentActive } = this.state;
 
     const drawerType = getField(this.props, this.state, 'drawerType');
     const visible = getField(this.props, this.state, 'visible');
     const mini = isMini(drawerType);
     const temporary = isTemporary(drawerType);
     const persistent = isPersistent(drawerType);
+    const clipped = drawerType === DrawerTypes.CLIPPED;
+    const floating = drawerType === DrawerTypes.FLOATING;
+
+    const offset = (desktop || tablet ? !temporary && visible : visible);
+    const toolbarRelative = cn({
+      'md-toolbar-relative': !toolbarProminent && !toolbarProminentTitle,
+      'md-toolbar-relative--prominent': toolbarProminent || toolbarProminentTitle,
+    });
 
     let nav;
     if (temporary || persistent) {
@@ -767,18 +775,14 @@ export default class NavigationDrawer extends PureComponent {
           key="drawer-header"
           title={drawerTitle}
           actions={visible && nav ? closeButton : null}
-          className="md-divider-border md-divider-border--bottom"
+          className={cn('md-divider-border md-divider-border--bottom', {
+            [toolbarRelative]: clipped || floating,
+          })}
         >
           {drawerHeaderChildren}
         </Toolbar>
       );
     }
-
-    const offset = (desktop ? !temporary && visible : visible) || drawerType === DrawerTypes.FULL_HEIGHT;
-    const toolbarRelative = cn({
-      'md-toolbar-relative': !toolbarProminent && !toolbarProminentTitle,
-      'md-toolbar-relative--prominent': toolbarProminent || toolbarProminentTitle,
-    });
     let miniDrawer;
     if (mini) {
       let miniList;
@@ -804,7 +808,7 @@ export default class NavigationDrawer extends PureComponent {
           singleColor={toolbarSingleColor}
           style={toolbarStyle}
           className={cn({
-            'md-toolbar--over-drawer': drawerType === DrawerTypes.CLIPPED || (mini && !visible),
+            'md-toolbar--over-drawer': clipped || floating || (mini && !visible),
           }, toolbarClassName)}
           title={toolbarTitle}
           titleMenu={toolbarTitleMenu}
@@ -815,8 +819,8 @@ export default class NavigationDrawer extends PureComponent {
             'md-title--drawer-active': contentActive,
             'md-transition--decceleration': offset && visible,
             'md-transition--acceleration': offset && !visible,
-            'md-title--permanent-offset': offset && isPermanent(drawerType),
-            'md-title--persistent-offset': offset && isPersistent(drawerType),
+            'md-title--permanent-offset': !clipped && !floating && offset && isPermanent(drawerType),
+            'md-title--persistent-offset': !clipped && !floating && offset && isPersistent(drawerType),
           }, toolbarTitleClassName)}
           nav={nav}
           actions={toolbarActions}
@@ -858,7 +862,7 @@ export default class NavigationDrawer extends PureComponent {
             'md-transition--decceleration': visible,
             'md-transition--acceleration': !visible,
             'md-drawer-relative': offset,
-            'md-drawer-relative--mini': mini,
+            'md-drawer-relative--mini': mini && (!visible || temporary),
           }, toolbarRelative, contentClassName)}
         >
           {children}

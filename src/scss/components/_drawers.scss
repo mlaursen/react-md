@@ -86,6 +86,10 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
     &--active {
       transform: translate3d(0, 0, 0);
     }
+
+    &--mini {
+      z-index: $md-drawer-z-index - 1;
+    }
   }
 
   .md-list--drawer {
@@ -201,6 +205,10 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
     margin-left: $md-drawer-tablet-width;
   }
 
+  .md-drawer-relative--mini.md-drawer-relative--mini {
+    margin-left: $md-drawer-desktop-mini-width;
+  }
+
   .md-toolbar ~ .md-list--drawer {
     height: calc(100vh - #{$md-toolbar-tablet-height});
   }
@@ -228,10 +236,6 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
     .md-drawer-relative {
       margin-left: $md-drawer-desktop-width;
     }
-  }
-
-  .md-drawer-relative--mini.md-drawer-relative--mini {
-    margin-left: $md-drawer-mobile-mini-width;
   }
 }
 

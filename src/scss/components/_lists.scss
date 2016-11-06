@@ -118,6 +118,10 @@ $md-list-desktop-three-lines-height: 76px;
       margin-bottom: 8px;
       margin-top: 8px;
     }
+
+    .md-list:not(.md-list--menu) {
+      background: inherit;
+    }
   }
 
   .md-list-tile {
@@ -140,6 +144,7 @@ $md-list-desktop-three-lines-height: 76px;
 
   .md-tile-content {
     flex-grow: 1;
+    overflow: hidden;
   }
 
   @if $include-icon {
