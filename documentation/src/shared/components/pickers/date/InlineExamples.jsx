@@ -11,12 +11,12 @@ const InlineExamples = () => (
       label="Select a date"
       inline
       lineDirection="center"
-      className="md-cell md-cell--12"
+      className="md-cell"
     />
     <DatePicker
       id="customFormat"
       label="Custom Format Options"
-      className="md-cell md-cell--12"
+      className="md-cell"
       formatOptions={{
         weekday: 'long',
         era: 'narrow',

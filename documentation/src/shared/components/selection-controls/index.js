@@ -19,6 +19,14 @@ export default [{
   children: <SimpleSwitchExamples />,
 }, {
   title: 'Simple Selection Control Group Example',
+  description: `
+Unfortunately the \`Radio\` selection control must always be controlled because the icon
+changes depending on the \`checked\` state, and by default there is no behind-the-scenes
+prevention of multiple radio components with the same name to be selected.
+
+A helper component \`SelectionControlGroup\` can be used to manage the state of the radio
+group or checkboxes.
+  `,
   code: SimpleSelectionControlGroupExampleRaw,
   children: <SimpleSelectionControlGroupExample />,
 }];

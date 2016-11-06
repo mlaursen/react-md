@@ -2,6 +2,10 @@
 
 .color-changer-dialog {
   width: 320px;
+
+  .md-dialog-content {
+    padding-top: 0;
+  }
 }
 
 .md-slider-container + .md-slider-container {
@@ -18,7 +22,6 @@
 
 .margin-centered {
   @extend %md-block-centered;
-  display: block;
 }
 
 .padding-top-24 {

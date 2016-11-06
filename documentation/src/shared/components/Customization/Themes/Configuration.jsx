@@ -38,6 +38,11 @@ const Configuration = ({
       disabled={saveDisabled}
       onChange={onSaveChange}
     />
+    <i>
+      When the save for future visits checkbox is checked, a key in your local storage will
+      be created containing your theme. If you do not check this checkbox, the default website
+      theme will be applied when you leave this page.
+    </i>
     <SelectField
       id="primary"
       label="Primary color"

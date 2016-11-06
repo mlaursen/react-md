@@ -98,7 +98,6 @@ const SassDoc = ({
   }
 
   if (see && see.length) {
-    console.log('see:', see);
     children.push(<h4 className="md-title" key="see-title">See</h4>);
     children.push(<ReferenceList key="see" references={see} />);
   }

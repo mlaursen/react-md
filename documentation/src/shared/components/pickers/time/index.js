@@ -15,11 +15,15 @@ export default [{
 Time pickers will attempt to follow the correct display mode of the current
 screen size through the media queries. You can also force a display mode if
 you want.
+
+> Forcing a display mode is not enabled by default since it is recommended to
+always allow the orientation to determine the display mode. However it can be
+enabled by setting \`$md-picker-include-forceful-classes: true\`.
 `,
   code: OrientationExamplesRaw,
   children: <OrientationExamples />,
 }, {
-  title: 'Inline and Custom Format Examples',
+  title: 'Inline Example',
   description: 'A Time Picker can also appear inline.',
   code: InlineExamplesRaw,
   children: <InlineExamples />,

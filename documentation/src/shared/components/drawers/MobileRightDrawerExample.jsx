@@ -29,7 +29,7 @@ const expandedActions = [
   <Button key="share" icon>person_add</Button>,
   <Button key="delete" icon>delete</Button>,
   <Button key="download" icon>file_download</Button>,
-  <KebabMenu key="menu" />,
+  <KebabMenu key="menu" id="fake-controls" />,
 ];
 const info = <FontIcon key="info">info</FontIcon>;
 

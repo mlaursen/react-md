@@ -4,6 +4,8 @@ import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 
 export default class ToDo extends PureComponent {
   static propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     todo: PropTypes.shape({
       todo: PropTypes.string.isRequired,
@@ -23,10 +25,19 @@ export default class ToDo extends PureComponent {
   }
 
   render() {
-    const { todo: { todo }, checked } = this.props;
+    const { todo: { todo }, checked, id, name } = this.props;
+
     return (
       <ListItemControl
-        primaryAction={<Checkbox onChange={this._handleChange} checked={checked} className={checked ? 'strikethrough' : ''} />}
+        primaryAction={
+          <Checkbox
+            id={id}
+            name={name}
+            onChange={this._handleChange}
+            checked={checked}
+            className={checked ? 'strikethrough' : ''}
+          />
+        }
         primaryText={todo}
       />
     );

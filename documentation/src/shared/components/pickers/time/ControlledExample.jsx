@@ -1,10 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
-import { connect } from 'react-redux';
-import { addNotification, dismissNotification } from 'actions/notifications';
-
 // or
 // import { TimePicker } from 'react-md/lib/Pickers';
+
+import { connect } from 'react-redux';
+import { addNotification, dismissNotification } from 'actions/notifications';
 
 @connect(() => ({}), { addNotification, dismissNotification })
 export default class ControlledExample extends PureComponent {
@@ -55,6 +55,7 @@ export default class ControlledExample extends PureComponent {
         label="Select your appointment time"
         value={this.state.time}
         onChange={this._selectAppointment}
+        className="md-cell"
       />
     );
   }

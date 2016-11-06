@@ -13,7 +13,7 @@ BaseToolbarExample.defaultProps = {
   title: 'Page title',
   actions: [
     <Button icon key="search">search</Button>,
-    <MenuButton key="menu" icon buttonChildren="more_vert">
+    <MenuButton key="menu" id="woop-woop" icon buttonChildren="more_vert">
       <ListItem primaryText="Settings" />
       <ListItem primaryText="Help" />
       <ListItem primaryText="Feedback" />

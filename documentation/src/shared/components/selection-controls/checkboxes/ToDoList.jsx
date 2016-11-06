@@ -84,6 +84,7 @@ export default class ToDoList extends PureComponent {
           <TextField
             id="createTodo"
             block
+            paddedBlock
             placeholder="What needs to be done?"
             value={value}
             onKeyDown={this._handleKeyDown}

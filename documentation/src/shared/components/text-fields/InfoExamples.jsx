@@ -19,7 +19,7 @@ export default class InfoExamples extends PureComponent {
 
   render() {
     return (
-      <div className="block-text-field-examples">
+      <div className="md-grid">
         <TextField
           id="maxLenTitle"
           label="Title"
@@ -28,6 +28,7 @@ export default class InfoExamples extends PureComponent {
           onChange={this._handleChange}
           helpOnFocus
           helpText="I am help text that appears only on focus"
+          className="md-cell md-cell--top"
         />
         <TextField
           id="homePhone"
@@ -35,6 +36,7 @@ export default class InfoExamples extends PureComponent {
           type="tel"
           helpText="Your home phone number"
           leftIcon={<FontIcon>phone</FontIcon>}
+          className="md-cell md-cell--top"
         />
         <TextField
           id="errorTitle"
@@ -42,7 +44,7 @@ export default class InfoExamples extends PureComponent {
           defaultValue="I am amazing"
           error
           errorText="This is an example of some error message. It should automatically wrap lines as well. It just keeps going and going and going."
-          style={{ maxWidth: 320 }}
+          className="md-cell md-cell--top"
         />
         <TextField
           id="helpMultiline"
@@ -51,6 +53,7 @@ export default class InfoExamples extends PureComponent {
           rows={2}
           maxRows={4}
           helpText="I am a multiline text field that has 2 rows."
+          className="md-cell md-cell--top"
         />
       </div>
     );

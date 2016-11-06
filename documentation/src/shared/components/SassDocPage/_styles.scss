@@ -7,6 +7,10 @@
     background: transparent;
     margin: 0;
   }
+
+  .md-list-unstyled {
+    overflow-x: auto;
+  }
 }
 
 .stop-pre-margins {
@@ -79,6 +83,7 @@
   .md-cell {
     margin-left: 0;
     margin-right: 0;
+    width: 100%;
   }
 }
 

@@ -9,7 +9,7 @@ const MenuButtonExamples = () => (
       label="Toggle Open a Menu"
       raised
       buttonChildren="chat"
-      menuClassName="menu-example"
+      className="menu-example"
     >
       <ListItem primaryText="Item One" />
       <ListItem primaryText="Item Two" />
@@ -20,7 +20,7 @@ const MenuButtonExamples = () => (
       id="vert-menu"
       icon
       buttonChildren="more_vert"
-      menuClassName="menu-example"
+      className="menu-example"
       tooltipLabel="Open some menu"
     >
       <ListItem primaryText="Item One" />

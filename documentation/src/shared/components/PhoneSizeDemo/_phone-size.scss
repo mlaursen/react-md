@@ -112,6 +112,7 @@ $phone-status-bar-height: 24px;
 
 @media #{$md-tablet-media} {
   .phone-size-container {
+    @include react-md-toolbars-mobile;
     @include react-md-toolbars-mobile-portait;
 
     height: $phone-size-height;
@@ -131,9 +132,14 @@ $phone-status-bar-height: 24px;
       }
 
       .md-autocomplete-list {
-        left: -54px;
+        left: -70px;
         position: absolute;
         width: $phone-size-max-width;
+      }
+
+      .md-text-field-container--input-block {
+        padding-bottom: 0;
+        padding-top: 0;
       }
 
       &--inset {
@@ -158,7 +164,7 @@ $phone-status-bar-height: 24px;
     }
 
     .md-drawer--right {
-      height: $phone-size-height;
+      height: $phone-size-height - $phone-status-bar-height;
       max-width: $phone-size-max-width;
       top: $phone-status-bar-height;
     }

@@ -1,8 +1,10 @@
 @import '~normalize.css';
 @import '~react-md-scss';
 
+$md-picker-include-forceful-classes: true;
 $md-primary-color: $md-light-blue-500;
 $md-secondary-color: $md-deep-orange-a-200;
+
 @include react-md-everything;
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
 
@@ -10,8 +12,11 @@ $md-secondary-color: $md-deep-orange-a-200;
   ~ .documentation-tabs {
     left: 0;
   }
+}
 
-  &-offset ~ .documentation-tabs {
+.md-title--permanent-offset,
+.md-title--persistent-offset {
+  ~ .documentation-tabs {
     left: $md-drawer-tablet-width;
   }
 }

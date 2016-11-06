@@ -17,7 +17,7 @@ const titleMenu = (
   />
 );
 
-@connect(({ ui: { media: { tablet, desktop } } }) => ({ tablet, desktop }))
+@connect(({ ui: { drawer: { tablet, desktop } } }) => ({ tablet, desktop }))
 export default class SimpleExample extends PureComponent {
   static propTypes = {
     tablet: PropTypes.bool.isRequired,
@@ -36,7 +36,7 @@ export default class SimpleExample extends PureComponent {
       actions.push(<Button key="favorite" icon>favorite</Button>);
     }
 
-    actions.push(<ToolbarMenu key="menu" />);
+    actions.push(<ToolbarMenu key="menu" id="woop-menu" />);
     return (
       <div className="toolbar-group">
         <Toolbar

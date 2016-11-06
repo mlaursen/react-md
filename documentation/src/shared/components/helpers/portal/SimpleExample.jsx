@@ -52,7 +52,7 @@ export default class SimpleExample extends PureComponent {
 
   render() {
     const { overlay, overlayActive } = this.state;
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
+
     return (
       <div>
         <Button raised label="Show Overlay" onClick={this._showOverlay} ref={this._setButton} />

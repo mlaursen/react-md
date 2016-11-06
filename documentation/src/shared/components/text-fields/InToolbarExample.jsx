@@ -5,9 +5,9 @@ import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
 
 import states from 'constants/states';
-import { randomAvatars } from 'utils/RandomUtils';
+import randomAvatars from 'utils/RandomUtils/randomAvatars';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
-import CloseButton from 'containers/PhoneSizeDemo/CloseButton';
+import CloseButton from 'components/PhoneSizeDemo/ClosePhoneSizeDemoButton';
 import ItemList from './ItemList';
 
 
@@ -49,6 +49,7 @@ export default class InToolbarExample extends PureComponent {
             onChange={this._handleChange}
             onAutocomplete={this._handleChange}
             block
+            className="md-title--toolbar"
           />
         </Toolbar>
         <ItemList />

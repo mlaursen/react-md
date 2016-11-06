@@ -1,12 +1,12 @@
 import React from 'react';
 import Divider from 'react-md/lib/Dividers';
 import TextField from 'react-md/lib/TextFields';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 import Chip from 'react-md/lib/Chips';
 
 import './_email.scss';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
-import { randomAvatars } from 'utils/RandomUtils';
+import randomAvatars from 'utils/RandomUtils/randomAvatars';
 
 const [trevor, alex] = randomAvatars(2);
 
@@ -22,14 +22,34 @@ const FullWidthExamples = () => (
     contentComponent="form"
   >
     <div className="email-chip-container">
-      <TextField placeholder="To" type="email" block id="emailTo" paddedBlock={false} />
+      <TextField
+        block
+        id="emailTo"
+        type="email"
+        placeholder="To"
+      />
       <Chip label="Trevor Hansen" avatar={trevor} />
       <Chip label="Alex Nelson" avatar={alex} />
     </div>
     <Divider className="md-divider--text-field" />
-    <TextField placeholder="Subject" maxLength={80} block id="emailSubject" defaultValue="Plans for the weekend" />
+    <TextField
+      block
+      paddedBlock
+      id="emailSubject"
+      placeholder="Subject"
+      maxLength={80}
+      defaultValue="Plans for the weekend"
+    />
     <Divider className="md-divider--text-field" />
-    <TextField placeholder="Message" rows={4} block maxLength={240} id="emailMessage" defaultValue={defaultMulti} />
+    <TextField
+      block
+      paddedBlock
+      id="emailMessage"
+      placeholder="Message"
+      rows={4}
+      maxLength={240}
+      defaultValue={defaultMulti}
+    />
   </PhoneSizeDemo>
 );
 

@@ -13,7 +13,7 @@ const ToolbarWithTabsExample = () => (
       actionLeft={<Button icon className="menu-btn">menu</Button>}
       title="Page title"
       actionsRight={(
-        <div className="md-toolbar-item margin-left-auto">
+        <div className="md-toolbar-item md-cell--right">
           <Button icon>search</Button>
           <Button icon>more_vert</Button>
         </div>

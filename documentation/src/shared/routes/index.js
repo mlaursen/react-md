@@ -14,13 +14,7 @@ export default {
   },
   getChildRoutes(location, cb) {
     if (__CLIENT__) {
-      require.ensure([
-        './gettingStarted',
-        './customization',
-        './discoverMore',
-        './components',
-          // './NotFouteRoute',
-      ], require => {
+      require.ensure([], require => {
         cb(null, [
           require('./gettingStarted').default,
           require('./customization').default,

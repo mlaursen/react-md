@@ -42,8 +42,8 @@ export default class MobileFabExample extends PureComponent {
     const { toasts } = this.state;
 
     return (
-      <PhoneSizeDemo contentClassName="container">
-        <p className="phone-size-text">
+      <PhoneSizeDemo contentClassName="md-grid">
+        <p className="md-text-container md-cell md-cell--12">
           Click the Floating Action Button to create a lorem ipsum toast.
           When you include a reference to a FAB, it will be moved when a
           toast is created.

@@ -4,23 +4,6 @@ import toPageTitle from 'utils/StringUtils/toPageTitle';
 
 import Markdown from './Markdown';
 
-function getMarkdown(pathname) {
-  let fileName;
-  if (pathname.match(/upgrade-guides/)) {
-    fileName = `./upgrade-guides/${pathname.split('/').reverse()[0]}.md`;
-  } else {
-    fileName = `./${toPageTitle(pathname).replace(/ /g, '')}.md`;
-  }
-
-  if (__CLIENT__) {
-    const context = require.context('readmes', true, /\.md$/);
-
-    return context(fileName);
-  }
-
-  return require(`readmes/${fileName}`);
-}
-
 export default class MarkdownPage extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
@@ -34,12 +17,32 @@ export default class MarkdownPage extends PureComponent {
     super(props);
 
     this.state = { markdown: '' };
+    this._getMarkdown = this._getMarkdown.bind(this);
   }
 
   componentWillMount() {
     const { location: { pathname } } = this.props;
 
-    this.setState({ markdown: getMarkdown(pathname) });
+    this._getMarkdown(pathname);
+  }
+
+  _getMarkdown(pathname) {
+    let fileName;
+    if (pathname.match(/upgrade-guides/)) {
+      fileName = `upgrade-guides/${pathname.split('/').reverse()[0]}`;
+    } else {
+      fileName = toPageTitle(pathname).replace(/ /g, '');
+    }
+
+    fileName = `${fileName}.md`;
+
+    if (__CLIENT__) {
+      require.ensure([], require => {
+        this.setState({ markdown: require(`readmes/${fileName}`) });
+      });
+    }
+
+    this.setState({ markdown: require(`readmes/${fileName}`) });
   }
 
   render() {

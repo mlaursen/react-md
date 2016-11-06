@@ -12,7 +12,7 @@ function getIdFromPath({ location: { pathname } }) {
 
 function getKey(props) {
   const { params: { section, component } } = props;
-  if (section && section.match(/progress|selection-controls/)) {
+  if (section && section.match(/progress|selection-controls|pickers/)) {
     return section;
   }
 
@@ -45,7 +45,7 @@ export default class SassDocPageContainer extends PureComponent {
     if (sassdoc) {
       return;
     } else if (component || section) {
-      if (section && section.match(/progress|selection-controls/)) {
+      if (section && section.match(/progress|selection-controls|pickers/)) {
         fetchSassDoc(section);
       } else {
         fetchSassDoc(component, section);

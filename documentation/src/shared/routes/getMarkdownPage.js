@@ -1,7 +1,9 @@
 export default function getMarkdownPage(state, cb) {
   if (__CLIENT__) {
-    require.ensure([], require => cb(null, require('components/Markdown/MarkdownPage').default));
+    require.ensure(['components/MarkdownPage'], require => {
+      cb(null, require('components/MarkdownPage').default);
+    });
   } else {
-    cb(null, require('components/Markdown/MarkdownPage').default);
+    cb(null, require('components/MarkdownPage').default);
   }
 }

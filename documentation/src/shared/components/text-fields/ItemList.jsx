@@ -4,7 +4,7 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import capitalizeFirst from 'react-md/lib/utils/StringUtils/capitalizeFirst';
 
-import { randomAvatars } from 'utils/RandomUtils';
+import randomAvatars from 'utils/RandomUtils/randomAvatars';
 
 const length = 6;
 const avatars = randomAvatars(length);

@@ -36,7 +36,7 @@ export default class TablesInCards extends PureComponent {
 
   render() {
     const { count, title } = this.state;
-    const kebab = <KebabMenu items={['Something', 'Something Else']} />;
+    const kebab = <KebabMenu id="kebab" items={['Something', 'Something Else']} />;
     const contextualActions = [<Button icon>delete</Button>, kebab];
     const leftChildren = [
       <Button flat primary label="Add" key="add-row" style={{ marginLeft: 8 }} />,

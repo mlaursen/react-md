@@ -29,9 +29,6 @@ const ABOUT_THEME_BUILDER = `
 Select a primary color, a secondary color, the secondary color's hue, and optionally toggle the light theme
 to view a specific theme. When you have selected colors you like, either reference [Using with SASS](#using-with-sass)
 or [pre-compiled themes](#pre-compiled-themes). Not all themes will already be compiled and hosted on \`unpkg\`.
-
-If you check the 'Save for future visits' checkbox, that theme will always be applied when you return to the documentation
-website.
 `;
 
 export default class ThemeBuilder extends PureComponent {
@@ -119,7 +116,6 @@ export default class ThemeBuilder extends PureComponent {
   _handleLightChange(light) {
     const state = Object.assign({}, this.state, { light });
     const saveDisabled = !DIFF_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
-    console.log('saveDisabled:', saveDisabled);
     this.setState({ light, saveDisabled });
   }
 

@@ -23,7 +23,7 @@ export default class PropTypeRow extends PureComponent {
 
     let { description } = this.props.prop;
     if (defaultValue) {
-      description = `default: \`${defaultValue} \n\n${description}`;
+      description = `default: \`${defaultValue}\` \n\n${description}`;
     }
 
     const deprecated = type.indexOf('deprecated') !== -1;

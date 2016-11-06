@@ -4,11 +4,11 @@ import cn from 'classnames';
 import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
 
-import aliConnors from '../../shared/imgs/ali-connors.jpg';
+import './_flexible.scss';
+import aliConnors from './ali-connors.jpg';
 import ToolbarMenu from './ToolbarMenu';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
-import CloseButton from 'containers/PhoneSizeDemo/CloseButton';
-import './_flexible.scss';
+import CloseButton from 'components/PhoneSizeDemo/ClosePhoneSizeDemoButton';
 import AliConnorsContact from './AliConnorsContact';
 
 const STATUS_BAR_HEIGHT = 24;

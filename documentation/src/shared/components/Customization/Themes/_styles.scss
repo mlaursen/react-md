@@ -14,13 +14,16 @@
     position: absolute;
   }
 
-  .md-overlay,
+  .md-toolbar,
   .md-btn--floating {
     z-index: 1;
   }
 
-  .md-drawer,
-  .md-toolbar {
+  .md-overlay {
     z-index: 2;
+  }
+
+  .md-drawer {
+    z-index: 3;
   }
 }
