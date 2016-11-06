@@ -18,7 +18,8 @@
     "lint:scripts": "eslint -c .eslintrc src",
     "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src",
-    "build:umd": "webpack --progress --colors",
+    "css-bundles": "node ./makeBundles.js",
+    "build:umd": "npm run css-bundles && webpack --progress --colors",
     "prebuild": "rimraf lib && rimraf dist && rimraf src/scss/bundles && npm run lint",
     "build": "npm run scripts && npm run build:umd"
   },

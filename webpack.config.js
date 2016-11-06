@@ -66,7 +66,7 @@ devConfig.plugins = devConfig.plugins.concat([
 ]);
 
 const prodConfig = makeConfig();
-prodConfig.devtool = 'source-map';
+prodConfig.devtool = null;
 prodConfig.output.filename = 'react-md.min.js';
 prodConfig.plugins = prodConfig.plugins.concat([
   new webpack.DefinePlugin({
@@ -75,6 +75,7 @@ prodConfig.plugins = prodConfig.plugins.concat([
     },
   }),
   new webpack.optimize.UglifyJsPlugin({
+    sourceMap: false,
     compress: { warnings: false },
     output: { comments: false },
   }),
@@ -82,7 +83,7 @@ prodConfig.plugins = prodConfig.plugins.concat([
 
 const prodSassConfig = {
   entry: entries,
-  devtool: 'source-map',
+  devtool: null,
   output: {
     publicPath: '/',
     path: './dist',
@@ -94,7 +95,7 @@ const prodSassConfig = {
       exclude: /node_modules/,
       loader: ExtractTextPlugin.extract(
         'style',
-        'css!postcss!sass?outputStyle=compressed&sourceMap'
+        'css!postcss!sass?outputStyle=compressed'
       ),
     }],
   },
@@ -104,6 +105,7 @@ const prodSassConfig = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin('react-md.[name].min.css'),
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: false,
       compress: { warnings: false },
       output: { comments: false },
     }),
