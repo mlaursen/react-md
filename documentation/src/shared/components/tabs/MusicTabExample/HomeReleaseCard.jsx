@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import KebabMenu from './KebabMenu';
 
-import AlbumArtwork from './AlbumArtwork';
+import AlbumArtwork from 'components/Spotify/AlbumArtwork';
 
 const HomeReleaseCard = ({ release }) => {
   const { artistName, images, albumId, albumName, albumPrice } = release;
@@ -12,7 +12,7 @@ const HomeReleaseCard = ({ release }) => {
       <AlbumArtwork images={images} />
       <section className="artist-grid">
         <h5 className="artist-name">{artistName}</h5>
-        <KebabMenu className="md-cell--right" menuId={`${albumId}Menu`} />
+        <KebabMenu className="md-cell--right" id={albumId} />
       </section>
       <footer className="album-price-grid">
         <h6 className="text-ellipsis">{albumName}</h6>

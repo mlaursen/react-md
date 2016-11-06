@@ -1,9 +1,11 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import { sort, flatten } from 'utils/ListUtils';
-import spotifyApi from 'utils/spotifyApi';
+import fetchSpotify from 'actions/fetchSpotify';
+import sort from 'utils/ListUtils/sort';
+import flatten from 'utils/ListUtils/flatten';
+
+import AlbumCard from 'components/Spotify/AlbumCard';
 import CardGrid from './CardGrid';
-import AlbumCard from './AlbumCard';
 
 const today = new Date();
 const twoMonthsAgo = new Date(new Date().setMonth(today.getMonth() - 2)).getTime();
@@ -28,8 +30,8 @@ export default class NewReleases extends PureComponent {
   }
 
   _getArtistAlbums(artist) {
-    return spotifyApi.getArtistAlbums(artist.id)
-      .then(albums => Promise.all(albums.slice(0, 5).map(album => spotifyApi.getAlbum(album.id))));
+    return fetchSpotify.getArtistAlbums(artist.id)
+      .then(albums => Promise.all(albums.slice(0, 5).map(album => fetchSpotify.getAlbum(album.id))));
   }
 
   _getNewReleases() {

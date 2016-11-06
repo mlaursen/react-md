@@ -1,5 +1,9 @@
 @import '~react-md-scss';
 
+.md-card.md-grid {
+  display: flex;
+}
+
 .artist-grid {
   align-items: center;
   display: flex;

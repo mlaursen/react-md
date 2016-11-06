@@ -7,7 +7,7 @@ import TopAlbums from '!!raw!./TopAlbums';
 import NewReleases from '!!raw!./NewReleases';
 import TopSongs from '!!raw!./TopSongs';
 import CardGrid from '!!raw!./CardGrid';
-import AlbumCard from '!!raw!./AlbumCard';
+import AlbumCard from '!!raw!components/Spotify/AlbumCard';
 import styles from '!!raw!./_styles.scss';
 
 export default `

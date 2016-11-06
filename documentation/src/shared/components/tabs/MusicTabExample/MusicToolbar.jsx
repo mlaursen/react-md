@@ -1,7 +1,8 @@
 import React from 'react';
 import Toolbar from 'react-md/lib/Toolbars';
-import CloseButton from 'containers/PhoneSizeDemo/CloseButton';
 import Button from 'react-md/lib/Buttons/Button';
+
+import CloseButton from 'components/PhoneSizeDemo/ClosePhoneSizeDemoButton';
 
 const MusicToolbar = () => (
   <Toolbar

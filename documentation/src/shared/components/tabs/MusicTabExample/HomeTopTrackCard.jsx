@@ -3,7 +3,7 @@ import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import MediaOverlay from 'react-md/lib/Media/MediaOverlay';
 
-import AlbumArtwork from './AlbumArtwork';
+import AlbumArtwork from 'components/Spotify/AlbumArtwork';
 
 const HomeTopTrackCard = ({ track }) => {
   const { trackName, images } = track;

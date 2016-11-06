@@ -1,12 +1,13 @@
 import React, { PureComponent, PropTypes } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import CardText from 'react-md/lib/Cards/CardText';
-import KebabMenu from './KebabMenu';
 
-import spotifyApi from 'utils/spotifyApi';
-import { sort } from 'utils/ListUtils';
-import AlbumArtwork from './AlbumArtwork';
+import fetchSpotify from 'actions/fetchSpotify';
+import sort from 'utils/ListUtils/sort';
+
+import AlbumArtwork from 'components/Spotify/AlbumArtwork';
 import CardGrid from './CardGrid';
+import KebabMenu from './KebabMenu';
 
 export default class TopSongs extends PureComponent {
   static propTypes = {
@@ -31,7 +32,7 @@ export default class TopSongs extends PureComponent {
   }
 
   _fetchSongs(artists) {
-    Promise.all(artists.map(({ id: artistId, name: artistName }) => spotifyApi.getArtistTopTracks(artistId, 1)
+    Promise.all(artists.map(({ id: artistId, name: artistName }) => fetchSpotify.getArtistTopTracks(artistId, 1)
       .then(song => ({
         artistId,
         artistName,
@@ -53,7 +54,7 @@ export default class TopSongs extends PureComponent {
             <h4 className="text-ellipsis no-margin md-font-medium">{i + 1}. {songName}</h4>
             <h6 className="text-ellipsis no-margin md-color--secondary-text">{artistName}</h6>
           </div>
-          <KebabMenu menuId={`${songId}Menu`} menuClassName="md-cell--right song-kebab" />
+          <KebabMenu id={songId} menuClassName="md-cell--right song-kebab" />
           <h5 className="md-text-right md-color--primary no-margin song-price md-font-medium">$1.29</h5>
         </CardText>
       </Card>

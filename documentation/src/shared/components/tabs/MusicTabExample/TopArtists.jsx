@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import CardGrid from './CardGrid';
 import ArtistCard from './ArtistCard';
+import CardGrid from './CardGrid';
 
 const TopArtists = ({ artists }) => (
   <CardGrid>

@@ -6,9 +6,10 @@ import CardTitle from 'react-md/lib/Cards/CardTitle';
 
 import './_styles.scss';
 
-import { sort } from 'utils/ListUtils';
-import spotifyApi from 'utils/spotifyApi';
+import fetchSpotify from 'actions/fetchSpotify';
+import sort from 'utils/ListUtils/sort';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
+
 import More from './More';
 import MusicToolbar from './MusicToolbar';
 import HomeReleaseCard from './HomeReleaseCard';
@@ -54,8 +55,8 @@ export default class MusicTabExample extends PureComponent {
   }
 
   _fetchBTAMRelated() {
-    return spotifyApi.search('between the buried and me', 1)
-      .then(btbam => spotifyApi.getRelatedArtists(btbam.id)
+    return fetchSpotify.search('between the buried and me', 1)
+      .then(btbam => fetchSpotify.getRelatedArtists(btbam.id)
         .then(artists => sort([btbam].concat(artists), 'popularity'))
       );
   }
@@ -68,7 +69,7 @@ export default class MusicTabExample extends PureComponent {
   _fetchAlbumFromTop3(artists) {
     const prices = ['$9.99', '$5.99', '$9.49'];
 
-    return Promise.all(artists.slice(0, 3).map(({ id }) => spotifyApi.getArtistAlbums(id, 1)))
+    return Promise.all(artists.slice(0, 3).map(({ id }) => fetchSpotify.getArtistAlbums(id, 1)))
       .then(albums => albums.map((album, i) => ({
         artistId: artists[i].id,
         artistName: artists[i].name,
@@ -80,7 +81,7 @@ export default class MusicTabExample extends PureComponent {
   }
 
   _fetchTrackFromTop3(artists) {
-    return Promise.all(artists.slice(0, 3).map(({ id }) => spotifyApi.getArtistTopTracks(id, 1)))
+    return Promise.all(artists.slice(0, 3).map(({ id }) => fetchSpotify.getArtistTopTracks(id, 1)))
       .then(tracks => tracks.map((track, i) => ({
         artistId: artists[i].id,
         trackId: track.id,

@@ -1,4 +1,4 @@
-@import '~sass-utils';
+@import '~react-md-scss';
 
 .inline-rel-container {
   display: inline-block;
@@ -7,10 +7,10 @@
 }
 
 .tooltip-button-container {
-  @extend %centered;
-
   align-items: center;
   display: flex;
   justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
   width: 220px;
 }
