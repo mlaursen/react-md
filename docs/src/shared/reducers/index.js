@@ -1,25 +1,25 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 
-import documentation from './documentation';
+import foodInspections from './foodInspections';
+import docgens from './docgens';
+import sassdocs from './sassdocs';
 import drawer from './drawer';
-import media from './media';
-import overlay from './overlay';
-import quickNav from './quickNav';
-import quickSearch from './quickSearch';
-import snackbar from './snackbar';
-import theme from './theme';
+import quickNavigation from './quickNavigation';
+import notifications from './notifications';
 
 export default combineReducers({
-  documentation,
-  quickSearch,
-  routing,
+  entities: combineReducers({
+    foodInspections,
+  }),
+  notifications,
   ui: combineReducers({
     drawer,
-    media,
-    overlay,
-    quickNav,
-    snackbar,
-    theme,
+    quickNavigation,
   }),
+  documentation: combineReducers({
+    docgens,
+    sassdocs,
+  }),
+  routing,
 });

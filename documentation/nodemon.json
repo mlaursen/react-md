@@ -1,9 +1,0 @@
-{
-  "env": {
-    "NODE_ENV": "development"
-  },
-  "ignore": [
-    "dist",
-    "src/shared"
-  ]
-}

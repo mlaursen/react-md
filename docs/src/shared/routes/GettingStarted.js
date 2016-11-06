@@ -1,3 +1,5 @@
+import getMarkdownPage from './getMarkdownPage';
+
 export default {
   path: 'getting-started',
   indexRoute: {
@@ -6,20 +8,12 @@ export default {
   childRoutes: [{
     path: 'prerequisites',
     getComponent(nextState, cb) {
-      if (__CLIENT__) {
-        require.ensure([], require => cb(null, require('containers/MarkdownPage').default));
-      } else {
-        cb(null, require('containers/MarkdownPage').default);
-      }
+      getMarkdownPage(nextState, cb);
     },
   }, {
     path: 'installation',
     getComponent(nextState, cb) {
-      if (__CLIENT__) {
-        require.ensure([], require => cb(null, require('containers/MarkdownPage').default));
-      } else {
-        cb(null, require('containers/MarkdownPage').default);
-      }
+      getMarkdownPage(nextState, cb);
     },
   }],
 };

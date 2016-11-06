@@ -1,102 +1,89 @@
 import {
-  LOCATION_CHANGE,
-  SET_TOOLBAR_INACTIVE,
+  SET_DRAWER_TOOLBAR_BOX_SHADOW,
+  UPDATE_MEDIA,
+  SET_CUSTOM_THEME,
   UPDATE_DRAWER_TYPE,
-  SET_MOBILE_SEARCH,
-  MEDIA_CHANGE,
+  LOCATION_CHANGE,
 } from 'constants/ActionTypes';
-import { getPageTitle } from 'utils/StringUtils';
-import { isMobile, isTablet, isDesktop, getDrawerType } from 'utils/MediaUtils';
+import { CUSTOM_THEME_CLASS_NAME } from 'constants/application';
+import toPageTitle from 'utils/StringUtils/toPageTitle';
+import Drawer from 'react-md/lib/Drawers';
 
-import NavigationDrawer from 'react-md/lib/NavigationDrawers';
-
-
-function updateMediaThemeable(state, { desktop }) {
-  if (state.themeable === desktop) {
-    return state;
-  }
-
-  return Object.assign({}, state, { themeable: desktop });
+function isBoxShadowVisible(pathname) {
+  return !pathname || pathname !== '/';
 }
 
-function handleLocationChange(state, pathname) {
-  const toolbarTitle = getPageTitle(pathname);
-  const isHome = pathname === '/';
-
-  const { PERSISTENT, PERSISTENT_MINI } = NavigationDrawer.DrawerTypes;
-  const themeable = !isHome && !isMobile() && !isTablet()
-    && [PERSISTENT, PERSISTENT_MINI].indexOf(state.desktopDrawerType) === -1;
-
-  if (state.toolbarTitle === toolbarTitle && state.themeable === themeable && state.inactive === isHome) {
+function setDrawerToolbarBoxShadow(state, visibleBoxShadow) {
+  if (state.visibleBoxShadow === visibleBoxShadow) {
     return state;
   }
 
-  return Object.assign({}, state, { toolbarTitle, themeable, inactive: isHome });
+  return Object.assign({}, state, { visibleBoxShadow });
 }
 
-function updateToolbarInactivity(state, { inactive }) {
-  if (state.inactive === inactive) {
+function handleLocationChange(state, { payload: { pathname } }) {
+  const visibleBoxShadow = isBoxShadowVisible(pathname);
+  const toolbarTitle = toPageTitle(pathname);
+  const toolbarProminent = !pathname.match(/minimizing/) && !!pathname.match(/components|customization/);
+
+  if (state.visibleBoxShadow === visibleBoxShadow && state.toolbarTitle === toolbarTitle && state.toolbarProminent === toolbarProminent) {
     return state;
   }
 
-  return Object.assign({}, state, { inactive });
+  return Object.assign({}, state, { toolbarTitle, visibleBoxShadow, toolbarProminent });
 }
 
-function updateDrawerType(state, drawerType) {
-  if (drawerType === null) {
-    return Object.assign({}, state, {
-      tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
-      desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
-      themeable: isDesktop() || isTablet(),
-      includeHeader: true,
-    });
-  } else if (state.tabletDrawerType === drawerType && state.desktopDrawerType === drawerType) {
-    return state;
+function setCustomTheme(state, { enabled }) {
+  const body = (document.body || document.documentElement);
+  if (!enabled) {
+    body.classList.remove(CUSTOM_THEME_CLASS_NAME);
+  } else if (enabled) {
+    body.classList.add(CUSTOM_THEME_CLASS_NAME);
   }
 
-  const { FULL_HEIGHT, CLIPPED, FLOATING } = NavigationDrawer.DrawerType;
-  const themeable = [FULL_HEIGHT, CLIPPED, FLOATING].indexOf(drawerType) !== -1;
-  const includeHeader = [CLIPPED, FLOATING].indexOf(drawerType) === -1;
-
-  return Object.assign({}, state, {
-    tabletDrawerType: drawerType,
-    desktopDrawerType: drawerType,
-    themeable,
-    includeHeader,
-  });
+  return state;
 }
 
-function setMobileSearch(state, mobileSearch) {
-  if (state.mobileSearch === mobileSearch) {
+function updateDrawerType(state, { drawerType }) {
+  if (state.customDrawerType === drawerType) {
     return state;
   }
 
-  return Object.assign({}, state, { mobileSearch });
+  return Object.assign({}, state, { customDrawerType: drawerType });
+}
+
+
+const pathname = (window && window.location && window.location.pathname) || '';
+const { mobile, tablet, desktop } = Drawer.getCurrentMedia(Drawer.defaultProps);
+let defaultMedia = 'mobile';
+if (desktop) {
+  defaultMedia = 'desktop';
+} else if (tablet) {
+  defaultMedia = 'tablet';
 }
 
 const initialState = {
-  initialDrawerType: getDrawerType(isTablet(), isDesktop()),
-  toolbarTitle: '',
-  inactive: true,
-  tabletDrawerType: NavigationDrawer.defaultProps.tabletDrawerType,
-  desktopDrawerType: NavigationDrawer.defaultProps.desktopDrawerType,
-  mobileSearch: false,
-  includeHeader: true,
-  themeable: isDesktop() || isTablet(),
+  mobile,
+  tablet,
+  desktop,
+  defaultMedia,
+  toolbarTitle: toPageTitle(pathname),
+  toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
+  visibleBoxShadow: isBoxShadowVisible(pathname),
 };
 
 export default function drawer(state = initialState, action) {
   switch (action.type) {
-    case MEDIA_CHANGE:
-      return updateMediaThemeable(state, action.media);
+    case SET_DRAWER_TOOLBAR_BOX_SHADOW:
+      return setDrawerToolbarBoxShadow(state, action.visible);
+    case UPDATE_MEDIA:
+      return Object.assign({}, state, { ...action.media });
     case LOCATION_CHANGE:
-      return handleLocationChange(state, action.payload.pathname);
-    case SET_TOOLBAR_INACTIVE:
-      return updateToolbarInactivity(state, action);
+      return handleLocationChange(state, action);
+    case SET_CUSTOM_THEME:
+      return setCustomTheme(state, action);
     case UPDATE_DRAWER_TYPE:
-      return updateDrawerType(state, action.drawerType);
-    case SET_MOBILE_SEARCH:
-      return setMobileSearch(state, action.mobileSearch);
+      return updateDrawerType(state, action);
     default:
       return state;
   }

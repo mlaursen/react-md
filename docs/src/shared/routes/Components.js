@@ -1,10 +1,10 @@
-import { FIRST_COMPONENT_LINK } from 'utils/RouteUtils';
+import getSassDocPage from './getSassDocPage';
 
 export default {
   path: 'components',
   indexRoute: {
     onEnter(state, replace) {
-      replace(FIRST_COMPONENT_LINK);
+      replace('/components/autocompletes');
     },
   },
   childRoutes: [{
@@ -18,25 +18,29 @@ export default {
       replace('/components/drawers');
     },
   }, {
-    path: ':component',
+    path: '(:section/):component',
     getComponent(state, cb) {
-      if (__CLIENT__) {
-        require.ensure([], require => {
-          cb(null, require('containers/DocPage').default);
-        });
-      } else {
-        cb(null, require('containers/DocPage').default);
-      }
-    },
-  }, {
-    path: ':section/:component',
-    getComponent(state, cb) {
-      if (__CLIENT__) {
-        require.ensure([], require => {
-          cb(null, require('containers/DocPage').default);
-        });
-      } else {
-        cb(null, require('containers/DocPage').default);
+      switch (state.location.query.tab) {
+        case '1':
+          if (__CLIENT__) {
+            require.ensure(['containers/PropTypesPage'], require => {
+              cb(null, require('containers/PropTypesPage').default);
+            });
+          } else {
+            cb(null, require('containers/PropTypesPage').default);
+          }
+          break;
+        case '2':
+          getSassDocPage(state, cb);
+          break;
+        default:
+          if (__CLIENT__) {
+            require.ensure(['components/ExamplesPage'], require => {
+              cb(null, require('components/ExamplesPage').default);
+            });
+          } else {
+            cb(null, require('components/ExamplesPage').default);
+          }
       }
     },
   }],
