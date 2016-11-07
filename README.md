@@ -124,6 +124,7 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
     });
 
     ReactDOM.render(React.createElement(MyAwesomeComponent), document.getElementById('app'));
+    </script>
   </body>
 </html>
 ```
