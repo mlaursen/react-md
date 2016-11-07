@@ -100,8 +100,8 @@ describe('Toolbar', () => {
     const toolbar = renderIntoDocument(<Toolbar {...props} />);
     const select = findRenderedComponentWithType(toolbar, SelectField);
     expect(select.props.className).toContain('woop');
-    expect(select.props.className).toContain('md-select-field--toolbar');
-    expect(select.props.className).toContain('md-title--toolbar');
+    expect(select.props.inputClassName).toContain('md-select-field--toolbar');
+    expect(select.props.inputClassName).toContain('md-title--toolbar');
     expect(select.props.block).toBe(true);
     expect(select.props.paddedBlock).toBe(false);
     expect(select.props.position).toBe('tl');

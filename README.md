@@ -93,12 +93,12 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 
 ```html
 <!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
-<script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.min.css">
+<script src="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.min.js"></script>
 
 <!-- Development Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.css">
-<script src="https://unpkg.com/react-md/dist/react-md.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.css">
+<script src="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.js"></script>
 ```
 
 
@@ -108,25 +108,22 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.deep-purple-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.7.7/babel.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.0.0-alpha.2/dist/react-md.min.js"></script>
     <script>
-const input = `
-const { Button } = ReactMD;
-const MyAwesomeComponent = () => (
-  <Button raised label="Hello, World!" />
-);
+    var MyAwesomeComponent = React.createClass({
+      render: function()  {
+        return React.createElement(ReactMD.Button, { label: 'Hello, World!', flat: true });
+      }
+    });
 
-React.render(<MyAwesomeComponent />, document.getElementById('app'));`
-
-eval(Babel.transform(input, { presets: ['es2015', 'react', 'stage-0'] }).code);
-    </script>
+    ReactDOM.render(React.createElement(MyAwesomeComponent), document.getElementById('app'));
   </body>
 </html>
 ```
