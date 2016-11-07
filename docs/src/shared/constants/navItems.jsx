@@ -215,7 +215,7 @@ export default function getNavItems(pathname = '') {
   return routes.map(route => updateActiveRoutes(route, pathname));
 }
 
-export const FIRST_ROUTE = '/components/autocompletes';
+export const FIRST_ROUTE = 'components/autocompletes';
 
 
 function extractRealRoutes(route) {

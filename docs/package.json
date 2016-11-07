@@ -2,12 +2,17 @@
   "name": "react-md-documentation",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server/index.js",
   "scripts": {
-    "dev": "nodemon src/server/index.js"
+    "dev": "nodemon src/server/index.js",
+    "prebuild": "rimraf dist",
+    "build": "webpack --config webpack-prod.config.js --progress --colors",
+    "start": "node dist/server/server.js"
   },
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.18.0",
@@ -16,6 +21,7 @@
     "bluebird": "^3.4.6",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
+    "ejs": "^2.5.2",
     "express": "^4.14.0",
     "fuse.js": "^2.5.0",
     "highlight.js": "^9.7.0",
@@ -34,6 +40,7 @@
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
     "smooth-scroll": "cferdinandi/smooth-scroll",
+    "vhost": "^3.0.2",
     "webfontloader": "^1.6.26"
   },
   "devDependencies": {
@@ -51,11 +58,13 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
     "express-history-api-fallback": "^2.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "html-webpack-harddisk-plugin": "^0.0.2",
     "html-webpack-plugin": "^2.24.0",
     "image-webpack-loader": "^3.0.0",
     "json-loader": "^0.5.4",
+    "node-noop": "^1.0.0",
     "node-sass": "^3.10.1",
     "nodemon": "^1.11.0",
     "postcss-loader": "^1.0.0",
@@ -63,11 +72,13 @@
     "react-addons-perf": "^15.3.2",
     "react-hot-loader": "1.3.0",
     "redux-thunk": "^2.1.0",
+    "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.0"
+    "webpack-hot-middleware": "^2.13.0",
+    "webpack-node-externals": "^1.5.4"
   }
 }

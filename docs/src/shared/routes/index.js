@@ -5,7 +5,7 @@ export default {
   component: App,
   getIndexRoute(location, cb) {
     if (__CLIENT__) {
-      require.ensure(['containers/Home'], require => {
+      require.ensure([], require => {
         cb(null, { component: require('containers/Home').default });
       });
     } else {

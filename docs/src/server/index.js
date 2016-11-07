@@ -2,9 +2,11 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const logger = require('morgan');
-const fetch = require('isomorphic-fetch');
+const vhost = require('vhost');
+const { host, port } = require('../../serverConfig.json');
 
 const theme = require('./theme');
+const proxy = require('./proxy');
 
 const app = express();
 
@@ -14,22 +16,9 @@ app.set('views', clientRoot);
 app.use(compression());
 app.use(logger(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
-app.get('/themes/*.css', theme);
+app.get('/themes/*.css', vhost(host, theme));
+app.get('/proxy', vhost(host, proxy));
 
-app.get('/proxy', (req, res) => {
-  const { url } = req.query;
-  if (!url) {
-    res.sendStatus(400);
-  } else {
-    fetch(url).then(response => response.json()).then(data => {
-      res.json(data);
-    }).catch(error => {
-      res.sendStatus(error.status || 500);
-    });
-  }
-});
-
-let port = 8080;
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -58,13 +47,12 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 } else {
-  port = 80;
-
   const client = express.static(clientRoot, {
     maxAge: 3156000,
   });
 
-  app.use(client);
+  app.use(vhost(host, client));
+  app.use(vhost(host, require('./reactMD').default));
 }
 
 app.listen(port, err => {

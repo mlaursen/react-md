@@ -10,8 +10,7 @@ good ol' 4.x or something.
 
 ```bash
 $ yarn # or npm install
+$ cp serverConfig.json.example serverConfig.json
 $ npm run dev   # development
 $ npm start     # production
 ```
-
-

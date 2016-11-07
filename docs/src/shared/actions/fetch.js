@@ -12,8 +12,15 @@ import {
 import { addNotification } from 'actions/notifications';
 import reduceKey from 'utils/StateUtils/reduceKey';
 
-const API_URL = 'http://localhost:3000/api';
-const BASE_URL = 'http://localhost:8080';
+const { port, host } = require('../../../serverConfig.json');
+const {
+  port: apiPort,
+  host: apiHost,
+  path: apiPath,
+} = require('../../../../api/serverConfig.json');
+
+const API_URL = `http://${apiHost}:${apiPort}${apiPath}`;
+const BASE_URL = `http://${host}:${port}`;
 const PROXY_URL = `${BASE_URL}/proxy?url=`;
 
 /**
@@ -29,7 +36,7 @@ export default function fetch(endpoint, options) {
     if (global.fetch) {
       resolve(global.fetch);
     } else if (__CLIENT__) {
-      require.ensure(['isomorphic-fetch'], require => {
+      require.ensure([], require => {
         resolve(require('isomorphic-fetch'));
       });
     } else {

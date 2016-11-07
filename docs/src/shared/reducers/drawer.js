@@ -53,7 +53,7 @@ function updateDrawerType(state, { drawerType }) {
 }
 
 
-const pathname = (window && window.location && window.location.pathname) || '';
+const pathname = __CLIENT__ ? window.location.pathname : '';
 const { mobile, tablet, desktop } = Drawer.getCurrentMedia(Drawer.defaultProps);
 let defaultMedia = 'mobile';
 if (desktop) {

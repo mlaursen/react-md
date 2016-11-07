@@ -35,14 +35,14 @@ export default class PhoneSizeDemoContainer extends PureComponent {
   _resolveDemoComponent(props) {
     if (props.mobile) {
       if (__CLIENT__) {
-        require.ensure(['./PhoneDemo'], require => {
+        require.ensure([], require => {
           this.setState({ demoComponent: require('./PhoneDemo').default, statusBar: null });
         });
       } else {
         this.setState({ demoComponent: require('./PhoneDemo').default, statusBar: null });
       }
     } else if (__CLIENT__) {
-      require.ensure(['components/PhoneSizeDemo/StatusBar'], require => {
+      require.ensure([], require => {
         this.setState({ demoComponent: PhoneSizeDemo, statusBar: require('components/PhoneSizeDemo/StatusBar').default });
       });
     } else {

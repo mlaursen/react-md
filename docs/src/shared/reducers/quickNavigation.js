@@ -1,6 +1,13 @@
 import { LOCATION_CHANGE } from 'constants/ActionTypes';
 import { quickNavRoutes } from 'constants/navItems';
 
+export const DEFAULT_STATE = {
+  previousTo: null,
+  previousName: null,
+  nextTo: null,
+  nextName: null,
+};
+
 export function handleLocationChange(state, { pathname }) {
   let i = 0;
   quickNavRoutes.some((r, index) => {
@@ -22,13 +29,8 @@ export function handleLocationChange(state, { pathname }) {
   };
 }
 
-const pathname = (window && window.location && window.location.pathname) || '';
-const initialState = handleLocationChange({
-  previousTo: null,
-  previousName: null,
-  nextTo: null,
-  nextName: null,
-}, { pathname });
+const pathname = __CLIENT__ ? window.location.pathname : '';
+const initialState = handleLocationChange(DEFAULT_STATE, { pathname });
 
 export default function quickNavigation(state = initialState, action) {
   switch (action.type) {

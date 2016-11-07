@@ -23,7 +23,7 @@ export default {
       switch (state.location.query.tab) {
         case '1':
           if (__CLIENT__) {
-            require.ensure(['containers/PropTypesPage'], require => {
+            require.ensure([], require => {
               cb(null, require('containers/PropTypesPage').default);
             });
           } else {
@@ -35,7 +35,7 @@ export default {
           break;
         default:
           if (__CLIENT__) {
-            require.ensure(['components/ExamplesPage'], require => {
+            require.ensure([], require => {
               cb(null, require('components/ExamplesPage').default);
             });
           } else {

@@ -10,7 +10,7 @@ const indexRoute = {
     }
 
     if (__CLIENT__) {
-      require.ensure(['components/Customization/Colors'], require => {
+      require.ensure([], require => {
         cb(null, require('components/Customization/Colors').default);
       });
     } else {
@@ -26,7 +26,7 @@ const childRoutes = [
       switch (state.location.query.tab) {
         case '1':
           if (__CLIENT__) {
-            require.ensure(['containers/ThemeBuilder'], require => {
+            require.ensure([], require => {
               cb(null, require('containers/ThemeBuilder').default);
             });
           } else {
@@ -58,7 +58,7 @@ const childRoutes = [
       }
 
       if (__CLIENT__) {
-        require.ensure(['components/Customization/Grids'], require => {
+        require.ensure([], require => {
           cb(null, require('components/Customization/Grids').default);
         });
       } else {
@@ -74,7 +74,7 @@ const childRoutes = [
       }
 
       if (__CLIENT__) {
-        require.ensure(['components/Customization/Typography'], require => {
+        require.ensure([], require => {
           cb(null, require('components/Customization/Typography').default);
         });
       } else {
