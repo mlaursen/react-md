@@ -10,7 +10,6 @@ import Button, {
 import Card, {
   CardActions,
   CardActionOverlay,
-  CardHeader,
   CardMedia,
   CardText,
   CardTitle,
@@ -21,6 +20,7 @@ import DataTable, {
   TableBody,
   TableRow,
   TableColumn,
+  TableCardHeader,
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
@@ -66,6 +66,81 @@ import TextField from './TextFields';
 import Toolbar from './Toolbars';
 import injectTooltip from './Tooltips';
 
+// Exposes for UMD -> ReactMD.Autocomplete
+export { Autocomplete };
+export { Avatar };
+export { BottomNavigation };
+export { Button };
+export { FlatButton };
+export { RaisedButton };
+export { FloatingButton };
+export { IconButton };
+export { Card };
+export { CardTitle };
+export { CardMedia };
+export { CardActions };
+export { CardText };
+export { CardActionOverlay };
+export { Chip };
+export { DataTable };
+export { TableHeader };
+export { TableBody };
+export { TableRow };
+export { TableColumn };
+export { TableCardHeader };
+export { EditDialogColumn };
+export { TablePagination };
+export { SelectFieldColumn };
+export { Dialog };
+export { Divider };
+export { Drawer };
+export { ExpansionList };
+export { ExpansionPanel };
+export { SpeedDial };
+export { FileInput };
+export { FileUpload };
+export { FontIcon };
+export { AccessibleFakeButton };
+export { AccessibleFakeInkedButton };
+export { Collapse };
+export { IconSeparator };
+export { FocusContainer };
+export { Portal };
+export { injectInk };
+export { List };
+export { ListItem };
+export { ListItemControl };
+export { Media };
+export { MediaOverlay };
+export { Menu };
+export { NavigationDrawer };
+export { CloseButton };
+export { Paper };
+export { DatePicker };
+export { TimePicker };
+export { CircularProgress };
+export { LinearProgress };
+export { SelectField };
+export { SelectionControl };
+export { SelectionControlGroup };
+export { Checkbox };
+export { RadioGroup };
+export { Radio };
+export { Switch };
+export { Subheader };
+export { Slider };
+export { Sidebar };
+export { Snackbar };
+export { TabsContainer };
+export { Tabs };
+export { Tab };
+export { MenuTab };
+export { TabPanel };
+export { TextField };
+export { Toolbar };
+export { injectTooltip };
+
+// Exposes for ES6 modules
 export default {
   Autocomplete,
   Avatar,
@@ -78,7 +153,6 @@ export default {
   IconButton,
 
   Card,
-  CardHeader,
   CardTitle,
   CardMedia,
   CardActions,
@@ -92,6 +166,7 @@ export default {
   TableBody,
   TableRow,
   TableColumn,
+  TableCardHeader,
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
