@@ -14,17 +14,19 @@ export default class NewReleases extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
     artists: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onLoad: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = { releases: [] };
+    this._fetching = false;
     this._getNewReleases = this._getNewReleases.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.active && !this.state.releases.length) {
+    if (!this._fetching && nextProps.active && !this.state.releases.length) {
       this._getNewReleases();
     }
   }
@@ -35,13 +37,14 @@ export default class NewReleases extends PureComponent {
   }
 
   _getNewReleases() {
+    this._fetching = true;
     Promise.all(this.props.artists.slice(0, 5).map(this._getArtistAlbums))
       .then(albums => {
         const releases = sort(
           flatten(albums).filter(({ release_date: releaseDate }) => new Date(releaseDate).getTime() > twoMonthsAgo),
           'release_date'
         );
-        this.setState({ releases });
+        this.setState({ releases }, this.props.onLoad);
       });
   }
 

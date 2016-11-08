@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
+import Button from 'react-md/lib/Buttons/Button';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
+import Dialog from 'react-md/lib/Dialogs';
 
 import './_styles.scss';
 
 import fetchSpotify from 'actions/fetchSpotify';
 import sort from 'utils/ListUtils/sort';
-import PhoneSizeDemo from 'containers/PhoneSizeDemo';
 
 import More from './More';
 import MusicToolbar from './MusicToolbar';
@@ -28,18 +29,31 @@ export default class MusicTabExample extends PureComponent {
       newReleases: [],
       topTracks: [],
       artists: [],
+      isOpen: false,
     };
 
+    this._setTabsContainer = this._setTabsContainer.bind(this);
+    this._openStore = this._openStore.bind(this);
+    this._closeStore = this._closeStore.bind(this);
     this._handleTabChange = this._handleTabChange.bind(this);
     this._showTopSongs = this._showTopSongs.bind(this);
     this._showNewReleases = this._showNewReleases.bind(this);
     this._fetchTopAlbumTopTracksFromTop3 = this._fetchTopAlbumTopTracksFromTop3.bind(this);
+    this._forceHeightCalculation = this._forceHeightCalculation.bind(this);
   }
 
   componentWillMount() {
     this._fetchBTAMRelated().then(this._fetchTopAlbumTopTracksFromTop3).then(({ albums, tracks, artists }) => {
       this.setState({ newReleases: albums, topTracks: tracks, artists });
     });
+  }
+
+  _openStore() {
+    this.setState({ isOpen: true });
+  }
+
+  _closeStore() {
+    this.setState({ isOpen: false });
   }
 
   _handleTabChange(activeTabIndex) {
@@ -91,52 +105,71 @@ export default class MusicTabExample extends PureComponent {
       })));
   }
 
+  _setTabsContainer(tabsContainer) {
+    this._tabsContainer = tabsContainer;
+  }
+
+  _forceHeightCalculation() {
+    if (this._tabsContainer) {
+      this._tabsContainer.forceUpdate();
+    }
+  }
+
   render() {
     const { activeTabIndex, newReleases, topTracks, artists } = this.state;
 
     return (
-      <PhoneSizeDemo toolbar={false} mobileOnly>
-        <TabsContainer
-          colored
-          toolbar={<MusicToolbar />}
-          activeTabIndex={activeTabIndex}
-          onTabChange={this._handleTabChange}
-          panelStyle={{ overflowY: 'auto', maxHeight: 400 }}
+      <div>
+        <Button label="Open Music Store" raised secondary onClick={this._openStore} />
+        <Dialog
+          id="music-store"
+          aria-labelledby="woop"
+          isOpen={this.state.isOpen}
+          fullPage
+          onClose={this._closeStore}
         >
-          <Tabs tabId="music">
-            <Tab label="Home">
-              <CardTitle
-                title="New Releases"
-                subtitle="Best-selling albums"
-                style={{ padding: 16 }}
-              >
-                <More onClick={this._showNewReleases} />
-              </CardTitle>
-              <div className="md-grid">
-                {newReleases.map(release => <HomeReleaseCard key={release.artistId} release={release} />)}
-              </div>
-              <CardTitle title="Top Metal Songs" style={{ padding: 16 }}>
-                <More onClick={this._showTopSongs} />
-              </CardTitle>
-              <div className="md-grid">
-                {topTracks.map(track => <HomeTopTrackCard key={track.trackId} track={track} />)}
-              </div>
-            </Tab>
-            <Tab label="Top Artists">
-              <TopArtists artists={artists} />
-            </Tab>
-            <Tab label="Top Albums">
-              <TopAlbums active={activeTabIndex === 2} artists={artists} />
-            </Tab>
-            <Tab label="New Releases">
-              <NewReleases active={activeTabIndex === 3} artists={artists} />
-            </Tab>
-            <Tab label="Top Songs">
-              <TopSongs active={activeTabIndex === 4} artists={artists} />
-            </Tab>
-          </Tabs>
-        </TabsContainer>
-      </PhoneSizeDemo>
+          <TabsContainer
+            colored
+            toolbar={<MusicToolbar onCloseClick={this._closeStore} />}
+            activeTabIndex={activeTabIndex}
+            onTabChange={this._handleTabChange}
+            ref={this._setTabsContainer}
+          >
+            <Tabs tabId="music">
+              <Tab label="Home">
+                <CardTitle
+                  title="New Releases"
+                  subtitle="Best-selling albums"
+                  style={{ padding: 16 }}
+                >
+                  <More onClick={this._showNewReleases} />
+                </CardTitle>
+                <div className="md-grid">
+                  {newReleases.map(release => <HomeReleaseCard key={release.artistId} release={release} />)}
+                </div>
+                <CardTitle title="Top Metal Songs" style={{ padding: 16 }}>
+                  <More onClick={this._showTopSongs} />
+                </CardTitle>
+                <div className="md-grid">
+                  {topTracks.map(track => <HomeTopTrackCard key={track.trackId} track={track} />)}
+                </div>
+              </Tab>
+              <Tab label="Top Artists">
+                <TopArtists artists={artists} />
+              </Tab>
+              <Tab label="Top Albums">
+                <TopAlbums active={activeTabIndex === 2} artists={artists} onLoad={this._forceHeightCalculation} />
+              </Tab>
+              <Tab label="New Releases">
+                <NewReleases active={activeTabIndex === 3} artists={artists} onLoad={this._forceHeightCalculation} />
+              </Tab>
+              <Tab label="Top Songs">
+                <TopSongs active={activeTabIndex === 4} artists={artists} onLoad={this._forceHeightCalculation} />
+              </Tab>
+            </Tabs>
+          </TabsContainer>
+        </Dialog>
+      </div>
     );
   }
 }

@@ -11,18 +11,20 @@ export default class TopAlbums extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
     artists: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onLoad: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = { albums: [] };
+    this._fetching = false;
 
     this._getTopAlbums = this._getTopAlbums.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.active && !this.state.albums.length) {
+    if (!this._fetching && nextProps.active && !this.state.albums.length) {
       this._getTopAlbums();
     }
   }
@@ -33,9 +35,10 @@ export default class TopAlbums extends PureComponent {
   }
 
   _getTopAlbums() {
+    this._fetching = true;
     Promise.all(this.props.artists.slice(0, 5).map(this._getArtistAlbums))
       .then(albums => {
-        this.setState({ albums: sort(flatten(albums), 'popularity') });
+        this.setState({ albums: sort(flatten(albums), 'popularity') }, this.props.onLoad);
       });
   }
 

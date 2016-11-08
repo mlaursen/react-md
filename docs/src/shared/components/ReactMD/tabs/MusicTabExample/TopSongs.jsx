@@ -16,22 +16,25 @@ export default class TopSongs extends PureComponent {
     })).isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
+    onLoad: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
     this.state = { songs: [] };
+    this._fetching = false;
     this._fetchSongs = this._fetchSongs.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.active && !this.state.songs.length) {
+    if (!this._fetching && nextProps.active && !this.state.songs.length) {
       this._fetchSongs(nextProps.artists);
     }
   }
 
   _fetchSongs(artists) {
+    this._fetching = true;
     Promise.all(artists.map(({ id: artistId, name: artistName }) => fetchSpotify.getArtistTopTracks(artistId, 1)
       .then(song => ({
         artistId,
@@ -40,7 +43,7 @@ export default class TopSongs extends PureComponent {
         songName: song.name,
         images: song.album.images,
         popularity: song.popularity,
-      })))).then(songs => this.setState({ songs: sort(songs, 'popularity') }));
+      })))).then(songs => this.setState({ songs: sort(songs, 'popularity') }, this.props.onLoad));
   }
 
   render() {

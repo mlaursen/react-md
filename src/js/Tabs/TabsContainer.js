@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
 
@@ -57,8 +58,25 @@ export default class TabsContainer extends PureComponent {
      */
     panelClassName: PropTypes.string,
 
+    /**
+     * An optional style to apply to the `SwipeableViews`.
+     *
+     * @see https://github.com/oliviertassinari/react-swipeable-views#user-content-swipeableviews-
+     */
     swipeableViewsStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `SwipeableViews` container.
+     */
     swipeableViewsClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to each slide component.
+     *
+     * @see https://github.com/oliviertassinari/react-swipeable-views#user-content-swipeableviews-
+     */
+    slideStyle: PropTypes.object,
+
     /**
      * This should be a `Tabs` component with children of `Tab`. This is used to figure out which
      * tab's content is currently visible.
@@ -127,7 +145,7 @@ export default class TabsContainer extends PureComponent {
   };
 
   static defaultProps = {
-    component: 'header',
+    component: 'section',
     defaultTabIndex: 0,
   };
 
@@ -158,6 +176,7 @@ export default class TabsContainer extends PureComponent {
   }
 
   render() {
+    const { panelHeight } = this.state;
     const {
       component: Component,
       style,
@@ -165,6 +184,7 @@ export default class TabsContainer extends PureComponent {
       panelStyle,
       panelClassName,
       panelComponent,
+      slideStyle,
       swipeableViewsStyle,
       swipeableViewsClassName,
       children,
@@ -222,6 +242,14 @@ export default class TabsContainer extends PureComponent {
         className={cn('md-tabs-container', {
           'md-tabs-container--fixed': fixed,
         }, className)}
+        ref={container => {
+          if (container) {
+            const activePanel = findDOMNode(container).querySelector('.md-tab-panel[aria-hidden=false]');
+            if (activePanel && this.state.panelHeight !== activePanel.offsetHeight) {
+              this.setState({ panelHeight: activePanel.offsetHeight });
+            }
+          }
+        }}
       >
         {toolbar}
         {tabs}
@@ -235,6 +263,7 @@ export default class TabsContainer extends PureComponent {
             'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon,
             'md-tabs-content--offset-toolbar-prominent-icon': fixed && toolbar && labelAndIcon && prominentToolbar,
           }, swipeableViewsClassName)}
+          slideStyle={{ height: panelHeight, ...slideStyle }}
           index={activeTabIndex}
           onChangeIndex={this._handleSwipeChange}
         >
