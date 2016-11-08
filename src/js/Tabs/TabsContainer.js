@@ -5,6 +5,8 @@ import SwipeableViews from 'react-swipeable-views';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
+import between from '../utils/PropTypes/between';
+import Paper from '../Papers/Paper';
 import TabPanel from './TabPanel';
 
 /**
@@ -57,6 +59,18 @@ export default class TabsContainer extends PureComponent {
      * children will get wrapped in a `TabPanel` component.
      */
     panelClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the header component when the tabs are fixed to the top of the page.
+     * The optional toolbar and tabs get wrapped in a `Paper` component.
+     */
+    headerStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the header component when the tabs are fixed to the top of the page.
+     * The optional toolbar and tabs get wrapped in a `Paper` component.
+     */
+    headerClassName: PropTypes.string,
 
     /**
      * An optional style to apply to the `SwipeableViews`.
@@ -142,11 +156,25 @@ export default class TabsContainer extends PureComponent {
      * A boolean if a `fixed` `TabsContainer` has tabs with a label and an icon.
      */
     labelAndIcon: PropTypes.bool,
+
+    /**
+     * An optional component to render the fixed tabs header as.
+     */
+    headerComponent: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]),
+
+    /**
+     * The zDepth for the fixed tabs header.
+     */
+    headerZDepth: between(PropTypes.number, 0, 5),
   };
 
   static defaultProps = {
     component: 'section',
     defaultTabIndex: 0,
+    headerZDepth: 1,
   };
 
   constructor(props) {
@@ -184,9 +212,13 @@ export default class TabsContainer extends PureComponent {
       panelStyle,
       panelClassName,
       panelComponent,
+      headerStyle,
+      headerClassName,
       slideStyle,
       swipeableViewsStyle,
       swipeableViewsClassName,
+      headerComponent,
+      headerZDepth,
       children,
       colored,
       fixed,
@@ -230,18 +262,32 @@ export default class TabsContainer extends PureComponent {
     if (toolbar) {
       const toolbarProps = Children.only(toolbar).props;
       toolbar = cloneElement(toolbar, {
+        component: toolbarProps.component || 'div',
         colored: typeof toolbarProps.colored !== 'undefined' ? childrenProps.colored : colored,
       });
 
       prominentToolbar = toolbarProps.prominent || toolbarProps.prominentTitle;
     }
 
+    let header;
+    if (fixed) {
+      header = (
+        <Paper
+          style={headerStyle}
+          className={cn('md-tabs-fixed-container', headerClassName)}
+          zDepth={headerZDepth}
+          component={headerComponent}
+        >
+          {toolbar}
+          {tabs}
+        </Paper>
+      );
+    }
+
     return (
       <Component
         style={style}
-        className={cn('md-tabs-container', {
-          'md-tabs-container--fixed': fixed,
-        }, className)}
+        className={cn('md-tabs-container', className)}
         ref={container => {
           if (container) {
             const activePanel = findDOMNode(container).querySelector('.md-tab-panel[aria-hidden=false]');
@@ -251,8 +297,9 @@ export default class TabsContainer extends PureComponent {
           }
         }}
       >
-        {toolbar}
-        {tabs}
+        {header}
+        {header ? null : toolbar}
+        {header ? null : tabs}
         <SwipeableViews
           style={swipeableViewsStyle}
           className={cn('md-tabs-content', {

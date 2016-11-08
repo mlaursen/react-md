@@ -302,13 +302,12 @@ $md-tab-desktop-padding: 24px;
 /// Includes the styles for the swipeable views as well as some offset classes for
 /// positioning the tabs content.
 @mixin react-md-tabs-swipeable {
-  .md-tabs-container {
-    &-fixed {
-      left: 0;
-      position: fixed;
-      top: 0;
-      width: 100%;
-    }
+  .md-tabs-fixed-container {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $md-toolbar-z-index;
   }
 
   .md-tabs-content {

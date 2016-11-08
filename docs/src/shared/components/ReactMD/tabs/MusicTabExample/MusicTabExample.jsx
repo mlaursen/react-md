@@ -43,7 +43,7 @@ export default class MusicTabExample extends PureComponent {
   }
 
   componentWillMount() {
-    this._fetchBTAMRelated().then(this._fetchTopAlbumTopTracksFromTop3).then(({ albums, tracks, artists }) => {
+    this._fetchBTBAMRelated().then(this._fetchTopAlbumTopTracksFromTop3).then(({ albums, tracks, artists }) => {
       this.setState({ newReleases: albums, topTracks: tracks, artists });
     });
   }
@@ -68,7 +68,7 @@ export default class MusicTabExample extends PureComponent {
     this.setState({ activeTabIndex: 4 });
   }
 
-  _fetchBTAMRelated() {
+  _fetchBTBAMRelated() {
     return fetchSpotify.search('between the buried and me', 1)
       .then(btbam => fetchSpotify.getRelatedArtists(btbam.id)
         .then(artists => sort([btbam].concat(artists), 'popularity'))
@@ -130,6 +130,7 @@ export default class MusicTabExample extends PureComponent {
         >
           <TabsContainer
             colored
+            fixed
             toolbar={<MusicToolbar onCloseClick={this._closeStore} />}
             activeTabIndex={activeTabIndex}
             onTabChange={this._handleTabChange}
