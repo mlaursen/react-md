@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 
 import { setDrawerToolbarBoxShadow } from 'actions/ui';
+import getLink from 'utils/getLink';
 import Home from 'components/Home';
 
 @connect(({ ui: { drawer: { visibleBoxShadow } } }) => ({ visibleBoxShadow }), {
@@ -13,6 +14,13 @@ export default class HomeContainer extends PureComponent {
     visibleBoxShadow: PropTypes.bool.isRequired,
     updateToolbar: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    if (!document.getElementById('logo-font-link')) {
+      const link = getLink('logo-font-link');
+      link.href = 'https://fonts.googleapis.com/css?family=Montserrat:700';
+    }
+  }
 
   componentDidMount() {
     this._updateToolbar();

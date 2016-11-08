@@ -166,6 +166,11 @@ export default class EditDialogColumn extends PureComponent {
      * The icon className used to display the inline edit dialog's edit icon.
      */
     inlineIconClassName: PropTypes.string,
+
+    /**
+     * Boolean if an inline edit text field should not include an icon.
+     */
+    noIcon: invalidIf(PropTypes.bool, 'title', 'large'),
   };
 
   static contextTypes = {
@@ -387,6 +392,7 @@ export default class EditDialogColumn extends PureComponent {
       inline,
       inlineIconChildren,
       inlineIconClassName,
+      noIcon,
       ...props
     } = this.props;
 
@@ -424,7 +430,7 @@ export default class EditDialogColumn extends PureComponent {
 
     const pointer = cn({ 'md-pointer--hover': !active });
     let inlineEditIcon;
-    if (inline) {
+    if (inline && !noIcon) {
       inlineEditIcon = (
         <FontIcon
           key="edit-icon"

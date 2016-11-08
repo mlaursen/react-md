@@ -47,7 +47,8 @@ export default class TablesInCards extends PureComponent {
       <Card tableCard>
         <TableCardHeader
           title={title ? 'Nutrition' : null}
-          count={count}
+          visible={count > 0}
+          contextualTitle={`${count} item${count > 1 ? 's' : ''} selected`}
           leftChildren={title ? null : leftChildren}
           actions={contextualActions}
         >

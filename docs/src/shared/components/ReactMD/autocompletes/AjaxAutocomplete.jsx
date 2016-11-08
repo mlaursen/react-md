@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import Avatar from 'react-md/lib/Avatars';
+import Button from 'react-md/lib/Buttons/Button';
 import Autocomplete from 'react-md/lib/Autocompletes';
+import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 
 import fetchSpotify from 'actions/fetchSpotify';
 import randomInt from 'utils/RandomUtils/randomInt';
@@ -14,6 +16,7 @@ export default class AjaxAutocomplete extends PureComponent {
     this.state = { artists: [], fetching: false, albums: [] };
     this._searchForArtists = this._searchForArtists.bind(this);
     this._fetchAlbums = this._fetchAlbums.bind(this);
+    this._hideAlbums = this._hideAlbums.bind(this);
   }
 
   _searchForArtists(value) {
@@ -44,33 +47,40 @@ export default class AjaxAutocomplete extends PureComponent {
           };
         });
 
-        this.setState({ fetching: false, artists });
+        this.setState({ artists });
       });
-
-    this.setState({ fetching: true });
   }
 
   _fetchAlbums(artist, index) {
     fetchSpotify.getArtistAlbums(this.state.artists[index])
       .then(albums => Promise.all(albums.map(fetchSpotify.getAlbum)))
-      .then(albums => this.setState({ albums }));
-    this.setState({ artist });
+      .then(albums => this.setState({ albums, fetching: false }));
+    this.setState({ artist, fetching: true });
+  }
+
+  _hideAlbums() {
+    this.setState({ albums: [] });
   }
 
   render() {
-    const { artists, albums, artist } = this.state;
+    const { artists, albums, artist, fetching } = this.state;
 
-    let helpText;
     let artistText;
     if (albums.length) {
-      helpText = (
-        <h5 key="help" className="md-text-container md-cell md-cell--12">
-          Click on an album to play a random 30 second song preview from that album.
-        </h5>
-      );
-
       artistText = <h3 className="md-cell md-cell--12">Artist: {artist}</h3>;
     }
+
+    const progress = (
+      <div className="md-cell md-cell--12" key="prorgress">
+        <CircularProgress id="fetching-artist" />
+      </div>
+    );
+
+    const fab = (
+      <Button floating fixed secondary tooltipLabel="Hide all albums" tooltipPosition="left" onClick={this._hideAlbums}>
+        delete
+      </Button>
+    );
 
     return (
       <CSSTransitionGroup
@@ -84,6 +94,7 @@ export default class AjaxAutocomplete extends PureComponent {
           id="spotify-search"
           type="search"
           label="Type an artist name"
+          className="md-cell"
           placeholder="Artist"
           data={artists}
           dataLabel="name"
@@ -93,9 +104,10 @@ export default class AjaxAutocomplete extends PureComponent {
           clearOnAutocomplete
           onAutocomplete={this._fetchAlbums}
         />
-        {helpText}
+        {fetching ? progress : null}
         {artistText}
         {albums.map(album => <AlbumCard key={album.id} album={album} />)}
+        {albums.length ? fab : null}
       </CSSTransitionGroup>
     );
   }

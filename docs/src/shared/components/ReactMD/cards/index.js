@@ -21,7 +21,7 @@ will be toggled.
   children: <ExpandableMediaCard />,
 }, {
   title: 'Card With a Video',
-  description: 'This simple example shows how you can evn embed youtube videos into cards.',
+  description: 'This simple example shows how you can even embed youtube videos into cards.',
   code: CardVideoExampleRaw,
   children: <CardVideoExample />,
 }, {

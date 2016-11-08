@@ -139,6 +139,7 @@ const routes = [{
       ],
     }, 'inks',
     'lists',
+    'media',
     'menus',
     'navigation-drawers',
     'papers', {
@@ -176,6 +177,11 @@ const routes = [{
   href: 'https://design.google.com/icons/',
   avatarProps: { src: googleLogo, alt: 'Google Logo', className: 'google-logo' },
   primaryText: 'Material Icons',
+  target: '_blank',
+}, {
+  href: 'http://webaim.org/resources/contrastchecker/',
+  icon: 'accessibility',
+  primaryText: 'Contrast Checker',
   target: '_blank',
 }].map(route => mapToNavItems(route));
 

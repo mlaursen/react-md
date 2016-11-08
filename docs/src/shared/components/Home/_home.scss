@@ -30,3 +30,9 @@
     background: rgba($md-white-base, .12);
   }
 }
+
+// scss-lint:disable IdSelector, SelectorFormat
+#MD tspan {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: $md-font-bold;
+}

@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
@@ -21,6 +22,7 @@ const marketList = PropTypes.arrayOf(PropTypes.string);
 
 export default class AlbumCard extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     album: PropTypes.shape({
       album_type: PropTypes.string.isRequired,
       artists: artistList,
@@ -69,6 +71,7 @@ export default class AlbumCard extends PureComponent {
 
   render() {
     const {
+      className,
       album: {
         name,
         release_date: releaseDate,
@@ -80,10 +83,10 @@ export default class AlbumCard extends PureComponent {
     } = this.props;
 
     return (
-      <Card className="md-cell md-cell--12 md-cell--top">
+      <Card className={cn('md-cell md-cell--12 md-cell--6-desktop md-cell--top', className)}>
         <CardTitle title={name} subtitle={`Released: ${releaseDate}`} />
         <CardText className="md-grid md-grid--no-padding">
-          <div className="md-cell">
+          <div className="md-cell md-cell--6-desktop">
             <AlbumArtwork images={images} />
             <List>
               <Subheader primaryText="Artists" primary />
@@ -94,7 +97,7 @@ export default class AlbumCard extends PureComponent {
               <ListItem primaryText={label} />
             </List>
           </div>
-          <List className="md-cell">
+          <List className="md-cell md-cell--6-desktop">
             <Subheader primaryText="Tracks" />
             {tracks.map(track => (
               <ListItem

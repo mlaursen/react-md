@@ -20,7 +20,7 @@ const IconButtonExamples = () => (
     <Button icon disabled>accessible</Button>
 
     <p>
-      An <code>Button</code> can be rendered as a link. Tooltips
+      An icon <code>Button</code> can be rendered as a link. Tooltips
       are also built in. They will appear on hover or touch hold.
     </p>
     <Button icon href={GITHUB_LINK} iconClassName="fa fa-github" />

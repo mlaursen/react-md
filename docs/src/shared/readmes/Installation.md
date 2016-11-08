@@ -11,8 +11,7 @@ $ npm install -S react \
                  react-md
 ```
 
-Once installed, the compiled versions are accessibile from `react-md/lib` and the
-uncompiled are in `react-md/src/js`.
+Once installed, the components can be accessed by `react-md` or `react-md/lib` and the styles from `react-md/src/scss/_react-md.scss`.
 
 ### Fonts
 The [Roboto font](https://www.google.com/fonts/specimen/Roboto) and 

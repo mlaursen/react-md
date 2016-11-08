@@ -68,7 +68,7 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
     $width: map-get($map, width);
     $height: map-get($map, height);
 
-    @include react-md-aspect-ratio($width, $height);
+    @include react-md-media-aspect-ratio($width, $height);
   }
 
   @if $include-overlay {
@@ -84,11 +84,11 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
 /// `$md-media-embedded-selectors` children keep the aspect ratio.
 ///
 /// @example scss - Example Usage SCSS
-///   @include react-md-aspect-ratio(16, 9);
+///   @include react-md-media-aspect-ratio(16, 9);
 ///
 /// @param {Number} width - The width to enforce.
 /// @param {Number} height - The height to enforce.
-@mixin react-md-aspect-ratio($width, $height) {
+@mixin react-md-media-aspect-ratio($width, $height) {
   .md-media--#{$width}-#{$height} {
     padding-bottom: percentage($height / $width);
   }
@@ -108,6 +108,7 @@ $md-media-overlay-color: rgba($md-black-base, .54) !default;
     bottom: 0;
     position: absolute;
     width: 100%;
+    z-index: 1;
 
     .md-btn,
     .md-text {

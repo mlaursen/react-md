@@ -32,11 +32,6 @@ export default class TableCardHeader extends PureComponent {
     ]).isRequired,
 
     /**
-     * The currently selected count.
-     */
-    count: PropTypes.number.isRequired,
-
-    /**
      * The transition name to use when the contextual header appears.
      */
     transitionName: PropTypes.string.isRequired,
@@ -58,6 +53,18 @@ export default class TableCardHeader extends PureComponent {
     title: oneRequired(PropTypes.node, 'leftChildren', 'children'),
 
     /**
+     * An optional title to display in the contextual header. This will get wrapped in an `h2`
+     * tag and additional styles applied.
+     */
+    contextualTitle: PropTypes.node,
+
+    /**
+     * Any additional children to display in the contextual header. This will be displayed after
+     * the optional `contextualTile` and before the `actions`.
+     */
+    contextualChildren: PropTypes.node,
+
+    /**
      * An optional button or list of buttons to display instead of a title.
      */
     leftChildren: invalidIf(PropTypes.oneOfType([
@@ -73,17 +80,6 @@ export default class TableCardHeader extends PureComponent {
       PropTypes.element,
       PropTypes.arrayOf(PropTypes.element),
     ]),
-
-    /**
-     * The contextual header label to display when only one row has been selected.
-     */
-    label: PropTypes.string.isRequired,
-
-    /**
-     * The contextual header label to display when multiple rows have been selected. This
-     * has been separated into two different props for multi-language support.
-     */
-    labelPluralized: PropTypes.string.isRequired,
 
     /**
      * An optional button/menu button or a list of button/menu button to display in the
@@ -111,12 +107,15 @@ export default class TableCardHeader extends PureComponent {
      * class names.
      */
     noLeftChildrenClone: PropTypes.bool,
+
+    /**
+     * Boolean if the contextual header is currently visible.
+     */
+    visible: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     component: 'header',
-    label: 'item selected',
-    labelPluralized: 'items selected',
     transitionName: 'md-drop-down',
     transitionEnterTimeout: 150,
     transitionLeaveTimeout: 150,
@@ -129,10 +128,10 @@ export default class TableCardHeader extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { count } = this.props;
-    const { count: nCount, transitionEnterTimeout, transitionLeaveTimeout } = nextProps;
-    const timeout = nCount === 0 ? transitionLeaveTimeout : transitionEnterTimeout;
-    if (count !== nCount && (count === 0 || nCount === 0)) {
+    const { visible } = this.props;
+    const { visible: nVisible, transitionEnterTimeout, transitionLeaveTimeout } = nextProps;
+    const timeout = !nVisible ? transitionLeaveTimeout : transitionEnterTimeout;
+    if (visible !== nVisible) {
       if (this._timeout) {
         clearTimeout(this._timeout);
       }
@@ -179,20 +178,20 @@ export default class TableCardHeader extends PureComponent {
     const {
       style,
       className,
-      count,
       title,
       actions,
-      label,
-      labelPluralized,
+      contextualChildren,
       noActionsAdjust,
       noChildrenAdjust,
       noLeftChildrenClone,
+      visible,
       ...props
     } = this.props;
     delete props.children;
     delete props.leftChildren;
+    delete props.contextualTitle;
 
-    let { children, leftChildren } = this.props;
+    let { children, leftChildren, contextualTitle } = this.props;
     children = this._cloneCellRight(noChildrenAdjust, children);
     leftChildren = this._cloneLeftChildren(noLeftChildrenClone, leftChildren);
 
@@ -213,11 +212,18 @@ export default class TableCardHeader extends PureComponent {
       }
     }
 
+    if (contextualTitle) {
+      contextualTitle = (
+        <h2 className="md-card-title--title md-card-title--title-contextual">
+          {contextualTitle}
+        </h2>
+      );
+    }
+
     const contextualHeader = (
       <div key="contextual-header" className="md-card-title md-card-title--contextual">
-        <h2 className="md-card-title--title md-card-title--title-contextual">
-          {`${count} ${count > 1 ? labelPluralized : label}`}
-        </h2>
+        {contextualTitle}
+        {contextualChildren}
         {this._cloneCellRight(noActionsAdjust, actions)}
       </div>
     );
@@ -236,7 +242,7 @@ export default class TableCardHeader extends PureComponent {
         }, className)}
       >
         {children}
-        {count > 0 ? contextualHeader : null}
+        {visible ? contextualHeader : null}
       </CSSTransitionGroup>
     );
   }

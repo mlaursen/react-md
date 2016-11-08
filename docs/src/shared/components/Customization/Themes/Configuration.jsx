@@ -38,7 +38,7 @@ const Configuration = ({
       disabled={saveDisabled}
       onChange={onSaveChange}
     />
-    <i>
+    <i className="md-text">
       When the save for future visits checkbox is checked, a key in your local storage will
       be created containing your theme. If you do not check this checkbox, the default website
       theme will be applied when you leave this page.
