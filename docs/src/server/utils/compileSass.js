@@ -57,6 +57,9 @@ module.exports = function compileSass(name) {
 
   const styles = `
 @import 'react-md';
+
+$md-primary-color: $md-light-blue-500;
+$md-secondary-color: $md-deep-orange-a-400;
 @include react-md-theme-everything(${primaryColor}, ${secondaryColor}, ${!dark}, 'custom-theme');
 
 .custom-theme {
