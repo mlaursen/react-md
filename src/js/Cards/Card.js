@@ -225,7 +225,7 @@ export default class Card extends PureComponent {
     const parts = Children.map(Children.toArray(children), (child, i) => {
       if (!child || !child.props) {
         return child;
-      } else if (expanderIndex < 0 && child.props.isExpander) {
+      } else if (expanderIndex < 0 && (child.props.isExpander || child.props.expander)) {
         expanderIndex = i;
       }
 

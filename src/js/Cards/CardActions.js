@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import CardExpander from './CardExpander';
 
@@ -15,7 +16,7 @@ export default class CardActions extends Component {
      * Boolean if this component should act as an expander and inject the
      * `CardExpander`.
      */
-    isExpander: PropTypes.bool,
+    expander: PropTypes.bool,
 
     /**
      * An optional className to apply to the actions container.
@@ -36,6 +37,8 @@ export default class CardActions extends Component {
      * Boolean if the actions should be stacked.
      */
     stacked: PropTypes.bool,
+
+    isExpander: deprecated(PropTypes.bool, 'Use `expander` instead'),
   };
 
   render() {
@@ -43,6 +46,7 @@ export default class CardActions extends Component {
       className,
       children,
       isExpander,
+      expander,
       centered,
       stacked,
       ...props
@@ -57,7 +61,7 @@ export default class CardActions extends Component {
         }, className)}
       >
         {children}
-        {isExpander && <CardExpander />}
+        {isExpander || expander && <CardExpander />}
       </section>
     );
   }

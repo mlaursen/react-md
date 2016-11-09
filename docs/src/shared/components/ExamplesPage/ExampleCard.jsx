@@ -40,7 +40,7 @@ ${code}
       expanderTooltipDelay={300}
     >
       <CardTitle
-        isExpander
+        expander
         id={title ? toClassName(title) : fallbackId}
         title={title || 'Example'}
       />

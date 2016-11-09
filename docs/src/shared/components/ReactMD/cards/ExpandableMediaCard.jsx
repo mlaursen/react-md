@@ -28,7 +28,7 @@ const ExpandableMediaCard = () => (
       title="Card Title"
       subtitle="Card Subtitle"
     />
-    <CardActions isExpander>
+    <CardActions expander>
       <Button flat label="Action 1" />
       <Button flat label="Action 2" />
     </CardActions>

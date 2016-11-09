@@ -1,5 +1,6 @@
 import React, { Component, PropTypes, Children, cloneElement } from 'react';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import CardTitleBlock from './CardTitleBlock';
 import CardExpander from './CardExpander';
@@ -53,7 +54,9 @@ export default class CardTitle extends Component {
      * Boolean if the `CardTitle` component should inject a button
      * for expanding all children below it.
      */
-    isExpander: PropTypes.bool,
+    expander: PropTypes.bool,
+
+    isExpander: deprecated(PropTypes.bool, 'Use `expander` instead'),
   };
 
   render() {
@@ -63,6 +66,7 @@ export default class CardTitle extends Component {
       className,
       title,
       subtitle,
+      expander,
       isExpander,
       children,
       ...props
@@ -86,7 +90,7 @@ export default class CardTitle extends Component {
         {avatar}
         <CardTitleBlock id={id} title={title} subtitle={subtitle} avatar={!!avatar} />
         {children}
-        {isExpander && <CardExpander />}
+        {isExpander || expander && <CardExpander />}
       </div>
     );
   }
