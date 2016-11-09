@@ -441,7 +441,7 @@ export default class TextField extends PureComponent {
 
       this.setState({
         error,
-        floating: !!value || this.state.floating,
+        floating: !!value || (this.state.floating && this.state.active),
         currentLength: value.length,
       });
     }
