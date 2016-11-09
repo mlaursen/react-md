@@ -16,7 +16,7 @@ export default class HomeContainer extends PureComponent {
   };
 
   componentWillMount() {
-    if (!document.getElementById('logo-font-link')) {
+    if (__CLIENT__ && !document.getElementById('logo-font-link')) {
       const link = getLink('logo-font-link');
       link.href = 'https://fonts.googleapis.com/css?family=Montserrat:700';
     }

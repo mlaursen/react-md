@@ -42,8 +42,8 @@ export default class ExamplesPage extends PureComponent {
         this.setState({ examples, readme });
       });
     } else {
-      const examples = require(`components/${folder}/index.js`).default;
-      const readme = require(`components/${folder}/README.md`);
+      const examples = require(`components/ReactMD/${folder}/index.js`).default;
+      const readme = require(`components/ReactMD/${folder}/README.md`);
 
       this.setState({ examples, readme });
     }
