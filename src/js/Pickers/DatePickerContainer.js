@@ -73,7 +73,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * Boolean if the date picker is open by default.
      */
-    defaultOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * An optional label to be displayed in the date picker's text
@@ -165,7 +165,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The initial mode to open the calendar in.
      */
-    initialCalendarMode: PropTypes.oneOf(['calendar', 'year']),
+    defaultCalendarMode: PropTypes.oneOf(['calendar', 'year']),
 
     /**
      * The icon to use for the previous month button.
@@ -212,7 +212,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The number of years to display.
      */
-    initialYearsDisplayed: PropTypes.number,
+    yearsDisplayed: PropTypes.number,
 
     /**
      * Boolean if the date picker should be displayed inline instead of in a
@@ -257,23 +257,31 @@ export default class DatePickerContainer extends PureComponent {
      * An optional boolean if the time picker is current visible by dialog or inline.
      * If this is set, the `onOpenToggle` function is required.
      */
-    isOpen: controlled(PropTypes.bool, 'onOpenToggle', 'defaultOpen'),
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
     /**
      * An optional function to call when the date picker is opened in either a dialog, or
      * inline. The callback will include the next state.
      *
      * ```js
-     * onOpenToggle(!isOpen, e);
+     * onVisibilityChange(!visible, e);
      * ```
      */
-    onOpenToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
      * Boolean if the time picker is disabled.
      */
     disabled: PropTypes.bool,
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
+
+    adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    initialCalendarMode: deprecated(PropTypes.oneOf(['calendar', 'year']), 'Use `defaultCalendarMode` instead'),
+    initialYearsDisplayed: deprecated(
+      PropTypes.number,
+      'Use `yearsDisplayed` instead. I have not implemented infinite loading years'
+    ),
   };
 
   static defaultProps = {
@@ -281,8 +289,8 @@ export default class DatePickerContainer extends PureComponent {
     nextIcon: <FontIcon>chevron_right</FontIcon>,
     autoOk: false,
     icon: <FontIcon>date_range</FontIcon>,
-    initialYearsDisplayed: 100,
-    initialCalendarMode: 'calendar',
+    yearsDisplayed: 100,
+    defaultCalendarMode: 'calendar',
     DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
     locales: typeof window !== 'undefined'
       ? window.navigator.userLanguage || window.navigator.language
@@ -334,12 +342,16 @@ export default class DatePickerContainer extends PureComponent {
       date = new Date();
     }
 
+    const visible = typeof props.initiallyOpen !== 'undefined'
+      ? props.initiallyOpen
+      : !!props.defaultVisible;
+
     this.state = {
       value,
-      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen,
+      visible,
       calendarDate: date,
       calendarTempDate,
-      calendarMode: props.initialCalendarMode,
+      calendarMode: props.initialCalendarMode || props.defaultCalendarMode,
     };
 
     this._setContainer = this._setContainer.bind(this);
@@ -367,13 +379,19 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { inline } = this.props;
-    const isOpen = getField(this.props, this.state, 'isOpen');
-    if (isOpen === getField(prevProps, prevState, 'isOpen')) {
+    const { inline, isOpen } = this.props;
+    const visible = typeof isOpen !== 'undefined'
+      ? isOpen
+      : getField(this.props, this.state, 'visible');
+    const pVisible = typeof prevProps.isOpen !== 'undefined'
+      ? prevProps.isOpen
+      : getField(prevProps, prevState, 'visible');
+
+    if (visible === pVisible) {
       return;
     }
 
-    if (isOpen) {
+    if (visible) {
       if (inline) {
         window.addEventListener('click', this._handleOutsideClick);
         window.addEventListener('keydown', this._closeOnEsc);
@@ -385,7 +403,11 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (getField(this.props, this.state, 'isOpen') && this.props.inline) {
+    const visible = typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible');
+
+    if (visible && this.props.inline) {
       window.removeEventListener('click', this._handleOutsideClick);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
@@ -408,29 +430,56 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   _toggleOpen(e) {
-    const isOpen = !getField(this.props, this.state, 'isOpen');
+    const visible = !(typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible'));
 
-    if (this.props.onOpenToggle) {
-      this.props.onOpenToggle(isOpen, e);
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(visible, e);
     }
 
-    if (typeof this.props.isOpen === 'undefined') {
-      this.setState({ isOpen });
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      this.setState({ visible });
     }
   }
 
   _handleOkClick(e) {
-    const { DateTimeFormat, locales, onChange, formatOptions } = this.props;
+    const { DateTimeFormat, locales, onChange, formatOptions, onVisibilityChange } = this.props;
     const value = DateTimeFormat(locales, formatOptions).format(this.state.calendarTempDate);
     if (onChange) {
       onChange(value, new Date(this.state.calendarTempDate), e);
     }
 
-    this.setState({ value, isOpen: false });
+    if (onVisibilityChange) {
+      onVisibilityChange(false, e);
+    }
+
+    let state;
+    if (typeof this.props.value === 'undefined') {
+      state = { value };
+    }
+
+    if (typeof this.props.visible === 'undefined' && typeof this.props.isOpen === 'undefined') {
+      state = state || {};
+      state.visible = false;
+    }
+
+    if (state) {
+      this.setState(state);
+    }
   }
 
-  _handleCancelClick() {
-    this.setState({ calendarTempDate: this.state.calendarDate, isOpen: false });
+  _handleCancelClick(e) {
+    const state = { calendarTempDate: this.state.calendarDate };
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.isOpen === 'undefined') {
+      state.visible = false;
+    }
+
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(false, e);
+    }
+
+    this.setState(state);
   }
 
   _changeCalendarMode(calendarMode) {
@@ -463,10 +512,17 @@ export default class DatePickerContainer extends PureComponent {
         state.value = value;
       }
 
-      // Add a wait for the new date to be selected, then close
-      state.timeout = setTimeout(() => {
-        this.setState({ timeout: null, isOpen: false });
-      }, 300);
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+
+        if (this.props.onVisibilityChange) {
+          this.props.onVisibilityChange(false);
+        }
+
+        if (typeof this.props.visible === 'undefined' && typeof this.props.isOpen === 'undefined') {
+          this.setState({ visible: false });
+        }
+      });
     }
     this.setState(state);
   }
@@ -555,17 +611,23 @@ export default class DatePickerContainer extends PureComponent {
       id,
       disabled,
       'aria-label': ariaLabel,
+      isOpen, // deprecated
       ...props
     } = this.props;
     delete props.value;
     delete props.onChange;
-    delete props.isOpen;
-    delete props.onOpenToggle;
+    delete props.visible;
+    delete props.onVisibilityToggle;
     delete props.defaultValue;
-    delete props.initiallyOpen;
-    delete props.defaultOpen;
+    delete props.defaultVisible;
 
-    const isOpen = getField(this.props, this.state, 'isOpen');
+    // Delete deprecated
+    delete props.initiallyOpen;
+    delete props.adjustMinWidth;
+
+    const visible = typeof isOpen !== 'undefined'
+      ? isOpen
+      : getField(this.props, this.state, 'visible');
 
     const picker = (
       <DatePicker
@@ -588,12 +650,12 @@ export default class DatePickerContainer extends PureComponent {
 
     let content;
     if (inline) {
-      content = <Collapse collapsed={!isOpen}>{picker}</Collapse>;
+      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
     } else {
       content = (
         <Dialog
           id={`${id}Dialog`}
-          visible={isOpen}
+          visible={visible}
           onHide={this._handleCancelClick}
           dialogClassName="md-dialog--picker"
           contentClassName="md-dialog-content--picker"

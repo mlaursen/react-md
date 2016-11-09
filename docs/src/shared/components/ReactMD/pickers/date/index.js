@@ -2,14 +2,21 @@ import React from 'react';
 
 import OrientationExamples from './OrientationExamples';
 import OrientationExamplesRaw from '!!raw!./OrientationExamples';
+
 import InlineExamples from './InlineExamples';
 import InlineExamplesRaw from '!!raw!./InlineExamples';
+
 import LocaleExamples from './LocaleExamples';
 import LocaleExamplesRaw from '!!raw!./LocaleExamples';
+
 import MinMaxExamples from './MinMaxExamples';
 import MinMaxExamplesRaw from '!!raw!./MinMaxExamples';
+
 import ControlledExample from './ControlledExample';
 import ControlledExampleRaw from '!!raw!./ControlledExample';
+
+import FullyControlledExample from './FullyControlledExample';
+import FullyControlledExampleRaw from '!!raw!./FullyControlledExample';
 
 export default [{
   title: 'Orientation Examples',
@@ -54,4 +61,12 @@ be triggered when the user hits the OK button.
   `,
   code: ControlledExampleRaw,
   children: <ControlledExample />,
+}, {
+  title: 'Fully Controlled Example',
+  description: `
+The date picker can be controlled by it's visiblity and value props, but I don't see too many
+use cases for this. It's there though!
+  `,
+  code: FullyControlledExampleRaw,
+  children: <FullyControlledExample />,
 }];
