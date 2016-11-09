@@ -26,11 +26,17 @@ export default class MenuButton extends PureComponent {
       PropTypes.string,
     ])),
 
+    /**
+     * An optional id to give the button instead of the menu.
+     */
     buttonId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
+    /**
+     * An optional id to give the list that appears in the menu.
+     */
     listId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,

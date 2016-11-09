@@ -153,7 +153,7 @@ export default class Menu extends PureComponent {
     transitionName: 'md-menu',
     transitionEnterTimeout: 200,
     transitionLeaveTimeout: 200,
-    position: Positions.TOP_RIGHT,
+    position: Menu.Positions.TOP_RIGHT,
   };
 
   static childContextTypes = contextTypes;
@@ -287,6 +287,7 @@ export default class Menu extends PureComponent {
       const list = Children.only(children);
 
       menuItems = cloneElement(children, {
+        id: list.props.id || listId,
         key: 'menu-list',
         className: cn(menuClassName, list.props.className),
         onClick: this._handleListClick,
@@ -295,8 +296,8 @@ export default class Menu extends PureComponent {
     } catch (e) {
       menuItems = (
         <List
-          key="menu-list"
           id={listId}
+          key="menu-list"
           style={listStyle}
           className={menuClassName}
           onClick={this._handleListClick}
