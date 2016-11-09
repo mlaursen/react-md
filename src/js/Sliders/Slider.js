@@ -1,12 +1,14 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import calculateValueDistance from '../utils/NumberUtils/calculateValueDistance';
+import controlled from '../utils/PropTypes/controlled';
 import SliderLabel from './SliderLabel';
 import Track from './Track';
 import TextField from '../TextFields/TextField';
@@ -157,7 +159,7 @@ export default class Slider extends PureComponent {
      * An optional value for the slider. This will make the component controlled
      * and require the `onChange` function.
      */
-    value: PropTypes.number,
+    value: controlled(PropTypes.number, 'onChange'),
 
     /**
      * This is called when the slider's value gets updated. The value can be updated
@@ -186,11 +188,7 @@ export default class Slider extends PureComponent {
      * - a key up event
      * - a key down event
      */
-    onChange: (props, propName, component, ...others) => { // eslint-disable-line arrow-body-style
-      return typeof props.value !== 'undefined'
-        ? PropTypes.func.isRequired(props, propName, component, ...others)
-        : PropTypes.func(props, propName, component, ...others);
-    },
+    onChange: PropTypes.func,
 
     /**
      * This is only called when the user is dragging the slider with either
@@ -392,6 +390,8 @@ export default class Slider extends PureComponent {
 
       return err;
     },
+
+    stepPrecision: deprecated(PropTypes.number, 'Use `step` and `valuePreceision` instead'),
   };
 
   static defaultProps = {
@@ -907,6 +907,9 @@ export default class Slider extends PureComponent {
     delete props.onChange;
     delete props.onDragChange;
     delete props.discreteInkTransitionTime;
+
+    // delete deprecated
+    delete props.stepPrecision;
 
     const value = getField(this.props, this.state);
     let rightChildren = rightIcon;

@@ -152,14 +152,14 @@ export default class Toolbar extends PureComponent {
       titleStyle,
       titleClassName,
       prominentTitle,
-      primary,
-      secondary,
+      primary, // deprecated
+      secondary, // deprecated
       themed,
       singleColor,
       actions,
       fixed,
-      actionLeft,
-      actionsRight,
+      actionLeft, // deprecated
+      actionsRight, // deprecated
       children,
       inset,
       ...props
@@ -170,6 +170,12 @@ export default class Toolbar extends PureComponent {
     delete props.zDepth;
     delete props.colored;
     delete props.prominent;
+
+    // delete deprecated;
+    delete props.containerStyle;
+    delete props.containerClassName;
+    delete props.actionLeft;
+    delete props.actionsRight;
 
     let {
       colored,

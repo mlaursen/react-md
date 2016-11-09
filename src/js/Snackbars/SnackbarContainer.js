@@ -96,6 +96,11 @@ export default class SnackbarContainer extends PureComponent {
     autohideTimeout: PropTypes.number.isRequired,
 
     /**
+     * The transition name to use for the snackbar appearing and disappearing.
+     */
+    transitionName: PropTypes.string.isRequired,
+
+    /**
      * The transition time for the snackbar to enter. This should match the `$md-snackbar-transition-time`
      * sass variable.
      */
@@ -140,6 +145,7 @@ export default class SnackbarContainer extends PureComponent {
     autohide: true,
     toasts: [],
     autohideTimeout: 3000,
+    transitionName: 'md-snackbar',
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
   };
@@ -280,6 +286,7 @@ export default class SnackbarContainer extends PureComponent {
   render() {
     const { visible, toast, multiline } = this.state;
     const {
+      transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
       dismiss,
@@ -309,7 +316,7 @@ export default class SnackbarContainer extends PureComponent {
           ref={this._setContainer}
           key="container"
           className="md-snackbar-container"
-          transitionName="md-snackbar"
+          transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
         >

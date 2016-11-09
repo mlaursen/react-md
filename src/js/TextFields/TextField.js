@@ -392,7 +392,6 @@ export default class TextField extends PureComponent {
       passwordVisible: props.passwordInitiallyVisible,
       height: null,
       currentLength,
-      minWidth: null,
     };
 
     this.focus = this.focus.bind(this);
@@ -404,7 +403,6 @@ export default class TextField extends PureComponent {
     this._setContainer = this._setContainer.bind(this);
     this._setPasswordBtn = this._setPasswordBtn.bind(this);
     this._setFloatingLabel = this._setFloatingLabel.bind(this);
-    this._setMinWidth = this._setMinWidth.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
@@ -577,33 +575,6 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _setMinWidth() {
-    const { placeholder } = this.props;
-    const canvas = document.createElement('canvas');
-    canvas.className = 'md-text-field';
-    const context = canvas.getContext('2d');
-
-    let minWidth;
-    if (context) {
-      context.font = window.getComputedStyle(findDOMNode(this._field)).getPropertyValue('font');
-
-      minWidth = Math.max(
-        this._label ? findDOMNode(this._label).offsetWidth : 0,
-        placeholder ? context.measureText(placeholder).width : 0
-      );
-
-      if (minWidth) {
-        minWidth += 12;
-      }
-
-      if (this._password) {
-        minWidth += this._password.offsetWidth;
-      }
-    }
-
-    this.setState({ minWidth });
-  }
-
   _updateMultilineHeight(props = this.props) {
     const { block } = props;
     const multiline = this._isMultiline(props);
@@ -690,7 +661,7 @@ export default class TextField extends PureComponent {
   }
 
   render() {
-    const { currentLength, passwordVisible, minWidth, height } = this.state;
+    const { currentLength, passwordVisible, height } = this.state;
     const {
       id,
       type,
@@ -892,7 +863,7 @@ export default class TextField extends PureComponent {
     return (
       <div
         ref={this._setContainer}
-        style={Object.assign({}, style, { minWidth, height })}
+        style={Object.assign({}, style, { height })}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
