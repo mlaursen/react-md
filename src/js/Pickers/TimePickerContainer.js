@@ -74,7 +74,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * Boolean if the time picker is open by default.
      */
-    defaultOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * An optional label to be displayed in the time picker's text
@@ -146,20 +146,15 @@ export default class TimePickerContainer extends PureComponent {
     cancelPrimary: PropTypes.bool,
 
     /**
-     * The initial mode to open the time picker in.
+     * The default mode to open the time picker in.
      */
-    initialTimeMode: PropTypes.oneOf(['hour', 'minute']),
+    defaultTimeMode: PropTypes.oneOf(['hour', 'minute']),
 
     /**
      * Boolean if the date should automatically be selected when a user clicks
      * on a new date instead of making them hit the ok button.
      */
     autoOk: PropTypes.bool,
-
-    /**
-     * The number of years to display.
-     */
-    initialYearsDisplayed: PropTypes.number,
 
     /**
      * Boolean if the date picker should be displayed inline instead of in a
@@ -187,29 +182,32 @@ export default class TimePickerContainer extends PureComponent {
 
     /**
      * An optional boolean if the time picker is current visible by dialog or inline.
-     * If this is set, the `onOpenToggle` function is required.
+     * If this is set, the `onVisibilityChange` function is required.
      */
-    isOpen: controlled(PropTypes.bool, 'onOpenToggle', 'defaultOpen'),
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
     /**
      * An optional function to call when the date picker is opened in either a dialog, or
      * inline. The callback will include the next state.
      *
      * ```js
-     * onOpenToggle(!isOpen, e);
+     * onVisibilityChange(!visible, e);
      * ```
      */
-    onOpenToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
      * Boolean if the time picker is disabled.
      */
     disabled: PropTypes.bool,
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
+
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
   };
 
   static defaultProps = {
-    initialTimeMode: 'hour',
+    defaultTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
     locales: typeof window !== 'undefined'
@@ -234,12 +232,16 @@ export default class TimePickerContainer extends PureComponent {
       initialDate = new Date();
     }
 
+    const visible = typeof props.initiallyOpen !== 'undefined'
+      ? props.initiallyOpen
+      : !!props.defaultVisible;
+
     this.state = {
+      visible,
       ...this._getTimeParts(initialDate, props),
       value: props.defaultValue,
-      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen,
       time: initialDate,
-      timeMode: props.initialTimeMode,
+      timeMode: props.initialTimeMode || props.defaultTimeMode,
       tempTime: initialDate,
     };
 
@@ -263,13 +265,19 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { inline } = this.props;
-    const isOpen = getField(this.props, this.state, 'isOpen');
-    if (isOpen === getField(prevProps, prevState, 'isOpen')) {
+    const { inline, isOpen } = this.props;
+    const visible = typeof isOpen !== 'undefined'
+      ? isOpen
+      : getField(this.props, this.state, 'visible');
+    const pVisible = typeof prevProps.isOpen !== 'undefined'
+      ? prevProps.isOpen
+      : getField(prevProps, prevState, 'visible');
+
+    if (visible === pVisible) {
       return;
     }
 
-    if (isOpen) {
+    if (visible) {
       if (inline) {
         window.addEventListener('click', this._handleOutsideClick);
         window.addEventListener('keydown', this._closeOnEsc);
@@ -281,7 +289,10 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (getField(this.props, this.state, 'isOpen') && this.props.inline) {
+    const visible = typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible');
+    if (visible && this.props.inline) {
       window.removeEventListener('click', this._handleOutsideClick);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
@@ -308,13 +319,16 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   _toggleOpen(e) {
-    const isOpen = !getField(this.props, this.state, 'isOpen');
-    if (this.props.onOpenToggle) {
-      this.props.onOpenToggle(isOpen, e);
+    const visible = !(typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible'));
+
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(visible, e);
     }
 
-    if (typeof this.props.isOpen === 'undefined') {
-      this.setState({ isOpen });
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      this.setState({ visible });
     }
   }
 
@@ -331,14 +345,14 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   _handleOkClick(e) {
-    const { onOpenToggle, onChange, DateTimeFormat, locales } = this.props;
+    const { onVisibilityChange, onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
     if (onChange) {
       onChange(formatTime(DateTimeFormat, locales, value), value, e);
     }
 
-    if (onOpenToggle) {
-      onOpenToggle(false, e);
+    if (onVisibilityChange) {
+      onVisibilityChange(false, e);
     }
 
     let state;
@@ -346,9 +360,9 @@ export default class TimePickerContainer extends PureComponent {
       state = { value };
     }
 
-    if (typeof this.props.isOpen === 'undefined') {
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
       state = state || {};
-      state.isOpen = false;
+      state.visible = false;
     }
 
     if (state) {
@@ -357,13 +371,13 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   _handleCancelClick(e) {
-    if (this.props.onOpenToggle) {
-      this.props.onOpenToggle(false, e);
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(false, e);
     }
 
-    const state = { isOpen: false, tempTime: this.state.time };
-    if (typeof this.props.isOpen !== 'undefined') {
-      delete state.isOpen;
+    const state = { visible: false, tempTime: this.state.time };
+    if (typeof this.props.isOpen !== 'undefined' || typeof this.props.visible !== 'undefined') {
+      delete state.visible;
     }
 
     this.setState(state);
@@ -409,14 +423,20 @@ export default class TimePickerContainer extends PureComponent {
       ...props
     } = this.props;
     delete props.value;
-    delete props.isOpen;
-    delete props.onOpenToggle;
+    delete props.onVisibilityChange;
     delete props.onChange;
     delete props.defaultValue;
-    delete props.initiallyOpen;
-    delete props.defaultOpen;
+    delete props.defaultVisible;
+    delete props.defaultTimeMode;
 
-    const isOpen = getField(this.props, this.state, 'isOpen');
+    // Delete deprecated
+    delete props.isOpen;
+    delete props.initialTimeMode;
+    delete props.initiallyOpen;
+
+    const visible = typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible');
 
     const picker = (
       <TimePicker
@@ -440,12 +460,12 @@ export default class TimePickerContainer extends PureComponent {
 
     let content;
     if (inline) {
-      content = <Collapse collapsed={!isOpen}>{picker}</Collapse>;
+      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
     } else {
       content = (
         <Dialog
           id={`${id}Dialog`}
-          visible={isOpen}
+          visible={visible}
           onHide={this._handleCancelClick}
           dialogClassName="md-dialog--picker"
           contentClassName="md-dialog-content--picker"
