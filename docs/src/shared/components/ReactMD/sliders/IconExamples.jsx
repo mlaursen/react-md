@@ -8,21 +8,21 @@ export default class IconExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false };
+    this.state = { visible: false };
     this._openVolumes = this._openVolumes.bind(this);
     this._closeVolumes = this._closeVolumes.bind(this);
   }
 
   _openVolumes() {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   }
 
   _closeVolumes() {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   render() {
-    const { isOpen } = this.state;
+    const { visible } = this.state;
 
     return (
       <div>
@@ -35,8 +35,8 @@ export default class IconExamples extends PureComponent {
         />
         <Dialog
           id="volumeChanger"
-          isOpen={isOpen}
-          onClose={this._closeVolumes}
+          visible={visible}
+          onHide={this._closeVolumes}
           dialogStyle={{ width: 320 }}
           title="Volumes"
           contentClassName="padding-top-24"

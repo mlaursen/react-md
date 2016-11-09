@@ -6,27 +6,27 @@ export default class ModalDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false };
+    this.state = { visible: false };
   }
 
   openDialog = () => {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   };
 
   closeDialog = () => {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   };
 
   render() {
-    const { isOpen } = this.state;
+    const { visible } = this.state;
     return (
       <div>
         <Button raised onClick={this.openDialog} label="Open Modal Dialog" />
         <Dialog
           id="speedBoost"
-          isOpen={isOpen}
+          visible={visible}
           title="Use Google's location service?"
-          onClose={this.closeDialog}
+          onHide={this.closeDialog}
           aria-labelledby="speedBoostDescription"
           modal
           actions={[{

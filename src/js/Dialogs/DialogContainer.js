@@ -37,7 +37,7 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog id="accessibleExample" isOpen aria-describedby="accessibleContent">
+     * <Dialog id="accessibleExample" visible aria-describedby="accessibleContent">
      *   <p id="accessibleContent">This is some content that describes the dialog.</p>
      * </Dialog>
      * ```
@@ -54,7 +54,7 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog isOpen id="accessibleExample" aria-labelledby="accessibleDialogLabel">
+     * <Dialog visible id="accessibleExample" aria-labelledby="accessibleDialogLabel">
      *   <h2 id="accessibleDialogLabel">Some Accessible Dialog</h2>
      * </Dialog>
      * ```
@@ -71,7 +71,7 @@ export default class DialogContainer extends PureComponent {
      * An example usage:
      *
      * ```js
-     * <Dialog isOpen id="accessibleExample" aria-label="Some Accessible Dialog">
+     * <Dialog visible id="accessibleExample" aria-label="Some Accessible Dialog">
      *   <p>Lorem Ipsum</p>
      * </Dialog>
      * ```
@@ -89,12 +89,12 @@ export default class DialogContainer extends PureComponent {
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the dialog itself when the `isOpen` prop is `true`.
+     * An optional style to apply to the dialog itself when the `visible` prop is `true`.
      */
     dialogStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the dialog itself when the `isOpen` prop is `true`.
+     * An optional className to apply to the dialog itself when the `visible` prop is `true`.
      */
     dialogClassName: PropTypes.string,
 
@@ -143,22 +143,22 @@ export default class DialogContainer extends PureComponent {
     ]),
 
     /**
-     * Bolean if the `Dialog` is current open.
+     * Bolean if the `Dialog` is current visible.
      */
-    isOpen: PropTypes.bool.isRequired,
+    visible: PropTypes.bool.isRequired,
 
     /**
-     * An optional function to call when the `isOpen` prop is changed from `false` to `true`.
+     * An optional function to call when the `visible` prop is changed from `false` to `true`.
      */
-    onOpen: PropTypes.func,
+    onShow: PropTypes.func,
 
     /**
-     * A function to call that will close the dialog. This is required when the `modal` prop is
-     * not `true`.
+     * A function to call that will close the dialog. This is required when the `modal` and `fullPage`
+     * props are not `true`.
      */
-    onClose: (props, propName, ...args) => {
+    onHide: (props, propName, ...args) => {
       let validator = PropTypes.func;
-      if (!props.modal) {
+      if (!props.modal && !props.fullPage) {
         validator = validator.isRequired;
       }
 
@@ -225,12 +225,13 @@ export default class DialogContainer extends PureComponent {
      */
     renderNode: PropTypes.object,
 
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
     transitionLeave: deprecated(PropTypes.bool, 'The transition will always be enforced'),
     actionLeft: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
     actionRight: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
-    close: deprecated(PropTypes.func, 'Use `onClose` instead.'),
+    close: deprecated(PropTypes.func, 'Use `onHide` instead.'),
   };
 
   static defaultProps = {
@@ -244,10 +245,12 @@ export default class DialogContainer extends PureComponent {
   constructor(props) {
     super(props);
 
+    const visible = typeof props.isOpen !== 'undefined' ? props.isOpen : props.visible;
+
     this.state = {
-      active: props.isOpen && !props.fullPage,
-      overlay: props.isOpen && !props.fullPage,
-      portalVisible: props.isOpen,
+      active: visible && !props.fullPage,
+      overlay: visible && !props.fullPage,
+      portalVisible: visible,
       dialogVisible: false,
     };
     this._setContainer = this._setContainer.bind(this);
@@ -259,7 +262,7 @@ export default class DialogContainer extends PureComponent {
   }
 
   componentDidMount() {
-    if (!this.props.isOpen) {
+    if (!this.props.isOpen && !this.props.visible) {
       return;
     }
 
@@ -268,11 +271,11 @@ export default class DialogContainer extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.isOpen === nextProps.isOpen) {
+    const visible = typeof nextProps.isOpen !== 'undefined' ? nextProps.isOpen : nextProps.visible;
+    if (this.props.isOpen === visible || this.props.visible === visible) {
       return;
     }
 
-    const { isOpen } = nextProps;
     const el = this.props.renderNode || window;
     let { scrollX: pageX, scrollY: pageY } = el;
     if (typeof el.scrollTop !== 'undefined' && typeof el.scrollLeft !== 'undefined') {
@@ -282,9 +285,9 @@ export default class DialogContainer extends PureComponent {
 
     this._pageX = pageX;
     this._pageY = pageY;
-    toggleScroll(isOpen);
+    toggleScroll(visible);
 
-    if (isOpen) {
+    if (visible) {
       this._activeElement = document.activeElement;
       this._mountPortal(nextProps);
     } else {
@@ -329,11 +332,12 @@ export default class DialogContainer extends PureComponent {
   }
 
   _handleClick(e) {
-    if (this.props.modal || !this.props.isOpen || e.target !== this._container) {
+    const visible = typeof this.props.isOpen !== 'undefined' ? this.props.isOpen : this.props.visible;
+    if (this.props.modal || !visible || e.target !== this._container) {
       return;
     }
 
-    (this.props.onClose || this.props.close)(e);
+    (this.props.onHide || this.props.close)(e);
   }
 
   _handleDialogMounting(dialog) {
@@ -365,7 +369,9 @@ export default class DialogContainer extends PureComponent {
     } = this.props;
     delete props.close;
     delete props.isOpen;
-    delete props.onClose;
+    delete props.visible;
+    delete props.onShow;
+    delete props.onHide;
     delete props.actionLeft;
     delete props.actionRight;
     delete props.transitionName;

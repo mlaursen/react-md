@@ -19,7 +19,7 @@ export default class FileConverterExample extends PureComponent {
     this.state = {
       file: null,
       fileName: '',
-      isOpen: false,
+      visible: false,
       progress: 0,
     };
 
@@ -47,7 +47,7 @@ export default class FileConverterExample extends PureComponent {
     this._interval = setInterval(() => {
       this.setState({ progress: this.state.progress + 1 });
     }, 2000);
-    this.setState({ isOpen: true, progress: 0 });
+    this.setState({ visible: true, progress: 0 });
   };
 
   _close = () => {
@@ -56,21 +56,21 @@ export default class FileConverterExample extends PureComponent {
     }
 
     this._interval = null;
-    this.setState({ isOpen: false, progress: 0 });
+    this.setState({ visible: false, progress: 0 });
   };
 
   render() {
-    const { file, fileName, isOpen, progress } = this.state;
+    const { file, fileName, visible, progress } = this.state;
     const dialogProps = {
       id: 'fileConverterDialog',
-      isOpen,
-      onClose: this._close,
+      visible,
+      onHide: this._close,
       title: 'Converting...',
       actions: [{ onClick: this._close, primary: true, label: 'Cancel' }],
       dialogStyle: { width: 360 },
     };
 
-    if (isOpen) {
+    if (visible) {
       dialogProps.children = [
         <LinearProgress key="progress" value={progress} />,
         <span key="counter">{progress}%</span>,

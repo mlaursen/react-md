@@ -32,7 +32,7 @@ export default class SimpleExample extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false, dialog: null, key: inboxListItems[0].key };
+    this.state = { visible: false, dialog: null, key: inboxListItems[0].key };
     this._setPage = this._setPage.bind(this);
     this._findContent = this._findContent.bind(this);
     this._openDemo = this._openDemo.bind(this);
@@ -62,15 +62,15 @@ export default class SimpleExample extends PureComponent {
   }
 
   _openDemo() {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   }
 
   _closeDemo() {
-    this.setState({ isOpen: false, dialog: null });
+    this.setState({ visible: false, dialog: null });
   }
 
   render() {
-    const { isOpen, dialog, key } = this.state;
+    const { visible, dialog, key } = this.state;
 
     const closeButton = (
       <Button
@@ -113,11 +113,11 @@ export default class SimpleExample extends PureComponent {
         <Dialog
           id="nav-drawer-demo"
           aria-label="Navigation Drawer Demo"
-          isOpen={isOpen}
-          onClose={this._closeDemo}
+          visible={visible}
           fullPage
           focusOnMount={false}
-          onOpen={this._findContent}
+          onShow={this._findContent}
+          onHide={this._closeDemo}
         >
           {dialogChildren}
         </Dialog>

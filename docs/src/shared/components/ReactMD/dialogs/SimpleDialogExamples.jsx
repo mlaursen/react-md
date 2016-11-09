@@ -8,19 +8,19 @@ export default class SimpleDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false };
+    this.state = { visible: false };
   }
 
   openDialog = () => {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   };
 
   closeDialog = () => {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   };
 
   render() {
-    const { isOpen } = this.state;
+    const { visible } = this.state;
 
     const items = [
       'Single line text goes here',
@@ -40,9 +40,9 @@ export default class SimpleDialogExamples extends PureComponent {
         <Button raised label="Open Simple Dialog" onClick={this.openDialog} />
         <Dialog
           id="simpleDialogExample"
-          isOpen={isOpen}
+          visible={visible}
           title="Simple Title"
-          onClose={this.closeDialog}
+          onHide={this.closeDialog}
         >
           <List>
             {items}

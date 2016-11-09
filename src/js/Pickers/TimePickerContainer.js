@@ -445,8 +445,8 @@ export default class TimePickerContainer extends PureComponent {
       content = (
         <Dialog
           id={`${id}Dialog`}
-          isOpen={isOpen}
-          onClose={this._handleCancelClick}
+          visible={isOpen}
+          onHide={this._handleCancelClick}
           dialogClassName="md-dialog--picker"
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}

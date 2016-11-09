@@ -29,7 +29,7 @@ export default class MusicTabExample extends PureComponent {
       newReleases: [],
       topTracks: [],
       artists: [],
-      isOpen: false,
+      visible: false,
     };
 
     this._setTabsContainer = this._setTabsContainer.bind(this);
@@ -49,11 +49,11 @@ export default class MusicTabExample extends PureComponent {
   }
 
   _openStore() {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   }
 
   _closeStore() {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   _handleTabChange(activeTabIndex) {
@@ -123,10 +123,9 @@ export default class MusicTabExample extends PureComponent {
         <Button label="Open Music Store" raised secondary onClick={this._openStore} />
         <Dialog
           id="music-store"
-          aria-labelledby="woop"
-          isOpen={this.state.isOpen}
+          aria-label="Fake Music Store"
+          visible={this.state.visible}
           fullPage
-          onClose={this._closeStore}
         >
           <TabsContainer
             colored

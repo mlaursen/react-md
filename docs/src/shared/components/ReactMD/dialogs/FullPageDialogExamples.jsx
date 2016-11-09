@@ -10,7 +10,7 @@ export default class FullPageDialogExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false, pageX: null, pageY: null };
+    this.state = { visible: false, pageX: null, pageY: null };
     this._openDialog = this._openDialog.bind(this);
     this._closeDialog = this._closeDialog.bind(this);
   }
@@ -23,11 +23,11 @@ export default class FullPageDialogExamples extends PureComponent {
       pageY = touch.pageY;
     }
 
-    this.setState({ isOpen: true, pageX, pageY });
+    this.setState({ visible: true, pageX, pageY });
   }
 
   _closeDialog() {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class FullPageDialogExamples extends PureComponent {
         <Dialog
           id="fullPageExample"
           {...this.state}
-          onClose={this._closeDialog}
+          onHide={this._closeDialog}
           fullPage
           aria-label="New Event"
         >

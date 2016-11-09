@@ -73,10 +73,9 @@ export default class PhoneDemo extends PureComponent {
         <Button raised onClick={this._showDemo} label={buttonLabel} />
         <Dialog
           id={demoId}
-          isOpen={visible}
-          onClose={this._hideDemo}
-          fullPage
+          visible={visible}
           aria-label={demoLabel}
+          fullPage
         >
           <PhoneSizeDemo {...props} mobile />
         </Dialog>

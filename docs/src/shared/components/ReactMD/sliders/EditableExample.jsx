@@ -10,7 +10,7 @@ export default class EditableExample extends PureComponent {
     super(props);
 
     this.state = {
-      isOpen: false,
+      visible: false,
       r: 10,
       g: 188,
       b: 212,
@@ -24,11 +24,11 @@ export default class EditableExample extends PureComponent {
   }
 
   _openColorChanger() {
-    this.setState({ isOpen: true });
+    this.setState({ visible: true });
   }
 
   _closeColorChanger() {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   _updateR(r) {
@@ -44,7 +44,7 @@ export default class EditableExample extends PureComponent {
   }
 
   render() {
-    const { r, g, b, isOpen } = this.state;
+    const { r, g, b, visible } = this.state;
     return (
       <div>
         <Button
@@ -56,8 +56,8 @@ export default class EditableExample extends PureComponent {
         />
         <Dialog
           id="colorChanger"
-          isOpen={isOpen}
-          onClose={this._closeColorChanger}
+          visible={visible}
+          onHide={this._closeColorChanger}
           dialogClassName="color-changer-dialog"
           aria-label="Color Changer"
         >
