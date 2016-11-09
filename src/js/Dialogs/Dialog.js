@@ -39,6 +39,8 @@ export default class Dialog extends PureComponent {
     initialFocus: PropTypes.string,
     pageX: PropTypes.number,
     pageY: PropTypes.number,
+    containerX: PropTypes.number,
+    containerY: PropTypes.number,
     fullPage: PropTypes.bool,
     onLeave: PropTypes.func,
     zDepth: PropTypes.number.isRequired,
@@ -60,13 +62,13 @@ export default class Dialog extends PureComponent {
   }
 
   componentWillMount() {
-    const { pageX, pageY } = this.props;
+    const { pageX, containerX, pageY, containerY } = this.props;
     if (!pageX || !pageY) {
       return;
     }
 
     this.setState({
-      transformOrigin: `${pageX - window.scrollX}px ${pageY - window.scrollY}px`,
+      transformOrigin: `${pageX - containerX}px ${pageY - containerY}px`,
     });
   }
 
@@ -125,6 +127,8 @@ export default class Dialog extends PureComponent {
     } = this.props;
     delete props.pageX;
     delete props.pageY;
+    delete props.containerX;
+    delete props.containerY;
     delete props.style;
     delete props.onOpen;
     delete props.onLeave;

@@ -273,6 +273,15 @@ export default class DialogContainer extends PureComponent {
     }
 
     const { isOpen } = nextProps;
+    const el = this.props.renderNode || window;
+    let { scrollX: pageX, scrollY: pageY } = el;
+    if (typeof el.scrollTop !== 'undefined' && typeof el.scrollLeft !== 'undefined') {
+      pageX = el.scrollTop;
+      pageY = el.scrollLeft;
+    }
+
+    this._pageX = pageX;
+    this._pageY = pageY;
     toggleScroll(isOpen);
 
     if (isOpen) {
@@ -371,6 +380,8 @@ export default class DialogContainer extends PureComponent {
         ref={this._handleDialogMounting}
         fullPage={fullPage}
         {...props}
+        containerX={this._pageX}
+        containerY={this._pageY}
         onLeave={this._unmountPortal}
       />
     );
