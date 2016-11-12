@@ -11,6 +11,7 @@ export default class SelectFieldButtonExamples extends PureComponent {
           placeholder="State"
           menuItems={states}
           itemLabel="abbreviation"
+          itemValue="abbreviation"
           position={SelectField.Positions.BELOW}
           className="md-cell"
         />

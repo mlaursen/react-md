@@ -56,7 +56,6 @@ export default class SearchToolbarExample extends PureComponent {
           value={this.state.value}
           onAutocomplete={this._handleSearchChange}
           onChange={this._handleSearchChange}
-          containerStyle={{ flexGrow: 1 }}
           className="md-title--toolbar"
         />
       );

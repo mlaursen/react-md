@@ -2,42 +2,45 @@ import React, { PureComponent } from 'react';
 import SelectField from 'react-md/lib/SelectFields';
 import states from 'constants/states';
 
+const stateItems = [''].concat(states);
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 export default class SelectFieldExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { value: '' };
   }
 
-  _handleChange = (item, event) => { // eslint-disable-line no-unused-vars
-    this.setState({ value: item.abbreviation });
+  _handleChange = (value, index, event) => { // eslint-disable-line no-unused-vars
+    this.setState({ value });
   };
 
   render() {
     return (
-      <form className="md-grid">
+      <section className="md-grid">
         <SelectField
           id="states"
           placeholder="Select a State"
-          menuItems={states}
+          menuItems={stateItems}
           itemLabel="name"
-          position={SelectField.Positions.TOP_LEFT}
+          itemValue="abbreviation"
           className="md-cell md-cell--bottom"
         />
         <SelectField
           id="statesControlled"
           label="State"
           menuItems={states}
-          position={SelectField.Positions.TOP_RIGHT}
           value={this.state.value}
           onChange={this._handleChange}
-          itemLabel="abbreviation"
+          itemLabel="name"
+          itemValue="abbreviation"
           className="md-cell"
         />
         <SelectField
           id="numbers"
           defaultValue={1}
-          menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          menuItems={numbers}
           className="md-cell md-cell--bottom"
         />
         <SelectField
@@ -45,10 +48,10 @@ export default class SelectFieldExamples extends PureComponent {
           label="Disabled"
           disabled
           defaultValue={1}
-          menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+          menuItems={numbers}
           className="md-cell md-cell--bottom"
         />
-      </form>
+      </section>
     );
   }
 }

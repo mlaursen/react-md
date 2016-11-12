@@ -133,9 +133,13 @@ $md-toolbar-tablet-title-keyline: 80px;
     transition-property: transform;
   }
 
-  @if $include-prominent and $md-toolbar-prominent-title-font-size != $md-title-font-size {
+  @if $include-prominent {
     .md-title--toolbar-prominent {
-      font-size: $md-toolbar-prominent-title-font-size;
+      position: absolute;
+
+      @if $md-toolbar-prominent-title-font-size != $md-title-font-size {
+        font-size: $md-toolbar-prominent-title-font-size;
+      }
     }
   }
 
@@ -143,8 +147,12 @@ $md-toolbar-tablet-title-keyline: 80px;
     color: $md-white-base;
 
     $selectors: ('btn' 'icon' 'title--toolbar');
-    @if $include-text-fields or $include-select-fields or $include-autocompletes {
+    @if $include-text-fields or $include-autocompletes {
       $selectors: append($selectors, 'text-field');
+    }
+
+    @if $include-select-fields {
+      $selectors: append($selectors, 'select-field');
     }
 
     $color-selector: '';
@@ -163,7 +171,7 @@ $md-toolbar-tablet-title-keyline: 80px;
     }
   }
 
-  @if $include-text-fields or $include-select-fields or $include-autocompletes {
+  @if $include-text-fields or $include-autocompletes {
     .md-toolbar {
       .md-text-field-container {
         padding-bottom: 0;
@@ -179,19 +187,6 @@ $md-toolbar-tablet-title-keyline: 80px;
   @if $include-autocompletes {
     .md-toolbar {
       .md-autocomplete {
-        height: 100%;
-      }
-    }
-  }
-
-  @if $include-select-fields {
-    .md-toolbar {
-      .md-menu-container {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .md-select-field-container {
         height: 100%;
       }
     }
@@ -255,7 +250,7 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 
   .md-title--toolbar {
-    margin-left: $md-toolbar-mobile-title-keyline - $md-btn-icon-size - ($toolbar-btn-margin * 2);
+    margin-left: $md-toolbar-mobile-title-keyline - $md-btn-icon-size - $toolbar-btn-margin;
   }
 
   .md-title--toolbar-offset {
@@ -281,7 +276,8 @@ $md-toolbar-tablet-title-keyline: 80px;
 @mixin react-md-toolbars-mobile-portait(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
 ) {
   .md-toolbar-relative {
     margin-top: $md-toolbar-mobile-portrait-height;
@@ -327,6 +323,13 @@ $md-toolbar-tablet-title-keyline: 80px;
       width: 100vw;
     }
   }
+
+  @if $include-select-fields {
+    .md-select-field {
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+  }
 }
 
 /// Includes the styles for toolbars on landscape mobile devices. This should normally be
@@ -347,7 +350,8 @@ $md-toolbar-tablet-title-keyline: 80px;
 @mixin react-md-toolbars-mobile-landscape(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
 ) {
   .md-toolbar-relative {
     margin-top: $md-toolbar-mobile-landscape-height;
@@ -477,12 +481,30 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 
   @if $include-select-fields {
-    .md-toolbar .md-text-field-inline-indicator {
-      bottom: 18px;
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 4px;
+      margin-top: 4px;
     }
   }
 }
 
+@mixin react-md-toolbars-tablet-landscape($include-select-fields: $md-toolbar-include-select-fields) {
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
+  }
+}
+
+@mixin react-md-toolbars-desktop($include-select-fields: $md-toolbar-include-select-fields) {
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 12px;
+      margin-top: 12px;
+    }
+  }
+}
 /// Includes the media queries for toolbars.
 ///
 /// @example scss - Example Usage SCSS
@@ -508,14 +530,24 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 
   @media #{$md-mobile-portrait-media} {
-    @include react-md-toolbars-mobile-portait($include-prominent, $include-btn-text, $include-autocompletes);
+    @include react-md-toolbars-mobile-portait($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
   }
 
   @media #{$md-mobile-landscape-media} {
-    @include react-md-toolbars-mobile-landscape($include-prominent, $include-btn-text, $include-autocompletes);
+    @include react-md-toolbars-mobile-landscape($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
   }
 
   @media #{$md-tablet-media} {
     @include react-md-toolbars-tablet($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+  }
+
+  @if $include-select-fields {
+    @media #{$md-tablet-landscape-media} {
+      @include react-md-toolbars-tablet-landscape($include-select-fields);
+    }
+
+    @media #{$md-desktop-media} {
+      @include react-md-toolbars-desktop($include-select-fields);
+    }
   }
 }

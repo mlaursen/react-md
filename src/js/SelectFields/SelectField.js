@@ -1,87 +1,31 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-import deprecated from 'react-prop-types/lib/deprecated';
 
-import { UP, DOWN, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
+import { UP, DOWN, ESC, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import isBetween from '../utils/NumberUtils/isBetween';
-import Collapser from '../FontIcons/Collapser';
-import Paper from '../Papers/Paper';
-import Menu from '../Menus/Menu';
-import Positions from '../Menus/Positions';
 import List from '../Lists/List';
 import ListItem from '../Lists/ListItem';
+import Menu from '../Menus/Menu';
+import Positions from '../Menus/Positions';
+import FloatingLabel from '../TextFields/FloatingLabel';
+import Field from './Field';
 
-import SelectFieldInput from './SelectFieldInput';
+const VALID_LIST_ITEM_PROPS = Object.keys(ListItem.propTypes);
 
 const MOBILE_LIST_PADDING = 8;
 const SelectFieldPositions = Object.assign({}, Positions);
 delete SelectFieldPositions.BOTTOM_RIGHT;
 delete SelectFieldPositions.BOTTOM_LEFt;
 
-/* eslint-disable max-len */
-
-/**
- * The `SelectField` is a component for a material design styled `select` component with
- * built-in accessibility. The [Listbox Role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_listbox_role)
- * was used to create this component.
- */
 export default class SelectField extends PureComponent {
-  /* eslint-enable max-len */
   static Positions = SelectFieldPositions;
   static propTypes = {
     /**
-     * An optional style to apply to the menu containing the select field.
-     */
-    style: PropTypes.object,
-
-    /**
-     * An optional className to apply to the menu containing the select field.
-     */
-    className: PropTypes.string,
-
-    /**
-     * An optional style to apply to the list that gets created when the `SelectField`
-     * is open.
-     */
-    listStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the list that gets created when the `SelectField`
-     * is open.
-     */
-    listClassName: PropTypes.string,
-
-    /**
-     * An optional style to apply to the select field itself.
-     */
-    selectFieldStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to select field itself.
-     */
-    selectFieldClassName: PropTypes.string,
-
-    /**
-     * An optional style to apply to the text field's input.
-     */
-    inputStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the text field's input.
-     */
-    inputClassName: PropTypes.string,
-
-    /**
-     * Boolean if the text field in the select field should be displayed as a `block`.
-     */
-    block: PropTypes.bool,
-
-    /**
-     * An id to use for the select field. This is used for multiple parts of accessibility.
+     * An id to use for the select field. This is required for a11y. If the `menuId` and
+     * `listId` are not given, this will be used to create their ids for a11y.
      */
     id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.number,
@@ -89,291 +33,210 @@ export default class SelectField extends PureComponent {
     ])),
 
     /**
-     * An optional floating label to display with the `SelectField`. The `label` prop can not
-     * be used when setting the `position` to `SelectField.Positions.BELOW`. You must use the
-     * `placeholder` prop instead.
+     * An optional name to give the select field's input.
      */
-    label: (props, propName, componentName, location, propFullName, ...args) => {
-      const componentNameSafe = componentName || '<<anonymous>>';
-      const propFullNameSafe = propFullName || propName;
-      if (props.position === Positions.BELOW && typeof props[propName] !== 'undefined') {
-        return new Error(
-          `You provided a \`${propFullNameSafe}\` ${location} to the ${componentNameSafe} when ` +
-          'the `position` was set to `SelectField.Positions.BELOW`. Only the `placeholder` ' +
-          'prop may be used with this position.'
-        );
-      }
-
-      return PropTypes.node(props, propName, componentName, location, propFullName, ...args);
-    },
+    name: PropTypes.string,
 
     /**
-     * An optional placeholder to display with the `SelectField`.
+     * An id to give the menu containing the select field. If this is omitted, the `id` prop
+     * will be used to make this id. `${id}Menu`.
      */
-    placeholder: PropTypes.string,
-
-    /**
-     * An optional default value for the text field.
-     */
-    defaultValue: PropTypes.oneOfType([
+    menuId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
     /**
-     * An optional value for the text field. This will make the `SelectField` controlled
-     * and require the `onChange` prop to be defined.
+     * An id to give the list that appears once the menu is open. If this is omitted, the `id` prop
+     * will be used to make this id. `${id}Values`.
      */
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional style to apply to the select field's container. This is the `Menu` component.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional style to apply to the select field's container. This is the `Menu` component.
+     */
+    className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field's list of items that appear when opened.
+     */
+    listStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field's list of items that appear when opened.
+     */
+    listClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field itself.
+     */
+    inputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field itself.
+     */
+    inputClassName: PropTypes.string,
     value: controlled(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]), 'onChange'),
-
-    /**
-     * Boolean if the `SelectField` is open by default.
-     */
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
     defaultOpen: PropTypes.bool,
-
-    /**
-     * An optional function to call when the select field's container is clicked.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * An optional function to call when the 'keydown' event is triggered anywhere
-     * in the select field's container.
-     */
-    onKeyDown: PropTypes.func,
-
-    /**
-     * An optional boolean if the select field is currently open and displaying the
-     * menu items. If this prop is set, it makes the select field controlled and requires
-     * the `onMenuToggle` prop to be defined.
-     */
     isOpen: controlled(PropTypes.bool, 'onMenuToggle', 'defaultOpen'),
-
-    /**
-     * An optional function to call when the select field's `isOpen` state changes.
-     * The callback will include the next state of `isOpen` and a click event.
-     *
-     * ```js
-     * onMenuToggle(true, event);
-     * ```
-     */
     onMenuToggle: PropTypes.func,
-
-    /**
-     * An optional function to call when the select field's value changes. This will
-     * be triggered any time a user:
-     * - clicks a menu item
-     * - presses enter or space on a menu item
-     * - presses a letter or number while the menu is closed and has focus
-     *
-     * The callback will include the selected value, the selected index, and the event.
-     *
-     * ```js
-     * onChange(value, index, event);
-     * ```
-     */
     onChange: PropTypes.func,
 
-    /**
-     * An optional menu item key to use to extract the label/value to display in a `ListItem`.
-     * This is only used if the `menuItem` is an object.
-     */
-    itemLabel: PropTypes.string,
-
-    /**
-     * A list of menu items to display when the select field is open.
-     */
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
-    ])).isRequired,
+    ])),
 
-    /**
-     * The position the menu appears from.
-     */
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    disabled: PropTypes.bool,
+    itemLabel: PropTypes.string.isRequired,
+    itemValue: PropTypes.string.isRequired,
+    iconChildren: PropTypes.node,
+    iconClassName: PropTypes.string,
+    onClick: PropTypes.func,
     position: PropTypes.oneOf([
       SelectField.Positions.TOP_LEFT,
       SelectField.Positions.TOP_RIGHT,
       SelectField.Positions.BELOW,
-    ]),
-
-    /**
-     * Boolean if the select field is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * Any children used to display the icon in the select field.
-     */
-    iconChildren: PropTypes.node,
-
-    /**
-     * An optional icon className used to display the icon in the select field.
-     */
-    iconClassName: PropTypes.string,
-
-    /**
-     * An optional size for the select field's input tag.
-     *
-     * > Note: The size will automatically be determined if the `noAutoAdust` prop is not
-     * false. However, this prop will have precendence over the automatic size calculation.
-     */
-    size: PropTypes.number,
-
-    /**
-     * The direction that the text field divider expands from when the text field
-     * gains focus. If this is omitted, it will automatically match the direction
-     * of the `position` prop so that the line expands from the same direction
-     * as the menu.
-     */
+    ]).isRequired,
     lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
-
-    /**
-     * Boolean if the select field should not attempt to automatically calculate the best
-     * size for the select field's text field.
-     */
-    noAutoAdjust: PropTypes.bool,
-
-    /**
-     * The amount of time(ms) that should be used before the matching of menu items is reset.
-     * When using a keyboard, a user will be able to keep typing to get the best match of items.
-     * When the user stops typing for this duration, the matching will be reset, and the user
-     * can start matching with different letters.
-     */
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     keyboardMatchingTimeout: PropTypes.number.isRequired,
-
-    /**
-     * Boolean if the text field should be a padded block when the `block` prop is true.
-     */
-    paddedBlock: PropTypes.bool,
-
-    /**
-     * Boolean if the SelectField should span the entire width.
-     */
-    fullWidth: PropTypes.bool,
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
+    defaultValue: '',
     itemLabel: 'label',
-    fullWidth: true,
-    menuItems: [],
-    keyboardMatchingTimeout: 1000,
+    itemValue: 'value',
     iconChildren: 'arrow_drop_down',
+    position: SelectField.Positions.TOP_LEFT,
+    lineDirection: 'left',
+    keyboardMatchingTimeout: 1000,
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      isOpen: false,
-      value: props.defaultValue || '',
-      listStyle: null,
+      active: false,
       activeIndex: this._getActiveIndex(props, { value: props.defaultValue }),
-      match: -1,
+      isOpen: !!props.defaultOpen,
+      activeLabel: this._getActiveLabel(props, typeof props.value !== 'undefined' ? props.value : props.defaultValue),
+      match: null,
       lastSearch: null,
     };
 
-    this.focus = this.focus.bind(this);
+    if (typeof props.value === 'undefined') {
+      this.state.value = props.defaultValue;
+    }
+
     this._setMenu = this._setMenu.bind(this);
     this._setField = this._setField.bind(this);
     this._positionList = this._positionList.bind(this);
-    this._setMenuItem = this._setMenuItem.bind(this);
-    this._toggleMenu = this._toggleMenu.bind(this);
-    this._selectItem = this._selectItem.bind(this);
-    this._getSelectedValue = this._getSelectedValue.bind(this);
-    this._handleClick = this._handleClick.bind(this);
+    this._toggleOpen = this._toggleOpen.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
+    this._handleOpen = this._handleOpen.bind(this);
     this._handleClose = this._handleClose.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._getActiveLabel = this._getActiveLabel.bind(this);
     this._mapToListItem = this._mapToListItem.bind(this);
-    this._highlightNextItem = this._highlightNextItem.bind(this);
+    this._handleItemSelect = this._handleItemSelect.bind(this);
+    this._handleContainerClick = this._handleContainerClick.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._setMenuItem = this._setMenuItem.bind(this);
+    this._getActiveIndex = this._getActiveIndex.bind(this);
+    this._advanceFocus = this._advanceFocus.bind(this);
+    this._attemptItemFocus = this._attemptItemFocus.bind(this);
     this._selectItemByLetter = this._selectItemByLetter.bind(this);
     this._selectFirstMatch = this._selectFirstMatch.bind(this);
+
+    this._items = [];
+    this._activeItem = null;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this.setState({ activeLabel: this._getActiveLabel(nextProps, nextProps.value) });
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const value = getField(this.props, this.state, 'value');
-    const nextValue = getField(nextProps, nextState, 'value');
-
-    if (value === nextValue) {
-      return;
-    }
-
-    this._timeout = setTimeout(() => {
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-
-        this.setState({ droppingClassName: null });
-      }, 300);
-
-      this.setState({ droppingClassName: 'md-drop-enter md-drop-enter-active' });
-    }, 1);
-
-    this.setState({
-      activeIndex: this._getActiveIndex(nextProps, nextState),
-      droppingClassName: 'md-drop-enter',
-    });
-  }
-
-  componentWillUnmount() {
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
-
-    if (this._matchingTimeout) {
-      clearTimeout(this._matchingTimeout);
-    }
-  }
-
-  /**
-   * A simple function for focusing the `SelectField` via refs.
-   *
-   * ```js
-   * <SelectField ref={field => field.focus(); } ... />
-   * ```
-   */
-  focus() {
-    if (this._field) {
+    const isOpen = getField(nextProps, nextState, 'isOpen');
+    if (this._field && getField(this.props, this.state, 'isOpen') !== isOpen) {
       this._field.focus();
     }
   }
 
-  /**
-   * A list of `ListItem` that gets repopulated each time the menu items appear.
-   * This is used so that the `focus` method can be accessed.
-   */
-  _items = [];
+  _attemptItemFocus(index) {
+    if (index === -1) {
+      return;
+    }
 
-  /**
-   * The current active item. This will either be the index of the active item (when
-   * the position is below) or a ref to a `ListItem`. This will be set each time the
-   * menu items appear.
-   */
-  _activeItem = null;
+    const item = this._items[index];
+    if (item) {
+      item.focus();
+    }
+  }
 
-  /**
-   * Finds the current active index for the select field by searching the `menuItems` for
-   * a label that equals the current `value`. If there is no value or match, `-1` will be
-   * returned.
-   *
-   * @param {Object} props - The props object to use.
-   * @param {Object} state - The state object to use.
-   * @return {number} the active index or -1.
-   */
+  _getActiveLabel({ menuItems, itemLabel, itemValue }, value) {
+    let activeLabel = '';
+    menuItems.some(item => {
+      activeLabel = this._getActiveLabelFromItem(item, value, itemLabel, itemValue);
+      return activeLabel;
+    });
+
+    return activeLabel;
+  }
+
+  _getActiveLabelFromItem(item, value, itemLabel, itemValue) {
+    switch (typeof item) {
+      case 'number':
+      case 'string':
+        if (item === value || item === parseInt(value, 10)) {
+          return item;
+        }
+
+        break;
+      case 'object':
+        if (item[itemValue] === value || item[itemValue] === parseInt(value, 10)) {
+          return item[itemLabel];
+        }
+
+        break;
+      default:
+    }
+
+    return '';
+  }
+
   _getActiveIndex(props, state) {
     const value = getField(props, state, 'value');
     if (!value) {
       return -1;
     }
 
-    const { itemLabel, menuItems } = props;
+    const { itemLabel, itemValue, menuItems } = props;
     let index = -1;
     menuItems.some((item, i) => {
-      const found = (typeof item === 'object' ? item[itemLabel] : item) === value;
+      const found = this._getActiveLabelFromItem(item, value, itemLabel, itemValue);
       if (found) {
         index = i;
       }
@@ -383,37 +246,23 @@ export default class SelectField extends PureComponent {
 
     return index;
   }
+
   _setMenu(menu) {
-    if (menu !== null) {
-      this._menu = findDOMNode(menu);
-    }
+    this._menu = findDOMNode(menu);
   }
 
   _setField(field) {
-    if (field !== null) {
-      // Since the field is in the `injectInk` HOC, we need to actually
-      // get the field to access the `TextField.focus()` method.
-      this._field = field.getComposedComponent();
-    }
+    this._field = findDOMNode(field);
   }
 
-  /**
-   * This is called whenever the `List` component gets rendered or removed. When it
-   * is rendered and there is currently a value for the select field, the scroll position
-   * in the list will be set to be at the active item. If the menu is not positioned
-   * below the text field, the positioning of the list itself will be modified so that
-   * the current item is positioned over text field.
-   */
   _positionList(listRef) {
     if (listRef === null) {
       this._items = [];
-      return;
     } else if (!this._activeItem) {
       return;
     }
 
     const list = findDOMNode(listRef);
-
     const { position, menuItems } = this.props;
     if (position === SelectField.Positions.BELOW) { // only modify scroll distance when below
       const activeIndex = Math.min(this._activeItem, menuItems.length - 2);
@@ -452,45 +301,61 @@ export default class SelectField extends PureComponent {
     });
   }
 
-  /**
-   * This is the ref callback for each `ListItem` in the menu items. When being mounted,
-   * it will check if it is the currently active item and then focus itself and generate
-   * some ink.
-   *
-   * It will also add itself to the `this._items` array so it can optionally be focused
-   * via keypress.
-   */
-  _setMenuItem(item) {
-    if (!item) {
-      return;
+  _handleFocus(e) {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
     }
 
-    const { primaryText } = item.props;
-    if (getField(this.props, this.state, 'value') === primaryText) {
-      this._activeItem = findDOMNode(item);
-      item.focus();
-    }
-
-    this._items.push(item);
+    this.setState({ active: true });
   }
 
-  /**
-   * Attempts to focus a `ListItem` based on an index.
-   *
-   * @param {number} index - the index of the item to focus.
-   */
-  _focusItem(index) {
-    if (index === -1) {
-      return;
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
     }
 
-    const item = this._items[index];
-    if (item) {
-      item.focus();
+    this.setState({ active: false });
+  }
+
+  _handleItemSelect(index, value, e) {
+    const { menuItems, itemLabel, itemValue, onChange } = this.props;
+    if (onChange) {
+      onChange(value, index, e);
+    }
+
+    const state = {
+      activeIndex: index,
+      activeLabel: this._getActiveLabelFromItem(menuItems[index], value, itemLabel, itemValue),
+    };
+
+    if (typeof this.props.value === 'undefined') {
+      state.value = value;
+    }
+
+    if (typeof this.props.isOpen === 'undefined' && e.type !== 'click') {
+      state.isOpen = false;
+    }
+
+    this.setState(state);
+  }
+
+  _handleContainerClick(e) {
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
+
+    let { target } = e;
+    while (this._menu && this._menu.contains(target)) {
+      if (target.dataset.id) {
+        this._handleItemSelect(parseInt(target.dataset.id, 10), target.dataset.value, e);
+        return;
+      }
+
+      target = target.parentNode;
     }
   }
 
-  _toggleMenu(e) {
+  _toggleOpen(e) {
     const isOpen = !getField(this.props, this.state, 'isOpen');
     if (this.props.onMenuToggle) {
       this.props.onMenuToggle(isOpen, e);
@@ -498,6 +363,16 @@ export default class SelectField extends PureComponent {
 
     if (typeof this.props.isOpen === 'undefined') {
       this.setState({ isOpen });
+    }
+  }
+
+  _handleOpen(e) {
+    if (this.props.onMenuToggle) {
+      this.props.onMenuToggle(true, e);
+    }
+
+    if (typeof this.props.isOpen === 'undefined') {
+      this.setState({ isOpen: true });
     }
   }
 
@@ -511,74 +386,113 @@ export default class SelectField extends PureComponent {
     }
   }
 
-  _getSelectedValue(index) {
-    const { itemLabel } = this.props;
-    const menuItems = this.props.menuItems.slice();
-    if (typeof this._activeItem === 'number') {
-      menuItems.splice(this._activeItem, 1);
+  _mapToListItem(item, i) {
+    const { id, itemLabel, itemValue: itemValueKey, position } = this.props;
+    const value = getField(this.props, this.state, 'value');
+
+    let primaryText = '';
+    let itemValue = '';
+    let props;
+    switch (typeof item) {
+      case 'number':
+      case 'string':
+        primaryText = item;
+        itemValue = item;
+        break;
+      case 'object':
+        primaryText = item[itemLabel];
+        itemValue = item[itemValueKey] || item[itemLabel];
+        props = Object.keys(item).reduce((validProps, key) => {
+          if (key !== itemLabel && key !== itemValueKey && key !== 'primaryText'
+            && VALID_LIST_ITEM_PROPS.indexOf(key) !== -1
+          ) {
+            validProps[key] = item[key];
+          }
+
+          return validProps;
+        }, {});
+        break;
+      default:
     }
 
-    const item = menuItems[index];
+    const active = itemValue === value;
 
-    return typeof item === 'object' && item ? item[itemLabel] : item;
+    return (
+      <ListItem
+        {...props}
+        ref={this._setMenuItem}
+        active={active}
+        tabIndex={-1}
+        primaryText={primaryText}
+        key={item.key || i}
+        role="option"
+        id={active ? `${id}Active` : null}
+        data-id={i}
+        data-value={itemValue}
+        tileStyle={position === SelectField.Positions.BELOW ? { paddingLeft: 24 } : undefined}
+      />
+    );
   }
 
-  /**
-   * Highlights the next menu item when navigating with the up and down keyboard arrows.
-   */
-  _highlightNextItem(e, decrement) {
-    // Prevent page scrolling
-    e.preventDefault();
-
-    const { activeIndex } = this.state;
-    const lastItemIndex = this.props.menuItems.length - 1;
-
-    if (decrement && activeIndex === -1 || !decrement && activeIndex >= lastItemIndex) {
+  _setMenuItem(item) {
+    if (!item) {
       return;
     }
 
-    const nextIndex = Math.max(0, Math.min(lastItemIndex, activeIndex + (decrement ? -1 : 1)));
-    if (nextIndex !== this.state.activeIndex) {
-      this._focusItem(nextIndex);
-      this.setState({ activeIndex: nextIndex });
+    if (item.props.active) {
+      this._activeItem = findDOMNode(item);
+      item.focus();
+    }
+
+    this._items.push(item);
+  }
+
+  _handleKeyDown(e) {
+    const key = e.which || e.keyCode;
+    const isOpen = getField(this.props, this.state, 'isOpen');
+
+    if (key === UP || key === DOWN) {
+      e.preventDefault();
+    }
+
+    if (!isOpen && (key === DOWN || key === ENTER)) {
+      this._handleOpen(e);
+      return;
+    } else if (isOpen && (key === ESC || key === TAB)) {
+      this._handleClose(e);
+      return;
+    }
+
+    switch (key) {
+      case UP:
+      case DOWN:
+        this._advanceFocus(key === UP, e);
+        break;
+      case ENTER:
+        if (this._field) {
+          this._field.focus();
+        }
+        this._handleContainerClick(e);
+        break;
+      default:
+        this._selectItemByLetter(e, key);
     }
   }
 
-  _selectFirstMatch(e, letter) {
-    const search = `${this.state.lastSearch || ''}${letter}`;
-    const { menuItems, itemLabel } = this.props;
-    let match = -1;
-    menuItems.some((item, i) => {
-      const value = String(typeof item === 'object' && item ? item[itemLabel] : item);
-      if (value && value.toUpperCase().indexOf(search) === 0) {
-        match = i;
-      }
-
-      return match > -1;
-    });
-
-    const state = {
-      match,
-      lastSearch: search,
-      activeIndex: match,
-    };
-
-    if (getField(this.props, this.state, 'isOpen')) {
-      if (state.match !== this.state.match) {
-        this._focusItem(state.activeIndex);
-      }
-    } else {
-      const value = this._getSelectedValue(state.activeIndex);
-      if (this.props.onChange) {
-        this.props.onChange(value, state.activeIndex, e);
-      }
-
-      if (typeof this.props.value === 'undefined') {
-        state.value = value;
-      }
+  _advanceFocus(decrement) {
+    const { activeIndex } = this.state;
+    const lastIndex = this.props.menuItems.length - 1;
+    if ((decrement && activeIndex <= 0) || (!decrement && activeIndex >= lastIndex)) {
+      return;
     }
 
-    this.setState(state);
+    const nextIndex = Math.max(-1, Math.min(lastIndex, activeIndex + (decrement ? -1 : 1)));
+    if (nextIndex === activeIndex) {
+      return;
+    }
+
+    this._attemptItemFocus(nextIndex);
+    this.setState({ activeIndex: nextIndex });
   }
 
   _selectItemByLetter(e, key) {
@@ -601,225 +515,146 @@ export default class SelectField extends PureComponent {
       this.setState({ match: null, lastSearch: null });
     }, this.props.keyboardMatchingTimeout);
 
-    this._selectFirstMatch(e, letter);
+    this._selectFirstMatch(letter, e);
   }
 
-  _handleClick(e) {
-    if (this.props.disabled) {
+  _selectFirstMatch(letter, e) {
+    const { menuItems, itemLabel, itemValue } = this.props;
+
+    const search = `${this.state.lastSearch || ''}${letter}`;
+    let match = -1;
+    menuItems.some((item, i) => {
+      const value = String(typeof item === 'object' && item ? item[itemLabel] : item);
+      if (value && value.toUpperCase().indexOf(search) === 0) {
+        match = i;
+      }
+
+      return match > -1;
+    });
+
+    const activeItem = menuItems[match];
+
+    const state = {
+      match,
+      lastSearch: search,
+    };
+
+    if (match === -1) {
+      this.setState(state);
       return;
     }
 
-    if (this.props.onClick) {
-      this.props.onClick(e);
-    }
+    state.activeLabel = typeof activeItem === 'object' ? activeItem[itemLabel] : activeItem;
+    state.activeIndex = match;
 
-    let node = e.target;
-    while (node && node.parentNode) {
-      const { className } = node;
-      if (className.match(/md-text-field/)) {
-        this._toggleMenu(e);
-        return;
-      } else if (className.match(/md-list-tile/)) {
-        const items = Array.prototype.slice.call(this._menu.querySelectorAll('.md-list-tile'));
-        this._selectItem(e, items.indexOf(node));
-        return;
+    if (getField(this.props, this.state, 'isOpen')) {
+      if (state.match !== this.state.match) {
+        this._attemptItemFocus(state.activeIndex);
+      }
+    } else {
+      const value = typeof activeItem === 'object' ? activeItem[itemValue] : activeItem;
+
+      if (this.props.onChange) {
+        this.props.onChange(value, state.activeIndex, e);
       }
 
-      node = node.parentNode;
-    }
-  }
-
-  _handleKeyDown(e) {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
+      if (typeof this.props.value === 'undefined') {
+        state.value = value;
+      }
     }
 
-    const key = e.which || e.keyCode;
-    switch (key) {
-      case UP:
-      case DOWN:
-        this._highlightNextItem(e, key === UP);
-        break;
-      case ENTER:
-        this._handleSelectionKeypress(e);
-        break;
-      case TAB:
-        this._handleClose(e);
-        break;
-      default:
-        this._selectItemByLetter(e, key);
-    }
-  }
-
-  _handleSelectionKeypress(e) {
-    const { classList } = e.target;
-    if (classList.contains('md-text-field')) {
-      this._toggleMenu(e);
-    } else if (classList.contains('md-list-tile')) {
-      this._selectItem(e, this.state.activeIndex);
-    }
-  }
-
-  _selectItem(e, index) {
-    const value = this._getSelectedValue(index);
-
-    if (this.props.onChange) {
-      this.props.onChange(value, index, e);
-    }
-
-    const state = { activeIndex: index };
-    if (typeof this.props.isOpen === 'undefined' && e.type !== 'click') {
-      state.isOpen = false;
-    }
-
-    if (typeof this.props.value === 'undefined') {
-      state.value = value;
-    }
-
-    this.focus();
     this.setState(state);
   }
 
-  _mapToListItem(item, i) {
-    const { id, itemLabel, position } = this.props;
-    const value = getField(this.props, this.state, 'value');
-
-    const props = {};
-    switch (typeof item) {
-      case 'string':
-      case 'number':
-        props.primaryText = item;
-        break;
-      case 'object':
-        props.primaryText = item[itemLabel];
-        break;
-      default:
-        return null;
-    }
-
-    const active = value === props.primaryText;
-
-    if (active && position === SelectField.Positions.BELOW) {
-      this._activeItem = i;
-      return null;
-    }
-
-    return (
-      <ListItem
-        {...props}
-        ref={this._setMenuItem}
-        active={active}
-        tabIndex={-1}
-        key={props.key || i}
-        role="option"
-        id={active && `${id}Active`}
-      />
-    );
-  }
-
   render() {
-    const { droppingClassName } = this.state;
+    const { activeLabel, active } = this.state;
     const {
       id,
+      style,
+      className,
       listStyle,
       listClassName,
-      selectFieldStyle,
-      selectFieldClassName,
       inputStyle,
       inputClassName,
-      label,
-      placeholder,
       disabled,
-      position,
       menuItems,
-      iconChildren,
-      iconClassName,
-      block,
-      paddedBlock,
-      fullWidth,
-      size,
+      position,
+      label,
       ...props
     } = this.props;
-    delete props.value;
-    delete props.defaultValue;
-    delete props.defaultOpen;
-    delete props.initiallyOpen;
     delete props.itemLabel;
-    delete props.onMenuToggle;
-    delete props.noAutoAdjust;
-    delete props.lineDirection;
+    delete props.itemValue;
+    delete props.menuId;
+    delete props.listId;
+    delete props.defaultValue;
+    delete props.value;
+    delete props.isOpen;
+    delete props.defaultOpen;
     delete props.keyboardMatchingTimeout;
 
-    const below = position === SelectField.Positions.BELOW;
+    let { menuId, listId } = this.props;
     const value = getField(this.props, this.state, 'value');
     const isOpen = getField(this.props, this.state, 'isOpen');
+    const below = position === SelectField.Positions.BELOW;
 
-    let { lineDirection } = this.props;
-    if (!lineDirection && !below) {
-      lineDirection = SelectField.Positions.TOP_LEFT === position ? 'left' : 'right';
+    if (!menuId) {
+      menuId = `${id}Menu`;
     }
 
-    const toggle = (
-      <SelectFieldInput
+    if (!listId) {
+      listId = `${id}Values`;
+    }
+
+    const toggle = [
+      <FloatingLabel
+        key="floating-label"
+        label={label}
+        htmlFor={id}
+        active={active || isOpen}
+        floating={!!activeLabel}
+        disabled={disabled}
+      />,
+      <Field
+        {...props}
         id={id}
-        size={size}
         ref={this._setField}
         key="select-field"
-        label={label}
-        placeholder={placeholder}
-        block={block || below}
-        paddedBlock={block && paddedBlock}
-        value={value}
+        style={inputStyle}
+        className={inputClassName}
+        activeLabel={activeLabel}
         disabled={disabled}
-        inkDisabled={!below}
-        style={selectFieldStyle}
-        className={cn('md-select-field-container', {
-          'md-pointer--hover': !disabled,
-          'md-select-field-container--below': below,
-        }, selectFieldClassName)}
-        inputStyle={inputStyle}
-        inputClassName={cn(droppingClassName, inputClassName)}
-        fullWidth={fullWidth}
-        inlineIndicator={
-          <Collapser
-            disabled={disabled}
-            flipped={isOpen && below}
-            iconClassName={iconClassName}
-          >
-            {iconChildren}
-          </Collapser>
-        }
-      />
-    );
+        active={active || isOpen}
+        below={below}
+        value={value}
+        label={label}
+        onClick={this._toggleOpen}
+        onFocus={this._handleFocus}
+        onBlur={this._handleBlur}
+      />,
+    ];
 
-    const listId = `${id}Listbox`;
-    const items = menuItems.map(this._mapToListItem).filter(item => !!item);
     return (
       <Menu
-        {...props}
-        id={`${id}Menu`}
-        listId={listId}
-        component={Paper}
-        zDepth={below && isOpen ? 2 : 0}
-        ref={this._setMenu}
+        id={menuId}
+        position={position}
         isOpen={isOpen}
         onClose={this._handleClose}
-        toggle={toggle}
-        onClick={this._handleClick}
+        onClick={this._handleContainerClick}
         onKeyDown={this._handleKeyDown}
-        position={position}
-        fullWidth={fullWidth}
-        contained
+        toggle={toggle}
+        style={style}
+        className={className}
+        ref={this._setMenu}
       >
         <List
           id={listId}
-          ref={this._positionList}
           role="listbox"
+          ref={this._positionList}
           aria-activedescendant={value ? `${id}Active` : null}
-          style={Object.assign({}, listStyle, this.state.listStyle)}
+          style={{ ...listStyle, ...this.state.listStyle }}
           className={listClassName}
         >
-          {items}
+          {menuItems.map(this._mapToListItem)}
         </List>
       </Menu>
     );

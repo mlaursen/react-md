@@ -195,7 +195,7 @@ export default class Toolbar extends PureComponent {
         style={titleStyle}
         className={titleClassName}
         prominent={prominentTitle}
-        offset={!nav}
+        offset={!nav || prominentTitle}
         title={title}
       />
     );
@@ -223,15 +223,10 @@ export default class Toolbar extends PureComponent {
     if (titleMenu) {
       titleMenu = Children.only(titleMenu);
       titleMenu = cloneElement(titleMenu, {
-        className: cn({
-          'md-toolbar-relative': prominentTitle,
+        className: cn('md-title md-title--toolbar md-select-field--toolbar', {
+          'md-title--toolbar-offset': !nav || prominentTitle,
+          'md-title--toolbar-prominent': prominentTitle,
         }, titleMenu.props.className),
-        inputClassName: cn('md-select-field--toolbar md-title--toolbar', {
-          'md-title--toolbar-offset': !nav,
-        }, titleMenu.props.inputClassName),
-        block: true,
-        paddedBlock: false,
-        fullWidth: false,
         position: titleMenu.props.position || 'tl',
       });
     }

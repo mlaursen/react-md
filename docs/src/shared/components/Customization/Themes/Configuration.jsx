@@ -38,7 +38,7 @@ const Configuration = ({
       disabled={saveDisabled}
       onChange={onSaveChange}
     />
-    <i className="md-text">
+    <i className="md-text" style={{ display: 'block' }}>
       When the save for future visits checkbox is checked, a key in your local storage will
       be created containing your theme. If you do not check this checkbox, the default website
       theme will be applied when you leave this page.
@@ -49,6 +49,7 @@ const Configuration = ({
       value={primary}
       menuItems={filteredPrimaries}
       onChange={onPrimaryChange}
+      className="md-cell"
     />
     <SelectField
       id="secondary"
@@ -56,6 +57,7 @@ const Configuration = ({
       value={secondary}
       menuItems={filteredSecondaries}
       onChange={onSecondaryChange}
+      className="md-cell"
     />
     <SelectField
       id="hue"
@@ -63,6 +65,7 @@ const Configuration = ({
       value={hue}
       menuItems={HUES}
       onChange={onHueChange}
+      className="md-cell"
     />
   </section>
 );

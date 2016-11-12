@@ -2,13 +2,6 @@
 /// @group select-fields
 ////
 
-/// The amount of distance a new value should drop into the select field.
-/// @type Number
-$md-select-field-drop-distance: -10px !default;
-
-/// The transition time to use for the drop transition
-/// @type Number
-$md-select-field-drop-transition-time: $md-transition-time * 2;
 $md-select-field-left-padding: 24px;
 $md-select-field-right-padding: 16px;
 
@@ -16,31 +9,56 @@ $md-select-field-right-padding: 16px;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-select-fields;
-@mixin react-md-select-fields {
+@mixin react-md-select-fields($include-media: $md-media-included) {
   .md-select-field {
     cursor: inherit;
+    display: flex;
+    flex-wrap: wrap;
     user-select: none;
+
+    .md-divider {
+      width: 100%;
+    }
   }
 
-  .md-select-field-container--below {
+  .md-select-field--btn.md-select-field--btn {
+    padding-bottom: $md-default-padding;
     padding-left: $md-select-field-left-padding;
-    padding-right: $md-font-icon-size + $md-select-field-right-padding;
-    transition-duration: $md-transition-time;
-    transition-property: box-shadow;
-
-    .md-text-field-inline-indicator {
-      right: $md-select-field-right-padding;
-    }
+    padding-right: $md-select-field-right-padding;
+    padding-top: $md-default-padding;
   }
 
-  .md-drop-enter {
-    transform: translate3d(0, $md-select-field-drop-distance, 0);
+  @if $include-media {
+    @include react-md-select-fields-media;
+  }
+}
 
-    &.md-drop-enter-active {
-      transform: translate3d(0, 0, 0);
-      transition-duration: $md-select-field-drop-transition-time;
-      transition-property: transform;
-    }
+@mixin react-md-select-fields-mobile {
+  .md-select-field--btn {
+    height: $md-text-field-mobile-height;
   }
 
+  .md-select-field--text-field {
+    height: 18px;
+  }
+}
+
+@mixin react-md-select-fields-desktop {
+  .md-select-field--btn {
+    height: $md-text-field-desktop-height;
+  }
+
+  .md-select-field--text-field {
+    height: 15px;
+  }
+}
+
+@mixin react-md-select-fields-media {
+  @media #{$md-mobile-media} {
+    @include react-md-select-fields-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-select-fields-desktop;
+  }
 }
