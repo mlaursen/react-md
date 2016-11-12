@@ -317,13 +317,13 @@ export default class DialogContainer extends PureComponent {
   }
 
   _mountDialog(props) {
-    const { fullPage } = props;
+    const { fullPage, onShow } = props;
     this._inTimeout = setTimeout(() => {
       this._inTimeout = fullPage ? null : setTimeout(() => {
         this._inTimeout = null;
         this.setState({ active: true });
       }, TICK);
-      this.setState({ dialogVisible: true, overlay: !fullPage });
+      this.setState({ dialogVisible: true, overlay: !fullPage }, onShow);
     }, TICK);
   }
 
