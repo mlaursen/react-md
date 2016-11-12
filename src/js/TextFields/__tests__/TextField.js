@@ -12,7 +12,7 @@ import {
 
 import TextField from '../TextField';
 import InputField from '../InputField';
-import Divider from '../../Dividers/Divider';
+import TextFieldDivider from '../TextFieldDivider';
 import PasswordButton from '../PasswordButton';
 import FloatingLabel from '../FloatingLabel';
 import FontIcon from '../../FontIcons/FontIcon';
@@ -41,59 +41,15 @@ describe('TextField', () => {
   it('renders a divider component when the block prop is false', () => {
     const props = { id: 'test', placeholder: 'test' };
     let field = renderIntoDocument(<TextField {...props} />);
-    let dividers = scryRenderedComponentsWithType(field, Divider);
+    let dividers = scryRenderedComponentsWithType(field, TextFieldDivider);
 
     expect(dividers.length).toBe(1);
 
     props.block = true;
     field = renderIntoDocument(<TextField {...props} />);
-    dividers = scryRenderedComponentsWithType(field, Divider);
+    dividers = scryRenderedComponentsWithType(field, TextFieldDivider);
 
     expect(dividers.length).toBe(0);
-  });
-
-  it('updates the Divider\'s, className with the correct className and states', () => {
-    const props = {
-      id: 'test',
-      placeholder: 'test',
-      lineDirection: 'center',
-    };
-
-    const field = renderIntoDocument(<TextField {...props} />);
-    let className = findRenderedComponentWithType(field, Divider).props.className;
-
-    expect(className).toContain('md-divider--text-field');
-    expect(className).toContain(`md-divider--expand-from-${props.lineDirection}`);
-    expect(className).not.toContain('md-divider--text-field-expanded');
-    expect(className).not.toContain('md-divider--text-field-active');
-    expect(className).not.toContain('md-divider--text-field-error');
-
-    field.setState({ active: true });
-    className = findRenderedComponentWithType(field, Divider).props.className;
-
-    expect(className).toContain('md-divider--text-field');
-    expect(className).toContain(`md-divider--expand-from-${props.lineDirection}`);
-    expect(className).toContain('md-divider--text-field-expanded');
-    expect(className).toContain('md-divider--text-field-active');
-    expect(className).not.toContain('md-divider--text-field-error');
-
-    field.setState({ error: true });
-    className = findRenderedComponentWithType(field, Divider).props.className;
-
-    expect(className).toContain('md-divider--text-field');
-    expect(className).toContain(`md-divider--expand-from-${props.lineDirection}`);
-    expect(className).toContain('md-divider--text-field-expanded');
-    expect(className).not.toContain('md-divider--text-field-active');
-    expect(className).toContain('md-divider--text-field-error');
-
-    field.setState({ active: false });
-    className = findRenderedComponentWithType(field, Divider).props.className;
-
-    expect(className).toContain('md-divider--text-field');
-    expect(className).toContain(`md-divider--expand-from-${props.lineDirection}`);
-    expect(className).not.toContain('md-divider--text-field-expanded');
-    expect(className).not.toContain('md-divider--text-field-active');
-    expect(className).toContain('md-divider--text-field-error');
   });
 
   it('passes the mouse and touch events to the TextField container', () => {

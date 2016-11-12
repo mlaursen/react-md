@@ -9,7 +9,7 @@ export default class SelectFieldExamples extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { value: '' };
+    this.state = { value: 'VA' };
   }
 
   _handleChange = (value, index, event) => { // eslint-disable-line no-unused-vars
@@ -21,27 +21,35 @@ export default class SelectFieldExamples extends PureComponent {
       <section className="md-grid">
         <SelectField
           id="states"
+          label="State"
           placeholder="Select a State"
           menuItems={stateItems}
           itemLabel="name"
           itemValue="abbreviation"
-          className="md-cell md-cell--bottom"
+          className="md-cell"
+          helpOnFocus
+          helpText="Select some state for me"
         />
         <SelectField
           id="statesControlled"
           label="State"
-          menuItems={states}
+          placeholder="Some State"
+          menuItems={stateItems}
           value={this.state.value}
           onChange={this._handleChange}
+          required
+          errorText="A state is required"
+          className="md-cell"
           itemLabel="name"
           itemValue="abbreviation"
-          className="md-cell"
         />
         <SelectField
           id="numbers"
+          label="Some Number"
+          placeholder="0"
           defaultValue={1}
           menuItems={numbers}
-          className="md-cell md-cell--bottom"
+          className="md-cell"
         />
         <SelectField
           id="disabledNumbers"
@@ -49,7 +57,7 @@ export default class SelectFieldExamples extends PureComponent {
           disabled
           defaultValue={1}
           menuItems={numbers}
-          className="md-cell md-cell--bottom"
+          className="md-cell"
         />
       </section>
     );

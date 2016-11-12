@@ -6,14 +6,11 @@ jest.unmock('../DatePicker');
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
-  Simulate,
   renderIntoDocument,
-  scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
 } from 'react-addons-test-utils';
 
 import DatePickerContainer from '../DatePickerContainer';
-import DatePicker from '../DatePicker';
 
 describe('DatePickerContainer', () => {
   it('merges className and style', () => {
@@ -37,25 +34,6 @@ describe('DatePickerContainer', () => {
     const datePickerContainerNode = findDOMNode(datePickerContainer);
     expect(datePickerContainerNode.style.display).toBe(style.display);
     expect(datePickerContainerNode.className).toContain(className);
-
-    const pickers = scryRenderedComponentsWithType(datePickerContainer, DatePicker);
-    expect(pickers.length).toBe(1);
-
-    const picker = pickers[0];
-    expect(picker.props.style).toEqual(pickerStyle);
-    expect(picker.props.className).toContain(pickerClassName);
-  });
-
-  it('renders a text field that opens the date picker when clicked', () => {
-    const container = renderIntoDocument(
-      <DatePickerContainer id="test" locales="en-US" />
-    );
-
-    const textField = findRenderedDOMComponentWithTag(container, 'input');
-    expect(container.state.isOpen).toBe(false);
-
-    Simulate.click(textField);
-    expect(container.state.isOpen).toBe(true);
   });
 
   it('allows for null, a Date object or a formatted string as the value prop', () => {

@@ -14,7 +14,7 @@ import {
 import DialogContainer from '../DialogContainer';
 import Dialog from '../Dialog';
 
-const PROPS = { id: 'test', isOpen: true, onClose: jest.fn() };
+const PROPS = { id: 'test', visible: true, onHide: jest.fn() };
 
 describe('DialogContainer', () => {
   it('merges className and style', () => {
@@ -30,7 +30,7 @@ describe('DialogContainer', () => {
   });
 
   it('creates two timeouts when the _mountDialog function is called and the full page prop is false', () => {
-    const props = Object.assign({}, PROPS, { isOpen: false });
+    const props = Object.assign({}, PROPS, { visible: false });
     const container = renderIntoDocument(<DialogContainer {...props} />);
     expect(container.state.dialogVisible).toBe(false);
     expect(container.state.overlay).toBe(false);
@@ -49,7 +49,7 @@ describe('DialogContainer', () => {
   });
 
   it('creates a single timeout when the _muntDialog function is called and the full page prop is true', () => {
-    const props = Object.assign({}, PROPS, { isOpen: false, fullPage: true });
+    const props = Object.assign({}, PROPS, { visible: false, fullPage: true });
     const container = renderIntoDocument(<DialogContainer {...props} />);
     expect(container.state.dialogVisible).toBe(false);
     expect(container.state.overlay).toBe(false);
@@ -68,45 +68,45 @@ describe('DialogContainer', () => {
   });
 
 
-  it('renders a Dialog when the isOpen prop is true', () => {
-    const props = Object.assign({}, PROPS, { isOpen: false });
+  it('renders a Dialog when the visible prop is true', () => {
+    const props = Object.assign({}, PROPS, { visible: false });
     let container = renderIntoDocument(<DialogContainer {...props} />);
     let dialogs = scryRenderedComponentsWithType(container, Dialog);
 
     expect(dialogs.length).toBe(0);
 
-    props.isOpen = true;
+    props.visible = true;
     container = renderIntoDocument(<DialogContainer {...props} />);
     jest.runAllTimers();
     dialogs = scryRenderedComponentsWithType(container, Dialog);
     expect(dialogs.length).toBe(1);
   });
 
-  it('calls the onClose prop when the container is clicked', () => {
-    const props = Object.assign({}, PROPS, { onClose: jest.fn() });
+  it('calls the onHide prop when the container is clicked', () => {
+    const props = Object.assign({}, PROPS, { onHide: jest.fn() });
     const container = renderIntoDocument(<DialogContainer {...props} />);
     const node = findDOMNode(findRenderedComponentWithType(container, CSSTransitionGroup));
 
-    expect(props.onClose.mock.calls.length).toBe(0);
+    expect(props.onHide.mock.calls.length).toBe(0);
 
     Simulate.click(node);
-    expect(props.onClose.mock.calls.length).toBe(1);
+    expect(props.onHide.mock.calls.length).toBe(1);
   });
 
-  it('does not call the onClose prop when the container is clicked and the modal prop is true', () => {
-    const props = Object.assign({}, PROPS, { onClose: jest.fn(), modal: true, isOpen: true });
+  it('does not call the onHide prop when the container is clicked and the modal prop is true', () => {
+    const props = Object.assign({}, PROPS, { onHide: jest.fn(), modal: true, visible: true });
     const container = renderIntoDocument(<DialogContainer {...props} />);
     const node = findDOMNode(findRenderedComponentWithType(container, CSSTransitionGroup));
 
-    expect(props.onClose.mock.calls.length).toBe(0);
+    expect(props.onHide.mock.calls.length).toBe(0);
 
     Simulate.click(node);
-    expect(props.onClose.mock.calls.length).toBe(0);
+    expect(props.onHide.mock.calls.length).toBe(0);
   });
 
   it('passes the styles and classNames correctly to the Dialog component', () => {
     const props = Object.assign({}, PROPS, {
-      isOpen: true,
+      visible: true,
       style: { background: 'orange' },
       className: 'woop-woop',
       dialogStyle: { background: 'red' },

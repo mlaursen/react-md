@@ -64,27 +64,4 @@ describe('TimePickerContainer', () => {
     expect(props.onChange.mock.calls[0][1]).toEqual(props.defaultValue);
     expect(props.onChange.mock.calls[0][2]).toEqual(event);
   });
-
-  it('calls the onOpenToggle prop when the open state is changed', () => {
-    const props = {
-      id: 'test',
-      onOpenToggle: jest.fn(),
-    };
-    const picker = renderIntoDocument(<TimePickerContainer {...props} />);
-    const event = { target: { value: '3:55' } };
-    picker._toggleOpen(event);
-    expect(props.onOpenToggle.mock.calls.length).toBe(1);
-    expect(props.onOpenToggle.mock.calls[0][0]).toBe(true);
-    expect(props.onOpenToggle.mock.calls[0][1]).toEqual(event);
-
-    picker._handleOkClick(event);
-    expect(props.onOpenToggle.mock.calls.length).toBe(2);
-    expect(props.onOpenToggle.mock.calls[1][0]).toBe(false);
-    expect(props.onOpenToggle.mock.calls[1][1]).toEqual(event);
-
-    picker._handleCancelClick(event);
-    expect(props.onOpenToggle.mock.calls.length).toBe(3);
-    expect(props.onOpenToggle.mock.calls[2][0]).toBe(false);
-    expect(props.onOpenToggle.mock.calls[2][1]).toEqual(event);
-  });
 });

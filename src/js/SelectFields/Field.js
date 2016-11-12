@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import TICK from '../constants/CSSTransitionGroupTick';
 import FontIcon from '../FontIcons/FontIcon';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import IconSeparator from '../Helpers/IconSeparator';
@@ -29,9 +30,43 @@ export default class Field extends PureComponent {
     ]),
     lineDirection: TextFieldDivider.propTypes.lineDirection,
     disabled: PropTypes.bool,
+    required: PropTypes.bool,
+    error: PropTypes.bool,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = { droppingClassName: null };
+    this._transitionNewValue = this._transitionNewValue.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.value !== nextProps.value) {
+      this._transitionNewValue();
+    }
+  }
+
+  _transitionNewValue() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+
+        this.setState({ droppingClassName: null });
+      }, 300);
+
+      this.setState({ droppingClassName: `${this.state.droppingClassName} md-drop-enter-active ` });
+    }, TICK);
+
+    this.setState({ droppingClassName: 'md-drop-enter' });
+  }
+
   render() {
+    const { droppingClassName } = this.state;
     const {
       id,
       name,
@@ -47,6 +82,8 @@ export default class Field extends PureComponent {
       iconChildren,
       iconClassName,
       lineDirection,
+      required,
+      error,
       ...props
     } = this.props;
 
@@ -56,7 +93,7 @@ export default class Field extends PureComponent {
         <TextFieldDivider
           key="text-divider"
           active={active}
-          error={false}
+          error={error}
           lineDirection={lineDirection}
           className="md-divider--select-field"
         />
@@ -78,7 +115,8 @@ export default class Field extends PureComponent {
         }, className)}
       >
         <IconSeparator
-          label={activeLabel || placeholder || ''}
+          label={activeLabel || (((label && active) || !label) && placeholder) || ''}
+          labelClassName={droppingClassName}
           className={cn('md-text-field', {
             'md-select-field--text-field': !below,
             'md-select-field--btn': below,
@@ -89,7 +127,14 @@ export default class Field extends PureComponent {
           <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
         </IconSeparator>
         {divider}
-        <input key="value" type="hidden" id={id} name={name} value={value} />
+        <input
+          key="value"
+          type="hidden"
+          id={id}
+          name={name}
+          value={value}
+          required={required}
+        />
       </AccessibleFakeInkedButton>
     );
   }

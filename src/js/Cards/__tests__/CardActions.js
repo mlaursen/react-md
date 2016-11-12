@@ -26,12 +26,12 @@ describe('CardActions', () => {
   });
 
   it('renders the CardExpander component when the isExpander prop is true', () => {
-    const props = { isExpander: false };
+    const props = { expander: false };
     let actions = renderIntoDocument(<CardActions {...props} />);
     let expanders = scryRenderedComponentsWithType(actions, CardExpander);
     expect(expanders.length).toBe(0);
 
-    props.isExpander = true;
+    props.expander = true;
     actions = renderIntoDocument(<CardActions {...props} />);
     expanders = scryRenderedComponentsWithType(actions, CardExpander);
     expect(expanders.length).toBe(1);

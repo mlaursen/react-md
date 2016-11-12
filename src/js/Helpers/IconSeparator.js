@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes, cloneElement, isValidElement } from 'react';
+import React, { PureComponent, PropTypes, cloneElement, isValidElement, Children } from 'react';
 import cn from 'classnames';
 
 /**
@@ -17,6 +17,16 @@ export default class IconSeparator extends PureComponent {
      * An optional className to apply.
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the label.
+     */
+    labelStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the label.
+     */
+    labelClassName: PropTypes.string,
 
     /**
      * The label to display.
@@ -47,13 +57,26 @@ export default class IconSeparator extends PureComponent {
   };
 
   render() {
-    const { component, label, iconBefore, children, className, ...props } = this.props;
+    const {
+      className,
+      labelStyle,
+      labelClassName,
+      component,
+      label,
+      iconBefore,
+      children,
+      ...props
+    } = this.props;
 
     let text;
     if (isValidElement(label)) {
-      text = cloneElement(label, { className: 'md-icon-text' });
+      const labelProps = Children.only(label).props;
+      text = cloneElement(label, {
+        className: cn('md-icon-text', labelClassName, labelProps.className),
+        style: { ...labelStyle, ...labelProps.style },
+      });
     } else {
-      text = <span className="md-icon-text">{label}</span>;
+      text = <span style={labelStyle} className={cn('md-icon-text', labelClassName)}>{label}</span>;
     }
 
     const Component = component;

@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import { findDOMNode } from 'react-dom';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -6,11 +7,13 @@ import { UP, DOWN, ESC, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import isBetween from '../utils/NumberUtils/isBetween';
+import addSuffix from '../utils/StringUtils/addSuffix';
 import List from '../Lists/List';
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
 import Positions from '../Menus/Positions';
 import FloatingLabel from '../TextFields/FloatingLabel';
+import TextFieldMessage from '../TextFields/TextFieldMessage';
 import Field from './Field';
 
 const VALID_LIST_ITEM_PROPS = Object.keys(ListItem.propTypes);
@@ -84,42 +87,206 @@ export default class SelectField extends PureComponent {
      * An optional className to apply to the select field itself.
      */
     inputClassName: PropTypes.string,
+
+    /**
+     * An optional value for the select field. This will require the `onChange` prop
+     * to be defined since it will be a controlled component.
+     */
     value: controlled(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]), 'onChange'),
+
+    /**
+     * The default value for an uncontrolled select field.
+     */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
+
+    /**
+     * Boolean if the select field is open by default.
+     */
     defaultOpen: PropTypes.bool,
+
+    /**
+     * An optional boolean if the select field is currently open. This will make the component
+     * controlled and require the `onMenuToggle` prop to be defined.
+     */
     isOpen: controlled(PropTypes.bool, 'onMenuToggle', 'defaultOpen'),
+
+    /**
+     * An optional function to call when the menu's open state changes. The callback will include
+     * the next open state and the event that driggered it.
+     *
+     * ```js
+     * onMenuToggle(isOpen, event);
+     * ```
+     */
     onMenuToggle: PropTypes.func,
+
+    /**
+     * An optional function to call when the value for the select field changes. The callback will
+     * include the new value, the index of the menu item that was selected, and the event that
+     * triggered the change.
+     *
+     * ```js
+     * onChange(newValue, newActiveIndex, event);
+     * ```
+     */
     onChange: PropTypes.func,
 
+    /**
+     * A list of items to select from. This can be a mixed list of number, string,
+     * or object. If the item is an object, make sure the `itemLabel` and `itemValue`
+     * props match the keys in the object for the label and value.
+     */
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
     ])),
 
+    /**
+     * An optional floating label to display with the text field. This is invalid
+     * if the `position` is set to `SelectField.Positions.BELOW`.
+     */
     label: PropTypes.string,
+
+    /**
+     * An optional placeholder to display in the select field.
+     */
     placeholder: PropTypes.string,
+
+    /**
+     * Boolean if the select field is disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * The key to use for extracting a menu item's label if the menu item is an object.
+     *
+     * Example:
+     *
+     * ```js
+     * const item = { something: 'My Label', somethingElse: 'value' };
+     * const itemLabel = 'something';
+     * const itemValue = 'somethingElse';
+     * ```
+     */
     itemLabel: PropTypes.string.isRequired,
+
+    /**
+     * The key to use for extracting a menu item'value label if the menu item is an object.
+     *
+     * Example:
+     *
+     * ```js
+     * const item = { something: 'My Label', somethingElse: 'value' };
+     * const itemLabel = 'something';
+     * const itemValue = 'somethingElse';
+     * ```
+     */
     itemValue: PropTypes.string.isRequired,
+
+    /**
+     * Any children used to display the select field's drop down icon.
+     */
     iconChildren: PropTypes.node,
+
+    /**
+     * The icon class name to use to display the select field's drop down icon.
+     */
     iconClassName: PropTypes.string,
+
+    /*
+     * An optional function to call when the menu is clicked.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * The position that the select field's options should appear from. If the position is
+     * set to `BELOW`, the select field will be displayed as a button with ink instead of
+     * a text field.
+     */
     position: PropTypes.oneOf([
       SelectField.Positions.TOP_LEFT,
       SelectField.Positions.TOP_RIGHT,
       SelectField.Positions.BELOW,
     ]).isRequired,
-    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+
+    /*
+     * The direction that the select field's focus indicator should grow from.
+     */
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']).isRequired,
+
+    /**
+     * An optional function to call when the select field is focused.
+     */
     onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the select field is blurred. This
+     * will also be triggered when a user selects a new item or keyboard navigates
+     * through the list items.
+     */
     onBlur: PropTypes.func,
+
+    /**
+     * The amount of time that a list of letters should be used when finding a menu item
+     * while typing. Since a user can select items by typing multiple letters in a row,
+     * this will be used as the timeout for clearing those letters.
+     *
+     * For example:
+     * - User types `g`
+     *
+     * Full match is now `'g'`.
+     *
+     * - User delays 200ms and types `u`
+     *
+     * Full match is now `'gu'`
+     *
+     * - User delays 1000ms and types `a`.
+     *
+     * Full match is now `'a'`
+     */
     keyboardMatchingTimeout: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the select field's list of menu items should stretch to at least
+     * be the width of the select field.
+     */
+    stretchList: PropTypes.bool,
+
+    /**
+     * Boolean if there has been an error for the select field. This will display
+     * the `errorText`. And style the floating label and focus indicator with the
+     * error color.
+     */
+    error: PropTypes.bool,
+
+    /**
+     * An optional error text to display when the `error` prop is true.
+     */
+    errorText: PropTypes.node,
+
+    /**
+     * An optional help text to display below the select field.
+     */
+    helpText: PropTypes.node,
+
+    /**
+     * Boolean if the help text should only be displayed when the select field
+     * has focus.
+     */
+    helpOnFocus: PropTypes.bool,
+
+    /**
+     * Boolean if the select field is required. This will updated the label or placeholder
+     * to include an asterisk.
+     */
+    required: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -130,6 +297,8 @@ export default class SelectField extends PureComponent {
     position: SelectField.Positions.TOP_LEFT,
     lineDirection: 'left',
     keyboardMatchingTimeout: 1000,
+    stretchList: true,
+    menuItems: [],
   };
 
   constructor(props) {
@@ -142,6 +311,7 @@ export default class SelectField extends PureComponent {
       activeLabel: this._getActiveLabel(props, typeof props.value !== 'undefined' ? props.value : props.defaultValue),
       match: null,
       lastSearch: null,
+      error: false,
     };
 
     if (typeof props.value === 'undefined') {
@@ -182,6 +352,12 @@ export default class SelectField extends PureComponent {
     const isOpen = getField(nextProps, nextState, 'isOpen');
     if (this._field && getField(this.props, this.state, 'isOpen') !== isOpen) {
       this._field.focus();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._matchingTimeout) {
+      clearTimeout(this._matchingTimeout);
     }
   }
 
@@ -314,11 +490,17 @@ export default class SelectField extends PureComponent {
       this.props.onBlur(e);
     }
 
-    this.setState({ active: false });
+    const isOpen = getField(this.props, this.state, 'isOpen');
+    const value = getField(this.props, this.state, 'value');
+
+    this.setState({
+      active: false,
+      error: this.props.required && !isOpen && !value,
+    });
   }
 
   _handleItemSelect(index, value, e) {
-    const { menuItems, itemLabel, itemValue, onChange } = this.props;
+    const { required, menuItems, itemLabel, itemValue, onChange } = this.props;
     if (onChange) {
       onChange(value, index, e);
     }
@@ -326,6 +508,7 @@ export default class SelectField extends PureComponent {
     const state = {
       activeIndex: index,
       activeLabel: this._getActiveLabelFromItem(menuItems[index], value, itemLabel, itemValue),
+      error: required && !value,
     };
 
     if (typeof this.props.value === 'undefined') {
@@ -388,6 +571,7 @@ export default class SelectField extends PureComponent {
 
   _mapToListItem(item, i) {
     const { id, itemLabel, itemValue: itemValueKey, position } = this.props;
+    const below = position === SelectField.Positions.BELOW;
     const value = getField(this.props, this.state, 'value');
 
     let primaryText = '';
@@ -415,7 +599,10 @@ export default class SelectField extends PureComponent {
       default:
     }
 
-    const active = itemValue === value;
+    const active = itemValue === value || itemValue === parseInt(value, 10);
+    if (below && active) {
+      return null;
+    }
 
     return (
       <ListItem
@@ -429,7 +616,7 @@ export default class SelectField extends PureComponent {
         id={active ? `${id}Active` : null}
         data-id={i}
         data-value={itemValue}
-        tileStyle={position === SelectField.Positions.BELOW ? { paddingLeft: 24 } : undefined}
+        tileStyle={below ? { paddingLeft: 24 } : undefined}
       />
     );
   }
@@ -455,7 +642,7 @@ export default class SelectField extends PureComponent {
       e.preventDefault();
     }
 
-    if (!isOpen && (key === DOWN || key === ENTER)) {
+    if (!isOpen && (key === DOWN || key === UP)) {
       this._handleOpen(e);
       return;
     } else if (isOpen && (key === ESC || key === TAB)) {
@@ -553,6 +740,7 @@ export default class SelectField extends PureComponent {
       }
     } else {
       const value = typeof activeItem === 'object' ? activeItem[itemValue] : activeItem;
+      state.error = !value;
 
       if (this.props.onChange) {
         this.props.onChange(value, state.activeIndex, e);
@@ -579,9 +767,14 @@ export default class SelectField extends PureComponent {
       disabled,
       menuItems,
       position,
-      label,
+      stretchList,
+      errorText,
+      helpText,
+      helpOnFocus,
+      required,
       ...props
     } = this.props;
+    delete props.error;
     delete props.itemLabel;
     delete props.itemValue;
     delete props.menuId;
@@ -592,7 +785,8 @@ export default class SelectField extends PureComponent {
     delete props.defaultOpen;
     delete props.keyboardMatchingTimeout;
 
-    let { menuId, listId } = this.props;
+    let { menuId, listId, placeholder, label, error } = this.props;
+    error = error || this.state.error;
     const value = getField(this.props, this.state, 'value');
     const isOpen = getField(this.props, this.state, 'isOpen');
     const below = position === SelectField.Positions.BELOW;
@@ -605,13 +799,24 @@ export default class SelectField extends PureComponent {
       listId = `${id}Values`;
     }
 
+    if (required) {
+      if (label) {
+        label = addSuffix(label, '*');
+      }
+
+      if (placeholder && !label) {
+        placeholder = addSuffix(placeholder, '*');
+      }
+    }
+
     const toggle = [
       <FloatingLabel
         key="floating-label"
         label={label}
         htmlFor={id}
         active={active || isOpen}
-        floating={!!activeLabel}
+        error={error}
+        floating={!!activeLabel || active || isOpen}
         disabled={disabled}
       />,
       <Field
@@ -622,14 +827,27 @@ export default class SelectField extends PureComponent {
         style={inputStyle}
         className={inputClassName}
         activeLabel={activeLabel}
+        required={required}
         disabled={disabled}
         active={active || isOpen}
         below={below}
         value={value}
         label={label}
+        error={error}
+        placeholder={placeholder}
         onClick={this._toggleOpen}
         onFocus={this._handleFocus}
         onBlur={this._handleBlur}
+      />,
+      <TextFieldMessage
+        key="message"
+        active={active || isOpen}
+        error={error}
+        errorText={errorText}
+        helpText={helpText}
+        helpOnFocus={helpOnFocus}
+        leftIcon={false}
+        rightIcon={false}
       />,
     ];
 
@@ -643,7 +861,9 @@ export default class SelectField extends PureComponent {
         onKeyDown={this._handleKeyDown}
         toggle={toggle}
         style={style}
-        className={className}
+        className={cn('md-select-field-menu', {
+          'md-select-field-menu--stretch': stretchList,
+        }, className)}
         ref={this._setMenu}
       >
         <List
@@ -654,7 +874,7 @@ export default class SelectField extends PureComponent {
           style={{ ...listStyle, ...this.state.listStyle }}
           className={listClassName}
         >
-          {menuItems.map(this._mapToListItem)}
+          {menuItems.map(this._mapToListItem).filter(item => item !== null)}
         </List>
       </Menu>
     );

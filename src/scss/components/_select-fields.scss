@@ -2,6 +2,8 @@
 /// @group select-fields
 ////
 
+$md-select-field-drop-distance: 6px !default;
+$md-select-field-drop-transition-time: $md-transition-time * 2 !default;
 $md-select-field-left-padding: 24px;
 $md-select-field-right-padding: 16px;
 
@@ -21,12 +23,18 @@ $md-select-field-right-padding: 16px;
     }
   }
 
+  .md-select-field-menu--stretch .md-list {
+    min-width: 100%;
+  }
+
   .md-select-field--btn.md-select-field--btn {
     padding-bottom: $md-default-padding;
     padding-left: $md-select-field-left-padding;
     padding-right: $md-select-field-right-padding;
     padding-top: $md-default-padding;
   }
+
+  @include react-md-select-fields-drop-transition;
 
   @if $include-media {
     @include react-md-select-fields-media;
@@ -60,5 +68,17 @@ $md-select-field-right-padding: 16px;
 
   @media #{$md-desktop-media} {
     @include react-md-select-fields-desktop;
+  }
+}
+
+@mixin react-md-select-fields-drop-transition {
+  .md-drop-enter {
+    transform: translate3d(0, -$md-select-field-drop-distance, 0);
+
+    &.md-drop-enter-active {
+      transform: translate3d(0, 0, 0);
+      transition-duration: $md-select-field-drop-transition-time;
+      transition-property: transform;
+    }
   }
 }
