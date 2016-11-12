@@ -9,11 +9,11 @@ import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
 import addSuffix from '../utils/StringUtils/addSuffix';
-import Divider from '../Dividers/Divider';
 import FloatingLabel from './FloatingLabel';
 import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
 import InputField from './InputField';
+import TextFieldDivider from './TextFieldDivider';
 
 /**
  * The `TextField` component can either be a single line `input` field or a multiline
@@ -824,14 +824,12 @@ export default class TextField extends PureComponent {
     let divider;
     if (!block) {
       divider = (
-        <Divider
+        <TextFieldDivider
           key="text-divider"
           ref={this._setDivider}
-          className={cn(`md-divider--text-field md-divider--expand-from-${lineDirection}`, {
-            'md-divider--text-field-expanded': active,
-            'md-divider--text-field-active': !error && active,
-            'md-divider--text-field-error': error,
-          })}
+          active={active}
+          error={error}
+          lineDirection={lineDirection}
         />
       );
     }
