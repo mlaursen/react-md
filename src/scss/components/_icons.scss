@@ -76,23 +76,24 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
     display: flex;
     text-align: left;
 
-    .md-icon-text {
-      flex-grow: 1;
-      flex-shrink: 0;
-      line-height: inherit;
-
-      &:first-child {
-        padding-right: $md-font-icon-separator-padding;
-      }
-
-      &:last-child {
-        padding-left: $md-font-icon-separator-padding;
-      }
-    }
-
     .md-icon {
       flex-grow: 0;
       flex-shrink: 0;
+    }
+  }
+
+  .md-icon-text {
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-weight: inherit;
+    line-height: inherit;
+
+    &:first-child {
+      padding-right: $md-font-icon-separator-padding;
+    }
+
+    &:last-child {
+      padding-left: $md-font-icon-separator-padding;
     }
   }
 }
