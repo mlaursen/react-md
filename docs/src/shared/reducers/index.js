@@ -7,6 +7,7 @@ import sassdocs from './sassdocs';
 import drawer from './drawer';
 import quickNavigation from './quickNavigation';
 import notifications from './notifications';
+import search from './search';
 
 export default combineReducers({
   entities: combineReducers({
@@ -21,5 +22,6 @@ export default combineReducers({
     docgens,
     sassdocs,
   }),
+  search,
   routing,
 });

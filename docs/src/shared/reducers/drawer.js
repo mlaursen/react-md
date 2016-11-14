@@ -4,6 +4,8 @@ import {
   SET_CUSTOM_THEME,
   UPDATE_DRAWER_TYPE,
   LOCATION_CHANGE,
+  SHOW_SEARCH,
+  HIDE_SEARCH,
 } from 'constants/ActionTypes';
 import { CUSTOM_THEME_CLASS_NAME } from 'constants/application';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
@@ -52,6 +54,14 @@ function updateDrawerType(state, { drawerType }) {
   return Object.assign({}, state, { customDrawerType: drawerType });
 }
 
+function handleSearchChange(state, searching) {
+  if (!state.mobile || state.visibleToolbarTitle !== searching) {
+    return state;
+  }
+
+  return Object.assign({}, state, { visibleToolbarTitle: !searching });
+}
+
 
 const pathname = __CLIENT__ ? window.location.pathname : '';
 const { mobile, tablet, desktop } = Drawer.getCurrentMedia(Drawer.defaultProps);
@@ -67,6 +77,7 @@ const initialState = {
   tablet,
   desktop,
   defaultMedia,
+  visibleToolbarTitle: true,
   toolbarTitle: toPageTitle(pathname),
   toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
   visibleBoxShadow: isBoxShadowVisible(pathname),
@@ -74,6 +85,10 @@ const initialState = {
 
 export default function drawer(state = initialState, action) {
   switch (action.type) {
+    case SHOW_SEARCH:
+      return handleSearchChange(state, true);
+    case HIDE_SEARCH:
+      return handleSearchChange(state, false);
     case SET_DRAWER_TOOLBAR_BOX_SHADOW:
       return setDrawerToolbarBoxShadow(state, action.visible);
     case UPDATE_MEDIA:

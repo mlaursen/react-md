@@ -9,19 +9,9 @@ import {
   FETCH_SASSDOC_SUCCESS,
   FETCH_SASSDOC_FAILURE,
 } from 'constants/ActionTypes';
+import { API_URL, PROXY_URL } from 'constants/application';
 import { addNotification } from 'actions/notifications';
 import reduceKey from 'utils/StateUtils/reduceKey';
-
-const { port, host } = require('../../../serverConfig.json');
-const {
-  port: apiPort,
-  host: apiHost,
-  path: apiPath,
-} = require('../../../../api/serverConfig.json');
-
-const API_URL = `http://${apiHost}:${apiPort}${apiPath}`;
-const BASE_URL = `http://${host}:${port}`;
-const PROXY_URL = `${BASE_URL}/proxy?url=`;
 
 /**
  * This function fetches data from an endpoint with options using the native fetch (when possible)
@@ -93,7 +83,8 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
   }
 
   return (dispatch, getState) => {
-    if (reduceKey(getState(), fullStateKey)) {
+    const existingState = reduceKey(getState(), fullStateKey);
+    if (existingState && existingState.length) {
       return;
     }
 

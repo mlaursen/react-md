@@ -1,5 +1,6 @@
 import React, { PureComponent, PropTypes, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
 import { connect } from 'react-redux';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
@@ -11,6 +12,7 @@ import navItems from 'constants/navItems';
 import DocumentationTabs from 'containers/DocumentationTabs';
 import Notifications from 'containers/Notifications';
 import AppFooter from 'containers/AppFooter';
+import Search from 'containers/Search';
 
 @connect(({ ui: { drawer } }) => ({ ...drawer }), {
   onMediaTypeChange: updateMedia,
@@ -21,6 +23,7 @@ export default class App extends PureComponent {
     // Injected from connect and drawer state
     defaultMedia: NavigationDrawer.propTypes.defaultMedia,
     visibleBoxShadow: PropTypes.bool.isRequired,
+    visibleToolbarTitle: PropTypes.bool.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
     onMediaTypeChange: PropTypes.func.isRequired,
@@ -95,6 +98,7 @@ export default class App extends PureComponent {
       location: { pathname },
       defaultMedia,
       visibleBoxShadow,
+      visibleToolbarTitle,
       toolbarTitle,
       toolbarProminent,
       customDrawerType,
@@ -117,13 +121,14 @@ export default class App extends PureComponent {
         ref={this._setContainer}
         drawerTitle="react-md"
         defaultMedia={defaultMedia}
-        toolbarClassName="main-toolbar"
+        toolbarClassName={cn('main-toolbar', { 'main-toolbar--title-hidden': !visibleToolbarTitle })}
         toolbarTitle={toolbarTitle}
         toolbarProminent={toolbarProminent}
         toolbarChildren={tabs}
         navItems={navItems(pathname)}
         drawerType={customDrawerType}
         toolbarStyle={!visibleBoxShadow ? { boxShadow: 'none' } : null}
+        toolbarActions={<Search key="search" />}
         onMediaTypeChange={this._handleMediaTypeChange}
       >
         {children}

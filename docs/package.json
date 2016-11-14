@@ -26,6 +26,7 @@
     "fuse.js": "^2.5.0",
     "highlight.js": "^9.7.0",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.throttle": "^4.1.1",
     "lorem-ipsum": "^1.0.3",
     "marked": "^0.3.6",
     "morgan": "^1.7.0",

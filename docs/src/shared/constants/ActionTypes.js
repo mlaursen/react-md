@@ -17,3 +17,9 @@ export const SET_CUSTOM_THEME = Symbol('SET_CUSTOM_THEME');
 export const UPDATE_DRAWER_TYPE = Symbol('UPDATE_DRAWER_TYPE');
 
 export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
+
+export const SHOW_SEARCH = Symbol('SHOW_SEARCH');
+export const HIDE_SEARCH = Symbol('HIDE_SEARCH');
+export const SEARCH_REQUEST = Symbol('SEARCH_REQUEST');
+export const SEARCH_SUCCESS = Symbol('SEARCH_SUCCESS');
+export const SEARCH_FAILURE = Symbol('SEARCH_FAILURE');

@@ -4,6 +4,7 @@ import Avatar from 'react-md/lib/Avatars';
 import Button from 'react-md/lib/Buttons/Button';
 import Autocomplete from 'react-md/lib/Autocompletes';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import throttle from 'lodash.throttle';
 
 import fetchSpotify from 'actions/fetchSpotify';
 import randomInt from 'utils/RandomUtils/randomInt';
@@ -100,7 +101,7 @@ export default class AjaxAutocomplete extends PureComponent {
           dataLabel="name"
           dataValue="id"
           filter={null}
-          onChange={this._searchForArtists}
+          onChange={throttle(this._searchForArtists, 250)}
           clearOnAutocomplete
           onAutocomplete={this._fetchAlbums}
         />
