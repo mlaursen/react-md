@@ -185,6 +185,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
 ///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
+/// @group text-fields, media-queries
 @mixin react-md-text-fields-mobile(
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
@@ -241,6 +242,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
 ///     be included as well.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
+/// @group text-fields, media-queries
 @mixin react-md-text-fields-desktop(
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,

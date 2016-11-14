@@ -147,7 +147,6 @@ $md-dialog-horizontal-keyline: 40px;
 }
 
 /// Includes the styles for the header content for dialogs only.
-/// @access private
 @mixin react-md-dialogs-header {
   .md-title--dialog {
     margin-bottom: 0;
@@ -159,7 +158,6 @@ $md-dialog-horizontal-keyline: 40px;
 
 
 /// Includes the styles for the content in dialogs only.
-/// @access private
 @mixin react-md-dialogs-content {
   .md-dialog-content {
     overflow: auto;

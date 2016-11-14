@@ -287,6 +287,12 @@ export default class SelectField extends PureComponent {
      * to include an asterisk.
      */
     required: PropTypes.bool,
+
+    /**
+     * Boolean if the select field is in a toolbar. This will automatically be injected if the select field
+     * is passed in as the `menuTitle` prop.
+     */
+    toolbar: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -439,8 +445,8 @@ export default class SelectField extends PureComponent {
     }
 
     const list = findDOMNode(listRef);
-    const { position, menuItems } = this.props;
-    if (position === SelectField.Positions.BELOW) { // only modify scroll distance when below
+    const { position, menuItems, toolbar } = this.props;
+    if (position === SelectField.Positions.BELOW || toolbar) { // only modify scroll distance when below
       const activeIndex = Math.min(this._activeItem, menuItems.length - 2);
       const { offsetTop: itemTop } = list.querySelectorAll('.md-list-tile')[activeIndex];
       list.scrollTop = itemTop > MOBILE_LIST_PADDING ? itemTop : 0;

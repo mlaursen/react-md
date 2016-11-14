@@ -24,7 +24,7 @@ const drawerHeaderChildren = [
     menuItems={['Jonathan', 'Fred']}
     key="account-switcher"
     position={SelectField.Positions.BELOW}
-    inputStyle={{ fontSize: 13 }}
+    className="md-select-field--toolbar"
   />,
 ];
 

@@ -16,7 +16,7 @@ export default class TextFieldDivider extends PureComponent {
     return (
       <Divider
         {...props}
-        className={cn(`md-divider--text-field md-didivder--expand-from-${lineDirection}`, {
+        className={cn(`md-divider--text-field md-divider--expand-from-${lineDirection}`, {
           'md-divider--text-field-expanded': active,
           'md-divider--text-field-active': !error && active,
           'md-divider--text-field-error': error,

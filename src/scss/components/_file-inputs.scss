@@ -3,10 +3,14 @@
 ////
 
 
-/// Includes the styles for file inputs.
+/// Includes the styles for file inputs. This really depends on the styles
+/// for `flat` or `raised` buttons.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-file-inputs;
+/// @see react-md-buttons
+/// @see md-btn-include-flat
+/// @see md-btn-include-raised
 @mixin react-md-file-inputs {
   .md-file-input {
     height: 0;

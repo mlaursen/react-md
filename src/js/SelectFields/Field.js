@@ -32,6 +32,7 @@ export default class Field extends PureComponent {
     disabled: PropTypes.bool,
     required: PropTypes.bool,
     error: PropTypes.bool,
+    toolbar: PropTypes.bool,
   };
 
   constructor(props) {
@@ -44,6 +45,12 @@ export default class Field extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
       this._transitionNewValue();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
     }
   }
 
@@ -84,11 +91,12 @@ export default class Field extends PureComponent {
       lineDirection,
       required,
       error,
+      toolbar,
       ...props
     } = this.props;
 
     let divider;
-    if (!below) {
+    if (!below && !toolbar) {
       divider = (
         <TextFieldDivider
           key="text-divider"
@@ -122,6 +130,7 @@ export default class Field extends PureComponent {
             'md-select-field--btn': below,
             'md-text-field--margin': !below && !label,
             'md-text-field--floating-margin': label,
+            'md-text-field--toolbar': toolbar && !below,
           })}
         >
           <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>

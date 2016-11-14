@@ -75,7 +75,7 @@ $md-cross-fade-distance: 16px !default;
   }
 
   .md-title.md-title--permanent-offset {
-    margin-left: $md-drawer-tablet-width + $md-default-padding;
+    margin-left: $md-drawer-tablet-width + 20px;
   }
 
   .md-drawer .md-title--toolbar-offset {
@@ -168,7 +168,7 @@ $md-cross-fade-distance: 16px !default;
   }
 
   .md-title.md-title--persistent-offset {
-    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - 6px + $md-default-padding;
+    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - 12px + 20px;
   }
 }
 
@@ -186,7 +186,7 @@ $md-cross-fade-distance: 16px !default;
 /// @group navigation-drawers, media-queries
 @mixin react-md-navigation-drawers-desktop {
   .md-title.md-title--persistent-offset {
-    margin-left: $md-drawer-desktop-width - $md-btn-icon-size - 6px + $md-default-padding;
+    margin-left: $md-drawer-desktop-width - $md-btn-icon-size - 12px + 20px;
   }
 }
 

@@ -167,7 +167,7 @@ $md-toolbar-tablet-title-keyline: 80px;
     }
 
     @if $include-text-fields or $include-autocompletes {
-      @include react-md-theme-placeholders($md-white-base);
+      @include react-md-theme-placeholders(get-color('secondary', false));
     }
   }
 
@@ -178,7 +178,7 @@ $md-toolbar-tablet-title-keyline: 80px;
         padding-top: 0;
       }
 
-      .md-text-field {
+      .md-text-field--toolbar {
         font-size: $md-title-font-size;
       }
     }
@@ -488,6 +488,18 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 }
 
+/// Includes the styles for toolbars for a landscape tablet. This should be used
+/// within a media query. This will really only generate styles if the `include-text-fields`
+/// param is `true`.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-landscape-media} {
+///     @include react-md-toolbars-tablet-landscape;
+///   }
+///
+/// @group toolbars, media-queries
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles for
+///   select fields in toolbars should be included.
 @mixin react-md-toolbars-tablet-landscape($include-select-fields: $md-toolbar-include-select-fields) {
   @if $include-select-fields {
     .md-select-field--toolbar.md-select-field--toolbar {
@@ -497,6 +509,18 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 }
 
+/// Includes the styles for toolbars for a desktop display. This should be used
+/// within a media query. This will really only generate styles if the `include-text-fields`
+/// param is `true`.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-desktop} {
+///     @include react-md-toolbars-tablet-landscape;
+///   }
+///
+/// @group toolbars, media-queries
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles for
+///   select fields in toolbars should be included.
 @mixin react-md-toolbars-desktop($include-select-fields: $md-toolbar-include-select-fields) {
   @if $include-select-fields {
     .md-select-field--toolbar.md-select-field--toolbar {

@@ -150,13 +150,20 @@ $md-card-padding-extra: 24px;
 }
 
 /// Includes the styles for an avatar in the `CardTitle` component only.
+///
+/// This really requires the styles of avatars to already be included.
+/// @see react-md-avatars
 @mixin react-md-cards-title-avatar {
   .md-avatar--card {
     margin-right: $md-default-padding;
   }
 }
 
-// Includes the styles for the `CardActions` component only.
+/// Includes the styles for the `CardActions` component only.
+///
+/// This really depends on the styles of dialog footers to already be included.
+/// @see react-md-dialogs
+/// @see react-md-dialogs-footer
 @mixin react-md-cards-actions {
   .md-dialog-footer {
     &--card {
@@ -171,6 +178,10 @@ $md-card-padding-extra: 24px;
   }
 }
 
+/// Creates the styles for tables in cards. This should _normally_ be included
+/// with the `react-md-cards` mixin.
+///
+/// @group cards, data-tables
 @mixin react-md-cards-tables {
   .md-card--table {
     .md-card-title {

@@ -132,7 +132,7 @@ $phone-status-bar-height: 24px;
       }
 
       .md-autocomplete-list {
-        left: -70px;
+        left: -$md-toolbar-mobile-title-keyline;
         position: absolute;
         width: $phone-size-max-width;
       }
@@ -203,9 +203,9 @@ $phone-status-bar-height: 24px;
     @include react-md-buttons-mobile;
     @include react-md-snackbars-mobile;
 
-    // Override styles again afte rmedia query.
-    .md-toolbar .md-text-field {
-      font-size: 20px;
+    // Override styles again after media query.
+    .md-toolbar .md-text-field--toolbar {
+      font-size: $md-title-font-size;
     }
 
     .md-btn--fixed-tl {

@@ -108,7 +108,14 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
-/// Creates the styles for snackbars on mobile devices.
+/// Creates the styles for snackbars on mobile devices. This should _normally_ be used
+/// in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-snackbars-mobile;
+///   }
+///
 /// @group snackbars, media-queries
 @mixin react-md-snackbars-mobile {
   .md-snackbar {
@@ -144,6 +151,14 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
+/// Creates the styles for snackbars on desktop screens. This should _normally_ be used
+/// in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-snackbars-desktop;
+///   }
+///
 /// @group snackbars, media-queries
 @mixin react-md-snackbars-desktop {
   .md-snackbar {
@@ -178,6 +193,12 @@ $md-snackbar-desktop-max-width: 568px;
   }
 }
 
+/// Creates the media queries and styles for snackbars on both mobile devices and
+/// desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-snackbars-media;
+///
 /// @group snackbars, media-queries
 @mixin react-md-snackbars-media {
   @media #{$md-mobile-media} {

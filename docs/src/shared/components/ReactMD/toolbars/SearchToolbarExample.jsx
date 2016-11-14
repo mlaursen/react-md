@@ -57,6 +57,7 @@ export default class SearchToolbarExample extends PureComponent {
           onAutocomplete={this._handleSearchChange}
           onChange={this._handleSearchChange}
           className="md-title--toolbar"
+          inputClassName="md-text-field--toolbar"
         />
       );
     } else {

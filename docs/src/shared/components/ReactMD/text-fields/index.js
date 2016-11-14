@@ -16,9 +16,6 @@ import InfoExamplesRaw from '!!raw!./InfoExamples';
 import FullWidthExamples from './FullWidthExamples';
 import FullWidthExamplesRaw from '!!raw!./FullWidthExamples';
 
-import InToolbarExample from './InToolbarExample';
-import InToolbarExampleRaw from '!!raw!./InToolbarExample';
-
 import FormExample from './FormExample';
 import FormExampleRaw from '!!raw!./FormExample';
 
@@ -82,8 +79,4 @@ give a \`label\` prop, it will be used as the placeholder instead.
   title: 'Form Example',
   code: FormExampleRaw,
   children: <FormExample />,
-}, {
-  title: 'In Toolbars',
-  code: InToolbarExampleRaw,
-  children: <InToolbarExample />,
 }];

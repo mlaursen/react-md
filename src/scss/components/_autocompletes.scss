@@ -9,11 +9,13 @@
 $md-inline-autocomplete: true !default;
 
 
-/// Includes the styles for autocompletes depending on the theme.
+/// Includes any additional styles for autocompletes if `include-inline` is `true`.
+/// The `Autocomplete` component really depends on all the styles for text fields.
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-autocompletes;
 ///
+/// @see react-md-text-fields
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
 ///     for autocompletes should be included.

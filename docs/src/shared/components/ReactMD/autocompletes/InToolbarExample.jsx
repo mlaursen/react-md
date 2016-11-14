@@ -50,6 +50,7 @@ export default class InToolbarExample extends PureComponent {
             onAutocomplete={this._handleChange}
             block
             className="md-title--toolbar"
+            inputClassName="md-text-field--toolbar"
           />
         </Toolbar>
         <ItemList />

@@ -9,6 +9,9 @@ import InlineAutocompleteRaw from '!!raw!./InlineAutocomplete';
 import AjaxAutocomplete from './AjaxAutocomplete';
 import AjaxAutocompleteRaw from '!!raw!./AjaxAutocomplete';
 
+import InToolbarExample from './InToolbarExample';
+import InToolbarExampleRaw from '!!raw!./InToolbarExample';
+
 export default [{
   title: 'Menu Completion View',
   description: `
@@ -46,4 +49,19 @@ search for an artist, and then display their albums once it is selected.
 `,
   code: AjaxAutocompleteRaw,
   children: <AjaxAutocomplete />,
+}, {
+  title: 'In Toolbar',
+  description: `
+When an autocomplete appears in a toolbar, it will automatically update the list to appear below the toolbar
+and fixed to the entire width of the screen while tablets and desktops will be absolutely positioned and
+have a width equal to the text autocomplete's with.
+
+If you want the text field to gain the font size of the toolbar's normal font size, you will need to add
+\`inputClassName="md-text-field--toolbar"\` to the autocomplete.
+
+If you want the autocomplete to align with the default title keyline, you will need to add the \`className="md-title--toolbar"\`
+to the autocomplete.
+  `,
+  code: InToolbarExampleRaw,
+  children: <InToolbarExample />,
 }];

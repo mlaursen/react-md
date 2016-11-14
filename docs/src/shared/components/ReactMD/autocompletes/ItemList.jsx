@@ -16,7 +16,7 @@ const items = [...Array(length).keys()].map((_, i) => ({
 }));
 
 const ItemList = () => (
-  <List className="toolbar-offset">
+  <List className="md-toolbar-relative">
     {items.map(item => <ListItem {...item} />)}
   </List>
 );
