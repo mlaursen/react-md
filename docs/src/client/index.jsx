@@ -1,6 +1,5 @@
 import React from 'react';
 import browserHistory from 'react-router/lib/browserHistory';
-import match from 'react-router/lib/match';
 import { render } from 'react-dom';
 import { syncHistoryWithStore } from 'react-router-redux';
 
@@ -25,10 +24,6 @@ const history = syncHistoryWithStore(browserHistory, store);
 const root = document.getElementById('app');
 if (process.env.NODE_ENV === 'development') {
   window.Perf = require('react-addons-perf');
-
-  render(<Root store={store} history={history} routes={routes} onUpdate={smoothScroll} />, root);
-} else {
-  match({ history, routes }, (error, redirectLocation, renderProps) => {
-    render(<Root store={store} {...renderProps} />, root);
-  });
 }
+
+render(<Root store={store} history={history} routes={routes} onUpdate={smoothScroll} />, root);

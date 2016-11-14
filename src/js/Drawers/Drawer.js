@@ -340,7 +340,10 @@ export default class Drawer extends PureComponent {
   }
 
   componentWillMount() {
-    this._updateType(this.props);
+    // Ruins SSR without this check
+    if (typeof window !== 'undefined') {
+      this._updateType(this.props);
+    }
   }
 
   componentDidMount() {
