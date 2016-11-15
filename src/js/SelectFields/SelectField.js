@@ -505,9 +505,12 @@ export default class SelectField extends PureComponent {
     });
   }
 
-  _handleItemSelect(index, value, e) {
+  _handleItemSelect(index, v, e) {
     const { required, menuItems, itemLabel, itemValue, onChange } = this.props;
-    if (onChange) {
+    const number = typeof menuItems[index] === 'number' || typeof menuItems[index][itemValue] === 'number';
+    const value = number ? Number(v) : v;
+
+    if (getField(this.props, this.state, 'value') !== value && onChange) {
       onChange(value, index, e);
     }
 
@@ -748,7 +751,7 @@ export default class SelectField extends PureComponent {
       const value = typeof activeItem === 'object' ? activeItem[itemValue] : activeItem;
       state.error = !value;
 
-      if (this.props.onChange) {
+      if (getField(this.props, this.state, 'value') !== value && this.props.onChange) {
         this.props.onChange(value, state.activeIndex, e);
       }
 
