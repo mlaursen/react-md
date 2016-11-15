@@ -238,6 +238,12 @@ export default class Autocomplete extends PureComponent {
      * An optional function to call when the `Autocomplete` suggestion menu closes.
      */
     onMenuClose: PropTypes.func,
+
+    /**
+     * This prop is used for disabling the browser's default autocomplete suggestions
+     * of previously typed values in the text field. By default, this is disabled.
+     */
+    autoComplete: PropTypes.oneOf(['on', 'off']),
   };
 
   static defaultProps = {
@@ -246,6 +252,7 @@ export default class Autocomplete extends PureComponent {
     dataLabel: 'primaryText',
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
+    autoComplete: 'off',
   };
 
   /**
