@@ -1,10 +1,14 @@
 import { animateScroll } from 'smooth-scroll';
 
 function scrollToHash() {
-  const el = document.querySelector(window.location.hash);
+  let el = document.querySelector(window.location.hash);
   const header = document.querySelector('header');
   if (!el || !header) {
     return;
+  }
+
+  if (window.location.hash.indexOf('proptypes') !== -1) {
+    el = el.parentNode;
   }
 
   const position = el.offsetTop - header.offsetHeight;

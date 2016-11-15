@@ -52,14 +52,6 @@ const StatefulExamples = () => (
       className="md-cell md-cell--bottom"
     />
     <TextField
-      id="ddisabledMultiline"
-      label="Try to type many letters"
-      placeholder="But you can't.."
-      rows={2}
-      maxRows={4}
-      className="md-cell md-cell--bottom"
-    />
-    <TextField
       id="disabledMultiline"
       label="Try to type many letters"
       placeholder="But you can't.."

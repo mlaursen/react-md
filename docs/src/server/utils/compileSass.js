@@ -59,7 +59,7 @@ module.exports = function compileSass(name) {
 @import 'react-md';
 
 $md-primary-color: $md-light-blue-500;
-$md-secondary-color: $md-deep-orange-a-400;
+$md-secondary-color: $md-deep-orange-a-200;
 @include react-md-theme-everything(${primaryColor}, ${secondaryColor}, ${!dark}, 'custom-theme');
 
 .custom-theme {
@@ -69,6 +69,7 @@ $md-secondary-color: $md-deep-orange-a-400;
 
   .react-md-logo {
     text,
+    #Group > path:first-child,
     path#Oval-210 {
       fill: ${secondaryColor};
     }

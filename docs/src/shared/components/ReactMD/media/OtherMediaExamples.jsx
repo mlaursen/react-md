@@ -3,7 +3,6 @@ import CardTitle from 'react-md/lib/Cards/CardTitle';
 import Media from 'react-md/lib/Media/Media';
 import MediaOverlay from 'react-md/lib/Media/MediaOverlay';
 
-import InlineSVG from 'components/InlineSVG';
 import components from 'components/Home/components.svg';
 
 export default class OtherMediaExamples extends PureComponent {
@@ -18,7 +17,7 @@ export default class OtherMediaExamples extends PureComponent {
       <div className="md-grid">
         <div className="md-cell">
           <Media aspectRatio="1-1">
-            <InlineSVG src={components} />
+            <img src={components} role="presentation" />
           </Media>
         </div>
         <div className="md-cell">

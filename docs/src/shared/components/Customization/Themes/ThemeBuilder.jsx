@@ -12,7 +12,7 @@ import Configuration from './Configuration';
 const DEFAULT_STATE = {
   primary: 'light-blue',
   secondary: 'deep-orange',
-  hue: 400,
+  hue: 200,
   light: true,
   saveDisabled: true,
 };

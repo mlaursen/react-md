@@ -36,3 +36,7 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: $md-font-bold;
 }
+
+#Group > path:first-child {
+  fill: $md-deep-orange-a-200;
+}

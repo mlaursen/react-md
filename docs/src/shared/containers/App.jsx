@@ -113,7 +113,7 @@ export default class App extends PureComponent {
 
     let tabs;
     if (toolbarProminent) {
-      tabs = <DocumentationTabs params={params} pathname={pathname} />;
+      tabs = <DocumentationTabs key="tabs" params={params} pathname={pathname} />;
     }
 
     return (

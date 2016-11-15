@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from 'react-md/lib/Avatars';
 import FontIcon from 'react-md/lib/FontIcons';
 import Link from 'react-router/lib/Link';
 import IndexLink from 'react-router/lib/IndexLink';
@@ -7,7 +8,6 @@ import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
 import googleLogo from '../imgs/googleLogo.svg';
 import reactLogo from '../imgs/reactLogo.svg';
-import InlineSVG from 'components/InlineSVG';
 
 
 function mapToNavItems(route, parents = []) {
@@ -55,7 +55,7 @@ function mapToNavItems(route, parents = []) {
   }
 
   if (avatarProps) {
-    resolvedIcon = <InlineSVG {...avatarProps} className="md-avatar md-avatar--icon-sized md-avatar--svg" />;
+    resolvedIcon = <Avatar {...avatarProps} className="md-avatar md-avatar--icon-sized md-avatar--svg" />;
   }
 
   if (component) {
