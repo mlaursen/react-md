@@ -1332,7 +1332,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
   }
 
   .md-text-field--inline-indicator {
-    padding-right: $md-font-icon-size;
+    width: calc(100% - #{$md-font-icon-size});
   }
 }
 
