@@ -1,0 +1,4 @@
+package:
+  - '../package.json'
+dest:
+  'dist/client/sassdoc'

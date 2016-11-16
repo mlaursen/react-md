@@ -11,10 +11,14 @@ const proxy = require('./proxy');
 const app = express();
 
 const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
+const client = express.static(clientRoot, {
+  maxAge: 3156000,
+});
 app.set('view engine', 'ejs');
 app.set('views', clientRoot);
 app.use(compression());
 app.use(logger(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
+
 
 app.get('/themes/*.css', vhost(host, theme));
 app.get('/proxy', vhost(host, proxy));
@@ -33,6 +37,7 @@ if (process.env.NODE_ENV === 'development') {
   }));
   app.use(webpackHotMiddleware(compiler));
 
+  app.use(client);
   app.use('*', (req, res, next) => {
     const filename = path.join(compiler.outputPath, 'index.html');
     compiler.outputFileSystem.readFile(filename, (err, file) => {
@@ -47,10 +52,6 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 } else {
-  const client = express.static(clientRoot, {
-    maxAge: 3156000,
-  });
-
   app.use(vhost(host, client));
   app.use(vhost(host, require('./reactMD').default));
 }
