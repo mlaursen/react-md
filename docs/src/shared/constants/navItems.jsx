@@ -4,6 +4,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 import Link from 'react-router/lib/Link';
 import IndexLink from 'react-router/lib/IndexLink';
 
+import internalRoutes from './routes';
 import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
 import googleLogo from '../imgs/googleLogo.svg';
@@ -58,7 +59,9 @@ function mapToNavItems(route, parents = []) {
     resolvedIcon = <Avatar {...avatarProps} className="md-avatar md-avatar--icon-sized md-avatar--svg" />;
   }
 
-  if (component) {
+  if (path === '') {
+    resolvedComponent = IndexLink;
+  } else if (component) {
     resolvedComponent = component;
   } else if (props.href) {
     resolvedComponent = 'a';
@@ -81,86 +84,7 @@ function mapToNavItems(route, parents = []) {
   };
 }
 
-const routes = [{
-  path: 'getting-started',
-  icon: 'info_outline',
-  nestedItems: ['prerequisites', 'installation'],
-}, {
-  path: 'customization',
-  icon: 'color_lens',
-  nestedItems: [
-    'colors',
-    'themes',
-    'media-queries',
-    'grids',
-    'typography',
-    'minimizing-bundle',
-  ],
-}, {
-  path: 'discover-more',
-  icon: 'search',
-  nestedItems: [
-    'whats-new', {
-      path: 'upgrade-guides',
-      nestedItems: [{
-        path: 'v1.0.0',
-        primaryText: 'Upgrading to v1.0.0',
-      }, {
-        path: 'v0.3.0',
-        primaryText: 'Upgrading to v0.3.0',
-      }],
-    }, 'community',
-    'contributing',
-  ],
-}, {
-  path: 'components',
-  icon: 'build',
-  nestedItems: [
-    'autocompletes',
-    'avatars',
-    'bottom-navigations',
-    'buttons',
-    'cards',
-    'chips',
-    'data-tables',
-    'dialogs',
-    'dividers',
-    'drawers',
-    'expansion-panels',
-    'file-inputs',
-    'font-icons', {
-      path: 'helpers',
-      nestedItems: [
-        'accessible-fake-button',
-        'collapse',
-        'focus-container',
-        'icon-separator',
-        'portal',
-      ],
-    }, 'inks',
-    'lists',
-    'media',
-    'menus',
-    'navigation-drawers',
-    'papers', {
-      path: 'pickers',
-      nestedItems: ['date', 'time'],
-    }, {
-      path: 'progress',
-      nestedItems: ['circular', 'linear'],
-    }, 'select-fields', {
-      path: 'selection-controls',
-      nestedItems: ['selection-control', 'checkboxes', 'radios', 'switches'],
-    },
-    'sliders',
-    'snackbars',
-    'subheaders',
-    'tabs',
-    'text-fields',
-    'toolbars',
-    'tooltips',
-  ],
-}, { divider: true }, {
+const routes = internalRoutes.concat([{ divider: true }, {
   subheader: true,
   primaryText: 'References',
 }, {
@@ -183,15 +107,7 @@ const routes = [{
   icon: 'accessibility',
   primaryText: 'Contrast Checker',
   target: '_blank',
-}].map(route => mapToNavItems(route));
-
-routes.unshift({
-  to: '/',
-  key: 'home',
-  primaryText: 'Home',
-  component: IndexLink,
-  leftIcon: <FontIcon>home</FontIcon>,
-});
+}]).map(route => mapToNavItems(route));
 
 function isNestedActive(nestedItems, pathname) {
   return nestedItems && nestedItems.some(({ to, nestedItems }) => to === pathname || isNestedActive(nestedItems, pathname));
