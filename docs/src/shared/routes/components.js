@@ -18,6 +18,11 @@ export default {
       replace('/components/drawers');
     },
   }, {
+    path: 'selection-controls',
+    onEnter(state, replace) {
+      replace('/components/selection-controls/selection-control');
+    },
+  }, {
     path: '(:section/):component',
     getComponent(state, cb) {
       switch (state.location.query.tab) {
