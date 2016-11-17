@@ -4,6 +4,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import Promise from 'bluebird';
 import vhost from 'vhost';
+import { middleware as cache } from 'apicache';
 
 import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
 import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
@@ -23,15 +24,15 @@ app.use(logger(DEV ? 'dev' : 'combined'));
 
 if (path) {
   const router = express.Router();
-  router.use('/docgens', vhost(host, docgen));
-  router.use('/sassdocs', vhost(host, sassdoc));
-  router.use('/search', vhost(host, search));
+  router.use('/docgens', cache('5 minutes'), vhost(host, docgen));
+  router.use('/sassdocs', cache('5 minutes'), vhost(host, sassdoc));
+  router.use('/search', cache('5 minutes'), vhost(host, search));
 
   app.use('/api', router);
 } else {
-  app.use('/docgens', vhost(host, docgen));
-  app.use('/sassdocs', vhost(host, sassdoc));
-  app.use('/search', vhost(host, search));
+  app.use('/docgens', cache('5 minutes'), vhost(host, docgen));
+  app.use('/sassdocs', cache('5 minutes'), vhost(host, sassdoc));
+  app.use('/search', cache('5 minutes'), vhost(host, search));
 }
 
 (async () => {
