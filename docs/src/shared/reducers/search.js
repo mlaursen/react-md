@@ -1,5 +1,15 @@
 import { SHOW_SEARCH, HIDE_SEARCH, SEARCH_REQUEST, SEARCH_SUCCESS } from 'constants/ActionTypes';
 
+function updateSearchResults(state, { data: { meta, data: results } }) {
+  if (state.results === results) {
+    return state;
+  } else if (meta.start > 0) {
+    return Object.assign({}, state, { meta, results: state.results.concat(results) });
+  }
+
+  return Object.assign({}, state, { meta, results });
+}
+
 function updateSearch(state, searching) {
   if (state.searching === searching) {
     return state;
@@ -10,6 +20,7 @@ function updateSearch(state, searching) {
 
 const initialState = {
   searching: false,
+  meta: {},
   results: [],
 };
 
@@ -22,7 +33,7 @@ export default function search(state = initialState, action) {
     case SEARCH_REQUEST:
       return state;
     case SEARCH_SUCCESS:
-      return state;
+      return updateSearchResults(state, action);
     default:
       return state;
   }

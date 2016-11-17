@@ -5,6 +5,7 @@ import DividerExamplesRaw from '!!raw!./DividerExamples';
 import './_styles.scss';
 
 export default [{
+  title: 'Simple Examples',
   description: `
 Dividers can be implemented by using the \`Divider\` component or by using the supplied class names.
 

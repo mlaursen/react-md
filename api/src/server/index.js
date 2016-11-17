@@ -7,6 +7,7 @@ import vhost from 'vhost';
 
 import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
 import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
+import search, { buildLocalDB as buildSearchDB } from './search';
 import { port, host, path } from '../../serverConfig.json';
 
 const DEV = process.env.NODE_ENV === 'development';
@@ -24,15 +25,17 @@ if (path) {
   const router = express.Router();
   router.use('/docgens', vhost(host, docgen));
   router.use('/sassdocs', vhost(host, sassdoc));
+  router.use('/search', vhost(host, search));
 
   app.use('/api', router);
 } else {
   app.use('/docgens', vhost(host, docgen));
   app.use('/sassdocs', vhost(host, sassdoc));
+  app.use('/search', vhost(host, search));
 }
 
 (async () => {
-  await Promise.all([buildDocgenDB(), buildSassDocDB())]);
+  await Promise.all([buildDocgenDB(), buildSassDocDB(), buildSearchDB()]);
 
   app.listen(port, err => {
     if (err) {
