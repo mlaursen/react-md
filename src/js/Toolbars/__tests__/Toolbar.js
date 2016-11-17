@@ -57,7 +57,7 @@ describe('Toolbar', () => {
     const title = findRenderedComponentWithType(toolbar, ToolbarTitle);
     expect(title.props.title).toBe(props.title);
     expect(title.props.prominent).toBe(props.prominentTitle);
-    expect(title.props.offset).toBe(true);
+    expect(title.props.offset).toBe(props.prominentTitle);
   });
 
   it('clones the nav prop with some additional className', () => {

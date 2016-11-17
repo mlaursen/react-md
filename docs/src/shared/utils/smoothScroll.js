@@ -2,7 +2,7 @@ import { animateScroll } from 'smooth-scroll';
 
 function scrollToHash() {
   let el = document.querySelector(window.location.hash);
-  const header = document.querySelector('header');
+  const header = document.querySelector('.main-toolbar');
   if (!el || !header) {
     return;
   }

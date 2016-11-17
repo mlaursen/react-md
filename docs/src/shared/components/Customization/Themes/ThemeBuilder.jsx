@@ -133,7 +133,7 @@ export default class ThemeBuilder extends PureComponent {
     const secondaryVal = `$md-${secondary}-a-${hue}`;
     const compiledName = `react-md.${primary.replace('-', '_')}-${secondary.replace('-', '_')}${light ? '' : '.dark'}.min.css`;
 
-    const howToUse = `
+    let howToUse = `
 #### Using with SASS
 
 \`\`\`scss
@@ -155,7 +155,10 @@ ${light
 \`\`\`
 
 #### Pre-compiled Themes
+`;
 
+    if (hue === 400 && light) {
+      howToUse = `${howToUse}
 ##### SCSS Import
 \`\`\`scss
 @import '~react-md/dist/${compiledName}';
@@ -165,7 +168,13 @@ ${light
 \`\`\`html
 <link rel="stylesheet" href="//unpkg.com/react-md/dist/${compiledName}">
 \`\`\`
-  `;
+`;
+    } else {
+      howToUse = `${howToUse}
+This current theme is unavailable as a precomiled package. Only accents of \`400\` and the \`light-theme\` have been
+precompiled.
+`;
+    }
 
     return (
       <div className="md-grid">

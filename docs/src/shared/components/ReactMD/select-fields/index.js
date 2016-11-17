@@ -5,8 +5,6 @@ import SelectFieldExamplesRaw from '!!raw!./SelectFieldExamples';
 import SelectFieldButtonExamples from './SelectFieldButtonExamples';
 import SelectFieldButtonExamplesRaw from '!!raw!./SelectFieldButtonExamples';
 
-import './_select-fields.scss';
-
 export default [{
   title: 'Simple Examples',
   description: `

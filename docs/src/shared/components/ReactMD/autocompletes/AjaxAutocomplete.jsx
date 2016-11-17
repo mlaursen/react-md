@@ -78,7 +78,15 @@ export default class AjaxAutocomplete extends PureComponent {
     );
 
     const fab = (
-      <Button floating fixed secondary tooltipLabel="Hide all albums" tooltipPosition="left" onClick={this._hideAlbums}>
+      <Button
+        key="fab"
+        fixed
+        floating
+        secondary
+        onClick={this._hideAlbums}
+        tooltipLabel="Hide all albums"
+        tooltipPosition="left"
+      >
         delete
       </Button>
     );
