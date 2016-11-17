@@ -8,7 +8,7 @@ import CSSPropertyOperations from 'react/lib/CSSPropertyOperations';
 /**
  * Creates a "Portal" for the children to be rendered in. Basically it will render the
  * children only when the `visible` prop is `true`. When it is visible, a new `component`
- * will be rendered as the last child in the body with the children inside.
+ * will be rendered as the first child in the body with the children inside.
  */
 export default class Portal extends PureComponent {
   static propTypes = {
@@ -52,6 +52,12 @@ export default class Portal extends PureComponent {
      * the last child in the `body`.
      */
     renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the portal should render the childeren as the last child of the `renderNode`
+     * or `body` instead of the first.
+     */
+    lastChild: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -116,7 +122,12 @@ export default class Portal extends PureComponent {
       this._container = document.createElement(props.component);
 
       this._applyStyles(props);
-      (props.renderNode || document.body).appendChild(this._container);
+      const node = (props.renderNode || document.body);
+      if (props.lastChild) {
+        node.appendChild(this._container);
+      } else {
+        node.insertBefore(this._container, node.firstChild);
+      }
     } else {
       this._applyStyles(props);
     }
