@@ -12,6 +12,9 @@ import AjaxAutocompleteRaw from '!!raw!./AjaxAutocomplete';
 import InToolbarExample from './InToolbarExample';
 import InToolbarExampleRaw from '!!raw!./InToolbarExample';
 
+import SearchRaw from '!!raw!components/Search/Search';
+import SearchSCSSRaw from '!!raw!components/Search/_search.scss';
+
 export default [{
   title: 'Menu Completion View',
   description: `
@@ -49,6 +52,26 @@ search for an artist, and then display their albums once it is selected.
 `,
   code: AjaxAutocompleteRaw,
   children: <AjaxAutocomplete />,
+}, {
+  title: 'Lazy Loading Ajax',
+  description: `
+Since the \`Autocomplete\` also accepts valid React elements in the list items that won't be searched, it is
+possible to create a lazy loading list of suggestions in the autocomplete. This is very beneficial when your
+api paginates the search results. This is actually how the main search has been implemented for this site.
+
+The site's search uses the [react-waypoint](https://github.com/brigade/react-waypoint) component to fetch the next
+10 items in the search results when the user scrolls to the end of the list. This continues until there are no
+results remaining. You can view the source code for the search by clicking the source code button on this card.
+  `,
+  code: `
+/* Search.jsx */
+${SearchRaw}
+\`\`\`
+
+\`\`\`scss
+${SearchSCSSRaw}
+`,
+  children: null,
 }, {
   title: 'In Toolbar',
   description: `

@@ -16,13 +16,30 @@ export default class Search extends PureComponent {
     showSearch: PropTypes.func.isRequired,
     hideSearch: PropTypes.func.isRequired,
     searching: PropTypes.bool.isRequired,
-    className: PropTypes.string,
-    children: PropTypes.node,
+
+    /**
+     * A list of matches/results from the current search.
+     */
     results: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['Info', 'Examples', 'SassDoc', 'Prop Types', 'Mixin', 'Variable', 'Placeholder', 'Function']).isRequired,
+      type: PropTypes.oneOf([
+        'Info',
+        'Examples',
+        'SassDoc',
+        'Prop Types',
+        'Mixin',
+        'Variable',
+        'Placeholder',
+        'Function',
+      ]).isRequired,
       ref: PropTypes.string.isRequired,
     })).isRequired,
+
+    /**
+     * The meta object containg the last search's start index, the total results,
+     * the last search's limit of results, an optional link to get the next results,
+     * and an optional link to get the previous results.
+     */
     meta: PropTypes.shape({
       start: PropTypes.number,
       total: PropTypes.number,
@@ -67,12 +84,20 @@ export default class Search extends PureComponent {
     }
   }
 
+  /**
+   * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
+   * When autocomplete menu opens for the first time, the `previousPosition` will be undefined and the
+   * next results would also be fetched.
+   */
   _fetchNext = ({ previousPosition }) => {
     if (previousPosition) {
       this.props.searchNext(this.props.meta.next);
     }
   };
 
+  /**
+   * Throttle the search so it only attempts to hit the endpoint once every 250ms
+   */
   _search = throttle(this.props.search, 250);
 
   _handleChange = (value) => {
@@ -87,6 +112,15 @@ export default class Search extends PureComponent {
     this.setState({ value: '' });
   };
 
+  /**
+   * Basically map the results shape into props for a `ListItem`.
+   *
+   * @param {Object} result - The result object to convert.
+   * @param {String} result.name - The name for the search result.
+   * @param {String} result.type - The search result type.
+   * @param {String} result.ref - The link to use to navigate to that search result.
+   * @return {Object} props to pass to the `ListItem` component in the autocomplete's menu.
+   */
   _mapToLink = ({ name, type, ref }) => {
     let to;
     let href;
@@ -99,7 +133,14 @@ export default class Search extends PureComponent {
       to = ref;
     }
 
-    return { to, href, component, primaryText: name, secondaryText: type, key: `${name}-${type}` };
+    return {
+      to,
+      href,
+      component,
+      primaryText: name,
+      secondaryText: type,
+      key: `${name}-${type}`,
+    };
   };
 
   render() {
