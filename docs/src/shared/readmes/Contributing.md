@@ -36,7 +36,7 @@ the code review process and made it more likely to be accepted.
 ### Getting Started
 I am currently using a branching model where `master` only gets updated when a new `npm publish`
 occurs. The active branch will be whatever version number that is currently being developed with
-an `x`. So if the next release is `v0.3.5`, the active development branch will be `release/0.3.x`.
+an `x`. So if the next release is `v1.0.1`, the active development branch will be `release/1.0.x`.
 
 
 ```bash
@@ -53,18 +53,15 @@ $ cd react-md
 $ git remote add upstream git@github.com:mlaursen/react-md.git
 
 # checkout the current release branch
-# so if you want to work on v0.3.5
-$ git checkout release/0.3.x
-$ git fetch upstream release/0.3.x
+# so if you want to work on v1.0.1
+$ git checkout release/1.0.x
+$ git fetch upstream release/1.0.x
 $ git rebase
 $ git checkout -b bugfix/My-Topic-Branch
 $ npm update
 ```
 
-The `jsx` versions of the components will be in the `src` dir and the fully transpiled
-and compiled versions will be in `lib`. When creating a pull request, please do not
-include the `lib` folder. This will be handled by the `master` branch when a new release
-is made.
+The raw source files will be in the `src` directory.
 
 ### Linting
 Please follow the linting rules in `.eslintrc`. You can check or hopefully
@@ -89,16 +86,10 @@ $ npm run test        # runs all the tests
 $ npm run test:watch  # watches for changes in tests and reruns
 ```
 
-If there are visual changes, you can test them with the [react-md-docs](https://github.com/mlaursen/react-md-docs)
-project. In the react-md-docs project run:
+If there are any visual changes or you want to test the functionality of a component, you can use the documentation
+site and create a new example.
 
-```bash
-$ npm run browser
-```
-
-This will automatically start the `webpack-dev-server`, open the browser, and
-watch for changes to live update with.
-
+See the documentation's site [README](https://github.com/mlaursen/react-md/docs) for information on running the dev server.
 
 ### License
 By contributing your code to to the `mlaursen/react-md` or `mlaursen/react-md-docs` GitHub repository,

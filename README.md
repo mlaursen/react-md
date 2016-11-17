@@ -1,7 +1,5 @@
 # react-md
 
-![react-md](/imgs/readme.svg)
-
 React Material Design - React components built with sass
 
 [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
@@ -20,30 +18,9 @@ $ npm i -S react \
            react-md
 ```
 
-## Getting Started
+## Usage
 
-> NOTE: There are some other implementations that might work better for you:
-> - [Material-UI](https://github.com/callemall/material-ui) - Inline styling
-> - [React Toolbox](https://github.com/react-toolbox/react-toolbox) - SASS Implementation
-
-
-### Prerequisites
-
-To use this library, it is recommended to have previous experience using React along with sass or css. Since the sass files are prefix-free, you will need
-to include an autoprefixer for multi-browser support.
-
-You will need to include the Roboto or Noto font library since they are the default typeface on Android and Chrome. They can
-be included by using a CDN, the [WebFontLoader](/typekit/webfontloader), or importing through CSS.
-
-In addition, some form of font icon library should be included. The [material-icons](https://design.google.com/icons/) is the default
-font icon implementation, but any can be used.
-
-Finally, if you want to use the `DatePicker` or `TimePicker` components, the [Intl polyfill](https://github.com/andyearnshaw/Intl.js) should
-be included for older browsers. [See caniuse](http://caniuse.com/#search=intl) for browser support.
-
-### Usage
-
-#### Basic Webpack Usage
+### Basic Webpack Usage
 
 ```js
 /* App.jsx */
@@ -102,7 +79,7 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 ```
 
 
-#### UMD Usage
+### UMD Usage
 
 ```html
 <!DOCTYPE html>
@@ -129,7 +106,7 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 </html>
 ```
 
-### Customizing the theme
+## Customizing the theme
 The application should define a `primary` and `secondary` color. The `primary` color
 should be chosen from one of the `'-500'` colors and the `secondary` should be one of
 the `'a-'` colors.
@@ -153,34 +130,8 @@ $md-secondary-color: $md-lime-a-400;
 @include react-md-everything;
 ```
 
-## Contributing
-
-The branching model used for this project is basically the [git flow diagram](http://nvie.com/img/git-model@2x.png).
-The only difference is that I do not use a `develop` branch. The develop branch is just the current release branch.
-So if the current release is v0.3, the active develop branch is `release/0.3.x`. Please make sure pull requests
-are targeted to the correct release branch and not `master`.
-
-The source files are located in the `src` dir. You can compile all the components and watch for changes with
-
-```bash
-$ npm run scripts:watch  # watch src and recompile
-```
-
-### Linting
-The scss linting is done through the Ruby version of `sass` and `scss_lint`. Mostly because I use vim and it is
-what I was using before. The `sass-lint` from `npm` did not follow the same rules as expected.
-
-```bash
-$ npm run lint        # lints scss and js files
-$ npm run lint:fix    # attempts to fix linting problems for js
-```
-
-### Testing
-
-```bash
-$ npm test
-$ npm run test:watch
-```
+See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
+is also a theme builder available to try mix and matching different colors.
 
 ## Known Bugs/Works in Progress/Future Changes
 
