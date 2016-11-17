@@ -7,18 +7,19 @@ export default function getInitialDrawerState(req) {
   const desktop = !mobile && !tablet;
 
   const pathname = req.url;
-  let drawerType = 'desktop';
+  let defaultMedia = 'desktop';
   if (tablet) {
-    drawerType = 'tablet';
+    defaultMedia = 'tablet';
   } else if (mobile) {
-    drawerType = 'mobile';
+    defaultMedia = 'mobile';
   }
 
   return {
     mobile,
     tablet,
     desktop,
-    drawerType,
+    defaultMedia,
+    visibleToolbarTitle: true,
     toolbarTitle: toPageTitle(pathname),
     toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
     visibleBoxShadow: !!pathname,

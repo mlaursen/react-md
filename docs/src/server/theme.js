@@ -16,7 +16,7 @@ module.exports = function theme(req, res) {
   if (process.env.NODE_ENV === 'production') {
     res.sendFile(req.url, { root: __dirname }, err => {
       if (err) {
-        compileSass(fileName).then(css => writeFile(`${fileName}.css`, path.resolve(__dirname, 'themes'), css))
+        compileSass(fileName).then(css => writeFile(`${fileName}.css`, path.resolve(__dirname, 'themes', css)))
           .then(() => {
             res.sendFile(req.url, { root: __dirname }, error => {
               if (error) {

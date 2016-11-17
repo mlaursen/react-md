@@ -6,7 +6,8 @@
     "node": true,
   },
   "globals": {
-      "__CLIENT__": true
+      "__CLIENT__": true,
+      "__DEBUG_SSR__": false
   },
   "rules": {
     // Don't feel like wrapping every arrow in paren

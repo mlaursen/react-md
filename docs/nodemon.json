@@ -3,7 +3,8 @@
     "NODE_ENV": "development"
   },
   "ignore": [
-    "dist",
-    "src/shared"
+    "dist/server/*.map",
+    "dist/client",
+    "src"
   ]
 }

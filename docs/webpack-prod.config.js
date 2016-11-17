@@ -45,7 +45,7 @@ client.plugins = client.plugins.concat([
 
 
 const server = makeConfig();
-server.entry = path.resolve(process.cwd(), 'src', 'server');
+server.entry = ['babel-polyfill', path.resolve(process.cwd(), 'src', 'server')];
 server.name = 'server';
 server.target = 'node';
 server.externals = [nodeExternals()];
@@ -55,7 +55,7 @@ server.module.loaders = server.module.loaders.concat([
 server.output.filename = 'server.js';
 server.output.path = path.resolve(process.cwd(), 'dist', 'server');
 server.plugins = server.plugins.concat([
-  new webpack.DefinePlugin({ __CLIENT__: false }),
+  new webpack.DefinePlugin({ __CLIENT__: false, __DEBUG_SSR__: false }),
   new webpack.NormalModuleReplacementPlugin(/\.scss$/, 'node-noop'),
 ]);
 

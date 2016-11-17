@@ -3,32 +3,42 @@ import { renderToString } from 'react-dom/server';
 import { match } from 'react-router';
 import getInitialDrawerState from './utils/getInitialDrawerState';
 import getInitialQuickNavigationState from './utils/getInitialQuickNavigationState';
+import getInitialSassDocs from './utils/getInitialSassDocs';
+import getInitialDocgens from './utils/getInitialDocgens';
 
 import routes from 'routes';
 import configureStore from 'stores/configureStore';
 import Root from './Root';
 
 export default function reactMD(req, res) {
-  const initialState = {
-    ui: {
-      drawer: getInitialDrawerState(req),
-      quickNavigation: getInitialQuickNavigationState(req),
-    },
-  };
-
-  const store = configureStore(initialState);
-  match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+  const url = req.url;
+  match({ routes, location: url }, async (error, redirectLocation, renderProps) => {
     if (error) {
-      req.status(500).send(error.message);
+      req.sendStatus(500);
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
+      const {
+        params: { component, section },
+        location: { query: { tab } },
+      } = renderProps;
+
+      const sassdocs = await getInitialSassDocs(url, component, section, tab);
+      const docgens = await getInitialDocgens(url, component, section);
+      const store = configureStore({
+        documentation: { docgens, sassdocs },
+        ui: {
+          drawer: getInitialDrawerState(req),
+          quickNavigation: getInitialQuickNavigationState(req),
+        },
+      });
+
       res.render('index', {
         initialState: JSON.stringify(store.getState()),
         html: renderToString(<Root store={store} {...renderProps} />),
       });
     } else {
-      res.status(404).send('Not Found');
+      res.sendStatus(404);
     }
   });
 }
