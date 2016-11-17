@@ -8,6 +8,7 @@
   "rules": {
     // Don't feel like wrapping every arrow in paren
     "arrow-parens": 0,
+    "comma-dangle": 0,
 
     // Console valid
     "no-console": 0,
@@ -17,6 +18,9 @@
 
     // Don't care too much about shadow
     "no-shadow": 0,
-    "max-len": [140, 1]
+    "max-len": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": 0
   }
 }

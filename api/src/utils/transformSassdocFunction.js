@@ -1,10 +1,10 @@
-const transformSassdocVariable = require('./transformSassdocVariable');
+import transformSassdocVariable from './transformSassdocVariable';
 
 function transformParams({ name, default: value }) {
-  return `$${name}${value ? `: ${value}`: ''}`;
+  return `$${name}${value ? `: ${value}` : ''}`;
 }
 
-module.exports = function transformSassdocFunction(sassdoc) {
+export default function transformSassdocFunction(sassdoc) {
   const {
     parameter: parameters,
     require: requires,
@@ -22,4 +22,4 @@ module.exports = function transformSassdocFunction(sassdoc) {
     requires,
     returns,
   });
-};
+}

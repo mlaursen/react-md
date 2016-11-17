@@ -1,17 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const Promise = require('bluebird');
-const readdir = Promise.promisify(fs.readdir);
-
 const MANUAL_DEFINITITION_REGEX = /```docgen(.*\r?\n)*```/;
 
 
+/* eslint-disable no-use-before-define */
 function formatOneOf(values) {
   return `oneOf([${values.map(value => value.value).join(', ')}])`;
 }
 
 function formatOneOfType(values, customPropTypes, manualDefinition) {
-  return `oneOfType([${values.map(value => formatType(value, customPropTypes, manualDefinition)).join(', ')}])`
+  return `oneOfType([${values.map(value => formatType(value, customPropTypes, manualDefinition)).join(', ')}])`;
 }
 
 function formatShape(shape, customPropTypes, manualDefinition) {
@@ -57,7 +53,7 @@ function formatType({ name, value, raw, required }, customPropTypes, manualDefin
 }
 
 
-module.exports = function transformProp(prop, propName, customPropTypes) {
+export default function transformProp(prop, propName, customPropTypes) {
   let { description, defaultValue } = prop;
   const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DEFINITITION_REGEX));
 
@@ -82,4 +78,4 @@ ${prop.type.raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.`;
     required: prop.required,
     defaultValue,
   };
-};
+}

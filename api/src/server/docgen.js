@@ -1,33 +1,71 @@
-const fs = require('fs');
-const path = require('path');
-const Promise = require('bluebird');
-const express = require('express');
+import fs from 'fs';
+import path from 'path';
+import express from 'express';
+import Promise from 'bluebird';
 
-const createReactDocgen = require('../utils/createReactDocgen');
-const extractReactModules = require('../utils/extractReactModules');
+import toClassName from 'utils/StringUtils/toClassName';
+import isPrivate from '../utils/isPrivate';
+import findDocgenComponents from '../utils/findDocgenComponents';
+import createReactDocgen from '../utils/createReactDocgen';
 
 const router = express.Router();
-
 const readdir = Promise.promisify(fs.readdir);
 
 const JS_FOLDER = path.resolve(process.cwd(), '..', 'src', 'js');
 
+/**
+ * This is the local "database" that will be built. It will contain a key/value pair
+ * of a component grouping and its docgens.
+ *
+ * Example shape:
+ *
+ * ```js
+ * {
+ *   autocompletes: [... docgens ...],
+ *   ... components ...
+ *   pickers: {
+ *     date: [... docgens ...],
+ *     time: [... docgens ...],
+ *   },
+ *   ... components ...
+ * }
+ * ```
+ */
 const LOCAL_DB = {};
+
+/**
+ * This will be a list of top-level groupings of components. So things like
+ * cards, pickers, autocompletes etc. It is just used for a quick check.
+ */
 const GROUPS = [];
+
+/**
+ * This will be a list of second-level groupings of components. So things like
+ * date and time pickers.
+ */
 const NESTED_GROUPS = [];
 
 function toPrettyName({ component }) {
-  return component.split(/(?=[A-Z])/).join('-').toLowerCase().replace(/-(progress|picker)/, '');
+  return toClassName(component).replace(/-(progress|picker)/, '');
 }
 
-function findCustomPropTypes() {
-  return readdir(path.join(JS_FOLDER, 'utils', 'PropTypes'))
-    .then(files => files.filter(file => file.charAt(0) !== '_')
-      .map(file => file.replace('.js', ''))
-      .concat(['deprecated', 'requiredForA11y'])
-    );
+/**
+ * Finds any of my custom prop types so that it can be formatted nicely for the client.
+ */
+async function findCustomPropTypes() {
+  const files = await readdir(path.join(JS_FOLDER, 'utils', 'PropTypes'));
+
+  return files.filter(file => !isPrivate(file)).map(file => file.replace('.js', ''))
+    .concat(['deprecated', 'requiredForA11y']);
 }
 
+/**
+ * Since the selection controls do a little bit different than the other components, it was extracted
+ * out into its own insert method.
+ *
+ * @param {String} group - This is the 'selection-controls' grouping.
+ * @param {Array.<Object>} docgens - All the docgens for the selection controls grouping.
+ */
 function insertSelectionControls(group, docgens) {
   // Need to group selection-control and selection-controls together while remainders are alone
   LOCAL_DB[group] = {
@@ -36,7 +74,7 @@ function insertSelectionControls(group, docgens) {
   NESTED_GROUPS.push(group);
   docgens.forEach(docgen => {
     if (docgen.component.match(/selection/i)) {
-      LOCAL_DB[group]['selection-control'].push(docgen)
+      LOCAL_DB[group]['selection-control'].push(docgen);
     } else {
       const name = toPrettyName(docgen);
       LOCAL_DB[group][`${name}${name.match(/radio/) ? '' : 'e'}s`] = [docgen];
@@ -44,6 +82,13 @@ function insertSelectionControls(group, docgens) {
   });
 }
 
+/**
+ * "Inserts" a docgen into the "database".
+ *
+ * @param {Object} docgen - The docgen to insert
+ * @param {String} docgen.group - The grouping for the docgen
+ * @param {Array.<Object>} docgen.docgens - The docgens for the grouping.
+ */
 function insertIntoDB({ group, docgens }) {
   if (group.match(/selection/i)) {
     insertSelectionControls(group, docgens);
@@ -61,29 +106,39 @@ function insertIntoDB({ group, docgens }) {
   }
 }
 
-function findDocgenComponents() {
-  return readdir(JS_FOLDER).then(files => Promise.all(
-    files.filter(file => file.match(/^(?!(Transitions|FAB|Sidebar))[A-Z]/))
-      .map(folder => extractReactModules(JS_FOLDER, folder)))
-  );
+/**
+ * This function basically runs the react-docgen component and then builds an in-memory database
+ * that maps to the component routes. Each component will be grouped together correctly
+ * and the docgen will be modified for use in the client.
+ *
+ * When in development mode, a "localdb" file will be created to debug the output.
+ */
+export async function buildLocalDB() {
+  const customPropTypes = await findCustomPropTypes();
+  const docgens = await findDocgenComponents().then(exports => Promise.all(exports.map(e => createReactDocgen(e, customPropTypes))));
+  docgens.forEach(insertIntoDB);
+
+  if (process.env.NODE_ENV === 'development') {
+    const fileName = path.resolve(process.cwd(), 'docgen.localdb.json');
+    fs.writeFile(fileName, JSON.stringify(LOCAL_DB, null, '  '), error => {
+      if (error) {
+        throw error;
+      }
+
+      console.log(`Wrote: ${fileName}`);
+    });
+  }
+
+  console.log('Built Docgens DB');
+  return null;
 }
 
-function buildLocalDB() {
-  return findCustomPropTypes()
-    .then(customPropTypes => readdir(JS_FOLDER).then(files => {
-      findDocgenComponents().then(exports => Promise.all(exports.map(e => createReactDocgen(e, customPropTypes)))).then(docgens => {
-        docgens.forEach(insertIntoDB);
-
-        if (process.env.NODE_ENV === 'development') {
-          fs.writeFile(path.resolve(process.cwd(), 'docgen.localdb.json'), JSON.stringify(LOCAL_DB, null, '  '));
-        }
-
-        console.log('Built Docgens DB');
-        return null;
-      });
-  }))
-}
-
+/**
+ * The main function for the docgens route. Attempts to find a `/docgens/(:section/?):id`
+ *
+ * @param {Object} req - the http request
+ * @param {Object} res - the http response
+ */
 function findDocgen(req, res) {
   const { id, section } = req.params;
   const isNested = NESTED_GROUPS.indexOf(section) !== -1 && LOCAL_DB[section][id];
@@ -97,5 +152,4 @@ function findDocgen(req, res) {
 router.get('/:section/:id', findDocgen);
 router.get('/:id', findDocgen);
 
-module.exports = router;
-module.exports.buildLocalDB = buildLocalDB;
+export default router;

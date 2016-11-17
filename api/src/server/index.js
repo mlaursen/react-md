@@ -1,13 +1,13 @@
-const express = require('express');
-const compression = require('compression');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const Promise = require('bluebird');
-const vhost = require('vhost');
+import express from 'express';
+import compression from 'compression';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import Promise from 'bluebird';
+import vhost from 'vhost';
 
-const docgen = require('./docgen');
-const sassdoc = require('./sassdoc');
-const { port, host, path } = require('../../serverConfig.json');
+import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
+import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
+import { port, host, path } from '../../serverConfig.json';
 
 const DEV = process.env.NODE_ENV === 'development';
 
@@ -27,13 +27,13 @@ if (path) {
 
   app.use('/api', router);
 } else {
-
   app.use('/docgens', vhost(host, docgen));
   app.use('/sassdocs', vhost(host, sassdoc));
 }
 
+(async () => {
+  await Promise.all([buildDocgenDB(), buildSassDocDB())]);
 
-Promise.all([docgen.buildLocalDB(), sassdoc.buildLocalDB()]).then(() => {
   app.listen(port, err => {
     if (err) {
       throw err;
@@ -41,5 +41,4 @@ Promise.all([docgen.buildLocalDB(), sassdoc.buildLocalDB()]).then(() => {
 
     console.log(`Listening to api calls on port ${port}`);
   });
-});
-
+})();
