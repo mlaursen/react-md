@@ -40,3 +40,4 @@ docs/src/docgens
 docs/src/sassdocs
 docs/src/shared/components/Grids/grid-sassdoc.json
 yarn.lock
+serverConfig.json
