@@ -481,10 +481,6 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
-  _getValue(props, state) {
-    return typeof props.value === 'undefined' ? state.value : props.value;
-  }
-
   _updateSuggestionStyle(isNew, isDeleted) {
     if (isNew) {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');
@@ -550,7 +546,7 @@ export default class Autocomplete extends PureComponent {
 
     this.setState({
       matchIndex: -1,
-      isOpen: !this.state.manualFocus && !!this.state.matches.length,
+      isOpen: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
       manualFocus: false,
       focus: true,
     });
@@ -775,7 +771,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onMouseDown(e);
     }
 
-    if (!this.props.inline && this.state.matches.length) {
+    if (!this.props.inline && this.state.matches.length && getField(this.props, this.state, 'value')) {
       this.setState({ isOpen: !this.state.isOpen });
     }
   }
@@ -858,7 +854,7 @@ export default class Autocomplete extends PureComponent {
     delete props.clearOnAutocomplete;
     delete props.deleteKeys;
 
-    const value = this._getValue(this.props, this.state);
+    const value = getField(this.props, this.state, 'value');
 
     const autocomplete = (
       <TextField
