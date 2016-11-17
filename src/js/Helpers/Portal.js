@@ -1,4 +1,4 @@
-import { PureComponent, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import {
   unmountComponentAtNode as unmount,
   unstable_renderSubtreeIntoContainer as render,
@@ -150,6 +150,13 @@ export default class Portal extends PureComponent {
   }
 
   render() {
+    // When doing server side rendering, actualy render the component as a direct child of its parent.
+    // Once it has been rendered and working client side, it will be removed correctly.
+    if (typeof window === 'undefined' && this.props.visible) {
+      const { component: Component, style, className, children } = this.props;
+      return <Component style={style} className={className}>{children}</Component>;
+    }
+
     return null;
   }
 }
