@@ -3,20 +3,16 @@ import {
   unmountComponentAtNode as unmount,
   unstable_renderSubtreeIntoContainer as render,
 } from 'react-dom';
-import CSSPropertyOperations from 'react/lib/CSSPropertyOperations';
 
 /**
  * Creates a "Portal" for the children to be rendered in. Basically it will render the
  * children only when the `visible` prop is `true`. When it is visible, a new `component`
  * will be rendered as the first child in the body with the children inside.
+ *
+ * Unlike all the other components, `style` will not be applied for the `Portal`.
  */
 export default class Portal extends PureComponent {
   static propTypes = {
-    /**
-     * An optional style to apply to the newly created `component` when visible.
-     */
-    style: PropTypes.object,
-
     /**
      * An optional className to apply to the newly created `component` when visible.
      */
@@ -107,14 +103,6 @@ export default class Portal extends PureComponent {
     if (props.className) {
       this._container.className = props.className;
     }
-
-    if (props.style) {
-      CSSPropertyOperations.setValueForStyles(
-        this._container,
-        props.style,
-        this._reactInternalInstance
-      );
-    }
   }
 
   _renderPortal(props) {
@@ -153,8 +141,8 @@ export default class Portal extends PureComponent {
     // When doing server side rendering, actualy render the component as a direct child of its parent.
     // Once it has been rendered and working client side, it will be removed correctly.
     if (typeof window === 'undefined' && this.props.visible) {
-      const { component: Component, style, className, children } = this.props;
-      return <Component style={style} className={className}>{children}</Component>;
+      const { component: Component, className, children } = this.props;
+      return <Component className={className}>{children}</Component>;
     }
 
     return null;
