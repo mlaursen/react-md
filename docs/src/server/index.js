@@ -23,10 +23,11 @@ app.use(logger(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.get('/themes/*.css', vhost(host, theme));
 app.get('/proxy', vhost(host, proxy));
 
-if (__DEBUG_SSR__) {
-  app.use(client);
-  app.use(require('./reactMD').default);
-} else if (process.env.NODE_ENV === 'development') {
+// if (__DEBUG_SSR__) {
+//   app.use(client);
+//   app.use(require('./reactMD').default);
+// } else
+if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');

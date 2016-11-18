@@ -5,6 +5,6 @@
   "ignore": [
     "dist/server/*.map",
     "dist/client",
-    "src"
+    "src/shared"
   ]
 }
