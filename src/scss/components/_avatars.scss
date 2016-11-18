@@ -5,7 +5,7 @@
 
 /// The default size for an avatar
 /// @type Number
-$md-avatar-size: 40px;
+$md-avatar-size: 40px !default;
 
 /// The default background color for an avatar.
 /// @type Color
@@ -42,7 +42,8 @@ $md-avatar-colors: (
   'blue-grey': $md-blue-grey-400 $md-blue-grey-100,
 ) !default;
 
-/// Includes the css for the Avatars.
+/// Includes the styles for the Avatars.
+///
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {Boolean} $include-suffixes [true] - Boolean if the avatar color suffixes
 ///     should be included.

@@ -13,6 +13,10 @@ This example shows a fixed Bottom Navigation. This means that all the labels and
 will always be visible. The active tab will change it's color to the \`$md-primary-color\` and
 increase the font size to show prominence. When a tab is clicked, the ink effect will only stay
 within the tab itself.
+
+When using the \`BottomNavigation\`, you can apply the class name \`.md-bottom-navigation-offset\`
+to whatever content on the page. This will add \`padding-bottom\` to the content so that it will
+not end up under the \`BottomNavigation\`.
   `,
   code: FixedExampleRaw,
   children: <FixedExample />,

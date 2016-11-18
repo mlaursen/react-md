@@ -84,8 +84,10 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
 
   return (dispatch, getState) => {
     const existingState = reduceKey(getState(), fullStateKey);
-    if (existingState && existingState.length) {
-      return Promise.resolve();
+
+    // Only cache requests in development mode.
+    if (process.env.NODE_ENV === 'production' && existingState && existingState.length) {
+      return null;
     }
 
     dispatch({ type: request, id });

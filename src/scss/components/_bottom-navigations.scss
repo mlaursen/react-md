@@ -41,13 +41,20 @@ $md-bottom-navigation-shifting-inactive-min-width: 56px;
 $md-bottom-navigation-shifting-inactive-max-width: 96px;
 
 
-/// Creates the styles for bottom navigations.
+/// Creates the styles for bottom navigations. If both the `include-shifting` and `include-dynamic`
+/// params are false, no styles will be created.
 ///
-/// @example scss - Example Usage SCSS
-///   @include react-md-bottom-navigations;
+/// @example markdown - Utility Classes
+///   The bottom navigations have a utility class name to offset any content to prevent it from underlapping the
+///   bottom navigations. Just apply the `md-bottom-navigation-offset` class name to whatever element or component
+///   to add padding bottom equal to the height of the bottom navigation.
 ///
-/// If both the `include-shifting` and `include-dynamic` params are false, no styles will be
-/// created.
+///   ```js
+///   <div>
+///     <main className="md-bottom-navigation-offset">Some Content</main>
+///     <BottomNavigation {...props} />
+///   </div>
+///   ```
 ///
 /// @param {Boolean} include-shifting [$md-bottom-navigation-include-shifting] - Boolean if the styles
 ///     for a shifting bottom navigation should be included.
