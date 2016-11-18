@@ -20,6 +20,11 @@ $md-bottom-navigation-include-shifting: true !default;
 /// @type Boolean
 $md-bottom-navigation-include-dynamic: true !default;
 
+/// The z-index to use for bottom navigations
+/// @type Number
+/// @group bottom-navigations, z-indexes
+$md-bottom-navigation-z-index: 11 !default;
+
 $md-bottom-navigation-height: 56px;
 $md-bottom-navigation-max-width: 168px;
 $md-bottom-navigation-top-padding-active: 6px;
@@ -58,6 +63,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px;
       overflow: hidden;
       position: fixed;
       width: 100%;
+      z-index: $md-bottom-navigation-z-index;
 
       @if $include-shifting {
         &--shifting {
