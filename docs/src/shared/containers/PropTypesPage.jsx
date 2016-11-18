@@ -14,7 +14,7 @@ import PropTypesPage from 'components/PropTypesPage';
   tablet,
   desktop,
   docgen: reduceKey(docgens, [section, component].filter(s => !!s)),
-}), { fetchDocgen })
+}))
 export default class PropTypesPageContainer extends PureComponent {
   static propTypes = {
     docgen: PropTypesPage.propTypes.docgen,
@@ -22,12 +22,18 @@ export default class PropTypesPageContainer extends PureComponent {
     tablet: PropTypes.bool.isRequired,
     desktop: PropTypes.bool.isRequired,
 
-    fetchDocgen: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
     params: PropTypes.shape({
       component: PropTypes.string.isRequired,
       section: PropTypes.string,
     }).isRequired,
   };
+
+  static fetch(dispatch, params) {
+    return Promise.all([
+      dispatch(fetchDocgen(params.component, params.section)),
+    ]);
+  }
 
   constructor(props) {
     super(props);
@@ -35,19 +41,14 @@ export default class PropTypesPageContainer extends PureComponent {
     this.state = {};
   }
 
-  componentWillMount() {
-    const { docgen, fetchDocgen, params: { component, section } } = this.props;
-    if (docgen) {
-      return;
-    }
-
-    fetchDocgen(component, section);
+  componentDidMount() {
+    const { dispatch, params } = this.props;
+    PropTypesPageContainer.fetch(dispatch, params);
   }
 
   render() {
     const { ...props } = this.props;
     delete props.dispatch;
-    delete props.fetchDocgen;
     delete props.route;
     delete props.routes;
     delete props.routeParams;

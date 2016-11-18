@@ -95,7 +95,7 @@ export default class App extends PureComponent {
   render() {
     const {
       params,
-      location: { pathname },
+      location: { pathname, search },
       defaultMedia,
       visibleBoxShadow,
       visibleToolbarTitle,
@@ -108,7 +108,10 @@ export default class App extends PureComponent {
 
     let { children } = this.props;
     if (children) {
-      children = cloneElement(children, { key: pathname, style: { minHeight: `calc(100vh - ${minOffset}px)` } });
+      children = cloneElement(children, {
+        key: `${pathname}${search || ''}`,
+        style: { minHeight: `calc(100vh - ${minOffset}px)` },
+      });
     }
 
     let tabs;

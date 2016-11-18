@@ -1,105 +1,86 @@
 import getMarkdownPage from './getMarkdownPage';
 import getSassDocPage from './getSassDocPage';
 
-const indexRoute = {
-  path: 'colors',
+const routes = ['colors', 'themes', 'media-queries', 'grids', 'typography', 'minimizing-bundle'];
+
+function isSassDocPage(component, tab) {
+  return (component === 'themes' && tab === '2')
+    || (component !== 'themes' && tab === '1');
+}
+
+function isMarkdownPage(component, tab) {
+  return !tab && ['colors', 'grids', 'typography'].indexOf(component) === -1;
+}
+
+export default {
+  path: 'customization/:component',
+  onEnter(state, replace) {
+    const { component } = state.params;
+    const tab = parseInt(state.location.query.tab, 10);
+    if (!component || ((component === 'themes' && tab > 2) || (component !== 'themes' && tab > 1))) {
+      replace(`/customization/${component || routes[0]}`);
+    }
+  },
   getComponent(state, cb) {
-    if (state.location.query.tab === '1') {
+    const {
+      params: { component },
+      location: { query: { tab } },
+    } = state;
+
+    if (routes.indexOf(component) === -1) {
+      cb(null, null);
+      return;
+    } else if (isSassDocPage(component, tab)) {
       getSassDocPage(state, cb);
+      return;
+    } else if (isMarkdownPage(component, tab)) {
+      getMarkdownPage(state, cb);
+      return;
+    } else if (component === 'themes' && tab === '1') {
+      if (__CLIENT__) {
+        require.ensure([], require => {
+          cb(null, require('containers/ThemeBuilder').default);
+        });
+      } else {
+        cb(null, require('containers/ThemeBuilder').default);
+      }
+      return;
+    } else if (tab) {
+      cb(null, null);
       return;
     }
 
-    if (__CLIENT__) {
-      require.ensure([], require => {
-        cb(null, require('components/Customization/Colors').default);
-      });
-    } else {
-      cb(null, require('components/Customization/Colors').default);
+    switch (component) {
+      case 'colors':
+        if (__CLIENT__) {
+          require.ensure([], require => {
+            cb(null, require('components/Customization/Colors').default);
+          });
+        } else {
+          cb(null, require('components/Customization/Colors').default);
+        }
+        break;
+      case 'grids':
+        if (__CLIENT__) {
+          require.ensure([], require => {
+            cb(null, require('components/Customization/Grids').default);
+          });
+        } else {
+          cb(null, require('components/Customization/Grids').default);
+        }
+        break;
+      case 'typography':
+        if (__CLIENT__) {
+          require.ensure([], require => {
+            cb(null, require('components/Customization/Typography').default);
+          });
+        } else {
+          cb(null, require('components/Customization/Typography').default);
+        }
+        break;
+
+      default:
+        cb(null, null);
     }
   },
-};
-
-const childRoutes = [
-  indexRoute, {
-    path: 'themes',
-    getComponent(state, cb) {
-      switch (state.location.query.tab) {
-        case '1':
-          if (__CLIENT__) {
-            require.ensure([], require => {
-              cb(null, require('containers/ThemeBuilder').default);
-            });
-          } else {
-            cb(null, require('containers/ThemeBuilder').default);
-          }
-          break;
-        case '2':
-          getSassDocPage(state, cb);
-          break;
-        default:
-          getMarkdownPage(state, cb);
-      }
-    },
-  }, {
-    path: 'media-queries',
-    getComponent(state, cb) {
-      if (state.location.query.tab === '1') {
-        getSassDocPage(state, cb);
-      } else {
-        getMarkdownPage(state, cb);
-      }
-    },
-  }, {
-    path: 'grids',
-    getComponent(state, cb) {
-      if (state.location.query.tab === '1') {
-        getSassDocPage(state, cb);
-        return;
-      }
-
-      if (__CLIENT__) {
-        require.ensure([], require => {
-          cb(null, require('components/Customization/Grids').default);
-        });
-      } else {
-        cb(null, require('components/Customization/Grids').default);
-      }
-    },
-  }, {
-    path: 'typography',
-    getComponent(state, cb) {
-      if (state.location.query.tab === '1') {
-        getSassDocPage(state, cb);
-        return;
-      }
-
-      if (__CLIENT__) {
-        require.ensure([], require => {
-          cb(null, require('components/Customization/Typography').default);
-        });
-      } else {
-        cb(null, require('components/Customization/Typography').default);
-      }
-    },
-  }, {
-    path: 'minimizing-bundle',
-    getComponent(state, cb) {
-      if (state.location.query.tab === '1') {
-        getSassDocPage(state, cb);
-        return;
-      }
-
-      getMarkdownPage(state, cb);
-    },
-  },
-];
-
-export default {
-  path: 'customization',
-  indexRoute: {
-    onEnter(state, replace) {
-      replace(`/customization/${indexRoute.path}`);
-    },
-  },
-  childRoutes,
 };

@@ -17,5 +17,6 @@
  */
 export default function reduceKey(globalState, fullStateKey) {
   return (typeof fullStateKey === 'string' ? fullStateKey.split('.') : fullStateKey)
+    .filter(key => !!key)
     .reduce((state, key) => state && state[key], globalState);
 }

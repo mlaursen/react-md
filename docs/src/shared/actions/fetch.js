@@ -85,12 +85,12 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
   return (dispatch, getState) => {
     const existingState = reduceKey(getState(), fullStateKey);
     if (existingState && existingState.length) {
-      return;
+      return Promise.resolve();
     }
 
     dispatch({ type: request, id });
 
-    fetch(endpoint, options).then(data => {
+    return fetch(endpoint, options).then(data => {
       dispatch({ type: success, id, data });
     }).catch(error => {
       if (process.env.NODE_ENV === 'development') {
@@ -137,6 +137,11 @@ export function fetchProxyCreator(id, stateKey, url, types, addId = true, option
  * @param {Object=} options - Any additional options to use.
  */
 export function fetchSassDoc(id, section, options) {
+  if (section && section.match(/progress|selection-controls|pickers/)) {
+    id = section;
+    section = null;
+  }
+
   return fetchProxyCreator(section ? [section, id] : id, ['documentation', 'sassdocs', section, id],
     `${API_URL}/sassdocs/${section ? `${section}/` : ''}${id}`, {
       request: FETCH_SASSDOC_REQUEST,

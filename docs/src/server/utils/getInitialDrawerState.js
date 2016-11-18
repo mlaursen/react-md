@@ -20,7 +20,7 @@ export default function getInitialDrawerState(req) {
     desktop,
     defaultMedia,
     visibleToolbarTitle: true,
-    toolbarTitle: toPageTitle(pathname),
+    toolbarTitle: toPageTitle(pathname).replace(/\?.*/, ''),
     toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
     visibleBoxShadow: !!pathname,
   };

@@ -6,22 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./webpack.config')();
 
 config.cache = true;
-config.devtool = 'eval-source-map';
+config.devtool = 'source-map';
 
 config.entry = [
+  'react-hot-loader/patch',
   'webpack-hot-middleware/client',
-  'webpack/hot/only-dev-server',
   './src/client/index',
 ];
-
-config.module.loaders.some(loader => {
-  if (loader.loader === 'babel') {
-    loader.loader = `react-hot!${loader.loader}`;
-    return true;
-  }
-
-  return false;
-});
 
 config.module.loaders = config.module.loaders.concat([{
   test: /\.scss$/,

@@ -23,10 +23,9 @@ function getKey(props) {
 
 @connect(({ documentation: { sassdocs } }, props) => ({
   sassdoc: reduceKey(sassdocs, getKey(props)),
-}), { fetchSassDoc })
+}))
 export default class SassDocPageContainer extends PureComponent {
   static propTypes = {
-    fetchSassDoc: PropTypes.func.isRequired,
     location: PropTypes.shape({
       query: PropTypes.shape({
         tab: PropTypes.string,
@@ -37,22 +36,16 @@ export default class SassDocPageContainer extends PureComponent {
       section: PropTypes.string,
     }).isRequired,
     sassdoc: SassDocPage.propTypes.sassdoc,
+    dispatch: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
-    const { sassdoc, fetchSassDoc, params: { component, section } } = this.props;
+  static fetch(dispatch, params) {
+    return dispatch(fetchSassDoc(params.component, params.section));
+  }
 
-    if (sassdoc) {
-      return;
-    } else if (component || section) {
-      if (section && section.match(/progress|selection-controls|pickers/)) {
-        fetchSassDoc(section);
-      } else {
-        fetchSassDoc(component, section);
-      }
-    } else {
-      fetchSassDoc(getIdFromPath(this.props));
-    }
+  componentDidMount() {
+    const { dispatch, params } = this.props;
+    SassDocPageContainer.fetch(dispatch, params);
   }
 
   render() {

@@ -1,7 +1,11 @@
 import React from 'react';
+import { render, unmountComponentAtNode as unmount } from 'react-dom';
 import browserHistory from 'react-router/lib/browserHistory';
-import { render } from 'react-dom';
+import Router from 'react-router/lib/Router';
+import match from 'react-router/lib/match';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
 
 import WebFont from 'webfontloader';
 WebFont.load({
@@ -14,10 +18,9 @@ WebFont.load({
   },
 });
 
+import './_styles.scss';
 import configureStore from 'stores/configureStore';
 import smoothScroll from 'utils/smoothScroll';
-import routes from 'routes';
-import Root from './Root';
 
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
@@ -26,4 +29,30 @@ if (process.env.NODE_ENV === 'development') {
   window.Perf = require('react-addons-perf');
 }
 
-render(<Root store={store} history={history} routes={routes} onUpdate={smoothScroll} />, root);
+function renderApp() {
+  const routes = require('routes').default;
+
+  match(({ history, routes }), (error, redirectLocation, renderProps) => {
+    render(
+      <AppContainer>
+        <Provider store={store}>
+          <Router {...renderProps} onUpdate={smoothScroll} />
+        </Provider>
+      </AppContainer>,
+      root
+    );
+  });
+}
+
+if (module.hot) {
+  module.hot.accept('routes', () => {
+    setImmediate(() => {
+      // prevents the warning with react-router dynamic routes
+      unmount(root);
+
+      renderApp();
+    });
+  });
+}
+
+renderApp();

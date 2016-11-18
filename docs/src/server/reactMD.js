@@ -1,41 +1,45 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { match } from 'react-router';
+import { match, RouterContext, createMemoryHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 import getInitialDrawerState from './utils/getInitialDrawerState';
 import getInitialQuickNavigationState from './utils/getInitialQuickNavigationState';
-import getInitialSassDocs from './utils/getInitialSassDocs';
-import getInitialDocgens from './utils/getInitialDocgens';
 
 import routes from 'routes';
 import configureStore from 'stores/configureStore';
-import Root from './Root';
 
 export default function reactMD(req, res) {
-  const url = req.url;
-  match({ routes, location: url }, async (error, redirectLocation, renderProps) => {
+  const store = configureStore({
+    ui: {
+      drawer: getInitialDrawerState(req),
+      quickNavigation: getInitialQuickNavigationState(req),
+    },
+  });
+
+  const memoryHistory = createMemoryHistory(req.url);
+  const history = syncHistoryWithStore(memoryHistory, store);
+
+  match({ history, routes, location: req.url }, async (error, redirectLocation, renderProps) => {
     if (error) {
       req.sendStatus(500);
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      const {
-        params: { component, section },
-        location: { query: { tab } },
-      } = renderProps;
+      const { params, components } = renderProps;
 
-      const sassdocs = await getInitialSassDocs(url, component, section, tab);
-      const docgens = await getInitialDocgens(url, component, section);
-      const store = configureStore({
-        documentation: { docgens, sassdocs },
-        ui: {
-          drawer: getInitialDrawerState(req),
-          quickNavigation: getInitialQuickNavigationState(req),
-        },
-      });
+      await Promise.all(
+        components.filter(c => c && c.fetch)
+          .map(({ fetch }) => fetch(store.dispatch, params))
+      );
 
       res.render('index', {
         initialState: JSON.stringify(store.getState()),
-        html: renderToString(<Root store={store} {...renderProps} />),
+        html: renderToString(
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        ),
       });
     } else {
       res.sendStatus(404);
