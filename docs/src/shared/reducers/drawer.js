@@ -6,6 +6,7 @@ import {
   LOCATION_CHANGE,
   SHOW_SEARCH,
   HIDE_SEARCH,
+  NOT_FOUND,
 } from 'constants/ActionTypes';
 import { CUSTOM_THEME_CLASS_NAME } from 'constants/application';
 import toPageTitle from 'utils/StringUtils/toPageTitle';
@@ -85,6 +86,8 @@ const initialState = {
 
 export default function drawer(state = initialState, action) {
   switch (action.type) {
+    case NOT_FOUND:
+      return { ...state, toolbarTitle: 'Not Found!', visibleBoxShadow: false };
     case SHOW_SEARCH:
       return handleSearchChange(state, true);
     case HIDE_SEARCH:

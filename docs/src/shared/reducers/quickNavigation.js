@@ -1,4 +1,4 @@
-import { LOCATION_CHANGE } from 'constants/ActionTypes';
+import { LOCATION_CHANGE, NOT_FOUND } from 'constants/ActionTypes';
 import { quickNavRoutes } from 'constants/navItems';
 
 export const DEFAULT_STATE = {
@@ -34,6 +34,8 @@ const initialState = handleLocationChange(DEFAULT_STATE, { pathname });
 
 export default function quickNavigation(state = initialState, action) {
   switch (action.type) {
+    case NOT_FOUND:
+      return DEFAULT_STATE;
     case LOCATION_CHANGE:
       return handleLocationChange(state, action.payload);
     default:

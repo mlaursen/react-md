@@ -75,6 +75,26 @@ $md-secondary-color: $md-deep-orange-a-200;
     }
   }
 
+  .react-md-404 {
+    background: $md-${primary}-800;
+  }
+
+  .react-md-404-oval {
+    fill: ${secondaryColor};
+  }
+
+  #not-found-circle-1 {
+    fill: $md-${primary}-700;
+  }
+
+  #not-found-circle-2 {
+    fill: $md-${primary}-600;
+  }
+
+  #not-found-circle-3 {
+    fill: ${primaryColor};
+  }
+
   ${darkThemeStyles}
 }
 

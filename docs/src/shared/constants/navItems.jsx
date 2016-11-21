@@ -7,8 +7,8 @@ import IndexLink from 'react-router/lib/IndexLink';
 import internalRoutes from './routes';
 import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
-import googleLogo from '../imgs/googleLogo.svg';
-import reactLogo from '../imgs/reactLogo.svg';
+import googleLogo from 'imgs/googleLogo.svg';
+import reactLogo from 'imgs/reactLogo.svg';
 
 
 function mapToNavItems(route, parents = []) {

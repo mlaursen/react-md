@@ -74,6 +74,7 @@ module.exports = () => ({
       'constants': path.join(shared, 'constants'),
       'components': path.join(shared, 'components'),
       'containers': path.join(shared, 'containers'),
+      'imgs': path.join(shared, 'imgs'),
       'readmes': path.join(shared, 'readmes'),
       'reducers': path.join(shared, 'reducers'),
       'routes': path.join(shared, 'routes'),

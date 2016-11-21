@@ -3,6 +3,7 @@ import {
   UPDATE_MEDIA,
   SET_CUSTOM_THEME,
   UPDATE_DRAWER_TYPE,
+  NOT_FOUND,
 } from 'constants/ActionTypes';
 
 export function setDrawerToolbarBoxShadow(visible) {
@@ -19,4 +20,8 @@ export function setCustomTheme(enabled) {
 
 export function updateDrawerType(drawerType) {
   return { type: UPDATE_DRAWER_TYPE, drawerType };
+}
+
+export function notFound() {
+  return { type: NOT_FOUND };
 }

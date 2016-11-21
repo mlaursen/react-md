@@ -39,3 +39,25 @@ $md-secondary-color: $md-deep-orange-a-200;
 .react-md-logo {
   margin-bottom: 2em;
 }
+
+// scss-lint:disable IdSelector
+#not-found-circle-1 {
+  fill: $md-light-blue-700;
+}
+
+#not-found-circle-2 {
+  fill: $md-light-blue-600;
+}
+
+#not-found-circle-3 {
+  fill: $md-primary-color;
+}
+
+.react-md-404 {
+  background: $md-light-blue-800;
+}
+
+.react-md-404-oval {
+  fill: $md-secondary-color;
+}
+

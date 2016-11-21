@@ -23,3 +23,5 @@ export const HIDE_SEARCH = Symbol('HIDE_SEARCH');
 export const SEARCH_REQUEST = Symbol('SEARCH_REQUEST');
 export const SEARCH_SUCCESS = Symbol('SEARCH_SUCCESS');
 export const SEARCH_FAILURE = Symbol('SEARCH_FAILURE');
+
+export const NOT_FOUND = Symbol('NOT_FOUND');
