@@ -821,7 +821,7 @@ export default class NavigationDrawer extends PureComponent {
             'md-title--drawer-active': contentActive,
             'md-transition--decceleration': offset && visible,
             'md-transition--acceleration': offset && !visible,
-            'md-title--permanent-offset': desktopOffset && (isPermanent(drawerType) || (persistent && visible)),
+            'md-title--permanent-offset': desktopOffset && isPermanent(drawerType),
             'md-title--persistent-offset': desktopOffset && persistent,
           }, toolbarTitleClassName)}
           nav={nav}
