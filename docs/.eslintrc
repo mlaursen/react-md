@@ -6,6 +6,7 @@
     "node": true,
   },
   "globals": {
+      "__DEV__": true,
       "__CLIENT__": true,
       "__DEBUG_SSR__": false
   },

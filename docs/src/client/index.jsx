@@ -25,7 +25,7 @@ import smoothScroll from 'utils/smoothScroll';
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
 const root = document.getElementById('app');
-if (process.env.NODE_ENV === 'development') {
+if (__DEV__) {
   window.Perf = require('react-addons-perf');
 }
 

@@ -118,7 +118,7 @@ export async function buildLocalDB() {
   const docgens = await findDocgenComponents().then(exports => Promise.all(exports.map(e => createReactDocgen(e, customPropTypes))));
   docgens.forEach(insertIntoDB);
 
-  if (process.env.NODE_ENV === 'development') {
+  if (__DEV__) {
     const fileName = path.resolve(process.cwd(), 'docgen.localdb.json');
     fs.writeFile(fileName, JSON.stringify(LOCAL_DB, null, '  '), error => {
       if (error) {

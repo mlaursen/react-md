@@ -13,7 +13,7 @@ const compileSass = require('./utils/compileSass');
  */
 module.exports = function theme(req, res) {
   const fileName = req.url.replace(/\/themes\/|\.css/g, '');
-  if (process.env.NODE_ENV === 'production') {
+  if (!__DEV__) {
     res.sendFile(req.url, { root: __dirname }, err => {
       if (err) {
         compileSass(fileName).then(css => writeFile(`${fileName}.css`, path.resolve(__dirname, 'themes'), css))

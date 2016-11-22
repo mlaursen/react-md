@@ -86,7 +86,7 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
     const existingState = reduceKey(getState(), fullStateKey);
 
     // Only cache requests in development mode.
-    if (process.env.NODE_ENV === 'production' && existingState && existingState.length) {
+    if (!__DEV__ && existingState && existingState.length) {
       return null;
     }
 
@@ -95,7 +95,7 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
     return fetch(endpoint, options).then(data => {
       dispatch({ type: success, id, data });
     }).catch(error => {
-      if (process.env.NODE_ENV === 'development') {
+      if (__DEV__) {
         console.error(error);
       }
 

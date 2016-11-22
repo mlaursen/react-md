@@ -12,6 +12,7 @@ function makeConfig() {
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
       },
+      __DEV__: true,
     }),
   ]);
 

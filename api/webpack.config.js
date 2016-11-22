@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
-module.exports = {
+module.exports = (prod) => ({
   entry: [
     'babel-polyfill',
     path.resolve(process.cwd(), 'src', 'server', 'index.js'),
@@ -44,6 +44,12 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      __DEV__: !prod,
+      'process.env': {
+        NODE_ENV: JSON.stringify(prod ? 'production' : 'development'),
+      },
+    }),
   ],
   target: 'node',
-};
+});

@@ -1,1 +1,1 @@
-module.exports = require(`./configureStore.${process.env.NODE_ENV === 'production' ? 'prod' : 'dev'}`);
+module.exports = require(`./configureStore.${!__DEV__ ? 'prod' : 'dev'}`);

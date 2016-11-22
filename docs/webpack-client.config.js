@@ -38,6 +38,7 @@ config.plugins = config.plugins.concat([
       NODE_ENV: JSON.stringify('development'),
     },
     __CLIENT__: true,
+    __DEV__: true,
   }),
 ]);
 

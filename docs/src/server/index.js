@@ -2,8 +2,7 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const logger = require('morgan');
-const vhost = require('vhost');
-const { host, port } = require('../../serverConfig.json');
+const { port } = require('../../serverConfig.json');
 
 const theme = require('./theme');
 const proxy = require('./proxy');
@@ -17,17 +16,17 @@ const client = express.static(clientRoot, {
 app.set('view engine', 'ejs');
 app.set('views', clientRoot);
 app.use(compression());
-app.use(logger(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
+app.use(logger(__DEV__ ? 'dev' : 'combined'));
 
 
-app.get('/themes/*.css', vhost(host, theme));
-app.get('/proxy', vhost(host, proxy));
+app.get('/themes/*.css', theme);
+app.get('/proxy', proxy);
 
 // if (__DEBUG_SSR__) {
 //   app.use(client);
 //   app.use(require('./reactMD').default);
 // } else
-if (process.env.NODE_ENV === 'development') {
+if (__DEV__) {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -56,8 +55,8 @@ if (process.env.NODE_ENV === 'development') {
     });
   });
 } else {
-  app.use(vhost(host, client));
-  app.use(vhost(host, require('./reactMD').default));
+  app.use(client);
+  app.use(require('./reactMD').default);
 }
 
 app.listen(port, err => {

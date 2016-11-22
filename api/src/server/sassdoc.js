@@ -47,7 +47,7 @@ export async function buildLocalDB() {
     });
   });
 
-  if (process.env.NODE_ENV === 'development') {
+  if (__DEV__) {
     const fs = require('fs'); // eslint-disable-line global-require
 
     const fileName = path.resolve(process.cwd(), 'sassdoc.localdb.json');

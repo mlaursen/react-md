@@ -6,8 +6,8 @@
   "main": "src/server/index.js",
   "scripts": {
     "prebuild": "rimraf dist && rimraf *localdb.json",
-    "build": "webpack --config webpack.config.js --progress --colors",
-    "build:watch": "npm run prebuild && webpack --config webpack.config.js --progress --colors --watch",
+    "build": "webpack --config webpack-prod.config.js --progress --colors",
+    "build:watch": "npm run prebuild && webpack --config webpack-dev.config.js --progress --colors --watch",
     "start": "node dist/server.js",
     "dev": "nodemon dist/server.js",
     "test": "test"

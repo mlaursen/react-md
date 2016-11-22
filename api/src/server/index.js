@@ -3,15 +3,12 @@ import compression from 'compression';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import Promise from 'bluebird';
-import vhost from 'vhost';
 import { middleware as cache } from 'apicache';
 
 import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
 import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
 import search, { buildLocalDB as buildSearchDB } from './search';
-import { port, host, path } from '../../serverConfig.json';
-
-const DEV = process.env.NODE_ENV === 'development';
+import { port, path } from '../../serverConfig.json';
 
 const app = express();
 
@@ -20,19 +17,19 @@ app.set('etag', 'strong');
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(logger(DEV ? 'dev' : 'combined'));
+app.use(logger(__DEV__ ? 'dev' : 'combined'));
 
-if (path) {
+if (__DEV__ && path) {
   const router = express.Router();
-  router.use('/docgens', cache('5 minutes'), vhost(host, docgen));
-  router.use('/sassdocs', cache('5 minutes'), vhost(host, sassdoc));
-  router.use('/search', cache('5 minutes'), vhost(host, search));
+  router.use('/docgens', cache('5 minutes'), docgen);
+  router.use('/sassdocs', cache('5 minutes'), sassdoc);
+  router.use('/search', cache('5 minutes'), search);
 
-  app.use('/api', router);
+  app.use(path, router);
 } else {
-  app.use('/docgens', cache('5 minutes'), vhost(host, docgen));
-  app.use('/sassdocs', cache('5 minutes'), vhost(host, sassdoc));
-  app.use('/search', cache('5 minutes'), vhost(host, search));
+  app.use('/docgens', cache('5 minutes'), docgen);
+  app.use('/sassdocs', cache('5 minutes'), sassdoc);
+  app.use('/search', cache('5 minutes'), search);
 }
 
 (async () => {
