@@ -9,37 +9,40 @@ $md-avatar-size: 40px !default;
 
 /// The default background color for an avatar.
 /// @type Color
-$md-avatar-default-background: $md-grey-400 !default;
+$md-avatar-default-background: $md-grey-700 !default;
 
 /// The default text color for an avatar.
 /// @type Color
-$md-avatar-default-color: $md-white-base !default;
+$md-avatar-default-color: $md-grey-100 !default;
 
 /// A map of avatar color suffixes to use. Each key will be used
 /// as an avatar suffix name, and the value will be a list of two
 /// colors where the first item is the background color and the
 /// second item is the text color.
 ///
+/// The default colors where chosen to pass the [WebAIM](http://webaim.org/resources/contrastchecker/)
+/// for large text only. If these values are changed, it should pass them as well.
 /// @type Map
 $md-avatar-colors: (
-  'red': $md-red-400 $md-red-100,
-  'pink': $md-pink-400 $md-pink-100,
-  'purple': $md-purple-300 $md-purple-100,
-  'deep-purple': $md-deep-purple-400 $md-deep-purple-100,
-  'indigo': $md-indigo-400 $md-indigo-100,
-  'blue': $md-blue-400 $md-blue-100,
-  'light-blue': $md-light-blue-400 $md-light-blue-100,
-  'cyan': $md-cyan-400 $md-cyan-100,
-  'teal': $md-teal-400 $md-teal-100,
-  'green': $md-green-400 $md-green-100,
-  'light-green': $md-light-green-400 $md-light-green-100,
-  'lime': $md-lime-400 $md-lime-100,
-  'yellow': $md-yellow-400 $md-yellow-100,
-  'amber': $md-amber-400 $md-amber-100,
-  'orange': $md-orange-300 $md-orange-100,
-  'deep-orange': $md-deep-orange-400 $md-deep-orange-100,
-  'brown': $md-brown-400 $md-brown-100,
-  'blue-grey': $md-blue-grey-400 $md-blue-grey-100,
+  'red': $md-red-a-700 $md-red-50,
+  'pink': $md-pink-600 $md-white-base,
+  'purple': $md-purple-700 $md-purple-100,
+  'deep-purple': $md-deep-purple-900 $md-deep-purple-100,
+  'indigo': $md-indigo-600 $md-indigo-100,
+  'blue': $md-blue-a-700 $md-white-base,
+  'light-blue': $md-light-blue-300 $md-deep-purple-900,
+  'cyan': $md-cyan-400 $md-teal-900,
+  'teal': $md-teal-a-400 $md-teal-900,
+  'green': $md-green-800 $md-green-50,
+  'light-green': $md-light-green-300 $md-green-900,
+  'lime': $md-lime-400 $md-teal-800,
+  'yellow': $md-yellow-a-200 $md-brown-500,
+  'amber': $md-amber-400 $md-brown-800,
+  'orange': $md-orange-600 $md-grey-900,
+  'deep-orange': $md-deep-orange-a-400 $md-grey-900,
+  'brown': $md-brown-500 $md-brown-50,
+  'grey': $md-grey-700 $md-grey-100,
+  'blue-grey': $md-blue-grey-700 $md-blue-grey-50,
 ) !default;
 
 /// Includes the styles for the Avatars.

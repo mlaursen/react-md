@@ -88,6 +88,7 @@ export default class Avatar extends PureComponent {
       'orange',
       'deep-orange',
       'brown',
+      'grey',
       'blue-grey',
     ],
   };
