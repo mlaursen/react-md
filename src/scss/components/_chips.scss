@@ -14,7 +14,12 @@ $md-chip-include-avatar: true !default;
 /// @type Boolean
 $md-chip-include-contact: true !default;
 
+/// A chip's text color for when using the light theme.
+/// @type Color
 $md-chip-light-theme-color: rgba($md-black-base, .87);
+
+/// A chip's background color when using the light theme.
+/// @type Color
 $md-chip-light-theme-bg-color: $md-grey-300;
 
 /// The dark theme text color of a chip. This is configurable because it is not actually
@@ -26,12 +31,34 @@ $md-chip-dark-theme-color: get-color('secondary', false) !default;
 /// specified in the docs.
 /// @type Color
 $md-chip-dark-theme-bg-color: $md-grey-600 !default;
+
+/// The height for a chip.
+/// @type Number
 $md-chip-height: 32px;
+
+/// The font size for a chip.
+/// @type Number
 $md-chip-font-size: 13px;
+
+
+/// The remove icon color for a chip.
+/// @type Number
 $md-chip-icon-color: rgba($md-black-base, .54);
+
+/// The default padding to apply to a chip.
+/// type Number
 $md-chip-default-padding: 12px;
+
+/// The padding between an avatar and the chip's text.
+/// @type Number
 $md-chip-avatar-left-padding: 8px;
+
+/// The amount of padding to use around the remove icon on a chip.
+/// @type Number
 $md-chip-icon-padding: 4px;
+
+/// The font size for a contact chip.
+/// @type Number
 $md-chip-contact-font-size: 14px;
 
 /// Includes the styles for chips. The remove, avatar, and contact styles can be excluded.

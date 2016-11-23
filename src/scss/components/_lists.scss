@@ -35,21 +35,61 @@ $md-list-nested-items-depth: 2 !default;
 /// @type Boolean
 $md-list-include-unstyled-class-name: true !default;
 
+/// This is really the keyline to use for lists. When a list item is inset, this will
+/// be applied to the tile.
+/// @type Number
 $md-list-left-padding: 72px;
 
+/// The top and bottom padding to apply to a list on mobile devices.
+/// @type Number
 $md-list-mobile-padding: 8px;
+
+/// The font size to apply to the primary text in a list item on mobile devices.
+/// @type Number
 $md-list-mobile-primary-font-size: 16px;
+
+/// The font size to apply to the secondary text in a list item on mobile devices.
+/// @type Number
 $md-list-mobile-secondary-font-size: 14px;
+
+/// The height for a single line list item on mobile devices.
+/// @type Number
 $md-list-mobile-height: 48px;
+
+/// The height for a list item that has an avatar on mobile devices.
+/// @type Number
 $md-list-mobile-avatar-height: 56px;
+
+/// The height for a list item that has two lines of text on mobile devices.
+/// @type Number
 $md-list-mobile-two-lines-height: 72px;
+
+/// The height for a list item that has three lines of text on mobile devices.
+/// @type Number
 $md-list-mobile-three-lines-height: 88px;
 
+/// The top and bottom padding for a list on desktop screens.
+/// @type Number
 $md-list-desktop-padding: 4px;
+
+/// The font size to apply to a list item's primary and secondary text on desktop screens.
+/// @type Number
 $md-list-desktop-font-size: 13px;
+
+/// The height for a single line list item on desktop screens.
+/// @type Number
 $md-list-desktop-height: 40px;
+
+/// The height for a list item that has an avatar on desktop screens.
+/// @type Number
 $md-list-desktop-avatar-height: 48px;
+
+/// The height for a list item that has two lines of text on desktop screens.
+/// @type Number
 $md-list-desktop-two-lines-height: 60px;
+
+/// The height for a list item that has three lines of text on desktop screens.
+/// @type Number
 $md-list-desktop-three-lines-height: 76px;
 
 /// A placeholder for removing the default margin, padding and list styles
@@ -106,6 +146,7 @@ $md-list-desktop-three-lines-height: 76px;
 
   .md-list {
     @extend %md-list-unstyled;
+
     background: get-color('card', $light-theme);
     user-select: none;
 
@@ -132,10 +173,10 @@ $md-list-desktop-three-lines-height: 76px;
     text-decoration: none;
     transition-duration: $md-transition-time;
     transition-property: background;
-  }
 
-  .md-list-tile--active {
-    background: get-color('hover', $light-theme);
+    &--active {
+      background: get-color('hover', $light-theme);
+    }
   }
 
   .md-list-item--inset {
@@ -145,19 +186,27 @@ $md-list-desktop-three-lines-height: 76px;
   .md-tile-content {
     flex-grow: 1;
     overflow: hidden;
-  }
 
-  @if $include-icon {
-    .md-tile-content--left-icon {
-      padding-left: $md-list-left-padding - $md-font-icon-size - $md-default-padding;
+    @if $include-icon {
+      &--left-icon {
+        padding-left: $md-list-left-padding - $md-font-icon-size - $md-default-padding;
+      }
+    }
+
+    @if $include-avatar {
+      &--left-avatar {
+        padding-left: $md-list-left-padding - $md-avatar-size - $md-default-padding;
+      }
+    }
+
+    @if $include-icon or $include-avatar {
+      &--right-padding {
+        padding-right: $md-default-padding;
+      }
     }
   }
 
-  @if $include-avatar {
-    .md-tile-content--left-avatar {
-      padding-left: $md-list-left-padding - $md-avatar-size - $md-default-padding;
-    }
-  }
+
 
   @if $include-icon or $include-avatar {
     .md-tile-addon--icon {
@@ -170,10 +219,6 @@ $md-list-desktop-three-lines-height: 76px;
 
     .md-tile-addon--avatar {
       height: $md-avatar-size;
-    }
-
-    .md-tile-content--right-padding {
-      padding-right: $md-default-padding;
     }
   }
 
