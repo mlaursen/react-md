@@ -92,15 +92,43 @@ export default class Avatar extends PureComponent {
     ],
   };
 
-  _getColor(suffix, suffixes, random) {
+  constructor(props) {
+    super(props);
+
+    this.state = { color: null };
+
+    this._setRandomColor = this._setRandomColor.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.random) {
+      this._setRandomColor();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.random && this.props.src !== nextProps.src || this.props.icon !== nextProps.icon) {
+      this._setRandomColor();
+    } else if (this.props.random && !nextProps.random) {
+      this.setState({ color: null });
+    }
+  }
+
+  _setRandomColor() {
+    const { suffixes } = this.props;
+
+    const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
+    this.setState({ color: suffixes[i] });
+  }
+
+  _getColor(suffix, suffixes, color) {
     if (suffix) {
       return `md-avatar--${suffix}`;
-    } else if (!!suffixes && !random) {
+    } else if (!!suffixes && !color) {
       return 'md-avatar--default';
     }
 
-    const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
-    return `md-avatar--${suffixes[i]}`;
+    return `md-avatar--${color}`;
   }
 
   render() {
@@ -112,16 +140,16 @@ export default class Avatar extends PureComponent {
       children,
       suffix,
       suffixes,
-      random,
       iconSized,
       role,
       ...props
     } = this.props;
+    delete props.random;
 
     return (
       <div
         {...props}
-        className={cn('md-inline-block md-avatar', this._getColor(suffix, suffixes, random), {
+        className={cn('md-inline-block md-avatar', this._getColor(suffix, suffixes, this.state.color), {
           'md-avatar--icon-sized': iconSized,
         }, className)}
       >
