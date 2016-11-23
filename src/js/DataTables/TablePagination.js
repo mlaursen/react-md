@@ -234,7 +234,6 @@ export default class TablePagination extends PureComponent {
                 inputClassName="md-select-field--pagination"
                 value={rowsPerPage}
                 onChange={this._setRowsPerPage}
-                fullWidth={false}
               />
               <span className="md-table-pagination--label">{pagination}</span>
               <Button

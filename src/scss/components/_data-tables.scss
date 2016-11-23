@@ -76,14 +76,6 @@ $md-data-table-dark-theme-hover-color: $md-grey-800 !default;
 /// @type Color
 $md-data-table-dark-theme-selected-color: $md-grey-700 !default;
 
-/// The width for the select field in the table's pagination.
-/// @type Number
-$md-data-table-pagination-select-field-width: 40px !default;
-
-/// The margin between the select field and the pagination's label.
-/// @type Number
-$md-data-table-pagination-margin: 32px;
-
 /// The z-index to use for the contextual table card header.
 /// @type Number
 $md-data-table-card-header-z-index: 1 !default;
@@ -364,14 +356,6 @@ $md-data-table-card-header-font-size: 16px !default;
       position: absolute;
       white-space: nowrap;
     }
-
-    &--label {
-      margin-left: $md-data-table-pagination-margin;
-    }
-  }
-
-  .md-select-field.md-select-field--pagination {
-    width: $md-data-table-pagination-select-field-width;
   }
 }
 
