@@ -6,7 +6,7 @@ import './_fake.scss';
 
 const SimpleExamples = () => (
   <div>
-    <AccessibleFakeButton className="fakey-fake md-btn md-btn--flat md-color--secondary">
+    <AccessibleFakeButton className="fakey-fake md-btn md-btn--flat md-color--secondary" tabbedClassName="fakey-fake--outline">
       Something or Another
     </AccessibleFakeButton>
     <AccessibleFakeButton className="fakey-fake md-btn md-text--disabled" disabled>

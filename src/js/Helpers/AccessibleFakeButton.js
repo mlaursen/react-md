@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import { SPACE, ENTER } from '../constants/keyCodes';
+import { TAB, SPACE, ENTER } from '../constants/keyCodes';
 
 /**
  * The `AccessibleFakeButton` is a generic component that can be used to render
@@ -25,6 +25,11 @@ export default class AccessibleFakeButton extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional function to call only when the button has been focused with the tab key.
+     */
+    tabbedClassName: PropTypes.string,
+
+    /**
      * Any children to display in the Accessible Fake Button.
      */
     children: PropTypes.node,
@@ -39,6 +44,21 @@ export default class AccessibleFakeButton extends PureComponent {
      * An optional onKeyDown function to call.
      */
     onKeyDown: PropTypes.func,
+
+    /**
+     * An optional onBlur function to call.
+     */
+    onBlur: PropTypes.func,
+
+    /**
+     * An optional onKeyUp function to call.
+     */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * An optional function to call when the element is focused with the tab key.
+     */
+    onTabFocus: PropTypes.func,
 
     /**
      * The component to render the Fake button as.
@@ -80,7 +100,9 @@ export default class AccessibleFakeButton extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { pressed: false };
+    this.state = { pressed: false, tabFocused: false };
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
     this._setNode = this._setNode.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
@@ -138,18 +160,47 @@ export default class AccessibleFakeButton extends PureComponent {
     }
   }
 
+  _handleKeyUp(e) {
+    const { onKeyUp, onTabFocus } = this.props;
+    if (onKeyUp) {
+      onKeyUp(e);
+    }
+
+    if ((e.which || e.keyCode) === TAB) {
+      if (onTabFocus) {
+        onTabFocus(e);
+      }
+
+      this.setState({ tabFocused: true });
+    }
+  }
+
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+
+    if (this.state.tabFocused) {
+      this.setState({ tabFocused: false });
+    }
+  }
+
   render() {
     const {
       component: Component,
       children,
       className,
+      tabbedClassName,
       disabled,
       tabIndex,
       ink,
       ...props
     } = this.props;
+    delete props.onBlur;
     delete props.onClick;
+    delete props.onKeyUp;
     delete props.onKeyDown;
+    delete props.onTabFocus;
 
     let childElements = children;
     if (ink) {
@@ -163,10 +214,13 @@ export default class AccessibleFakeButton extends PureComponent {
         ref={this._setNode}
         className={cn('md-fake-btn', {
           'md-pointer--hover': !disabled,
+          [tabbedClassName]: this.state.tabFocused,
         }, className)}
         disabled={disabled}
         tabIndex={disabled ? null : tabIndex}
+        onBlur={this._handleBlur}
         onClick={this._handleClick}
+        onKeyUp={this._handleKeyUp}
         onKeyDown={this._handleKeyDown}
         aria-pressed={this.state.pressed}
       >
