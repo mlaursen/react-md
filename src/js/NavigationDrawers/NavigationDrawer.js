@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes, isValidElement } from 'react';
 import cn from 'classnames';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
@@ -13,6 +14,7 @@ import Toolbar from '../Toolbars/Toolbar';
 
 const { DrawerTypes } = Drawer;
 import { isTemporary, isPersistent, isPermanent, isMini } from '../Drawers/isType';
+import JumpToContentLink from './JumpToContentLink';
 import CloseButton from './CloseButton';
 import MiniListItem from './MiniListItem';
 
@@ -188,6 +190,12 @@ export default class NavigationDrawer extends PureComponent {
      * The children to display in the main content.
      */
     children: PropTypes.node,
+
+    /**
+     * Boolean if the `drawerHeader` component should be built if the `drawerHeader` prop is not
+     * passed in.
+     */
+    includeDrawerHeader: PropTypes.bool,
 
     /**
      * An optional header to display in the drawer. This will normally be the `Toolbar` component
@@ -527,6 +535,29 @@ export default class NavigationDrawer extends PureComponent {
      */
     drawerTransitionDuration: PropTypes.number.isRequired,
 
+    /**
+     * Any additional props to provide to the main content. This will be applied before any of the generated props,
+     * so this should not include `style`, `className`, or `component`.
+     */
+    contentProps: PropTypes.object,
+
+    /**
+     * An id to give the main content. A hidden link is created in the main drawer's header that links to the main
+     * content. This is used for keyboard only users to jump the navigation and jump straight to the content.
+     *
+     * If you provide your own `drawerHeader`, it is suggested to include the link yourself.
+     */
+    contentId: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
+     * The label to use for a keyboard accessibility link that jumps all the navigation and allows a user to focus
+     * the main content. This is created in the drawer's header.
+     */
+    jumpLabel: PropTypes.string.isRequired,
+
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
@@ -545,10 +576,17 @@ export default class NavigationDrawer extends PureComponent {
     closeIconClassName: PropTypes.string,
     closeChildren: PropTypes.node,
     onCloseClick: PropTypes.func,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+    label: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
     autoclose: Drawer.defaultProps.autoclose,
+    contentId: 'main-content',
+    jumpLabel: 'Jump to content',
     extractMini: true,
     position: Drawer.defaultProps.position,
     defaultMedia: Drawer.defaultProps.defaultMedia,
@@ -558,6 +596,7 @@ export default class NavigationDrawer extends PureComponent {
     mobileMinWidth: Drawer.defaultProps.mobileMinWidth,
     tabletMinWidth: Drawer.defaultProps.tabletMinWidth,
     desktopMinWidth: Drawer.defaultProps.desktopMinWidth,
+    includeDrawerHeader: true,
     contentComponent: 'main',
     temporaryIconChildren: 'menu',
     toolbarThemeType: 'colored',
@@ -601,9 +640,13 @@ export default class NavigationDrawer extends PureComponent {
       persistentIconClassName,
       closeIconChildren,
       closeIconClassName,
+      contentId: id,
+      jumpLabel: label,
     } = this.props;
 
     return {
+      id,
+      label,
       closeChildren: closeIconChildren || persistentIconChildren,
       closeIconClassName: closeIconClassName || persistentIconClassName,
       onCloseClick: this._toggleVisibility,
@@ -720,14 +763,18 @@ export default class NavigationDrawer extends PureComponent {
       menuIconChildren,
       menuIconClassName,
       footer,
+      includeDrawerHeader,
+      contentId,
+      contentProps,
       ...props
     } = this.props;
     delete props.drawerType;
     delete props.drawerHeader;
     delete props.persistentIconChildren;
     delete props.persistentIconClassName;
+    delete props.jumpLabel;
 
-    // Depreated deletes
+    // Deprecated deletes
     delete props.onDrawerChange;
     delete props.closeIconChildren;
     delete props.closeIconClassName;
@@ -769,7 +816,7 @@ export default class NavigationDrawer extends PureComponent {
       closeButton = <CloseButton />;
     }
 
-    if (!drawerHeader) {
+    if (!drawerHeader && includeDrawerHeader) {
       drawerHeader = (
         <Toolbar
           key="drawer-header"
@@ -780,6 +827,7 @@ export default class NavigationDrawer extends PureComponent {
           })}
         >
           {drawerHeaderChildren}
+          <JumpToContentLink />
         </Toolbar>
       );
     }
@@ -850,12 +898,15 @@ export default class NavigationDrawer extends PureComponent {
           {drawerChildren}
         </Drawer>
         <CSSTransitionGroup
+          {...contentProps}
+          id={contentId}
           component={Content}
           transitionName={transitionName}
           transitionEnter={!!transitionEnterTimeout}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeave={!!transitionLeaveTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
+          tabIndex={-1}
           style={contentStyle}
           className={cn('md-navigation-drawer-content', {
             'md-navigation-drawer-content--active': contentActive,

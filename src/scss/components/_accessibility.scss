@@ -35,4 +35,16 @@
   .md-pointer--none {
     pointer-events: none;
   }
+
+  .md-content-jump {
+    left: -1000px;
+    position: absolute;
+    top: -1000px;
+
+    &:active,
+    &:focus {
+      left: 0;
+      top: 0;
+    }
+  }
 }

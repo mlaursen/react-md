@@ -44,7 +44,7 @@ import injectInk from './Inks';
 import { List, ListItem, ListItemControl } from './Lists';
 import Media, { MediaOverlay } from './Media';
 import Menu from './Menus';
-import NavigationDrawer, { CloseButton } from './NavigationDrawers';
+import NavigationDrawer, { CloseButton, JumpToContentLink } from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
 import { CircularProgress, LinearProgress } from './Progress';
@@ -115,6 +115,7 @@ export { MediaOverlay };
 export { Menu };
 export { NavigationDrawer };
 export { CloseButton };
+export { JumpToContentLink };
 export { Paper };
 export { DatePicker };
 export { TimePicker };
@@ -204,6 +205,7 @@ export default {
 
   NavigationDrawer,
   CloseButton,
+  JumpToContentLink,
 
   Paper,
 
