@@ -20,7 +20,7 @@ WebFont.load({
 
 import './_styles.scss';
 import configureStore from 'stores/configureStore';
-import smoothScroll from 'utils/smoothScroll';
+import onRouteUpdate from 'utils/onRouteUpdate';
 
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
@@ -36,7 +36,7 @@ function renderApp() {
     render(
       <AppContainer>
         <Provider store={store}>
-          <Router {...renderProps} onUpdate={smoothScroll} />
+          <Router {...renderProps} onUpdate={onRouteUpdate} />
         </Provider>
       </AppContainer>,
       root

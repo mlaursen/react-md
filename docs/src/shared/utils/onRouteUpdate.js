@@ -16,7 +16,7 @@ function scrollToHash() {
 }
 
 let initialRender = true;
-export default function smoothScroll() {
+export default function onRouteUpdate() {
   if (window.location.hash) {
     if (initialRender) {
       setTimeout(() => {
@@ -28,5 +28,6 @@ export default function smoothScroll() {
     }
   } else {
     animateScroll(0);
+    document.getElementById('main-content').focus();
   }
 }

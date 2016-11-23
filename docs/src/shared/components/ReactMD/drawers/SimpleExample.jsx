@@ -57,6 +57,7 @@ export default class SimpleExample extends PureComponent {
           onVisibilityToggle={this._handleToggle}
           type={Drawer.DrawerTypes.TEMPORARY}
           header={header}
+          style={{ zIndex: 100 }}
         />
       </div>
     );
