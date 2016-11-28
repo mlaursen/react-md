@@ -53,7 +53,7 @@ export default class Search extends PureComponent {
     super(props);
 
     this.state = {
-      closeVisible: false,
+      closeVisible: props.searching, // for hot updates
       animating: false,
       value: '',
     };
