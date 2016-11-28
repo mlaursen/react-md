@@ -18,18 +18,48 @@ $md-snackbar-z-index: 10 !default;
 /// The default transiiton time for the snackbar to appear and disappear
 $md-snackbar-transition-time: $md-transition-time * 2 !default;
 
-$md-snackbar-color: #323232;
+/// The background color for the snackbar.
+/// @type Color
+$md-snackbar-color: #323232 !default;
+
+/// The horizontal padding in a snackbar.
+/// @type Number
 $md-snackbar-horizontal-padding: 24px;
+
+/// The vertical padding for a single line snackbar.
+/// @type Number
 $md-snackbar-vertical-padding: 14px;
+
+/// The vertical padding for a multi-line snackbar.
+/// @type Number
 $md-snackbar-vertical-multiline-padding: 24px;
 
+/// The margin between the snackbar's text and action on mobile devices.
+/// @type Number
 $md-snackbar-mobile-button-left-margin: 24px;
+
+/// The height of a single line snackbar on mobile devices.
+/// @type Number
 $md-snackbar-mobile-height: 48px;
+
+/// The height of a multi-line snackbar on mobile devices.
+/// @type Number
 $md-snackbar-mobile-multiline-height: 80px;
 
+/// The border radius for snackbars on desktop screens.
+/// @type Number
 $md-snackbar-desktop-border-radius: 2px;
+
+/// The margin between a snackbar's text and action on desktop screens.
+/// @type Number
 $md-snackbar-desktop-button-left-margin: 48px;
+
+/// The min width for a snackbar on desktop screens.
+/// @type Number
 $md-snackbar-desktop-min-width: 288px;
+
+/// The max width for a snackbar on desktop screens.
+/// @type Number
 $md-snackbar-desktop-max-width: 568px;
 
 

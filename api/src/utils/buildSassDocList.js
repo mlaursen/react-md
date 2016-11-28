@@ -73,7 +73,7 @@ export default async function buildSassDocList() {
   const sassdocs = (await createSassDocs()).map(({ context: { type, name }, group }) => {
     const hash = `${type}-${name}`;
     let ref = group[0].split(', ')[0];
-    if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays/)) {
+    if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays|helper/)) {
       ref = `/sassdoc/#${group[0]}-${hash}`;
     } else {
       ref = findLink(ref);

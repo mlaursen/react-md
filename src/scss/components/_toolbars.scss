@@ -53,20 +53,42 @@ $md-toolbar-z-index: 15 !default;
 /// @type Number
 $md-toolbar-prominent-title-font-size: $md-title-font-size !default;
 
+/// The height of a toolbar on mobile portrait devices.
+/// @type Number
 $md-toolbar-mobile-portrait-height: 56px;
+
+/// The height of a toolbar on moble landscape devices.
+/// @type Number
 $md-toolbar-mobile-landscape-height: 48px;
+
+/// The height of a prominent toolbar on mobile devices and any media above.
+/// @type Number
 $md-toolbar-mobile-prominent-height: 128px;
+
+/// The keyline to use for the main nav button in the toolbar for mobile devices.
+/// @type Number
 $md-toolbar-mobile-btn-keyline: 16px;
+
+/// The keyline to use for the main title in the toolbar for mobile devices.
+/// @type Number
 $md-toolbar-mobile-title-keyline: 72px;
 
+/// The height of a toolbar for tablets and desktop displays.
+/// @type Number
 $md-toolbar-tablet-height: 64px;
+
+/// The keyline to use for the main nav button in toolbars on tablets and desktop displays.
+/// @type Number
 $md-toolbar-tablet-btn-keyline: 24px;
+
+/// THe keyline to use for the main title in a toolbar for tablets and desktop displays.
+/// @type Number
 $md-toolbar-tablet-title-keyline: 80px;
 
 /// Includes the styles for toolbars.
 ///
 /// @example scss - Example Usage SCSS
-///   @nclude react-md-toolbars;
+///   @include react-md-toolbars;
 ///
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the toolbars should be themed
 ///     for the light theme.

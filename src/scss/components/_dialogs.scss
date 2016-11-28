@@ -37,10 +37,23 @@ $md-dialog-translate-distance: -30px !default;
 $md-dialog-full-page-z-index: 110 !default;
 
 
+/// The height of a button in a dialog.
+/// @type Number
 $md-dialog-btn-height: 36px;
+
+/// The min width for a button in a dialog.
 $md-dialog-btn-min-width: 64px;
+
+/// The padding for a button in a dialog.
+/// @type Number
 $md-dialog-btn-padding: 8px;
+
+/// The default padding to apply to the content in a dialog.
+/// @type Number
 $md-dialog-padding: 24px;
+
+/// The padding bottom to apply to a dialog's title.
+/// @type Number
 $md-dialog-title-padding-bottom: 20px;
 
 /// A dialog can not be less than this distance from the top / and bottom of the page.

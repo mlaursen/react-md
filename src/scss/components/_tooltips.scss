@@ -2,19 +2,45 @@
 /// @group tooltips
 ////
 
+/// The font size for tooltips on mobile devices.
+/// @type Number
 $md-tooltip-mobile-font-size: 14px;
+
+/// The height of the tooltip on mobile devices.
+/// @type Number
 $md-tooltip-mobile-tile-height: 32px;
+
+/// The left and right padding for a tooltip on mobile devices.
+/// @type Number
 $md-tooltip-mobile-lr-padding: 16px;
+
+/// The margin between a tooltip and its corresponding element on mobile devices.
+/// @type Number
 $md-tooltip-mobile-top-margin: 24px;
 
+/// The font size for tooltip son desktop screens.
+/// @type Number
 $md-tooltip-desktop-font-size: 10px;
+
+/// The height for tooltips on desktop screens.
+/// @type Number
 $md-tooltip-desktop-tile-height: 22px;
+
+/// The left and right padding for tooltips on desktop screens.
+/// @type Number
 $md-tooltip-desktop-lr-padding: 8px;
+
+/// The margin between a tooltip and its corresponding element on desktop screens.
+/// @type Number
 $md-tooltip-desktop-top-margin: 14px;
 
+/// The background color for tooltips.
+/// @type Color
+$md-tooltip-color: $md-grey-700 !default;
 
-$md-tooltip-color: $md-grey-700;
-$md-tooltip-opacity: .9;
+/// The overall opacity to apply to tooltips.
+/// @type Number
+$md-tooltip-opacity: .9 !default;
 
 /// Creates the styles for tooltips.
 ///
