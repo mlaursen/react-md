@@ -10,7 +10,7 @@ export default class YearPicker extends PureComponent {
   static propTypes = {
     calendarTempDate: PropTypes.instanceOf(Date).isRequired,
     onCalendarYearClick: PropTypes.func.isRequired,
-    initialYearsDisplayed: PropTypes.number.isRequired,
+    yearsDisplayed: PropTypes.number.isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
   };
@@ -18,32 +18,48 @@ export default class YearPicker extends PureComponent {
   constructor(props) {
     super(props);
 
-    const year = props.calendarTempDate.getFullYear();
-    const range = !props.minDate && !props.maxDate
-      ? parseInt(props.initialYearsDisplayed / 2, 10)
-      : props.initialYearsDisplayed;
+    this.state = this._getYearRange(props);
+    this._setContainer = this._setContainer.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.yearsDisplayed !== nextProps.yearsDisplayed) {
+      this.setState(this._getFullYear(nextProps));
+    }
+  }
+
+  /**
+   * Gets the current start and end years for the year picker.
+   *
+   * @param {Object} props - The current props to extract the year range from.
+   * @return {Object} an object containign the start and end years
+   */
+  _getYearRange({ minDate, maxDate, yearsDisplayed, calendarTempDate }) {
+    const year = calendarTempDate.getFullYear();
+    const range = !minDate && !maxDate
+      ? parseInt(yearsDisplayed / 2, 10)
+      : yearsDisplayed;
 
     let startYear;
     let endYear;
-    if (props.minDate && props.maxDate) {
-      startYear = props.minDate.getFullYear();
-      endYear = props.maxDate.getFullYear();
-    } else if (!props.minDate && !props.maxDate) {
+    if (minDate && maxDate) {
+      startYear = minDate.getFullYear();
+      endYear = maxDate.getFullYear();
+    } else if (!minDate && !maxDate) {
       startYear = year - range;
       endYear = year + range;
-      if (props.initialYearsDisplayed % 2 === 0) {
+      if (yearsDisplayed % 2 === 0) {
         endYear -= 1;
       }
-    } else if (!props.maxDate) {
-      startYear = props.minDate.getFullYear();
-      endYear = startYear + props.initialYearsDisplayed - 1;
+    } else if (!maxDate) {
+      startYear = minDate.getFullYear();
+      endYear = startYear + yearsDisplayed - 1;
     } else {
-      endYear = props.maxDate.getFullYear();
-      startYear = endYear - props.initialYearsDisplayed + 1;
+      endYear = maxDate.getFullYear();
+      startYear = endYear - yearsDisplayed + 1;
     }
 
-    this.state = { startYear, endYear };
-    this._setContainer = this._setContainer.bind(this);
+    return { startYear, endYear };
   }
 
   _setContainer(container) {
@@ -77,6 +93,7 @@ export default class YearPicker extends PureComponent {
         />
       );
     }
+
     return (
       <section className="md-picker-content md-picker-content--year" ref={this._setContainer}>
         <ol className="md-years">
