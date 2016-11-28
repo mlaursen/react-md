@@ -97,18 +97,18 @@ $md-cross-fade-distance: 16px !default;
   }
 }
 
-/// Includes the styles for the navigation drawer content on mobile portrait devices.
+/// Includes the styles for the navigation drawer content on mobile devices.
 /// This should be used within a media query.
 ///
 /// @example scss - Example Usage SCSS
-///   @media #{$md-mobile-portrait-media} {
-///     @include react-md-navigation-drawers-mobile-portrait;
+///   @media #{$md-mobile-media} {
+///     @include react-md-navigation-drawers-portrait;
 ///   }
 ///
 /// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
 /// @group navigation-drawers, media-queries
-@mixin react-md-navigation-drawers-mobile-portrait($enforce-height: $md-navigation-drawer-enforce-height) {
+@mixin react-md-navigation-drawers-mobile($enforce-height: $md-navigation-drawer-enforce-height) {
   .md-navigation-drawer-content {
     $height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
 
@@ -199,8 +199,8 @@ $md-cross-fade-distance: 16px !default;
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
 /// @group navigation-drawers, media-queries
 @mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height) {
-  @media #{$md-mobile-portrait-media} {
-    @include react-md-navigation-drawers-mobile-portrait($enforce-height);
+  @media #{$md-mobile-media} {
+    @include react-md-navigation-drawers-mobile($enforce-height);
   }
 
   @media #{$md-mobile-landscape-media} {

@@ -228,7 +228,12 @@ $md-toolbar-tablet-title-keyline: 80px;
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
 ///     toolbar styles should be included.
 /// @group toolbars, media-queries
-@mixin react-md-toolbars-mobile($include-prominent: $md-toolbar-include-prominent) {
+@mixin react-md-toolbars-mobile(
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
   @if $include-prominent {
     .md-toolbar--prominent {
       height: $md-toolbar-mobile-prominent-height;
@@ -256,29 +261,7 @@ $md-toolbar-tablet-title-keyline: 80px;
   .md-title--toolbar-offset {
     margin-left: $md-toolbar-mobile-title-keyline;
   }
-}
 
-/// Includes the styles for toolbars on portait mobile devices. This should normally be
-/// used in a media query.
-///
-/// @example scss - Example Usage SCSS
-///   @media #{$md-mobile-portait-media} {
-///      @include react-md-toolbars-mobile-portait;
-///   }
-///
-/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
-/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
-///     button styles in toolbars should be included.
-/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
-///     for autocompletes in toolbars should be included.
-/// @group toolbars, media-queries
-@mixin react-md-toolbars-mobile-portait(
-  $include-prominent: $md-toolbar-include-prominent,
-  $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
-) {
   .md-toolbar-relative {
     margin-top: $md-toolbar-mobile-portrait-height;
   }
@@ -550,11 +533,7 @@ $md-toolbar-tablet-title-keyline: 80px;
   $include-select-fields: $md-toolbar-include-select-fields
 ) {
   @media #{$md-mobile-media} {
-    @include react-md-toolbars-mobile($include-prominent);
-  }
-
-  @media #{$md-mobile-portrait-media} {
-    @include react-md-toolbars-mobile-portait($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+    @include react-md-toolbars-mobile($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
   }
 
   @media #{$md-mobile-landscape-media} {

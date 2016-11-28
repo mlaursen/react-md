@@ -113,7 +113,6 @@ $phone-status-bar-height: 24px;
 @media #{$md-tablet-media} {
   .phone-size-container {
     @include react-md-toolbars-mobile;
-    @include react-md-toolbars-mobile-portait;
 
     height: $phone-size-height;
     position: relative;

@@ -137,18 +137,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   .md-drawer-relative--mini.md-drawer-relative--mini {
     margin-left: $md-drawer-mobile-mini-width;
   }
-}
 
-
-/// Includes the styles for drawers on mobile portrait devices.
-///
-/// @example scss - Example Usage SCSS
-///   @media #{$md-mobile-portrait-media} {
-///     @include react-md-drawers-mobile-portrait;
-///   }
-///
-/// @group drawers, media-queries
-@mixin react-md-drawers-mobile-portrait {
   .md-toolbar ~ .md-list--drawer {
     height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
   }
@@ -248,10 +237,6 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 @mixin react-md-drawers-media {
   @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
     @include react-md-drawers-mobile;
-  }
-
-  @media #{$md-mobile-portrait-media} {
-    @include react-md-drawers-mobile-portrait;
   }
 
   @media #{$md-mobile-landscape-media} {

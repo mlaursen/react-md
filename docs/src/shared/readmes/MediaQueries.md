@@ -29,7 +29,6 @@ of the following:
 ```scss
 // Required to be placed in correct media queries -- Only outputs styles
 @include react-md-drawers-mobile;
-@include react-md-drawers-mobile-portrait;
 @include react-md-drawers-mobile-landscape;
 @include react-md-drawers-tablet;
 @include react-md-drawers-desktop;
