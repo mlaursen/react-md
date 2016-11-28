@@ -1,6 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+
+import getField from '../utils/getField';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 
@@ -26,13 +28,24 @@ export default class TablePagination extends PureComponent {
     /**
      * A function to call when a user clicks the increment or decrement pagination
      * icon button. This function will be given the new start index and the number
-     * or rows per page.
+     * or rows per page as well as the current page.
      *
      * ```js
-     * onPagination(newStart, rowsPerPage);
+     * onPagination(newStart, rowsPerPage, currentPage);
      * ```
      */
     onPagination: PropTypes.func.isRequired,
+
+    /**
+     * The current value for the select field holding the number of rows per page.
+     */
+    rowsPerPage: PropTypes.number,
+
+    /**
+     * The current page for the pagination. This will make the comonent controlled, so the only way to get pagination
+     * is making sure you are updating this prop after the `onPagination` callback is called.
+     */
+    page: PropTypes.number,
 
     /**
      * The page number to start from. This should be a number starting from 1.
@@ -164,29 +177,34 @@ export default class TablePagination extends PureComponent {
     const table = this._findTable(findDOMNode(this));
     if (table) {
       this.setState({
-        controlsMarginLeft: table.offsetWidth - this._controls.offsetWidth,
+        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
       });
     }
   }
 
   _increment() {
-    const { rows, onPagination } = this.props;
-    const { start, rowsPerPage } = this.state;
+    const { rows, onPagination, page } = this.props;
+    const { start } = this.state;
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
 
     // Only correct multiple of rows per page
     const max = rows - (rows % rowsPerPage);
 
     const newStart = Math.min(start + rowsPerPage, max);
+    const nextPage = typeof page !== 'undefined' ? page + 1 : (newStart / rowsPerPage) + 1;
 
-    onPagination(newStart, rowsPerPage);
+    onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart });
   }
 
   _decrement() {
-    const { start, rowsPerPage } = this.state;
+    const { page } = this.props;
+    const { start } = this.state;
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
     const newStart = Math.max(0, start - rowsPerPage);
+    const nextPage = typeof page !== 'undefined' ? page - 1 : (newStart / rowsPerPage) + 1;
 
-    this.props.onPagination(newStart, rowsPerPage);
+    this.props.onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart });
   }
 
@@ -194,12 +212,12 @@ export default class TablePagination extends PureComponent {
     const { start } = this.state;
 
     const newStart = Math.max(0, start - (start % rowsPerPage));
-    this.props.onPagination(newStart, rowsPerPage);
+    this.props.onPagination(newStart, rowsPerPage, newStart / rowsPerPage + 1);
     this.setState({ start: newStart, rowsPerPage });
   }
 
   render() {
-    const { start, rowsPerPage, controlsMarginLeft } = this.state;
+    const { controlsMarginLeft } = this.state;
     const {
       className,
       rows,
@@ -209,11 +227,19 @@ export default class TablePagination extends PureComponent {
       incrementIconClassName,
       decrementIconChildren,
       decrementIconClassName,
+      page,
       ...props
     } = this.props;
     delete props.onPagination;
+    delete props.rowsPerPage;
     delete props.defaultPage;
     delete props.defaultRowsPerPage;
+
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
+    let { start } = this.state;
+    if (typeof page !== 'undefined') {
+      start = (page - 1) * rowsPerPage;
+    }
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (

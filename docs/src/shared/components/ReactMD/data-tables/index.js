@@ -16,6 +16,9 @@ import PaginationExample from './PaginationExample';
 import PaginationExampleRaw from '!!raw!./PaginationExample';
 import PaginationLoaderRaw from '!!raw!./PaginationLoader';
 
+import ControlledPagination from './ControlledPagination';
+import ControlledPaginationRaw from '!!raw!./ControlledPagination';
+
 export default [{
   title: 'Plain Table Example',
   code: PlainTableExampleRaw,
@@ -88,5 +91,17 @@ ${PaginationExampleRaw}
 ${PaginationLoaderRaw}
 `,
   children: <PaginationExample />,
+  tableCard: true,
+}, {
+  title: 'Controlled Pagination Example',
+  description: `
+The \`TablePagination\` component can also be fully controlled by passing a \`page\` and \`rowsPerPage\` prop. This allows you to use query parameters or
+anything else to handle the pagination if that's your thing. Unfortunately, I'm too lazy to implement that in this website so I am going to show an internal
+state/controlled example.
+
+It is probably still more helpful just to use the \`defaultPage\` and \`defaultRowsPerPage\` props.
+  `,
+  code: ControlledPaginationRaw,
+  children: <ControlledPagination />,
   tableCard: true,
 }];
