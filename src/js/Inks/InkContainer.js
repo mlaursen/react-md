@@ -208,6 +208,7 @@ export default class InkContainer extends PureComponent {
         this._container[`${touchDisabled ? 'add' : 'remove'}EventListener`]('touchstart', this._stopPropagationToFocus);
       }
     }
+
     if (mouseDiff) {
       const fn = `${mouseDisabled ? 'remove' : 'add'}EventListener`;
       this._container[fn]('mousedown', this._handleMouseDown);

@@ -168,14 +168,24 @@ export default class DatePickerContainer extends PureComponent {
     defaultCalendarMode: PropTypes.oneOf(['calendar', 'year']),
 
     /**
-     * The icon to use for the previous month button.
+     * Any children used to render the previous icon button in the calendar.
      */
-    previousIcon: PropTypes.node.isRequired,
+    previousIconChildren: PropTypes.node,
 
     /**
-     * The icon to use for the next month button.
+     * The icon className to use to render the previous icon button in the calendar.
      */
-    nextIcon: PropTypes.node.isRequired,
+    previousIconClassName: PropTypes.string,
+
+    /**
+     * Any children used to render the next icon button in the calendar.
+     */
+    nextIconChildren: PropTypes.node,
+
+    /**
+     * The icon className to use to render the next icon button in the calendar.
+     */
+    nextIconClassName: PropTypes.string,
 
     /**
      * An optional min date to use for the date picker. This will prevent
@@ -274,6 +284,8 @@ export default class DatePickerContainer extends PureComponent {
      */
     disabled: PropTypes.bool,
 
+    previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
+    nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -285,8 +297,8 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   static defaultProps = {
-    previousIcon: <FontIcon>chevron_left</FontIcon>,
-    nextIcon: <FontIcon>chevron_right</FontIcon>,
+    previousIconChildren: 'chevron_left',
+    nextIconChildren: 'chevron_right',
     autoOk: false,
     icon: <FontIcon>date_range</FontIcon>,
     yearsDisplayed: 100,
@@ -624,6 +636,8 @@ export default class DatePickerContainer extends PureComponent {
     // Delete deprecated
     delete props.initiallyOpen;
     delete props.adjustMinWidth;
+    delete props.nextIcon;
+    delete props.previousIcon;
 
     const visible = typeof isOpen !== 'undefined'
       ? isOpen

@@ -18,9 +18,11 @@ export default class CalendarHeader extends PureComponent {
     date: PropTypes.instanceOf(Date).isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    previousIcon: PropTypes.node.isRequired,
+    previousIconChildren: PropTypes.node,
+    previousIconClassName: PropTypes.string,
     onPreviousClick: PropTypes.func.isRequired,
-    nextIcon: PropTypes.node.isRequired,
+    nextIconChildren: PropTypes.node,
+    nextIconClassName: PropTypes.string,
     onNextClick: PropTypes.func.isRequired,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
@@ -68,9 +70,11 @@ export default class CalendarHeader extends PureComponent {
       minDate,
       maxDate,
       onPreviousClick,
-      previousIcon,
+      previousIconChildren,
+      previousIconClassName,
       onNextClick,
-      nextIcon,
+      nextIconChildren,
+      nextIconClassName,
     } = this.props;
 
     const isPreviousDisabled = isMonthBefore(minDate, date);
@@ -78,12 +82,24 @@ export default class CalendarHeader extends PureComponent {
     return (
       <header className="md-calendar-header">
         <div className="md-calendar-controls">
-          <Button icon onClick={onPreviousClick} disabled={isPreviousDisabled} className="md-calendar-control">
-            {previousIcon}
+          <Button
+            icon
+            onClick={onPreviousClick}
+            disabled={isPreviousDisabled}
+            className="md-calendar-control"
+            iconClassName={previousIconClassName}
+          >
+            {previousIconChildren}
           </Button>
           <h4 className="md-title">{title}</h4>
-          <Button icon onClick={onNextClick} disabled={isNextDisabled} className="md-calendar-control">
-            {nextIcon}
+          <Button
+            icon
+            onClick={onNextClick}
+            disabled={isNextDisabled}
+            className="md-calendar-control"
+            iconClassName={nextIconClassName}
+          >
+            {nextIconChildren}
           </Button>
         </div>
         <div className="md-calendar-dows">
