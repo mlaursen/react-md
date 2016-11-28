@@ -6,12 +6,9 @@ import { LEFT_MOUSE } from '../../constants/keyCodes';
  * clicks that involve the shift key.
  *
  * @param {Object} e - the event to check
- * @param {string=} type - an optional click event type to
- *    verify
  * @return {Boolean} true if the event is valid.
  */
-export default function isValidClick(e, type) {
-  return (type ? e.type === type : true)
-    && e.button === LEFT_MOUSE
+export default function isValidClick(e) {
+  return e.button === LEFT_MOUSE
     && !e.shiftKey;
 }

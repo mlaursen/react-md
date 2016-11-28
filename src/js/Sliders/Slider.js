@@ -509,7 +509,7 @@ export default class Slider extends PureComponent {
       rm('mousemove', this._handleMouseMove);
       rm('mouseup', this._handleMouseUp);
       rm('touchmove', this._handleDragMove);
-      rm('touchend', this._handleTouchEnd);
+      rm('touchend', this._handleDragEnd);
       rm('click', this._blurOnOutsideClick);
     }
 
@@ -678,7 +678,7 @@ export default class Slider extends PureComponent {
   }
 
   _handleDragEnd(e) {
-    if (!this.state.dragging || this.props.disabled || !isValidClick(e, 'mouseup')) {
+    if (!this.state.dragging || this.props.disabled || (e.type === 'mouseup' && !isValidClick(e))) {
       return;
     }
 
