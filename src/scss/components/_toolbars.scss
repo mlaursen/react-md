@@ -308,7 +308,7 @@ $md-toolbar-tablet-title-keyline: 80px;
   }
 
   @if $include-select-fields {
-    .md-select-field {
+    .md-select-field--toolbar.md-select-field--toolbar {
       margin-bottom: 4px;
       margin-top: 4px;
     }
