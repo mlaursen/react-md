@@ -58,6 +58,7 @@ export default class MealPreferencesPanel extends PureComponent {
           id="mealPreferences"
           label="Meal Preferences"
           menuItems={preferences}
+          itemValue="label"
           value={tempPreference.label}
           onChange={this._handleChange}
           lineDirection="right"
