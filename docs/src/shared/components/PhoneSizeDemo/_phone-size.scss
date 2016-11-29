@@ -98,7 +98,7 @@ $phone-status-bar-height: 24px;
   }
 
   .phone-tab-content {
-    height: $phone-size-height - $md-toolbar-mobile-portrait-height - $md-tab-icon-height;
+    height: calc(100vh - #{$md-toolbar-mobile-portrait-height + $md-tab-icon-height});
   }
 
   .toolbar-offset {

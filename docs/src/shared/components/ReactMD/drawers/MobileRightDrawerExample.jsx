@@ -133,7 +133,6 @@ export default class MobileRightDrawerExample extends PureComponent {
             <span key="woop" className="hacked-title">Photos &gt;</span>,
             'Beach',
           ]}
-          titleStyle={{ marginLeft: 0, height: 56 }}
           colored
           prominentTitle
           nav={nav}

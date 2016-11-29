@@ -3,9 +3,19 @@ import Link from 'react-router/lib/Link';
 import cn from 'classnames';
 import FontIcon from 'react-md/lib/FontIcons';
 
-const QuickNavLink = ({ to, className, label, icon, name, left, ...props }) => {
+const QuickNavLink = ({ to, className, label, icon, name, left, titles, ...props }) => {
   if (!to) {
     return null;
+  }
+
+  let navTitles;
+  if (titles) {
+    navTitles = (
+      <div className="nav-titles">
+        <h4 className="md-headline">{label}</h4>
+        <h6 className="md-subheading-2">{name}</h6>
+      </div>
+    );
   }
 
   const fi = <FontIcon>{icon}</FontIcon>;
@@ -18,10 +28,7 @@ const QuickNavLink = ({ to, className, label, icon, name, left, ...props }) => {
       }, className)}
     >
       {left && fi}
-      <div className="nav-titles">
-        <h4 className="md-headline">{label}</h4>
-        <h6 className="md-subheading-2">{name}</h6>
-      </div>
+      {navTitles}
       {!left && fi}
     </Link>
   );
@@ -34,6 +41,7 @@ QuickNavLink.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
+  titles: PropTypes.bool,
 };
 
 export default QuickNavLink;
