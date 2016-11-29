@@ -100,7 +100,7 @@ export default class Tabs extends PureComponent {
      * An optional active tab index to use. If this is defined, it will make the component controlled
      * and require the `onTabChange` prop to be defined.
      */
-    activeTabIndex: controlled(PropTypes.number, 'onTabChange'),
+    activeTabIndex: controlled(PropTypes.number, 'onTabChange', 'defaultTabIndex'),
 
     /**
      * The default tab index to use when the component is uncontrolled.

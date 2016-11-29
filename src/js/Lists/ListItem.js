@@ -143,7 +143,7 @@ export default class ListItem extends PureComponent {
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
      * and require the `onClick` function to be defined.
      */
-    isOpen: controlled(PropTypes.bool, 'onClick'),
+    isOpen: controlled(PropTypes.bool, 'onClick', 'defaultOpen'),
 
     /**
      * Any children used to render the expander icon.

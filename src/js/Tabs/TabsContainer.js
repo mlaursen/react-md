@@ -122,7 +122,7 @@ export default class TabsContainer extends PureComponent {
      * An optional active tab index to use. If this is defined, the component will be controlled
      * and require the `onTabChange` prop to be defined.
      */
-    activeTabIndex: controlled(PropTypes.number, 'onTabChange'),
+    activeTabIndex: controlled(PropTypes.number, 'onTabChange', 'defaultTabIndex'),
 
     /**
      * An optional function to call when a new tab is seleced by swiping or clicking a tab. When

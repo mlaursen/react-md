@@ -98,7 +98,7 @@ export default class BottomNavigation extends PureComponent {
      * An optional active index to use. This will make the component controlled and require the
      * `onNavChange` prop to be defined.
      */
-    activeIndex: controlled(PropTypes.number, 'onNavChange'),
+    activeIndex: controlled(PropTypes.number, 'onNavChange', 'defaultActiveIndex'),
 
     /**
      * The index for the link that is active by default.
