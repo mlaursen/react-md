@@ -50,6 +50,10 @@ $md-cross-fade-distance: 16px !default;
   }
 
   .md-navigation-drawer-content {
+    &:focus {
+      outline: none;
+    }
+
     @if $md-navigation-drawer-enforce-height {
       overflow-y: auto;
     }

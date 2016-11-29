@@ -108,7 +108,7 @@ export default class Avatar extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.random && this.props.src !== nextProps.src || this.props.icon !== nextProps.icon) {
+    if (nextProps.random && (this.props.src !== nextProps.src || this.props.icon !== nextProps.icon)) {
       this._setRandomColor();
     } else if (this.props.random && !nextProps.random) {
       this.setState({ color: null });

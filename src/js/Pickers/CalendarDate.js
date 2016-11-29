@@ -61,6 +61,8 @@ export default class CalendarDate extends PureComponent {
   render() {
     const { date, desktopActive } = this.state;
     const { disabled, active, today, className } = this.props;
+
+    const fullyActive = today && !active && !desktopActive;
     return (
       <button
         type="button"
@@ -69,14 +71,20 @@ export default class CalendarDate extends PureComponent {
         onMouseOver={this._setActive}
         onMouseLeave={this._setInactive}
         className={cn('md-btn md-calendar-date md-calendar-date--btn', {
+          'md-text--disabled': disabled,
           'md-pointer--hover': !disabled,
-          'md-calendar-date--today': today && !active && !desktopActive,
+          'md-text--theme-primary': fullyActive,
           'md-calendar-date--btn-active': active || desktopActive,
         }, className)}
         onClick={this._handleClick}
         disabled={disabled}
       >
-        <span className={cn('md-calendar-date--date', { 'md-picker-text--active': active || desktopActive })}>
+        <span
+          className={cn('md-calendar-date--date', {
+            'md-picker-text--active': active || desktopActive,
+            'md-font-bold': fullyActive,
+          })}
+        >
           {date}
         </span>
       </button>

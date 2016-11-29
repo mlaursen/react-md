@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import { TAB, SPACE, ENTER } from '../constants/keyCodes';
+import { TAB, ENTER } from '../constants/keyCodes';
 
 /**
  * The `AccessibleFakeButton` is a generic component that can be used to render
@@ -154,8 +154,7 @@ export default class AccessibleFakeButton extends PureComponent {
       this.props.onKeyDown(e);
     }
 
-    if ([SPACE, ENTER].indexOf(e.which || e.keyCode) !== -1) {
-      e.preventDefault();
+    if ((e.which || e.keyCode) === ENTER) {
       this._handleClick(e);
     }
   }
