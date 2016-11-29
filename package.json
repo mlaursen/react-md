@@ -28,12 +28,10 @@
     "url": "git+https://github.com/mlaursen/react-md.git"
   },
   "keywords": [
+    "react-md",
     "react",
-    "component",
     "material-design",
-    "material",
-    "google",
-    "ui"
+    "material-ui"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",

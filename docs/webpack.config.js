@@ -19,8 +19,8 @@ module.exports = () => ({
       var: '__INITIAL_STATE__',
       val: 'initialState',
     },
-    description: 'Google\'s Material Design UI components built with React and sass.',
-    keywords: 'material design,react,sass,material,ui,components,material-design',
+    description: 'Google\'s Material Design UI components built with accessibility in mind and React.',
+    keywords: 'react-md,material design,react,material-ui,material-design',
   },
 
   __imgLoader: (loader) => ({
