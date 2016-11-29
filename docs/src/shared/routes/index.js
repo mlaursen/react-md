@@ -29,7 +29,7 @@ export default {
         require('./customization').default,
         require('./discoverMore').default,
         require('./components').default,
-          // require('./NotFoundRoute').default,
+        require('./notFoundRoute').default,
       ]);
     }
   },
