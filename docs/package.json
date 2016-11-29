@@ -6,7 +6,7 @@
     "dev": "npm run prebuild && npm run sassdoc && nodemon src/server/index.js",
     "prebuild": "rimraf dist && rimraf src/server/themes",
     "sassdoc": "sassdoc ../src/scss -c sassdoc.yaml",
-    "build": "webpack --config webpack-prod.config.js --progress --colors",
+    "build": "npm run sassdoc && webpack --config webpack-prod.config.js --progress --colors",
     "build:watch": "npm run prebuild && npm run sassdoc && webpack --config webpack-dev.config.js --progress --colors --watch",
     "start": "node dist/server/server.js",
     "start:dev": "nodemon dist/server/server.js"
@@ -45,7 +45,6 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "smooth-scroll": "cferdinandi/smooth-scroll",
-    "vhost": "^3.0.2",
     "webfontloader": "^1.6.26"
   },
   "devDependencies": {
