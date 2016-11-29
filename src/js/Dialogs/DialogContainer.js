@@ -296,7 +296,7 @@ export default class DialogContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.props.isOpen) {
+    if (this.props.isOpen || this.props.visible) {
       toggleScroll(false);
     }
 
