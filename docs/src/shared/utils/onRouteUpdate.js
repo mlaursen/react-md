@@ -27,7 +27,7 @@ export default function onRouteUpdate() {
       scrollToHash();
     }
   } else {
-    animateScroll(0);
     document.getElementById('main-content').focus();
+    window.scrollTo(0, 0);
   }
 }

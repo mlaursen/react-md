@@ -6,6 +6,7 @@ import IndexLink from 'react-router/lib/IndexLink';
 
 import internalRoutes from './routes';
 import toTitle from 'utils/StringUtils/toTitle';
+import toPageTitle from 'utils/StringUtils/toPageTitle';
 import flatten from 'utils/ListUtils/flatten';
 import googleLogo from 'imgs/googleLogo.svg';
 import reactLogo from 'imgs/reactLogo.svg';
@@ -145,6 +146,12 @@ function extractRealRoutes(route) {
     return route.nestedItems.map(extractRealRoutes);
   } else if (route.to && route.to !== '/') {
     const { primaryText, to } = route;
+    if (to.match(/pickers|progress/)) {
+      return {
+        primaryText: toPageTitle(to),
+        to,
+      };
+    }
 
     return { primaryText, to };
   }

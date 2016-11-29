@@ -6,9 +6,11 @@ export default function toPageTitle(pathname) {
     return '';
   }
 
-  const id = path.split('/').reverse()[0];
+  const [id, section] = path.split('/').reverse();
   if (path.match(/upgrade-guides/)) {
     return `Upgrade to ${id}`;
+  } else if (section && section.match(/pickers|progress/)) {
+    return toTitle(`${id}-${section}`);
   }
 
   return toTitle(id);

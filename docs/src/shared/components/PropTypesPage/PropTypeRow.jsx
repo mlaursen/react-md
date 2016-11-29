@@ -5,6 +5,7 @@ import TableColumn from 'react-md/lib/DataTables/TableColumn';
 
 import propsShape from './propsShape';
 import Markdown from 'components/Markdown';
+import toPrettyPropType from 'utils/StringUtils/toPrettyPropType';
 
 export default class PropTypeRow extends PureComponent {
   static propTypes = {
@@ -44,7 +45,7 @@ export default class PropTypeRow extends PureComponent {
           tooltipDelay={300}
           tooltipPosition="top"
         >
-          <Markdown markdown={`\`\`\`js\n${type}${required ? ' *' : ''}\n\`\`\``} />
+          <Markdown markdown={`\`\`\`js\n${toPrettyPropType(type)}${required ? ' *' : ''}\n\`\`\``} />
         </TableColumn>
         <TableColumn className="md-table-column--grow" style={{ whiteSpace: 'initial' }}>
           <Markdown markdown={description} />
