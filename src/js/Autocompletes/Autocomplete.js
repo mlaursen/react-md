@@ -328,7 +328,7 @@ export default class Autocomplete extends PureComponent {
     const reg = new RegExp(
       `${needle}`.split('')
         .join('\\w*')
-        .replace(/(\(|\||\)|\\(?!w\*)|\[|\]|\-|\.|\^|\+|\$|\?|^(?!w)\*)/g, '\\$1')
+        .replace(/(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g, '\\$1')
         // Couldn't get the matching of two '*' working, so replace them here..
         .replace(/\*\*/g, '*\\*'),
       'i'
