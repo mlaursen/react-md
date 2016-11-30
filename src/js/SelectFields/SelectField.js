@@ -793,6 +793,7 @@ export default class SelectField extends PureComponent {
     delete props.isOpen;
     delete props.defaultOpen;
     delete props.keyboardMatchingTimeout;
+    delete props.onMenuToggle;
 
     let { menuId, listId, placeholder, label, error } = this.props;
     error = error || this.state.error;
