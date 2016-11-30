@@ -243,7 +243,12 @@ export default class InkContainer extends PureComponent {
 
   _handleRemove() {
     if (this._clicked && this.props.waitForInkTransition) {
-      this._container.click();
+      // For some reason if the click event will make the ink unmount, it will no longer
+      // have a debug id in the TransitionGroup and it displays a warning. Adding a 1ms timeout
+      // fixes that issue... It only happens on an actual click instead of an enter click.
+      setTimeout(() => {
+        this._container.click();
+      }, 1);
     }
 
     this._clicked = false;
