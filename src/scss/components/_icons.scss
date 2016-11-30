@@ -74,6 +74,7 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
   .md-icon-separator {
     align-items: center;
     display: flex;
+    font-weight: inherit;
     text-align: left;
 
     .md-icon {
