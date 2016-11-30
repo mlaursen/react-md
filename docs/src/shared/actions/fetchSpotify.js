@@ -13,6 +13,8 @@ function addLimit(limit, delimiter = '&') {
 function getCountryCode(country) {
   if (typeof country === 'string') {
     return country;
+  } else if (typeof window === 'undefined') {
+    return 'US';
   }
 
   return (window.navigator.userLanguage || window.navigator.language).match(/[A-Z]{2}/)[0] || 'US';
