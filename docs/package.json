@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "npm run prebuild && npm run sassdoc && nodemon src/server/index.js",
     "prebuild": "rimraf dist && rimraf src/server/themes",
     "sassdoc": "sassdoc ../src/scss -c sassdoc.yaml",
     "build": "npm run sassdoc && webpack --config webpack-prod.config.js --progress --colors",
@@ -26,6 +25,7 @@
     "express": "^4.14.0",
     "fuse.js": "^2.5.0",
     "highlight.js": "^9.7.0",
+    "intl": "^1.2.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash.throttle": "^4.1.1",
     "lorem-ipsum": "^1.0.3",

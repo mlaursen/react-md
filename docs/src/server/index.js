@@ -22,11 +22,10 @@ app.use(logger(__DEV__ ? 'dev' : 'combined'));
 app.get('/themes/*.css', theme);
 app.get('/proxy', proxy);
 
-// if (__DEBUG_SSR__) {
-//   app.use(client);
-//   app.use(require('./reactMD').default);
-// } else
-if (__DEV__) {
+if (__DEBUG_SSR__) {
+  app.use(client);
+  app.use(require('./reactMD').default);
+} else if (__DEV__) {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');

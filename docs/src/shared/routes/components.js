@@ -1,5 +1,16 @@
 import getSassDocPage from './getSassDocPage';
 
+const NESTED_COMPONENTS = {
+  helpers: ['accessible-fake-button', 'collapse', 'focus-container', 'icon-separator', 'portal'],
+  pickers: ['date', 'time'],
+  progress: ['circular', 'linear'],
+  'selection-controls': ['selection-control', 'checkboxes', 'radios', 'switches'],
+};
+
+function isValidComponent({ params: { component, section } }) {
+  return !NESTED_COMPONENTS[section] || NESTED_COMPONENTS[section].indexOf(component) !== -1;
+}
+
 export default {
   path: 'components',
   indexRoute: {
@@ -18,13 +29,27 @@ export default {
       replace('/components/drawers');
     },
   }, {
-    path: 'selection-controls',
-    onEnter(state, replace) {
-      replace('/components/selection-controls/selection-control');
-    },
-  }, {
     path: '(:section/):component',
+    onEnter(state, replace) {
+      const { component } = state.params;
+      const items = NESTED_COMPONENTS[component];
+      if (items) {
+        replace(`/components/${component}/${items[0]}`);
+      }
+    },
     getComponent(state, cb) {
+      if (!isValidComponent(state)) {
+        if (__CLIENT__) {
+          require.ensure([], require => {
+            cb(null, require('components/NotFound').default);
+          });
+        } else {
+          cb(null, require('components/NotFound').default);
+        }
+
+        return;
+      }
+
       switch (state.location.query.tab) {
         case '1':
           if (__CLIENT__) {

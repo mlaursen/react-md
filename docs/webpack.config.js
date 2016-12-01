@@ -26,8 +26,8 @@ module.exports = () => ({
   __imgLoader: (loader) => ({
     test: /\.(png|jpe?g|svg)$/,
     exclude: /node_modules/,
-    // loader: `${loader}?name=imgs/[hash].[ext]!image-webpack`,
-    loader: `${loader}?name=imgs/[hash].[ext]`,
+    loader: `${loader}?name=imgs/[hash].[ext]!image-webpack`,
+    // loader: `${loader}?name=imgs/[hash].[ext]`,
   }),
 
   eslint: {
