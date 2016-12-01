@@ -1285,18 +1285,6 @@ $md-dark-theme-colors: (
     @include react-md-colors-hover($primary-color, $primary-opacity, $secondary-color, $secondary-opacity);
   }
 
-  @if $include-media {
-    @media #{$md-desktop-media} {
-      .md-background--primary-hover:hover {
-        background: rgba($primary-color, .9);
-      }
-
-      .md-background--secondary-hover:hover {
-        background: rgba($secondary-color, .9);
-      }
-    }
-  }
-
   @if $include-color-class-names {
     @include react-md-color-class-names;
   }
@@ -1368,19 +1356,7 @@ $md-dark-theme-colors: (
   }
 
   @if $include-media and ($primary-color != $md-primary-color or $secondary-color != $md-secondary-color) {
-    @media #{$md-desktop-media} {
-      @if $primary-color != $md-primary-color {
-        .md-background--primary-hover:hover {
-          background: rgba($primary-color, $primary-opacity);
-        }
-      }
-
-      @if $secondary-color != $md-secondary-color {
-        .md-background--secondary-hover:hover {
-          background: rgba($secondary-color, $secondary-opacity);
-        }
-      }
-    }
+    @include react-md-colors-hover($primary-color, $primary-opacity, $secondary-color, $secondary-opacity);
   }
 }
 

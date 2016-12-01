@@ -951,7 +951,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
 /// @group text-fields, themes
 @mixin react-md-theme-text-field-divider($primary-color: $md-primary-color, $error-color: $md-text-field-error-color) {
   @if $primary-color != $md-primary-color {
-    .md-divider--text-field::after {
+    .md-divider--text-field:not(.md-divider--text-field-error)::after {
       background: $primary-color;
     }
   }
