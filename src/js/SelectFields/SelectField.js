@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import { findDOMNode } from 'react-dom';
+import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { UP, DOWN, ESC, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
@@ -293,6 +294,17 @@ export default class SelectField extends PureComponent {
      * is passed in as the `menuTitle` prop.
      */
     toolbar: PropTypes.bool,
+
+    menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
+    menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
+    floatingLabel: deprecated(
+      PropTypes.bool,
+      'A select field can only have floating labels now Only provide the `label` prop'
+    ),
+    noAutoAdjust: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
+    fullWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
+    adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
   };
 
   static defaultProps = {
@@ -313,7 +325,7 @@ export default class SelectField extends PureComponent {
     this.state = {
       active: false,
       activeIndex: this._getActiveIndex(props, { value: props.defaultValue }),
-      isOpen: !!props.defaultOpen,
+      isOpen: typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen,
       activeLabel: this._getActiveLabel(props, typeof props.value !== 'undefined' ? props.value : props.defaultValue),
       match: null,
       lastSearch: null,
@@ -676,8 +688,11 @@ export default class SelectField extends PureComponent {
   }
 
   _advanceFocus(decrement) {
+    const { menuItems, position } = this.props;
     const { activeIndex } = this.state;
-    const lastIndex = this.props.menuItems.length - 1;
+
+    const below = position === SelectField.Positions.BELOW;
+    const lastIndex = menuItems.length - 1;
     if ((decrement && activeIndex <= 0) || (!decrement && activeIndex >= lastIndex)) {
       return;
     }
@@ -687,7 +702,11 @@ export default class SelectField extends PureComponent {
       return;
     }
 
-    this._attemptItemFocus(nextIndex);
+    this._attemptItemFocus(nextIndex - (below ? 1 : 0));
+    if (below && decrement && nextIndex === 0) {
+      return;
+    }
+
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -794,6 +813,15 @@ export default class SelectField extends PureComponent {
     delete props.defaultOpen;
     delete props.keyboardMatchingTimeout;
     delete props.onMenuToggle;
+
+    // delete deprecated
+    delete props.menuStyle;
+    delete props.menuClassName;
+    delete props.initiallyOpen;
+    delete props.floatingLabel;
+    delete props.noAutoAdjust;
+    delete props.fullWidth;
+    delete props.adjustMinWidth;
 
     let { menuId, listId, placeholder, label, error } = this.props;
     error = error || this.state.error;
