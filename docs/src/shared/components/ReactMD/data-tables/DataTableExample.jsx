@@ -4,14 +4,17 @@ import TableHeader from 'react-md/lib/DataTables/TableHeader';
 import TableBody from 'react-md/lib/DataTables/TableBody';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import SelectFieldColumn from 'react-md/lib/DataTables/SelectFieldColumn';
 
 import nutritionFacts from 'constants/nutritionFacts';
+
+const types = ['Ice cream', 'Pastry', 'Other'];
 
 const DataTableExample = ({ onRowToggle }) => {
   const facts = nutritionFacts.map(({ name, type, calories, fat, carbs, protein, sodium, calcium, iron }) => (
     <TableRow key={name}>
       <TableColumn>{name}</TableColumn>
-      <TableColumn>{type}</TableColumn>
+      <SelectFieldColumn menuItems={types} defaultValue={type} id={name} />
       <TableColumn numeric>{calories}</TableColumn>
       <TableColumn numeric>{fat}</TableColumn>
       <TableColumn numeric>{carbs}</TableColumn>
@@ -27,7 +30,7 @@ const DataTableExample = ({ onRowToggle }) => {
       <TableHeader>
         <TableRow>
           <TableColumn>Dessert (100g serving)</TableColumn>
-          <TableColumn>Type</TableColumn>
+          <TableColumn className="md-table-column--select-field">Type</TableColumn>
           <TableColumn numeric>Calories</TableColumn>
           <TableColumn numeric>Fat (g)</TableColumn>
           <TableColumn numeric>Carbs (g)</TableColumn>
