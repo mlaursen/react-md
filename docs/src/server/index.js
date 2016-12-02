@@ -3,18 +3,25 @@ const express = require('express');
 const compression = require('compression');
 const logger = require('morgan');
 const { port } = require('../../serverConfig.json');
+const helmet = require('helmet');
 
 const theme = require('./theme');
 const proxy = require('./proxy');
 
 const app = express();
 
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
+
 const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
 const client = express.static(clientRoot, {
-  maxAge: 3156000,
+  maxAge: CACHE_DURATION,
 });
+
 app.set('view engine', 'ejs');
 app.set('views', clientRoot);
+app.use(helmet({
+  noCache: false,
+}));
 app.use(compression());
 app.use(logger(__DEV__ ? 'dev' : 'combined'));
 
@@ -22,10 +29,10 @@ app.use(logger(__DEV__ ? 'dev' : 'combined'));
 app.get('/themes/*.css', theme);
 app.get('/proxy', proxy);
 
-if (__DEBUG_SSR__) {
+if (!__DEV__ || __DEBUG_SSR__) {
   app.use(client);
   app.use(require('./reactMD').default);
-} else if (__DEV__) {
+} else {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -53,9 +60,6 @@ if (__DEBUG_SSR__) {
       res.end();
     });
   });
-} else {
-  app.use(client);
-  app.use(require('./reactMD').default);
 }
 
 app.listen(port, err => {

@@ -93,10 +93,6 @@ module.exports = () => ({
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'commons',
-    //   minChunks: 3,
-    // }),
   ],
 
   postcss() {

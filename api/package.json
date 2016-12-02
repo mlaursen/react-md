@@ -24,6 +24,7 @@
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "fuse.js": "^2.5.0",
+    "helmet": "^3.1.0",
     "morgan": "^1.7.0",
     "react-docgen": "^2.12.1",
     "sassdoc": "^2.1.20",
