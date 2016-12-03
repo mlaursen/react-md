@@ -193,8 +193,8 @@ export default class Menu extends PureComponent {
   }
 
   componentWillUnmount() {
-    const { isOpen, close } = this.props;
-    if (isOpen && close) {
+    const { isOpen } = this.props;
+    if (isOpen) {
       window.removeEventListener('click', this._handleOutsideClick);
     }
   }

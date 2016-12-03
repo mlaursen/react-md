@@ -259,10 +259,12 @@ export default class Drawer extends PureComponent {
    *
    * If this is used server side, it will default to only matching mobile.
    *
-   * @param {Object} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min widths
+   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min
+   *    widths. This defaults to the drawer's default props.
    * @return {Object} an object containing the media matches and the current type to use for the drawer.
    */
-  static getCurrentMedia({ mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType }) {
+  static getCurrentMedia(props = Drawer.defaultProps) {
+    const { mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType } = props;
     if (typeof window === 'undefined') {
       return { mobile: true, tablet: false, desktop: false, type: mobileType };
     }
