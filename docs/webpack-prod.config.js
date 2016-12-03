@@ -10,15 +10,6 @@ function makeConfig() {
     googleAnalytics: 'UA-76079335-1',
   });
 
-  config.plugins = config.plugins.concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-      __DEV__: false,
-    }),
-  ]);
-
   return config;
 }
 
@@ -26,7 +17,8 @@ const client = makeConfig();
 client.entry = path.resolve(process.cwd(), 'src', 'client');
 client.name = 'client';
 client.target = 'web';
-client.output.filename = '[name]-[hash].min.js';
+client.output.filename = '[name].[chunkhash].min.js';
+client.output.chunkFilename = '[name].[chunkhash].chunk.min.js';
 client.output.path = path.resolve(process.cwd(), 'dist', 'client');
 client.module.loaders = client.module.loaders.concat([{
   test: /\.scss$/,
@@ -34,14 +26,23 @@ client.module.loaders = client.module.loaders.concat([{
   loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compressed'),
 }, client.__imgLoader('file')]);
 client.plugins = client.plugins.concat([
-  new ExtractTextPlugin('[name]-[hash].min.css'),
+  new ExtractTextPlugin('[name].[hash].min.css'),
+  new HtmlWebpackPlugin(client.__htmlWebpackOptions),
   new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
-    compress: { warnings: false },
+    compress: { screw_ie8: true, warnings: false },
     output: { comments: false },
   }),
-  new HtmlWebpackPlugin(client.__htmlWebpackOptions),
-  new webpack.DefinePlugin({ __CLIENT__: true }),
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: JSON.stringify('production') },
+    __DEV__: false,
+    __CLIENT__: true,
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: '[name].[chunkhash].min.js',
+    minChunks: Infinity,
+  }),
 ]);
 
 
@@ -56,7 +57,12 @@ server.module.loaders = server.module.loaders.concat([
 server.output.filename = 'server.js';
 server.output.path = path.resolve(process.cwd(), 'dist', 'server');
 server.plugins = server.plugins.concat([
-  new webpack.DefinePlugin({ __CLIENT__: false, __DEBUG_SSR__: false }),
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: JSON.stringify('production') },
+    __DEV__: false,
+    __CLIENT__: false,
+    __DEBUG_SSR__: false,
+  }),
   new webpack.NormalModuleReplacementPlugin(/\.scss$/, 'node-noop'),
 ]);
 
