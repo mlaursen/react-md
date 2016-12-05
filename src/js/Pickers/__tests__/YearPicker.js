@@ -14,58 +14,58 @@ import Year from '../Year';
 YearPicker.prototype._setContainer = jest.fn();
 
 describe('YearPicker', () => {
-  it('renders the number of years from initialYearsDisplayed', () => {
+  it('renders the number of years from yearsDisplayed', () => {
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
       onCalendarYearClick: jest.fn(),
-      initialYearsDisplayed: 100,
+      yearsDisplayed: 100,
     };
 
     let yearPicker = renderIntoDocument(<YearPicker {...props} />);
     let years = scryRenderedComponentsWithType(yearPicker, Year);
 
-    expect(years.length).toBe(props.initialYearsDisplayed);
+    expect(years.length).toBe(props.yearsDisplayed);
 
-    props.initialYearsDisplayed = 5;
+    props.yearsDisplayed = 5;
     yearPicker = renderIntoDocument(<YearPicker {...props} />);
     years = scryRenderedComponentsWithType(yearPicker, Year);
 
-    expect(years.length).toBe(props.initialYearsDisplayed);
+    expect(years.length).toBe(props.yearsDisplayed);
   });
 
-  it('renders the number of years from initialYearsDisplayed starting with the minDate', () => {
+  it('renders the number of years from yearsDisplayed starting with the minDate', () => {
     const props = {
       minDate: new Date(2016, 1, 15),
       calendarTempDate: new Date(2016, 1, 1),
       onCalendarYearClick: jest.fn(),
-      initialYearsDisplayed: 100,
+      yearsDisplayed: 100,
     };
 
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
     // Even numbers have one more
-    expect(years.length).toBe(props.initialYearsDisplayed);
+    expect(years.length).toBe(props.yearsDisplayed);
     expect(years[0].props.year).toBe(props.minDate.getFullYear());
-    expect(years[props.initialYearsDisplayed - 1].props.year)
-      .toBe(props.minDate.getFullYear() + props.initialYearsDisplayed - 1);
+    expect(years[props.yearsDisplayed - 1].props.year)
+      .toBe(props.minDate.getFullYear() + props.yearsDisplayed - 1);
   });
 
-  it('renders the number of years from initialYearsDisplayed ending with the maxDate', () => {
+  it('renders the number of years from yearsDisplayed ending with the maxDate', () => {
     const props = {
       maxDate: new Date(2016, 1, 15),
       calendarTempDate: new Date(2016, 1, 1),
       onCalendarYearClick: jest.fn(),
-      initialYearsDisplayed: 100,
+      yearsDisplayed: 100,
     };
 
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);
     const years = scryRenderedComponentsWithType(yearPicker, Year);
 
     // Even numbers have one more
-    expect(years.length).toBe(props.initialYearsDisplayed);
-    expect(years[props.initialYearsDisplayed - 1].props.year).toBe(props.maxDate.getFullYear());
-    expect(years[0].props.year).toBe(props.maxDate.getFullYear() - props.initialYearsDisplayed + 1);
+    expect(years.length).toBe(props.yearsDisplayed);
+    expect(years[props.yearsDisplayed - 1].props.year).toBe(props.maxDate.getFullYear());
+    expect(years[0].props.year).toBe(props.maxDate.getFullYear() - props.yearsDisplayed + 1);
   });
 
   it('only renders years between the min and max dates', () => {
@@ -74,7 +74,7 @@ describe('YearPicker', () => {
       maxDate: new Date(2015),
       calendarTempDate: new Date(2012, 1, 1),
       onCalendarYearClick: jest.fn(),
-      initialYearsDisplayed: 100,
+      yearsDisplayed: 100,
     };
 
     const yearPicker = renderIntoDocument(<YearPicker {...props} />);

@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "prebuild": "rimraf dist && rimraf src/server/themes",
-    "sassdoc": "sassdoc ../src/scss -c sassdoc.yaml",
+    "sassdoc": "sassdoc ../src/scss -c sassdoc.yml",
     "build": "npm run sassdoc && webpack --config webpack-prod.config.js --progress --colors",
     "build:watch": "npm run prebuild && npm run sassdoc && webpack --config webpack-dev.config.js --progress --colors --watch",
     "start": "node dist/server/server.js",
