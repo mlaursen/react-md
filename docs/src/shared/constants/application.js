@@ -12,6 +12,8 @@ export const THEME_STORAGE_KEY = 'save-theme';
 export const CUSTOM_THEME_CLASS_NAME = 'custom-theme';
 export const FOOD_DATA_URL = 'https://data.cityofchicago.org/api/views/4ijn-s7e5/rows.json?accessType=DOWNLOAD';
 
-export const API_URL = `http://${apiHost}${__DEV__ ? `:${apiPort}${apiPath}` : ''}`;
-export const BASE_URL = `http://${host}${__DEV__ ? `:${port}` : ''}`;
+const protocol = `http${__DEV__ ? '' : 's'}://`;
+
+export const API_URL = `${protocol}${apiHost}${__DEV__ ? `:${apiPort}${apiPath}` : ''}`;
+export const BASE_URL = `${protocol}${host}${__DEV__ ? `:${port}` : ''}`;
 export const PROXY_URL = `${BASE_URL}/proxy?url=`;
