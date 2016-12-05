@@ -10,7 +10,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "BABEL_ENV=test jest",
+    "test": "BABEL_ENV=test jest --json",
     "test:watch": "BABEL_ENV=test jest --watch",
     "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
     "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
