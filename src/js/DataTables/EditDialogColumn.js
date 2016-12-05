@@ -192,6 +192,11 @@ export default class EditDialogColumn extends PureComponent {
      * Boolean if an inline edit text field should not include an icon.
      */
     noIcon: invalidIf(PropTypes.bool, 'title', 'large'),
+
+    /**
+     * This is injected by the `TableRow` component.
+     */
+    header: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -481,6 +486,7 @@ export default class EditDialogColumn extends PureComponent {
       inlineIconChildren,
       inlineIconClassName,
       noIcon,
+      header,
       ...props
     } = this.props;
 
@@ -541,6 +547,7 @@ export default class EditDialogColumn extends PureComponent {
           'md-edit-dialog-column--animating': !inline && (absolute || active || animating),
           'md-edit-dialog-column--active': active,
         }, className)}
+        header={header}
         ref={this._setColumn}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
@@ -551,7 +558,6 @@ export default class EditDialogColumn extends PureComponent {
         <div
           style={dialogStyle}
           className={cn('md-edit-dialog', {
-            'md-edit-dialog--inactive': !active,
             'md-edit-dialog--active': active,
             'md-edit-dialog--inline': inline,
             'md-background': active,
