@@ -10,7 +10,6 @@ import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
 import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
 import search, { buildLocalDB as buildSearchDB } from './search';
 import { port, path } from '../../serverConfig.json';
-import { host } from '../../../docs/serverConfig.json';
 
 const app = express();
 const CACHE_DURATION = '10 days';
@@ -21,14 +20,6 @@ app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(logger(__DEV__ ? 'dev' : 'combined'));
-app.use((req, res, next) => {
-  if (req.hostname !== host) {
-    res.sendStatus(403);
-    return;
-  }
-
-  next();
-});
 
 if (__DEV__ && path) {
   const router = express.Router();
