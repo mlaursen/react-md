@@ -119,3 +119,5 @@ ReactDOM.render(document.getElementById('app'), <App />);
   </body>
 </html>
 ```
+
+> It is recommended to specify the release version for any UMD build

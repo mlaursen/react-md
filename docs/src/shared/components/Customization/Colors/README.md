@@ -20,7 +20,7 @@ two class names for each material design color.
 
 ### `$md-color-map` 
 This map contains every material design color so that you can quickly access them and optionally use
-the [SASS Map fucntions](http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions)
+the [SASS Map functions](http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions)
 to programatically get colors. This is really just used for the `react-md-color-class-names mixin`.
 
 ### `mixin react-md-color-class-names`
