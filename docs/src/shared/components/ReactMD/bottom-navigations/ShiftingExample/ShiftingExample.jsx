@@ -67,6 +67,7 @@ export default class ShiftingExample extends PureComponent {
     this._handleVisibilityChange = this._handleVisibilityChange.bind(this);
   }
 
+  /* ignore most of this code since it is used to hack the examples 💩 */
   componentDidMount() {
     window.addEventListener('touchstart', this._stopScroll);
     window.addEventListener('mousemove', this._enableScroll);
@@ -77,6 +78,7 @@ export default class ShiftingExample extends PureComponent {
     window.removeEventListener('mousemove', this._enableScroll);
   }
 
+  /** Still 💩 */
   _setContent(content) {
     if (content) {
       this._content = findDOMNode(content).parentNode;
@@ -87,18 +89,24 @@ export default class ShiftingExample extends PureComponent {
     }
   }
 
+  /** Still 💩 */
   _setNavigation(nav) {
     this._nav = nav;
   }
 
+  /** Still 💩 */
   _stopScroll() {
+    window.removeEventListener('mousemove', this._enableScroll);
+
     if (this._enabled) {
       this._content.removeEventListener('scroll', this._handleScroll);
     }
     this._enabled = false;
   }
 
+  /** Still 💩 */
   _enableScroll() {
+    console.log('ENABLED');
     if (!this._enabled) {
       this._content.addEventListener('scroll', this._handleScroll);
     }
@@ -106,6 +114,7 @@ export default class ShiftingExample extends PureComponent {
     this._enabled = true;
   }
 
+  /** Still 💩 */
   _handleScroll(e) {
     if (!this._nav) {
       return;
@@ -127,6 +136,7 @@ export default class ShiftingExample extends PureComponent {
     this._nav._handleTouchMove({ changedTouches: [{ pageY: scrollTop }] });
     this._previousScroll = scrollTop;
   }
+  /* Ok, you can start looking at the code again */
 
   _handleNavChange(activeIndex) {
     if (this._content) {
