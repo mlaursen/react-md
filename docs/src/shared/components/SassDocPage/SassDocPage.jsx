@@ -1,8 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Button from 'react-md/lib/Buttons/Button';
 
 import Section from './Section';
+import FindInPage from './FindInPage';
 
 export default class SassDocPage extends PureComponent {
   static propTypes = {
@@ -20,8 +22,12 @@ export default class SassDocPage extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { finderVisible: false };
   }
+
+  _toggleFinder = () => {
+    this.setState({ finderVisible: !this.state.finderVisible });
+  };
 
   render() {
     const { sassdoc, className, ...props } = this.props;
@@ -36,6 +42,26 @@ export default class SassDocPage extends PureComponent {
         <Section key="variables" title="Variables" data={variables} />,
         <Section key="functions" title="Functions" data={functions} />,
         <Section key="mixins" title="Mixins" data={mixins} />,
+        <Button
+          key="fab"
+          floating
+          secondary
+          fixed
+          onClick={this._toggleFinder}
+          tooltipPosition="left"
+          tooltipLabel="Find SassDoc in Page"
+        >
+          find_in_page
+        </Button>,
+        <FindInPage
+          key="finder"
+          visible={this.state.finderVisible}
+          onVisibilityToggle={this._toggleFinder}
+          placeholders={placeholders}
+          variables={variables}
+          functions={functions}
+          mixins={mixins}
+        />,
       ];
     }
 

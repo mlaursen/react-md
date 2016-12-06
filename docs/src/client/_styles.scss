@@ -27,9 +27,15 @@ $md-secondary-color: $md-deep-orange-a-200;
   right: 0;
 }
 
-.md-avatar--svg svg {
-  height: 22px;
-  width: 22px;
+.md-avatar--svg {
+  &.md-avatar--default {
+    background: transparent;
+  }
+
+  svg {
+    height: 22px;
+    width: 22px;
+  }
 }
 
 .google-logo {
@@ -65,3 +71,6 @@ $md-secondary-color: $md-deep-orange-a-200;
   font-size: $md-font-icon-size;
 }
 
+.powerlevel-over-9000 {
+  z-index: 9001;
+}

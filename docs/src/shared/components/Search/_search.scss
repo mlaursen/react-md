@@ -44,3 +44,7 @@ $search-size: 180px;
 .main-toolbar--title-hidden .md-title {
   max-width: 0;
 }
+
+.custom-theme .main-search .md-divider--text-field:not(.md-divider--text-field-error)::after {
+  background: $md-white-base;
+}

@@ -1,5 +1,9 @@
 @import '~react-md-scss';
 
+.md-list--less-nested .md-list--nested-1 .md-list-tile {
+  padding-left: 36px;
+}
+
 .sassdoc {
   margin-bottom: 6em;
 
@@ -89,4 +93,8 @@
 
 .sassdoc-section-end {
   margin-bottom: 1em;
+}
+
+.sassdoc-filter {
+  margin-left: $md-default-padding;
 }

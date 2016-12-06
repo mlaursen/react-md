@@ -67,8 +67,7 @@ export default class SimpleExample extends PureComponent {
               }
             }}
             onClick={this._hideOverlay}
-            style={{ zIndex: 9001 /* Over 9000! */ }}
-            className={cn('md-overlay', {
+            className={cn('powerlevel-over-9000 md-overlay', {
               'md-overlay--active': overlayActive,
             })}
           />
