@@ -238,6 +238,17 @@ export default class Drawer extends PureComponent {
      * The `$md-drawer-transition-time` value from sass.
      */
     transitionDuration: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the temporary drawer's overlay should be created on desktop screens. This is really used so that
+     * the drawer will close when a user clicks anywhere on the page except in the drawer.
+     */
+    clickableDesktopOverlay: PropTypes.bool,
+
+    /**
+     * Boolean if the navigation drawer should automatically close when a nav item has been clicked.
+     */
+    closeOnNavItemClick: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -251,6 +262,8 @@ export default class Drawer extends PureComponent {
     position: 'left',
     transitionDuration: 300,
     autoclose: true,
+    clickableDesktopOverlay: true,
+    closeOnNavItemClick: true,
   };
 
   /**
@@ -461,7 +474,7 @@ export default class Drawer extends PureComponent {
   }
 
   _handleNavClick(e) {
-    if (!isTemporary(getField(this.props, this.state, 'type'))) {
+    if (!this.props.closeOnNavItemClick || !isTemporary(getField(this.props, this.state, 'type'))) {
       return;
     }
 
@@ -511,6 +524,7 @@ export default class Drawer extends PureComponent {
       renderNode,
       overlay,
       autoclose,
+      clickableDesktopOverlay,
       ...props
     } = this.props;
     delete props.visible;
@@ -526,7 +540,9 @@ export default class Drawer extends PureComponent {
     delete props.transitionDuration;
     delete props.onVisibilityToggle;
     delete props.onMediaTypeChange;
+    delete props.closeOnNavItemClick;
 
+    const { desktop } = this.state;
     const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);
@@ -566,6 +582,10 @@ export default class Drawer extends PureComponent {
       zDepth = 5;
     }
 
+    const overlayVisible = (!desktop || clickableDesktopOverlay)
+      && (overlay || temporary)
+      && (animating || visible);
+
     const drawer = (
       <Paper
         {...props}
@@ -589,7 +609,7 @@ export default class Drawer extends PureComponent {
         {header}
         {navigation}
         {children}
-        <Portal visible={(overlay || temporary) && (animating || visible)} renderNode={renderNode}>
+        <Portal visible={overlayVisible} renderNode={renderNode}>
           <div
             className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
               'md-overlay--active': overlayActive,
