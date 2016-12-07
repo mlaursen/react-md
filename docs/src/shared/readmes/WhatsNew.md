@@ -5,6 +5,27 @@ SassDoc pages are now searchable and filterable while on that page itself. I fou
 to attempt to keep finding variables on the same page was a bit annoying. The SassDoc page can now be quick navigated
 by clicking the visible FAB and clicking any items in the new Drawer.
 
+### v1.0.0-beta Released
+
+This release fixed up a couple more bugs (listed below) and now the main focus will be figuring out if there are any
+production-breaking bugs remaining.
+
+- Fixed the Avatar colors changing [#161](https://github.com/mlaursen/react-md/issues/161)
+- Updated EditDialogColumn to interact correctly with keyboard focus and touch devices
+- Fixed the `Dialog` to remove the prevent scroll className when unmounting
+- Updated the `Drawer.getCurrentMedia` function to use the `Drawer.defaultProps` as the default value of the `props` parameter.
+- Updated the `Drawer` to allow for a _persistent_ temporary Drawer on desktop devices.
+- Fixed the `AccessibleFakeButton` to no longer use the space key as an enter keypress.
+- Fixed a weird warning on inks if the `waitForInkTransition` prop was enabled and the click event eventually
+unmounted the inked component.
+- Updated the Menu to correctly remove the window click event on unmount.
+- Added correct deprecation notices to the `SelectField` and fixed the keyboard accessibility when using a `SelectField.Positions.BELOW` position.
+- Fixed the duplication of the `md-background--primary-hover` and `md-background--secondary-hover`.
+- Fixed the duplication of `md-background--primary-hover` and renamed the second one to `md-background--secondary-hover`.
+- Minor CSS Fixes
+
+
+
 ## November 2016
 ### General Website Changes
 
