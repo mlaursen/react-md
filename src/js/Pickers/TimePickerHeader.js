@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
 import TimePeriods from './TimePeriods';
 import PickerControl from './PickerControl';
@@ -9,13 +8,7 @@ import PickerControl from './PickerControl';
  * current time for the `TimePicker` as well as switching between
  * the different views for the time picker.
  */
-export default class TimePickerHeader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class TimePickerHeader extends PureComponent {
   static propTypes = {
     /**
      * The current time of the time picker.
@@ -56,29 +49,36 @@ export default class TimePickerHeader extends Component {
     timePeriod: PropTypes.string,
   };
 
-  setHour = () => {
-    this.props.setTimeMode('hour');
-  };
+  constructor(props) {
+    super(props);
 
-  setMinute = () => {
+    this._setHour = this._setHour.bind(this);
+    this._setMinute = this._setMinute.bind(this);
+  }
+
+  _setHour() {
+    this.props.setTimeMode('hour');
+  }
+
+  _setMinute() {
     this.props.setTimeMode('minute');
-  };
+  }
 
   render() {
     const { timeMode, hours, minutes, timePeriod, setTempTime, tempTime } = this.props;
     let timePeriods;
-    if(timePeriod) {
+    if (timePeriod) {
       timePeriods = <TimePeriods tempTime={tempTime} setTempTime={setTempTime} timePeriod={timePeriod} />;
     }
 
     return (
-      <header className="md-picker-header">
-        <PickerControl onClick={this.setHour} active={timeMode === 'hour'}>
+      <header className="md-picker-header md-text-right">
+        <PickerControl onClick={this._setHour} active={timeMode === 'hour'}>
           <h4 className="md-display-3">
             {hours}
           </h4>
         </PickerControl>
-        <PickerControl onClick={this.setMinute} active={timeMode === 'minute'}>
+        <PickerControl onClick={this._setMinute} active={timeMode === 'minute'}>
           <h4 className="md-display-3">
             {minutes}
           </h4>

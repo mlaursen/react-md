@@ -1,101 +1,159 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import cn from 'classnames';
 
 import ListItemText from './ListItemText';
+import TileAddon from './TileAddon';
 
-/**
- * A `ListItemControl` component has either a `primaryAction` or a `secondaryAction`.
- * The `primaryAction` can **only** be a `Checkbox`. A `secondaryAction` can either be
- * a `Checkbox`, `Switch`, or a `Reorder` icon.
- */
-export default class ListItemControl extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class ListItemControl extends PureComponent {
   static propTypes = {
     /**
-     * An optional className to apply to the list item.
+     * An optional style to apply to the `.md-list-item`.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `.md-list-item`.
      */
     className: PropTypes.string,
 
     /**
-     * The primary text to display in the item.
+     * An optional style to apply to the `.md-list-tile`.
      */
-    primaryText: PropTypes.string.isRequired,
+    tileStyle: PropTypes.object,
 
     /**
-     * An optional secondary text to display below the `primaryText`. This can
-     * be an additional 1 or 2 lines. The text will automatically be ellipsed
-     * if it spans more than one line. If the prop `threeLines` is set to true,
-     * then the text will automatically be ellipsed if it spans more than two lines.
+     * An optional className to apply to the `.md-list-tile`.
+     */
+    tileClassName: PropTypes.string,
+
+    /**
+     * The primary text to display in the `ListItemControl`. The `primaryAction` or
+     * `secondaryAction` will end up getting the `label` prop injected into it with
+     * a combination of the `primaryText` and `secondaryText`. If the `primaryAction`
+     * or `secondaryAction` already have a label prop, the `label` prop will be used
+     * as the `primaryText`.
+     */
+    primaryText: PropTypes.node,
+
+    /**
+     * An optional secondary text that can be displayed in the label of the `primaryAction`
+     * or `secondaryAction`.
      */
     secondaryText: PropTypes.node,
 
     /**
-     * Boolean if the `ListItem` should allow three lines of text including
-     * the `primaryText`.
+     * Boolean if the primary and secondary text will span three lines.
      */
     threeLines: PropTypes.bool,
 
     /**
-     * The primary action element for the `ListItemControl`. This should be a `Checkbox`
-     * component.
-     *
-     * The custom validation will warn you about missing both a `primaryAction` and
-     * a `secondaryAction` or if you have both a `primaryAction` and a `secondaryAction`.
+     * The primary action of the `ListItemControl`. This _should_ normally
+     * be a type of `SelectionControl`
      */
-    primaryAction: (props, propName, component, ...others) => {
-      const primaryAction = props[propName];
-      const secondaryAction = props.secondaryAction;
-      if(primaryAction && !secondaryAction) {
-        return PropTypes.element(props, propName, component, ...others);
-      } else if(!primaryAction && !secondaryAction) {
-        return new Error(`Missing required prop 'primaryAction' or 'secondaryAction' for the component '${component}'.`);
-      } else if(primaryAction && secondaryAction) {
-        return new Error(`You can not have a 'primaryAction' and a 'secondaryAction' prop for the component '${component}'.`);
-      }
-    },
+    primaryAction: PropTypes.element,
 
     /**
-     * A secondary action element. This should be either a `Checkbox`, `Switch`, or a
-     * `Reorder` icon.
+     * The secondary action of the `ListItemControl`. This _should_ normally
+     * be a type of `SelectionControl`. If it is a selection control,
+     * make sure to add the `labelBefore` prop to get correct positioning.
      */
     secondaryAction: PropTypes.element,
-  };
 
-  static defaultProps = {
-    threeLines: false,
+    /**
+     * An optional `FontIcon` to display to the left of the action.
+     */
+    leftIcon: PropTypes.node,
+
+    /**
+     * An optional `Avatar` to display to the left of the action.
+     */
+    leftAvatar: PropTypes.node,
+
+    /**
+     * An optional `FontIcon` to display to the right of the action.
+     */
+    rightIcon: PropTypes.node,
+
+    /**
+     * An optional `FontIcon` to display to the right of the action.
+     */
+    rightAvatar: PropTypes.node,
   };
 
   render() {
     const {
+      className,
+      tileStyle,
+      tileClassName,
       primaryAction,
       secondaryAction,
       primaryText,
       secondaryText,
       threeLines,
-      ...props,
+      leftIcon,
+      leftAvatar,
+      rightIcon,
+      rightAvatar,
+      ...props
     } = this.props;
 
-    const label = (
-      <ListItemText primaryText={primaryText} secondaryText={secondaryText} />
+    let control = Children.only(primaryAction || secondaryAction);
+    const text = (
+      <ListItemText
+        key="text"
+        primaryText={control.props.label || primaryText}
+        secondaryText={secondaryText}
+        className={cn({
+          'md-tile-content--left-icon': leftIcon,
+          'md-tile-content--left-avatar': leftAvatar,
+          'md-tile-content--left-button': primaryAction,
+          'md-tile-content--right-padding': primaryAction,
+        })}
+      />
     );
-
-    const control = React.cloneElement(primaryAction || secondaryAction, { label, labelBefore: !!secondaryAction });
-    const className = classnames('md-list-item', props.className, {
-      'primary-action': !!primaryAction,
-      'secondary-action': !!secondaryAction,
-      'two-lines': secondaryText && !threeLines,
-      'three-lines': threeLines,
+    control = cloneElement(control, {
+      className: cn('md-list-control', {
+        'md-list-control--right': secondaryAction,
+      }, control.props.className),
+      label: text,
     });
 
+    const leftNode = (
+      <TileAddon
+        key="left-addon"
+        icon={leftIcon}
+        avatar={leftAvatar}
+      />
+    );
+
+    const rightNode = (
+      <TileAddon
+        key="right-addon"
+        icon={rightIcon}
+        avatar={rightAvatar}
+      />
+    );
+
+    const icond = !!leftIcon || !!rightIcon;
+    const avatard = !!leftAvatar || !!rightAvatar;
+
     return (
-      <li {...props} className={className}>
-        {control}
+      <li {...props} className={cn('md-list-item', className)}>
+        <div
+          style={tileStyle}
+          className={cn('md-list-tile md-text', {
+            'md-list-tile--icon': !secondaryText && icond && !avatard,
+            'md-list-tile--avatar': !secondaryText && avatard,
+            'md-list-tile--two-lines': secondaryText && !threeLines,
+            'md-list-tile--three-lines': secondaryText && threeLines,
+            'md-list-tile--control-left': primaryAction,
+            'md-list-tile--control-right': secondaryAction,
+          }, tileClassName)}
+        >
+          {leftNode}
+          {control}
+          {rightNode}
+        </div>
       </li>
     );
   }

@@ -1,164 +1,241 @@
-.md-dialog-container {
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  width: 100vw;
-  z-index: -1;
+////
+/// @group dialogs
+////
 
-  &.open {
-    visibility: visible;
-    z-index: $md-dialog-z-index;
-  }
+/// The transition time for the dialogs to enter or leave.
+/// @type Number
+$md-dialog-transition-time: $md-transition-time * 2 !default;
 
-  &.dialog-centered {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: $md-dialog-min-page-margin;
-  }
+/// The z index for a dialog's overlay.
+/// type Number
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group dialogs, z-indexes
+$md-dialog-overlay-z-index: 20 !default;
 
-  .md-overlay {
-    background: $md-dialog-overlay-color;
-    z-index: -1;
-  }
+/// The distance that the dialog should move downwards when entering
+/// and leaving.
+/// @type Number
+$md-dialog-translate-distance: -30px !default;
 
-  .md-overlay-leave.md-overlay-leave-active {
+/// The z-index to use for full page dialogs. This should be the biggest z-index
+/// in the application.
+/// @type Number
+/// @see md-dialog-overlay-z-index
+/// @see md-btn-fixed-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group dialogs, z-indexes
+$md-dialog-full-page-z-index: 110 !default;
+
+
+/// The height of a button in a dialog.
+/// @type Number
+$md-dialog-btn-height: 36px;
+
+/// The min width for a button in a dialog.
+$md-dialog-btn-min-width: 64px;
+
+/// The padding for a button in a dialog.
+/// @type Number
+$md-dialog-btn-padding: 8px;
+
+/// The default padding to apply to the content in a dialog.
+/// @type Number
+$md-dialog-padding: 24px;
+
+/// The padding bottom to apply to a dialog's title.
+/// @type Number
+$md-dialog-title-padding-bottom: 20px;
+
+/// A dialog can not be less than this distance from the top / and bottom of the page.
+/// @type Number
+$md-dialog-vertical-keyline: 24px;
+
+/// A dialog can not be less than this distance from the left / right of the page.
+/// @type Number
+$md-dialog-horizontal-keyline: 40px;
+
+
+/// Includes the styles for dialogs
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-dialogs;
+@mixin react-md-dialogs {
+  .md-dialog-container.md-overlay {
     transition-duration: $md-dialog-transition-time;
+    z-index: $md-dialog-overlay-z-index;
   }
+
+  .md-dialog {
+    @include react-md-dialog-width;
+
+    cursor: initial;
+    position: absolute;
+  }
+
+  .md-dialog--centered {
+    left: 50%;
+    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
+    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+
+    .md-list {
+      padding-bottom: $md-dialog-padding - $md-default-padding;
+      padding-top: 0;
+    }
+
+    .md-list-tile {
+      height: initial;
+      padding: $md-default-padding $md-dialog-padding;
+    }
+
+    .md-tile-text--primary {
+      white-space: normal;
+    }
+  }
+
+  .md-dialog--centered-enter {
+    transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+
+    &.md-dialog--centered-enter-active {
+      transform: translate3d(-50%, -50%, 0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--centered-leave {
+    transform: translate3d(-50%, -50%, 0);
+
+    &.md-dialog--centered-leave-active {
+      transform: translate3d(-50%, calc(-50% + #{$md-dialog-translate-distance}), 0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--full-page {
+    height: 100vh;
+    left: 0;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: $md-dialog-full-page-z-index;
+  }
+
+  .md-dialog--full-page-enter {
+    transform: scale(0);
+
+    &.md-dialog--full-page-enter-active {
+      transform: scale(1);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  .md-dialog--full-page-leave {
+    transform: scale(1);
+
+    &.md-dialog--full-page-leave-active {
+      transform: scale(0);
+      transition-duration: $md-dialog-transition-time;
+      transition-property: transform;
+    }
+  }
+
+  @include react-md-dialogs-header;
+  @include react-md-dialogs-content;
+  @include react-md-dialogs-footer;
 }
 
-.md-dialog {
-  @include md-box-shadow(5);
-
-  background: $md-white-base;
-
-  &.simple {
-    min-width: $md-dialog-simple-min-width;
-  }
-
-  &.dialog-centered {
-
-    .md-title {
-      padding: $md-dialog-padding;
-      padding-bottom: $md-dialog-title-padding-bottom;
-    }
-  }
-
-  &.full-page {
-    height: 100vh;
-
-    .md-title {
-      font-size: 20px;
-    }
-  }
-
-  .md-flat-btn {
-    min-width: $md-dialog-flat-btn-min-width;
-    padding-left: $md-dialog-flat-btn-lr-padding;
-    padding-right: $md-dialog-flat-btn-lr-padding;
-
-    + .md-flat-btn {
-      margin-left: $md-dialog-flat-btn-lr-padding;
-    }
-  }
-
-  .md-title,
-  p {
-    margin: 0;
-  }
-
-  .md-title {
+/// Includes the styles for the header content for dialogs only.
+@mixin react-md-dialogs-header {
+  .md-title--dialog {
     margin-bottom: 0;
+    padding: $md-dialog-padding;
+    padding-bottom: $md-dialog-title-padding-bottom;
     white-space: initial;
   }
 }
 
-.md-dialog-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: $md-dialog-flat-btn-lr-padding;
-  padding-left: $md-dialog-padding;
 
-  &.stacked {
+/// Includes the styles for the content in dialogs only.
+@mixin react-md-dialogs-content {
+  .md-dialog-content {
+    overflow: auto;
+  }
+
+  .md-dialog-content--padded {
+    padding: $md-dialog-padding;
+
+    &:not(:first-child) {
+      padding-top: 0;
+    }
+  }
+}
+
+/// This includes the styles for the footer in dialogs. It also creates an additional
+/// button class name for buttons in dialogs. This is generally used in the `md-react-md-dialogs`
+/// mixin.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-dialogs-footer;
+@mixin react-md-dialogs-footer {
+  .md-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .md-dialog-footer--inline {
+    padding: $md-dialog-btn-padding;
+
+    .md-btn--dialog + .md-btn--dialog {
+      margin-left: $md-dialog-btn-padding;
+    }
+  }
+
+  .md-dialog-footer--stacked {
     align-items: flex-end;
     flex-direction: column;
+    padding-bottom: $md-dialog-btn-padding;
+    padding-right: $md-dialog-btn-padding;
 
-    .md-btn {
-      height: $md-height;
-    }
-  }
-}
+    .md-btn--dialog {
+      $margin: (48px - $md-dialog-btn-height) / 2;
 
-.md-dialog-content {
-  color: $md-dialog-content-text-color;
-  overflow: auto;
-  padding: $md-dialog-padding;
-  padding-top: 0;
-
-  p {
-    color: inherit;
-  }
-
-  &.simple {
-    padding: 0;
-  }
-
-  .md-list {
-    color: $md-text-color;
-    padding-bottom: 8px;
-  }
-
-  .md-list-tile {
-    display: block;
-    height: initial;
-    padding-bottom: $md-default-padding;
-    padding-left: $md-dialog-padding;
-    padding-right: $md-dialog-padding;
-    padding-top: $md-default-padding;
-
-    &:first-child {
-      margin-top: 0;
+      margin-bottom: $margin;
+      margin-top: $margin;
     }
   }
 
-  .md-tile-primary-text {
-    white-space: initial;
+  .md-btn--dialog {
+    height: $md-dialog-btn-height;
+    min-width: $md-dialog-btn-min-width;
+    padding-left: $md-dialog-btn-padding;
+    padding-right: $md-dialog-btn-padding;
   }
 }
 
-.md-dialog-enter.md-dialog-enter-active,
-.md-dialog-leave.md-dialog-leave-active {
-  transition: transform $md-dialog-transition-time, opacity $md-transition-time;
-}
-
-.full-page {
-  &.md-dialog-enter,
-  &.md-dialog-leave.md-dialog-leave-active {
-    transform: scale(0);
-  }
-
-  &.md-dialog-enter.md-dialog-enter-active,
-  &.md-dialog-leave {
-    transform: scale(1);
-  }
-}
-
-.dialog-centered {
-  &.md-dialog-enter,
-  &.md-dialog-leave.md-dialog-leave-active {
-    opacity: 0;
-    transform: translate3d(0, $md-dialog-translate-distance, 0);
-  }
-
-  &.md-dialog-enter.md-dialog-enter-active,
-  &.md-dialog-leave {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.hide-overflow {
-  overflow: hidden;
+/// A simple mixin to set the width for a dialog.
+///
+/// @example scss - Example Usage SCSS
+///   .md-dialog--big {
+///      @include react-md-dialog-width(10);
+///   }
+///
+/// @param {Number} units [5] - The number of units for the dialog's width to be.
+///     this will be multiplied by `56px` since it is a single unit on a dialog.
+@mixin react-md-dialog-width($units: 5) {
+  width: $units * 56px;
 }

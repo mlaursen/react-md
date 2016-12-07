@@ -1,21 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
 import CalendarMonth from './CalendarMonth';
-import SwipeableView from '../SwipeableViews';
 import CalendarHeader from './CalendarHeader';
 
-export default class DatePickerCalendar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DatePickerCalendar extends PureComponent {
   static propTypes = {
-    previousIcon: PropTypes.node.isRequired,
+    previousIconChildren: PropTypes.node,
+    previousIconClassName: PropTypes.string,
     onPreviousClick: PropTypes.func.isRequired,
-    nextIcon: PropTypes.node.isRequired,
+    nextIconChildren: PropTypes.node,
+    nextIconClassName: PropTypes.string,
     onNextClick: PropTypes.func.isRequired,
     onCalendarDateClick: PropTypes.func.isRequired,
     calendarDate: PropTypes.instanceOf(Date).isRequired,
@@ -27,15 +21,15 @@ export default class DatePickerCalendar extends Component {
     ]).isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    onSwipeChange: PropTypes.func.isRequired,
-    transitionName: PropTypes.string.isRequired,
   };
 
   render() {
     const {
-      previousIcon,
+      previousIconChildren,
+      previousIconClassName,
       onPreviousClick,
-      nextIcon,
+      nextIconChildren,
+      nextIconClassName,
       onNextClick,
       calendarDate,
       calendarTempDate,
@@ -44,12 +38,10 @@ export default class DatePickerCalendar extends Component {
       locales,
       minDate,
       maxDate,
-      onSwipeChange,
-      transitionName,
     } = this.props;
 
     return (
-      <section className="md-picker-content md-calendar">
+      <section className="md-picker-content md-picker-content--calendar">
         <CalendarHeader
           date={calendarDate}
           minDate={minDate}
@@ -57,27 +49,22 @@ export default class DatePickerCalendar extends Component {
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           onPreviousClick={onPreviousClick}
-          previousIcon={previousIcon}
+          previousIconChildren={previousIconChildren}
+          previousIconClassName={previousIconClassName}
           onNextClick={onNextClick}
-          nextIcon={nextIcon}
+          nextIconChildren={nextIconChildren}
+          nextIconClassName={nextIconClassName}
         />
-        <SwipeableView
-          onChange={onSwipeChange}
-          transitionName={transitionName}
-          transitionEnterTimeout={150}
-          transitionLeave={false}
-        >
-          <CalendarMonth
-            key={DateTimeFormat(locales).format(calendarDate)}
-            calendarDate={calendarDate}
-            calendarTempDate={calendarTempDate}
-            onCalendarDateClick={onCalendarDateClick}
-            minDate={minDate}
-            maxDate={maxDate}
-            DateTimeFormat={DateTimeFormat}
-            locales={locales}
-          />
-        </SwipeableView>
+        <CalendarMonth
+          key={new DateTimeFormat(locales).format(calendarDate)}
+          calendarDate={calendarDate}
+          calendarTempDate={calendarTempDate}
+          onCalendarDateClick={onCalendarDateClick}
+          minDate={minDate}
+          maxDate={maxDate}
+          DateTimeFormat={DateTimeFormat}
+          locales={locales}
+        />
       </section>
     );
   }

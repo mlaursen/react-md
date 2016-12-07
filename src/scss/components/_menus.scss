@@ -1,136 +1,234 @@
-.md-menu-container {
-  display: inline-block;
-  position: relative;
+////
+/// @group menus
+////
 
-  &.full-width {
-    @extend %full-width;
-    display: block;
-  }
-}
+/// Boolean if the cascading styles for menus should be included
+/// @type {Boolean}
+$md-menu-include-cascading: true !default;
 
-.md-menu {
-  @include md-box-shadow(2);
+/// The z-index to use for menus
+/// type Number
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
+/// @see md-drawer-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @see md-toolbar-z-index
+/// @group menus, z-indexes
+$md-menu-z-index: 10 !default;
 
-  background: $md-white-base;
-  position: absolute;
-  top: 0;
-  z-index: 28;
+/// The transition time to use for menus
+/// type Number
+$md-menu-transition-time: .2s !default;
 
-  &.limit-height {
-    max-height: $md-dropdown-max-height;
-    overflow-y: auto;
-  }
+$md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2;
+$md-menu-desktop-max-height: $md-height * 5 + $md-height / 3 + $md-list-desktop-padding * 2;
 
-  &.below {
-    border-top: 1px solid $md-border-color;
-    top: 100%;
-    transform-origin: 0 0;
-  }
+$md-menu-cascading-font-size: 15px;
+$md-menu-cascading-padding: 24px;
+$md-menu-cascading-height: 32px;
+$md-menu-cascading-list-padding: 16px;
 
-  &.cascading {
-    padding-bottom: 16px;
-    padding-top: 16px;
-
-    .md-list-tile {
-      height: 32px;
-      padding-left: 24px;
-      padding-right: 24px;
-
-      // scss-lint:disable NestingDepth
-      &.secondary-action {
-        padding-right: 24 - $md-default-padding;
-      }
-    }
-
-    .md-tile-primary-text {
-      font-size: 15px;
-    }
-  }
-
-  &.full-width {
-    @extend %full-width;
+/// Includes the styles for menus.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-menus;
+///
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries are included
+///     for menus.
+/// @param {Boolean} include-cascading [$md-menu-include-cascading] - Boolean if the desktop cascading
+///     styles for menus should be included.
+@mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading) {
+  @if $include-media {
+    @include react-md-menus-media;
   }
 
   .md-menu-container {
-    position: absolute;
-  }
-
-  .md-list-item {
     position: relative;
-
-    .md-list {
-      @include md-box-shadow(3);
-
-      background: if($md-light-theme, $md-white-base, $md-dark-theme-background-color);
-      left: 100%;
-      position: absolute;
-      z-index: 3;
-    }
-  }
-}
-
-.md-transition-tr {
-  right: 0;
-  transform-origin: 100% 0;
-}
-
-.md-transition-tl {
-  transform-origin: 0 0;
-}
-
-.md-transition-br {
-  right: 0;
-  transform-origin: 100% 100%;
-}
-
-.md-transition-bl {
-  transform-origin: 0 100%;
-}
-
-.md-transition-below {
-  top: 100%;
-  transform-origin: 50% 0;
-  width: 100%;
-
-  &.md-menu-enter {
-    transform: scaleY(0);
-
-    &.md-menu-enter-active {
-      transform: scaleY(1);
-    }
   }
 
-  &.md-menu-leave {
-    transform: scaleY(1);
-
-    &.md-menu-leave-active {
+  .md-menu-container--menu-below {
+    .md-menu-enter {
       transform: scaleY(0);
+
+      &.md-menu-enter-active {
+        transform: scaleY(1);
+      }
+    }
+  }
+
+  .md-list--menu {
+    @include md-box-shadow(2);
+
+    position: absolute;
+    top: 0;
+    z-index: $md-menu-z-index;
+  }
+
+  .md-list--menu-contained {
+    width: 100%;
+  }
+
+  .md-list--menu-scrollable {
+    overflow-y: auto;
+  }
+
+  .md-list--menu-tr {
+    right: 0;
+    transform-origin: 100% 0;
+  }
+
+  .md-list--menu-tl {
+    transform-origin: 0 0;
+  }
+
+  .md-list--menu-br {
+    right: 0;
+    transform-origin: 100% 100%;
+  }
+
+  .md-list--menu-bl {
+    transform-origin: 0 100%;
+  }
+
+  .md-list--menu-context {
+    transform-origin: 50% 0;
+  }
+
+  .md-list--menu-nested {
+    @include md-box-shadow(3);
+
+    position: absolute;
+    z-index: $md-menu-z-index + 1;
+  }
+
+  .md-list--menu-below {
+    left: 0;
+    top: 100%;
+    transform-origin: 50% 0;
+    width: 100%;
+  }
+
+  .md-menu-enter {
+    transform: scale(0);
+  }
+
+  .md-menu-leave {
+    opacity: 1;
+  }
+
+  .md-menu-enter-active,
+  .md-menu-leave-active {
+    transition-duration: $md-menu-transition-time;
+  }
+
+  .md-menu-enter.md-menu-enter-active {
+    transform: scale(1);
+    transition-property: transform;
+  }
+
+  .md-menu-leave.md-menu-leave-active {
+    opacity: 0;
+    transition-property: opacity;
+  }
+
+  .md-menu-enter.md-menu-enter-active {
+    transition-timing-function: $md-transition-deceleration;
+  }
+
+  .md-menu-leave.md-menu-enter-leave {
+    transition-timing-function: $md-transition-acceleration;
+  }
+
+  @if $include-cascading {
+    @include react-md-menus-cascading;
+  }
+}
+
+@mixin react-md-menus-cascading {
+  @media #{$md-desktop-media} {
+    .md-list--menu-cascading {
+      padding-bottom: $md-menu-cascading-list-padding;
+      padding-top: $md-menu-cascading-list-padding;
+
+      .md-list-tile {
+        height: $md-menu-cascading-height;
+        padding-left: $md-menu-cascading-padding;
+        padding-right: $md-menu-cascading-padding;
+      }
+
+      .md-tile-text--primary {
+        font-size: $md-menu-cascading-font-size;
+      }
+
+      .md-list-item--nested-container {
+        position: relative;
+      }
+
+      .md-list--menu-tr,
+      .md-list--menu-br {
+        left: 100%;
+        right: initial;
+      }
+
+      .md-list--menu-tl,
+      .md-list--menu-bl {
+        left: initial;
+        right: 100%;
+      }
+
+      .md-collapser {
+        transform: rotate3d(0, 0, 1, -90deg);
+      }
+
+      .md-collapser--flipped {
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
     }
   }
 }
 
-.md-menu-enter {
-  transform: scale(0);
-
-  &.md-menu-enter-active {
-    transform: scale(1);
-    transition: transform $md-transition-time;
+/// Creates the styles for menus on mobile devices. This should _normally_
+/// be used a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-menus-mobile;
+///   }
+/// @group menus, media-queries
+@mixin react-md-menus-mobile {
+  .md-list--menu-scrollable {
+    max-height: $md-menu-mobile-max-height;
   }
 }
 
-.md-menu-leave {
-  transform: scale(1);
-
-  &.md-menu-leave-active {
-    transform: scale(0);
-    transition: transform $md-transition-time;
+/// Creates the styles for menus on desktop screens. This should _normally_
+/// be used a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-menus-desktop;
+///   }
+/// @group menus, media-queries
+@mixin react-md-menus-desktop {
+  .md-list--menu-scrollable {
+    max-height: $md-menu-desktop-max-height;
   }
 }
 
-.md-toolbar-container + .md-menu-container {
-  display: block;
+/// Includes the media queries for menus on mobile devices and desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-menus-media;
+/// @group menus, media-queries
+@mixin react-md-menus-media {
+  @media #{$md-mobile-media} {
+    @include react-md-menus-mobile;
+  }
 
-  .md-menu {
-    width: 100%;
+  @media #{$md-desktop-media} {
+    @include react-md-menus-desktop;
   }
 }

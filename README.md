@@ -1,4 +1,5 @@
 # react-md
+
 React Material Design - React components built with sass
 
 [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
@@ -14,46 +15,12 @@ $ npm i -S react \
            react-dom \
            react-addons-transition-group \
            react-addons-css-transition-group \
-           react-addons-pure-render-mixin \
            react-md
 ```
 
-You can also use the UMD build from [unpkg](https://unpkg.com/#/):
+## Usage
 
-```html
-<!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
-<script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
-
-<!-- Development Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.css">
-<script src="https://unpkg.com/react-md/dist/react-md.js"></script>
-```
-
-## Getting Started
-
-> NOTE: There are some other implementations that might work better for you:
-> - [Material-UI](/callemall/material-ui) - Uses inline styling
-> - [React Toolbox](/react-toolbox/react-toolbox) - SASS Implementation
-
-
-### Prerequisites
-
-To use this library, it is recommended to have previous experience using React along with sass or css. Since the sass files are prefix-free, you will need
-to include an autoprefixer for multi-browser support.
-
-You will need to include the Roboto or Noto font library since they are the default typeface on Android and Chrome. They can
-be included by using a CDN, the [WebFontLoader](/typekit/webfontloader), or importing through CSS.
-
-In addition, some form of font icon library should be included. The [material-icons](https://design.google.com/icons/) is the default
-font icon implementation, but any can be used.
-
-Finally, if you want to use the `DatePicker` or `TimePicker` components, the [Intl polyfill](https://github.com/andyearnshaw/Intl.js) should
-be included for older browsers. [See caniuse](http://caniuse.com/#search=intl) for browser support.
-
-### Usage
-
-#### Basic Webpack Usage
+### Basic Webpack Usage
 
 ```js
 /* App.jsx */
@@ -82,13 +49,11 @@ render(<App />, document.getElementById('app'));
 /* MyAwesomeComponent.jsx */
 
 import React, { Component }  from 'react';
-import RaisedButton from 'react-md/lib/Buttons/RaisedButton';
-// or
-// import { RaisedButton } from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons';
 
 export default class MyAwesomeComponent extends Component {
   render() {
-		return <RaisedButton label="Hello, World!" />;
+		return <Button raised label="Hello, World!" />;
 	}
 }
 ```
@@ -100,98 +65,76 @@ export default class MyAwesomeComponent extends Component {
 @import '~react-md/scss/react-md';
 ```
 
-#### UMD Usage
+
+You can also use the UMD build from [unpkg](https://unpkg.com/#/):
+
+```html
+<!-- Production Version -->
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.min.css">
+<script src="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.min.js"></script>
+
+<!-- Development Version -->
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.css">
+<script src="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.js"></script>
+```
+
+
+### UMD Usage
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md/dist/react-md.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.deep-purple-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md/dist/react-md.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.7.7/babel.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.0.0-alpha.4/dist/react-md.min.js"></script>
     <script>
-const input = `
-const { RaisedButton } = ReactMD;
-const MyAwesomeComponent = () => (
-  <RaisedButton label="Hello, World!" />
-);
+    var MyAwesomeComponent = React.createClass({
+      render: function()  {
+        return React.createElement(ReactMD.Button, { label: 'Hello, World!', flat: true });
+      }
+    });
 
-ReactDOM.render(<MyAwesomeComponent />, document.getElementById('app'));`
-
-eval(Babel.transform(input, { presets: ['es2015', 'react', 'stage-0'] }).code);
+    ReactDOM.render(React.createElement(MyAwesomeComponent), document.getElementById('app'));
     </script>
   </body>
 </html>
 ```
 
-### Customizing the theme
+## Customizing the theme
+The application should define a `primary` and `secondary` color. The `primary` color
+should be chosen from one of the `'-500'` colors and the `secondary` should be one of
+the `'a-'` colors.
 
-Hopefully the [generated sassdoc](http://react-md.mlaursen.com/sassdoc) will help with
-mixin usage and sass documentation.
+The default color palette is defined as:
 
-The default colors are `indigo` and `pink` (hue A200). You can theme your application by either changing the default color variables:
-
-```
+```scss
 $md-primary-color: $md-indigo-500 !default;
-$md-primary-color-hue-1: $md-indigo-400 !default;
 $md-secondary-color: $md-pink-a-200 !default;
-$md-secondary-color-hue-1: $md-pink-a-100 !default;
 ```
 
-Or defining your own theme with the theme mixins.
-[Examples from Documentation website](http://react-md.mlaursen.com/customization/themes).
+If you change these variables before the `react-md-everything` mixin is included, your entire
+application will be styled with your new theme.
 
-### Media queries
+```scss
+@import '~react-md/src/scss/react-md';
 
-The default media queries for detecting if mobile are very simple. Anything below 600px is considered mobile.
-If these do not work for you, you can use the correct mixins for making a component styled
-for mobile/desktop.
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-lime-a-400;
 
-See [the example \_media-queries.scss](../master/src/scss/_media-queries.scss) source.
-
-### Upgrade Guide
-
-If you need to view any upgrading help, view the [upgrade guide](../master/docs/UpgradeGuide.md)
-
-## Contributing
-
-The branching model used for this project is basically the [git flow diagram](http://nvie.com/img/git-model@2x.png).
-The only difference is that I do not use a `develop` branch. The develop branch is just the current release branch.
-So if the current release is v0.3, the active develop branch is `release/0.3.x`. Please make sure pull requests
-are targeted to the correct release branch and not `master`.
-
-The source files are located in the `src` dir. You can compile all the components and watch for changes with
-
-```bash
-$ npm run scripts:watch  # watch src and recompile
+@include react-md-everything;
 ```
 
-### Linting
-The scss linting is done through the Ruby version of `sass` and `scss_lint`. Mostly because I use vim and it is
-what I was using before. The `sass-lint` from `npm` did not follow the same rules as expected.
-
-```bash
-$ npm run lint        # lints scss and js files
-$ npm run lint:fix    # attempts to fix linting problems for js
-```
-
-### Testing
-
-```bash
-$ npm test
-$ npm run test:watch
-```
+See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
+is also a theme builder available to try mix and matching different colors.
 
 ## Known Bugs/Works in Progress/Future Changes
 
-* Scrollable tabs do not exist for desktop. Wasn't sure how to calculate it yet or set it up.
 * Bottom sheets
-* Grid lists
 * Steppers
 * Eventually add Floating button transitions/morphing abilities. Ex: Speed Dial, Morph into toolbar/material/paper
-* Eventually update for dark themes

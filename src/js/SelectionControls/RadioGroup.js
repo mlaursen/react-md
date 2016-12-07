@@ -1,6 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+/* eslint-disable no-unused-vars, no-shadow */
+import React, { PureComponent, PropTypes, Children } from 'react';
+import deprecated from 'react-prop-types/lib/deprecated';
+
+import SelectionControlGroup from './SelectionControlGroup';
+
+// This will still work, but generate a lot of warnings
 
 /**
  * The `RadioGroup` component is a state manager for the `Radio` component.
@@ -9,107 +13,49 @@ import classnames from 'classnames';
  *
  * This is just a simple wrapper to reduce some prop redundancy.
  */
-export default class RadioGroup extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      value: props.defaultValue || React.Children.toArray(props.children)[0].props.value,
-    };
-  }
-
+export default class RadioGroup extends PureComponent {
   static propTypes = {
-    /**
-     * The default value for the radio group. This will check the radio that
-     * has the same value first by default.
-     *
-     * If this is omitted, the first radio will be selected.
-     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
     defaultValue: PropTypes.string,
-
-    /**
-     * Boolean if the entire radio group is disabled.
-     */
-    disabled: PropTypes.bool,
-
-    /**
-     * An optional className to apply to the radio group.
-     */
     className: PropTypes.string,
-
-    /**
-     * The radio buttons to manage.
-     */
     children: PropTypes.arrayOf(PropTypes.node).isRequired,
-
-    /**
-     * The component to render the radio group as.
-     */
-    component: PropTypes.string.isRequired,
-
-    /**
-     * Boolean if the radio buttons should be force to be inline.
-     */
     inline: PropTypes.bool,
-
-    /**
-     * An optional onChange function to call when any of the radio buttons are clicked.
-     * This will return the clicked radio's value and the change event.
-     *
-     * `onChange(value, event)`.
-     */
     onChange: PropTypes.func,
-
-    /**
-     * The name to give to all the radio buttons.
-     */
     name: PropTypes.string,
-
-    /**
-     * The current value for the radio group. This will convert the radio group
-     * into a controlled component which will require the onChange prop
-     * to be given.
-     */
     value: PropTypes.string,
-  };
 
-  static defaultProps = {
-    component: 'div',
-    inline: false,
-  };
-
-  handleChange = (value, e) => {
-    this.props.onChange && this.props.onChange(value, e);
-    // prevents 2 change events triggering
-    e.stopPropagation();
-
-    if(typeof this.props.value === 'undefined') {
-      this.setState({ value });
-    }
-  };
-
-  getValue = () => {
-    return typeof this.props.value === 'undefined' ? this.state.value : this.props.value;
+    _deprecated: deprecated(PropTypes.bool, 'Use the `SelectionControlGroup` component instead'),
   };
 
   render() {
-    const { component, className, children, name, inline, disabled, ...props } = this.props;
-    const fullProps = {
-      ...props,
-      className: classnames('md-radio-group', className),
-    };
-    const value = this.getValue();
+    const { children, ...props } = this.props;
+    delete props.id;
+    delete props.defaultValue;
 
-    return React.createElement(component, fullProps, React.Children.map(children, (child, i) => {
-      return React.cloneElement(child, {
-        key: i,
-        checked: value === child.props.value,
-        onChange: this.handleChange,
-        name: name || child.props.name,
-        className: classnames({ inline }),
-        disabled: child.props.disabled || disabled,
-      });
-    }));
+    let { id, defaultValue } = this.props;
+    if (!id) {
+      id = `${props.name}RadiosUniquePlease`;
+    }
+
+    if (typeof props.value === 'undefined') {
+      if (typeof defaultValue === 'undefined') {
+        defaultValue = Children.map(children, ({ props: { value } }) => value)[0];
+      }
+    }
+
+    const controls = Children.map(children, radio => {
+      const props = Object.assign({}, radio.props);
+      delete props.checkedIcon;
+      delete props.uncheckedIcon;
+      delete props.checkedIconChildren;
+      delete props.checkedIconClassName;
+      delete props.uncheckedIconChildren;
+      delete props.uncheckedIconClassName;
+      return { ...props };
+    });
+    return <SelectionControlGroup {...props} id={id} defaultValue={defaultValue} type="radio" controls={controls} />;
   }
 }

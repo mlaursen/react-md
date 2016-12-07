@@ -1,22 +1,26 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import injectInk from '../Inks';
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
+import IconSeparator from '../Helpers/IconSeparator';
+import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
 /**
  * The `FileInput` component is used as simple styling for the `<input type="file" />`.
  * It will style the input as a raised button by default.
  */
-class FileInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class FileInput extends PureComponent {
   static propTypes = {
+    /**
+     * The id for the text field. This is required for a11y and to get the `input type="file"` to
+     * open.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
     /**
      * An optional style to apply.
      */
@@ -53,6 +57,8 @@ class FileInput extends Component {
      * - video/*
      * - image/*
      * - any valid [IANA Media Type](http://www.iana.org/assignments/media-types/media-types.xhtml)
+     *
+     * > NOTE: IE does not enforce this.
      */
     accept: PropTypes.string,
 
@@ -65,6 +71,11 @@ class FileInput extends Component {
      * A label to display on the `FileInput` when no files have been selected.
      */
     label: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the icons hould appear before the label.
+     */
+    iconBefore: PropTypes.bool,
 
     /**
      * The icon children to use for the upload icon.
@@ -81,9 +92,9 @@ class FileInput extends Component {
      * be triggered when the user selects a new file or cancels the new file selection.
      *
      * This function will be given the new [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList)
-     * as an array and the change event. If this is not a multiple file input, only the newly selected File
-     * will be given instead of a list of one file. Since this is an `input` tag,
-     * the user will not be able to select the same file multiple times unless
+     * as an array and the change event. If this is not a multiple file input, only the
+     * newly selected File will be given instead of a list of one file. Since this is an
+     * `input` tag, the user will not be able to select the same file multiple times unless
      * you manually clear the input's value.
      *
      * > NOTE: If the user hits cancel, null will be given for a single file input.
@@ -95,9 +106,9 @@ class FileInput extends Component {
     onChange: PropTypes.func.isRequired,
 
     /**
-     * Injected from `injectInk`
+     * Boolean if the `FileInput` is currently disabled.
      */
-    ink: PropTypes.node,
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -105,17 +116,25 @@ class FileInput extends Component {
     iconChildren: 'file_upload',
   };
 
-  _handleChange = (e) => {
+  constructor(props) {
+    super(props);
+
+    this.state = { hover: false, active: false };
+    this._handleChange = this._handleChange.bind(this);
+  }
+
+  _handleChange(e) {
     const { multiple, onChange } = this.props;
     const { files } = e.target;
-    if(!multiple) {
+    if (!multiple) {
       onChange(files[0] || null, e);
     } else {
       onChange(Array.prototype.slice.call(files), e);
     }
-  };
+  }
 
   render() {
+    const { active, hover } = this.state;
     const {
       style,
       className,
@@ -125,35 +144,49 @@ class FileInput extends Component {
       primary,
       secondary,
       flat,
-      ink,
-      ...props,
+      id,
+      iconBefore,
+      disabled,
+      accept,
+      multiple,
+      ...props
     } = this.props;
     delete props.onChange;
 
+    const icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
     return (
-      <label
+      <div
+        {...props}
         style={style}
-        className={classnames(`md-btn md-${flat ? 'flat' : 'raised'}-btn md-file-input-btn`, className, {
-          'md-primary': primary,
-          'md-secondary': secondary,
-        })}
-        disabled={props.disabled}
+        className={cn('md-inline-block md-file-input-container', className)}
       >
-        {ink}
+        <AccessibleFakeInkedButton
+          component="label"
+          htmlFor={id}
+          disabled={disabled}
+          className={cn(`md-btn md-btn--${flat ? 'flat' : 'raised'} md-btn--text`, {
+            'md-btn--color-primary': !disabled && flat && primary,
+            'md-btn--color-secondary': !disabled && flat && secondary,
+            'md-btn--color-primary-active': !disabled && flat && hover && primary,
+            'md-btn--color-secondary-active': !disabled && flat && hover && secondary,
+            'md-btn--raised-primary': !disabled && !flat && primary,
+            'md-btn--raised-secondary': !disabled && !flat && secondary,
+            'md-btn--raised-active': !disabled && !flat && active,
+          })}
+        >
+          <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>
+        </AccessibleFakeInkedButton>
         <input
-          {...props}
-          aria-hidden="true"
+          multiple={multiple}
+          disabled={disabled}
+          id={id}
+          accept={accept}
           type="file"
+          aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}
         />
-        <div className="icon-separator">
-          <FontIcon iconClassName={iconClassName} children={iconChildren} />
-          <span className="text">{label}</span>
-        </div>
-      </label>
+      </div>
     );
   }
 }
-
-export default injectInk(FileInput);

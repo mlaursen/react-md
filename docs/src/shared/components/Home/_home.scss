@@ -1,55 +1,42 @@
-@import '~sass-utils';
-
-.home {
-  padding-bottom: 5em;
-}
-
-.logo {
-  padding-bottom: 2em;
-}
-
-.img-card .md-ink {
-  background: rgba($md-white-base, .12);
-}
+@import '~react-md-scss';
 
 .banner {
   align-items: center;
-  background: $md-primary-color;
+  background: $md-light-blue-500;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 400px;
   padding: 2em;
 
-  .md-subheading-2,
-  .md-display-2 {
+  .md-display-2,
+  .md-subheading-2 {
     color: $md-white-base;
   }
 }
 
-.getting-started {
-  justify-content: center;
+.about {
+  line-height: $md-line-height;
+  padding: 1em $md-default-padding 3em;
+  white-space: initial;
+}
 
-  .md-card {
-    max-width: 355px;
-    text-decoration: none;
+.img-card {
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+
+  .md-ink {
+    background: rgba($md-white-base, .12);
   }
 }
 
-.about {
-  @extend %centered;
-  @extend %md-title;
-
-  margin-bottom: 2em;
-  padding: 1em 0;
-  white-space: normal;
+// scss-lint:disable IdSelector, SelectorFormat
+#MD tspan {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: $md-font-bold;
 }
 
-.md-navigation-drawer-toolbar.inactive {
-  box-shadow: none;
-}
-
-.ink-item {
-  overflow: hidden;
-  position: relative;
+#Group > path:first-child {
+  fill: $md-deep-orange-a-200;
 }

@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../PickerControl');
 
 import React from 'react';
@@ -19,9 +19,10 @@ describe('PickerControl', () => {
         style={style}
         className={className}
         active={false}
-        onClick={jest.genMockFunction()}
-        children="A"
-      />
+        onClick={jest.fn()}
+      >
+        A
+      </PickerControl>
     );
 
     const pickerControlNode = findDOMNode(pickerControl);
@@ -30,13 +31,9 @@ describe('PickerControl', () => {
   });
 
   it('calls the onClick function when clicked', () => {
-    const onClick = jest.genMockFunction();
+    const onClick = jest.fn();
     const pickerControl = renderIntoDocument(
-      <PickerControl
-        active={false}
-        onClick={onClick}
-        children="A"
-      />
+      <PickerControl active={false} onClick={onClick}>A</PickerControl>
     );
 
     const pickerControlNode = findDOMNode(pickerControl);

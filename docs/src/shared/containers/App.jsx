@@ -1,129 +1,141 @@
-import React, { PureComponent, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent, PropTypes, cloneElement } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import { connect } from 'react-redux';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
-import ThemeSwitcher from 'containers/ThemeSwitcher';
-import Overlay from 'containers/Overlay';
-import QuickNav from 'containers/QuickNav';
-import AppFooter from 'components/AppFooter';
+import { updateMedia, setCustomTheme } from 'actions/ui';
+import { THEME_STORAGE_KEY } from 'constants/application';
+import hasStorage from 'utils/hasStorage';
+import loadCustomTheme from 'utils/loadCustomTheme';
+import navItems from 'constants/navItems';
+import DocumentationTabs from 'containers/DocumentationTabs';
 import Notifications from 'containers/Notifications';
-import ToolbarChildren from 'components/ToolbarChildren';
-import { getNavItems } from 'utils/RouteUtils';
-import { mediaChange, setMobileSearch } from 'actions/ui';
+import AppFooter from 'containers/AppFooter';
+import Search from 'containers/Search';
 
-@connect(({ ui: { drawer, media, theme } }) => ({
-  theme,
-  themeable: drawer.themeable,
-  includeHeader: drawer.includeHeader,
-  initialDrawerType: drawer.initialDrawerType,
-  toolbarTitle: drawer.toolbarTitle,
-  inactive: drawer.inactive,
-  tabletDrawerType: drawer.tabletDrawerType,
-  desktopDrawerType: drawer.desktopDrawerType,
-  mobileSearch: drawer.mobileSearch,
-  mobile: media.mobile,
-}), {
-  mediaChange,
-  setMobileSearch,
+@connect(({ ui: { drawer } }) => ({ ...drawer }), {
+  onMediaTypeChange: updateMedia,
+  setCustomTheme,
 })
 export default class App extends PureComponent {
   static propTypes = {
+    // Injected from connect and drawer state
+    defaultMedia: NavigationDrawer.propTypes.defaultMedia,
+    visibleBoxShadow: PropTypes.bool.isRequired,
+    visibleToolbarTitle: PropTypes.bool.isRequired,
+    toolbarTitle: PropTypes.string.isRequired,
+    toolbarProminent: PropTypes.bool.isRequired,
+    onMediaTypeChange: PropTypes.func.isRequired,
+    setCustomTheme: PropTypes.func.isRequired,
+    customDrawerType: PropTypes.string,
+
+    params: PropTypes.shape({
+      component: PropTypes.string,
+      section: PropTypes.string,
+    }).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
-
-    location: PropTypes.object.isRequired,
-    theme: PropTypes.string.isRequired,
-    themeable: PropTypes.bool.isRequired,
-    includeHeader: PropTypes.bool.isRequired,
-    initialDrawerType: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
-    toolbarTitle: PropTypes.string.isRequired,
-    inactive: PropTypes.bool.isRequired,
-    mobile: PropTypes.bool.isRequired,
-    tabletDrawerType: PropTypes.string.isRequired,
-    desktopDrawerType: PropTypes.string.isRequired,
-    mediaChange: PropTypes.func.isRequired,
-    mobileSearch: PropTypes.bool.isRequired,
-    setMobileSearch: PropTypes.func.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      minOffset: 256 + 64,
+    };
+
+    this._setContainer = this._setContainer.bind(this);
+    this._calcMinHeight = this._calcMinHeight.bind(this);
+    this._handleMediaTypeChange = this._handleMediaTypeChange.bind(this);
+  }
+
+  componentWillMount() {
+    if (hasStorage() && localStorage.getItem(THEME_STORAGE_KEY) !== null) {
+      this.props.setCustomTheme(true);
+    }
+  }
+
   componentDidMount() {
-    this.props.mediaChange();
-    window.addEventListener('resize', this.props.mediaChange);
+    if (hasStorage() && localStorage.getItem(THEME_STORAGE_KEY) !== null) {
+      const { primary, secondary, light, hue } = JSON.parse(localStorage.getItem(THEME_STORAGE_KEY));
+      loadCustomTheme(primary, secondary, hue, light);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.toolbarProminent !== prevProps.toolbarProminent) {
+      this._calcMinHeight();
+    }
+  }
+
+  _setContainer(container) {
+    this._container = findDOMNode(container);
+    this._calcMinHeight();
+  }
+
+  _calcMinHeight() {
+    if (!this._container) {
+      return;
+    }
+
+    const { offsetHeight: toolbarHeight } = this._container.querySelector('.main-toolbar');
+    const { offsetHeight: footerHeight } = this._container.querySelector('.app-footer');
+    this.setState({ minOffset: toolbarHeight + footerHeight });
+  }
+
+  _handleMediaTypeChange(drawerType, media) {
+    this._calcMinHeight();
+    this.props.onMediaTypeChange(drawerType, media);
   }
 
   render() {
-    let { children, toolbarTitle } = this.props;
-
     const {
-      location: { pathname },
-      inactive,
-      mobile,
-      mobileSearch,
-      initialDrawerType,
-      tabletDrawerType,
-      desktopDrawerType,
-      setMobileSearch,
-      theme,
-      themeable,
-      includeHeader,
+      params,
+      location: { pathname, search },
+      defaultMedia,
+      visibleBoxShadow,
+      visibleToolbarTitle,
+      toolbarTitle,
+      toolbarProminent,
+      customDrawerType,
     } = this.props;
 
+    const { minOffset } = this.state;
+
+    let { children } = this.props;
     if (children) {
-      children = React.cloneElement(children, { key: pathname });
+      children = cloneElement(children, {
+        key: `${pathname}${search || ''}`,
+        style: { minHeight: `calc(100vh - ${minOffset}px)` },
+      });
     }
 
-    if (mobileSearch) {
-      toolbarTitle = null;
-    }
-
-    let quickNav;
-    let toolbarChildren;
-    if (pathname !== '/') {
-      quickNav = <QuickNav key="quick-nav" />;
-      toolbarChildren = (
-        <ToolbarChildren
-          key="children"
-          mobile={mobile}
-          mobileSearch={mobileSearch}
-          setMobileSearch={setMobileSearch}
-        />
-      );
-    }
-
-    let drawerChildren;
-    if (themeable) {
-      drawerChildren = <ThemeSwitcher key="theme-switcher" />;
-    }
-
-    const props = {
-      className: theme,
-      initialDrawerType,
-      drawerTitle: 'react-md',
-      drawerClassName: 'fixed-drawer',
-      drawerHeaderFixed: true,
-      drawerChildren,
-      toolbarTitle,
-      toolbarChildren,
-      toolbarClassName: cn('doc-toolbar', { inactive }),
-      navItems: getNavItems(pathname),
-      contentClassName: 'text-page',
-      tabletDrawerType,
-      desktopDrawerType,
-    };
-
-    if (!includeHeader) {
-      delete props.drawerChildren;
-      delete props.drawerTitle;
-      delete props.drawerHeaderFixed;
+    let tabs;
+    if (toolbarProminent) {
+      tabs = <DocumentationTabs key="tabs" params={params} pathname={pathname} />;
     }
 
     return (
-      <NavigationDrawer {...props}>
+      <NavigationDrawer
+        ref={this._setContainer}
+        drawerTitle="react-md"
+        defaultMedia={defaultMedia}
+        toolbarClassName={cn('main-toolbar', { 'main-toolbar--title-hidden': !visibleToolbarTitle })}
+        toolbarTitle={toolbarTitle}
+        toolbarProminent={toolbarProminent}
+        toolbarChildren={tabs}
+        navItems={navItems(pathname)}
+        drawerType={customDrawerType}
+        toolbarStyle={!visibleBoxShadow ? { boxShadow: 'none' } : null}
+        toolbarActions={<Search key="search" />}
+        onMediaTypeChange={this._handleMediaTypeChange}
+      >
         {children}
-        {quickNav}
-        <Overlay className="quick-search-overlay" />
-        <AppFooter key="footer" />
+        <AppFooter key="footer" home={pathname === '/'} />
         <Notifications key="notifications" />
       </NavigationDrawer>
     );

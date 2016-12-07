@@ -1,97 +1,142 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import FontIcon from '../FontIcons';
-import ControlContainer from './ControlContainer';
+import React, { PureComponent, PropTypes } from 'react';
+import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import SelectionControl from './SelectionControl';
 
 /**
- * The `Radio` component can be used with the `RadioGroup` component for
- * additional state management. It is completely optional to use these
- * two components together though. It is just to eliminate some redundancies.
+ * The `Radio` component is used for the selection of a single option from a set. Unfortunately
+ * the `Radio` component must always be controlled because of the `FontIcon` toggles and how
+ * the `radio` input type works. It is recommended to use the `SelectionControlGroup` component
+ * to manage the `radio`.
  */
-export default class Radio extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Radio extends PureComponent {
   static propTypes = {
     /**
-     * The optional className to apply to the surrounding label.
+     * An id to use with the radio. This is used for accessibility and so that the label
+     * triggers the radio toggle.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
+     * An optional style to apply to the radio's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the radio's container.
      */
     className: PropTypes.string,
 
     /**
-     * Boolean if the radio is disabled.
+     * A label to display with the radio. This is required for accessibility and triggering
+     * the toggle.
+     */
+    label: PropTypes.string.isRequired,
+
+    /**
+     * Boolean if the label should appear before the radio icon.
+     */
+    labelBefore: PropTypes.bool,
+
+    /**
+     * A name to use for the `Radio`. This is required for accessibility.
+     */
+    name: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
+     * Boolean if the `Radio` is disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * An optional function to call when the checked state is called.
-     * The radio value and change event will be passed.
+     * A function to call when the `Radio` triggers the `change` event. The `onChange` callback
+     * will include the current value of the checked `radio` and the change event.
      *
-     * `onChange(value, event)`.
+     * ```js
+     * onChange(changeEvent.target.value, changeEvent);
+     * ```
      */
     onChange: PropTypes.func,
 
     /**
-     * The value for the radio
+     * The value for the `Radio` component.
      */
     value: PropTypes.oneOfType([
-      PropTypes.string,
       PropTypes.number,
+      PropTypes.string,
     ]).isRequired,
 
     /**
-     * Boolean if the radio should be checked by default. Only use this
-     * if you are not using the `RadioGroup` component.
+     * A boolean if the `Radio` is currently checked.
      */
-    defaultChecked: PropTypes.bool.isRequired,
+    checked: PropTypes.bool.isRequired,
 
     /**
-     * Boolean if the radio button is checked. If you are using the
-     * `RadioGroup` component, this will be injected automatically
-     * for you. If this prop is defined, it has become a controlled component
-     * so you will need to use include the `onChange` prop as well.
+     * Boolean if the `Radio` should be displayed inline.
      */
-    checked: PropTypes.bool,
+    inline: PropTypes.bool,
 
     /**
-     * The icon to use for the checked state of the radio.
+     * Any children to use for the checked `FontIcon` of the `Radio`.
      */
-    checkedIcon: PropTypes.node.isRequired,
+    checkedIconChildren: PropTypes.node,
 
     /**
-     * The icon to use for the unchecked state of the radio.
+     * An icon className to use for the checked `FontIcon` of the `Radio`.
      */
-    uncheckedIcon: PropTypes.node.isRequired,
-
-      /**
-    * The optional label to display with the radio button.
-    */
-    label: PropTypes.node,
+    checkedIconClassName: PropTypes.string,
 
     /**
-     * Boolean if the label should appear before the radio button.
+     * Any children to use for the unchecked `FontIcon` of the `Radio`.
      */
-    labelBefore: PropTypes.bool.isRequired,
+    uncheckedIconChildren: PropTypes.node,
 
     /**
-     * The name to use for the radio. If you are usng the `RadioGroup` component,
-     * this will be injected automatically.
+     * An icon className to use for the unchecked `FontIcon` of the `Radio`.
      */
-    name: PropTypes.string,
+    uncheckedIconClassName: PropTypes.string,
+
+    checkedIcon: deprecated(
+      PropTypes.node,
+      'Use the `checkedIconChildren` and `checkedIconClassName` props instead.'
+    ),
+    uncheckedIcon: deprecated(
+      PropTypes.node,
+      'Use the `uncheckedIconChildren` and `uncheckedIconClassName` props instead.'
+    ),
   };
 
   static defaultProps = {
-    labelBefore: false,
-    defaultChecked: false,
-    checkedIcon: <FontIcon>radio_button_checked</FontIcon>,
-    uncheckedIcon: <FontIcon>radio_button_unchecked</FontIcon>,
+    checkedIconChildren: 'radio_button_checked',
+    uncheckedIconChildren: 'radio_button_unchecked',
   };
 
   render() {
-    return <ControlContainer {...this.props} type="radio" />;
+    const {
+      checkedIconChildren,
+      checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      ...props
+    } = this.props;
+
+    return (
+      <SelectionControl
+        type="radio"
+        checkedRadioIconChildren={checkedIconChildren}
+        checkedRadioIconClassName={checkedIconClassName}
+        uncheckedRadioIconChildren={uncheckedIconChildren}
+        uncheckedRadioIconClassName={uncheckedIconClassName}
+        __superSecreteProp
+        {...props}
+      />
+    );
   }
 }

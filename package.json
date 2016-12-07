@@ -1,6 +1,6 @@
 {
   "name": "react-md",
-  "version": "0.3.7",
+  "version": "1.0.0-alpha.4",
   "description": "React material design components",
   "main": "./lib",
   "files": [
@@ -12,28 +12,26 @@
   "scripts": {
     "test": "BABEL_ENV=test jest",
     "test:watch": "BABEL_ENV=test jest --watch",
-    "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --out-dir=./lib",
-    "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch --out-dir=./lib",
-    "styles": "sass --style expanded --line ./src/scss/react-md.scss ./dist/react-md.css && sass --style compact ./src/scss/react-md.scss ./dist/react-md.min.css",
+    "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
+    "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
     "lint:styles": "scss-lint src/scss",
-    "lint:scripts": "eslint -c .eslintrc src/js/**",
+    "lint:scripts": "eslint -c .eslintrc src",
     "lint": "npm run lint:styles && npm run lint:scripts",
-    "lint:fix": "eslint -c .eslintrc --fix src/js/**",
-    "build:umd": "webpack --config ./webpack.config.js --progress --colors",
-    "prebuild": "rimraf lib && rimraf dist && npm run lint",
-    "build": "npm run scripts && npm run build:umd && npm run styles"
+    "lint:fix": "eslint -c .eslintrc --fix src",
+    "css-bundles": "node ./makeBundles.js",
+    "build:umd": "npm run css-bundles && webpack --progress --colors",
+    "prebuild": "rimraf lib && rimraf dist && rimraf src/scss/bundles && npm run lint",
+    "build": "npm run scripts && npm run build:umd"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mlaursen/react-md.git"
   },
   "keywords": [
+    "react-md",
     "react",
-    "component",
     "material-design",
-    "material",
-    "google",
-    "ui"
+    "material-ui"
   ],
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
@@ -42,10 +40,11 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
+    "autoprefixer": "^6.5.1",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
-    "babel-eslint": "^6.1.2",
-    "babel-jest": "^14.1.0",
+    "babel-eslint": "^7.0.0",
+    "babel-jest": "^16.0.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.12.0",
@@ -53,33 +52,47 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
-    "babelify": "^7.3.0",
-    "eslint": "^3.2.2",
-    "eslint-plugin-react": "^6.0.0",
-    "intl": "^1.2.4",
-    "jest-cli": "^14.1.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.1.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "intl": "^1.2.5",
+    "jest-cli": "^16.0.2",
+    "node-sass": "^3.10.1",
+    "postcss-loader": "^1.0.0",
     "react": "^15.3.x",
     "react-addons-css-transition-group": "^15.3.x",
-    "react-addons-pure-render-mixin": "^15.3.x",
     "react-addons-test-utils": "^15.3.x",
     "react-addons-transition-group": "^15.3.x",
     "react-dom": "^15.3.x",
     "rimraf": "^2.5.4",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "invariant": "^2.2.1",
+    "react-motion": "^0.4.5",
+    "react-prop-types": "^0.4.0",
+    "react-swipeable-views": "^0.7.10"
   },
   "peerDependencies": {
-    "react": ">= 0.14.0",
-    "react-addons-css-transition-group": ">= 0.14.0",
-    "react-addons-pure-render-mixin": ">= 0.14.0",
-    "react-addons-transition-group": ">= 0.14.0",
-    "react-dom": ">= 0.14.0"
+    "react": ">= 15.0.0",
+    "react-addons-css-transition-group": ">= 15.0.0",
+    "react-addons-transition-group": ">= 15.0.0",
+    "react-dom": ">= 15.0.0"
   },
   "jest": {
+    "automock": true,
+    "timers": "fake",
     "cacheDirectory": "./.jest-cache",
-    "setupEnvScriptFile": "<rootDir>/src/beforeTest.js",
+    "setupFiles": [
+      "<rootDir>/src/beforeTest.js"
+    ],
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/intl",

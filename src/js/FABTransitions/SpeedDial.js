@@ -1,23 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
 
-import { FloatingButton } from '../Buttons';
+import Button from '../Buttons/Button';
 
 /**
  * Any props such as style or event listeners will be applied to the
  * main floating action button. If you want props applied to the `SpeedDial`
  * itself, you will need to set them in the `containerProps` prop.
  */
-export default class SpeedDial extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { isOpen: props.initiallyOpen };
-  }
-
+export default class SpeedDial extends PureComponent {
   static propTypes = {
     /**
      * A boolean if the speed dial is currently open. This will make
@@ -89,7 +81,7 @@ export default class SpeedDial extends Component {
      */
     fabs: (props, propName, component, ...others) => {
       const size = props.fabs.length;
-      if(size >= 3 && size <= 5) {
+      if (size >= 3 && size <= 5) {
         return PropTypes.arrayOf(PropTypes.oneOfType([
           PropTypes.node,
           PropTypes.shape({
@@ -101,7 +93,10 @@ export default class SpeedDial extends Component {
       }
 
       const middle = size < 3 ? 'at least 3' : 'no more than 5';
-      return new Error(`A speed dial requires ${middle} floating action buttons to fling. However, only ${size} were given.`);
+      return new Error(
+        `A speed dial requires ${middle} floating action buttons to fling. ` +
+        `However, only ${size} were given.`
+      );
     },
 
     /**
@@ -136,27 +131,34 @@ export default class SpeedDial extends Component {
     activeIconClassName: 'material-icons',
   };
 
-  isOpen = (props = this.props, state = this.state) => {
-    return typeof props.isOpen === 'undefined' ? state.isOpen : props.isOpen;
-  };
+  constructor(props) {
+    super(props);
 
-  handleClick = (e) => {
+    this.state = { isOpen: props.initiallyOpen };
+    this._handleClick = this._handleClick.bind(this);
+  }
+
+  _isOpen(props, state) {
+    return typeof props.isOpen === 'undefined' ? state.isOpen : props.isOpen;
+  }
+
+  _handleClick(e) {
     const { onClick, onPassiveClick, onActiveClick } = this.props;
-    if(onClick) {
+    if (onClick) {
       onClick(e);
     }
 
-    const isOpen = this.isOpen();
-    if(isOpen && onActiveClick) {
+    const isOpen = this._isOpen(this.props, this.state);
+    if (isOpen && onActiveClick) {
       onActiveClick(e);
-    } else if(!isOpen && onPassiveClick) {
+    } else if (!isOpen && onPassiveClick) {
       onPassiveClick(e);
     }
 
-    if(typeof this.props.isOpen === 'undefined') {
+    if (typeof this.props.isOpen === 'undefined') {
       this.setState({ isOpen: !isOpen });
     }
-  };
+  }
 
   render() {
     const {
@@ -171,30 +173,33 @@ export default class SpeedDial extends Component {
       speedDialTransitionEnterTimeout,
       speedDialTransitionLeaveTimeout,
       containerProps,
-      ...props,
+      ...props
     } = this.props;
     delete props.isOpen;
     delete props.initiallyOpen;
 
-    const isOpen = this.isOpen();
+    const isOpen = this._isOpen(this.props, this.state);
 
     let speedDialFabs;
-    if(isOpen) {
+    if (isOpen) {
       speedDialFabs = fabs.map((fab, i) => {
-        let fn, el, props;
-        if(React.isValidElement(fab)) {
+        let fn;
+        let el;
+        let fabProps;
+        if (React.isValidElement(fab)) {
           el = React.Children.only(fab);
           fn = React.cloneElement;
-          props = fab.props;
+          fabProps = fab.props;
         } else {
-          el = FloatingButton;
+          el = Button;
           fn = React.createElement;
-          props = fab;
+          fabProps = fab;
         }
 
         const created = fn(el, {
+          floating: true,
           mini: true,
-          ...props,
+          ...fabProps,
         });
         return <div key={i} className="md-speed-dial-fab">{created}</div>;
       });
@@ -206,7 +211,7 @@ export default class SpeedDial extends Component {
       <CSSTransitionGroup
         {...containerProps}
         component="div"
-        className={classnames('md-speed-dial', !!containerProps && containerProps.className)}
+        className={cn('md-speed-dial', !!containerProps && containerProps.className)}
         transitionName={`${transitionName}-${isOpen ? 'right' : 'left'}`}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeave={false}
@@ -221,7 +226,12 @@ export default class SpeedDial extends Component {
         >
           {speedDialFabs}
         </CSSTransitionGroup>
-        <FloatingButton {...props} key={`${isOpen ? 'open' : 'closed'}-fab`} onClick={this.handleClick} />
+        <Button
+          {...props}
+          floating
+          key={`${isOpen ? 'open' : 'closed'}-fab`}
+          onClick={this._handleClick}
+        />
       </CSSTransitionGroup>
     );
   }

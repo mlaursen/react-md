@@ -1,136 +1,242 @@
 import Autocomplete from './Autocompletes';
 import Avatar from './Avatars';
 import BottomNavigation from './BottomNavigations';
-import { FlatButton, FloatingButton, IconButton, RaisedButton, AccessibleFakeButton } from './Buttons';
-import { Card, CardActions, CardActionOverlay, CardHeader, CardMedia, CardText, CardTitle } from './Cards';
+import Button, {
+  FlatButton,
+  FloatingButton,
+  IconButton,
+  RaisedButton,
+} from './Buttons';
+import Card, {
+  CardActions,
+  CardActionOverlay,
+  CardMedia,
+  CardText,
+  CardTitle,
+} from './Cards';
 import Chip from './Chips';
-import { DataTable, TableHeader, TableBody, TableRow, TableColumn, EditDialogColumn } from './DataTables';
+import DataTable, {
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+  TableCardHeader,
+  EditDialogColumn,
+  TablePagination,
+  SelectFieldColumn,
+} from './DataTables';
 import Dialog from './Dialogs';
 import Divider from './Dividers';
+import Drawer from './Drawers';
+import { ExpansionPanel, ExpansionList } from './ExpansionPanels';
 import { SpeedDial } from './FABTransitions';
 import FileInput, { FileUpload } from './FileInputs';
 import FontIcon from './FontIcons';
-import Ink from './Inks';
-import { List, ListItem } from './Lists';
+import {
+  AccessibleFakeButton,
+  AccessibleFakeInkedButton,
+  Collapse,
+  FocusContainer,
+  IconSeparator,
+  Portal,
+} from './Helpers';
+import injectInk from './Inks';
+import { List, ListItem, ListItemControl } from './Lists';
+import Media, { MediaOverlay } from './Media';
 import Menu from './Menus';
-import NavigationDrawer from './NavigationDrawers';
+import NavigationDrawer, { CloseButton, JumpToContentLink } from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
 import { CircularProgress, LinearProgress } from './Progress';
-import { Checkbox, Radio, RadioGroup, Switch } from './SelectionControls';
+import {
+  SelectionControl,
+  SelectionControlGroup,
+  Checkbox,
+  Radio,
+  RadioGroup,
+  Switch,
+} from './SelectionControls';
 import SelectField from './SelectFields';
 import Slider from './Sliders';
 import Sidebar from './Sidebars';
 import Snackbar from './Snackbars';
 import Subheader from './Subheaders';
-import { Tab, Tabs } from './Tabs';
+import { TabsContainer, Tabs, Tab, MenuTab, TabPanel } from './Tabs';
 import TextField from './TextFields';
 import Toolbar from './Toolbars';
-import Tooltip from './Tooltips';
+import injectTooltip from './Tooltips';
 
-export { AccessibleFakeButton };
+// Exposes for UMD -> ReactMD.Autocomplete
 export { Autocomplete };
 export { Avatar };
 export { BottomNavigation };
+export { Button };
+export { FlatButton };
+export { RaisedButton };
+export { FloatingButton };
+export { IconButton };
 export { Card };
-export { CardActions };
-export { CardActionOverlay };
-export { CardHeader };
-export { CardMedia };
-export { CardText };
 export { CardTitle };
-export { Checkbox };
+export { CardMedia };
+export { CardActions };
+export { CardText };
+export { CardActionOverlay };
 export { Chip };
-export { CircularProgress };
-export { DatePicker };
 export { DataTable };
+export { TableHeader };
+export { TableBody };
+export { TableRow };
+export { TableColumn };
+export { TableCardHeader };
+export { EditDialogColumn };
+export { TablePagination };
+export { SelectFieldColumn };
 export { Dialog };
 export { Divider };
-export { EditDialogColumn };
-export { FlatButton };
-export { FloatingButton };
+export { Drawer };
+export { ExpansionList };
+export { ExpansionPanel };
+export { SpeedDial };
 export { FileInput };
 export { FileUpload };
 export { FontIcon };
-export { IconButton };
-export { Ink };
-export { LinearProgress };
+export { AccessibleFakeButton };
+export { AccessibleFakeInkedButton };
+export { Collapse };
+export { IconSeparator };
+export { FocusContainer };
+export { Portal };
+export { injectInk };
 export { List };
 export { ListItem };
+export { ListItemControl };
+export { Media };
+export { MediaOverlay };
 export { Menu };
 export { NavigationDrawer };
+export { CloseButton };
+export { JumpToContentLink };
 export { Paper };
-export { Radio };
+export { DatePicker };
+export { TimePicker };
+export { CircularProgress };
+export { LinearProgress };
+export { SelectField };
+export { SelectionControl };
+export { SelectionControlGroup };
+export { Checkbox };
 export { RadioGroup };
-export { RaisedButton };
+export { Radio };
+export { Switch };
+export { Subheader };
 export { Slider };
 export { Sidebar };
 export { Snackbar };
-export { SpeedDial };
-export { Subheader };
-export { Switch };
-export { Tab };
-export { TableBody };
-export { TableColumn };
-export { TableHeader };
-export { TableRow };
+export { TabsContainer };
 export { Tabs };
+export { Tab };
+export { MenuTab };
+export { TabPanel };
 export { TextField };
-export { TimePicker };
 export { Toolbar };
-export { Tooltip };
+export { injectTooltip };
 
+// Exposes for ES6 modules
 export default {
   Autocomplete,
   Avatar,
   BottomNavigation,
-  AccessibleFakeButton,
+
+  Button,
   FlatButton,
   RaisedButton,
   FloatingButton,
   IconButton,
+
   Card,
-  CardHeader,
   CardTitle,
   CardMedia,
   CardActions,
   CardText,
   CardActionOverlay,
-  DatePicker,
+
+  Chip,
+
   DataTable,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableColumn,
+  TableCardHeader,
   EditDialogColumn,
+  TablePagination,
+  SelectFieldColumn,
+
+  Dialog,
+  Divider,
+  Drawer,
+
+  ExpansionList,
+  ExpansionPanel,
+
+  SpeedDial,
+
+  FileInput,
+  FileUpload,
+
+  FontIcon,
+  AccessibleFakeButton,
+  AccessibleFakeInkedButton,
+  Collapse,
+  IconSeparator,
+  FocusContainer,
+  Portal,
+
+  injectInk,
+
   List,
   ListItem,
+  ListItemControl,
+
+  Media,
+  MediaOverlay,
+
+  Menu,
+
+  NavigationDrawer,
+  CloseButton,
+  JumpToContentLink,
+
+  Paper,
+
+  DatePicker,
+  TimePicker,
+
   CircularProgress,
   LinearProgress,
+
+  SelectField,
+
+  SelectionControl,
+  SelectionControlGroup,
   Checkbox,
   RadioGroup,
   Radio,
   Switch,
-  Tabs,
-  Tab,
-  Chip,
-  Dialog,
-  Divider,
-  FileInput,
-  FileUpload,
-  FontIcon,
-  Menu,
-  NavigationDrawer,
-  Ink,
-  Paper,
-  SelectField,
+
+  Subheader,
+
   Slider,
   Sidebar,
   Snackbar,
-  SpeedDial,
-  Subheader,
-  TableBody,
-  TableColumn,
-  TableHeader,
-  TableRow,
+
+  TabsContainer,
+  Tabs,
+  Tab,
+  MenuTab,
+  TabPanel,
+
   TextField,
-  TimePicker,
   Toolbar,
-  Tooltip,
+  injectTooltip,
 };

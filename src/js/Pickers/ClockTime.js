@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 const CLOCK_PADDING = 4;
 
@@ -9,17 +8,7 @@ const CLOCK_PADDING = 4;
  * in a clock. The time will be positioned based on it's given index
  * and the radius of the clock.
  */
-export default class ClockTime extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      // default size in scss
-      size: 18,
-    };
-  }
-
+export default class ClockTime extends PureComponent {
   static propTypes = {
     /**
      * The index of the current time to be displayed. This
@@ -43,20 +32,34 @@ export default class ClockTime extends Component {
     radius: PropTypes.number.isRequired,
   };
 
-  componentDidMount() {
-    this.setPosition();
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // default size in scss
+      size: 18,
+    };
+
+    this._setTime = this._setTime.bind(this);
+    this._setPosition = this._setPosition.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
-
-      this.setPosition(nextProps);
+    if (this.props.radius !== nextProps.radius || this.props.index !== nextProps.index) {
+      this._setPosition(nextProps, this._time);
     }
   }
 
-  setPosition = ({ radius, index } = this.props) => {
+  _setTime(time) {
+    this._time = time;
+    if (time !== null) {
+      this._setPosition(this.props, time);
+    }
+  }
+
+  _setPosition({ radius, index }, time) {
     // 36 is default size for the time
-    const size = (this.refs.time.offsetWidth || 36) / 2;
+    const size = (time.offsetWidth || 36) / 2;
     const timeRadians = (Math.PI / 2) - index * (Math.PI / 6);
     const innerCircle = index > 12;
 
@@ -69,14 +72,17 @@ export default class ClockTime extends Component {
         left: outerRadius + innerRadius * Math.cos(timeRadians),
       },
     });
-  };
+  }
 
   render() {
     const { time, active } = this.props;
     return (
       <div
-        ref="time"
-        className={classnames('md-clock-time', { active })}
+        ref={this._setTime}
+        className={cn('md-clock-time md-text-no-select md-pointer--none', {
+          'md-text': !active,
+          'md-picker-text--active': active,
+        })}
         style={this.state.style}
       >
         <span className="md-clock-time-value">{time}</span>

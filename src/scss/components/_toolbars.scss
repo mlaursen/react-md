@@ -1,69 +1,578 @@
-%md-toolbar-fixed-relative,
-.md-toolbar-fixed-relative {
-  padding-top: $md-toolbar-height;
-}
+////
+/// @group toolbars
+////
 
-.md-toolbar-container {
-  display: block;
+/// Boolean if the themed toolbars should be included. A themed toolbar
+/// just has a different background color based on the `$md-light-theme`.
+/// @type Boolean
+$md-toolbar-include-themed: true !default;
 
-  &.fixed {
-    position: fixed;
-    width: 100%;
-    z-index: $md-toolbar-z-index;
+/// Boolean if the prominent styles should be included for toolbars. This
+/// really just makes a toolbar with a bigger height.
+/// @type Boolean
+$md-toolbar-include-prominent: true !default;
 
-    .md-toolbar {
-      @include md-box-shadow(3);
-    }
+/// Boolean if the very small styles for flat or raised buttons in toolbars
+/// should be included.
+/// @type Boolean
+$md-toolbar-include-btn-text: true !default;
 
-    ~ *:not(.fixed) {
-      @extend %md-toolbar-fixed-relative;
-    }
+/// Boolean if the styling for text fields in toolbars should be included.
+/// @type Boolean
+$md-toolbar-include-text-fields: true !default;
+
+/// Boolean if the styles for autocompletes in toolbars should be included.
+/// This really just updates the autocomplete's menu to span the entire viewport
+/// on mobile devices.
+/// @type Boolean
+$md-toolbar-include-autocompletes: true !default;
+
+/// Boolean if the select field styling in toolbars should be included.
+/// @type Boolean
+$md-toolbar-include-select-fields: true !default;
+
+/// The amount of margin for an inset toolbar.
+/// @type Number
+$md-toolbar-inset-margin: 8px !default;
+
+/// The z-index for a `fixed` toolbar.
+/// @type Number
+/// @see md-btn-fixed-z-index
+/// @see md-dialog-full-page-z-index
+/// @see md-dialog-overlay-z-index
+/// @see md-drawer-z-index
+/// @see md-menu-z-index
+/// @see md-overlay-z-index
+/// @see md-picker-inline-z-index
+/// @see md-snackbar-z-index
+/// @group toolbars, z-indexes
+$md-toolbar-z-index: 15 !default;
+
+/// The toolbar's prominent title font size. This will only be included if it does not equal the
+/// `$md-title-font-size` variable.
+/// @type Number
+$md-toolbar-prominent-title-font-size: $md-title-font-size !default;
+
+/// The height of a toolbar on mobile portrait devices.
+/// @type Number
+$md-toolbar-mobile-portrait-height: 56px;
+
+/// The height of a toolbar on moble landscape devices.
+/// @type Number
+$md-toolbar-mobile-landscape-height: 48px;
+
+/// The height of a prominent toolbar on mobile devices and any media above.
+/// @type Number
+$md-toolbar-mobile-prominent-height: 128px;
+
+/// The keyline to use for the main nav button in the toolbar for mobile devices.
+/// @type Number
+$md-toolbar-mobile-btn-keyline: 16px;
+
+/// The keyline to use for the main title in the toolbar for mobile devices.
+/// @type Number
+$md-toolbar-mobile-title-keyline: 72px;
+
+/// The height of a toolbar for tablets and desktop displays.
+/// @type Number
+$md-toolbar-tablet-height: 64px;
+
+/// The keyline to use for the main nav button in toolbars on tablets and desktop displays.
+/// @type Number
+$md-toolbar-tablet-btn-keyline: 24px;
+
+/// THe keyline to use for the main title in a toolbar for tablets and desktop displays.
+/// @type Number
+$md-toolbar-tablet-title-keyline: 80px;
+
+/// Includes the styles for toolbars.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-toolbars;
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the toolbars should be themed
+///     for the light theme.
+/// @param {Boolean} include-media [$md-media-included] - Boolena if the toolbar media queries
+///     should be included.
+/// @param {Boolean} include-themed [$md-toolbar-include-themed] - Boolean if the themed toolbars
+///     should be included.
+/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
+///     toolbar styles shoudl be included.
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
+/// @param {Boolean} include-text-fields [$md-toolbar-include-text-fields] - Boolean if the styles for
+///     text fields in toolbars should be included. If the params `include-autocomplete` or `include-select-fields`
+///     are `true`, this will always be included.
+/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
+///     for autocompletes in toolbars should be included.
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
+///     for select fields in toolbars should be included.
+@mixin react-md-toolbars(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-themed: $md-toolbar-include-themed,
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-text-fields: $md-toolbar-include-text-fields,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
+  @if $include-media {
+    @include react-md-toolbars-media($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
   }
 
-  .md-icon-btn {
-    color: inherit;
-  }
-}
-
-%md-toolbar-item {
-  margin-left: $md-toolbar-action-margin;
-  margin-right: $md-toolbar-action-margin;
-}
-
-.md-toolbar {
-  @include md-box-shadow(1);
-
-  align-items: center;
-  display: flex;
-
-  .md-title {
-    color: inherit;
-    font-weight: $md-font-medium;
-    line-height: $md-toolbar-height;
-    margin: 0;
-  }
-
-  .action-area {
+  .md-toolbar {
     display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
+
+    &--fixed {
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 100vw;
+      z-index: $md-toolbar-z-index;
+    }
+
+    &--inset {
+      margin: $md-toolbar-inset-margin;
+      max-width: calc(100vw - #{$md-toolbar-inset-margin * 2});
+    }
   }
 
-  .md-icon-btn {
-    flex-shrink: 0;
+  @if $include-themed {
+    .md-toolbar--themed {
+      background: get-color('toolbar', $light-theme);
+
+      .md-title {
+        color: if($light-theme, get-color('text', $light-theme), $md-white-base);
+      }
+    }
   }
 
-  .action-left,
-  .action-area,
-  .action-right {
-    @extend %md-toolbar-item;
+  .md-title--toolbar {
+    color: if($light-theme, get-color('text', $light-theme), $md-white-base);
+    margin-bottom: 0;
+    transition-duration: $md-transition-time;
+    transition-property: transform;
   }
 
-  .md-text-field-container {
-    padding: 0;
+  @if $include-prominent {
+    .md-title--toolbar-prominent {
+      position: absolute;
+
+      @if $md-toolbar-prominent-title-font-size != $md-title-font-size {
+        font-size: $md-toolbar-prominent-title-font-size;
+      }
+    }
+  }
+
+  .md-toolbar--text-white {
+    color: $md-white-base;
+
+    $selectors: ('btn' 'icon' 'title--toolbar');
+    @if $include-text-fields or $include-autocompletes {
+      $selectors: append($selectors, 'text-field');
+    }
+
+    @if $include-select-fields {
+      $selectors: append($selectors, 'select-field');
+    }
+
+    $color-selector: '';
+
+    @each $selector in $selectors {
+      $color-selector: $color-selector + if($color-selector != '', ', ', '');
+      $color-selector: $color-selector + '.md-#{$selector}';
+    }
+
+    #{$color-selector} {
+      color: inherit;
+    }
+
+    @if $include-text-fields or $include-autocompletes {
+      @include react-md-theme-placeholders(get-color('secondary', false));
+    }
+  }
+
+  @if $include-text-fields or $include-autocompletes {
+    .md-toolbar {
+      .md-text-field-container {
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+
+      .md-text-field--toolbar {
+        font-size: $md-title-font-size;
+      }
+    }
+  }
+
+  @if $include-autocompletes {
+    .md-toolbar {
+      .md-autocomplete {
+        height: 100%;
+      }
+    }
   }
 }
 
-.md-toolbar-item {
-  @extend %md-toolbar-item;
+/// Updates the toolbar's `themed` color ONLY if the `$light-theme` does not equal the
+/// `$md-light-theme` and the `$include-themed` param is `true`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-toolbars(false);
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the toolbars should be themed
+///     for the light theme.
+/// @param {Boolean} include-themed [$md-toolbar-include-themed] - Boolean if the themed toolbars
+///     should be included.
+/// @group toolbars, themes
+@mixin react-md-theme-toolbars($light-theme: $md-light-theme, $include-themed: $md-toolbar-include-themed) {
+  @if $light-theme != $md-light-theme {
+    @if $include-themed {
+      .md-toolbar--themed {
+        background: get-color('toolbar', $light-theme);
+
+        .md-title {
+          color: if($light-theme, get-color('text', $light-theme), $md-white-base);
+        }
+      }
+    }
+  }
+}
+
+/// Includes the styles for toolbars on mobile devices. This should normally be used in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///      @include react-md-toolbars-mobile;
+///   }
+///
+/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
+///     toolbar styles should be included.
+/// @group toolbars, media-queries
+@mixin react-md-toolbars-mobile(
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
+  @if $include-prominent {
+    .md-toolbar--prominent {
+      height: $md-toolbar-mobile-prominent-height;
+    }
+
+    .md-toolbar-relative--prominent {
+      margin-top: $md-toolbar-mobile-prominent-height;
+    }
+  }
+
+  $toolbar-btn-margin: ($md-toolbar-mobile-btn-keyline - $md-btn-icon-padding) / 2;
+
+  .md-toolbar--action-left {
+    margin-left: $toolbar-btn-margin;
+  }
+
+  .md-toolbar--action-right {
+    margin-right: $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar {
+    margin-left: $md-toolbar-mobile-title-keyline - $md-btn-icon-size - $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar-offset {
+    margin-left: $md-toolbar-mobile-title-keyline;
+  }
+
+  .md-toolbar-relative {
+    margin-top: $md-toolbar-mobile-portrait-height;
+  }
+
+  .md-toolbar--discrete {
+    height: $md-toolbar-mobile-portrait-height;
+  }
+
+  $toolbar-btn-margin: ($md-toolbar-mobile-portrait-height - $md-btn-icon-size) / 2;
+
+  .md-btn--toolbar {
+    margin-bottom: $toolbar-btn-margin;
+    margin-top: $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar {
+    line-height: $md-toolbar-mobile-portrait-height;
+  }
+
+  @if $include-prominent {
+    $mt: $md-toolbar-mobile-portrait-height + (($md-toolbar-mobile-prominent-height - $md-toolbar-mobile-portrait-height * 2) / 2);
+
+    .md-title--toolbar-prominent {
+      transform: translate3d(0, $mt, 0);
+    }
+  }
+
+  @if $include-btn-text {
+    $text-margin: ($md-toolbar-mobile-portrait-height - $md-btn-mobile-height) / 2;
+
+    .md-toolbar .md-btn--text {
+      margin-bottom: $text-margin;
+      margin-top: $text-margin;
+    }
+  }
+
+  @if $include-autocompletes {
+    .md-toolbar .md-autocomplete-list {
+      left: 0;
+      position: fixed;
+      top: $md-toolbar-mobile-portrait-height;
+      width: 100vw;
+    }
+  }
+
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+  }
+}
+
+/// Includes the styles for toolbars on landscape mobile devices. This should normally be
+/// used in a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-landscape-media} {
+///      @include react-md-toolbars-mobile-landscape;
+///   }
+///
+/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
+///     toolbar styles shoudl be included.
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
+/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
+///     for autocompletes in toolbars should be included.
+/// @group toolbars, media-queries
+@mixin react-md-toolbars-mobile-landscape(
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
+  .md-toolbar-relative {
+    margin-top: $md-toolbar-mobile-landscape-height;
+  }
+
+  .md-toolbar--discrete {
+    height: $md-toolbar-mobile-landscape-height;
+  }
+
+  $toolbar-btn-margin: ($md-toolbar-mobile-landscape-height - $md-btn-icon-size) / 2;
+
+  .md-btn--toolbar {
+    margin-bottom: $toolbar-btn-margin;
+    margin-top: $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar {
+    line-height: $md-toolbar-mobile-landscape-height;
+  }
+
+  @if $include-prominent {
+    $mt: $md-toolbar-mobile-landscape-height + (($md-toolbar-mobile-prominent-height - $md-toolbar-mobile-landscape-height * 2) / 2);
+
+    .md-title--toolbar-prominent {
+      transform: translate3d(0, $mt, 0);
+    }
+  }
+
+  @if $include-btn-text {
+    $text-margin: ($md-toolbar-mobile-landscape-height - $md-btn-mobile-height) / 2;
+
+    .md-toolbar .md-btn--text {
+      margin-bottom: $text-margin;
+      margin-top: $text-margin;
+    }
+  }
+
+  @if $include-autocompletes {
+    .md-toolbar .md-autocomplete-list {
+      left: 0;
+      position: fixed;
+      top: $md-toolbar-mobile-landscape-height;
+      width: 100vw;
+    }
+  }
+}
+
+/// Includes the styles for toolbars on tablets and desktop screens. This should usually be used
+/// within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-media} {
+///      @include react-md-toolbars-tablet;
+///   }
+///
+/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
+///     toolbar styles shoudl be included.
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
+/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
+///     for autocompletes in toolbars should be included.
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
+///     for select fields in toolbars should be included.
+/// @group toolbars, media-queries
+@mixin react-md-toolbars-tablet(
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
+  .md-toolbar-relative {
+    margin-top: $md-toolbar-tablet-height;
+  }
+
+  .md-toolbar--discrete {
+    height: $md-toolbar-tablet-height;
+  }
+
+  $toolbar-btn-margin: ($md-toolbar-tablet-height - $md-btn-icon-size) / 2;
+
+  .md-btn--toolbar {
+    margin-bottom: $toolbar-btn-margin;
+    margin-top: $toolbar-btn-margin;
+  }
+
+  $toolbar-btn-margin: $md-toolbar-tablet-btn-keyline - $md-btn-icon-padding;
+
+  .md-toolbar--action-left {
+    margin-left: $toolbar-btn-margin;
+  }
+
+  .md-toolbar--action-right {
+    margin-right: $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar {
+    line-height: $md-toolbar-tablet-height;
+    margin-left: $md-toolbar-tablet-title-keyline - $md-btn-icon-size - $toolbar-btn-margin;
+  }
+
+  .md-title--toolbar-offset {
+    margin-left: $md-toolbar-tablet-title-keyline;
+  }
+
+  @if $include-prominent {
+    .md-title--toolbar-prominent {
+      transform: translate3d(0, $md-toolbar-tablet-height, 0);
+    }
+  }
+
+  @if $include-btn-text {
+    $text-margin: ($md-toolbar-tablet-height - $md-btn-mobile-height) / 2;
+
+    .md-toolbar .md-btn--text {
+      margin-bottom: $text-margin;
+      margin-top: $text-margin;
+    }
+  }
+
+  @if $include-autocompletes {
+    .md-toolbar .md-autocomplete-list {
+      left: 0;
+      position: absolute;
+      top: $md-toolbar-tablet-height;
+      width: 100%;
+    }
+  }
+
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+  }
+}
+
+/// Includes the styles for toolbars for a landscape tablet. This should be used
+/// within a media query. This will really only generate styles if the `include-text-fields`
+/// param is `true`.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-landscape-media} {
+///     @include react-md-toolbars-tablet-landscape;
+///   }
+///
+/// @group toolbars, media-queries
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles for
+///   select fields in toolbars should be included.
+@mixin react-md-toolbars-tablet-landscape($include-select-fields: $md-toolbar-include-select-fields) {
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
+  }
+}
+
+/// Includes the styles for toolbars for a desktop display. This should be used
+/// within a media query. This will really only generate styles if the `include-text-fields`
+/// param is `true`.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-desktop} {
+///     @include react-md-toolbars-tablet-landscape;
+///   }
+///
+/// @group toolbars, media-queries
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles for
+///   select fields in toolbars should be included.
+@mixin react-md-toolbars-desktop($include-select-fields: $md-toolbar-include-select-fields) {
+  @if $include-select-fields {
+    .md-select-field--toolbar.md-select-field--toolbar {
+      margin-bottom: 12px;
+      margin-top: 12px;
+    }
+  }
+}
+/// Includes the media queries for toolbars.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-toolbars-media;
+///
+/// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
+///     toolbar styles shoudl be included.
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
+/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
+///     for autocompletes in toolbars should be included.
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
+///     for select fields in toolbars should be included.
+/// @group toolbars, media-queries
+@mixin react-md-toolbars-media(
+  $include-prominent: $md-toolbar-include-prominent,
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-autocompletes: $md-toolbar-include-autocompletes,
+  $include-select-fields: $md-toolbar-include-select-fields
+) {
+  @media #{$md-mobile-media} {
+    @include react-md-toolbars-mobile($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+  }
+
+  @media #{$md-mobile-landscape-media} {
+    @include react-md-toolbars-mobile-landscape($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+  }
+
+  @media #{$md-tablet-media} {
+    @include react-md-toolbars-tablet($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+  }
+
+  @if $include-select-fields {
+    @media #{$md-tablet-landscape-media} {
+      @include react-md-toolbars-tablet-landscape($include-select-fields);
+    }
+
+    @media #{$md-desktop-media} {
+      @include react-md-toolbars-desktop($include-select-fields);
+    }
+  }
 }

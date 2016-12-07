@@ -1,16 +1,11 @@
-import React, { PureComponent } from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
-import FlatButton from 'react-md/lib/Buttons/FlatButton';
+import React from 'react';
+import Button from 'react-md/lib/Buttons/Button';
 
-export default class Contact extends PureComponent {
-  render() {
-    return (
-      <div className="contact">
-        <h4 className="md-title">Contact</h4>
-        <FlatButton primary label="Mikkel Laursen" href="mailto:mlaursen03@gmail.com" type={null}>
-          <FontIcon>mail</FontIcon>
-        </FlatButton>
-      </div>
-    );
-  }
-}
+const Contact = () => (
+  <section className="md-cell md-cell--4">
+    <h4 className="md-title">Contact</h4>
+    <Button flat primary label="Mikkel Laursen" href="mailto:mlaursen03@gmail.com">mail</Button>
+  </section>
+);
+
+export default Contact;

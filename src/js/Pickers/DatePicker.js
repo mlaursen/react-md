@@ -1,20 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-import PickerFooter from './PickerFooter';
+import DialogFooter from '../Dialogs/DialogFooter';
 import DatePickerHeader from './DatePickerHeader';
 import DatePickerCalendar from './DatePickerCalendar';
 import YearPicker from './YearPicker';
 
-export default class DatePicker extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class DatePicker extends PureComponent {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    className: PropTypes.string,
     okLabel: PropTypes.string.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
@@ -30,7 +25,9 @@ export default class DatePicker extends Component {
     calendarTempDate: PropTypes.instanceOf(Date).isRequired,
     calendarMode: PropTypes.oneOf(['calendar', 'year']).isRequired,
     changeCalendarMode: PropTypes.func.isRequired,
-    onSwipeChange: PropTypes.func.isRequired,
+    icon: PropTypes.bool,
+    inline: PropTypes.bool,
+    displayMode: PropTypes.oneOf(['landscape', 'portrait']),
   };
 
   render() {
@@ -46,12 +43,16 @@ export default class DatePicker extends Component {
       calendarTempDate,
       calendarMode,
       changeCalendarMode,
+      style,
       className,
-      ...props,
+      inline,
+      icon,
+      displayMode,
+      ...props
     } = this.props;
 
     let picker;
-    if(calendarMode === 'calendar') {
+    if (calendarMode === 'calendar') {
       picker = (
         <DatePickerCalendar
           {...props}
@@ -73,8 +74,29 @@ export default class DatePicker extends Component {
       );
     }
 
+    const actions = [{
+      key: cancelLabel,
+      onClick: onCancelClick,
+      primary: cancelPrimary,
+      secondary: !cancelPrimary,
+      label: cancelLabel,
+    }, {
+      key: okLabel,
+      onClick: onOkClick,
+      primary: okPrimary,
+      secondary: !okPrimary,
+      label: okLabel,
+    }];
+
     return (
-      <div className={`${className} date-picker`}>
+      <div
+        style={style}
+        className={cn('md-picker md-picker--date', {
+          [`md-picker--${displayMode}`]: displayMode,
+          'md-picker--inline': inline,
+          'md-picker--inline-icon': inline && icon,
+        }, className)}
+      >
         <DatePickerHeader
           DateTimeFormat={DateTimeFormat}
           locales={locales}
@@ -84,14 +106,7 @@ export default class DatePicker extends Component {
         />
         <div className="md-picker-content-container">
           {picker}
-          <PickerFooter
-            okLabel={okLabel}
-            okPrimary={okPrimary}
-            onOkClick={onOkClick}
-            cancelLabel={cancelLabel}
-            cancelPrimary={cancelPrimary}
-            onCancelClick={onCancelClick}
-          />
+          <DialogFooter actions={actions} />
         </div>
       </div>
     );

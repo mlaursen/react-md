@@ -29,10 +29,14 @@ node_modules
 
 *.DS_STORE
 
-sassdoc
 .publish
 lib
 dist
+src/scss/bundles
 
 .jest-cache
 prod-config.json
+docs/src/docgens
+docs/src/sassdocs
+docs/src/shared/components/Grids/grid-sassdoc.json
+serverConfig.json

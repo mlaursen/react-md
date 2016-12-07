@@ -1,0 +1,125 @@
+////
+/// @group autocompletes
+////
+
+@import 'text-fields';
+
+/// Boolean if the inline autocompletes should be included by default.
+/// @type Boolean
+$md-inline-autocomplete: true !default;
+
+
+/// Includes any additional styles for autocompletes if `include-inline` is `true`.
+/// The `Autocomplete` component really depends on all the styles for text fields and menus.
+///
+/// This will end up creating the `.md-autocomplete-suggestion` class name that is used
+/// for the inline suggestions for autocompletes.
+///
+/// @see react-md-text-fields
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
+///     for autocompletes should be included.
+@mixin react-md-autocompletes($light-theme: $md-light-theme, $include-media: $md-media-included, $include-inline: $md-inline-autocomplete) {
+  @if $include-inline {
+    .md-autocomplete-suggestion {
+      color: get-color('secondary', $light-theme);
+      overflow: hidden;
+      position: absolute;
+      top: 12px;
+      white-space: nowrap;
+    }
+
+    @if $include-media {
+      @include react-md-autocompletes-media;
+    }
+  }
+}
+
+/// Updates the styles for the autocompletes ONLY if the `$light-theme` does not
+/// equal the `$md-light-theme`.
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
+///     for autocompletes should be included.
+/// @group autocompletes, themes
+@mixin react-md-theme-autocompletes($light-theme: $md-light-theme, $include-inline: $md-inline-autocomplete) {
+  @if $light-theme != $md-light-theme and $include-inline {
+    .md-autocomplete-suggestion {
+      color: get-color('secondary', $light-theme);
+    }
+  }
+}
+
+/// Creates the styles for the autocomplete component on mobile devices.
+/// This should normally be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-autocompletes-mobile;
+///   }
+///
+/// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
+///     for autocompletes should be included.
+/// @group autocompletes, media-queries
+@mixin react-md-autocompletes-mobile($include-inline: $md-inline-autocomplete) {
+  @if $include-inline {
+    .md-autocomplete-suggestion {
+      font-size: $md-text-field-mobile-font-size;
+
+      &--floating {
+        top: $md-text-field-mobile-floating-label-margin;
+      }
+
+      &--block {
+        top: 18px;
+      }
+    }
+  }
+}
+
+/// Creates the styles for the autocomplete component on desktop screens.
+/// This should normally be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-autocompletes-desktop;
+///   }
+///
+/// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
+///     for autocompletes should be included.
+/// @group autocompletes, media-queries
+@mixin react-md-autocompletes-desktop($include-inline: $md-inline-autocomplete) {
+  @if $include-inline {
+    .md-autocomplete-suggestion {
+      font-size: $md-text-field-desktop-font-size;
+
+      &--floating {
+        top: $md-text-field-desktop-floating-label-margin;
+      }
+
+      &--block {
+        top: 15px;
+      }
+    }
+  }
+}
+
+/// Includes the media queries for autocompletes.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-autocompletes-media;
+///
+/// @param {Boolean} include-inline [$md-inline-autocomplete] - Boolean if the inline styles
+///     for autocompletes should be included.
+/// @group autocompletes, media-queries
+@mixin react-md-autocompletes-media($include-inline: $md-inline-autocomplete) {
+  @if $include-inline {
+    @media #{$md-mobile-media} {
+      @include react-md-autocompletes-mobile($include-inline);
+    }
+
+    @media #{$md-desktop-media} {
+      @include react-md-autocompletes-desktop($include-inline);
+    }
+  }
+}

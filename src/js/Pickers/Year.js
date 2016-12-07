@@ -1,18 +1,11 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * This is a component for rendering a year in the Date Picker's Year picker
  * list.
  */
-export default class Year extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Year extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     active: PropTypes.bool.isRequired,
@@ -20,17 +13,39 @@ export default class Year extends Component {
     year: PropTypes.number.isRequired,
   };
 
-  handleClick = (e) => {
+  constructor(props) {
+    super(props);
+
+    this.state = { desktopActive: false };
+    this._handleClick = this._handleClick.bind(this);
+    this._setActive = this._setActive.bind(this);
+    this._setInactive = this._setInactive.bind(this);
+  }
+
+  _setActive() {
+    this.setState({ desktopActive: true });
+  }
+
+  _setInactive() {
+    this.setState({ desktopActive: false });
+  }
+
+  _handleClick(e) {
     this.props.onClick(this.props.year, e);
-  };
+  }
 
   render() {
+    const { desktopActive } = this.state;
     const { active, className, year } = this.props;
     return (
       <button
         type="button"
-        className={classnames('md-year', className, { active })}
-        onClick={this.handleClick}
+        className={cn('md-btn md-pointer--hover md-full-width md-year', {
+          'md-text': !active && !desktopActive,
+          'md-text--theme-primary': active || desktopActive,
+          'md-year--active': active,
+        }, className)}
+        onClick={this._handleClick}
       >
         {year}
       </button>

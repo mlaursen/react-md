@@ -1,25 +1,18 @@
-/*eslint-env jest*/
+/* eslint-env jest */
 jest.unmock('../Autocomplete');
-jest.unmock('../../TextFields');
-jest.unmock('../../TextFields/TextField');
-jest.unmock('../../Menus');
-jest.unmock('../../Menus/Menu');
 
 import React from 'react';
-//import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-  //scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
-  //scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
-import Autocomplete from '../Autocomplete';
-import TextField from '../../TextFields';
-import Menu from '../../Menus';
 import { TAB } from '../../constants/keyCodes';
+import Autocomplete from '../Autocomplete';
+import TextField from '../../TextFields/TextField';
+import Menu from '../../Menus/Menu';
 
 class Test extends React.Component {
   render() {
@@ -30,29 +23,32 @@ class Test extends React.Component {
 describe('Autocomplete', () => {
   it('merges className and style', () => {
     const props = {
-      style: { background: 'red' },
+      style: { display: 'block' },
       className: 'test',
-      containerStyle: { display: 'inline-block' },
-      containerClassName: 'container-test',
-      inputStyle: { color: 'black' },
-      inputClassName: 'input-test',
-      listStyle: { background: 'white' },
-      listClassName: 'list-test',
+      textFieldStyle: { background: 'red' },
+      textFieldClassName: 'woop-woop',
       data: [],
     };
 
     const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
+    const field = findRenderedComponentWithType(autocomplete, TextField);
     const menu = findRenderedComponentWithType(autocomplete, Menu);
-    const text = findRenderedComponentWithType(autocomplete, TextField);
 
-    expect(menu.props.style).toEqual(props.containerStyle);
-    expect(menu.props.className).toContain(props.containerClassName);
-    expect(menu.props.listStyle).toEqual(props.listStyle);
-    expect(menu.props.listClassName).toContain(props.listClassName);
-    expect(text.props.style).toEqual(props.style);
-    expect(text.props.className).toContain(props.className);
-    expect(text.props.inputStyle).toEqual(props.inputStyle);
-    expect(text.props.inputClassName).toContain(props.inputClassName);
+    expect(field.props.style).toEqual(props.textFieldStyle);
+    expect(field.props.className).toContain(props.textFieldClassName);
+
+    expect(menu.props.style).toEqual(props.style);
+    expect(menu.props.className).toContain(props.className);
+  });
+
+  it('passes the new value and the change event to the onChangeProp', () => {
+    const props = { data: [], onChange: jest.fn() };
+    const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
+    const field = findRenderedDOMComponentWithTag(autocomplete, 'input');
+    Simulate.change(field, { target: { value: 'hello' } });
+    expect(props.onChange).toBeCalled();
+    expect(props.onChange.mock.calls[0][0]).toBe('hello');
+    expect(props.onChange.mock.calls[0][1]).toBeDefined();
   });
 
   it('can be controlled', () => {
@@ -64,10 +60,10 @@ describe('Autocomplete', () => {
     };
 
     const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
-    const textField = findRenderedDOMComponentWithTag(autocomplete, 'input');
-    expect(textField.value).toBe(props.value);
+    const field = findRenderedDOMComponentWithTag(autocomplete, 'input');
+    expect(field.value).toBe(props.value);
 
-    Simulate.change(textField, { target: { value: 'hello2' }});
+    Simulate.change(field, { target: { value: 'hello2' } });
     expect(props.onChange.mock.calls.length).toBe(1);
     expect(props.onChange.mock.calls[0][0]).toBe('hello2');
   });
@@ -81,7 +77,7 @@ describe('Autocomplete', () => {
     const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
     const textField = findRenderedDOMComponentWithTag(autocomplete, 'input');
 
-    Simulate.change(textField, { target: { value: 'c' }});
+    Simulate.change(textField, { target: { value: 'c' } });
     expect(props.filter.mock.calls.length).toBe(1);
     expect(props.filter.mock.calls[0][0]).toEqual(props.data);
     expect(props.filter.mock.calls[0][1]).toBe('c');
@@ -110,7 +106,7 @@ describe('Autocomplete', () => {
     const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
     const textField = findRenderedDOMComponentWithTag(autocomplete, 'input');
 
-    Simulate.change(textField, { target: { value: 'ap' }});
+    Simulate.change(textField, { target: { value: 'ap' } });
     expect(autocomplete.state.value).toBe('ap');
 
     autocomplete._handleItemClick(0);
@@ -122,7 +118,7 @@ describe('Autocomplete', () => {
     const autocomplete = renderIntoDocument(<Autocomplete {...props} />);
     const textField = findRenderedDOMComponentWithTag(autocomplete, 'input');
 
-    Simulate.change(textField, { target: { value: 'or' }});
+    Simulate.change(textField, { target: { value: 'or' } });
     expect(textField.value).toBe('or');
 
     Simulate.keyDown(textField, { which: TAB, keyCode: TAB });
@@ -199,7 +195,16 @@ describe('Autocomplete', () => {
 
     it('filters out empty, null, and undefined', () => {
       const filter = Autocomplete.caseInsensitiveFilter;
-      const haystack = [undefined, '', null, 0, 100, { name: undefined }, { name: '' }, { name: null }]; //eslint-disable-line no-undefined
+      const haystack = [
+        undefined,
+        '',
+        null,
+        0,
+        100,
+        { name: undefined },
+        { name: '' },
+        { name: null },
+      ];
 
       expect(filter(haystack, '0')).toEqual([0, 100]);
     });
@@ -247,14 +252,32 @@ describe('Autocomplete', () => {
 
     it('filters out empty, null, and undefined', () => {
       const filter = Autocomplete.fuzzyFilter;
-      const haystack = [undefined, '', null, 0, 100, { name: undefined }, { name: '' }, { name: null }]; //eslint-disable-line no-undefined
+      const haystack = [
+        undefined,
+        '',
+        null,
+        0,
+        100,
+        { name: undefined },
+        { name: '' },
+        { name: null },
+      ];
 
       expect(filter(haystack, '0', 'name')).toEqual([0, 100]);
     });
 
     it('should allow a any characters that are used in regex', () => {
       const filter = Autocomplete.fuzzyFilter;
-      const haystack = ['Ap^p[]e', '$What', '(Now!)', 'Who?', 'Through-Stuff.', 'What\'s \\ That?', 'Pipe | Pipe', 'You **'];
+      const haystack = [
+        'Ap^p[]e',
+        '$What',
+        '(Now!)',
+        'Who?',
+        'Through-Stuff.',
+        'What\'s \\ That?',
+        'Pipe | Pipe',
+        'You **',
+      ];
 
       expect(filter(haystack, '[')).toEqual(['Ap^p[]e']);
       expect(filter(haystack, ']')).toEqual(['Ap^p[]e']);
@@ -330,3 +353,28 @@ describe('Autocomplete', () => {
     });
   });
 });
+// jest.unmock('../Autocomplete');
+// jest.unmock('../../TextFields');
+// jest.unmock('../../TextFields/TextField');
+// jest.unmock('../../Menus');
+// jest.unmock('../../Menus/Menu');
+//
+// import React from 'react';
+// import {
+//   Simulate,
+//   renderIntoDocument,
+//   findRenderedComponentWithType,
+//   findRenderedDOMComponentWithTag,
+// } from 'react-addons-test-utils';
+//
+// import Autocomplete from '../Autocomplete';
+// import TextField from '../../TextFields';
+// import Menu from '../../Menus';
+// import { TAB } from '../../constants/keyCodes';
+//
+// describe('Autocomplete', () => {
+//
+//
+//
+//   });
+// });

@@ -1,25 +1,19 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
-
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 import Subheader from '../Subheaders';
+
+import deprecated from 'react-prop-types/lib/deprecated';
+import contextTypes from '../Menus/contextTypes';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
  */
-export default class List extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class List extends PureComponent {
   static propTypes = {
     /**
-     * Boolean if this should be an ordered list (`<ol>`) component. Otherwise, it will
-     * be rendered as `<ul>`.
+     * An optional style to apply to the list.
      */
-    ordered: PropTypes.bool,
+    style: PropTypes.object,
 
     /**
      * An optional className to apply to the list.
@@ -27,41 +21,58 @@ export default class List extends Component {
     className: PropTypes.string,
 
     /**
-     * An optional subheader primaryText to use if you want the list to start
-     * with a subheader.
+     * Boolean if this should be an ordered list (`<ol>`) component. Otherwise, it will
+     * be rendered as `<ul>`.
      */
-    subheader: PropTypes.string,
-
-    /**
-     * A boolean if the optional subheader should be styled with the primary color.
-     */
-    primarySubheader: PropTypes.bool,
+    ordered: PropTypes.bool,
 
     /**
      * This *should* be a list of `ListItem`, `ListItemControl`, `Divider`, or
      * `Subheader`.
      */
     children: PropTypes.node,
+    subheader: deprecated(PropTypes.string, 'Use the `Subheader` component as a child instead'),
+    primarySubheader: deprecated(PropTypes.bool, 'Use the `Subheader` component as a child instead'),
   };
 
+  static childContextTypes = contextTypes;
+  static contextTypes = contextTypes;
+
+  getChildContext() {
+    const { listLevel, ...context } = this.context;
+    return {
+      ...context,
+      listLevel: typeof listLevel === 'undefined'
+        ? 1
+        : listLevel + 1,
+    };
+  }
+
   render() {
-    const { className, subheader, children, primarySubheader, ordered, ...props } = this.props;
-    let allChildren = children;
-    if(subheader) {
-      allChildren = [<Subheader key="subheader" primary={primarySubheader} primaryText={subheader} />].concat(children);
+    const { className, ordered, children, subheader, primarySubheader, ...props } = this.props;
+    const { menuPosition, menuCascading, listLevel } = this.context;
+
+    let subheaderEl;
+    if (subheader) {
+      subheaderEl = <Subheader key="subheader" primaryText={subheader} primary={primarySubheader} />;
     }
 
-    return React.createElement(ordered ? 'ol' : 'ul', {
-      className: classnames('md-list', className),
-      ...props,
-    }, React.Children.map(allChildren, (child, i) => {
-      if(i + 1 < children.length) {
-        const nextChild = children[i + 1];
-        if(nextChild.type && nextChild.type.name === 'Divider') {
-          return React.cloneElement(child, { className: classnames(child.props.className, 'extra-mb') });
-        }
-      }
-      return child;
-    }));
+    const Component = ordered ? 'ol' : 'ul';
+    return (
+      <Component
+        {...props}
+        className={cn('md-list', {
+          'md-list--menu': menuPosition,
+          'md-list--menu-scrollable': menuPosition && !menuCascading,
+          'md-list--menu-cascading': menuCascading,
+          'md-list--menu-nested': menuPosition && listLevel,
+          [`md-list--nested-${listLevel}`]: listLevel && !menuPosition,
+          [`md-list--menu-${menuPosition}`]: menuPosition,
+        }, className)}
+      >
+        {subheaderEl}
+        {children}
+      </Component>
+    );
   }
 }

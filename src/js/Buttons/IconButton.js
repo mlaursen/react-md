@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
 
-import FontIcon from '../FontIcons';
-import injectInk from '../Inks';
-import injectTooltip from '../Tooltips';
+import deprecated from '../utils/PropTypes/componentDeprecated';
+import FontIcon from '../FontIcons/FontIcon';
+import injectTooltip from '../Tooltips/injectTooltip';
+import Button from './Button';
 
 /**
  * The `IconButton` component automatically includes ink and a tooltip.
@@ -13,13 +12,7 @@ import injectTooltip from '../Tooltips';
  * Any other props (such as style or event listeners) will also be
  * applied.
  */
-class IconButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class IconButton extends PureComponent {
   static propTypes = {
     /**
      * The className to use for rendering the `FontIcon`.
@@ -55,6 +48,9 @@ class IconButton extends Component {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
+    /**
+     * Boolean if the IconButton is floating
+    floating: PropTypes.bool,
 
     /**
      * An optional label to use if you would like a tooltip to display
@@ -73,11 +69,15 @@ class IconButton extends Component {
      */
     tooltipDelay: PropTypes.number,
 
-    // Injected from injectInk
-    ink: PropTypes.node,
-
     // Inject from injectTooltip
     tooltip: PropTypes.node,
+    floating: PropTypes.bool,
+
+    deprecated: deprecated(
+      'The behavior of the `IconButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `icon`.'
+    ),
   };
 
   static defaultProps = {
@@ -88,36 +88,20 @@ class IconButton extends Component {
     const {
       iconClassName,
       children,
-      className,
-      href,
-      type,
       tooltip,
-      disabled,
-      ink,
-      ...props,
+      floating,
+      ...props
     } = this.props;
     delete props.tooltipLabel;
     delete props.tooltipPosition;
 
-    const btnProps = {
-      ...props,
-      disabled,
-      className: classnames('md-btn md-icon-btn', className),
-    };
-
-    if(href) {
-      btnProps.href = href;
-    } else {
-      btnProps.type = type;
-    }
-
-    let displayedChildren = children;
-    if(!(children && children.type && children.type === FontIcon)) {
-      displayedChildren = <FontIcon key="icon" iconClassName={iconClassName}>{children}</FontIcon>;
-    }
-
-    return React.createElement(href ? 'a' : 'button', btnProps, [ink, displayedChildren, tooltip]);
+    return (
+      <Button {...props} icon={!floating} floating={floating}>
+        {tooltip}
+        <FontIcon iconClassName={iconClassName}>{children}</FontIcon>
+      </Button>
+    );
   }
 }
 
-export default injectTooltip(injectInk(IconButton));
+export default injectTooltip(IconButton);

@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Divider');
 
 import React from 'react';
@@ -15,36 +15,36 @@ describe('Divider', () => {
 
     expect(dividerNode.className).toBe('md-divider');
 
-    divider = renderIntoDocument(<Divider inset={true} />);
+    divider = renderIntoDocument(<Divider inset />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(false);
+    expect(dividerNode.className).toContain('--inset');
+    expect(dividerNode.className).not.toContain('--vertical');
 
-    divider = renderIntoDocument(<Divider inset={true} vertical={true} />);
+    divider = renderIntoDocument(<Divider inset vertical />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(true);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
+    expect(dividerNode.className).toContain('--inset');
+    expect(dividerNode.className).toContain('--vertical');
 
-    divider = renderIntoDocument(<Divider vertical={true} />);
+    divider = renderIntoDocument(<Divider vertical />);
     dividerNode = findDOMNode(divider);
 
-    expect(dividerNode.classList.contains('inset')).toBe(false);
-    expect(dividerNode.classList.contains('vertical')).toBe(true);
+    expect(dividerNode.className).not.toContain('--inset');
+    expect(dividerNode.className).toContain('--vertical');
   });
 
   it('passes all remaining props to the divider', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
     const style = { display: 'block' };
 
     const divider = renderIntoDocument(

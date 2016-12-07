@@ -1,68 +1,127 @@
-.md-select-field-menu {
-  max-height: $md-dropdown-max-height;
-  overflow-y: auto;
+////
+/// @group select-fields
+////
 
-  .md-tile-content {
-    overflow: initial;
-  }
-}
+/// The distance that a new value for the select field should drop.
+/// @type Number
+$md-select-field-drop-distance: 6px !default;
 
-.md-select-field-container {
-  &:not(.disabled):hover {
-    .md-text-field-label,
-    .md-text-field {
-      cursor: pointer;
-    }
-  }
+/// The transition time that a new value in a select field should drop.
+/// @type Number
+$md-select-field-drop-transition-time: $md-transition-time * 2 !default;
 
-  &.select-field-btn {
-    padding-left: $md-select-field-padding-left;
-    transition: box-shadow $md-transition-time;
+/// The left padding for a select field that has a postition of `SelectField.Positions.BELOW`
+/// @type Number
+$md-select-field-left-padding: 24px;
 
-    .md-text-divider {
-      display: none;
-    }
+/// The right padding for a select field that has a postition of `SelectField.Positions.BELOW`
+/// @type Number
+$md-select-field-right-padding: 16px;
 
-    &.active,
-    &:active {
-      @include md-box-shadow(2);
-    }
-  }
-
-  &.full-width {
-    width: 100%;
-  }
-}
-
-.md-select-field {
-  &:focus {
+/// Creates the styles for select fields. Like the `autocompletes`, the `SelectField` component
+/// also depends on the styles for the `TextField`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-select-fields;
+///
+/// @see react-md-text-fields
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for select fields
+///     should also be included.
+@mixin react-md-select-fields($include-media: $md-media-included) {
+  .md-select-field {
+    cursor: inherit;
+    display: flex;
+    flex-wrap: wrap;
     user-select: none;
-  }
-}
 
-.md-list-tile.select-field-btn-tile {
-  padding-left: $md-select-field-padding-left;
-}
-
-.md-data-table {
-  .md-select-field-container {
-    padding: 0;
-  }
-
-
-  .md-table-body {
-
-    .md-select-field {
-      height: $md-height;
-      padding: $md-select-field-padding;
-      padding-left: $md-select-field-padding-left;
+    .md-divider {
+      width: 100%;
     }
+  }
 
-    .md-text-field-ind {
-      $padding: ($md-height - $md-font-icon-size) / 2;
+  .md-select-field-menu--stretch .md-list {
+    min-width: 100%;
+  }
 
-      padding-bottom: $padding;
-      padding-top: $padding;
+  // To override text field padding
+  .md-select-field--btn.md-select-field--btn {
+    padding-bottom: $md-default-padding;
+    padding-left: $md-select-field-left-padding;
+    padding-right: $md-select-field-right-padding;
+    padding-top: $md-default-padding;
+  }
+
+  @include react-md-select-fields-drop-transition;
+
+  @if $include-media {
+    @include react-md-select-fields-media;
+  }
+}
+
+/// Creates the styles for select fields on a mobile device. This should
+/// _normally_ be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-select-fields-mobile;
+///   }
+///
+/// @group select-fields, media-queries
+@mixin react-md-select-fields-mobile {
+  .md-select-field--btn {
+    height: $md-text-field-mobile-height;
+  }
+
+  .md-select-field--text-field {
+    height: 18px;
+  }
+}
+
+/// Creates the styles for select fields on a desktop screen. This should
+/// _normally_ be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-select-fields-desktop;
+///   }
+///
+/// @group select-fields, media-queries
+@mixin react-md-select-fields-desktop {
+  .md-select-field--btn {
+    height: $md-text-field-desktop-height;
+  }
+
+  .md-select-field--text-field {
+    height: 15px;
+  }
+}
+
+/// Creates the media queries and styles for select fields on mobile devices and
+/// desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-select-fields-media;
+/// @group select-fields, media-queries
+@mixin react-md-select-fields-media {
+  @media #{$md-mobile-media} {
+    @include react-md-select-fields-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-select-fields-desktop;
+  }
+}
+
+/// Creates the drop down transition for a new value appearing in the select field. This is included
+/// in the `react-md-select-fields` mixin, so it _might_ not be used on its own.
+@mixin react-md-select-fields-drop-transition {
+  .md-drop-enter {
+    transform: translate3d(0, -$md-select-field-drop-distance, 0);
+
+    &.md-drop-enter-active {
+      transform: translate3d(0, 0, 0);
+      transition-duration: $md-select-field-drop-transition-time;
+      transition-property: transform;
     }
   }
 }

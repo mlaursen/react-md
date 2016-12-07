@@ -1,0 +1,20 @@
+@import '~react-md-scss';
+
+.todo-list-example {
+  @extend %md-block-centered;
+
+  max-width: 320px;
+}
+
+.todo-headline {
+  text-align: center;
+}
+
+.strikethrough {
+  color: get-color('secondary', $md-light-theme);
+  text-decoration: line-through;
+}
+
+.todo-controls {
+  padding: $md-default-padding;
+}

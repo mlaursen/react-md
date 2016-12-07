@@ -1,20 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
 
+import deprecated from '../utils/PropTypes/componentDeprecated';
 import Button from './Button';
 
-/**
- * Any other props such as style or event listeners will also
- * be applied to the button.
- */
-export default class RaisedButton extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class RaisedButton extends PureComponent {
   static propTypes = {
     /**
      * The label to display in the button.
@@ -66,6 +55,12 @@ export default class RaisedButton extends Component {
      * An optional function to call when the button is clicked.
      */
     onClick: PropTypes.func,
+
+    deprecated: deprecated(
+      'The behavior of the `RaisedButton` can be achieved with the `Button` component ' +
+      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'prop `raised`.'
+    ),
   };
 
   static defaultProps = {
@@ -74,7 +69,6 @@ export default class RaisedButton extends Component {
   };
 
   render() {
-    const { className, ...props } = this.props;
-    return <Button {...props} className={classnames('md-raised-btn', className)} />;
+    return <Button {...this.props} raised />;
   }
 }

@@ -1,7 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
+import React, { Component } from 'react';
+import cn from 'classnames';
 
-import { IconButton } from '../Buttons';
+import contextTypes from './contextTypes';
+import Button from '../Buttons/Button';
 
 /**
  * The CardExpander component is just a simple `IconButton` that
@@ -15,34 +16,33 @@ import { IconButton } from '../Buttons';
  * use a component that is not a `CardActions` or a `CardTitle`.
  */
 export default class CardExpander extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  static contextTypes = {
-    isExpanded: PropTypes.bool.isRequired,
-    onExpandClick: PropTypes.func.isRequired,
-    iconClassName: PropTypes.string.isRequired,
-    iconChildren: PropTypes.string,
-    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-    tooltipLabel: PropTypes.string,
-  };
+  static contextTypes = contextTypes;
 
   render() {
-    const { isExpanded, onExpandClick, iconClassName, iconChildren, tooltipPosition, tooltipLabel } = this.context;
-
+    const {
+      expanded,
+      onExpandClick,
+      iconClassName,
+      iconChildren,
+      tooltipPosition,
+      tooltipLabel,
+      tooltipDelay,
+    } = this.context;
 
     return (
-      <IconButton
-        className={classnames('md-card-expander', {
-          'flipped': isExpanded,
+      <Button
+        icon
+        className={cn('md-collapser md-collapser--card', {
+          'md-collapser--flipped': expanded,
         })}
         onClick={onExpandClick}
         iconClassName={iconClassName}
-        children={iconChildren}
         tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
-      />
+      >
+        {iconChildren}
+      </Button>
     );
   }
 }

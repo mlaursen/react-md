@@ -1,141 +1,223 @@
-.md-navigation-drawer {
-  @include md-box-shadow(1);
+////
+/// @group navigation-drawers
+////
+@import 'drawers';
+@import 'toolbars';
 
-  height: 100vh;
-  left: 0;
-  overflow-y: auto;
-  position: fixed;
-  z-index: $md-navigation-drawer-z-index;
+/// Boolean if the navigation drawer's content should use the `height` attribute instead of
+/// the `max-height`. When this is true, only the content will be scrollable instead of the
+/// entire window.
+/// @type Boolean
+$md-navigation-drawer-enforce-height: false !default;
 
-  &.active,
-  &.mini {
-    z-index: $md-navigation-drawer-z-index - 5;
+/// Boolean if the cross-fade transiiton should be included. This is used when the content
+/// changes.
+/// @type Boolean
+$md-navigation-drawer-include-cross-fade: true !default;
+
+/// The transition time for the cross-fade transition.
+/// @type Number
+$md-cross-fade-transition-time: $md-transition-time * 2 !default;
+
+/// The distance that the new content should move during the cross-fade transition.
+/// @type Number
+$md-cross-fade-distance: 16px !default;
+
+/// Includes the styles for navigation drawers. This really depends on the styles for toolbars and drawers.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-navigation-drawers;
+///
+/// @see react-md-drawers
+/// @see react-md-toolbars
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should be included.
+/// @param {Boolean} include-cross-fade [$md-navigation-drawer-include-cross-fade] - Boolean if the cross
+///   fade transiiton should be included.
+@mixin react-md-navigation-drawers($include-media: $md-media-included, $include-cross-fade: $md-navigation-drawer-include-cross-fade, $enforce-height: $md-navigation-drawer-enforce-height) {
+  @if $include-media {
+    @include react-md-navigation-drawers-media($enforce-height);
   }
 
-  &.mobile {
-    transition: transform $md-navigation-drawer-transition-time;
+  .md-toolbar {
+    &.md-toolbar--over-drawer {
+      z-index: $md-drawer-z-index + 2;
+    }
   }
 
-  &.mobile-inactive {
-    transform: translate3d(-100vw, 0, 0);
+  .md-title--drawer-active.md-title--drawer-active {
+    transition-duration: $md-drawer-transition-time;
+    transition-property: margin-left;
   }
 
-  &.mobile-active {
-    transform: translate3d(0, 0, 0);
-  }
-
-  &.mini {
-    overflow-x: hidden;
-    transition-duration: $md-navigation-drawer-transition-time;
-    transition-property: width;
-    width: $md-navigation-drawer-mini-width;
-
-    .md-list-tile {
-      justify-content: center;
+  .md-navigation-drawer-content {
+    &:focus {
+      outline: none;
     }
 
-    &:not(.active) .md-tile-content {
-      display: none;
-      visibility: hidden;
+    @if $md-navigation-drawer-enforce-height {
+      overflow-y: auto;
+    }
+
+    &--inactive {
+      margin-left: 0;
+    }
+
+    &--active {
+      transition-duration: $md-drawer-transition-time;
+      transition-property: margin-left;
+    }
+
+    &--prominent-offset {
+      $height: calc(100vh - #{$md-toolbar-mobile-prominent-height});
+
+      @if $md-navigation-drawer-enforce-height {
+        height: $height;
+      } @else {
+        min-height: $height;
+      }
     }
   }
 
-  &.temporary.active {
-    @include md-box-shadow(3);
-
-    z-index: $md-navigation-drawer-temporary-z-index;
-  }
-}
-
-.md-navigation-drawer-content {
-  padding-left: 0;
-  transition: padding-left $md-navigation-drawer-transition-time;
-
-  &.mini {
-    padding-left: $md-navigation-drawer-mini-width;
-    position: relative;
-  }
-}
-
-.md-navigation-drawer-toolbar,
-.md-drawer-header {
-
-  .md-title {
-    display: inline-block;
-    margin: 0;
-    vertical-align: top;
-  }
-}
-
-.md-drawer-header {
-  .md-icon-btn + .md-title {
-    padding-left: 12px;
+  .md-title.md-title--permanent-offset {
+    margin-left: $md-drawer-tablet-width + 20px;
   }
 
-  .md-title {
-    color: $md-secondary-text-color;
-    padding-left: $md-default-padding;
-  }
-}
-
-.md-navigation-drawer-toolbar {
-  @include md-box-shadow(1);
-
-  color: $md-white-base;
-  left: 0;
-  position: fixed;
-  top: 0;
-  transition-duration: $md-navigation-drawer-transition-time;
-  transition-property: box-shadow, left, width;
-  width: 100vw;
-  z-index: $md-navigation-drawer-toolbar-z-index;
-
-  .md-title {
-    color: inherit;
-    padding-left: $md-default-padding;
+  .md-drawer .md-title--toolbar-offset {
+    margin-left: $md-default-padding;
   }
 
-  .md-text-field {
-    font-size: $md-title-font-size;
-  }
+  @if $include-cross-fade {
+    .md-cross-fade-enter {
+      opacity: .01;
+      transform: translate3d(0, $md-cross-fade-distance, 0);
 
-  .md-icon-btn {
-    margin-left: $md-toolbar-action-margin;
-    margin-right: $md-toolbar-action-margin;
-
-    + .md-title {
-      padding-left: 0;
+      &.md-cross-fade-enter-active {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition-duration: $md-cross-fade-transition-time;
+        transition-property: transform, opacity;
+      }
     }
   }
 }
 
-.md-drawer-toggle {
-  float: right;
-}
+/// Includes the styles for the navigation drawer content on mobile devices.
+/// This should be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-navigation-drawers-portrait;
+///   }
+///
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
+///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @group navigation-drawers, media-queries
+@mixin react-md-navigation-drawers-mobile($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
 
-
-.drawer-leave,
-.drawer-enter.drawer-enter-active {
-  transform: translate3d(0, 0, 0);
-}
-
-.drawer-enter-active,
-.drawer-leave-active {
-  transition: transform $md-navigation-drawer-transition-time;
-}
-
-.cross-fade-enter {
-  opacity: .01;
-  transform: translate3d(0, $md-cross-fade-distance, 0);
-
-  &.cross-fade-enter-active {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    transition-duration: $md-cross-fade-transition-time;
-    transition-property: transform, opacity;
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
   }
 }
 
-.md-drawer-scrolling-list {
-  overflow-y: auto;
+
+/// Includes the styles for the navigation drawer content on mobile landscape devices.
+/// This should be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-landscape-media} {
+///     @include react-md-navigation-drawers-mobile-landscape;
+///   }
+///
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
+///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @group navigation-drawers, media-queries
+@mixin react-md-navigation-drawers-mobile-landscape($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
+
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
+  }
+}
+
+
+/// Includes the styles for the navigation drawer content on tablets.
+/// This should be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-tablet-media} {
+///     @include react-md-navigation-drawers-tablet;
+///   }
+///
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
+///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @group navigation-drawers, media-queries
+@mixin react-md-navigation-drawers-tablet($enforce-height: $md-navigation-drawer-enforce-height) {
+  .md-navigation-drawer-content {
+    $height: calc(100vh - #{$md-toolbar-tablet-height});
+
+    @if $md-navigation-drawer-enforce-height {
+      height: $height;
+    } @else {
+      min-height: $height;
+    }
+  }
+
+  .md-title.md-title--persistent-offset {
+    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - 12px + 20px;
+  }
+}
+
+
+/// Includes the styles for the navigation drawer content on desktop screens.
+/// This should be used within a media query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-navigation-drawers-desktop;
+///   }
+///
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
+///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @group navigation-drawers, media-queries
+@mixin react-md-navigation-drawers-desktop {
+  .md-title.md-title--persistent-offset {
+    margin-left: $md-drawer-desktop-width - $md-btn-icon-size - 12px + 20px;
+  }
+}
+
+/// Includes the media queries and styles for navigation drawers.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-navigation-drawers-media;
+///
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
+///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @group navigation-drawers, media-queries
+@mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height) {
+  @media #{$md-mobile-media} {
+    @include react-md-navigation-drawers-mobile($enforce-height);
+  }
+
+  @media #{$md-mobile-landscape-media} {
+    @include react-md-navigation-drawers-mobile-landscape($enforce-height);
+  }
+
+  @media #{$md-tablet-media} {
+    @include react-md-navigation-drawers-tablet($enforce-height);
+  }
+
+  @if $md-drawer-tablet-width != $md-drawer-desktop-width {
+    @media #{$md-desktop-media} {
+      @include react-md-navigation-drawers-desktop;
+    }
+  }
 }

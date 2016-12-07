@@ -1,9 +1,10 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
-import SelectField from '../SelectFields';
-import IconButton from '../Buttons/IconButton';
+import cn from 'classnames';
+
+import getField from '../utils/getField';
+import SelectField from '../SelectFields/SelectField';
+import Button from '../Buttons/Button';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps
@@ -12,19 +13,7 @@ import IconButton from '../Buttons/IconButton';
  * so that when a user scrolls to the right, they will always be able to use the
  * pagination.
  */
-export default class TablePagination extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    this.state = {
-      start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
-      rowsPerPage: props.defaultRowsPerPage,
-      controlsMarginLeft: 0,
-    };
-  }
-
+export default class TablePagination extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply to the `tfoot` tag.
@@ -39,13 +28,24 @@ export default class TablePagination extends Component {
     /**
      * A function to call when a user clicks the increment or decrement pagination
      * icon button. This function will be given the new start index and the number
-     * or rows per page.
+     * or rows per page as well as the current page.
      *
      * ```js
-     * onPagination(newStart, rowsPerPage);
+     * onPagination(newStart, rowsPerPage, currentPage);
      * ```
      */
     onPagination: PropTypes.func.isRequired,
+
+    /**
+     * The current value for the select field holding the number of rows per page.
+     */
+    rowsPerPage: PropTypes.number,
+
+    /**
+     * The current page for the pagination. This will make the comonent controlled, so the only way to get pagination
+     * is making sure you are updating this prop after the `onPagination` callback is called.
+     */
+    page: PropTypes.number,
 
     /**
      * The page number to start from. This should be a number starting from 1.
@@ -97,6 +97,13 @@ export default class TablePagination extends Component {
     decrementIconClassName: PropTypes.string,
   };
 
+  static contextTypes = {
+    baseId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+  }
+
   static defaultProps = {
     defaultPage: 1,
     defaultRowsPerPage: 10,
@@ -106,6 +113,22 @@ export default class TablePagination extends Component {
     decrementIconChildren: 'keyboard_arrow_left',
   };
 
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
+      rowsPerPage: props.defaultRowsPerPage,
+      controlsMarginLeft: 0,
+    };
+
+    this._setControls = this._setControls.bind(this);
+    this._position = this._position.bind(this);
+    this._increment = this._increment.bind(this);
+    this._decrement = this._decrement.bind(this);
+    this._setRowsPerPage = this._setRowsPerPage.bind(this);
+  }
+
   componentDidMount() {
     this._position();
     window.addEventListener('resize', this._position);
@@ -114,7 +137,10 @@ export default class TablePagination extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { rows } = this.props;
     const { start, rowsPerPage } = this.state;
-    if(rows !== prevProps.rows || start !== prevState.start || rowsPerPage !== prevState.rowsPerPage) {
+    if (rows !== prevProps.rows
+      || start !== prevState.start
+      || rowsPerPage !== prevState.rowsPerPage
+    ) {
       this._position();
     }
   }
@@ -123,65 +149,75 @@ export default class TablePagination extends Component {
     window.removeEventListener('resize', this._position);
   }
 
+  _setControls(controls) {
+    this._controls = findDOMNode(controls);
+  }
+
   _findTable(el) {
     let table;
-    while(el && el.parentNode) {
-      if(el.classList && el.classList.contains('md-data-table')) {
+    let node = el;
+    while (node && node.parentNode) {
+      if (node.classList && node.classList.contains('md-data-table')) {
         // Attempt to check one more element up to see if there is a table-container
         // for responsive tables.
-        table = el;
-      } else if(el.classList && el.classList.contains('md-data-table-container')) {
-        return el;
-      } else if(table) {
+        table = node;
+      } else if (node.classList && node.classList.contains('md-data-table--responsive')) {
+        return node;
+      } else if (table) {
         return table;
       }
 
-      el = el.parentNode;
+      node = node.parentNode;
     }
 
     return null;
   }
 
-  _position = () => {
+  _position() {
     const table = this._findTable(findDOMNode(this));
-    if(table) {
+    if (table) {
       this.setState({
-        controlsMarginLeft: table.offsetWidth - this.refs.controls.offsetWidth,
+        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
       });
     }
-  };
+  }
 
-  _increment = () => {
-    const { rows, onPagination } = this.props;
-    const { start, rowsPerPage } = this.state;
+  _increment() {
+    const { rows, onPagination, page } = this.props;
+    const { start } = this.state;
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
 
     // Only correct multiple of rows per page
     const max = rows - (rows % rowsPerPage);
 
     const newStart = Math.min(start + rowsPerPage, max);
+    const nextPage = typeof page !== 'undefined' ? page + 1 : (newStart / rowsPerPage) + 1;
 
-    onPagination(newStart, rowsPerPage);
+    onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart });
-  };
+  }
 
-  _decrement = () => {
-    const { start, rowsPerPage } = this.state;
+  _decrement() {
+    const { page } = this.props;
+    const { start } = this.state;
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
     const newStart = Math.max(0, start - rowsPerPage);
+    const nextPage = typeof page !== 'undefined' ? page - 1 : (newStart / rowsPerPage) + 1;
 
-    this.props.onPagination(newStart, rowsPerPage);
+    this.props.onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart });
-  };
+  }
 
-  _setRowsPerPage = (rowsPerPage) => {
+  _setRowsPerPage(rowsPerPage) {
     const { start } = this.state;
 
     const newStart = Math.max(0, start - (start % rowsPerPage));
-    this.props.onPagination(newStart, rowsPerPage);
+    this.props.onPagination(newStart, rowsPerPage, newStart / rowsPerPage + 1);
     this.setState({ start: newStart, rowsPerPage });
-  };
+  }
 
   render() {
-    const { start, rowsPerPage, controlsMarginLeft } = this.state;
+    const { controlsMarginLeft } = this.state;
     const {
       className,
       rows,
@@ -191,50 +227,63 @@ export default class TablePagination extends Component {
       incrementIconClassName,
       decrementIconChildren,
       decrementIconClassName,
-      ...props,
+      page,
+      ...props
     } = this.props;
     delete props.onPagination;
+    delete props.rowsPerPage;
     delete props.defaultPage;
     delete props.defaultRowsPerPage;
 
+    const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
+    let { start } = this.state;
+    if (typeof page !== 'undefined') {
+      start = (page - 1) * rowsPerPage;
+    }
+
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
-      <tfoot {...props} className={classnames('md-table-footer', className)}>
+      <tfoot {...props} className={cn('md-table-footer', className)}>
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
           <td colSpan="100%">
             <div
-              ref="controls"
-              className="md-table-footer-controls"
+              ref={this._setControls}
+              className="md-table-pagination md-table-pagination--controls md-text"
               style={{ marginLeft: controlsMarginLeft }}
             >
               {rowsPerPageLabel}
               <SelectField
-                ref="selectField"
+                id={`${this.context.baseId}-pagination`}
                 menuItems={rowsPerPageItems}
                 position={SelectField.Positions.BELOW}
+                inputClassName="md-select-field--pagination"
                 value={rowsPerPage}
                 onChange={this._setRowsPerPage}
               />
-              <span className="pagination">{pagination}</span>
-              <IconButton
+              <span className="md-table-pagination--label">{pagination}</span>
+              <Button
+                icon
                 onClick={this._decrement}
                 disabled={start === 0}
-                children={decrementIconChildren}
                 iconClassName={decrementIconClassName}
-              />
-              <IconButton
+              >
+                {decrementIconChildren}
+              </Button>
+              <Button
+                icon
                 onClick={this._increment}
                 disabled={start + rowsPerPage >= rows}
-                children={incrementIconChildren}
                 iconClassName={incrementIconClassName}
-              />
+              >
+                {incrementIconChildren}
+              </Button>
             </div>
             {/*
               * Since the footer controls is positioned absolutely for a persistent footer,
               * we have a mask to correctly set the height of the footer.
               */}
-            <div className="md-table-footer-controls-mask" />
+            <div className="md-table-pagination" />
           </td>
         </tr>
       </tfoot>

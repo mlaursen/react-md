@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+
+import oneRequiredForA11yIf from '../utils/PropTypes/oneRequiredForA11yIf';
 
 /**
  * The avatar component is used to convert a `FontIcon`, an image, or
@@ -9,13 +10,7 @@ import classnames from 'classnames';
  * Any other props given to the Avatar component such as event listeners
  * or styles will also be applied.
  */
-export default class Avatar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Avatar extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the avatar.
@@ -60,23 +55,82 @@ export default class Avatar extends Component {
      * *should* be one of the available `suffixes`.
      */
     suffix: PropTypes.string,
+
+    /**
+     * Boolean if the `Avatar` should be sized to a `FontIcon` size. This
+     * will just set the width and height to the `$md-font-icon-size`.
+     */
+    iconSized: PropTypes.bool,
+
+    /**
+     * A role for the avatar's image. When the `src` prop is set, either a `role` of `presentation`
+     * or the `alt` prop must be defined for a11y.
+     */
+    role: oneRequiredForA11yIf(PropTypes.oneOf(['presentation']), 'src', 'alt'),
   };
 
   static defaultProps = {
-    suffixes: ['color-1', 'color-2', 'color-3'],
+    suffixes: [
+      'red',
+      'pink',
+      'purple',
+      'deep-purple',
+      'indigo',
+      'blue',
+      'light-blue',
+      'cyan',
+      'teal',
+      'green',
+      'light-green',
+      'lime',
+      'yellow',
+      'amber',
+      'orange',
+      'deep-orange',
+      'brown',
+      'grey',
+      'blue-grey',
+    ],
   };
 
-  getColor = () => {
-    const { suffix, suffixes, random } = this.props;
-    if(suffix) {
-      return `md-avatar-${suffix}`;
-    } else if(!!suffixes && !random) {
-      return null;
+  constructor(props) {
+    super(props);
+
+    this.state = { color: null };
+
+    this._setRandomColor = this._setRandomColor.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.random) {
+      this._setRandomColor();
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.random && (this.props.src !== nextProps.src || this.props.icon !== nextProps.icon)) {
+      this._setRandomColor();
+    } else if (this.props.random && !nextProps.random) {
+      this.setState({ color: null });
+    }
+  }
+
+  _setRandomColor() {
+    const { suffixes } = this.props;
 
     const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
-    return `md-avatar-${suffixes[i]}`;
-  };
+    this.setState({ color: suffixes[i] });
+  }
+
+  _getColor(suffix, suffixes, color) {
+    if (suffix) {
+      return `md-avatar--${suffix}`;
+    } else if (!!suffixes && !color) {
+      return 'md-avatar--default';
+    }
+
+    return `md-avatar--${color}`;
+  }
 
   render() {
     const {
@@ -85,15 +139,22 @@ export default class Avatar extends Component {
       alt,
       icon,
       children,
-      ...props,
+      suffix,
+      suffixes,
+      iconSized,
+      role,
+      ...props
     } = this.props;
-    delete props.suffixes;
-    delete props.suffix;
     delete props.random;
 
     return (
-      <div className={classnames('md-avatar', className, this.getColor())} {...props}>
-        {src && <img src={src} alt={alt} className="md-img-avatar" />}
+      <div
+        {...props}
+        className={cn('md-inline-block md-avatar', this._getColor(suffix, suffixes, this.state.color), {
+          'md-avatar--icon-sized': iconSized,
+        }, className)}
+      >
+        {src && <img src={src} alt={alt} role={role} className="md-avatar-img" />}
         {!src &&
           <div className="md-avatar-content">
             {icon || children}

@@ -1,15 +1,26 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 
-import { setToolbarInactive } from 'actions/ui';
+import { setDrawerToolbarBoxShadow } from 'actions/ui';
+import getLink from 'utils/getLink';
 import Home from 'components/Home';
 
-@connect(({ ui: { drawer } }) => ({ inactive: drawer.inactive }), { setToolbarInactive })
+@connect(({ ui: { drawer: { visibleBoxShadow } } }) => ({ visibleBoxShadow }), {
+  updateToolbar: setDrawerToolbarBoxShadow,
+})
 export default class HomeContainer extends PureComponent {
   static propTypes = {
-    inactive: PropTypes.bool.isRequired,
-    setToolbarInactive: PropTypes.func.isRequired,
+    visibleBoxShadow: PropTypes.bool.isRequired,
+    updateToolbar: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    if (__CLIENT__ && !document.getElementById('logo-font-link')) {
+      const link = getLink('logo-font-link');
+      link.href = 'https://fonts.googleapis.com/css?family=Montserrat:700';
+    }
+  }
 
   componentDidMount() {
     this._updateToolbar();
@@ -17,31 +28,34 @@ export default class HomeContainer extends PureComponent {
   }
 
   componentWillUnmount() {
-    this.props.setToolbarInactive(false);
+    this.props.updateToolbar(true);
     window.removeEventListener('scroll', this._updateToolbar);
   }
 
+  _setBannderHeight = (home) => {
+    if (!home) {
+      return;
+    }
+
+    this._bannerHeight = Math.max(findDOMNode(home).querySelector('.banner').offsetHeight, 400);
+  };
+
   _updateToolbar = () => {
-    const { inactive, setToolbarInactive } = this.props;
+    const { visibleBoxShadow, updateToolbar } = this.props;
+
     const scrollDistance = Math.max(
       window.pageYOffset,
       document.documentElement.scrollTop,
       document.body.scrollTop
     );
 
-    if (!this._bannerHeight) {
-      this._bannerHeight = document.querySelector('.banner').offsetHeight;
-    }
-
-    const nowInactive = scrollDistance < this._bannerHeight;
-    if (nowInactive !== inactive) {
-      setToolbarInactive(nowInactive);
+    const visible = scrollDistance > this._bannerHeight;
+    if (visible !== visibleBoxShadow) {
+      updateToolbar(visible);
     }
   };
 
   render() {
-    return (
-      <Home />
-    );
+    return <Home ref={this._setBannderHeight} />;
   }
 }

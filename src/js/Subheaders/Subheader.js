@@ -1,30 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `Subheader` component is generally used inside of lists or menus.
  */
-export default class Subheader extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class Subheader extends PureComponent {
   static propTypes = {
     /**
-     * The text to display as a subheader.
+     * An optional style to apply to the subheader.
      */
-    primaryText: PropTypes.string.isRequired,
-
-    /**
-     * The component to render the Subheader as.
-     */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]).isRequired,
+    style: PropTypes.object,
 
     /**
      * An optional className to apply to the subheader.
@@ -37,10 +22,29 @@ export default class Subheader extends Component {
     primary: PropTypes.bool,
 
     /**
-     * Boolean if the Subheader is inset in the list. This will add additional
+     * Boolean if the subheader is inset in the list. This will add additional
      * spacing to align the subheader.
      */
     inset: PropTypes.bool,
+
+    /**
+     * The primary text to use in the subheader.
+     */
+    primaryText: PropTypes.node.isRequired,
+
+    /**
+     * Any optional children to display after the `primaryText`. This prop is
+     * unrecommended.
+     */
+    children: PropTypes.node,
+
+    /**
+     * The component to render the Subheader as.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
   };
 
   static defaultProps = {
@@ -48,16 +52,28 @@ export default class Subheader extends Component {
   };
 
   render() {
-    const { component, inset, primary, primaryText, className, ...props } = this.props;
-    delete props.expanderIconChildren;
-    delete props.expanderIconClassName;
+    const {
+      component: Component,
+      inset,
+      primary,
+      primaryText,
+      className,
+      children,
+      ...props
+    } = this.props;
 
-    return React.createElement(component, {
-      ...props,
-      className: classnames('md-subheader', className, {
-        inset,
-        'md-primary': primary,
-      }),
-    }, primaryText);
+    return (
+      <Component
+        {...props}
+        className={cn('md-subheader', {
+          'md-text--secondary': !primary,
+          'md-text--theme-primary': primary,
+          'md-list-item--inset': inset,
+        }, className)}
+      >
+        {primaryText}
+        {children}
+      </Component>
+    );
   }
 }

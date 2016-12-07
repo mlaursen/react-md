@@ -1,62 +1,76 @@
-/*eslint-env jest*/
+/* eslint-env jest */
 jest.unmock('../Snackbar');
 
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
-  scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
 import Snackbar from '../Snackbar';
-import Toast from '../Toast';
+
+const PROPS = {
+  leaveTimeout: 300,
+  onDismiss: jest.fn(),
+  toast: {
+    text: 'hello, World',
+  },
+};
 
 describe('Snackbar', () => {
-  it('renders a toast', () => {
-    let toasts = [];
-    const dismiss = jest.genMockFunction();
+  it('merges className and style', () => {
+    const props = Object.assign({}, PROPS, {
+      style: { background: 'black' },
+      className: 'test',
+    });
 
-    let snackbar = renderIntoDocument(
-      <Snackbar toasts={toasts} dismiss={dismiss} />
-    );
+    const snackbar = renderIntoDocument(<Snackbar {...props} />);
 
-    let toastComps = scryRenderedComponentsWithType(snackbar, Toast);
-    expect(toastComps.length).toBe(0);
-
-    toasts = [{ text: 'Hello' }];
-    snackbar = renderIntoDocument(
-      <Snackbar toasts={toasts} dismiss={dismiss} />
-    );
-
-    toastComps = scryRenderedComponentsWithType(snackbar, Toast);
-    expect(toastComps.length).toBe(1);
+    const snackbarNode = findDOMNode(snackbar);
+    expect(snackbarNode.style.background).toBe(props.style.background);
+    expect(snackbarNode.className).toContain(props.className);
   });
 
-  it('automatically dismisses a toast after the autohide timeout', () => {
-    const dismiss = jest.genMockFunction();
+  it('renders as a p tag if there is no action', () => {
+    const snackbar = renderIntoDocument(<Snackbar {...PROPS} />);
+    const node = findDOMNode(snackbar);
+    expect(node.tagName).toBe('P');
+  });
 
-    class Test extends React.Component {
-      constructor(props) {
-        super(props);
+  it('renders as a section tag if there is an action', () => {
+    const props = Object.assign({}, PROPS, {
+      toast: { text: 'hello', action: 'woop' },
+    });
+    const snackbar = renderIntoDocument(<Snackbar {...props} />);
+    const node = findDOMNode(snackbar);
+    expect(node.tagName).toBe('SECTION');
+  });
 
-        this.state = { toasts: [] };
-      }
+  it('applies the md-snackbar className to the container', () => {
+    let snackbar = renderIntoDocument(<Snackbar {...PROPS} />);
+    let node = findDOMNode(snackbar);
+    expect(node.className).toContain('md-snackbar');
 
-      render() {
-        return <Snackbar toasts={this.state.toasts} dismiss={dismiss} />;
-      }
-    }
-    let test = renderIntoDocument(<Test />);
+    const props = Object.assign({}, PROPS, {
+      toast: { text: 'hello', action: 'woop' },
+    });
+    snackbar = renderIntoDocument(<Snackbar {...props} />);
+    node = findDOMNode(snackbar);
+    expect(node.className).toContain('md-snackbar');
+  });
 
-    let toastComps = scryRenderedComponentsWithType(test, Toast);
-    expect(toastComps.length).toBe(0);
+  it('sets the role to be alert when there is no action', () => {
+    const snackbar = renderIntoDocument(<Snackbar {...PROPS} />);
+    const node = findDOMNode(snackbar);
+    expect(node.getAttribute('role')).toBe('alert');
+  });
 
-    test.setState({ toasts: [{ text: 'Hello' }] });
-
-    toastComps = scryRenderedComponentsWithType(test, Toast);
-    expect(toastComps.length).toBe(1);
-    expect(dismiss.mock.calls.length).toBe(0);
-
-    jest.runAllTimers();
-    expect(dismiss.mock.calls.length).toBe(1);
+  it('sets the role to be alertdialog when there is an action', () => {
+    const props = Object.assign({}, PROPS, {
+      toast: { text: 'hello', action: 'woop' },
+    });
+    const snackbar = renderIntoDocument(<Snackbar {...props} />);
+    const node = findDOMNode(snackbar);
+    expect(node.getAttribute('role')).toBe('alertdialog');
   });
 });

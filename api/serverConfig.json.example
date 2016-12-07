@@ -1,0 +1,5 @@
+{
+  "host": "localhost",
+  "path": "/api",
+  "port": 3001
+}

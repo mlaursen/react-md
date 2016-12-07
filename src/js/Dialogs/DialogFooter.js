@@ -1,65 +1,101 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
+import cn from 'classnames';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons/Button';
 
-/**
- * A simple component for converting action objects into `FlatButton`
- * or just rendering the actions that are valid elements.
- */
-export default class DialogFooter extends Component {
+const FOOTER_PADDING = 8;
+
+export default class DialogFooter extends PureComponent {
+  static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
+    children: PropTypes.node,
+    actions: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.object,
+      ])),
+    ]),
+  };
+
   constructor(props) {
     super(props);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = { stacked: false };
+
+    this._toElement = this._toElement.bind(this);
+    this._generateActions = this._generateActions.bind(this);
+    this._setContainer = this._setContainer.bind(this);
   }
 
-  static propTypes = {
-    /**
-     * The optional className to apply.
-     */
-    className: PropTypes.string,
+  _setContainer(container) {
+    if (container !== null) {
+      this._container = container;
+      const maxWidth = (this._container.offsetWidth - (FOOTER_PADDING * 3)) / 2;
 
-    /**
-     * The list of actions or a single action to display in the footer.
-     */
-    actions: PropTypes.oneOfType([
-      PropTypes.shape({
-        onClick: PropTypes.func.isRequired,
-        label: PropTypes.string.isRequired,
-      }),
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.element,
-        PropTypes.shape({
-          onClick: PropTypes.func.isRequired,
-          label: PropTypes.string.isRequired,
-        }),
-      ])),
-    ]).isRequired,
-  };
+      let stacked = false;
+      Array.prototype.slice.call(this._container.querySelectorAll('.md-btn'))
+        .some(({ offsetWidth }) => {
+          stacked = offsetWidth > maxWidth;
+          return stacked;
+        });
 
-  actionToElement = (action, key) => {
-    if(!React.isValidElement(action)) {
-      return <FlatButton key={key} {...action} />;
-    } else {
-      return action;
+      this.setState({ stacked });
     }
-  };
+  }
 
-  render() {
-    const { className, actions } = this.props;
+  _toElement(action, index) {
+    if (isValidElement(action)) {
+      const button = Children.only(action);
 
-    let children;
-    if(Array.isArray(actions)) {
-      children = actions.map(this.actionToElement);
-    } else {
-      children = this.actionToElement(actions);
+      return cloneElement(action, {
+        key: button.props.key || index,
+        className: cn('md-btn--dialog', button.props.className),
+        waitForInkTransition: true,
+      });
     }
 
     return (
-      <footer className={classnames('md-dialog-footer', className)}>
+      <Button
+        key={index}
+        flat
+        {...action}
+        className={cn('md-btn--dialog', action.className)}
+        waitForInkTransition
+      />
+    );
+  }
+
+  _generateActions() {
+    const { actions } = this.props;
+    if (Array.isArray(actions)) {
+      return actions.map(this._toElement);
+    }
+
+    return this._toElement(actions);
+  }
+
+  render() {
+    const { stacked } = this.state;
+    let { className } = this.props;
+    const { children, actions, ...props } = this.props;
+    delete props.className;
+    delete props.onActionMount;
+
+    if (!actions || (Array.isArray(actions) && !actions.length)) {
+      return null;
+    }
+
+    className = cn('md-dialog-footer', {
+      'md-dialog-footer--inline': !stacked,
+      'md-dialog-footer--stacked': stacked,
+    }, className);
+
+    return (
+      <footer {...props} className={className} ref={this._setContainer}>
+        {this._generateActions()}
         {children}
       </footer>
     );

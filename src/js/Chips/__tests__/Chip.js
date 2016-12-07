@@ -1,156 +1,94 @@
 /* eslint-env jest */
 jest.unmock('../Chip');
-jest.unmock('../../FontIcons');
-jest.unmock('../../FontIcons/FontIcon');
-jest.unmock('../../Avatars');
-jest.unmock('../../Avatars/Avatar');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument, Simulate } from 'react-addons-test-utils';
+import {
+  Simulate,
+  renderIntoDocument,
+  findRenderedComponentWithType,
+  scryRenderedComponentsWithType,
+} from 'react-addons-test-utils';
 
 import Chip from '../Chip';
-import Avatar from '../../Avatars';
+import FontIcon from '../../FontIcons/FontIcon';
+import Avatar from '../../Avatars/Avatar';
 
 describe('Chip', () => {
-  it('adds className and style onto the container component', () => {
-    const style = { display: 'block' };
-    const chip = renderIntoDocument(
-      <Chip className="test" label="Test" style={style} />
-    );
+  it('merges style and className', () => {
+    const props = {
+      label: 'a',
+      style: { background: 'black' },
+      className: 'test',
+    };
 
+    const chip = renderIntoDocument(<Chip {...props} />);
     const chipNode = findDOMNode(chip);
-
-    expect(chipNode.className).toBe('md-chip-container test');
-    expect(chipNode.style.display).toBe(style.display);
+    expect(chipNode.style.background).toBe(props.style.background);
+    expect(chipNode.className).toContain(props.className);
   });
 
-  it('toggles a focus className on chip focus and blur', () => {
-    const chip = renderIntoDocument(<Chip label="Test" />);
+  it('allows the onClick, onMouseOver, and onMouseLeave props to still be called', () => {
+    const onClick = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+
+    const props = {
+      label: 'a',
+      onClick,
+      onMouseOver,
+      onMouseLeave,
+    };
+
+    const chip = renderIntoDocument(<Chip {...props} />);
     const chipNode = findDOMNode(chip);
-
-    Simulate.focus(chipNode.querySelector('button'));
-
-    expect(chipNode.classList.contains('focus')).toBe(true);
-
-    Simulate.blur(chipNode.querySelector('button'));
-    expect(chipNode.classList.contains('focus')).toBe(false);
-  });
-
-  it('injects a remove icon button if the remove prop is not undefined', () => {
-    const remove = jest.genMockFunction();
-    const chip = renderIntoDocument(
-      <Chip label="Test" remove={remove} />
-    );
-
-    const chipNode = findDOMNode(chip);
-    const [chipBtn, removeBtn] = chipNode.querySelectorAll('button');
-
-    expect(chipBtn.textContent).toBe('Test');
-    expect(chipBtn.classList.contains('with-remove')).toBe(true);
-
-    expect(removeBtn.className).toBe('md-chip-remove');
-
-    Simulate.click(removeBtn);
-
-    expect(remove).toBeCalled();
-  });
-
-  it('allows for customizable remove icons', () => {
-    const remove = jest.genMockFunction();
-    const chip = renderIntoDocument(
-      <Chip
-        label="Test"
-        remove={remove}
-        removeIconClassName="fa fa-close"
-        removeIconChildren={null}
-      />
-    );
-
-    const chipNode = findDOMNode(chip);
-    const removeButton = chipNode.querySelectorAll('button')[1];
-
-    const removeIcon = removeButton.querySelector('i');
-
-    expect(removeIcon).not.toBe(null);
-    expect(removeIcon.className).toBe('md-icon fa fa-close');
-    expect(removeIcon.textContent).toBe('');
-  });
-
-  it('passes all remaining props to the button component', () => {
-    const onClick = jest.genMockFunction();
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
-
-    const chip = renderIntoDocument(
-      <Chip
-        label="Test"
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onMouseOver={onMouseOver}
-        onMouseLeave={onMouseLeave}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-        onTouchCancel={onTouchCancel}
-      />
-    );
-
-    const chipNode = findDOMNode(chip).querySelector('button');
 
     Simulate.click(chipNode);
     expect(onClick).toBeCalled();
-
-    Simulate.focus(chipNode);
-    expect(onFocus).toBeCalled();
-
-    Simulate.blur(chipNode);
-    expect(onBlur).toBeCalled();
 
     Simulate.mouseOver(chipNode);
     expect(onMouseOver).toBeCalled();
 
     Simulate.mouseLeave(chipNode);
     expect(onMouseLeave).toBeCalled();
-
-    Simulate.mouseDown(chipNode);
-    expect(onMouseDown).toBeCalled();
-
-    Simulate.mouseUp(chipNode);
-    expect(onMouseUp).toBeCalled();
-
-    Simulate.touchStart(chipNode);
-    expect(onTouchStart).toBeCalled();
-
-    Simulate.touchEnd(chipNode);
-    expect(onTouchEnd).toBeCalled();
-
-    Simulate.touchCancel(chipNode);
-    expect(onTouchCancel).toBeCalled();
   });
 
-  it('injects an avatar before the label if the children is set', () => {
-    const chip = renderIntoDocument(
-      <Chip label="Test">
-        <Avatar>T</Avatar>
-      </Chip>
-    );
+  it('does not render a FontIcon if the removable prop is not true', () => {
+    const props = { label: 'a' };
+    const chip = renderIntoDocument(<Chip {...props} />);
+    const icons = scryRenderedComponentsWithType(chip, FontIcon);
+    expect(icons.length).toBe(0);
+  });
 
-    const chipNode = findDOMNode(chip);
-    expect(chipNode.classList.contains('md-contact-chip')).toBe(true);
+  it('renders a FontIcon if the removable prop is true', () => {
+    const props = { label: 'a', removable: true };
+    const chip = renderIntoDocument(<Chip {...props} />);
+    const icons = scryRenderedComponentsWithType(chip, FontIcon);
+    expect(icons.length).toBe(1);
+  });
 
-    const [avatar, label] = chipNode.childNodes;
+  it('renders a FontIcon with the correct props', () => {
+    const props = {
+      label: 'a',
+      children: 'menu',
+      iconClassName: 'test',
+      removable: true,
+    };
+    const chip = renderIntoDocument(<Chip {...props} />);
+    const icon = findRenderedComponentWithType(chip, FontIcon);
 
-    expect(avatar.className).toBe('md-avatar');
-    expect(label.textContent).toBe('Test');
+    expect(icon.props.iconClassName).toBe(props.iconClassName);
+    expect(icon.props.children).toBe(props.children);
+  });
+
+  it('renders the avatar prop', () => {
+    const props = {
+      label: 'a',
+      avatar: <Avatar>A</Avatar>,
+    };
+
+    const chip = renderIntoDocument(<Chip {...props} />);
+    const avatars = scryRenderedComponentsWithType(chip, Avatar);
+    expect(avatars.length).toBe(1);
   });
 });

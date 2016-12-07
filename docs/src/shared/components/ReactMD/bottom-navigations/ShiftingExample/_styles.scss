@@ -1,0 +1,119 @@
+@import '~react-md-scss';
+
+
+.movies-and-tv {
+  @include react-md-theme-bottom-navigations-colored($md-blue-grey-500);
+}
+
+.music {
+  @include react-md-theme-bottom-navigations-colored($md-teal-500);
+}
+
+.books {
+  @include react-md-theme-bottom-navigations-colored($md-grey-500);
+}
+
+.news-stand {
+  @include react-md-theme-bottom-navigations-colored($md-brown-500);
+}
+
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-card {
+  align-items: flex-start;
+  display: flex;
+
+  .md-card-title--title-block {
+    @extend %ellipsis;
+  }
+}
+
+.section-header {
+  align-items: center;
+  display: flex;
+  margin-bottom: 0;
+  padding: 8px;
+  padding-bottom: 0;
+}
+
+.bottom-nav-section {
+  .md-card-title--title-block {
+    overflow: hidden;
+  }
+
+  .md-card-title--large {
+    font-size: 16px;
+    font-weight: $md-font-bold;
+  }
+
+  .md-card-title--title {
+    @extend %ellipsis;
+    @extend %md-text-capitalize;
+  }
+}
+
+.md-toolbar.bottom-nav-toolbar {
+  transition-duration: $md-transition-time;
+  transition-property: background, box-shadow, margin;
+
+  &--active {
+    background: $md-grey-200;
+    box-shadow: none;
+  }
+}
+
+.list-unstyled {
+  list-style: none;
+}
+
+.line-clamp,
+.two-line-clamp {
+  // scss-lint:disable PropertySortOrder
+  line-height: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: pre-line;
+
+  // fallback for non webkit browsers
+  display: block;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp {
+  height: 20px;
+  -webkit-line-clamp: 1;
+}
+
+.two-line-clamp {
+  height: 40px;
+  -webkit-line-clamp: 2;
+}
+
+.news-item {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.news-left {
+  flex-shrink: 1;
+  padding-right: $md-default-padding;
+}
+
+.fab-nav {
+  transition-duration: $md-bottom-navigation-transition-time;
+  transition-property: bottom;
+  will-change: bottom;
+
+  &--offset {
+    bottom: $md-bottom-navigation-height + 16px;
+  }
+}
+
+@include react-md-media-aspect-ratio(2, 3);

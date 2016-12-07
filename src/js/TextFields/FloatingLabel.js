@@ -1,43 +1,56 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-/**
- * This component is used for rendering the floating label for a text field.
- */
-export default class FloatingLabel extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class FloatingLabel extends PureComponent {
   static propTypes = {
-    active: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
-    required: PropTypes.bool,
+    style: PropTypes.object,
+    className: PropTypes.string,
+    label: PropTypes.string,
+    floating: PropTypes.bool,
+    error: PropTypes.bool,
+    active: PropTypes.bool,
     disabled: PropTypes.bool,
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    iconOffset: PropTypes.bool,
+    customSize: PropTypes.string,
+    htmlFor: PropTypes.string,
   };
 
   render() {
-    const { active, error, required, value, disabled } = this.props;
-    let { label } = this.props;
-    if(required && label.indexOf('*') === -1) {
-      label = label.trim() + ' *';
-    }
-
-    const className= classnames('md-floating-label', {
+    const {
+      label,
+      htmlFor,
+      className,
+      floating,
+      active,
       error,
       disabled,
-      'focus': active,
-      'active': active || value !== '',
-    });
+      iconOffset,
+      customSize,
+      ...props
+    } = this.props;
 
-    return <span className={className}>{label}</span>;
+    if (!label) {
+      return null;
+    }
+
+    return (
+      <label
+        {...props}
+        htmlFor={htmlFor}
+        className={cn('md-floating-label', {
+          'md-floating-label--active': !error && active,
+          'md-floating-label--error': !disabled && error,
+          'md-floating-label--inactive': !floating,
+          'md-floating-label--inactive-sized': !floating && !customSize,
+          [`md-floating-label--${customSize}`]: customSize,
+          [`md-floating-label--inactive-${customSize}`]: customSize && !floating,
+          'md-floating-label--floating': floating,
+          'md-floating-label--disabled': disabled,
+          'md-floating-label--icon-offset': iconOffset,
+        }, className)}
+      >
+        {label}
+      </label>
+    );
   }
 }

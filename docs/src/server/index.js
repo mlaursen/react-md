@@ -1,48 +1,65 @@
-import path from 'path';
-import express from 'express';
-import compression from 'compression';
-import vhost from 'vhost';
-import logger from 'morgan';
+const path = require('path');
+const express = require('express');
+const compression = require('compression');
+const logger = require('morgan');
+const { port } = require('../../serverConfig.json');
+const helmet = require('helmet');
+
+const theme = require('./theme');
+const proxy = require('./proxy');
 
 const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', path.resolve(process.cwd(), 'dist', 'client'));
-
-app.use(compression());
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
 
 const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
 const client = express.static(clientRoot, {
-  maxAge: 3156000,
+  maxAge: CACHE_DURATION,
 });
 
+app.set('view engine', 'ejs');
+app.set('views', clientRoot);
+app.use(helmet({
+  noCache: false,
+}));
+app.use(compression());
+app.use(logger(__DEV__ ? 'dev' : 'combined'));
 
-let port = 8080;
-if (process.env.NODE_ENV === 'production') {
-  const prodConfig = require('../../prod-config.json');
 
-  port = prodConfig.port;
-  app.use(logger('combined'));
-  app.use(vhost(prodConfig.vhost, client));
-  app.use(vhost(prodConfig.vhost, require('./react-md').default));
+app.get('/themes/*.css', theme);
+app.get('/proxy', proxy);
+
+if (!__DEV__ || __DEBUG_SSR__) {
+  app.use(client);
+  app.use(require('./reactMD').default);
 } else {
-  const fallback = require('express-history-api-fallback');
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../../webpack-dev.client.config');
+  const config = require('../../webpack-client.config');
 
   const compiler = webpack(config);
+
   app.use(webpackDevMiddleware(compiler, {
     stats: 'errors-only',
     publicPath: config.output.publicPath,
   }));
-
   app.use(webpackHotMiddleware(compiler));
 
-  app.use(logger('dev'));
   app.use(client);
-  app.use(fallback('index.html', { root: clientRoot }));
+  app.use('*', (req, res, next) => {
+    const filename = path.join(compiler.outputPath, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, file) => {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      res.set('content-type', 'text/html');
+      res.send(file);
+      res.end();
+    });
+  });
 }
 
 app.listen(port, err => {

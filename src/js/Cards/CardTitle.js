@@ -1,80 +1,96 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { Component, PropTypes, Children, cloneElement } from 'react';
+import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
+import CardTitleBlock from './CardTitleBlock';
 import CardExpander from './CardExpander';
 
 /**
- * The `CardTitle` component is used to display the main content title for the card.
- *
- * This can include an optional `Avatar` to display before the title as well as
- * an optional subtitle.
- *
- * This component can also act as an expander which will inject the `CardExpander`.
+ * The `CardTitle` component is used to render a title in a Card along
+ * with an optional subtitle or avatar.
  */
 export default class CardTitle extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
   static propTypes = {
     /**
-     * The main title to display.
+     * An optional id to add to the `title`.
      */
-    title: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
-     * An optional subtitle.
+     * An optional style to apply.
      */
-    subtitle: PropTypes.string,
+    style: PropTypes.object,
 
     /**
-     * The optional className to apply.
+     * An optional className to apply.
      */
     className: PropTypes.string,
 
     /**
-     * An optional `Avatar` to display before the titles.
+     * The title to display.
      */
-    avatar: PropTypes.node,
+    title: PropTypes.node.isRequired,
 
     /**
-     * Any additional children to display after the titles.
+     * An optional subtitle to display.
+     */
+    subtitle: PropTypes.node,
+
+    /**
+     * Any additional children to display in the title block
+     * after the avatar, title, and subtitle.
      */
     children: PropTypes.node,
 
     /**
-     * Boolean if this should act as an expander. This will inject the
-     * `CardExpander` after the titles and optional children.
+     * An optional avatar to display before the title and subtitle.
      */
-    isExpander: PropTypes.bool,
+    avatar: PropTypes.element,
 
     /**
-     * Boolean if this component should be expandable when there is a `CardExpander`
-     * above it in the `Card`.
+     * Boolean if the `CardTitle` component should inject a button
+     * for expanding all children below it.
      */
-    expandable: PropTypes.bool,
-  };
+    expander: PropTypes.bool,
 
-  static defaultProps = {
-    avatar: null,
+    isExpander: deprecated(PropTypes.bool, 'Use `expander` instead'),
   };
 
   render() {
-    const { title, subtitle, avatar, className, children, isExpander, ...props } = this.props;
-    delete props.expandable;
-
+    const {
+      id,
+      style,
+      className,
+      title,
+      subtitle,
+      expander,
+      isExpander,
+      children,
+      ...props
+    } = this.props;
+    delete props.avatar;
+    let { avatar } = this.props;
+    if (avatar) {
+      const { className: avatarClassName } = Children.only(avatar).props;
+      avatar = cloneElement(avatar, {
+        className: cn('md-avatar--card', avatarClassName),
+      });
+    }
     return (
-      <div {...props} className={classnames('md-card-title', className, { 'title-large': !!avatar, 'card-expander': isExpander })}>
+      <div
+        {...props}
+        style={style}
+        className={cn('md-card-title', {
+          'md-card-title--primary': !avatar,
+        }, className)}
+      >
         {avatar}
-        <div className="titles">
-          <h2 className="md-headline">{title}</h2>
-          {subtitle && <h3 className="md-subheader">{subtitle}</h3>}
-        </div>
+        <CardTitleBlock id={id} title={title} subtitle={subtitle} avatar={!!avatar} />
         {children}
-        {isExpander && <CardExpander />}
+        {isExpander || expander && <CardExpander />}
       </div>
     );
   }

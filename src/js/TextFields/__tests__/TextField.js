@@ -1,4 +1,4 @@
-/*eslint-env jest*/
+/* eslint-env jest */
 jest.unmock('../TextField');
 
 import React from 'react';
@@ -8,401 +8,240 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-  findRenderedDOMComponentWithTag,
-  findRenderedDOMComponentWithClass,
-  scryRenderedDOMComponentsWithClass,
 } from 'react-addons-test-utils';
 
 import TextField from '../TextField';
+import InputField from '../InputField';
+import TextFieldDivider from '../TextFieldDivider';
+import PasswordButton from '../PasswordButton';
 import FloatingLabel from '../FloatingLabel';
-import TextDivider from '../TextDivider';
-import TextFieldMessage from '../TextFieldMessage';
 import FontIcon from '../../FontIcons/FontIcon';
 
 describe('TextField', () => {
-  it('applies style and className to the container and inputStyle and inputClassName to the input field', () => {
-    const style = { display: 'block' };
-    const className = "container";
-    const inputStyle = { display: 'inline-block' };
-    const inputClassName = "input";
-
-    let textField = renderIntoDocument(
-      <TextField
-        label="A"
-        style={style}
-        className={className}
-        inputStyle={inputStyle}
-        inputClassName={inputClassName}
-      />
-    );
-
-    let containerNode = findDOMNode(textField);
-    let textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
-    expect(containerNode.classList.contains(className)).toBe(true);
-    expect(containerNode.style.display).toBe(style.display);
-
-    expect(textFieldNode.classList.contains(inputClassName)).toBe(true);
-    expect(textFieldNode.style.display).toBe(inputStyle.display);
-
-    textField = renderIntoDocument(
-      <TextField
-        rows={2}
-        label="A"
-        style={style}
-        className={className}
-        inputStyle={inputStyle}
-        inputClassName={inputClassName}
-      />
-    );
-
-    containerNode = findDOMNode(textField);
-    textFieldNode = findRenderedDOMComponentWithTag(textField, 'textarea');
-    expect(containerNode.classList.contains(className)).toBe(true);
-    expect(containerNode.style.display).toBe(style.display);
-
-    expect(textFieldNode.classList.contains(inputClassName)).toBe(true);
-    expect(textFieldNode.style.display).toBe(inputStyle.display);
-  });
-
-  it('passes all input related event listeners to the input tag or text area', () => {
-    const onFocus = jest.genMockFunction();
-    const onBlur = jest.genMockFunction();
-    const onKeyUp = jest.genMockFunction();
-    const onKeyDown = jest.genMockFunction();
-    const onKeyPress = jest.genMockFunction();
-    const onChange = jest.genMockFunction();
-    const onInput = jest.genMockFunction();
-    const onInvalid = jest.genMockFunction();
-    const onSelect = jest.genMockFunction();
-
-    let textField = renderIntoDocument(
-      <TextField
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onKeyUp={onKeyUp}
-        onKeyDown={onKeyDown}
-        onKeyPress={onKeyPress}
-        onChange={onChange}
-        onInput={onInput}
-        onInvalid={onInvalid}
-        onSelect={onSelect}
-      />
-    );
-
-    let textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
-
-    Simulate.focus(textFieldNode);
-    expect(onFocus).toBeCalled();
-
-    Simulate.blur(textFieldNode);
-    expect(onBlur).toBeCalled();
-
-    Simulate.keyUp(textFieldNode);
-    expect(onKeyUp).toBeCalled();
-
-    Simulate.keyDown(textFieldNode);
-    expect(onKeyDown).toBeCalled();
-
-    Simulate.keyPress(textFieldNode);
-    expect(onKeyPress).toBeCalled();
-
-    Simulate.change(textFieldNode);
-    expect(onChange).toBeCalled();
-
-    Simulate.invalid(textFieldNode);
-    expect(onInvalid).toBeCalled();
-
-    Simulate.input(textFieldNode);
-    expect(onInput).toBeCalled();
-
-    Simulate.select(textFieldNode);
-    expect(onSelect).toBeCalled();
-  });
-
-  it('sends the updated value and the change event on change', () => {
-    const onChange = jest.genMockFunction();
-    const textField = renderIntoDocument(<TextField onChange={onChange} />);
-    const textFieldNode = findRenderedDOMComponentWithTag(textField, 'input');
-
-    Simulate.change(textFieldNode, { type: 'change' });
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toBe('');
-    expect(onChange.mock.calls[0][1].type).toBe('change');
-  });
-
-  it('toggles the active className on focus', () => {
-    const textField = renderIntoDocument(
-      <TextField
-        icon={<FontIcon>phone</FontIcon>}
-        type="tel"
-        label="Test"
-      />
-    );
-
-    const input = findRenderedDOMComponentWithTag(textField, 'input');
-    let icon = findRenderedComponentWithType(textField, FontIcon);
-    let divider = findRenderedComponentWithType(textField, TextDivider);
-    let label = findRenderedComponentWithType(textField, FloatingLabel);
-
-    expect(input.className).not.toContain('active');
-    expect(icon.props.className).not.toContain('active');
-    expect(divider.props.active).toBe(false);
-    expect(label.props.active).toBe(false);
-
-    Simulate.focus(input);
-    expect(input.className).toContain('active');
-    expect(icon.props.className).toContain('active');
-    expect(divider.props.active).toBe(true);
-    expect(label.props.active).toBe(true);
-  });
-
-  it('uses the placeholder prop as the placeholder and falls back to the label prop.', () => {
-    let textField = renderIntoDocument(
-      <TextField
-        label="Test"
-        floatingLabel={false}
-      />
-    );
-
-    let input = findRenderedDOMComponentWithTag(textField, 'input');
-    const floatingLabels = scryRenderedComponentsWithType(textField, FloatingLabel);
-    expect(floatingLabels.length).toBe(0);
-
-    expect(input.getAttribute('placeholder')).toBe('Test');
-
-    textField = renderIntoDocument(
-      <TextField
-        label="Test"
-        placeholder="Placeholder"
-        floatingLabel={false}
-      />
-    );
-
-    input = findRenderedDOMComponentWithTag(textField, 'input');
-    expect(input.getAttribute('placeholder')).toBe('Placeholder');
-  });
-
-  it('displays both a placeholder and a label when floatingLabel is true and the text field has a value or focus', () => {
-    let props = {
-      label: 'Label',
-      placeholder: 'Placeholder',
-      floatingLabel: true,
+  it('merges style and classNames correctly', () => {
+    const props = {
+      id: 'test',
+      style: { width: '100%' },
+      className: 'test',
+      inputStyle: { width: 256 },
+      inputClassName: 'wow',
+      placeholder: 'Test',
     };
 
-    let textField = renderIntoDocument(<TextField {...props} />);
-    let label = findRenderedComponentWithType(textField, FloatingLabel);
-    let input = findRenderedDOMComponentWithTag(textField, 'input');
-    expect(label.props.label).toBe(props.label);
-    expect(input.getAttribute('placeholder')).toBe(null);
+    const field = renderIntoDocument(<TextField {...props} />);
+    const fieldNode = findDOMNode(field);
+    const inputField = findRenderedComponentWithType(field, InputField);
 
-    Simulate.focus(input);
-    expect(input.getAttribute('placeholder')).toBe(props.placeholder);
-
-    props = Object.assign({}, props, { value: 'Abcd' });
-    label = findRenderedComponentWithType(textField, FloatingLabel);
-    input = findRenderedDOMComponentWithTag(textField, 'input');
-    expect(label.props.label).toBe(props.label);
-    expect(input.getAttribute('placeholder')).toBe(props.placeholder);
+    expect(fieldNode.style.width).toBe(props.style.width);
+    expect(fieldNode.className).toContain(props.className);
+    expect(inputField.props.style).toEqual(props.inputStyle);
+    expect(inputField.props.className).toBe(props.inputClassName);
   });
 
-  it('renders the FloatingLabel component with correct props', () => {
-    let props = { label: 'Hello' };
-    let textField = renderIntoDocument(<TextField {...props} />);
+  it('renders a divider component when the block prop is false', () => {
+    const props = { id: 'test', placeholder: 'test' };
+    let field = renderIntoDocument(<TextField {...props} />);
+    let dividers = scryRenderedComponentsWithType(field, TextFieldDivider);
 
-    let labels = scryRenderedComponentsWithType(textField, FloatingLabel);
-    expect(labels.length).toBe(1);
-
-    expect(labels[0].props.label).toBe(props.label);
-    expect(labels[0].props.active).toBe(false);
-    expect(labels[0].props.error).toBe(false);
-    expect(labels[0].props.required).toBeUndefined();
-    expect(labels[0].props.value).toBe('');
-
-    Simulate.focus(findRenderedDOMComponentWithTag(textField, 'input'));
-
-    expect(labels[0].props.active).toBe(true);
-
-    props = Object.assign({}, props, { floatingLabel: false });
-    textField = renderIntoDocument(<TextField {...props} />);
-    labels = scryRenderedComponentsWithType(textField, FloatingLabel);
-    expect(labels.length).toBe(0);
-  });
-
-  it('renders the TextDivider component when it is not displayed as a block', () => {
-    let textField = renderIntoDocument(<TextField block={false} />);
-
-    let dividers = scryRenderedComponentsWithType(textField, TextDivider);
     expect(dividers.length).toBe(1);
-    expect(dividers[0].props.icon).toBe(false);
-    expect(dividers[0].props.active).toBe(false);
-    expect(dividers[0].props.lineDirection).toBe(TextField.defaultProps.lineDirection);
 
-    Simulate.focus(findRenderedDOMComponentWithTag(textField, 'input'));
+    props.block = true;
+    field = renderIntoDocument(<TextField {...props} />);
+    dividers = scryRenderedComponentsWithType(field, TextFieldDivider);
 
-    expect(dividers[0].props.active).toBe(true);
-
-    textField = renderIntoDocument(<TextField block={true} />);
-
-    dividers = scryRenderedComponentsWithType(textField, TextDivider);
     expect(dividers.length).toBe(0);
   });
 
-  it('renders an optional icon component with additional stateful classNames', () => {
-    let props = {
-      icon: <FontIcon>wht</FontIcon>,
-      floatingLabel: true,
-    };
-
-    let textField = renderIntoDocument(<TextField {...props} />);
-    let icon = findRenderedComponentWithType(textField, FontIcon);
-    expect(icon.props.className).toContain('md-text-field-icon');
-    expect(icon.props.className).toContain('with-floating-label');
-
-    Simulate.focus(findRenderedDOMComponentWithTag(textField, 'input'));
-    expect(icon.props.className).toContain('active');
-
-    textField.setState({ value: 'something' });
-    expect(icon.props.className).toContain('normal');
-
-    props = Object.assign({}, props, { errorText: 'Some error', floatingLabel: false });
-    textField = renderIntoDocument(<TextField {...props} />);
-    icon = findRenderedComponentWithType(textField, FontIcon);
-    expect(icon.props.className).toContain('error');
-    expect(icon.props.className).not.toContain('with-floating-label');
-  });
-
-  it('renders an optional right icon with additional classNames', () => {
-    let props = {
-      rightIcon: <FontIcon>wht</FontIcon>,
-      floatingLabel: true,
-    };
-
-    let textField = renderIntoDocument(<TextField {...props} />);
-    let icon = findRenderedComponentWithType(textField, FontIcon);
-    expect(icon.props.className).toContain('md-text-field-ind');
-    expect(icon.props.className).not.toContain('single-line');
-
-    props = Object.assign({}, props, { floatingLabel: false });
-    textField = renderIntoDocument(<TextField {...props} />);
-    icon = findRenderedComponentWithType(textField, FontIcon);
-    expect(icon.props.className).toContain('md-text-field-ind');
-    expect(icon.props.className).toContain('single-line');
-  });
-
-  it('renders the TextFieldMessage component if there is a maxLength prop, an errorText prop, or helpText prop', () => {
-    let props = {
-      label: 'What',
-    };
-
-    let textField = renderIntoDocument(<TextField {...props} />);
-    let messages = scryRenderedComponentsWithType(textField, TextFieldMessage);
-    expect(messages.length).toBe(0);
-
-    props = Object.assign({}, props, { errorText: 'Some error' });
-    textField = renderIntoDocument(<TextField {...props} />);
-    messages = scryRenderedComponentsWithType(textField, TextFieldMessage);
-    expect(messages.length).toBe(1);
-
-    props = Object.assign({}, props, { errorText: null, helpText: 'What' });
-    textField = renderIntoDocument(<TextField {...props} />);
-    messages = scryRenderedComponentsWithType(textField, TextFieldMessage);
-    expect(messages.length).toBe(1);
-
-    props = Object.assign({}, props, { helpText: null, maxLength: 30 });
-    textField = renderIntoDocument(<TextField {...props} />);
-    messages = scryRenderedComponentsWithType(textField, TextFieldMessage);
-    expect(messages.length).toBe(1);
-  });
-
-  it('renders the TextFieldMessage component with the correct props for an error message', () => {
+  it('passes the mouse and touch events to the TextField container', () => {
+    const onClick = jest.fn();
+    const onDoubleClick = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchMove = jest.fn();
+    const onTouchCancel = jest.fn();
+    const onTouchEnd = jest.fn();
     const props = {
-      label: 'Label',
-      errorText: 'Some error',
-      helpOnFocus: false,
+      onClick,
+      onDoubleClick,
+      onMouseDown,
+      onMouseOver,
+      onMouseUp,
+      onMouseLeave,
+      onTouchStart,
+      onTouchMove,
+      onTouchCancel,
+      onTouchEnd,
     };
 
-    const textField = renderIntoDocument(<TextField {...props} />);
-    const message = findRenderedComponentWithType(textField, TextFieldMessage);
-    expect(message.props.value).toBe('');
-    expect(message.props.error).toBe(true);
-    expect(message.props.helpOnFocus).toBe(false);
-    expect(message.props.active).toBe(false);
-    expect(message.props.message).toBe(props.errorText);
-    expect(message.props.maxLength).toBeUndefined();
+    const field = renderIntoDocument(<TextField {...props} />);
+    const container = findDOMNode(field);
+
+    Simulate.click(container);
+    expect(onClick).toBeCalled();
+
+    Simulate.doubleClick(container);
+    expect(onDoubleClick).toBeCalled();
+
+    Simulate.mouseOver(container);
+    expect(onMouseOver).toBeCalled();
+
+    Simulate.mouseDown(container);
+    expect(onMouseDown).toBeCalled();
+
+    Simulate.mouseUp(container);
+    expect(onMouseUp).toBeCalled();
+
+    Simulate.mouseLeave(container);
+    expect(onMouseLeave).toBeCalled();
+
+    Simulate.touchStart(container);
+    expect(onTouchStart).toBeCalled();
+
+    Simulate.touchMove(container);
+    expect(onTouchMove).toBeCalled();
+
+    Simulate.touchCancel(container);
+    expect(onTouchCancel).toBeCalled();
+
+    Simulate.touchEnd(container);
+    expect(onTouchEnd).toBeCalled();
   });
 
-  it('renders the TextFieldMessage component with the correct props for a help message', () => {
+  it('passes the keyboard and typing events to the InputField component', () => {
+    const onKeyPress = jest.fn();
+    const onKeyUp = jest.fn();
+    const onCopy = jest.fn();
+    const onCut = jest.fn();
+    const onPaste = jest.fn();
+    const onBlur = jest.fn();
+    const onInput = jest.fn();
+    const onSelect = jest.fn();
+    const onCompositionStart = jest.fn();
+    const onCompositionUpdate = jest.fn();
+    const onCompositionEnd = jest.fn();
+
     const props = {
-      label: 'Label',
-      helpText: 'Some help',
-      helpOnFocus: false,
+      onKeyPress,
+      onKeyUp,
+      onCopy,
+      onCut,
+      onPaste,
+      onBlur,
+      onInput,
+      onSelect,
+      onCompositionStart,
+      onCompositionUpdate,
+      onCompositionEnd,
     };
 
-    const textField = renderIntoDocument(<TextField {...props} />);
-    const message = findRenderedComponentWithType(textField, TextFieldMessage);
-    expect(message.props.value).toBe('');
-    expect(message.props.error).toBe(false);
-    expect(message.props.helpOnFocus).toBe(false);
-    expect(message.props.active).toBe(false);
-    expect(message.props.message).toBe(props.helpText);
-    expect(message.props.maxLength).toBeUndefined();
+    const container = renderIntoDocument(<TextField {...props} />);
+    const input = findRenderedComponentWithType(container, InputField);
+
+    expect(input.props.onKeyPress).toBe(onKeyPress);
+    expect(input.props.onKeyUp).toBe(onKeyUp);
+    expect(input.props.onCopy).toBe(onCopy);
+    expect(input.props.onCut).toBe(onCut);
+    expect(input.props.onPaste).toBe(onPaste);
+    expect(input.props.onBlur).toBe(onBlur);
+    expect(input.props.onInput).toBe(onInput);
+    expect(input.props.onSelect).toBe(onSelect);
+    expect(input.props.onCompositionStart).toBe(onCompositionStart);
+    expect(input.props.onCompositionUpdate).toBe(onCompositionUpdate);
+    expect(input.props.onCompositionEnd).toBe(onCompositionEnd);
   });
 
-  it('renders the TextFieldMessage component with the correct props for a counter message', () => {
-    const props = {
-      label: 'Label',
-      maxLength: 30,
-      helpOnFocus: false,
-    };
+  it('calls the onFocus prop when the _handleFocus function is called', () => {
+    const props = { onFocus: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
 
-    const textField = renderIntoDocument(<TextField {...props} />);
-    const message = findRenderedComponentWithType(textField, TextFieldMessage);
-    expect(message.props.value).toBe('');
-    expect(message.props.error).toBe(false);
-    expect(message.props.helpOnFocus).toBe(false);
-    expect(message.props.active).toBe(false);
-    expect(message.props.message).toBeUndefined();
-    expect(message.props.maxLength).toBe(props.maxLength);
+    field._handleFocus();
+    expect(props.onFocus).toBeCalled();
   });
 
-  it('if both an error and help text are given, the error message will be displayed', () => {
-    const props = {
-      label: 'Label',
-      helpText: 'Something to help',
-      errorText: 'Oh noooop',
-      helpOnFocus: false,
-    };
+  it('calls the onKeyDown prop when the _handleKeyDown function is called', () => {
+    const props = { onKeyDown: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
 
-    const textField = renderIntoDocument(<TextField {...props} />);
-    const message = findRenderedComponentWithType(textField, TextFieldMessage);
-    expect(message.props.value).toBe('');
-    expect(message.props.error).toBe(true);
-    expect(message.props.helpOnFocus).toBe(false);
-    expect(message.props.active).toBe(false);
-    expect(message.props.message).toBe(props.errorText);
-    expect(message.props.maxLength).toBeUndefined();
+    field._handleKeyDown({ which: 2, keyCode: 2 });
+    expect(props.onKeyDown).toBeCalled();
   });
 
-  it('renders a password btn when the type is password', () => {
-    let textField = renderIntoDocument(<TextField type="password" />);
-    let btns = scryRenderedDOMComponentsWithClass(textField, 'md-password-btn');
-    expect(btns.length).toBe(1);
+  it('calls the onChange prop when the _handleChange function is called', () => {
+    const props = { onChange: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
 
-    textField = renderIntoDocument(<TextField type="text" />);
-    btns = scryRenderedDOMComponentsWithClass(textField, 'md-password-btn');
-    expect(btns.length).toBe(0);
+    field._handleChange({ target: { value: '' } });
+    expect(props.onChange).toBeCalled();
   });
 
-  it('toggles the password\'s visible when the password button is clicked by switching the type to text', () => {
-    const textField = renderIntoDocument(<TextField type="password" />);
-    const btn = findRenderedDOMComponentWithClass(textField, 'md-password-btn');
-    const input = findRenderedDOMComponentWithTag(textField, 'input');
+  it('calls the onChange prop with the new value and change event', () => {
+    const props = { onChange: jest.fn() };
+    const field = renderIntoDocument(<TextField {...props} />);
 
-    expect(input.getAttribute('type')).toBe('password');
-    expect(btn.className).not.toContain('active');
+    const event = { target: { value: 'wow' } };
+    field._handleChange(event);
+    expect(props.onChange.mock.calls[0][0]).toBe('wow');
+    expect(props.onChange.mock.calls[0][1]).toEqual(event);
+  });
 
-    Simulate.click(btn);
-    expect(input.getAttribute('type')).toBe('text');
-    expect(btn.className).toContain('active');
+  it('adds the PasswordButton component when the type is password', () => {
+    let props = { id: 'test', placeholder: 'text' };
+    let field = renderIntoDocument(<TextField {...props} />);
+    let passwords = scryRenderedComponentsWithType(field, PasswordButton);
+    expect(passwords.length).toBe(0);
+
+    props = { id: 'test', placeholder: 'password', type: 'password' };
+    field = renderIntoDocument(<TextField {...props} />);
+    passwords = scryRenderedComponentsWithType(field, PasswordButton);
+    expect(passwords.length).toBe(1);
+  });
+
+  it('renders the PasswordButton with the correct props', () => {
+    const props = { id: 'password', placeholder: 'password', type: 'password' };
+    const field = renderIntoDocument(<TextField {...props} />);
+    const password = findRenderedComponentWithType(field, PasswordButton);
+
+    expect(password.props.onClick).toBe(field._togglePasswordField);
+    expect(password.props.active).toBe(field.state.active);
+    expect(password.props.passwordVisible).toBe(field.state.passwordVisible);
+    expect(password.props.iconChildren).toBe(TextField.defaultProps.passwordIconChildren);
+    expect(password.props.iconClassName).toBe(TextField.defaultProps.passwordIconClassName);
+  });
+
+  it('renders the FloatingLabel component with the correct props', () => {
+    const props = { label: 'Test', id: 'test' };
+    let field = renderIntoDocument(<TextField {...props} />);
+    let label = findRenderedComponentWithType(field, FloatingLabel);
+
+    expect(label.props.label).toBe(props.label);
+    expect(label.props.htmlFor).toBe(props.id);
+    expect(label.props.active).toBe(field.state.active);
+    expect(label.props.error).toBe(field.state.error);
+    expect(label.props.floating).toBe(field.state.floating);
+    expect(label.props.disabled).toBe(props.disabled);
+    expect(label.props.customSize).toBe(props.customSize);
+    expect(label.props.iconOffset).toBe(false);
+
+    props.customSize = 'title';
+    props.leftIcon = <FontIcon />;
+    field = renderIntoDocument(<TextField {...props} />);
+    label = findRenderedComponentWithType(field, FloatingLabel);
+
+    expect(label.props.label).toBe(props.label);
+    expect(label.props.htmlFor).toBe(props.id);
+    expect(label.props.active).toBe(field.state.active);
+    expect(label.props.error).toBe(field.state.error);
+    expect(label.props.floating).toBe(field.state.floating);
+    expect(label.props.disabled).toBe(props.disabled);
+    expect(label.props.customSize).toBe(props.customSize);
+    expect(label.props.iconOffset).toBe(true);
+  });
+
+  // Super important test
+  it('does some stuff that seems hard to automatically test', () => {
+    expect(true).toBe(true);
   });
 });

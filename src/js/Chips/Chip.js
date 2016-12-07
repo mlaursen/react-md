@@ -1,124 +1,155 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import FontIcon from '../FontIcons';
+import FontIcon from '../FontIcons/FontIcon';
 
-/**
- * Any additional props such as event listeners will be applied
- * to the chip itself, not the chip container.
- */
-export default class Chip extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { focus: false };
-  }
-
+export default class Chip extends PureComponent {
   static propTypes = {
     /**
-     * Any style that should be added to the chip container.
+     * An optional style to apply.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to add to the chip container.
+     * An optional className to apply.
      */
     className: PropTypes.string,
 
     /**
-     * The label to display in the chip.
+     * An optional icon className to use for the remove icon when `removable`.
+     */
+    iconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the `.md-chip-icon--rotate` style should be applied to the remove icon.
+     * The `.md-chip-icon--rotate` just rotates the icon 45 degrees.
+     */
+    rotateIcon: PropTypes.bool,
+
+    /**
+     * Any children used to display the remove icon when `removable`.
+     */
+    children: PropTypes.node,
+
+    /**
+     * The label to display on the chip.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * An optional function to call when the chip is clicked.
+     * Boolean if the chip is removable.
+     */
+    removable: PropTypes.bool,
+
+    /**
+     * An optional avatar to display on the chip.
+     */
+    avatar: PropTypes.element,
+
+    /**
+     * An optional function to call when the `click` event is triggered.
      */
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call to convert the chip into a removable chip.
-     * This will inject a remove icon button into the chip.
+     * An optional function to call when the `mouseover` event is triggered.
      */
-    remove: PropTypes.func,
+    onMouseOver: PropTypes.func,
 
     /**
-     * The children to use to display the remove icon button.
+     * An optional function to call when the `mouseleave` event is triggered.
      */
-    removeIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use to display the remove icon button.
-     */
-    removeIconClassName: PropTypes.string,
-
-    /**
-     * An optional function to call when the chip is focused.
-     */
-    onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the chip is blurred.
-     */
-    onBlur: PropTypes.func,
-
-    /**
-     * This should be an Avatar component that will be injected before the
-     * label in the chip.
-     */
-    children: PropTypes.node,
+    onMouseLeave: PropTypes.func,
+    remove: deprecated(PropTypes.func, 'Use `removable` and `onClick` instead'),
+    removeIconChildren: deprecated(PropTypes.node, 'Use `iconChildren` instead'),
+    removeIconClassName: deprecated(PropTypes.string, 'Use `iconClassName` instead'),
   };
 
   static defaultProps = {
-    removeIconChildren: 'add_circle',
-    removeIconClassName: 'material-icons rotate-45-deg',
+    rotateIcon: true,
+    children: 'add_circle',
   };
 
-  handleFocus = (e) => {
-    if(this.props.onFocus) { this.props.onFocus(e); }
-    this.setState({ focus: true });
-  };
+  constructor(props) {
+    super(props);
 
-  handleBlur = (e) => {
-    if(this.props.onBlur) { this.props.onBlur(e); }
-    this.setState({ focus: false });
-  };
+    this.state = { hover: false };
+    this._handleMouseOver = this._handleMouseOver.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+  }
+
+  _handleMouseOver(e) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
+
+    this.setState({ hover: true });
+  }
+
+  _handleMouseLeave(e) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+
+    this.setState({ hover: false });
+  }
 
   render() {
+    const { hover } = this.state;
     const {
-      style,
-      className,
       label,
+      className,
+      iconClassName,
+      avatar,
       children,
+      removable,
       remove,
-      removeIconChildren,
-      removeIconClassName,
       onClick,
-      ...props,
+      rotateIcon,
+      ...props
     } = this.props;
+    delete props.removeIconChildren;
+    delete props.removeIconClassName;
+
+    let icon;
+    if (removable || remove) {
+      icon = (
+        <FontIcon
+          className={cn('md-chip-icon', {
+            'md-chip-icon--rotate': rotateIcon,
+            'md-chip-text--hover': hover,
+          })}
+          iconClassName={iconClassName}
+        >
+          {children}
+        </FontIcon>
+      );
+    }
 
     return (
-      <div className={classnames('md-chip-container', className, { 'md-contact-chip': !!children, 'focus': this.state.focus })} style={style}>
-        {children}
-        <button
-          type="button"
-          {...props}
-          className={classnames('md-chip', {
-            'with-remove': !!remove,
+      <button
+        type="button"
+        {...props}
+        className={cn('md-chip', {
+          'md-chip--avatar': avatar,
+          'md-chip--remove': removable,
+          'md-chip--hover': hover,
+        }, className)}
+        onClick={remove || onClick}
+        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+      >
+        {avatar}
+        <span
+          className={cn('md-chip-text', {
+            'md-chip-text--hover': hover,
           })}
-          onClick={onClick}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
         >
           {label}
-        </button>
-        {remove &&
-        <button type="button" className="md-chip-remove" onClick={remove}>
-          <FontIcon iconClassName={removeIconClassName} children={removeIconChildren} />
-        </button>
-        }
-      </div>
+        </span>
+        {icon}
+      </button>
     );
   }
 }

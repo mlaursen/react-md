@@ -1,0 +1,51 @@
+////
+/// @group accessibility
+////
+
+
+/// Creates the _accessible_ styles and class names.
+///
+/// This will create the following class names:
+/// - `.md-fake-btn`
+/// - `.md-no-scroll`
+/// - `.md-pointer--hover`
+/// - `.md-pointer--none`
+/// - `.md-content-jump`
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-accessibility;
+@mixin react-md-accessibility {
+  .md-fake-btn {
+    background: transparent;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .md-no-scroll {
+    overflow-y: scroll;
+    position: fixed;
+  }
+
+  .md-pointer--hover:hover {
+    cursor: pointer;
+  }
+
+  .md-pointer--none {
+    pointer-events: none;
+  }
+
+  .md-content-jump {
+    left: -1000px;
+    position: absolute;
+    top: -1000px;
+
+    &:active,
+    &:focus {
+      left: 0;
+      top: 0;
+    }
+  }
+}

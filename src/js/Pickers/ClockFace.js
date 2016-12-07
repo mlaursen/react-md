@@ -1,8 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
 
-import { LEFT_MOUSE } from '../constants/keyCodes';
-import { getTouchOffset, isPointInCircle, isTouchDevice } from '../utils';
+import isValidClick from '../utils/EventUtils/isValidClick';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';
+import calcPageOffset from '../utils/calcPageOffset';
+
 import ClockTime from './ClockTime';
 import ClockHand from './ClockHand';
 
@@ -10,14 +12,7 @@ import ClockHand from './ClockHand';
  * The `ClockFace` component is used for rendering all the clock's times
  * and the clock hand.
  */
-export default class ClockFace extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { radius: 136, moving: false };
-  }
-
+export default class ClockFace extends PureComponent {
   static propTypes = {
     /**
      * The current time for the clock.
@@ -33,7 +28,7 @@ export default class ClockFace extends Component {
      * A function to call when a new time is selected. It gives the
      * new time value. If it is 12 o'clock, 0 will be given.
      */
-    onClick: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
 
     /**
      * An optional time period string. This should be either AM or PM
@@ -42,74 +37,111 @@ export default class ClockFace extends Component {
     timePeriod: PropTypes.string,
   };
 
-  componentDidMount() {
-    this.init();
+  constructor(props) {
+    super(props);
+
+    this.state = { radius: 136, moving: false };
+    this._center = {};
+    this._setFace = this._setFace.bind(this);
+    this._calcNewTime = this._calcNewTime.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+    this._handleMouseMove = this._handleMouseMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
   }
 
-  init = () => {
-    const radius = this.refs.clockFace.offsetWidth / 2;
-    const touch = isTouchDevice();
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this._handleMouseMove);
+    window.removeEventListener('mouseup', this._handleMouseMove);
+    window.removeEventListener('touchmove', this._handleTouchMove);
+    window.removeEventListener('touchend', this._handleTouchEnd);
+  }
 
-    this.setState({ radius, touch });
-  };
+  _setFace(face) {
+    this._face = face;
 
-  handleMouseDown = (e) => {
-    if(e.button !== LEFT_MOUSE || e.ctrlKey || this.state.touch) { return; }
-    this.setState({ moving: true });
-  };
+    if (face !== null) {
+      const radius = face.offsetWidth / 2;
+      const offset = calcPageOffset(face);
+      this._center = { x: offset.left + radius, y: offset.top + radius };
+      this._left = offset.left;
+      this._top = offset.top;
+      this.setState({ radius });
+    }
+  }
 
-  handleMouseMove = (e) => {
-    if(!this.state.moving || this.state.touch) { return; }
-    e.preventDefault();
-    this.calcNewTime(e);
-  };
-
-  handleMouseUp = (e) => {
-    if(e.button !== LEFT_MOUSE || e.ctrlKey || this.state.touch) { return; }
-    this.calcNewTime(e);
-    this.setState({ moving: false });
-  };
-
-  handleTouchStart = () => {
-    this.setState({ moving: true });
-  };
-
-  handleTouchMove = (e) => {
-    if(!this.state.moving) { return; }
-    e.preventDefault();
-    this.calcNewTime(e);
-  };
-
-  handleTouchEnd = (e) => {
-    this.calcNewTime(e);
-    this.setState({ moving: false });
-  };
-
-  calcNewTime = (e) => {
-    const { offsetX, offsetY } = getTouchOffset(e);
-    const { radius } = this.state;
-    const { minutes, timePeriod, onClick } = this.props;
-    const sectors = minutes ? 60 : 12;
-    const sectorSize = 360 / sectors;
-    const atan = Math.atan2(offsetY - radius, offsetX - radius);
-    const degrees = atan * (180 / Math.PI);
-    let time = Math.round(degrees / sectorSize);
-
-    // time will be a negative number if it is the top half of the circle
-    time += (minutes ? 15 : 3);
-    if(time < 0) {
-      time += sectors;
+  _handleMouseDown(e) {
+    if (!isValidClick(e)) {
+      return;
     }
 
-    if(!timePeriod && !minutes) {
-      const isInCircle = isPointInCircle(radius, radius, radius - 48, offsetX, offsetY);
-      if((isInCircle && time !== 0) || (!isInCircle && time === 0)) {
-        time += 12;
-      }
+    window.addEventListener('mousemove', this._handleMouseMove);
+    window.addEventListener('mouseup', this._handleMouseUp);
+    this.setState({ moving: true });
+  }
+
+  _handleMouseMove(e) {
+    if (!this.state.moving) {
+      return;
     }
 
-    onClick(time);
-  };
+    e.preventDefault();
+    this._calcNewTime(e);
+  }
+
+  _handleMouseUp(e) {
+    if (!isValidClick(e)) {
+      return;
+    }
+
+    if (this._face && !this._face.contains(e.target)) {
+      captureNextEvent('click');
+    }
+
+    window.removeEventListener('mousemove', this._handleMouseMove);
+    window.removeEventListener('mouseup', this._handleMouseUp);
+
+    this._calcNewTime(e);
+    this.setState({ moving: false });
+  }
+
+  _handleTouchStart() {
+    captureNextEvent('mousedown');
+
+    window.addEventListener('touchmove', this._handleTouchMove);
+    window.addEventListener('touchend', this._handleTouchEnd);
+    this.setState({ moving: true });
+  }
+
+  _handleTouchMove(e) {
+    if (!this.state.moving) {
+      return;
+    }
+    e.preventDefault();
+
+    this._calcNewTime(e);
+  }
+
+  _handleTouchEnd(e) {
+    this._calcNewTime(e);
+    if (this._face && !this._face.contains(e.target)) {
+      captureNextEvent('click');
+    }
+
+    window.removeEventListener('touchmove', this._handleTouchMove);
+    window.removeEventListener('touchend', this._handleTouchEnd);
+
+    this.setState({ moving: false });
+  }
+
+  _calcNewTime(e) {
+    const { pageX: x, pageY: y } = e.changedTouches ? e.changedTouches[0] : e;
+    const innerRadius = this.state.radius - 48;
+    const { onChange, minutes, timePeriod } = this.props;
+    onChange(calcTimeFromPoint({ x, y }, this._center, innerRadius, minutes, timePeriod));
+  }
 
   render() {
     const { time, minutes, timePeriod } = this.props;
@@ -117,7 +149,7 @@ export default class ClockFace extends Component {
     const size = !minutes && !timePeriod ? 24 : 12;
     const times = Array.apply(null, new Array(size)).map((_, i) => {
       let clockTime = i + 1;
-      if(minutes) {
+      if (minutes) {
         clockTime = (clockTime * 5) % 60;
       } else {
         clockTime %= 24;
@@ -136,14 +168,10 @@ export default class ClockFace extends Component {
 
     return (
       <div
-        className="md-clock-face"
-        ref="clockFace"
-        onMouseDown={this.handleMouseDown}
-        onMouseMove={this.handleMouseMove}
-        onMouseUp={this.handleMouseUp}
-        onTouchStart={this.handleTouchStart}
-        onTouchMove={this.handleTouchMove}
-        onTouchEnd={this.handleTouchEnd}
+        ref={this._setFace}
+        className="md-clock-face md-block-centered md-pointer--hover"
+        onMouseDown={this._handleMouseDown}
+        onTouchStart={this._handleTouchStart}
       >
         {times}
         <ClockHand time={time} coords={radius} minutes={minutes} />

@@ -1,15 +1,27 @@
-export const SHOW_OVERLAY = Symbol('SHOW_OVERLAY');
-export const HIDE_OVERLAY = Symbol('HIDE_OVERLAY');
-export const ADD_TOAST = Symbol('ADD_TOAST');
-export const DISMISS_TOAST = Symbol('DISMISS_TOAST');
-export const MEDIA_CHANGE = Symbol('MEDIA_CHANGE');
+export const FETCH_REQUEST = Symbol('FETCH_REQUEST');
+export const FETCH_SUCCESS = Symbol('FETCH_SUCCESS');
+export const FETCH_FAILURE = Symbol('FETCH_FAILURE');
+export const FETCH_DOCGEN_REQUEST = Symbol('FETCH_DOCGEN_REQUEST');
+export const FETCH_DOCGEN_SUCCESS = Symbol('FETCH_DOCGEN_SUCCESS');
+export const FETCH_DOCGEN_FAILURE = Symbol('FETCH_DOCGEN_FAILURE');
+export const FETCH_SASSDOC_REQUEST = Symbol('FETCH_SASSDOC_REQUEST');
+export const FETCH_SASSDOC_SUCCESS = Symbol('FETCH_SASSDOC_SUCCESS');
+export const FETCH_SASSDOC_FAILURE = Symbol('FETCH_SASSDOC_FAILURE');
+
+export const ADD_NOTIFICATION = Symbol('ADD_NOTIFICATION');
+export const DISMISS_NOTIFICATION = Symbol('DISMISS_NOTIFICATION');
+
+export const SET_DRAWER_TOOLBAR_BOX_SHADOW = Symbol('SET_DRAWER_TOOLBAR_BOX_SHADOW');
+export const UPDATE_MEDIA = Symbol('UPDATE_MEDIA');
+export const SET_CUSTOM_THEME = Symbol('SET_CUSTOM_THEME');
 export const UPDATE_DRAWER_TYPE = Symbol('UPDATE_DRAWER_TYPE');
-export const SET_MOBILE_SEARCH = Symbol('SET_MOBILE_SEARCH');
-export const UPDATE_THEME = Symbol('UPDATE_THEME');
-
-export const SET_TOOLBAR_INACTIVE = Symbol('SET_TOOLBAR_INACTIVE');
-
-export const QUICK_SEARCH = Symbol('QUICK_SEARCH');
-export const LOAD_DOCUMENTATION = Symbol('LOAD_DOCUMENTATION');
 
 export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
+
+export const SHOW_SEARCH = Symbol('SHOW_SEARCH');
+export const HIDE_SEARCH = Symbol('HIDE_SEARCH');
+export const SEARCH_REQUEST = Symbol('SEARCH_REQUEST');
+export const SEARCH_SUCCESS = Symbol('SEARCH_SUCCESS');
+export const SEARCH_FAILURE = Symbol('SEARCH_FAILURE');
+
+export const NOT_FOUND = Symbol('NOT_FOUND');

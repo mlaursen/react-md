@@ -1,0 +1,41 @@
+////
+/// @group helpers
+////
+
+/// A placeholder for displaying an element inline
+%md-inline-block {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/// A simple placeholder for setting the width to 100%.
+%md-full-width {
+  width: 100%;
+}
+
+/// A simple placeholder for centering an item.
+%md-block-centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/// Creates all the styles for the helpers
+@mixin react-md-helpers-everything {
+  @include react-md-helpers-blocks;
+}
+
+/// Creates the styles for different type of blocks.
+@mixin react-md-helpers-blocks {
+  .md-inline-block {
+    @extend %md-inline-block;
+  }
+
+  .md-full-width {
+    @extend %md-full-width;
+  }
+
+  .md-block-centered {
+    @extend %md-block-centered;
+  }
+}

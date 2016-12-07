@@ -1,0 +1,74 @@
+@import '~react-md-scss';
+
+.uploaded {
+  max-width: calc(50% - 8px);
+
+  &.application {
+    background: get-color('background', false);
+  }
+
+  .text-source {
+    bottom: 0;
+    left: 0;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .dummy-file {
+    color: get-color('secondary', false);
+    font-size: 3em;
+    left: 50%;
+    position: absolute;
+    top: 25%;
+    transform: translateX(-50%);
+  }
+}
+
+.close-btn {
+  background: get-color('secondary', false);
+  color: $md-white-base;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+%flex-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.file-block {
+  @extend %flex-nowrap;
+
+  .md-file-input-container {
+    margin-right: $md-default-padding;
+  }
+}
+
+.submit-block {
+  @extend %flex-nowrap;
+
+  align-items: center;
+  margin-top: 2em;
+
+  [type="submit"] {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .md-body-1 {
+    margin: 0;
+  }
+}
+
+
+.converter-form {
+  .file-block,
+  .md-menu-container {
+    margin-top: 1em;
+  }
+}

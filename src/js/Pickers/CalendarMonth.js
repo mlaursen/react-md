@@ -1,20 +1,17 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-import { getDayOfWeek, addDate, stripTime, getLastDay } from '../utils/dates';
+import addDate from '../utils/DateUtils/addDate';
+import stripTime from '../utils/DateUtils/stripTime';
+import getLastDay from '../utils/DateUtils/getLastDay';
+import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
+
 import CalendarDate from './CalendarDate';
 
 /**
  * This component renders a month for the calendar view of the `DatePicker`.
  */
-export default class CalendarMonth extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CalendarMonth extends PureComponent {
   static propTypes = {
     /**
      * A className to apply.
@@ -66,7 +63,7 @@ export default class CalendarMonth extends Component {
       DateTimeFormat,
       locales,
       className,
-      ...props,
+      ...props
     } = this.props;
 
     const days = [];
@@ -75,19 +72,19 @@ export default class CalendarMonth extends Component {
     const activeDate = stripTime(new Date(calendarTempDate));
     const today = stripTime(new Date());
 
-    while(currentDate <= endDate) {
-      const key = currentDate.getMonth() + '-' + currentDate.getDate();
+    while (currentDate <= endDate) {
+      const key = `${currentDate.getMonth()}-${currentDate.getDate()}`;
+
       let date;
-      if(currentDate.getMonth() === calendarDate.getMonth()) {
-        const isMinDateDisabled = minDate && minDate.getTime() > currentDate.getTime();
-        const isMaxDateDisbaled = maxDate && maxDate.getTime() < currentDate.getTime();
+      if (currentDate.getMonth() === calendarDate.getMonth()) {
+        const time = currentDate.getTime();
+        const isMinDateDisabled = minDate && minDate.getTime() > time;
+        const isMaxDateDisbaled = maxDate && maxDate.getTime() < time;
         date = (
           <CalendarDate
             key={key}
-            className={classnames({
-              'today': currentDate.getTime() === today.getTime(),
-              'active': currentDate.getTime() === activeDate.getTime(),
-            })}
+            today={time === today.getTime()}
+            active={time === activeDate.getTime()}
             disabled={isMinDateDisabled || isMaxDateDisbaled}
             onClick={onCalendarDateClick}
             date={currentDate}
@@ -96,7 +93,7 @@ export default class CalendarMonth extends Component {
           />
         );
       } else {
-        date = <div key={key} className="md-calendar-date-placeholder" />;
+        date = <div key={key} className="md-calendar-date" />;
       }
 
       days.push(date);
@@ -104,7 +101,7 @@ export default class CalendarMonth extends Component {
     }
 
     return (
-      <div className={classnames('md-calendar-month', className)} {...props}>
+      <div className={cn('md-calendar-month', className)} {...props}>
         {days}
       </div>
     );

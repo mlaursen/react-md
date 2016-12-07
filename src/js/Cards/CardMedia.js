@@ -1,20 +1,16 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+
+import deprecated from 'react-prop-types/lib/deprecated';
+import componentDeprecated from '../utils/PropTypes/componentDeprecated';
+import Media from '../Media/Media';
+import MediaOverlay from '../Media/MediaOverlay';
 
 /**
  * The `CardMedia` component is used to display images or some sort
  * media.
- *
- * The media can be forced to be 1:1 aspect ratio or a 16:9 aspect ratio.
  */
-export default class CardMedia extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class CardMedia extends PureComponent {
   static aspect = {
     equal: '1-1',
     wide: '16-9',
@@ -30,7 +26,7 @@ export default class CardMedia extends Component {
      * An optional overlay component to be rendered over the media. This *should*
      * be A `CardTitle`, `CardActions` or both.
      */
-    overlay: PropTypes.node,
+    overlay: deprecated(PropTypes.node, 'Use the `MediaOverlay` component as a child instead'),
 
     /**
      * Any media to display.
@@ -52,22 +48,45 @@ export default class CardMedia extends Component {
      * above it in the `Card`.
      */
     expandable: PropTypes.bool,
+
+    /**
+     * The component to render the card media as.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
+    deprecated: componentDeprecated(
+      'There were no unique styles for media in cards so it is simpler to just use the ' +
+      '`Media` component.'
+    ),
   };
 
   static defaultProps = {
     forceAspect: true,
     aspectRatio: CardMedia.aspect.wide,
+    component: 'section',
   };
 
   render() {
-    const { className, overlay, children, forceAspect, aspectRatio, ...props } = this.props;
-    delete props.expandable;
+    const {
+      className,
+      children,
+      ...props
+    } = this.props;
+    delete props.overlay;
+
+    let { overlay } = this.props;
+    if (overlay) {
+      overlay = <MediaOverlay>{overlay}</MediaOverlay>;
+    }
 
     return (
-      <section {...props} className={classnames('md-card-media', className, { [`md-media-${aspectRatio}`]: forceAspect })}>
+      <Media className={cn('md-card-media', className)} {...props}>
         {children}
-        {overlay && <div className="md-card-media-overlay">{overlay}</div>}
-      </section>
+        {overlay}
+      </Media>
     );
   }
 }

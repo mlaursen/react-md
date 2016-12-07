@@ -1,7 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
+
+import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
+import invalidIf from '../utils/PropTypes/invalidIf';
+import contextTypes from './contextTypes';
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -10,27 +13,26 @@ import classnames from 'classnames';
  * A __data__ table will include checkboxes on each row while a __plain__ table
  * will not.
  */
-export default class DataTable extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
-      selectedRows: props.defaultSelectedRows,
-    };
-  }
-
+export default class DataTable extends PureComponent {
   static propTypes = {
     /**
-     * An optional className to apply to the table.
+     * A base id to use for every checkbox or `EditDialogColumn` in the data table. This is
+     * required for a11y if the data table is not plain.
      */
-    className: PropTypes.string,
+    baseId: requiredForA11yIfNot(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]), 'plain'),
 
     /**
      * Optional style to apply to the table.
      */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the table.
+     */
+    className: PropTypes.string,
 
     /**
      * The table contents to display. This *should* be a list of `TableHeader` and `TableBody`
@@ -81,6 +83,19 @@ export default class DataTable extends Component {
      * will be passed down as `context`.
      */
     checkedIconChildren: PropTypes.node,
+
+    /**
+     * An optional function to call when a non-plain data table has a row toggled.
+     * The callback will include the selected row id, the boolean if it is now selected,
+     * and the count of rows that are selected. If the checkbox in the `TableHeader` was
+     * clicked, the selected row id will be `-1`.
+     *
+     * ```js
+     * onRowToggle(3, true, 8); // 4th row was toggled
+     * onRowToggle(-1, true, 15); // select all checkbox was toggled on.
+     * ```
+     */
+    onRowToggle: invalidIf(PropTypes.func, 'plain'),
   };
 
   static defaultProps = {
@@ -92,25 +107,29 @@ export default class DataTable extends Component {
     responsive: true,
   };
 
-  static childContextTypes = {
-    uncheckedIconClassName: PropTypes.string.isRequired,
-    uncheckedIconChildren: PropTypes.node,
-    checkedIconClassName: PropTypes.string.isRequired,
-    checkedIconChildren: PropTypes.node,
-    plain: PropTypes.bool,
-    allSelected: PropTypes.bool.isRequired,
-    selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
-    toggleAllRows: PropTypes.func.isRequired,
-    toggleSelectedRow: PropTypes.func.isRequired,
-  };
+  static childContextTypes = contextTypes;
 
-  getChildContext = () => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
+      selectedRows: props.defaultSelectedRows,
+    };
+
+    this._initializeRows = this._initializeRows.bind(this);
+    this._toggleAllRows = this._toggleAllRows.bind(this);
+    this._toggleSelectedRow = this._toggleSelectedRow.bind(this);
+  }
+
+  getChildContext() {
     const {
       uncheckedIconChildren,
       uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
       plain,
+      baseId,
     } = this.props;
 
     return {
@@ -121,38 +140,55 @@ export default class DataTable extends Component {
       plain,
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
-      toggleAllRows: this.toggleAllRows,
-      toggleSelectedRow: this.toggleSelectedRow,
+      toggleAllRows: this._toggleAllRows,
+      toggleSelectedRow: this._toggleSelectedRow,
+      baseId,
+      baseName: `${baseId}-control`,
     };
-  };
-
-  componentDidMount() {
-    this.initializeRows();
   }
 
-  toggleAllRows = () => {
+  componentDidMount() {
+    this._initializeRows();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.children !== prevProps.children) {
+      this._initializeRows();
+    }
+  }
+
+  _toggleAllRows() {
     const allSelected = !this.state.allSelected;
+    if (this.props.onRowToggle) {
+      this.props.onRowToggle(-1, allSelected, allSelected ? this.state.selectedRows.length : 0);
+    }
+
     this.setState({
       allSelected,
       selectedRows: this.state.selectedRows.map(() => allSelected),
     });
-  };
+  }
 
-  toggleSelectedRow = (row) => {
+  _toggleSelectedRow(row) {
     const selectedRows = this.state.selectedRows.slice();
     selectedRows[row] = !selectedRows[row];
+    const selectedCount = selectedRows.filter(selected => selected).length;
 
-    this.setState({
-      selectedRows,
-      allSelected: selectedRows.filter(selected => selected).length === selectedRows.length,
-    });
-  };
+    if (this.props.onRowToggle) {
+      this.props.onRowToggle(row, selectedRows[row], selectedCount);
+    }
 
-  initializeRows = () => {
-    const rows = ReactDOM.findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
+    this.setState({ selectedRows, allSelected: selectedCount === selectedRows.length });
+  }
+
+  _initializeRows() {
+    const rows = findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
+    if (rows === this.state.selectedRows.length) {
+      return;
+    }
 
     const selectedRows = [];
-    for(let i = 0; i < rows; i++) {
+    for (let i = 0; i < rows; i++) {
       selectedRows[i] = this.state.selectedRows[i] || false;
     }
 
@@ -160,7 +196,7 @@ export default class DataTable extends Component {
       selectedRows,
       allSelected: selectedRows.map(b => b).length === 0,
     });
-  };
+  }
 
   render() {
     const {
@@ -168,20 +204,27 @@ export default class DataTable extends Component {
       children,
       plain,
       responsive,
-      ...props,
+      ...props
     } = this.props;
     delete props.checkedIconChildren;
     delete props.checkedIconClassName;
     delete props.uncheckedIconChildren;
     delete props.uncheckedIconClassName;
     delete props.defaultSelectedRows;
+    delete props.baseId;
+    delete props.onRowToggle;
 
     const table = (
-      <table className={classnames('md-data-table', className, { 'md-plain-table': plain })} {...props}>
+      <table
+        {...props}
+        className={cn('md-data-table', {
+          'md-data-table--plain': plain,
+        }, className)}
+      >
         {children}
       </table>
     );
 
-    return responsive ? <div className="md-data-table-container">{table}</div> : table;
+    return responsive ? <div className="md-data-table--responsive">{table}</div> : table;
   }
 }

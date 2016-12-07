@@ -29,7 +29,7 @@ module.exports = function(templateParams) {
     meta += '<meta name="keywords" content="' + options.keywords + '">';
   }
 
-  var css = htmlWebpackPlugin.files.css.map(function(href) {
+  var css = htmlWebpackPlugin.files.css.concat(options.externalCSS || []).map(function(href) {
     return '<link href="' + href + '" rel="stylesheet">';
   }).join('');
 
@@ -72,7 +72,13 @@ module.exports = function(templateParams) {
   }
 
   var body = '<body>' + entry + js + '</body>';
+  var html = '<html';
+  if (options.isomorphicHtmlClassName) {
+    html += ' class="<%= ' + options.isomorphicHtmlClassName + ' %>"';
+  }
+
+  html += '>' + head + body + '</html>';
 
 
-  return '<!DOCTYPE html><html>' + head + body + '</html>';
+  return '<!DOCTYPE html>' + html;
 };

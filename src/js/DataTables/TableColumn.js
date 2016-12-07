@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
-import injectTooltip from '../Tooltips';
-import FontIcon from '../FontIcons';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import injectTooltip from '../Tooltips/injectTooltip';
+import Collapser from '../FontIcons/Collapser';
+import IconSeparator from '../Helpers/IconSeparator';
 
 /**
  * A column in a table. This is either the `th` or `td` component. This column
@@ -12,14 +12,13 @@ import FontIcon from '../FontIcons';
  * for being a candidate for auto expanding to remaining space, add the className
  * `.prevent-grow`.
  */
-class TableColumn extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+class TableColumn extends PureComponent {
   static propTypes = {
+    /**
+     * An optional style to apply.
+     */
+    style: PropTypes.object,
+
     /**
      * The optional className for the table column
      */
@@ -76,11 +75,6 @@ class TableColumn extends Component {
      * The position of the tooltip.
      */
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-
-    /**
-     * The optionally injected tooltip from the `injectTooltip` higher order component.
-     */
-    tooltip: PropTypes.node,
   };
 
   static defaultProps = {
@@ -90,28 +84,49 @@ class TableColumn extends Component {
   };
 
   render() {
-    const { className, numeric, adjusted, header, children, tooltip, sorted, sortIconChildren, sortIconClassName, ...props } = this.props;
+    const {
+      className,
+      numeric,
+      adjusted,
+      header,
+      children,
+      sorted,
+      sortIconChildren,
+      sortIconClassName,
+      ...props
+    } = this.props;
     const sortable = typeof sorted === 'boolean';
 
-    let displayedChildren = [children, tooltip];
-    if(sortable) {
-      displayedChildren = [
-        <FontIcon
-          key="sort-icon"
-          className={!sorted ? 'flipped': null}
-          iconClassName={sortIconClassName}
-          children={sortIconChildren}
-        />,
-        <span key="children" className="inline-top">{children}</span>,
-        tooltip,
-      ];
+    let displayedChildren = children;
+    if (sortable) {
+      displayedChildren = (
+        <IconSeparator label={children} iconBefore>
+          <Collapser flipped={!sorted} iconClassName={sortIconClassName}>
+            {sortIconChildren}
+          </Collapser>
+        </IconSeparator>
+      );
     }
 
-    return React.createElement(header ? 'th' : 'td', {
-      ...props,
-      className: classnames(`md-table-${header ? 'header' : 'data'}`, className, { numeric, adjusted, sortable }),
-      children: displayedChildren,
-    });
+    const Component = header ? 'th' : 'td';
+
+    return (
+      <Component
+        {...props}
+        className={cn('md-table-column', {
+          'md-table-column--header': header,
+          'md-table-column--data': !header,
+          'md-table-column--adjusted': adjusted,
+          'md-table-column--sortable md-pointer--hover': sortable,
+          'md-text': !header,
+          'md-text--secondary': header,
+          'md-text-left': !numeric,
+          'md-text-right': numeric,
+        }, className)}
+      >
+        {displayedChildren}
+      </Component>
+    );
   }
 }
 

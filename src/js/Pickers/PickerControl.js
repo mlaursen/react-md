@@ -1,6 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
 /**
  * The `PickerControl` component is the button that goes in the header
@@ -9,13 +8,7 @@ import classnames from 'classnames';
  *
  * For example, this is the year and date views for the `DatePicker`.
  */
-export default class PickerControl extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class PickerControl extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     active: PropTypes.bool.isRequired,
@@ -24,16 +17,15 @@ export default class PickerControl extends Component {
   };
 
   render() {
-    const { className, onClick, active, children, ...props } = this.props;
+    const { className, active, ...props } = this.props;
     return (
       <button
-        type="button"
-        className={classnames('md-picker-control', className, { active })}
-        onClick={onClick}
         {...props}
-      >
-        {children}
-      </button>
+        type="button"
+        className={cn('md-btn md-pointer--hover md-picker-control md-picker-text', {
+          'md-picker-text--active': active,
+        }, className)}
+      />
     );
   }
 }

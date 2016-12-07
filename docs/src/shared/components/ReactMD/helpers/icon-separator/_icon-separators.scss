@@ -1,0 +1,12 @@
+@import '~react-md-scss';
+
+.separator-examples .md-icon-separator {
+  display: inline-flex;
+  margin: 1em;
+  vertical-align: bottom;
+
+  .md-icon {
+    // fixes the icon before
+    width: $md-font-icon-size;
+  }
+}

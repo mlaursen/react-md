@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
-
-import { isBetween } from '../utils';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import between from '../utils/PropTypes/between';
 
 /**
  * There are 3 different types of linear progress bars: `Determinate`,
@@ -22,13 +20,7 @@ import { isBetween } from '../utils';
  * progress animation. Afterwards, it will start the determinate animation of where
  * you manually keep updating the value of the progress.
  */
-export default class LinearProgress extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class LinearProgress extends PureComponent {
   static propTypes = {
     /**
      * An optional className to apply to the linear progress container.
@@ -42,23 +34,18 @@ export default class LinearProgress extends Component {
      *
      * This value should also be a number between 0 and 100.
      */
-    value: (props, propName, component, ...others) => {
-      if(typeof props[propName] === 'undefined') { return; }
-      let err = PropTypes.number(props, propName, component, ...others);
-      if(!err) {
-        const value = props[propName];
-        if(!isBetween(value, 0, 100)) {
-          err = new Error(`A determinate '${component}' was given a value '${value}'. The 'value' prop should be between 0 and 100`);
-        }
-      }
-
-      return err;
-    },
+    value: between(PropTypes.number, 0, 100),
 
     /**
      * Boolean if this should be a query indeterminate progress bar.
      */
     query: PropTypes.bool,
+
+    /**
+     * Boolean if the Linear Progress should be centered. This
+     * will only work if the `max-width` style is set.
+     */
+    centered: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -66,22 +53,33 @@ export default class LinearProgress extends Component {
   };
 
   render() {
-    const { className, value, query, ...props } = this.props;
+    const { className, value, query, centered, ...props } = this.props;
     const isDeterminate = typeof value === 'number';
 
+    const accessibilityProps = {
+      role: 'progressbar',
+      'aria-valuemin': 0,
+      'aria-valuemax': 100,
+    };
+
     let style;
-    if(isDeterminate) {
+    if (isDeterminate) {
       style = { width: `${value}%` };
+      accessibilityProps['aria-valuenow'] = value;
     }
 
     return (
-      <div className={classnames('md-linear-progress-container', className)} {...props}>
+      <div
+        {...props}
+        className={cn('md-progress md-progress--linear', { 'md-block-centered': centered }, className)}
+      >
         <div
+          {...accessibilityProps}
           style={style}
-          className={classnames('md-linear-progress', {
-            query,
-            'determinate': isDeterminate,
-            'indeterminate': !isDeterminate,
+          className={cn('md-progress--linear-active', {
+            'md-progress--linear-query': query,
+            'md-progress--linear-determinate': isDeterminate,
+            'md-progress--linear-indeterminate': !isDeterminate,
           })}
         />
       </div>

@@ -1,10 +1,8 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../DataTable');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
 jest.unmock('../TableColumn');
-jest.unmock('../../FontIcons');
-jest.unmock('../../FontIcons/FontIcon');
 
 import React from 'react';
 import {
@@ -42,14 +40,14 @@ describe('TableRow', () => {
   });
 
   it('applies the correct event listeners', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+    const onClick = jest.fn();
+    const onMouseDown = jest.fn();
+    const onMouseUp = jest.fn();
+    const onMouseOver = jest.fn();
+    const onMouseLeave = jest.fn();
+    const onTouchStart = jest.fn();
+    const onTouchEnd = jest.fn();
+    const onTouchCancel = jest.fn();
 
     const table = renderIntoDocument(
       <DataTable>
@@ -99,7 +97,7 @@ describe('TableRow', () => {
 
   it('injects a checkbox if it is not a plain table', () => {
     let table = renderIntoDocument(
-      <DataTable plain={true}>
+      <DataTable plain>
         <TableBody>
           <TableRow>
             <TableColumn>A</TableColumn>

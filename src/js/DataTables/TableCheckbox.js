@@ -1,36 +1,39 @@
 import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import FontIcon from '../FontIcons';
-import Checkbox from '../SelectionControls/Checkbox';
+import SelectionControl from '../SelectionControls/SelectionControl';
+
+import checkboxContextTypes from './checkboxContextTypes';
 
 export default class TableCheckbox extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
   static propTypes = {
     checked: PropTypes.bool,
   };
 
-  static contextTypes = {
-    uncheckedIconClassName: PropTypes.string.isRequired,
-    uncheckedIconChildren: PropTypes.node,
-    checkedIconClassName: PropTypes.string.isRequired,
-    checkedIconChildren: PropTypes.node,
-  };
+  static contextTypes = checkboxContextTypes;
 
   render() {
     const { checked, ...props } = this.props;
-
-    const { uncheckedIconChildren, uncheckedIconClassName, checkedIconChildren, checkedIconClassName } = this.context;
-    const checkedIcon = <FontIcon iconClassName={checkedIconClassName} children={checkedIconChildren} />;
-    const uncheckedIcon = <FontIcon iconClassName={uncheckedIconClassName} children={uncheckedIconChildren} />;
+    const {
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      checkedIconChildren,
+      checkedIconClassName,
+      rowId,
+      baseName,
+    } = this.context;
 
     return (
       <td className="md-table-checkbox">
-        <Checkbox checked={checked} {...props} checkedIcon={checkedIcon} uncheckedIcon={uncheckedIcon} />
+        <SelectionControl
+          {...props}
+          id={rowId}
+          name={`${baseName}-checkbox`}
+          type="checkbox"
+          checked={checked}
+          uncheckedCheckboxIconChildren={uncheckedIconChildren}
+          uncheckedCheckboxIconClassName={uncheckedIconClassName}
+          checkedCheckboxIconChildren={checkedIconChildren}
+          checkedCheckboxIconClassName={checkedIconClassName}
+        />
       </td>
     );
   }

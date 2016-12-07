@@ -1,100 +1,269 @@
-.md-control-container {
-  align-items: center;
-  display: flex;
+////
+/// @group selection-controls
+////
 
-  &:not(.disabled) {
-    cursor: pointer;
+@import 'text-fields';
+
+
+/// Boolean if the very minimal styles for the `.md-select-field-group` should be included.
+/// @type Boolean
+$md-selection-controls-include-group: true !default;
+
+/// Boolean if the switch styles should be included.
+/// @type Boolean
+$md-selection-controls-include-switches: true !default;
+
+/// The height for the switch's track.
+/// @type Number
+$md-switch-track-height: 16px !default;
+
+/// The width for the switch's track.
+/// @type Number
+$md-switch-track-width: 40px !default;
+
+/// The size for the switch's thumb.
+/// @type Number
+$md-switch-thumb-size: $md-font-icon-size !default;
+
+
+
+/// The height for the switch
+/// @type Number
+/// @access private
+$md-switch-height: $md-height;
+
+/// The radius for the switch's track
+/// @type Number
+/// @access private
+$md-switch-track-radius: $md-switch-track-height / 2;
+
+/// The distance that the switch's thumb should be offset from the left or
+/// right of the switch's track.
+/// @type Number
+/// @access private
+$md-switch-thumb-offset: $md-switch-track-height / 4;
+
+$md-switch-light-theme-thumb-off: $md-grey-50;
+$md-switch-light-theme-track-off: rgba($md-black-base, .38);
+$md-switch-light-theme-thumb-disabled: $md-grey-400;
+$md-switch-light-theme-track-disabled: rgba($md-black-base, .12);
+
+$md-switch-dark-theme-thumb-off: $md-grey-400;
+$md-switch-dark-theme-track-off: rgba($md-white-base, .30);
+$md-switch-dark-theme-thumb-disabled: $md-grey-800;
+$md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
+
+/// Includes the styles for the Selection Controls.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-selection-controls;
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the selection controls should be
+///     styled using the light theme.
+/// @param {Boolean} include-group [$md-selection-controls-include-group] - Boolean if the minimal
+///     styles for the `.md-selection-controls-group` should be included.
+/// @param {Boolean} include-switches [$md-selection-controls-include-switches] - Boolean if the
+///     styles for switches should be included.
+@mixin react-md-selection-controls(
+  $secondary-color: $md-secondary-color,
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-group: $md-selection-controls-include-group,
+  $include-switches: $md-selection-controls-include-switches
+) {
+  .md-selection-control-container {
+    align-items: center;
+    display: flex;
+    height: $md-height;
   }
 
-  &.inline {
+  .md-selection-control-container--inline {
     display: inline-flex;
   }
 
-  .label {
-    cursor: inherit;
-  }
-
-  &.disabled {
-    .label {
-      cursor: default;
-    }
-  }
-
-  .md-icon {
-    color: inherit;
-  }
-}
-
-.md-control-input {
-  @extend %hidden;
-
-  &:checked + .md-switch {
-    &::before {
-      left: $md-switch-width - $md-switch-bar-height - $md-switch-ball-size;
-    }
-
-    .md-ink {
-      left: $md-switch-bar-height / 2;
-    }
-  }
-}
-
-
-.md-checkbox,
-.md-radio {
-  border-radius: 50%;
-  height: $md-icon-btn-size;
-  overflow: hidden;
-  padding: $md-icon-btn-padding;
-  position: relative;
-  transition: color $md-transition-time;
-  width: $md-icon-btn-size;
-
-  &.disabled {
-    color: $md-disabled-color;
-  }
-}
-
-
-.md-switch {
-  @include absolute-center(true, true);
-
-  border-radius: $md-switch-radius;
-  display: inline-block;
-  height: $md-switch-bar-height;
-  position: relative;
-  width: $md-switch-height - $md-switch-bar-height / 2;
-
-  &::before {
-    @extend %circle;
-
-    box-shadow: 0 2px #{$md-switch-bar-height / 2} rgba($md-black-base, .2);
-    content: '';
-    height: $md-switch-ball-size;
-    left: -$md-switch-offset;
+  .md-selection-control-input {
+    height: 0;
     position: absolute;
-    top: -$md-switch-offset;
-    transition: background $md-transition-time, background $md-transition-time, left $md-transition-time;
-    width: $md-switch-ball-size;
+    visibility: hidden;
+    width: 0;
+    z-index: -1;
   }
 
-  .md-ink {
-    height: $md-height;
-    left: -$md-switch-bar-height;
-    top: -$md-switch-bar-height;
-    transition: left $md-transition-time;
-    width: $md-height;
+  .md-selection-control-label {
+    cursor: inherit;
+    display: inline-block;
+  }
 
-    &.active {
-      transform: scale(1.25);
-      transition: transform $md-ink-animation-time, opacity $md-ink-animation-time, left $md-transition-time;
+  @if $include-group {
+    .md-selection-control-group {
+      border: 0;
+    }
+  }
+
+  @if $include-switches {
+    @include react-md-selection-controls-switch($secondary-color, $light-theme);
+  }
+
+  @if $include-media {
+    @include react-md-selection-controls-media;
+  }
+}
+
+/// Includes the styles for the Selection Controls' switch only. The `$secondary-color` will
+/// automatically be switched to the `-500` swatch in light themes and the `-200` swatch
+/// in dark themes.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-selection-controls-switch;
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use to theme
+///     the switches with.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the switch should be styled for the
+///     light theme.
+@mixin react-md-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+  $swatch: get-swatch($secondary-color, if($light-theme, 500, 200));
+
+  .md-switch-container {
+    height: $md-switch-height;
+  }
+
+  .md-switch-track {
+    border-radius: $md-switch-track-radius;
+    flex-shrink: 0;
+    height: $md-switch-track-height;
+    margin-left: 12px;
+    margin-right: 12px;
+    position: relative;
+    width: $md-switch-track-width;
+  }
+
+  .md-switch-track--on {
+    background: rgba($swatch, .5);
+  }
+
+  .md-switch-track--off {
+    background: if($light-theme, $md-switch-light-theme-track-off, $md-switch-dark-theme-track-off);
+  }
+
+  .md-switch-track--disabled {
+    background: if($light-theme, $md-switch-light-theme-track-disabled, $md-switch-dark-theme-track-disabled);
+  }
+
+  .md-switch-thumb {
+    @include md-box-shadow(1);
+
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: $md-switch-thumb-size;
+    position: absolute;
+    transition-duration: $md-transition-time;
+    transition-property: background, transform;
+    width: $md-switch-thumb-size;
+  }
+
+  .md-switch-thumb--on {
+    background: $swatch;
+    transform: translate3d(#{$md-switch-track-width - $md-switch-thumb-size + $md-switch-thumb-offset}, -$md-switch-thumb-offset, 0);
+  }
+
+  .md-switch-thumb--off {
+    background: if($light-theme, $md-switch-light-theme-thumb-off, $md-switch-dark-theme-thumb-off);
+    transform: translate3d(-$md-switch-thumb-offset, -$md-switch-thumb-offset, 0);
+  }
+
+  .md-switch-thumb--disabled {
+    background: if($light-theme, $md-switch-light-theme-thumb-disabled, $md-switch-dark-theme-thumb-disabled);
+  }
+}
+
+/// Themes the selection controls with the new theme variables. It really only modifies the
+/// `switch` styles, so if `$include-switches` param is false, it does nothing.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-selection-control($md-blue-a-200, true);
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
+/// @param {Boolean} incude-switches [$md-selection-controls-include-switches] - Boolean if the switches
+///     should be included.
+/// @group selection-controls, themes
+@mixin react-md-theme-selection-controls($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-switches: $md-selection-controls-include-switches) {
+  @if $include-switches {
+    @include react-md-theme-selection-controls-switch($secondary-color, $light-theme);
+  }
+}
+
+/// Updates the styles for switches ONLY if
+/// - the `$secondary-color` does not equal the `$md-secondary-color`
+/// - the `$light-theme` does not equal the `$md-light-theme`
+///
+/// The `$secondary-color` will automatically be updated to be a swatch of `-500` for light themes
+/// and a swatch of `-200` for dark themes.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-selection-controls-switch($md-blue-a-200, true);
+///
+/// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
+/// @group selection-controls, themes
+@mixin react-md-theme-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
+  @if $secondary-color != $md-secondary-color {
+    $swatch: get-swatch($secondary-color, if($light-theme, 500, 200));
+
+    .md-switch-track--on {
+      background: rgba($swatch, .5);
+    }
+
+    .md-switch-thumb--on {
+      background: $swatch;
+    }
+  }
+
+  @if $light-theme != $md-light-theme {
+    .md-switch-track--off {
+      background: if($light-theme, $md-switch-light-theme-track-off, $md-switch-dark-theme-track-off);
+    }
+
+    .md-switch-track--disabled {
+      background: if($light-theme, $md-switch-light-theme-track-disabled, $md-switch-dark-theme-track-disabled);
+    }
+
+    .md-switch-thumb--off {
+      background: if($light-theme, $md-switch-light-theme-thumb-off, $md-switch-dark-theme-thumb-off);
+    }
+
+    .md-switch-thumb--disabled {
+      background: if($light-theme, $md-switch-light-theme-thumb-disabled, $md-switch-dark-theme-thumb-disabled);
     }
   }
 }
 
-.md-switch-container {
-  height: $md-switch-height;
-  margin-right: $md-btn-padding;
-  position: relative;
-  width: $md-switch-width;
+/// Creates the styles for selection controls on mobile devices.
+/// @group selection-controls, media-queries
+@mixin react-md-selection-controls-mobile {
+  .md-selection-control-label {
+    font-size: $md-text-field-mobile-font-size;
+  }
+}
+
+/// Creates the styles for selection controls on desktop displays.
+/// @group selection-controls, media-queries
+@mixin react-md-selection-controls-desktop {
+  .md-selection-control-label {
+    font-size: $md-text-field-desktop-font-size;
+  }
+}
+
+/// Creates the media queries for selection controls for moble and desktop.
+/// @group selection-controls, media-queries
+@mixin react-md-selection-controls-media {
+  @media #{$md-mobile-media} {
+    @include react-md-selection-controls-mobile;
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-selection-controls-desktop;
+  }
 }

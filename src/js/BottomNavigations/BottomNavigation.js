@@ -1,28 +1,18 @@
-import React, { Component, PropTypes } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import { isBetween } from '../utils';
+import getField from '../utils/getField';
+import controlled from '../utils/PropTypes/controlled';
+import Portal from '../Helpers/Portal';
+import Paper from '../Papers/Paper';
 import BottomNav from './BottomNav';
 
 /**
- * The `BottomNavigation` component is used when there are three to five
- * top-level destinations that require direct access on mobile devices.
+ * The `BottomNavigation` component is an alternative to the `NavigationDrawer` for handling navigation
+ * only on mobile devices.
  */
-export default class BottomNavigation extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = {
-      activeIndex: props.initialActiveIndex,
-      visible: props.initiallyVisible,
-      pageY: null,
-      scrolling: false,
-    };
-  }
-
+export default class BottomNavigation extends PureComponent {
   static propTypes = {
     /**
      * An optional style to apply.
@@ -35,241 +25,326 @@ export default class BottomNavigation extends Component {
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the `CSSTransitionGroup` container.
-     */
-    containerStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the `CSSTransitionGroup` container.
-     * The container will always contain a className of `md-bottom-navigation-container`.
-     */
-    containerClassName: PropTypes.string,
-
-    /**
-     * The list of navigation actions to use. The custom validation throws warnings
-     * if there are less than 3 or more than 5 actions. An action is the following shape:
+     * A list of objects to generate a bottom navigation link. There must be at least 3 and no more
+     * than 5 links. A link gets rendered as the `AccessibleFakeButton` component, so any additional
+     * props in the link's shape will be passed along.
      *
-     * ```js
-     * action: PropTypes.shape({
-     *   label: PropTypes.string.isRequired,
-     *   iconClassName: PropTypes.string,
+     * ```docgen
+     * PropTypes.arrayOf(PropTypes.shape({
+     *   label: PropTypes.node.isRequired,
      *   iconChildren: PropTypes.node,
-     *   onClick: PropTypes.func,
+     *   iconClassName: PropTypes.string,
      *   component: PropTypes.oneOfType([
-     *     PropTypes.string,
-     *     PropTypes.func,
-     *   ]).isRequired,
-     *   ...componentProps,
-     * }),
+     *      PropTypes.func,
+     *      PropTypes.string,
+     *   ]),
+     * }).isRequired
      * ```
-     *
-     * The default component is a 'button'.
      */
-    actions: (props, propName, component, ...others) => {
-      const err = PropTypes.arrayOf(PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        iconClassName: PropTypes.string,
-        iconChildren: PropTypes.node,
-      })).isRequired(props, propName, component, ...others);
+    links: (props, propName, component, ...args) => {
+      const links = props[propName] || props.actions;
+      const len = links.length;
 
-      if(err) {
-        return err;
-      } else if(!isBetween(props[propName].length, 3, 5)) {
-        return new Error(`The '${component}' expects a number of actions between 3 and 5 but '${props[propName].length}' were given`);
+      if (len < 3) {
+        return new Error(
+          `Only ${len} \`${propName}\` were given to the ${component}. At least 3 are required.`
+        );
+      } else if (len > 5) {
+        return new Error(
+          `${len} \`${propName}\` were given to the ${component}. No more than 5 may be given.`
+        );
       }
+
+      return PropTypes.arrayOf(PropTypes.shape({
+        label: PropTypes.node.isRequired,
+        iconChildren: PropTypes.node,
+        iconClassName: PropTypes.string,
+        component: PropTypes.oneOfType([
+          PropTypes.func,
+          PropTypes.string,
+        ]),
+      })).isRequired(props, propName, component, ...args);
     },
 
     /**
-     * Boolean if the navigation actions should be colored.
+     * Boolean if the bottom navigation should be colored with the primary color or whatever color
+     * was a result of the `react-md-theme-bottom-navigations-colored` mixin.
      */
     colored: PropTypes.bool,
 
     /**
-     * The initial active index for the bottom navigation. This will select one of
-     * the tabs by default for an uncontrolled component.
+     * Boolean if the bottom navigation should dynamically appear based on scrolling. When the user
+     * scrolls the `dynamicThreshold` amount, this component will either disappear (scrolling down)
+     * or appera (scrolling up).
      */
-    initialActiveIndex: PropTypes.number.isRequired,
+    dynamic: PropTypes.bool,
 
     /**
-     * An active index for the bottom navigation. This will make the component controlled
-     * and require the onChange function to be defined to switch the index.
+     * The distance a user must scroll before the bottom navigation appears or disappears when it is `dyanamic`.
      */
-    activeIndex: PropTypes.number,
+    dynamicThreshold: PropTypes.number.isRequired,
 
     /**
-     * Boolean if the bottom navigation component is initially visible.
+     * An optional function to call when a link has been clicked. The callback will
+     * include the new active index and the click event.
+     *
+     * ```js
+     * onNavChange(newActiveIndex, event);
+     * ```
      */
-    initiallyVisible: PropTypes.bool.isRequired,
+    onNavChange: PropTypes.func,
 
     /**
-     * The transition name to use for the `BottomNavigation` appearing/disappearing
-     * when dynamic.
+     * An optional active index to use. This will make the component controlled and require the
+     * `onNavChange` prop to be defined.
      */
-    transitionName: PropTypes.string.isRequired,
+    activeIndex: controlled(PropTypes.number, 'onNavChange', 'defaultActiveIndex'),
 
     /**
-     * The transition enter timeout to use for the `BottomNavigation` appearing/disappearing
-     * when dynamic.
+     * The index for the link that is active by default.
      */
-    transitionEnterTimeout: PropTypes.number.isRequired,
+    defaultActiveIndex: PropTypes.number.isRequired,
 
     /**
-     * The transition leave timeout to use for the `BottomNavigation` appearing/disappearing
-     * when dynamic.
+     * Boolean if the bottom navigation is visible by default. This *should* probably always
+     * be true.
      */
-    transitionLeaveTimeout: PropTypes.number.isRequired,
+    defaultVisible: PropTypes.bool.isRequired,
 
     /**
-     * Boolean if the `BottomNavigation` is dynamic. This means that when the user scrolls
-     * downwards, the component will be hidden. When the user scrolls upwards, the component
-     * will be visible again.
+     * The component to render the bottom navigation as.
      */
-    dynamic: PropTypes.bool.isRequired,
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
 
     /**
-     * An optional function to call when the active action is changed. This function
-     * is called with the new `activeIndex`.
+     * Since the `BottomNavigation` component uses the `Portal` component, you can pass an optional
+     * HTML Node to render in.
      */
-    onChange: PropTypes.func,
+    renderNode: PropTypes.object,
+
+    /**
+     * The transition duration for the dynamic bottom navigation to appear or disappear. This should
+     * match the `$md-bottom-navigation-transition-time` variable.
+     */
+    transitionDuration: PropTypes.number.isRequired,
+
+    /**
+     * An optional function to call when the visibility of the bottom navigation changes. The callback
+     * will include the new visibility.
+     *
+     * ```js
+     * onVisibilityChange(!visible);
+     * ```
+     */
+    onVisibilityChange: PropTypes.func,
+
+    onChange: deprecated(PropTypes.func, 'Use `onNavChange` instead'),
+    initiallyVisible: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initialActiveIndex: deprecated(PropTypes.number, 'Use `defaultActiveIndex` instead'),
+    containerStyle: deprecated(PropTypes.object, 'Use `style` instead'),
+    containerClassName: deprecated(PropTypes.string, 'Use `className` instead'),
+    transitionName: deprecated(PropTypes.string, 'There is no CSSTransitionGroup used anymore'),
+    transitionEnterTimeout: deprecated(PropTypes.number, 'Use `transitionDuration` instead'),
+    transitionLeaveTimeout: deprecated(PropTypes.number, 'Use `transitionDuration` instead'),
+    actions: deprecated(PropTypes.array, 'Use `links` instead'),
   };
 
   static defaultProps = {
-    transitionName: 'bottom-navigation',
-    transitionEnterTimeout: 150,
-    transitionLeaveTimeout: 150,
-    dynamic: true,
-    initialActiveIndex: 0,
-    initiallyVisible: true,
+    defaultActiveIndex: 0,
+    component: 'footer',
+    defaultVisible: true,
+    transitionDuration: 300,
+    dynamicThreshold: 20,
   };
 
+  constructor(props) {
+    super(props);
+
+    const visible = typeof props.initiallyVisible === 'boolean' ? props.initiallyVisible : props.defaultVisible;
+    this.state = {
+      visible,
+      portalVisible: visible,
+    };
+    if (typeof props.activeIndex === 'undefined') {
+      this.state.activeIndex = props.defaultActiveIndex;
+    }
+
+    this._handleNavChange = this._handleNavChange.bind(this);
+    this._addTouchEvents = this._addTouchEvents.bind(this);
+    this._removeTouchEvents = this._removeTouchEvents.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+  }
+
   componentDidMount() {
-    if(this.props.dynamic) {
-      this.addTouchEvents();
+    if (this.props.dynamic) {
+      this._addTouchEvents();
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.dynamic === nextProps.dynamic) { return; }
-    if(nextProps.dynamic) {
-      this.addTouchEvents();
+    const { dynamic } = nextProps;
+    if (this.props.dynamic === dynamic) {
+      return;
+    }
+
+    if (dynamic) {
+      this._addTouchEvents();
     } else {
-      this.removeTouchEvents();
+      this._removeTouchEvents();
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.visible !== nextState.visible && nextProps.onVisibilityChange) {
+      nextProps.onVisibilityChange(nextState.visible);
     }
   }
 
   componentWillUnmount() {
-    if(this.props.dynamic) {
-      this.removeTouchEvents();
+    if (this.props.dynamic) {
+      this._removeTouchEvents();
+    }
+
+    if (this._timeout) {
+      clearTimeout(this._timeout);
     }
   }
 
-  addTouchEvents = () => {
-    window.addEventListener('touchstart', this.handleTouchStart);
-    window.addEventListener('touchmove', this.handleTouchMove);
-    window.addEventListener('touchend', this.handleTouchEnd);
-  };
+  _addTouchEvents() {
+    window.addEventListener('touchstart', this._handleTouchStart);
+    window.addEventListener('touchmove', this._handleTouchMove);
+    window.addEventListener('touchend', this._handleTouchEnd);
+  }
 
-  removeTouchEvents = () => {
-    window.removeEventListener('touchstart', this.handleTouchStart);
-    window.removeEventListener('touchmove', this.handleTouchMove);
-    window.removeEventListener('touchend', this.handleTouchEnd);
-  };
+  _removeTouchEvents() {
+    window.removeEventListener('touchstart', this._handleTouchStart);
+    window.removeEventListener('touchmove', this._handleTouchMove);
+    window.removeEventListener('touchend', this._handleTouchEnd);
+  }
 
-  handleTouchStart = (e) => {
+  _handleTouchStart(e) {
     const { pageY } = e.changedTouches[0];
 
-    this.setState({ pageY, scrolling: true });
-  };
+    this._pageY = pageY;
+    this._scrolling = true;
+  }
 
-  handleTouchMove = (e) => {
-    const { scrolling, visible, pageY } = this.state;
-    if(!scrolling) { return; }
+  _handleTouchMove(e) {
+    const { visible } = this.state;
+    if (!this._scrolling) {
+      return;
+    }
 
     const touchY = e.changedTouches[0].pageY;
-    if((visible && pageY > touchY) || (!visible && pageY < touchY)) {
-      this.setState({ visible: !visible, pageY: touchY });
+    const { transitionDuration, dynamicThreshold } = this.props;
+    const passedThreshold = Math.abs(this._pageY - touchY) >= dynamicThreshold;
+    if (this._pageY > touchY && visible && passedThreshold) {
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+      }
+
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+        this.setState({ portalVisible: false });
+      }, transitionDuration);
+
+      this._pageY = touchY;
+      this.setState({ visible: false });
+    } else if (this._pageY < touchY && !visible && passedThreshold) {
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+      }
+
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+        this.setState({ visible: true });
+      }, 17);
+
+      this._pageY = touchY;
+      this.setState({ portalVisible: true });
     }
-  };
+  }
 
-  handleTouchEnd = () => {
-    if(!this.state.scrolling) { return; }
-    this.setState({ pageY: null, scrolling: false });
-  };
+  _handleTouchEnd() {
+    this._scrolling = false;
+  }
 
-  getActiveIndex = (props = this.props, state = this.state) => {
-    return (typeof props.active !== 'undefined' ? props : state).activeIndex;
-  };
+  _handleNavChange(index, e) {
+    if (this.props.onNavChange || this.props.onChange) {
+      (this.props.onNavChange || this.props.onChange)(index, e);
+    }
 
-  handleNavChange = (index) => {
-    const activeIndex = this.getActiveIndex();
-    if(activeIndex === index) { return; }
-    this.props.onChange && this.props.onChange(index);
-
-    this.setState({ activeIndex: index });
-  };
+    if (typeof this.props.activeIndex === 'undefined') {
+      this.setState({ activeIndex: index });
+    }
+  }
 
   render() {
-    const { visible } = this.state;
+    const { visible, portalVisible } = this.state;
     const {
-      style,
       className,
-      containerStyle,
-      containerClassName,
-      colored,
       actions,
-      transitionName,
-      transitionEnterTimeout,
-      transitionLeaveTimeout,
-      ...props,
+      colored,
+      dynamic,
+      renderNode,
+      ...props
     } = this.props;
-    delete props.initialActiveIndex;
-    delete props.initiallyVisible;
-    delete props.active;
+    delete props.links;
     delete props.activeIndex;
-    delete props.dynamic;
+    delete props.onNavChange;
+    delete props.onVisibilityChange;
+    delete props.defaultVisible;
+    delete props.defaultActiveIndex;
+    delete props.dynamicThreshold;
+    delete props.transitionDuration;
 
-    const activeIndex = this.getActiveIndex();
+    // Delete deprecated
+    delete props.onChange;
+    delete props.initiallyVisible;
+    delete props.containerStyle;
+    delete props.containerClassName;
+    delete props.transitionName;
+    delete props.transitionEnterTimeout;
+    delete props.transitionLeaveTimeout;
 
-    const fixed = actions.length === 3;
-    const navs = actions.map((props, i) => (
-      <BottomNav
-        key={i}
-        index={i}
-        {...props}
-        onNavChange={this.handleNavChange}
-        active={activeIndex === i}
-        colored={colored}
-        fixed={fixed}
-      />
-    ));
-
-    let nav;
-    if(visible) {
-      nav = (
-        <footer
-          key="nav"
-          style={style}
-          className={classnames('md-bottom-navigation', className, {
-            colored,
-            'default': !colored,
-          })}
-        >
-          {navs}
-        </footer>
-      );
+    let { links } = this.props;
+    if (actions) {
+      links = actions;
     }
 
+    const fixed = links.length === 3;
+    const activeIndex = getField(this.props, this.state, 'activeIndex');
+
     return (
-      <CSSTransitionGroup
-        style={containerStyle}
-        className={classnames('md-bottom-navigation-container', containerClassName)}
-        transitionName={transitionName}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-        {...props}
-      >
-        {nav}
-      </CSSTransitionGroup>
+      <Portal renderNode={renderNode} visible={portalVisible}>
+        <Paper
+          {...props}
+          className={cn('md-bottom-navigation', {
+            'md-background--card': !colored,
+            'md-background--primary': colored,
+            'md-bottom-navigation--dynamic': dynamic,
+            'md-bottom-navigation--dynamic-inactive': dynamic && !visible,
+          }, className)}
+          role="navigation"
+        >
+          {links.map((action, index) => (
+            <BottomNav
+              {...action}
+              key={action.key || index}
+              index={index}
+              onNavChange={this._handleNavChange}
+              active={activeIndex === index}
+              colored={colored}
+              fixed={fixed}
+            />
+          ))}
+        </Paper>
+      </Portal>
     );
   }
 }

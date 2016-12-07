@@ -1,23 +1,18 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-import PickerFooter from './PickerFooter';
 import ClockFace from './ClockFace';
+import DialogFooter from '../Dialogs/DialogFooter';
 import TimePickerHeader from './TimePickerHeader';
 
 /**
  * The `TimePicker` component is used to display a time picker
  * in the `TimePickerContainer` component.
  */
-export default class TimePicker extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class TimePicker extends PureComponent {
   static propTypes = {
-    className: PropTypes.string.isRequired,
+    style: PropTypes.object,
+    className: PropTypes.string,
     okLabel: PropTypes.string.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
@@ -29,6 +24,9 @@ export default class TimePicker extends Component {
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+    icon: PropTypes.bool,
+    inline: PropTypes.bool,
+    displayMode: PropTypes.oneOf(['landscape', 'portrait']),
 
     /**
      * A function that will switch the state from hour to minute.
@@ -72,15 +70,26 @@ export default class TimePicker extends Component {
     timePeriod: PropTypes.string,
   };
 
-  updateTime = (timePart) => {
+  constructor(props) {
+    super(props);
+
+    this._updateTime = this._updateTime.bind(this);
+  }
+
+  /**
+   * Takes in the new time (number o'clock or minutes), updates the temp time
+   * with that new time, and then calls the setTempTime prop.
+   */
+  _updateTime(newTime) {
+    let timePart = newTime;
     const { tempTime, setTempTime, timeMode, timePeriod } = this.props;
     const time = new Date(tempTime);
-    if(timeMode === 'hour') {
+    if (timeMode === 'hour') {
       const isAM = timePeriod === 'AM';
       const is12 = timePart === 12;
-      if(timePeriod && isAM && is12) {
+      if (timePeriod && isAM && is12) {
         timePart = 0;
-      } else if(timePeriod && !isAM && !is12) {
+      } else if (timePeriod && !isAM && !is12) {
         timePart += 12;
       }
 
@@ -90,7 +99,7 @@ export default class TimePicker extends Component {
     }
 
     setTempTime(time);
-  };
+  }
 
   render() {
     const {
@@ -100,6 +109,7 @@ export default class TimePicker extends Component {
       cancelLabel,
       cancelPrimary,
       onCancelClick,
+      style,
       className,
       setTimeMode,
       setTempTime,
@@ -108,13 +118,36 @@ export default class TimePicker extends Component {
       hours,
       minutes,
       timePeriod,
+      displayMode,
+      inline,
+      icon,
     } = this.props;
 
-    const hoursInt = parseInt(hours);
-    const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''));
+    const hoursInt = parseInt(hours, 10);
+    const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''), 10);
+    const actions = [{
+      key: cancelLabel,
+      onClick: onCancelClick,
+      primary: cancelPrimary,
+      secondary: !cancelPrimary,
+      label: cancelLabel,
+    }, {
+      key: okLabel,
+      onClick: onOkClick,
+      primary: okPrimary,
+      secondary: !okPrimary,
+      label: okLabel,
+    }];
 
     return (
-      <div className={`${className} time-picker`}>
+      <div
+        style={style}
+        className={cn('md-picker md-picker--time', {
+          [`md-picker--${displayMode}`]: displayMode,
+          'md-picker--inline': inline,
+          'md-picker--inline-icon': inline && icon,
+        }, className)}
+      >
         <TimePickerHeader
           tempTime={tempTime}
           timeMode={timeMode}
@@ -125,22 +158,15 @@ export default class TimePicker extends Component {
           timePeriod={timePeriod}
         />
         <div className="md-picker-content-container">
-          <div className="md-picker-content clock">
+          <div className="md-picker-content md-picker-content--clock">
             <ClockFace
               time={timeMode === 'hour' ? hoursInt : minutesInt}
               minutes={timeMode === 'minute'}
-              onClick={this.updateTime}
+              onChange={this._updateTime}
               timePeriod={timePeriod}
             />
           </div>
-          <PickerFooter
-            okLabel={okLabel}
-            okPrimary={okPrimary}
-            onOkClick={onOkClick}
-            cancelLabel={cancelLabel}
-            cancelPrimary={cancelPrimary}
-            onCancelClick={onCancelClick}
-          />
+          <DialogFooter actions={actions} />
         </div>
       </div>
     );

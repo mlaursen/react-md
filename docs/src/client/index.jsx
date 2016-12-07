@@ -1,34 +1,58 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { match, browserHistory } from 'react-router';
-import WebFont from 'webfontloader';
+import { render, unmountComponentAtNode as unmount } from 'react-dom';
+import browserHistory from 'react-router/lib/browserHistory';
+import Router from 'react-router/lib/Router';
+import match from 'react-router/lib/match';
 import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
 
-import configureStore from 'stores/configureStore';
-import routes from 'routes';
-
-import Root from './Root';
-
+import WebFont from 'webfontloader';
 WebFont.load({
   google: {
-    families: ['Roboto:300,400,500,700', 'Material Icons', 'Source Code Pro'],
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
   },
   custom: {
     families: ['FontAwesome'],
-    urls: ['https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'],
+    urls: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'],
   },
 });
 
-const store = configureStore(window.__INITIAL_STATE__);
+import './_styles.scss';
+import configureStore from 'stores/configureStore';
+import onRouteUpdate from 'utils/onRouteUpdate';
+
+const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
-
-if (process.env.NODE_ENV === 'development') {
+const root = document.getElementById('app');
+if (__DEV__) {
   window.Perf = require('react-addons-perf');
+}
 
-  render(<Root store={store} history={history} routes={routes} />, document.getElementById('app'));
-} else {
-  match({ history, routes }, (error, redirectLocation, renderProps) => {
-    render(<Root store={store} {...renderProps} />, document.getElementById('app'));
+function renderApp() {
+  const routes = require('routes').default;
+
+  match(({ history, routes }), (error, redirectLocation, renderProps) => {
+    render(
+      <AppContainer>
+        <Provider store={store}>
+          <Router {...renderProps} onUpdate={onRouteUpdate} />
+        </Provider>
+      </AppContainer>,
+      root
+    );
   });
 }
 
+if (module.hot) {
+  module.hot.accept('routes', () => {
+    setImmediate(() => {
+      // prevents the warning with react-router dynamic routes
+      unmount(root);
+
+      renderApp();
+    });
+  });
+}
+
+renderApp();

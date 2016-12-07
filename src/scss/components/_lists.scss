@@ -1,129 +1,509 @@
-.md-list {
-  @extend %list-unstyled;
+////
+/// @group lists
+////
 
-  user-select: none;
+/// Boolean if the styles for lists with icons should be included.
+/// @type Boolean
+$md-list-include-icon: true !default;
 
-  .md-divider.inset {
-    margin-left: $md-list-tile-left-padding;
-    width: calc(100% - #{$md-list-tile-left-padding});
-  }
+/// Boolean if the styles for lists with avatars should be included.
+/// @type Boolean
+$md-list-include-avatar: true !default;
 
-  a {
-    text-decoration: none;
-  }
+/// Boolean if the styles for lists with two lines of text should be included.
+/// @type Boolean
+$md-list-include-two-lines: true !default;
 
-  .md-icon {
-    color: $md-icon-color;
-  }
+/// Boolean if the styles for lists with three lines of text should be included.
+/// @type Boolean
+$md-list-include-three-lines: true !default;
 
-  .extra-mb {
-    margin-bottom: $md-list-tile-extra-margin;
-  }
+/// Boolean if the styles for lists with controls should be included.
+/// @type Boolean
+$md-list-include-controls: true !default;
+
+/// A number for how much to increment the nested depth multiplier
+/// @type Number
+$md-list-nested-items-increment: .5 !default;
+
+/// The max depth for nested items in lists. This is used to generate
+/// some additional padding on nested lists.
+/// @type Number
+$md-list-nested-items-depth: 2 !default;
+
+/// Boolean if the `.md-list-unstyled` should be included by default.
+/// @type Boolean
+$md-list-include-unstyled-class-name: true !default;
+
+/// This is really the keyline to use for lists. When a list item is inset, this will
+/// be applied to the tile.
+/// @type Number
+$md-list-left-padding: 72px;
+
+/// The top and bottom padding to apply to a list on mobile devices.
+/// @type Number
+$md-list-mobile-padding: 8px;
+
+/// The font size to apply to the primary text in a list item on mobile devices.
+/// @type Number
+$md-list-mobile-primary-font-size: 16px;
+
+/// The font size to apply to the secondary text in a list item on mobile devices.
+/// @type Number
+$md-list-mobile-secondary-font-size: 14px;
+
+/// The height for a single line list item on mobile devices.
+/// @type Number
+$md-list-mobile-height: 48px;
+
+/// The height for a list item that has an avatar on mobile devices.
+/// @type Number
+$md-list-mobile-avatar-height: 56px;
+
+/// The height for a list item that has two lines of text on mobile devices.
+/// @type Number
+$md-list-mobile-two-lines-height: 72px;
+
+/// The height for a list item that has three lines of text on mobile devices.
+/// @type Number
+$md-list-mobile-three-lines-height: 88px;
+
+/// The top and bottom padding for a list on desktop screens.
+/// @type Number
+$md-list-desktop-padding: 4px;
+
+/// The font size to apply to a list item's primary and secondary text on desktop screens.
+/// @type Number
+$md-list-desktop-font-size: 13px;
+
+/// The height for a single line list item on desktop screens.
+/// @type Number
+$md-list-desktop-height: 40px;
+
+/// The height for a list item that has an avatar on desktop screens.
+/// @type Number
+$md-list-desktop-avatar-height: 48px;
+
+/// The height for a list item that has two lines of text on desktop screens.
+/// @type Number
+$md-list-desktop-two-lines-height: 60px;
+
+/// The height for a list item that has three lines of text on desktop screens.
+/// @type Number
+$md-list-desktop-three-lines-height: 76px;
+
+/// A placeholder for removing the default margin, padding and list styles
+%md-list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
-.md-divider + li {
-  margin-top: $md-list-tile-extra-margin;
-}
+/// Includes the styles for lists.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-lists;
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the lists should be styled
+///     for the light theme.
+/// @param {Number} nested-items-depth [$md-list-nested-items-depth] - The maximum depth for
+///     nested items.
+/// @param {Number} nested-items-increment [$md-list-nested-items-increment] - The amount the
+///     nested item's padding should be incremented by.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should
+///     be included.
+/// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with
+///     icons should be included.
+/// @param {Boolean} include-avatar [$md-list-include-avatar] - Boolean if the styles for lists
+///     with avatars should be included.
+/// @param {Boolean} include-two-lines [$md-list-include-two-lines] - Boolean if the styles for
+///     lists with two lines of text should be included.
+/// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
+///     lists with three lines of text should be included.
+/// @param {Boolean} include-controls [$md-list-include-controls] - Boolean if the styles for lists
+///     with controls to be included.
+@mixin react-md-lists(
+  $light-theme: $md-light-theme,
+  $nested-items-depth: $md-list-nested-items-depth,
+  $nested-items-increment: $md-list-nested-items-increment,
+  $include-media: $md-media-included,
+  $include-icon: $md-list-include-icon,
+  $include-avatar: $md-list-include-avatar,
+  $include-two-lines: $md-list-include-two-lines,
+  $include-three-lines: $md-list-include-three-lines,
+  $include-controls: $md-list-include-controls,
+  $include-unstyled: $md-list-include-unstyled-class-name
+) {
+  @if $include-media {
+    @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+  }
 
-.md-list-item {
-  &.primary-action,
-  &.secondary-action {
+  @if $include-unstyled {
+    .md-list-unstyled {
+      @extend %md-list-unstyled;
+    }
+  }
+
+  .md-list {
+    @extend %md-list-unstyled;
+
+    background: get-color('card', $light-theme);
+    user-select: none;
+
+    .md-avatar,
+    .md-icon {
+      flex-shrink: 0;
+    }
+
+    .md-divider {
+      margin-bottom: 8px;
+      margin-top: 8px;
+    }
+
+    .md-list:not(.md-list--menu) {
+      background: inherit;
+    }
+  }
+
+  .md-list-tile {
+    align-items: center;
+    display: flex;
     padding-left: $md-default-padding;
     padding-right: $md-default-padding;
+    text-decoration: none;
+    transition-duration: $md-transition-time;
+    transition-property: background;
 
-    .md-control-container {
-      height: inherit;
-    }
-
-    .md-switch-container {
-      margin-left: auto;
-    }
-  }
-
-  &.primary-action {
-    padding-left: 0;
-  }
-
-  &.secondary-action {
-    padding-right: 0;
-
-    .md-control-container {
-      margin-left: auto;
+    &--active {
+      background: get-color('hover', $light-theme);
     }
   }
+
+  .md-list-item--inset {
+    padding-left: $md-list-left-padding;
+  }
+
+  .md-tile-content {
+    flex-grow: 1;
+    overflow: hidden;
+
+    @if $include-icon {
+      &--left-icon {
+        padding-left: $md-list-left-padding - $md-font-icon-size - $md-default-padding;
+      }
+    }
+
+    @if $include-avatar {
+      &--left-avatar {
+        padding-left: $md-list-left-padding - $md-avatar-size - $md-default-padding;
+      }
+    }
+
+    @if $include-icon or $include-avatar {
+      &--right-padding {
+        padding-right: $md-default-padding;
+      }
+    }
+  }
+
+
+
+  @if $include-icon or $include-avatar {
+    .md-tile-addon--icon {
+      height: $md-font-icon-size;
+    }
+
+    .md-text--theme-primary .md-icon {
+      color: inherit;
+    }
+
+    .md-tile-addon--avatar {
+      height: $md-avatar-size;
+    }
+  }
+
+  %tile-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .md-tile-text--primary {
+    @extend %tile-text;
+  }
+
+  @if $include-two-lines or $include-three-lines {
+    .md-tile-text--secondary {
+      @extend %tile-text;
+    }
+  }
+
+  @if $include-three-lines {
+    .md-tile-text--three-lines {
+      // scss-lint:disable PropertySortOrder
+      white-space: pre-line;
+
+      // Magic with webkit-line clamp
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    @if $include-icon or $include-avatar {
+      .md-list-tile--three-lines .md-tile-addon {
+        align-self: flex-start;
+      }
+    }
+  }
+
+  @if $nested-items-depth != null and $nested-items-depth > 0 {
+    @include react-md-lists-nested($nested-items-depth, $nested-items-increment);
+  }
+
+  @if $include-controls {
+    .md-list-control {
+      flex-grow: 1;
+
+      .md-selection-control-label {
+        width: 100%;
+      }
+    }
+
+    .md-tile-content--left-button {
+      padding-left: $md-list-left-padding - $md-font-icon-size * 2;
+    }
+
+    .md-list-control--right {
+      justify-content: flex-end;
+    }
+
+    .md-list-tile--control-left {
+      padding-left: 0;
+    }
+
+    .md-list-tile--control-right {
+      padding-right: 0;
+    }
+  }
 }
 
-.md-list-tile {
-  align-items: center;
-  color: $md-text-color;
-  display: flex;
-  overflow: hidden;
-  padding-left: $md-default-padding;
-  padding-right: $md-default-padding;
-  position: relative;
-  transition: background $md-transition-time;
+/// Updates the theme for lists ONLY if the `$light-theme` does not equal the `$md-light-theme`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-theme-lists(!$md-light-theme);
+///
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if the lists should be themed by
+///     the light theme.
+/// @group lists, themes
+@mixin react-md-theme-lists($light-theme: $md-light-theme) {
+  @if $light-theme != $md-light-theme {
+    .md-list {
+      background: get-color('card', $light-theme);
+    }
 
-  &:focus {
-    outline: none;
-  }
 
-  &[disabled] {
-    color: $md-disabled-color;
-  }
-
-  &.secondary-action {
-    padding-right: 0;
-  }
-
-  .md-ink {
-    background: rgba($md-black-base, .15);
-  }
-
-  > *:not(.md-tile-content) {
-    flex-shrink: 0;
+    .md-list-tile--active {
+      background: get-color('hover', $light-theme);
+    }
   }
 }
 
-.md-tile-content {
-  flex-grow: 1;
-  overflow: hidden;
-
-  &.icon-offset {
-    margin-left: $md-toolbar-title-keyline - $md-default-padding - $md-font-icon-size;
+/// Includes the styles for lists on mobile devices. This should normally be used within a media
+/// query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-mobile-media} {
+///     @include react-md-lists-moble;
+///   }
+///
+/// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with
+///     icons should be included.
+/// @param {Boolean} include-avatar [$md-list-include-avatar] - Boolean if the styles for lists
+///     with avatars should be included.
+/// @param {Boolean} include-two-lines [$md-list-include-two-lines] - Boolean if the styles for
+///     lists with two lines of text should be included.
+/// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
+///     lists with three lines of text should be included.
+/// @group lists, media-queries
+@mixin react-md-lists-mobile(
+  $include-icon: $md-list-include-icon,
+  $include-avatar: $md-list-include-avatar,
+  $include-two-lines: $md-list-include-two-lines,
+  $include-three-lines: $md-list-include-three-lines
+) {
+  .md-list {
+    padding-bottom: $md-list-mobile-padding;
+    padding-top: $md-list-mobile-padding;
   }
 
-  &.avatar-offset {
-    margin-left: $md-toolbar-title-keyline - $md-default-padding - $md-avatar-size;
+  .md-list-tile {
+    height: $md-list-mobile-height;
+  }
+
+  .md-tile-text--primary {
+    font-size: $md-list-mobile-primary-font-size;
+  }
+
+  @if $include-two-lines or $include-three-lines {
+    .md-tile-text--secondary {
+      font-size: $md-list-mobile-secondary-font-size;
+    }
+  }
+
+  @if $include-avatar {
+    .md-list-tile--avatar {
+      height: $md-list-mobile-avatar-height;
+    }
+  }
+
+  @if $include-two-lines {
+    .md-list-tile--two-lines {
+      height: $md-list-mobile-two-lines-height;
+    }
+  }
+
+  @if $include-three-lines {
+    .md-list-tile--three-lines {
+      height: $md-list-mobile-three-lines-height;
+
+      .md-tile-text--secondary {
+        height: $md-line-height * $md-list-mobile-secondary-font-size * 2;
+      }
+
+      @if $include-icon or $include-avatar {
+        .md-tile-addon {
+          margin-top: 14px;
+        }
+      }
+    }
   }
 }
 
-.md-tile-primary-text,
-.md-tile-secondary-text {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+/// Includes the styles for lists on desktop screens. This should normally be used within a media
+/// query.
+///
+/// @example scss - Example Usage SCSS
+///   @media #{$md-desktop-media} {
+///     @include react-md-lists-moble;
+///   }
+///
+/// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with
+///     icons should be included.
+/// @param {Boolean} include-avatar [$md-list-include-avatar] - Boolean if the styles for lists
+///     with avatars should be included.
+/// @param {Boolean} include-two-lines [$md-list-include-two-lines] - Boolean if the styles for
+///     lists with two lines of text should be included.
+/// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
+///     lists with three lines of text should be included.
+/// @group lists, media-queries
+@mixin react-md-lists-desktop(
+  $include-icon: $md-list-include-icon,
+  $include-avatar: $md-list-include-avatar,
+  $include-two-lines: $md-list-include-two-lines,
+  $include-three-lines: $md-list-include-three-lines
+) {
+  .md-list {
+    padding-bottom: $md-list-desktop-padding;
+    padding-top: $md-list-desktop-padding;
+  }
 
-.three-lines .md-tile-secondary-text {
-  // scss-lint:disable PropertySortOrder
-  white-space: pre-line;
+  .md-list-tile {
+    height: $md-list-desktop-height;
+  }
 
-  // fallback for non webkit browsers
-  display: block;
+  %text-size {
+    font-size: $md-list-desktop-font-size;
+  }
 
-  // Magic with webkit-line clamp
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
+  .md-tile-text--primary {
+    @extend %text-size;
+  }
 
-.md-list-expander {
-  transition: transform $md-transition-time;
+  @if $include-two-lines or $include-three-lines {
+    .md-tile-text--secondary {
+      @extend %text-size;
+    }
+  }
 
-  &.active {
-    transform: rotate3d(0, 0, 1, 180deg);
+  @if $include-avatar {
+    .md-list-tile--avatar {
+      height: $md-list-desktop-avatar-height;
+    }
+  }
+
+  @if $include-two-lines {
+    .md-list-tile--two-lines {
+      height: $md-list-desktop-two-lines-height;
+    }
+  }
+
+  @if $include-three-lines {
+    .md-list-tile--three-lines {
+      height: $md-list-desktop-three-lines-height;
+
+      .md-tile-text--secondary {
+        height: $md-line-height * $md-list-desktop-font-size * 2;
+      }
+
+      @if $include-icon or $include-avatar {
+        .md-tile-addon {
+          margin-top: 12px;
+        }
+      }
+    }
   }
 }
 
-@include md-list-nested-offset($md-list-max-nested-items, $md-list-nested-increment);
+/// Includes the media queries and styles for lists on mobile devices and desktop screens.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-lists-media;
+///
+/// @param {Boolean} include-icon [$md-list-include-icon] - Boolean if the styles for lists with
+///     icons should be included.
+/// @param {Boolean} include-avatar [$md-list-include-avatar] - Boolean if the styles for lists
+///     with avatars should be included.
+/// @param {Boolean} include-two-lines [$md-list-include-two-lines] - Boolean if the styles for
+///     lists with two lines of text should be included.
+/// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
+///     lists with three lines of text should be included.
+/// @group lists, media-queries
+@mixin react-md-lists-media(
+  $include-icon: $md-list-include-icon,
+  $include-avatar: $md-list-include-avatar,
+  $include-two-lines: $md-list-include-two-lines,
+  $include-three-lines: $md-list-include-three-lines
+) {
+  @media #{$md-mobile-media} {
+    @include react-md-lists-mobile($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-lists-desktop($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+  }
+}
+
+/// Creates the styles for nested lists. It basically loops over the `$nested-items-depth` param
+/// and adds `padding-left` to each nested list equal to the
+/// `$md-list-left-padding * (1 + $depth * $nested-items-increment)`.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-lists-nested;
+///
+/// @param {Number} nested-items-depth [$md-list-nested-items-depth] - The maximum depth for nested lists.
+/// @param {Number} nested-items-increment [$md-list-nested-items-increment] - The amount that the
+///     nested list's padding should be incremented at each step.
+@mixin react-md-lists-nested($nested-items-depth: $md-list-nested-items-depth, $nested-items-increment: $md-list-nested-items-increment) {
+  @if $nested-items-depth != null and $nested-items-depth > 0 {
+    $multiplier: 1;
+
+    @for $i from 1 through $nested-items-depth {
+      .md-list--nested-#{$i} .md-list-tile {
+        padding-left: $md-list-left-padding * $multiplier;
+      }
+
+      $multiplier: $multiplier + $nested-items-increment;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+////
+/// @group icons
+////
+
+/// Boolean if the icon separator styles should be included by default.
+/// @type Boolean
+$md-font-icon-include-separators: true !default;
+
+/// The amount of padding to put between an icon and any text.
+/// @type Number
+$md-font-icon-separator-padding: $md-default-padding !default;
+
+/// The light theme's disabled color for icons.
+/// @type Color
+$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26);
+
+/// The dark theme's disabled color for icons.
+/// @type Color
+$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
+
+/// Includes the css for using `md-icon`.
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
+///     application is using the light-theme or not.
+@mixin react-md-icons($light-theme: $md-light-theme, $include-separators: $md-font-icon-include-separators) {
+  $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+  .md-icon {
+    color: $md-icon-color;
+    font-size: $md-font-icon-size;
+    text-align: center;
+    transition-duration: $md-transition-time;
+    transition-property: color;
+    user-select: none;
+
+    &--disabled {
+      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
+    }
+
+    &--inherit {
+      color: inherit;
+    }
+  }
+
+  @if $include-separators {
+    @include react-md-icon-separators;
+  }
+}
+
+
+/// Updates the color of the base `md-icon` if the `$light-theme` paramater
+/// does not equal the global `$md-light-theme`.
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if using the
+///     light theme.
+/// @group icons, themes
+@mixin react-md-theme-icons($light-theme: $md-light-theme) {
+  $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
+
+  @if $light-theme != $md-light-theme {
+    .md-icon {
+      color: $md-icon-color;
+    }
+
+    .md-icon--disabled {
+      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
+    }
+  }
+}
+
+/// Includes the styles for the `IconSeparator` component.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-icon-separators;
+@mixin react-md-icon-separators {
+  .md-icon-separator {
+    align-items: center;
+    display: flex;
+    font-weight: inherit;
+    text-align: left;
+
+    .md-icon {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  .md-icon-text {
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-weight: inherit;
+    line-height: inherit;
+
+    &:first-child {
+      padding-right: $md-font-icon-separator-padding;
+    }
+
+    &:last-child {
+      padding-left: $md-font-icon-separator-padding;
+    }
+  }
+}

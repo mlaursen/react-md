@@ -1,15 +1,19 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import TransitionGroup from 'react-addons-transition-group';
-import classnames from 'classnames';
+/* eslint-disable no-shadow */
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ESC } from '../constants/keyCodes';
-import { onOutsideClick } from '../utils';
-import { DateTimeFormat, getTimeString, extractTimeParts } from '../utils/dates';
-import Dialog from '../Dialogs';
-import FontIcon from '../FontIcons';
-import Height from '../Transitions/Height';
-import TextField from '../TextFields';
+import getField from '../utils/getField';
+import controlled from '../utils/PropTypes/controlled';
+import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
+import formatTime from '../utils/DateUtils/formatTime';
+import extractTimeParts from '../utils/DateUtils/extractTimeParts';
+import Dialog from '../Dialogs/DialogContainer';
+import FontIcon from '../FontIcons/FontIcon';
+import TextField from '../TextFields/TextField';
+import Collapse from '../Helpers/Collapse';
 import TimePicker from './TimePicker';
 
 /**
@@ -26,32 +30,22 @@ import TimePicker from './TimePicker';
  * import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
  * ```
  */
-export default class TimePickerContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-
-    let initialDate;
-    if(props.defaultValue) {
-      initialDate = new Date(props.defaultValue);
-    } else if(props.value) {
-      initialDate = new Date(props.value);
-    } else {
-      initialDate = new Date();
-    }
-
-    this.state = {
-      ...this.getTimeParts(initialDate, props),
-      value: props.defaultValue,
-      isOpen: props.initiallyOpen,
-      time: initialDate,
-      timeMode: props.initialTimeMode,
-      tempTime: initialDate,
-    };
-  }
-
+export default class TimePickerContainer extends PureComponent {
   static propTypes = {
+    /**
+     * An id for the text field in the time picker. This is require for a11u.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+
+    /**
+     * An aria-label to apply to the dialog when it has been opened. This is required for
+     * a11y.
+     */
+    'aria-label': isRequiredForA11y(PropTypes.string),
+
     /**
      * An optional style to apply to the time picker's container.
      */
@@ -78,9 +72,9 @@ export default class TimePickerContainer extends Component {
     icon: PropTypes.node,
 
     /**
-     * Boolean if the time picker is initially open.
+     * Boolean if the time picker is open by default.
      */
-    initiallyOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * An optional label to be displayed in the time picker's text
@@ -89,10 +83,9 @@ export default class TimePickerContainer extends Component {
     label: PropTypes.string,
 
     /**
-     * Boolean if the label for the time picker's text field should
-     * be a floating label.
+     * An optional placeholder to be displayed in the time picker's text field.
      */
-    floatingLabel: PropTypes.bool,
+    placeholder: PropTypes.string,
 
     /**
      * The value of the time picker. This will make the time picker
@@ -153,20 +146,15 @@ export default class TimePickerContainer extends Component {
     cancelPrimary: PropTypes.bool,
 
     /**
-     * The initial mode to open the time picker in.
+     * The default mode to open the time picker in.
      */
-    initialTimeMode: PropTypes.oneOf(['hour', 'minute']),
+    defaultTimeMode: PropTypes.oneOf(['hour', 'minute']),
 
     /**
      * Boolean if the date should automatically be selected when a user clicks
      * on a new date instead of making them hit the ok button.
      */
     autoOk: PropTypes.bool,
-
-    /**
-     * The number of years to display.
-     */
-    initialYearsDisplayed: PropTypes.number,
 
     /**
      * Boolean if the date picker should be displayed inline instead of in a
@@ -187,17 +175,41 @@ export default class TimePickerContainer extends Component {
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the time picker should automatically increase it's text field's
-     * min width to the max size of it's label or placeholder text.
+     * The direction that the text field divider expands from when the text field
+     * in the date picker gains focus.
      */
-    adjustMinWidth: PropTypes.bool,
+    lineDirection: PropTypes.oneOf(['left', 'center', 'right']),
+
+    /**
+     * An optional boolean if the time picker is current visible by dialog or inline.
+     * If this is set, the `onVisibilityChange` function is required.
+     */
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
+
+    /**
+     * An optional function to call when the date picker is opened in either a dialog, or
+     * inline. The callback will include the next state.
+     *
+     * ```js
+     * onVisibilityChange(!visible, e);
+     * ```
+     */
+    onVisibilityChange: PropTypes.func,
+
+    /**
+     * Boolean if the time picker is disabled.
+     */
+    disabled: PropTypes.bool,
+
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
   };
 
   static defaultProps = {
-    initiallyOpen: false,
-    initialTimeMode: 'hour',
+    defaultTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
-    DateTimeFormat: DateTimeFormat,
+    DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
     locales: typeof window !== 'undefined'
       ? window.navigator.userLanguage || window.navigator.language
       : 'en-US',
@@ -205,94 +217,187 @@ export default class TimePickerContainer extends Component {
     okPrimary: true,
     cancelLabel: 'Cancel',
     cancelPrimary: true,
+    'aria-label': 'Select a time',
   };
 
-  componentWillUpdate(nextProps, nextState) {
-    if(this.getValue() !== this.getValue(nextProps, nextState)) {
-      this.setState(this.getTimeParts(this.getValue(nextProps, nextState), nextProps));
-    } else if(this.state.tempValue !== nextState.tempTime) {
-      this.setState(this.getTimeParts(nextState.tempTime, nextProps));
+  constructor(props) {
+    super(props);
+
+    let initialDate;
+    if (props.defaultValue) {
+      initialDate = new Date(props.defaultValue);
+    } else if (props.value) {
+      initialDate = new Date(props.value);
+    } else {
+      initialDate = new Date();
     }
 
-    if(this.state.isOpen && !nextState.isOpen) {
-      if(nextProps.inline) {
-        window.removeEventListener('click', this.closeOnOutside);
-      }
+    const visible = typeof props.initiallyOpen !== 'undefined'
+      ? props.initiallyOpen
+      : !!props.defaultVisible;
 
-      window.removeEventListener('keydown', this.closeOnEsc);
-    } else if(!this.state.isOpen && nextState.isOpen) {
-      if(nextProps.inline) {
-        window.addEventListener('click', this.closeOnOutside);
-      }
+    this.state = {
+      visible,
+      ...this._getTimeParts(initialDate, props),
+      value: props.defaultValue,
+      time: initialDate,
+      timeMode: props.initialTimeMode || props.defaultTimeMode,
+      tempTime: initialDate,
+    };
 
-      window.addEventListener('keydown', this.closeOnEsc);
+    this._setContainer = this._setContainer.bind(this);
+    this._toggleOpen = this._toggleOpen.bind(this);
+    this._closeOnEsc = this._closeOnEsc.bind(this);
+    this._handleOutsideClick = this._handleOutsideClick.bind(this);
+    this._getTextFieldValue = this._getTextFieldValue.bind(this);
+    this._setTimeMode = this._setTimeMode.bind(this);
+    this._setTempTime = this._setTempTime.bind(this);
+    this._handleOkClick = this._handleOkClick.bind(this);
+    this._handleCancelClick = this._handleCancelClick.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (getField(this.props, this.state, 'value') !== getField(nextProps, nextState, 'value')) {
+      this.setState(this._getTimeParts(getField(nextProps, nextState, 'value'), nextProps));
+    } else if (this.state.tempValue !== nextState.tempTime) {
+      this.setState(this._getTimeParts(nextState.tempTime, nextProps));
     }
   }
 
-  closeOnOutside = e => onOutsideClick(e, this.refs.container, this.close);
+  componentDidUpdate(prevProps, prevState) {
+    const { inline, isOpen } = this.props;
+    const visible = typeof isOpen !== 'undefined'
+      ? isOpen
+      : getField(this.props, this.state, 'visible');
+    const pVisible = typeof prevProps.isOpen !== 'undefined'
+      ? prevProps.isOpen
+      : getField(prevProps, prevState, 'visible');
 
-  closeOnEsc = (e) => {
-    if((e.which || e.keyCode) === ESC) {
-      this.handleCancelClick();
+    if (visible === pVisible) {
+      return;
     }
-  };
 
-  getValue = (props = this.props, state = this.state) => {
-    return typeof props.value === 'undefined' ? state.value : props.value;
-  };
+    if (visible) {
+      if (inline) {
+        window.addEventListener('click', this._handleOutsideClick);
+        window.addEventListener('keydown', this._closeOnEsc);
+      }
+    } else if (inline) {
+      window.removeEventListener('click', this._handleOutsideClick);
+      window.removeEventListener('keydown', this._closeOnEsc);
+    }
+  }
 
-  getTimeParts = (date, props = this.props) => extractTimeParts(props.DateTimeFormat, props.locales, date);
+  componentWillUnmount() {
+    const visible = typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible');
+    if (visible && this.props.inline) {
+      window.removeEventListener('click', this._handleOutsideClick);
+      window.removeEventListener('keydown', this._closeOnEsc);
+    }
+  }
 
-  toggleOpen = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  };
+  _setContainer(container) {
+    this._container = container;
+  }
 
-  close = () => {
-    this.setState({ isOpen: false });
-  };
+  _getTimeParts(date, props) {
+    return extractTimeParts(props.DateTimeFormat, props.locales, date);
+  }
 
-  setTimeMode = (timeMode) => {
-    if(this.state.timeMode === timeMode) { return; }
+  _closeOnEsc(e) {
+    if ((e.which || e.keyCode) === ESC) {
+      this._handleCancelClick(e);
+    }
+  }
+
+  _handleOutsideClick(e) {
+    if (this._container && !this._container.contains(e.target)) {
+      this._handleCancelClick(e);
+    }
+  }
+
+  _toggleOpen(e) {
+    const visible = !(typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible'));
+
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(visible, e);
+    }
+
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      this.setState({ visible });
+    }
+  }
+
+  _setTimeMode(timeMode) {
+    if (this.state.timeMode === timeMode) { return; }
 
     this.setState({ timeMode });
-  };
+  }
 
-  setTempTime = (time) => {
-    if(this.state.tempTime === time) { return; }
+  _setTempTime(time) {
+    if (this.state.tempTime === time) { return; }
 
     this.setState({ tempTime: time });
-  };
+  }
 
-  handleOkClick = (e) => {
-    const { onChange, DateTimeFormat, locales } = this.props;
+  _handleOkClick(e) {
+    const { onVisibilityChange, onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
-    if(onChange) {
-      onChange(getTimeString(DateTimeFormat, locales, value), value, e);
+    if (onChange) {
+      onChange(formatTime(DateTimeFormat, locales, value), value, e);
     }
 
-    this.setState({ value, isOpen: false });
-  };
+    if (onVisibilityChange) {
+      onVisibilityChange(false, e);
+    }
 
-  handleCancelClick = () => {
-    this.setState({ isOpen: false, tempTime: this.state.time });
-  };
+    let state;
+    if (typeof this.props.value === 'undefined') {
+      state = { value };
+    }
 
-  getTextFieldValue = (props = this.props, state = this.state) => {
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      state = state || {};
+      state.visible = false;
+    }
+
+    if (state) {
+      this.setState(state);
+    }
+  }
+
+  _handleCancelClick(e) {
+    if (this.props.onVisibilityChange) {
+      this.props.onVisibilityChange(false, e);
+    }
+
+    const state = { visible: false, tempTime: this.state.time };
+    if (typeof this.props.isOpen !== 'undefined' || typeof this.props.visible !== 'undefined') {
+      delete state.visible;
+    }
+
+    this.setState(state);
+  }
+
+  _getTextFieldValue(props, state) {
     const { DateTimeFormat, locales } = props;
-    const value = this.getValue(props, state);
-    if(!value) {
+    const value = getField(props, state, 'value');
+    if (!value) {
       return '';
-    } else if(value instanceof Date) {
-      return getTimeString(DateTimeFormat, locales, value);
+    } else if (value instanceof Date) {
+      return formatTime(DateTimeFormat, locales, value);
     } else {
       // currently don't support value of string
       return value;
     }
-  };
+  }
 
   render() {
     const {
-      isOpen,
       timeMode,
       tempTime,
       hours,
@@ -301,8 +406,10 @@ export default class TimePickerContainer extends Component {
     } = this.state;
 
     const {
+      id,
+      disabled,
       label,
-      floatingLabel,
+      placeholder,
       icon,
       inline,
       displayMode,
@@ -311,58 +418,79 @@ export default class TimePickerContainer extends Component {
       pickerStyle,
       pickerClassName,
       fullWidth,
-      adjustMinWidth,
-      ...props,
+      lineDirection,
+      'aria-label': ariaLabel,
+      ...props
     } = this.props;
     delete props.value;
+    delete props.onVisibilityChange;
     delete props.onChange;
     delete props.defaultValue;
+    delete props.defaultVisible;
+    delete props.defaultTimeMode;
 
-    let picker, content;
-    if(isOpen) {
-      picker = (
-        <TimePicker
-          {...props}
-          tempTime={tempTime}
-          timeMode={timeMode}
-          hours={hours}
-          minutes={minutes}
-          timePeriod={timePeriod}
-          style={pickerStyle}
-          className={classnames('md-picker', displayMode, pickerClassName, {
-            inline,
-            'with-icon': inline && icon,
-          })}
-          onOkClick={this.handleOkClick}
-          onCancelClick={this.handleCancelClick}
-          setTimeMode={this.setTimeMode}
-          setTempTime={this.setTempTime}
-        />
+    // Delete deprecated
+    delete props.isOpen;
+    delete props.initialTimeMode;
+    delete props.initiallyOpen;
+
+    const visible = typeof this.props.isOpen !== 'undefined'
+      ? this.props.isOpen
+      : getField(this.props, this.state, 'visible');
+
+    const picker = (
+      <TimePicker
+        {...props}
+        inline={inline}
+        icon={!!icon}
+        tempTime={tempTime}
+        timeMode={timeMode}
+        hours={hours}
+        minutes={minutes}
+        timePeriod={timePeriod}
+        style={pickerStyle}
+        className={pickerClassName}
+        displayMode={displayMode}
+        onOkClick={this._handleOkClick}
+        onCancelClick={this._handleCancelClick}
+        setTimeMode={this._setTimeMode}
+        setTempTime={this._setTempTime}
+      />
+    );
+
+    let content;
+    if (inline) {
+      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
+    } else {
+      content = (
+        <Dialog
+          id={`${id}Dialog`}
+          visible={visible}
+          onHide={this._handleCancelClick}
+          dialogClassName="md-dialog--picker"
+          contentClassName="md-dialog-content--picker"
+          aria-label={ariaLabel}
+        >
+          {picker}
+        </Dialog>
       );
     }
 
-    if(inline) {
-      picker = isOpen ? <Height transitionEnterTimeout={150} transitionLeaveTimeout={150}>{picker}</Height> : null;
-      content = <TransitionGroup>{picker}</TransitionGroup>;
-    } else {
-      content = <Dialog isOpen={isOpen} close={this.close}>{picker}</Dialog>;
-    }
-
     return (
-      <div
-        style={style}
-        className={classnames('md-picker-container', className)}
-        ref="container"
-      >
+      <div style={style} className={cn('md-picker-container', className)} ref={this._setContainer}>
         <TextField
-          icon={icon}
-          onClick={this.toggleOpen}
+          id={id}
+          disabled={disabled}
+          className={cn({ 'md-pointer--hover': !disabled })}
+          inputClassName={cn({ 'md-pointer--hover': !disabled })}
+          leftIcon={icon}
+          onClick={this._toggleOpen}
           label={label}
-          floatingLabel={floatingLabel}
-          value={this.getTextFieldValue()}
-          readOnly={true}
+          placeholder={placeholder}
+          value={this._getTextFieldValue(this.props, this.state)}
+          readOnly
           fullWidth={fullWidth}
-          adjustMinWidth={adjustMinWidth}
+          lineDirection={lineDirection}
         />
         {content}
       </div>

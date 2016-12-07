@@ -1,20 +1,13 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-import FlatButton from '../Buttons/FlatButton';
+import Button from '../Buttons/Button';
 
 /**
  * The `PickerFooter` component is a dialog footer for the `Picker` components.
  * It renders an ok and cancel button.
  */
-export default class PickerFooter extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
+export default class PickerFooter extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     okLabel: PropTypes.string.isRequired,
@@ -37,14 +30,16 @@ export default class PickerFooter extends Component {
     } = this.props;
 
     return (
-      <footer className={classnames('md-dialog-footer', className)}>
-        <FlatButton
+      <footer className={cn('md-dialog-footer', className)}>
+        <Button
+          flat
           primary={cancelPrimary}
           secondary={!cancelPrimary}
           label={cancelLabel}
           onClick={onCancelClick}
         />
-        <FlatButton
+        <Button
+          flat
           primary={okPrimary}
           secondary={!okPrimary}
           label={okLabel}

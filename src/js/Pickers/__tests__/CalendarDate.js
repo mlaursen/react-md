@@ -1,4 +1,5 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
+/* eslint-disable global-require */
 jest.unmock('../CalendarDate');
 
 import React from 'react';
@@ -12,13 +13,13 @@ import CalendarDate from '../CalendarDate';
 
 describe('CalendarDate', () => {
   it('calls the onClick prop with the date prop when not disabled', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',
       date: new Date(2016, 1, 1),
       disabled: false,
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       index: 0,
     };
 
@@ -35,20 +36,17 @@ describe('CalendarDate', () => {
   });
 
   it('formats the date as the state', () => {
-    const DateTimeFormat = require('../__mocks__/DateTimeFormat');
+    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',
       date: new Date(2016, 1, 1),
       disabled: false,
-      onClick: jest.genMockFunction(),
+      onClick: jest.fn(),
       index: 0,
     };
 
     const date = renderIntoDocument(<CalendarDate {...props} />);
-    expect(DateTimeFormat.mock.calls.length).toBe(1);
-    expect(DateTimeFormat.mock.calls[0][0]).toBe(props.locales);
-    expect(DateTimeFormat.mock.calls[0][1]).toEqual({ day: 'numeric' });
     expect(date.state.date).toBe('');
   });
 });

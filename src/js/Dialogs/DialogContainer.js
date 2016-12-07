@@ -1,49 +1,137 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { setOverflow } from '../utils';
+import TICK from '../constants/CSSTransitionGroupTick';
+import toggleScroll from '../utils/toggleScroll';
+import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import Dialog from './Dialog';
-import Overlay from '../Transitions/Overlay';
+import Portal from '../Helpers/Portal';
 
-/**
- * This component renders a `Dialog` when the `isOpen` prop is set to true.
- * It will manage the css transitions between the open and closed states.
- */
-export default class DialogContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    this.state = { openClassName: props.isOpen };
-  }
-
+export default class DialogContainer extends PureComponent {
+  /* eslint-disable max-len */
   static propTypes = {
     /**
-     * Boolean if the Dialog is currently open.
+     * An id to use for the `Dialog` once it has been opened. This is used for the
+     * [dialog role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_dialog_role).
+     * This is used to generate an `id` for the `title` prop when it has been defined.
      */
-    isOpen: PropTypes.bool.isRequired,
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+    /* eslint-enable max-len */
 
     /**
-     * A function to call that will close the dialog. This function will
-     * be called when the overlay is clicked on simple dialogs.
+     * An optional accessibility prop to use when the `Dialog` is opened. This should be an id
+     * pointing to some text that describes the content of the dialog. For accessibility
+     * reasons, one of the following props must be defined:
+     * - `title`
+     * - `aria-describedby`
+     * - `aria-labelledby`
+     * - `aria-label`
+     *
+     * An example usage:
+     *
+     * ```js
+     * <Dialog id="accessibleExample" visible aria-describedby="accessibleContent">
+     *   <p id="accessibleContent">This is some content that describes the dialog.</p>
+     * </Dialog>
+     * ```
      */
-    close: PropTypes.func.isRequired,
+    'aria-describedby': oneRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]), 'title', 'aria-labelledby', 'aria-label'),
 
     /**
-     * Any children to display in the Dialog.
+     * An optional accessibility prop to use when the `title` prop is not given. This should be
+     * an id pointing to a `h` tag that labels the dialog.
+     *
+     * An example usage:
+     *
+     * ```js
+     * <Dialog visible id="accessibleExample" aria-labelledby="accessibleDialogLabel">
+     *   <h2 id="accessibleDialogLabel">Some Accessible Dialog</h2>
+     * </Dialog>
+     * ```
+     */
+    'aria-labelledby': PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional accessibility prop to use when the `title` and `aria-labelledby` props are
+     * not defined. This should be a string that describes what is in the `Dialog`.
+     *
+     * An example usage:
+     *
+     * ```js
+     * <Dialog visible id="accessibleExample" aria-label="Some Accessible Dialog">
+     *   <p>Lorem Ipsum</p>
+     * </Dialog>
+     * ```
+     */
+    'aria-label': PropTypes.string,
+
+    /**
+     * An optional style to apply to the dialog's container.
+     */
+    style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the dialog's container.
+     */
+    className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the dialog itself when the `visible` prop is `true`.
+     */
+    dialogStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the dialog itself when the `visible` prop is `true`.
+     */
+    dialogClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the dialog's content.
+     */
+    contentStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the dialog's content.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
+     * The component to render the dialog's container in.
+     */
+    component: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The component to render the dialog's content in.
+     */
+    contentComponent: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The content to display in the dialog once open.
      */
     children: PropTypes.node,
 
     /**
-     * An optional title to display in the dialog.
-     */
-    title: PropTypes.string,
-
-    /**
-     * A single action or a list of actions to display in the Dialog.
-     * This can either be a list of `FlatButton` props or `FlatButton` elements.
+     * A single action or a list of actions to display in the dialog. This can either be a list
+     * of `FlatButton` props or `<Button flat {...props} />` elements.
      */
     actions: PropTypes.oneOfType([
       PropTypes.element,
@@ -55,203 +143,274 @@ export default class DialogContainer extends Component {
     ]),
 
     /**
-     * Any action to display to the left of the title in a full page dialog's toolbar.
-     * See the [Toolbar's actionLeft](/components/toolbars) documentation for more information.
+     * Bolean if the `Dialog` is current visible.
      */
-    actionLeft: PropTypes.node,
+    visible: PropTypes.bool.isRequired,
 
     /**
-     * Any action to display to the right of the title in a full page dialog's toolbar.
-     * See the [Toolbar actionsRight](/components/toolbars) documentation for more information.
+     * An optional function to call when the `visible` prop is changed from `false` to `true`.
      */
-    actionRight: PropTypes.node,
+    onShow: PropTypes.func,
 
     /**
-     * An optional className to apply to the `Dialog` container.
+     * A function to call that will close the dialog. This is required when the `modal` and `fullPage`
+     * props are not `true`.
      */
-    className: PropTypes.string,
+    onHide: (props, propName, ...args) => {
+      let validator = PropTypes.func;
+      if (!props.modal && !props.fullPage) {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, ...args);
+    },
 
     /**
-     * An optional className to apply to the `Dialog` itself.
-     */
-    dialogClassName: PropTypes.string,
-
-    /**
-     * An optional className to apply to the `Dialog`'s content section.
-     */
-    contentClassName: PropTypes.string,
-
-    /**
-     * Boolean if the `Dialog` should behave as a modal. This means that one
-     * of the actions must be selected to close the dialog. The overlay
-     * can not be clicked to be closed.
+     * Boolean if the dialog should behave like a modal. This means that the dialog can only
+     * be closed by clicking on an action instead of also clicking on the overlay.
      */
     modal: PropTypes.bool,
 
     /**
-     * An optional style to apply to the `Dialog` container.
+     * Boolean if the dialog should be displayed as a full page dialog.
      */
-    style: PropTypes.object,
+    fullPage: (props, propName, componentName, ...args) => {
+      if (typeof props[propName] === 'undefined') {
+        return null;
+      }
+      const componentNameSafe = componentName || '<<anonymous>>';
+
+      let err = PropTypes.bool(props, propName, componentName, ...args);
+
+      if (!err && typeof props.title !== 'undefined') {
+        err = new Error(
+          `You provided a \`title\` ${location} to the \`${componentNameSafe}\` when \`fullPage\` ` +
+          'has been set to true. A title for a full page dialog should be rendered as a child instead.'
+        );
+      }
+
+      return err;
+    },
 
     /**
-     * An optional style to apply to the `Dialog` itself.
-     */
-    dialogStyle: PropTypes.object,
-
-    /**
-     * An optional style to apply to the `Dialog`'s content section.
-     */
-    contentStyle: PropTypes.object,
-
-    /**
-     * An optional click/touch event's pageX location to use when
-     * rendering a full page dialog. This will make the `Dialog` appear relative
-     * to the click origin.
+     * An optional pageX location to use when rendering a full page dialog. This is used to set the location
+     * the dialog should appear from.
      */
     pageX: PropTypes.number,
 
     /**
-     * An optional click/touch event's pageY location to use when
-     * rendering a full page dialog. This will make the `Dialog` appear relative
-     * to the click origin.
+     * An optional pageY location to use when rendering a full page dialog. This is used to set the location
+     * the dialog should appear from.
      */
     pageY: PropTypes.number,
 
     /**
-     * The transition name to use for the `Dialog` when appearing/disappearing
+     * Boolean if the dialog should focus one of children once it has mounted.
      */
-    transitionName: PropTypes.string.isRequired,
+    focusOnMount: PropTypes.bool.isRequired,
 
     /**
-     * Boolean if the enter transition should be used.
+     * The transition enter timeout for the dialog.
      */
-    transitionEnter: PropTypes.bool,
+    transitionEnterTimeout: PropTypes.number.isRequired,
 
     /**
-     * The timeout for the the enter transition.
+     * The transition leave timeout for the dialog.
      */
-    transitionEnterTimeout: PropTypes.number,
+    transitionLeaveTimeout: PropTypes.number.isRequired,
 
     /**
-     * Boolean if the leave transition should be used.
+     * Since the `Dialog` uses the `Portal` component, you can pass an optional HTML Node to render
+     * the dialog in instead of the `document.body`.
      */
-    transitionLeave: PropTypes.bool,
+    renderNode: PropTypes.object,
 
-    /**
-     * The timeout for the leave transition.
-     */
-    transitionLeaveTimeout: PropTypes.number,
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
+    transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
+    transitionLeave: deprecated(PropTypes.bool, 'The transition will always be enforced'),
+    actionLeft: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
+    actionRight: deprecated(PropTypes.node, 'Use the `fullPage` prop instead'),
+    close: deprecated(PropTypes.func, 'Use `onHide` instead.'),
   };
 
   static defaultProps = {
-    modal: false,
-    transitionName: 'md-dialog',
-    transitionEnter: true,
+    component: 'span',
+    contentComponent: 'section',
+    focusOnMount: true,
     transitionEnterTimeout: 300,
-    transitionLeave: true,
     transitionLeaveTimeout: 300,
   };
 
+  constructor(props) {
+    super(props);
+
+    const visible = typeof props.isOpen !== 'undefined' ? props.isOpen : props.visible;
+
+    this.state = {
+      active: visible && !props.fullPage,
+      overlay: visible && !props.fullPage,
+      portalVisible: visible,
+      dialogVisible: false,
+    };
+    this._setContainer = this._setContainer.bind(this);
+    this._handleClick = this._handleClick.bind(this);
+    this._handleDialogMounting = this._handleDialogMounting.bind(this);
+    this._mountPortal = this._mountPortal.bind(this);
+    this._mountDialog = this._mountDialog.bind(this);
+    this._unmountPortal = this._unmountPortal.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.props.isOpen && !this.props.visible) {
+      return;
+    }
+
+    toggleScroll(true);
+    this._mountDialog(this.props);
+  }
+
   componentWillReceiveProps(nextProps) {
-    if(!this.props.isOpen && nextProps.isOpen) {
-      setOverflow(true);
-      if(nextProps.pageX && nextProps.pageY) {
-        this.openFullPageDialog(nextProps);
-      }
-    } else if(this.props.isOpen && !nextProps.isOpen) {
-      setOverflow(false);
-      this.delayIsOpen(nextProps.transitionLeaveTimeout);
+    const visible = typeof nextProps.isOpen !== 'undefined' ? nextProps.isOpen : nextProps.visible;
+    if (this.props.isOpen === visible || this.props.visible === visible) {
+      return;
+    }
+
+    const el = this.props.renderNode || window;
+    let { scrollX: pageX, scrollY: pageY } = el;
+    if (typeof el.scrollTop !== 'undefined' && typeof el.scrollLeft !== 'undefined') {
+      pageX = el.scrollTop;
+      pageY = el.scrollLeft;
+    }
+
+    this._pageX = pageX;
+    this._pageY = pageY;
+    toggleScroll(visible);
+
+    if (visible) {
+      this._activeElement = document.activeElement;
+      this._mountPortal(nextProps);
+    } else {
+      this.setState({ dialogVisible: false, active: false });
     }
   }
 
   componentWillUnmount() {
-    setOverflow(false);
-    this.state.timeout && clearTimeout(this.state.timeout);
+    if (this.props.isOpen || this.props.visible) {
+      toggleScroll(false);
+    }
+
+    if (this._inTimeout) {
+      clearTimeout(this._inTimeout);
+    }
   }
 
-  getTransformOrigin = (pageX, pageY) => {
-    if(!pageX || !pageY) { return; }
-    return `${pageX - window.scrollX}px ${pageY - window.scrollY}px`;
-  };
+  _setContainer(container) {
+    if (container !== null) {
+      this._container = findDOMNode(container);
+    }
+  }
 
-  /**
-   * The only purpose of this function is to be used when closing the dialog.
-   * The visibility gets changed to hidden and the z-index turns to -1. So
-   * this function will wait for the dialog to finish animating before removing
-   * the open className
-   */
-  delayIsOpen = (time) => {
-    const timeout = setTimeout(() => {
-      this.setState({ openClassName: false, timeout: null });
-    }, time);
+  _mountPortal(props) {
+    this._mountDialog(props);
+    this.setState({ portalVisible: true });
+  }
 
-    this.setState({ timeout, openClassName: true });
-  };
+  _mountDialog(props) {
+    const { fullPage, onShow } = props;
+    this._inTimeout = setTimeout(() => {
+      this._inTimeout = fullPage ? null : setTimeout(() => {
+        this._inTimeout = null;
+        this.setState({ active: true });
+      }, TICK);
+      this.setState({ dialogVisible: true, overlay: !fullPage }, onShow);
+    }, TICK);
+  }
 
-  openFullPageDialog = ({ pageX, pageY }) => {
-    this.setState({ transformOrigin: this.getTransformOrigin(pageX, pageY) });
-  };
+  _unmountPortal() {
+    this.setState({ portalVisible: false });
+  }
+
+  _handleClick(e) {
+    const visible = typeof this.props.isOpen !== 'undefined' ? this.props.isOpen : this.props.visible;
+    if (this.props.modal || !visible || e.target !== this._container) {
+      return;
+    }
+
+    (this.props.onHide || this.props.close)(e);
+  }
+
+  _handleDialogMounting(dialog) {
+    if (dialog === null) {
+      if (this._activeElement) {
+        this._activeElement.focus();
+      }
+
+      this._activeElement = null;
+      this.setState({ overlay: false });
+      return;
+    }
+  }
 
   render() {
+    const { overlay, active, dialogVisible, portalVisible } = this.state;
     const {
-      actions,
-      isOpen,
-      title,
-      children,
+      style,
       className,
-      contentClassName,
+      dialogStyle,
       dialogClassName,
       modal,
-      close,
-      actionLeft,
-      actionRight,
-      style,
-      dialogStyle,
-      contentStyle,
-      transitionName,
-      transitionEnter,
+      fullPage,
+      component,
       transitionEnterTimeout,
-      transitionLeave,
       transitionLeaveTimeout,
-      ...props,
+      renderNode,
+      ...props
     } = this.props;
-    const isSimple = !actions || !actions.length;
+    delete props.close;
+    delete props.isOpen;
+    delete props.visible;
+    delete props.onShow;
+    delete props.onHide;
+    delete props.actionLeft;
+    delete props.actionRight;
+    delete props.transitionName;
+    delete props.transitionEnter;
+    delete props.transitionLeave;
 
-    const isFullPage = !!actionLeft || !!actionRight;
+    const dialog = (
+      <Dialog
+        key="dialog"
+        style={dialogStyle}
+        className={dialogClassName}
+        ref={this._handleDialogMounting}
+        fullPage={fullPage}
+        {...props}
+        containerX={this._pageX}
+        containerY={this._pageY}
+        onLeave={this._unmountPortal}
+      />
+    );
+
     return (
-      <CSSTransitionGroup
-        transitionName={transitionName}
-        transitionEnter={transitionEnter}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeave={transitionLeave}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-        className={classnames('md-dialog-container', className, {
-          'open': isOpen || this.state.openClassName,
-          'simple': isSimple,
-          'dialog-centered': !isFullPage,
-        })}
-        style={style}
-      >
-        {isOpen &&
-          <Dialog
-            key="dialog"
-            title={title}
-            children={children}
-            className={dialogClassName}
-            contentClassName={contentClassName}
-            actions={actions}
-            actionLeft={actionLeft}
-            actionRight={actionRight}
-            style={dialogStyle}
-            contentStyle={contentStyle}
-            transformOrigin={this.state.transformOrigin}
-            isSimple={isSimple}
-            isFullPage={isFullPage}
-            {...props}
-          />
-        }
-        <Overlay isOpen={isOpen} onClick={modal ? null : close} />
-      </CSSTransitionGroup>
+      <Portal visible={portalVisible} renderNode={renderNode}>
+        <CSSTransitionGroup
+          component={component}
+          ref={this._setContainer}
+          style={style}
+          className={cn('md-dialog-container', {
+            'md-overlay': !fullPage && overlay,
+            'md-pointer--hover': !fullPage && overlay && !modal,
+            'md-overlay--active': !fullPage && active && overlay,
+          }, className)}
+          transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+          onClick={this._handleClick}
+        >
+          {dialogVisible ? dialog : null}
+        </CSSTransitionGroup>
+      </Portal>
     );
   }
 }

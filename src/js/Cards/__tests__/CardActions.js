@@ -1,80 +1,39 @@
-/*eslint-env jest*/
-jest.unmock('../Card');
+/* eslint-env jest */
 jest.unmock('../CardActions');
 
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
-  Simulate,
   renderIntoDocument,
-  findRenderedDOMComponentWithClass,
+  scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
-import Card from '../Card';
 import CardActions from '../CardActions';
+import CardExpander from '../CardExpander';
 
 describe('CardActions', () => {
   it('merges className and style', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const actions = renderIntoDocument(
-      <Card>
-        <CardActions className={className} style={style} />
-      </Card>
-    );
+    const props = {
+      style: { background: 'black' },
+      className: 'test',
+    };
 
-    const actionsNode = findRenderedDOMComponentWithClass(actions, 'md-card-actions');
-    expect(actionsNode.style.display).toBe(style.display);
-    expect(actionsNode.classList.contains(className)).toBe(true);
+    const cardActions = renderIntoDocument(<CardActions {...props} />);
+
+    const cardActionsNode = findDOMNode(cardActions);
+    expect(cardActionsNode.style.background).toBe(props.style.background);
+    expect(cardActionsNode.className).toContain(props.className);
   });
 
-  it('allows for normal event listeners to be passed to the actions component', () => {
-    const onClick = jest.genMockFunction();
-    const onMouseDown = jest.genMockFunction();
-    const onMouseUp = jest.genMockFunction();
-    const onMouseOver = jest.genMockFunction();
-    const onMouseLeave = jest.genMockFunction();
-    const onTouchStart = jest.genMockFunction();
-    const onTouchEnd = jest.genMockFunction();
-    const onTouchCancel = jest.genMockFunction();
+  it('renders the CardExpander component when the isExpander prop is true', () => {
+    const props = { expander: false };
+    let actions = renderIntoDocument(<CardActions {...props} />);
+    let expanders = scryRenderedComponentsWithType(actions, CardExpander);
+    expect(expanders.length).toBe(0);
 
-    const actions = renderIntoDocument(
-      <Card>
-        <CardActions
-          onClick={onClick}
-          onMouseDown={onMouseDown}
-          onMouseUp={onMouseUp}
-          onMouseOver={onMouseOver}
-          onMouseLeave={onMouseLeave}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onTouchCancel={onTouchCancel}
-        />
-      </Card>
-    );
-
-    const actionsNode = findRenderedDOMComponentWithClass(actions, 'md-card-actions');
-    Simulate.click(actionsNode);
-    expect(onClick).toBeCalled();
-
-    Simulate.mouseOver(actionsNode);
-    expect(onMouseOver).toBeCalled();
-
-    Simulate.mouseLeave(actionsNode);
-    expect(onMouseLeave).toBeCalled();
-
-    Simulate.mouseDown(actionsNode);
-    expect(onMouseDown).toBeCalled();
-
-    Simulate.mouseUp(actionsNode);
-    expect(onMouseUp).toBeCalled();
-
-    Simulate.touchStart(actionsNode);
-    expect(onTouchStart).toBeCalled();
-
-    Simulate.touchEnd(actionsNode);
-    expect(onTouchEnd).toBeCalled();
-
-    Simulate.touchCancel(actionsNode);
-    expect(onTouchCancel).toBeCalled();
+    props.expander = true;
+    actions = renderIntoDocument(<CardActions {...props} />);
+    expanders = scryRenderedComponentsWithType(actions, CardExpander);
+    expect(expanders.length).toBe(1);
   });
 });

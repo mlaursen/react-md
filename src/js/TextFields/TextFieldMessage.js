@@ -1,54 +1,95 @@
-import React, { Component, PropTypes } from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
+import React, { PureComponent, PropTypes } from 'react';
+import cn from 'classnames';
 
-/**
- * The `TextFieldMessage` component is used for rendering a help or error text message
- * under a `TextField`. It can also be used to display a counter of remaining characters.
- */
-export default class TextFieldMessage extends Component {
+import Message from './Message';
+
+export default class TextFieldMessage extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    error: PropTypes.bool,
+    helpText: PropTypes.string,
+    errorText: PropTypes.string,
+    active: PropTypes.bool,
+    helpOnFocus: PropTypes.bool,
+    maxLength: PropTypes.number,
+    currentLength: PropTypes.number,
+    leftIcon: PropTypes.bool,
+    rightIcon: PropTypes.bool,
+    block: PropTypes.bool,
+  };
+
   constructor(props) {
     super(props);
 
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+
+    this.state = {
+      message: (props.error && props.errorText) || props.helpText || props.errorText,
+      isMessageVisible: this._isMessageVisible(props),
+    };
   }
 
-  static propTypes = {
-    value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
-    message: PropTypes.string,
-    maxLength: PropTypes.number,
-    error: PropTypes.bool.isRequired,
-    active: PropTypes.bool.isRequired,
-    helpOnFocus: PropTypes.bool,
-    className: PropTypes.string,
-  };
+  componentWillReceiveProps(nextProps) {
+    const keys = ['active', 'error', 'helpOnFocus', 'helpText', 'errorText'];
+    if (this._anyChanges(keys, this.props, nextProps)) {
+      this.setState({
+        isMessageVisible: this._isMessageVisible(nextProps),
+        message: (nextProps.error && nextProps.errorText) || nextProps.helpText || nextProps.errorText,
+      });
+    }
+  }
+
+  _anyChanges(keys, p1, p2) {
+    let changed = false;
+    keys.some(key => {
+      if (p1[key] !== p2[key]) {
+        changed = true;
+      }
+
+      return changed;
+    });
+
+    return changed;
+  }
+
+  _isMessageVisible(props) {
+    const { error, errorText, helpText, helpOnFocus, active } = props;
+    return ((error && errorText) || !!helpText) && (!helpOnFocus || active);
+  }
 
   render() {
-    const { value, message, maxLength, error, active, helpOnFocus, className } = this.props;
-    const isMessageVisible = !!message && (!helpOnFocus || active);
+    const {
+      maxLength,
+      error,
+      className,
+      errorText,
+      helpText,
+      currentLength,
+      leftIcon,
+      rightIcon,
+      block,
+      active,
+    } = this.props;
+    const { isMessageVisible, message } = this.state;
+
+    if (currentLength === 'undefined' || (!helpText && !errorText && !maxLength)) {
+      return null;
+    }
 
     return (
-      <CSSTransitionGroup
-        component="div"
-        transitionName="opacity"
-        transitionEnterTimeout={150}
-        transitionLeaveTimeout={150}
-        className={classnames('md-text-field-message', className, {
-          error,
-          'count-only': !message || !isMessageVisible,
-        })}
+      <div
+        className={cn('md-text-field-message-container', {
+          'md-text-field-message-container--error': error,
+          'md-text-field-message-container--count-only': !message || !isMessageVisible,
+          'md-text-field-message-container--left-icon-offset': leftIcon,
+          'md-text-field-message-container--right-icon-offset': rightIcon,
+          'md-full-width': !block,
+        }, className)}
       >
-        {isMessageVisible && <span key="message">{message}</span>}
-        {maxLength &&
-        <span className="md-text-field-counter">
-          {`${value.length} / ${maxLength}`}
-        </span>
-        }
-      </CSSTransitionGroup>
+        <Message key="message" active={isMessageVisible}>{message}</Message>
+        <Message key="counter" className="md-text-field-message--counter" active={active}>
+          {maxLength ? `${currentLength} / ${maxLength}` : null}
+        </Message>
+      </div>
     );
   }
 }

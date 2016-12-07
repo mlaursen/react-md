@@ -1,38 +1,27 @@
-/*eslint-env jest*/
+/* eslint-env jest*/
 jest.unmock('../Switch');
 
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+import { renderIntoDocument, findRenderedComponentWithType } from 'react-addons-test-utils';
 
 import Switch from '../Switch';
+import SelectionControl from '../SelectionControl';
 
 describe('Switch', () => {
-  it('merges className and style', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const switchR = renderIntoDocument(
-      <Switch style={style} className={className} />
-    );
+  it('renders the SelectionControl component with the correct props', () => {
+    const props = {
+      id: 'test',
+      name: 'test',
+      value: 'what',
+      label: 'Test',
+    };
 
-    const switchNode = findDOMNode(switchR);
-    expect(switchNode.style.display).toBe(style.display);
-    expect(switchNode.classList.contains(className)).toBe(true);
-  });
-
-  it('calls the onChange function with the next toggled state and the click event', () => {
-    const onChange = jest.genMockFunction();
-    const switchR = renderIntoDocument(<Switch onChange={onChange} />);
-
-    const switchInput = findRenderedDOMComponentWithTag(switchR, 'input');
-    Simulate.change(switchInput, { target: { checked: true }});
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toBe(true);
-    expect(onChange.mock.calls[0][1]).toBeDefined();
+    const switchEl = renderIntoDocument(<Switch {...props} />);
+    const control = findRenderedComponentWithType(switchEl, SelectionControl);
+    expect(control.props.id).toBe(props.id);
+    expect(control.props.name).toBe(props.name);
+    expect(control.props.value).toBe(props.value);
+    expect(control.props.type).toBe('switch');
+    expect(control.props.__superSecreteProp).toBe(true);
   });
 });
