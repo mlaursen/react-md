@@ -24,6 +24,11 @@ import onRouteUpdate from 'utils/onRouteUpdate';
 
 const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
 const history = syncHistoryWithStore(browserHistory, store);
+history.listen(location => {
+  if (typeof window.ga !== 'undefined') {
+    window.ga('send', 'pageview', location.pathname);
+  }
+});
 const root = document.getElementById('app');
 if (__DEV__) {
   window.Perf = require('react-addons-perf');
