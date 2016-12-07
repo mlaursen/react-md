@@ -1231,10 +1231,29 @@ $md-dark-theme-colors: (
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to use.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if styling with the light theme.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should also be included.
 /// @param {Boolean} include-color-class-names [$md-colors-include-class-names] - Boolean if a class name
 ///     should be created for every color as well.
+/// @param {Number} primary-opacity [$md-primary-opacity] - The opacity to apply to the primary color with the `md-background--primary`
+///     class name.
+/// @param {Color} primary-background-text-color [$md-primary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--primary` class name.
+/// @param {Number} secondary-opacity [$md-secondary-opacity] - The opacity to apply to the secondary color with the `md-background--secondary`
+///     class name.
+/// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--secondary` class name.
 /// @group colors, themes
-@mixin react-md-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $include-color-class-names: $md-colors-include-class-names, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
+@mixin react-md-colors(
+  $primary-color: $md-primary-color,
+  $secondary-color: $md-secondary-color,
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-color-class-names: $md-colors-include-class-names,
+  $primary-opacity: $md-primary-hover-opacity,
+  $primary-background-text-color: $md-primary-background-text-color,
+  $secondary-opacity: $md-secondary-hover-opacity,
+  $secondary-background-text-color: $md-secondary-background-text-color
+) {
   .md-text {
     color: get-color('text', $light-theme);
 
@@ -1272,12 +1291,12 @@ $md-dark-theme-colors: (
 
     &--primary {
       background: $primary-color;
-      color: if(lightness($primary-color) > 40, $md-white-base, $md-black-base);
+      color: $primary-background-text-color;
     }
 
     &--secondary {
       background: $secondary-color;
-      color: if(lightness($secondary-color) > 40, $md-white-base, $md-black-base);
+      color: $secondary-background-text-color;
     }
   }
 
@@ -1302,9 +1321,22 @@ $md-dark-theme-colors: (
 /// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for the hover effects should
 ///     also be included
 /// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
+/// @param {Color} primary-background-text-color [$md-primary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--primary` class name.
 /// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
+/// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--secondary` class name.
 /// @group colors, themes
-@mixin react-md-theme-colors($primary-color: $md-primary-color, $secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-media: $md-media-included, $primary-opacity: $md-primary-hover-opacity, $secondary-opacity: $md-secondary-hover-opacity) {
+@mixin react-md-theme-colors(
+  $primary-color: $md-primary-color,
+  $secondary-color: $md-secondary-color,
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $primary-opacity: $md-primary-hover-opacity,
+  $primary-background-text-color: $md-primary-background-text-color,
+  $secondary-opacity: $md-secondary-hover-opacity,
+  $secondary-background-text-color: $md-secondary-background-text-color
+) {
   @if $primary-color != $md-primary-color {
     .md-text--theme-primary {
       color: $primary-color;
@@ -1316,6 +1348,14 @@ $md-dark-theme-colors: (
 
     .md-background--primary {
       background: $primary-color;
+
+      @if $primary-background-text-color != $md-primary-background-text-color {
+        color: $primary-background-text-color;
+      }
+    }
+  } @else if $primary-background-text-color != $md-primary-background-text-color {
+    .md-background--primary {
+      color: $primary-background-text-color;
     }
   }
 
@@ -1330,6 +1370,14 @@ $md-dark-theme-colors: (
 
     .md-background--secondary {
       background: $secondary-color;
+
+      @if $secondary-background-text-color != $md-secondary-background-text-color {
+        color: $secondary-background-text-color;
+      }
+    }
+  } @else if $secondary-background-text-color != $md-secondary-background-text-color {
+    .md-background--secondary {
+      color: $secondary-background-text-color;
     }
   }
 

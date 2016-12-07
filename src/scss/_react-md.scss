@@ -143,6 +143,12 @@
 /// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
 /// @param {Number} progress-swatch [$md-linear-progress-swatch] - The color for the linear progress
 ///     swatch color.
+/// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
+/// @param {Color} primary-background-text-color [$md-primary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--primary` class name.
+/// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
+/// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
+///     that appears inside the `md-background--secondary` class name.
 /// @group base, themes
 @mixin react-md-theme-everything(
   $primary-color,
@@ -150,7 +156,11 @@
   $light-theme: $md-light-theme,
   $html-class-name: null,
   $error-color: $md-text-field-error-color,
-  $progress-swatch: $md-linear-progress-swatch
+  $progress-swatch: $md-linear-progress-swatch,
+  $primary-opacity: $md-primary-hover-opacity,
+  $primary-background-text-color: $md-primary-background-text-color,
+  $secondary-opacity: $md-secondary-hover-opacity,
+  $secondary-background-text-color: $md-secondary-background-text-color
 ) {
   @if $html-class-name != null {
     @include react-md-theme-typography($html-class-name, $light-theme);
@@ -193,7 +203,7 @@
     @include react-md-theme-text-fields($primary-color, $light-theme, $error-color);
     @include react-md-theme-toolbars($light-theme);
 
-    @include react-md-theme-colors($primary-color, $secondary-color, $light-theme);
+    @include react-md-theme-colors($primary-color, $secondary-color, $light-theme, $md-media-included, $primary-opacity, $primary-background-text-color, $secondary-opacity, $secondary-background-text-color);
   }
 
 }

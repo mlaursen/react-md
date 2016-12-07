@@ -11,6 +11,11 @@ $md-primary-color: $md-indigo-500 !default;
 /// @group themes
 $md-primary-hover-opacity: .9 !default;
 
+/// The text color to use for any text that inside the `.md-background--primary` class name.
+/// This should ideally pass the color contrast test when.
+/// @type Color
+$md-primary-background-text-color: $md-white-base !default;
+
 /// The secondary color to use throughout the app. This should be a color
 /// with a `-a-{NUMBER}` suffix.
 /// @type Color
@@ -21,6 +26,11 @@ $md-secondary-color: $md-pink-a-200 !default;
 /// @type Number
 /// @group themes
 $md-secondary-hover-opacity: .9 !default;
+
+/// The text color to use for any text that inside the `.md-background--secondary` class name.
+/// This should ideally pass the color contrast test when.
+/// @type Color
+$md-secondary-background-text-color: $md-white-base !default;
 
 /// Boolean if the application is to be themed with the light theme.
 /// @type Boolean
