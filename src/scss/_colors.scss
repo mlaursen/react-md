@@ -1498,17 +1498,49 @@ $md-dark-theme-colors: (
 ///    .md-red-50--background {
 ///      background: #ffebee;
 ///    }
-@mixin react-md-color-class-names {
+///
+/// @param {Boolean} include-text [true] - Boolean if the text class name should be created.
+/// @param {Boolean} include-background [true] - Boolean if the background class name should be created.
+@mixin react-md-color-class-names($include-text: true, $include-background: true) {
   @each $name, $color in $md-color-map {
-    .#{$name} {
+    @include react-md-color-class-name($name, $color, $include-text, $include-background);
+  }
+}
 
-      &--text {
-        color: $color;
-      }
+/// Creates 0 - 2 class names for a given color. No classes will be created if both
+/// `$include-text` and `$include-background` are false.
+///
+/// @example scss - Example Usage SCSS
+///   @include react-md-color-class-name(md-red-500, $md-red-500);
+///   @include react-md-color-class-name(md-blue-200, $md-blue-200, false, true);
+///
+/// @example scss - Example Usage CSS Output
+///   .md-red-500--text {
+///     color: #f44336;
+///   }
+///
+///   .md-red-500--background {
+///     background: #f44336;
+///   }
+///
+///   .md-blue-200--background {
+///     background: #90caf9;
+///   }
+///
+/// @param {String} name - The class name prefix to use.
+/// @param {Color} color - The color to apply to text, background, or both.
+/// @param {Boolean} include-text [true] - Boolean if the text class name should be created.
+/// @param {Boolean} include-background [true] - Boolean if the background class name should be created.
+@mixin react-md-color-class-name($name, $color, $include-text: true, $include-background: true) {
+  @if $include-text {
+    .#{$name}--text {
+      color: $color;
+    }
+  }
 
-      &--background {
-        background: $color;
-      }
+  @if $include-background {
+    .#{$name}--background {
+      background: $color;
     }
   }
 }
