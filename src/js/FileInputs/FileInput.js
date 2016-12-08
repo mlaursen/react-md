@@ -2,6 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { TAB, SPACE, ENTER } from '../constants/keyCodes';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import FontIcon from '../FontIcons/FontIcon';
 import IconSeparator from '../Helpers/IconSeparator';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
@@ -68,9 +70,10 @@ export default class FileInput extends PureComponent {
     multiple: PropTypes.bool,
 
     /**
-     * A label to display on the `FileInput` when no files have been selected.
+     * A label to display on the `FileInput`. This will be used with the `AccessibleFakeInkedButton` component to
+     * create a `<label>` for the `<input type="file">`.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the icons hould appear before the label.
@@ -109,18 +112,97 @@ export default class FileInput extends PureComponent {
      * Boolean if the `FileInput` is currently disabled.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * An optional function to call when they keyup event is triggerred on the file input's label.
+     */
+    onKeyUp: PropTypes.func,
+
+    /**
+     * An optional function to call when they keydown event is triggerred on the file input's label.
+     */
+    onKeyDown: PropTypes.func,
+
+    /**
+     * An optional function to call when they mouseup event is triggerred on the file input's label.
+     */
+    onMouseUp: PropTypes.func,
+
+    /**
+     * An optional function to call when they mousedown event is triggerred on the file input's label.
+     */
+    onMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when they mouseover event is triggerred on the file input's label.
+     */
+    onMouseOver: PropTypes.func,
+
+    /**
+     * An optional function to call when they mouseleave event is triggerred on the file input's label.
+     */
+    onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional function to call when they touchend event is triggerred on the file input's label.
+     */
+    onTouchEnd: PropTypes.func,
+
+    /**
+     * An optional function to call when they touchstart event is triggerred on the file input's label.
+     */
+    onTouchStart: PropTypes.func,
   };
 
   static defaultProps = {
-    label: 'Select a file from your computer',
+    label: 'Select a file',
     iconChildren: 'file_upload',
   };
 
   constructor(props) {
     super(props);
 
-    this.state = { hover: false, active: false };
+    this.state = { hover: false, pressed: false };
+
+    this._blur = this._blur.bind(this);
     this._handleChange = this._handleChange.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._handleMouseUp = this._handleMouseUp.bind(this);
+    this._handleMouseDown = this._handleMouseDown.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleMouseOver = this._handleMouseOver.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.disabled && !nextProps.disabled && this.state.hover) {
+      this.setState({ hover: false });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    // I honestly don't remember why this was implemented, but it was copied from the Button
+    // component
+    if (!this.state.pressed && nextState.pressed) {
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+        if (this._attemptedBlur) {
+          this._attemptedBlur = false;
+
+          this.setState({ pressed: false });
+        }
+      }, 450);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    window.removeEventListener('click', this._blur);
   }
 
   _handleChange(e) {
@@ -133,8 +215,105 @@ export default class FileInput extends PureComponent {
     }
   }
 
+  _blur() {
+    if (this.props.disabled) {
+      return;
+    }
+
+    if (this._timeout) {
+      this._attemptedBlur = true;
+    } else {
+      this.setState({ pressed: false });
+    }
+  }
+
+  _handleMouseUp(e) {
+    if (this.props.onMouseUp) {
+      this.props.onMouseUp(e);
+    }
+
+    this._blur();
+  }
+
+  _handleMouseDown(e) {
+    if (this.props.onMouseDown) {
+      this.props.onMouseDown(e);
+    }
+
+    if (!this.props.disabled) {
+      this.setState({ pressed: true });
+    }
+  }
+
+  _handleTouchStart(e) {
+    if (this.props.onTouchStart) {
+      this.props.onTouchStart(e);
+    }
+
+    if (!this.props.disabled) {
+      this.setState({ pressed: true });
+    }
+  }
+
+  _handleTouchEnd(e) {
+    if (this.props.onTouchEnd) {
+      this.props.onTouchEnd(e);
+    }
+
+    this._blur();
+    captureNextEvent('mouseover');
+  }
+
+  _handleKeyUp(e) {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(e);
+    }
+
+
+    if ((e.which || e.keyCode) === TAB) {
+      window.addEventListener('click', this._blur);
+      this.setState({ pressed: true });
+    }
+  }
+
+  _handleKeyDown(e) {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+
+    if (key === TAB) {
+      window.removeEventListener('click', this._blur);
+      this.setState({ pressed: false });
+    } else if (key === SPACE || key === ENTER) {
+      e.preventDefault();
+      e.target.click();
+    }
+  }
+
+  _handleMouseOver(e) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
+    }
+
+    if (!this.props.disabled) {
+      this.setState({ hover: true });
+    }
+  }
+
+  _handleMouseLeave(e) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+
+    if (!this.props.disabled) {
+      this.setState({ hover: false });
+    }
+  }
+
   render() {
-    const { active, hover } = this.state;
+    const { hover, pressed } = this.state;
     const {
       style,
       className,
@@ -152,8 +331,24 @@ export default class FileInput extends PureComponent {
       ...props
     } = this.props;
     delete props.onChange;
+    delete props.onKeyUp;
+    delete props.onKeyDown;
+    delete props.onMouseUp;
+    delete props.onMouseDown;
+    delete props.onMouseOver;
+    delete props.onMouseLeave;
+    delete props.onTouchStart;
+    delete props.onTouchEnd;
 
     const icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    const themeClassNames = !disabled && cn({
+      'md-text--theme-primary md-ink--primary': flat && primary,
+      'md-text--theme-secondary md-ink--secondary': flat && secondary,
+      'md-background--primary md-background--primary-hover': !flat && primary,
+      'md-background--secondary md-background--secondary-hover': !flat && secondary,
+      'md-btn--color-primary-active': flat && hover && primary,
+      'md-btn--color-secondary-active': flat && hover && secondary,
+    });
     return (
       <div
         {...props}
@@ -164,14 +359,19 @@ export default class FileInput extends PureComponent {
           component="label"
           htmlFor={id}
           disabled={disabled}
-          className={cn(`md-btn md-btn--${flat ? 'flat' : 'raised'} md-btn--text`, {
-            'md-btn--color-primary': !disabled && flat && primary,
-            'md-btn--color-secondary': !disabled && flat && secondary,
-            'md-btn--color-primary-active': !disabled && flat && hover && primary,
-            'md-btn--color-secondary-active': !disabled && flat && hover && secondary,
-            'md-btn--raised-primary': !disabled && !flat && primary,
-            'md-btn--raised-secondary': !disabled && !flat && secondary,
-            'md-btn--raised-active': !disabled && !flat && active,
+          onTouchStart={this._handleTouchStart}
+          onTouchEnd={this._handleTouchEnd}
+          onMouseDown={this._handleMouseDown}
+          onMouseUp={this._handleMouseUp}
+          onKeyDown={this._handleKeyDown}
+          onKeyUp={this._handleKeyUp}
+          onMouseOver={this._handleMouseOver}
+          onMouseLeave={this._handleMouseLeave}
+          className={cn(`md-btn md-btn--${flat || disabled ? 'flat' : 'raised'} md-btn--text`, themeClassNames, {
+            'md-text': !disabled,
+            'md-text--disabled': disabled,
+            'md-btn--raised-disabled': disabled && !flat,
+            'md-btn--raised-pressed': !disabled && !flat && pressed,
           })}
         >
           <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>

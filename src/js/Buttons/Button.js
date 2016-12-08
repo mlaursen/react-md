@@ -366,7 +366,7 @@ class Button extends PureComponent {
     }
 
     if (!this.props.disabled) {
-      this.setState({ pressed: true, time: Date.now() });
+      this.setState({ pressed: true });
     }
   }
 
@@ -376,7 +376,7 @@ class Button extends PureComponent {
     }
 
     if (!this.props.disabled) {
-      this.setState({ pressed: true, time: Date.now() });
+      this.setState({ pressed: true });
     }
   }
 
