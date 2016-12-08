@@ -442,7 +442,7 @@ class Button extends PureComponent {
         }, leaveTimeout + 150);
 
         this.setState({ snackbarType: null });
-      }, 17);
+      }, TICK);
     } else {
       this._snackbarTimeout = setTimeout(() => {
         this._snackbarTimeout = null;
@@ -498,6 +498,15 @@ class Button extends PureComponent {
     }
 
     const raisedStyles = raised || floating;
+
+    const themeClassNames = !disabled && cn({
+      'md-text--theme-primary md-ink--primary': !raisedStyles && primary,
+      'md-text--theme-secondary md-ink--secondary': !raisedStyles && secondary,
+      'md-background--primary md-background--primary-hover': raisedStyles && primary,
+      'md-background--secondary md-background--secondary-hover': raisedStyles && secondary,
+      'md-btn--color-primary-active': !raisedStyles && hover && primary,
+      'md-btn--color-secondary-active': !raisedStyles && hover && secondary,
+    });
     return (
       <Component
         {...props}
@@ -511,22 +520,12 @@ class Button extends PureComponent {
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
         href={href}
-        className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, {
+        className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, themeClassNames, {
           'md-text': !disabled && !primary && !secondary && !icon && !floating,
-          'md-text--theme-primary': !disabled && !raisedStyles && primary,
-          'md-ink--primary': !disabled && !raisedStyles && primary,
-          'md-text--theme-secondary': !disabled && !raisedStyles && secondary,
-          'md-ink--secondary': !disabled && !raisedStyles && secondary,
           'md-text--disabled': disabled,
           'md-pointer--hover': !disabled,
-          'md-background--primary': !disabled && raisedStyles && primary,
-          'md-background--secondary': !disabled && raisedStyles && secondary,
-          'md-background--primary-hover': !disabled && raisedStyles && primary,
-          'md-background--secondary-hover': !disabled && raisedStyles && secondary,
           'md-btn--text': flat || raised,
           'md-btn--hover': hover && !disabled,
-          'md-btn--color-primary-active': !disabled && !raisedStyles && hover && primary,
-          'md-btn--color-secondary-active': !disabled && !raisedStyles && hover && secondary,
           'md-btn--raised-disabled': raised && disabled,
           'md-btn--raised-pressed': !disabled && raisedStyles && pressed,
           'md-btn--fixed': fixed,
