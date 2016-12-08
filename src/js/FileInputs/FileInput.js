@@ -340,7 +340,10 @@ export default class FileInput extends PureComponent {
     delete props.onTouchStart;
     delete props.onTouchEnd;
 
-    const icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    const icon = !iconClassName && !iconChildren
+      ? null
+      : <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+
     const themeClassNames = !disabled && cn({
       'md-text--theme-primary md-ink--primary': flat && primary,
       'md-text--theme-secondary md-ink--secondary': flat && secondary,
@@ -349,6 +352,12 @@ export default class FileInput extends PureComponent {
       'md-btn--color-primary-active': flat && hover && primary,
       'md-btn--color-secondary-active': flat && hover && secondary,
     });
+
+    let labelChildren = label;
+    if (icon) {
+      labelChildren = <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>;
+    }
+
     return (
       <div
         {...props}
@@ -374,7 +383,7 @@ export default class FileInput extends PureComponent {
             'md-btn--raised-pressed': !disabled && !flat && pressed,
           })}
         >
-          <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>
+          {labelChildren}
         </AccessibleFakeInkedButton>
         <input
           multiple={multiple}
