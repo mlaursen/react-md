@@ -2,8 +2,14 @@ import React from 'react';
 import MenuButton from 'react-md/lib/Menus/MenuButton';
 import ListItem from 'react-md/lib/Lists/ListItem';
 
+const styles = {
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'wrap',
+};
+
 const MenuButtonExamples = () => (
-  <div style={{ display: 'flex', alignItems: 'center' }}>
+  <div style={styles}>
     <MenuButton
       id="button-menu"
       label="Toggle Open a Menu"
