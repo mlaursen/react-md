@@ -70,11 +70,11 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 
 ```html
 <!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.min.css">
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.deep_purple-pink.min.css">
 <script src="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.min.js"></script>
 
 <!-- Development Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.css">
+<!-- development version of CSS unavailable -->
 <script src="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.js"></script>
 ```
 
@@ -85,7 +85,7 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.deep-purple-pink.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.deep_purple-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>

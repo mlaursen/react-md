@@ -19,7 +19,8 @@ try {
   noAccents.concat(colors).forEach(color => {
     colors.forEach(accent => {
       if (color !== accent) {
-        fs.writeFile(path.join(bundles, `${color}_${accent}.scss`), `@import '../react-md';
+        fs.writeFile(path.join(bundles, `${color.replace(('-', '_'))}-${accent.replace(('-', '_'))}.scss`), `
+@import '../react-md';
 
 $md-primary-color: $md-${color}-500;
 $md-secondary-color: $md-${accent}-a-400;
