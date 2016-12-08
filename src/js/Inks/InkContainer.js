@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
+import { ENTER, SPACE } from '../constants/keyCodes';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calcPageOffset from '../utils/calcPageOffset';
@@ -57,6 +58,7 @@ export default class InkContainer extends PureComponent {
     this._handleTouchEnd = this._handleTouchEnd.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
     this._getKeyboardContainer = this._getKeyboardContainer.bind(this);
     this._stopPropagationToFocus = this._stopPropagationToFocus.bind(this);
     this._initOrRemoveEvents = this._initOrRemoveEvents.bind(this);
@@ -168,6 +170,10 @@ export default class InkContainer extends PureComponent {
     this.setState({ inks });
   }
 
+  /**
+   * Gets the container for any keyboard events. This will almost always be the main element,
+   * but text fields will need to be the input itself.
+   */
   _getKeyboardContainer() {
     if (this._container.classList.contains('md-text-field-container')) {
       return this._container.querySelector('.md-text-field');
@@ -176,6 +182,12 @@ export default class InkContainer extends PureComponent {
     return this._container;
   }
 
+  /**
+   * Sets the ink container and the main container from the ref callback. When the component
+   * is mounting, the keyboard, mouse, and keyboard events will be initialized.
+   *
+   * @param {Object} inkContainer - The ink container.
+   */
   _setContainers(inkContainer) {
     if (inkContainer !== null) {
       this._inkContainer = findDOMNode(inkContainer);
@@ -187,6 +199,18 @@ export default class InkContainer extends PureComponent {
     }
   }
 
+  /**
+   * This function will either add or remove the event listeners for creating inks.
+   *
+   * @param {Object} props - The current props to use for figuring out if the events should
+   *    be added or removed.
+   * @param {bool=} keyboardDiff - Boolean if there was a difference between the current props and either
+   *    the previous or next props for the keyboard interactions being disabled.
+   * @param {bool=} mouseDiff - Boolean if there was a difference between the current props and either
+   *    the previous or next props for the mouse interactions being disabled.
+   * @param {bool=} touchDiff - Boolean if there was a difference between the current props and either
+   *    the previous or next props for the touch interactions being disabled.
+   */
   _initOrRemoveEvents(props, keyboardDiff = true, mouseDiff = true, touchDiff = true) {
     const mouseDisabled = this._isListenerDisabled('mouse', props.disabledInteractions);
     const touchDisabled = this._isListenerDisabled('touch', props.disabledInteractions);
@@ -195,6 +219,7 @@ export default class InkContainer extends PureComponent {
     if (keyboardDiff) {
       const fn = `${keyboardDisabled ? 'remove' : 'add'}EventListener`;
       this._getKeyboardContainer()[fn]('focus', this._handleFocus);
+      this._getKeyboardContainer()[fn]('keydown', this._handleKeyDown);
 
       if (this._container.getAttribute('type') === 'submit') {
         window[fn]('submit', this._handleSubmit);
@@ -254,6 +279,15 @@ export default class InkContainer extends PureComponent {
     this._clicked = false;
   }
 
+  _handleKeyDown(e) {
+    const key = e.which || e.keyCode;
+    if (key === ENTER || key === SPACE) {
+      this._clicked = true;
+      this.createInk();
+      this._maybeDelayClick();
+    }
+  }
+
   _handleFocus() {
     if (this._clicked) {
       return;
@@ -275,7 +309,6 @@ export default class InkContainer extends PureComponent {
       return;
     }
 
-    e.stopPropagation();
     this._mouseLeave = false;
     this._container.addEventListener('mouseleave', this._handleMouseLeave);
     this._createInk(e.pageX, e.pageY);
