@@ -374,7 +374,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
     @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-password, $custom-sizes);
   }
 
-  @include react-md-text-field-container($light-theme, $include-multiline, $include-block);
+  @include react-md-text-field-container($light-theme, $include-multiline, $include-block, $include-message);
   @include react-md-text-field($light-theme, $include-multiline);
   @include react-md-text-field-divider($primary-color, $error-color);
 
@@ -562,10 +562,14 @@ $md-text-field-desktop-floating-label-margin: 33px;
 ///     multiline text field css should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styling
 ///     for text fields should be included.
+/// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the styles for the inline
+///     messages or counter should be included. This will only every create styles if the `include-block` param
+///     is `true` as well.
 @mixin react-md-text-field-container(
   $light-theme: $md-light-theme,
   $include-multiline: $md-text-field-include-multiline,
-  $include-block: $md-text-field-include-block
+  $include-block: $md-text-field-include-block,
+  $include-message: $md-text-field-include-message
 ) {
 
   .md-text-field-container {
@@ -598,6 +602,12 @@ $md-text-field-desktop-floating-label-margin: 33px;
   @if $include-block {
     .md-text-field-container--input-block {
       display: flex;
+
+      @if $include-message {
+        .md-text-field-message-container {
+          flex-shrink: 0;
+        }
+      }
     }
   }
 
