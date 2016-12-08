@@ -23,7 +23,8 @@ export default [{
   path: 'discover-more',
   icon: 'search',
   nestedItems: [
-    'whats-new', {
+    'whats-new',
+    'boilerplates', {
       path: 'upgrade-guides',
       nestedItems: [{
         path: 'v1.0.0',

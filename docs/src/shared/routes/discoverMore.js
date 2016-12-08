@@ -9,9 +9,22 @@ function toMarkdownPage(path) {
   };
 }
 
-const childRoutes = ['whats-new', 'community', 'contributing'].map(toMarkdownPage);
+const childRoutes = ['whats-new', 'boilerplates', 'contributing'].map(toMarkdownPage);
 
-childRoutes.splice(1, 0, {
+childRoutes.splice(3, 0, {
+  path: 'community',
+  getComponent(state, cb) {
+    if (__CLIENT__) {
+      require.ensure([], require => {
+        cb(null, require('components/Community').default);
+      });
+    } else {
+      cb(null, require('components/Community').default);
+    }
+  },
+});
+
+childRoutes.splice(2, 0, {
   path: 'upgrade-guides',
   indexRoute: {
     onEnter(state, replace) {
