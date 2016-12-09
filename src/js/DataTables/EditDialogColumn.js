@@ -19,6 +19,15 @@ import FontIcon from '../FontIcons/FontIcon';
 export default class EditDialogColumn extends PureComponent {
   static propTypes = {
     /**
+     * An optional id to provide to the text field in the column. If this is omitted,
+     * the id will be the current row id and `-edit-dialog`.
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
      * The optional style to apply to the edit dialog's column.
      */
     style: PropTypes.object,
@@ -490,6 +499,7 @@ export default class EditDialogColumn extends PureComponent {
       ...props
     } = this.props;
 
+    delete props.id;
     delete props.onMouseOver;
     delete props.onMouseLeave;
     delete props.onTouchStart;
@@ -503,6 +513,10 @@ export default class EditDialogColumn extends PureComponent {
     delete props.transitionDuration;
 
     const value = getField(this.props, this.state, 'value');
+    let { id } = this.props;
+    if (!id) {
+      id = `${rowId}-edit-dialog`;
+    }
 
     let actions;
     let largeTitle;
@@ -530,14 +544,18 @@ export default class EditDialogColumn extends PureComponent {
     let inlineEditIcon;
     if (inline && !noIcon) {
       inlineEditIcon = (
-        <FontIcon
-          key="edit-icon"
-          style={{ marginBottom: 0 }}
-          iconClassName={inlineIconClassName}
-        >
+        <FontIcon key="edit-icon" iconClassName={inlineIconClassName}>
           {inlineIconChildren}
         </FontIcon>
       );
+    }
+
+    const ariaProps = {};
+    if (!inline) {
+      ariaProps.id = `${id}-container`;
+      ariaProps['aria-haspopup'] = true;
+      ariaProps['aria-expanded'] = active;
+      ariaProps['aria-owns'] = id;
     }
 
     return (
@@ -556,6 +574,7 @@ export default class EditDialogColumn extends PureComponent {
         onTouchEnd={this._handleTouchEnd}
       >
         <div
+          {...ariaProps}
           style={dialogStyle}
           className={cn('md-edit-dialog', {
             'md-edit-dialog--active': active,
@@ -565,8 +584,8 @@ export default class EditDialogColumn extends PureComponent {
         >
           {largeTitle}
           <TextField
-            id={`${rowId}-edit-dialog`}
             {...props}
+            id={id}
             ref={this._setField}
             label={active ? label : null}
             active={active}
