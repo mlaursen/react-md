@@ -295,6 +295,11 @@ export default class SelectField extends PureComponent {
      */
     toolbar: PropTypes.bool,
 
+    /**
+     * Boolean if the menu surrounding the select field should be full width or not.
+     */
+    fullWidth: PropTypes.bool,
+
     menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
     menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
@@ -303,7 +308,6 @@ export default class SelectField extends PureComponent {
       'A select field can only have floating labels now Only provide the `label` prop'
     ),
     noAutoAdjust: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
-    fullWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
   };
 
@@ -680,6 +684,7 @@ export default class SelectField extends PureComponent {
         if (this._field) {
           this._field.focus();
         }
+
         this._handleContainerClick(e);
         break;
       default:
@@ -800,6 +805,7 @@ export default class SelectField extends PureComponent {
       helpText,
       helpOnFocus,
       required,
+      fullWidth,
       ...props
     } = this.props;
     delete props.error;
@@ -820,7 +826,6 @@ export default class SelectField extends PureComponent {
     delete props.initiallyOpen;
     delete props.floatingLabel;
     delete props.noAutoAdjust;
-    delete props.fullWidth;
     delete props.adjustMinWidth;
 
     let { menuId, listId, placeholder, label, error } = this.props;
@@ -903,6 +908,7 @@ export default class SelectField extends PureComponent {
           'md-select-field-menu--stretch': stretchList,
         }, className)}
         ref={this._setMenu}
+        fullWidth={fullWidth}
       >
         <List
           id={listId}
