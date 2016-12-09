@@ -213,7 +213,7 @@ export default class AccessibleFakeButton extends PureComponent {
         ref={this._setNode}
         className={cn('md-fake-btn', {
           'md-pointer--hover': !disabled,
-          [tabbedClassName]: this.state.tabFocused,
+          [tabbedClassName]: tabbedClassName && this.state.tabFocused,
         }, className)}
         disabled={disabled}
         tabIndex={disabled ? null : tabIndex}
