@@ -1,7 +1,7 @@
-import React, { Component, PropTypes, Children } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { Component, PropTypes, Children, cloneElement } from 'react';
 import cn from 'classnames';
 
+import getField from '../utils/getField';
 import headerContextTypes from './headerContextTypes';
 import rowContextTypes from './rowContextTypes';
 import TableCheckbox from './TableCheckbox';
@@ -88,7 +88,6 @@ export default class TableRow extends Component {
 
     this.state = {
       biggest: null,
-      widths: [],
       hover: false,
     };
 
@@ -103,12 +102,6 @@ export default class TableRow extends Component {
       ...context,
       rowId: context.header ? `${baseId}CheckboxToggleAll` : `${baseId}${this.props.index}`,
     };
-  }
-
-  componentDidMount() {
-    if (this.props.autoAdjust) {
-      this._setLongestColumn();
-    }
   }
 
   /**
@@ -157,53 +150,62 @@ export default class TableRow extends Component {
     this.setState({ hover: false });
   }
 
-  _setLongestColumn() {
-    const widths = [];
-    const biggest = Array.prototype.slice.call(
-      findDOMNode(this).querySelectorAll('.md-table-column')
-    ).reduce((prev, curr, i) => {
-      if (curr.classList.contains('prevent-grow')) {
-        return prev;
+  _setLongestColumn(row) {
+    if (!row || !this.props.autoAdjust || !this.context.header) {
+      return;
+    }
+
+    const cols = Array.prototype.slice.call(row.querySelectorAll('.md-table-column'));
+    const biggest = cols.reduce((prevBiggest, col, i) => {
+      if (col.className.match(/prevent-grow/)) {
+        return prevBiggest;
       }
 
-      const width = curr.offsetWidth;
-      widths.push(width);
-      if (prev.width < width) {
-        return { i, width };
-      } else {
-        return prev;
+      const width = col.offsetWidth;
+      if (prevBiggest.width < width) {
+        return { width, index: i };
       }
-    }, { width: 0, i: 0 });
 
-    this.setState({ biggest, widths });
+      return prevBiggest;
+    }, { width: 0, index: 0 });
+
+    if (this.state.biggest && this.state.biggest.index === biggest.index) {
+      return;
+    }
+
+    this.setState({ biggest });
   }
 
   render() {
-    const { biggest, widths, hover } = this.state;
-    const { className, children, selected, onCheckboxClick, ...props } = this.props;
-    delete props.autoAdjust;
+    const { hover, biggest } = this.state;
+    const {
+      className,
+      children,
+      selected,
+      onCheckboxClick,
+      ...props
+    } = this.props;
     delete props.index;
+    delete props.autoAdjust;
 
     let checkbox;
     if (!this.context.plain) {
       checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 
-    const columns = Children.map(children, (column, i) => React.cloneElement(column, {
-      ...column.props,
-      header: typeof column.props.header === 'undefined'
-        ? this.context.header
-        : column.props.header,
+    const length = children.length;
+    const columns = Children.map(children, (col, i) => cloneElement(col, {
+      header: getField(col.props, this.context, 'header'),
       className: cn({
-        'md-table-column--grow': biggest && biggest.i === i,
-        // Not last item and the biggest width is greater than this item
-        'md-table-column--adjusted': children.length > i + 1 && biggest && biggest.width > widths[i],
-      }, column.props.className),
+        'md-table-column--grow': biggest && biggest.index === i,
+        'md-table-column--adjusted': biggest && biggest.index !== i && i + 1 < length,
+      }, col.props.className),
     }));
 
     return (
       <tr
         {...props}
+        ref={this.context.header ? this._setLongestColumn : null}
         className={cn('md-table-row', className, {
           'md-table-row--hover': hover,
           'md-table-row--active': !this.context.header && selected,
