@@ -29,7 +29,8 @@ and \`.md-caption\`.
 `;
 
 const helperMarkdown = `
-There have also been some other utlity classes added.
+If the \`$md-typography-include-utilities\` variable is \`true !default\`, the following utility
+class names will be created:
 
 - \`.md-text-left\` - aligns text left
 - \`.md-text-center\` - aligns text center
@@ -45,10 +46,9 @@ There have also been some other utlity classes added.
 - \`.md-font-medium\` - the material design medium font weight.
 - \`.md-font-bold\` - the material design bold font weight.
 
-
-In addition, a \`md-text-container\` class has been created. This class will
-center any text and prevent lines from extending the \`md-typography-max-line-length\`
-value.
+If the \`$md-typography-include-text-container\` variable is \`true !default\`, a \`md-text-container\`
+class name will be created to position text in the center of the page and keep the line length within
+the \`$md-typography-max-line-length\` value.
 `;
 
 export default class Typography extends PureComponent {
