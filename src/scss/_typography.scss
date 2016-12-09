@@ -8,6 +8,15 @@
 /// @type Boolean
 $md-typography-extended: true !default;
 
+/// Boolean if the text container class name should be created by default. This class name
+/// is really used to keep a max line-width for text.
+/// @type Boolean
+$md-typography-include-text-container: true !default;
+
+/// Boolean if common text positioning/transforms/styles class names should be included by default.
+/// @type Boolean
+$md-typography-include-utilities: true !default;
+
 /// The font name to use throughout the application. It is recommended
 /// to use Roboto or Noto, but it can be whatever.
 /// @type String
@@ -398,7 +407,17 @@ $md-line-height: 20 / $md-font-size-base !default;
 ///     should be included.
 /// @param {Boolean} extend-html-tags [$md-typography-extended] - Boolean if the base html tags should
 ///     be updated or not.
-@mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended) {
+/// @param {Boolean} include-text-container [$md-typography-include-text-container] - Boolean if the
+///     text container class name should be included.
+/// @param {Boolean} include-utilities [$md-typography-include-utilities] - Boolean if the
+///     text helper class names should be included.
+@mixin react-md-typography(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $extend-html-tags: $md-typography-extended,
+  $include-text-container: $md-typography-include-text-container,
+  $include-utilities: $md-typography-include-utilities
+) {
   $md-text-color: get-color('text', $light-theme);
   $md-secondary-text-color: get-color('secondary', $light-theme);
   $md-hint-text-color: get-color('hint', $light-theme);
@@ -542,6 +561,33 @@ $md-line-height: 20 / $md-font-size-base !default;
     @extend %md-caption;
   }
 
+  @if $include-utilities {
+    @include react-md-typography-utilities;
+  }
+
+  @if $include-text-container {
+    @include react-md-typography-text-container;
+  }
+}
+
+/// Creates a utility class name for containing long amounts of text. This is set up
+/// to center the text in the page and keep the line width to the `$md-typography-max-line-length`.
+@mixin react-md-typography-text-container {
+  .md-text-container {
+    @extend %md-block-centered;
+
+    max-width: $md-typography-max-line-length;
+    width: 100%;
+
+    &.md-text-container.md-cell {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/// Creates utility class names for common text positioning and transforms.
+@mixin react-md-typography-utilities {
   .md-text-left {
     @extend %md-text-left;
   }
@@ -592,18 +638,6 @@ $md-line-height: 20 / $md-font-size-base !default;
 
   .md-font-bold {
     @extend %md-font-bold;
-  }
-
-  .md-text-container {
-    @extend %md-block-centered;
-
-    max-width: $md-typography-max-line-length;
-    width: 100%;
-
-    &.md-text-container.md-cell {
-      margin-left: auto;
-      margin-right: auto;
-    }
   }
 }
 
