@@ -237,6 +237,12 @@ class Button extends PureComponent {
     ink: PropTypes.node,
 
     /**
+     * A tooltip from `injectTooltip`
+     * @access private
+     */
+    tooltip: PropTypes.node,
+
+    /**
      * Custom validator for verifying that only one type is defined and that
      * at one type is defined.
      */
@@ -470,6 +476,7 @@ class Button extends PureComponent {
       disabled,
       component,
       ink,
+      tooltip,
       icon,
       forceIconSize,
       ...props
@@ -537,6 +544,7 @@ class Button extends PureComponent {
         }, className)}
       >
         {ink}
+        {tooltip}
         {children}
       </Component>
     );

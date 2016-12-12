@@ -72,9 +72,20 @@ class TableColumn extends PureComponent {
     tooltipLabel: PropTypes.string,
 
     /**
+     * An optional delay to apply to the tooltip before it appears.
+     */
+    tooltipDelay: PropTypes.number,
+
+    /**
      * The position of the tooltip.
      */
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
+     * The injected tooltip.
+     * @access private
+     */
+    tooltip: PropTypes.node,
   };
 
   static defaultProps = {
@@ -93,6 +104,7 @@ class TableColumn extends PureComponent {
       sorted,
       sortIconChildren,
       sortIconClassName,
+      tooltip,
       ...props
     } = this.props;
     const sortable = typeof sorted === 'boolean';
@@ -124,6 +136,7 @@ class TableColumn extends PureComponent {
           'md-text-right': numeric,
         }, className)}
       >
+        {tooltip}
         {displayedChildren}
       </Component>
     );

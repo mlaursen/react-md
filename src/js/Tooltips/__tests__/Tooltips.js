@@ -2,8 +2,6 @@
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../injectTooltip');
 
-// Expect a warning for style mutating since the style will be NaN
-
 import React, { PropTypes } from 'react';
 import {
   Simulate,
