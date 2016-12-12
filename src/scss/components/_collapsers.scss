@@ -11,8 +11,18 @@
       transition-property: transform;
     }
 
+    .md-tooltip-container {
+      transform: rotate3d(0, 0, 1, 0deg);
+      transition-duration: $md-transition-time;
+      transition-property: transform;
+    }
+
     &--flipped {
       transform: rotate3d(0, 0, 1, 180deg);
+
+      .md-tooltip-container {
+        transform: rotate3d(0, 0, 1, -180deg);
+      }
     }
   }
 }
