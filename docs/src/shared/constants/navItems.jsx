@@ -66,6 +66,10 @@ function mapToNavItems(route, parents = []) {
     resolvedComponent = component;
   } else if (props.href) {
     resolvedComponent = 'a';
+    if (!props.href.match(/sassdoc/)) {
+      props.rel = 'noopener noreferrer';
+      props.target = '_blank';
+    }
   } else if (!nestedItems) {
     resolvedComponent = Link;
   }
@@ -92,22 +96,18 @@ const routes = internalRoutes.concat([{ divider: true }, {
   href: 'https://facebook.github.io/react/',
   avatarProps: { src: reactLogo, alt: 'React Logo' },
   primaryText: 'React',
-  target: '_blank',
 }, {
   href: 'https://www.google.com/design/spec/material-design/introduction.html',
   avatarProps: { src: googleLogo, alt: 'Google Logo', className: 'google-logo' },
   primaryText: 'Material Design',
-  target: '_blank',
 }, {
   href: 'https://design.google.com/icons/',
   avatarProps: { src: googleLogo, alt: 'Google Logo', className: 'google-logo' },
   primaryText: 'Material Icons',
-  target: '_blank',
 }, {
   href: 'http://webaim.org/resources/contrastchecker/',
   icon: 'accessibility',
   primaryText: 'Contrast Checker',
-  target: '_blank',
 }]).map(route => mapToNavItems(route));
 
 function isNestedActive(nestedItems, pathname) {

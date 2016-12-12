@@ -5,6 +5,7 @@ import cn from 'classnames';
 import getField from '../utils/getField';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
+import findTable from './findTable';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps
@@ -153,28 +154,8 @@ export default class TablePagination extends PureComponent {
     this._controls = findDOMNode(controls);
   }
 
-  _findTable(el) {
-    let table;
-    let node = el;
-    while (node && node.parentNode) {
-      if (node.classList && node.classList.contains('md-data-table')) {
-        // Attempt to check one more element up to see if there is a table-container
-        // for responsive tables.
-        table = node;
-      } else if (node.classList && node.classList.contains('md-data-table--responsive')) {
-        return node;
-      } else if (table) {
-        return table;
-      }
-
-      node = node.parentNode;
-    }
-
-    return null;
-  }
-
   _position() {
-    const table = this._findTable(findDOMNode(this));
+    const table = findTable(findDOMNode(this));
     if (table) {
       this.setState({
         controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),

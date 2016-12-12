@@ -11,6 +11,8 @@ import TableColumn from './TableColumn';
 import TextField from '../TextFields/TextField';
 import FontIcon from '../FontIcons/FontIcon';
 
+import findTable from './findTable';
+
 /**
  * A Text Edit dialog for tables. This can either be a small
  * version which only has the text field or a large version
@@ -48,6 +50,26 @@ export default class EditDialogColumn extends PureComponent {
     dialogClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the text field.
+     */
+    textFieldStyle: PropTypes.object,
+
+    /**
+     * An optional class name to apply to the text field.
+     */
+    textFieldClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the text field's input.
+     */
+    inputStyle: PropTypes.object,
+
+    /**
+     * An optional class name to apply to the text field's input.
+     */
+    inputClassName: PropTypes.string,
+
+    /**
      * The transition duration when the dialog is moving from
      * active to inactive.
      */
@@ -68,7 +90,10 @@ export default class EditDialogColumn extends PureComponent {
      * will make the component controlled so you will need
      * to provide an `onChange` function.
      */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * An optional function to call when the text field's value
@@ -79,7 +104,10 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The default value for the column.
      */
-    defaultValue: PropTypes.string,
+    defaultValue: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * An optional function to call when the input is clicked.
@@ -206,6 +234,24 @@ export default class EditDialogColumn extends PureComponent {
      * This is injected by the `TableRow` component.
      */
     header: PropTypes.bool,
+
+    /**
+     * The type for the text field.
+     */
+    type: TextField.propTypes.type,
+
+    /**
+     * Boolean if the min width of the dialog should be set to the `$md-edit-dialog-column-min-width` variable.
+     * If this is undefined, the min width will be enforced when the `type` prop is `text`.
+     */
+    enforceMinWidth: PropTypes.bool,
+
+    /**
+     * When the dialog is open and a user scrolls the dialog offscreen, this is the amount
+     * of the dialog that should be offscreen before hiding the dialog (inverse). The default
+     * is to have 25% of the dialog offscreen.
+     */
+    scrollThreshold: PropTypes.number.isRequired,
   };
 
   static contextTypes = {
@@ -216,12 +262,14 @@ export default class EditDialogColumn extends PureComponent {
   };
 
   static defaultProps = {
+    type: 'text',
     defaultValue: '',
     transitionDuration: 300,
     okOnOutsideClick: true,
     okLabel: 'Save',
     cancelLabel: 'Cancel',
     inlineIconChildren: 'edit',
+    scrollThreshold: 0.75,
   };
 
   constructor(props, context) {
@@ -230,58 +278,40 @@ export default class EditDialogColumn extends PureComponent {
     this.state = {
       value: props.defaultValue,
       active: false,
+      absolute: false,
+      animating: false,
     };
 
     this._setColumn = this._setColumn.bind(this);
+    this._setDialog = this._setDialog.bind(this);
     this._setField = this._setField.bind(this);
     this._setOkButton = this._setOkButton.bind(this);
     this._save = this._save.bind(this);
     this._overrideTab = this._overrideTab.bind(this);
-    this._handleClick = this._handleClick.bind(this);
     this._handleKeyUp = this._handleKeyUp.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleChange = this._handleChange.bind(this);
     this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
     this._handleCancelClick = this._handleCancelClick.bind(this);
     this._handleClickOutside = this._handleClickOutside.bind(this);
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._positionCell = this._positionCell.bind(this);
+    this._repositionCell = this._repositionCell.bind(this);
+    this._activateDialog = this._activateDialog.bind(this);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.active === nextState.active) {
+  componentDidUpdate(prevProps, prevState) {
+    const { active } = this.state;
+    if (active === prevState.active) {
       return;
+    } else if (this._table) {
+      this._table[`${active ? 'add' : 'remove'}EventListener`]('scroll', this._repositionCell);
+      this._left = active ? this.state.left : null;
+      this._scrollLeft = active ? this._table.scrollLeft : null;
     }
 
-    if (nextState.active) {
-      // Wait for a re-render cycle before adding the window click event.
-      // This will be called immediately after being clicked open and close
-      // the dialog immediately on open.
-      this._clickTimeout = setTimeout(() => {
-        this._clickTimeout = null;
-        window.addEventListener('click', this._handleClickOutside);
-      }, TICK);
-    } else {
-      if (this._clickTimeout) {
-        clearTimeout(this._clickTimeout);
-        this._clickTimeout = null;
-      }
-      window.removeEventListener('click', this._handleClickOutside);
-    }
-
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
-
-    this._timeout = setTimeout(() => {
-      if (!nextState.active && this._field) {
-        this._field.blur();
-      }
-      this._timeout = null;
-      this.setState({ animating: false });
-    }, nextProps.transitionDuration);
-    this.setState({ animating: true });
+    window[`${active ? 'add' : 'remove'}EventListener`]('click', this._handleClickOutside);
   }
 
   componentWillUnmount() {
@@ -290,14 +320,26 @@ export default class EditDialogColumn extends PureComponent {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
+  }
 
-    if (this._clickTimeout) {
-      clearTimeout(this._clickTimeout);
+  _getDialogPosition(dialog) {
+    let left = null;
+    let width = null;
+    if (dialog) {
+      left = dialog.getBoundingClientRect().left - 1;
+      width = dialog.offsetWidth;
     }
+
+    return { width, left };
   }
 
   _setColumn(column) {
     this._column = findDOMNode(column);
+    this._table = findTable(this._column);
+  }
+
+  _setDialog(dialog) {
+    this._dialog = dialog;
   }
 
   _setField(field) {
@@ -308,6 +350,85 @@ export default class EditDialogColumn extends PureComponent {
 
   _setOkButton(okButton) {
     this._okButton = findDOMNode(okButton);
+  }
+
+  /**
+   * This function will absolutely position a cell either on mouse over, keyboard tab focus,
+   * or touch start. This allows the table cell to expand outside of the table's scroll view.
+   */
+  _positionCell() {
+    if (this.props.inline) {
+      return;
+    }
+
+    let position;
+    if (!this.state.absolute) {
+      position = this._getDialogPosition(this._dialog, this._table);
+    }
+
+    this.setState({ absolute: true, ...position });
+  }
+
+  /**
+   * When the dialog is open and the user scrolls the data table (for some reason), this will
+   * keep the cell positioned correctly.
+   */
+  _repositionCell() {
+    if (!this._ticking) {
+      requestAnimationFrame(() => {
+        this._ticking = false;
+
+        let left = this._left;
+        let scrolledOut = false;
+        if (this._table) {
+          const { scrollLeft, offsetWidth } = this._table;
+          left -= (scrollLeft - this._scrollLeft);
+          scrolledOut = left < 16 || offsetWidth - left < this.state.width * this.props.scrollThreshold;
+        }
+
+        let { absolute, active } = this.state;
+        if (!this._timeout && scrolledOut) {
+          this._timeout = setTimeout(() => {
+            this._timeout = null;
+            this.setState({ absolute: false, left: null, width: null });
+          }, this.props.transitionDuration);
+          active = false;
+          absolute = true;
+        }
+
+        this.setState({ left, absolute, active });
+      });
+    }
+
+    this._ticking = true;
+  }
+
+  /**
+   * Activates the dialog after it has already been positioned absolutely. This
+   * is triggered froma  click event, a touchend event, or the callback of the `this.setState`
+   * when coming from a keyboard focus event.
+   *
+   * @param {Object=} e - The click or touchend event.
+   */
+  _activateDialog(e) {
+    if (e) {
+      let callback;
+      if (e.type === 'click') {
+        callback = 'onClick';
+      } else if (e.type === 'touchend') {
+        callback = 'onTouchEnd';
+      }
+
+      if (callback && this.props[callback]) {
+        this.props[callback](e);
+      }
+    }
+
+    if (this.props.inline || this.state.active) {
+      return;
+    }
+
+    this.setState({ active: true, cancelValue: getField(this.props, this.state, 'value') });
   }
 
   _handleClickOutside(e) {
@@ -324,18 +445,30 @@ export default class EditDialogColumn extends PureComponent {
     }
   }
 
-  _handleClick(e) {
-    if (this.props.onClick) {
-      this.props.onClick(e);
+  _handleMouseOver(e) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e);
     }
 
-    if (this.props.inline || this.state.active) {
+    this._positionCell();
+  }
+
+  _handleMouseLeave(e) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e);
+    }
+
+    if (this.props.inline) {
       return;
     }
 
-    this.setState({ active: true, cancelValue: getField(this.props, this.state, 'value') });
-  }
+    let position;
+    if (!this.state.active) {
+      position = { width: null, left: null };
+    }
 
+    this.setState({ absolute: false, ...position });
+  }
 
   _handleKeyUp(e) {
     if (this.props.onKeyUp) {
@@ -351,10 +484,9 @@ export default class EditDialogColumn extends PureComponent {
     // Basically position the edit field absolutely, wait for a re-render, then activate the dialog.
     this._timeout = setTimeout(() => {
       this._timeout = null;
-      this.setState({ active: true, cancelValue: getField(this.props, this.state, 'value') });
+      this._activateDialog();
     }, TICK);
-
-    this.setState({ absolute: true });
+    this._positionCell();
   }
 
   _handleTouchStart(e) {
@@ -362,19 +494,7 @@ export default class EditDialogColumn extends PureComponent {
       this.props.onTouchStart(e);
     }
 
-    this.setState({ absolute: true });
-  }
-
-  _handleTouchEnd(e) {
-    if (this.props.onTouchEnd) {
-      this.props.onTouchEnd(e);
-    }
-
-    if (this.state.active || this.props.inline) {
-      return;
-    }
-
-    this.setState({ active: true, cancelValue: getField(this.props, this.state, 'value') });
+    this._positionCell();
   }
 
   _handleKeyDown(e) {
@@ -394,7 +514,7 @@ export default class EditDialogColumn extends PureComponent {
   }
 
   _overrideTab(e) {
-    const { large, inline } = this.props;
+    const { large, inline, okOnOutsideClick } = this.props;
     const key = e.which || e.keyCode;
     if (key !== TAB) {
       return;
@@ -402,10 +522,10 @@ export default class EditDialogColumn extends PureComponent {
       this._save(e);
       return;
     } else if (!large) {
-      if (getField(this.props, this.state, 'value')) {
-        e.preventDefault();
+      if (okOnOutsideClick) {
+        this._save(e);
       } else {
-        this.setState({ active: false });
+        this._handleCancelClick(e);
       }
       return;
     }
@@ -431,7 +551,11 @@ export default class EditDialogColumn extends PureComponent {
       this.props.onOkClick(getField(this.props, this.state, 'value'), e);
     }
 
-    this.setState({ active: false, absolute: false });
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ absolute: false, left: null, width: null });
+    }, this.props.transitionDuration);
+    this.setState({ active: false, absolute: true });
   }
 
   _handleCancelClick(e) {
@@ -439,7 +563,17 @@ export default class EditDialogColumn extends PureComponent {
       this.props.onCancelClick(this.state.cancelValue, e);
     }
 
-    this.setState({ absolute: false, active: false, value: this.state.cancelValue });
+    const state = { absolute: true, active: false };
+    if (typeof this.props.value === 'undefined') {
+      state.value = this.state.cancelValue;
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ absolute: false, left: null, width: null });
+    }, this.props.transitionDuration);
+
+    this.setState(state);
   }
 
   _handleChange(value, e) {
@@ -452,38 +586,18 @@ export default class EditDialogColumn extends PureComponent {
     }
   }
 
-  _handleMouseOver(e) {
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
-    }
-
-    if (this.props.inline) {
-      return;
-    }
-
-    this.setState({ absolute: true });
-  }
-
-  _handleMouseLeave(e) {
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
-    }
-
-    if (this.props.inline) {
-      return;
-    }
-
-    this.setState({ absolute: false });
-  }
-
   render() {
     const { rowId } = this.context;
-    const { active, absolute, animating } = this.state;
+    const { active, absolute, animating, left, width } = this.state;
     const {
       style,
       className,
       dialogStyle,
       dialogClassName,
+      textFieldStyle,
+      textFieldClassName,
+      inputStyle,
+      inputClassName,
       maxLength,
       title,
       okLabel,
@@ -496,6 +610,7 @@ export default class EditDialogColumn extends PureComponent {
       inlineIconClassName,
       noIcon,
       header,
+      enforceMinWidth,
       ...props
     } = this.props;
 
@@ -511,6 +626,7 @@ export default class EditDialogColumn extends PureComponent {
     delete props.header;
     delete props.okOnOutsideClick;
     delete props.transitionDuration;
+    delete props.scrollThreshold;
 
     const value = getField(this.props, this.state, 'value');
     let { id } = this.props;
@@ -560,25 +676,29 @@ export default class EditDialogColumn extends PureComponent {
 
     return (
       <TableColumn
-        style={style}
+        style={{ left, ...style }}
         className={cn('prevent-grow md-edit-dialog-column', {
-          'md-edit-dialog-column--animating': !inline && (absolute || active || animating),
-          'md-edit-dialog-column--active': active,
+          'md-table-column--fixed': !inline && (absolute || active || animating),
+          'md-table-column--fixed-active': active,
         }, className)}
         header={header}
         ref={this._setColumn}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
-        onClick={this._handleClick}
+        onClick={this._activateDialog}
         onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._handleTouchEnd}
+        onTouchEnd={this._activateDialog}
       >
         <div
           {...ariaProps}
-          style={dialogStyle}
+          ref={this._setDialog}
+          style={{ width, ...dialogStyle }}
           className={cn('md-edit-dialog', {
             'md-edit-dialog--active': active,
             'md-edit-dialog--inline': inline,
+            'md-edit-dialog--min-width': typeof enforceMinWidth === 'undefined'
+              ? props.type === 'text'
+              : enforceMinWidth,
             'md-background': active,
           }, dialogClassName)}
         >
@@ -593,8 +713,12 @@ export default class EditDialogColumn extends PureComponent {
             placeholder={active ? placeholder : placeholder || label}
             block={!active}
             paddedBlock={false}
-            className={pointer}
-            inputClassName={pointer}
+            style={textFieldStyle}
+            className={cn(pointer, textFieldClassName)}
+            inputStyle={inputStyle}
+            inputClassName={cn(pointer, {
+              'md-text-right': props.type === 'number',
+            }, inputClassName)}
             onKeyUp={this._handleKeyUp}
             onKeyDown={this._handleKeyDown}
             value={value}

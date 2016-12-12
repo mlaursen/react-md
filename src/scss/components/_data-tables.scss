@@ -147,6 +147,10 @@ $md-data-table-card-header-font-size: 16px !default;
   @include react-md-data-table-rows($light-theme);
   @include react-md-data-table-column;
 
+  @if $include-select-fields or $include-edit-dialog {
+    @include react-md-data-table-fixed-columns;
+  }
+
   @if $include-checkboxes {
     @include react-md-data-table-checkboxes;
   }
@@ -277,7 +281,6 @@ $md-data-table-card-header-font-size: 16px !default;
 @mixin react-md-data-table-column {
   .md-table-column {
     padding-right: $md-data-table-padding;
-    position: relative;
     white-space: nowrap;
 
     &:first-child {
@@ -326,24 +329,19 @@ $md-data-table-card-header-font-size: 16px !default;
 @mixin react-md-data-table-edit-dialogs {
   .md-edit-dialog-column {
     padding-right: 0;
-
-    &--animating {
-      position: absolute;
-    }
-
-    &--active {
-      z-index: 1;
-    }
   }
 
   .md-edit-dialog {
     left: 0;
     min-height: $md-data-table-column-height;
-    min-width: $md-edit-dialog-min-width;
     padding-right: $md-data-table-padding;
     top: 0;
     transition-duration: .3s;
     transition-property: background, box-shadow, padding;
+
+    &--min-width {
+      min-width: $md-edit-dialog-min-width;
+    }
 
     &--active {
       @include md-box-shadow(1);
@@ -385,8 +383,10 @@ $md-data-table-card-header-font-size: 16px !default;
     padding-left: $md-select-field-left-padding;
   }
 
-  .md-data-table .md-select-field--btn {
-    height: $md-data-table-column-height;
+  .md-select-field-column {
+    .md-select-field--btn {
+      height: $md-data-table-column-height;
+    }
   }
 }
 
@@ -476,6 +476,16 @@ $md-data-table-card-header-font-size: 16px !default;
   }
 }
 
+@mixin react-md-data-table-fixed-columns {
+  .md-table-column--fixed {
+    position: absolute;
+  }
+
+  .md-table-column--fixed-active {
+    z-index: 1;
+  }
+}
+
 /// Creates the media queries and styles for data tables. If the edit dialog column is not included, nothing
 /// will be created.
 ///
@@ -489,12 +499,6 @@ $md-data-table-card-header-font-size: 16px !default;
       .md-edit-dialog-column .md-text-field-container--input-block {
         padding-bottom: 14.5px;
         padding-top: 14.5px;
-      }
-    }
-
-    @media #{$md-mobile-media} and (max-width: #{$md-tablet-min-width - 1}) {
-      .md-edit-dialog-column--animating {
-        right: $md-data-table-edit-dialog-mobile-right;
       }
     }
   }
