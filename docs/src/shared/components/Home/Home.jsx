@@ -26,7 +26,7 @@ const Home = () => (
       <Button component={Link} to={`/${FIRST_ROUTE}`} raised secondary label="View Demo" type={null} />
     </header>
     <h3 className="md-text-container about">{about}</h3>
-    <footer className="md-grid">
+    <footer className="md-grid quick-links">
       <ImgCard
         to="getting-started/prerequisites"
         src={gettingStarted}

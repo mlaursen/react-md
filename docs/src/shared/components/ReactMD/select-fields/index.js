@@ -1,5 +1,6 @@
 import React from 'react';
 
+import statesRaw from '!!raw!constants/states';
 import SelectFieldExamples from './SelectFieldExamples';
 import SelectFieldExamplesRaw from '!!raw!./SelectFieldExamples';
 import SelectFieldButtonExamples from './SelectFieldButtonExamples';
@@ -11,7 +12,15 @@ export default [{
 SelectFields are initially styled like text fields. They have an optional floating label, placeholder,
 and focus indicator. In addition, the select field can have help text, error text, or be required.
   `,
-  code: SelectFieldExamplesRaw,
+  code: `
+/* SelectFieldExample.jsx */
+${SelectFieldExamplesRaw}
+\`\`\`
+
+\`\`\`js
+/* states.js */
+${statesRaw}
+`,
   children: <SelectFieldExamples />,
 }, {
   title: 'Select Button Examples',

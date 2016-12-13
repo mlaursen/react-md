@@ -27,7 +27,9 @@ export default function onRouteUpdate() {
       scrollToHash();
     }
   } else {
-    document.getElementById('main-content').focus();
+    if (!window.location.pathname.match(/focus-container/)) {
+      document.getElementById('main-content').focus();
+    }
     window.scrollTo(0, 0);
   }
 }
