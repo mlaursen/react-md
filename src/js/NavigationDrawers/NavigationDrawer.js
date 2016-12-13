@@ -606,6 +606,27 @@ export default class NavigationDrawer extends PureComponent {
     drawerTransitionDuration: Drawer.defaultProps.transitionDuration,
   };
 
+  /**
+   * Determines the current media and returns an object containing matches for `mobile`, `tablet`, `desktop`,
+   * and the current drawer type. This expects a `props` object of the drawer.
+   *
+   * If this is used server side, it will default to only matching mobile.
+   *
+   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min
+   *    widths. This defaults to the drawer's default props.
+   * @return {Object} an object containing the media matches and the current type to use for the drawer.
+   */
+  static getCurrentMedia(props = NavigationDrawer.defaultProps) {
+    const {
+      mobileDrawerType: mobileType,
+      tabletDrawerType: tabletType,
+      desktopDrawerType: desktopType,
+      ...others
+    } = props;
+
+    return Drawer.getCurrentMedia({ mobileType, tabletType, desktopType, ...others });
+  }
+
   constructor(props) {
     super(props);
 

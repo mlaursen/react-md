@@ -305,7 +305,7 @@ export default class SelectField extends PureComponent {
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
-      'A select field can only have floating labels now Only provide the `label` prop'
+      'A select field can only have floating labels now. Only provide the `label` prop'
     ),
     noAutoAdjust: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
