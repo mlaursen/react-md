@@ -89,6 +89,7 @@ export default class TableRow extends Component {
     this.state = {
       biggest: null,
       hover: false,
+      selects: [],
     };
 
     this._handleMouseOver = this._handleMouseOver.bind(this);
@@ -151,12 +152,14 @@ export default class TableRow extends Component {
   }
 
   _setLongestColumn(row) {
-    if (!row || !this.props.autoAdjust || !this.context.header) {
+    if (!row || !this.props.autoAdjust) {
       return;
     }
 
+    const selects = [];
     const cols = Array.prototype.slice.call(row.querySelectorAll('.md-table-column'));
     const biggest = cols.reduce((prevBiggest, col, i) => {
+      selects.push(!!col.className.match(/select-field/));
       if (col.className.match(/prevent-grow/)) {
         return prevBiggest;
       }
@@ -173,11 +176,11 @@ export default class TableRow extends Component {
       return;
     }
 
-    this.setState({ biggest });
+    this.setState({ biggest, selects });
   }
 
   render() {
-    const { hover, biggest } = this.state;
+    const { hover, biggest, selects } = this.state;
     const {
       className,
       children,
@@ -197,15 +200,15 @@ export default class TableRow extends Component {
     const columns = Children.map(children, (col, i) => cloneElement(col, {
       header: getField(col.props, this.context, 'header'),
       className: cn({
-        'md-table-column--grow': biggest && biggest.index === i,
-        'md-table-column--adjusted': biggest && biggest.index !== i && i + 1 < length,
+        'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,
+        'md-table-column--adjusted': selects.length && !selects[i] && biggest && biggest.index !== i && i + 1 < length,
       }, col.props.className),
     }));
 
     return (
       <tr
         {...props}
-        ref={this.context.header ? this._setLongestColumn : null}
+        ref={this._setLongestColumn}
         className={cn('md-table-row', className, {
           'md-table-row--hover': hover,
           'md-table-row--active': !this.context.header && selected,

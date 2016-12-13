@@ -282,6 +282,10 @@ export default class EditDialogColumn extends PureComponent {
       animating: false,
     };
 
+    this._table = null;
+    this._column = null;
+    this._field = null;
+
     this._setColumn = this._setColumn.bind(this);
     this._setDialog = this._setDialog.bind(this);
     this._setField = this._setField.bind(this);
@@ -688,6 +692,7 @@ export default class EditDialogColumn extends PureComponent {
         onClick={this._activateDialog}
         onTouchStart={this._handleTouchStart}
         onTouchEnd={this._activateDialog}
+        __fixedColumn
       >
         <div
           {...ariaProps}

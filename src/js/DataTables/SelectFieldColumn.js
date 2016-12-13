@@ -216,10 +216,11 @@ export default class SelectFieldColumn extends PureComponent {
     return (
       <TableColumn
         style={{ left, ...style }}
-        className={cn('prevent-grow md-select-field-column', {
+        className={cn('md-select-field-column', {
           'md-table-column--fixed md-table-column--fixed-active': active,
         }, className)}
         header={header}
+        __fixedColumn
       >
         <div
           ref={this._setWrapper}

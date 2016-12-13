@@ -287,6 +287,10 @@ $md-data-table-card-header-font-size: 16px !default;
       padding-left: $md-data-table-padding;
     }
 
+    &--relative {
+      position: relative;
+    }
+
     &--adjusted {
       padding-right: $md-data-table-min-padding;
     }

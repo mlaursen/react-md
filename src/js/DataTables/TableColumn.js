@@ -61,6 +61,12 @@ class TableColumn extends PureComponent {
     adjusted: PropTypes.bool,
 
     /**
+     * Boolean if this column is the `th` for a column of `SelectFieldColumn`. This will apply
+     * additional styling to the column to position with the select field.
+     */
+    selectColumnHeader: PropTypes.bool,
+
+    /**
      * Boolean if this is a `th` component. This value **should** be set
      * automatically for you if it is in the `TableHeader` component.
      */
@@ -86,6 +92,13 @@ class TableColumn extends PureComponent {
      * @access private
      */
     tooltip: PropTypes.node,
+
+    /**
+     * Boolean if the TableColumn is coming from the EditDialogColumn or SelectFieldColumn
+     * components. When this is false, it will update the column to have `position: relative`
+     * so that tooltips can be displayed.
+     */
+    __fixedColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -105,6 +118,8 @@ class TableColumn extends PureComponent {
       sortIconChildren,
       sortIconClassName,
       tooltip,
+      selectColumnHeader,
+      __fixedColumn,
       ...props
     } = this.props;
     const sortable = typeof sorted === 'boolean';
@@ -130,6 +145,8 @@ class TableColumn extends PureComponent {
           'md-table-column--data': !header,
           'md-table-column--adjusted': adjusted,
           'md-table-column--sortable md-pointer--hover': sortable,
+          'md-table-column--relative': !__fixedColumn && tooltip,
+          'md-table-column--select-field': selectColumnHeader,
           'md-text': !header,
           'md-text--secondary': header,
           'md-text-left': !numeric,
