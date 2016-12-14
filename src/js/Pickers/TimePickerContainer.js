@@ -4,7 +4,7 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC } from '../constants/keyCodes';
+import { ESC, ENTER } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
@@ -201,6 +201,11 @@ export default class TimePickerContainer extends PureComponent {
      */
     disabled: PropTypes.bool,
 
+    /**
+     * Boolean if the dialog should be able to close if a keyboard user presses the escape key.
+     */
+    closeOnEsc: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
@@ -217,6 +222,7 @@ export default class TimePickerContainer extends PureComponent {
     okPrimary: true,
     cancelLabel: 'Cancel',
     cancelPrimary: true,
+    closeOnEsc: true,
     'aria-label': 'Select a time',
   };
 
@@ -253,6 +259,7 @@ export default class TimePickerContainer extends PureComponent {
     this._setTimeMode = this._setTimeMode.bind(this);
     this._setTempTime = this._setTempTime.bind(this);
     this._handleOkClick = this._handleOkClick.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleCancelClick = this._handleCancelClick.bind(this);
   }
 
@@ -344,6 +351,12 @@ export default class TimePickerContainer extends PureComponent {
     this.setState({ tempTime: time });
   }
 
+  _handleKeyDown(e) {
+    if ((e.which || e.keyCode) === ENTER) {
+      this._toggleOpen(e);
+    }
+  }
+
   _handleOkClick(e) {
     const { onVisibilityChange, onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
@@ -419,6 +432,7 @@ export default class TimePickerContainer extends PureComponent {
       pickerClassName,
       fullWidth,
       lineDirection,
+      closeOnEsc,
       'aria-label': ariaLabel,
       ...props
     } = this.props;
@@ -470,6 +484,8 @@ export default class TimePickerContainer extends PureComponent {
           dialogClassName="md-dialog--picker"
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
+          closeOnEsc={closeOnEsc}
+          focusOnMount={false}
         >
           {picker}
         </Dialog>
@@ -485,6 +501,7 @@ export default class TimePickerContainer extends PureComponent {
           inputClassName={cn({ 'md-pointer--hover': !disabled })}
           leftIcon={icon}
           onClick={this._toggleOpen}
+          onKeyDown={this._handleKeyDown}
           label={label}
           placeholder={placeholder}
           value={this._getTextFieldValue(this.props, this.state)}

@@ -1,6 +1,8 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
 
+import { TAB } from '../constants/keyCodes';
+
 const CLOCK_PADDING = 4;
 
 /**
@@ -30,6 +32,8 @@ export default class ClockTime extends PureComponent {
      * The radius of the clock.
      */
     radius: PropTypes.number.isRequired,
+
+    onKeyboardFocus: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -42,6 +46,7 @@ export default class ClockTime extends PureComponent {
 
     this._setTime = this._setTime.bind(this);
     this._setPosition = this._setPosition.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,10 +55,20 @@ export default class ClockTime extends PureComponent {
     }
   }
 
+  _handleKeyUp(e) {
+    if ((e.which || e.keyCode) === TAB) {
+      this.props.onKeyboardFocus(this.props.time);
+    }
+  }
+
   _setTime(time) {
     this._time = time;
     if (time !== null) {
       this._setPosition(this.props, time);
+
+      if (this.props.active) {
+        time.focus();
+      }
     }
   }
 
@@ -79,11 +94,13 @@ export default class ClockTime extends PureComponent {
     return (
       <div
         ref={this._setTime}
+        tabIndex={0}
         className={cn('md-clock-time md-text-no-select md-pointer--none', {
           'md-text': !active,
           'md-picker-text--active': active,
         })}
         style={this.state.style}
+        onKeyUp={this._handleKeyUp}
       >
         <span className="md-clock-time-value">{time}</span>
       </div>

@@ -144,7 +144,7 @@ export default class ClockFace extends PureComponent {
   }
 
   render() {
-    const { time, minutes, timePeriod } = this.props;
+    const { time, minutes, timePeriod, onChange } = this.props;
     const { radius } = this.state;
     const size = !minutes && !timePeriod ? 24 : 12;
     const times = Array.apply(null, new Array(size)).map((_, i) => {
@@ -162,6 +162,7 @@ export default class ClockFace extends PureComponent {
           time={clockTime}
           active={clockTime === time}
           radius={radius}
+          onKeyboardFocus={onChange}
         />
       );
     });

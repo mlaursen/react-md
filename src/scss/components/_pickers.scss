@@ -565,6 +565,10 @@ $md-clock-padding: 4px;
     position: absolute;
     width: $md-clock-time-size;
     z-index: 8;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .md-clock-time-value {
