@@ -76,7 +76,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
   constructor(props) {
     super(props);
 
-    this._composedComponent = null;
+    this._composed = null;
 
     this.getComposedComponent = this.getComposedComponent.bind(this);
     this._setComposedComponent = this._setComposedComponent.bind(this);
@@ -97,7 +97,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
    * > NOTE: This can be `null`, so make sure to do a null check before using..
    */
   getComposedComponent() {
-    return this._composedComponent;
+    return this._composed;
   }
 
   _setComposedComponent(component) {
