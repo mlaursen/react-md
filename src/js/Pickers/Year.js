@@ -20,6 +20,13 @@ export default class Year extends PureComponent {
     this._handleClick = this._handleClick.bind(this);
     this._setActive = this._setActive.bind(this);
     this._setInactive = this._setInactive.bind(this);
+    this._setActiveFocus = this._setActiveFocus.bind(this);
+  }
+
+  _setActiveFocus(btn) {
+    if (btn && this.props.active) {
+      btn.focus();
+    }
   }
 
   _setActive() {
@@ -40,6 +47,7 @@ export default class Year extends PureComponent {
     return (
       <button
         type="button"
+        ref={this._setActiveFocus}
         className={cn('md-btn md-pointer--hover md-full-width md-year', {
           'md-text': !active && !desktopActive,
           'md-text--theme-primary': active || desktopActive,
