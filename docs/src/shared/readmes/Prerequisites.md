@@ -1,14 +1,16 @@
 # Prerequisites
 To use this library, it is recommended to have previous experience using React
-and styling with sass or css. 
+and styling with sass or css. You should also be familiar with immutable data
+structures.
 
 #### Sass
 The sass is currently prefix-free, so you will need to use an [autoprefixer](https://github.com/postcss/autoprefixer)
-to include vendor prefixes. There are multiple pre-compiled themes available either from the `dist` folder or from [unpkg](https://unpkg.com).
-They can be included by using the `react-md.${PRIMARY}-${ACCENT}.min.css`. There are no development versions available.
+to include vendor prefixes. There are multiple pre-compiled and prefixed themes available either from the `dist` folder or from [unpkg](https://unpkg.com).
+They can be included by using the `react-md.${PRIMARY_COLOR}-${ACCENT_COLOR}.min.css`. There are no development versions available.
 
-- `dist/react-md.indigo-pink.min.css` - Production version
-- `https://unpkg.com/react-md/dist/react-md.indigo-pink.min.css` - Production version
+- `dist/react-md.indigo-pink.min.css`
+- `https://unpkg.com/react-md/dist/react-md.indigo-pink.min.css`
+- `https://unpkg.com/react-md/dist/react-md.deep_purple-deep_orange.min.css`
 
 > There are currently 255 precompiled themes. Every color is available with any secondary color but only with an accent of `400` and only the light theme.
 
