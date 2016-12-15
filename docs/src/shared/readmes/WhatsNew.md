@@ -1,15 +1,51 @@
 ## December 2016
+### v1.0.0 Released!
+
+This is the first prod-ready release of react-md. The library still isn't completely perfect, but I think it is close enough.
+
+#### TL;DR
+- Opt-in mixin component styles (or `@include react-md-everything;`)
+- BEM Styles
+- Grid System!
+- Not fully backwards compatible.
+- Accessibility focused.
+
+
+##### Changelog
+- Fixed the [background color bug](https://github.com/mlaursen/react-md/commit/49ce0717af9a63530c1239b0b18c9bd1941a0914).
+- Fixed the precompiled bundles to actually reflect what my documentation said. The precompiled bundles
+are now formatted as `PRIMARY-COLOR_SECONDARY_COLOR.min.css` instead of `PRIMARY-COLOR-SECONDARY-COLOR.MIN.CSS`.
+- Created a [mixin to create color class names](https://github.com/mlaursen/react-md/commit/14e19f3c767ed9901f94a36ee89da238b36e2a09).
+- Fixed the injectINK HOC for [keyboard _clicks_](https://github.com/mlaursen/react-md/commit/59dff18cfd8b5b3923b1fb346ef699d8bad3b302).
+- FileInput/FileUpload [bugfixes](https://github.com/mlaursen/react-md/commit/2c4e1111fc53e25df94db67a43b892dfb94c0e50).
+- Updated the password text fields' styles for [keyboard accessibility](https://github.com/mlaursen/react-md/commit/807aa2a0540756ae88845e5291bcb47e83c6d075).
+- Updated the TextFieldMessage to not shrink when in a block text field.
+- Updated EditDialogColumn for [accessibility](https://github.com/mlaursen/react-md/commit/217c42554044bdfda4652c8252c7863798c13b30).
+- Updated typography to be able to opt out of [utility class names](https://github.com/mlaursen/react-md/commit/5c5eaa2f7a23fd4a811e58bf59ac73a4dc828e66).
+- Updated SelectField [keyboard accessibility](https://github.com/mlaursen/react-md/commit/ffe270be18f2c957f2f257db800e1e602ba00e15).
+- Updated tooltips to no longer rotate along with the `.md-collapser`s.
+- Updated tooltips to be created through react components instead of my weird decision of creating it manually myself. [75eb2e0](https://github.com/mlaursen/react-md/commit/75eb2e0a6616e6109141fc38cb88b35527d52eff)
+- Rewrote SelectFieldColumn. [#170](https://github.com/mlaursen/react-md/issues/170)
+- Added the `getCurrentMedia` static method to the `NavigationDrawer` as well.
+- Updated permanent drawers to no longer use the Portal.
+- Updated the `Dialog` component to be able to be closed by pressing the escape key (only if not a `modal`). [b742ed5c](https://github.com/mlaursen/react-md/commit/b742ed5cedaff0e79c6b812794ffe1bf4d567258)
+- Updated the Date and Time pickers to have _some_ [keyboard accessibility](https://github.com/mlaursen/react-md/issues/173). This still isn't the ideal solution
+and will be changed in a future release (maybe?) to actually allow inline date and time selection that will appear in dropdowns.
+- Updated `FocusContainer` to be able to enable/disable the focus containment after being fully mounted.
+
 ### General Website Changes
 
 SassDoc pages are now searchable and filterable while on that page itself. I found that using the main search
 to attempt to keep finding variables on the same page was a bit annoying. The SassDoc page can now be quick navigated
 by clicking the visible FAB and clicking any items in the new Drawer.
 
+
 ### v1.0.0-beta Released
 
 This release fixed up a couple more bugs (listed below) and now the main focus will be figuring out if there are any
 production-breaking bugs remaining.
 
+##### Changelog
 - Fixed the Avatar colors changing [#161](https://github.com/mlaursen/react-md/issues/161)
 - Updated EditDialogColumn to interact correctly with keyboard focus and touch devices
 - Fixed the `Dialog` to remove the prevent scroll className when unmounting
@@ -44,7 +80,7 @@ The main focus of this release was adding a `JumpToContent` link for the `Naviga
 the `NavigationDrawer` (or specifically use the `JumpToContentLink` component), the first `tab` press on the page will show a link that
 will allow a user to focus the main content of the page instead of having to go through every navigation item.
 
-Some bugfixes were:
+##### Changelog
 - Fixed some color variables that I had mistyped/miscopied...
 - Fixed the spelling of `discreet -> discrete`
 - Fixed the `Sliders` when using touch devices. [#144](https://github.com/mlaursen/react-md/issues/164)
