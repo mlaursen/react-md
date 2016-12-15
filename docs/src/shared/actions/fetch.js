@@ -27,10 +27,12 @@ export default function fetch(endpoint, options) {
       resolve(global.fetch);
     } else if (__CLIENT__) {
       require.ensure([], require => {
-        resolve(require('isomorphic-fetch'));
+        require('isomorphic-fetch');
+        resolve(global.fetch);
       });
     } else {
-      resolve(require('isomorphic-fetch'));
+      require('isomorphic-fetch');
+      resolve(global.fetch);
     }
   }).then(fetch => fetch(encodeURI(endpoint), options)
     .then(response => {

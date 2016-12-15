@@ -29,6 +29,12 @@ export default [{
   description: `
 When the \`plain\` prop is not enabled, the \`DataTable\` will inject a checkbox at the start of each
 row which will allow the user to select that row.
+
+This example also introduces another component: \`SelectFieldColumn\`. When using the \`SelectFieldColumn\`,
+your \`TableColumn\` in the \`TableHeader\` should apply the \`.md-table-column--select-field\` to position
+the header with your select field. In addition, it is recommended to specify an exact width or min-width for
+your column on your column's header. When the values for the select field are different widths, the column's
+size will keep changing.
 `,
   code: DataTableExampleRaw,
   children: <DataTableExample />,

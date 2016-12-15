@@ -32,6 +32,11 @@ $search-size: 180px;
   .md-icon.md-text-field-icon--active {
     color: $md-white-base;
   }
+
+  // Increase the size to include the close button
+  .md-list {
+    width: calc(100% + 48px);
+  }
 }
 
 .main-toolbar .md-title {

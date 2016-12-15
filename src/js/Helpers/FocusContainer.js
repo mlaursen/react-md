@@ -66,6 +66,12 @@ export default class FocusContainer extends PureComponent {
      * An optional list of additional key codes to use for focus events.
      */
     additionalFocusKeys: PropTypes.arrayOf(PropTypes.number),
+
+    /**
+     * Boolean if the focus container should start or stop containing the focus within the container.
+     * This is useful for changing the focus requirements after mount.
+     */
+    containFocus: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -79,12 +85,75 @@ export default class FocusContainer extends PureComponent {
     this._containFocus = this._containFocus.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleKeyDown = this._handleKeyDown.bind(this);
+    this._enableFocusTrap = this._enableFocusTrap.bind(this);
+    this._disableFocusTrap = this._disableFocusTrap.bind(this);
+    this._attemptInitialFocus = this._attemptInitialFocus.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.containFocus === nextProps.containFocus) {
+      return;
+    }
+
+    if (this.props.containFocus) {
+      this._enableFocusTrap();
+      this._attemptInitialFocus();
+    } else {
+      this._disableFocusTrap();
+    }
+  }
+
+  componentDidUpdate() {
+    if (this._container) {
+      this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
+        .filter(el => el.tabIndex !== -1);
+    }
   }
 
   componentWillUnmount() {
     if (this._container) {
-      window.removeEventListener('focus', this._handleFocus, true);
-      window.removeEventListener('keydown', this._handleKeyDown, true);
+      this._disableFocusTrap();
+    }
+  }
+
+  _enableFocusTrap() {
+    window.addEventListener('focus', this._handleFocus, true);
+    window.addEventListener('keydown', this._handleKeyDown, true);
+  }
+
+  _disableFocusTrap() {
+    window.removeEventListener('focus', this._handleFocus, true);
+    window.removeEventListener('keydown', this._handleKeyDown, true);
+  }
+
+  _attemptInitialFocus() {
+    if (!this._container) {
+      return;
+    }
+
+    const { initialFocus } = this.props;
+
+    const toFocus = initialFocus
+      ? document.getElementById(initialFocus) || this._container.querySelector(initialFocus)
+      : this._focusables[0];
+
+    let debugError;
+    if (!toFocus && initialFocus) {
+      debugError = ' The `initialFocus` did not match a document\'s `id` or was an invalid ';
+      debugError += `\`querySelector\` for the container. \`initialFocus\`: \`${initialFocus}\`. `;
+      debugError += 'If this was supposed to be an `id`, make sure to prefix with the `#` symbol.';
+    }
+
+    invariant(
+      toFocus,
+      'You specified that the `FocusContainer` should focus an element on mount, ' +
+      'but a focusable element was not found in the children. This could be because ' +
+      'the `initialFocus` prop is an invalid id or query selector, or the children ' +
+      `do not contain a valid focusable element.${debugError}`
+    );
+
+    if (toFocus) {
+      toFocus.focus();
     }
   }
 
@@ -96,42 +165,20 @@ export default class FocusContainer extends PureComponent {
   _containFocus(containerRef) {
     if (containerRef === null) {
       this._container = null;
-      window.removeEventListener('focus', this._handleFocus, true);
-      window.removeEventListener('keydown', this._handleKeyDown, true);
+      this._disableFocusTrap();
       return;
     }
 
-    const { initialFocus, focusOnMount } = this.props;
+    const { focusOnMount } = this.props;
     this._container = findDOMNode(containerRef);
     this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
       .filter(el => el.tabIndex !== -1);
 
     if (focusOnMount) {
-      const toFocus = initialFocus
-        ? document.getElementById(initialFocus) || this._container.querySelector(initialFocus)
-        : this._focusables[0];
-
-      let debugError;
-      if (!toFocus && initialFocus) {
-        debugError = ' The `initialFocus` did not match a document\'s `id` or was an invalid ';
-        debugError += `\`querySelector\` for the container. \`initialFocus\`: \`${initialFocus}\`. `;
-        debugError += 'If this was supposed to be an `id`, make sure to prefix with the `#` symbol.';
-      }
-
-      invariant(
-        toFocus,
-        'You specified that the `FocusContainer` should focus an element on mount, ' +
-        'but a focusable element was not found in the children. This could be because ' +
-        'the `initialFocus` prop is an invalid id or query selector, or the children ' +
-        `do not contain a valid focusable element.${debugError}`
-      );
-
-      if (toFocus) {
-        toFocus.focus();
-      }
+      this._attemptInitialFocus();
     }
-    window.addEventListener('focus', this._handleFocus, true);
-    window.addEventListener('keydown', this._handleKeyDown, true);
+
+    this._enableFocusTrap();
   }
 
   _handleFocus(e) {
@@ -165,6 +212,7 @@ export default class FocusContainer extends PureComponent {
     const { component: Component, ...props } = this.props;
     delete props.initialFocus;
     delete props.focusOnMount;
+    delete props.containFocus;
     delete props.additionalFocusKeys;
 
     return (

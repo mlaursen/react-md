@@ -1,5 +1,11 @@
 @import '~react-md-scss';
 
+.file-input-grid {
+  .md-file-input-container {
+    margin: 8px;
+  }
+}
+
 .uploaded {
   max-width: calc(50% - 8px);
 

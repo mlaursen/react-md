@@ -30,7 +30,7 @@ const DataTableExample = ({ onRowToggle }) => {
       <TableHeader>
         <TableRow>
           <TableColumn>Dessert (100g serving)</TableColumn>
-          <TableColumn className="md-table-column--select-field">Type</TableColumn>
+          <TableColumn selectColumnHeader>Type</TableColumn>
           <TableColumn numeric>Calories</TableColumn>
           <TableColumn numeric>Fat (g)</TableColumn>
           <TableColumn numeric>Carbs (g)</TableColumn>

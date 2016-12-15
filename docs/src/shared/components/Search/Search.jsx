@@ -9,6 +9,8 @@ import Waypoint from 'react-waypoint';
 
 import './_search.scss';
 
+const style = { flexWrap: 'nowrap' };
+
 export default class Search extends PureComponent {
   static propTypes = {
     search: PropTypes.func.isRequired,
@@ -108,10 +110,6 @@ export default class Search extends PureComponent {
     this.setState({ value });
   };
 
-  _handleAutocomplete = () => {
-    this.setState({ value: '' });
-  };
-
   /**
    * Basically map the results shape into props for a `ListItem`.
    *
@@ -165,7 +163,7 @@ export default class Search extends PureComponent {
     }
 
     return (
-      <div style={{ flexWrap: 'nowrap' }} className="md-grid md-grid--no-spacing">
+      <div style={style} className="md-grid md-grid--no-spacing">
         <Autocomplete
           key="autocomplete"
           id="documentation-search"
@@ -175,14 +173,11 @@ export default class Search extends PureComponent {
           value={value}
           data={data}
           onFocus={showSearch}
-          onAutocomplete={this._handleAutocomplete}
-          clearOnAutocomplete
           className={cn('main-search md-select-field--toolbar', {
             'main-search--active': searching,
             'main-search--min-enforced': searching || animating,
           })}
           leftIcon={<FontIcon key="search">search</FontIcon>}
-          listStyle={{ width: 'calc(100% + 48px)' }}
         />
         {closeVisible ? close : null}
       </div>

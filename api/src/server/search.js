@@ -142,7 +142,7 @@ export default function search(req, res) {
     return;
   }
 
-  const url = `http://${host}${port ? `:${port}` : ''}${path || ''}/search?q=${q}`;
+  const url = `https://${host}${__DEV__ ? `:${port}` : ''}${path || ''}/search?q=${q}`;
   let next = null;
   let previous = null;
   if (total > start + limit) {

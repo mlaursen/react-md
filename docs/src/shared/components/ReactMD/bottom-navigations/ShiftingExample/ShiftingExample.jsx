@@ -106,7 +106,6 @@ export default class ShiftingExample extends PureComponent {
 
   /** Still 💩 */
   _enableScroll() {
-    console.log('ENABLED');
     if (!this._enabled) {
       this._content.addEventListener('scroll', this._handleScroll);
     }

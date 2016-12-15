@@ -34,21 +34,38 @@ export default class FileInputExamples extends PureComponent {
     const { toasts } = this.state;
 
     return (
-      <div>
+      <div className="md-grid file-input-grid">
+        <FileInput id="imageInput" onChange={this._handleFileSelect} accept="image/*" />
         <FileInput
-          id="imageInput"
-          label="Select an image from your computer"
+          id="imageInput1"
           onChange={this._handleFileSelect}
           accept="image/*"
           primary
         />
         <FileInput
           id="imageInput2"
-          label="Select an image from your computer"
           onChange={this._handleFileSelect}
           accept="image/*"
           secondary
           flat
+          iconBefore
+        />
+        <FileInput id="imageInputDisabled" disabled onChange={this._handleFileSelect} accept="image/*" />
+        <FileInput
+          id="imageInput1Disabled"
+          onChange={this._handleFileSelect}
+          accept="image/*"
+          primary
+          disabled
+        />
+        <FileInput
+          id="imageInput2Disabled"
+          onChange={this._handleFileSelect}
+          accept="image/*"
+          secondary
+          flat
+          iconBefore
+          disabled
         />
         <Snackbar toasts={toasts} onDismiss={this._dismiss} />
       </div>

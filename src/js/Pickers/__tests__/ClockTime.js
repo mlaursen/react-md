@@ -7,10 +7,12 @@ import { renderIntoDocument } from 'react-addons-test-utils';
 
 import ClockTime from '../ClockTime';
 
+const noop = () => {};
+
 describe('ClockTime', () => {
   it('displays the time', () => {
     const time = renderIntoDocument(
-      <ClockTime time={1} index={0} active={false} radius={120} />
+      <ClockTime time={1} index={0} active={false} radius={120} onKeyboardFocus={noop} />
     );
 
     const timeNode = findDOMNode(time);
@@ -19,7 +21,7 @@ describe('ClockTime', () => {
 
   it('sets top and left style properties on mount', () => {
     const time = renderIntoDocument(
-      <ClockTime time={1} index={0} active={false} radius={120} />
+      <ClockTime time={1} index={0} active={false} radius={120} onKeyboardFocus={noop} />
     );
 
     expect(time.state.style).toBeDefined();

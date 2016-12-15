@@ -27,12 +27,19 @@ export default class CalendarDate extends PureComponent {
     this._handleClick = this._handleClick.bind(this);
     this._setActive = this._setActive.bind(this);
     this._setInactive = this._setInactive.bind(this);
+    this._setFocus = this._setFocus.bind(this);
   }
 
   componentWillUpdate(nextProps) {
     const { DateTimeFormat, locales, date } = this.props;
     if (DateTimeFormat !== nextProps.DateTimeFormat || locales !== nextProps.locales || date !== nextProps.date) {
       this.setState(this._getFormattedDate(nextProps));
+    }
+  }
+
+  _setFocus(btn) {
+    if (btn && this.props.active) {
+      btn.focus();
     }
   }
 
@@ -66,6 +73,7 @@ export default class CalendarDate extends PureComponent {
     return (
       <button
         type="button"
+        ref={this._setFocus}
         onFocus={this._setActive}
         onBlur={this._setInactive}
         onMouseOver={this._setActive}

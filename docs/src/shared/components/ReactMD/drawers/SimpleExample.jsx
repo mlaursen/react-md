@@ -15,8 +15,8 @@ export default class SimpleExample extends PureComponent {
       position: 'left',
     };
 
-    this._openLeft = this._openLeft.bind(this);
-    this._openRight = this._openRight.bind(this);
+    this._toggleLeft = this._toggleLeft.bind(this);
+    this._toggleRight = this._toggleRight.bind(this);
     this._closeDrawer = this._closeDrawer.bind(this);
     this._handleToggle = this._handleToggle.bind(this);
   }
@@ -29,12 +29,12 @@ export default class SimpleExample extends PureComponent {
     this.setState({ visible: false });
   }
 
-  _openLeft() {
-    this.setState({ visible: true, position: 'left' });
+  _toggleLeft() {
+    this.setState({ visible: !this.state.visible, position: 'left' });
   }
 
-  _openRight() {
-    this.setState({ visible: true, position: 'right' });
+  _toggleRight() {
+    this.setState({ visible: !this.state.visible, position: 'right' });
   }
 
   render() {
@@ -49,8 +49,8 @@ export default class SimpleExample extends PureComponent {
     );
     return (
       <div className="md-grid">
-        <Button raised label="Toggle Drawer Left" onClick={this._openLeft} />
-        <Button raised label="Toggle Drawer Right" onClick={this._openRight} />
+        <Button raised label="Toggle Drawer Left" onClick={this._toggleLeft} />
+        <Button raised label="Toggle Drawer Right" onClick={this._toggleRight} />
         <Drawer
           {...this.state}
           navItems={inboxListItems}

@@ -80,7 +80,12 @@ function extractShapeKey(shapeValue) {
   let value = '';
   let remaining = shapeValue.substring(i);
   if (isPrimitiveType(remaining)) {
-    value = remaining.substring(0, remaining.indexOf(',') + 1);
+    let end = remaining.indexOf(',');
+    if (end === -1) {
+      end = remaining.indexOf(' ');
+    }
+
+    value = remaining.substring(0, end + 1);
     remaining = remaining.substring(value.length);
   } else if (remaining.match(/^oneOf/)) {
     value = remaining.substring(0, remaining.indexOf(']') + 3);

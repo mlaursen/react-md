@@ -295,15 +295,19 @@ export default class SelectField extends PureComponent {
      */
     toolbar: PropTypes.bool,
 
+    /**
+     * Boolean if the menu surrounding the select field should be full width or not.
+     */
+    fullWidth: PropTypes.bool,
+
     menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
     menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
-      'A select field can only have floating labels now Only provide the `label` prop'
+      'A select field can only have floating labels now. Only provide the `label` prop'
     ),
     noAutoAdjust: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
-    fullWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid to use since select fields are no longer text fields'),
   };
 
@@ -367,9 +371,11 @@ export default class SelectField extends PureComponent {
   }
 
   componentWillUpdate(nextProps, nextState) {
+    const error = getField(nextProps, nextState, 'error');
     const isOpen = getField(nextProps, nextState, 'isOpen');
-    if (this._field && getField(this.props, this.state, 'isOpen') !== isOpen) {
-      this._field.focus();
+    const valued = !getField(nextProps, nextState, 'value');
+    if (nextProps.required && !isOpen && error !== valued) {
+      this.setState({ error: valued });
     }
   }
 
@@ -518,16 +524,17 @@ export default class SelectField extends PureComponent {
   }
 
   _handleItemSelect(index, v, e) {
-    const { required, menuItems, itemLabel, itemValue, onChange } = this.props;
+    const { required, menuItems, itemLabel, itemValue, onChange, position } = this.props;
     const number = typeof menuItems[index] === 'number' || typeof menuItems[index][itemValue] === 'number';
     const value = number ? Number(v) : v;
 
+    const below = position === SelectField.Positions.BELOW;
     if (getField(this.props, this.state, 'value') !== value && onChange) {
       onChange(value, index, e);
     }
 
     const state = {
-      activeIndex: index,
+      activeIndex: below ? 0 : index,
       activeLabel: this._getActiveLabelFromItem(menuItems[index], value, itemLabel, itemValue),
       error: required && !value,
     };
@@ -559,6 +566,10 @@ export default class SelectField extends PureComponent {
     }
   }
 
+  /**
+   * This function is only called when the user _clicks_ or _touches_ the select field. Since
+   * clicking it can either open or close it, this is actually toggled.
+   */
   _toggleOpen(e) {
     const isOpen = !getField(this.props, this.state, 'isOpen');
     if (this.props.onMenuToggle) {
@@ -570,13 +581,28 @@ export default class SelectField extends PureComponent {
     }
   }
 
+  /**
+   * Ths function is used for opening the select field with keyboard input.
+   */
   _handleOpen(e) {
     if (this.props.onMenuToggle) {
       this.props.onMenuToggle(true, e);
     }
 
+    let state;
+    if (!getField(this.props, this.state, 'value') && this.state.activeIndex === -1) {
+      // When there is no value, need to change the default active index to 0 instead of -1
+      // so that the next DOWN arrow increments correctly
+      state = { activeIndex: 0 };
+    }
+
     if (typeof this.props.isOpen === 'undefined') {
-      this.setState({ isOpen: true });
+      state = state || {};
+      state.isOpen = true;
+    }
+
+    if (state) {
+      this.setState(state);
     }
   }
 
@@ -585,8 +611,20 @@ export default class SelectField extends PureComponent {
       this.props.onMenuToggle(false, e);
     }
 
+    let state;
+    if (this.props.position === SelectField.Positions.BELOW) {
+      // Set the active index back to 0 since the active item will be spliced out
+      // of the menu items
+      state = { activeIndex: 0 };
+    }
+
     if (typeof this.props.isOpen === 'undefined') {
-      this.setState({ isOpen: false });
+      state = state || {};
+      state.isOpen = false;
+    }
+
+    if (state) {
+      this.setState(state);
     }
   }
 
@@ -663,10 +701,14 @@ export default class SelectField extends PureComponent {
       e.preventDefault();
     }
 
-    if (!isOpen && (key === DOWN || key === UP)) {
+    if (!isOpen && (key === DOWN || key === UP || key === ENTER)) {
       this._handleOpen(e);
       return;
     } else if (isOpen && (key === ESC || key === TAB)) {
+      if (this._field && key === ESC) {
+        this._field.focus();
+      }
+
       this._handleClose(e);
       return;
     }
@@ -680,6 +722,7 @@ export default class SelectField extends PureComponent {
         if (this._field) {
           this._field.focus();
         }
+
         this._handleContainerClick(e);
         break;
       default:
@@ -692,7 +735,11 @@ export default class SelectField extends PureComponent {
     const { activeIndex } = this.state;
 
     const below = position === SelectField.Positions.BELOW;
-    const lastIndex = menuItems.length - 1;
+
+    // If the select field is positioned below and there is no value, need to increment the last index
+    // by one since this select field removes the active item. Need to account for that here when there
+    // is no value.
+    const lastIndex = menuItems.length - (below && !getField(this.props, this.state, 'value') ? 0 : 1);
     if ((decrement && activeIndex <= 0) || (!decrement && activeIndex >= lastIndex)) {
       return;
     }
@@ -800,6 +847,7 @@ export default class SelectField extends PureComponent {
       helpText,
       helpOnFocus,
       required,
+      fullWidth,
       ...props
     } = this.props;
     delete props.error;
@@ -820,7 +868,6 @@ export default class SelectField extends PureComponent {
     delete props.initiallyOpen;
     delete props.floatingLabel;
     delete props.noAutoAdjust;
-    delete props.fullWidth;
     delete props.adjustMinWidth;
 
     let { menuId, listId, placeholder, label, error } = this.props;
@@ -903,6 +950,7 @@ export default class SelectField extends PureComponent {
           'md-select-field-menu--stretch': stretchList,
         }, className)}
         ref={this._setMenu}
+        fullWidth={fullWidth}
       >
         <List
           id={listId}

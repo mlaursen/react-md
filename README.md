@@ -70,12 +70,12 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 
 ```html
 <!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.min.css">
-<script src="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0/dist/react-md.deep_purple-pink.min.css">
+<script src="https://unpkg.com/react-md@1.0.0/dist/react-md.min.js"></script>
 
 <!-- Development Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.css">
-<script src="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.js"></script>
+<!-- development version of CSS unavailable -->
+<script src="https://unpkg.com/react-md@1.0.0/dist/react-md.js"></script>
 ```
 
 
@@ -85,14 +85,14 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.deep-purple-pink.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.0/dist/react-md.deep_purple-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md@1.0.0-beta/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.0.0/dist/react-md.min.js"></script>
     <script>
     var MyAwesomeComponent = React.createClass({
       render: function()  {

@@ -354,13 +354,6 @@ export default class Drawer extends PureComponent {
     this._updateMedia = this._updateMedia.bind(this);
   }
 
-  componentWillMount() {
-    // Ruins SSR without this check
-    if (typeof window !== 'undefined') {
-      this._updateType(this.props);
-    }
-  }
-
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
     this._updateType(this.props);
@@ -548,6 +541,7 @@ export default class Drawer extends PureComponent {
     const mini = isMini(type);
     const temporary = isTemporary(type);
     const floating = DrawerTypes.FLOATING === type;
+    const permanent = isPermanent(type);
 
     let Component;
     if (component) {
@@ -620,7 +614,7 @@ export default class Drawer extends PureComponent {
       </Paper>
     );
 
-    if (inline) {
+    if (inline || permanent) {
       return drawer;
     }
 

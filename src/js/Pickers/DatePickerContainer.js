@@ -4,7 +4,7 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC } from '../constants/keyCodes';
+import { ESC, ENTER } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import isDateEqual from '../utils/DateUtils/isDateEqual';
@@ -284,6 +284,11 @@ export default class DatePickerContainer extends PureComponent {
      */
     disabled: PropTypes.bool,
 
+    /**
+     * Boolean if the dialog should be able to close if a keyboard user presses the escape key.
+     */
+    closeOnEsc: PropTypes.bool,
+
     previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
     nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
@@ -311,6 +316,7 @@ export default class DatePickerContainer extends PureComponent {
     okPrimary: true,
     cancelLabel: 'Cancel',
     cancelPrimary: true,
+    closeOnEsc: true,
     'aria-label': 'Pick a date',
   };
 
@@ -378,6 +384,7 @@ export default class DatePickerContainer extends PureComponent {
     this._setCalendarTempDate = this._setCalendarTempDate.bind(this);
     this._setCalendarTempYear = this._setCalendarTempYear.bind(this);
     this._validateDateRange = this._validateDateRange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -452,6 +459,12 @@ export default class DatePickerContainer extends PureComponent {
 
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
       this.setState({ visible });
+    }
+  }
+
+  _handleKeyDown(e) {
+    if ((e.which || e.keyCode) === ENTER) {
+      this._toggleOpen(e);
     }
   }
 
@@ -622,6 +635,7 @@ export default class DatePickerContainer extends PureComponent {
       lineDirection,
       id,
       disabled,
+      closeOnEsc,
       'aria-label': ariaLabel,
       isOpen, // deprecated
       ...props
@@ -674,6 +688,8 @@ export default class DatePickerContainer extends PureComponent {
           dialogClassName="md-dialog--picker"
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
+          closeOnEsc={closeOnEsc}
+          focusOnMount={false}
         >
           {picker}
         </Dialog>
@@ -689,6 +705,7 @@ export default class DatePickerContainer extends PureComponent {
           className={cn({ 'md-pointer--hover': !disabled })}
           inputClassName={cn({ 'md-pointer--hover': !disabled })}
           onClick={this._toggleOpen}
+          onKeyDown={this._handleKeyDown}
           label={label}
           placeholder={placeholder}
           value={this._getFormattedValue(this.props, this.state)}

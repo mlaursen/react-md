@@ -28,6 +28,17 @@ const drawerHeaderChildren = [
   />,
 ];
 
+/**
+ * OK.. This isn't really a _simple example_ because both the dialog and the navigation
+ * drawer use the portal component.
+ *
+ * To get the Navigation Drawer rendered correctly, we can only display it once we have correctly
+ * found the Dialog's container to render inside of. After it has been found, that render node is set
+ * for the NavigationDrawer and finally rendered.
+ *
+ * Finally, we can't rely on the only focusOnMount of the dialog, so once the dialog has finished animating
+ * and the Drawer has also been rendered, the menu button is focused.
+ */
 export default class SimpleExample extends PureComponent {
   constructor(props) {
     super(props);
@@ -43,6 +54,22 @@ export default class SimpleExample extends PureComponent {
       }
       return item;
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.dialog && !prevState.dialog) {
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
+
+        this.state.dialog.querySelector('.md-btn').focus();
+      }, 300);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
   }
 
   _setPage(key) {
@@ -97,6 +124,7 @@ export default class SimpleExample extends PureComponent {
         toolbarTitle="Hello, World!"
         toolbarActions={closeButton}
         toolbarProminentTitle
+        contentId="main-content-demo"
       >
         <LoremIpsum key={key} className="md-text-container md-cell md-cell--12" count={20} />
       </NavigationDrawer>

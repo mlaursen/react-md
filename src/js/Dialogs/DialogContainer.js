@@ -5,6 +5,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { ESC } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
 import toggleScroll from '../utils/toggleScroll';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
@@ -220,6 +221,12 @@ export default class DialogContainer extends PureComponent {
     transitionLeaveTimeout: PropTypes.number.isRequired,
 
     /**
+     * Boolean if the dialog should be closeable by pressing the escape key.
+     * This will always be considered `false` of the `modal` props is `true`.
+     */
+    closeOnEsc: PropTypes.bool,
+
+    /**
      * Since the `Dialog` uses the `Portal` component, you can pass an optional HTML Node to render
      * the dialog in instead of the `document.body`.
      */
@@ -236,6 +243,7 @@ export default class DialogContainer extends PureComponent {
 
   static defaultProps = {
     component: 'span',
+    closeOnEsc: true,
     contentComponent: 'section',
     focusOnMount: true,
     transitionEnterTimeout: 300,
@@ -259,6 +267,7 @@ export default class DialogContainer extends PureComponent {
     this._mountPortal = this._mountPortal.bind(this);
     this._mountDialog = this._mountDialog.bind(this);
     this._unmountPortal = this._unmountPortal.bind(this);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   componentDidMount() {
@@ -295,9 +304,41 @@ export default class DialogContainer extends PureComponent {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { visible, closeOnEsc, modal } = this.props;
+    const escapable = !modal && closeOnEsc;
+    const prevEscapable = !prevProps.modal && prevProps.closeOnEsc;
+
+    // Only going to support visible here since it was not implemented before.
+    if (visible === prevProps.visible && escapable === prevEscapable) {
+      return;
+    }
+
+    let add = false;
+    let remove = false;
+
+    if (escapable !== prevEscapable) {
+      add = visible && escapable;
+      remove = !visible || (prevEscapable && !escapable);
+    } else if (escapable) {
+      add = visible;
+      remove = !visible;
+    }
+
+    if (add) {
+      window.addEventListener('keydown', this._handleEscClose);
+    } else if (remove) {
+      window.removeEventListener('keydown', this._handleEscClose);
+    }
+  }
+
   componentWillUnmount() {
     if (this.props.isOpen || this.props.visible) {
       toggleScroll(false);
+    }
+
+    if (this.props.visible && (this.props.closeOnEsc && !this.props.modal)) {
+      window.removeEventListener('keydown', this._handleEscClose);
     }
 
     if (this._inTimeout) {
@@ -308,6 +349,12 @@ export default class DialogContainer extends PureComponent {
   _setContainer(container) {
     if (container !== null) {
       this._container = findDOMNode(container);
+    }
+  }
+
+  _handleEscClose(e) {
+    if ((e.which || e.keyCode) === ESC) {
+      (this.props.onHide || this.props.close)(e);
     }
   }
 
@@ -348,7 +395,6 @@ export default class DialogContainer extends PureComponent {
 
       this._activeElement = null;
       this.setState({ overlay: false });
-      return;
     }
   }
 
@@ -377,6 +423,7 @@ export default class DialogContainer extends PureComponent {
     delete props.transitionName;
     delete props.transitionEnter;
     delete props.transitionLeave;
+    delete props.closeOnEsc;
 
     const dialog = (
       <Dialog

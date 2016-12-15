@@ -18,6 +18,8 @@ export default class AjaxAutocomplete extends PureComponent {
     this._searchForArtists = this._searchForArtists.bind(this);
     this._fetchAlbums = this._fetchAlbums.bind(this);
     this._hideAlbums = this._hideAlbums.bind(this);
+
+    this._throttledSearch = throttle(this._searchForArtists, 250);
   }
 
   _searchForArtists(value) {
@@ -109,7 +111,7 @@ export default class AjaxAutocomplete extends PureComponent {
           dataLabel="name"
           dataValue="id"
           filter={null}
-          onChange={throttle(this._searchForArtists, 250)}
+          onChange={this._throttledSearch}
           clearOnAutocomplete
           onAutocomplete={this._fetchAlbums}
         />
