@@ -109,7 +109,7 @@ added the old v0.3.7 styles back into the `dist` folder for UMD.
 ### v1.0.0-alpha Released
 
 Whew. This was a big change. This was a complete rewrite from nested CSS priority to using my first attempt at BEM (so it definitely
-isn't perfect). The SASS also changed to an _opt-in_ `mixin` framework. Styles will no longer be included when importing the `scss` files.
+isn't perfect). The Sass also changed to an _opt-in_ `mixin` framework. Styles will no longer be included when importing the `scss` files.
 The styles can be created by using `react-md-everything` or `react-md-COMPONENTs`. This allows for access to variables by one import instead
 of having to specify multiple. Also, the dark theme was finally finished! Woo! Exciting! See the [upgrade guide](/discover-more/upgrade-guides/v1.0.0#now-vs-previous-versions)
 for more information.

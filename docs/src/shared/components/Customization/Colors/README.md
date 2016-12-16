@@ -15,12 +15,12 @@ All colors will have primary colors with suffixes: `50, 100, 200, 300, 400, 500,
 and all colors except for `brown`, `grey` and `blue-grey` will have accent suffixes of
 `100, 200, 400, 700`. In addition, the `$md-black-base` and `$md-white-base` variables are available.
 
-To help with getting specific colors, there is a SASS Map of every color and a mixin that will create
+To help with getting specific colors, there is a Sass Map of every color and a mixin that will create
 two class names for each material design color.
 
 ### `$md-color-map` 
 This map contains every material design color so that you can quickly access them and optionally use
-the [SASS Map functions](http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions)
+the [Sass Map functions](http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions)
 to programatically get colors. This is really just used for the `react-md-color-class-names mixin`.
 
 ### `mixin react-md-color-class-names`
