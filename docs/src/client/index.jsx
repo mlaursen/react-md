@@ -49,4 +49,20 @@ if (module.hot) {
   });
 }
 
-renderApp();
+if (!global.Intl) {
+  require.ensure([], require => {
+    const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
+
+    require('intl');
+    require('intl/locale-data/jsonp/en-US');
+    require('intl/locale-data/jsonp/da-DK');
+
+    if (['en-US', 'da-DK'].indexOf(lang) === -1) {
+      require(`intl/locale-data/jsonp/${lang}`);
+    }
+
+    renderApp();
+  });
+} else {
+  renderApp();
+}

@@ -5,9 +5,12 @@ import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import getInitialDrawerState from './utils/getInitialDrawerState';
 import getInitialQuickNavigationState from './utils/getInitialQuickNavigationState';
+import intlLocalesSupported from 'intl-locales-supported';
 
 import routes from 'routes';
 import configureStore from 'stores/configureStore';
+
+const SUPPORTED_LANGUAGES = ['en', 'en-US', 'da-DK'];
 
 export default function reactMD(req, res) {
   const store = configureStore({
@@ -19,6 +22,15 @@ export default function reactMD(req, res) {
 
   const memoryHistory = createMemoryHistory(req.url);
   const history = syncHistoryWithStore(memoryHistory, store);
+
+  if (global.Intl) {
+    if (!intlLocalesSupported(SUPPORTED_LANGUAGES)) {
+      const Intl = require('intl');
+      global.Intl.DateTimeFormat = Intl.DateTimeFormat;
+    }
+  } else {
+    global.Intl = require('intl');
+  }
 
   match({ history, routes, location: req.url }, async (error, redirectLocation, renderProps) => {
     if (error) {

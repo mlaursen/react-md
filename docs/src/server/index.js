@@ -1,12 +1,14 @@
-const path = require('path');
-const express = require('express');
-const compression = require('compression');
-const logger = require('morgan');
-const { port } = require('../../serverConfig.json');
-const helmet = require('helmet');
+import path from 'path';
+import express from 'express';
+import compression from 'compression';
+import logger from 'morgan';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import bodyParser from 'body-parser';
 
-const theme = require('./theme');
-const proxy = require('./proxy');
+import { port } from '../../serverConfig.json';
+import theme from './theme';
+import proxy from './proxy';
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.use(helmet({
   noCache: false,
 }));
 app.use(compression());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(hpp());
 app.use(logger(__DEV__ ? 'dev' : 'combined'));
 
 
