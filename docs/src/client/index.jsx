@@ -7,17 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import WebFont from 'webfontloader';
-WebFont.load({
-  google: {
-    families: ['Roboto:300,400,500,700', 'Material Icons'],
-  },
-  custom: {
-    families: ['FontAwesome'],
-    urls: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'],
-  },
-});
-
 import './_styles.scss';
 import configureStore from 'stores/configureStore';
 import onRouteUpdate from 'utils/onRouteUpdate';

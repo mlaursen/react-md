@@ -26,7 +26,9 @@ client.module.loaders = client.module.loaders.concat([{
   loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=compressed'),
 }, client.__imgLoader('file')]);
 client.plugins = client.plugins.concat([
-  new ExtractTextPlugin('[name].[hash].min.css'),
+  new ExtractTextPlugin('[name].[hash].min.css', {
+    allChunks: true,
+  }),
   new HtmlWebpackPlugin(client.__htmlWebpackOptions),
   new webpack.optimize.UglifyJsPlugin({
     sourceMap: false,
