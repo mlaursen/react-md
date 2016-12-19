@@ -16,7 +16,7 @@ const FloatingButtonExamples = () => (
       will not be clickable.
     </p>
     <Button floating primary disabled>favorite</Button>
-    <Button floating secondary disabled>accessible</Button>
+    <Button floating secondary disabled>close</Button>
   </div>
 );
 
