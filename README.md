@@ -20,6 +20,24 @@ $ npm i -S react \
 
 ## Usage
 
+### Using create-react-app
+`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so
+here are some steps to get it working:
+
+```bash
+$ create-react-app my-app --scripts-version --custom-react-scripts
+$ npm i -S react-md
+```
+
+Customize the `.env` to include SASS.
+
+See [custom-react-scripts](https://github.com/kitze/create-react-app) for more information.
+
+If this is not a solution for you, you can always run `npm run eject` from your app and add Sass yourself.
+
+### Using one of the Boilerplates
+If `create-react-app` is not your thing, you can try using one of the available [boilerplates](https://react-md.mlaursen.com/discover-more/boilerplates).
+
 ### Basic Webpack Usage
 
 ```js
