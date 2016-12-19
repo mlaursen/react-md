@@ -149,6 +149,10 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 
       > .md-cell {
         margin: 0;
+        
+        &.md-cell--right {
+          @extend %md-cell--right;
+        }
       }
     }
   }
