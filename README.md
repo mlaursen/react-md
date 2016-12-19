@@ -20,6 +20,61 @@ $ npm i -S react \
 
 ## Usage
 
+### Using create-react-app
+`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so
+here are some steps to get it working:
+
+```bash
+$ create-react-app my-app --scripts-version --custom-react-scripts
+$ npm i -S react-md
+```
+
+Customize the `.env` to include SASS. See [custom-react-scripts](https://github.com/kitze/create-react-app)
+for more information.
+
+If this is not a solution for you, you can always run `yarn run eject` (or `npm run eject`) from your app and add Sass yourself.
+
+```bash
+$ create-react-app my-app
+$ yarn run eject
+$ yarn add react-md
+$ yarn add --dev sass-loader node-sass
+$ vim -O config/webpack.config.dev.js config/webpack.config.prod.js
+```
+
+Add an scss/sass exclusion on line 109 (webpack.config.dev.js) and line 115 (webpack.config.prod.js)
+
+```js
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.svg$/,
+          /\.s(c|a)ss$/,
+        ],
+```
+
+In the dev config, add a new loader after the CSS loader:
+
+```js
+      {
+        test: /\.s(a|c)ss$/,
+        loader: 'style!css?importLoaders=2!postcss!sass?sourceMap&outputStyle=expanded'
+      },
+```
+
+In the prod config:
+```js
+      {
+        test: /\.s(a|c)ss$/,
+        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2!postcss!sass?outputStyle=compressed')
+      },
+```
+
+### Using one of the Boilerplates
+If `create-react-app` is not your thing, you can try using one of the available [boilerplates](https://react-md.mlaursen.com/discover-more/boilerplates).
+
 ### Basic Webpack Usage
 
 ```js
