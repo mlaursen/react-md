@@ -149,7 +149,8 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 
       > .md-cell {
         margin: 0;
-        
+
+        // scss-lint:disable NestingDepth
         &.md-cell--right {
           @extend %md-cell--right;
         }
