@@ -253,10 +253,11 @@ export default class Slider extends PureComponent {
             `current value is '${step}'.`
           );
         } else {
-          let name;
-          if (typeof props.value !== 'undefined' && props.value % step !== 0) {
+          let corrector = Math.pow(10, ('' + step).split('.')[1].length - 1),
+              name;
+          if (typeof props.value !== 'undefined' && (props.value * corrector) % (step * corrector) !== 0) {
             name = 'value';
-          } else if (props.defaultValue % step !== 0) {
+          } else if ((props.defaultValue * corrector) % (step * corrector) !== 0) {
             name = 'defaultValue';
           }
 
