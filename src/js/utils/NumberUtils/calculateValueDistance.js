@@ -24,7 +24,7 @@ function calculateDistance(x, width, left, normalize) {
 }
 
 /**
- * This calculates the new value and distance for a sliter. It will compare the page x
+ * This calculates the new value and distance for a slider. It will compare the page x
  * location of a touch or mouse event to the slider's track page x position. If the
  * final value and distance should be _normalized_, they will be updated to be rounded
  * with the scale and steps in mind.
