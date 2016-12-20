@@ -49,10 +49,11 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
   if (normalize) {
     value = Math.round(distance / (width / scale));
     if (step < 1) {
-      const corrector = (typeof String(step).split('.')[1] !== 'undefined'
-        && String(step).split('.')[1].length > 0)
-          ? Math.pow(10, String(step).split('.')[1].length)
-          : 1;
+      const decimals = String(step).split('.')[1];
+      const corrector = typeof decimals !== 'undefined' && decimals.length > 0
+        ? Math.pow(10, decimals.length)
+        : 1;
+
       const modded = (value * corrector) % (step * corrector);
       if (modded !== 0 && modded >= step / 2) {
         value += (step - modded);
@@ -68,6 +69,8 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
   }
 
   if (step > 1) {
+    value *= step;
+  } else if (step > 0 && step < 1) {
     value *= step;
   }
 
