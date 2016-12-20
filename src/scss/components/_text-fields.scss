@@ -207,7 +207,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
   }
 
   @if $include-password or $include-inline-indicator {
-    @include react-md-text-field-inline-indicator-mobile;
+    @include react-md-text-field-inline-indicator-mobile($include-floating-label, $include-block);
   }
 
   @include react-md-text-field-custom-sizes-mobile($custom-sizes, $include-floating-label);
@@ -264,7 +264,7 @@ $md-text-field-desktop-floating-label-margin: 33px;
   }
 
   @if $include-password or $include-inline-indicator {
-    @include react-md-text-field-inline-indicator-desktop;
+    @include react-md-text-field-inline-indicator-desktop($include-floating-label, $include-block);
   }
 
   @include react-md-text-field-custom-sizes-desktop($custom-sizes, $include-floating-label);
@@ -1354,17 +1354,25 @@ $md-text-field-desktop-floating-label-margin: 33px;
 ///     @include react-md-text-field-inline-indicator-mobile;
 ///   }
 ///
+/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-mobile($include-block: $md-text-field-include-block) {
+@mixin react-md-text-field-inline-indicator-mobile($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block) {
   .md-text-field-inline-indicator {
-    bottom: 14px;
-  }
+    top: 9px;
 
-  @if $include-block {
-    .md-text-field-inline-indicator--block {
-      bottom: 16px;
+    @if $include-floating-label {
+      &--floating {
+        top: 34px;
+      }
+    }
+
+    @if $include-block {
+      &--block {
+        top: 17px;
+      }
     }
   }
 }
@@ -1377,17 +1385,25 @@ $md-text-field-desktop-floating-label-margin: 33px;
 ///     @include react-md-text-field-inline-indicator-desktop;
 ///   }
 ///
+/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-desktop($include-block: $md-text-field-include-block) {
+@mixin react-md-text-field-inline-indicator-desktop($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block) {
   .md-text-field-inline-indicator {
-    bottom: 9px;
-  }
+    top: 7px;
 
-  @if $include-block {
-    .md-text-field-inline-indicator--block {
-      bottom: 11px;
+    @if $include-floating-label {
+      &--floating {
+        top: 28px;
+      }
+    }
+
+    @if $include-block {
+      &--block {
+        top: 10px;
+      }
     }
   }
 }
@@ -1397,16 +1413,18 @@ $md-text-field-desktop-floating-label-margin: 33px;
 /// @example scss - Example Usage SCSS
 ///   @include react-md-text-field-inline-indicator-media;
 ///
+/// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
+///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
 ///     be included
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-media($include-block: $md-text-field-include-block) {
+@mixin react-md-text-field-inline-indicator-media($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block) {
   @media #{$md-mobile-media} {
-    @include react-md-text-field-inline-indicator-mobile($include-block);
+    @include react-md-text-field-inline-indicator-mobile($include-floating-label, $include-block);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-inline-indicator-desktop($include-block);
+    @include react-md-text-field-inline-indicator-desktop($include-floating-label, $include-block);
   }
 }
 
