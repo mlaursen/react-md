@@ -1,5 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import between from '../utils/PropTypes/between';
 
 /**
@@ -21,7 +22,23 @@ import between from '../utils/PropTypes/between';
  * you manually keep updating the value of the progress.
  */
 export default class LinearProgress extends PureComponent {
+  /* eslint-disable max-len */
   static propTypes = {
+    /**
+     * The `id` prop is required for accessibility concerns.
+     * [Progress Bar Role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_progressbar_role)
+     *
+     * > If the progressbar is describing the loading progress of a particular region of a page, the author
+     * __SHOULD__ use aria-describedby to point to the status, and set the aria-busy attribute to true on the
+     * region until it is finished loading. It is not possible for the user to alter the value of a progressbar
+     * because it is always readonly.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /* eslint-enable max-len */
     /**
      * An optional className to apply to the linear progress container.
      */
