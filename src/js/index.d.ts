@@ -1,37 +1,35 @@
 import * as React from 'react';
 
-export declare namespace ReactMD {
-  interface Props {
-    style?: React.CSSProperies;
-    className?: string;
-    onClick?: Function;
-    onMouseUp?: Function;
-    onMouseEnter?: Function;
-    onMoueLeave?: Function;
-    onMouseDown?: Function;
-    onContextMenu?: Function;
-    onDoubleClick?: Function;
-    onDrag?: Function;
-    onDragEnd?: Function;
-    onDragEnter?: Function;
-    onDragExit?: Function;
-    onDragLeave?: Function;
-    onDragOver?: Function;
-    onDragStart?: Function;
-    onDrop?: Function;
-    onMouseMove?: Function;
-    onMouseOut?: Function;
-    onMouseOver?: Function;
-    onTouchCancel?: Function;
-    onTouchEnd?: Function;
-    onTouchMove?: Function;
-    onTouchStart?: Function;
-    onKeyDown?: Function;
-    onKeyUp?: Function;
-    onChange?: Function;
-    onFocus?: Function;
-    onBlur?: Function;
-  }
+export interface BaseProps {
+  style?: React.CSSProperties;
+  className?: string;
+  onMouseUp?: (event: Event) => void;
+  onMouseEnter?: (event: Event) => void;
+  onMoueLeave?: (event: Event) => void;
+  onMouseDown?: (event: Event) => void;
+  onContextMenu?: (event: Event) => void;
+  onDoubleClick?: (event: Event) => void;
+  onDrag?: (event: Event) => void;
+  onDragEnd?: (event: Event) => void;
+  onDragEnter?: (event: Event) => void;
+  onDragExit?: (event: Event) => void;
+  onDragLeave?: (event: Event) => void;
+  onDragOver?: (event: Event) => void;
+  onDragStart?: (event: Event) => void;
+  onDrop?: (event: Event) => void;
+  onMouseMove?: (event: Event) => void;
+  onMouseOut?: (event: Event) => void;
+  onMouseOver?: (event: Event) => void;
+  onTouchCancel?: (event: Event) => void;
+  onTouchEnd?: (event: Event) => void;
+  onTouchMove?: (event: Event) => void;
+  onTouchStart?: (event: Event) => void;
+  onKeyDown?: (event: Event) => void;
+  onKeyUp?: (event: Event) => void;
+  onFocus?: (event: Event) => void;
+  onBlur?: (event: Event) => void;
 }
 
-export default ReactMD;
+export interface Props extends BaseProps {
+  onClick?: (event: Event) => void;
+}
