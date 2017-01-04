@@ -353,28 +353,3 @@ describe('Autocomplete', () => {
     });
   });
 });
-// jest.unmock('../Autocomplete');
-// jest.unmock('../../TextFields');
-// jest.unmock('../../TextFields/TextField');
-// jest.unmock('../../Menus');
-// jest.unmock('../../Menus/Menu');
-//
-// import React from 'react';
-// import {
-//   Simulate,
-//   renderIntoDocument,
-//   findRenderedComponentWithType,
-//   findRenderedDOMComponentWithTag,
-// } from 'react-addons-test-utils';
-//
-// import Autocomplete from '../Autocomplete';
-// import TextField from '../../TextFields';
-// import Menu from '../../Menus';
-// import { TAB } from '../../constants/keyCodes';
-//
-// describe('Autocomplete', () => {
-//
-//
-//
-//   });
-// });
