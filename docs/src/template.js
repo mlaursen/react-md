@@ -40,7 +40,7 @@ module.exports = function(templateParams) {
   if(options.appMountId) {
     entry = '<div id="' + options.appMountId + '">';
     if(options.isomorphic) {
-      entry += '<div><%- ' + options.isomorphic + ' %></div>';
+      entry += '<%- ' + options.isomorphic + ' %>';
     }
 
     entry += '</div>';
