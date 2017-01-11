@@ -103,7 +103,6 @@ export default class SimpleExample extends PureComponent {
       <Button
         icon
         onClick={this._closeDemo}
-        waitForInkTransition
         tooltipLabel="Close the interactive demo"
         tooltipDelay={150}
         tooltipPosition="left"

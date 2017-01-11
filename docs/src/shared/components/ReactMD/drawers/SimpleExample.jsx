@@ -39,7 +39,7 @@ export default class SimpleExample extends PureComponent {
 
   render() {
     const left = this.state.position === 'left';
-    const close = <Button waitForInkTransition icon onClick={this._closeDrawer}>{left ? 'arrow_back' : 'close'}</Button>;
+    const close = <Button icon onClick={this._closeDrawer}>{left ? 'arrow_back' : 'close'}</Button>;
     const header = (
       <Toolbar
         nav={left ? null : close}
