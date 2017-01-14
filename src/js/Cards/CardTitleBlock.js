@@ -31,7 +31,11 @@ export default class CardTitleBlock extends PureComponent {
     }
 
     return (
-      <div className="md-card-title--title-block">
+      <div
+        className={cn('md-card-title--title-block', {
+          'md-card-title--one-line': avatar,
+        })}
+      >
         {title}
         <h3 className="md-card-title--title md-text--secondary">{subtitle}</h3>
       </div>

@@ -141,10 +141,21 @@ $md-card-padding-extra: 24px;
       font-size: 14px;
       line-height: $md-line-height;
       margin: 0;
+      white-space: normal;
     }
 
     &--large {
       font-size: 24px;
+    }
+
+    &--one-line {
+      overflow: hidden;
+
+      .md-card-title--title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
 }
@@ -155,6 +166,7 @@ $md-card-padding-extra: 24px;
 /// @see react-md-avatars
 @mixin react-md-cards-title-avatar {
   .md-avatar--card {
+    flex-shrink: 0;
     margin-right: $md-default-padding;
   }
 }
