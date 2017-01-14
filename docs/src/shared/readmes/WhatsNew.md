@@ -1,3 +1,18 @@
+## January 2017
+### v1.0.1 Released
+Minor bugfixes.
+
+##### Changelog
+- Fixed proptypes of avatar to allow [PropTypes.node](https://github.com/mlaursen/react-md/issues/198) instead of `string` only.
+- Fixed the [accidental form submission](https://github.com/mlaursen/react-md/commit/cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
+selecting an item from an `autocomplete` by using the enter key press in a form.
+- Fixed [Slider number alidation](https://github.com/mlaursen/react-md/issues/184) for floats.
+- Fixed the issue where the [Switch's onChange prop](https://github.com/mlaursen/react-md/issues/182) fires twice when clicking/touching
+the thumb.
+- Fixed the styling issue for [password text fields](https://github.com/mlaursen/react-md/issues/192) that have a message with the field.
+- Fixed the SelectField to allow a [0 based option value](https://github.com/mlaursen/react-md/issues/214).
+
+
 ## December 2016
 ### v1.0.0 Released!
 
