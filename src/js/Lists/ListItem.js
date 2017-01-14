@@ -113,11 +113,27 @@ export default class ListItem extends PureComponent {
     threeLines: PropTypes.bool,
 
     /**
-     * An optional component to render the `.md-list-tile` as. This is mostly useful if you
+     * The to render the `.md-list-tile` as. This is mostly useful if you
      * want to use the `ListItem` for navigation and working with the `react-router`'s `Link`
      * component.
+     *
+     * This prop is **not** the top-most element of the `ListItem` component. To change the
+     * top-most element, see the `itemComponent` prop.
+     *
+     * @see itemComponent
      */
     component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
+
+    /**
+     * The component to render the top-most element of the `ListItem` component. This is the
+     * `.md-list-item` and defaults to the `<li>` element.
+     *
+     * @see component
+     */
+    itemComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
@@ -208,6 +224,7 @@ export default class ListItem extends PureComponent {
   static defaultProps = {
     activeClassName: 'md-text--theme-primary',
     component: 'div',
+    itemComponent: 'li',
     expanderIconChildren: 'keyboard_arrow_down',
   };
 
@@ -377,6 +394,7 @@ export default class ListItem extends PureComponent {
       activeClassName,
       expanderIconChildren,
       expanderIconClassName,
+      itemComponent: ItemComponent,
       ...props
     } = this.props;
     delete props.isOpen;
@@ -426,7 +444,7 @@ export default class ListItem extends PureComponent {
     const avatard = !!leftAvatar || !!rightAvatar;
 
     return (
-      <li
+      <ItemComponent
         style={style}
         className={cn('md-list-item', {
           'md-list-item--nested-container': nestedItems,
@@ -476,7 +494,7 @@ export default class ListItem extends PureComponent {
           {children}
         </AccessibleFakeInkedButton>
         {nestedList}
-      </li>
+      </ItemComponent>
     );
   }
 }
