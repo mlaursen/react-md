@@ -169,6 +169,18 @@ export default class TabsContainer extends PureComponent {
      * The zDepth for the fixed tabs header.
      */
     headerZDepth: between(PropTypes.number, 0, 5),
+
+    /**
+     * Any additional props to apply to the SwipeableViews component. View the
+     * [SwipeableViews API](https://github.com/oliviertassinari/react-swipeable-views#api)
+     * for valid attributes.
+     *
+     * You will not be able to set the `style`, `className`, `slideStyle`, `index`,
+     * or `onChangeIndex` props for the SwipeableViews.
+     *
+     * The styling and classnames can be updated with the other TabsContainer props.
+     */
+    swipeableViewsProps: PropTypes.object,
   };
 
   static defaultProps = {
@@ -223,6 +235,7 @@ export default class TabsContainer extends PureComponent {
       colored,
       fixed,
       labelAndIcon,
+      swipeableViewsProps,
       ...props
     } = this.props;
     delete props.toolbar;
@@ -301,6 +314,7 @@ export default class TabsContainer extends PureComponent {
         {header ? null : toolbar}
         {header ? null : tabs}
         <SwipeableViews
+          {...swipeableViewsProps}
           style={swipeableViewsStyle}
           className={cn('md-tabs-content', {
             'md-tabs-content--offset': fixed,
