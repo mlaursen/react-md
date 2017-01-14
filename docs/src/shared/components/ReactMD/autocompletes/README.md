@@ -11,6 +11,6 @@ allow a single best match to appear inline and the user can autocomplete by usin
 
 Since there are many different ways to filter or sort data, there are only two basic filters
 included. A `caseInsensitiveFilter` and a `fuzzyFilter`. They are both pretty basic so
-you might want to include another library like [fuse.js](https:github.com/krisk/Fuse) or
+you might want to include another library like [fuse.js](https://github.com/krisk/Fuse) or
 something else. I didn't want to force a library dependency, so it was not included.
 The `Inline` completion view uses a simple find by best match ignoring case by default.

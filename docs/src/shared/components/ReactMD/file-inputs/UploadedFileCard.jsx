@@ -8,13 +8,6 @@ import Media, { MediaOverlay } from 'react-md/lib/Media';
 
 import Markdown from 'components/Markdown';
 
-if (__CLIENT__ && !global.Intl) {
-  require.ensure([], require => {
-    require('intl');
-    require('intl/locale-data/jsonp/en-US');
-  });
-}
-
 export default class UploadedFileCard extends PureComponent {
   static propTypes = {
     file: PropTypes.shape({

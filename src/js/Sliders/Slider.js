@@ -8,6 +8,7 @@ import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import calculateValueDistance from '../utils/NumberUtils/calculateValueDistance';
+import isWithinStep from '../utils/NumberUtils/isWithinStep';
 import controlled from '../utils/PropTypes/controlled';
 import SliderLabel from './SliderLabel';
 import Track from './Track';
@@ -253,11 +254,10 @@ export default class Slider extends PureComponent {
             `current value is '${step}'.`
           );
         } else {
+          const valueDefined = typeof props.value !== 'undefined';
           let name;
-          if (typeof props.value !== 'undefined' && props.value % step !== 0) {
-            name = 'value';
-          } else if (props.defaultValue % step !== 0) {
-            name = 'defaultValue';
+          if (!isWithinStep(valueDefined ? props.value : props.defaultValue, step)) {
+            name = valueDefined ? 'value' : 'defaultValue';
           }
 
           if (name) {
@@ -591,7 +591,6 @@ export default class Slider extends PureComponent {
       max,
       normalize
     );
-
 
     if (onChange) {
       onChange(value, e);

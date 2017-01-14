@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import Link from 'react-router/lib/Link';
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -75,7 +76,11 @@ export default class Search extends PureComponent {
         }, 317);
         this.setState({ animating: true, value: '' });
       } else {
-        this.setState({ closeVisible: true });
+        this.setState({ closeVisible: true }, () => {
+          if (this._input) {
+            this._input.focus();
+          }
+        });
       }
     }
   }
@@ -85,6 +90,12 @@ export default class Search extends PureComponent {
       clearTimeout(this._timeout);
     }
   }
+
+  _setInput = (autocomplete) => {
+    if (autocomplete) {
+      this._input = findDOMNode(autocomplete).querySelector('input');
+    }
+  };
 
   /**
    * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
@@ -108,6 +119,12 @@ export default class Search extends PureComponent {
     }
 
     this.setState({ value });
+  };
+
+  _handleClick = () => {
+    if (!this.state.closeVisible) {
+      this.props.showSearch();
+    }
   };
 
   /**
@@ -146,13 +163,12 @@ export default class Search extends PureComponent {
     const {
       searching,
       results,
-      showSearch,
       hideSearch,
       meta: { next, start, total, limit },
     } = this.props;
 
     const close = (
-      <Button key="close" className="md-btn--toolbar" icon onClick={hideSearch} waitForInkTransition>
+      <Button key="close" className="md-btn--toolbar" icon onClick={hideSearch}>
         close
       </Button>
     );
@@ -165,6 +181,7 @@ export default class Search extends PureComponent {
     return (
       <div style={style} className="md-grid md-grid--no-spacing">
         <Autocomplete
+          ref={this._setInput}
           key="autocomplete"
           id="documentation-search"
           placeholder="Search"
@@ -172,12 +189,11 @@ export default class Search extends PureComponent {
           onChange={this._handleChange}
           value={value}
           data={data}
-          onFocus={showSearch}
           className={cn('main-search md-select-field--toolbar', {
             'main-search--active': searching,
             'main-search--min-enforced': searching || animating,
           })}
-          leftIcon={<FontIcon key="search">search</FontIcon>}
+          leftIcon={<FontIcon key="search" onClick={this._handleClick}>search</FontIcon>}
         />
         {closeVisible ? close : null}
       </div>

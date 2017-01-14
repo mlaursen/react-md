@@ -8,7 +8,6 @@ const More = props => (
     raised
     className="md-cell--right"
     primary
-    waitForInkTransition
   />
 );
 More.propTypes = {

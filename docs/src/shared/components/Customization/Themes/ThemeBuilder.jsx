@@ -27,7 +27,7 @@ const ABOUT_THEME_BUILDER = `
 ### Custom CSS Theme Builder
 
 Select a primary color, a secondary color, the secondary color's hue, and optionally toggle the light theme
-to view a specific theme. When you have selected colors you like, either reference [Using with SASS](#using-with-sass)
+to view a specific theme. When you have selected colors you like, either reference [Using with Sass](#using-with-sass)
 or [pre-compiled themes](#pre-compiled-themes). Not all themes will already be compiled and hosted on \`unpkg\`.
 `;
 
@@ -134,7 +134,7 @@ export default class ThemeBuilder extends PureComponent {
     const compiledName = `react-md.${primary.replace('-', '_')}-${secondary.replace('-', '_')}${light ? '' : '.dark'}.min.css`;
 
     let howToUse = `
-#### Using with SASS
+#### Using with Sass
 
 \`\`\`scss
 @import '~react-md/src/scss/react-md';

@@ -13,8 +13,8 @@ import InlineSVG from 'components/InlineSVG';
 
 const about = `
 This project's goal is to be able to create a fully accessible material design
-styled website using React Components and SASS. With the separation of styles in
-SASS instead of inline styles, it should hopefully be easy to create custom
+styled website using React Components and Sass. With the separation of styles in
+Sass instead of inline styles, it should hopefully be easy to create custom
 components with the existing styles.
 `;
 

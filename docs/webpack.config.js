@@ -11,6 +11,10 @@ module.exports = () => ({
     inject: false,
     template: path.resolve(process.cwd(), 'src', 'template.js'),
     favicon: path.resolve(process.cwd(), 'src', 'client', 'favicon.ico'),
+    externalCSS: [
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css',
+      'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons',
+    ],
 
     title: 'react-md',
     appMountId: 'app',

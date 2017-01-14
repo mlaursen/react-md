@@ -24,7 +24,7 @@ function calculateDistance(x, width, left, normalize) {
 }
 
 /**
- * This calculates the new value and distance for a sliter. It will compare the page x
+ * This calculates the new value and distance for a slider. It will compare the page x
  * location of a touch or mouse event to the slider's track page x position. If the
  * final value and distance should be _normalized_, they will be updated to be rounded
  * with the scale and steps in mind.
@@ -49,7 +49,12 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
   if (normalize) {
     value = Math.round(distance / (width / scale));
     if (step < 1) {
-      const modded = value % step;
+      const decimals = String(step).split('.')[1];
+      const corrector = typeof decimals !== 'undefined' && decimals.length > 0
+        ? Math.pow(10, decimals.length)
+        : 1;
+
+      const modded = (value * corrector) % (step * corrector);
       if (modded !== 0 && modded >= step / 2) {
         value += (step - modded);
       } else if (modded !== 0) {
@@ -64,6 +69,8 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
   }
 
   if (step > 1) {
+    value *= step;
+  } else if (step > 0 && step < 1) {
     value *= step;
   }
 

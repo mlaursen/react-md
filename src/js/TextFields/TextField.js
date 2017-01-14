@@ -750,6 +750,8 @@ export default class TextField extends PureComponent {
           passwordVisible={passwordVisible}
           iconChildren={passwordIconChildren}
           iconClassName={passwordIconClassName}
+          block={block}
+          floating={!!label}
         />
       );
     } else if (inlineIndicator) {
@@ -757,6 +759,7 @@ export default class TextField extends PureComponent {
       rightIcon = cloneElement(inlineIndicator, {
         key: 'icon-right',
         className: cn('md-text-field-inline-indicator', {
+          'md-text-field-inline-indicator--floating': label,
           'md-text-field-inline-indicator--block': block,
         }, el.props.className),
       });

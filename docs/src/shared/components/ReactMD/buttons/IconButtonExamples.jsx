@@ -17,7 +17,7 @@ const IconButtonExamples = () => (
       will not be clickable.
     </p>
     <Button icon disabled>favorite</Button>
-    <Button icon disabled>accessible</Button>
+    <Button icon disabled primary>close</Button>
 
     <p>
       An icon <code>Button</code> can be rendered as a link. Tooltips

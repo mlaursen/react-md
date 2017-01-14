@@ -82,13 +82,14 @@ export function fetchCreator(endpoint, id, stateKey, { request, success, failure
   if (addId) {
     fullStateKey = (typeof stateKey === 'string' ? stateKey.split('.') : stateKey);
     fullStateKey.push(id);
+    fullStateKey = fullStateKey.filter(k => !!k);
   }
 
   return (dispatch, getState) => {
     const existingState = reduceKey(getState(), fullStateKey);
 
     // Only cache requests in development mode.
-    if (!__DEV__ && existingState && existingState.length) {
+    if (!__DEV__ && existingState && (!(existingState instanceof Array) || existingState.length)) {
       return null;
     }
 

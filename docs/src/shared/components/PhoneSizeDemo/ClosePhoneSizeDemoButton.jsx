@@ -33,6 +33,6 @@ export default class ClosePhoneSizeDemoButton extends PureComponent {
   }
 
   render() {
-    return <Button {...this.props} onClick={this._handleClick} waitForInkTransition />;
+    return <Button {...this.props} onClick={this._handleClick} />;
   }
 }

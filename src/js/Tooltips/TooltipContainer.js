@@ -4,6 +4,7 @@ import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import Tooltip from './Tooltip';
 
 export default class TooltipContainer extends PureComponent {
@@ -59,6 +60,8 @@ export default class TooltipContainer extends PureComponent {
   _stopContextMenu(e) {
     e.preventDefault();
     window.removeEventListener('contextmenu', this._stopContextMenu, true);
+    captureNextEvent('click');
+    this.setState({ visible: true });
   }
 
   _showTooltip(e) {
@@ -70,6 +73,7 @@ export default class TooltipContainer extends PureComponent {
       this._touched = true;
 
       window.addEventListener('contextmenu', this._stopContextMenu, true);
+      return;
     }
 
 

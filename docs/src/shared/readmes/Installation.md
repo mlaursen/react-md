@@ -17,8 +17,63 @@ Once installed, the components can be accessed by `react-md` or `react-md/lib` a
 The [Roboto font](https://www.google.com/fonts/specimen/Roboto) and 
 [material-icons](https://design.google.com/icons/) should be included as well
 (or some equivalent). These fonts can be included via [WebFontLoader](https://github.com/typekit/webfontloader)
-or by locally hosting and using the provided sass mixins to include them. The
-example below will include the fonts with the WebFontLoader.
+or by locally hosting and using the provided sass mixins to include them. See [host-material-icons](/customization/typography?tab=1#mixin-host-material-icons)
+and [host-google-font](/customization/typography?tab=1#mixin-host-google-font) for more details.
+
+### Using create-react-app
+`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so
+here are some steps to get it working:
+
+```bash
+$ create-react-app my-app --scripts-version --custom-react-scripts
+$ npm i -S react-md
+```
+
+Customize the `.env` to include SASS. See [custom-react-scripts](https://github.com/kitze/create-react-app)
+for more information.
+
+If this is not a solution for you, you can always run `yarn run eject` (or `npm run eject`) from your app and add Sass yourself.
+
+```bash
+$ create-react-app my-app
+$ yarn run eject
+$ yarn add react-md
+$ yarn add --dev sass-loader node-sass
+$ vim -O config/webpack.config.dev.js config/webpack.config.prod.js
+```
+
+Add an scss/sass exclusion on line 109 (webpack.config.dev.js) and line 115 (webpack.config.prod.js)
+
+```js
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.svg$/,
+          /\.s(c|a)ss$/,
+        ],
+```
+
+In the dev config, add a new loader after the CSS loader:
+
+```js
+      {
+        test: /\.s(a|c)ss$/,
+        loader: 'style!css?importLoaders=2!postcss!sass?sourceMap&outputStyle=expanded'
+      },
+```
+
+In the prod config:
+```js
+      {
+        test: /\.s(a|c)ss$/,
+        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2!postcss!sass?outputStyle=compressed')
+      },
+```
+
+### Using one of the Boilerplates
+If `create-react-app` is not your thing, you can try using one of the available [boilerplates](/discover-more/boilerplates).
 
 
 ### Webpack Example

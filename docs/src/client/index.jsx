@@ -7,17 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
-import WebFont from 'webfontloader';
-WebFont.load({
-  google: {
-    families: ['Roboto:300,400,500,700', 'Material Icons'],
-  },
-  custom: {
-    families: ['FontAwesome'],
-    urls: ['https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'],
-  },
-});
-
 import './_styles.scss';
 import configureStore from 'stores/configureStore';
 import onRouteUpdate from 'utils/onRouteUpdate';
@@ -60,4 +49,20 @@ if (module.hot) {
   });
 }
 
-renderApp();
+if (!global.Intl) {
+  require.ensure([], require => {
+    const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
+
+    require('intl');
+    require('intl/locale-data/jsonp/en-US');
+    require('intl/locale-data/jsonp/da-DK');
+
+    if (['en-US', 'da-DK'].indexOf(lang) === -1) {
+      require(`intl/locale-data/jsonp/${lang}`);
+    }
+
+    renderApp();
+  });
+} else {
+  renderApp();
+}

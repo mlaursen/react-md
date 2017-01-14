@@ -12,6 +12,8 @@ export default class PasswordButton extends PureComponent {
     iconChildren: PropTypes.node,
     onKeyUp: PropTypes.func,
     onKeyDown: PropTypes.func,
+    block: PropTypes.bool,
+    floating: PropTypes.bool,
   };
 
   constructor(props) {
@@ -62,7 +64,15 @@ export default class PasswordButton extends PureComponent {
 
   render() {
     const { keyboardFocus } = this.state;
-    const { active, passwordVisible, iconClassName, iconChildren, ...props } = this.props;
+    const {
+      active,
+      passwordVisible,
+      iconClassName,
+      iconChildren,
+      block,
+      floating,
+      ...props
+    } = this.props;
 
     return (
       <button
@@ -74,6 +84,8 @@ export default class PasswordButton extends PureComponent {
           'md-password-btn--focus': keyboardFocus,
           'md-password-btn--active': active,
           'md-password-btn--invisible': active && !passwordVisible,
+          'md-text-field-inline-indicator--floating': floating,
+          'md-text-field-inline-indicator--block': block,
         })}
       >
         <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>

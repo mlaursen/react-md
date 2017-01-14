@@ -603,6 +603,9 @@ export default class Autocomplete extends PureComponent {
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
+      // Prevent any form submissions
+      e.preventDefault();
+
       // Need to emulate the click event since the default enter/space don't work for some reason
       e.target.click();
       this._handleItemClick(this.state.matchIndex);

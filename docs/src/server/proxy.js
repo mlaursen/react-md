@@ -1,4 +1,4 @@
-const fetch = require('isomorphic-fetch');
+import fetch from 'isomorphic-fetch';
 
 /**
  * Does a very simple fetch for the requested url
@@ -6,7 +6,7 @@ const fetch = require('isomorphic-fetch');
  * @param {Object} req - The http request
  * @param {Object} res - The http response
  */
-module.exports = function proxy(req, res) {
+export default function proxy(req, res) {
   // Soooo I don't know how to properly quote the url so that the query params get passed..
   // So gotta manually do it here :/
   const { url, start, limit } = req.query;
@@ -19,4 +19,4 @@ module.exports = function proxy(req, res) {
       res.sendStatus(error.status || 500);
     });
   }
-};
+}

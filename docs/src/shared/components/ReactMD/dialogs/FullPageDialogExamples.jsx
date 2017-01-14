@@ -31,8 +31,8 @@ export default class FullPageDialogExamples extends PureComponent {
   }
 
   render() {
-    const nav = <Button waitForInkTransition icon onClick={this._closeDialog}>close</Button>;
-    const action = <Button waitForInkTransition flat label="Save" onClick={this._closeDialog} />;
+    const nav = <Button icon onClick={this._closeDialog}>close</Button>;
+    const action = <Button flat label="Save" onClick={this._closeDialog} />;
 
     return (
       <div>

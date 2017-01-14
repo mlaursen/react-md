@@ -76,7 +76,6 @@ export default class ComponentTitle extends PureComponent {
           onClick={this._toggleFilter}
           tooltipLabel="Show the filter toolbar"
           tooltipPosition="left"
-          waitForInkTransition
         >
           filter_list
         </Button>
@@ -88,7 +87,6 @@ export default class ComponentTitle extends PureComponent {
         <Button
           icon
           key="back"
-          waitForInkTransition
           onClick={this._toggleFilter}
           tooltipLabel="Hide the filter toolbar"
           tooltipPosition="left"

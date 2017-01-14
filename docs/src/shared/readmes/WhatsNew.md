@@ -1,3 +1,18 @@
+## January 2017
+### v1.0.1 Released
+Minor bugfixes.
+
+##### Changelog
+- Fixed proptypes of avatar to allow [PropTypes.node](https://github.com/mlaursen/react-md/issues/198) instead of `string` only.
+- Fixed the [accidental form submission](https://github.com/mlaursen/react-md/commit/cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
+selecting an item from an `autocomplete` by using the enter key press in a form.
+- Fixed [Slider number alidation](https://github.com/mlaursen/react-md/issues/184) for floats.
+- Fixed the issue where the [Switch's onChange prop](https://github.com/mlaursen/react-md/issues/182) fires twice when clicking/touching
+the thumb.
+- Fixed the styling issue for [password text fields](https://github.com/mlaursen/react-md/issues/192) that have a message with the field.
+- Fixed the SelectField to allow a [0 based option value](https://github.com/mlaursen/react-md/issues/214).
+
+
 ## December 2016
 ### v1.0.0 Released!
 
@@ -109,7 +124,7 @@ added the old v0.3.7 styles back into the `dist` folder for UMD.
 ### v1.0.0-alpha Released
 
 Whew. This was a big change. This was a complete rewrite from nested CSS priority to using my first attempt at BEM (so it definitely
-isn't perfect). The SASS also changed to an _opt-in_ `mixin` framework. Styles will no longer be included when importing the `scss` files.
+isn't perfect). The Sass also changed to an _opt-in_ `mixin` framework. Styles will no longer be included when importing the `scss` files.
 The styles can be created by using `react-md-everything` or `react-md-COMPONENTs`. This allows for access to variables by one import instead
 of having to specify multiple. Also, the dark theme was finally finished! Woo! Exciting! See the [upgrade guide](/discover-more/upgrade-guides/v1.0.0#now-vs-previous-versions)
 for more information.

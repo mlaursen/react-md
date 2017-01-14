@@ -36,7 +36,7 @@ export default class Avatar extends PureComponent {
     /**
      * An optional letter to display in the avatar.
      */
-    children: PropTypes.string,
+    children: PropTypes.node,
 
     /**
      * A boolean if a random color should be applied to the avatar.
