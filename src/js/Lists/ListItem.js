@@ -113,7 +113,7 @@ export default class ListItem extends PureComponent {
     threeLines: PropTypes.bool,
 
     /**
-     * The to render the `.md-list-tile` as. This is mostly useful if you
+     * The component to render the `.md-list-tile` as. This is mostly useful if you
      * want to use the `ListItem` for navigation and working with the `react-router`'s `Link`
      * component.
      *

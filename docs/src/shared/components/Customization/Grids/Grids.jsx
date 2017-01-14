@@ -53,9 +53,9 @@ than the maximum amount of columsn allowed for the device's screen size, an enti
 - \`.md-cell--order-NUMBER-phone\` - This will set the cell's order only for mobile devices.
 - \`.md-cell--order-NUMBER-tablet\` - This will set the cell's order only for tablet devices.
 - \`.md-cell--order-NUMBER-desktop\` - This will set the cell's order only for desktop / large screens.
-- \`.md-cell--NUMBER-offset-phone\` - This will offset the cell's position only for mobile devices.
-- \`.md-cell--NUMBER-offset-tablet\` - This will offset the cell's position for tablet devices.
-- \`.md-cell--NUMBER-offset-desktop\` - This will offset the cell's position for desktop / large screens.
+- \`.md-cell--NUMBER-phone-offset\` - This will offset the cell's position only for mobile devices.
+- \`.md-cell--NUMBER-tablet-offset\` - This will offset the cell's position for tablet devices.
+- \`.md-cell--NUMBER-desktop-offset\` - This will offset the cell's position for desktop / large screens.
 `;
 
 const Grids = () => (
