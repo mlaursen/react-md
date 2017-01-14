@@ -644,7 +644,7 @@ export default class SelectField extends PureComponent {
         break;
       case 'object':
         primaryText = item[itemLabel];
-        itemValue = item[itemValueKey] || item[itemLabel];
+        itemValue = typeof item[itemValueKey] !== 'undefined' ? item[itemValueKey] : item[itemLabel];
         props = Object.keys(item).reduce((validProps, key) => {
           if (key !== itemLabel && key !== itemValueKey && key !== 'primaryText'
             && VALID_LIST_ITEM_PROPS.indexOf(key) !== -1
