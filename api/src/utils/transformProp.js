@@ -62,7 +62,7 @@ export default function transformProp(prop, propName, customPropTypes) {
   }
 
   if (type.indexOf('deprecated') !== -1) {
-    description = `The \`${propName}\` prop has been deprecated and will be removed in the next release.
+    description = `The \`${propName}\` prop has been deprecated and will be removed in the next major release.
 
 ${prop.type.raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.`;
   }

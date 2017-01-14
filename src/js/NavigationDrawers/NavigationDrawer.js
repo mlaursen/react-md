@@ -63,7 +63,7 @@ export default class NavigationDrawer extends PureComponent {
     /* eslint-disable no-console */
     _warned: false,
     _msg: 'Invalid use of `NavigationDrawer.DrawerType.{{TYPE}}`. The `NavigationDrawer.DrawerType` ' +
-      'has been deprecated and will be removed in the next release. Please use the ' +
+      'has been deprecated and will be removed in the next major release. Please use the ' +
       '`NavigationDrawer.DrawerTypes.{{TYPE}}` instead.',
 
     get FULL_HEIGHT() {

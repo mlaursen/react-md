@@ -61,7 +61,7 @@ export default class PropTypeCard extends PureComponent {
     let deprecated;
     Object.keys(props.docgen.props).some(name => {
       if (name.indexOf('deprecated') !== -1) {
-        deprecated = `> The \`${props.component}\` component has been deprecated and will be removed in the next release.`;
+        deprecated = `> The \`${props.component}\` component has been deprecated and will be removed in the next major release.`;
         deprecated += props.docgen.props[name].type.raw.replace(/(component)?deprecated|[()'+]|\r?\n/ig, '');
       }
 
