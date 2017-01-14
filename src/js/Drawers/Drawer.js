@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
@@ -245,10 +246,7 @@ export default class Drawer extends PureComponent {
      */
     clickableDesktopOverlay: PropTypes.bool,
 
-    /**
-     * Boolean if the navigation drawer should automatically close when a nav item has been clicked.
-     */
-    closeOnNavItemClick: PropTypes.bool,
+    closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
   };
 
   static defaultProps = {
@@ -263,7 +261,6 @@ export default class Drawer extends PureComponent {
     transitionDuration: 300,
     autoclose: true,
     clickableDesktopOverlay: true,
-    closeOnNavItemClick: true,
   };
 
   /**
@@ -467,7 +464,9 @@ export default class Drawer extends PureComponent {
   }
 
   _handleNavClick(e) {
-    if (!this.props.closeOnNavItemClick || !isTemporary(getField(this.props, this.state, 'type'))) {
+    const { closeOnNavItemClick, autoclose } = this.props;
+    const enabled = typeof closeOnNavItemClick !== 'undefined' ? closeOnNavItemClick : autoclose;
+    if (!enabled || !isTemporary(getField(this.props, this.state, 'type'))) {
       return;
     }
 
@@ -516,7 +515,6 @@ export default class Drawer extends PureComponent {
       position,
       renderNode,
       overlay,
-      autoclose,
       clickableDesktopOverlay,
       ...props
     } = this.props;
@@ -533,7 +531,9 @@ export default class Drawer extends PureComponent {
     delete props.transitionDuration;
     delete props.onVisibilityToggle;
     delete props.onMediaTypeChange;
-    delete props.closeOnNavItemClick;
+
+    delete props.autoclose;
+    delete props.closeOnNavItemClick; // deprecated
 
     const { desktop } = this.state;
     const visible = getField(this.props, this.state, 'visible');
@@ -563,7 +563,7 @@ export default class Drawer extends PureComponent {
             'md-toolbar-relative': mini && !visible,
             'md-background': floating,
           }, navClassName)}
-          onClick={autoclose ? this._handleNavClick : null}
+          onClick={this._handleNavClick}
         >
           {navItems.map(mapToListParts)}
         </List>
