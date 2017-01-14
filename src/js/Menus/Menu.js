@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import TICK from '../constants/CSSTransitionGroupTick';
 import contextTypes from './contextTypes';
 import Positions from './Positions';
 import List from '../Lists/List';
@@ -133,6 +134,12 @@ export default class Menu extends PureComponent {
      */
     fullWidth: PropTypes.bool,
 
+    /**
+     * Boolean if the menu should wait for the `ListItem`'s ink transition to finish before triggering
+     * the `onClose` callback.
+     */
+    autocloseAfterInk: PropTypes.bool,
+
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),
     limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs'),
@@ -235,7 +242,7 @@ export default class Menu extends PureComponent {
   }
 
   _handleListClick(e) {
-    const { onClose, close } = this.props;
+    const { onClose, close, autocloseAfterInk } = this.props;
 
     let node = e.target;
     while (this._container.contains(node)) {
@@ -248,7 +255,7 @@ export default class Menu extends PureComponent {
           } else if (onClose) {
             onClose(e);
           }
-        }, 300);
+        }, autocloseAfterInk ? 300 : TICK);
 
         return;
       }

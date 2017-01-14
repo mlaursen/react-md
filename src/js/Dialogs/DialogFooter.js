@@ -53,7 +53,6 @@ export default class DialogFooter extends PureComponent {
       return cloneElement(action, {
         key: button.props.key || index,
         className: cn('md-btn--dialog', button.props.className),
-        waitForInkTransition: true,
       });
     }
 
@@ -63,7 +62,6 @@ export default class DialogFooter extends PureComponent {
         flat
         {...action}
         className={cn('md-btn--dialog', action.className)}
-        waitForInkTransition
       />
     );
   }

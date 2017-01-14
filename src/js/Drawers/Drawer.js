@@ -4,6 +4,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../constants/media';
+import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
 import mapToListParts from '../utils/mapToListParts';
 import controlled from '../utils/PropTypes/controlled';
@@ -246,6 +247,14 @@ export default class Drawer extends PureComponent {
      */
     clickableDesktopOverlay: PropTypes.bool,
 
+    /**
+     * Boolean if the `autoclose` feature should wait for the ink transition to finish before automatically
+     * closing the drawer. This will add a `300ms` delay. If this is `false`, there will only be a `17ms` delay.
+     *
+     * > The delay is required so that any event listeners will still be correctly invoked when an item is clicked.
+     */
+    autocloseAfterInk: PropTypes.bool,
+
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
   };
 
@@ -448,7 +457,7 @@ export default class Drawer extends PureComponent {
           drawerActive: true,
           animating: true,
         });
-      }, 17);
+      }, TICK);
     } else {
       this._timeout = setTimeout(() => {
         this._timeout = null;
@@ -464,7 +473,7 @@ export default class Drawer extends PureComponent {
   }
 
   _handleNavClick(e) {
-    const { closeOnNavItemClick, autoclose } = this.props;
+    const { closeOnNavItemClick, autoclose, autocloseAfterInk } = this.props;
     const enabled = typeof closeOnNavItemClick !== 'undefined' ? closeOnNavItemClick : autoclose;
     if (!enabled || !isTemporary(getField(this.props, this.state, 'type'))) {
       return;
@@ -482,7 +491,7 @@ export default class Drawer extends PureComponent {
           this._closeTimeout = null;
 
           this._closeDrawer(e);
-        }, 450);
+        }, autocloseAfterInk ? 300 : TICK);
         return;
       }
 
@@ -533,6 +542,7 @@ export default class Drawer extends PureComponent {
     delete props.onMediaTypeChange;
 
     delete props.autoclose;
+    delete props.autocloseAfterInk;
     delete props.closeOnNavItemClick; // deprecated
 
     const { desktop } = this.state;
