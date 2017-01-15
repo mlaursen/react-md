@@ -235,14 +235,8 @@ $md-data-table-card-header-font-size: 16px !default;
     }
 
     @if $include-plain {
-      &--plain .md-table-column--data {
-        @extend %md-table-column--plain;
-      }
-
       .md-table-column--plain {
         @extend %md-table-column--plain;
-
-        white-space: initial;
       }
     }
 
@@ -307,6 +301,7 @@ $md-data-table-card-header-font-size: 16px !default;
 
     &--data {
       font-size: $md-data-table-content-font-size;
+      height: $md-data-table-column-height;
     }
 
     &--grow {

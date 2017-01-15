@@ -192,7 +192,7 @@ export default class TableRow extends Component {
     delete props.autoAdjust;
 
     let checkbox;
-    if (!this.context.plain) {
+    if (!this.context.plain && this.context.selectableRows) {
       checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 

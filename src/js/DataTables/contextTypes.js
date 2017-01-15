@@ -6,6 +6,7 @@ export default {
   checkedIconClassName: PropTypes.string.isRequired,
   checkedIconChildren: PropTypes.node,
   plain: PropTypes.bool,
+  selectableRows: PropTypes.bool.isRequired,
   allSelected: PropTypes.bool.isRequired,
   selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
   toggleAllRows: PropTypes.func.isRequired,

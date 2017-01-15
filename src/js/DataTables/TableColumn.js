@@ -1,5 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+
+import getField from '../utils/getField';
 import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
 import IconSeparator from '../Helpers/IconSeparator';
@@ -94,6 +96,12 @@ class TableColumn extends PureComponent {
     tooltip: PropTypes.node,
 
     /**
+     * Boolean if the `TableColumn` should gain the `plain` styles. This means that the text
+     * in the column can wrap and there is no height limit enforced with some additional padding.
+     */
+    plain: PropTypes.bool,
+
+    /**
      * Boolean if the TableColumn is coming from the EditDialogColumn or SelectFieldColumn
      * components. When this is false, it will update the column to have `position: relative`
      * so that tooltips can be displayed.
@@ -105,6 +113,10 @@ class TableColumn extends PureComponent {
     header: false,
     sortIconClassName: 'material-icons',
     sortIconChildren: 'arrow_upward',
+  };
+
+  static contextTypes = {
+    plain: PropTypes.bool,
   };
 
   render() {
@@ -122,7 +134,10 @@ class TableColumn extends PureComponent {
       __fixedColumn,
       ...props
     } = this.props;
+    delete props.plain;
+
     const sortable = typeof sorted === 'boolean';
+    const plain = getField(this.props, this.context, 'plain');
 
     let displayedChildren = children;
     if (sortable) {
@@ -142,7 +157,8 @@ class TableColumn extends PureComponent {
         {...props}
         className={cn('md-table-column', {
           'md-table-column--header': header,
-          'md-table-column--data': !header,
+          'md-table-column--data': !header && !plain,
+          'md-table-column--plain': !header && plain,
           'md-table-column--adjusted': adjusted,
           'md-table-column--sortable md-pointer--hover': sortable,
           'md-table-column--relative': !__fixedColumn && tooltip,

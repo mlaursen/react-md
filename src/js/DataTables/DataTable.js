@@ -96,6 +96,11 @@ export default class DataTable extends PureComponent {
      * ```
      */
     onRowToggle: invalidIf(PropTypes.func, 'plain'),
+
+    /**
+     * Boolean if the `DataTable` should inject checkboxes at the start of each row.
+     */
+    selectableRows: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -105,6 +110,7 @@ export default class DataTable extends PureComponent {
     checkedIconClassName: 'material-icons',
     defaultSelectedRows: [],
     responsive: true,
+    selectableRows: true,
   };
 
   static childContextTypes = contextTypes;
@@ -130,6 +136,7 @@ export default class DataTable extends PureComponent {
       checkedIconClassName,
       plain,
       baseId,
+      selectableRows,
     } = this.props;
 
     return {
@@ -144,6 +151,7 @@ export default class DataTable extends PureComponent {
       toggleSelectedRow: this._toggleSelectedRow,
       baseId,
       baseName: `${baseId}-control`,
+      selectableRows,
     };
   }
 
@@ -213,6 +221,7 @@ export default class DataTable extends PureComponent {
     delete props.defaultSelectedRows;
     delete props.baseId;
     delete props.onRowToggle;
+    delete props.selectableRows;
 
     const table = (
       <table
