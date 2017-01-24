@@ -9,7 +9,7 @@ The Material Design grid framework works on a 12 column grid system for desktop 
 an 8 column grid system for tablet devices, and a 4 column grid system for mobile devices.
 
 The \`react-md\` library has implemented this by creating the \`.md-grid\` and \`.md-cell\`
-class names. Using both of these toegether can get the require margins and gutter for an
+class names. Using both of these toegether can get the required margins and gutter for an
 application.
 
 The grid is implemented with the \`.md-grid\` flexbox container and each column (or cell)
