@@ -206,6 +206,14 @@ export default class TimePickerContainer extends PureComponent {
      */
     closeOnEsc: PropTypes.bool,
 
+    /**
+     * If true the hover mode of the Time Picker is activated.
+     * In hover mode no clicks are required to start selecting an hour
+     * and the timemode switches automatically when a time was chosen.
+     * When a minute is selected the chosen time is applied automatically.
+     */
+    hoverMode: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
@@ -224,6 +232,7 @@ export default class TimePickerContainer extends PureComponent {
     cancelPrimary: true,
     closeOnEsc: true,
     'aria-label': 'Select a time',
+    hoverMode: false,
   };
 
   constructor(props) {
@@ -335,6 +344,12 @@ export default class TimePickerContainer extends PureComponent {
     }
 
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      const { hoverMode } = this.props;
+
+      if (hoverMode) {
+        this._setTimeMode('hour');
+      }
+
       this.setState({ visible });
     }
   }
@@ -433,6 +448,7 @@ export default class TimePickerContainer extends PureComponent {
       fullWidth,
       lineDirection,
       closeOnEsc,
+      hoverMode,
       'aria-label': ariaLabel,
       ...props
     } = this.props;
@@ -469,6 +485,7 @@ export default class TimePickerContainer extends PureComponent {
         onCancelClick={this._handleCancelClick}
         setTimeMode={this._setTimeMode}
         setTempTime={this._setTempTime}
+        hoverMode={hoverMode}
       />
     );
 

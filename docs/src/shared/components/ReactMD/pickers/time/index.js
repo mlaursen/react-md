@@ -8,6 +8,8 @@ import LocaleExamples from './LocaleExamples';
 import LocaleExamplesRaw from '!!raw!./LocaleExamples';
 import ControlledExample from './ControlledExample';
 import ControlledExampleRaw from '!!raw!./ControlledExample';
+import HoverExample from './HoverExample';
+import HoverExampleRaw from '!!raw!./HoverExample';
 
 export default [{
   title: 'Orientation Examples',
@@ -43,4 +45,12 @@ be triggered when the user hits the OK button.
   `,
   code: ControlledExampleRaw,
   children: <ControlledExample />,
+}, {
+  title: 'Hover Example',
+  description: `
+A time picker can be started in hover mode, which does not require a click from the user to start selecting a time.
+In hover mode after picking an hour the picker automatically switches to minutes and after picking a minute the new time gets applied automatically.
+  `,
+  code: HoverExampleRaw,
+  children: <HoverExample />,
 }];
