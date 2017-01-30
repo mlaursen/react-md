@@ -190,9 +190,21 @@ export default class Drawer extends PureComponent {
 
     /**
      * An optional DOM Node to render the drawer into. The default is to render as
-     * the last child in the `body`.
+     * the first child in the `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
      */
     renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the drawer should be rendered as the last child instead of the first child
+     * in the `renderNode` or `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    lastChild: PropTypes.bool,
 
     /**
      * Boolean if the drawer is visible by default. If this is omitted, the drawer will be visible
@@ -518,6 +530,7 @@ export default class Drawer extends PureComponent {
       overlay,
       autoclose,
       clickableDesktopOverlay,
+      lastChild,
       ...props
     } = this.props;
     delete props.visible;
@@ -619,7 +632,7 @@ export default class Drawer extends PureComponent {
     }
 
     return (
-      <Portal visible={mini || animating || visible} renderNode={renderNode}>
+      <Portal visible={mini || animating || visible} renderNode={renderNode} lastChild={lastChild}>
         {drawer}
       </Portal>
     );
