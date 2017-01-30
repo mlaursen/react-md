@@ -232,6 +232,14 @@ export default class DialogContainer extends PureComponent {
      */
     renderNode: PropTypes.object,
 
+    /**
+     * Boolean if the dialog should be rendered as the last child in the `renderNode` or `body` instead
+     * of as the first.
+     *
+     * When there are nested dialogs, this prop should be enabled to get correct z-indexes.
+     */
+    lastChild: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -411,6 +419,7 @@ export default class DialogContainer extends PureComponent {
       transitionEnterTimeout,
       transitionLeaveTimeout,
       renderNode,
+      lastChild,
       ...props
     } = this.props;
     delete props.close;
@@ -440,7 +449,7 @@ export default class DialogContainer extends PureComponent {
     );
 
     return (
-      <Portal visible={portalVisible} renderNode={renderNode}>
+      <Portal visible={portalVisible} renderNode={renderNode} lastChild={lastChild}>
         <CSSTransitionGroup
           component={component}
           ref={this._setContainer}

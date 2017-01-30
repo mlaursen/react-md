@@ -126,6 +126,12 @@ export default class BottomNavigation extends PureComponent {
     renderNode: PropTypes.object,
 
     /**
+     * Boolean if the bottom navigation should render as the last child in the `renderNode` or `body`
+     * instead of as the first.
+     */
+    lastChild: PropTypes.bool,
+
+    /**
      * The transition duration for the dynamic bottom navigation to appear or disappear. This should
      * match the `$md-bottom-navigation-transition-time` variable.
      */
@@ -291,6 +297,7 @@ export default class BottomNavigation extends PureComponent {
       actions,
       colored,
       dynamic,
+      lastChild,
       renderNode,
       ...props
     } = this.props;
@@ -321,7 +328,7 @@ export default class BottomNavigation extends PureComponent {
     const activeIndex = getField(this.props, this.state, 'activeIndex');
 
     return (
-      <Portal renderNode={renderNode} visible={portalVisible}>
+      <Portal renderNode={renderNode} visible={portalVisible} lastChild={lastChild}>
         <Paper
           {...props}
           className={cn('md-bottom-navigation', {
