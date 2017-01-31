@@ -1,4 +1,11 @@
 ## January 2017
+### v1.0.2 Released
+Minor bugfixes.
+
+##### Changelog
+- Fixed active label for [SelectField](https://github.com/mlaursen/react-md/pull/235).
+- Components that use the `Portal` component pass the `lastChild` and `renderNode` [props correctly](https://github.com/mlaursen/react-md/pull/234).
+
 ### v1.0.1 Released
 Minor bugfixes.
 

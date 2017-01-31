@@ -289,6 +289,19 @@ export default class DatePickerContainer extends PureComponent {
      */
     closeOnEsc: PropTypes.bool,
 
+    /**
+     * An optional DOM Node to render the dialog into. The default is to render as the first child
+     * in the `body`.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
+     * of the first.
+     *
+     * When the `DatePicker` is nested in a `Dialog`, this prop should be enabled to get the correct z-indexing.
+     */
+    lastChild: PropTypes.bool,
     previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
     nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
@@ -636,6 +649,8 @@ export default class DatePickerContainer extends PureComponent {
       id,
       disabled,
       closeOnEsc,
+      renderNode,
+      lastChild,
       'aria-label': ariaLabel,
       isOpen, // deprecated
       ...props
@@ -689,6 +704,8 @@ export default class DatePickerContainer extends PureComponent {
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
+          renderNode={renderNode}
+          lastChild={lastChild}
           focusOnMount={false}
         >
           {picker}
