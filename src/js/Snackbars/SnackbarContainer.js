@@ -137,7 +137,18 @@ export default class SnackbarContainer extends PureComponent {
 
       return null;
     },
+
+    /**
+     * An optional DOM node to render the Snackbar in. If this is omitted, it will render as the first
+     * child in the `body`.
+     */
     renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the snackbar should render as the last child in the `renderNode` or `body` instead of
+     * as the first.
+     */
+    lastChild: PropTypes.bool,
     dismiss: deprecated(PropTypes.func, 'Use `onDismiss` instead'),
   };
 
@@ -291,6 +302,7 @@ export default class SnackbarContainer extends PureComponent {
       transitionLeaveTimeout,
       dismiss,
       onDismiss,
+      lastChild,
       renderNode,
       ...props
     } = this.props;
@@ -311,7 +323,7 @@ export default class SnackbarContainer extends PureComponent {
     }
 
     return (
-      <Portal visible={visible} renderNode={renderNode}>
+      <Portal visible={visible} renderNode={renderNode} lastChild={lastChild}>
         <CSSTransitionGroup
           ref={this._setContainer}
           key="container"
