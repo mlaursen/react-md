@@ -31,6 +31,20 @@ $md-toolbar-include-autocompletes: true !default;
 /// @type Boolean
 $md-toolbar-include-select-fields: true !default;
 
+/// Boolean if two additional class names should be included for positioning toolbar relatives with `padding` instead of `margin`.
+/// Creates `.md-toolbar-relative--padded` and `md-toolbar-relative--prominent-padded`
+///
+/// > NOTE: If `$md-toolbar-relative-padding` is `true`, these classes will still not be created. In addition,
+/// if `$md-toolbar-include-prominent` is `false`, the prominent class name will not be created.
+/// @type Boolean
+$md-toolbar-include-relative-padding-class-names: false !default;
+
+/// Boolean if the `.md-toolbar-relative` and `.md-toolbar-relative--prominent` should use `padding` instead of `margin`
+/// for positioning.
+/// @type Boolean
+/// @see  md-toolbar-include-relative-padding-class-names
+$md-toolbar-relative-padding: false !default;
+
 /// The amount of margin for an inset toolbar.
 /// @type Number
 $md-toolbar-inset-margin: 8px !default;
@@ -107,6 +121,10 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
+///     relative padding class names should be included.
+/// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
+///     should use padding instead of margin.
 @mixin react-md-toolbars(
   $light-theme: $md-light-theme,
   $include-media: $md-media-included,
@@ -115,10 +133,12 @@ $md-toolbar-tablet-title-keyline: 80px !default;
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-text-fields: $md-toolbar-include-text-fields,
   $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
+  $relative-padding: $md-toolbar-relative-padding
 ) {
   @if $include-media {
-    @include react-md-toolbars-media($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+    @include react-md-toolbars-media($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-relative-padding-class-names, $relative-padding);
   }
 
   .md-toolbar {
@@ -240,6 +260,17 @@ $md-toolbar-tablet-title-keyline: 80px !default;
   }
 }
 
+/// A simple mixin that will either create padding-top or margin-top for the given value depending
+/// on if $padded is true.
+/// @access private
+@mixin margin-or-padding($val, $padded) {
+  @if $padded {
+    padding-top: $val;
+  } @else {
+    margin-top: $val;
+  }
+}
+
 /// Includes the styles for toolbars on mobile devices. This should normally be used in a media query.
 ///
 /// @example scss - Example Usage SCSS
@@ -249,12 +280,24 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
 ///     toolbar styles should be included.
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
+/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
+///     for autocompletes in toolbars should be included.
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
+///     for select fields in toolbars should be included.
+/// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
+///     relative padding class names should be included.
+/// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
+///     should use padding instead of margin.
 /// @group toolbars, media-queries
 @mixin react-md-toolbars-mobile(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
+  $relative-padding: $md-toolbar-relative-padding
 ) {
   @if $include-prominent {
     .md-toolbar--prominent {
@@ -262,7 +305,7 @@ $md-toolbar-tablet-title-keyline: 80px !default;
     }
 
     .md-toolbar-relative--prominent {
-      margin-top: $md-toolbar-mobile-prominent-height;
+      @include margin-or-padding($md-toolbar-mobile-prominent-height, $relative-padding);
     }
   }
 
@@ -285,7 +328,19 @@ $md-toolbar-tablet-title-keyline: 80px !default;
   }
 
   .md-toolbar-relative {
-    margin-top: $md-toolbar-mobile-portrait-height;
+    @include margin-or-padding($md-toolbar-mobile-portrait-height, $relative-padding);
+
+    @if not $relative-padding and $include-relative-padding-class-names {
+      &--padding {
+        padding-top: $md-toolbar-mobile-portrait-height;
+      }
+
+      @if $include-prominent {
+        &--prominent-padding {
+          padding-top: $md-toolbar-mobile-prominent-height;
+        }
+      }
+    }
   }
 
   .md-toolbar--discrete {
@@ -346,20 +401,34 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///   }
 ///
 /// @param {Boolean} include-prominent [$md-toolbar-include-prominent] - Boolean if the prominent
-///     toolbar styles shoudl be included.
+///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
 /// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
 ///     for autocompletes in toolbars should be included.
+/// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
+///     for select fields in toolbars should be included.
+/// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
+///     relative padding class names should be included.
+/// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
+///     should use padding instead of margin.
 /// @group toolbars, media-queries
 @mixin react-md-toolbars-mobile-landscape(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
+  $relative-padding: $md-toolbar-relative-padding
 ) {
   .md-toolbar-relative {
-    margin-top: $md-toolbar-mobile-landscape-height;
+    @include margin-or-padding($md-toolbar-mobile-landscape-height, $relative-padding);
+
+    @if $include-relative-padding-class-names and not $relative-padding {
+      &--padding {
+        padding-top: $md-toolbar-mobile-landscape-height;
+      }
+    }
   }
 
   .md-toolbar--discrete {
@@ -420,15 +489,27 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
+///     relative padding class names should be included.
+/// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
+///     should use padding instead of margin.
 /// @group toolbars, media-queries
 @mixin react-md-toolbars-tablet(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
+  $relative-padding: $md-toolbar-relative-padding
 ) {
   .md-toolbar-relative {
-    margin-top: $md-toolbar-tablet-height;
+    @include margin-or-padding($md-toolbar-tablet-height, $relative-padding);
+
+    @if not $relative-padding and $include-relative-padding-class-names {
+      &--padding {
+        padding-top: $md-toolbar-tablet-height;
+      }
+    }
   }
 
   .md-toolbar--discrete {
@@ -547,23 +628,29 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
+///     relative padding class names should be included.
+/// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
+///     should use padding instead of margin.
 /// @group toolbars, media-queries
 @mixin react-md-toolbars-media(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-autocompletes: $md-toolbar-include-autocompletes,
-  $include-select-fields: $md-toolbar-include-select-fields
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
+  $relative-padding: $md-toolbar-relative-padding
 ) {
   @media #{$md-mobile-media} {
-    @include react-md-toolbars-mobile($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+    @include react-md-toolbars-mobile($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-relative-padding-class-names, $relative-padding);
   }
 
   @media #{$md-mobile-landscape-media} {
-    @include react-md-toolbars-mobile-landscape($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+    @include react-md-toolbars-mobile-landscape($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-relative-padding-class-names, $relative-padding);
   }
 
   @media #{$md-tablet-media} {
-    @include react-md-toolbars-tablet($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields);
+    @include react-md-toolbars-tablet($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-relative-padding-class-names, $relative-padding);
   }
 
   @if $include-select-fields {
