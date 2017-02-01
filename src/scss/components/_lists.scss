@@ -38,59 +38,59 @@ $md-list-include-unstyled-class-name: true !default;
 /// This is really the keyline to use for lists. When a list item is inset, this will
 /// be applied to the tile.
 /// @type Number
-$md-list-left-padding: 72px;
+$md-list-left-padding: 72px !default;
 
 /// The top and bottom padding to apply to a list on mobile devices.
 /// @type Number
-$md-list-mobile-padding: 8px;
+$md-list-mobile-padding: 8px !default;
 
 /// The font size to apply to the primary text in a list item on mobile devices.
 /// @type Number
-$md-list-mobile-primary-font-size: 16px;
+$md-list-mobile-primary-font-size: 16px !default;
 
 /// The font size to apply to the secondary text in a list item on mobile devices.
 /// @type Number
-$md-list-mobile-secondary-font-size: 14px;
+$md-list-mobile-secondary-font-size: 14px !default;
 
 /// The height for a single line list item on mobile devices.
 /// @type Number
-$md-list-mobile-height: 48px;
+$md-list-mobile-height: 48px !default;
 
 /// The height for a list item that has an avatar on mobile devices.
 /// @type Number
-$md-list-mobile-avatar-height: 56px;
+$md-list-mobile-avatar-height: 56px !default;
 
 /// The height for a list item that has two lines of text on mobile devices.
 /// @type Number
-$md-list-mobile-two-lines-height: 72px;
+$md-list-mobile-two-lines-height: 72px !default;
 
 /// The height for a list item that has three lines of text on mobile devices.
 /// @type Number
-$md-list-mobile-three-lines-height: 88px;
+$md-list-mobile-three-lines-height: 88px !default;
 
 /// The top and bottom padding for a list on desktop screens.
 /// @type Number
-$md-list-desktop-padding: 4px;
+$md-list-desktop-padding: 4px !default;
 
 /// The font size to apply to a list item's primary and secondary text on desktop screens.
 /// @type Number
-$md-list-desktop-font-size: 13px;
+$md-list-desktop-font-size: 13px !default;
 
 /// The height for a single line list item on desktop screens.
 /// @type Number
-$md-list-desktop-height: 40px;
+$md-list-desktop-height: 40px !default;
 
 /// The height for a list item that has an avatar on desktop screens.
 /// @type Number
-$md-list-desktop-avatar-height: 48px;
+$md-list-desktop-avatar-height: 48px !default;
 
 /// The height for a list item that has two lines of text on desktop screens.
 /// @type Number
-$md-list-desktop-two-lines-height: 60px;
+$md-list-desktop-two-lines-height: 60px !default;
 
 /// The height for a list item that has three lines of text on desktop screens.
 /// @type Number
-$md-list-desktop-three-lines-height: 76px;
+$md-list-desktop-three-lines-height: 76px !default;
 
 /// A placeholder for removing the default margin, padding and list styles
 %md-list-unstyled {

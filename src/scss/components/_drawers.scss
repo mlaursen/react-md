@@ -21,11 +21,11 @@ $md-drawer-transition-time: $md-transition-time * 2 !default;
 
 /// The drawer's max width on mobile devices when positioned to the left of the screen.
 /// @type Number
-$md-drawer-mobile-max-width: 320px;
+$md-drawer-mobile-max-width: 320px !default;
 
 /// The margin for the drawer on mobile devices when positioned to the left of the screen.
 /// @type Number
-$md-drawer-mobile-margin: 56px;
+$md-drawer-mobile-margin: 56px !default;
 
 /// The width for a mini drawer on mobile devices.
 /// @type Number
@@ -40,7 +40,7 @@ $md-drawer-tablet-width: 256px !default;
 $md-drawer-desktop-width: $md-drawer-tablet-width !default;
 
 /// The drawer's max width on desktop screens when positioned to the left of the screen.
-$md-drawer-desktop-left-max-width: 400px;
+$md-drawer-desktop-left-max-width: 400px !default;
 
 /// The mini drawer width on desktops and tablets.
 /// @type Number

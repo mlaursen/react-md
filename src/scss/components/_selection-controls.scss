@@ -30,28 +30,50 @@ $md-switch-thumb-size: $md-font-icon-size !default;
 /// The height for the switch
 /// @type Number
 /// @access private
-$md-switch-height: $md-height;
+$md-switch-height: $md-height !default;
 
 /// The radius for the switch's track
 /// @type Number
 /// @access private
-$md-switch-track-radius: $md-switch-track-height / 2;
+$md-switch-track-radius: $md-switch-track-height / 2 !default;
 
 /// The distance that the switch's thumb should be offset from the left or
 /// right of the switch's track.
 /// @type Number
 /// @access private
-$md-switch-thumb-offset: $md-switch-track-height / 4;
+$md-switch-thumb-offset: $md-switch-track-height / 4 !default;
 
-$md-switch-light-theme-thumb-off: $md-grey-50;
-$md-switch-light-theme-track-off: rgba($md-black-base, .38);
-$md-switch-light-theme-thumb-disabled: $md-grey-400;
-$md-switch-light-theme-track-disabled: rgba($md-black-base, .12);
+/// The switch's thumb's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-light-theme-thumb-off: $md-grey-50 !default;
 
-$md-switch-dark-theme-thumb-off: $md-grey-400;
-$md-switch-dark-theme-track-off: rgba($md-white-base, .30);
-$md-switch-dark-theme-thumb-disabled: $md-grey-800;
-$md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
+/// The switch's track's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-light-theme-track-off: rgba($md-black-base, .38) !default;
+
+/// The switch's thumb's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-light-theme-thumb-disabled: $md-grey-400 !default;
+
+/// The switch's track's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-light-theme-track-disabled: rgba($md-black-base, .12) !default;
+
+/// The switch's thumb's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-dark-theme-thumb-off: $md-grey-400 !default;
+
+/// The switch's track's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-dark-theme-track-off: rgba($md-white-base, .30) !default;
+
+/// The switch's thumb's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-dark-theme-thumb-disabled: $md-grey-800 !default;
+
+/// The switch's track's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-dark-theme-track-disabled: rgba($md-white-base, .1) !default;
 
 /// Includes the styles for the Selection Controls.
 ///

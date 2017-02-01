@@ -42,39 +42,39 @@ $md-data-table-edit-dialog-mobile-right: $md-grid-phone-margin !default;
 
 /// The default left/right padding for a `TableColumn`.
 /// @type String
-$md-data-table-padding: 24px;
+$md-data-table-padding: 24px !default;
 
 /// The minimum distance between a cell's content and the next cell.
 /// @type String
-$md-data-table-min-padding: 56px;
+$md-data-table-min-padding: 56px !default;
 
 /// The font size for content inside of the `TableBody` component.
 /// @type String
-$md-data-table-content-font-size: 13px;
+$md-data-table-content-font-size: 13px !default;
 
 /// The font size for the content inside of the `TableHeader` component.
 /// @type String
-$md-data-table-header-font-size: 12px;
+$md-data-table-header-font-size: 12px !default;
 
 /// The height for the `TableHeader`'s row.
 /// @type String
-$md-data-table-header-height: 56px;
+$md-data-table-header-height: 56px !default;
 
 /// The font size for a font-icon in the `md-table-column--header`.
 /// @type Number
-$md-data-table-header-icon-font-size: 16px;
+$md-data-table-header-icon-font-size: 16px !default;
 
 /// The height for a column in a data table.
 /// @type Number
-$md-data-table-column-height: 48px;
+$md-data-table-column-height: 48px !default;
 
 /// The hover color for a row when using the light theme.
 /// @type Color
-$md-data-table-hover-color: $md-grey-200;
+$md-data-table-hover-color: $md-grey-200 !default;
 
 /// The selected color for a row when using the light theme.
 /// @type Color
-$md-data-table-selected-color: $md-grey-100;
+$md-data-table-selected-color: $md-grey-100 !default;
 
 /// The hover color for a row when using the dark theme. This is configurable since
 /// the dark theme data table specs are not defined in the material design documentation

@@ -1102,66 +1102,66 @@ $md-color-map: (
 
 
 /// @type Color
-$md-light-theme-text-color: rgba($md-black-base, .87);
+$md-light-theme-text-color: rgba($md-black-base, .87) !default;
 
 /// @type Color
-$md-light-theme-secondary-text-color: rgba($md-black-base, .54);
+$md-light-theme-secondary-text-color: rgba($md-black-base, .54) !default;
 
 /// @type Color
-$md-light-theme-icon-text-color: $md-light-theme-secondary-text-color;
+$md-light-theme-icon-text-color: $md-light-theme-secondary-text-color !default;
 
 /// @type Color
-$md-light-theme-disabled-text-color: rgba($md-black-base, .38);
+$md-light-theme-disabled-text-color: rgba($md-black-base, .38) !default;
 
 /// @type Color
-$md-light-theme-hint-text-color: $md-light-theme-disabled-text-color;
+$md-light-theme-hint-text-color: $md-light-theme-disabled-text-color !default;
 
 /// @type Color
-$md-light-theme-divider-color: rgba($md-black-base, .12);
+$md-light-theme-divider-color: rgba($md-black-base, .12) !default;
 
 /// @type Color
-$md-light-theme-status-bar-color: $md-grey-300;
+$md-light-theme-status-bar-color: $md-grey-300 !default;
 
 /// @type Color
-$md-light-theme-app-bar-color: $md-grey-100;
+$md-light-theme-app-bar-color: $md-grey-100 !default;
 
 /// @type Color
-$md-light-theme-background-color: $md-grey-50;
+$md-light-theme-background-color: $md-grey-50 !default;
 
 /// @type Color
-$md-light-theme-card-color: $md-white-base;
+$md-light-theme-card-color: $md-white-base !default;
 
 
 
 /// @type Color
-$md-dark-theme-text-color: $md-white-base;
+$md-dark-theme-text-color: $md-white-base !default;
 
 /// @type Color
-$md-dark-theme-secondary-text-color: rgba($md-white-base, .7);
+$md-dark-theme-secondary-text-color: rgba($md-white-base, .7) !default;
 
 /// @type Color
-$md-dark-theme-icon-text-color: $md-dark-theme-secondary-text-color;
+$md-dark-theme-icon-text-color: $md-dark-theme-secondary-text-color !default;
 
 /// @type Color
-$md-dark-theme-disabled-text-color: rgba($md-white-base, .3);
+$md-dark-theme-disabled-text-color: rgba($md-white-base, .3) !default;
 
 /// @type Color
-$md-dark-theme-hint-text-color: $md-dark-theme-disabled-text-color;
+$md-dark-theme-hint-text-color: $md-dark-theme-disabled-text-color !default;
 
 /// @type Color
-$md-dark-theme-divider-color: rgba($md-white-base, .12);
+$md-dark-theme-divider-color: rgba($md-white-base, .12) !default;
 
 /// @type Color
-$md-dark-theme-status-bar-color: $md-black-base;
+$md-dark-theme-status-bar-color: $md-black-base !default;
 
 /// @type Color
-$md-dark-theme-app-bar-color: $md-grey-900;
+$md-dark-theme-app-bar-color: $md-grey-900 !default;
 
 /// @type Color
-$md-dark-theme-background-color: #303030;
+$md-dark-theme-background-color: #303030 !default;
 
 /// @type Color
-$md-dark-theme-card-color: $md-grey-800;
+$md-dark-theme-card-color: $md-grey-800 !default;
 
 /// A mapping of all the light-theme colors.
 /// @type Map

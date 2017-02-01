@@ -27,7 +27,7 @@ $md-card-include-tables: true !default;
 /// instead of the `$md-default-padding`.
 /// @type Number
 /// @see md-default-padding
-$md-card-padding-extra: 24px;
+$md-card-padding-extra: 24px !default;
 
 /// Includes the styles for cards. The different sections can be excluded by setting the parameter
 /// to false. If the `react-md-everything` mixin is being used, set the corresponding variables to

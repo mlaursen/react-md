@@ -104,9 +104,9 @@ $md-media-included: true !default;
 /// The default accessible height for a lot of material design components.
 /// @type Number
 /// @group defaults
-$md-height: 48px;
+$md-height: 48px !default;
 
 /// The default padding used for most material design components.
 /// @type Number
 /// @group defaults
-$md-default-padding: 16px;
+$md-default-padding: 16px !default;

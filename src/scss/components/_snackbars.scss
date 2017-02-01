@@ -24,43 +24,43 @@ $md-snackbar-color: #323232 !default;
 
 /// The horizontal padding in a snackbar.
 /// @type Number
-$md-snackbar-horizontal-padding: 24px;
+$md-snackbar-horizontal-padding: 24px !default;
 
 /// The vertical padding for a single line snackbar.
 /// @type Number
-$md-snackbar-vertical-padding: 14px;
+$md-snackbar-vertical-padding: 14px !default;
 
 /// The vertical padding for a multi-line snackbar.
 /// @type Number
-$md-snackbar-vertical-multiline-padding: 24px;
+$md-snackbar-vertical-multiline-padding: 24px !default;
 
 /// The margin between the snackbar's text and action on mobile devices.
 /// @type Number
-$md-snackbar-mobile-button-left-margin: 24px;
+$md-snackbar-mobile-button-left-margin: 24px !default;
 
 /// The height of a single line snackbar on mobile devices.
 /// @type Number
-$md-snackbar-mobile-height: 48px;
+$md-snackbar-mobile-height: 48px !default;
 
 /// The height of a multi-line snackbar on mobile devices.
 /// @type Number
-$md-snackbar-mobile-multiline-height: 80px;
+$md-snackbar-mobile-multiline-height: 80px !default;
 
 /// The border radius for snackbars on desktop screens.
 /// @type Number
-$md-snackbar-desktop-border-radius: 2px;
+$md-snackbar-desktop-border-radius: 2px !default;
 
 /// The margin between a snackbar's text and action on desktop screens.
 /// @type Number
-$md-snackbar-desktop-button-left-margin: 48px;
+$md-snackbar-desktop-button-left-margin: 48px !default;
 
 /// The min width for a snackbar on desktop screens.
 /// @type Number
-$md-snackbar-desktop-min-width: 288px;
+$md-snackbar-desktop-min-width: 288px !default;
 
 /// The max width for a snackbar on desktop screens.
 /// @type Number
-$md-snackbar-desktop-max-width: 568px;
+$md-snackbar-desktop-max-width: 568px !default;
 
 
 /// Creates the styles for snackbars

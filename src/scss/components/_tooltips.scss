@@ -4,35 +4,35 @@
 
 /// The font size for tooltips on mobile devices.
 /// @type Number
-$md-tooltip-mobile-font-size: 14px;
+$md-tooltip-mobile-font-size: 14px !default;
 
 /// The height of the tooltip on mobile devices.
 /// @type Number
-$md-tooltip-mobile-tile-height: 32px;
+$md-tooltip-mobile-tile-height: 32px !default;
 
 /// The left and right padding for a tooltip on mobile devices.
 /// @type Number
-$md-tooltip-mobile-lr-padding: 16px;
+$md-tooltip-mobile-lr-padding: 16px !default;
 
 /// The margin between a tooltip and its corresponding element on mobile devices.
 /// @type Number
-$md-tooltip-mobile-top-margin: 24px;
+$md-tooltip-mobile-top-margin: 24px !default;
 
 /// The font size for tooltip son desktop screens.
 /// @type Number
-$md-tooltip-desktop-font-size: 10px;
+$md-tooltip-desktop-font-size: 10px !default;
 
 /// The height for tooltips on desktop screens.
 /// @type Number
-$md-tooltip-desktop-tile-height: 22px;
+$md-tooltip-desktop-tile-height: 22px !default;
 
 /// The left and right padding for tooltips on desktop screens.
 /// @type Number
-$md-tooltip-desktop-lr-padding: 8px;
+$md-tooltip-desktop-lr-padding: 8px !default;
 
 /// The margin between a tooltip and its corresponding element on desktop screens.
 /// @type Number
-$md-tooltip-desktop-top-margin: 14px;
+$md-tooltip-desktop-top-margin: 14px !default;
 
 /// The background color for tooltips.
 /// @type Color

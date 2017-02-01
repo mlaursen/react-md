@@ -59,101 +59,86 @@ $md-text-field-include-inline-indicator: true !default;
 
 /// The font size for the text field messages.
 /// @type Number
-/// @access private
-$md-text-field-message-font-size: 12px;
+$md-text-field-message-font-size: 12px !default;
 
 /// The font size for the floating label when it is floating above
 /// the text field.
 /// @type Number
-/// @access private
-$md-text-field-active-font-size: 12px;
+$md-text-field-active-font-size: 12px !default;
 
 /// The padding below the text field divider on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-divider-bottom-padding: 8px;
+$md-text-field-mobile-divider-bottom-padding: 8px !default;
 
 /// The height for a single-line text field on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-height: $md-height;
+$md-text-field-mobile-height: $md-height !default;
 
 /// The height for a floating-label text field on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-floating-height: 72px;
+$md-text-field-mobile-floating-height: 72px !default;
 
 /// The font size for a text field on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-font-size: 16px;
+$md-text-field-mobile-font-size: 16px !default;
 
 /// The padding above a floating label on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-top-padding: 16px;
+$md-text-field-mobile-top-padding: 16px !default;
 
 /// The padding between a _floating_ floating label and the text field
 /// on mobile devices.
 /// @type Number
-/// @access private
-$md-text-field-mobile-floating-label-padding: 8px;
+$md-text-field-mobile-floating-label-padding: 8px !default;
 
 /// The padding above the text field divider for mobile and desktop.
 /// @type Number
-/// @access private
-$md-text-field-divider-top-padding: 7px;
+$md-text-field-divider-top-padding: 7px !default;
 
 // The padding above and below the block text field on mobile devices.
 // @type Number
-$md-text-field-mobile-block-padding: 20px;
+$md-text-field-mobile-block-padding: 20px !default;
 
 /// The height for a single-line text field on desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-height: 40px;
+$md-text-field-desktop-height: 40px !default;
 
 /// The height for a floating-label text field on desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-floating-height: 60px;
+$md-text-field-desktop-floating-height: 60px !default;
 
 /// The font size for text fields on desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-font-size: 13px;
+$md-text-field-desktop-font-size: 13px !default;
 
 /// The padding from the top of the text field container to the _floating_
 /// floating label on desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-top-padding: 12px;
+$md-text-field-desktop-top-padding: 12px !default;
 
 /// The padding between a _floating_ floating label and the text field on
 /// desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-floating-label-padding: 4px;
+$md-text-field-desktop-floating-label-padding: 4px !default;
 
 /// The padding between the text field container's bottom and the text field
 /// divider on desktop displays.
 /// @type Number
-/// @access private
-$md-text-field-desktop-divider-bottom-padding: 4px;
+$md-text-field-desktop-divider-bottom-padding: 4px !default;
 
 // The padding above and below the block text field on desktop screens.
 // @type Number
-$md-text-field-desktop-block-padding: 16px;
+$md-text-field-desktop-block-padding: 16px !default;
 
 /// This is the position from the top of the text field's container that the floating
 /// label should appear.
 /// @type Number
-$md-text-field-mobile-floating-label-margin: 37px;
+$md-text-field-mobile-floating-label-margin: 37px !default;
 
 /// This is the position from the top of the text field's container that the floating
 /// label should appear for desktop screens.
 /// @type Number
-$md-text-field-desktop-floating-label-margin: 33px;
+$md-text-field-desktop-floating-label-margin: 33px !default;
 
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,

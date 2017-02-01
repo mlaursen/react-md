@@ -27,46 +27,46 @@ $md-bottom-navigation-z-index: 11 !default;
 
 /// The height for the bottom navigation bar.
 /// @type Number
-$md-bottom-navigation-height: 56px;
+$md-bottom-navigation-height: 56px !default;
 
 /// The max width for a tab on the bottom navigation.
 /// @type Number
-$md-bottom-navigation-max-width: 168px;
+$md-bottom-navigation-max-width: 168px !default;
 
 /// The top padding for a bottom navgation's tab when active.
 /// @type Number
-$md-bottom-navigation-top-padding-active: 6px;
+$md-bottom-navigation-top-padding-active: 6px !default;
 
 /// The top padding for a bottom navgation's tab when inactive.
 /// @type Number
-$md-bottom-navigation-top-padding-inactive: 8px;
+$md-bottom-navigation-top-padding-inactive: 8px !default;
 
 /// The bottom padding for a bottom navigation's tab.
 /// @type Number
-$md-bottom-navigation-bottom-padding: 10px;
+$md-bottom-navigation-bottom-padding: 10px !default;
 
 /// The left and right padding to apply to a bottom navigation's tab.
 /// @type Number
-$md-bottom-navigation-lr-padding: 12px;
+$md-bottom-navigation-lr-padding: 12px !default;
 
-$md-bottom-navigation-active-font-size: 14px;
-$md-bottom-navigation-inactive-font-size: 12px;
+$md-bottom-navigation-active-font-size: 14px !default;
+$md-bottom-navigation-inactive-font-size: 12px !default;
 
 /// The min width for a fixed bottom navgation's tab.
 /// @type Number
-$md-bottom-navigation-fixed-min-width: 80px;
+$md-bottom-navigation-fixed-min-width: 80px !default;
 
 /// The min width for a shifting bottom navigation's tab.
 /// @type Number
-$md-bottom-navigation-shifting-active-min-width: 96px;
+$md-bottom-navigation-shifting-active-min-width: 96px !default;
 
 /// The min width for an inactive shifting bottom navigation's tab.
 /// @type Number
-$md-bottom-navigation-shifting-inactive-min-width: 56px;
+$md-bottom-navigation-shifting-inactive-min-width: 56px !default;
 
 /// The max width for an inactive shifting bottom navigation's tab.
 /// @type Number
-$md-bottom-navigation-shifting-inactive-max-width: 96px;
+$md-bottom-navigation-shifting-inactive-max-width: 96px !default;
 
 
 /// Creates the styles for bottom navigations. If both the `include-shifting` and `include-dynamic`

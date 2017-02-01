@@ -39,61 +39,84 @@ $md-btn-accessible-height: 48px;
 
 /// The font size for buttons on mobile devices.
 /// @type Number
-$md-btn-mobile-font-size: 14px;
+$md-btn-mobile-font-size: 14px !default;
 
 /// The height for button on mobile devices.
 /// @type Number
-$md-btn-mobile-height: 36px;
+$md-btn-mobile-height: 36px !default;
 
 /// The minimum margin to use for fixed floating buttons on mobile-devices.
 /// @type Number
-$md-btn-mobile-floating-margin: 16px;
+$md-btn-mobile-floating-margin: 16px !default;
 
 /// The font size for buttons on desktop screens.
 /// @type Number
-$md-btn-desktop-font-size: 13px;
+$md-btn-desktop-font-size: 13px !default;
 
 /// The height for buttons on desktop screens.
 /// @type Number
-$md-btn-desktop-height: 32px;
+$md-btn-desktop-height: 32px !default;
 
 /// The minimum margin to use for fixed floating buttons on desktop screens.
 /// @type Number
-$md-btn-desktop-floating-margin: 24px;
+$md-btn-desktop-floating-margin: 24px !default;
 
 
 /// The left and right padding for a button.
 /// @type Number
-$md-btn-lr-padding: 16px;
+$md-btn-lr-padding: 16px !default;
 
 /// The min width for a flat or raised button.
 /// @type Number
-$md-btn-min-width: 88px;
+$md-btn-min-width: 88px !default;
 
 /// The the default size for a floating button (FAB).
 /// @type Number
-$md-btn-floating-size: 56px;
+$md-btn-floating-size: 56px !default;
 
 /// The the mini size for a floating button.
 /// @type Number
-$md-btn-floating-mini-size: 40px;
+$md-btn-floating-mini-size: 40px !default;
 
 /// The size for an icon button.
 /// @type Number
-$md-btn-icon-size: $md-font-icon-size * 2;
+$md-btn-icon-size: $md-font-icon-size * 2 !default;
 
 /// The padding for an icon button.
 /// @type Number
-$md-btn-icon-padding: $md-btn-icon-size / 4;
+$md-btn-icon-padding: $md-btn-icon-size / 4 !default;
 
-$md-btn-light-theme-base-color: #999;
-$md-btn-light-theme-hover-color: rgba($md-btn-light-theme-base-color, .12);
-$md-btn-light-theme-disabled-color: rgba($md-btn-light-theme-base-color, .2);
-$md-btn-light-theme-pressed-color: rgba($md-btn-light-theme-base-color, .4);
-$md-btn-dark-theme-base-color: #ccc;
-$md-btn-dark-theme-hover-color: rgba($md-btn-dark-theme-base-color, .12);
-$md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2);
-$md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
+/// The base color to use for default buttons in the light theme.
+/// @type Color
+$md-btn-light-theme-base-color: #999 !default;
+
+/// The background color to use for default buttons in the light theme.
+/// @type Color
+$md-btn-light-theme-hover-color: rgba($md-btn-light-theme-base-color, .12) !default;
+
+/// The background color to use for default buttons in the light theme that have been disabled.
+/// @type Color
+$md-btn-light-theme-disabled-color: rgba($md-btn-light-theme-base-color, .2) !default;
+
+/// The background color to use for default buttons that have been pressed in the light theme.
+/// @type Color
+$md-btn-light-theme-pressed-color: rgba($md-btn-light-theme-base-color, .4) !default;
+
+/// The base color to use for default buttons in the dark theme.
+/// @type Color
+$md-btn-dark-theme-base-color: #ccc !default;
+
+/// The hover color to use for default buttons in the dark theme.
+/// @type Color
+$md-btn-dark-theme-hover-color: rgba($md-btn-dark-theme-base-color, .12) !default;
+
+/// The background color to use for default buttons in the dark theme that have been disabled.
+/// @type Color
+$md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2) !default;
+
+/// The background color to use for default buttons that have been pressed in the dark theme.
+/// @type Color
+$md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !default;
 
 
 

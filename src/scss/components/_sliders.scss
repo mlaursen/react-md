@@ -19,7 +19,7 @@ $md-slider-include-indicators: true !default;
 /// The Side of the Thumb for the Slider.
 /// @type Number
 /// @access private
-$md-slider-thumb-size: 14px;
+$md-slider-thumb-size: 14px !default;
 
 /// The default height for the Slider's container.
 /// @type Number
@@ -28,7 +28,7 @@ $md-slider-height: $md-height !default;
 /// The default height for the Slider's track.
 /// @type Number
 /// @access private
-$md-slider-track-height: 2px;
+$md-slider-track-height: 2px !default;
 
 /// The z-index for the Slider's thumb.
 /// @type Number
@@ -71,13 +71,11 @@ $md-slider-discrete-mask-ink-opacity: .3 !default;
 
 /// The off color to use for the Slider when using the light theme.
 /// @type Color
-/// @access private
-$md-slider-light-theme-off-color: rgba($md-black-base, .26);
+$md-slider-light-theme-off-color: rgba($md-black-base, .26) !default;
 
 /// The off color to use for the Slider when using the dark theme.
 /// @type Color
-/// @access private
-$md-slider-dark-theme-off-color: rgba($md-white-base, .3);
+$md-slider-dark-theme-off-color: rgba($md-white-base, .3) !default;
 
 
 /// This includes the react-md Sliders Component scss.

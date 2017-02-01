@@ -12,11 +12,11 @@ $md-font-icon-separator-padding: $md-default-padding !default;
 
 /// The light theme's disabled color for icons.
 /// @type Color
-$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26);
+$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26) !default;
 
 /// The dark theme's disabled color for icons.
 /// @type Color
-$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
+$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 
 /// Includes the css for using `md-icon`.
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the

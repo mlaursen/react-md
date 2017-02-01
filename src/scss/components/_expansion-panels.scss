@@ -8,25 +8,25 @@ $md-expansion-panel-opened-margin: $md-default-padding !default;
 ///
 /// @type String
 /// @group expansion-panels
-$md-expansion-panel-font-size: 15px;
+$md-expansion-panel-font-size: 15px !default;
 
 /// The font size for the exexpanded panel's secondary labels.
 ///
 /// @type String
 /// @group expansion-panels
-$md-expansion-panel-secondary-font-size: 12px;
+$md-expansion-panel-secondary-font-size: 12px !default;
 
 /// The default left/right padding for an expansion panel.
 ///
 /// @type String
 /// @group expansion-panels
-$md-expansion-panel-padding: 24px;
+$md-expansion-panel-padding: 24px !default;
 
 /// The height of the panel's header when expanded.
 ///
 /// @type String
 /// @group expansion-panels
-$md-expansion-panel-expanded-height: 64px;
+$md-expansion-panel-expanded-height: 64px !default;
 
 
 /// Includes the styles for expansion panels.
