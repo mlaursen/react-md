@@ -481,6 +481,10 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
+  get value() {
+    return getField(this.props, this.state, 'value');
+  }
+
   _updateSuggestionStyle(isNew, isDeleted) {
     if (isNew) {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');

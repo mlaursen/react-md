@@ -215,6 +215,10 @@ export default class SelectionControl extends PureComponent {
     this._getIcon = this._getIcon.bind(this);
   }
 
+  get checked() {
+    return getField(this.props, this.state, 'checked');
+  }
+
   _setInput(input) {
     this._input = input;
   }

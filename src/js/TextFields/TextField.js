@@ -505,6 +505,10 @@ export default class TextField extends PureComponent {
     this._field.focus();
   }
 
+  get value() {
+    return this.getField().value;
+  }
+
   _isMultiline(props) {
     return typeof props.rows !== 'undefined';
   }

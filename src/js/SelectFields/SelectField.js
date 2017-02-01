@@ -385,6 +385,10 @@ export default class SelectField extends PureComponent {
     }
   }
 
+  get value() {
+    return getField(this.props, this.state, 'value');
+  }
+
   _attemptItemFocus(index) {
     if (index === -1) {
       return;

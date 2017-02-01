@@ -144,6 +144,26 @@ describe('Autocomplete', () => {
     expect(props.onMenuClose.mock.calls.length).toBe(1);
   });
 
+  it('can get the value with the ref', () => {
+    let _field = null;
+    const props = { ref: f => { _field = f; }, data: [] };
+    let autocomplete = renderIntoDocument(<Autocomplete {...props} />);
+    expect(_field).not.toBe(null);
+    expect(_field.value).toBe('');
+    expect(autocomplete.value).toBe('');
+
+    autocomplete.setState({ value: 'testing' });
+    expect(_field.value).toBe('testing');
+    expect(autocomplete.value).toBe('testing');
+
+    _field = null;
+    props.value = 'woop';
+    autocomplete = renderIntoDocument(<Autocomplete {...props} />);
+    expect(_field).not.toBe(null);
+    expect(_field.value).toBe('woop');
+    expect(autocomplete.value).toBe('woop');
+  });
+
   describe('caseInsensitiveFilter', () => {
     it('includes any items that match a single letter', () => {
       const filter = Autocomplete.caseInsensitiveFilter;
