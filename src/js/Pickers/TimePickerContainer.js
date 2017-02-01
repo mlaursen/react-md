@@ -214,6 +214,7 @@ export default class TimePickerContainer extends PureComponent {
      */
     hoverMode: PropTypes.bool,
 
+    /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
      * in the `body`.
      */
