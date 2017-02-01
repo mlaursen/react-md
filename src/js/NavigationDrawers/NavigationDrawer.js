@@ -340,12 +340,6 @@ export default class NavigationDrawer extends PureComponent {
     desktopMinWidth: PropTypes.number.isRequired,
 
     /**
-     * An optional DOM Node to render the portal into. The default is to render as
-     * the last child in the `body`.
-     */
-    renderNode: PropTypes.object,
-
-    /**
      * An optional function to call when the type of the drawer changes because of the
      * new media queries. The callback will include the newly selected drawer type
      * and an object containing the media matches of `mobile`, `tablet`, and `desktop`.
@@ -557,6 +551,24 @@ export default class NavigationDrawer extends PureComponent {
      * the main content. This is created in the drawer's header.
      */
     jumpLabel: PropTypes.string.isRequired,
+
+    /**
+     * An optional DOM Node to render the drawer into. The default is to render as
+     * the first child in the `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the drawer should be rendered as the last child instead of the first child
+     * in the `renderNode` or `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    lastChild: PropTypes.bool,
 
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),

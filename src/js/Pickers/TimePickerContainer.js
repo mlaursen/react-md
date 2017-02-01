@@ -214,6 +214,18 @@ export default class TimePickerContainer extends PureComponent {
      */
     hoverMode: PropTypes.bool,
 
+     * An optional DOM Node to render the dialog into. The default is to render as the first child
+     * in the `body`.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
+     * of the first.
+     *
+     * When the `TimePicker` is nested in a `Dialog`, this prop should be enabled to get the correct z-indexing.
+     */
+    lastChild: PropTypes.bool,
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
@@ -449,6 +461,8 @@ export default class TimePickerContainer extends PureComponent {
       lineDirection,
       closeOnEsc,
       hoverMode,
+      renderNode,
+      lastChild,
       'aria-label': ariaLabel,
       ...props
     } = this.props;
@@ -502,6 +516,8 @@ export default class TimePickerContainer extends PureComponent {
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
+          lastChild={lastChild}
+          renderNode={renderNode}
           focusOnMount={false}
         >
           {picker}
