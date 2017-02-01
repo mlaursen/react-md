@@ -95,7 +95,7 @@ export default class FindInPage extends PureComponent {
         clickableDesktopOverlay={false}
         header={<Toolbar actions={closeButton}>{autocomplete}</Toolbar>}
         navItems={filteredNavItems}
-        closeOnNavItemClick={false}
+        autoclose={false}
         navClassName="md-list--less-nested"
       />
     );
