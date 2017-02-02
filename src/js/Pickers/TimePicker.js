@@ -68,12 +68,21 @@ export default class TimePicker extends PureComponent {
      * An optional time period if a user's locale uses it.
      */
     timePeriod: PropTypes.string,
+
+    /**
+     * If true the hover mode of the Time Picker is activated.
+     * In hover mode no clicks are required to start selecting an hour
+     * and the timemode switches automatically when a time was chosen.
+     * When a minute is selected the chosen time is applied automatically.
+     */
+    hoverMode: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
 
     this._updateTime = this._updateTime.bind(this);
+    this._onTimeChosen = this._onTimeChosen.bind(this);
   }
 
   /**
@@ -101,6 +110,18 @@ export default class TimePicker extends PureComponent {
     setTempTime(time);
   }
 
+  _onTimeChosen() {
+    const { hoverMode, setTimeMode, onOkClick, timeMode } = this.props;
+
+    if (hoverMode) {
+      if (timeMode === 'hour') {
+        setTimeMode('minute');
+      } else {
+        onOkClick();
+      }
+    }
+  }
+
   render() {
     const {
       okLabel,
@@ -121,6 +142,7 @@ export default class TimePicker extends PureComponent {
       displayMode,
       inline,
       icon,
+      hoverMode,
     } = this.props;
 
     const hoursInt = parseInt(hours, 10);
@@ -164,6 +186,8 @@ export default class TimePicker extends PureComponent {
               minutes={timeMode === 'minute'}
               onChange={this._updateTime}
               timePeriod={timePeriod}
+              hoverMode={hoverMode}
+              onTimeChosen={this._onTimeChosen}
             />
           </div>
           <DialogFooter actions={actions} />
