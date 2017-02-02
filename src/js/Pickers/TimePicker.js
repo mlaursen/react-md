@@ -82,7 +82,7 @@ export default class TimePicker extends PureComponent {
     super(props);
 
     this._updateTime = this._updateTime.bind(this);
-    this._onTimeChosen = this._onTimeChosen.bind(this);
+    this._handleTimeChosen = this._handleTimeChosen.bind(this);
   }
 
   /**
@@ -110,7 +110,7 @@ export default class TimePicker extends PureComponent {
     setTempTime(time);
   }
 
-  _onTimeChosen() {
+  _handleTimeChosen() {
     const { hoverMode, setTimeMode, onOkClick, timeMode } = this.props;
 
     if (hoverMode) {
@@ -187,7 +187,7 @@ export default class TimePicker extends PureComponent {
               onChange={this._updateTime}
               timePeriod={timePeriod}
               hoverMode={hoverMode}
-              onTimeChosen={this._onTimeChosen}
+              onTimeChosen={this._handleTimeChosen}
             />
           </div>
           <DialogFooter actions={actions} />

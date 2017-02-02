@@ -44,7 +44,7 @@ export default class ClockFace extends PureComponent {
      */
     hoverMode: PropTypes.bool,
 
-    onTimeChosen: PropTypes.func,
+    onTimeChosen: PropTypes.func.isRequired,
   };
 
   constructor(props) {

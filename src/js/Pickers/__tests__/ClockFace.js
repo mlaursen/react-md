@@ -12,7 +12,7 @@ describe('ClockFace', () => {
   it('renders a 12 hour clock if there is a time period prop and is not displayed in minutes', () => {
     const onChange = jest.fn();
     const face = renderIntoDocument(
-      <ClockFace time={3} minutes={false} onChange={onChange} timePeriod="AM" />
+      <ClockFace time={3} minutes={false} onChange={onChange} timePeriod="AM" onTimeChosen={jest.fn()} />
     );
 
     const times = scryRenderedComponentsWithType(face, ClockTime);
@@ -22,7 +22,7 @@ describe('ClockFace', () => {
   it('renders a 24 hour clock if there is not a time period prop and is not displayed in minutes', () => {
     const onChange = jest.fn();
     const face = renderIntoDocument(
-      <ClockFace time={3} minutes={false} onChange={onChange} />
+      <ClockFace time={3} minutes={false} onChange={onChange} onTimeChosen={jest.fn()} />
     );
 
     const times = scryRenderedComponentsWithType(face, ClockTime);
@@ -32,14 +32,14 @@ describe('ClockFace', () => {
   it('renders minutes in 5 minute increments starting from 0', () => {
     const onChange = jest.fn();
     let face = renderIntoDocument(
-      <ClockFace time={3} minutes onChange={onChange} />
+      <ClockFace time={3} minutes onChange={onChange} onTimeChosen={jest.fn()} />
     );
 
     let times = scryRenderedComponentsWithType(face, ClockTime);
     expect(times.length).toBe(60 / 5);
 
     face = renderIntoDocument(
-      <ClockFace time={3} minutes onChange={onChange} timePeriod="AM" />
+      <ClockFace time={3} minutes onChange={onChange} timePeriod="AM" onTimeChosen={jest.fn()} />
     );
 
     times = scryRenderedComponentsWithType(face, ClockTime);
@@ -49,14 +49,14 @@ describe('ClockFace', () => {
   it('sets the prop active for the correct time', () => {
     const onChange = jest.fn();
     let face = renderIntoDocument(
-      <ClockFace time={3} minutes={false} onChange={onChange} />
+      <ClockFace time={3} minutes={false} onChange={onChange} onTimeChosen={jest.fn()} />
     );
 
     let times = scryRenderedComponentsWithType(face, ClockTime);
     expect(times[2].props.active).toBe(true);
 
     face = renderIntoDocument(
-      <ClockFace time={3} minutes={false} onChange={onChange} timePeriod="AM" />
+      <ClockFace time={3} minutes={false} onChange={onChange} timePeriod="AM" onTimeChosen={jest.fn()} />
     );
 
     times = scryRenderedComponentsWithType(face, ClockTime);
@@ -68,6 +68,7 @@ describe('ClockFace', () => {
       onChange: jest.fn(),
       time: 3,
       minutes: true,
+      onTimeChosen: jest.fn(),
     };
 
     const face = renderIntoDocument(<ClockFace {...props} />);
