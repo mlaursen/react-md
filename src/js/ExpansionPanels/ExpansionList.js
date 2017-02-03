@@ -40,10 +40,23 @@ export default class ExpansionList extends PureComponent {
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
+
+    /**
+     * Boolean if all the expansion panels in the list should animate when their content's visibility
+     * changes. This is just a quicker way to disable all animations instead of having to toggle it off
+     * on each panel.
+     *
+     * > The default value is really `true` since it gets passed down to the `Collapse` component.
+     */
+    animateContent: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'ul',
+  };
+
+  static childContextTypes = {
+    animateContent: PropTypes.bool,
   };
 
   constructor(props) {
@@ -55,6 +68,11 @@ export default class ExpansionList extends PureComponent {
     this._removeFocus = this._removeFocus.bind(this);
     this._calcColumnWidths = this._calcColumnWidths.bind(this);
     this._determineTabFocus = this._determineTabFocus.bind(this);
+  }
+
+  getChildContext() {
+    const { animateContent } = this.props;
+    return { animateContent };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -131,6 +149,7 @@ export default class ExpansionList extends PureComponent {
   render() {
     const { columnWidths, focusedIndex } = this.state;
     const { children, className, component, ...props } = this.props;
+    delete props.animateContent;
 
     return createElement(component, {
       ...props,

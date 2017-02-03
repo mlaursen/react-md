@@ -34,9 +34,15 @@ export default class Collapse extends PureComponent {
      * The spring config to use for the animation.
      */
     springConfig: PropTypes.object.isRequired,
+
+    /**
+     * Boolean if the the single child entering or leaving should be animated.
+     */
+    animate: PropTypes.bool,
   };
 
   static defaultProps = {
+    animate: true,
     springConfig: {
       precision: 0.5,
     },
@@ -92,7 +98,13 @@ export default class Collapse extends PureComponent {
       defaultStyle,
       style: motionStyle,
       springConfig,
+      animate,
     } = this.props;
+
+    if (!animate) {
+      return collapsed ? null : children;
+    }
+
     return (
       <Motion
         style={{

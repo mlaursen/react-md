@@ -147,6 +147,11 @@ export default class BottomNavigation extends PureComponent {
      */
     onVisibilityChange: PropTypes.func,
 
+    /**
+     * Boolean if the label on a shifting navigation should animate in and out.
+     */
+    animate: PropTypes.bool,
+
     onChange: deprecated(PropTypes.func, 'Use `onNavChange` instead'),
     initiallyVisible: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialActiveIndex: deprecated(PropTypes.number, 'Use `defaultActiveIndex` instead'),
@@ -159,6 +164,7 @@ export default class BottomNavigation extends PureComponent {
   };
 
   static defaultProps = {
+    animate: true,
     defaultActiveIndex: 0,
     component: 'footer',
     defaultVisible: true,
@@ -299,6 +305,7 @@ export default class BottomNavigation extends PureComponent {
       dynamic,
       lastChild,
       renderNode,
+      animate,
       ...props
     } = this.props;
     delete props.links;
@@ -342,6 +349,7 @@ export default class BottomNavigation extends PureComponent {
           {links.map((action, index) => (
             <BottomNav
               {...action}
+              animate={animate}
               key={action.key || index}
               index={index}
               onNavChange={this._handleNavChange}

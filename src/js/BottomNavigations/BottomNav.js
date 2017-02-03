@@ -28,6 +28,7 @@ export default class BottomNav extends PureComponent {
     onClick: PropTypes.func,
     onNavChange: PropTypes.func,
     role: PropTypes.string,
+    animate: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -61,6 +62,7 @@ export default class BottomNav extends PureComponent {
       iconClassName,
       iconChildren,
       colored,
+      animate,
       ...props
     } = this.props;
     delete props.index;
@@ -94,7 +96,7 @@ export default class BottomNav extends PureComponent {
         }, className)}
       >
         <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>
-        <Collapse collapsed={!fixed && !active}>
+        <Collapse collapsed={!fixed && !active} animate={animate}>
           {label}
         </Collapse>
       </AccessibleFakeInkedButton>

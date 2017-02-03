@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import Paper from '../Papers/Paper';
 import Collapser from '../FontIcons/Collapser';
@@ -192,6 +193,15 @@ export default class ExpansionPanel extends PureComponent {
      * The tab index for the panel's header. This allows keyboard navigation.
      */
     tabIndex: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the panel's content should animate when the content's visibility changes. This
+     * can also be toggled from the `ExpansionList` component if all `ExpansionPanel` in the list
+     * should not animate. This only affects the height transition.
+     *
+     * > The default value is really `true` since it gets passed down to the `Collapse` component.
+     */
+    animateContent: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -208,8 +218,12 @@ export default class ExpansionPanel extends PureComponent {
     columnWidths: [],
   };
 
-  constructor(props) {
-    super(props);
+  static contextTypes = {
+    animateContent: PropTypes.bool,
+  };
+
+  constructor(props, context) {
+    super(props, context);
 
     this.state = {
       received: false,
@@ -342,6 +356,7 @@ export default class ExpansionPanel extends PureComponent {
       ...props
     } = this.props;
 
+    delete props.animateContent;
     delete props.defaultExpanded;
     delete props.expanded;
     delete props.onSave;
@@ -352,6 +367,7 @@ export default class ExpansionPanel extends PureComponent {
 
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);
+    const animateContent = getField(this.props, this.context, 'animateContent');
 
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
       <div className="md-panel-column md-text" style={{ minWidth: columnWidths[i + 1] }}>
@@ -391,7 +407,7 @@ export default class ExpansionPanel extends PureComponent {
             {expandIconChildren}
           </Collapser>
         </AccessibleFakeButton>
-        <Collapse collapsed={!expanded}>
+        <Collapse collapsed={!expanded} animate={animateContent}>
           <PanelContent
             style={contentStyle}
             className={contentClassName}

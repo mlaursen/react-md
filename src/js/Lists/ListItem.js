@@ -218,10 +218,16 @@ export default class ListItem extends PureComponent {
      * prop is `true`.
      */
     activeClassName: PropTypes.string,
+
+    /**
+     * Boolean if the nested items should animate when they appear or disappear.
+     */
+    animateNestedItems: PropTypes.bool,
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
+    animateNestedItems: true,
     activeClassName: 'md-text--theme-primary',
     component: 'div',
     itemComponent: 'li',
@@ -392,6 +398,7 @@ export default class ListItem extends PureComponent {
       nestedItems,
       active,
       activeClassName,
+      animateNestedItems,
       expanderIconChildren,
       expanderIconClassName,
       itemComponent: ItemComponent,
@@ -424,7 +431,7 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = <Collapse collapsed={!isOpen}><List>{nestedItems}</List></Collapse>;
+      nestedList = <Collapse collapsed={!isOpen} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
 
       if (!rightIcon || !rightAvatar) {
         rightNode = (

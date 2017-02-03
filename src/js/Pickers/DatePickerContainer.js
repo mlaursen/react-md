@@ -290,6 +290,11 @@ export default class DatePickerContainer extends PureComponent {
     closeOnEsc: PropTypes.bool,
 
     /**
+     * Boolean if the inline time picker's visibility should be animated.
+     */
+    animateInline: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
      * in the `body`.
      */
@@ -315,6 +320,7 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   static defaultProps = {
+    animateInline: true,
     previousIconChildren: 'chevron_left',
     nextIconChildren: 'chevron_right',
     autoOk: false,
@@ -649,6 +655,7 @@ export default class DatePickerContainer extends PureComponent {
       id,
       disabled,
       closeOnEsc,
+      animateInline,
       renderNode,
       lastChild,
       'aria-label': ariaLabel,
@@ -693,7 +700,7 @@ export default class DatePickerContainer extends PureComponent {
 
     let content;
     if (inline) {
-      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
+      content = <Collapse collapsed={!visible} animate={animateInline}>{picker}</Collapse>;
     } else {
       content = (
         <Dialog

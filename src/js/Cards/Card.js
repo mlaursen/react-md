@@ -101,6 +101,11 @@ export default class Card extends PureComponent {
      * An optional function to call when the touchstart event is triggered.
      */
     onTouchStart: PropTypes.func,
+
+    /**
+     * Boolean if the card expansion should be animated.
+     */
+    animate: PropTypes.bool,
     initiallyExpanded: deprecated(PropTypes.bool, 'Use `defaultExpanded` instead'),
     isExpanded: deprecated(PropTypes.bool, 'Use `expanded` instead'),
     iconChildren: deprecated(PropTypes.node, 'Use the `expanderIconChildren` prop instead'),
@@ -108,6 +113,7 @@ export default class Card extends PureComponent {
   };
 
   static defaultProps = {
+    animate: true,
     expanderIconChildren: 'keyboard_arrow_down',
     expanderIconClassName: 'material-icons',
     expanderTooltipPosition: 'left',
@@ -203,6 +209,7 @@ export default class Card extends PureComponent {
       raise,
       tableCard,
       children,
+      animate,
       ...props
     } = this.props;
     delete props.expanded;
@@ -234,7 +241,7 @@ export default class Card extends PureComponent {
       }
 
       const collapsed = expanderIndex === -1 || expanderIndex === i || !expanded;
-      return <Collapse collapsed={collapsed}>{child}</Collapse>;
+      return <Collapse collapsed={collapsed} animate={animate}>{child}</Collapse>;
     });
 
     return (
