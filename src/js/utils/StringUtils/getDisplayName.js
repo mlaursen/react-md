@@ -2,11 +2,12 @@
 /**
  * Gets the display name for a composed component.
  *
- * @param {function} ComposedComponent - The composed component to use
- * @return {String} the name of the composed component or 'Component'.
+ * @param {function|Object} ComposedComponent - The composed component to use
+ * @param {String} hoc - The higher order component's name to use.
+ * @return {String} the new name of the component.
  */
-export default function getDisplayName(ComposedComponent, suffix) {
+export default function getDisplayName(ComposedComponent, hoc) {
   const name = `${ComposedComponent.displayName || ComposedComponent.name || 'Component'}`;
 
-  return name.indexOf(suffix) === -1 ? `${name}${suffix}` : name;
+  return `with${hoc}(${name})`;
 }

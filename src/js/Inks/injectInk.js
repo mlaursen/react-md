@@ -23,7 +23,7 @@ import getDisplayName from '../utils/StringUtils/getDisplayName';
  * ```
  */
 export default ComposedComponent => class InkedComponent extends PureComponent {
-  static displayName = getDisplayName(ComposedComponent, 'Inked');
+  static displayName = getDisplayName(ComposedComponent, 'Ink');
   static propTypes = {
     /**
      * An optional style to apply to each ink that gets generated.
