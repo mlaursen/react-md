@@ -78,6 +78,30 @@ export default class ListItemControl extends PureComponent {
      * An optional `FontIcon` to display to the right of the action.
      */
     rightAvatar: PropTypes.node,
+
+    /**
+     * Defines the number of items in the list. This is only required when all items in the
+     * list are not present in the DOM.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize
+     */
+    'aria-setsize': PropTypes.number,
+
+    /**
+     * Defines the items position in the list. This is only required when all items in the list
+     * are not present in the DOM. The custom validation just requires this prop if the `aria-setsize`
+     * prop is defined as a helpful reminder.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset
+     */
+    'aria-posinset': (props, propName, ...args) => {
+      let validator = PropTypes.number;
+      if (typeof props['aria-setsize'] !== 'undefined') {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, ...args);
+    },
   };
 
   render() {

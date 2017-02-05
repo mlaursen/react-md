@@ -223,6 +223,30 @@ export default class ListItem extends PureComponent {
      * Boolean if the nested items should animate when they appear or disappear.
      */
     animateNestedItems: PropTypes.bool,
+
+    /**
+     * Defines the number of items in the list. This is only required when all items in the
+     * list are not present in the DOM.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize
+     */
+    'aria-setsize': PropTypes.number,
+
+    /**
+     * Defines the items position in the list. This is only required when all items in the list
+     * are not present in the DOM. The custom validation just requires this prop if the `aria-setsize`
+     * prop is defined as a helpful reminder.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset
+     */
+    'aria-posinset': (props, propName, ...args) => {
+      let validator = PropTypes.number;
+      if (typeof props['aria-setsize'] !== 'undefined') {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, ...args);
+    },
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
@@ -402,6 +426,8 @@ export default class ListItem extends PureComponent {
       expanderIconChildren,
       expanderIconClassName,
       itemComponent: ItemComponent,
+      'aria-setsize': ariaSize,
+      'aria-posinset': ariaPos,
       ...props
     } = this.props;
     delete props.isOpen;
@@ -456,6 +482,8 @@ export default class ListItem extends PureComponent {
         className={cn('md-list-item', {
           'md-list-item--nested-container': nestedItems,
         }, className)}
+        aria-setsize={ariaSize}
+        aria-posinset={ariaPos}
         ref={this._setContainer}
       >
         <AccessibleFakeInkedButton
