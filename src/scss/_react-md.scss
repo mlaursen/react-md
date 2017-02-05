@@ -10,6 +10,7 @@
 @import 'components/accessibility';
 @import 'components/autocompletes';
 @import 'components/avatars';
+@import 'components/badges';
 @import 'components/bottom-navigations';
 @import 'components/buttons';
 @import 'components/cards';
@@ -58,6 +59,7 @@
 
   @include react-md-autocompletes;
   @include react-md-avatars;
+  @include react-md-badges;
   @include react-md-bottom-navigations;
   @include react-md-buttons;
   @include react-md-cards;
@@ -167,6 +169,7 @@
 
     .#{$html-class-name} {
       @include react-md-theme-avatars($light-theme);
+      @include react-md-theme-badges($light-theme);
       @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
       @include react-md-theme-chips($light-theme);
       @include react-md-theme-data-tables($secondary-color, $light-theme);
@@ -187,6 +190,7 @@
     }
   } @else {
     @include react-md-theme-avatars($light-theme);
+    @include react-md-theme-badges($light-theme);
     @include react-md-theme-buttons($primary-color, $secondary-color, $light-theme);
     @include react-md-theme-chips($light-theme);
     @include react-md-theme-data-tables($secondary-color, $light-theme);
