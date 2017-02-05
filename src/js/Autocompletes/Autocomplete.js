@@ -866,6 +866,7 @@ export default class Autocomplete extends PureComponent {
     const autocomplete = (
       <TextField
         {...props}
+        aria-autocomplete={inline ? 'inline' : 'list'}
         style={textFieldStyle}
         className={cn('md-autocomplete', textFieldClassName)}
         key="autocomplete"
