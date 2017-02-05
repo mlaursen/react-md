@@ -140,7 +140,9 @@ class TableColumn extends PureComponent {
     const plain = getField(this.props, this.context, 'plain');
 
     let displayedChildren = children;
+    let ariaSort;
     if (sortable) {
+      ariaSort = sorted ? 'ascending' : 'descending';
       displayedChildren = (
         <IconSeparator label={children} iconBefore>
           <Collapser flipped={!sorted} iconClassName={sortIconClassName}>
@@ -154,6 +156,7 @@ class TableColumn extends PureComponent {
 
     return (
       <Component
+        aria-sort={ariaSort}
         {...props}
         className={cn('md-table-column', {
           'md-table-column--header': header,

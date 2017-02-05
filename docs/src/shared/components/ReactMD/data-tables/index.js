@@ -70,6 +70,11 @@ edit respectively.
 If the \`EditDialog\` is \`large\`, the user's focus will be contained between the text field, the cancel button,
 and the save button. In all cases, the user can click away from the dialog to close it. The text can either
 be saved or cancelled when this happens by using the \`okOnOutsideClick\` prop.
+
+TableColumns can also inject an icon for indicating a column is sortable. When the \`sorted\` prop is true,
+the column will be updated with \`aria-sort="ascending"\` and if the \`sorted\` prop is false, it will be
+updated with \`aria-sort="descending"\`. Only one column should be sortable at a time according to
+[W3C Recommendations](https://www.w3.org/TR/wai-aria/states_and_properties#aria-sort).
 `,
   code: ComplexDataTableCommentsRaw,
   children: <ComplexDataTableComments />,
