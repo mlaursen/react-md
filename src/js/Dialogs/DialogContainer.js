@@ -296,8 +296,11 @@ export default class DialogContainer extends PureComponent {
     const el = this.props.renderNode || window;
     let { scrollX: pageX, scrollY: pageY } = el;
     if (typeof el.scrollTop !== 'undefined' && typeof el.scrollLeft !== 'undefined') {
-      pageX = el.scrollTop;
-      pageY = el.scrollLeft;
+      pageX = el.scrollLeft;
+      pageY = el.scrollTop;
+    } else if (typeof el.scrollY !== 'undefined' && typeof el.scrollX !== 'undefined') {
+      pageX = el.scrollX;
+      pageY = el.scrollY;
     }
 
     this._pageX = pageX;
