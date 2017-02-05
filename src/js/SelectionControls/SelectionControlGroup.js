@@ -246,11 +246,13 @@ export default class SelectionControlGroup extends PureComponent {
       component: Component,
       labelComponent: LabelComponent,
       inline,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      controls: propControls,
+      defaultValue,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.value;
-    delete props.controls;
-    delete props.defaultValue;
 
     const value = getField(this.props, this.state, 'value');
 

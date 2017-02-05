@@ -209,12 +209,14 @@ export default class TablePagination extends PureComponent {
       decrementIconChildren,
       decrementIconClassName,
       page,
+      /* eslint-disable no-unused-vars */
+      onPagination,
+      rowsPerPage: propRowsPerPage,
+      defaultPage,
+      defaultRowsPerPage,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.onPagination;
-    delete props.rowsPerPage;
-    delete props.defaultPage;
-    delete props.defaultRowsPerPage;
 
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
     let { start } = this.state;

@@ -182,10 +182,10 @@ export default class MenuButton extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      onClick, // eslint-disable-line no-unused-vars
+      defaultOpen, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.onClick;
-    delete props.defaultOpen;
 
     const toggle = (
       <Button

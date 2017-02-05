@@ -353,17 +353,18 @@ export default class ExpansionPanel extends PureComponent {
       contentStyle,
       contentClassName,
       tabIndex,
+      /* eslint-disable no-unused-vars */
+      animateContent: propAnimateContent,
+      expanded: propExpanded,
+      defaultExpanded,
+      closeOnSave,
+      closeOnCancel,
+      onSave,
+      onCancel,
+      onExpandToggle,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
-    delete props.animateContent;
-    delete props.defaultExpanded;
-    delete props.expanded;
-    delete props.onSave;
-    delete props.onCancel;
-    delete props.onExpandToggle;
-    delete props.closeOnSave;
-    delete props.closeOnCancel;
 
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);

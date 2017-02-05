@@ -197,9 +197,9 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkContainerClassName,
       disabledInteractions,
       waitForInkTransition,
+      __SUPER_SECRET_REF__, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.__SUPER_SECRET_REF__;
 
     if (!(props.disabled || inkDisabled)) {
       props.ink = (

@@ -37,16 +37,6 @@ function toMiniListItem(item, index) {
     return null;
   }
 
-  delete itemProps.primaryText;
-  delete itemProps.secondaryText;
-  delete itemProps.rightIcon;
-  delete itemProps.rightAvatar;
-  delete itemProps.threeLines;
-  delete itemProps.nestedItems;
-  delete itemProps.expanderIconChildren;
-  delete itemProps.expanderIconClassName;
-  delete itemProps.children;
-
   return <MiniListItem key={key || index} {...itemProps} />;
 }
 
@@ -799,18 +789,20 @@ export default class NavigationDrawer extends PureComponent {
       includeDrawerHeader,
       contentId,
       contentProps,
+      /* eslint-disable no-unused-vars */
+      drawerType: propDrawerType,
+      drawerHeader: propDrawerHeader,
+      jumpLabel,
+      persistentIconChildren,
+      persistentIconClassName,
+
+      // deprecated
+      onDrawerChange,
+      closeIconChildren,
+      closeIconClassName,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.drawerType;
-    delete props.drawerHeader;
-    delete props.persistentIconChildren;
-    delete props.persistentIconClassName;
-    delete props.jumpLabel;
-
-    // Deprecated deletes
-    delete props.onDrawerChange;
-    delete props.closeIconChildren;
-    delete props.closeIconClassName;
 
     let { drawerHeader } = this.props;
     const { desktop, tablet, contentActive } = this.state;

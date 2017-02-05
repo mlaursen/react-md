@@ -304,9 +304,9 @@ export default class SnackbarContainer extends PureComponent {
       onDismiss,
       lastChild,
       renderNode,
+      toasts, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.toasts;
 
     let snackbar;
     if (toast) {

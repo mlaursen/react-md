@@ -660,20 +660,22 @@ export default class DatePickerContainer extends PureComponent {
       lastChild,
       'aria-label': ariaLabel,
       isOpen, // deprecated
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      visible: propVisible,
+      defaultValue,
+      defaultVisible,
+      onChange,
+      onVisibilityChange,
+
+      // deprecated
+      initiallyOpen,
+      adjustMinWidth,
+      nextIcon,
+      previousIcon,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.value;
-    delete props.onChange;
-    delete props.visible;
-    delete props.onVisibilityToggle;
-    delete props.defaultValue;
-    delete props.defaultVisible;
-
-    // Delete deprecated
-    delete props.initiallyOpen;
-    delete props.adjustMinWidth;
-    delete props.nextIcon;
-    delete props.previousIcon;
 
     const visible = typeof isOpen !== 'undefined'
       ? isOpen

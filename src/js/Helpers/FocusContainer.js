@@ -209,14 +209,17 @@ export default class FocusContainer extends PureComponent {
   }
 
   render() {
-    const { component: Component, ...props } = this.props;
-    delete props.initialFocus;
-    delete props.focusOnMount;
-    delete props.containFocus;
-    delete props.additionalFocusKeys;
+    const {
+      component: Component,
+      /* eslint-disable no-unused-vars */
+      initialFocus,
+      focusOnMount,
+      containFocus,
+      additionalFocusKeys,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
 
-    return (
-      <Component {...props} ref={this._containFocus} />
-    );
+    return <Component {...props} ref={this._containFocus} />;
   }
 }

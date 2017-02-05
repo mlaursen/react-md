@@ -148,8 +148,13 @@ export default class ExpansionList extends PureComponent {
 
   render() {
     const { columnWidths, focusedIndex } = this.state;
-    const { children, className, component, ...props } = this.props;
-    delete props.animateContent;
+    const {
+      children,
+      className,
+      component,
+      animateContent, // eslint-disable-line no-unused-vars
+      ...props
+    } = this.props;
 
     return createElement(component, {
       ...props,

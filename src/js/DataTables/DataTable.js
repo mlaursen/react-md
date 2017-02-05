@@ -212,16 +212,18 @@ export default class DataTable extends PureComponent {
       children,
       plain,
       responsive,
+      /* eslint-disable no-unused-vars */
+      checkedIconChildren,
+      checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      defaultSelectedRows,
+      baseId,
+      onRowToggle,
+      selectableRows,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.checkedIconChildren;
-    delete props.checkedIconClassName;
-    delete props.uncheckedIconChildren;
-    delete props.uncheckedIconClassName;
-    delete props.defaultSelectedRows;
-    delete props.baseId;
-    delete props.onRowToggle;
-    delete props.selectableRows;
 
     const table = (
       <table

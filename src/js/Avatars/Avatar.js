@@ -143,9 +143,9 @@ export default class Avatar extends PureComponent {
       suffixes,
       iconSized,
       role,
+      random, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.random;
 
     return (
       <div

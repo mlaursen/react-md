@@ -479,14 +479,13 @@ class Button extends PureComponent {
       tooltip,
       icon,
       forceIconSize,
+      type,
+      children: propChildren, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.children;
-    delete props.tooltipLabel;
-    delete props.tooltipPosition;
 
-    if (href) {
-      delete props.type;
+    if (!href) {
+      props.type = type;
     }
 
     let { children } = this.props;

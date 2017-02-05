@@ -63,12 +63,14 @@ export default class BottomNav extends PureComponent {
       iconChildren,
       colored,
       animate,
+      /* eslint-disable no-unused-vars */
+      index,
+      label: propLabel,
+      onClick,
+      onNavChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.index;
-    delete props.label;
-    delete props.onClick;
-    delete props.onNavChange;
 
     let { label } = this.props;
     const labelClassName = cn('md-bottom-nav-label', { 'md-bottom-nav-label--shifting-inactive': !active && !fixed });

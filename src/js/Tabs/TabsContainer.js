@@ -236,9 +236,14 @@ export default class TabsContainer extends PureComponent {
       fixed,
       labelAndIcon,
       swipeableViewsProps,
+      /* eslint-disable no-unused-vars */
+      toolbar: propToolbar,
+      activeTabIndex: propActiveTabeIndex,
+      onTabChange,
+      defaultTabIndex,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.toolbar;
     let { toolbar } = this.props;
 
     const activeTabIndex = getField(this.props, this.state, 'activeTabIndex');
@@ -301,6 +306,7 @@ export default class TabsContainer extends PureComponent {
       <Component
         style={style}
         className={cn('md-tabs-container', className)}
+        {...props}
         ref={container => {
           if (container) {
             const activePanel = findDOMNode(container).querySelector('.md-tab-panel[aria-hidden=false]');

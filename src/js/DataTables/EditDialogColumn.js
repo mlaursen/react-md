@@ -615,22 +615,22 @@ export default class EditDialogColumn extends PureComponent {
       noIcon,
       header,
       enforceMinWidth,
+      /* eslint-disable no-unused-vars */
+      id: propId,
+      value: propValue,
+      defaultValue,
+      scrollThreshold,
+      transitionDuration,
+      okOnOutsideClick,
+      onMouseOver,
+      onMouseLeave,
+      onTouchStart,
+      onTouchEnd,
+      onOkClick,
+      onCancelClick,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
-    delete props.id;
-    delete props.onMouseOver;
-    delete props.onMouseLeave;
-    delete props.onTouchStart;
-    delete props.onTouchEnd;
-    delete props.value;
-    delete props.defaultValue;
-    delete props.onOkClick;
-    delete props.onCancelClick;
-    delete props.header;
-    delete props.okOnOutsideClick;
-    delete props.transitionDuration;
-    delete props.scrollThreshold;
 
     const value = getField(this.props, this.state, 'value');
     let { id } = this.props;

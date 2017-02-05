@@ -186,10 +186,10 @@ export default class TableRow extends Component {
       children,
       selected,
       onCheckboxClick,
+      index, // eslint-disable-line no-unused-vars
+      autoAdjust, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.index;
-    delete props.autoAdjust;
 
     let checkbox;
     if (!this.context.plain && this.context.selectableRows) {

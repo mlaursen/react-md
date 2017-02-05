@@ -210,20 +210,24 @@ export default class Card extends PureComponent {
       tableCard,
       children,
       animate,
+      /* eslint-disable no-unused-vars */
+      expanded: propExpanded,
+      onExpanderClick,
+      defaultExpanded,
+      expanderIconChildren,
+      expanderIconClassName,
+      expanderTooltipLabel,
+      expanderTooltipDelay,
+      expanderTooltipPosition,
+
+      // deprecated
+      iconChildren,
+      iconClassName,
+      isExpanded,
+      initiallyExpanded,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.expanded;
-    delete props.isExpanded;
-    delete props.onExpanderClick;
-    delete props.initiallyExpanded;
-    delete props.defaultExpanded;
-    delete props.iconChildren;
-    delete props.iconClassName;
-    delete props.expanderIconChildren;
-    delete props.expanderIconClassName;
-    delete props.expanderTooltipLabel;
-    delete props.expanderTooltipDelay;
-    delete props.expanderTooltipPosition;
 
     const expanded = typeof this.props.isExpanded !== 'undefined'
       ? this.props.isExpanded

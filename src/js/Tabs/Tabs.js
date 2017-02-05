@@ -436,13 +436,15 @@ export default class Tabs extends PureComponent {
       nextIconClassName,
       previousIconChildren,
       previousIconClassName,
+      /* eslint-disable no-unused-vars */
+      activeTabIndex: propActiveIndex,
+      defaultTabIndex,
+      defaultMedia,
+      desktopMinWidth,
+      onTabChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.activeTabIndex;
-    delete props.defaultTabIndex;
-    delete props.defaultMedia;
-    delete props.desktopMinWidth;
-    delete props.onTabChange;
 
     const activeTabIndex = getField(this.props, this.state, 'activeTabIndex');
 

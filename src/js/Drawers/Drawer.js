@@ -429,7 +429,7 @@ export default class Drawer extends PureComponent {
       onVisibilityToggle,
     } = props;
 
-    const state = Drawer.getCurrentMedia(props);
+    let state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
 
     if (onMediaTypeChange && (diffType ||
@@ -439,7 +439,8 @@ export default class Drawer extends PureComponent {
     }
 
     if (typeof props.type !== 'undefined') {
-      delete state.type;
+      const { type, ...realState } = state; // eslint-disable-line no-unused-vars
+      state = realState;
     }
 
     const type = getField(props, state, 'type');
@@ -538,25 +539,26 @@ export default class Drawer extends PureComponent {
       overlay,
       clickableDesktopOverlay,
       lastChild,
+      /* eslint-disable no-unused-vars */
+      type: propType,
+      visible: propVisible,
+      defaultVisible,
+      defaultMedia,
+      mobileType,
+      mobileMinWidth,
+      tabletType,
+      tabletMinWidth,
+      desktopType,
+      desktopMinWidth,
+      transitionDuration,
+      onVisibilityToggle,
+      onMediaTypeChange,
+      autoclose,
+      autocloseAfterInk,
+      closeOnNavItemClick,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.visible;
-    delete props.defaultVisible;
-    delete props.type;
-    delete props.defaultMedia;
-    delete props.mobileType;
-    delete props.mobileMinWidth;
-    delete props.tabletType;
-    delete props.tabletMinWidth;
-    delete props.desktopType;
-    delete props.desktopMinWidth;
-    delete props.transitionDuration;
-    delete props.onVisibilityToggle;
-    delete props.onMediaTypeChange;
-
-    delete props.autoclose;
-    delete props.autocloseAfterInk;
-    delete props.closeOnNavItemClick; // deprecated
 
     const { desktop } = this.state;
     const visible = getField(this.props, this.state, 'visible');

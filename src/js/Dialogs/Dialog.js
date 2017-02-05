@@ -123,15 +123,17 @@ export default class Dialog extends PureComponent {
       actions,
       children,
       fullPage,
+      /* eslint-disable no-unused-vars */
+      style: propStyle,
+      pageX,
+      pageY,
+      containerX,
+      containerY,
+      onOpen,
+      onLeave,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.pageX;
-    delete props.pageY;
-    delete props.containerX;
-    delete props.containerY;
-    delete props.style;
-    delete props.onOpen;
-    delete props.onLeave;
 
     let { 'aria-labelledby': labelledBy, style } = this.props;
     const titleId = `${id}Title`;

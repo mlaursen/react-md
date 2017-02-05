@@ -275,13 +275,20 @@ export default class Menu extends PureComponent {
       contained,
       children,
       position,
+      /* eslint-disable no-unused-vars */
+      onClose,
+      cascading,
+      listId: propListId,
+
+      // deprecated
+      close,
+      autoclose,
+      limitHeight,
+      expanderIconChildren,
+      expanderIconClassName,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.close;
-    delete props.onClose;
-    delete props.cascading;
-    delete props.autoclose;
-    delete props.listId;
 
     let { listId } = this.props;
     if (!listId && id) {

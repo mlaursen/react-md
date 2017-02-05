@@ -699,22 +699,26 @@ export default class TextField extends PureComponent {
       onMouseLeave,
       ink,
       inlineIndicator,
-      icon,
+      icon, // deprecated
+      /* eslint-disable no-unused-vars */
+      label: propLabel,
+      placeholder: propPlaceholder,
+      error: propError,
+      active: propActive,
+      floating: propFloating,
+      leftIcon: propLeftIcon,
+      rightIcon: propRightIcon,
+      onClick,
+      onChange,
+      onKeyDown,
+      onFocus,
+
+      // deprecated
+      adjustMinWidth,
+      floatingLabel: propFloatingLabel,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.label;
-    delete props.placeholder;
-    delete props.error;
-    delete props.active;
-    delete props.floating;
-    delete props.leftIcon;
-    delete props.rightIcon;
-    delete props.adjustMinWidth;
-    delete props.onClick;
-    delete props.onChange;
-    delete props.onKeyDown;
-    delete props.onFocus;
-    delete props.floatingLabel;
 
     let {
       label,

@@ -77,22 +77,26 @@ export default class DialogFooter extends PureComponent {
 
   render() {
     const { stacked } = this.state;
-    let { className } = this.props;
-    const { children, actions, ...props } = this.props;
-    delete props.className;
-    delete props.onActionMount;
+    const {
+      actions,
+      className,
+      children,
+      ...props
+    } = this.props;
 
     if (!actions || (Array.isArray(actions) && !actions.length)) {
       return null;
     }
 
-    className = cn('md-dialog-footer', {
-      'md-dialog-footer--inline': !stacked,
-      'md-dialog-footer--stacked': stacked,
-    }, className);
-
     return (
-      <footer {...props} className={className} ref={this._setContainer}>
+      <footer
+        {...props}
+        className={cn('md-dialog-footer', {
+          'md-dialog-footer--inline': !stacked,
+          'md-dialog-footer--stacked': stacked,
+        }, className)}
+        ref={this._setContainer}
+      >
         {this._generateActions()}
         {children}
       </footer>

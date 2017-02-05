@@ -94,6 +94,8 @@
       "<rootDir>/src/beforeTest.js"
     ],
     "unmockedModulePathPatterns": [
+      "<rootDir>/src/js/utils/omit.js",
+      "<rootDir>/src/js/utils/getField.js",
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/intl",
       "<rootDir>/node_modules/react",

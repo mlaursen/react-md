@@ -203,10 +203,10 @@ export default class SelectFieldColumn extends PureComponent {
       wrapperStyle,
       wrapperClassName,
       header,
+      id: propId, // eslint-disable-line no-unused-vars
+      scrollThreshold, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.id;
-    delete props.scrollThreshold;
 
     let { id } = this.props;
     if (!id) {

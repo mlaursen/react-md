@@ -23,11 +23,17 @@ export default class MiniListItem extends PureComponent {
     onTouchEnd: PropTypes.func,
     onMouseOver: PropTypes.func,
     onMouseLeave: PropTypes.func,
+    defaultOpen: PropTypes.bool,
+    itemComponent: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
   };
 
   static defaultProps = {
     activeClassName: 'md-text--theme-primary',
     component: 'div',
+    itemComponent: 'li',
   };
 
   constructor(props) {
@@ -99,11 +105,27 @@ export default class MiniListItem extends PureComponent {
       leftAvatar,
       active,
       activeClassName,
+      itemComponent: ItemComponent,
+      /* eslint-disable no-unused-vars,react/prop-types */
+      primaryText,
+      secondaryText,
+      rightIcon,
+      rightAvatar,
+      threeLines,
+      expanderIconChildren,
+      expanderIconClassName,
+      children,
+      defaultOpen,
+      isOpen,
+      inset,
+      nestedItems,
+      animateNestedItems,
+      /* eslint-enable no-unused-vars,react/prop-types */
       ...props
     } = this.props;
-    delete props.defaultOpen;
+
     return (
-      <li style={style} className={className}>
+      <ItemComponent style={style} className={className}>
         <AccessibleFakeInkedButton
           {...props}
           style={tileStyle}
@@ -122,7 +144,7 @@ export default class MiniListItem extends PureComponent {
             avatar={leftAvatar}
           />
         </AccessibleFakeInkedButton>
-      </li>
+      </ItemComponent>
     );
   }
 }

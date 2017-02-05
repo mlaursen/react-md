@@ -111,11 +111,13 @@ export default class Tab extends PureComponent {
       controlsId,
       className,
       active,
+      /* eslint-disable no-unused-vars */
+      icon: propIcon,
+      label: propLabel,
+      index,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.index;
-    delete props.icon;
-    delete props.label;
 
     let { icon, label } = this.props;
     if (icon) {

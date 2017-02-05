@@ -328,17 +328,19 @@ export default class FileInput extends PureComponent {
       disabled,
       accept,
       multiple,
+      /* eslint-disable no-unused-vars */
+      onChange,
+      onKeyUp,
+      onKeyDown,
+      onMouseUp,
+      onMouseDown,
+      onMouseOver,
+      onMouseLeave,
+      onTouchStart,
+      onTouchEnd,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.onChange;
-    delete props.onKeyUp;
-    delete props.onKeyDown;
-    delete props.onMouseUp;
-    delete props.onMouseDown;
-    delete props.onMouseOver;
-    delete props.onMouseLeave;
-    delete props.onTouchStart;
-    delete props.onTouchEnd;
 
     const icon = !iconClassName && !iconChildren
       ? null

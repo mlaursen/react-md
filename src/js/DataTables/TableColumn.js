@@ -132,9 +132,9 @@ class TableColumn extends PureComponent {
       tooltip,
       selectColumnHeader,
       __fixedColumn,
+      plain: propPlain, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.plain;
 
     const sortable = typeof sorted === 'boolean';
     const plain = getField(this.props, this.context, 'plain');

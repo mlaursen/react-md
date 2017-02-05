@@ -420,19 +420,23 @@ export default class DialogContainer extends PureComponent {
       transitionLeaveTimeout,
       renderNode,
       lastChild,
+      /* eslint-disable no-unused-vars */
+      visible: propVisible,
+      closeOnEsc,
+      onShow,
+      onHide,
+
+      // deprecated
+      close,
+      isOpen,
+      actionLeft,
+      actionRight,
+      transitionName,
+      transitionEnter,
+      transitionLeave,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.close;
-    delete props.isOpen;
-    delete props.visible;
-    delete props.onShow;
-    delete props.onHide;
-    delete props.actionLeft;
-    delete props.actionRight;
-    delete props.transitionName;
-    delete props.transitionEnter;
-    delete props.transitionLeave;
-    delete props.closeOnEsc;
 
     const dialog = (
       <Dialog

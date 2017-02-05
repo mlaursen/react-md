@@ -306,25 +306,27 @@ export default class BottomNavigation extends PureComponent {
       lastChild,
       renderNode,
       animate,
+      /* eslint-disable no-unused-vars */
+      links: propLinks,
+      activeIndex: propActiveIndex,
+      onNavChange,
+      onVisibilityChange,
+      defaultVisible,
+      defaultActiveIndex,
+      dynamicThreshold,
+      transitionDuration,
+
+      // deprecated
+      onChange,
+      initiallyVisible,
+      containerStyle,
+      containerClassName,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.links;
-    delete props.activeIndex;
-    delete props.onNavChange;
-    delete props.onVisibilityChange;
-    delete props.defaultVisible;
-    delete props.defaultActiveIndex;
-    delete props.dynamicThreshold;
-    delete props.transitionDuration;
-
-    // Delete deprecated
-    delete props.onChange;
-    delete props.initiallyVisible;
-    delete props.containerStyle;
-    delete props.containerClassName;
-    delete props.transitionName;
-    delete props.transitionEnterTimeout;
-    delete props.transitionLeaveTimeout;
 
     let { links } = this.props;
     if (actions) {

@@ -422,9 +422,9 @@ export default class TimePickerContainer extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
-    const state = { visible: false, tempTime: this.state.time };
-    if (typeof this.props.isOpen !== 'undefined' || typeof this.props.visible !== 'undefined') {
-      delete state.visible;
+    const state = { tempTime: this.state.time };
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      state.visible = false;
     }
 
     this.setState(state);
@@ -472,19 +472,20 @@ export default class TimePickerContainer extends PureComponent {
       lastChild,
       animateInline,
       'aria-label': ariaLabel,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      visible: propVisible,
+      defaultValue,
+      defaultVisible,
+      defaultTimeMode,
+      onVisibilityChange,
+
+      // deprecated
+      isOpen,
+      initialTimeMode,
+      initiallyOpen,
       ...props
     } = this.props;
-    delete props.value;
-    delete props.onVisibilityChange;
-    delete props.onChange;
-    delete props.defaultValue;
-    delete props.defaultVisible;
-    delete props.defaultTimeMode;
-
-    // Delete deprecated
-    delete props.isOpen;
-    delete props.initialTimeMode;
-    delete props.initiallyOpen;
 
     const visible = typeof this.props.isOpen !== 'undefined'
       ? this.props.isOpen

@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import omit from '../utils/omit';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
@@ -506,6 +507,7 @@ export default class Autocomplete extends PureComponent {
   }
 
   _updateSuggestionStyle(isNew, isDeleted) {
+    const { suggestionStyle } = this.state;
     if (isNew) {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');
 
@@ -513,15 +515,10 @@ export default class Autocomplete extends PureComponent {
         const cs = window.getComputedStyle(this._suggestion);
         const bottom = parseInt(cs.getPropertyValue('bottom'), 10) + msg.offsetHeight;
 
-        this.setState({
-          suggestionStyle: Object.assign({}, this.state.suggestionStyle, { bottom }),
-        });
+        this.setState({ suggestionStyle: { ...suggestionStyle, bottom } });
       }
-    } else if (isDeleted) {
-      const suggestionStyle = Object.assign({}, this.state.suggestionStyle);
-      delete suggestionStyle.bottom;
-
-      this.setState({ suggestionStyle });
+    } else if (isDeleted && suggestionStyle) {
+      this.setState({ suggestionStyle: { left: suggestionStyle.left } });
     }
   }
 
@@ -748,7 +745,7 @@ export default class Autocomplete extends PureComponent {
 
         // Update suggestion style to be offset and not expand past text field
         const left = context.measureText(value).width + padding;
-        suggestionStyle = Object.assign({}, suggestionStyle, { left });
+        suggestionStyle = { ...suggestionStyle, left };
       }
     }
 
@@ -769,20 +766,17 @@ export default class Autocomplete extends PureComponent {
         };
         break;
       default:
+        if (deleteKeys) {
+          props = omit(match, typeof deleteKeys === 'string' ? [deleteKeys] : deleteKeys);
+        } else {
+          props = match;
+        }
+
         props = {
-          ...match,
+          ...props,
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
         };
-
-        if (typeof deleteKeys === 'string') {
-          delete props[deleteKeys];
-        } else if (Array.isArray(deleteKeys)) {
-          deleteKeys.forEach(key => {
-            delete props[key];
-          });
-        }
-
     }
 
     if (typeof total !== 'undefined' && data.length < total) {
@@ -866,27 +860,29 @@ export default class Autocomplete extends PureComponent {
       textFieldStyle,
       textFieldClassName,
       inline,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      total,
+      offset,
+      filter,
+      data,
+      dataLabel,
+      dataValue,
+      deleteKeys,
+      defaultValue,
+      clearOnAutocomplete,
+      findInlineSuggestion,
+      onAutocomplete,
+      onMenuOpen,
+      onMenuClose,
+      onBlur,
+      onFocus,
+      onKeyDown,
+      onMouseDown,
+      onChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.total;
-    delete props.offset;
-    delete props.value;
-    delete props.defaultValue;
-    delete props.dataLabel;
-    delete props.dataValue;
-    delete props.filter;
-    delete props.data;
-    delete props.onAutocomplete;
-    delete props.onMenuOpen;
-    delete props.onMenuClose;
-    delete props.onBlur;
-    delete props.onFocus;
-    delete props.onKeyDown;
-    delete props.onMouseDown;
-    delete props.onChange;
-    delete props.findInlineSuggestion;
-    delete props.clearOnAutocomplete;
-    delete props.deleteKeys;
 
     const value = getField(this.props, this.state, 'value');
 

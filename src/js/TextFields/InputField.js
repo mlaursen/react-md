@@ -25,6 +25,7 @@ export default class InputField extends PureComponent {
     customSize: PropTypes.string,
     passwordVisible: PropTypes.bool,
     inlineIndicator: PropTypes.bool,
+    onHeightChange: PropTypes.func,
   };
 
   constructor(props) {
@@ -69,6 +70,8 @@ export default class InputField extends PureComponent {
       passwordVisible,
       block,
       inlineIndicator,
+      maxRows,
+      onHeightChange,
       ...props
     } = this.props;
 
@@ -76,12 +79,11 @@ export default class InputField extends PureComponent {
     const Component = multiline ? TextArea : 'input';
     if (!multiline) {
       props.type = passwordVisible ? 'text' : type;
-
-      delete props.maxRows;
-      delete props.onHeightChange;
     } else {
       props.label = label;
       props.block = block;
+      props.maxRows = maxRows;
+      props.onHeightChange = onHeightChange;
     }
 
     return createElement(Component, {

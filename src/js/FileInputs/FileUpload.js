@@ -2,6 +2,8 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import FileInput from './FileInput';
 
+import omit from '../utils/omit';
+
 /**
  * The `FileUpload` component is used to upload files locally. If you want
  * to upload files to a server, use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
@@ -228,12 +230,9 @@ export default class FileUpload extends PureComponent {
     const reader = this.state[fileName];
     if (reader) {
       reader.abort();
-      const state = this.state;
-      delete state[fileName];
-
       findDOMNode(this).querySelector('.md-file-input').value = '';
 
-      this.setState(state);
+      this.setState(omit(this.state, [fileName]));
     }
   }
 
@@ -280,9 +279,7 @@ export default class FileUpload extends PureComponent {
         onLoad(file, e.target.result, e);
       }
 
-      const state = Object.assign({}, this.state);
-      delete state[name];
-      this.setState(state);
+      this.setState(omit(this.state, [name]));
     };
 
     if (onProgress) {
@@ -345,19 +342,20 @@ export default class FileUpload extends PureComponent {
   }
 
   render() {
-    const { ...props } = this.props;
-
-    // Remove invalid input props
-    delete props.maxSize;
-    delete props.onLoad;
-    delete props.onLoadStart;
-    delete props.onLoadEnd;
-    delete props.onProgress;
-    delete props.onAbort;
-    delete props.onError;
-    delete props.maxSize;
-    delete props.onSizeError;
-    delete props.readAs;
+    const {
+      /* eslint-disable no-unused-vars */
+      maxSize,
+      readAs,
+      onLoad,
+      onLoadStart,
+      onLoadEnd,
+      onProgress,
+      onAbort,
+      onError,
+      onSizeError,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
 
     return (
       <FileInput {...props} onChange={this._handleUpload} />

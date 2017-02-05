@@ -283,22 +283,24 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      /* eslint-disable no-unused-vars */
+      label: propLabel,
+      checked: propChildren,
+      onChange,
+      checkedIcon,
+      uncheckedIcon,
+      checkedRadioIconChildren,
+      checkedRadioIconClassName,
+      uncheckedRadioIconChildren,
+      uncheckedRadioIconClassName,
+      checkedCheckboxIconChildren,
+      checkedCheckboxIconClassName,
+      uncheckedCheckboxIconChildren,
+      uncheckedCheckboxIconClassName,
+      __superSecreteProp,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.label;
-    delete props.checked;
-    delete props.onChange;
-    delete props.checkedIcon;
-    delete props.uncheckedIcon;
-    delete props.__superSecreteProp;
-    delete props.checkedRadioIconChildren;
-    delete props.checkedRadioIconClassName;
-    delete props.uncheckedRadioIconChildren;
-    delete props.uncheckedRadioIconClassName;
-    delete props.checkedCheckboxIconChildren;
-    delete props.checkedCheckboxIconClassName;
-    delete props.uncheckedCheckboxIconChildren;
-    delete props.uncheckedCheckboxIconClassName;
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';

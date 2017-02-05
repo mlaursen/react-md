@@ -428,11 +428,13 @@ export default class ListItem extends PureComponent {
       itemComponent: ItemComponent,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
+      /* eslint-disable no-unused-vars */
+      isOpen: propIsOpen,
+      defaultOpen,
+      initiallyOpen,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.isOpen;
-    delete props.defaultOpen;
-    delete props.initiallyOpen;
 
     const isOpen = getField(this.props, this.state, 'isOpen');
     const leftNode = (

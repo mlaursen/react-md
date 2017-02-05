@@ -107,10 +107,10 @@ export default class Chip extends PureComponent {
       remove,
       onClick,
       rotateIcon,
+      removeIconChildren, // eslint-disable-line no-unused-vars
+      removeIconClassName, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.removeIconChildren;
-    delete props.removeIconClassName;
 
     let icon;
     if (removable || remove) {
