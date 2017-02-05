@@ -107,12 +107,17 @@ export default class Markdown extends PureComponent {
 
   render() {
     const { markdown } = this.state;
-    const { component: Component, ...props } = this.props;
-    delete props.markdown;
-    delete props.params;
-    delete props.router;
-    delete props.location;
-    delete props.routes;
+    const {
+      component: Component,
+      /* eslint-disable no-unused-vars */
+      markdown: propMarkdown,
+      params,
+      router,
+      routes,
+      location,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
 
     return <Component {...props} dangerouslySetInnerHTML={{ __html: markdown }} />;
   }

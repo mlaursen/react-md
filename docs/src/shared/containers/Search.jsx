@@ -9,8 +9,10 @@ export default class SearchContainer extends PureComponent {
   static propTypes = Search.propTypes;
 
   render() {
-    const { ...props } = this.props;
-    delete props.dispatch;
+    const {
+      dispatch, // eslint-disable-line no-unused-vars
+      ...props
+    } = this.props;
 
     return <Search {...props} />;
   }
