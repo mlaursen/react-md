@@ -274,6 +274,7 @@ $md-data-table-card-header-font-size: 16px !default;
 /// Creates the styles for a column in a data table.
 @mixin react-md-data-table-column {
   .md-table-column {
+    line-height: initial;
     padding-right: $md-data-table-padding;
     white-space: nowrap;
 
@@ -310,6 +311,10 @@ $md-data-table-card-header-font-size: 16px !default;
 
     &--select-header {
       padding-left: $md-default-padding;
+    }
+
+    .md-icon-separator {
+      line-height: inherit;
     }
   }
 }

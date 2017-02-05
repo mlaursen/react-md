@@ -3,12 +3,11 @@ import Button from 'react-md/lib/Buttons/Button';
 
 const RaisedButtonExamples = () => (
   <div className="btn-example">
-    <p>Raised buttons can be unstyled or styled with the primary/secondary color.</p>
+    <h5>Theme Examples</h5>
     <Button raised label="Hello, World!" />
     <Button raised primary label="Spock" iconClassName="fa fa-hand-spock-o" />
     <Button raised secondary iconBefore={false} label="Paper" iconClassName="fa fa-hand-paper-o" />
-
-    <p>When a raised button is disabled, any styling will be overridden and they will not be clickable.</p>
+    <h5>Disabled Examples</h5>
     <Button raised disabled label="Disabled Button" />
     <Button raised disabled label="Disabled Button">close</Button>
   </div>
