@@ -14,13 +14,14 @@ import Paper from '../../Papers/Paper';
 
 describe('Dialog', () => {
   it('renders as a Paper component', () => {
-    const dialog = renderIntoDocument(<Dialog />);
+    const dialog = renderIntoDocument(<Dialog id="woop" />);
     const papers = scryRenderedComponentsWithType(dialog, Paper);
     expect(papers.length).toBe(1);
   });
 
   it('merges style and className in the Paper component', () => {
     const props = {
+      id: 'woop',
       style: { display: 'none' },
       className: 'womba-juice',
     };
@@ -32,7 +33,7 @@ describe('Dialog', () => {
   });
 
   it('renders the Paper component as the FocusContainer component', () => {
-    const dialog = renderIntoDocument(<Dialog />);
+    const dialog = renderIntoDocument(<Dialog id="woop" />);
     const paper = findRenderedComponentWithType(dialog, Paper);
     expect(paper.props.component).toBe(FocusContainer);
   });

@@ -12,6 +12,10 @@ import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import Dialog from './Dialog';
 import Portal from '../Helpers/Portal';
 
+/**
+ * The `DialogContainer` component is used for dynamically creating the `Dialog` with
+ * transitions.
+ */
 export default class DialogContainer extends PureComponent {
   /* eslint-disable max-len */
   static propTypes = {
@@ -206,9 +210,24 @@ export default class DialogContainer extends PureComponent {
     pageY: PropTypes.number,
 
     /**
-     * Boolean if the dialog should focus one of children once it has mounted.
+     * @see {@link Helpers/FocusContainer#additionalFocusKeys}
      */
-    focusOnMount: PropTypes.bool.isRequired,
+    additionalFocusKeys: Dialog.propTypes.additionalFocusKeys,
+
+    /**
+     * @see {@link Helpers/FocusContainer#initialFocus}
+     */
+    initialFocus: Dialog.propTypes.initialFocus,
+
+    /**
+     * @see {@link Helpers/FocusContainer#focusOnMount}
+     */
+    focusOnMount: Dialog.propTypes.focusOnMount,
+
+    /**
+     * @see {@link Helpers/FocusContainer#containFocus}
+     */
+    containFocus: Dialog.propTypes.containFocus,
 
     /**
      * The transition enter timeout for the dialog.
@@ -445,8 +464,9 @@ export default class DialogContainer extends PureComponent {
       <Dialog
         key="dialog"
         style={dialogStyle}
-        className={dialogClassName}
+        className={cn('md-background--card', dialogClassName)}
         ref={this._handleDialogMounting}
+        centered={!fullPage}
         fullPage={fullPage}
         {...props}
         containerX={this._pageX}
