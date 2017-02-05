@@ -154,7 +154,7 @@ export default class Autocomplete extends PureComponent {
      * each item in the suggestion menu will be updated with the `aria-setsize` and
      * `aria-posinset`.
      *
-     * @see offset
+     * @see {@link #offset}
      */
     total: invalidIf(PropTypes.number, 'inline'),
 
@@ -162,7 +162,7 @@ export default class Autocomplete extends PureComponent {
      * An optional number representing the data's offset if the results were paginated.
      * This is used for accessibility with the `aria-posinset` attribute.
      *
-     * @see total
+     * @see {@link #total}
      */
     offset: PropTypes.number.isRequired,
 

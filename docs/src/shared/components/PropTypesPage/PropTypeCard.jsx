@@ -123,19 +123,21 @@ export default class PropTypeCard extends PureComponent {
       ];
     }
 
+    const ptId = `${baseId}-proptypes`;
+
     return (
       <Card style={style} className={cn('md-cell md-cell--12', className)} tableCard>
         <ComponentTitle
+          id={ptId}
           mobile={mobile}
           tablet={tablet}
           desktop={desktop}
           source={source}
-          baseId={baseId}
           component={component}
           propFilter={propFilter}
           onPropFilter={this._filterProperties}
         />
-        <PropTypeTable ascending={ascending} sortProps={this._sortProps} props={visibleProps} />
+        <PropTypeTable ascending={ascending} sortProps={this._sortProps} props={visibleProps} baseId={ptId} />
         {remainingChildren}
         {description}
       </Card>

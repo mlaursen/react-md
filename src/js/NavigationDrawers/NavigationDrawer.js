@@ -372,8 +372,8 @@ export default class NavigationDrawer extends PureComponent {
      * mini `ListItem` containing only that icon or image. Any other event listeners will also be applied.
      *
      *
-     * @see miniDrawerHeader
-     * @see miniDrawerChildren
+     * @see {@link #miniDrawerHeader}
+     * @see {@link #miniDrawerChildren}
      */
     extractMini: PropTypes.bool,
 
@@ -381,7 +381,7 @@ export default class NavigationDrawer extends PureComponent {
      * An optional header to display in the mini drawer. This will be displayed above the optional
      * mini nav list that get generated if the `extractMini` prop is `true` and the `miniDrawerChildren`.
      *
-     * @see extractMini
+     * @see {@link #extractMini}
      */
     miniDrawerHeader: PropTypes.node,
 
@@ -389,7 +389,7 @@ export default class NavigationDrawer extends PureComponent {
      * Any additional children to display in the mini drawer. This will be displayed after the `miniDrawerHeader`
      * and the optional mini nav list that gets generated if the `extractMini` prop is `true`.
      *
-     * @see extractMini
+     * @see {@link #extractMini}
      */
     miniDrawerChildren: PropTypes.node,
 
@@ -413,7 +413,7 @@ export default class NavigationDrawer extends PureComponent {
     /**
      * The theme style for the main toolbar.
      *
-     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     * @see {@link Toolbars/Toolbar}
      */
     toolbarThemeType: PropTypes.oneOf(['default', 'colored', 'themed']).isRequired,
 
@@ -436,7 +436,7 @@ export default class NavigationDrawer extends PureComponent {
      * A list of elements or a single element to display to the right of the
      * toolbar's nav, title, and children.
      *
-     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     * @see {@link Toolbars/Toolbar#actions}
      */
     toolbarActions: Toolbar.propTypes.actions,
 

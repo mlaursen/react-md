@@ -1,3 +1,5 @@
+import toClassName from 'utils/StringUtils/toClassName';
+
 const MANUAL_DEFINITITION_REGEX = /```docgen(.*\r?\n)*```/;
 
 
@@ -52,13 +54,42 @@ function formatType({ name, value, raw, required }, customPropTypes, manualDefin
   }
 }
 
+function createHash(component, propName) {
+  return `#${toClassName(component)}-proptypes${propName ? `-${toClassName(propName)}` : ''}`;
+}
 
-export default function transformProp(prop, propName, customPropTypes) {
+function addComponentPropLinks(description, component) {
+  return description.replace(/\{@link #(\w+(-\w+)*)\}/g, (match, propName) => `[${propName}](${createHash(component, propName)})`);
+}
+
+function addExternalPropLinks(description) {
+  return description.replace(/{@link (\w+)\/(\w+)(#\w+(-\w+)*)?}/g, (match, section, component, hash) => {
+    let prop;
+    if (hash && hash.indexOf('#') !== -1) {
+      prop = hash.substring(1);
+    } else {
+      prop = '';
+      hash = ''; // eslint-disable-line no-param-reassign
+    }
+    if (section.match(/(helpers|pickers|progress|selectioncontrols)/i)) {
+      section = `${section}/${toClassName(component)}`; // eslint-disable-line no-param-reassign
+    }
+
+    return `[${component}${hash}](/components/${toClassName(section)}?tab=1${createHash(component, prop)})`;
+  });
+}
+
+function addLinks(description, component) {
+  return addComponentPropLinks(addExternalPropLinks(description), component);
+}
+
+
+export default function transformProp(prop, propName, customPropTypes, file) {
   let { description, defaultValue } = prop;
   const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DEFINITITION_REGEX));
 
   if (description) {
-    description = description.replace(MANUAL_DEFINITITION_REGEX, '');
+    description = addLinks(description.replace(MANUAL_DEFINITITION_REGEX, ''), file);
   }
 
   if (type.indexOf('deprecated') !== -1) {

@@ -14,7 +14,7 @@ export default class ComponentTitle extends PureComponent {
     component: PropTypes.string.isRequired,
     propFilter: PropTypes.string.isRequired,
     onPropFilter: PropTypes.func.isRequired,
-    baseId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     style: PropTypes.object,
     className: PropTypes.string,
   };
@@ -44,19 +44,19 @@ export default class ComponentTitle extends PureComponent {
   render() {
     const { filtering } = this.state;
     const {
+      id,
       component,
       source,
       propFilter,
       onPropFilter,
       mobile,
-      baseId,
     } = this.props;
 
     let filter;
     if (filtering) {
       filter = (
         <TextField
-          id={`propTypesFilter-${component}`}
+          id={`proptypes-filter-${component}`}
           placeholder="Filter properties"
           value={propFilter}
           onChange={onPropFilter}
@@ -104,7 +104,7 @@ export default class ComponentTitle extends PureComponent {
 
     return (
       <CSSTransitionGroup
-        id={`${baseId}-proptypes`}
+        id={id}
         component={CardTitle}
         transitionName="md-drop-down"
         transitionEnterTimeout={150}

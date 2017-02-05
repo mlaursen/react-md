@@ -32,14 +32,14 @@ export default class ListItem extends PureComponent {
     /**
      * An optional style to apply to the `.md-list-tile`.
      *
-     * @see component
+     * @see {@link #component}
      */
     tileStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the `.md-list-tile`.
      *
-     * @see component
+     * @see {@link #component}
      */
     tileClassName: PropTypes.string,
 
@@ -120,7 +120,7 @@ export default class ListItem extends PureComponent {
      * This prop is **not** the top-most element of the `ListItem` component. To change the
      * top-most element, see the `itemComponent` prop.
      *
-     * @see itemComponent
+     * @see {@link #itemComponent}
      */
     component: PropTypes.oneOfType([
       PropTypes.string,
@@ -131,7 +131,7 @@ export default class ListItem extends PureComponent {
      * The component to render the top-most element of the `ListItem` component. This is the
      * `.md-list-item` and defaults to the `<li>` element.
      *
-     * @see component
+     * @see {@link #component}
      */
     itemComponent: PropTypes.oneOfType([
       PropTypes.string,
@@ -145,8 +145,7 @@ export default class ListItem extends PureComponent {
      *
      * The nested items will be visible once the user clicks on the `ListItem`.
      *
-     * @see `defaultOpen`
-     * @see `isOpen`
+     * @see {@link #isOpen]
      */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
@@ -158,6 +157,8 @@ export default class ListItem extends PureComponent {
     /**
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
      * and require the `onClick` function to be defined.
+     *
+     * @see {@link #defaultOpen}
      */
     isOpen: controlled(PropTypes.bool, 'onClick', 'defaultOpen'),
 
