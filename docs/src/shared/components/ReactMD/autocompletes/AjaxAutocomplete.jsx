@@ -10,6 +10,8 @@ import fetchSpotify from 'actions/fetchSpotify';
 import randomInt from 'utils/RandomUtils/randomInt';
 import AlbumCard from 'components/Spotify/AlbumCard';
 
+const DELETE_KEYS = ['id', 'name'];
+
 export default class AjaxAutocomplete extends PureComponent {
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ export default class AjaxAutocomplete extends PureComponent {
 
     fetchSpotify.search(value)
       .then(results => {
-        const { items } = results;
+        const { items, total } = results;
 
         const artists = items.map(artist => {
           let leftAvatar;
@@ -50,7 +52,7 @@ export default class AjaxAutocomplete extends PureComponent {
           };
         });
 
-        this.setState({ artists });
+        this.setState({ artists, total });
       });
   }
 
@@ -62,11 +64,11 @@ export default class AjaxAutocomplete extends PureComponent {
   }
 
   _hideAlbums() {
-    this.setState({ albums: [] });
+    this.setState({ albums: [], total: 0 });
   }
 
   render() {
-    const { artists, albums, artist, fetching } = this.state;
+    const { artists, albums, artist, fetching, total } = this.state;
 
     let artistText;
     if (albums.length) {
@@ -110,6 +112,8 @@ export default class AjaxAutocomplete extends PureComponent {
           data={artists}
           dataLabel="name"
           dataValue="id"
+          deleteKeys={DELETE_KEYS}
+          total={total}
           filter={null}
           onChange={this._throttledSearch}
           clearOnAutocomplete

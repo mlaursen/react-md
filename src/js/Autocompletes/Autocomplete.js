@@ -3,8 +3,9 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
+import controlled from '../utils/PropTypes/controlled';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 
 import ListItem from '../Lists/ListItem';
@@ -147,9 +148,27 @@ export default class Autocomplete extends PureComponent {
     },
 
     /**
+     * An optional number representing the total number of results in the `data` prop.
+     * This should really only be used when the data is paginated. When this is set,
+     * each item in the suggestion menu will be updated with the `aria-setsize` and
+     * `aria-posinset`.
+     *
+     * @see offset
+     */
+    total: invalidIf(PropTypes.number, 'inline'),
+
+    /**
+     * An optional number representing the data's offset if the results were paginated.
+     * This is used for accessibility with the `aria-posinset` attribute.
+     *
+     * @see total
+     */
+    offset: PropTypes.number.isRequired,
+
+    /**
      * An optional function to use to filter the `data`. If you have a sexy backend
-     * using solr or some other seach/indexer, it is recommended to set this prop to
-     * `null` or `false`-ish.
+     * using solr or some other search/indexer, it is recommended to set this prop to
+     * `null`.
      */
     filter: PropTypes.func,
 
@@ -247,6 +266,7 @@ export default class Autocomplete extends PureComponent {
   };
 
   static defaultProps = {
+    offset: 0,
     fullWidth: true,
     defaultValue: '',
     dataLabel: 'primaryText',
@@ -735,10 +755,10 @@ export default class Autocomplete extends PureComponent {
     this.setState({ value, suggestion, suggestionIndex, suggestionStyle, tabbed: false });
   }
 
-  _mapToListItem(match) {
+  _mapToListItem(match, i) {
     if (React.isValidElement(match)) { return match; }
 
-    const { dataLabel, dataValue, deleteKeys } = this.props;
+    const { dataLabel, dataValue, deleteKeys, total, offset, data } = this.props;
     let props;
     switch (typeof match) {
       case 'string':
@@ -763,6 +783,11 @@ export default class Autocomplete extends PureComponent {
           });
         }
 
+    }
+
+    if (typeof total !== 'undefined' && data.length < total) {
+      props['aria-setsize'] = total;
+      props['aria-posinset'] = i + 1 + offset;
     }
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
@@ -843,6 +868,8 @@ export default class Autocomplete extends PureComponent {
       inline,
       ...props
     } = this.props;
+    delete props.total;
+    delete props.offset;
     delete props.value;
     delete props.defaultValue;
     delete props.dataLabel;

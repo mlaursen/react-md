@@ -189,6 +189,7 @@ export default class Search extends PureComponent {
           onChange={this._handleChange}
           value={value}
           data={data}
+          total={total}
           className={cn('main-search md-select-field--toolbar', {
             'main-search--active': searching,
             'main-search--min-enforced': searching || animating,
