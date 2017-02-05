@@ -1,5 +1,5 @@
 ## January 2017
-### v1.0.3 Released
+### v1.0.4 Released
 Minor bugfixes.
 
 ##### Changelong
