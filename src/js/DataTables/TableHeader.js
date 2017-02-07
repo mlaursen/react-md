@@ -59,9 +59,9 @@ export default class TableHeader extends Component {
     const row = React.cloneElement(header, {
       ...header.props,
       selected,
-      onCheckboxClick(e) {
+      onCheckboxClick(checked, e) {
         if (header.props.onCheckboxClick) {
-          header.props.onCheckboxClick(e);
+          header.props.onCheckboxClick(-1, checked, e);
         }
 
         if (typeof header.props.selected === 'undefined') {
