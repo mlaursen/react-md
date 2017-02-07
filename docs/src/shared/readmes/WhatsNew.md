@@ -1,4 +1,12 @@
 ## January 2017
+### v1.0.4 Released
+Minor bugfixes.
+
+##### Changelong
+- Patched the line-height for DataTables so that the columns will be centered.
+- Correctly updated the peer-dependencies of `react(-\w+)*` to be 15.3.0.
+- Fixed the full-page dialog positioning.
+
 ### v1.0.2 Released
 Minor bugfixes.
 
