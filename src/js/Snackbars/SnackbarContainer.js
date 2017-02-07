@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import getField from '../utils/getField';
 import TICK from '../constants/CSSTransitionGroupTick';
 import isInvalidAnimate from './isInvalidAnimate';
 import Portal from '../Helpers/Portal';
@@ -161,6 +162,10 @@ export default class SnackbarContainer extends PureComponent {
     transitionLeaveTimeout: 300,
   };
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
@@ -303,10 +308,11 @@ export default class SnackbarContainer extends PureComponent {
       dismiss,
       onDismiss,
       lastChild,
-      renderNode,
       ...props
     } = this.props;
     delete props.toasts;
+    delete props.renderNode;
+    const renderNode = getField(this.props, this.context, 'renderNode');
 
     let snackbar;
     if (toast) {

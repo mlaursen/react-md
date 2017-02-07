@@ -327,6 +327,10 @@ export default class Drawer extends PureComponent {
     return window.matchMedia(media).matches;
   }
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
@@ -526,13 +530,13 @@ export default class Drawer extends PureComponent {
       children,
       inline,
       position,
-      renderNode,
       overlay,
       autoclose,
       clickableDesktopOverlay,
       lastChild,
       ...props
     } = this.props;
+    delete props.renderNode;
     delete props.visible;
     delete props.defaultVisible;
     delete props.type;
@@ -549,6 +553,7 @@ export default class Drawer extends PureComponent {
     delete props.closeOnNavItemClick;
 
     const { desktop } = this.state;
+    const renderNode = getField(this.props, this.context, 'renderNode');
     const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);

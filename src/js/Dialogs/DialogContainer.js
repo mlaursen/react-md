@@ -7,6 +7,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { ESC } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
+import getField from '../utils/getField';
 import toggleScroll from '../utils/toggleScroll';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import Dialog from './Dialog';
@@ -235,8 +236,6 @@ export default class DialogContainer extends PureComponent {
     /**
      * Boolean if the dialog should be rendered as the last child in the `renderNode` or `body` instead
      * of as the first.
-     *
-     * When there are nested dialogs, this prop should be enabled to get correct z-indexes.
      */
     lastChild: PropTypes.bool,
 
@@ -256,6 +255,10 @@ export default class DialogContainer extends PureComponent {
     focusOnMount: true,
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
+  };
+
+  static contextTypes = {
+    renderNode: PropTypes.object,
   };
 
   constructor(props) {
@@ -293,7 +296,7 @@ export default class DialogContainer extends PureComponent {
       return;
     }
 
-    const el = this.props.renderNode || window;
+    const el = getField(this.props, this.context, 'renderNode') || window;
     let { scrollX: pageX, scrollY: pageY } = el;
     if (typeof el.scrollTop !== 'undefined' && typeof el.scrollLeft !== 'undefined') {
       pageX = el.scrollLeft;
@@ -421,10 +424,10 @@ export default class DialogContainer extends PureComponent {
       component,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      renderNode,
       lastChild,
       ...props
     } = this.props;
+    delete props.renderNode;
     delete props.close;
     delete props.isOpen;
     delete props.visible;
@@ -436,6 +439,8 @@ export default class DialogContainer extends PureComponent {
     delete props.transitionEnter;
     delete props.transitionLeave;
     delete props.closeOnEsc;
+
+    const renderNode = getField(this.props, this.context, 'renderNode');
 
     const dialog = (
       <Dialog

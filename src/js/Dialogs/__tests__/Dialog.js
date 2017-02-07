@@ -2,6 +2,7 @@
 jest.unmock('../Dialog');
 
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -35,5 +36,11 @@ describe('Dialog', () => {
     const dialog = renderIntoDocument(<Dialog />);
     const paper = findRenderedComponentWithType(dialog, Paper);
     expect(paper.props.component).toBe(FocusContainer);
+  });
+
+  it('should set the renderNode in the context once it has been mounted', () => {
+    const dialog = renderIntoDocument(<Dialog id="test" />);
+    const node = findDOMNode(dialog);
+    expect(dialog.getChildContext()).toEqual({ renderNode: node });
   });
 });
