@@ -358,9 +358,7 @@ export default class DatePickerContainer extends PureComponent {
       date = new Date();
     }
 
-    if (minDate || maxDate) {
-      date = this._validateDateRange(date, minDate, maxDate);
-    }
+    date = this._validateDateRange(date, minDate, maxDate);
 
     let calendarTempDate = date;
     if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
@@ -621,7 +619,7 @@ export default class DatePickerContainer extends PureComponent {
    *    calendarTempDate keys or null.
    */
   _validateDateRange(calendarDate, minDate, maxDate) {
-    let date = null;
+    let date = calendarDate;
     if (minDate && minDate > calendarDate) {
       date = new Date(minDate);
     }

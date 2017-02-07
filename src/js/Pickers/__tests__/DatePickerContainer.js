@@ -196,6 +196,45 @@ describe('DatePickerContainer', () => {
     expect(container.state.calendarTempDate).toEqual(maxDate);
   });
 
-  // Modifies the calendar date when the min or max date change from componentWillReceiveProps...
-  // but not sure how to test lifecycle
+  describe('validateDateRange', () => {
+    const picker = renderIntoDocument(<DatePickerContainer id="validate-date-range-test" />);
+    it('should return the date if there is no min or max date', () => {
+      const date = new Date(2016, 0);
+      expect(picker._validateDateRange(date)).toEqual(date);
+    });
+
+    it('should return the date if it is greater than the min date and there is no max date', () => {
+      const date = new Date(2016, 0);
+      const min = new Date(2000, 0);
+      expect(picker._validateDateRange(date, min)).toEqual(date);
+    });
+
+    it('should return the date if it is less than the max date and there is no min date', () => {
+      const date = new Date(2016, 0);
+      const min = null;
+      const max = new Date(2020, 0);
+      expect(picker._validateDateRange(date, min, max)).toEqual(date);
+    });
+
+    it('should return the date if it is between the min and max date', () => {
+      const date = new Date(2016, 0);
+      const min = new Date(2000, 0);
+      const max = new Date(2020, 0);
+      expect(picker._validateDateRange(date, min, max)).toEqual(date);
+    });
+
+    it('should return the min date if it is less than the min date', () => {
+      const date = new Date(1016, 0);
+      const min = new Date(2000, 0);
+      const max = new Date(2020, 0);
+      expect(picker._validateDateRange(date, min, max)).toEqual(min);
+    });
+
+    it('should return the max date if it is greater than the max date', () => {
+      const date = new Date(3016, 0);
+      const min = new Date(2000, 0);
+      const max = new Date(2020, 0);
+      expect(picker._validateDateRange(date, min, max)).toEqual(max);
+    });
+  });
 });
