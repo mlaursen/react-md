@@ -8,6 +8,10 @@ You may remove irrelevant sections.
 ### Description
 ### Images/Screenshots
 ### Link to a gist or code sample where the issue can be reproduced
+<!--
+You can save me even more time and help debugging process by using this codepend template:
+https://codepen.io/mlaursen03/pen/ZLMWwX
+-->
 ### Version
 - React
 - React-MD
