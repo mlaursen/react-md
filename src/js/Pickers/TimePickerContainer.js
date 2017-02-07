@@ -67,6 +67,26 @@ export default class TimePickerContainer extends PureComponent {
     pickerClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the input tag.
+     */
+    inputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the input tag.
+     */
+    inputClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the text field's container.
+     */
+    textFieldStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the text field's container.
+     */
+    textFieldClassName: PropTypes.string,
+
+    /**
      * An optional icon to display with the time picker.
      */
     icon: PropTypes.node,
@@ -207,6 +227,78 @@ export default class TimePickerContainer extends PureComponent {
     closeOnEsc: PropTypes.bool,
 
     /**
+     * Boolean if the time is required.
+     *
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    required: PropTypes.bool,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    block: TextField.propTypes.block,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    paddedBlock: TextField.propTypes.paddedBlock,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    active: TextField.propTypes.active,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    error: TextField.propTypes.error,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    floating: TextField.propTypes.floating,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    leftIconStateful: TextField.propTypes.leftIconStateful,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    rightIcon: TextField.propTypes.rightIcon,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    rightIconStateful: TextField.propTypes.rightIconStateful,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    customSize: TextField.propTypes.customSize,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    errorText: TextField.propTypes.errorText,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    helpText: TextField.propTypes.helpText,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    helpOnFocus: TextField.propTypes.helpOnFocus,
+
+    /**
+     * @see [TextField](/components/text-fields?tab=1)
+     */
+    inlineIndicator: TextField.propTypes.helpOnFocus,
+
+    /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
      * in the `body`.
      */
@@ -215,8 +307,6 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
      * of the first.
-     *
-     * When the `TimePicker` is nested in a `Dialog`, this prop should be enabled to get the correct z-indexing.
      */
     lastChild: PropTypes.bool,
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -432,6 +522,14 @@ export default class TimePickerContainer extends PureComponent {
     } = this.state;
 
     const {
+      style,
+      className,
+      pickerStyle,
+      pickerClassName,
+      inputStyle,
+      inputClassName,
+      textFieldStyle,
+      textFieldClassName,
       id,
       disabled,
       label,
@@ -439,15 +537,25 @@ export default class TimePickerContainer extends PureComponent {
       icon,
       inline,
       displayMode,
-      style,
-      className,
-      pickerStyle,
-      pickerClassName,
       fullWidth,
       lineDirection,
       closeOnEsc,
       renderNode,
       lastChild,
+      block,
+      paddedBlock,
+      active,
+      error,
+      floating,
+      required,
+      leftIconStateful,
+      rightIcon,
+      rightIconStateful,
+      customSize,
+      errorText,
+      helpText,
+      helpOnFocus,
+      inlineIndicator,
       'aria-label': ariaLabel,
       ...props
     } = this.props;
@@ -513,18 +621,34 @@ export default class TimePickerContainer extends PureComponent {
       <div style={style} className={cn('md-picker-container', className)} ref={this._setContainer}>
         <TextField
           id={id}
+          style={textFieldStyle}
+          className={cn({ 'md-pointer--hover': !disabled }, textFieldClassName)}
+          inputStyle={inputStyle}
+          inputClassName={cn({ 'md-pointer--hover': !disabled }, inputClassName)}
+          active={active || visible}
+          error={error}
+          floating={floating || visible}
+          required={required}
           disabled={disabled}
-          className={cn({ 'md-pointer--hover': !disabled })}
-          inputClassName={cn({ 'md-pointer--hover': !disabled })}
           leftIcon={icon}
-          onClick={this._toggleOpen}
-          onKeyDown={this._handleKeyDown}
-          label={label}
-          placeholder={placeholder}
-          value={this._getTextFieldValue(this.props, this.state)}
-          readOnly
+          leftIconStateful={leftIconStateful}
+          rightIcon={rightIcon}
+          rightIconStateful={rightIconStateful}
+          inlineIndicator={inlineIndicator}
+          block={block}
+          paddedBlock={paddedBlock}
           fullWidth={fullWidth}
           lineDirection={lineDirection}
+          customSize={customSize}
+          helpText={helpText}
+          helpOnFocus={helpOnFocus}
+          errorText={errorText}
+          label={label}
+          placeholder={placeholder}
+          onClick={this._toggleOpen}
+          onKeyDown={this._handleKeyDown}
+          value={this._getTextFieldValue(this.props, this.state)}
+          readOnly
         />
         {content}
       </div>
