@@ -509,7 +509,7 @@ export default class TextField extends PureComponent {
     return typeof props.rows !== 'undefined';
   }
 
-  _cloneIcon(icon, active, error, disabled, stateful, dir) {
+  _cloneIcon(icon, active, error, disabled, stateful, block, dir) {
     if (!icon) {
       return icon;
     }
@@ -519,6 +519,7 @@ export default class TextField extends PureComponent {
       return cloneElement(iconEl, {
         key: `icon-${dir}`,
         className: cn('md-text-field-icon', {
+          'md-text-field-icon--positioned': !block,
           'md-text-field-icon--disabled': disabled,
           'md-text-field-icon--active': stateful && (!error && active),
           'md-text-field-icon--error': stateful && error,
@@ -739,7 +740,7 @@ export default class TextField extends PureComponent {
       placeholder = null;
     }
 
-    leftIcon = this._cloneIcon(icon || leftIcon, active, error, disabled, leftIconStateful, 'left');
+    leftIcon = this._cloneIcon(icon || leftIcon, active, error, disabled, leftIconStateful, block, 'left');
     if (type === 'password' && !disabled) {
       rightIcon = (
         <PasswordButton
@@ -764,7 +765,7 @@ export default class TextField extends PureComponent {
         }, el.props.className),
       });
     } else {
-      rightIcon = this._cloneIcon(rightIcon, active, error, disabled, rightIconStateful, 'right');
+      rightIcon = this._cloneIcon(rightIcon, active, error, disabled, rightIconStateful, block, 'right');
     }
     const rightIconed = !!rightIcon && type !== 'password' && !inlineIndicator;
 
