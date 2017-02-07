@@ -173,6 +173,7 @@ export default class Dialog extends PureComponent {
     return (
       <Paper
         {...props}
+        id={id}
         component={FocusContainer}
         ref={this._setRenderNode}
         style={style}
