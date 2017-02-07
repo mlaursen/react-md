@@ -92,7 +92,6 @@ export default class TableRow extends Component {
       selects: [],
     };
 
-    this._handleCheckboxClick = this._handleCheckboxClick.bind(this);
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
     this._setLongestColumn = this._setLongestColumn.bind(this);
@@ -116,12 +115,6 @@ export default class TableRow extends Component {
   _ignoreHoverState(classList) {
     return classList.contains('md-list--menu')
       || ['md-edit-dialog', 'md-edit-dialog--active'].every(className => classList.contains(className));
-  }
-
-  _handleCheckboxClick(checked, e) {
-    if (this.props.onCheckboxClick) {
-      this.props.onCheckboxClick(this.props.index, checked, e);
-    }
   }
 
   _handleMouseOver(e) {
@@ -192,15 +185,15 @@ export default class TableRow extends Component {
       className,
       children,
       selected,
+      onCheckboxClick,
       ...props
     } = this.props;
     delete props.index;
     delete props.autoAdjust;
-    delete props.onCheckboxClick;
 
     let checkbox;
     if (!this.context.plain) {
-      checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={this._handleCheckboxClick} />;
+      checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
     }
 
     const length = children.length;
