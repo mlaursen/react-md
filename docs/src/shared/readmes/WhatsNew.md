@@ -1,8 +1,23 @@
+## February 2017
+### v1.0.5 Released
+
+##### Changelog
+- Fixed the DatePicker's [min/max date validator](https://github.com/mlaursen/react-md/commit/53130fadde13253b403d9ed3fe662ed65f6c70d6).
+- Fixed the FocusContainer's [window focus bug](https://github.com/mlaursen/react-md/commit/1fe1b9b763734809a565a7fa5c0f5d52bdf80906).
+  - > Basically using `element.contains(window)` is invalid and throws a 'Node' does not have contains error.
+- Automated the nested dialog [display error](https://github.com/mlaursen/react-md/issues/229) until Portals are updated.
+- Fixed the TextField blocked [icon positioning](https://github.com/mlaursen/react-md/commit/9115e235946942095392306564d37fa439511976).
+- Passed text-field related props from [pickers](https://github.com/mlaursen/react-md/commit/5daabbb973330d770cbacae99fc418245807afbc).
+- Fixed the [TablePagination](https://github.com/mlaursen/react-md/commit/93d932f91e0e2dcfd664331e3dbd2fd48a6c02df)'s onPagination callback
+to be more accurate.
+- Fixed the TableRows's [onCheckboxClick callback](https://github.com/mlaursen/react-md/commit/69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
+match documentation.
+
 ## January 2017
 ### v1.0.4 Released
 Minor bugfixes.
 
-##### Changelong
+##### Changelog
 - Patched the line-height for DataTables so that the columns will be centered.
 - Correctly updated the peer-dependencies of `react(-\w+)*` to be 15.3.0.
 - Fixed the full-page dialog positioning.

@@ -51,7 +51,7 @@ export default class TablePagination extends PureComponent {
     page: PropTypes.number,
 
     /**
-     * The defualt page to start from for the pagination. Pages start from 1 instead of 0.
+     * The default page to start from for the pagination. Pages start from 1 instead of 0.
      */
     defaultPage: PropTypes.number.isRequired,
 
