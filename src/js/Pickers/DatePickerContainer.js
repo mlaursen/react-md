@@ -87,6 +87,8 @@ export default class DatePickerContainer extends PureComponent {
 
     /**
      * An optional icon to display with the date picker.
+     *
+     * @see {@link TextFields/TextField#leftIcon}
      */
     icon: PropTypes.node,
 
@@ -317,72 +319,72 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * Boolean if the time is required.
      *
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#required}
      */
     required: PropTypes.bool,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#block}
      */
     block: TextField.propTypes.block,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#paddedBlock}
      */
     paddedBlock: TextField.propTypes.paddedBlock,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#active}
      */
     active: TextField.propTypes.active,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#error}
      */
     error: TextField.propTypes.error,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#floating}
      */
     floating: TextField.propTypes.floating,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#leftIconStateful}
      */
     leftIconStateful: TextField.propTypes.leftIconStateful,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#rightIcon}
      */
     rightIcon: TextField.propTypes.rightIcon,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#rightIconStateful}
      */
     rightIconStateful: TextField.propTypes.rightIconStateful,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#customSize}
      */
     customSize: TextField.propTypes.customSize,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#errorText}
      */
     errorText: TextField.propTypes.errorText,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#helpText}
      */
     helpText: TextField.propTypes.helpText,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#helpOnFocus}
      */
     helpOnFocus: TextField.propTypes.helpOnFocus,
 
     /**
-     * @see [TextField](/components/text-fields?tab=1)
+     * @see {@link TextFields/TextField#inlineIndicator}
      */
     inlineIndicator: TextField.propTypes.helpOnFocus,
 
