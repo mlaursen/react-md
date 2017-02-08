@@ -333,6 +333,10 @@ export default class Drawer extends PureComponent {
     return window.matchMedia(media).matches;
   }
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
@@ -535,13 +539,13 @@ export default class Drawer extends PureComponent {
       children,
       inline,
       position,
-      renderNode,
       overlay,
       clickableDesktopOverlay,
       lastChild,
       /* eslint-disable no-unused-vars */
       type: propType,
       visible: propVisible,
+      renderNode: propRenderNode,
       defaultVisible,
       defaultMedia,
       mobileType,
@@ -561,6 +565,7 @@ export default class Drawer extends PureComponent {
     } = this.props;
 
     const { desktop } = this.state;
+    const renderNode = getField(this.props, this.context, 'renderNode');
     const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);

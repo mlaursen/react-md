@@ -1189,7 +1189,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 @mixin react-md-text-field-icon-mobile {
   $text-field-height: 19px;
 
-  .md-text-field-icon {
+  .md-text-field-icon--positioned {
     margin-bottom: 16px - (($md-font-icon-size - $text-field-height) / 2);
   }
 }
@@ -1205,7 +1205,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 @mixin react-md-text-field-icon-desktop {
   $text-field-height: 15px;
 
-  .md-text-field-icon {
+  .md-text-field-icon--positioned {
     margin-bottom: 12px - (($md-font-icon-size - $text-field-height) / 2);
   }
 }

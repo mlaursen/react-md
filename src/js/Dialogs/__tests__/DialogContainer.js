@@ -1,5 +1,6 @@
 /* eslint-env jest */
 jest.unmock('../DialogContainer');
+jest.unmock('../Dialog');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
@@ -123,5 +124,11 @@ describe('DialogContainer', () => {
     expect(dialog.props.className).toContain(props.dialogClassName);
     expect(dialog.props.contentStyle).toEqual(props.contentStyle);
     expect(dialog.props.contentClassName).toBe(props.contentClassName);
+  });
+
+  it('should inherit the dialog\'s renderNode context', () => {
+    const dialog = renderIntoDocument(<Dialog><DialogContainer {...PROPS} /></Dialog>);
+    const container = findRenderedComponentWithType(dialog, DialogContainer);
+    expect(container.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 });

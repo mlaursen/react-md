@@ -1,5 +1,6 @@
 /* eslint-env jest */
 jest.unmock('../NavigationDrawer');
+jest.unmock('../../Dialogs/Dialog');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
@@ -11,6 +12,7 @@ import {
 import NavigationDrawer from '../NavigationDrawer';
 import Toolbar from '../../Toolbars/Toolbar';
 import Drawer from '../../Drawers/Drawer';
+import Dialog from '../../Dialogs/Dialog';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Not sure what to _really_ test here.
@@ -44,5 +46,11 @@ describe('NavigationDrawer', () => {
 
     expect(content.props.style).toEqual(props.contentStyle);
     expect(content.props.className).toContain(props.contentClassName);
+  });
+
+  it('should inherit the dialog\'s renderNode context', () => {
+    const dialog = renderIntoDocument(<Dialog><NavigationDrawer /></Dialog>);
+    const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
+    expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 });

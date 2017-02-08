@@ -212,11 +212,19 @@ export default class Dialog extends PureComponent {
     zDepth: 5,
   };
 
+  static childContextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = { transformOrigin: null };
     this._setContent = this._setContent.bind(this);
+  }
+
+  getChildContext() {
+    return { renderNode: this._renderNode };
   }
 
   componentWillMount() {
@@ -241,6 +249,10 @@ export default class Dialog extends PureComponent {
       this.props.onLeave();
     }
   }
+
+  _setRenderNode = (dialog) => {
+    this._renderNode = findDOMNode(dialog);
+  };
 
   _setContent(content) {
     if (content !== null) {
@@ -309,7 +321,9 @@ export default class Dialog extends PureComponent {
     return (
       <Paper
         {...props}
+        id={id}
         component={FocusContainer}
+        ref={this._setRenderNode}
         style={style}
         className={cn('md-dialog', {
           'md-dialog--full-page': fullPage,

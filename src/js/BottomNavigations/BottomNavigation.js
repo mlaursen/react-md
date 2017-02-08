@@ -172,6 +172,10 @@ export default class BottomNavigation extends PureComponent {
     dynamicThreshold: 20,
   };
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   constructor(props) {
     super(props);
 
@@ -304,11 +308,11 @@ export default class BottomNavigation extends PureComponent {
       colored,
       dynamic,
       lastChild,
-      renderNode,
       animate,
       /* eslint-disable no-unused-vars */
       links: propLinks,
       activeIndex: propActiveIndex,
+      renderNode: propRenderNode,
       onNavChange,
       onVisibilityChange,
       defaultVisible,
@@ -335,6 +339,7 @@ export default class BottomNavigation extends PureComponent {
 
     const fixed = links.length === 3;
     const activeIndex = getField(this.props, this.state, 'activeIndex');
+    const renderNode = getField(this.props, this.context, 'renderNode');
 
     return (
       <Portal renderNode={renderNode} visible={portalVisible} lastChild={lastChild}>

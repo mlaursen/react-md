@@ -43,9 +43,9 @@ export default class TableBody extends Component {
         ...row.props,
         index: i,
         selected: uncontrolled ? selectedRows[i] : row.props.selected,
-        onCheckboxClick: e => {
+        onCheckboxClick: (checked, e) => {
           if (row.props.onCheckboxClick) {
-            row.props.onCheckboxClick(i, e);
+            row.props.onCheckboxClick(i, checked, e);
           }
 
           if (uncontrolled) {

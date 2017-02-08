@@ -574,6 +574,10 @@ export default class NavigationDrawer extends PureComponent {
     ),
   };
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   static childContextTypes = {
     closeIconClassName: PropTypes.string,
     closeChildren: PropTypes.node,
@@ -583,6 +587,7 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.string,
     ]).isRequired,
     label: PropTypes.string.isRequired,
+    renderNode: PropTypes.object,
   }
 
   static defaultProps = {
@@ -673,6 +678,7 @@ export default class NavigationDrawer extends PureComponent {
       closeChildren: closeIconChildren || persistentIconChildren,
       closeIconClassName: closeIconClassName || persistentIconClassName,
       onCloseClick: this._toggleVisibility,
+      renderNode: this.context.renderNode,
     };
   }
 
@@ -757,7 +763,6 @@ export default class NavigationDrawer extends PureComponent {
       contentComponent: Content,
       navItems,
       children,
-      renderNode,
       drawerTitle,
       drawerChildren,
       drawerHeaderChildren,
@@ -792,6 +797,7 @@ export default class NavigationDrawer extends PureComponent {
       /* eslint-disable no-unused-vars */
       drawerType: propDrawerType,
       drawerHeader: propDrawerHeader,
+      renderNode: propRenderNode,
       jumpLabel,
       persistentIconChildren,
       persistentIconClassName,
@@ -809,6 +815,7 @@ export default class NavigationDrawer extends PureComponent {
 
     const drawerType = getField(this.props, this.state, 'drawerType');
     const visible = getField(this.props, this.state, 'visible');
+    const renderNode = getField(this.props, this.context, 'renderNode');
     const mini = isMini(drawerType);
     const temporary = isTemporary(drawerType);
     const persistent = isPersistent(drawerType);
