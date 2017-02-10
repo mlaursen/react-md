@@ -111,7 +111,7 @@ export default class TimePickerContainer extends PureComponent {
      * The value of the time picker. This will make the time picker
      * be a controlled component.
      */
-    value: PropTypes.instanceOf(Date),
+    value: controlled(PropTypes.instanceOf(Date), 'onChange', 'defaultValue'),
 
     /**
      * An optional function to call when the selected date is changed

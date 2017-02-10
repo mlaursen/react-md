@@ -111,10 +111,10 @@ export default class DatePickerContainer extends PureComponent {
      * be a controlled component. This value should either be a
      * formatted date string or a date object.
      */
-    value: PropTypes.oneOfType([
+    value: controlled(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
-    ]),
+    ]), 'onChange', 'defaultValue'),
 
     /**
      * An optional default value to give for the date picker. This should
