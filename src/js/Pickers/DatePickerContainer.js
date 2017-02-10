@@ -489,11 +489,19 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { minDate, maxDate } = this.props;
-    if (!isDateEqual(minDate, nextProps.minDate) || !isDateEqual(maxDate, nextProps.maxDate)) {
-      const date = this._validateDateRange(this.state.calendarDate, nextProps.minDate, nextProps.maxDate);
-      if (date) {
-        this.setState({ calendarTempDate: date, calendarDate: date });
+    const { value, minDate, maxDate } = nextProps;
+    const minEqual = isDateEqual(this.props.minDate, minDate);
+    const maxEqual = isDateEqual(this.props.maxDate, maxDate);
+    if (this.props.value !== value || !minEqual || !maxEqual) {
+      let { calendarDate } = this.state;
+      if (typeof value !== 'undefined') {
+        calendarDate = typeof value === 'string' ? new Date(value) : value;
+      }
+
+      calendarDate = this._validateDateRange(calendarDate, minDate, maxDate);
+
+      if (!isDateEqual(this.state.calendarDate, calendarDate)) {
+        this.setState({ calendarDate, calendarTempDate: calendarDate });
       }
     }
   }
