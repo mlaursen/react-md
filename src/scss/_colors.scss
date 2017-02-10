@@ -10,6 +10,17 @@
 /// @type Boolean
 $md-colors-include-class-names: false !default;
 
+/// Boolean if the there should be warnings about colors not being from material design. This
+/// is enabled by default to alert users of the lib to set the correct fallback colors.
+/// @type Boolean
+/// @see md-data-table-contextual-fallback-color
+/// @see md-linear-progress-fallback-color
+/// @see md-switch-ball-fallback-color
+/// @see md-slider-warn-md
+/// @see validate-slider-primary-color
+/// @group colors, themes
+$md-colors-warn-md: true !default;
+
 /// @type Color
 $md-red-50: #ffebee;
 
@@ -1439,12 +1450,30 @@ $md-dark-theme-colors: (
 /// @param {Color} color - The material design color to get a swatch for.
 /// @param {Number} swatch - The swatch to get.
 /// @param {Boolean} accent [false] - Boolean if the swatch is the accent color.
+/// @param {Color} fallback-color [null] - An optional color to fallback if the given color
+///     is not a valid material design color.
+/// @param {String} fallback-name [null] - An optional name for the fallback color's variable
+///     to help set a correct fallback value.
 /// @return {Color} the color with the correct swatch.
-@function get-swatch($color, $swatch, $accent: false) {
+@function get-swatch($color, $swatch, $accent: false, $fallback-color: null, $fallback-name: null) {
   $index: index(map-values($md-color-map), $color);
   @if $index == null or $index < 1 {
-    @error 'The given color "#{$color}" is not a valid material design color. Unable to get a swatch.';
-    @return $color;
+    @if $fallback-color == null and $md-colors-warn-md {
+      $msg: 'The given color "#{$color}" is not a valid material design color. Please set';
+      @if $fallback-name {
+        $msg: '#{$msg} the "$#{$fallback-name}"';
+      } @else {
+        $msg: '#{$msg} a fallback-color';
+      }
+
+      $msg: '#{$msg} or disable the "$md-colors-warn-md" variable to ignore this message (not recommended because of losing styling).';
+      @warn "#{$msg} See https://react-md.mlaursen.com/customization/colors?tab=1#variable-md-colors-warn-md for more information.";
+      @return $color;
+    } @elseif $fallback-color == null {
+      @return $color;
+    }
+
+    @return $fallback-color;
   }
 
   $current-color-name: nth(map-keys($md-color-map), $index);

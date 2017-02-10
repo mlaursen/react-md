@@ -96,6 +96,13 @@ $md-data-table-card-header-z-index: 1 !default;
 /// @type Number
 $md-data-table-card-header-font-size: 16px !default;
 
+/// A fallback color to use for the contextual table card header. This is only required
+/// when the `$md-primary-color` is not a valid material design color.
+/// @type Color
+/// @see get-swatch
+/// @group data-tables, themes
+$md-data-table-contextual-fallback-color: null !default;
+
 /// A selector for creating a plain styled column. This is used to update all
 /// the `md-table-column--data` in a `.md-data-table--plain` and to create a
 /// `md-table-column--plain` class. The `white-space` will still need to manually
@@ -179,8 +186,17 @@ $md-data-table-card-header-font-size: 16px !default;
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the styles for
 ///     the light theme.
+/// @param {Boolean} include-table-card-headers [$md-data-table-include-table-card-headers] - Boolean if
+///     the contextual table card header styles should be included.
+/// @param {Color} context-ual-fallback-color [$md-data-table-contextual-fallback-color] - A fallback color
+///     to use for the contextual headers.
 /// @group data-tables, themes
-@mixin react-md-theme-data-tables($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-table-card-headers: $md-data-table-include-table-card-headers) {
+@mixin react-md-theme-data-tables(
+  $secondary-color: $md-secondary-color,
+  $light-theme: $md-light-theme,
+  $include-table-card-headers: $md-data-table-include-table-card-headers,
+  $contextual-fallback-color: $md-data-table-contextual-fallback-color
+) {
   @if $light-theme != $md-light-theme {
     thead .md-table-row,
     tbody .md-table-row:not(:last-child) {
@@ -200,9 +216,8 @@ $md-data-table-card-header-font-size: 16px !default;
   }
 
   @if $include-table-card-headers {
-    $bg-color: get-swatch($secondary-color, 50);
-
-    @if get-swatch($md-secondary-color, 50) != $bg-color {
+    $bg-color: get-swatch($secondary-color, 50, false, $contextual-fallback-color, md-data-table-contextual-fallback-color);
+    @if get-swatch($md-secondary-color, 50, false, $contextual-fallback-color, md-data-table-contextual-fallback-color) != $bg-color {
       .md-card-title--contextual {
         background: $bg-color;
       }
@@ -419,7 +434,7 @@ $md-data-table-card-header-font-size: 16px !default;
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme
 ///     the contextual header's background color with.
-@mixin react-md-data-table-card-headers($secondary-color: $md-secondary-color) {
+@mixin react-md-data-table-card-headers($secondary-color: $md-secondary-color, $fallback-color: $md-data-table-contextual-fallback-color) {
   .md-table-card-header {
     position: relative;
 
@@ -444,7 +459,7 @@ $md-data-table-card-header-font-size: 16px !default;
   }
 
   .md-card-title--contextual {
-    background: get-swatch($secondary-color, 50);
+    background: get-swatch($secondary-color, 50, false, $fallback-color, md-data-table-contextual-fallback-color);
     height: 100%;
     left: 0;
     line-height: 80px;
