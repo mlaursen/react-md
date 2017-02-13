@@ -149,6 +149,12 @@
 /// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
+/// @param {Color} data-table-contextual-fallback-color [$md-data-table-contextual-fallback-color] - An optional fallback
+///     color for the data table's contextual header when the `$primary-color` is not material design color.
+/// @param {Color} linear-progress-fallback-color [$md-linear-progress-fallback-color] - An optional fallback color for
+///     the linear progress when the `$secondary-color` is not a material design color.
+/// @param {Color} switch-ball-fallback-color [$md-switch-ball-fallback-color] - An optional color to use for the switch's ball thumb
+///     when the `$secondar-color` is not a material design color.
 /// @group base, themes
 @mixin react-md-theme-everything(
   $primary-color,
