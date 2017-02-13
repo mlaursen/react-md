@@ -28,11 +28,15 @@ export default class TableRow extends Component {
     className: PropTypes.string,
 
     /**
-     * A list of `TableColumn` to display in the table.
+     * A single or list of `TableColumn` to display in the table.
      *
-     * > There should be at least 3 columns in a Data table (non plain)
+     * > The specs "require" at least 3 columns for a non-plain data table, but that isn't
+     * strictly enforced here.
      */
-    children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]).isRequired,
 
     /**
      * An optional onClick function to call when a row is clicked.
@@ -197,7 +201,7 @@ export default class TableRow extends Component {
     }
 
     const length = children.length;
-    const columns = Children.map(children, (col, i) => cloneElement(col, {
+    const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
       header: getField(col.props, this.context, 'header'),
       className: cn({
         'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,
