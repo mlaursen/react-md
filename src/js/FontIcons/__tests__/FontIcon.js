@@ -79,4 +79,65 @@ describe('FontIcon', () => {
     Simulate.touchCancel(dividerNode);
     expect(onTouchCancel).toBeCalled();
   });
+
+  it('should set the width and height to 24 if the forceSize prop is enabled', () => {
+    const icon = renderIntoDocument(<FontIcon forceSize />);
+    const style = findDOMNode(icon).style;
+    const expected = '24px';
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+  });
+
+  it('should only set the fontSize when forceFontSize is enabled', () => {
+    let icon = renderIntoDocument(<FontIcon forceSize />);
+    let style = findDOMNode(icon).style;
+    const expected = '24px';
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+    expect(style.fontSize).toBe('');
+
+    icon = renderIntoDocument(<FontIcon forceSize forceFontSize />);
+    style = findDOMNode(icon).style;
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+    expect(style.fontSize).toBe(expected);
+  });
+
+  it('should set the width and height to the provided forceSize value', () => {
+    const icon = renderIntoDocument(<FontIcon forceSize={16} />);
+    const style = findDOMNode(icon).style;
+    const expected = '16px';
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+  });
+
+  it('should only set the fontSize to the provided forceSize value when forceFontSize is enabled', () => {
+    const size = 16;
+    let icon = renderIntoDocument(<FontIcon forceSize={size} />);
+    let style = findDOMNode(icon).style;
+    const expected = `${size}px`;
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+    expect(style.fontSize).toBe('');
+
+    icon = renderIntoDocument(<FontIcon forceSize={size} forceFontSize />);
+    style = findDOMNode(icon).style;
+    expect(style.height).toBe(expected);
+    expect(style.width).toBe(expected);
+    expect(style.fontSize).toBe(expected);
+  });
+
+  it('should prefer the style prop values over the forceSize styles', () => {
+    const props = {
+      style: { width: 16, height: 22, fontSize: 8 },
+      forceSize: true,
+      forceFontSize: true,
+    };
+
+    const icon = renderIntoDocument(<FontIcon {...props} />);
+    const style = findDOMNode(icon).style;
+    expect(style.fontSize).toBe('8px');
+    expect(style.height).toBe('22px');
+    expect(style.width).toBe('16px');
+  });
 });
