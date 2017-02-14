@@ -314,11 +314,15 @@ $md-line-height: 20 / $md-font-size-base !default;
 /// Aplaceholder for the body-1 typography
 %md-body-1 {
   @extend %md-tracking-10;
+
+  line-height: $md-line-height;
 }
 
 /// Aplaceholder for the body-2 typography
 %md-body-2 {
   @extend %md-tracking-10;
+
+  line-height: $md-line-height;
 }
 
 
@@ -439,7 +443,6 @@ $md-line-height: 20 / $md-font-size-base !default;
   * {
     font-family: $md-font-family;
     font-weight: $md-font-regular;
-    line-height: $md-line-height;
   }
 
   html {
@@ -450,6 +453,7 @@ $md-line-height: 20 / $md-font-size-base !default;
   body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    line-height: $md-line-height;
     text-rendering: optimizeLegibility;
   }
 
@@ -477,6 +481,7 @@ $md-line-height: 20 / $md-font-size-base !default;
     h4,
     h5,
     h6,
+    p,
     button,
     input,
     textarea,
