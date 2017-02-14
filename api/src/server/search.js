@@ -65,7 +65,7 @@ export async function buildLocalDB() {
     keys: [{ name: 'name', weight: 0.85 }, { name: 'type', weight: 0.15 }],
   });
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     /* eslint-disable global-require */
     const fs = require('fs');
     const nodePath = require('path');

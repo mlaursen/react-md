@@ -5,12 +5,8 @@
   "description": "The Read in CRUD for react-md",
   "main": "src/server/index.js",
   "scripts": {
-    "prebuild": "rimraf dist && rimraf *localdb.json",
-    "build": "webpack --config webpack-prod.config.js --progress --colors",
-    "build:watch": "npm run prebuild && webpack --config webpack-dev.config.js --progress --colors --watch",
-    "start": "node dist/server.js",
-    "dev": "nodemon dist/server.js",
-    "test": "test"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Mikkel Laursen <mlaursen03@gmail.com>",
   "license": "MIT",
@@ -19,6 +15,10 @@
   },
   "dependencies": {
     "apicache": "^0.4.1",
+    "babel-plugin-module-resolver": "^2.5.0",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-regenerator": "^6.16.1",
+    "babel-polyfill": "^6.22.0",
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
@@ -32,18 +32,12 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-regenerator": "^6.16.1",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
-    "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "2.1.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "^6.7.1",
-    "json-loader": "^0.5.4",
     "nodemon": "^1.11.0",
-    "rimraf": "^2.5.4",
-    "webpack": "^1.13.3",
-    "webpack-node-externals": "^1.5.4"
+    "rimraf": "^2.5.4"
   }
 }
