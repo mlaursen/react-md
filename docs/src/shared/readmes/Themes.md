@@ -44,7 +44,12 @@ $md-secondary-color: $md-lime-a-400;
 // All the components will now be themed using teal and lime.
 // Now we want a dark theme using the same colors
 
-@include react-md-theme-everything($md-primary-color, $md-secondary-color, $md-linear-progress-swatch, $md-text-field-error-color, false, 'dark-theme');
+@include react-md-theme-everything(
+  $md-primary-color,
+  $md-secondary-color,
+  false, // specifying dark-theme
+  'dark-theme' // class name to wrap dark-theme styles in
+);
 
 // If you add the `dark-theme` class name to your `body` or `html` tags, your app will now
 // be updated with the minimal amount of styles to theme to the dark theme.

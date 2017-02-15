@@ -1,4 +1,13 @@
 ## February 2017
+### v1.0.6 Released
+
+##### Changelog
+- Fixed DatePicker's [calendar Date when controlled](https://github.com/mlaursen/react-md/issues/245)
+- Added [controlled warnings](https://github.com/mlaursen/react-md/commit/d46cf4c6e356aa69ccbcd8fa7903451c4e20e307) to pickers.
+- Allowed non-material design colors to compile [without errors](https://github.com/mlaursen/react-md/issues/244).
+- FontIcon force size [fix](https://github.com/mlaursen/react-md/issues/221).
+- Allowed a TableRow to only have a single column.
+
 ### v1.0.5 Released
 
 ##### Changelog
@@ -13,8 +22,10 @@ to be more accurate.
 - Fixed the TableRows's [onCheckboxClick callback](https://github.com/mlaursen/react-md/commit/69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
 match documentation.
 
+> I had a moment and accidentally published 1.0.4 with the same code as 1.0.3
+
 ## January 2017
-### v1.0.4 Released
+### v1.0.3 Released
 Minor bugfixes.
 
 ##### Changelog

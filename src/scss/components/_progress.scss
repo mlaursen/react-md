@@ -37,6 +37,13 @@ $md-linear-progress-delay: 1.15s !default;
 /// @type Number
 $md-linear-progress-swatch: 100 !default;
 
+/// An optional fallback color to use for the linear progress's background. This is only
+/// required when the `$md-secondary-color` is not a valid material design color.
+/// @type Color
+/// @see get-swatch
+/// @group progress, themes
+$md-linear-progress-fallback-color: null !default;
+
 
 
 /// Includes the styles for progress bars if either `$include-circular` and/or `$include-linear`
@@ -138,9 +145,11 @@ $md-linear-progress-swatch: 100 !default;
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Number} swatch [$md-linear-progress-swatch] - The swatch to use for the unmoving
 ///     background.
-@mixin react-md-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch) {
+/// @param {Color} fallback-color [$md-linear-progress] - An optional fallback color to use when the secondary color
+///     is not a valid material design color.
+@mixin react-md-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch, $fallback-color: $md-linear-progress-fallback-color) {
   .md-progress--linear {
-    background: get-swatch($secondary-color, $swatch, true);
+    background: get-swatch($secondary-color, $swatch, true, $fallback-color, md-linear-progress-fallback-color);
     height: $md-linear-progress-height;
     overflow: hidden;
     position: relative;
@@ -241,14 +250,16 @@ $md-linear-progress-swatch: 100 !default;
 ///     progress styles should be included.
 /// @param {Boolean} include-linear [$md-progress-include-linear] - Boolean if the linear
 ///     progress styles should be included.
+/// @param {Color} fallback-color [$md-linear-progress] - An optional fallback color to use when the secondary color
+///     is not a valid material design color.
 /// @group progress, themes
-@mixin react-md-theme-progress($secondary-color: $md-secondary-color, $linear-swatch: $md-linear-progress-swatch, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear) {
+@mixin react-md-theme-progress($secondary-color: $md-secondary-color, $linear-swatch: $md-linear-progress-swatch, $include-circular: $md-progress-include-circular, $include-linear: $md-progress-include-linear, $fallback-color: $md-linear-progress-fallback-color) {
   @if $include-circular {
     @include react-md-theme-progress-circular($secondary-color);
   }
 
   @if $include-linear {
-    @include react-md-theme-progress-linear($secondary-color, $linear-swatch);
+    @include react-md-theme-progress-linear($secondary-color, $linear-swatch, $fallback-color);
   }
 }
 
@@ -279,17 +290,19 @@ $md-linear-progress-swatch: 100 !default;
 ///     bars with.
 /// @param {Number} swatch [$md-linear-progress-swatch] - The swatch number to use for
 ///     a linear progress bar's default background. This should be either 100, 200, 400, or 700.
+/// @param {Color} fallback-color [$md-linear-progress] - An optional fallback color to use when the secondary color
+///     is not a valid material design color.
 /// @group progress, themes
-@mixin react-md-theme-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch) {
+@mixin react-md-theme-progress-linear($secondary-color: $md-secondary-color, $swatch: $md-linear-progress-swatch, $fallback-color: $md-linear-progress-fallback-color) {
   @if $secondary-color != $md-secondary-color {
     .md-progress--linear-active {
       background: $secondary-color;
     }
   }
 
-  @if $secondary-color != $md-secondary-color or $swatch != $md-linear-progress-swatch {
+  @if $secondary-color != $md-secondary-color or $swatch != $md-linear-progress-swatch or $md-linear-progress-fallback-color != $fallback-color {
     .md-progress--linear {
-      background: get-swatch($secondary-color, $swatch, true);
+      background: get-swatch($secondary-color, $swatch, true, $fallback-color, md-linear-progress-fallback-color);
     }
   }
 }

@@ -272,6 +272,11 @@ class Button extends PureComponent {
      * size.
      */
     forceIconSize: FontIcon.propTypes.forceSize,
+
+    /**
+     * Boolean if the `forceIconSize` prop should also force the `font-size` instead of only `width` and `height`.
+     */
+    forceIconFontSize: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -479,6 +484,7 @@ class Button extends PureComponent {
       tooltip,
       icon,
       forceIconSize,
+      forceIconFontSize,
       type,
       children: propChildren, // eslint-disable-line no-unused-vars
       ...props
@@ -494,7 +500,11 @@ class Button extends PureComponent {
 
     const Component = component || (href ? 'a' : 'button');
     if (children || iconClassName) {
-      children = <FontIcon iconClassName={iconClassName} forceSize={forceIconSize}>{children}</FontIcon>;
+      children = (
+        <FontIcon iconClassName={iconClassName} forceSize={forceIconSize} forceFontSize={forceIconFontSize}>
+          {children}
+        </FontIcon>
+      );
     }
 
     if (children && label) {
