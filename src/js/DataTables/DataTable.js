@@ -63,7 +63,7 @@ export default class DataTable extends PureComponent {
      * The icon className to use for the unchecked row icon. This value
      * will be passed down as `context`.
      */
-    uncheckedIconClassName: PropTypes.string.isRequired,
+    uncheckedIconClassName: PropTypes.string,
 
     /**
      * The icon children to use for the unchecked row icon. This value
@@ -75,7 +75,7 @@ export default class DataTable extends PureComponent {
      * The icon className to use for the checked row icon. This value
      * will be passed down as `context`.
      */
-    checkedIconClassName: PropTypes.string.isRequired,
+    checkedIconClassName: PropTypes.string,
 
     /**
      * The icon children to use for the checked row icon. This value
@@ -99,13 +99,29 @@ export default class DataTable extends PureComponent {
      * Boolean if the `DataTable` should inject checkboxes at the start of each row.
      */
     selectableRows: PropTypes.bool,
+
+    /**
+     * Boolean if the checkboxes in the table should also include an _indeterminate_ state.
+     * It will use the `indeterminateIconChildren` and `indeterminateIconClassName` when at least
+     * 1 row has been checked, but not all rows.
+     */
+    indeterminate: PropTypes.bool,
+
+    /**
+     * Any children required to display the indeterminate checkbox.
+     */
+    indeterminateIconChildren: PropTypes.node,
+
+    /**
+     * The icon className to use for the indeterminate checkbox.
+     */
+    indeterminateIconClassName: PropTypes.string,
   };
 
   static defaultProps = {
-    uncheckedIconChildren: 'check_box_outline_blank',
-    uncheckedIconClassName: 'material-icons',
     checkedIconChildren: 'check_box',
-    checkedIconClassName: 'material-icons',
+    uncheckedIconChildren: 'check_box_outline_blank',
+    indeterminateIconChildren: 'indeterminate_check_box',
     defaultSelectedRows: [],
     responsive: true,
     selectableRows: true,
@@ -118,8 +134,9 @@ export default class DataTable extends PureComponent {
 
     this.state = {
       header: true,
-      allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
+      allSelected: false,
       selectedRows: props.defaultSelectedRows,
+      indeterminate: props.indeterminate ? false : undefined,
     };
 
     this._initializeRows = this._initializeRows.bind(this);
@@ -128,20 +145,25 @@ export default class DataTable extends PureComponent {
 
   getChildContext() {
     const {
-      uncheckedIconChildren,
-      uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      indeterminateIconChildren,
+      indeterminateIconClassName,
       plain,
       baseId,
       selectableRows,
     } = this.props;
 
     return {
-      uncheckedIconChildren,
-      uncheckedIconClassName,
       checkedIconChildren,
       checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      indeterminateIconChildren,
+      indeterminateIconClassName,
+      indeterminate: this.state.indeterminate,
       plain,
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
@@ -173,7 +195,9 @@ export default class DataTable extends PureComponent {
       this.props.onRowToggle(row, checked, selectedCount, e);
     }
 
-    this.setState({ selectedRows, allSelected });
+    const indeterminate = this.props.indeterminate && !allSelected && selectedCount > 0;
+
+    this.setState({ selectedRows, allSelected, indeterminate });
   }
 
   _initializeRows(table) {
@@ -190,7 +214,12 @@ export default class DataTable extends PureComponent {
         selectedRows[i] = this.state.selectedRows[i] || false;
       }
 
-      nextState = { selectedRows, allSelected: selectedRows.filter(b => b).length === rows };
+      const selectedLength = selectedRows.filter(b => b).length;
+      nextState = {
+        selectedRows,
+        allSelected: selectedLength === rows,
+        indeterminate: selectedLength > 0 && selectedLength !== rows,
+      };
     }
 
     if (header !== this.state.header) {
@@ -214,6 +243,9 @@ export default class DataTable extends PureComponent {
       checkedIconClassName,
       uncheckedIconChildren,
       uncheckedIconClassName,
+      indeterminateIconChildren,
+      indeterminateIconClassName,
+      indeterminate,
       defaultSelectedRows,
       baseId,
       onRowToggle,

@@ -208,7 +208,13 @@ export default class TableRow extends Component {
 
     let checkbox;
     if (!this.context.plain && this.context.selectableRows) {
-      checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={this._handleCheckboxClick} />;
+      checkbox = (
+        <TableCheckbox
+          key="checkbox"
+          checked={selected}
+          onChange={this._handleCheckboxClick}
+        />
+      );
     }
 
     const length = children.length;

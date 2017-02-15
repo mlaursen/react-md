@@ -1,10 +1,13 @@
 import { PropTypes } from 'react';
 
 export default {
-  uncheckedIconClassName: PropTypes.string.isRequired,
-  uncheckedIconChildren: PropTypes.node,
-  checkedIconClassName: PropTypes.string.isRequired,
   checkedIconChildren: PropTypes.node,
+  checkedIconClassName: PropTypes.string,
+  uncheckedIconChildren: PropTypes.node,
+  uncheckedIconClassName: PropTypes.string,
+  indeterminateIconChildren: PropTypes.node,
+  indeterminateIconClassName: PropTypes.string,
+  indeterminate: PropTypes.bool,
   plain: PropTypes.bool,
   selectableRows: PropTypes.bool.isRequired,
   allSelected: PropTypes.bool.isRequired,

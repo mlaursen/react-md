@@ -13,67 +13,46 @@ const controls = [{
 
 export default class TableControls extends PureComponent {
   static propTypes = {
-    sorted: PropTypes.string.isRequired,
-    onSortChange: PropTypes.func.isRequired,
-    dialogChecked: PropTypes.bool.isRequired,
-    onDialogChange: PropTypes.func.isRequired,
-    inlineChecked: PropTypes.bool.isRequired,
-    onInlineChange: PropTypes.func.isRequired,
-    saveChecked: PropTypes.bool.isRequired,
-    onSaveChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
 
   render() {
     const {
-      sorted,
-      onSortChange,
-      dialogChecked,
-      onDialogChange,
-      inlineChecked,
-      onInlineChange,
-      saveChecked,
-      onSaveChange,
+      onChange,
     } = this.props;
     return (
-      <CardText className="table-controls">
+      <CardText className="table-controls" component="form" onChange={onChange}>
         <SelectionControlGroup
-          id="complexControl"
-          name="complex-controls"
+          id="sort-table-by"
+          name="sort-table-by"
           type="radio"
           label="Table Props"
-          value={sorted}
-          onChange={onSortChange}
           controls={controls}
         />
         <SelectionControl
           type="switch"
-          id="useEditDialog"
+          id="edit-dialog"
           label="Use large Edit Dialog"
           name="edit-dialog"
-          checked={dialogChecked}
-          onChange={onDialogChange}
         />
         <SelectionControl
           type="switch"
-          id="useInlineEdit"
+          id="edit-inline"
           label="Edit inline"
           name="edit-inline"
-          checked={inlineChecked}
-          onChange={onInlineChange}
         />
         <SelectionControl
           type="switch"
-          id="saveOnOutside"
+          id="save-on-outside"
           label="Save comment on outside click"
           name="save-on-outside"
-          checked={saveChecked}
-          onChange={onSaveChange}
+          defaultChecked
+        />
+        <SelectionControl
+          type="switch"
+          id="indeterminate-data-table"
+          label="Indeterminate Checkboxes"
+          name="indeterminate-data-table"
         />
       </CardText>
     );

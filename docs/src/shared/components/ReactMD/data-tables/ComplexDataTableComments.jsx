@@ -20,20 +20,14 @@ export default class ComplexDataTableComments extends PureComponent {
       inline: false,
       large: false,
       sortedMovies: sort(movies, 'title', true).map(movie => ({ ...movie })),
-      sortedType: 'title',
       titleSorted: true,
       yearSorted: null,
       okOnOutsideClick: true,
+      indeterminate: false,
     };
-
-    this._sort = this._sort.bind(this);
-    this._handleSortChange = this._handleSortChange.bind(this);
-    this._handleDialogChange = this._handleDialogChange.bind(this);
-    this._handleInlineChange = this._handleInlineChange.bind(this);
-    this._handleSaveChange = this._handleSaveChange.bind(this);
   }
 
-  _sort() {
+  _sort = () => {
     const key = typeof this.state.titleSorted === 'boolean' ? 'title' : 'year';
     const sorted = !this.state[`${key}Sorted`];
 
@@ -41,38 +35,40 @@ export default class ComplexDataTableComments extends PureComponent {
       sortedMovies: sort(this.state.sortedMovies, key, sorted),
       [`${key}Sorted`]: sorted,
     });
-  }
+  };
 
-  _handleSortChange(value) {
+  _handleSortChange = (value) => {
     const key = value === 'year' ? 'title' : 'year';
     this.setState({
       [`${key}Sorted`]: null,
       [`${value}Sorted`]: true,
-      sortedType: value,
       sortedMovies: sort(this.state.sortedMovies, value, true),
     });
-  }
+  };
 
-  _handleDialogChange(large) {
-    this.setState({ large });
-  }
-
-  _handleInlineChange(inline) {
-    this.setState({ inline });
-  }
-
-  _handleSaveChange(okOnOutsideClick) {
-    this.setState({ okOnOutsideClick });
-  }
+  _handleFormChange = (e) => {
+    const { id, checked, value } = e.target;
+    if (id.match(/sort/)) {
+      this._handleSortChange(value);
+    } else if (id.match(/dialog/)) {
+      this.setState({ large: checked });
+    } else if (id.match(/inline/)) {
+      this.setState({ inline: checked });
+    } else if (id.match(/outside/)) {
+      this.setState({ okOnOutsideClick: checked });
+    } else if (id.match(/indeterminate/)) {
+      this.setState({ indeterminate: checked });
+    }
+  };
 
   render() {
     const {
       sortedMovies,
       titleSorted,
       yearSorted,
-      sortedType,
       large,
       inline,
+      indeterminate,
       okOnOutsideClick,
     } = this.state;
 
@@ -96,17 +92,8 @@ export default class ComplexDataTableComments extends PureComponent {
 
     return (
       <div>
-        <TableControls
-          sorted={sortedType}
-          onSortChange={this._handleSortChange}
-          dialogChecked={large}
-          onDialogChange={this._handleDialogChange}
-          inlineChecked={inline}
-          onInlineChange={this._handleInlineChange}
-          saveChecked={okOnOutsideClick}
-          onSaveChange={this._handleSaveChange}
-        />
-        <DataTable className="complex-table" baseId="complex">
+        <TableControls onChange={this._handleFormChange} />
+        <DataTable className="complex-table" baseId="complex" indeterminate={indeterminate}>
           <TableHeader>
             <TableRow>
               <TableColumn

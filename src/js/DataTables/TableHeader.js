@@ -56,9 +56,7 @@ export default class TableHeader extends Component {
       ? allSelected
       : header.props.selected;
 
-    const row = React.cloneElement(header, {
-      selected,
-    });
+    const row = React.cloneElement(header, { selected });
 
     return (
       <thead {...props} className={cn('md-table-header', className)}>
