@@ -1,5 +1,4 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
@@ -85,15 +84,14 @@ export default class DataTable extends PureComponent {
     checkedIconChildren: PropTypes.node,
 
     /**
-     * An optional function to call when a non-plain data table has a row toggled.
-     * The callback will include the selected row id, the boolean if it is now selected,
-     * and the count of rows that are selected. If the checkbox in the `TableHeader` was
-     * clicked, the selected row id will be `-1`.
+     * An optional function to call when a non-plain data table has a row toggled. The callback
+     * will include:
+     * - the row id
+     * - boolean if the row is now checked
+     * - the total count of rows selected
+     * - the change event
      *
-     * ```js
-     * onRowToggle(3, true, 8); // 4th row was toggled
-     * onRowToggle(-1, true, 15); // select all checkbox was toggled on.
-     * ```
+     * All rows will be toggled on or off when the row id is 0 and a `thead` exists in the table.
      */
     onRowToggle: invalidIf(PropTypes.func, 'plain'),
 
@@ -119,12 +117,12 @@ export default class DataTable extends PureComponent {
     super(props);
 
     this.state = {
+      header: true,
       allSelected: props.defaultSelectedRows.filter(b => b).length === 0,
       selectedRows: props.defaultSelectedRows,
     };
 
     this._initializeRows = this._initializeRows.bind(this);
-    this._toggleAllRows = this._toggleAllRows.bind(this);
     this._toggleSelectedRow = this._toggleSelectedRow.bind(this);
   }
 
@@ -147,7 +145,6 @@ export default class DataTable extends PureComponent {
       plain,
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
-      toggleAllRows: this._toggleAllRows,
       toggleSelectedRow: this._toggleSelectedRow,
       baseId,
       baseName: `${baseId}-control`,
@@ -155,55 +152,55 @@ export default class DataTable extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    this._initializeRows();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.children !== prevProps.children) {
-      this._initializeRows();
+  _toggleSelectedRow(row, header, e) {
+    let selectedRows;
+    let allSelected = this.state.allSelected;
+    let selectedCount = 0;
+    const i = this.state.header ? row - 1 : row;
+    const { checked } = e.target;
+    if (header) {
+      selectedRows = this.state.selectedRows.map(() => checked);
+      allSelected = checked;
+      selectedCount = !checked ? 0 : selectedRows.length;
+    } else {
+      selectedRows = this.state.selectedRows.slice();
+      selectedRows[i] = !selectedRows[i];
+      selectedCount = selectedRows.filter(b => b).length;
+      allSelected = selectedCount === selectedRows.length;
     }
-  }
-
-  _toggleAllRows() {
-    const allSelected = !this.state.allSelected;
-    if (this.props.onRowToggle) {
-      this.props.onRowToggle(-1, allSelected, allSelected ? this.state.selectedRows.length : 0);
-    }
-
-    this.setState({
-      allSelected,
-      selectedRows: this.state.selectedRows.map(() => allSelected),
-    });
-  }
-
-  _toggleSelectedRow(row) {
-    const selectedRows = this.state.selectedRows.slice();
-    selectedRows[row] = !selectedRows[row];
-    const selectedCount = selectedRows.filter(selected => selected).length;
 
     if (this.props.onRowToggle) {
-      this.props.onRowToggle(row, selectedRows[row], selectedCount);
+      this.props.onRowToggle(row, checked, selectedCount, e);
     }
 
-    this.setState({ selectedRows, allSelected: selectedCount === selectedRows.length });
+    this.setState({ selectedRows, allSelected });
   }
 
-  _initializeRows() {
-    const rows = findDOMNode(this).querySelectorAll('.md-data-table tbody tr').length;
-    if (rows === this.state.selectedRows.length) {
+  _initializeRows(table) {
+    if (!table) {
       return;
     }
 
-    const selectedRows = [];
-    for (let i = 0; i < rows; i++) {
-      selectedRows[i] = this.state.selectedRows[i] || false;
+    const header = !!table.querySelector('thead');
+    const rows = table.querySelectorAll('tbody tr').length;
+    let nextState;
+    if (rows !== this.state.selectedRows.length) {
+      const selectedRows = [];
+      for (let i = 0; i < rows; i++) {
+        selectedRows[i] = this.state.selectedRows[i] || false;
+      }
+
+      nextState = { selectedRows, allSelected: selectedRows.filter(b => b).length === rows };
     }
 
-    this.setState({
-      selectedRows,
-      allSelected: selectedRows.map(b => b).length === 0,
-    });
+    if (header !== this.state.header) {
+      nextState = nextState || {};
+      nextState.header = header;
+    }
+
+    if (nextState) {
+      this.setState(nextState);
+    }
   }
 
   render() {
@@ -228,6 +225,7 @@ export default class DataTable extends PureComponent {
     const table = (
       <table
         {...props}
+        ref={tableEl => this._initializeRows(tableEl)}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
         }, className)}

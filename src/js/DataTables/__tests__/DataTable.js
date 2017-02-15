@@ -93,4 +93,96 @@ describe('DataTable', () => {
     expect(tableNode.className).toBe('md-data-table');
     expect(tableNode.nodeName).toBe('TABLE');
   });
+
+  describe('_toggleSelectedRow', () => {
+    it('should correctly toggle all rows when the row is 0 and a header exists', () => {
+      const table = renderIntoDocument(
+        <DataTable baseId="woop">
+          <thead>
+            <tr>
+              <th>Wow!</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No way!</td>
+            </tr>
+            <tr>
+              <td>What a save!</td>
+            </tr>
+          </tbody>
+        </DataTable>
+      );
+
+      table._toggleSelectedRow(0, true, { target: { checked: true } });
+      expect(table.state.selectedRows).toEqual([true, true]);
+    });
+
+    it('should only toggle a single row when the row is 0 and a header does not exist', () => {
+      const table = renderIntoDocument(
+        <DataTable baseId="woop">
+          <tbody>
+            <tr>
+              <td>No way!</td>
+            </tr>
+            <tr>
+              <td>What a save!</td>
+            </tr>
+          </tbody>
+        </DataTable>
+      );
+
+      table._toggleSelectedRow(0, false, { target: { checked: true } });
+      expect(table.state.selectedRows).toEqual([true, false]);
+    });
+
+    it('should call the onRowToggle prop with the correct arguments', () => {
+      const onRowToggle = jest.fn();
+      let table = renderIntoDocument(
+        <DataTable baseId="woop" onRowToggle={onRowToggle}>
+          <thead>
+            <tr>
+              <th>Wow!</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No way!</td>
+            </tr>
+            <tr>
+              <td>What a save!</td>
+            </tr>
+          </tbody>
+        </DataTable>
+      );
+
+      const event = { target: { checked: true } };
+      table._toggleSelectedRow(0, true, event);
+      expect(onRowToggle.mock.calls.length).toBe(1);
+      expect(onRowToggle.mock.calls[0][0]).toBe(0);
+      expect(onRowToggle.mock.calls[0][1]).toBe(true);
+      expect(onRowToggle.mock.calls[0][2]).toBe(2);
+      expect(onRowToggle.mock.calls[0][3]).toEqual(event);
+
+      table = renderIntoDocument(
+        <DataTable baseId="woop" onRowToggle={onRowToggle}>
+          <tbody>
+            <tr>
+              <td>No way!</td>
+            </tr>
+            <tr>
+              <td>What a save!</td>
+            </tr>
+          </tbody>
+        </DataTable>
+      );
+
+      table._toggleSelectedRow(0, false, event);
+      expect(onRowToggle.mock.calls.length).toBe(2);
+      expect(onRowToggle.mock.calls[1][0]).toBe(0);
+      expect(onRowToggle.mock.calls[1][1]).toBe(true);
+      expect(onRowToggle.mock.calls[1][2]).toBe(1);
+      expect(onRowToggle.mock.calls[1][3]).toEqual(event);
+    });
+  });
 });

@@ -1,5 +1,6 @@
 /* eslint-env jest*/
 jest.unmock('../DataTable');
+jest.unmock('../TableHeader');
 jest.unmock('../TableBody');
 jest.unmock('../TableRow');
 jest.unmock('../TableColumn');
@@ -8,12 +9,14 @@ import React from 'react';
 import {
   Simulate,
   renderIntoDocument,
+  findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
 import DataTable from '../DataTable';
+import TableHeader from '../TableHeader';
 import TableBody from '../TableBody';
 import TableRow from '../TableRow';
 import TableColumn from '../TableColumn';
@@ -123,5 +126,95 @@ describe('TableRow', () => {
 
     checkboxes = scryRenderedComponentsWithType(table, TableCheckbox);
     expect(checkboxes.length).toBe(1);
+  });
+
+  describe('_handleCheckboxClick', () => {
+    it('should call the onCheckboxClick prop with the correct arguments', () => {
+      const onCheckboxClick = jest.fn();
+      let table = renderIntoDocument(
+        <DataTable plain>
+          <TableBody>
+            <TableRow onCheckboxClick={onCheckboxClick}>
+              <TableColumn>A</TableColumn>
+              <TableColumn>B</TableColumn>
+            </TableRow>
+          </TableBody>
+        </DataTable>
+      );
+
+      const row = findRenderedComponentWithType(table, TableRow);
+      const event = { target: { checked: true } };
+      row._handleCheckboxClick(true, event);
+      expect(onCheckboxClick.mock.calls.length).toBe(1);
+      expect(onCheckboxClick.mock.calls[0][0]).toBe(0);
+      expect(onCheckboxClick.mock.calls[0][1]).toBe(true);
+      expect(onCheckboxClick.mock.calls[0][2]).toEqual(event);
+
+      const onHeaderClick = jest.fn();
+      table = renderIntoDocument(
+        <DataTable plain>
+          <TableHeader>
+            <TableRow onCheckboxClick={onHeaderClick}>
+              <TableColumn>H</TableColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow onCheckboxClick={onCheckboxClick}>
+              <TableColumn>A</TableColumn>
+              <TableColumn>B</TableColumn>
+            </TableRow>
+          </TableBody>
+        </DataTable>
+      );
+
+      const [header, body] = scryRenderedComponentsWithType(table, TableRow);
+      header._handleCheckboxClick(true, event);
+      expect(onHeaderClick.mock.calls.length).toBe(1);
+      expect(onHeaderClick.mock.calls[0][0]).toBe(0);
+      expect(onHeaderClick.mock.calls[0][1]).toBe(true);
+      expect(onHeaderClick.mock.calls[0][2]).toEqual(event);
+
+      body._handleCheckboxClick(true, event);
+      expect(onCheckboxClick.mock.calls.length).toBe(2);
+      expect(onCheckboxClick.mock.calls[1][0]).toBe(1);
+      expect(onCheckboxClick.mock.calls[1][1]).toBe(true);
+      expect(onCheckboxClick.mock.calls[1][2]).toEqual(event);
+    });
+
+    it('should update the table\'s state correctly', () => {
+      const table = renderIntoDocument(
+        <DataTable plain>
+          <TableHeader>
+            <TableRow>
+              <TableColumn>H1</TableColumn>
+              <TableColumn>H2</TableColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableColumn>A</TableColumn>
+              <TableColumn>B</TableColumn>
+            </TableRow>
+            <TableRow>
+              <TableColumn>A</TableColumn>
+              <TableColumn>B</TableColumn>
+            </TableRow>
+          </TableBody>
+        </DataTable>
+      );
+
+      expect(table.state.selectedRows).toEqual([false, false]);
+      const [header, row1] = scryRenderedComponentsWithType(table, TableRow);
+      const event = { target: { checked: true } };
+      header._handleCheckboxClick(true, event);
+
+      expect(table.state.allSelected).toBe(true);
+      expect(table.state.selectedRows).toEqual([true, true]);
+
+      const event2 = { target: { checked: false } };
+      row1._handleCheckboxClick(false, event2);
+      expect(table.state.allSelected).toBe(false);
+      expect(table.state.selectedRows).toEqual([false, true]);
+    });
   });
 });

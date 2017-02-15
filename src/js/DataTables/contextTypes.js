@@ -9,7 +9,6 @@ export default {
   selectableRows: PropTypes.bool.isRequired,
   allSelected: PropTypes.bool.isRequired,
   selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
-  toggleAllRows: PropTypes.func.isRequired,
   toggleSelectedRow: PropTypes.func.isRequired,
   baseId: PropTypes.oneOfType([
     PropTypes.number,
