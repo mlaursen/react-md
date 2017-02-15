@@ -49,7 +49,7 @@ describe('NavigationDrawer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog><NavigationDrawer /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test"><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

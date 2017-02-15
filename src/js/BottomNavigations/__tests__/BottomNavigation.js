@@ -14,7 +14,7 @@ import Dialog from '../../Dialogs/Dialog';
 describe('BottomNavigation', () => {
   it('should inherit the dialog\'s renderNode context', () => {
     const links = [{ label: '' }, { label: '' }, { label: '' }];
-    const dialog = renderIntoDocument(<Dialog><BottomNavigation links={links} /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test"><BottomNavigation links={links} /></Dialog>);
     const bottomNav = findRenderedComponentWithType(dialog, BottomNavigation);
     expect(bottomNav.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

@@ -127,7 +127,7 @@ describe('DialogContainer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog><DialogContainer {...PROPS} /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test"><DialogContainer {...PROPS} /></Dialog>);
     const container = findRenderedComponentWithType(dialog, DialogContainer);
     expect(container.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

@@ -15,15 +15,15 @@ import DialogContainer from '../../Dialogs/DialogContainer';
 
 describe('Drawer', () => {
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog><Drawer /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test"><Drawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, Drawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 
   it('should inerhit and pass the dialog\'s renderNode context', () => {
     const dialog = renderIntoDocument(
-      <Dialog>
-        <Drawer defaultVisible>
+      <Dialog id="test">
+        <Drawer defaultVisible id="test-2">
           <DialogContainer id="nested-dialog" visible onHide={jest.fn()} />
         </Drawer>
       </Dialog>

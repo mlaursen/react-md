@@ -94,7 +94,7 @@ describe('SnackbarContainer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog><SnackbarContainer {...PROPS} /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test"><SnackbarContainer {...PROPS} /></Dialog>);
     const snackbar = findRenderedComponentWithType(dialog, SnackbarContainer);
     expect(snackbar.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
