@@ -6,6 +6,13 @@ import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
 import IconSeparator from '../Helpers/IconSeparator';
 
+const CELL_SCOPE = {
+  header: {
+    scope: 'col',
+  },
+  noop: {},
+};
+
 /**
  * A column in a table. This is either the `th` or `td` component. This column
  * can be automatically configured to be adjusted with additional padding
@@ -107,6 +114,13 @@ class TableColumn extends PureComponent {
      * so that tooltips can be displayed.
      */
     __fixedColumn: PropTypes.bool,
+
+    /**
+     * An optional scope to apply to the table column. If omitted, the scope will be set to
+     * `'col'` if inside of the `TableHeader` component. This is really only needed for
+     * header columns.
+     */
+    scope: PropTypes.oneOf(['row', 'col']),
   };
 
   static defaultProps = {
@@ -133,11 +147,14 @@ class TableColumn extends PureComponent {
       selectColumnHeader,
       __fixedColumn,
       plain: propPlain, // eslint-disable-line no-unused-vars
+      scope: propScope, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
 
     const sortable = typeof sorted === 'boolean';
     const plain = getField(this.props, this.context, 'plain');
+    const Component = header ? 'th' : 'td';
+    const scope = getField(this.props, CELL_SCOPE[header ? 'header' : 'noop'], 'scope');
 
     let displayedChildren = children;
     let ariaSort;
@@ -152,12 +169,11 @@ class TableColumn extends PureComponent {
       );
     }
 
-    const Component = header ? 'th' : 'td';
-
     return (
       <Component
         aria-sort={ariaSort}
         {...props}
+        scope={scope}
         className={cn('md-table-column', {
           'md-table-column--header': header,
           'md-table-column--data': !header && !plain,

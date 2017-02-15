@@ -3,6 +3,7 @@ import SelectionControl from '../SelectionControls/SelectionControl';
 
 export default class TableCheckbox extends Component {
   static propTypes = {
+    index: PropTypes.number,
     checked: PropTypes.bool,
   };
 
@@ -20,10 +21,15 @@ export default class TableCheckbox extends Component {
     uncheckedIconClassName: PropTypes.string,
     indeterminateIconChildren: PropTypes.node,
     indeterminateIconClassName: PropTypes.string,
+    checkboxHeaderLabel: PropTypes.string.isRequired,
+    checkboxLabelTemplate: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
   };
 
   render() {
-    const { checked, ...props } = this.props;
+    const { checked, index, ...props } = this.props;
     const {
       checkedIconChildren,
       checkedIconClassName,
@@ -35,11 +41,22 @@ export default class TableCheckbox extends Component {
       header,
       rowId,
       baseName,
+      checkboxHeaderLabel,
+      checkboxLabelTemplate,
     } = this.context;
 
     const Cell = header ? 'th' : 'td';
+    let label;
+    if (header) {
+      label = checkboxHeaderLabel;
+    } else if (typeof checkboxLabelTemplate === 'function') {
+      label = checkboxLabelTemplate(index);
+    } else {
+      label = checkboxLabelTemplate.replace(/{{row}}/g, index);
+    }
+
     return (
-      <Cell className="md-table-checkbox">
+      <Cell className="md-table-checkbox" scope={header ? 'col' : undefined}>
         <SelectionControl
           {...props}
           id={rowId}
@@ -50,6 +67,7 @@ export default class TableCheckbox extends Component {
           uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
           checkedCheckboxIconChildren={checkedIconChildren}
           checkedCheckboxIconClassName={checkedIconClassName}
+          aria-label={label}
         />
       </Cell>
     );

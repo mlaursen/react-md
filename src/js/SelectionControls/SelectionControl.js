@@ -4,6 +4,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
+import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import FontIcon from '../FontIcons/FontIcon';
@@ -39,6 +40,11 @@ export default class SelectionControl extends PureComponent {
       PropTypes.string,
       PropTypes.number,
     ]))),
+
+    /**
+     * An optional label to apply to the checkbox when there is no visible label.
+     */
+    'aria-label': oneRequiredForA11y(PropTypes.string, 'label'),
 
     /**
      * An optional style to apply to the selection control's container.
@@ -283,6 +289,7 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      'aria-label': ariaLabel,
       /* eslint-disable no-unused-vars */
       label: propLabel,
       checked: propChildren,
@@ -304,7 +311,7 @@ export default class SelectionControl extends PureComponent {
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = (
+    const label = this.props.label && (
       <label
         key="label"
         htmlFor={id}
@@ -373,6 +380,7 @@ export default class SelectionControl extends PureComponent {
           name={name}
           value={value}
           aria-hidden
+          aria-label={ariaLabel}
         />
         {control}
         {!labelBefore && label}

@@ -18,4 +18,6 @@ export default {
     PropTypes.string,
   ]),
   baseName: PropTypes.string,
+  checkboxHeaderLabel: PropTypes.string.isRequired,
+  checkboxLabelTemplate: PropTypes.string.isRequired,
 };

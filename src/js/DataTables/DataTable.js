@@ -116,6 +116,26 @@ export default class DataTable extends PureComponent {
      * The icon className to use for the indeterminate checkbox.
      */
     indeterminateIconClassName: PropTypes.string,
+
+    /**
+     * This is the aria-label to apply to the checkbox in the table's header. This
+     * is just used for accessibility since the checkboxes have no visible label.
+     */
+    checkboxHeaderLabel: PropTypes.string.isRequired,
+
+    /**
+     * This is the aria-label to apply to a checkbox in the table's body. This can either
+     * be a constant string that will replace `{{row}}` with the current row index, or
+     * a function that takes the row index and returns a string.
+     *
+     * ```js
+     * checkboxLabelTemplate={rowIndex => `Toggle row ${row}`}
+     * ```
+     */
+    checkboxLabelTemplate: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.string,
+    ]).isRequired,
   };
 
   static defaultProps = {
@@ -125,6 +145,8 @@ export default class DataTable extends PureComponent {
     defaultSelectedRows: [],
     responsive: true,
     selectableRows: true,
+    checkboxHeaderLabel: 'Toggle All Rows',
+    checkboxLabelTemplate: 'Toggle row {{row}}',
   };
 
   static childContextTypes = contextTypes;
@@ -154,6 +176,8 @@ export default class DataTable extends PureComponent {
       plain,
       baseId,
       selectableRows,
+      checkboxHeaderLabel,
+      checkboxLabelTemplate,
     } = this.props;
 
     return {
@@ -171,6 +195,8 @@ export default class DataTable extends PureComponent {
       baseId,
       baseName: `${baseId}-control`,
       selectableRows,
+      checkboxHeaderLabel,
+      checkboxLabelTemplate,
     };
   }
 
@@ -250,6 +276,8 @@ export default class DataTable extends PureComponent {
       baseId,
       onRowToggle,
       selectableRows,
+      checkboxHeaderLabel,
+      checkboxLabelTemplate,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

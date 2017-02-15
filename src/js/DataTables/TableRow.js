@@ -213,6 +213,7 @@ export default class TableRow extends Component {
           key="checkbox"
           checked={selected}
           onChange={this._handleCheckboxClick}
+          index={this.state.rowIndex}
         />
       );
     }
