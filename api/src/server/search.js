@@ -7,6 +7,8 @@ import buildPropTypesList from '../utils/buildPropTypesList';
 
 import { host, port, path } from '../../serverConfig.json';
 
+const DEV = process.env.NODE_ENV === 'development';
+
 let DB;
 
 /**
@@ -142,7 +144,8 @@ export default function search(req, res) {
     return;
   }
 
-  const url = `https://${host}${__DEV__ ? `:${port}` : ''}${path || ''}/search?q=${q}`;
+  console.log('req.originalUrl:', req.originalUrl);
+  const url = `https://${host}${DEV ? `:${port}` : ''}${path || ''}/search?q=${q}`;
   let next = null;
   let previous = null;
   if (total > start + limit) {
