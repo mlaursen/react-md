@@ -58,7 +58,7 @@ export default class FlatButton extends PureComponent {
 
     deprecated: deprecated(
       'The behavior of the `FlatButton` can be achieved with the `Button` component ' +
-      'without the additional bundle size. Switch to the `Button` compnent and add a ' +
+      'without the additional bundle size. Switch to the `Button` component and add a ' +
       'prop `flat`.'
     ),
   };
