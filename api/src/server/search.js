@@ -2,10 +2,10 @@ import Fuse from 'fuse.js';
 import routes from 'constants/routes';
 import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
-import buildSassDocList from '../utils/buildSassDocList';
 import buildPropTypesList from '../utils/buildPropTypesList';
 
 import { host, port, path } from '../../serverConfig.json';
+import { buildSassDocList } from '../utils/buildSassDocList';
 
 const DEV = process.env.NODE_ENV === 'development';
 

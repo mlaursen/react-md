@@ -18,6 +18,7 @@ export default PropTypes.shape({
   usedBy: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    ref: PropTypes.string.isRequired,
   })),
 
   examples: PropTypes.arrayOf(PropTypes.shape({
