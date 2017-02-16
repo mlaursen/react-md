@@ -135,4 +135,14 @@ describe('Button', () => {
     const icon = findRenderedComponentWithType(button, FontIcon);
     expect(icon.props.children).toBe(props.children);
   });
+
+  it('renders markup specified in a label prop', () => {
+    const className = 'label-class';
+    const label = 'label text';
+    const props = { label: <span className={className}>{label}</span>, flat: true };
+    const button = renderIntoDocument(<Button {...props} />);
+    const innerNode = findRenderedDOMComponentWithTag(button, 'span');
+    expect(innerNode.getAttribute('class')).toBe(className);
+    expect(innerNode.innerHTML).toBe(label);
+  });
 });

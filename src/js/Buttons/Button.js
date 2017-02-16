@@ -44,7 +44,7 @@ class Button extends PureComponent {
      * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
      * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
      */
-    label: invalidIf(PropTypes.string, 'icon', 'floating'),
+    label: invalidIf(PropTypes.node, 'icon', 'floating'),
 
     /**
      * A boolean if the icon should appear before or after the text for a `FlatButton` or
