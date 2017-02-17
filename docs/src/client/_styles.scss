@@ -75,3 +75,9 @@ $md-badge-include-default: true;
 .powerlevel-over-9000 {
   z-index: 9001;
 }
+
+@media #{$md-desktop-media} {
+  .fa.md-icon {
+    font-size: $md-font-icon-dense-size;
+  }
+}

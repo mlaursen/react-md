@@ -24,9 +24,21 @@ $md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26) !default;
 $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 
 /// Includes the css for using `md-icon`.
-/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
-///     application is using the light-theme or not.
-@mixin react-md-icons($light-theme: $md-light-theme, $include-media: $md-media-included, $include-separators: $md-font-icon-include-separators, $include-dense: $md-font-icon-include-dense) {
+///
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the application is using the
+///     light-theme or not.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for icons
+///     should also be included. This also relies on the `include-dense` param.
+/// @param {Boolean} include-separators [$md-font-icon-include-separators] - Boolean if the styles
+///     for separating content and an icon should be included.
+/// @param {Boolean} include-dense [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///     should be included.
+@mixin react-md-icons(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-separators: $md-font-icon-include-separators,
+  $include-dense: $md-font-icon-include-dense
+) {
   $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
 
   .md-icon {
