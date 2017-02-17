@@ -48,6 +48,10 @@ export async function buildLocalDB() {
   });
 
   if (process.env.NODE_ENV === 'development') {
+    if (LOCAL_DB.undefined) {
+      console.error('There is undefined Sassdoc:\n', JSON.stringify(LOCAL_DB.undefined));
+    }
+
     const fs = require('fs'); // eslint-disable-line global-require
 
     const fileName = path.resolve(process.cwd(), 'sassdoc.localdb.json');
