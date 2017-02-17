@@ -65,23 +65,28 @@ function findLink(ref) {
 }
 
 /**
+ * Returns links for sassdoc
+ *
+ * @return {Object} a sassdoc link
+ */
+export function buildSassDocLink({ context: { type, name }, group }) {
+  const hash = `${type}-${name}`;
+  let ref = group[0].split(', ')[0];
+  if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays|helper/)) {
+    ref = `/sassdoc/#${group[0]}-${hash}`;
+  } else {
+    ref = findLink(ref);
+    ref = `${ref}?tab=${ref.match(/components|themes/) ? 2 : 1}#${hash}`;
+  }
+
+  return { name, type: toTitle(type), ref };
+}
+
+/**
  * Builds and returns the list of sassdocs with links for the client.
  *
  * @return {Array.<Object>} all the sassdoc links
  */
-export default async function buildSassDocList() {
-  const sassdocs = (await createSassDocs()).map(({ context: { type, name }, group }) => {
-    const hash = `${type}-${name}`;
-    let ref = group[0].split(', ')[0];
-    if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays|helper/)) {
-      ref = `/sassdoc/#${group[0]}-${hash}`;
-    } else {
-      ref = findLink(ref);
-      ref = `${ref}?tab=${ref.match(/components|themes/) ? 2 : 1}#${hash}`;
-    }
-
-    return { name, type: toTitle(type), ref };
-  });
-
-  return sassdocs;
+export async function buildSassDocList() {
+  return (await createSassDocs()).map(buildSassDocLink);
 }

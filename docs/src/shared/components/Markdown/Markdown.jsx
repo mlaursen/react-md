@@ -92,6 +92,9 @@ export default class Markdown extends PureComponent {
    */
   _updatedLinks = () => {
     Array.prototype.slice.call(findDOMNode(this).querySelectorAll('a')).forEach(link => {
+      if (link.href.match(/sassdoc/)) {
+        return;
+      }
       if (link.href.match(/https?:\/\/(localhost|react-md).*\//)) {
         link.onclick = e => {
           e.preventDefault();

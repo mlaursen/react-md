@@ -1,3 +1,5 @@
+import { buildSassDocLink } from './buildSassDocList';
+
 const GITHUB_URL = require('../../../package.json').bugs.url.replace('/issues', '');
 
 export default function transformSassdocVariable(sassdoc) {
@@ -26,7 +28,7 @@ export default function transformSassdocVariable(sassdoc) {
 
   let { see } = sassdoc;
   if (see && see.length) {
-    see = see.map(({ context: { name, type } }) => ({ name, type }));
+    see = see.map(buildSassDocLink);
   }
 
   return {
@@ -38,7 +40,7 @@ export default function transformSassdocVariable(sassdoc) {
     links,
     examples,
     see,
-    usedBy: usedBy ? usedBy.map(({ context: { type, name } }) => ({ type, name })) : [],
+    usedBy: usedBy ? usedBy.map(buildSassDocLink) : [],
     path: `${GITHUB_URL}/blob/master/src/scss/${path}`,
   };
 }
