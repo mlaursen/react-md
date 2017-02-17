@@ -122,6 +122,8 @@ $md-list-desktop-three-lines-height: 76px !default;
 ///     lists with three lines of text should be included.
 /// @param {Boolean} include-controls [$md-list-include-controls] - Boolean if the styles for lists
 ///     with controls to be included.
+/// @param {Boolean} include-unstyled [$md-list-include-unstyled-class-name] - Boolean if the `.md-list-unstyled`
+///     class name should also be generated.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense styles
 ///     for icons should be included.
 @mixin react-md-lists(

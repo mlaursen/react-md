@@ -1211,6 +1211,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///     @include react-md-text-field-icon-desktop;
 ///   }
 ///
+/// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the password button
+///     should be included.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
 ///     styles should be included for text fields.
 /// @group text-fields, media-queries
@@ -1395,9 +1397,15 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
-///     be included
+///     be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense icons styles
+///     should be included.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-desktop($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block, $include-dense-icons: $md-font-icon-include-dense) {
+@mixin react-md-text-field-inline-indicator-desktop(
+  $include-floating-label: $md-text-field-include-floating-label,
+  $include-block: $md-text-field-include-block,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   .md-text-field-inline-indicator {
     top: if($include-dense-icons, 9px, 7px);
 
