@@ -18,6 +18,7 @@ export default jest.fn(({ label, iconClassName, children, ...props }) => {
   delete props.tooltipPosition;
   delete props.tooltipTouchTimeout;
   delete props.waitForInkTransition;
+  delete props.noIcon;
 
   return (
     <button {...props}>
