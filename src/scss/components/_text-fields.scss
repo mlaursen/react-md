@@ -225,6 +225,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 /// @group text-fields, media-queries
@@ -234,6 +236,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-icon: $md-text-field-include-icon,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @include react-md-text-field-container-desktop($include-block);
@@ -245,7 +248,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @if $include-password or $include-icon {
-    @include react-md-text-field-icon-desktop;
+    @include react-md-text-field-icon-desktop($include-password, $include-dense-icons);
   }
 
   @if $include-password or $include-inline-indicator {
@@ -280,6 +283,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 /// @group text-fields, media-queries
@@ -289,6 +294,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-icon: $md-text-field-include-icon,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @media #{$md-mobile-media} {
@@ -296,7 +302,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-password, $custom-sizes);
+    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-password, $include-dense-icons, $custom-sizes);
   }
 }
 
@@ -339,6 +345,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - This is a map of size names and font sizes
 ///     to apply as custom sizes for the text field.
 @mixin react-md-text-fields(
@@ -353,12 +361,9 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
-  @if $include-media {
-    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-password, $custom-sizes);
-  }
-
   @include react-md-text-field-container($light-theme, $include-multiline, $include-block, $include-message);
   @include react-md-text-field($light-theme, $include-multiline);
   @include react-md-text-field-divider($primary-color, $error-color);
@@ -384,6 +389,10 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @include react-md-text-field-custom-sizes($md-text-field-custom-sizes, $include-floating-label);
+
+  @if $include-media {
+    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-password, $include-dense-icons, $custom-sizes);
+  }
 }
 
 
@@ -1201,12 +1210,24 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-text-field-icon-desktop;
 ///   }
+///
+/// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the password button
+///     should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-icon-desktop {
+@mixin react-md-text-field-icon-desktop($include-password: $md-text-field-include-password, $include-dense-icons: $md-font-icon-include-dense) {
   $text-field-height: 15px;
 
   .md-text-field-icon--positioned {
-    margin-bottom: 12px - (($md-font-icon-size - $text-field-height) / 2);
+    margin-bottom: 12px - ((if($include-dense-icons, $md-font-icon-dense-size, $md-font-icon-size) - $text-field-height) / 2);
+  }
+
+  @if $include-password and $include-dense-icons {
+    .md-password-btn {
+      height: $md-font-icon-dense-size;
+      width: $md-font-icon-dense-size;
+    }
   }
 }
 
@@ -1214,14 +1235,17 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-text-field-icon-media;
+///
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-icon-media {
+@mixin react-md-text-field-icon-media($include-dense-icons: $md-font-icon-include-dense) {
   @media #{$md-mobile-media} {
     @include react-md-text-field-icon-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-icon-desktop;
+    @include react-md-text-field-icon-desktop($include-dense-icons);
   }
 }
 
@@ -1373,21 +1397,27 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
-///     be included
+///     be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense icons styles
+///     should be included.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-desktop($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block) {
+@mixin react-md-text-field-inline-indicator-desktop(
+  $include-floating-label: $md-text-field-include-floating-label,
+  $include-block: $md-text-field-include-block,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   .md-text-field-inline-indicator {
-    top: 7px;
+    top: if($include-dense-icons, 9px, 7px);
 
     @if $include-floating-label {
       &--floating {
-        top: 28px;
+        top: if($include-dense-icons, 30px, 28px);
       }
     }
 
     @if $include-block {
       &--block {
-        top: 10px;
+        top: if($include-dense-icons, 12px, 10px);
       }
     }
   }

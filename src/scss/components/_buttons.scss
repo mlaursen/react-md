@@ -74,6 +74,10 @@ $md-btn-min-width: 88px !default;
 /// @type Number
 $md-btn-floating-size: 56px !default;
 
+/// The size for a floating button when using the dense spec for icons.
+/// @type Number
+$md-btn-floating-dense-size: 48px !default;
+
 /// The the mini size for a floating button.
 /// @type Number
 $md-btn-floating-mini-size: 40px !default;
@@ -85,6 +89,14 @@ $md-btn-icon-size: $md-font-icon-size * 2 !default;
 /// The padding for an icon button.
 /// @type Number
 $md-btn-icon-padding: $md-btn-icon-size / 4 !default;
+
+/// The size for a icon button when using the dense spec.
+/// @type Number
+$md-btn-icon-dense-size: $md-font-icon-dense-size * 2 !default;
+
+/// The padding to use for a dense icon button.
+/// @type Number
+$md-btn-icon-dense-padding: $md-btn-icon-dense-size / 4 !default;
 
 /// The base color to use for default buttons in the light theme.
 /// @type Color
@@ -143,6 +155,8 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 ///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense specs for icons
+///     should be included for buttons.
 @mixin react-md-buttons(
   $primary-color: $md-primary-color,
   $secondary-color: $md-secondary-color,
@@ -151,12 +165,9 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
   $include-flat: $md-btn-include-flat,
   $include-raised: $md-btn-include-raised,
   $include-icon: $md-btn-include-icon,
-  $include-floating: $md-btn-include-floating
+  $include-floating: $md-btn-include-floating,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
-  @if $include-media {
-    @include react-md-buttons-media($include-flat, $include-raised);
-  }
-
   // scss-lint:disable QualifyingElement
   a.md-btn {
     text-decoration: none;
@@ -264,6 +275,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
       position: fixed;
       z-index: $md-btn-fixed-z-index;
     }
+  }
+
+  @if $include-media {
+    @include react-md-buttons-media($include-flat, $include-raised, $include-icon, $include-floating, $include-dense-icons);
   }
 }
 
@@ -406,10 +421,20 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 ///     buttons should be included.
 /// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
+/// @param {Boolean} include-icon [$md-btn-include-icon] - Boolean if the icon styles for
+///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense specs for icons
+///     should be included for buttons.
 /// @group buttons, media-queries
-@mixin react-md-buttons-desktop($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
+@mixin react-md-buttons-desktop(
+  $include-flat: $md-btn-include-flat,
+  $include-raised: $md-btn-include-raised,
+  $include-icon: $md-btn-include-icon,
+  $include-floating: $md-btn-include-floating,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   @if $include-flat or $include-raised {
     .md-btn--text {
       font-size: $md-btn-desktop-font-size;
@@ -454,6 +479,26 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
       left: $md-btn-desktop-floating-margin;
     }
   }
+
+  @if ($include-icon or $include-floating) and $include-dense-icons {
+    .md-btn--icon {
+      height: $md-btn-icon-dense-size;
+      padding: $md-btn-icon-dense-padding;
+      width: $md-btn-icon-dense-size;
+    }
+
+    .md-btn--floating {
+      height: $md-btn-floating-dense-size;
+      padding: ($md-btn-floating-dense-size - $md-font-icon-dense-size) / 2;
+      width: $md-btn-floating-dense-size;
+
+      &-mini {
+        height: $md-btn-floating-mini-size;
+        padding: ($md-btn-floating-mini-size - $md-font-icon-dense-size) / 2;
+        width: $md-btn-floating-mini-size;
+      }
+    }
+  }
 }
 
 /// Creates the media queries and styles for buttons for mobile and desktop.
@@ -465,15 +510,25 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 ///     buttons should be included.
 /// @param {Boolean} include-raised [$md-btn-include-raised] - Boolean if the raised styles for
 ///     buttons should be included.
+/// @param {Boolean} include-icon [$md-btn-include-icon] - Boolean if the icon styles for
+///     buttons should be included.
 /// @param {Boolean} include-floating [$md-btn-include-floating] - Boolean if the floating styles for
 ///     buttons should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense specs for icons
+///     should be included for buttons.
 /// @group buttons, media-queries
-@mixin react-md-buttons-media($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
+@mixin react-md-buttons-media(
+  $include-flat: $md-btn-include-flat,
+  $include-raised: $md-btn-include-raised,
+  $include-icon: $md-btn-include-icon,
+  $include-floating: $md-btn-include-floating,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   @media #{$md-mobile-media} {
     @include react-md-buttons-mobile($include-flat, $include-raised, $include-floating);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-buttons-desktop($include-flat, $include-raised, $include-floating);
+    @include react-md-buttons-desktop($include-flat, $include-raised, $include-icon, $include-floating, $include-dense-icons);
   }
 }

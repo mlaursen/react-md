@@ -10,3 +10,9 @@
     width: $md-font-icon-size;
   }
 }
+
+@media #{$md-desktop-media} {
+  .separator-examples .md-icon-separator .md-icon {
+    width: $md-font-icon-dense-size;
+  }
+}

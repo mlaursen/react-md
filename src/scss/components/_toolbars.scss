@@ -121,6 +121,8 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons/buttons
+///   should be included.
 /// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
 ///     relative padding class names should be included.
 /// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
@@ -134,11 +136,12 @@ $md-toolbar-tablet-title-keyline: 80px !default;
   $include-text-fields: $md-toolbar-include-text-fields,
   $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
+  $include-dense-icons: $md-font-icon-include-dense,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
   $relative-padding: $md-toolbar-relative-padding
 ) {
   @if $include-media {
-    @include react-md-toolbars-media($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-relative-padding-class-names, $relative-padding);
+    @include react-md-toolbars-media($include-prominent, $include-btn-text, $include-autocompletes, $include-select-fields, $include-dense-icons, $include-relative-padding-class-names, $relative-padding);
   }
 
   .md-toolbar {
@@ -604,14 +607,40 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     @include react-md-toolbars-tablet-landscape;
 ///   }
 ///
-/// @group toolbars, media-queries
+/// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
+///     button styles in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles for
 ///   select fields in toolbars should be included.
-@mixin react-md-toolbars-desktop($include-select-fields: $md-toolbar-include-select-fields) {
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons/buttons
+///   should be included.
+/// @group toolbars, media-queries
+@mixin react-md-toolbars-desktop(
+  $include-btn-text: $md-toolbar-include-btn-text,
+  $include-select-fields: $md-toolbar-include-select-fields,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   @if $include-select-fields {
     .md-select-field--toolbar.md-select-field--toolbar {
       margin-bottom: 12px;
       margin-top: 12px;
+    }
+  }
+
+  @if $include-dense-icons {
+    $margin: ($md-toolbar-tablet-height - $md-btn-icon-dense-size) / 2;
+
+    .md-btn--toolbar {
+      margin-bottom: $margin;
+      margin-top: $margin;
+    }
+  }
+
+  @if $include-btn-text {
+    $text-margin: ($md-toolbar-tablet-height - $md-btn-desktop-height) / 2;
+
+    .md-toolbar .md-btn--text {
+      margin-bottom: $text-margin;
+      margin-top: $text-margin;
     }
   }
 }
@@ -628,6 +657,8 @@ $md-toolbar-tablet-title-keyline: 80px !default;
 ///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons/buttons
+///   should be included.
 /// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
 ///     relative padding class names should be included.
 /// @param {Boolean} relative-padding [$md-toolbar-relative-padding] - Boolean if the `.md-toolbar-relative` class names
@@ -638,6 +669,7 @@ $md-toolbar-tablet-title-keyline: 80px !default;
   $include-btn-text: $md-toolbar-include-btn-text,
   $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
+  $include-dense-icons: $md-font-icon-include-dense,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
   $relative-padding: $md-toolbar-relative-padding
 ) {
@@ -657,9 +689,11 @@ $md-toolbar-tablet-title-keyline: 80px !default;
     @media #{$md-tablet-landscape-media} {
       @include react-md-toolbars-tablet-landscape($include-select-fields);
     }
+  }
 
+  @if $include-select-fields or $include-dense-icons {
     @media #{$md-desktop-media} {
-      @include react-md-toolbars-desktop($include-select-fields);
+      @include react-md-toolbars-desktop($include-btn-text, $include-select-fields, $include-dense-icons);
     }
   }
 }

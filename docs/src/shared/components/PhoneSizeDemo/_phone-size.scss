@@ -207,6 +207,33 @@ $phone-status-bar-height: 24px;
       font-size: $md-title-font-size;
     }
 
+    .md-icon {
+      font-size: $md-font-icon-size;
+
+      &--tab {
+        margin-bottom: 10px;
+        margin-top: 0;
+      }
+    }
+
+    .md-btn--icon {
+      height: $md-btn-icon-size;
+      padding: $md-btn-icon-padding;
+      width: $md-btn-icon-size;
+    }
+
+    .md-btn--floating {
+      height: $md-btn-floating-size;
+      padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
+      width: $md-btn-floating-size;
+
+      &-mini {
+        height: $md-btn-floating-mini-size;
+        padding: ($md-btn-floating-mini-size - $md-font-icon-size) / 2;
+        width: $md-btn-floating-mini-size;
+      }
+    }
+
     .md-btn--fixed-tl {
       top: $md-toolbar-mobile-prominent-height;
     }

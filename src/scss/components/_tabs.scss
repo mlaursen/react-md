@@ -107,6 +107,8 @@ $md-tab-desktop-padding: 24px !default;
 ///   tab overflow on desktop screens should be included.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the styles for swiping the tab
 ///   content on mobile devices should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons should
+///   be included for tabs.
 @mixin react-md-tabs(
   $secondary-color: $md-secondary-color,
   $include-media: $md-media-included,
@@ -115,7 +117,8 @@ $md-tab-desktop-padding: 24px !default;
   $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
   $include-pagination-overflow: $md-tab-include-pagination-overflow,
   $include-menu-overflow: $md-tab-include-menu-overflow,
-  $include-swipeable: $md-tab-include-swipeable
+  $include-swipeable: $md-tab-include-swipeable,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
   .md-tabs {
     @extend %md-list-unstyled;
@@ -164,7 +167,7 @@ $md-tab-desktop-padding: 24px !default;
 
 
   @if $include-media {
-    @include react-md-tabs-media($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable);
+    @include react-md-tabs-media($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable, $include-dense-icons);
   }
 }
 
@@ -463,8 +466,12 @@ $md-tab-desktop-padding: 24px !default;
 }
 
 /// Includes the styles for tabs on desktop screens.
+///
+/// @param {Boolean} include-icons [$md-tab-include-icons] - Boolean if tabs with icons should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///     should be used. Both this and the `$include-icons` need to be enabled to update the styles.
 /// @group tabs, media-queries
-@mixin react-md-tabs-desktop {
+@mixin react-md-tabs-desktop($include-icons: $md-tab-include-icons, $include-dense-icons: $md-font-icon-include-dense) {
   .md-toolbar ~ .md-tabs {
     margin-top: 0;
   }
@@ -484,6 +491,13 @@ $md-tab-desktop-padding: 24px !default;
     font-size: $md-tab-desktop-font-size;
     line-height: $md-tab-desktop-font-size;
   }
+
+  @if $include-icons and $include-dense-icons {
+    .md-icon--tab {
+      margin-bottom: 12px;
+      margin-top: 2px;
+    }
+  }
 }
 
 /// Creates all the styles for tabs at different media sizes.
@@ -496,8 +510,16 @@ $md-tab-desktop-padding: 24px !default;
 ///   for the simple container holding a toolbar and tabs should include the prominent toolbar styles.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the styles for swiping the tab
 ///   content on mobile devices should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///   should be used for the tabs.
 /// @group tabs, media-queries
-@mixin react-md-tabs-media($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-prominent-toolbars: $md-tab-include-prominent-toolbars, $include-swipeable: $md-tab-include-swipeable) {
+@mixin react-md-tabs-media(
+  $include-icons: $md-tab-include-icons,
+  $include-toolbars: $md-tab-include-toolbars,
+  $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
+  $include-swipeable: $md-tab-include-swipeable,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   @media #{$md-mobile-media} {
     @include react-md-tabs-mobile;
   }
@@ -517,6 +539,6 @@ $md-tab-desktop-padding: 24px !default;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-tabs-desktop;
+    @include react-md-tabs-desktop($include-icons, $include-dense-icons);
   }
 }

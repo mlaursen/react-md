@@ -158,6 +158,11 @@ $md-caption-font-size: 12px !default;
 /// @group icons
 $md-font-icon-size: 24px !default;
 
+/// The dense font icon size
+/// @type Number
+/// @group icons
+$md-font-icon-dense-size: 20px !default;
+
 /// The line height to use on almost all elements.
 /// @type Number
 $md-line-height: 20 / $md-font-size-base !default;

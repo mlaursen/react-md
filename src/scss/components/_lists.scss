@@ -122,6 +122,10 @@ $md-list-desktop-three-lines-height: 76px !default;
 ///     lists with three lines of text should be included.
 /// @param {Boolean} include-controls [$md-list-include-controls] - Boolean if the styles for lists
 ///     with controls to be included.
+/// @param {Boolean} include-unstyled [$md-list-include-unstyled-class-name] - Boolean if the `.md-list-unstyled`
+///     class name should also be generated.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense styles
+///     for icons should be included.
 @mixin react-md-lists(
   $light-theme: $md-light-theme,
   $nested-items-depth: $md-list-nested-items-depth,
@@ -132,12 +136,9 @@ $md-list-desktop-three-lines-height: 76px !default;
   $include-two-lines: $md-list-include-two-lines,
   $include-three-lines: $md-list-include-three-lines,
   $include-controls: $md-list-include-controls,
-  $include-unstyled: $md-list-include-unstyled-class-name
+  $include-unstyled: $md-list-include-unstyled-class-name,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
-  @if $include-media {
-    @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
-  }
-
   @if $include-unstyled {
     .md-list-unstyled {
       @extend %md-list-unstyled;
@@ -286,6 +287,10 @@ $md-list-desktop-three-lines-height: 76px !default;
       padding-right: 0;
     }
   }
+
+  @if $include-media {
+    @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines, $include-dense-icons);
+  }
 }
 
 /// Updates the theme for lists ONLY if the `$light-theme` does not equal the `$md-light-theme`.
@@ -396,12 +401,15 @@ $md-list-desktop-three-lines-height: 76px !default;
 ///     lists with two lines of text should be included.
 /// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
 ///     lists with three lines of text should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense styles
+///     for icons should be included.
 /// @group lists, media-queries
 @mixin react-md-lists-desktop(
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
   $include-two-lines: $md-list-include-two-lines,
-  $include-three-lines: $md-list-include-three-lines
+  $include-three-lines: $md-list-include-three-lines,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
   .md-list {
     padding-bottom: $md-list-desktop-padding;
@@ -453,6 +461,16 @@ $md-list-desktop-three-lines-height: 76px !default;
       }
     }
   }
+
+  @if $include-dense-icons and $include-icon {
+    .md-tile-addon--icon {
+      height: $md-font-icon-dense-size;
+    }
+
+    .md-tile-content--left-icon {
+      padding-left: $md-list-left-padding - $md-font-icon-dense-size - $md-default-padding;
+    }
+  }
 }
 
 /// Includes the media queries and styles for lists on mobile devices and desktop screens.
@@ -468,19 +486,22 @@ $md-list-desktop-three-lines-height: 76px !default;
 ///     lists with two lines of text should be included.
 /// @param {Boolean} include-three-lines [$md-list-include-three-lines] - Boolean if the styles for
 ///     lists with three lines of text should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense styles
+///     for icons should be included.
 /// @group lists, media-queries
 @mixin react-md-lists-media(
   $include-icon: $md-list-include-icon,
   $include-avatar: $md-list-include-avatar,
   $include-two-lines: $md-list-include-two-lines,
-  $include-three-lines: $md-list-include-three-lines
+  $include-three-lines: $md-list-include-three-lines,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
   @media #{$md-mobile-media} {
     @include react-md-lists-mobile($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-lists-desktop($include-icon, $include-avatar, $include-two-lines, $include-three-lines);
+    @include react-md-lists-desktop($include-icon, $include-avatar, $include-two-lines, $include-three-lines, $include-dense-icons);
   }
 }
 
