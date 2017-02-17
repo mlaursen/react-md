@@ -10,10 +10,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "BABEL_ENV=test jest",
-    "test:watch": "BABEL_ENV=test jest --watch",
-    "scripts": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
-    "scripts:watch": "BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
+    "test": "cross-env BABEL_ENV=test jest",
+    "test:watch": "cross-env BABEL_ENV=test jest --watch",
+    "scripts": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
+    "scripts:watch": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
     "lint:styles": "scss-lint src/scss",
     "lint:scripts": "eslint -c .eslintrc src",
     "lint": "npm run lint:styles && npm run lint:scripts",
@@ -52,6 +52,7 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^12.0.0",
