@@ -16,7 +16,7 @@ import {
 import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';
 
-describe.only('Button', () => {
+describe('Button', () => {
   it('merges className and style', () => {
     const props = {
       flat: true,
