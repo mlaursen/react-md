@@ -457,7 +457,6 @@ $md-data-table-contextual-fallback-color: null !default;
     background: get-swatch($secondary-color, 50, false, $fallback-color, md-data-table-contextual-fallback-color);
     height: 100%;
     left: 0;
-    line-height: 80px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -468,6 +467,7 @@ $md-data-table-contextual-fallback-color: null !default;
     color: $secondary-color;
     font-size: $md-data-table-card-header-font-size;
     font-weight: $md-font-medium;
+    line-height: 80px;
   }
 
   .md-drop-down-enter {

@@ -144,7 +144,6 @@ export default function search(req, res) {
     return;
   }
 
-  console.log('req.originalUrl:', req.originalUrl);
   const url = `https://${host}${DEV ? `:${port}` : ''}${path || ''}/search?q=${q}`;
   let next = null;
   let previous = null;

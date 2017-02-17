@@ -3,6 +3,7 @@
 .hacked-title {
   color: get-color('secondary', false);
   left: -92px;
+  line-height: $md-line-height;
   position: absolute;
   top: 14px;
 }
