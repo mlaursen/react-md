@@ -161,8 +161,6 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///     should be included.
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
-/// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
@@ -234,6 +232,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
+  $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
   $include-dense-icons: $md-font-icon-include-dense,
@@ -249,6 +248,20 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
   @if $include-password or $include-icon {
     @include react-md-text-field-icon-desktop($include-password, $include-dense-icons);
+  }
+
+  @if $include-message and ($include-dense-icons and $include-icon) {
+    .md-text-field-message-container {
+      $margin: 36px;
+
+      &--left-icon-offset {
+        margin-left: $margin;
+      }
+
+      &--right-icon-offset {
+        margin-right: $margin;
+      }
+    }
   }
 
   @if $include-password or $include-inline-indicator {
@@ -292,6 +305,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
+  $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
   $include-dense-icons: $md-font-icon-include-dense,
@@ -302,7 +316,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-password, $include-dense-icons, $custom-sizes);
+    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
   }
 }
 
@@ -391,7 +405,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   @include react-md-text-field-custom-sizes($md-text-field-custom-sizes, $include-floating-label);
 
   @if $include-media {
-    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-password, $include-dense-icons, $custom-sizes);
+    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
   }
 }
 
@@ -1048,6 +1062,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   .md-text-field-message {
+    color: inherit;
     flex-grow: 1;
     transition-duration: $md-transition-time;
     transition-property: opacity;

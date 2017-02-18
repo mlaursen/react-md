@@ -14,6 +14,7 @@ $md-primary-hover-opacity: .9 !default;
 /// The text color to use for any text that inside the `.md-background--primary` class name.
 /// This should ideally pass the color contrast test when.
 /// @type Color
+/// @group themes
 $md-primary-background-text-color: $md-white-base !default;
 
 /// The secondary color to use throughout the app. This should be a color
@@ -30,6 +31,7 @@ $md-secondary-hover-opacity: .9 !default;
 /// The text color to use for any text that inside the `.md-background--secondary` class name.
 /// This should ideally pass the color contrast test when.
 /// @type Color
+/// @group themes
 $md-secondary-background-text-color: $md-white-base !default;
 
 /// Boolean if the application is to be themed with the light theme.
