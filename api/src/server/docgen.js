@@ -97,7 +97,10 @@ function insertIntoDB({ group, docgens }) {
     NESTED_GROUPS.push(group);
 
     docgens.forEach(docgen => {
-      const name = toPrettyName(docgen);
+      let name = toPrettyName(docgen);
+      if (name === 'layover') {
+        name += 's';
+      }
       LOCAL_DB[group][name] = [docgen];
     });
   } else {

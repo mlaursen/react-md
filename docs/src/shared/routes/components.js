@@ -1,7 +1,7 @@
 import getSassDocPage from './getSassDocPage';
 
 const NESTED_COMPONENTS = {
-  helpers: ['accessible-fake-button', 'collapse', 'focus-container', 'icon-separator', 'portal'],
+  helpers: ['accessible-fake-button', 'collapse', 'focus-container', 'icon-separator', 'layovers', 'portal'],
   pickers: ['date', 'time'],
   progress: ['circular', 'linear'],
   'selection-controls': ['selection-control', 'checkboxes', 'radios', 'switches'],

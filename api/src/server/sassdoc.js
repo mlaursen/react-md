@@ -69,7 +69,7 @@ export async function buildLocalDB() {
   return null;
 }
 
-router.get('/:id', (req, res) => {
+function sendSassDoc(req, res) {
   let { id } = req.params;
   if (id && id.match(/font-icons/)) {
     id = 'icons';
@@ -79,6 +79,9 @@ router.get('/:id', (req, res) => {
   }
 
   return res.json(LOCAL_DB[id]);
-});
+}
+
+router.get('/helpers/:id', sendSassDoc);
+router.get('/:id', sendSassDoc);
 
 export default router;
