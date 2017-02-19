@@ -3,7 +3,6 @@
 $search-size: 180px;
 
 .main-search {
-
   .md-text-field {
     max-width: 0;
     transition-duration: $md-transition-time * 2;
@@ -36,6 +35,10 @@ $search-size: 180px;
   // Increase the size to include the close button
   .md-list {
     width: calc(100% + 48px);
+  }
+
+  pre {
+    margin: 0;
   }
 }
 

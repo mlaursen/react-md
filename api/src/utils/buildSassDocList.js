@@ -69,7 +69,7 @@ function findLink(ref) {
  *
  * @return {Object} a sassdoc link
  */
-export function buildSassDocLink({ context: { type, name }, group }) {
+export function buildSassDocLink({ context: { type, name, value, scope }, group }) {
   const hash = `${type}-${name}`;
   let ref = group[0].split(', ')[0];
   if (ref.match(/accessibility|collapsers|base|transitions|defaults|overlays|helper/)) {
@@ -79,7 +79,11 @@ export function buildSassDocLink({ context: { type, name }, group }) {
     ref = `${ref}?tab=${ref.match(/components|themes/) ? 2 : 1}#${hash}`;
   }
 
-  return { name, type: toTitle(type), ref };
+  if (value) {
+    value = `${value}${scope === 'default' ? ' !default' : ''}`;
+  }
+
+  return { name, type: toTitle(type), ref, value };
 }
 
 /**

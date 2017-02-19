@@ -9,6 +9,7 @@ import throttle from 'lodash.throttle';
 import Waypoint from 'react-waypoint';
 
 import './_search.scss';
+import VariableFormat from 'components/SassDocPage/VariableFormat';
 
 const style = { flexWrap: 'nowrap' };
 
@@ -136,7 +137,7 @@ export default class Search extends PureComponent {
    * @param {String} result.ref - The link to use to navigate to that search result.
    * @return {Object} props to pass to the `ListItem` component in the autocomplete's menu.
    */
-  _mapToLink = ({ name, type, ref }) => {
+  _mapToLink = ({ name, type, ref, value }) => {
     let to;
     let href;
     let component;
@@ -148,12 +149,18 @@ export default class Search extends PureComponent {
       to = ref;
     }
 
+    let secondaryText = type;
+    if (value) {
+      secondaryText = [type, <VariableFormat key="value">{value}</VariableFormat>];
+    }
+
     return {
       to,
       href,
       component,
       primaryText: name,
-      secondaryText: type,
+      secondaryText,
+      threeLines: !!value,
       key: `${name}-${type}`,
     };
   };
