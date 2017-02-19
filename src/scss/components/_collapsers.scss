@@ -24,5 +24,13 @@
         transform: rotate3d(0, 0, 1, -180deg);
       }
     }
+
+    &--sideways {
+      transform: rotate3d(0, 0, 1, -90deg);
+
+      &-flipped {
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
+    }
   }
 }

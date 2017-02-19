@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
 import omit from '../utils/omit';
@@ -19,6 +20,21 @@ import TextField from '../TextFields/TextField';
  */
 export default class Autocomplete extends PureComponent {
   static propTypes = {
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    menuId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the menu that contains the autocomplete.
      */
@@ -424,7 +440,7 @@ export default class Autocomplete extends PureComponent {
     this.state = {
       value: defaultValue,
       matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : [],
-      isOpen: false,
+      visible: false,
       matchIndex: -1,
       manualFocus: false,
       suggestionIndex: -1,
@@ -458,8 +474,8 @@ export default class Autocomplete extends PureComponent {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.isOpen !== nextState.isOpen) {
-      const menuFn = nextProps[`onMenu${nextState.isOpen ? 'Open' : 'Close'}`];
+    if (this.state.visible !== nextState.visible) {
+      const menuFn = nextProps[`onMenu${nextState.visible ? 'Open' : 'Close'}`];
       if (menuFn) {
         menuFn();
       }
@@ -481,7 +497,7 @@ export default class Autocomplete extends PureComponent {
       const matches = filter ? filter(data, value, dataLabel) : data;
       const next = { matches };
       if (value && nextState.focus && matches.length) {
-        next.isOpen = true;
+        next.visible = true;
       }
 
       this.setState(next);
@@ -537,7 +553,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur();
     }
 
-    this.setState({ focus: false, isOpen: false });
+    this.setState({ focus: false, visible: false });
   }
 
   _handleChange(value, event) {
@@ -557,7 +573,7 @@ export default class Autocomplete extends PureComponent {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, isOpen: !!matches.length, value });
+    return this.setState({ matches, visible: !!matches.length, value });
   }
 
   _handleFocus(e) {
@@ -567,7 +583,7 @@ export default class Autocomplete extends PureComponent {
 
     this.setState({
       matchIndex: -1,
-      isOpen: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
+      visible: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
       manualFocus: false,
       focus: true,
     });
@@ -620,7 +636,7 @@ export default class Autocomplete extends PureComponent {
         this.props.onBlur();
       }
 
-      this.setState({ isOpen: false });
+      this.setState({ visible: false });
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
@@ -669,7 +685,7 @@ export default class Autocomplete extends PureComponent {
 
     value = clearOnAutocomplete ? '' : value;
     this.setState({
-      isOpen: false,
+      visible: false,
       manualFocus: true,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
@@ -798,7 +814,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     if (!this.props.inline && this.state.matches.length && getField(this.props, this.state, 'value')) {
-      this.setState({ isOpen: !this.state.isOpen });
+      this.setState({ visible: !this.state.visible });
     }
   }
 
@@ -849,8 +865,11 @@ export default class Autocomplete extends PureComponent {
   }
 
   render() {
-    const { isOpen, matches, tabbed, focus, suggestionStyle } = this.state;
+    const { visible, matches, tabbed, focus, suggestionStyle } = this.state;
     const {
+      id,
+      menuId,
+      listId,
       fullWidth,
       block,
       style,
@@ -889,6 +908,7 @@ export default class Autocomplete extends PureComponent {
     const autocomplete = (
       <TextField
         {...props}
+        id={id}
         aria-autocomplete={inline ? 'inline' : 'list'}
         style={textFieldStyle}
         className={cn('md-autocomplete', textFieldClassName)}
@@ -944,9 +964,11 @@ export default class Autocomplete extends PureComponent {
 
     return (
       <Menu
+        id={menuId || `${id}-suggestions`}
+        listId={listId}
         ref={this._setMenu}
         toggle={autocomplete}
-        isOpen={isOpen}
+        visible={visible}
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}

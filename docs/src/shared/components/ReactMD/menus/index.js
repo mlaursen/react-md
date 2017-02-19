@@ -3,11 +3,14 @@ import React from 'react';
 import MenuExamples from './MenuExamples';
 import MenuExamplesRaw from '!!raw!./MenuExamples';
 
-import MenuButtonExamples from './MenuButtonExamples';
-import MenuButtonExamplesRaw from '!!raw!./MenuButtonExamples';
+import GoogleDocsClone from './GoogleDocsClone';
+import GoogleDocsCloneRaw from '!!raw!./GoogleDocsClone';
 
-import ContextMenuExample from './ContextMenuExample';
-import ContextMenuExampleRaw from '!!raw!./ContextMenuExample';
+// import MenuButtonExamples from './MenuButtonExamples';
+// import MenuButtonExamplesRaw from '!!raw!./MenuButtonExamples';
+//
+// import ContextMenuExample from './ContextMenuExample';
+// import ContextMenuExampleRaw from '!!raw!./ContextMenuExample';
 
 import './_menus.scss';
 
@@ -18,6 +21,10 @@ menu accessible to screen readers, it is recommended to add an \`id\` prop.`,
   code: MenuExamplesRaw,
   children: <MenuExamples />,
 }, {
+  title: 'Google Docs Clone',
+  code: GoogleDocsCloneRaw,
+  children: <GoogleDocsClone />,
+}, /* , {
   title: 'Menu Button Examples',
   description: `
 The \`Menu\` component might not be used as much since it is generally used by existing components.
@@ -34,4 +41,4 @@ The example below shows how a menu can be linked together with a button.
 `,
   code: ContextMenuExampleRaw,
   children: <ContextMenuExample />,
-}];
+} */];

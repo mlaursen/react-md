@@ -1,0 +1,63 @@
+@import '~react-md-scss';
+
+.md-text-field--docs-title {
+  font-size: 18px;
+
+  // scss-lint:disable VendorPrefix, PseudoElement
+
+  &:-moz-placeholder {
+    font-style: italic;
+  }
+
+  &::-moz-placeholder {
+    font-style: italic;
+  }
+
+  &:-ms-input-placeholder {
+    font-style: italic;
+  }
+
+  &::-webkit-input-placeholder {
+    font-style: italic;
+  }
+}
+
+.google-docs-clone {
+  margin: -16px;
+  margin-bottom: -24px;
+
+  .md-text-field-container--input-block {
+    align-self: flex-start;
+    flex-shrink: 1;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+.google-docs-menus {
+  bottom: 0;
+  left: 8px;
+  position: absolute;
+
+  .md-fake-btn {
+    padding: 8px 12px;
+  }
+
+  .md-tile-content {
+    padding-left: 28px;
+  }
+
+  .md-tile-content--left-icon {
+    padding-left: 8px;
+  }
+}
+
+.google-docs-toolbar {
+  height: $md-toolbar-tablet-height + 16px;
+  position: relative;
+}
+
+.google-docs-playground {
+  padding-bottom: 2em;
+  padding-top: 2em;
+}

@@ -5,6 +5,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
+import viewport from '../utils/viewport';
 import { TAB } from '../constants/keyCodes';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
@@ -12,6 +13,29 @@ import Collapser from '../FontIcons/Collapser';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
+
+const cascadingStyles = {
+  left: {
+    right: '100%',
+    top: 0,
+    position: 'absolute',
+  },
+  leftReversed: {
+    right: '100%',
+    bottom: 0,
+    position: 'absolute',
+  },
+  right: {
+    left: '100%',
+    top: 0,
+    position: 'absolute',
+  },
+  rightReversed: {
+    right: 0,
+    bottom: 0,
+    position: 'absolute',
+  },
+};
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -259,10 +283,17 @@ export default class ListItem extends PureComponent {
     expanderIconChildren: 'keyboard_arrow_down',
   };
 
+  static contextTypes = {
+    cascading: PropTypes.bool,
+  };
+
   constructor(props) {
     super(props);
 
-    this.state = { active: false };
+    this.state = {
+      active: false,
+      cascadingStyle: cascadingStyles.right,
+    };
 
     if (typeof props.isOpen === 'undefined') {
       this.state.isOpen = typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen;
@@ -279,6 +310,17 @@ export default class ListItem extends PureComponent {
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
     this._handleTouchStart = this._handleTouchStart.bind(this);
     this._handleTouchEnd = this._handleTouchEnd.bind(this);
+    this._reposition = this._reposition.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const isOpen = getField(this.props, this.state, 'isOpen');
+    const nextOpen = getField(nextProps, nextState, 'isOpen');
+    if (!this.context.cascading || isOpen === nextOpen || !nextOpen) {
+      return;
+    }
+
+    this.setState({ cascadingStyle: cascadingStyles.right });
   }
 
   componentWillUnmount() {
@@ -404,6 +446,32 @@ export default class ListItem extends PureComponent {
     }
   }
 
+  _reposition(listComponent) {
+    if (!listComponent || !this.context.cascading) {
+      return;
+    }
+
+    const list = findDOMNode(listComponent);
+    const vp = viewport(list);
+    if (vp !== true) {
+      let cascadingStyle;
+      const { top, right, bottom, left } = vp;
+      if (!left) {
+        cascadingStyle = cascadingStyles[`right${top ? 'Reversed' : ''}`];
+      } else if (!right) {
+        cascadingStyle = cascadingStyles[`left${top ? 'Reversed' : ''}`];
+      } else if (!top) {
+        cascadingStyle = cascadingStyles[`${right ? 'right' : 'left'}Reversed`];
+      } else if (!bottom) {
+        cascadingStyle = cascadingStyles[right ? 'right' : 'left'];
+      }
+
+      if (cascadingStyle) {
+        this.setState({ cascadingStyle });
+      }
+    }
+  }
+
   render() {
     const {
       style,
@@ -438,6 +506,8 @@ export default class ListItem extends PureComponent {
     } = this.props;
 
     const isOpen = getField(this.props, this.state, 'isOpen');
+    const { cascadingStyle } = this.state;
+    const { cascading } = this.context;
     const leftNode = (
       <TileAddon
         key="left-addon"
@@ -460,14 +530,19 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = <Collapse collapsed={!isOpen} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
+      nestedList = (
+        <Collapse collapsed={!isOpen} animate={animateNestedItems}>
+          <List ref={this._reposition} style={cascading && cascadingStyle}>{nestedItems}</List>
+        </Collapse>
+      );
 
       if (!rightIcon || !rightAvatar) {
+        const suffix = this.context.cascading ? 'sideways' : undefined;
         rightNode = (
           <TileAddon
             key="expander-addon"
             icon={(
-              <Collapser flipped={isOpen} iconClassName={expanderIconClassName}>
+              <Collapser flipped={isOpen} iconClassName={expanderIconClassName} suffix={suffix}>
                 {expanderIconChildren}
               </Collapser>
             )}
@@ -483,7 +558,7 @@ export default class ListItem extends PureComponent {
       <ItemComponent
         style={style}
         className={cn('md-list-item', {
-          'md-list-item--nested-container': nestedItems,
+          'md-list-item--cascading': cascading && nestedItems,
         }, className)}
         aria-setsize={ariaSize}
         aria-posinset={ariaPos}

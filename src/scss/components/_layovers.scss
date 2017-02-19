@@ -53,6 +53,16 @@ $md-layover-child-positions: (
     @each $position, $origin in $md-layover-child-positions {
       &--#{$position} {
         transform-origin: unquote($origin);
+
+        @if $position == 'below' {
+          &.md-layover-enter {
+            transform: scaleY(0);
+
+            &.md-layover-enter-active {
+              transform: scaleY(1);
+            }
+          }
+        }
       }
     }
   }

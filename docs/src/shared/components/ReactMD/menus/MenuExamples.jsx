@@ -11,7 +11,14 @@ export default class MenuExamples extends PureComponent {
   render() {
     return (
       <div>
-        <Menu isOpen className="menu-example menu-example--static" id="static-1" onClose={noop}>
+        <Menu
+          id="static-1"
+          visible
+          onClose={noop}
+          className="menu-example"
+          listClassName="static-list"
+          restrictHeight={false}
+        >
           <ListItem primaryText="Undo" />
           <ListItem primaryText="Redo" disabled />
           <Divider />
@@ -19,7 +26,15 @@ export default class MenuExamples extends PureComponent {
           <ListItem primaryText="Copy" disabled />
           <ListItem primaryText="Paste" />
         </Menu>
-        <Menu isOpen cascading className="menu-example menu-example--static" onClose={noop} id="static-2">
+        <Menu
+          id="static-2"
+          visible
+          cascading
+          onClose={noop}
+          className="menu-example"
+          listClassName="static-list"
+          restrictHeight={false}
+        >
           <ListItem primaryText="Bold" rightIcon={<div>{command}B</div>} />
           <ListItem primaryText="Italic" rightIcon={<div>{command}I</div>} />
           <ListItem primaryText="Underline" rightIcon={<div>{command}U</div>} />

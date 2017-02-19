@@ -18,6 +18,10 @@ import isOutOfBounds from '../utils/isOutOfBounds';
 export default class Layover extends PureComponent {
   static Positions = LayoverPositions;
   static propTypes = {
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
     /**
      * An optional style to apply to the layover.
      */
@@ -56,14 +60,19 @@ export default class Layover extends PureComponent {
      * The renderable item that causes the Layover to become visible. This _should_
      * most likely be an `element` or `arrayOf(element)`, but anything is allowed.
      */
-    toggle: PropTypes.node.isRequired,
+    toggle: PropTypes.node,
 
     /**
-     * Since the `toggle` can be anything, this is a query string used to attempt
-     * to find the _best match_ for the toggle element. This is required to help
-     * with the automatic positioning and fixing.
+     * Since the `toggle` prop can be anything, I need a way to be able to find an
+     * element to base all the calculations on. This can either be a string that
+     * gets passed to `layover.querySelector`, a DOM Element, or a function that
+     * returns a DOM Element.
      */
-    toggleQuery: PropTypes.string.isRequired,
+    toggleQuery: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.string,
+    ]).isRequired,
 
     /**
      * A single child that should be fixed to the toggle element.
@@ -155,7 +164,7 @@ export default class Layover extends PureComponent {
   static defaultProps = {
     component: 'div',
     fixedTo: window,
-    toggleQuery: 'button,input,*[role="button"]',
+    toggleQuery: '.md-text-field-container,button,*[role="button"]',
     position: Layover.Positions.TOP_RIGHT,
     transitionName: 'md-layover',
     transitionEnterTimeout: 200,
@@ -165,8 +174,8 @@ export default class Layover extends PureComponent {
     closeOnOutsideClick: true,
   };
 
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     const child = React.Children.only(props.children);
     this.state = {
@@ -198,13 +207,16 @@ export default class Layover extends PureComponent {
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
 
-    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible) {
+    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible && !this._inFixed) {
       this._manageFixedToListener(this.props.fixedTo, false);
       this._manageFixedToListener(fixedTo, true);
     } else if (visibileDiff && visible) {
-      this._manageFixedToListener(fixedTo, true);
+      if (!this._inFixed) {
+        this._manageFixedToListener(fixedTo, true);
+      }
+
       this._init(fixedTo, position, sameWidth);
-    } else if (visibileDiff && !visible) {
+    } else if (visibileDiff && !visible && !this._inFixed) {
       this._manageFixedToListener(fixedTo, false);
     } else if (childStyle !== React.Children.only(this.props.children).props.style) {
       // Re-merge styles...
@@ -324,7 +336,29 @@ export default class Layover extends PureComponent {
 
   _setContainer(container) {
     this._container = findDOMNode(container);
-    this._toggle = this._container ? this._container.querySelector(this.props.toggleQuery) : null;
+    this._toggle = null;
+    if (this._container) {
+      const { toggleQuery } = this.props;
+      if (typeof toggleQuery === 'function') {
+        this._toggle = toggleQuery();
+      } else if (typeof toggleQuery === 'string') {
+        this._toggle = this._container.querySelector(toggleQuery);
+      } else {
+        this._toggle = toggleQuery;
+      }
+    }
+
+    if (this._container) {
+      let node = this._container;
+      while (node) {
+        if (window.getComputedStyle(node).position === 'fixed' && !node.classList.contains('md-layover')) {
+          this._inFixed = true;
+          return;
+        }
+
+        node = node.offsetParent;
+      }
+    }
   }
 
   /**
@@ -334,16 +368,20 @@ export default class Layover extends PureComponent {
    */
   _initialFix() {
     const vp = viewport(this._child);
-    if (typeof vp === 'boolean') {
+    if (typeof vp === 'boolean' || !this._toggle || !this._child) {
       return;
+    } else if (!vp.top) {
+      const { below } = this.state;
+      const { offsetHeight: toggleHeight } = this._toggle;
+      const { offsetHeight: childHeight } = this._child;
+      this._initialTop = this._initialTop - childHeight - (below ? toggleHeight : 0);
+      this._lastFix = 'bottom';
+      this.setState({ styles: this._mergeStyles({ top: this._initialTop, transformOrigin: '0 100%' }) });
+    } else if (!vp.right || !vp.left) {
+      console.log('OFFSCREEN');
+      console.log('vp.left:', vp.left);
+      console.log('vp.right:', vp.right);
     }
-
-    const { below } = this.state;
-    const { offsetHeight: toggleHeight } = this._toggle;
-    const { offsetHeight: childHeight } = this._child;
-    this._initialTop = this._initialTop - childHeight - (below ? toggleHeight : 0);
-    this._lastFix = 'bottom';
-    this.setState({ styles: this._mergeStyles({ top: this._initialTop, transformOrigin: '0 100%' }) });
   }
 
   /**
@@ -524,10 +562,18 @@ export default class Layover extends PureComponent {
     } = this.props;
 
     let child;
+    let childId;
     if (visible) {
       child = React.Children.only(children);
+      if (child.props.id) {
+        childId = child.props.id;
+      } else if (props.id) {
+        childId = `${props.id}-layover`;
+      }
+
       child = React.cloneElement(children, {
         ref: this._fixateChild,
+        id: childId,
         style: this.state.styles,
         className: cn(`md-layover-child md-layover-child--${position}`, child.props.className),
       });
@@ -540,6 +586,9 @@ export default class Layover extends PureComponent {
         ref={this._setContainer}
         transitionEnter={props.transitionEnterTimeout !== 0}
         transitionLeave={props.transitionLeaveTimeout !== 0}
+        aria-haspopup
+        aria-expanded={visible}
+        aria-owns={childId}
       >
         {toggle}
         {child}
