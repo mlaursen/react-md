@@ -76,6 +76,10 @@ export default class Collapse extends PureComponent {
   }
 
   _setHeight(child) {
+    if (this._child && typeof this._child.ref === 'function') {
+      this._child.ref(child);
+    }
+
     let height = 0;
     let paddingTop = 0;
     let paddingBottom = 0;
@@ -126,6 +130,7 @@ export default class Collapse extends PureComponent {
           }
 
           const child = Children.only(children);
+          this._child = child;
           let nextStyle = child.props.style;
           if (collapsed || style.height !== height) {
             nextStyle = Object.assign({}, child.props.style, {

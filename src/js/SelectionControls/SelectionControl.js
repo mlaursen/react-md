@@ -183,6 +183,14 @@ export default class SelectionControl extends PureComponent {
      */
     uncheckedRadioIconClassName: PropTypes.string,
 
+    /**
+     * An optional tooltip to render with the control. This is only used if you inject the
+     * tooltip manually yourself.
+     *
+     * `const TooltippedSelectionControl = injectTooltip(SelectionControl);`
+     */
+    tooltip: PropTypes.node,
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -304,6 +312,7 @@ export default class SelectionControl extends PureComponent {
       checkedCheckboxIconClassName,
       uncheckedCheckboxIconChildren,
       uncheckedCheckboxIconClassName,
+      tooltip,
       __superSecreteProp,
       /* eslint-enable no-unused-vars */
       ...props
@@ -352,6 +361,7 @@ export default class SelectionControl extends PureComponent {
           role={type}
           aria-checked={checked}
         >
+          {tooltip}
           {this._getIcon()}
         </AccessibleFakeInkedButton>
       );
