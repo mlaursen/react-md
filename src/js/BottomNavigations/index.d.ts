@@ -5,19 +5,19 @@ interface BottomNavigationProps extends Props {
   links: Array<{
     label: React.ReactNode,
     iconChildren?: React.ReactNode,
-    iconClassName: string,
-    component: Function | string
+    iconClassName?: string,
+    component?: Function | string
   }>;
   colored?: boolean;
   dynamic?: boolean;
-  dynamicThreshold: number;
-  onNavChange?: (activeIndex: number, event: Event) => void;
+  dynamicThreshold?: number;
+  onNavChange?: (activeIndex: number, event: React.MouseEvent) => void;
   activeIndex?: number;
-  defaultActiveIndex: number;
-  defaultVisible: boolean;
-  component: Function | string;
+  defaultActiveIndex?: number;
+  defaultVisible?: boolean;
+  component?: Function | string;
   renderNode?: Object;
-  transitionDuration: number;
+  transitionDuration?: number;
   onVisiblityChange?: (visible: boolean) => void;
 }
 

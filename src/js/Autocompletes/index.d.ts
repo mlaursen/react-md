@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 
 type OnOffType = 'on' | 'off';
 
 type DataType = Array<React.ReactElement<any> | string | number | { [dataLabel: string]: string | number }>;
 
 interface AutocompleteProps extends Props {
+  id?: IdPropType;
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
   inputStyle?: React.CSSProperties;
@@ -26,7 +27,7 @@ interface AutocompleteProps extends Props {
   inline?: boolean;
   findInlineSuggestion?: (data: DataType, value: string | number, dataLabel?: string) => string | number;
   onAutocomplete?: (suggestion: string | number, suggestionIndex: number, matches: DataType) => void;
-  onChange?: (value: string, event: Event) => void;
+  onChange?: (value: string, event: React.FormEvent) => void;
   clearOnAutocomplete?: boolean;
   onMenuOpen?: Function;
   onMenuClose?: Function;

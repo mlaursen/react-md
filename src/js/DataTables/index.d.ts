@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 import { InjectedTooltipProps } from '../Tooltips';
 import { TextFieldTypes } from '../TextFields';
 import { Positions as SelectFieldPositions } from '../SelectFields';
 
 interface DataTableProps extends Props {
-  baseId?: number | string;
+  baseId?: IdPropType;
   defaultSelectedRows?: Array<boolean>;
   responsive?: boolean;
   plain?: boolean;
@@ -13,7 +13,7 @@ interface DataTableProps extends Props {
   uncheckedIconChildren?: React.ReactNode;
   checkedIconClassName?: string;
   checkedIconChildren?: React.ReactNode;
-  onRowToggle?: (rowId: number, checked: boolean, event: Event) => void;
+  onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent) => void;
   children: React.ReactNode;
 }
 
@@ -27,7 +27,7 @@ interface TableBodyProps extends Props {
 
 interface TableRowProps extends Props {
   children: Array<React.ReactElement<any>>;
-  onCheckboxClick?: (rowIndex: number, event: Event) => void;
+  onCheckboxClick?: (rowIndex: number, event: React.MouseEvent) => void;
   autoAdjust?: boolean;
   selected?: boolean;
   index?: number;
@@ -57,14 +57,14 @@ interface EditDialogColumnProps extends Props {
   maxLength?: number;
   value?: number | string;
   defaultValue?: number | string;
-  onChange?: (value: number | string, event: Event) => void;
+  onChange?: (value: number | string, event: React.FormEvent) => void;
   large?: boolean;
   title?: string;
-  onOkClick?: (value: number | string, event: Event) => void;
-  onCancelClick?: (value: number | string, event: Event) => void;
+  onOkClick?: (value: number | string, event: React.MouseEvent) => void;
+  onCancelClick?: (value: number | string, event: React.MouseEvent) => void;
   okLabel?: string;
   cancelLabel?: string;
-  onOutsideClick?: (event: Event) => void;
+  onOutsideClick?: (event: React.MouseEvent) => void;
   okOnOutsideClick?: boolean;
   label?: React.ReactNode;
   placeholder?: string;
@@ -87,7 +87,7 @@ interface SelectFieldColumnProps extends Props {
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
   header?: boolean;
-  onMenuToggle?: (open: boolean, event: Event) => void;
+  onMenuToggle?: (open: boolean, event: React.MouseEvent) => void;
   position?: SelectFieldPositions;
   defaultOpen?: boolean;
   scrollThreshold?: number;

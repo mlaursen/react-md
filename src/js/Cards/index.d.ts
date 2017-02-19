@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 import { Positions } from '../Tooltips';
 
 interface CardProps extends Props {
@@ -30,7 +30,7 @@ interface CardTextProps extends Props {
 }
 
 interface CardTitleProps extends Props {
-  id?: string | number;
+  id?: IdPropType;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
   avatar?: React.ReactElement<any>;

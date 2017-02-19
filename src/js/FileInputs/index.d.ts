@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { Props, IdPropType } from '../index';
 
 export type FileReaderTypes = 'DataURL' | 'ArrayBuffer' | 'Text';
 
 interface FileInputProps extends Props {
-  id: number | string;
+  id: IdPropType;
   primary?: boolean;
   secondary?: boolean;
   flat?: boolean;

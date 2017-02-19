@@ -41,7 +41,7 @@ interface DrawerProps extends Props {
   renderNode?: Object;
   defaultVisible?: boolean;
   visible?: boolean;
-  onVisibilityToggle?: (visible: boolean, event: Event) => void;
+  onVisibilityToggle?: (visible: boolean, event: React.MouseEvent) => void;
   position?: DrawerPositions;
   inline?: boolean;
   transitionDuration?: number;
