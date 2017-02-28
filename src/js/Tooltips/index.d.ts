@@ -1,3 +1,4 @@
+import * as React from 'react';
 export type Positions = 'top' | 'right' | 'bottom' | 'left';
 
 export interface InjectedTooltipProps {

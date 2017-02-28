@@ -33,7 +33,7 @@ interface TableRowProps extends Props {
   index?: number;
 }
 
-interface TableColumnProps extends InjectedTooltipProps {
+interface TableColumnProps extends Props, InjectedTooltipProps {
   sorted?: boolean;
   sortIconChildren?: React.ReactNode;
   sortIconClassName?: string;

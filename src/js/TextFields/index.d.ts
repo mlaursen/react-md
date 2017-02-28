@@ -38,6 +38,10 @@ interface TextFieldProps extends Props {
   helpOnFocus?: boolean;
   maxLength?: number;
   inlineIndicator?: React.ReactElement<any>;
+  pattern?: string;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
 export default class TextField extends React.Component<TextFieldProps, {}> {
