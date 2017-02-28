@@ -28,6 +28,10 @@ interface ListItemProps extends InjectedInkProps {
   expanderIconClassName?: string;
   active?: boolean;
   activeClassName?: string;
+  itemComponent?: string | Function;
+  animateNestedItems?: boolean;
+  'aria-setsize'?: number;
+  'aria-posinset'?: number;
 }
 
 interface ListItemControlProps extends Props {
@@ -42,6 +46,8 @@ interface ListItemControlProps extends Props {
   leftAvatar?: React.ReactNode;
   rightIcon?: React.ReactNode;
   rightAvatar?: React.ReactNode;
+  'aria-setsize'?: number;
+  'aria-posinset'?: number;
 }
 
 export default class List extends React.Component<ListProps, {}> { }

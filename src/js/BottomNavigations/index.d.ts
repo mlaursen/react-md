@@ -19,6 +19,8 @@ interface BottomNavigationProps extends Props {
   renderNode?: Object;
   transitionDuration?: number;
   onVisiblityChange?: (visible: boolean) => void;
+  lastChild?: boolean;
+  animate?: boolean;
 }
 
 export default class BottomNavigation extends React.Component<BottomNavigationProps, {}> { }

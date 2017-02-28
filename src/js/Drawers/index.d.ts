@@ -39,6 +39,7 @@ interface DrawerProps extends Props {
   defaultMedia: MediaTypes;
   overlay?: boolean;
   renderNode?: Object;
+  lastChild?: boolean;
   defaultVisible?: boolean;
   visible?: boolean;
   onVisibilityToggle?: (visible: boolean, event: React.MouseEvent) => void;
@@ -46,7 +47,6 @@ interface DrawerProps extends Props {
   inline?: boolean;
   transitionDuration?: number;
   clickableDesktopOverlay?: boolean;
-  closeOnNavItemClick?: boolean;
   children?: React.ReactNode;
 }
 

@@ -23,6 +23,7 @@ interface TabsContainerProps extends Props {
   fixed?: boolean;
   labelAndIcon?: boolean;
   headerZDepth?: number;
+  swipeableViewsProps?: Object;
 }
 
 interface TabsProps extends Props {

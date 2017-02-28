@@ -6,8 +6,8 @@ import { InjectedInkProps } from '../Inks';
 export type ButtonTypes = 'button' | 'submit' | 'reset';
 type FixedPositions = 'tr' | 'tl' | 'br' | 'bl';
 
-export interface ButtonProps extends InjectedTooltipProps, InjectedInkProps {
-  label?: string;
+export interface ButtonProps extends Props, InjectedTooltipProps, InjectedInkProps {
+  label?: React.ReactNode;
   iconBefore?: boolean;
   children?: React.ReactNode;
   iconClassName?: string;
@@ -24,7 +24,9 @@ export interface ButtonProps extends InjectedTooltipProps, InjectedInkProps {
   raised?: boolean;
   icon?: boolean;
   floating?: boolean;
-  forceSize?: boolean | number;
+  forceIconSize?: boolean | number;
+  forceIconFontSize?: boolean;
+  noIcon?: boolean;
 }
 
 export default class Button extends React.Component<ButtonProps, {}> {

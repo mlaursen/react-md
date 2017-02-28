@@ -33,11 +33,13 @@ interface ExpansionPanelProps extends Props {
   cancelSecondary?: boolean;
   tabIndex?: number;
   children?: React.ReactNode;
+  animateContent?: boolean;
 }
 
 interface ExpansionListProps extends Props {
   component?: Function | string;
   children?: React.ReactNode;
+  animateContent?: boolean;
 }
 
 export default class ExpansionPanel extends React.Component<ExpansionPanelProps, {}> { }

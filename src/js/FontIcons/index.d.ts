@@ -6,6 +6,7 @@ interface FontIconProps extends Props {
   iconClassName?: string;
   disabled?: boolean;
   forceSize?: boolean | number;
+  forceFontSize?: boolean;
 }
 
 export default class FontIcon extends React.Component<FontIconProps, {}> { }

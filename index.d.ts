@@ -4,6 +4,7 @@
 
 import Autocomplete from './src/js/Autocompletes';
 import Avatar from './src/js/Avatars';
+import Badge from './src/js/Badges';
 import BottomNavigation from './src/js/BottomNavigations';
 import Button from './src/js/Buttons';
 import { Card, CardActions, CardText, CardTitle } from './src/js/Cards';
@@ -38,6 +39,8 @@ export {
   Autocomplete,
 
   Avatar,
+
+  Badge,
 
   BottomNavigation,
 

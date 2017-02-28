@@ -27,6 +27,10 @@ interface CommonProps extends Props {
   'aria-label'?: string;
   pickerStyle?: React.CSSProperties;
   pickerClassName?: string;
+  inputStyle?: React.CSSProperties;
+  inputClassName?: string;
+  textFieldStyle?: React.CSSProperties;
+  textFieldClassName?: string;
   icon?: React.ReactNode;
   label?: string;
   placeholder?: string;
@@ -46,6 +50,24 @@ interface CommonProps extends Props {
   autoOk?: boolean;
   disabled?: boolean;
   closeOnEsc?: boolean;
+  animateInline?: boolean;
+  required?: boolean;
+  block?: boolean;
+  paddedBlock?: boolean;
+  active?: boolean;
+  error?: boolean;
+  floating?: boolean;
+  leftIcon?: React.ReactNode;
+  leftIconStateful?: boolean;
+  rightIcon?: React.ReactNode;
+  rightIconStateful?: boolean;
+  inlineIndicator?: React.ReactNode;
+  customSize?: string;
+  errorText?: string;
+  helpText?: string;
+  helpOnFocus?: boolean;
+  renderNode?: Object;
+  lastChild?: boolean;
 }
 
 interface DatePickerProps extends CommonProps {
@@ -65,6 +87,7 @@ interface DatePickerProps extends CommonProps {
 }
 
 interface TimePickerProps extends CommonProps {
+  hoverMode?: boolean;
   defaultTimeMode?: 'hour' | 'minute';
   value?: Date,
   defaultValue?: Date;

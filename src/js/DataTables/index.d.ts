@@ -4,6 +4,8 @@ import { InjectedTooltipProps } from '../Tooltips';
 import { TextFieldTypes } from '../TextFields';
 import { Positions as SelectFieldPositions } from '../SelectFields';
 
+type template = (rowIndex: number) => string;
+
 interface DataTableProps extends Props {
   baseId?: IdPropType;
   defaultSelectedRows?: Array<boolean>;
@@ -14,23 +16,28 @@ interface DataTableProps extends Props {
   checkedIconClassName?: string;
   checkedIconChildren?: React.ReactNode;
   onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent) => void;
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  selectableRows?: boolean;
+  indeterminate?: boolean;
+  indeterminateIconChildren?: React.ReactNode;
+  indeterminateIconClassName?: string;
+  checkboxHeaderLabel?: string;
+  checkboxLabelTemplate?: string | template;
 }
 
 interface TableHeaderProps extends Props {
-  children: React.ReactElement<any>;
+  children?: React.ReactElement<any>;
 }
 
 interface TableBodyProps extends Props {
-  children: React.ReactElement<any> | Array<React.ReactElement<any>>;
+  children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
 }
 
 interface TableRowProps extends Props {
-  children: Array<React.ReactElement<any>>;
+  children?: Array<React.ReactElement<any>> | React.ReactElement<any>;
   onCheckboxClick?: (rowIndex: number, event: React.MouseEvent) => void;
   autoAdjust?: boolean;
   selected?: boolean;
-  index?: number;
 }
 
 interface TableColumnProps extends Props, InjectedTooltipProps {
@@ -42,6 +49,8 @@ interface TableColumnProps extends Props, InjectedTooltipProps {
   selectColumnHeader?: boolean;
   header?: boolean;
   children?: React.ReactNode;
+  plain?: boolean;
+  scope?: 'row' | 'col';
 }
 
 interface EditDialogColumnProps extends Props {

@@ -12,6 +12,7 @@ interface SnackbarProps extends Props {
   transitionLeaveTimeout?: number;
   fab?: any; // Don't know how to really validate this one
   renderNode?: Object;
+  lastChild?: boolean;
 }
 
 export default class Snackbar extends React.Component<SnackbarProps, {}> { }

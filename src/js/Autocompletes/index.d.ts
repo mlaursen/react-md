@@ -17,11 +17,11 @@ interface AutocompleteProps extends Props {
   label?: string;
   value?: string | number;
   defaultValue?: string | number;
-  dataLabel: string;
-  dataValue: string
+  dataLabel?: string;
+  dataValue?: string
   deleteKeys?: string | Array<string>;
   data: DataType;
-  filter?: Function;
+  filter?: (data: DataType, filterText: string | number, dataLabel?: string) => Array<string>;
   block?: boolean;
   fullWidth?: boolean;
   inline?: boolean;
@@ -32,6 +32,8 @@ interface AutocompleteProps extends Props {
   onMenuOpen?: Function;
   onMenuClose?: Function;
   autoComplete?: OnOffType;
+  total?: number;
+  offset?: number;
 }
 
 export default class Autocomplete extends React.Component<AutocompleteProps, {}> {

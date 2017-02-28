@@ -25,6 +25,7 @@ interface SelectionControlProps extends CommonProps {
   uncheckedRadioIconClassName?: string;
   onChange?: (result: boolean | number | string, event: Event) => void;
   type: Types;
+  'aria-label'?: string;
 }
 
 interface SelectionControlGroupProps extends Props {

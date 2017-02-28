@@ -14,6 +14,7 @@ interface CardProps extends Props {
   expanderTooltipPosition?: Positions;
   tableCard?: boolean;
   children?: React.ReactNode;
+  animate?: boolean;
 }
 
 interface CardActionsProps extends Props {

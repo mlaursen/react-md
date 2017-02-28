@@ -24,6 +24,7 @@ interface CollapseProps extends Props {
   collapsed: boolean;
   springConfig: Object;
   children: React.ReactElement<any>;
+  animate?: boolean;
 }
 
 interface FocusContainerProps extends Props {

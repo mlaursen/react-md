@@ -7,7 +7,7 @@ interface AvatarProps extends Props {
   src?: string;
   alt?: string;
   icon?: React.ReactNode;
-  children?: string;
+  children?: React.ReactNode;
   random?: boolean;
   suffixes?: Array<string>;
   suffix?: string;
