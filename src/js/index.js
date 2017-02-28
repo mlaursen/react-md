@@ -25,7 +25,7 @@ import DataTable, {
   TablePagination,
   SelectFieldColumn,
 } from './DataTables';
-import Dialog from './Dialogs';
+import DialogContainer, { Dialog } from './Dialogs';
 import Divider from './Dividers';
 import Drawer from './Drawers';
 import { ExpansionPanel, ExpansionList } from './ExpansionPanels';
@@ -91,6 +91,7 @@ export { TableCardHeader };
 export { EditDialogColumn };
 export { TablePagination };
 export { SelectFieldColumn };
+export { DialogContainer };
 export { Dialog };
 export { Divider };
 export { Drawer };
@@ -172,6 +173,7 @@ export default {
   TablePagination,
   SelectFieldColumn,
 
+  DialogContainer,
   Dialog,
   Divider,
   Drawer,

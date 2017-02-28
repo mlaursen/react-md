@@ -45,7 +45,7 @@ export default class Portal extends PureComponent {
 
     /**
      * An optional DOM Node to render the portal into. The default is to render as
-     * the last child in the `body`.
+     * the first child in the `body`.
      */
     renderNode: PropTypes.object,
 

@@ -9,7 +9,7 @@ The Material Design grid framework works on a 12 column grid system for desktop 
 an 8 column grid system for tablet devices, and a 4 column grid system for mobile devices.
 
 The \`react-md\` library has implemented this by creating the \`.md-grid\` and \`.md-cell\`
-class names. Using both of these toegether can get the require margins and gutter for an
+class names. Using both of these together you can get the required margins and gutter for an
 application.
 
 The grid is implemented with the \`.md-grid\` flexbox container and each column (or cell)
@@ -53,9 +53,9 @@ than the maximum amount of columsn allowed for the device's screen size, an enti
 - \`.md-cell--order-NUMBER-phone\` - This will set the cell's order only for mobile devices.
 - \`.md-cell--order-NUMBER-tablet\` - This will set the cell's order only for tablet devices.
 - \`.md-cell--order-NUMBER-desktop\` - This will set the cell's order only for desktop / large screens.
-- \`.md-cell--NUMBER-offset-phone\` - This will offset the cell's position only for mobile devices.
-- \`.md-cell--NUMBER-offset-tablet\` - This will offset the cell's position for tablet devices.
-- \`.md-cell--NUMBER-offset-desktop\` - This will offset the cell's position for desktop / large screens.
+- \`.md-cell--NUMBER-phone-offset\` - This will offset the cell's position only for mobile devices.
+- \`.md-cell--NUMBER-tablet-offset\` - This will offset the cell's position for tablet devices.
+- \`.md-cell--NUMBER-desktop-offset\` - This will offset the cell's position for desktop / large screens.
 `;
 
 const Grids = () => (

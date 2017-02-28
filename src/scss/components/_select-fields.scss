@@ -12,11 +12,11 @@ $md-select-field-drop-transition-time: $md-transition-time * 2 !default;
 
 /// The left padding for a select field that has a postition of `SelectField.Positions.BELOW`
 /// @type Number
-$md-select-field-left-padding: 24px;
+$md-select-field-left-padding: 24px !default;
 
 /// The right padding for a select field that has a postition of `SelectField.Positions.BELOW`
 /// @type Number
-$md-select-field-right-padding: 16px;
+$md-select-field-right-padding: 16px !default;
 
 /// Creates the styles for select fields. Like the `autocompletes`, the `SelectField` component
 /// also depends on the styles for the `TextField`.

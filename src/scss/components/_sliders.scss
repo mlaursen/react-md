@@ -19,7 +19,7 @@ $md-slider-include-indicators: true !default;
 /// The Side of the Thumb for the Slider.
 /// @type Number
 /// @access private
-$md-slider-thumb-size: 14px;
+$md-slider-thumb-size: 14px !default;
 
 /// The default height for the Slider's container.
 /// @type Number
@@ -28,7 +28,7 @@ $md-slider-height: $md-height !default;
 /// The default height for the Slider's track.
 /// @type Number
 /// @access private
-$md-slider-track-height: 2px;
+$md-slider-track-height: 2px !default;
 
 /// The z-index for the Slider's thumb.
 /// @type Number
@@ -71,13 +71,18 @@ $md-slider-discrete-mask-ink-opacity: .3 !default;
 
 /// The off color to use for the Slider when using the light theme.
 /// @type Color
-/// @access private
-$md-slider-light-theme-off-color: rgba($md-black-base, .26);
+$md-slider-light-theme-off-color: rgba($md-black-base, .26) !default;
 
 /// The off color to use for the Slider when using the dark theme.
 /// @type Color
-/// @access private
-$md-slider-dark-theme-off-color: rgba($md-white-base, .3);
+$md-slider-dark-theme-off-color: rgba($md-white-base, .3) !default;
+
+/// Boolean if the sliders should warn when not using a correct swatch. This warning will
+/// only occur when using the dark theme and the primary color does not have a -200 suffix.
+/// APPARENTLY this is a requirement for Material Design. Feel free to disable this warning.
+/// @type Boolean
+/// @see validate-slider-primary-color
+$md-slider-warn-md: true !default;
 
 
 /// This includes the react-md Sliders Component scss.
@@ -101,7 +106,9 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
   $include-editor: $md-slider-include-editor,
   $include-indicators: $md-slider-include-indicators
 ) {
-  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  @if $md-colors-warn-md and $md-slider-warn-md {
+    $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  }
 
   $md-slider-on-color: $primary-color;
   $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
@@ -234,7 +241,9 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 /// @param {Boolean} $light-theme [$md-light-theme] - A boolean if the slider should be styled for
 ///     the light or dark theme.
 @mixin react-md-discrete-slider($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
-  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  @if $md-colors-warn-md and $md-slider-warn-md {
+    $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  }
 
   $md-slider-on-color: $primary-color;
   $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
@@ -425,7 +434,9 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     themed as well.
 /// @group sliders, themes
 @mixin react-md-theme-sliders($primary-color: $md-primary-color, $light-theme: $md-light-theme, $include-discrete: $md-slider-include-discrete) {
-  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  @if $md-colors-warn-md and $md-slider-warn-md {
+    $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  }
 
   $md-slider-on-color: $primary-color;
   $md-slider-off-color: if($light-theme, $md-slider-light-theme-off-color, $md-slider-dark-theme-off-color);
@@ -475,7 +486,9 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
 ///     should be themed for the light or dark theme.
 /// @group sliders, themes
 @mixin react-md-theme-discrete-slider($primary-color: $md-primary-color, $light-theme: $md-light-theme) {
-  $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  @if $md-colors-warn-md and $md-slider-warn-md {
+    $invalid-color: validate-slider-primary-color($primary-color, $light-theme);
+  }
 
   $md-slider-on-color: $primary-color;
 
@@ -513,7 +526,9 @@ $md-slider-dark-theme-off-color: rgba($md-white-base, .3);
     }
   }
 
-  @error "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix. The primary color must be a non-accent -200 color when using the dark theme sliders.";
+  $msg: "The current primary-color: '#{$primary-color}' is not a valid '-200' suffix for a dark-themed slider.";
+  $msg: "#{$msg} This warning can be siabled by setting the '$md-slider-warn-md' or '$md-colors-warn-md' to 'false'.";
+  @warn "#{$msg} See https://react-md.mlaursen.com/sassdoc/#sliders-variable-md-slider-warn-md for more information.";
 
   @return false;
 }

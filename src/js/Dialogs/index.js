@@ -1,2 +1,3 @@
-import Dialog from './DialogContainer';
-export default Dialog;
+import DialogContainer from './DialogContainer';
+export default DialogContainer;
+export Dialog from './Dialog';

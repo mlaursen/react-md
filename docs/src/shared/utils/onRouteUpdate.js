@@ -1,17 +1,12 @@
 import { animateScroll } from 'smooth-scroll';
 
 function scrollToHash() {
-  let el = document.querySelector(window.location.hash);
-  const header = document.querySelector('.main-toolbar');
-  if (!el || !header) {
+  const el = document.querySelector(window.location.hash);
+  if (!el) {
     return;
   }
 
-  if (window.location.hash.indexOf('proptypes') !== -1) {
-    el = el.parentNode;
-  }
-
-  const position = el.offsetTop - header.offsetHeight;
+  const position = Math.abs(el.getBoundingClientRect().top - (document.body || document.documentElement).getBoundingClientRect().top);
   animateScroll(position);
 }
 

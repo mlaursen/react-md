@@ -136,7 +136,7 @@ $md-clock-hand-ball-scale: .4 !default;
 /// The padding from the outside edge of the clock to the edge of one of the
 /// time circles.
 /// @type Number
-$md-clock-padding: 4px;
+$md-clock-padding: 4px !default;
 
 
 /// Includes the styles for date and time pickers. If the `$include-date` and `$include-time`

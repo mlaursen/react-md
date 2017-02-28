@@ -28,12 +28,7 @@ export default class SimpleDialogExamples extends PureComponent {
       'Single line text goes here',
       'Three line wrapped text goes here making it wrap to the next line and continues longer to be here',
     ].map((primaryText, i) => (
-      <ListItem
-        key={i}
-        onClick={this.closeDialog}
-        waitForInkTransition
-        primaryText={primaryText}
-      />
+      <ListItem key={i} onClick={this.closeDialog} primaryText={primaryText} />
     ));
     return (
       <div>

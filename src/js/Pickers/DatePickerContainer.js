@@ -66,7 +66,29 @@ export default class DatePickerContainer extends PureComponent {
     pickerClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the input tag.
+     */
+    inputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the input tag.
+     */
+    inputClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the text field's container.
+     */
+    textFieldStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the text field's container.
+     */
+    textFieldClassName: PropTypes.string,
+
+    /**
      * An optional icon to display with the date picker.
+     *
+     * @see {@link TextFields/TextField#leftIcon}
      */
     icon: PropTypes.node,
 
@@ -91,10 +113,10 @@ export default class DatePickerContainer extends PureComponent {
      * be a controlled component. This value should either be a
      * formatted date string or a date object.
      */
-    value: PropTypes.oneOfType([
+    value: controlled(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
-    ]),
+    ]), 'onChange', 'defaultValue'),
 
     /**
      * An optional default value to give for the date picker. This should
@@ -289,6 +311,94 @@ export default class DatePickerContainer extends PureComponent {
      */
     closeOnEsc: PropTypes.bool,
 
+    /**
+     * Boolean if the inline time picker's visibility should be animated.
+     */
+    animateInline: PropTypes.bool,
+
+    /**
+     * Boolean if the time is required.
+     *
+     * @see {@link TextFields/TextField#required}
+     */
+    required: PropTypes.bool,
+
+    /**
+     * @see {@link TextFields/TextField#block}
+     */
+    block: TextField.propTypes.block,
+
+    /**
+     * @see {@link TextFields/TextField#paddedBlock}
+     */
+    paddedBlock: TextField.propTypes.paddedBlock,
+
+    /**
+     * @see {@link TextFields/TextField#active}
+     */
+    active: TextField.propTypes.active,
+
+    /**
+     * @see {@link TextFields/TextField#error}
+     */
+    error: TextField.propTypes.error,
+
+    /**
+     * @see {@link TextFields/TextField#floating}
+     */
+    floating: TextField.propTypes.floating,
+
+    /**
+     * @see {@link TextFields/TextField#leftIconStateful}
+     */
+    leftIconStateful: TextField.propTypes.leftIconStateful,
+
+    /**
+     * @see {@link TextFields/TextField#rightIcon}
+     */
+    rightIcon: TextField.propTypes.rightIcon,
+
+    /**
+     * @see {@link TextFields/TextField#rightIconStateful}
+     */
+    rightIconStateful: TextField.propTypes.rightIconStateful,
+
+    /**
+     * @see {@link TextFields/TextField#customSize}
+     */
+    customSize: TextField.propTypes.customSize,
+
+    /**
+     * @see {@link TextFields/TextField#errorText}
+     */
+    errorText: TextField.propTypes.errorText,
+
+    /**
+     * @see {@link TextFields/TextField#helpText}
+     */
+    helpText: TextField.propTypes.helpText,
+
+    /**
+     * @see {@link TextFields/TextField#helpOnFocus}
+     */
+    helpOnFocus: TextField.propTypes.helpOnFocus,
+
+    /**
+     * @see {@link TextFields/TextField#inlineIndicator}
+     */
+    inlineIndicator: TextField.propTypes.helpOnFocus,
+
+    /**
+     * An optional DOM Node to render the dialog into. The default is to render as the first child
+     * in the `body`.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
+     * of the first.
+     */
+    lastChild: PropTypes.bool,
     previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
     nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
@@ -302,6 +412,7 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   static defaultProps = {
+    animateInline: true,
     previousIconChildren: 'chevron_left',
     nextIconChildren: 'chevron_right',
     autoOk: false,
@@ -345,9 +456,7 @@ export default class DatePickerContainer extends PureComponent {
       date = new Date();
     }
 
-    if (minDate || maxDate) {
-      date = this._validateDateRange(date, minDate, maxDate);
-    }
+    date = this._validateDateRange(date, minDate, maxDate);
 
     let calendarTempDate = date;
     if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
@@ -388,11 +497,19 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { minDate, maxDate } = this.props;
-    if (!isDateEqual(minDate, nextProps.minDate) || !isDateEqual(maxDate, nextProps.maxDate)) {
-      const date = this._validateDateRange(this.state.calendarDate, nextProps.minDate, nextProps.maxDate);
-      if (date) {
-        this.setState({ calendarTempDate: date, calendarDate: date });
+    const { value, minDate, maxDate } = nextProps;
+    const minEqual = isDateEqual(this.props.minDate, minDate);
+    const maxEqual = isDateEqual(this.props.maxDate, maxDate);
+    if (this.props.value !== value || !minEqual || !maxEqual) {
+      let { calendarDate } = this.state;
+      if (typeof value !== 'undefined') {
+        calendarDate = typeof value === 'string' ? new Date(value) : value;
+      }
+
+      calendarDate = this._validateDateRange(calendarDate, minDate, maxDate);
+
+      if (!isDateEqual(this.state.calendarDate, calendarDate)) {
+        this.setState({ calendarDate, calendarTempDate: calendarDate });
       }
     }
   }
@@ -608,7 +725,7 @@ export default class DatePickerContainer extends PureComponent {
    *    calendarTempDate keys or null.
    */
   _validateDateRange(calendarDate, minDate, maxDate) {
-    let date = null;
+    let date = calendarDate;
     if (minDate && minDate > calendarDate) {
       date = new Date(minDate);
     }
@@ -626,6 +743,10 @@ export default class DatePickerContainer extends PureComponent {
       className,
       pickerStyle,
       pickerClassName,
+      inputStyle,
+      inputClassName,
+      textFieldStyle,
+      textFieldClassName,
       label,
       placeholder,
       icon,
@@ -636,22 +757,41 @@ export default class DatePickerContainer extends PureComponent {
       id,
       disabled,
       closeOnEsc,
+      animateInline,
+      renderNode,
+      lastChild,
+      block,
+      paddedBlock,
+      active,
+      error,
+      floating,
+      required,
+      leftIconStateful,
+      rightIcon,
+      rightIconStateful,
+      customSize,
+      errorText,
+      helpText,
+      helpOnFocus,
+      inlineIndicator,
       'aria-label': ariaLabel,
       isOpen, // deprecated
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      visible: propVisible,
+      defaultValue,
+      defaultVisible,
+      onChange,
+      onVisibilityChange,
+
+      // deprecated
+      initiallyOpen,
+      adjustMinWidth,
+      nextIcon,
+      previousIcon,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.value;
-    delete props.onChange;
-    delete props.visible;
-    delete props.onVisibilityToggle;
-    delete props.defaultValue;
-    delete props.defaultVisible;
-
-    // Delete deprecated
-    delete props.initiallyOpen;
-    delete props.adjustMinWidth;
-    delete props.nextIcon;
-    delete props.previousIcon;
 
     const visible = typeof isOpen !== 'undefined'
       ? isOpen
@@ -678,7 +818,7 @@ export default class DatePickerContainer extends PureComponent {
 
     let content;
     if (inline) {
-      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
+      content = <Collapse collapsed={!visible} animate={animateInline}>{picker}</Collapse>;
     } else {
       content = (
         <Dialog
@@ -689,6 +829,8 @@ export default class DatePickerContainer extends PureComponent {
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
+          renderNode={renderNode}
+          lastChild={lastChild}
           focusOnMount={false}
         >
           {picker}
@@ -700,18 +842,34 @@ export default class DatePickerContainer extends PureComponent {
       <div style={style} className={cn('md-picker-container', className)} ref={this._setContainer}>
         <TextField
           id={id}
-          leftIcon={icon}
+          style={textFieldStyle}
+          className={cn({ 'md-pointer--hover': !disabled }, textFieldClassName)}
+          inputStyle={inputStyle}
+          inputClassName={cn({ 'md-pointer--hover': !disabled }, inputClassName)}
+          active={active || visible}
+          error={error}
+          floating={floating || visible}
+          required={required}
           disabled={disabled}
-          className={cn({ 'md-pointer--hover': !disabled })}
-          inputClassName={cn({ 'md-pointer--hover': !disabled })}
-          onClick={this._toggleOpen}
-          onKeyDown={this._handleKeyDown}
-          label={label}
-          placeholder={placeholder}
-          value={this._getFormattedValue(this.props, this.state)}
-          readOnly
+          leftIcon={icon}
+          leftIconStateful={leftIconStateful}
+          rightIcon={rightIcon}
+          rightIconStateful={rightIconStateful}
+          inlineIndicator={inlineIndicator}
+          block={block}
+          paddedBlock={paddedBlock}
           fullWidth={fullWidth}
           lineDirection={lineDirection}
+          customSize={customSize}
+          helpText={helpText}
+          helpOnFocus={helpOnFocus}
+          errorText={errorText}
+          label={label}
+          placeholder={placeholder}
+          onClick={this._toggleOpen}
+          onKeyDown={this._handleKeyDown}
+          value={this._getFormattedValue(this.props, this.state)}
+          readOnly
         />
         {content}
       </div>

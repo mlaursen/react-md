@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import getField from '../utils/getField';
 import TICK from '../constants/CSSTransitionGroupTick';
 import isInvalidAnimate from './isInvalidAnimate';
 import Portal from '../Helpers/Portal';
@@ -137,7 +138,18 @@ export default class SnackbarContainer extends PureComponent {
 
       return null;
     },
+
+    /**
+     * An optional DOM node to render the Snackbar in. If this is omitted, it will render as the first
+     * child in the `body`.
+     */
     renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the snackbar should render as the last child in the `renderNode` or `body` instead of
+     * as the first.
+     */
+    lastChild: PropTypes.bool,
     dismiss: deprecated(PropTypes.func, 'Use `onDismiss` instead'),
   };
 
@@ -148,6 +160,10 @@ export default class SnackbarContainer extends PureComponent {
     transitionName: 'md-snackbar',
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
+  };
+
+  static contextTypes = {
+    renderNode: PropTypes.object,
   };
 
   constructor(props) {
@@ -291,10 +307,12 @@ export default class SnackbarContainer extends PureComponent {
       transitionLeaveTimeout,
       dismiss,
       onDismiss,
-      renderNode,
+      lastChild,
+      renderNode: propRenderNode, // eslint-disable-line no-unused-vars
+      toasts, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.toasts;
+    const renderNode = getField(this.props, this.context, 'renderNode');
 
     let snackbar;
     if (toast) {
@@ -311,7 +329,7 @@ export default class SnackbarContainer extends PureComponent {
     }
 
     return (
-      <Portal visible={visible} renderNode={renderNode}>
+      <Portal visible={visible} renderNode={renderNode} lastChild={lastChild}>
         <CSSTransitionGroup
           ref={this._setContainer}
           key="container"

@@ -2,6 +2,12 @@
   "presets": ["es2015"],
   "plugins": [
     "syntax-async-functions",
-    "transform-regenerator"
+    "transform-regenerator",
+    ["module-resolver", {
+      "alias": {
+        "constants": "../docs/src/shared/constants",
+        "utils": "../docs/src/shared/utils"
+      }
+    }]
   ]
 }

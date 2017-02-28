@@ -601,7 +601,6 @@ export default class Slider extends PureComponent {
     }
 
     const state = {
-      value,
       active: true,
       distance,
       manualIncrement: false,
@@ -614,8 +613,8 @@ export default class Slider extends PureComponent {
       state.maskInked = false;
     }
 
-    if (typeof this.props.value !== 'undefined') {
-      delete state.value;
+    if (typeof this.props.value === 'undefined') {
+      state.value = value;
     }
 
     this.setState(state);
@@ -900,15 +899,17 @@ export default class Slider extends PureComponent {
       discreteTicks,
       tickWidth,
       valuePrecision,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      onChange,
+      onDragChange,
+      discreteInkTransitionTime,
+
+      // deprecated
+      stepPrecision,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.value;
-    delete props.onChange;
-    delete props.onDragChange;
-    delete props.discreteInkTransitionTime;
-
-    // delete deprecated
-    delete props.stepPrecision;
 
     const value = getField(this.props, this.state);
     let rightChildren = rightIcon;

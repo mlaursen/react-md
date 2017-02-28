@@ -1,8 +1,17 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
+
+import getField from '../utils/getField';
 import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
 import IconSeparator from '../Helpers/IconSeparator';
+
+const CELL_SCOPE = {
+  header: {
+    scope: 'col',
+  },
+  noop: {},
+};
 
 /**
  * A column in a table. This is either the `th` or `td` component. This column
@@ -94,17 +103,34 @@ class TableColumn extends PureComponent {
     tooltip: PropTypes.node,
 
     /**
+     * Boolean if the `TableColumn` should gain the `plain` styles. This means that the text
+     * in the column can wrap and there is no height limit enforced with some additional padding.
+     */
+    plain: PropTypes.bool,
+
+    /**
      * Boolean if the TableColumn is coming from the EditDialogColumn or SelectFieldColumn
      * components. When this is false, it will update the column to have `position: relative`
      * so that tooltips can be displayed.
      */
     __fixedColumn: PropTypes.bool,
+
+    /**
+     * An optional scope to apply to the table column. If omitted, the scope will be set to
+     * `'col'` if inside of the `TableHeader` component. This is really only needed for
+     * header columns.
+     */
+    scope: PropTypes.oneOf(['row', 'col']),
   };
 
   static defaultProps = {
     header: false,
     sortIconClassName: 'material-icons',
     sortIconChildren: 'arrow_upward',
+  };
+
+  static contextTypes = {
+    plain: PropTypes.bool,
   };
 
   render() {
@@ -120,12 +146,20 @@ class TableColumn extends PureComponent {
       tooltip,
       selectColumnHeader,
       __fixedColumn,
+      plain: propPlain, // eslint-disable-line no-unused-vars
+      scope: propScope, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
+
     const sortable = typeof sorted === 'boolean';
+    const plain = getField(this.props, this.context, 'plain');
+    const Component = header ? 'th' : 'td';
+    const scope = getField(this.props, CELL_SCOPE[header ? 'header' : 'noop'], 'scope');
 
     let displayedChildren = children;
+    let ariaSort;
     if (sortable) {
+      ariaSort = sorted ? 'ascending' : 'descending';
       displayedChildren = (
         <IconSeparator label={children} iconBefore>
           <Collapser flipped={!sorted} iconClassName={sortIconClassName}>
@@ -135,14 +169,15 @@ class TableColumn extends PureComponent {
       );
     }
 
-    const Component = header ? 'th' : 'td';
-
     return (
       <Component
+        aria-sort={ariaSort}
         {...props}
+        scope={scope}
         className={cn('md-table-column', {
           'md-table-column--header': header,
-          'md-table-column--data': !header,
+          'md-table-column--data': !header && !plain,
+          'md-table-column--plain': !header && plain,
           'md-table-column--adjusted': adjusted,
           'md-table-column--sortable md-pointer--hover': sortable,
           'md-table-column--relative': !__fixedColumn && tooltip,

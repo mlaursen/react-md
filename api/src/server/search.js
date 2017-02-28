@@ -2,10 +2,12 @@ import Fuse from 'fuse.js';
 import routes from 'constants/routes';
 import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
-import buildSassDocList from '../utils/buildSassDocList';
 import buildPropTypesList from '../utils/buildPropTypesList';
 
 import { host, port, path } from '../../serverConfig.json';
+import { buildSassDocList } from '../utils/buildSassDocList';
+
+const DEV = process.env.NODE_ENV === 'development';
 
 let DB;
 
@@ -65,7 +67,7 @@ export async function buildLocalDB() {
     keys: [{ name: 'name', weight: 0.85 }, { name: 'type', weight: 0.15 }],
   });
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     /* eslint-disable global-require */
     const fs = require('fs');
     const nodePath = require('path');
@@ -142,7 +144,7 @@ export default function search(req, res) {
     return;
   }
 
-  const url = `https://${host}${__DEV__ ? `:${port}` : ''}${path || ''}/search?q=${q}`;
+  const url = `https://${host}${DEV ? `:${port}` : ''}${path || ''}/search?q=${q}`;
   let next = null;
   let previous = null;
   if (total > start + limit) {

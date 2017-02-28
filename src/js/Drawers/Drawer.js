@@ -1,8 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../constants/media';
+import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
 import mapToListParts from '../utils/mapToListParts';
 import controlled from '../utils/PropTypes/controlled';
@@ -190,9 +192,21 @@ export default class Drawer extends PureComponent {
 
     /**
      * An optional DOM Node to render the drawer into. The default is to render as
-     * the last child in the `body`.
+     * the first child in the `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
      */
     renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the drawer should be rendered as the last child instead of the first child
+     * in the `renderNode` or `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    lastChild: PropTypes.bool,
 
     /**
      * Boolean if the drawer is visible by default. If this is omitted, the drawer will be visible
@@ -246,9 +260,14 @@ export default class Drawer extends PureComponent {
     clickableDesktopOverlay: PropTypes.bool,
 
     /**
-     * Boolean if the navigation drawer should automatically close when a nav item has been clicked.
+     * Boolean if the `autoclose` feature should wait for the ink transition to finish before automatically
+     * closing the drawer. This will add a `300ms` delay. If this is `false`, there will only be a `17ms` delay.
+     *
+     * > The delay is required so that any event listeners will still be correctly invoked when an item is clicked.
      */
-    closeOnNavItemClick: PropTypes.bool,
+    autocloseAfterInk: PropTypes.bool,
+
+    closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
   };
 
   static defaultProps = {
@@ -263,7 +282,6 @@ export default class Drawer extends PureComponent {
     transitionDuration: 300,
     autoclose: true,
     clickableDesktopOverlay: true,
-    closeOnNavItemClick: true,
   };
 
   /**
@@ -314,6 +332,10 @@ export default class Drawer extends PureComponent {
 
     return window.matchMedia(media).matches;
   }
+
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
 
   constructor(props) {
     super(props);
@@ -411,7 +433,7 @@ export default class Drawer extends PureComponent {
       onVisibilityToggle,
     } = props;
 
-    const state = Drawer.getCurrentMedia(props);
+    let state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
 
     if (onMediaTypeChange && (diffType ||
@@ -421,7 +443,8 @@ export default class Drawer extends PureComponent {
     }
 
     if (typeof props.type !== 'undefined') {
-      delete state.type;
+      const { type, ...realState } = state; // eslint-disable-line no-unused-vars
+      state = realState;
     }
 
     const type = getField(props, state, 'type');
@@ -451,7 +474,7 @@ export default class Drawer extends PureComponent {
           drawerActive: true,
           animating: true,
         });
-      }, 17);
+      }, TICK);
     } else {
       this._timeout = setTimeout(() => {
         this._timeout = null;
@@ -467,7 +490,9 @@ export default class Drawer extends PureComponent {
   }
 
   _handleNavClick(e) {
-    if (!this.props.closeOnNavItemClick || !isTemporary(getField(this.props, this.state, 'type'))) {
+    const { closeOnNavItemClick, autoclose, autocloseAfterInk } = this.props;
+    const enabled = typeof closeOnNavItemClick !== 'undefined' ? closeOnNavItemClick : autoclose;
+    if (!enabled || !isTemporary(getField(this.props, this.state, 'type'))) {
       return;
     }
 
@@ -483,7 +508,7 @@ export default class Drawer extends PureComponent {
           this._closeTimeout = null;
 
           this._closeDrawer(e);
-        }, 450);
+        }, autocloseAfterInk ? 300 : TICK);
         return;
       }
 
@@ -514,28 +539,33 @@ export default class Drawer extends PureComponent {
       children,
       inline,
       position,
-      renderNode,
       overlay,
-      autoclose,
       clickableDesktopOverlay,
+      lastChild,
+      /* eslint-disable no-unused-vars */
+      type: propType,
+      visible: propVisible,
+      renderNode: propRenderNode,
+      defaultVisible,
+      defaultMedia,
+      mobileType,
+      mobileMinWidth,
+      tabletType,
+      tabletMinWidth,
+      desktopType,
+      desktopMinWidth,
+      transitionDuration,
+      onVisibilityToggle,
+      onMediaTypeChange,
+      autoclose,
+      autocloseAfterInk,
+      closeOnNavItemClick,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.visible;
-    delete props.defaultVisible;
-    delete props.type;
-    delete props.defaultMedia;
-    delete props.mobileType;
-    delete props.mobileMinWidth;
-    delete props.tabletType;
-    delete props.tabletMinWidth;
-    delete props.desktopType;
-    delete props.desktopMinWidth;
-    delete props.transitionDuration;
-    delete props.onVisibilityToggle;
-    delete props.onMediaTypeChange;
-    delete props.closeOnNavItemClick;
 
     const { desktop } = this.state;
+    const renderNode = getField(this.props, this.context, 'renderNode');
     const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);
@@ -563,7 +593,7 @@ export default class Drawer extends PureComponent {
             'md-toolbar-relative': mini && !visible,
             'md-background': floating,
           }, navClassName)}
-          onClick={autoclose ? this._handleNavClick : null}
+          onClick={this._handleNavClick}
         >
           {navItems.map(mapToListParts)}
         </List>
@@ -619,7 +649,7 @@ export default class Drawer extends PureComponent {
     }
 
     return (
-      <Portal visible={mini || animating || visible} renderNode={renderNode}>
+      <Portal visible={mini || animating || visible} renderNode={renderNode} lastChild={lastChild}>
         {drawer}
       </Portal>
     );

@@ -11,9 +11,11 @@ import randomAvatars from 'utils/RandomUtils/randomAvatars';
 const chat = <FontIcon key="chat">chat</FontIcon>;
 const avatars = randomAvatars(3);
 
+const className = 'md-cell md-cell--6 md-paper md-paper--1';
+
 const SimpleControlsExamples = () => (
-  <div className="md-grid">
-    <List className="md-cell md-paper md-paper--1">
+  <div className="md-grid list-group">
+    <List className={className}>
       <ListItemControl
         rightIcon={chat}
         primaryAction={
@@ -47,7 +49,7 @@ const SimpleControlsExamples = () => (
         }
       />
     </List>
-    <List className="md-cell md-paper md-paper--1">
+    <List className={className}>
       <ListItemControl
         leftAvatar={avatars[0]}
         secondaryAction={
@@ -84,7 +86,7 @@ const SimpleControlsExamples = () => (
         }
       />
     </List>
-    <List className="md-cell md-paper md-paper--1">
+    <List className={className}>
       <ListItemControl
         leftIcon={<FontIcon key="wifi">wifi</FontIcon>}
         secondaryAction={

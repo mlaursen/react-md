@@ -26,7 +26,7 @@ The UMD build is available either from `unpkg` or the `dist` folder.
 - `https://unpkg.com/react-md/dist/react-md.min.js` - Production version
 
 > When using a build from the CDN, it is recommended to specify the version of React-MD so that it does not break on future releases.
-`https://unpkg.com/react-md@1.0.0/dist/react-md.min.js`
+`https://unpkg.com/react-md@1.0.1/dist/react-md.min.js`
 
 If the `DatePicker` or the `TimePicker` components will be used, the [Intl polyfill](https://github.com/andyearnshaw/Intl.js/)
 or a custom implementation must be included for cross-browser support. This can be skipped if you do

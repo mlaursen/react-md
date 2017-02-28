@@ -1,12 +1,13 @@
 import { PropTypes } from 'react';
 import headerContextTypes from './headerContextTypes';
+import omit from '../utils/omit';
 
-const rowContextTypes = Object.assign({}, headerContextTypes, {
+const rowContextTypes = omit({
+  ...headerContextTypes,
   rowId: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string,
   ]),
-});
+}, ['baseId']);
 
-delete rowContextTypes.baseId;
 export default rowContextTypes;

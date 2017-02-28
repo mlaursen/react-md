@@ -45,11 +45,13 @@ export default class TablePagination extends PureComponent {
     /**
      * The current page for the pagination. This will make the comonent controlled, so the only way to get pagination
      * is making sure you are updating this prop after the `onPagination` callback is called.
+     *
+     * Pages start from 1 instead of 0.
      */
     page: PropTypes.number,
 
     /**
-     * The page number to start from. This should be a number starting from 1.
+     * The default page to start from for the pagination. Pages start from 1 instead of 0.
      */
     defaultPage: PropTypes.number.isRequired,
 
@@ -117,8 +119,11 @@ export default class TablePagination extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
+    const rpp = typeof props.rowsPerPage !== 'undefined' ? props.rowsPerPage : props.defaultRowsPerPage;
+    const p = typeof props.page !== 'undefined' ? props.page : props.defaultPage;
     this.state = {
-      start: Math.max(0, (props.defaultPage - 1)) * props.defaultRowsPerPage,
+      page: props.defaultPage,
+      start: (p - 1) * rpp,
       rowsPerPage: props.defaultRowsPerPage,
       controlsMarginLeft: 0,
     };
@@ -164,41 +169,41 @@ export default class TablePagination extends PureComponent {
   }
 
   _increment() {
-    const { rows, onPagination, page } = this.props;
+    const { rows, onPagination } = this.props;
     const { start } = this.state;
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
+    const page = getField(this.props, this.state, 'page');
 
     // Only correct multiple of rows per page
     const max = rows - (rows % rowsPerPage);
 
     const newStart = Math.min(start + rowsPerPage, max);
-    const nextPage = typeof page !== 'undefined' ? page + 1 : (newStart / rowsPerPage) + 1;
+    const nextPage = page + 1;
 
     onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart });
+    this.setState({ start: newStart, page: nextPage });
   }
 
   _decrement() {
-    const { page } = this.props;
     const { start } = this.state;
+    const page = getField(this.props, this.state, 'page');
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
     const newStart = Math.max(0, start - rowsPerPage);
-    const nextPage = typeof page !== 'undefined' ? page - 1 : (newStart / rowsPerPage) + 1;
+    const nextPage = page - 1;
 
     this.props.onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart });
+    this.setState({ start: newStart, page: nextPage });
   }
 
   _setRowsPerPage(rowsPerPage) {
-    const { start } = this.state;
-
-    const newStart = Math.max(0, start - (start % rowsPerPage));
-    this.props.onPagination(newStart, rowsPerPage, newStart / rowsPerPage + 1);
+    const page = getField(this.props, this.state, 'page');
+    const newStart = (page - 1) * rowsPerPage;
+    this.props.onPagination(newStart, rowsPerPage, page);
     this.setState({ start: newStart, rowsPerPage });
   }
 
   render() {
-    const { controlsMarginLeft } = this.state;
+    const { controlsMarginLeft, start } = this.state;
     const {
       className,
       rows,
@@ -208,19 +213,17 @@ export default class TablePagination extends PureComponent {
       incrementIconClassName,
       decrementIconChildren,
       decrementIconClassName,
-      page,
+      /* eslint-disable no-unused-vars */
+      onPagination,
+      rowsPerPage: propRowsPerPage,
+      page: propPage,
+      defaultPage,
+      defaultRowsPerPage,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.onPagination;
-    delete props.rowsPerPage;
-    delete props.defaultPage;
-    delete props.defaultRowsPerPage;
 
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
-    let { start } = this.state;
-    if (typeof page !== 'undefined') {
-      start = (page - 1) * rowsPerPage;
-    }
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (

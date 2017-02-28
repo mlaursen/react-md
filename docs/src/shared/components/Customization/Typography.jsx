@@ -6,10 +6,13 @@ const markdown = `
 # Material Design Typography
 
 The typography has been built off of the [typography specs](https://www.google.com/design/spec/style/typography.html).
-The base html tags will be modified by default unless you set the sass variable \`$md-typography-extended\`
-to \`false\`.
+The default font used in react-md is \`'Roboto'\`. This can be changed by overriding
+[$md-font-name](/customization/typography?tab=1#variable-md-font-name) and/or
+[$md-font-family](/customization/typography?tab=1#variable-md-font-family) before \`@include react-md-everything\`
+or \`@include react-md-typography\`.
 
-The tags will be implemented as:
+The base html tags will be modified by default unless you set the sass variable \`$md-typography-extended\`
+to \`false\`. The tags will be implemented as:
 - \`h1\` - \`.md-display-1\`
 - \`h2\` - \`.md-headline\`
 - \`h3\` - \`.md-title\`

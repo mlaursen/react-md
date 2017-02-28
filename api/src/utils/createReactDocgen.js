@@ -9,7 +9,7 @@ import { bugs } from '../../../package.json';
 const GITHUB_URL = bugs.url.replace('/issues', '');
 
 const readFile = Promise.promisify(fs.readFile);
-const CONTAINERS = ['Dialog', 'DatePicker', 'TimePicker', 'Snackbar'];
+const CONTAINERS = ['DatePicker', 'TimePicker', 'Snackbar'];
 
 /**
  * Creates an object containing a list of docgens for a grouping of components.
@@ -37,7 +37,7 @@ export default function createReactDocgen({ folder, fullPath, components }, cust
 
         // Remove private props
         props: Object.keys(props).filter(propName => !isPrivate(propName) && !props[propName].description.match(/@access private/))
-          .map(propName => transformProp(props[propName], propName, customPropTypes)),
+          .map(propName => transformProp(props[propName], propName, customPropTypes, file)),
       })).catch(err => {
         console.log('Unable to parse component: ', file);
         throw err;

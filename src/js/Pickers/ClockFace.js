@@ -35,6 +35,16 @@ export default class ClockFace extends PureComponent {
      * if the locale uses them.
      */
     timePeriod: PropTypes.string,
+
+    /**
+     * If true the hover mode of the Time Picker is activated.
+     * In hover mode no clicks are required to start selecting an hour
+     * and the timemode switches automatically when a time was chosen.
+     * When a minute is selected the chosen time is applied automatically.
+     */
+    hoverMode: PropTypes.bool,
+
+    onTimeChosen: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -44,6 +54,10 @@ export default class ClockFace extends PureComponent {
     this._center = {};
     this._setFace = this._setFace.bind(this);
     this._calcNewTime = this._calcNewTime.bind(this);
+    this._enableMouseMoving = this._enableMouseMoving.bind(this);
+    this._disableMouseMoving = this._disableMouseMoving.bind(this);
+    this._handleMouseEnter = this._handleMouseEnter.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
     this._handleMouseUp = this._handleMouseUp.bind(this);
     this._handleMouseDown = this._handleMouseDown.bind(this);
     this._handleMouseMove = this._handleMouseMove.bind(this);
@@ -72,14 +86,32 @@ export default class ClockFace extends PureComponent {
     }
   }
 
+  _handleMouseEnter() {
+    const { hoverMode } = this.props;
+
+    if (hoverMode) {
+      this._enableMouseMoving();
+    }
+  }
+
+  _handleMouseLeave() {
+    const { hoverMode } = this.props;
+
+    if (hoverMode) {
+      this._disableMouseMoving();
+    }
+  }
+
   _handleMouseDown(e) {
     if (!isValidClick(e)) {
       return;
     }
 
-    window.addEventListener('mousemove', this._handleMouseMove);
-    window.addEventListener('mouseup', this._handleMouseUp);
-    this.setState({ moving: true });
+    const { hoverMode } = this.props;
+
+    if (!hoverMode) {
+      this._enableMouseMoving();
+    }
   }
 
   _handleMouseMove(e) {
@@ -96,15 +128,20 @@ export default class ClockFace extends PureComponent {
       return;
     }
 
-    if (this._face && !this._face.contains(e.target)) {
-      captureNextEvent('click');
+    const { onTimeChosen, hoverMode } = this.props;
+
+    if (this._face) {
+      if (this._face.contains(e.target)) {
+        onTimeChosen();
+        this._calcNewTime(e);
+      } else {
+        captureNextEvent('click');
+      }
     }
 
-    window.removeEventListener('mousemove', this._handleMouseMove);
-    window.removeEventListener('mouseup', this._handleMouseUp);
-
-    this._calcNewTime(e);
-    this.setState({ moving: false });
+    if (!hoverMode) {
+      this._disableMouseMoving();
+    }
   }
 
   _handleTouchStart() {
@@ -143,8 +180,22 @@ export default class ClockFace extends PureComponent {
     onChange(calcTimeFromPoint({ x, y }, this._center, innerRadius, minutes, timePeriod));
   }
 
+  _enableMouseMoving() {
+    window.addEventListener('mousemove', this._handleMouseMove);
+    window.addEventListener('mouseup', this._handleMouseUp);
+
+    this.setState({ moving: true });
+  }
+
+  _disableMouseMoving() {
+    window.removeEventListener('mousemove', this._handleMouseMove);
+    window.removeEventListener('mouseup', this._handleMouseUp);
+
+    this.setState({ moving: false });
+  }
+
   render() {
-    const { time, minutes, timePeriod, onChange } = this.props;
+    const { time, minutes, timePeriod, onChange, hoverMode } = this.props;
     const { radius } = this.state;
     const size = !minutes && !timePeriod ? 24 : 12;
     const times = Array.apply(null, new Array(size)).map((_, i) => {
@@ -172,6 +223,8 @@ export default class ClockFace extends PureComponent {
         ref={this._setFace}
         className="md-clock-face md-block-centered md-pointer--hover"
         onMouseDown={this._handleMouseDown}
+        onMouseEnter={hoverMode ? this._handleMouseEnter : undefined}
+        onMouseLeave={hoverMode ? this._handleMouseLeave : undefined}
         onTouchStart={this._handleTouchStart}
       >
         {times}

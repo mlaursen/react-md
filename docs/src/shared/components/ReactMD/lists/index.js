@@ -5,6 +5,8 @@ import SimpleExamplesRaw from '!!raw!./SimpleExamples';
 import SimpleControlsExamples from './SimpleControlsExamples';
 import SimpleControlsExamplesRaw from '!!raw!./SimpleControlsExamples';
 
+import './_styles.scss';
+
 export default [{
   title: 'Simple Example',
   description: `

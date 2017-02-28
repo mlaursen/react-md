@@ -1,11 +1,16 @@
+let storage;
 export default function hasStorage() {
-  try {
-    const key = 'react-md';
-    localStorage.setItem(key, key);
-    localStorage.removeItem(key);
-    return true;
-  } catch (e) {
-    return false;
+  if (typeof storage === 'undefined') {
+    try {
+      const key = 'react-md';
+      localStorage.setItem(key, key);
+      localStorage.removeItem(key);
+      storage = true;
+    } catch (e) {
+      storage = false;
+    }
   }
+
+  return storage;
 }
 

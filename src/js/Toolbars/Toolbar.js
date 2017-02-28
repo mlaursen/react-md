@@ -152,30 +152,31 @@ export default class Toolbar extends PureComponent {
       titleStyle,
       titleClassName,
       prominentTitle,
-      primary, // deprecated
-      secondary, // deprecated
       themed,
       singleColor,
       actions,
       fixed,
-      actionLeft, // deprecated
-      actionsRight, // deprecated
       children,
       inset,
+      /* eslint-disable no-unused-vars */
+      nav: propNav,
+      title: propTitle,
+      titleMenu: propTitleMenu,
+      zDepth: propZDepth,
+      colored: propColored,
+      prominent: propProminent,
+
+      // deprecated
+      containerStyle,
+      containerClassName,
+      /* eslint-enble no-unused-vars */
+      // deprecated
+      actionLeft,
+      actionsRight,
+      primary,
+      secondary,
       ...props
     } = this.props;
-    delete props.nav;
-    delete props.title;
-    delete props.titleMenu;
-    delete props.zDepth;
-    delete props.colored;
-    delete props.prominent;
-
-    // delete deprecated;
-    delete props.containerStyle;
-    delete props.containerClassName;
-    delete props.actionLeft;
-    delete props.actionsRight;
 
     let {
       colored,

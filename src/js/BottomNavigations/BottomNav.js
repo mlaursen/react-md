@@ -28,6 +28,7 @@ export default class BottomNav extends PureComponent {
     onClick: PropTypes.func,
     onNavChange: PropTypes.func,
     role: PropTypes.string,
+    animate: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -61,12 +62,15 @@ export default class BottomNav extends PureComponent {
       iconClassName,
       iconChildren,
       colored,
+      animate,
+      /* eslint-disable no-unused-vars */
+      index,
+      label: propLabel,
+      onClick,
+      onNavChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.index;
-    delete props.label;
-    delete props.onClick;
-    delete props.onNavChange;
 
     let { label } = this.props;
     const labelClassName = cn('md-bottom-nav-label', { 'md-bottom-nav-label--shifting-inactive': !active && !fixed });
@@ -94,7 +98,7 @@ export default class BottomNav extends PureComponent {
         }, className)}
       >
         <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>
-        <Collapse collapsed={!fixed && !active}>
+        <Collapse collapsed={!fixed && !active} animate={animate}>
           {label}
         </Collapse>
       </AccessibleFakeInkedButton>

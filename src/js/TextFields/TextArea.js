@@ -127,11 +127,13 @@ export default class TextArea extends PureComponent {
       className,
       label,
       block,
+      /* eslint-disable no-unused-vars */
+      maxRows,
+      onChange,
+      onHeightChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.maxRows;
-    delete props.onChange;
-    delete props.onHeightChange;
 
     return (
       <div

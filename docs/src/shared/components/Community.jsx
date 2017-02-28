@@ -10,7 +10,7 @@ const markdown = `
 > There really isn't one atm.
 
 If you want to see the progress of \`react-md\` or reach out to the community with a question,
-you can chat with me on [gitter](https://gitter.im/mlaursen/react-md) or use the contact email.
+you can chat with me on [Slack](https://react-md.herokuapp.com/) or use the contact email.
 `;
 
 export default class Community extends PureComponent {

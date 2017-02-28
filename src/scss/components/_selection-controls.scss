@@ -2,6 +2,7 @@
 /// @group selection-controls
 ////
 
+@import 'buttons';
 @import 'text-fields';
 
 
@@ -30,28 +31,57 @@ $md-switch-thumb-size: $md-font-icon-size !default;
 /// The height for the switch
 /// @type Number
 /// @access private
-$md-switch-height: $md-height;
+$md-switch-height: $md-height !default;
 
 /// The radius for the switch's track
 /// @type Number
 /// @access private
-$md-switch-track-radius: $md-switch-track-height / 2;
+$md-switch-track-radius: $md-switch-track-height / 2 !default;
 
 /// The distance that the switch's thumb should be offset from the left or
 /// right of the switch's track.
 /// @type Number
 /// @access private
-$md-switch-thumb-offset: $md-switch-track-height / 4;
+$md-switch-thumb-offset: $md-switch-track-height / 4 !default;
 
-$md-switch-light-theme-thumb-off: $md-grey-50;
-$md-switch-light-theme-track-off: rgba($md-black-base, .38);
-$md-switch-light-theme-thumb-disabled: $md-grey-400;
-$md-switch-light-theme-track-disabled: rgba($md-black-base, .12);
+/// The switch's thumb's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-light-theme-thumb-off: $md-grey-50 !default;
 
-$md-switch-dark-theme-thumb-off: $md-grey-400;
-$md-switch-dark-theme-track-off: rgba($md-white-base, .30);
-$md-switch-dark-theme-thumb-disabled: $md-grey-800;
-$md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
+/// The switch's track's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-light-theme-track-off: rgba($md-black-base, .38) !default;
+
+/// The switch's thumb's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-light-theme-thumb-disabled: $md-grey-400 !default;
+
+/// The switch's track's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-light-theme-track-disabled: rgba($md-black-base, .12) !default;
+
+/// The switch's thumb's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-dark-theme-thumb-off: $md-grey-400 !default;
+
+/// The switch's track's background color when it has been toggled off in the light theme.
+/// @type Color
+$md-switch-dark-theme-track-off: rgba($md-white-base, .30) !default;
+
+/// The switch's thumb's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-dark-theme-thumb-disabled: $md-grey-800 !default;
+
+/// The switch's track's background color when it is disabled in the light theme.
+/// @type Color
+$md-switch-dark-theme-track-disabled: rgba($md-white-base, .1) !default;
+
+/// An optional fallback color to use for the switch's ball when the the `$md-seconary-color` is not
+/// a material design color.
+/// @type Color
+/// @see get-swatch
+/// @group selection-controls, themes
+$md-switch-ball-fallback-color: null !default;
 
 /// Includes the styles for the Selection Controls.
 ///
@@ -65,12 +95,15 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 ///     styles for the `.md-selection-controls-group` should be included.
 /// @param {Boolean} include-switches [$md-selection-controls-include-switches] - Boolean if the
 ///     styles for switches should be included.
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 @mixin react-md-selection-controls(
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
   $include-media: $md-media-included,
   $include-group: $md-selection-controls-include-group,
-  $include-switches: $md-selection-controls-include-switches
+  $include-switches: $md-selection-controls-include-switches,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
   .md-selection-control-container {
     align-items: center;
@@ -106,7 +139,7 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
   }
 
   @if $include-media {
-    @include react-md-selection-controls-media;
+    @include react-md-selection-controls-media($include-dense-icons);
   }
 }
 
@@ -121,8 +154,10 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 ///     the switches with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the switch should be styled for the
 ///     light theme.
-@mixin react-md-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
-  $swatch: get-swatch($secondary-color, if($light-theme, 500, 200));
+/// @param {Color} fallback-color [$md-switch-ball-fallback-color] - The fallback color to use for the
+///     switch's ball when the `$md-secondary-color` is not a material design color.
+@mixin react-md-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $fallback-color: $md-switch-ball-fallback-color) {
+  $swatch: get-swatch($secondary-color, if($light-theme, 500, 200), false, $fallback-color, md-switch-ball-fallback-color);
 
   .md-switch-container {
     height: $md-switch-height;
@@ -188,10 +223,12 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
 /// @param {Boolean} incude-switches [$md-selection-controls-include-switches] - Boolean if the switches
 ///     should be included.
+/// @param {Color} fallback-color [$md-switch-ball-fallback-color] - The fallback color to use for the
+///     switch's ball when the `$md-secondary-color` is not a material design color.
 /// @group selection-controls, themes
-@mixin react-md-theme-selection-controls($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-switches: $md-selection-controls-include-switches) {
+@mixin react-md-theme-selection-controls($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-switches: $md-selection-controls-include-switches, $fallback-color: $md-switch-ball-fallback-color) {
   @if $include-switches {
-    @include react-md-theme-selection-controls-switch($secondary-color, $light-theme);
+    @include react-md-theme-selection-controls-switch($secondary-color, $light-theme, $fallback-color);
   }
 }
 
@@ -207,10 +244,12 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the theme type to light.
+/// @param {Color} fallback-color [$md-switch-ball-fallback-color] - The fallback color to use for the
+///     switch's ball when the `$md-secondary-color` is not a material design color.
 /// @group selection-controls, themes
-@mixin react-md-theme-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme) {
-  @if $secondary-color != $md-secondary-color {
-    $swatch: get-swatch($secondary-color, if($light-theme, 500, 200));
+@mixin react-md-theme-selection-controls-switch($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $fallback-color: $md-switch-ball-fallback-color) {
+  @if $secondary-color != $md-secondary-color or $fallback-color != $md-switch-ball-fallback-color {
+    $swatch: get-swatch($secondary-color, if($light-theme, 500, 200), false, $fallback-color, md-switch-ball-fallback-color);
 
     .md-switch-track--on {
       background: rgba($swatch, .5);
@@ -249,21 +288,33 @@ $md-switch-dark-theme-track-disabled: rgba($md-white-base, .1);
 }
 
 /// Creates the styles for selection controls on desktop displays.
+///
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 /// @group selection-controls, media-queries
-@mixin react-md-selection-controls-desktop {
+@mixin react-md-selection-controls-desktop($include-dense-icons: $md-font-icon-include-dense) {
   .md-selection-control-label {
     font-size: $md-text-field-desktop-font-size;
+  }
+
+  @if $include-dense-icons {
+    .md-selection-control-container {
+      height: $md-btn-icon-dense-size;
+    }
   }
 }
 
 /// Creates the media queries for selection controls for moble and desktop.
+///
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 /// @group selection-controls, media-queries
-@mixin react-md-selection-controls-media {
+@mixin react-md-selection-controls-media($include-dense-icons: $md-font-icon-include-dense) {
   @media #{$md-mobile-media} {
     @include react-md-selection-controls-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-selection-controls-desktop;
+    @include react-md-selection-controls-desktop($include-dense-icons);
   }
 }

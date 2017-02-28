@@ -1,14 +1,17 @@
 /* eslint-env jest */
 jest.unmock('../SnackbarContainer');
+jest.unmock('../../Dialogs/Dialog');
 
 import React from 'react';
 import {
   renderIntoDocument,
+  findRenderedComponentWithType,
   scryRenderedComponentsWithType,
 } from 'react-addons-test-utils';
 
 import SnackbarContainer from '../SnackbarContainer';
 import Snackbar from '../Snackbar';
+import Dialog from '../../Dialogs/Dialog';
 
 const PROPS = { onDismiss: jest.fn(), toasts: [] };
 describe('SnackbarContainer', () => {
@@ -88,5 +91,11 @@ describe('SnackbarContainer', () => {
     expect(snackbars.length).toBe(1);
     expect(snackbars[0].props.style).toEqual(props.style);
     expect(snackbars[0].props.className).toContain(props.className);
+  });
+
+  it('should inherit the dialog\'s renderNode context', () => {
+    const dialog = renderIntoDocument(<Dialog id="test"><SnackbarContainer {...PROPS} /></Dialog>);
+    const snackbar = findRenderedComponentWithType(dialog, SnackbarContainer);
+    expect(snackbar.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 });

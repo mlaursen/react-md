@@ -67,7 +67,29 @@ export default class TimePickerContainer extends PureComponent {
     pickerClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the input tag.
+     */
+    inputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the input tag.
+     */
+    inputClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the text field's container.
+     */
+    textFieldStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the text field's container.
+     */
+    textFieldClassName: PropTypes.string,
+
+    /**
      * An optional icon to display with the time picker.
+     *
+     * @see {@link TextFields/TextField#leftIcon}
      */
     icon: PropTypes.node,
 
@@ -91,7 +113,7 @@ export default class TimePickerContainer extends PureComponent {
      * The value of the time picker. This will make the time picker
      * be a controlled component.
      */
-    value: PropTypes.instanceOf(Date),
+    value: controlled(PropTypes.instanceOf(Date), 'onChange', 'defaultValue'),
 
     /**
      * An optional function to call when the selected date is changed
@@ -206,12 +228,109 @@ export default class TimePickerContainer extends PureComponent {
      */
     closeOnEsc: PropTypes.bool,
 
+    /**
+     * If true the hover mode of the Time Picker is activated.
+     * In hover mode no clicks are required to start selecting an hour
+     * and the timemode switches automatically when a time was chosen.
+     * When a minute is selected the chosen time is applied automatically.
+     */
+    hoverMode: PropTypes.bool,
+
+    /**
+     * Boolean if the inline time picker's visibility should be animated.
+     */
+    animateInline: PropTypes.bool,
+
+    /**
+     * Boolean if the time is required.
+     *
+     * @see {@link TextFields/TextField#required}
+     */
+    required: PropTypes.bool,
+
+    /**
+     * @see {@link TextFields/TextField#block}
+     */
+    block: TextField.propTypes.block,
+
+    /**
+     * @see {@link TextFields/TextField#paddedBlock}
+     */
+    paddedBlock: TextField.propTypes.paddedBlock,
+
+    /**
+     * @see {@link TextFields/TextField#active}
+     */
+    active: TextField.propTypes.active,
+
+    /**
+     * @see {@link TextFields/TextField#error}
+     */
+    error: TextField.propTypes.error,
+
+    /**
+     * @see {@link TextFields/TextField#floating}
+     */
+    floating: TextField.propTypes.floating,
+
+    /**
+     * @see {@link TextFields/TextField#leftIconStateful}
+     */
+    leftIconStateful: TextField.propTypes.leftIconStateful,
+
+    /**
+     * @see {@link TextFields/TextField#rightIcon}
+     */
+    rightIcon: TextField.propTypes.rightIcon,
+
+    /**
+     * @see {@link TextFields/TextField#rightIconStateful}
+     */
+    rightIconStateful: TextField.propTypes.rightIconStateful,
+
+    /**
+     * @see {@link TextFields/TextField#customSize}
+     */
+    customSize: TextField.propTypes.customSize,
+
+    /**
+     * @see {@link TextFields/TextField#errorText}
+     */
+    errorText: TextField.propTypes.errorText,
+
+    /**
+     * @see {@link TextFields/TextField#helpText}
+     */
+    helpText: TextField.propTypes.helpText,
+
+    /**
+     * @see {@link TextFields/TextField#helpOnFocus}
+     */
+    helpOnFocus: TextField.propTypes.helpOnFocus,
+
+    /**
+     * @see {@link TextFields/TextField#inlineIndicator}
+     */
+    inlineIndicator: TextField.propTypes.helpOnFocus,
+
+    /**
+     * An optional DOM Node to render the dialog into. The default is to render as the first child
+     * in the `body`.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
+     * of the first.
+     */
+    lastChild: PropTypes.bool,
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
   };
 
   static defaultProps = {
+    animateInline: true,
     defaultTimeMode: 'hour',
     icon: <FontIcon>access_time</FontIcon>,
     DateTimeFormat: DateTimeFormat, // eslint-disable-line object-shorthand
@@ -224,6 +343,7 @@ export default class TimePickerContainer extends PureComponent {
     cancelPrimary: true,
     closeOnEsc: true,
     'aria-label': 'Select a time',
+    hoverMode: false,
   };
 
   constructor(props) {
@@ -335,6 +455,12 @@ export default class TimePickerContainer extends PureComponent {
     }
 
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      const { hoverMode } = this.props;
+
+      if (hoverMode) {
+        this._setTimeMode('hour');
+      }
+
       this.setState({ visible });
     }
   }
@@ -388,9 +514,9 @@ export default class TimePickerContainer extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
-    const state = { visible: false, tempTime: this.state.time };
-    if (typeof this.props.isOpen !== 'undefined' || typeof this.props.visible !== 'undefined') {
-      delete state.visible;
+    const state = { tempTime: this.state.time };
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      state.visible = false;
     }
 
     this.setState(state);
@@ -419,6 +545,14 @@ export default class TimePickerContainer extends PureComponent {
     } = this.state;
 
     const {
+      style,
+      className,
+      pickerStyle,
+      pickerClassName,
+      inputStyle,
+      inputClassName,
+      textFieldStyle,
+      textFieldClassName,
       id,
       disabled,
       label,
@@ -426,27 +560,42 @@ export default class TimePickerContainer extends PureComponent {
       icon,
       inline,
       displayMode,
-      style,
-      className,
-      pickerStyle,
-      pickerClassName,
       fullWidth,
       lineDirection,
       closeOnEsc,
+      hoverMode,
+      renderNode,
+      lastChild,
+      animateInline,
+      block,
+      paddedBlock,
+      active,
+      error,
+      floating,
+      required,
+      leftIconStateful,
+      rightIcon,
+      rightIconStateful,
+      customSize,
+      errorText,
+      helpText,
+      helpOnFocus,
+      inlineIndicator,
       'aria-label': ariaLabel,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      visible: propVisible,
+      defaultValue,
+      defaultVisible,
+      defaultTimeMode,
+      onVisibilityChange,
+
+      // deprecated
+      isOpen,
+      initialTimeMode,
+      initiallyOpen,
       ...props
     } = this.props;
-    delete props.value;
-    delete props.onVisibilityChange;
-    delete props.onChange;
-    delete props.defaultValue;
-    delete props.defaultVisible;
-    delete props.defaultTimeMode;
-
-    // Delete deprecated
-    delete props.isOpen;
-    delete props.initialTimeMode;
-    delete props.initiallyOpen;
 
     const visible = typeof this.props.isOpen !== 'undefined'
       ? this.props.isOpen
@@ -469,12 +618,13 @@ export default class TimePickerContainer extends PureComponent {
         onCancelClick={this._handleCancelClick}
         setTimeMode={this._setTimeMode}
         setTempTime={this._setTempTime}
+        hoverMode={hoverMode}
       />
     );
 
     let content;
     if (inline) {
-      content = <Collapse collapsed={!visible}>{picker}</Collapse>;
+      content = <Collapse collapsed={!visible} animate={animateInline}>{picker}</Collapse>;
     } else {
       content = (
         <Dialog
@@ -485,6 +635,8 @@ export default class TimePickerContainer extends PureComponent {
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
+          lastChild={lastChild}
+          renderNode={renderNode}
           focusOnMount={false}
         >
           {picker}
@@ -496,18 +648,34 @@ export default class TimePickerContainer extends PureComponent {
       <div style={style} className={cn('md-picker-container', className)} ref={this._setContainer}>
         <TextField
           id={id}
+          style={textFieldStyle}
+          className={cn({ 'md-pointer--hover': !disabled }, textFieldClassName)}
+          inputStyle={inputStyle}
+          inputClassName={cn({ 'md-pointer--hover': !disabled }, inputClassName)}
+          active={active || visible}
+          error={error}
+          floating={floating || visible}
+          required={required}
           disabled={disabled}
-          className={cn({ 'md-pointer--hover': !disabled })}
-          inputClassName={cn({ 'md-pointer--hover': !disabled })}
           leftIcon={icon}
-          onClick={this._toggleOpen}
-          onKeyDown={this._handleKeyDown}
-          label={label}
-          placeholder={placeholder}
-          value={this._getTextFieldValue(this.props, this.state)}
-          readOnly
+          leftIconStateful={leftIconStateful}
+          rightIcon={rightIcon}
+          rightIconStateful={rightIconStateful}
+          inlineIndicator={inlineIndicator}
+          block={block}
+          paddedBlock={paddedBlock}
           fullWidth={fullWidth}
           lineDirection={lineDirection}
+          customSize={customSize}
+          helpText={helpText}
+          helpOnFocus={helpOnFocus}
+          errorText={errorText}
+          label={label}
+          placeholder={placeholder}
+          onClick={this._toggleOpen}
+          onKeyDown={this._handleKeyDown}
+          value={this._getTextFieldValue(this.props, this.state)}
+          readOnly
         />
         {content}
       </div>

@@ -4,6 +4,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
+import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import FontIcon from '../FontIcons/FontIcon';
@@ -39,6 +40,11 @@ export default class SelectionControl extends PureComponent {
       PropTypes.string,
       PropTypes.number,
     ]))),
+
+    /**
+     * An optional label to apply to the checkbox when there is no visible label.
+     */
+    'aria-label': oneRequiredForA11y(PropTypes.string, 'label'),
 
     /**
      * An optional style to apply to the selection control's container.
@@ -177,6 +183,14 @@ export default class SelectionControl extends PureComponent {
      */
     uncheckedRadioIconClassName: PropTypes.string,
 
+    /**
+     * An optional tooltip to render with the control. This is only used if you inject the
+     * tooltip manually yourself.
+     *
+     * `const TooltippedSelectionControl = injectTooltip(SelectionControl);`
+     */
+    tooltip: PropTypes.node,
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -213,6 +227,10 @@ export default class SelectionControl extends PureComponent {
     this._handleChange = this._handleChange.bind(this);
     this._handleControlClick = this._handleControlClick.bind(this);
     this._getIcon = this._getIcon.bind(this);
+  }
+
+  get checked() {
+    return getField(this.props, this.state, 'checked');
   }
 
   _setInput(input) {
@@ -279,26 +297,30 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      'aria-label': ariaLabel,
+      /* eslint-disable no-unused-vars */
+      label: propLabel,
+      checked: propChildren,
+      onChange,
+      checkedIcon,
+      uncheckedIcon,
+      checkedRadioIconChildren,
+      checkedRadioIconClassName,
+      uncheckedRadioIconChildren,
+      uncheckedRadioIconClassName,
+      checkedCheckboxIconChildren,
+      checkedCheckboxIconClassName,
+      uncheckedCheckboxIconChildren,
+      uncheckedCheckboxIconClassName,
+      tooltip,
+      __superSecreteProp,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.label;
-    delete props.checked;
-    delete props.onChange;
-    delete props.checkedIcon;
-    delete props.uncheckedIcon;
-    delete props.__superSecreteProp;
-    delete props.checkedRadioIconChildren;
-    delete props.checkedRadioIconClassName;
-    delete props.uncheckedRadioIconChildren;
-    delete props.uncheckedRadioIconClassName;
-    delete props.checkedCheckboxIconChildren;
-    delete props.checkedCheckboxIconClassName;
-    delete props.uncheckedCheckboxIconChildren;
-    delete props.uncheckedCheckboxIconClassName;
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = (
+    const label = this.props.label && (
       <label
         key="label"
         htmlFor={id}
@@ -339,6 +361,7 @@ export default class SelectionControl extends PureComponent {
           role={type}
           aria-checked={checked}
         >
+          {tooltip}
           {this._getIcon()}
         </AccessibleFakeInkedButton>
       );
@@ -367,6 +390,7 @@ export default class SelectionControl extends PureComponent {
           name={name}
           value={value}
           aria-hidden
+          aria-label={ariaLabel}
         />
         {control}
         {!labelBefore && label}

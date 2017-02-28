@@ -98,7 +98,7 @@ export default class CircularProgress extends PureComponent {
     let circleStyle;
     let svgStyle = style;
     if (isDeterminate) {
-      const rotate = `rotate(${ROATE_DISTANCE / 100 * value}deg)`;
+      const rotate = `rotate3d(0, 0, 1, ${ROATE_DISTANCE / 100 * value}deg)`;
       circleStyle = {
         strokeDashoffset: determinateDashoffset - (determinateDashoffset / 100 * value),
       };

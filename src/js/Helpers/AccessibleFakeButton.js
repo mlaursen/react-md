@@ -193,13 +193,15 @@ export default class AccessibleFakeButton extends PureComponent {
       disabled,
       tabIndex,
       ink,
+      /* eslint-disable no-unused-vars */
+      onBlur,
+      onClick,
+      onKeyUp,
+      onKeyDown,
+      onTabFocus,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.onBlur;
-    delete props.onClick;
-    delete props.onKeyUp;
-    delete props.onKeyDown;
-    delete props.onTabFocus;
 
     let childElements = children;
     if (ink) {

@@ -15,12 +15,13 @@ export default class PropTypeTable extends PureComponent {
     className: PropTypes.string,
     children: PropTypes.node,
     props: PropTypes.arrayOf(propsShape).isRequired,
+    baseId: PropTypes.string.isRequired,
   };
 
   render() {
-    const { sortProps, ascending, props } = this.props;
+    const { sortProps, ascending, props, baseId } = this.props;
 
-    const rows = props.map(prop => <PropTypeRow key={prop.propName} prop={prop} />);
+    const rows = props.map(prop => <PropTypeRow key={prop.propName} prop={prop} baseId={baseId} />);
     return (
       <DataTable plain>
         <TableHeader>

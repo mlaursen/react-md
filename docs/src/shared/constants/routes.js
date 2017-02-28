@@ -42,6 +42,7 @@ export default [{
   nestedItems: [
     'autocompletes',
     'avatars',
+    'badges',
     'bottom-navigations',
     'buttons',
     'cards',

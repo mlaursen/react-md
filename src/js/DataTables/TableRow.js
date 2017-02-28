@@ -28,11 +28,15 @@ export default class TableRow extends Component {
     className: PropTypes.string,
 
     /**
-     * A list of `TableColumn` to display in the table.
+     * A single or list of `TableColumn` to display in the table.
      *
-     * > There should be at least 3 columns in a Data table (non plain)
+     * > The specs "require" at least 3 columns for a non-plain data table, but that isn't
+     * strictly enforced here.
      */
-    children: PropTypes.arrayOf(PropTypes.element).isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]).isRequired,
 
     /**
      * An optional onClick function to call when a row is clicked.
@@ -69,11 +73,6 @@ export default class TableRow extends Component {
      * injected by the `TableHeader` or `TableBody` component.
      */
     selected: PropTypes.bool,
-
-    /**
-     * The row's index in the table. This is injected via the `TableBody` component.
-     */
-    index: PropTypes.number,
   };
 
   static defaultProps = {
@@ -87,6 +86,7 @@ export default class TableRow extends Component {
     super(props, context);
 
     this.state = {
+      rowIndex: null,
       biggest: null,
       hover: false,
       selects: [],
@@ -95,13 +95,14 @@ export default class TableRow extends Component {
     this._handleMouseOver = this._handleMouseOver.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
     this._setLongestColumn = this._setLongestColumn.bind(this);
+    this._handleCheckboxClick = this._handleCheckboxClick.bind(this);
   }
 
   getChildContext() {
     const { baseId, ...context } = this.context;
     return {
       ...context,
-      rowId: context.header ? `${baseId}CheckboxToggleAll` : `${baseId}${this.props.index}`,
+      rowId: context.header ? `${baseId}-toggle-all` : `${baseId}-${this.state.rowIndex}`,
     };
   }
 
@@ -151,8 +152,23 @@ export default class TableRow extends Component {
     this.setState({ hover: false });
   }
 
+  _handleCheckboxClick(checked, e) {
+    const { rowIndex } = this.state;
+    if (this.props.onCheckboxClick) {
+      this.props.onCheckboxClick(rowIndex, checked, e);
+    }
+
+    this.context.toggleSelectedRow(rowIndex, this.context.header, e);
+  }
+
   _setLongestColumn(row) {
-    if (!row || !this.props.autoAdjust) {
+    if (!row) {
+      return;
+    }
+
+    const { rowIndex } = row;
+    if (!this.props.autoAdjust) {
+      this.setState({ rowIndex });
       return;
     }
 
@@ -176,7 +192,7 @@ export default class TableRow extends Component {
       return;
     }
 
-    this.setState({ biggest, selects });
+    this.setState({ biggest, selects, rowIndex });
   }
 
   render() {
@@ -185,19 +201,25 @@ export default class TableRow extends Component {
       className,
       children,
       selected,
-      onCheckboxClick,
+      onCheckboxClick, // eslint-disable-line no-unused-vars
+      autoAdjust, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.index;
-    delete props.autoAdjust;
 
     let checkbox;
-    if (!this.context.plain) {
-      checkbox = <TableCheckbox key="checkbox" checked={selected} onChange={onCheckboxClick} />;
+    if (!this.context.plain && this.context.selectableRows) {
+      checkbox = (
+        <TableCheckbox
+          key="checkbox"
+          checked={selected}
+          onChange={this._handleCheckboxClick}
+          index={this.state.rowIndex}
+        />
+      );
     }
 
     const length = children.length;
-    const columns = Children.map(children, (col, i) => cloneElement(col, {
+    const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
       header: getField(col.props, this.context, 'header'),
       className: cn({
         'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,

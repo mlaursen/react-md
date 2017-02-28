@@ -11,6 +11,7 @@ import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
 import search, { buildLocalDB as buildSearchDB } from './search';
 import { port, path } from '../../serverConfig.json';
 
+const DEV = process.env.NODE_ENV === 'development';
 const app = express();
 const CACHE_DURATION = '10 days';
 
@@ -19,9 +20,9 @@ app.use(helmet());
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(logger(__DEV__ ? 'dev' : 'combined'));
+app.use(logger(DEV ? 'dev' : 'combined'));
 
-if (__DEV__ && path) {
+if (path) {
   const router = express.Router();
   router.use('/docgens', cache(CACHE_DURATION), docgen);
   router.use('/sassdocs', cache(CACHE_DURATION), sassdoc);

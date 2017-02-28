@@ -23,13 +23,30 @@ $md-menu-z-index: 10 !default;
 /// type Number
 $md-menu-transition-time: .2s !default;
 
-$md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2;
-$md-menu-desktop-max-height: $md-height * 5 + $md-height / 3 + $md-list-desktop-padding * 2;
+/// The max height for menus on mobile devices.
+/// @type Number
+$md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2 !default;
 
-$md-menu-cascading-font-size: 15px;
-$md-menu-cascading-padding: 24px;
-$md-menu-cascading-height: 32px;
-$md-menu-cascading-list-padding: 16px;
+/// The max height for menus on deskop screens.
+/// @type Number
+$md-menu-desktop-max-height: $md-height * 5 + $md-height / 3 + $md-list-desktop-padding * 2 !default;
+
+/// The font size to use for cascading menus.
+/// @type Number
+$md-menu-cascading-font-size: 15px !default;
+
+/// The padding to use for cascading menus.
+/// @type Number
+$md-menu-cascading-padding: 24px !default;
+
+/// The Height to use for each list item in a cascading menu.
+/// @type Number
+$md-menu-cascading-height: 32px !default;
+
+/// The amount of padding to add to the top and bottom of a list in
+/// a cascading menu.
+/// @type Number
+$md-menu-cascading-list-padding: 16px !default;
 
 /// Includes the styles for menus.
 ///

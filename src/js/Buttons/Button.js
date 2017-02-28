@@ -44,7 +44,7 @@ class Button extends PureComponent {
      * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
      * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
      */
-    label: invalidIf(PropTypes.string, 'icon', 'floating'),
+    label: invalidIf(PropTypes.node, 'icon', 'floating'),
 
     /**
      * A boolean if the icon should appear before or after the text for a `FlatButton` or
@@ -57,6 +57,9 @@ class Button extends PureComponent {
      * be used with the `iconClassName` prop. If the `iconClassName` and the `children` prop
      * are omitted, no icon will be added to the `RaisedButton` or `FlatButton`. An error
      * will be displayed for the `IconButton` or `FloatingButton`.
+     *
+     * When `noIcon` prop is set to `true`, the passed children are not used to display a `FontIcon`
+     * but rendered as is.
      */
     children: (props, propName, componentName, ...args) => {
       const componentNameSafe = componentName || '<<anonymous>>';
@@ -272,12 +275,24 @@ class Button extends PureComponent {
      * size.
      */
     forceIconSize: FontIcon.propTypes.forceSize,
+
+    /**
+     * Boolean if the `forceIconSize` prop should also force the `font-size` instead of only `width` and `height`.
+     */
+    forceIconFontSize: PropTypes.bool,
+
+    /**
+     * When set to `true` the `Button`'s children will not be wrapped in a `FontIcon` component.
+     * As a result the children can be rendered as is.
+     */
+    noIcon: PropTypes.bool,
   };
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
     fixedPosition: 'br',
+    noIcon: false,
   };
 
   constructor(props) {
@@ -479,14 +494,15 @@ class Button extends PureComponent {
       tooltip,
       icon,
       forceIconSize,
+      forceIconFontSize,
+      noIcon,
+      type,
+      children: propChildren, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.children;
-    delete props.tooltipLabel;
-    delete props.tooltipPosition;
 
-    if (href) {
-      delete props.type;
+    if (!href) {
+      props.type = type;
     }
 
     let { children } = this.props;
@@ -494,8 +510,12 @@ class Button extends PureComponent {
     const mdBtnType = this._getType(this.props);
 
     const Component = component || (href ? 'a' : 'button');
-    if (children || iconClassName) {
-      children = <FontIcon iconClassName={iconClassName} forceSize={forceIconSize}>{children}</FontIcon>;
+    if (!noIcon && (children || iconClassName)) {
+      children = (
+        <FontIcon iconClassName={iconClassName} forceSize={forceIconSize} forceFontSize={forceIconFontSize}>
+          {children}
+        </FontIcon>
+      );
     }
 
     if (children && label) {

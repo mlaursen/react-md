@@ -20,9 +20,8 @@ import Field from './Field';
 const VALID_LIST_ITEM_PROPS = Object.keys(ListItem.propTypes);
 
 const MOBILE_LIST_PADDING = 8;
-const SelectFieldPositions = Object.assign({}, Positions);
-delete SelectFieldPositions.BOTTOM_RIGHT;
-delete SelectFieldPositions.BOTTOM_LEFt;
+const { TOP_RIGHT, TOP_LEFT, BELOW } = Positions;
+const SelectFieldPositions = { TOP_RIGHT, TOP_LEFT, BELOW };
 
 export default class SelectField extends PureComponent {
   static Positions = SelectFieldPositions;
@@ -365,7 +364,7 @@ export default class SelectField extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value) {
+    if (this.props.value !== nextProps.value || this.props.menuItems !== nextProps.menuItems) {
       this.setState({ activeLabel: this._getActiveLabel(nextProps, nextProps.value) });
     }
   }
@@ -383,6 +382,10 @@ export default class SelectField extends PureComponent {
     if (this._matchingTimeout) {
       clearTimeout(this._matchingTimeout);
     }
+  }
+
+  get value() {
+    return getField(this.props, this.state, 'value');
   }
 
   _attemptItemFocus(index) {
@@ -644,7 +647,7 @@ export default class SelectField extends PureComponent {
         break;
       case 'object':
         primaryText = item[itemLabel];
-        itemValue = item[itemValueKey] || item[itemLabel];
+        itemValue = typeof item[itemValueKey] !== 'undefined' ? item[itemValueKey] : item[itemLabel];
         props = Object.keys(item).reduce((validProps, key) => {
           if (key !== itemLabel && key !== itemValueKey && key !== 'primaryText'
             && VALID_LIST_ITEM_PROPS.indexOf(key) !== -1
@@ -848,27 +851,31 @@ export default class SelectField extends PureComponent {
       helpOnFocus,
       required,
       fullWidth,
+      /* eslint-disable no-unused-vars */
+      error: propError,
+      value: propValue,
+      menuId: propMenuId,
+      listId: propListId,
+      isOpen: propIsOpen,
+      placeholder: propPlaceholder,
+      label: propLabel,
+      itemLabel,
+      itemValue,
+      defaultOpen,
+      defaultValue,
+      keyboardMatchingTimeout,
+      onMenuToggle,
+
+      // deprecated
+      menuStyle,
+      menuClassName,
+      initiallyOpen,
+      floatingLabel,
+      noAutoAdjust,
+      adjustMinWidth,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.error;
-    delete props.itemLabel;
-    delete props.itemValue;
-    delete props.menuId;
-    delete props.listId;
-    delete props.defaultValue;
-    delete props.value;
-    delete props.isOpen;
-    delete props.defaultOpen;
-    delete props.keyboardMatchingTimeout;
-    delete props.onMenuToggle;
-
-    // delete deprecated
-    delete props.menuStyle;
-    delete props.menuClassName;
-    delete props.initiallyOpen;
-    delete props.floatingLabel;
-    delete props.noAutoAdjust;
-    delete props.adjustMinWidth;
 
     let { menuId, listId, placeholder, label, error } = this.props;
     error = error || this.state.error;

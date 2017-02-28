@@ -126,6 +126,12 @@ export default class BottomNavigation extends PureComponent {
     renderNode: PropTypes.object,
 
     /**
+     * Boolean if the bottom navigation should render as the last child in the `renderNode` or `body`
+     * instead of as the first.
+     */
+    lastChild: PropTypes.bool,
+
+    /**
      * The transition duration for the dynamic bottom navigation to appear or disappear. This should
      * match the `$md-bottom-navigation-transition-time` variable.
      */
@@ -141,6 +147,11 @@ export default class BottomNavigation extends PureComponent {
      */
     onVisibilityChange: PropTypes.func,
 
+    /**
+     * Boolean if the label on a shifting navigation should animate in and out.
+     */
+    animate: PropTypes.bool,
+
     onChange: deprecated(PropTypes.func, 'Use `onNavChange` instead'),
     initiallyVisible: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialActiveIndex: deprecated(PropTypes.number, 'Use `defaultActiveIndex` instead'),
@@ -153,11 +164,16 @@ export default class BottomNavigation extends PureComponent {
   };
 
   static defaultProps = {
+    animate: true,
     defaultActiveIndex: 0,
     component: 'footer',
     defaultVisible: true,
     transitionDuration: 300,
     dynamicThreshold: 20,
+  };
+
+  static contextTypes = {
+    renderNode: PropTypes.object,
   };
 
   constructor(props) {
@@ -291,26 +307,30 @@ export default class BottomNavigation extends PureComponent {
       actions,
       colored,
       dynamic,
-      renderNode,
+      lastChild,
+      animate,
+      /* eslint-disable no-unused-vars */
+      links: propLinks,
+      activeIndex: propActiveIndex,
+      renderNode: propRenderNode,
+      onNavChange,
+      onVisibilityChange,
+      defaultVisible,
+      defaultActiveIndex,
+      dynamicThreshold,
+      transitionDuration,
+
+      // deprecated
+      onChange,
+      initiallyVisible,
+      containerStyle,
+      containerClassName,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.links;
-    delete props.activeIndex;
-    delete props.onNavChange;
-    delete props.onVisibilityChange;
-    delete props.defaultVisible;
-    delete props.defaultActiveIndex;
-    delete props.dynamicThreshold;
-    delete props.transitionDuration;
-
-    // Delete deprecated
-    delete props.onChange;
-    delete props.initiallyVisible;
-    delete props.containerStyle;
-    delete props.containerClassName;
-    delete props.transitionName;
-    delete props.transitionEnterTimeout;
-    delete props.transitionLeaveTimeout;
 
     let { links } = this.props;
     if (actions) {
@@ -319,9 +339,10 @@ export default class BottomNavigation extends PureComponent {
 
     const fixed = links.length === 3;
     const activeIndex = getField(this.props, this.state, 'activeIndex');
+    const renderNode = getField(this.props, this.context, 'renderNode');
 
     return (
-      <Portal renderNode={renderNode} visible={portalVisible}>
+      <Portal renderNode={renderNode} visible={portalVisible} lastChild={lastChild}>
         <Paper
           {...props}
           className={cn('md-bottom-navigation', {
@@ -335,6 +356,7 @@ export default class BottomNavigation extends PureComponent {
           {links.map((action, index) => (
             <BottomNav
               {...action}
+              animate={animate}
               key={action.key || index}
               index={index}
               onNavChange={this._handleNavChange}

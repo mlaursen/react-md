@@ -58,9 +58,9 @@ export default class PhoneDemo extends PureComponent {
       demoId,
       demoLabel,
       buttonLabel,
+      description: propDescription, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.description;
 
     let { description } = this.props;
     if (description) {

@@ -76,7 +76,7 @@ export default class FindInPage extends PureComponent {
   render() {
     const { filteredNavItems } = this.state;
     const { visible, onVisibilityToggle } = this.props;
-    const closeButton = <Button icon onClick={onVisibilityToggle} waitForInkTransition>keyboard_arrow_left</Button>;
+    const closeButton = <Button icon onClick={onVisibilityToggle}>keyboard_arrow_left</Button>;
     const autocomplete = (
       <TextField
         id="sassdoc-finder"
@@ -95,7 +95,7 @@ export default class FindInPage extends PureComponent {
         clickableDesktopOverlay={false}
         header={<Toolbar actions={closeButton}>{autocomplete}</Toolbar>}
         navItems={filteredNavItems}
-        closeOnNavItemClick={false}
+        autoclose={false}
         navClassName="md-list--less-nested"
       />
     );

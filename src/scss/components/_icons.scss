@@ -6,22 +6,39 @@
 /// @type Boolean
 $md-font-icon-include-separators: true !default;
 
+/// Boolean if the dense spec for icons should be included. This will
+/// update the size for icons to be smaller on desktop displays.
+/// @type Boolean
+$md-font-icon-include-dense: true !default;
+
 /// The amount of padding to put between an icon and any text.
 /// @type Number
 $md-font-icon-separator-padding: $md-default-padding !default;
 
 /// The light theme's disabled color for icons.
 /// @type Color
-$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26);
+$md-font-icon-light-theme-disabled-color: rgba($md-black-base, .26) !default;
 
 /// The dark theme's disabled color for icons.
 /// @type Color
-$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
+$md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
 
 /// Includes the css for using `md-icon`.
-/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the
-///     application is using the light-theme or not.
-@mixin react-md-icons($light-theme: $md-light-theme, $include-separators: $md-font-icon-include-separators) {
+///
+/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the application is using the
+///     light-theme or not.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for icons
+///     should also be included. This also relies on the `include-dense` param.
+/// @param {Boolean} include-separators [$md-font-icon-include-separators] - Boolean if the styles
+///     for separating content and an icon should be included.
+/// @param {Boolean} include-dense [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///     should be included.
+@mixin react-md-icons(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-separators: $md-font-icon-include-separators,
+  $include-dense: $md-font-icon-include-dense
+) {
   $md-icon-color: if($light-theme, $md-light-theme-secondary-text-color, $md-dark-theme-secondary-text-color);
 
   .md-icon {
@@ -43,6 +60,32 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3);
 
   @if $include-separators {
     @include react-md-icon-separators;
+  }
+
+  @if $include-media {
+    @include react-md-icons-media($include-dense);
+  }
+}
+
+/// Updates the styles for an icon to use the dense font size. This should really only
+/// be used within a media query.
+@mixin react-md-icons-dense {
+  .md-icon {
+    font-size: $md-font-icon-dense-size;
+  }
+}
+
+/// Creates the media queries for icons. This really only is used for the dense
+/// spec of icons.
+///
+/// @param {Boolean} include-dense [$md-font-icon-include-dense] - Boolean if the dense
+///   specs for icons shoul be included.
+/// @group media-queries, icons
+@mixin react-md-icons-media($include-dense: $md-font-icon-include-dense) {
+  @if $include-dense {
+    @media #{$md-desktop-media} {
+      @include react-md-icons-dense;
+    }
   }
 }
 

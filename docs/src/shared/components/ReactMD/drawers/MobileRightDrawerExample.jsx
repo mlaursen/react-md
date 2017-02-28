@@ -97,7 +97,6 @@ export default class MobileRightDrawerExample extends PureComponent {
         onClick={() => {
           this._openSideDisplay(stats);
         }}
-        waitForInkTransition
       />
     ));
 
@@ -107,7 +106,7 @@ export default class MobileRightDrawerExample extends PureComponent {
         <Toolbar
           key="toolbar"
           colored
-          nav={<Button waitForInkTransition icon onClick={this._closeDrawer}>close</Button>}
+          nav={<Button icon onClick={this._closeDrawer}>close</Button>}
           actions={expandedActions}
           title={stats.filename}
           titleStyle={{ position: 'absolute' }}

@@ -182,7 +182,7 @@ export default class FocusContainer extends PureComponent {
   }
 
   _handleFocus(e) {
-    if (this._shifted && this._container && !this._container.contains(e.target)) {
+    if (e.target !== window && this._shifted && this._container && !this._container.contains(e.target)) {
       // Prevent the default focus action and focus the last focusable item
       e.stopPropagation();
       this._focusables[this._focusables.length - 1].focus();
@@ -209,14 +209,17 @@ export default class FocusContainer extends PureComponent {
   }
 
   render() {
-    const { component: Component, ...props } = this.props;
-    delete props.initialFocus;
-    delete props.focusOnMount;
-    delete props.containFocus;
-    delete props.additionalFocusKeys;
+    const {
+      component: Component,
+      /* eslint-disable no-unused-vars */
+      initialFocus,
+      focusOnMount,
+      containFocus,
+      additionalFocusKeys,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
 
-    return (
-      <Component {...props} ref={this._containFocus} />
-    );
+    return <Component {...props} ref={this._containFocus} />;
   }
 }

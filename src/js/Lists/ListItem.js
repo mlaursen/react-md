@@ -32,14 +32,14 @@ export default class ListItem extends PureComponent {
     /**
      * An optional style to apply to the `.md-list-tile`.
      *
-     * @see component
+     * @see {@link #component}
      */
     tileStyle: PropTypes.object,
 
     /**
      * An optional className to apply to the `.md-list-tile`.
      *
-     * @see component
+     * @see {@link #component}
      */
     tileClassName: PropTypes.string,
 
@@ -113,11 +113,27 @@ export default class ListItem extends PureComponent {
     threeLines: PropTypes.bool,
 
     /**
-     * An optional component to render the `.md-list-tile` as. This is mostly useful if you
+     * The component to render the `.md-list-tile` as. This is mostly useful if you
      * want to use the `ListItem` for navigation and working with the `react-router`'s `Link`
      * component.
+     *
+     * This prop is **not** the top-most element of the `ListItem` component. To change the
+     * top-most element, see the `itemComponent` prop.
+     *
+     * @see {@link #itemComponent}
      */
     component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
+
+    /**
+     * The component to render the top-most element of the `ListItem` component. This is the
+     * `.md-list-item` and defaults to the `<li>` element.
+     *
+     * @see {@link #component}
+     */
+    itemComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
@@ -129,8 +145,7 @@ export default class ListItem extends PureComponent {
      *
      * The nested items will be visible once the user clicks on the `ListItem`.
      *
-     * @see `defaultOpen`
-     * @see `isOpen`
+     * @see {@link #isOpen]
      */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
@@ -142,6 +157,8 @@ export default class ListItem extends PureComponent {
     /**
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
      * and require the `onClick` function to be defined.
+     *
+     * @see {@link #defaultOpen}
      */
     isOpen: controlled(PropTypes.bool, 'onClick', 'defaultOpen'),
 
@@ -202,12 +219,43 @@ export default class ListItem extends PureComponent {
      * prop is `true`.
      */
     activeClassName: PropTypes.string,
+
+    /**
+     * Boolean if the nested items should animate when they appear or disappear.
+     */
+    animateNestedItems: PropTypes.bool,
+
+    /**
+     * Defines the number of items in the list. This is only required when all items in the
+     * list are not present in the DOM.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize
+     */
+    'aria-setsize': PropTypes.number,
+
+    /**
+     * Defines the items position in the list. This is only required when all items in the list
+     * are not present in the DOM. The custom validation just requires this prop if the `aria-setsize`
+     * prop is defined as a helpful reminder.
+     *
+     * @see https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset
+     */
+    'aria-posinset': (props, propName, ...args) => {
+      let validator = PropTypes.number;
+      if (typeof props['aria-setsize'] !== 'undefined') {
+        validator = validator.isRequired;
+      }
+
+      return validator(props, propName, ...args);
+    },
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
   static defaultProps = {
+    animateNestedItems: true,
     activeClassName: 'md-text--theme-primary',
     component: 'div',
+    itemComponent: 'li',
     expanderIconChildren: 'keyboard_arrow_down',
   };
 
@@ -375,13 +423,19 @@ export default class ListItem extends PureComponent {
       nestedItems,
       active,
       activeClassName,
+      animateNestedItems,
       expanderIconChildren,
       expanderIconClassName,
+      itemComponent: ItemComponent,
+      'aria-setsize': ariaSize,
+      'aria-posinset': ariaPos,
+      /* eslint-disable no-unused-vars */
+      isOpen: propIsOpen,
+      defaultOpen,
+      initiallyOpen,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.isOpen;
-    delete props.defaultOpen;
-    delete props.initiallyOpen;
 
     const isOpen = getField(this.props, this.state, 'isOpen');
     const leftNode = (
@@ -406,7 +460,7 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = <Collapse collapsed={!isOpen}><List>{nestedItems}</List></Collapse>;
+      nestedList = <Collapse collapsed={!isOpen} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
 
       if (!rightIcon || !rightAvatar) {
         rightNode = (
@@ -426,11 +480,13 @@ export default class ListItem extends PureComponent {
     const avatard = !!leftAvatar || !!rightAvatar;
 
     return (
-      <li
+      <ItemComponent
         style={style}
         className={cn('md-list-item', {
           'md-list-item--nested-container': nestedItems,
         }, className)}
+        aria-setsize={ariaSize}
+        aria-posinset={ariaPos}
         ref={this._setContainer}
       >
         <AccessibleFakeInkedButton
@@ -476,7 +532,7 @@ export default class ListItem extends PureComponent {
           {children}
         </AccessibleFakeInkedButton>
         {nestedList}
-      </li>
+      </ItemComponent>
     );
   }
 }

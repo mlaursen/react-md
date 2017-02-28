@@ -69,9 +69,10 @@ export default class CardTitle extends Component {
       expander,
       isExpander,
       children,
+      avatar: propAvatar, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.avatar;
+
     let { avatar } = this.props;
     if (avatar) {
       const { className: avatarClassName } = Children.only(avatar).props;

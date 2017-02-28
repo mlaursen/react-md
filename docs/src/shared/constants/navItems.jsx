@@ -17,6 +17,7 @@ function mapToNavItems(route, parents = []) {
   if (typeof route === 'string') {
     return {
       component: IndexLink,
+      key: route,
       to: `${prefix}${route}`,
       className: 'md-text-capitalize',
       primaryText: toTitle(route).replace(' Helper', 's'),
@@ -36,11 +37,12 @@ function mapToNavItems(route, parents = []) {
   } = route;
 
   if (divider) {
-    return { divider, ...props };
+    return { divider, key: 'divider', ...props };
   } else if (subheader) {
     return {
       primaryText,
       subheader,
+      key: primaryText,
       ...props,
     };
   }
@@ -75,12 +77,17 @@ function mapToNavItems(route, parents = []) {
   }
 
   let to;
+  let key;
   if (typeof path !== 'undefined' && !nestedItems) {
     to = `${prefix}${path}`;
+    key = path;
+  } else {
+    key = primaryText;
   }
 
   return {
     ...props,
+    key,
     to,
     component: resolvedComponent,
     leftIcon: resolvedIcon,

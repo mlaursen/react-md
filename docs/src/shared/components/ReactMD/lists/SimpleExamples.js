@@ -12,7 +12,7 @@ const StarIcon = () => <FontIcon>star</FontIcon>;
 const avatars = randomAvatars(3);
 
 const SimpleExample = () => (
-  <div className="md-grid">
+  <div className="md-grid list-group">
     <List className="md-cell md-paper md-paper--1">
       <ListItem primaryText="Inbox" />
       <ListItem primaryText="Starred" />

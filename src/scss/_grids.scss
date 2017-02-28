@@ -65,12 +65,17 @@ $md-grid-desktop-gutter: $md-grid-phone-gutter !default;
 
 /// The possible margins and gutters that can be used in a grid.
 /// @type List
-$md-grid-available-margins-and-gutters: (8px 16px 24px 40px);
+$md-grid-available-margins-and-gutters: (8px 16px 24px 40px) !default;
 
-
+/// The number of columns to include in the entire grid system.
+/// @type Number
 $md-grid-default-columns: $md-grid-phone-columns !default;
+
+/// The max number of columns to include in the entire grid system.
+/// @type Number
 $md-grid-max-columns: $md-grid-desktop-columns !default;
 
+/// A simple utility placeholder for positioning a cell to the right.
 %md-cell--right {
   margin-left: auto;
 }

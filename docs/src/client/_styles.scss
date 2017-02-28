@@ -4,6 +4,7 @@
 $md-picker-include-forceful-classes: true;
 $md-primary-color: $md-light-blue-500;
 $md-secondary-color: $md-deep-orange-a-200;
+$md-badge-include-default: true;
 
 @include react-md-everything;
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
@@ -73,4 +74,10 @@ $md-secondary-color: $md-deep-orange-a-200;
 
 .powerlevel-over-9000 {
   z-index: 9001;
+}
+
+@media #{$md-desktop-media} {
+  .fa.md-icon {
+    font-size: $md-font-icon-dense-size;
+  }
 }

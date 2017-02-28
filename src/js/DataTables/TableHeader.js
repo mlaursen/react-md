@@ -50,25 +50,13 @@ export default class TableHeader extends Component {
 
   render() {
     const { className, children, ...props } = this.props;
-    const { toggleAllRows, allSelected } = this.context;
+    const { allSelected } = this.context;
     const header = React.Children.only(children);
     const selected = typeof header.props.selected === 'undefined'
       ? allSelected
       : header.props.selected;
 
-    const row = React.cloneElement(header, {
-      ...header.props,
-      selected,
-      onCheckboxClick(e) {
-        if (header.props.onCheckboxClick) {
-          header.props.onCheckboxClick(e);
-        }
-
-        if (typeof header.props.selected === 'undefined') {
-          toggleAllRows();
-        }
-      },
-    });
+    const row = React.cloneElement(header, { selected });
 
     return (
       <thead {...props} className={cn('md-table-header', className)}>

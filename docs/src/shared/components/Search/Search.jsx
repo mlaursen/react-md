@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import Link from 'react-router/lib/Link';
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -8,6 +9,7 @@ import throttle from 'lodash.throttle';
 import Waypoint from 'react-waypoint';
 
 import './_search.scss';
+import VariableFormat from 'components/SassDocPage/VariableFormat';
 
 const style = { flexWrap: 'nowrap' };
 
@@ -75,7 +77,11 @@ export default class Search extends PureComponent {
         }, 317);
         this.setState({ animating: true, value: '' });
       } else {
-        this.setState({ closeVisible: true });
+        this.setState({ closeVisible: true }, () => {
+          if (this._input) {
+            this._input.focus();
+          }
+        });
       }
     }
   }
@@ -85,6 +91,12 @@ export default class Search extends PureComponent {
       clearTimeout(this._timeout);
     }
   }
+
+  _setInput = (autocomplete) => {
+    if (autocomplete) {
+      this._input = findDOMNode(autocomplete).querySelector('input');
+    }
+  };
 
   /**
    * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
@@ -110,6 +122,12 @@ export default class Search extends PureComponent {
     this.setState({ value });
   };
 
+  _handleClick = () => {
+    if (!this.state.closeVisible) {
+      this.props.showSearch();
+    }
+  };
+
   /**
    * Basically map the results shape into props for a `ListItem`.
    *
@@ -119,7 +137,7 @@ export default class Search extends PureComponent {
    * @param {String} result.ref - The link to use to navigate to that search result.
    * @return {Object} props to pass to the `ListItem` component in the autocomplete's menu.
    */
-  _mapToLink = ({ name, type, ref }) => {
+  _mapToLink = ({ name, type, ref, value }) => {
     let to;
     let href;
     let component;
@@ -131,12 +149,18 @@ export default class Search extends PureComponent {
       to = ref;
     }
 
+    let secondaryText = type;
+    if (value) {
+      secondaryText = [type, <VariableFormat key="value">{value}</VariableFormat>];
+    }
+
     return {
       to,
       href,
       component,
       primaryText: name,
-      secondaryText: type,
+      secondaryText,
+      threeLines: !!value,
       key: `${name}-${type}`,
     };
   };
@@ -146,13 +170,12 @@ export default class Search extends PureComponent {
     const {
       searching,
       results,
-      showSearch,
       hideSearch,
       meta: { next, start, total, limit },
     } = this.props;
 
     const close = (
-      <Button key="close" className="md-btn--toolbar" icon onClick={hideSearch} waitForInkTransition>
+      <Button key="close" className="md-btn--toolbar" icon onClick={hideSearch}>
         close
       </Button>
     );
@@ -165,6 +188,7 @@ export default class Search extends PureComponent {
     return (
       <div style={style} className="md-grid md-grid--no-spacing">
         <Autocomplete
+          ref={this._setInput}
           key="autocomplete"
           id="documentation-search"
           placeholder="Search"
@@ -172,12 +196,12 @@ export default class Search extends PureComponent {
           onChange={this._handleChange}
           value={value}
           data={data}
-          onFocus={showSearch}
+          total={total}
           className={cn('main-search md-select-field--toolbar', {
             'main-search--active': searching,
             'main-search--min-enforced': searching || animating,
           })}
-          leftIcon={<FontIcon key="search">search</FontIcon>}
+          leftIcon={<FontIcon key="search" onClick={this._handleClick}>search</FontIcon>}
         />
         {closeVisible ? close : null}
       </div>

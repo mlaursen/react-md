@@ -1,3 +1,59 @@
+## February 2017
+### v1.0.6 Released
+
+##### Changelog
+- Fixed DatePicker's [calendar Date when controlled](https://github.com/mlaursen/react-md/issues/245)
+- Added [controlled warnings](https://github.com/mlaursen/react-md/commit/d46cf4c6e356aa69ccbcd8fa7903451c4e20e307) to pickers.
+- Allowed non-material design colors to compile [without errors](https://github.com/mlaursen/react-md/issues/244).
+- FontIcon force size [fix](https://github.com/mlaursen/react-md/issues/221).
+- Allowed a TableRow to only have a single column.
+
+### v1.0.5 Released
+
+##### Changelog
+- Fixed the DatePicker's [min/max date validator](https://github.com/mlaursen/react-md/commit/53130fadde13253b403d9ed3fe662ed65f6c70d6).
+- Fixed the FocusContainer's [window focus bug](https://github.com/mlaursen/react-md/commit/1fe1b9b763734809a565a7fa5c0f5d52bdf80906).
+  - > Basically using `element.contains(window)` is invalid and throws a 'Node' does not have contains error.
+- Automated the nested dialog [display error](https://github.com/mlaursen/react-md/issues/229) until Portals are updated.
+- Fixed the TextField blocked [icon positioning](https://github.com/mlaursen/react-md/commit/9115e235946942095392306564d37fa439511976).
+- Passed text-field related props from [pickers](https://github.com/mlaursen/react-md/commit/5daabbb973330d770cbacae99fc418245807afbc).
+- Fixed the [TablePagination](https://github.com/mlaursen/react-md/commit/93d932f91e0e2dcfd664331e3dbd2fd48a6c02df)'s onPagination callback
+to be more accurate.
+- Fixed the TableRows's [onCheckboxClick callback](https://github.com/mlaursen/react-md/commit/69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
+match documentation.
+
+> I had a moment and accidentally published 1.0.4 with the same code as 1.0.3
+
+## January 2017
+### v1.0.3 Released
+Minor bugfixes.
+
+##### Changelog
+- Patched the line-height for DataTables so that the columns will be centered.
+- Correctly updated the peer-dependencies of `react(-\w+)*` to be 15.3.0.
+- Fixed the full-page dialog positioning.
+
+### v1.0.2 Released
+Minor bugfixes.
+
+##### Changelog
+- Fixed active label for [SelectField](https://github.com/mlaursen/react-md/pull/235).
+- Components that use the `Portal` component pass the `lastChild` and `renderNode` [props correctly](https://github.com/mlaursen/react-md/pull/234).
+
+### v1.0.1 Released
+Minor bugfixes.
+
+##### Changelog
+- Fixed proptypes of avatar to allow [PropTypes.node](https://github.com/mlaursen/react-md/issues/198) instead of `string` only.
+- Fixed the [accidental form submission](https://github.com/mlaursen/react-md/commit/cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
+selecting an item from an `autocomplete` by using the enter key press in a form.
+- Fixed [Slider number alidation](https://github.com/mlaursen/react-md/issues/184) for floats.
+- Fixed the issue where the [Switch's onChange prop](https://github.com/mlaursen/react-md/issues/182) fires twice when clicking/touching
+the thumb.
+- Fixed the styling issue for [password text fields](https://github.com/mlaursen/react-md/issues/192) that have a message with the field.
+- Fixed the SelectField to allow a [0 based option value](https://github.com/mlaursen/react-md/issues/214).
+
+
 ## December 2016
 ### v1.0.0 Released!
 

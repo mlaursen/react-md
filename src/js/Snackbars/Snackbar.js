@@ -131,14 +131,16 @@ export default class Snackbar extends PureComponent {
       className,
       toast,
       multiline,
+      /* eslint-disable no-unused-vars */
+      id: propId,
+      fab,
+      autohide,
+      autohideTimeout,
+      leaveTimeout,
+      onDismiss,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.id;
-    delete props.fab;
-    delete props.onDismiss;
-    delete props.autohide;
-    delete props.autohideTimeout;
-    delete props.leaveTimeout;
     let { text, action } = toast;
     let { id } = this.props;
 
@@ -149,7 +151,6 @@ export default class Snackbar extends PureComponent {
 
       let btnProps = {
         flat: true,
-        waitForInkTransition: true,
         onClick: this._handleClick,
         label: action,
         secondary: true,

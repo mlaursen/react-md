@@ -37,16 +37,6 @@ function toMiniListItem(item, index) {
     return null;
   }
 
-  delete itemProps.primaryText;
-  delete itemProps.secondaryText;
-  delete itemProps.rightIcon;
-  delete itemProps.rightAvatar;
-  delete itemProps.threeLines;
-  delete itemProps.nestedItems;
-  delete itemProps.expanderIconChildren;
-  delete itemProps.expanderIconClassName;
-  delete itemProps.children;
-
   return <MiniListItem key={key || index} {...itemProps} />;
 }
 
@@ -63,7 +53,7 @@ export default class NavigationDrawer extends PureComponent {
     /* eslint-disable no-console */
     _warned: false,
     _msg: 'Invalid use of `NavigationDrawer.DrawerType.{{TYPE}}`. The `NavigationDrawer.DrawerType` ' +
-      'has been deprecated and will be removed in the next release. Please use the ' +
+      'has been deprecated and will be removed in the next major release. Please use the ' +
       '`NavigationDrawer.DrawerTypes.{{TYPE}}` instead.',
 
     get FULL_HEIGHT() {
@@ -340,12 +330,6 @@ export default class NavigationDrawer extends PureComponent {
     desktopMinWidth: PropTypes.number.isRequired,
 
     /**
-     * An optional DOM Node to render the portal into. The default is to render as
-     * the last child in the `body`.
-     */
-    renderNode: PropTypes.object,
-
-    /**
      * An optional function to call when the type of the drawer changes because of the
      * new media queries. The callback will include the newly selected drawer type
      * and an object containing the media matches of `mobile`, `tablet`, and `desktop`.
@@ -388,8 +372,8 @@ export default class NavigationDrawer extends PureComponent {
      * mini `ListItem` containing only that icon or image. Any other event listeners will also be applied.
      *
      *
-     * @see miniDrawerHeader
-     * @see miniDrawerChildren
+     * @see {@link #miniDrawerHeader}
+     * @see {@link #miniDrawerChildren}
      */
     extractMini: PropTypes.bool,
 
@@ -397,7 +381,7 @@ export default class NavigationDrawer extends PureComponent {
      * An optional header to display in the mini drawer. This will be displayed above the optional
      * mini nav list that get generated if the `extractMini` prop is `true` and the `miniDrawerChildren`.
      *
-     * @see extractMini
+     * @see {@link #extractMini}
      */
     miniDrawerHeader: PropTypes.node,
 
@@ -405,7 +389,7 @@ export default class NavigationDrawer extends PureComponent {
      * Any additional children to display in the mini drawer. This will be displayed after the `miniDrawerHeader`
      * and the optional mini nav list that gets generated if the `extractMini` prop is `true`.
      *
-     * @see extractMini
+     * @see {@link #extractMini}
      */
     miniDrawerChildren: PropTypes.node,
 
@@ -429,7 +413,7 @@ export default class NavigationDrawer extends PureComponent {
     /**
      * The theme style for the main toolbar.
      *
-     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     * @see {@link Toolbars/Toolbar}
      */
     toolbarThemeType: PropTypes.oneOf(['default', 'colored', 'themed']).isRequired,
 
@@ -452,7 +436,7 @@ export default class NavigationDrawer extends PureComponent {
      * A list of elements or a single element to display to the right of the
      * toolbar's nav, title, and children.
      *
-     * @see [toolbars](/components/toolbars#prop-types-toolbar)
+     * @see {@link Toolbars/Toolbar#actions}
      */
     toolbarActions: Toolbar.propTypes.actions,
 
@@ -558,6 +542,24 @@ export default class NavigationDrawer extends PureComponent {
      */
     jumpLabel: PropTypes.string.isRequired,
 
+    /**
+     * An optional DOM Node to render the drawer into. The default is to render as
+     * the first child in the `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    renderNode: PropTypes.object,
+
+    /**
+     * Boolean if the drawer should be rendered as the last child instead of the first child
+     * in the `renderNode` or `body`.
+     *
+     * > This prop will not be used when the drawer is of the permanent type or `inline` is specified
+     * since the `Portal` component will not be used.
+     */
+    lastChild: PropTypes.bool,
+
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
@@ -572,6 +574,10 @@ export default class NavigationDrawer extends PureComponent {
     ),
   };
 
+  static contextTypes = {
+    renderNode: PropTypes.object,
+  };
+
   static childContextTypes = {
     closeIconClassName: PropTypes.string,
     closeChildren: PropTypes.node,
@@ -581,6 +587,7 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.string,
     ]).isRequired,
     label: PropTypes.string.isRequired,
+    renderNode: PropTypes.object,
   }
 
   static defaultProps = {
@@ -671,6 +678,7 @@ export default class NavigationDrawer extends PureComponent {
       closeChildren: closeIconChildren || persistentIconChildren,
       closeIconClassName: closeIconClassName || persistentIconClassName,
       onCloseClick: this._toggleVisibility,
+      renderNode: this.context.renderNode,
     };
   }
 
@@ -755,7 +763,6 @@ export default class NavigationDrawer extends PureComponent {
       contentComponent: Content,
       navItems,
       children,
-      renderNode,
       drawerTitle,
       drawerChildren,
       drawerHeaderChildren,
@@ -787,24 +794,28 @@ export default class NavigationDrawer extends PureComponent {
       includeDrawerHeader,
       contentId,
       contentProps,
+      /* eslint-disable no-unused-vars */
+      drawerType: propDrawerType,
+      drawerHeader: propDrawerHeader,
+      renderNode: propRenderNode,
+      jumpLabel,
+      persistentIconChildren,
+      persistentIconClassName,
+
+      // deprecated
+      onDrawerChange,
+      closeIconChildren,
+      closeIconClassName,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.drawerType;
-    delete props.drawerHeader;
-    delete props.persistentIconChildren;
-    delete props.persistentIconClassName;
-    delete props.jumpLabel;
-
-    // Deprecated deletes
-    delete props.onDrawerChange;
-    delete props.closeIconChildren;
-    delete props.closeIconClassName;
 
     let { drawerHeader } = this.props;
     const { desktop, tablet, contentActive } = this.state;
 
     const drawerType = getField(this.props, this.state, 'drawerType');
     const visible = getField(this.props, this.state, 'visible');
+    const renderNode = getField(this.props, this.context, 'renderNode');
     const mini = isMini(drawerType);
     const temporary = isTemporary(drawerType);
     const persistent = isPersistent(drawerType);

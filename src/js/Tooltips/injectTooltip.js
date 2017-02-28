@@ -18,7 +18,7 @@ import TooltipContainer from './TooltipContainer';
  * ```
  */
 export default ComposedComponent => class TooltipedComponent extends PureComponent {
-  static displayName = getDisplayName(ComposedComponent, 'Tooltiped');
+  static displayName = getDisplayName(ComposedComponent, 'Tooltip');
   static propTypes = {
     /**
      * An optional style to apply to the tooltip container.

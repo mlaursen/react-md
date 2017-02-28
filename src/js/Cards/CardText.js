@@ -42,8 +42,12 @@ export default class CardText extends PureComponent {
   };
 
   render() {
-    const { component: Component, className, ...props } = this.props;
-    delete props.expandable;
+    const {
+      component: Component,
+      className,
+      expandable, // eslint-disable-line no-unused-vars
+      ...props
+    } = this.props;
 
     return <Component {...props} className={cn('md-card-text', className)} />;
   }

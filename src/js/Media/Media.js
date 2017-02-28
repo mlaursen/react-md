@@ -67,9 +67,9 @@ export default class Media extends PureComponent {
       children,
       forceAspect,
       aspectRatio,
+      expandable, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.expandable;
 
     return (
       <Component

@@ -29,7 +29,7 @@ function formatMarkdown(props) {
     .replace(/<pre><code/g, '<pre class="code-block"><code')
     .replace(/<ul/g, '<ul class="md-text"')
     .replace(/<p>@see/g, '<p style="margin-bottom:0">@see')
-    .replace(/<blockquote><p/g, '<blockquote class="md-divider-border md-divider-border--left"><p className="md-color--secondary-text"');
+    .replace(/<blockquote><p/g, '<blockquote class="md-divider-border md-divider-border--left"><p class="md-color--secondary-text"');
 }
 
 @withRouter
@@ -92,6 +92,9 @@ export default class Markdown extends PureComponent {
    */
   _updatedLinks = () => {
     Array.prototype.slice.call(findDOMNode(this).querySelectorAll('a')).forEach(link => {
+      if (link.href.match(/sassdoc/)) {
+        return;
+      }
       if (link.href.match(/https?:\/\/(localhost|react-md).*\//)) {
         link.onclick = e => {
           e.preventDefault();
@@ -107,12 +110,17 @@ export default class Markdown extends PureComponent {
 
   render() {
     const { markdown } = this.state;
-    const { component: Component, ...props } = this.props;
-    delete props.markdown;
-    delete props.params;
-    delete props.router;
-    delete props.location;
-    delete props.routes;
+    const {
+      component: Component,
+      /* eslint-disable no-unused-vars */
+      markdown: propMarkdown,
+      params,
+      router,
+      routes,
+      location,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
 
     return <Component {...props} dangerouslySetInnerHTML={{ __html: markdown }} />;
   }

@@ -42,39 +42,39 @@ $md-data-table-edit-dialog-mobile-right: $md-grid-phone-margin !default;
 
 /// The default left/right padding for a `TableColumn`.
 /// @type String
-$md-data-table-padding: 24px;
+$md-data-table-padding: 24px !default;
 
 /// The minimum distance between a cell's content and the next cell.
 /// @type String
-$md-data-table-min-padding: 56px;
+$md-data-table-min-padding: 56px !default;
 
 /// The font size for content inside of the `TableBody` component.
 /// @type String
-$md-data-table-content-font-size: 13px;
+$md-data-table-content-font-size: 13px !default;
 
 /// The font size for the content inside of the `TableHeader` component.
 /// @type String
-$md-data-table-header-font-size: 12px;
+$md-data-table-header-font-size: 12px !default;
 
 /// The height for the `TableHeader`'s row.
 /// @type String
-$md-data-table-header-height: 56px;
+$md-data-table-header-height: 56px !default;
 
 /// The font size for a font-icon in the `md-table-column--header`.
 /// @type Number
-$md-data-table-header-icon-font-size: 16px;
+$md-data-table-header-icon-font-size: 16px !default;
 
 /// The height for a column in a data table.
 /// @type Number
-$md-data-table-column-height: 48px;
+$md-data-table-column-height: 48px !default;
 
 /// The hover color for a row when using the light theme.
 /// @type Color
-$md-data-table-hover-color: $md-grey-200;
+$md-data-table-hover-color: $md-grey-200 !default;
 
 /// The selected color for a row when using the light theme.
 /// @type Color
-$md-data-table-selected-color: $md-grey-100;
+$md-data-table-selected-color: $md-grey-100 !default;
 
 /// The hover color for a row when using the dark theme. This is configurable since
 /// the dark theme data table specs are not defined in the material design documentation
@@ -95,6 +95,13 @@ $md-data-table-card-header-z-index: 1 !default;
 /// The font size to use for the contextual table card header.
 /// @type Number
 $md-data-table-card-header-font-size: 16px !default;
+
+/// A fallback color to use for the contextual table card header. This is only required
+/// when the `$md-primary-color` is not a valid material design color.
+/// @type Color
+/// @see get-swatch
+/// @group data-tables, themes
+$md-data-table-contextual-fallback-color: null !default;
 
 /// A selector for creating a plain styled column. This is used to update all
 /// the `md-table-column--data` in a `.md-data-table--plain` and to create a
@@ -179,8 +186,17 @@ $md-data-table-card-header-font-size: 16px !default;
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if updating the styles for
 ///     the light theme.
+/// @param {Boolean} include-table-card-headers [$md-data-table-include-table-card-headers] - Boolean if
+///     the contextual table card header styles should be included.
+/// @param {Color} context-ual-fallback-color [$md-data-table-contextual-fallback-color] - A fallback color
+///     to use for the contextual headers.
 /// @group data-tables, themes
-@mixin react-md-theme-data-tables($secondary-color: $md-secondary-color, $light-theme: $md-light-theme, $include-table-card-headers: $md-data-table-include-table-card-headers) {
+@mixin react-md-theme-data-tables(
+  $secondary-color: $md-secondary-color,
+  $light-theme: $md-light-theme,
+  $include-table-card-headers: $md-data-table-include-table-card-headers,
+  $contextual-fallback-color: $md-data-table-contextual-fallback-color
+) {
   @if $light-theme != $md-light-theme {
     thead .md-table-row,
     tbody .md-table-row:not(:last-child) {
@@ -200,9 +216,8 @@ $md-data-table-card-header-font-size: 16px !default;
   }
 
   @if $include-table-card-headers {
-    $bg-color: get-swatch($secondary-color, 50);
-
-    @if get-swatch($md-secondary-color, 50) != $bg-color {
+    $bg-color: get-swatch($secondary-color, 50, false, $contextual-fallback-color, md-data-table-contextual-fallback-color);
+    @if get-swatch($md-secondary-color, 50, false, $contextual-fallback-color, md-data-table-contextual-fallback-color) != $bg-color {
       .md-card-title--contextual {
         background: $bg-color;
       }
@@ -235,14 +250,8 @@ $md-data-table-card-header-font-size: 16px !default;
     }
 
     @if $include-plain {
-      &--plain .md-table-column--data {
-        @extend %md-table-column--plain;
-      }
-
       .md-table-column--plain {
         @extend %md-table-column--plain;
-
-        white-space: initial;
       }
     }
 
@@ -280,6 +289,7 @@ $md-data-table-card-header-font-size: 16px !default;
 /// Creates the styles for a column in a data table.
 @mixin react-md-data-table-column {
   .md-table-column {
+    line-height: initial;
     padding-right: $md-data-table-padding;
     white-space: nowrap;
 
@@ -307,6 +317,7 @@ $md-data-table-card-header-font-size: 16px !default;
 
     &--data {
       font-size: $md-data-table-content-font-size;
+      height: $md-data-table-column-height;
     }
 
     &--grow {
@@ -315,6 +326,10 @@ $md-data-table-card-header-font-size: 16px !default;
 
     &--select-header {
       padding-left: $md-default-padding;
+    }
+
+    .md-icon-separator {
+      line-height: inherit;
     }
   }
 }
@@ -414,7 +429,7 @@ $md-data-table-card-header-font-size: 16px !default;
 ///
 /// @param {Color} secondary-color [$md-secondary-color] - The secondary color to theme
 ///     the contextual header's background color with.
-@mixin react-md-data-table-card-headers($secondary-color: $md-secondary-color) {
+@mixin react-md-data-table-card-headers($secondary-color: $md-secondary-color, $fallback-color: $md-data-table-contextual-fallback-color) {
   .md-table-card-header {
     position: relative;
 
@@ -439,10 +454,9 @@ $md-data-table-card-header-font-size: 16px !default;
   }
 
   .md-card-title--contextual {
-    background: get-swatch($secondary-color, 50);
+    background: get-swatch($secondary-color, 50, false, $fallback-color, md-data-table-contextual-fallback-color);
     height: 100%;
     left: 0;
-    line-height: 80px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -453,6 +467,7 @@ $md-data-table-card-header-font-size: 16px !default;
     color: $secondary-color;
     font-size: $md-data-table-card-header-font-size;
     font-weight: $md-font-medium;
+    line-height: 80px;
   }
 
   .md-drop-down-enter {

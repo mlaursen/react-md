@@ -4,6 +4,7 @@ import Button from 'react-md/lib/Buttons';
 import LinearProgress from 'react-md/lib/Progress/LinearProgress';
 import FileUpload from 'react-md/lib/FileInputs/FileUpload';
 
+import { omit } from 'lodash/object';
 import UploadedFileCard from './UploadedFileCard';
 
 export default class FileUploadExample extends PureComponent {
@@ -77,9 +78,7 @@ export default class FileUploadExample extends PureComponent {
     let target = e.target;
     while (target && target.parentNode) {
       if (target.dataset.name) {
-        const files = Object.assign({}, this.state.files);
-        delete files[target.dataset.name];
-        this.setState({ files });
+        this.setState({ files: omit(this.state.files, [target.dataset.name]) });
         return;
       }
 
@@ -94,7 +93,7 @@ export default class FileUploadExample extends PureComponent {
     let stats;
     if (typeof progress === 'number') {
       stats = [
-        <LinearProgress key="progress" value={progress} />,
+        <LinearProgress key="progress" value={progress} id="upload-progress" />,
         <Button raised key="abort" label="Abort Upload" onClick={this._abortUpload} />,
       ];
     }

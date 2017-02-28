@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PropTypes, PureComponent } from 'react';
 import cn from 'classnames';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
@@ -6,14 +6,17 @@ import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import propsShape from './propsShape';
 import Markdown from 'components/Markdown';
 import toPrettyPropType from 'utils/StringUtils/toPrettyPropType';
+import toClassName from 'utils/StringUtils/toClassName';
 
 export default class PropTypeRow extends PureComponent {
   static propTypes = {
+    baseId: PropTypes.string.isRequired,
     prop: propsShape,
   };
 
   render() {
     const {
+      baseId,
       prop: {
         propName,
         type,
@@ -30,7 +33,7 @@ export default class PropTypeRow extends PureComponent {
     const deprecated = type.indexOf('deprecated') !== -1;
 
     return (
-      <TableRow autoAdjust={false}>
+      <TableRow autoAdjust={false} id={`${baseId}-${toClassName(propName)}`}>
         <TableColumn
           className={cn('prop-name', {
             'prop-name--deprecated md-text--secondary': deprecated,

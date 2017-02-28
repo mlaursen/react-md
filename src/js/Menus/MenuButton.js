@@ -115,11 +115,6 @@ export default class MenuButton extends PureComponent {
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the `Menu` should autoclose when a `ListItem` is closed.
-     */
-    autoclose: PropTypes.bool,
-
-    /**
      * Boolean if the max width of the menu's list should be equal to the `Button`.
      */
     contained: PropTypes.bool,
@@ -183,15 +178,14 @@ export default class MenuButton extends PureComponent {
       children,
       fullWidth,
       position,
-      autoclose,
       contained,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      onClick, // eslint-disable-line no-unused-vars
+      defaultOpen, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
-    delete props.onClick;
-    delete props.defaultOpen;
 
     const toggle = (
       <Button
@@ -214,7 +208,6 @@ export default class MenuButton extends PureComponent {
         isOpen={isOpen}
         onClose={this._closeMenu}
         contained={contained}
-        autoclose={autoclose}
         position={position}
         fullWidth={fullWidth}
         transitionName={transitionName}

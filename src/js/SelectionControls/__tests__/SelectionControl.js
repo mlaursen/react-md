@@ -354,4 +354,24 @@ describe('SelectionControl', () => {
     expect(props.onChange.mock.calls[0][0]).toBe(props.value);
     expect(props.onChange.mock.calls[0][1]).toEqual(changeEvent);
   });
+
+  it('can get the checked value from a ref', () => {
+    let _control = null;
+    const props = { ...PROPS, ref: c => { _control = c; } };
+    let control = renderIntoDocument(<SelectionControl {...props} />);
+    expect(_control).not.toBe(null);
+    expect(_control.checked).toBe(false);
+    expect(control.checked).toBe(false);
+
+    control.setState({ checked: true });
+    expect(control.checked).toBe(true);
+    expect(_control.checked).toBe(true);
+
+    _control = null;
+    props.checked = true;
+    control = renderIntoDocument(<SelectionControl {...props} />);
+    expect(_control).not.toBe(null);
+    expect(_control.checked).toBe(true);
+    expect(control.checked).toBe(true);
+  });
 });

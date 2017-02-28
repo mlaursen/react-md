@@ -185,11 +185,13 @@ export default class TableCardHeader extends PureComponent {
       noChildrenAdjust,
       noLeftChildrenClone,
       visible,
+      /* eslint-disable no-unused-vars */
+      children: propChildren,
+      leftChildren: propLeftChildren,
+      contextualTitle: propContextualTitle,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.children;
-    delete props.leftChildren;
-    delete props.contextualTitle;
 
     let { children, leftChildren, contextualTitle } = this.props;
     children = this._cloneCellRight(noChildrenAdjust, children);

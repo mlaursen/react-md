@@ -3,8 +3,10 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
+import omit from '../utils/omit';
+import controlled from '../utils/PropTypes/controlled';
+import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 
 import ListItem from '../Lists/ListItem';
@@ -147,9 +149,27 @@ export default class Autocomplete extends PureComponent {
     },
 
     /**
+     * An optional number representing the total number of results in the `data` prop.
+     * This should really only be used when the data is paginated. When this is set,
+     * each item in the suggestion menu will be updated with the `aria-setsize` and
+     * `aria-posinset`.
+     *
+     * @see {@link #offset}
+     */
+    total: invalidIf(PropTypes.number, 'inline'),
+
+    /**
+     * An optional number representing the data's offset if the results were paginated.
+     * This is used for accessibility with the `aria-posinset` attribute.
+     *
+     * @see {@link #total}
+     */
+    offset: PropTypes.number.isRequired,
+
+    /**
      * An optional function to use to filter the `data`. If you have a sexy backend
-     * using solr or some other seach/indexer, it is recommended to set this prop to
-     * `null` or `false`-ish.
+     * using solr or some other search/indexer, it is recommended to set this prop to
+     * `null`.
      */
     filter: PropTypes.func,
 
@@ -247,6 +267,7 @@ export default class Autocomplete extends PureComponent {
   };
 
   static defaultProps = {
+    offset: 0,
     fullWidth: true,
     defaultValue: '',
     dataLabel: 'primaryText',
@@ -481,7 +502,12 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
+  get value() {
+    return getField(this.props, this.state, 'value');
+  }
+
   _updateSuggestionStyle(isNew, isDeleted) {
+    const { suggestionStyle } = this.state;
     if (isNew) {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');
 
@@ -489,15 +515,10 @@ export default class Autocomplete extends PureComponent {
         const cs = window.getComputedStyle(this._suggestion);
         const bottom = parseInt(cs.getPropertyValue('bottom'), 10) + msg.offsetHeight;
 
-        this.setState({
-          suggestionStyle: Object.assign({}, this.state.suggestionStyle, { bottom }),
-        });
+        this.setState({ suggestionStyle: { ...suggestionStyle, bottom } });
       }
-    } else if (isDeleted) {
-      const suggestionStyle = Object.assign({}, this.state.suggestionStyle);
-      delete suggestionStyle.bottom;
-
-      this.setState({ suggestionStyle });
+    } else if (isDeleted && suggestionStyle) {
+      this.setState({ suggestionStyle: { left: suggestionStyle.left } });
     }
   }
 
@@ -603,6 +624,9 @@ export default class Autocomplete extends PureComponent {
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
+      // Prevent any form submissions
+      e.preventDefault();
+
       // Need to emulate the click event since the default enter/space don't work for some reason
       e.target.click();
       this._handleItemClick(this.state.matchIndex);
@@ -721,17 +745,17 @@ export default class Autocomplete extends PureComponent {
 
         // Update suggestion style to be offset and not expand past text field
         const left = context.measureText(value).width + padding;
-        suggestionStyle = Object.assign({}, suggestionStyle, { left });
+        suggestionStyle = { ...suggestionStyle, left };
       }
     }
 
     this.setState({ value, suggestion, suggestionIndex, suggestionStyle, tabbed: false });
   }
 
-  _mapToListItem(match) {
+  _mapToListItem(match, i) {
     if (React.isValidElement(match)) { return match; }
 
-    const { dataLabel, dataValue, deleteKeys } = this.props;
+    const { dataLabel, dataValue, deleteKeys, total, offset, data } = this.props;
     let props;
     switch (typeof match) {
       case 'string':
@@ -742,20 +766,22 @@ export default class Autocomplete extends PureComponent {
         };
         break;
       default:
+        if (deleteKeys) {
+          props = omit(match, typeof deleteKeys === 'string' ? [deleteKeys] : deleteKeys);
+        } else {
+          props = match;
+        }
+
         props = {
-          ...match,
+          ...props,
           key: match.key || (dataValue && match[dataValue]) || match[dataLabel],
           primaryText: match[dataLabel],
         };
+    }
 
-        if (typeof deleteKeys === 'string') {
-          delete props[deleteKeys];
-        } else if (Array.isArray(deleteKeys)) {
-          deleteKeys.forEach(key => {
-            delete props[key];
-          });
-        }
-
+    if (typeof total !== 'undefined' && data.length < total) {
+      props['aria-setsize'] = total;
+      props['aria-posinset'] = i + 1 + offset;
     }
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
@@ -834,31 +860,36 @@ export default class Autocomplete extends PureComponent {
       textFieldStyle,
       textFieldClassName,
       inline,
+      /* eslint-disable no-unused-vars */
+      value: propValue,
+      total,
+      offset,
+      filter,
+      data,
+      dataLabel,
+      dataValue,
+      deleteKeys,
+      defaultValue,
+      clearOnAutocomplete,
+      findInlineSuggestion,
+      onAutocomplete,
+      onMenuOpen,
+      onMenuClose,
+      onBlur,
+      onFocus,
+      onKeyDown,
+      onMouseDown,
+      onChange,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    delete props.value;
-    delete props.defaultValue;
-    delete props.dataLabel;
-    delete props.dataValue;
-    delete props.filter;
-    delete props.data;
-    delete props.onAutocomplete;
-    delete props.onMenuOpen;
-    delete props.onMenuClose;
-    delete props.onBlur;
-    delete props.onFocus;
-    delete props.onKeyDown;
-    delete props.onMouseDown;
-    delete props.onChange;
-    delete props.findInlineSuggestion;
-    delete props.clearOnAutocomplete;
-    delete props.deleteKeys;
 
     const value = getField(this.props, this.state, 'value');
 
     const autocomplete = (
       <TextField
         {...props}
+        aria-autocomplete={inline ? 'inline' : 'list'}
         style={textFieldStyle}
         className={cn('md-autocomplete', textFieldClassName)}
         key="autocomplete"
