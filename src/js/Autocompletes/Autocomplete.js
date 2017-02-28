@@ -10,6 +10,7 @@ import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 
+import Layover from '../Helpers/Layover';
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
 import TextField from '../TextFields/TextField';
@@ -280,6 +281,21 @@ export default class Autocomplete extends PureComponent {
      * of previously typed values in the text field. By default, this is disabled.
      */
     autoComplete: PropTypes.oneOf(['on', 'off']),
+
+    /**
+     * @see {@link Helpers/Layovers#anchor}
+     */
+    anchor: Layover.propTypes.anchor,
+
+    /**
+     * @see {@link Helpers/Layovers#animationPosition}
+     */
+    position: Layover.propTypes.animationPosition,
+
+    /**
+     * @see {@link Helpers/Layovers#sameWidth}
+     */
+    sameWidth: Layover.propTypes.sameWidth,
   };
 
   static defaultProps = {
@@ -290,6 +306,12 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
+    anchor: {
+      x: Layover.HorizontalAnchors.CENTER,
+      y: Layover.VerticalAnchors.BOTTOM,
+    },
+    position: Layover.LayoverPositions.BELOW,
+    sameWidth: true,
   };
 
   /**
@@ -879,6 +901,9 @@ export default class Autocomplete extends PureComponent {
       textFieldStyle,
       textFieldClassName,
       inline,
+      anchor,
+      position,
+      sameWidth,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -947,7 +972,7 @@ export default class Autocomplete extends PureComponent {
         <CSSTransitionGroup
           component="div"
           style={style}
-          className={cn('md-menu-container md-autocomplete-container', className, {
+          className={cn('md-autocomplete-container md-autocomplete-container--inline-suggestion', className, {
             'md-full-width': fullWidth || block,
           })}
           transitionName="opacity"
@@ -972,12 +997,14 @@ export default class Autocomplete extends PureComponent {
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
-        position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}
         style={style}
         className={cn('md-autocomplete-container', className)}
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
+        anchor={anchor}
+        position={position}
+        sameWidth={sameWidth}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

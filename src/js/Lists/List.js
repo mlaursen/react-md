@@ -37,11 +37,13 @@ export default class List extends PureComponent {
   static contextTypes = {
     listLevel: PropTypes.number,
     cascading: PropTypes.bool,
+    menu: PropTypes.bool,
   }
 
   static childContextTypes = {
     listLevel: PropTypes.number,
     cascading: PropTypes.bool,
+    menu: PropTypes.bool,
   }
 
   getChildContext() {
@@ -50,12 +52,13 @@ export default class List extends PureComponent {
     return {
       listLevel: listLevel + 1,
       cascading: this.context.cascading,
+      menu: this.context.menu,
     };
   }
 
   render() {
     const { className, ordered, children, subheader, primarySubheader, ...props } = this.props;
-    const { listLevel, cascading } = this.context;
+    const { listLevel, cascading, menu } = this.context;
 
     let subheaderEl;
     if (subheader) {
@@ -69,7 +72,7 @@ export default class List extends PureComponent {
         className={cn('md-list', {
           'md-list--cascading-menu': cascading,
           [`md-list--nested-${listLevel}`]: listLevel,
-          'md-paper md-paper--2': cascading,
+          'md-paper md-paper--2': cascading || menu,
         }, className)}
       >
         {subheaderEl}

@@ -14,7 +14,7 @@ export default class ContextMenuExample extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = { isOpen: false, listStyle: null };
+    this.state = { visible: false };
     this._undo = this._undo.bind(this);
     this._copy = this._copy.bind(this);
     this._handleOpen = this._handleOpen.bind(this);
@@ -43,22 +43,19 @@ export default class ContextMenuExample extends PureComponent {
 
   _handleOpen(e) {
     e.preventDefault();
-    const left = e.offsetX;
-    const top = e.offsetY + e.target.offsetTop;
-
-    if (this.state.isOpen) {
+    if (this.state.visible) {
       this._timeout = setTimeout(() => {
         this._timeout = null;
 
-        this.setState({ isOpen: true });
+        this.setState({ visible: true });
       }, 150);
     }
 
-    this.setState({ isOpen: !this.state.isOpen, listStyle: { top, left } });
+    this.setState({ visible: !this.state.visible });
   }
 
   _handleClose() {
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   render() {
@@ -68,7 +65,7 @@ export default class ContextMenuExample extends PureComponent {
         {...state}
         ref={this._setMenuRef}
         onClose={this._handleClose}
-        toggle={<LoremIpsum count={5} />}
+        toggle={<LoremIpsum count={5} style={{ position: 'relative' }} />}
         position={Menu.Positions.CONTEXT}
       >
         <ListItem disabled={!copied} primaryText="Undo" onClick={this._undo} />

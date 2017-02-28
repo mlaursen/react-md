@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
-
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import Menu from './Menu';
 import Button from '../Buttons/Button';
@@ -89,9 +89,9 @@ export default class MenuButton extends PureComponent {
     onMenuToggle: PropTypes.func,
 
     /**
-     * Boolean if the MenuButton is open by default.
+     * Boolean if the MenuButton's list is visible by default.
      */
-    defaultOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * The position for the menu.
@@ -117,7 +117,7 @@ export default class MenuButton extends PureComponent {
     /**
      * Boolean if the max width of the menu's list should be equal to the `Button`.
      */
-    contained: PropTypes.bool,
+    sameWidth: PropTypes.bool,
 
     /**
      * An optional transition name to use for the menu transitions.
@@ -133,29 +133,32 @@ export default class MenuButton extends PureComponent {
      * An optional transition leave timeout to use for the menu transitions.
      */
     transitionLeaveTimeout: PropTypes.number,
+
+    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    contained: deprecated(PropTypes.bool, 'Use `sameWidth` instead'),
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      isOpen: props.defaultOpen || false,
+      visible: props.defaultOpen || props.defaultVisible || false,
     };
     this._toggleMenu = this._toggleMenu.bind(this);
     this._closeMenu = this._closeMenu.bind(this);
   }
 
   _toggleMenu(e) {
-    const isOpen = !this.state.isOpen;
+    const visible = !this.state.visible;
     if (this.props.onClick) {
       this.props.onClick(e);
     }
 
     if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(isOpen, e);
+      this.props.onMenuToggle(visible, e);
     }
 
-    this.setState({ isOpen });
+    this.setState({ visible });
   }
 
   _closeMenu(e) {
@@ -163,11 +166,11 @@ export default class MenuButton extends PureComponent {
       this.props.onMenuToggle(false, e);
     }
 
-    this.setState({ isOpen: false });
+    this.setState({ visible: false });
   }
 
   render() {
-    const { isOpen } = this.state;
+    const { visible } = this.state;
     const {
       id,
       listId,
@@ -178,12 +181,14 @@ export default class MenuButton extends PureComponent {
       children,
       fullWidth,
       position,
+      sameWidth,
       contained,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
       onClick, // eslint-disable-line no-unused-vars
       defaultOpen, // eslint-disable-line no-unused-vars
+      defaultVisible, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
 
@@ -205,9 +210,9 @@ export default class MenuButton extends PureComponent {
         style={menuStyle}
         className={menuClassName}
         toggle={toggle}
-        isOpen={isOpen}
+        visible={visible}
         onClose={this._closeMenu}
-        contained={contained}
+        sameWidth={contained || sameWidth}
         position={position}
         fullWidth={fullWidth}
         transitionName={transitionName}

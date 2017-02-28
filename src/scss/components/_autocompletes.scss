@@ -21,6 +21,10 @@ $md-inline-autocomplete: true !default;
 ///     for autocompletes should be included.
 @mixin react-md-autocompletes($light-theme: $md-light-theme, $include-media: $md-media-included, $include-inline: $md-inline-autocomplete) {
   @if $include-inline {
+    .md-autocomplete-container--inline-suggestion {
+      position: relative;
+    }
+
     .md-autocomplete-suggestion {
       color: get-color('secondary', $light-theme);
       overflow: hidden;

@@ -108,20 +108,20 @@ export default class SelectField extends PureComponent {
     /**
      * Boolean if the select field is open by default.
      */
-    defaultOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * An optional boolean if the select field is currently open. This will make the component
      * controlled and require the `onMenuToggle` prop to be defined.
      */
-    isOpen: controlled(PropTypes.bool, 'onMenuToggle', 'defaultOpen'),
+    visible: controlled(PropTypes.bool, 'onMenuToggle', 'defaultVisible'),
 
     /**
      * An optional function to call when the menu's open state changes. The callback will include
      * the next open state and the event that driggered it.
      *
      * ```js
-     * onMenuToggle(isOpen, event);
+     * onMenuToggle(visible, event);
      * ```
      */
     onMenuToggle: PropTypes.func,
@@ -301,7 +301,9 @@ export default class SelectField extends PureComponent {
 
     menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
     menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
       'A select field can only have floating labels now. Only provide the `label` prop'
