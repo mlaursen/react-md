@@ -4,9 +4,13 @@ import Layover from 'react-md/lib/Helpers/Layover';
 import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionControlGroup';
 import TextField from 'react-md/lib/TextFields';
 
-const positions = Object.keys(Layover.Positions).map(key => ({
+const horizontals = Object.keys(Layover.HorizontalAnchors).map(key => ({
   label: key,
-  value: Layover.Positions[key],
+  value: Layover.HorizontalAnchors[key],
+}));
+const verticals = Object.keys(Layover.VerticalAnchors).map(key => ({
+  label: key,
+  value: Layover.VerticalAnchors[key],
 }));
 
 const contents = [{ label: 'List', value: 'list' }, { label: 'Card', value: 'card' }];
@@ -52,10 +56,20 @@ const PlaygroundForm = ({ onChange, card, defaultText, defaultTitle }) => (
       className="md-cell md-cell--12"
       inline
       label="Layover Position"
-      controls={positions}
-      defaultValue={Layover.Positions.BELOW}
-      id="position"
-      name="position"
+      controls={horizontals}
+      defaultValue={Layover.defaultProps.anchor.x}
+      id="anchor-x"
+      name="anchor-x"
+      type="radio"
+    />
+    <SelectionControlGroup
+      className="md-cell md-cell--12"
+      inline
+      label="Layover Vertical Position"
+      controls={verticals}
+      defaultValue={Layover.defaultProps.anchor.y}
+      id="anchor-y"
+      name="anchor-y"
       type="radio"
     />
     <Switch

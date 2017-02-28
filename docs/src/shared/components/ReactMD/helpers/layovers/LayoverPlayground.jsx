@@ -26,7 +26,8 @@ export default class LayoverPlayground extends PureComponent {
       text: defaultText,
       contents: 'list',
       centered: false,
-      position: Layover.Positions.BELOW,
+      'anchor-x': Layover.defaultProps.anchor.x,
+      'anchor-y': Layover.defaultProps.anchor.y,
       visible: false,
       closeOnOutsideClick: true,
       horizontal: false,
@@ -82,7 +83,6 @@ export default class LayoverPlayground extends PureComponent {
     const {
       visible,
       centered,
-      position,
       contents,
       title,
       text,
@@ -91,14 +91,16 @@ export default class LayoverPlayground extends PureComponent {
       closeOnOutsideClick,
       maxWidth,
       sameWidth,
+      'anchor-x': anchorX,
+      'anchor-y': anchorY,
     } = this.state;
-    const toggle = <Button onClick={this._toggle} label="Toggle Layover" raised primary />;
+    const toggle = <Button style={{ whiteSpace: 'nowrap' }} onClick={this._toggle} label="Toggle Layover" raised primary />;
 
     let children;
     switch (contents) {
       case 'list':
         children = (
-          <List className="md-paper md-paper--1 md-list--menu-scrollable" {...this.props}>
+          <List className="md-paper md-paper--1 md-list--menu" {...this.props}>
             <ListItem primaryText="Item 1" />
             <ListItem primaryText="Item 2" />
             <ListItem primaryText="Item 3" />
@@ -131,7 +133,7 @@ export default class LayoverPlayground extends PureComponent {
       [`${prefix}vertical`]: vertical,
     });
     return (
-      <div>
+      <div style={{ marginTop: 200 }}>
         <div className="layover-playground-wrapper md-background" ref={this._setWrapper}>
           <div className={className}>
             {block}
@@ -139,7 +141,7 @@ export default class LayoverPlayground extends PureComponent {
               visible={visible}
               toggle={toggle}
               centered={centered}
-              position={position}
+              anchor={{ x: anchorX, y: anchorY }}
               className={cn({ 'md-centered-block': !horizontal })}
               fixedTo={vertical || horizontal ? this._wrapper : undefined}
               onClose={this._close}
