@@ -7,6 +7,7 @@ $md-secondary-color: $md-deep-orange-a-200;
 $md-badge-include-default: true;
 
 @include react-md-everything;
+@include react-md-make-custom-grid('24-40', 24px, 40px, 0);
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
 
 .md-title--toolbar {
