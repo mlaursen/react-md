@@ -10,7 +10,7 @@ import Button from './src/js/Buttons';
 import { Card, CardActions, CardText, CardTitle } from './src/js/Cards';
 import Chip from './src/js/Chips';
 import { DataTable, TableHeader, TableRow, TableColumn, TableBody, EditDialogColumn, SelectFieldColumn, TablePagination } from './src/js/DataTables';
-import Dialog from './src/js/Dialogs';
+import { DialogContainer, Dialog } from './src/js/Dialogs';
 import Divider from './src/js/Dividers';
 import Drawer from './src/js/Drawers';
 import { ExpansionPanel, ExpansionList } from './src/js/ExpansionPanels';
@@ -62,6 +62,7 @@ export {
   SelectFieldColumn,
   TablePagination,
 
+  DialogContainer,
   Dialog,
 
   Divider,
