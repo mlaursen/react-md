@@ -23,7 +23,7 @@ interface CollapseProps extends Props {
   defaultStyle?: React.CSSProperties;
   collapsed: boolean;
   springConfig: Object;
-  children: React.ReactElement<any>;
+  children?: React.ReactElement<any>;
   animate?: boolean;
 }
 
@@ -39,7 +39,7 @@ interface FocusContainerProps extends Props {
 interface IconSeparatorProps extends Props {
   labelStyle?: React.CSSProperties;
   labelClassName?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   iconBefore?: boolean;
   component?: Function | string;
 }

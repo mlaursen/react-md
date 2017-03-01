@@ -11,7 +11,7 @@ interface TabsContainerProps extends Props {
   swipeableViewsClassName?: string;
   slideStyle?: React.CSSProperties;
   slideClassName?: string;
-  children: React.ReactElement<Tabs>,
+  children?: React.ReactElement<Tabs>,
   component?: Function | string;
   panelComponent?: Function | string;
   headerComponent?: Function | string;
@@ -29,7 +29,7 @@ interface TabsContainerProps extends Props {
 interface TabsProps extends Props {
   tabId: number | string;
   component?: Function | string;
-  children: React.ReactElement<Tab> | Array<React.ReactElement<Tab>>;
+  children?: React.ReactElement<Tab> | Array<React.ReactElement<Tab>>;
   centered?: boolean;
   alignToKeyline?: boolean;
   colored?: boolean;

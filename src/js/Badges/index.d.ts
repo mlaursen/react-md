@@ -5,7 +5,7 @@ interface BadgeProps extends Props {
   badgeStyle?: React.CSSProperties;
   badgeClassName?: string;
   badgeId: string | number;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   component?: string | Function,
   badgeContent: number | string | React.ReactNode;
   max?: number;
