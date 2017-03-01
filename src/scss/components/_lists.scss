@@ -161,9 +161,9 @@ $md-list-desktop-three-lines-height: 76px !default;
       margin-top: 8px;
     }
 
-    // .md-list:not(.md-list--menu) {
-    //   background: inherit;
-    // }
+    .md-list:not(.md-list--menu) {
+      background: inherit;
+    }
   }
 
   .md-list-tile {

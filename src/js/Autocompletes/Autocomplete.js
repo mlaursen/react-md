@@ -2,7 +2,6 @@ import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
-import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
 import omit from '../utils/omit';
@@ -10,7 +9,6 @@ import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
 
-import Layover from '../Helpers/Layover';
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
 import TextField from '../TextFields/TextField';
@@ -21,21 +19,6 @@ import TextField from '../TextFields/TextField';
  */
 export default class Autocomplete extends PureComponent {
   static propTypes = {
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ])),
-
-    menuId: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
-    listId: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
     /**
      * An optional style to apply to the menu that contains the autocomplete.
      */
@@ -89,7 +72,7 @@ export default class Autocomplete extends PureComponent {
     label: PropTypes.string,
 
     /**
-     * An optional value to use for the text field. This will force this component
+     * An optional value to use for the text field. This will horse this component
      * to be controlled and require the `onChange` function.
      */
     value: controlled(PropTypes.oneOfType([
@@ -281,21 +264,6 @@ export default class Autocomplete extends PureComponent {
      * of previously typed values in the text field. By default, this is disabled.
      */
     autoComplete: PropTypes.oneOf(['on', 'off']),
-
-    /**
-     * @see {@link Helpers/Layovers#anchor}
-     */
-    anchor: Layover.propTypes.anchor,
-
-    /**
-     * @see {@link Helpers/Layovers#animationPosition}
-     */
-    position: Layover.propTypes.animationPosition,
-
-    /**
-     * @see {@link Helpers/Layovers#sameWidth}
-     */
-    sameWidth: Layover.propTypes.sameWidth,
   };
 
   static defaultProps = {
@@ -306,12 +274,6 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
-    anchor: {
-      x: Layover.HorizontalAnchors.CENTER,
-      y: Layover.VerticalAnchors.BOTTOM,
-    },
-    position: Layover.LayoverPositions.BELOW,
-    sameWidth: true,
   };
 
   /**
@@ -462,7 +424,7 @@ export default class Autocomplete extends PureComponent {
     this.state = {
       value: defaultValue,
       matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : [],
-      visible: false,
+      isOpen: false,
       matchIndex: -1,
       manualFocus: false,
       suggestionIndex: -1,
@@ -496,8 +458,8 @@ export default class Autocomplete extends PureComponent {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if (this.state.visible !== nextState.visible) {
-      const menuFn = nextProps[`onMenu${nextState.visible ? 'Open' : 'Close'}`];
+    if (this.state.isOpen !== nextState.isOpen) {
+      const menuFn = nextProps[`onMenu${nextState.isOpen ? 'Open' : 'Close'}`];
       if (menuFn) {
         menuFn();
       }
@@ -519,7 +481,7 @@ export default class Autocomplete extends PureComponent {
       const matches = filter ? filter(data, value, dataLabel) : data;
       const next = { matches };
       if (value && nextState.focus && matches.length) {
-        next.visible = true;
+        next.isOpen = true;
       }
 
       this.setState(next);
@@ -575,7 +537,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur();
     }
 
-    this.setState({ focus: false, visible: false });
+    this.setState({ focus: false, isOpen: false });
   }
 
   _handleChange(value, event) {
@@ -595,7 +557,7 @@ export default class Autocomplete extends PureComponent {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, visible: !!matches.length, value });
+    return this.setState({ matches, isOpen: !!matches.length, value });
   }
 
   _handleFocus(e) {
@@ -605,7 +567,7 @@ export default class Autocomplete extends PureComponent {
 
     this.setState({
       matchIndex: -1,
-      visible: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
+      isOpen: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
       manualFocus: false,
       focus: true,
     });
@@ -658,7 +620,7 @@ export default class Autocomplete extends PureComponent {
         this.props.onBlur();
       }
 
-      this.setState({ visible: false });
+      this.setState({ isOpen: false });
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
@@ -707,7 +669,7 @@ export default class Autocomplete extends PureComponent {
 
     value = clearOnAutocomplete ? '' : value;
     this.setState({
-      visible: false,
+      isOpen: false,
       manualFocus: true,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
@@ -781,7 +743,7 @@ export default class Autocomplete extends PureComponent {
         context.font = font;
         const padding = this.props.block ? (fontSize * 1.5) : 8;
 
-        // Update suggestion style to be offset and not expand past text field
+        // Update suggestion style to be offset and not physically physically expand past text field
         const left = context.measureText(value).width + padding;
         suggestionStyle = { ...suggestionStyle, left };
       }
@@ -836,7 +798,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     if (!this.props.inline && this.state.matches.length && getField(this.props, this.state, 'value')) {
-      this.setState({ visible: !this.state.visible });
+      this.setState({ isOpen: !this.state.isOpen });
     }
   }
 
@@ -887,11 +849,8 @@ export default class Autocomplete extends PureComponent {
   }
 
   render() {
-    const { visible, matches, tabbed, focus, suggestionStyle } = this.state;
+    const { isOpen, matches, tabbed, focus, suggestionStyle } = this.state;
     const {
-      id,
-      menuId,
-      listId,
       fullWidth,
       block,
       style,
@@ -901,9 +860,6 @@ export default class Autocomplete extends PureComponent {
       textFieldStyle,
       textFieldClassName,
       inline,
-      anchor,
-      position,
-      sameWidth,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -933,7 +889,6 @@ export default class Autocomplete extends PureComponent {
     const autocomplete = (
       <TextField
         {...props}
-        id={id}
         aria-autocomplete={inline ? 'inline' : 'list'}
         style={textFieldStyle}
         className={cn('md-autocomplete', textFieldClassName)}
@@ -972,7 +927,7 @@ export default class Autocomplete extends PureComponent {
         <CSSTransitionGroup
           component="div"
           style={style}
-          className={cn('md-autocomplete-container md-autocomplete-container--inline-suggestion', className, {
+          className={cn('md-menu-container md-autocomplete-container', className, {
             'md-full-width': fullWidth || block,
           })}
           transitionName="opacity"
@@ -989,22 +944,18 @@ export default class Autocomplete extends PureComponent {
 
     return (
       <Menu
-        id={menuId || `${id}-suggestions`}
-        listId={listId}
         ref={this._setMenu}
         toggle={autocomplete}
-        visible={visible}
+        isOpen={isOpen}
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
+        position={Menu.Positions.BELOW}
         fullWidth={fullWidth || block}
         style={style}
         className={cn('md-autocomplete-container', className)}
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
-        anchor={anchor}
-        position={position}
-        sameWidth={sameWidth}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

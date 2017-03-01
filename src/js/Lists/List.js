@@ -3,6 +3,7 @@ import cn from 'classnames';
 import Subheader from '../Subheaders';
 
 import deprecated from 'react-prop-types/lib/deprecated';
+import contextTypes from '../Menus/contextTypes';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
@@ -34,31 +35,22 @@ export default class List extends PureComponent {
     primarySubheader: deprecated(PropTypes.bool, 'Use the `Subheader` component as a child instead'),
   };
 
-  static contextTypes = {
-    listLevel: PropTypes.number,
-    cascading: PropTypes.bool,
-    menu: PropTypes.bool,
-  }
-
-  static childContextTypes = {
-    listLevel: PropTypes.number,
-    cascading: PropTypes.bool,
-    menu: PropTypes.bool,
-  }
+  static childContextTypes = contextTypes;
+  static contextTypes = contextTypes;
 
   getChildContext() {
-    const listLevel = this.context.listLevel || 0;
-
+    const { listLevel, ...context } = this.context;
     return {
-      listLevel: listLevel + 1,
-      cascading: this.context.cascading,
-      menu: this.context.menu,
+      ...context,
+      listLevel: typeof listLevel === 'undefined'
+        ? 1
+        : listLevel + 1,
     };
   }
 
   render() {
     const { className, ordered, children, subheader, primarySubheader, ...props } = this.props;
-    const { listLevel, cascading, menu } = this.context;
+    const { menuPosition, menuCascading, listLevel } = this.context;
 
     let subheaderEl;
     if (subheader) {
@@ -70,9 +62,12 @@ export default class List extends PureComponent {
       <Component
         {...props}
         className={cn('md-list', {
-          'md-list--cascading-menu': cascading,
-          [`md-list--nested-${listLevel}`]: listLevel,
-          'md-paper md-paper--2': cascading || menu,
+          'md-list--menu': menuPosition,
+          'md-list--menu-scrollable': menuPosition && !menuCascading,
+          'md-list--menu-cascading': menuCascading,
+          'md-list--menu-nested': menuPosition && listLevel,
+          [`md-list--nested-${listLevel}`]: listLevel && !menuPosition,
+          [`md-list--menu-${menuPosition}`]: menuPosition,
         }, className)}
       >
         {subheaderEl}

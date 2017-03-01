@@ -58,165 +58,153 @@ $md-menu-cascading-list-padding: 16px !default;
 /// @param {Boolean} include-cascading [$md-menu-include-cascading] - Boolean if the desktop cascading
 ///     styles for menus should be included.
 @mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading) {
+  @if $include-media {
+    @include react-md-menus-media;
+  }
+
+  .md-menu-container {
+    position: relative;
+  }
+
+  .md-menu-container--menu-below {
+    .md-menu-enter {
+      transform: scaleY(0);
+
+      &.md-menu-enter-active {
+        transform: scaleY(1);
+      }
+    }
+  }
+
   .md-list--menu {
+    @include md-box-shadow(2);
+
+    position: absolute;
+    top: 0;
+    z-index: $md-menu-z-index;
+  }
+
+  .md-list--menu-contained {
+    width: 100%;
+  }
+
+  .md-list--menu-scrollable {
     overflow-y: auto;
   }
 
-  @if $include-media {
-    @include react-md-menus-media($include-cascading);
+  .md-list--menu-tr {
+    right: 0;
+    transform-origin: 100% 0;
   }
 
-  // .md-menu-container {
-  //   position: relative;
-  // }
+  .md-list--menu-tl {
+    transform-origin: 0 0;
+  }
 
-  // .md-menu-container--menu-below {
-  //   .md-menu-enter {
-  //     transform: scaleY(0);
+  .md-list--menu-br {
+    right: 0;
+    transform-origin: 100% 100%;
+  }
 
-  //     &.md-menu-enter-active {
-  //       transform: scaleY(1);
-  //     }
-  //   }
-  // }
+  .md-list--menu-bl {
+    transform-origin: 0 100%;
+  }
 
-  // .md-list--menu {
-  //   @include md-box-shadow(2);
+  .md-list--menu-context {
+    transform-origin: 50% 0;
+  }
 
-  //   position: absolute;
-  //   top: 0;
-  //   z-index: $md-menu-z-index;
-  // }
+  .md-list--menu-nested {
+    @include md-box-shadow(3);
 
-  // .md-list--menu-contained {
-  //   width: 100%;
-  // }
+    position: absolute;
+    z-index: $md-menu-z-index + 1;
+  }
 
-  // .md-list--menu-scrollable {
-  //   overflow-y: auto;
-  // }
+  .md-list--menu-below {
+    left: 0;
+    top: 100%;
+    transform-origin: 50% 0;
+    width: 100%;
+  }
 
-  // .md-list--menu-tr {
-  //   right: 0;
-  //   transform-origin: 100% 0;
-  // }
+  .md-menu-enter {
+    transform: scale(0);
+  }
 
-  // .md-list--menu-tl {
-  //   transform-origin: 0 0;
-  // }
+  .md-menu-leave {
+    opacity: 1;
+  }
 
-  // .md-list--menu-br {
-  //   right: 0;
-  //   transform-origin: 100% 100%;
-  // }
+  .md-menu-enter-active,
+  .md-menu-leave-active {
+    transition-duration: $md-menu-transition-time;
+  }
 
-  // .md-list--menu-bl {
-  //   transform-origin: 0 100%;
-  // }
+  .md-menu-enter.md-menu-enter-active {
+    transform: scale(1);
+    transition-property: transform;
+  }
 
-  // .md-list--menu-context {
-  //   transform-origin: 50% 0;
-  // }
+  .md-menu-leave.md-menu-leave-active {
+    opacity: 0;
+    transition-property: opacity;
+  }
 
-  // .md-list--menu-nested {
-  //   @include md-box-shadow(3);
+  .md-menu-enter.md-menu-enter-active {
+    transition-timing-function: $md-transition-deceleration;
+  }
 
-  //   position: absolute;
-  //   z-index: $md-menu-z-index + 1;
-  // }
+  .md-menu-leave.md-menu-enter-leave {
+    transition-timing-function: $md-transition-acceleration;
+  }
 
-  // .md-list--menu-below {
-  //   left: 0;
-  //   top: 100%;
-  //   transform-origin: 50% 0;
-  //   width: 100%;
-  // }
-
-  // .md-menu-enter {
-  //   transform: scale(0);
-  // }
-
-  // .md-menu-leave {
-  //   opacity: 1;
-  // }
-
-  // .md-menu-enter-active,
-  // .md-menu-leave-active {
-  //   transition-duration: $md-menu-transition-time;
-  // }
-
-  // .md-menu-enter.md-menu-enter-active {
-  //   transform: scale(1);
-  //   transition-property: transform;
-  // }
-
-  // .md-menu-leave.md-menu-leave-active {
-  //   opacity: 0;
-  //   transition-property: opacity;
-  // }
-
-  // .md-menu-enter.md-menu-enter-active {
-  //   transition-timing-function: $md-transition-deceleration;
-  // }
-
-  // .md-menu-leave.md-menu-enter-leave {
-  //   transition-timing-function: $md-transition-acceleration;
-  // }
-
-  // @if $include-cascading {
-  //   @include react-md-menus-cascading;
-  // }
+  @if $include-cascading {
+    @include react-md-menus-cascading;
+  }
 }
 
 @mixin react-md-menus-cascading {
-  .md-list--cascading-menu {
-    padding-bottom: $md-menu-cascading-list-padding;
-    padding-top: $md-menu-cascading-list-padding;
+  @media #{$md-desktop-media} {
+    .md-list--menu-cascading {
+      padding-bottom: $md-menu-cascading-list-padding;
+      padding-top: $md-menu-cascading-list-padding;
 
-    .md-list-tile {
-      height: $md-menu-cascading-height;
-      padding-left: $md-menu-cascading-padding;
-      padding-right: $md-menu-cascading-padding;
-    }
+      .md-list-tile {
+        height: $md-menu-cascading-height;
+        padding-left: $md-menu-cascading-padding;
+        padding-right: $md-menu-cascading-padding;
+      }
 
-    .md-tile-text--primary {
-      font-size: $md-menu-cascading-font-size;
-    }
+      .md-tile-text--primary {
+        font-size: $md-menu-cascading-font-size;
+      }
 
-    .md-collapser {
-      transform: rotate3d(0, 0, 1, -90deg);
-    }
+      .md-list-item--nested-container {
+        position: relative;
+      }
 
-    .md-collapser--flipped {
-      transform: rotate3d(0, 0, 1, 90deg);
+      .md-list--menu-tr,
+      .md-list--menu-br {
+        left: 100%;
+        right: initial;
+      }
+
+      .md-list--menu-tl,
+      .md-list--menu-bl {
+        left: initial;
+        right: 100%;
+      }
+
+      .md-collapser {
+        transform: rotate3d(0, 0, 1, -90deg);
+      }
+
+      .md-collapser--flipped {
+        transform: rotate3d(0, 0, 1, 90deg);
+      }
     }
   }
-
-  .md-list-item--cascading {
-    position: relative;
-  }
-  // .md-list--menu-cascading {
-
-  //   .md-list-tile {
-  //   }
-
-  //   .md-list-item--nested-container {
-  //     position: relative;
-  //   }
-
-  //   .md-list--menu-tr,
-  //   .md-list--menu-br {
-  //     left: 100%;
-  //     right: initial;
-  //   }
-
-  //   .md-list--menu-tl,
-  //   .md-list--menu-bl {
-  //     left: initial;
-  //     right: 100%;
-  //   }
-
-  // }
 }
 
 /// Creates the styles for menus on mobile devices. This should _normally_
@@ -228,7 +216,7 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-mobile {
-  .md-list--menu {
+  .md-list--menu-scrollable {
     max-height: $md-menu-mobile-max-height;
   }
 }
@@ -241,13 +229,9 @@ $md-menu-cascading-list-padding: 16px !default;
 ///     @include react-md-menus-desktop;
 ///   }
 /// @group menus, media-queries
-@mixin react-md-menus-desktop($include-cascading: $md-menu-include-cascading) {
-  .md-list--menu {
+@mixin react-md-menus-desktop {
+  .md-list--menu-scrollable {
     max-height: $md-menu-desktop-max-height;
-  }
-
-  @if $include-cascading {
-    @include react-md-menus-cascading;
   }
 }
 
@@ -256,12 +240,12 @@ $md-menu-cascading-list-padding: 16px !default;
 /// @example scss - Example Usage SCSS
 ///   @include react-md-menus-media;
 /// @group menus, media-queries
-@mixin react-md-menus-media($include-cascading: $md-menu-include-cascading) {
+@mixin react-md-menus-media {
   @media #{$md-mobile-media} {
     @include react-md-menus-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-menus-desktop($include-cascading);
+    @include react-md-menus-desktop;
   }
 }

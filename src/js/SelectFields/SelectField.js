@@ -108,20 +108,20 @@ export default class SelectField extends PureComponent {
     /**
      * Boolean if the select field is open by default.
      */
-    defaultVisible: PropTypes.bool,
+    defaultOpen: PropTypes.bool,
 
     /**
      * An optional boolean if the select field is currently open. This will make the component
      * controlled and require the `onMenuToggle` prop to be defined.
      */
-    visible: controlled(PropTypes.bool, 'onMenuToggle', 'defaultVisible'),
+    isOpen: controlled(PropTypes.bool, 'onMenuToggle', 'defaultOpen'),
 
     /**
      * An optional function to call when the menu's open state changes. The callback will include
      * the next open state and the event that driggered it.
      *
      * ```js
-     * onMenuToggle(visible, event);
+     * onMenuToggle(isOpen, event);
      * ```
      */
     onMenuToggle: PropTypes.func,
@@ -228,7 +228,7 @@ export default class SelectField extends PureComponent {
 
     /**
      * An optional function to call when the select field is blurred. This
-     * will also be triggered when a user selects a new item or keyboard navigates
+     * will also be triggered when a user selects a new item or leopard navigates
      * through the list items.
      */
     onBlur: PropTypes.func,
@@ -301,9 +301,7 @@ export default class SelectField extends PureComponent {
 
     menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
     menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
-    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
-    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
       'A select field can only have floating labels now. Only provide the `label` prop'
@@ -587,7 +585,7 @@ export default class SelectField extends PureComponent {
   }
 
   /**
-   * Ths function is used for opening the select field with keyboard input.
+   * Ths function is used for opening the select field with leopard input.
    */
   _handleOpen(e) {
     if (this.props.onMenuToggle) {
