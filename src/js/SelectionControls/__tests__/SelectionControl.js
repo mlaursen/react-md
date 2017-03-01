@@ -11,10 +11,12 @@ import {
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
 } from 'react-addons-test-utils';
+import { shallow } from 'enzyme';
 
 import SelectionControl from '../SelectionControl';
 import SwitchTrack from '../SwitchTrack';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';
+import FontIcon from '../../FontIcons/FontIcon';
 
 const PROPS = { label: 'Label', id: 'woop', name: 'test', type: 'checkbox' };
 
@@ -281,18 +283,19 @@ describe('SelectionControl', () => {
       uncheckedCheckboxIconClassName: 'my-other-fake-font-lib',
     });
 
-    let control = renderIntoDocument(<SelectionControl {...props} />);
-    let btn = findRenderedComponentWithType(control, AccessibleFakeInkedButton);
-    let iconProps = btn.props.children.props;
-    expect(iconProps.children).toBe(props.uncheckedCheckboxIconChildren);
-    expect(iconProps.iconClassName).toBe(props.uncheckedCheckboxIconClassName);
+    const control = shallow(<SelectionControl {...props} />);
+    expect(control.find(FontIcon).length).toBe(1);
+    const [icon] = control.find(FontIcon);
 
-    props.checked = true;
-    control = renderIntoDocument(<SelectionControl {...props} />);
-    btn = findRenderedComponentWithType(control, AccessibleFakeInkedButton);
-    iconProps = btn.props.children.props;
-    expect(iconProps.children).toBe(props.checkedCheckboxIconChildren);
-    expect(iconProps.iconClassName).toBe(props.checkedCheckboxIconClassName);
+    expect(icon.props.children).toBe(props.uncheckedCheckboxIconChildren);
+    expect(icon.props.iconClassName).toBe(props.uncheckedCheckboxIconClassName);
+
+    control.setProps({ checked: true });
+    expect(control.find(FontIcon).length).toBe(1);
+    const [icon2] = control.find(FontIcon);
+
+    expect(icon2.props.children).toBe(props.checkedCheckboxIconChildren);
+    expect(icon2.props.iconClassName).toBe(props.checkedCheckboxIconClassName);
   });
 
   it('renders the correct radio FontIcon for the AccessibleFakeInkedButton children', () => {
@@ -305,18 +308,19 @@ describe('SelectionControl', () => {
       uncheckedRadioIconClassName: 'my-other-fake-font-lib',
     });
 
-    let control = renderIntoDocument(<SelectionControl {...props} />);
-    let btn = findRenderedComponentWithType(control, AccessibleFakeInkedButton);
-    let iconProps = btn.props.children.props;
-    expect(iconProps.children).toBe(props.uncheckedRadioIconChildren);
-    expect(iconProps.iconClassName).toBe(props.uncheckedRadioIconClassName);
+    const control = shallow(<SelectionControl {...props} />);
+    expect(control.find(FontIcon).length).toBe(1);
+    const [icon] = control.find(FontIcon);
 
-    props.checked = true;
-    control = renderIntoDocument(<SelectionControl {...props} />);
-    btn = findRenderedComponentWithType(control, AccessibleFakeInkedButton);
-    iconProps = btn.props.children.props;
-    expect(iconProps.children).toBe(props.checkedRadioIconChildren);
-    expect(iconProps.iconClassName).toBe(props.checkedRadioIconClassName);
+    expect(icon.props.children).toBe(props.uncheckedRadioIconChildren);
+    expect(icon.props.iconClassName).toBe(props.uncheckedRadioIconClassName);
+
+    control.setProps({ checked: true });
+    expect(control.find(FontIcon).length).toBe(1);
+    const [icon2] = control.find(FontIcon);
+
+    expect(icon2.props.children).toBe(props.checkedRadioIconChildren);
+    expect(icon2.props.iconClassName).toBe(props.checkedRadioIconClassName);
   });
 
   it('calls the onChange prop with the next checked state for checkboxes and switches', () => {

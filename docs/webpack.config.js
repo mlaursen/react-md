@@ -41,7 +41,7 @@ module.exports = () => ({
   module: {
     preLoaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules|lib/,
+      exclude: /node_modules|lib|api/,
       loader: 'eslint',
     }],
 

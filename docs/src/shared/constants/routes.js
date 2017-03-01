@@ -1,3 +1,5 @@
+import upgradeGuides from './upgradeGuides';
+
 export default [{
   path: '',
   icon: 'home',
@@ -26,13 +28,10 @@ export default [{
     'whats-new',
     'boilerplates', {
       path: 'upgrade-guides',
-      nestedItems: [{
-        path: 'v1.0.0',
-        primaryText: 'Upgrading to v1.0.0',
-      }, {
-        path: 'v0.3.0',
-        primaryText: 'Upgrading to v0.3.0',
-      }],
+      nestedItems: upgradeGuides.map(version => ({
+        path: version,
+        primaryText: `Upgrading to ${version}`,
+      })),
     }, 'community',
     'contributing',
   ],

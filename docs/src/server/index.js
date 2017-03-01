@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import bodyParser from 'body-parser';
 
-import { port } from '../../serverConfig.json';
+import { port } from './config';
 import theme from './theme';
 import proxy from './proxy';
 

@@ -9,7 +9,7 @@ import { middleware as cache } from 'apicache';
 import docgen, { buildLocalDB as buildDocgenDB } from './docgen';
 import sassdoc, { buildLocalDB as buildSassDocDB } from './sassdoc';
 import search, { buildLocalDB as buildSearchDB } from './search';
-import { port, path } from '../../serverConfig.json';
+import { port, path } from './config';
 
 const DEV = process.env.NODE_ENV === 'development';
 const app = express();
