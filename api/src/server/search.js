@@ -4,7 +4,7 @@ import toTitle from 'utils/StringUtils/toTitle';
 import flatten from 'utils/ListUtils/flatten';
 import buildPropTypesList from '../utils/buildPropTypesList';
 
-import { host, port, path } from '../../serverConfig.json';
+import { host, port, path, protocol } from './config';
 import { buildSassDocList } from '../utils/buildSassDocList';
 
 const DEV = process.env.NODE_ENV === 'development';
@@ -144,7 +144,7 @@ export default function search(req, res) {
     return;
   }
 
-  const url = `https://${host}${DEV ? `:${port}` : ''}${path || ''}/search?q=${q}`;
+  const url = `${protocol}://${host}${DEV ? `:${port}` : ''}${path || ''}/search?q=${q}`;
   let next = null;
   let previous = null;
   if (total > start + limit) {

@@ -35,8 +35,3 @@ dist
 src/scss/bundles
 
 .jest-cache
-prod-config.json
-docs/src/docgens
-docs/src/sassdocs
-docs/src/shared/components/Grids/grid-sassdoc.json
-serverConfig.json
