@@ -2,24 +2,24 @@
 ### v1.0.6 Released
 
 ##### Changelog
-- Fixed DatePicker's [calendar Date when controlled](https://github.com/mlaursen/react-md/issues/245)
-- Added [controlled warnings](https://github.com/mlaursen/react-md/commit/d46cf4c6e356aa69ccbcd8fa7903451c4e20e307) to pickers.
-- Allowed non-material design colors to compile [without errors](https://github.com/mlaursen/react-md/issues/244).
-- FontIcon force size [fix](https://github.com/mlaursen/react-md/issues/221).
+- Fixed DatePicker's [calendar Date when controlled](#issues-245)
+- Added [controlled warnings](#commit-d46cf4c6e356aa69ccbcd8fa7903451c4e20e307) to pickers.
+- Allowed non-material design colors to compile [without errors](#issues-244).
+- FontIcon force size [fix](#issues-221).
 - Allowed a TableRow to only have a single column.
 
 ### v1.0.5 Released
 
 ##### Changelog
-- Fixed the DatePicker's [min/max date validator](https://github.com/mlaursen/react-md/commit/53130fadde13253b403d9ed3fe662ed65f6c70d6).
-- Fixed the FocusContainer's [window focus bug](https://github.com/mlaursen/react-md/commit/1fe1b9b763734809a565a7fa5c0f5d52bdf80906).
+- Fixed the DatePicker's [min/max date validator](#commit-53130fadde13253b403d9ed3fe662ed65f6c70d6).
+- Fixed the FocusContainer's [window focus bug](#commit-1fe1b9b763734809a565a7fa5c0f5d52bdf80906).
   - > Basically using `element.contains(window)` is invalid and throws a 'Node' does not have contains error.
-- Automated the nested dialog [display error](https://github.com/mlaursen/react-md/issues/229) until Portals are updated.
-- Fixed the TextField blocked [icon positioning](https://github.com/mlaursen/react-md/commit/9115e235946942095392306564d37fa439511976).
-- Passed text-field related props from [pickers](https://github.com/mlaursen/react-md/commit/5daabbb973330d770cbacae99fc418245807afbc).
-- Fixed the [TablePagination](https://github.com/mlaursen/react-md/commit/93d932f91e0e2dcfd664331e3dbd2fd48a6c02df)'s onPagination callback
+- Automated the nested dialog [display error](#issues-229) until Portals are updated.
+- Fixed the TextField blocked [icon positioning](#commit-9115e235946942095392306564d37fa439511976).
+- Passed text-field related props from [pickers](#commit-5daabbb973330d770cbacae99fc418245807afbc).
+- Fixed the [TablePagination](#commit-93d932f91e0e2dcfd664331e3dbd2fd48a6c02df)'s onPagination callback
 to be more accurate.
-- Fixed the TableRows's [onCheckboxClick callback](https://github.com/mlaursen/react-md/commit/69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
+- Fixed the TableRows's [onCheckboxClick callback](#commit-69fbdd8fa8519f652fe0d6c8cce4ce0905a5c4a8) to
 match documentation.
 
 > I had a moment and accidentally published 1.0.4 with the same code as 1.0.3
@@ -37,21 +37,21 @@ Minor bugfixes.
 Minor bugfixes.
 
 ##### Changelog
-- Fixed active label for [SelectField](https://github.com/mlaursen/react-md/pull/235).
-- Components that use the `Portal` component pass the `lastChild` and `renderNode` [props correctly](https://github.com/mlaursen/react-md/pull/234).
+- Fixed active label for [SelectField](#pull-235).
+- Components that use the `Portal` component pass the `lastChild` and `renderNode` [props correctly](#pull-234).
 
 ### v1.0.1 Released
 Minor bugfixes.
 
 ##### Changelog
-- Fixed proptypes of avatar to allow [PropTypes.node](https://github.com/mlaursen/react-md/issues/198) instead of `string` only.
-- Fixed the [accidental form submission](https://github.com/mlaursen/react-md/commit/cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
+- Fixed proptypes of avatar to allow [PropTypes.node](#issues-198) instead of `string` only.
+- Fixed the [accidental form submission](#commit-cf5761026cb0c793a1848ca19c5fdd8eafe1d792) if
 selecting an item from an `autocomplete` by using the enter key press in a form.
-- Fixed [Slider number alidation](https://github.com/mlaursen/react-md/issues/184) for floats.
-- Fixed the issue where the [Switch's onChange prop](https://github.com/mlaursen/react-md/issues/182) fires twice when clicking/touching
+- Fixed [Slider number alidation](#issues-184) for floats.
+- Fixed the issue where the [Switch's onChange prop](#issues-182) fires twice when clicking/touching
 the thumb.
-- Fixed the styling issue for [password text fields](https://github.com/mlaursen/react-md/issues/192) that have a message with the field.
-- Fixed the SelectField to allow a [0 based option value](https://github.com/mlaursen/react-md/issues/214).
+- Fixed the styling issue for [password text fields](#issues-192) that have a message with the field.
+- Fixed the SelectField to allow a [0 based option value](#issues-214).
 
 
 ## December 2016
@@ -68,24 +68,24 @@ This is the first prod-ready release of react-md. The library still isn't comple
 
 
 ##### Changelog
-- Fixed the [background color bug](https://github.com/mlaursen/react-md/commit/49ce0717af9a63530c1239b0b18c9bd1941a0914).
+- Fixed the [background color bug](#commit-49ce0717af9a63530c1239b0b18c9bd1941a0914).
 - Fixed the precompiled bundles to actually reflect what my documentation said. The precompiled bundles
 are now formatted as `PRIMARY-COLOR_SECONDARY_COLOR.min.css` instead of `PRIMARY-COLOR-SECONDARY-COLOR.MIN.CSS`.
-- Created a [mixin to create color class names](https://github.com/mlaursen/react-md/commit/14e19f3c767ed9901f94a36ee89da238b36e2a09).
-- Fixed the injectINK HOC for [keyboard _clicks_](https://github.com/mlaursen/react-md/commit/59dff18cfd8b5b3923b1fb346ef699d8bad3b302).
-- FileInput/FileUpload [bugfixes](https://github.com/mlaursen/react-md/commit/2c4e1111fc53e25df94db67a43b892dfb94c0e50).
-- Updated the password text fields' styles for [keyboard accessibility](https://github.com/mlaursen/react-md/commit/807aa2a0540756ae88845e5291bcb47e83c6d075).
+- Created a [mixin to create color class names](#commit-14e19f3c767ed9901f94a36ee89da238b36e2a09).
+- Fixed the injectINK HOC for [keyboard _clicks_](#commit-59dff18cfd8b5b3923b1fb346ef699d8bad3b302).
+- FileInput/FileUpload [bugfixes](#commit-2c4e1111fc53e25df94db67a43b892dfb94c0e50).
+- Updated the password text fields' styles for [keyboard accessibility](#commit-807aa2a0540756ae88845e5291bcb47e83c6d075).
 - Updated the TextFieldMessage to not shrink when in a block text field.
-- Updated EditDialogColumn for [accessibility](https://github.com/mlaursen/react-md/commit/217c42554044bdfda4652c8252c7863798c13b30).
-- Updated typography to be able to opt out of [utility class names](https://github.com/mlaursen/react-md/commit/5c5eaa2f7a23fd4a811e58bf59ac73a4dc828e66).
-- Updated SelectField [keyboard accessibility](https://github.com/mlaursen/react-md/commit/ffe270be18f2c957f2f257db800e1e602ba00e15).
+- Updated EditDialogColumn for [accessibility](#commit-217c42554044bdfda4652c8252c7863798c13b30).
+- Updated typography to be able to opt out of [utility class names](#commit-5c5eaa2f7a23fd4a811e58bf59ac73a4dc828e66).
+- Updated SelectField [keyboard accessibility](#commit-ffe270be18f2c957f2f257db800e1e602ba00e15).
 - Updated tooltips to no longer rotate along with the `.md-collapser`s.
-- Updated tooltips to be created through react components instead of my weird decision of creating it manually myself. [75eb2e0](https://github.com/mlaursen/react-md/commit/75eb2e0a6616e6109141fc38cb88b35527d52eff)
-- Rewrote SelectFieldColumn. [#170](https://github.com/mlaursen/react-md/issues/170)
+- Updated tooltips to be created through react components instead of my weird decision of creating it manually myself. [75eb2e0](#commit-75eb2e0a6616e6109141fc38cb88b35527d52eff)
+- Rewrote SelectFieldColumn. [#170](#issues-170)
 - Added the `getCurrentMedia` static method to the `NavigationDrawer` as well.
 - Updated permanent drawers to no longer use the Portal.
-- Updated the `Dialog` component to be able to be closed by pressing the escape key (only if not a `modal`). [b742ed5c](https://github.com/mlaursen/react-md/commit/b742ed5cedaff0e79c6b812794ffe1bf4d567258)
-- Updated the Date and Time pickers to have _some_ [keyboard accessibility](https://github.com/mlaursen/react-md/issues/173). This still isn't the ideal solution
+- Updated the `Dialog` component to be able to be closed by pressing the escape key (only if not a `modal`). [b742ed5c](#commit-b742ed5cedaff0e79c6b812794ffe1bf4d567258)
+- Updated the Date and Time pickers to have _some_ [keyboard accessibility](#issues-173). This still isn't the ideal solution
 and will be changed in a future release (maybe?) to actually allow inline date and time selection that will appear in dropdowns.
 - Updated `FocusContainer` to be able to enable/disable the focus containment after being fully mounted.
 
@@ -102,7 +102,7 @@ This release fixed up a couple more bugs (listed below) and now the main focus w
 production-breaking bugs remaining.
 
 ##### Changelog
-- Fixed the Avatar colors changing [#161](https://github.com/mlaursen/react-md/issues/161)
+- Fixed the Avatar colors changing [#161](#issues-161)
 - Updated EditDialogColumn to interact correctly with keyboard focus and touch devices
 - Fixed the `Dialog` to remove the prevent scroll className when unmounting
 - Updated the `Drawer.getCurrentMedia` function to use the `Drawer.defaultProps` as the default value of the `props` parameter.
@@ -139,9 +139,9 @@ will allow a user to focus the main content of the page instead of having to go 
 ##### Changelog
 - Fixed some color variables that I had mistyped/miscopied...
 - Fixed the spelling of `discreet -> discrete`
-- Fixed the `Sliders` when using touch devices. [#144](https://github.com/mlaursen/react-md/issues/164)
-- Fixed the `YearPicker` after the name change from `initialYearsDisplayed` to `yearsDisplayed`. [#165](https://github.com/mlaursen/react-md/issues/165)
-- Added `onTabFocus` and `tabbedClassName` to the `AccessibleFakeButton`. [#160](https://github.com/mlaursen/react-md/issues/160)
+- Fixed the `Sliders` when using touch devices. [#144](#issues-164)
+- Fixed the `YearPicker` after the name change from `initialYearsDisplayed` to `yearsDisplayed`. [#165](#issues-165)
+- Added `onTabFocus` and `tabbedClassName` to the `AccessibleFakeButton`. [#160](#issues-160)
 
 ### v1.0.0.alpha.3 Released
 

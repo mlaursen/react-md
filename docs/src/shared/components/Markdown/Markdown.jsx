@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import withRouter from 'react-router/lib/withRouter';
 import marked from 'marked';
 import highlight from 'highlight.js';
+import { GITHUB_URL } from 'constants/application';
 
 import './_styles.scss';
 
@@ -26,6 +27,7 @@ marked.setOptions({
 
 function formatMarkdown(props) {
   return marked(props.markdown.replace(/(\r?\n)(@see)/g, '$1$1$2'))
+    .replace(/#(commit|pull|issues)-(\w+)/g, `${GITHUB_URL}/$1/$2`)
     .replace(/<pre><code/g, '<pre class="code-block"><code')
     .replace(/<ul/g, '<ul class="md-text"')
     .replace(/<p>@see/g, '<p style="margin-bottom:0">@see')
