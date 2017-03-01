@@ -1,3 +1,4 @@
+import upgradeGuides from 'constants/upgradeGuides';
 import getMarkdownPage from './getMarkdownPage';
 
 function toMarkdownPage(path) {
@@ -28,10 +29,10 @@ childRoutes.splice(2, 0, {
   path: 'upgrade-guides',
   indexRoute: {
     onEnter(state, replace) {
-      replace('/upgrade-guids/v1.0.0');
+      replace(`/upgrade-guides/${upgradeGuides[0]}`);
     },
   },
-  childRoutes: ['v1.0.0', 'v0.3.0'].map(toMarkdownPage),
+  childRoutes: upgradeGuides.map(toMarkdownPage),
 });
 
 export default {
