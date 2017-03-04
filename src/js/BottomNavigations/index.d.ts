@@ -11,7 +11,7 @@ interface BottomNavigationProps extends Props {
   colored?: boolean;
   dynamic?: boolean;
   dynamicThreshold?: number;
-  onNavChange?: (activeIndex: number, event: React.MouseEvent) => void;
+  onNavChange?: (activeIndex: number, event: React.MouseEvent<HTMLElement>) => void;
   activeIndex?: number;
   defaultActiveIndex?: number;
   defaultVisible?: boolean;
