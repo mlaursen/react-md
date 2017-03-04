@@ -10,7 +10,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "cross-env BABEL_ENV=test jest",
+    "test": "npm run test:tsc && cross-env BABEL_ENV=test jest",
+    "test:tsc": "cross-env tsc index.d.ts",
     "test:watch": "cross-env BABEL_ENV=test jest --watch",
     "scripts": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
     "scripts:watch": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
@@ -40,6 +41,7 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
+    "@types/react": "^15.0.14",
     "autoprefixer": "^6.5.1",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
@@ -73,6 +75,7 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "typescript": "^2.2.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {
