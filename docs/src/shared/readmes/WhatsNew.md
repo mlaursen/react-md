@@ -49,6 +49,7 @@ the [issue for more details](#issues-243).
 - Updated the button's label to be `node` and added a `noIcon` prop for buttons. [#261](#pull-261)
 - Implemented the dense icon spec. [#217](#issues-217)
 - Added initial typescript support. [#175](#issues-175)
+- Ink is now disableable at an application level. [#176](#issues-176)
 
 ## February 2017
 ### v1.0.6 Released
