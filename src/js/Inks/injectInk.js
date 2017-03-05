@@ -1,7 +1,10 @@
 import React, { PureComponent, PropTypes } from 'react';
 
-import InkContainer from './InkContainer';
+import getField from '../utils/getField';
 import getDisplayName from '../utils/StringUtils/getDisplayName';
+
+import InkContainer from './InkContainer';
+import inkContextTypes from './inkContextTypes';
 
 /**
  * Takes any component and injects an ink container for having the Material Design Ink effect.
@@ -100,6 +103,8 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     inkTransitionLeaveTimeout: 300,
   };
 
+  static contextTypes = inkContextTypes;
+
   constructor(props, context) {
     super(props, context);
 
@@ -187,7 +192,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
 
   render() {
     const {
-      inkDisabled,
       inkTransitionOverlap: transitionOverlap,
       inkTransitionEnterTimeout: transitionEnterTimeout,
       inkTransitionLeaveTimeout: transitionLeaveTimeout,
@@ -195,11 +199,17 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkClassName,
       inkContainerStyle,
       inkContainerClassName,
-      disabledInteractions,
       waitForInkTransition,
+      disabledInteractions,
+      inkDisabled: propInkDisabled, // eslint-disable-line no-unused-vars
       __SUPER_SECRET_REF__, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
+
+    const inkDisabled = getField(this.props, this.context, 'inkDisabled');
+    const inkDisabledInteractions = typeof disabledInteractions !== 'undefined'
+      ? disabledInteractions
+      : this.context.inkDisabledInteractions;
 
     if (!(props.disabled || inkDisabled)) {
       props.ink = (
@@ -210,7 +220,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
           className={inkContainerClassName}
           inkStyle={inkStyle}
           inkClassName={inkClassName}
-          disabledInteractions={disabledInteractions}
+          disabledInteractions={inkDisabledInteractions}
           transitionOverlap={transitionOverlap}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
