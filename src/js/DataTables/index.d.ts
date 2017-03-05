@@ -15,7 +15,7 @@ interface DataTableProps extends Props {
   uncheckedIconChildren?: React.ReactNode;
   checkedIconClassName?: string;
   checkedIconChildren?: React.ReactNode;
-  onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent) => void;
+  onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
   selectableRows?: boolean;
   indeterminate?: boolean;
@@ -35,7 +35,7 @@ interface TableBodyProps extends Props {
 
 interface TableRowProps extends Props {
   children?: Array<React.ReactElement<any>> | React.ReactElement<any>;
-  onCheckboxClick?: (rowIndex: number, event: React.MouseEvent) => void;
+  onCheckboxClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement>) => void;
   autoAdjust?: boolean;
   selected?: boolean;
 }
@@ -66,14 +66,14 @@ interface EditDialogColumnProps extends Props {
   maxLength?: number;
   value?: number | string;
   defaultValue?: number | string;
-  onChange?: (value: number | string, event: React.FormEvent) => void;
+  onChange?: (value: number | string, event: React.FormEvent<HTMLElement>) => void;
   large?: boolean;
   title?: string;
-  onOkClick?: (value: number | string, event: React.MouseEvent) => void;
-  onCancelClick?: (value: number | string, event: React.MouseEvent) => void;
+  onOkClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
+  onCancelClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
   okLabel?: string;
   cancelLabel?: string;
-  onOutsideClick?: (event: React.MouseEvent) => void;
+  onOutsideClick?: (event: React.MouseEvent<HTMLElement>) => void;
   okOnOutsideClick?: boolean;
   label?: React.ReactNode;
   placeholder?: string;
@@ -96,7 +96,7 @@ interface SelectFieldColumnProps extends Props {
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
   header?: boolean;
-  onMenuToggle?: (open: boolean, event: React.MouseEvent) => void;
+  onMenuToggle?: (open: boolean, event: React.MouseEvent<HTMLElement>) => void;
   position?: SelectFieldPositions;
   defaultOpen?: boolean;
   scrollThreshold?: number;

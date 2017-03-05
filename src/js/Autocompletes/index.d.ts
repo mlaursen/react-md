@@ -27,7 +27,7 @@ interface AutocompleteProps extends Props {
   inline?: boolean;
   findInlineSuggestion?: (data: DataType, value: string | number, dataLabel?: string) => string | number;
   onAutocomplete?: (suggestion: string | number, suggestionIndex: number, matches: DataType) => void;
-  onChange?: (value: string, event: React.FormEvent) => void;
+  onChange?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
   clearOnAutocomplete?: boolean;
   onMenuOpen?: Function;
   onMenuClose?: Function;

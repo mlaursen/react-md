@@ -19,8 +19,8 @@ interface ExpansionPanelProps extends Props {
   focused?: boolean;
   columnWidths?: Array<number>;
   onExpandToggle?: (expanded: boolean) => void;
-  onSave?: (event: React.MouseEvent) => void;
-  onCancel?: (event: React.MouseEvent) => void;
+  onSave?: (event: React.MouseEvent<HTMLElement>) => void;
+  onCancel?: (event: React.MouseEvent<HTMLElement>) => void;
   closeOnSave?: boolean;
   closeOnCancel?: boolean;
   saveType?: ButtonTypes;
