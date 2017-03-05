@@ -96,6 +96,10 @@ $md-data-table-card-header-z-index: 1 !default;
 /// @type Number
 $md-data-table-card-header-font-size: 16px !default;
 
+/// The height for the table card header.
+/// @type Number
+$md-data-table-card-header-height: 80px !default;
+
 /// A fallback color to use for the contextual table card header. This is only required
 /// when the `$md-primary-color` is not a valid material design color.
 /// @type Color
@@ -436,7 +440,7 @@ $md-data-table-contextual-fallback-color: null !default;
     &--no-title {
       align-items: center;
       display: flex;
-      height: 80px;
+      height: $md-data-table-card-header-height;
       padding-right: 2px;
     }
 
@@ -467,7 +471,7 @@ $md-data-table-contextual-fallback-color: null !default;
     color: $secondary-color;
     font-size: $md-data-table-card-header-font-size;
     font-weight: $md-font-medium;
-    line-height: 80px;
+    line-height: $md-data-table-card-header-height;
   }
 
   .md-drop-down-enter {

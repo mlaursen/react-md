@@ -37,6 +37,10 @@ $md-btn-fixed-z-index: 10 !default;
 /// @access private;
 $md-btn-accessible-height: 48px;
 
+/// The border radius to apply to text buttons.
+/// @type Number
+$md-btn-text-border-radius: 2px !default;
+
 /// The font size for buttons on mobile devices.
 /// @type Number
 $md-btn-mobile-font-size: 14px !default;
@@ -97,6 +101,10 @@ $md-btn-icon-dense-size: $md-font-icon-dense-size * 2 !default;
 /// The padding to use for a dense icon button.
 /// @type Number
 $md-btn-icon-dense-padding: $md-btn-icon-dense-size / 4 !default;
+
+/// The border radius to apply to icon buttons.
+/// @type Number
+$md-btn-icon-border-radius: 50% !default;
 
 /// The base color to use for default buttons in the light theme.
 /// @type Color
@@ -176,7 +184,6 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
   .md-btn {
     background: transparent;
     border: 0;
-    border-radius: 2px;
     position: relative;
     transition-duration: $md-transition-time;
     transition-property: background, color;
@@ -217,11 +224,16 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 
   @if $include-flat or $include-raised {
     .md-btn--text {
+      border-radius: $md-btn-text-border-radius;
       font-weight: $md-font-medium;
       min-width: $md-btn-min-width;
       padding: 8px $md-btn-lr-padding;
       text-transform: uppercase;
       transition-duration: $md-transition-time;
+
+      @if $md-btn-mobile-font-size == $md-btn-desktop-font-size {
+        font-size: $md-btn-mobile-font-size;
+      }
     }
   }
 
@@ -243,7 +255,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 
   @if $include-icon or $include-floating {
     .md-btn--icon {
-      border-radius: 50%;
+      border-radius: $md-btn-icon-border-radius;
       color: get-color('icon', $light-theme);
       height: $md-btn-icon-size;
       padding: $md-btn-icon-padding;
@@ -360,10 +372,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
     $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
 
     .md-btn--text {
-      font-size: $md-btn-mobile-font-size;
       height: $md-btn-mobile-height;
       margin-bottom: $accessible-padding;
       margin-top: $accessible-padding;
+
+      @if $md-btn-mobile-font-size != $md-btn-desktop-font-size {
+        font-size: $md-btn-mobile-font-size;
+      }
 
       // The accessible height is supposed to be 48px while the button height is supposed
       // to be 36px.. So hack for touch by adding some margin for the difference and adding
@@ -437,10 +452,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 ) {
   @if $include-flat or $include-raised {
     .md-btn--text {
-      font-size: $md-btn-desktop-font-size;
       height: $md-btn-desktop-height;
       margin-bottom: initial;
       margin-top: initial;
+
+      @if $md-btn-mobile-font-size != $md-btn-desktop-font-size {
+        font-size: $md-btn-desktop-font-size;
+      }
 
       &::before,
       &::after {
@@ -481,21 +499,32 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
   }
 
   @if ($include-icon or $include-floating) and $include-dense-icons {
-    .md-btn--icon {
-      height: $md-btn-icon-dense-size;
-      padding: $md-btn-icon-dense-padding;
-      width: $md-btn-icon-dense-size;
+    $icon-size-diff: $md-btn-icon-size != $md-btn-icon-dense-size;
+    $icon-pad-diff: $md-btn-icon-padding != $md-btn-icon-dense-padding;
+    @if ($icon-size-diff or $icon-pad-diff) {
+      .md-btn--icon {
+        @if $icon-size-diff {
+          height: $md-btn-icon-dense-size;
+          width: $md-btn-icon-dense-size;
+        }
+
+        @if $icon-pad-diff {
+          padding: $md-btn-icon-dense-padding;
+        }
+      }
     }
 
-    .md-btn--floating {
-      height: $md-btn-floating-dense-size;
-      padding: ($md-btn-floating-dense-size - $md-font-icon-dense-size) / 2;
-      width: $md-btn-floating-dense-size;
+    @if $md-btn-floating-size != $md-btn-floating-dense-size {
+      .md-btn--floating {
+        height: $md-btn-floating-dense-size;
+        padding: ($md-btn-floating-dense-size - $md-font-icon-dense-size) / 2;
+        width: $md-btn-floating-dense-size;
 
-      &-mini {
-        height: $md-btn-floating-mini-size;
-        padding: ($md-btn-floating-mini-size - $md-font-icon-dense-size) / 2;
-        width: $md-btn-floating-mini-size;
+        &-mini {
+          height: $md-btn-floating-mini-size;
+          padding: ($md-btn-floating-mini-size - $md-font-icon-dense-size) / 2;
+          width: $md-btn-floating-mini-size;
+        }
       }
     }
   }

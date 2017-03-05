@@ -16,6 +16,15 @@ $md-ink-leave-transition-time: .3s !default;
 /// @type Number
 $md-ink-pulse-time: 1.5s !default;
 
+/// This is the scale that an ink should take once it has been fully
+/// created. It gets applied into `scale`.
+/// @type Number
+$md-ink-expanded-scale: 1 !default;
+
+/// The border radius for ink.
+/// @type Number
+$md-ink-border-radius: 50% !default;
+
 /// Creates the styles for material design ink.
 ///
 /// @example scss - Example Usage SCSS
@@ -45,7 +54,7 @@ $md-ink-pulse-time: 1.5s !default;
 
   .md-ink {
     background: get-color('divider', $light-theme);
-    border-radius: 50%;
+    border-radius: $md-ink-border-radius;
     display: block;
     opacity: 1;
     position: absolute;
@@ -60,7 +69,7 @@ $md-ink-pulse-time: 1.5s !default;
   }
 
   .md-ink--expanded {
-    transform: scale(.9);
+    transform: scale($md-ink-expanded-scale);
   }
 
   .md-ink--pulsing {
@@ -78,7 +87,7 @@ $md-ink-pulse-time: 1.5s !default;
 
   @keyframes md-ink-pulse {
     0% {
-      transform: scale(.9);
+      transform: scale($md-ink-expanded-scale);
     }
 
     66% {
@@ -86,7 +95,7 @@ $md-ink-pulse-time: 1.5s !default;
     }
 
     100% {
-      transform: scale(.9);
+      transform: scale($md-ink-expanded-scale);
     }
   }
 }
