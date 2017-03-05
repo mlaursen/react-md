@@ -50,7 +50,7 @@ the [issue for more details](#issues-243).
 - Implemented the dense icon spec. [#217](#issues-217)
 - Added initial typescript support. [#175](#issues-175)
 - Ink is now disableable at an application level. [#176](#issues-176)
-- Lists can now have a consistent size across all devices. [#226](#issues-226)
+- Buttons and Lists can now have a consistent size across all devices. [#226](#issues-226)
 
 ## February 2017
 ### v1.0.6 Released

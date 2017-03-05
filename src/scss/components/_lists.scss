@@ -92,7 +92,7 @@ $md-list-mobile-three-lines-height: 88px !default;
 
 /// The margin top for icons or avatars in a three line list item on mobile devices.
 ///
-/// @see md-list-threelines-addon-margin-top
+/// @see md-list-three-lines-addon-margin-top
 /// @type Number
 $md-list-mobile-three-lines-addon-margin-top: 14px !default;
 
@@ -154,7 +154,7 @@ $md-list-padding: null !default;
 /// based on media queries.
 ///
 /// @see md-list-mobile-primary-font-size
-/// @see md-list-desktop-primary-font-size
+/// @see md-list-desktop-font-size
 /// @type Number
 $md-list-primary-font-size: null !default;
 
@@ -163,7 +163,7 @@ $md-list-primary-font-size: null !default;
 /// based on media queries.
 ///
 /// @see md-list-mobile-secondary-font-size
-/// @see md-list-desktop-secondary-font-size
+/// @see md-list-desktop-font-size
 /// @type Number
 $md-list-secondary-font-size: null !default;
 
