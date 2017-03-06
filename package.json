@@ -4,6 +4,7 @@
   "description": "React material design components",
   "main": "./lib",
   "files": [
+    "index.d.ts",
     "src/",
     "dist/",
     "lib/",
