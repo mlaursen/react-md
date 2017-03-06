@@ -247,7 +247,6 @@ export default class Toolbar extends PureComponent {
           'md-background--primary': colored,
           'md-toolbar--themed': themed,
           'md-toolbar--text-white': singleColor && colored,
-          'md-toolbar--discrete': !prominent,
           'md-toolbar--prominent': prominent,
           'md-toolbar--fixed': fixed,
           'md-toolbar--inset': inset,
