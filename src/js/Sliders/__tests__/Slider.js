@@ -146,4 +146,36 @@ describe('Slider', () => {
     props = findRenderedComponentWithType(slider, Track).props;
     expect(props.disabled).toBe(true);
   });
+
+  it('renders the balloon on correct tick when min value is greater than 0 & defaultValue is not 0', () => {
+    const renderSliderWithProps = (defaultValue, min, max) => {
+      const props = { defaultValue, min, max };
+      return renderIntoDocument(<Slider {...props} />);
+    };
+
+    let slider = renderSliderWithProps(5, 3, 12);
+    expect(slider.state.distance).toEqual(22.22222222222222);
+
+    slider = renderSliderWithProps(55, 40, 77);
+    expect(slider.state.distance).toEqual(40.54054054054054);
+
+    slider = renderSliderWithProps(1076, 200, 20000);
+    expect(slider.state.distance).toEqual(4.424242424242424);
+  });
+
+  it('renders the slider correctly without a defaultValue', () => {
+    const renderSliderWithProps = (defaultValue, max) => {
+      const props = { defaultValue, max };
+      return renderIntoDocument(<Slider {...props} />);
+    };
+
+    let slider = renderSliderWithProps(5, 12);
+    expect(slider.state.distance).toEqual(41.66666666666667);
+
+    slider = renderSliderWithProps(55, 77);
+    expect(slider.state.distance).toEqual(71.42857142857143);
+
+    slider = renderSliderWithProps(1076, 20000);
+    expect(slider.state.distance).toEqual(5.38);
+  });
 });

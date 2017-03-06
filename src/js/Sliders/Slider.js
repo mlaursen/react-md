@@ -419,6 +419,8 @@ export default class Slider extends PureComponent {
       distance = 0;
     } else if (distance === props.max) {
       distance = 100;
+    } else if (props.min > 1 && props.defaultValue !== 0) {
+      distance = Math.max(0, Math.min(100, ((props.defaultValue - props.min) / (props.max - props.min)) * 100));
     } else {
       distance = value / props.max * 100;
     }
