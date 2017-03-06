@@ -12,7 +12,7 @@ interface SharedDialogProps extends Props {
   contentClassName?: string;
   contentComponent?: Function | string;
   contentProps?: Object;
-  actions: React.ReactElement<any> | ButtonProps | Array<React.ReactElement<any> | ButtonProps>;
+  actions?: React.ReactElement<any> | ButtonProps | Array<React.ReactElement<any> | ButtonProps>;
   paddedContent?: boolean;
   autopadContent?: boolean;
   children?: React.ReactNode;
@@ -20,13 +20,13 @@ interface SharedDialogProps extends Props {
   focusOnMount?: boolean;
   additionalFocusKeys?: Array<number>;
   containFocus?: boolean;
+  visible: boolean;
 }
 
 interface DialogContainerProps extends SharedDialogProps {
   dialogStyle?: React.CSSProperties;
   dialogClassName?: string;
   component?: Function | string;
-  visible: boolean;
   onShow?: Function;
   onHide?: Function;
   modal?: boolean;
