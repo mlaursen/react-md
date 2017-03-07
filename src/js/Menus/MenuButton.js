@@ -174,6 +174,8 @@ export default class MenuButton extends PureComponent {
       buttonId,
       menuStyle,
       menuClassName,
+      listStyle,
+      listClassName,
       buttonChildren,
       children,
       fullWidth,
@@ -185,6 +187,7 @@ export default class MenuButton extends PureComponent {
       ...props
     } = this.props;
     delete props.onClick;
+    delete props.onMenuToggle;
     delete props.defaultOpen;
 
     const toggle = (
@@ -204,6 +207,8 @@ export default class MenuButton extends PureComponent {
         listId={listId}
         style={menuStyle}
         className={menuClassName}
+        listStyle={listStyle}
+        listClassName={listClassName}
         toggle={toggle}
         isOpen={isOpen}
         onClose={this._closeMenu}
