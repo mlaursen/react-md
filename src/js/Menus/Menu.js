@@ -197,6 +197,10 @@ export default class Menu extends PureComponent {
     if (isOpen) {
       window.removeEventListener('click', this._handleOutsideClick);
     }
+
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
   }
 
   _setList(list) {
