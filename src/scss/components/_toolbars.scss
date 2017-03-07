@@ -932,7 +932,7 @@ $md-toolbar-select-field-margin: null !default;
     }
   }
 
-  @if $defaults-not-set or $include-dense-icons  {
+  @if $defaults-not-set or $include-dense-icons {
     @media #{$md-desktop-media} {
       @include react-md-toolbars-desktop(
         $include-prominent,
