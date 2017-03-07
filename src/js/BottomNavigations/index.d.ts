@@ -21,6 +21,7 @@ interface BottomNavigationProps extends Props {
   onVisiblityChange?: (visible: boolean) => void;
   lastChild?: boolean;
   animate?: boolean;
+  portal?: boolean;
 }
 
 export default class BottomNavigation extends React.Component<BottomNavigationProps, {}> { }

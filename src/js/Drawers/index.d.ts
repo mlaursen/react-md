@@ -38,6 +38,7 @@ interface DrawerProps extends Props {
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   defaultMedia: MediaTypes;
   overlay?: boolean;
+  portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
   defaultVisible?: boolean;

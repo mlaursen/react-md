@@ -1,8 +1,10 @@
 /* eslint-env jest */
 jest.unmock('../NavigationDrawer');
+jest.unmock('../../Drawers/Drawer');
 jest.unmock('../../Dialogs/Dialog');
 
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -14,6 +16,7 @@ import Toolbar from '../../Toolbars/Toolbar';
 import Drawer from '../../Drawers/Drawer';
 import Dialog from '../../Dialogs/Dialog';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import Portal from '../../Helpers/Portal';
 
 // Not sure what to _really_ test here.
 describe('NavigationDrawer', () => {
@@ -52,5 +55,15 @@ describe('NavigationDrawer', () => {
     const dialog = renderIntoDocument(<Dialog id="test"><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const drawer = mount(<NavigationDrawer />);
+    expect(drawer.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component if the portal prop is enabled', () => {
+    const drawer = mount(<NavigationDrawer portal />);
+    expect(drawer.find(Portal).length).toBe(1);
   });
 });

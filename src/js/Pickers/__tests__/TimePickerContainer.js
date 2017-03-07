@@ -1,7 +1,9 @@
 /* eslint-env jest */
 jest.unmock('../TimePickerContainer');
+jest.unmock('../../Dialogs/DialogContainer');
 
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -9,6 +11,7 @@ import {
 } from 'react-addons-test-utils';
 
 import TimePickerContainer from '../TimePickerContainer';
+import Portal from '../../Helpers/Portal';
 import TextField from '../../TextFields/TextField';
 
 describe('TimePickerContainer', () => {
@@ -63,5 +66,15 @@ describe('TimePickerContainer', () => {
     expect(props.onChange.mock.calls[0][0]).toBeDefined();
     expect(props.onChange.mock.calls[0][1]).toEqual(props.defaultValue);
     expect(props.onChange.mock.calls[0][2]).toEqual(event);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const dialog = mount(<TimePickerContainer id="test" defaultVisible />);
+    expect(dialog.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component when the portal prop is enabled', () => {
+    const dialog = mount(<TimePickerContainer id="test" defaultVisible portal />);
+    expect(dialog.find(Portal).length).toBe(1);
   });
 });

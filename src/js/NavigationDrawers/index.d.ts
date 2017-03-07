@@ -26,6 +26,7 @@ interface NavigationDrawerProps extends Props {
   mobileMinWidth?: number;
   tabletMinWidth?: number;
   desktopMinWidth?: number;
+  portal?: boolean;
   lastChild?: boolean;
   renderNode?: Object;
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;

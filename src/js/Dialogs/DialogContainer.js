@@ -247,6 +247,14 @@ export default class DialogContainer extends PureComponent {
     closeOnEsc: PropTypes.bool,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the dialog.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * Since the `Dialog` uses the `Portal` component, you can pass an optional HTML Node to render
      * the dialog in instead of the `document.body`.
      */
@@ -444,6 +452,7 @@ export default class DialogContainer extends PureComponent {
       transitionEnterTimeout,
       transitionLeaveTimeout,
       lastChild,
+      portal,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       renderNode: propRenderNode,
@@ -480,24 +489,32 @@ export default class DialogContainer extends PureComponent {
       />
     );
 
+    const container = (
+      <CSSTransitionGroup
+        component={component}
+        ref={this._setContainer}
+        style={style}
+        className={cn('md-dialog-container', {
+          'md-overlay': !fullPage && overlay,
+          'md-pointer--hover': !fullPage && overlay && !modal,
+          'md-overlay--active': !fullPage && active && overlay,
+        }, className)}
+        transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+        onClick={this._handleClick}
+      >
+        {dialogVisible ? dialog : null}
+      </CSSTransitionGroup>
+    );
+
+    if (!portal) {
+      return portalVisible ? container : null;
+    }
+
     return (
       <Portal visible={portalVisible} renderNode={renderNode} lastChild={lastChild}>
-        <CSSTransitionGroup
-          component={component}
-          ref={this._setContainer}
-          style={style}
-          className={cn('md-dialog-container', {
-            'md-overlay': !fullPage && overlay,
-            'md-pointer--hover': !fullPage && overlay && !modal,
-            'md-overlay--active': !fullPage && active && overlay,
-          }, className)}
-          transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
-          transitionEnterTimeout={transitionEnterTimeout}
-          transitionLeaveTimeout={transitionLeaveTimeout}
-          onClick={this._handleClick}
-        >
-          {dialogVisible ? dialog : null}
-        </CSSTransitionGroup>
+        {container}
       </Portal>
     );
   }

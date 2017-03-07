@@ -120,6 +120,14 @@ export default class BottomNavigation extends PureComponent {
     ]).isRequired,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the bottom navigation.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * Since the `BottomNavigation` component uses the `Portal` component, you can pass an optional
      * HTML Node to render in.
      */
@@ -169,6 +177,7 @@ export default class BottomNavigation extends PureComponent {
     component: 'footer',
     defaultVisible: true,
     transitionDuration: 300,
+    portal: false,
     dynamicThreshold: 20,
   };
 
@@ -309,6 +318,7 @@ export default class BottomNavigation extends PureComponent {
       dynamic,
       lastChild,
       animate,
+      portal,
       /* eslint-disable no-unused-vars */
       links: propLinks,
       activeIndex: propActiveIndex,
@@ -340,32 +350,40 @@ export default class BottomNavigation extends PureComponent {
     const fixed = links.length === 3;
     const activeIndex = getField(this.props, this.state, 'activeIndex');
     const renderNode = getField(this.props, this.context, 'renderNode');
+    const navigation = (
+      <Paper
+        {...props}
+        key="navigation"
+        className={cn('md-bottom-navigation', {
+          'md-background--card': !colored,
+          'md-background--primary': colored,
+          'md-bottom-navigation--dynamic': dynamic,
+          'md-bottom-navigation--dynamic-inactive': dynamic && !visible,
+        }, className)}
+        role="navigation"
+      >
+        {links.map((action, index) => (
+          <BottomNav
+            {...action}
+            animate={animate}
+            key={action.key || index}
+            index={index}
+            onNavChange={this._handleNavChange}
+            active={activeIndex === index}
+            colored={colored}
+            fixed={fixed}
+          />
+        ))}
+      </Paper>
+    );
+
+    if (!portal) {
+      return portalVisible ? navigation : null;
+    }
 
     return (
       <Portal renderNode={renderNode} visible={portalVisible} lastChild={lastChild}>
-        <Paper
-          {...props}
-          className={cn('md-bottom-navigation', {
-            'md-background--card': !colored,
-            'md-background--primary': colored,
-            'md-bottom-navigation--dynamic': dynamic,
-            'md-bottom-navigation--dynamic-inactive': dynamic && !visible,
-          }, className)}
-          role="navigation"
-        >
-          {links.map((action, index) => (
-            <BottomNav
-              {...action}
-              animate={animate}
-              key={action.key || index}
-              index={index}
-              onNavChange={this._handleNavChange}
-              active={activeIndex === index}
-              colored={colored}
-              fixed={fixed}
-            />
-          ))}
-        </Paper>
+        {navigation}
       </Portal>
     );
   }

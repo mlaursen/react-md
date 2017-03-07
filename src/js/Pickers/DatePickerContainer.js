@@ -389,6 +389,14 @@ export default class DatePickerContainer extends PureComponent {
     inlineIndicator: TextField.propTypes.inlineIndicator,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the dialog.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
      * in the `body`.
      */
@@ -758,6 +766,7 @@ export default class DatePickerContainer extends PureComponent {
       disabled,
       closeOnEsc,
       animateInline,
+      portal,
       renderNode,
       lastChild,
       block,
@@ -830,6 +839,7 @@ export default class DatePickerContainer extends PureComponent {
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
           renderNode={renderNode}
+          portal={portal}
           lastChild={lastChild}
           focusOnMount={false}
         >

@@ -51,6 +51,7 @@ the [issue for more details](#issues-243).
 - Added initial typescript support. [#175](#issues-175)
 - Ink is now disableable at an application level. [#176](#issues-176)
 - Buttons, Lists, and Toolbars can now have a consistent size across all devices. [#226](#issues-226)
+- Most components no longer use the Portal component since it lead to a lot of issues. [#230](#issues-230)
 
 ## February 2017
 ### v1.0.6 Released
