@@ -1,4 +1,5 @@
 /* eslint-env jest */
+/* eslint-disable max-len */
 jest.unmock('../TimePickerContainer');
 
 import React from 'react';
@@ -10,6 +11,7 @@ import {
 
 import TimePickerContainer from '../TimePickerContainer';
 import TextField from '../../TextFields/TextField';
+import { ENTER } from '../../constants/keyCodes';
 
 describe('TimePickerContainer', () => {
   it('merges className and style', () => {
@@ -63,5 +65,21 @@ describe('TimePickerContainer', () => {
     expect(props.onChange.mock.calls[0][0]).toBeDefined();
     expect(props.onChange.mock.calls[0][1]).toEqual(props.defaultValue);
     expect(props.onChange.mock.calls[0][2]).toEqual(event);
+  });
+
+  it('should not open the TimePicker if it is disabled and the text field is clicked', () => {
+    const props = { id: 'test', disabled: true };
+    const container = renderIntoDocument(<TimePickerContainer {...props} />);
+
+    container._toggleOpen({ target: { tagName: 'input' } });
+    expect(container.state.visible).toBe(false);
+  });
+
+  it('should not open the TimePicker if it is disabled and the users pressed the enter key while focused on the keyboard', () => {
+    const props = { id: 'test', disabled: true };
+    const container = renderIntoDocument(<TimePickerContainer {...props} />);
+
+    container._handleKeyDown({ keyCode: ENTER, target: { tagName: 'input' } });
+    expect(container.state.visible).toBe(false);
   });
 });

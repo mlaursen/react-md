@@ -558,6 +558,10 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   _toggleOpen(e) {
+    if (this.props.disabled) {
+      return;
+    }
+
     const visible = !(typeof this.props.isOpen !== 'undefined'
       ? this.props.isOpen
       : getField(this.props, this.state, 'visible'));
