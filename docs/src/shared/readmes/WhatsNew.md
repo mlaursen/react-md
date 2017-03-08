@@ -10,7 +10,9 @@ finding component documentation or SassDoc easier.
 list.
 
 
-### react-md@next Released
+### react-md@1.1.0 Released
+Please see the [upgrade guide](/discover-more/upgrade-guides/v1.1.0) for upgrade help.
+
 #### App Breaking Changes
 
 ##### Dialogs

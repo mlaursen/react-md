@@ -145,22 +145,22 @@ export default class ListItem extends PureComponent {
      *
      * The nested items will be visible once the user clicks on the `ListItem`.
      *
-     * @see {@link #isOpen]
+     * @see {@link #visible]
      */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
     /**
      * Boolean if the `nestedItems` are visible by default.
      */
-    defaultOpen: PropTypes.bool,
+    defaultVisible: PropTypes.bool,
 
     /**
      * Boolean if the `nestedItems` are visible. This will make the `nestedItems` controlled
      * and require the `onClick` function to be defined.
      *
-     * @see {@link #defaultOpen}
+     * @see {@link #defaultVisible}
      */
-    isOpen: controlled(PropTypes.bool, 'onClick', 'defaultOpen'),
+    visible: controlled(PropTypes.bool, 'onClick', 'defaultVisible'),
 
     /**
      * Any children used to render the expander icon.
@@ -174,7 +174,7 @@ export default class ListItem extends PureComponent {
 
     /**
      * An optional function to call when the `.md-list-tile` is clicked. This is required if the
-     * `isOpen` prop is defined.
+     * `visible` prop is defined.
      */
     onClick: PropTypes.func,
 
@@ -248,7 +248,9 @@ export default class ListItem extends PureComponent {
 
       return validator(props, propName, ...args);
     },
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
   };
 
   static defaultProps = {
@@ -264,8 +266,14 @@ export default class ListItem extends PureComponent {
 
     this.state = { active: false };
 
-    if (typeof props.isOpen === 'undefined') {
-      this.state.isOpen = typeof props.initiallyOpen !== 'undefined' ? props.initiallyOpen : !!props.defaultOpen;
+    if (typeof props.isOpen === 'undefined' && typeof props.visible === 'undefined') {
+      const defined = v => typeof v !== 'undefined';
+      const { initiallyOpen, defaultOpen, defaultVisible } = this.props;
+      let visible = defined(initiallyOpen) ? initiallyOpen : defaultVisible;
+      visible = defined(defaultOpen) ? defaultOpen : visible;
+      visible = !!visible;
+
+      this.state.visible = visible;
     }
 
     this.focus = this.focus.bind(this);
@@ -334,8 +342,8 @@ export default class ListItem extends PureComponent {
       this.props.onClick(e);
     }
 
-    if (typeof this.state.isOpen !== 'undefined') {
-      this.setState({ isOpen: !this.state.isOpen });
+    if (typeof this.state.visible !== 'undefined') {
+      this.setState({ visible: !this.state.visible });
     }
   }
 
@@ -429,15 +437,23 @@ export default class ListItem extends PureComponent {
       itemComponent: ItemComponent,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
+      isOpen, // deprecated
       /* eslint-disable no-unused-vars */
-      isOpen: propIsOpen,
+      visible: propVisible,
+      defaultVisible,
+
+      // deprecated
       defaultOpen,
       initiallyOpen,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
-    const isOpen = getField(this.props, this.state, 'isOpen');
+    let visible = getField(this.props, this.state, 'visible');
+    if (typeof isOpen !== 'undefined') {
+      visible = isOpen;
+    }
+
     const leftNode = (
       <TileAddon
         key="left-addon"
@@ -460,14 +476,14 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = <Collapse collapsed={!isOpen} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
+      nestedList = <Collapse collapsed={!visible} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
 
       if (!rightIcon || !rightAvatar) {
         rightNode = (
           <TileAddon
             key="expander-addon"
             icon={(
-              <Collapser flipped={isOpen} iconClassName={expanderIconClassName}>
+              <Collapser flipped={visible} iconClassName={expanderIconClassName}>
                 {expanderIconChildren}
               </Collapser>
             )}
@@ -512,7 +528,7 @@ export default class ListItem extends PureComponent {
             'md-list-tile--three-lines': secondaryText && threeLines,
             'md-list-item--inset': inset && !leftIcon && !leftAvatar,
           }, tileClassName)}
-          aria-expanded={nestedList ? isOpen : null}
+          aria-expanded={nestedList ? visible : null}
         >
           {leftNode}
           <ListItemText
