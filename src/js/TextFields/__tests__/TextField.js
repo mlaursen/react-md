@@ -2,6 +2,7 @@
 jest.unmock('../TextField');
 
 import React from 'react';
+import { shallow, mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -238,6 +239,19 @@ describe('TextField', () => {
     expect(label.props.disabled).toBe(props.disabled);
     expect(label.props.customSize).toBe(props.customSize);
     expect(label.props.iconOffset).toBe(true);
+  });
+
+  it('it should set the width of the container to be the min resize width if defined', () => {
+    const resize = { min: 180, max: 200 };
+    const field = shallow(<TextField id="test" resize={resize} />);
+    expect(field.state('width')).toBe(resize.min);
+  });
+
+  it('should allow the style prop to override the resize width', () => {
+    const resize = { min: 180, max: 200 };
+    const style = { width: 100 };
+    const field = mount(<TextField id="test" resize={resize} style={style} />);
+    expect(field.getDOMNode().style.width).toBe(`${style.width}px`);
   });
 
   // Super important test
