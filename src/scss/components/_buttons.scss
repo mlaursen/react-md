@@ -37,32 +37,52 @@ $md-btn-fixed-z-index: 10 !default;
 /// @access private;
 $md-btn-accessible-height: 48px;
 
+/// The border radius to apply to text buttons.
+/// @type Number
+$md-btn-text-border-radius: 2px !default;
+
 /// The font size for buttons on mobile devices.
+///
+/// @see md-btn-text-font-size
 /// @type Number
 $md-btn-mobile-font-size: 14px !default;
 
 /// The height for button on mobile devices.
+///
+/// @see md-btn-text-height
 /// @type Number
 $md-btn-mobile-height: 36px !default;
 
 /// The minimum margin to use for fixed floating buttons on mobile-devices.
+///
+/// @see md-btn-floating-margin
 /// @type Number
 $md-btn-mobile-floating-margin: 16px !default;
 
 /// The font size for buttons on desktop screens.
+///
+/// @see md-btn-text-font-size
 /// @type Number
 $md-btn-desktop-font-size: 13px !default;
 
 /// The height for buttons on desktop screens.
+///
+/// @see md-btn-text-height
 /// @type Number
 $md-btn-desktop-height: 32px !default;
 
 /// The minimum margin to use for fixed floating buttons on desktop screens.
+///
+/// @see md-btn-floating-margin
 /// @type Number
 $md-btn-desktop-floating-margin: 24px !default;
 
 
-/// The left and right padding for a button.
+/// The too and bottom padding to apply to text buttons.
+/// @type Number
+$md-btn-tb-padding: 8px !default;
+
+/// The left and right padding to apply to text buttons.
 /// @type Number
 $md-btn-lr-padding: 16px !default;
 
@@ -82,6 +102,10 @@ $md-btn-floating-dense-size: 48px !default;
 /// @type Number
 $md-btn-floating-mini-size: 40px !default;
 
+/// The available floating button fixed positions.
+/// @type List
+$md-btn-floating-fixed-positions: ('tl' 'tr' 'bl' 'br') !default;
+
 /// The size for an icon button.
 /// @type Number
 $md-btn-icon-size: $md-font-icon-size * 2 !default;
@@ -97,6 +121,10 @@ $md-btn-icon-dense-size: $md-font-icon-dense-size * 2 !default;
 /// The padding to use for a dense icon button.
 /// @type Number
 $md-btn-icon-dense-padding: $md-btn-icon-dense-size / 4 !default;
+
+/// The border radius to apply to icon buttons.
+/// @type Number
+$md-btn-icon-border-radius: 50% !default;
 
 /// The base color to use for default buttons in the light theme.
 /// @type Color
@@ -129,6 +157,33 @@ $md-btn-dark-theme-disabled-color: rgba($md-btn-dark-theme-base-color, .2) !defa
 /// The background color to use for default buttons that have been pressed in the dark theme.
 /// @type Color
 $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !default;
+
+/// An optional height to apply to a text button for all screen sizes. This will take precidence over
+/// the mobile/desktop variables.
+///
+/// A side effect of using this variable is that the buttons will *not* be updated on mobile devices
+/// to have additional styles to make them accessible for touch users.
+///
+/// @see md-btn-mobile-height
+/// @see md-btn-desktop-height
+/// @type Number
+$md-btn-text-height: null !default;
+
+/// An optional font size to apply to a text button for all screen sies. This will take precidence
+/// over the mobile/desktop variables.
+///
+/// @see md-btn-mobile-font-size
+/// @see md-btn-desktop-font-size
+/// @type Number
+$md-btn-text-font-size: null !default;
+
+/// An optional margin to get applied to floating buttons that are fixed on a page for all screen sizes.
+/// This will take precidence over the mobile/desktop variables.
+///
+/// @see md-btn-mobile-floating-margin
+/// @see md-btn-desktop-floating-margin
+/// @type Number
+$md-btn-floating-margin: null !default;
 
 
 
@@ -176,7 +231,6 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
   .md-btn {
     background: transparent;
     border: 0;
-    border-radius: 2px;
     position: relative;
     transition-duration: $md-transition-time;
     transition-property: background, color;
@@ -217,11 +271,13 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 
   @if $include-flat or $include-raised {
     .md-btn--text {
+      border-radius: $md-btn-text-border-radius;
+      font-size: $md-btn-text-font-size;
       font-weight: $md-font-medium;
+      height: $md-btn-text-height;
       min-width: $md-btn-min-width;
-      padding: 8px $md-btn-lr-padding;
+      padding: $md-btn-tb-padding $md-btn-lr-padding;
       text-transform: uppercase;
-      transition-duration: $md-transition-time;
     }
   }
 
@@ -243,7 +299,7 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 
   @if $include-icon or $include-floating {
     .md-btn--icon {
-      border-radius: 50%;
+      border-radius: $md-btn-icon-border-radius;
       color: get-color('icon', $light-theme);
       height: $md-btn-icon-size;
       padding: $md-btn-icon-padding;
@@ -274,6 +330,10 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
     .md-btn--fixed {
       position: fixed;
       z-index: $md-btn-fixed-z-index;
+    }
+
+    @if $md-btn-floating-margin != null {
+      @include react-md-button-fixed-positions($md-btn-floating-margin);
     }
   }
 
@@ -357,56 +417,47 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 /// @group buttons, media-queries
 @mixin react-md-buttons-mobile($include-flat: $md-btn-include-flat, $include-raised: $md-btn-include-raised, $include-floating: $md-btn-include-floating) {
   @if $include-flat or $include-raised {
-    $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
+    @if $md-btn-text-height == null {
+      $accessible-padding: ($md-btn-accessible-height - $md-btn-mobile-height) / 2;
 
-    .md-btn--text {
-      font-size: $md-btn-mobile-font-size;
-      height: $md-btn-mobile-height;
-      margin-bottom: $accessible-padding;
-      margin-top: $accessible-padding;
+      .md-btn--text {
+        height: $md-btn-mobile-height;
+        margin-bottom: $accessible-padding;
+        margin-top: $accessible-padding;
 
-      // The accessible height is supposed to be 48px while the button height is supposed
-      // to be 36px.. So hack for touch by adding some margin for the difference and adding
-      // ::before/::after absolutely positioned so they can be touched as well? Iunno
-      &::before,
-      &::after {
-        content: '';
-        height: $accessible-padding;
-        left: 0;
-        position: absolute;
-        right: 0;
+        @if $md-btn-text-height == null {
+          font-size: $md-btn-mobile-font-size;
+        }
+
+        // The accessible height is supposed to be 48px while the button height is supposed
+        // to be 36px.. So hack for touch by adding some margin for the difference and adding
+        // ::before/::after absolutely positioned so they can be touched as well? Iunno
+        &::before,
+        &::after {
+          content: '';
+          height: $accessible-padding;
+          left: 0;
+          position: absolute;
+          right: 0;
+        }
+
+        &::before {
+          top: -$accessible-padding;
+        }
+
+        &::after {
+          bottom: -$accessible-padding;
+        }
       }
-
-      &::before {
-        top: -$accessible-padding;
-      }
-
-      &::after {
-        bottom: -$accessible-padding;
+    } @else if $md-btn-text-font-size == null {
+      .md-btn--text {
+        font-size: $md-btn-mobile-font-size;
       }
     }
   }
 
-  @if $include-floating {
-    .md-btn--fixed-tr {
-      right: $md-btn-mobile-floating-margin;
-      top: $md-btn-mobile-floating-margin;
-    }
-
-    .md-btn--fixed-tl {
-      left: $md-btn-mobile-floating-margin;
-      top: $md-btn-mobile-floating-margin;
-    }
-
-    .md-btn--fixed-br {
-      bottom: $md-btn-mobile-floating-margin;
-      right: $md-btn-mobile-floating-margin;
-    }
-
-    .md-btn--fixed-bl {
-      bottom: $md-btn-mobile-floating-margin;
-      left: $md-btn-mobile-floating-margin;
-    }
+  @if $include-floating and $md-btn-floating-margin == null {
+    @include react-md-button-fixed-positions($md-btn-mobile-floating-margin);
   }
 }
 
@@ -436,66 +487,68 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
   $include-dense-icons: $md-font-icon-include-dense
 ) {
   @if $include-flat or $include-raised {
-    .md-btn--text {
-      font-size: $md-btn-desktop-font-size;
-      height: $md-btn-desktop-height;
-      margin-bottom: initial;
-      margin-top: initial;
+    @if $md-btn-text-height == null {
+      .md-btn--text {
+        height: $md-btn-desktop-height;
+        margin-bottom: initial;
+        margin-top: initial;
 
-      &::before,
-      &::after {
-        display: none;
-        visibility: hidden;
+        @if $md-btn-text-height == null {
+          font-size: $md-btn-desktop-font-size;
+        }
+
+        &::before,
+        &::after {
+          display: none;
+          visibility: hidden;
+        }
+
+        &::before {
+          top: 0;
+        }
+
+        &::after {
+          bottom: 0;
+        }
       }
-
-      &::before {
-        top: 0;
-      }
-
-      &::after {
-        bottom: 0;
+    } @else if $md-btn-text-font-size == null {
+      .md-btn--text {
+        font-size: $md-btn-desktop-font-size;
       }
     }
   }
 
-  @if $include-floating {
-    .md-btn--fixed-tr {
-      right: $md-btn-desktop-floating-margin;
-      top: $md-btn-desktop-floating-margin;
-    }
-
-    .md-btn--fixed-tl {
-      left: $md-btn-desktop-floating-margin;
-      top: $md-btn-desktop-floating-margin;
-    }
-
-    .md-btn--fixed-br {
-      bottom: $md-btn-desktop-floating-margin;
-      right: $md-btn-desktop-floating-margin;
-    }
-
-    .md-btn--fixed-bl {
-      bottom: $md-btn-desktop-floating-margin;
-      left: $md-btn-desktop-floating-margin;
-    }
+  @if $include-floating and $md-btn-floating-margin == null {
+    @include react-md-button-fixed-positions($md-btn-desktop-floating-margin);
   }
 
   @if ($include-icon or $include-floating) and $include-dense-icons {
-    .md-btn--icon {
-      height: $md-btn-icon-dense-size;
-      padding: $md-btn-icon-dense-padding;
-      width: $md-btn-icon-dense-size;
+    $icon-size-diff: $md-btn-icon-size != $md-btn-icon-dense-size;
+    $icon-pad-diff: $md-btn-icon-padding != $md-btn-icon-dense-padding;
+    @if ($icon-size-diff or $icon-pad-diff) {
+      .md-btn--icon {
+        @if $icon-size-diff {
+          height: $md-btn-icon-dense-size;
+          width: $md-btn-icon-dense-size;
+        }
+
+        @if $icon-pad-diff {
+          padding: $md-btn-icon-dense-padding;
+        }
+      }
     }
 
-    .md-btn--floating {
-      height: $md-btn-floating-dense-size;
-      padding: ($md-btn-floating-dense-size - $md-font-icon-dense-size) / 2;
-      width: $md-btn-floating-dense-size;
+    @if $md-btn-floating-size != $md-btn-floating-dense-size {
+      .md-btn--floating {
+        height: $md-btn-floating-dense-size;
+        padding: ($md-btn-floating-dense-size - $md-font-icon-dense-size) / 2;
+        width: $md-btn-floating-dense-size;
 
-      &-mini {
-        height: $md-btn-floating-mini-size;
-        padding: ($md-btn-floating-mini-size - $md-font-icon-dense-size) / 2;
-        width: $md-btn-floating-mini-size;
+        &-mini {
+          height: $md-btn-floating-mini-size;
+          padding: ($md-btn-floating-mini-size - $md-font-icon-dense-size) / 2;
+          width: $md-btn-floating-mini-size;
+        }
       }
     }
   }
@@ -530,5 +583,23 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25) !defa
 
   @media #{$md-desktop-media} {
     @include react-md-buttons-desktop($include-flat, $include-raised, $include-icon, $include-floating, $include-dense-icons);
+  }
+}
+
+/// A simple mixin for applying a screen edge margin positioning to a fixed button. If the position name
+/// contains the first letter of the positioning style, the margin will get applied to that style.
+///
+/// So if the position name is 'tl', the margin will get applied to the `top` and the `left.
+///
+/// @param {Number} margin - the button's margin from the screen edge.
+/// @param {List} positions [$md-btn-floating-fixed-positions] - The positions to create the styles for.
+@mixin react-md-button-fixed-positions($margin, $positions: $md-btn-floating-fixed-positions) {
+  @each $position in $positions {
+    .md-btn--fixed-#{$position} {
+      bottom: if(str-index($position, b), $margin, null);
+      left: if(str-index($position, l), $margin, null);
+      right: if(str-index($position, r), $margin, null);
+      top: if(str-index($position, t), $margin, null);
+    }
   }
 }

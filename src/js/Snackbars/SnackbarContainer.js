@@ -140,6 +140,14 @@ export default class SnackbarContainer extends PureComponent {
     },
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the snackbar.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM node to render the Snackbar in. If this is omitted, it will render as the first
      * child in the `body`.
      */
@@ -308,6 +316,7 @@ export default class SnackbarContainer extends PureComponent {
       dismiss,
       onDismiss,
       lastChild,
+      portal,
       renderNode: propRenderNode, // eslint-disable-line no-unused-vars
       toasts, // eslint-disable-line no-unused-vars
       ...props
@@ -328,18 +337,26 @@ export default class SnackbarContainer extends PureComponent {
       );
     }
 
+    const container = (
+      <CSSTransitionGroup
+        ref={this._setContainer}
+        key="container"
+        className="md-snackbar-container"
+        transitionName={transitionName}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
+        {snackbar}
+      </CSSTransitionGroup>
+    );
+
+    if (!portal) {
+      return visible ? container : null;
+    }
+
     return (
       <Portal visible={visible} renderNode={renderNode} lastChild={lastChild}>
-        <CSSTransitionGroup
-          ref={this._setContainer}
-          key="container"
-          className="md-snackbar-container"
-          transitionName={transitionName}
-          transitionEnterTimeout={transitionEnterTimeout}
-          transitionLeaveTimeout={transitionLeaveTimeout}
-        >
-          {snackbar}
-        </CSSTransitionGroup>
+        {container}
       </Portal>
     );
   }

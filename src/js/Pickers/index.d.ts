@@ -66,6 +66,7 @@ interface CommonProps extends Props {
   errorText?: string;
   helpText?: string;
   helpOnFocus?: boolean;
+  portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
 }

@@ -21,8 +21,8 @@ $ npm i -S react \
 ## Usage
 
 ### Using create-react-app
-`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so
-here are some steps to get it working:
+`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so you can
+get it working by creaing a node-sass watcher or the following steps:
 
 ```bash
 $ create-react-app my-app --scripts-version --custom-react-scripts

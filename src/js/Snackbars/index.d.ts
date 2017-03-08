@@ -11,6 +11,7 @@ interface SnackbarProps extends Props {
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
   fab?: any; // Don't know how to really validate this one
+  portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
 }

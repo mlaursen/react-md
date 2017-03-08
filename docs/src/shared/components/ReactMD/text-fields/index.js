@@ -16,6 +16,9 @@ import InfoExamplesRaw from '!!raw!./InfoExamples';
 import FullWidthExamples from './FullWidthExamples';
 import FullWidthExamplesRaw from '!!raw!./FullWidthExamples';
 
+import AutoresizingExamples from './AutoresizingExamples';
+import AutoresizingExamplesRaw from '!!raw!./AutoresizingExamples';
+
 import FormExample from './FormExample';
 import FormExampleRaw from '!!raw!./FormExample';
 
@@ -64,6 +67,16 @@ and have each text field cell aligned to the top.
   `,
   code: InfoExamplesRaw,
   children: <InfoExamples />,
+}, {
+  title: 'Autoresizing Examples',
+  description: `
+Text fields can also auto resize to stay between a min and max width. There is no build in
+functionality to make sure the width stays within it's container though. The examples below
+will start at \`180px\` and expand until it reaches \`340px\`. The last example will not
+shrink again once the width has been increased.
+  `,
+  code: AutoresizingExamplesRaw,
+  children: <AutoresizingExamples />,
 }, {
   title: 'Full Width Examples',
   description: `

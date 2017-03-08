@@ -3,6 +3,7 @@ jest.unmock('../DialogContainer');
 jest.unmock('../Dialog');
 
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import {
@@ -14,6 +15,7 @@ import {
 
 import DialogContainer from '../DialogContainer';
 import Dialog from '../Dialog';
+import Portal from '../../Helpers/Portal';
 
 const PROPS = { id: 'test', visible: true, onHide: jest.fn() };
 
@@ -130,5 +132,15 @@ describe('DialogContainer', () => {
     const dialog = renderIntoDocument(<Dialog id="test"><DialogContainer {...PROPS} /></Dialog>);
     const container = findRenderedComponentWithType(dialog, DialogContainer);
     expect(container.context.renderNode).toBe(dialog.getChildContext().renderNode);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} />);
+    expect(dialog.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component if the portal prop is enabled', () => {
+    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} portal />);
+    expect(dialog.find(Portal).length).toBe(1);
   });
 });

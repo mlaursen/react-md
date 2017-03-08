@@ -42,6 +42,7 @@ interface TextFieldProps extends Props {
   min?: number;
   max?: number;
   step?: number;
+  resize?: { min: number, max: number, noShrink?: boolean };
 }
 
 export default class TextField extends React.Component<TextFieldProps, {}> {

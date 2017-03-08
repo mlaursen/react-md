@@ -149,7 +149,7 @@ describe('TextArea', () => {
     let [mask, field] = scryRenderedDOMComponentsWithTag(area, 'textarea');
 
     expect(mask.style.height).toBe('');
-    expect(field.style.height).toBe('');
+    expect(field.style.height).toBe('0px');
 
     area.setState({ height: 41 });
     [mask, field] = scryRenderedDOMComponentsWithTag(area, 'textarea');
@@ -167,7 +167,7 @@ describe('TextArea', () => {
     const area = renderIntoDocument(<TextArea {...props} />);
     let field = scryRenderedDOMComponentsWithTag(area, 'textarea')[1];
     expect(field.style.width).toBe(props.style.width);
-    expect(field.style.height).toBe('');
+    expect(field.style.height).toBe('0px');
 
     area.setState({ height: 41 });
     field = scryRenderedDOMComponentsWithTag(area, 'textarea')[1];

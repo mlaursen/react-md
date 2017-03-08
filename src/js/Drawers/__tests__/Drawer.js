@@ -4,6 +4,7 @@ jest.unmock('../../Dialogs/Dialog');
 jest.unmock('../../Dialogs/DialogContainer');
 
 import React from 'react';
+import { shallow } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -12,6 +13,7 @@ import {
 import Drawer from '../Drawer';
 import Dialog from '../../Dialogs/Dialog';
 import DialogContainer from '../../Dialogs/DialogContainer';
+import Portal from '../../Helpers/Portal';
 
 describe('Drawer', () => {
   it('should inherit the dialog\'s renderNode context', () => {
@@ -33,6 +35,17 @@ describe('Drawer', () => {
     const { renderNode } = dialog.getChildContext();
     expect(drawer.context.renderNode).toBe(renderNode);
     expect(dialogContainer.context.renderNode).toBe(renderNode);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const drawer = shallow(<Drawer />);
+    expect(drawer.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component if the portal prop is enabled', () => {
+    const drawer = shallow(<Drawer portal />);
+    // One for overlay and one for the drawer itself
+    expect(drawer.find(Portal).length).toBe(2);
   });
 
   describe('matchesMedia', () => {

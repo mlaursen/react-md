@@ -36,6 +36,14 @@ describe('FileUpload', () => {
 
   it('calls the onChange function still', () => {
     const onChange = jest.fn();
+    const eventListener = jasmine.createSpy();
+
+    const frMock = {
+      readAsDataURL: jest.fn(),
+      addEventListener: eventListener,
+    };
+
+    spyOn(window, 'FileReader').and.returnValue(frMock);
     const fileUpload = renderIntoDocument(<FileUpload id="test" onChange={onChange} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
@@ -48,6 +56,14 @@ describe('FileUpload', () => {
 
   it('prevents any files with a size greater than the maxSize', () => {
     const onSizeError = jest.fn();
+    const eventListener = jasmine.createSpy();
+
+    const frMock = {
+      readAsDataURL: jest.fn(),
+      addEventListener: eventListener,
+    };
+
+    spyOn(window, 'FileReader').and.returnValue(frMock);
     const fileUpload = renderIntoDocument(<FileUpload id="test" maxSize={1024} onSizeError={onSizeError} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');

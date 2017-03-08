@@ -191,6 +191,15 @@ export default class Drawer extends PureComponent {
     overlay: PropTypes.bool,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the drawer. The overlay that appears for temporary type drawers will still appear in the
+     * separate subtree.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the drawer into. The default is to render as
      * the first child in the `body`.
      *
@@ -542,6 +551,7 @@ export default class Drawer extends PureComponent {
       overlay,
       clickableDesktopOverlay,
       lastChild,
+      portal,
       /* eslint-disable no-unused-vars */
       type: propType,
       visible: propVisible,
@@ -635,6 +645,7 @@ export default class Drawer extends PureComponent {
         {children}
         <Portal visible={overlayVisible} renderNode={renderNode}>
           <div
+            key="overlay"
             className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
               'md-overlay--active': overlayActive,
             })}
@@ -646,6 +657,8 @@ export default class Drawer extends PureComponent {
 
     if (inline || permanent) {
       return drawer;
+    } else if (!portal) {
+      return mini || animating || visible ? drawer : null;
     }
 
     return (

@@ -141,3 +141,9 @@ $dialog-title-height: 60px;
     top: 0;
   }
 }
+
+@media #{$md-desktop-media} {
+  .notification-dialog::after {
+    right: 12px;
+  }
+}

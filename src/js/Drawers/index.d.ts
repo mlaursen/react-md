@@ -38,11 +38,12 @@ interface DrawerProps extends Props {
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   defaultMedia: MediaTypes;
   overlay?: boolean;
+  portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
   defaultVisible?: boolean;
   visible?: boolean;
-  onVisibilityToggle?: (visible: boolean, event: React.MouseEvent) => void;
+  onVisibilityToggle?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
   position?: DrawerPositions;
   inline?: boolean;
   transitionDuration?: number;

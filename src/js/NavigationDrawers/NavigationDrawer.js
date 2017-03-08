@@ -543,6 +543,15 @@ export default class NavigationDrawer extends PureComponent {
     jumpLabel: PropTypes.string.isRequired,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the drawer. The overlay that appears for temporary type drawers will still appear in the
+     * separate subtree.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the drawer into. The default is to render as
      * the first child in the `body`.
      *

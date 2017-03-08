@@ -37,6 +37,7 @@ interface DialogContainerProps extends SharedDialogProps {
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
   closeOnEsc?: boolean;
+  portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
 }

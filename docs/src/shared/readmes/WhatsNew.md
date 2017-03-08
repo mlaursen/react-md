@@ -51,6 +51,10 @@ the [issue for more details](#issues-243).
 - Updated the button's label to be `node` and added a `noIcon` prop for buttons. [#261](#pull-261)
 - Implemented the dense icon spec. [#217](#issues-217)
 - Added initial typescript support. [#175](#issues-175)
+- Ink is now disableable at an application level. [#176](#issues-176)
+- Buttons, Lists, and Toolbars can now have a consistent size across all devices. [#226](#issues-226)
+- Most components no longer use the Portal component since it lead to a lot of issues. [#230](#issues-230)
+- TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
 
 ## February 2017
 ### v1.0.6 Released

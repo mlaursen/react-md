@@ -89,7 +89,7 @@ $phone-status-bar-height: 24px;
     height: 100%;
 
     .md-btn--fixed-tl {
-      top: $md-toolbar-mobile-prominent-height - $md-btn-floating-mini-size / 2;
+      top: $md-toolbar-prominent-height - $md-btn-floating-mini-size / 2;
     }
 
     .md-btn--fixed {
@@ -155,11 +155,11 @@ $phone-status-bar-height: 24px;
     }
 
     .md-toolbar-relative--prominent {
-      margin-top: $phone-status-bar-height + $md-toolbar-mobile-prominent-height;
+      margin-top: $phone-status-bar-height + $md-toolbar-prominent-height;
     }
 
     .md-btn--fixed-tl {
-      top: $md-toolbar-mobile-prominent-height;
+      top: $md-toolbar-prominent-height;
     }
 
     .md-drawer--right {
@@ -235,7 +235,7 @@ $phone-status-bar-height: 24px;
     }
 
     .md-btn--fixed-tl {
-      top: $md-toolbar-mobile-prominent-height;
+      top: $md-toolbar-prominent-height;
     }
 
     .md-snackbar:not(.md-snackbar-enter):not(.md-snackbar-leave) {

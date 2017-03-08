@@ -314,6 +314,14 @@ export default class TimePickerContainer extends PureComponent {
     inlineIndicator: TextField.propTypes.inlineIndicator,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the dialog.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
      * in the `body`.
      */
@@ -564,6 +572,7 @@ export default class TimePickerContainer extends PureComponent {
       lineDirection,
       closeOnEsc,
       hoverMode,
+      portal,
       renderNode,
       lastChild,
       animateInline,
@@ -635,6 +644,7 @@ export default class TimePickerContainer extends PureComponent {
           contentClassName="md-dialog-content--picker"
           aria-label={ariaLabel}
           closeOnEsc={closeOnEsc}
+          portal={portal}
           lastChild={lastChild}
           renderNode={renderNode}
           focusOnMount={false}

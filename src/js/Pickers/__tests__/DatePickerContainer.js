@@ -2,8 +2,10 @@
 /* eslint-disable global-require,max-len */
 jest.unmock('../DatePickerContainer');
 jest.unmock('../DatePicker');
+jest.unmock('../../Dialogs/DialogContainer');
 
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -11,6 +13,7 @@ import {
 } from 'react-addons-test-utils';
 
 import DatePickerContainer from '../DatePickerContainer';
+import Portal from '../../Helpers/Portal';
 
 describe('DatePickerContainer', () => {
   it('merges className and style', () => {
@@ -194,6 +197,16 @@ describe('DatePickerContainer', () => {
 
     expect(container.state.calendarDate).toEqual(maxDate);
     expect(container.state.calendarTempDate).toEqual(maxDate);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const dialog = mount(<DatePickerContainer id="test" defaultVisible />);
+    expect(dialog.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component when the portal prop is enabled', () => {
+    const dialog = mount(<DatePickerContainer id="test" defaultVisible portal />);
+    expect(dialog.find(Portal).length).toBe(1);
   });
 
   describe('validateDateRange', () => {
