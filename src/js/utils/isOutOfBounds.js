@@ -39,10 +39,10 @@ function isOutVertically(fixedTo, child, toggle, threshold) {
 export default function isOutOfBounds(fixedTo, child, toggle, centered, verticalThreshold, horizontalThreshold) {
   if (fixedTo === window) {
     return false;
-  } else if (fixedTo.vertical || fixedTo.horizontal) {
-    const { vertical, horizontal } = fixedTo;
-    return (vertical && isOutVertically(vertical, child, toggle, verticalThreshold)) ||
-      (horizontal && isOutHorizontally(horizontal, child, centered, horizontalThreshold));
+  } else if (fixedTo.x || fixedTo.y) {
+    const { x, y } = fixedTo;
+    return (!!y && isOutVertically(y, child, toggle, verticalThreshold)) ||
+      (!!x && isOutHorizontally(x, child, centered, horizontalThreshold));
   }
 
   return isOutVertically(fixedTo, child, toggle, verticalThreshold) ||
