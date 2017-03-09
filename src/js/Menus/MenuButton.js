@@ -174,6 +174,8 @@ export default class MenuButton extends PureComponent {
       buttonId,
       menuStyle,
       menuClassName,
+      listStyle,
+      listClassName,
       buttonChildren,
       children,
       fullWidth,
@@ -184,6 +186,7 @@ export default class MenuButton extends PureComponent {
       transitionLeaveTimeout,
       onClick, // eslint-disable-line no-unused-vars
       defaultOpen, // eslint-disable-line no-unused-vars
+      onMenuToggle, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
 
@@ -204,6 +207,8 @@ export default class MenuButton extends PureComponent {
         listId={listId}
         style={menuStyle}
         className={menuClassName}
+        listStyle={listStyle}
+        listClassName={listClassName}
         toggle={toggle}
         isOpen={isOpen}
         onClose={this._closeMenu}
