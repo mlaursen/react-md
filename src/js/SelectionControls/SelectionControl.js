@@ -191,6 +191,20 @@ export default class SelectionControl extends PureComponent {
      */
     tooltip: PropTypes.node,
 
+    /**
+     * Boolean if the ink should be disabled for radios or checkboxes.
+     *
+     * @see {@link Inks#inkDisabled}
+     */
+    inkDisabled: PropTypes.bool,
+
+    /**
+     * An optional list of ink interactions that should be disabled.
+     *
+     * @see {@link Inks#disabledInteractions}
+     */
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -297,6 +311,8 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      inkDisabled,
+      disabledInteractions,
       'aria-label': ariaLabel,
       /* eslint-disable no-unused-vars */
       label: propLabel,
@@ -339,6 +355,8 @@ export default class SelectionControl extends PureComponent {
       control = (
         <SwitchTrack
           disabled={disabled}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
           checked={checked}
           onClick={this._handleControlClick}
           onBlur={onBlur}
@@ -349,6 +367,8 @@ export default class SelectionControl extends PureComponent {
       control = (
         <AccessibleFakeInkedButton
           ref={this._setControl}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
           onBlur={onBlur}
           onFocus={onFocus}
           disabled={disabled}
