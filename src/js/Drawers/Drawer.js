@@ -372,7 +372,9 @@ export default class Drawer extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    this._updateType(this.props);
+    if (typeof this.props.visible === 'undefined' && !this.props.defaultVisible) {
+      this._updateType(this.props);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -536,6 +538,7 @@ export default class Drawer extends PureComponent {
       lastChild,
       ...props
     } = this.props;
+    delete props.drawerType;
     delete props.renderNode;
     delete props.visible;
     delete props.defaultVisible;
