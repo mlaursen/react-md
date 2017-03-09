@@ -14,6 +14,7 @@ interface NavigationDrawerProps extends Props {
   children?: React.ReactNode;
   includeDrawerHeader?: boolean;
   drawerHeader?: React.ReactNode;
+  drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
   drawerChildren?: React.ReactNode;
   position?: DrawerPositions;
@@ -43,7 +44,7 @@ interface NavigationDrawerProps extends Props {
   toolbarSingleColor?: boolean;
   toolbarProminent?: boolean;
   toolbarProminentTitle?: boolean;
-  toolbarActons?: React.ReactElement<any> | Array<React.ReactElement<any>>;
+  toolbarActions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   toolbarChildren?: React.ReactNode;
   contentComponent?: Function | string;
   footer?: React.ReactNode;
