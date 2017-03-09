@@ -43,7 +43,7 @@ interface NavigationDrawerProps extends Props {
   toolbarSingleColor?: boolean;
   toolbarProminent?: boolean;
   toolbarProminentTitle?: boolean;
-  toolbarActons?: React.ReactElement<any> | Array<React.ReactElement<any>>;
+  toolbarActions?: React.ReactElement<any> | Array<React.ReactElement<any>>;
   toolbarChildren?: React.ReactNode;
   contentComponent?: Function | string;
   footer?: React.ReactNode;
