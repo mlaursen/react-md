@@ -34,7 +34,7 @@ export default class Layover extends PureComponent {
   /**
    * The animation positions for the layover child.
    */
-  static LayoverPositions = LayoverPositions;
+  static Positions = LayoverPositions;
 
   /**
    * The horizontal anchor enum.
@@ -119,6 +119,11 @@ export default class Layover extends PureComponent {
     block: PropTypes.bool,
 
     /**
+     * Boolean if the layover should gain the `md-full-width` class name.
+     */
+    fullWidth: PropTypes.bool,
+
+    /**
      * Boolean if the `children` should be centered horizontally and vertically while keeping
      * its height in mind as well. This is *only* valid if both the x and y `anchor` targets
      * are `CENTER`.
@@ -164,15 +169,15 @@ export default class Layover extends PureComponent {
 
     /**
      * This is a threshold that is used to calculate if the `children` is still in
-     * view by applying this multiplier to the `toggle`'s height.
-     */
-    yThreshold: PropTypes.number.isRequired,
-
-    /**
-     * This is a threshold that is used to calculate if the `children` is still in
      * view by applying this multiplier to the `children`'s width.
      */
     xThreshold: PropTypes.number.isRequired,
+
+    /**
+     * This is a threshold that is used to calculate if the `children` is still in
+     * view by applying this multiplier to the `toggle`'s height.
+     */
+    yThreshold: PropTypes.number.isRequired,
 
     /**
      * Boolean if the `children` should be hidden when an element outside
@@ -244,6 +249,22 @@ export default class Layover extends PureComponent {
         LayoverPositions.BELOW,
       ]),
     ]).isRequired,
+
+    /**
+     * If you  would the the layover to interact as a context menu, provide this prop. It will
+     * make the children appear relative to the context menu origin automatically.
+     *
+     * @see {@link #preventContextMenu}
+     */
+    onContextMenu: PropTypes.func,
+
+    /**
+     * Boolean if the default behavior of the context menu should be prevented when using the
+     * `onContextMenu` prop.
+     *
+     * @see {@link #onContextMenu}
+     */
+    preventContextMenu: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -261,6 +282,7 @@ export default class Layover extends PureComponent {
     yThreshold: 0.38,
     xThreshold: 0.38,
     closeOnOutsideClick: true,
+    preventContextMenu: true,
   };
 
   constructor(props, context) {
@@ -290,6 +312,7 @@ export default class Layover extends PureComponent {
     this._setContainer = this._setContainer.bind(this);
     this._mergeStyles = this._mergeStyles.bind(this);
     this._handleScroll = this._handleScroll.bind(this);
+    this._handleContextMenu = this._handleContextMenu.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
 
@@ -301,12 +324,18 @@ export default class Layover extends PureComponent {
       this._manageFixedToListener(this.props.fixedTo, false);
       this._manageFixedToListener(fixedTo, true);
     } else if (visibileDiff && visible) {
-      if (!this._inFixed) {
+      const rect = this._contextRect || this._toggle.getBoundingClientRect();
+      if (this._dialog) {
+        this._manageFixedToListener(this._dialog, true);
+      } else if (!this._inFixed) {
         this._manageFixedToListener(fixedTo, true);
       }
 
-      this._init(fixedTo, anchor, sameWidth, centered);
+      this._init(fixedTo, anchor, sameWidth, centered, rect);
     } else if (visibileDiff && !visible && !this._inFixed) {
+      if (this._dialog) {
+        this._manageFixedToListener(this._dialog, false);
+      }
       this._manageFixedToListener(fixedTo, false);
     } else if (childStyle !== React.Children.only(this.props.children).props.style) {
       // Re-merge styles...
@@ -330,16 +359,15 @@ export default class Layover extends PureComponent {
     }
   }
 
-  _createStyles(anchor, centered, child, toggle) {
+  _createStyles(anchor, centered, child, rect) {
     const { x, y } = anchor;
-    const rect = toggle.getBoundingClientRect();
     const { offsetWidth, offsetHeight } = child;
 
     let left;
     let top;
     if (x === HorizontalAnchors.CENTER) {
       const { left: childLeft } = child.getBoundingClientRect();
-      left = (childLeft + (toggle.offsetWidth / 2) - (offsetWidth / 2));
+      left = (childLeft + (rect.width / 2) - (offsetWidth / 2));
     } else if (x === HorizontalAnchors.INNER_RIGHT) {
       left = rect.right - offsetWidth;
     } else if (x === HorizontalAnchors.LEFT) {
@@ -347,11 +375,11 @@ export default class Layover extends PureComponent {
     }
 
     if (centered && x === HorizontalAnchors.CENTER && y === VerticalAnchors.CENTER) {
-      top = rect.top - (offsetHeight / 2) + (toggle.offsetHeight / 2);
+      top = rect.top - (offsetHeight / 2) + (rect.height / 2);
     } else if (y === VerticalAnchors.TOP) {
       top = rect.top - offsetHeight;
     } else if (y === VerticalAnchors.CENTER) {
-      top = rect.top + toggle.offsetHeight / 2;
+      top = rect.top + rect.height / 2;
     } else if (y === VerticalAnchors.BOTTOM) {
       top = rect.bottom;
     }
@@ -423,12 +451,15 @@ export default class Layover extends PureComponent {
    * This initializes the popover with the default styles, and the intitial bookkeeping
    * variables to update while it is open.
    */
-  _init(fixedTo, anchor, sameWidth, centered) {
-    const { offsetWidth, offsetHeight } = this._toggle;
-    const { top, left, right } = this._toggle.getBoundingClientRect();
+  _init(fixedTo, anchor, sameWidth, centered, rect) {
+    const { top, left, right, height, width } = rect;
     let x;
     let y;
-    if (fixedTo !== window && (fixedTo.y || fixedTo.x)) {
+    if (this._dialog) {
+      const scroll = getScroll(this._dialog);
+      x = scroll.x;
+      y = scroll.y;
+    } else if (fixedTo !== window && (fixedTo.y || fixedTo.x)) {
       x = getScroll(fixedTo.x || window).x;
       y = getScroll(fixedTo.y || window).y;
     } else {
@@ -443,7 +474,7 @@ export default class Layover extends PureComponent {
     this._initialTop = top;
 
     if (anchor.x === HorizontalAnchors.INNER_RIGHT) {
-      this._initialLeft = left + offsetWidth;
+      this._initialLeft = left + width;
     } else if (anchor.x === HorizontalAnchors.RIGHT) {
       this._initialLeft = right;
     }
@@ -464,7 +495,7 @@ export default class Layover extends PureComponent {
     }
 
     if (anchor.y === VerticalAnchors.BOTTOM) {
-      this._initialTop = top + offsetHeight;
+      this._initialTop = top + height;
     }
 
     if (fixedTo !== window && !fixedTo.y && !fixedTo.x) {
@@ -477,7 +508,7 @@ export default class Layover extends PureComponent {
       left: this._initialLeft,
       top: this._initialTop,
       transformOrigin: undefined,
-      width: sameWidth ? offsetWidth : undefined,
+      width: sameWidth ? width : undefined,
     });
 
     this.setState({ styles });
@@ -500,7 +531,11 @@ export default class Layover extends PureComponent {
     if (this._container) {
       let node = this._container;
       while (node) {
-        if (window.getComputedStyle(node).position === 'fixed' && !node.classList.contains('md-layover')) {
+        const fixed = window.getComputedStyle(node).position === 'fixed';
+        if (fixed && node.classList.contains('md-dialog--full-page')) {
+          this._dialog = node;
+          return;
+        } else if (fixed && !node.classList.contains('md-layover-child')) {
           this._inFixed = true;
           return;
         }
@@ -523,7 +558,16 @@ export default class Layover extends PureComponent {
 
     const { x, y } = this.props.anchor;
     const { offsetHeight: childHeight, offsetWidth: childWidth } = this._child;
-    const { offsetHeight: toggleHeight, offsetWidth: toggleWidth } = this._toggle;
+    let toggleHeight;
+    let toggleWidth;
+    if (this._contextRect) {
+      toggleHeight = this._contextRect.height;
+      toggleWidth = this._contextRect.width;
+    } else {
+      toggleHeight = this._toggle.offsetHeight;
+      toggleWidth = this._toggle.offsetWidth;
+    }
+
     let addToTop = 0;
     let addToLeft = 0;
     if (!vp.top || !vp.bottom) {
@@ -580,11 +624,12 @@ export default class Layover extends PureComponent {
         this._childComponent.ref(child);
       }
 
-      if (!this._child || !this._toggle) {
+      if (!this._child || (!this._toggle && !this._contextRect)) {
         return;
       }
 
-      const styles = this._createStyles(anchor, centered, this._child, this._toggle);
+      const rect = this._contextRect || this._toggle.getBoundingClientRect();
+      const styles = this._createStyles(anchor, centered, this._child, rect);
       if (styles.top || styles.left) {
         this._initialLeft = styles.left || this._initialLeft;
         this._initialTop = styles.top || this._initialTop;
@@ -631,7 +676,11 @@ export default class Layover extends PureComponent {
 
     let x;
     let y;
-    if (fixedTo !== window && (fixedTo.x || fixedTo.y)) {
+    if (this._dialog) {
+      const scroll = getScroll(this._dialog);
+      x = scroll.x;
+      y = scroll.y;
+    } else if (fixedTo !== window && (fixedTo.x || fixedTo.y)) {
       x = getScroll(fixedTo.x || window).x;
       y = getScroll(fixedTo.y || window).y;
     } else {
@@ -678,7 +727,10 @@ export default class Layover extends PureComponent {
   }
 
   _handleOutsideClick(e) {
-    if (this._container && !this._container.contains(e.target)) {
+    if (
+      (this._contextRect && this._child && !this._child.contains(e.target)) ||
+      (this._container && !this._container.contains(e.target))
+    ) {
       this.props.onClose(e);
     }
   }
@@ -732,6 +784,23 @@ export default class Layover extends PureComponent {
     return false;
   }
 
+  _handleContextMenu(e) {
+    const { onContextMenu, preventContextMenu } = this.props;
+    if (!onContextMenu) {
+      return;
+    }
+
+    if (window.getSelection) {
+      this._contextRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
+    }
+
+    if (preventContextMenu && (!this._child || !this._child.contains(e.target))) {
+      e.preventDefault();
+    }
+
+    onContextMenu(e);
+  }
+
   render() {
     const {
       className,
@@ -739,6 +808,7 @@ export default class Layover extends PureComponent {
       toggle,
       visible,
       children,
+      fullWidth,
       animationPosition,
       /* eslint-disable no-unused-vars */
       anchor,
@@ -749,6 +819,8 @@ export default class Layover extends PureComponent {
       toggleQuery,
       yThreshold,
       xThreshold,
+      onContextMenu,
+      preventContextMenu,
       closeOnOutsideClick,
       /* eslint-enable no-unused-vars */
       ...props
@@ -775,13 +847,17 @@ export default class Layover extends PureComponent {
     return (
       <CSSTransitionGroup
         {...props}
-        className={cn('md-layover', { 'md-inline-block': !block }, className)}
+        className={cn('md-layover', {
+          'md-inline-block': !block && !fullWidth,
+          'md-full-width': fullWidth,
+        }, className)}
         ref={this._setContainer}
+        aria-haspopup
+        aria-owns={childId}
+        aria-expanded={visible}
         transitionEnter={props.transitionEnterTimeout !== 0}
         transitionLeave={props.transitionLeaveTimeout !== 0}
-        aria-haspopup
-        aria-expanded={visible}
-        aria-owns={childId}
+        onContextMenu={this._handleContextMenu}
       >
         {toggle}
         {child}

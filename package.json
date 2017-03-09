@@ -85,7 +85,7 @@
     "invariant": "^2.2.1",
     "react-motion": "^0.4.5",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.7.10"
+    "react-swipeable-views": "^0.11.1"
   },
   "peerDependencies": {
     "react": ">= 15.3.0",

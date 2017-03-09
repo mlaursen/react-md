@@ -1,10 +1,14 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import Menu from 'react-md/lib/Menus/Menu';
+import Menu from 'react-md/lib/Menus2/Menu';
 import AccessibleFakeInkedButton from 'react-md/lib/Helpers/AccessibleFakeInkedButton';
 import mapToListParts from 'react-md/lib/utils/mapToListParts';
 
 import toClassName from 'utils/StringUtils/toClassName';
+const anchor = {
+  x: Menu.HorizontalAnchors.INNER_LEFT,
+  y: Menu.VerticalAnchors.BOTTOM,
+};
 
 export default class DropDownMenu extends PureComponent {
   static propTypes = {
@@ -42,7 +46,7 @@ export default class DropDownMenu extends PureComponent {
 
     const toggle = (
       <AccessibleFakeInkedButton
-        className={cn({ 'md-btn--hover': mouseover })}
+        className={cn('google-docs-dd-menu', { 'md-btn--hover': mouseover })}
         onClick={this._toggle}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
@@ -55,12 +59,14 @@ export default class DropDownMenu extends PureComponent {
     return (
       <Menu
         {...props}
-        cascading
         id={`doc-control-${toClassName(text)}`}
+        anchor={anchor}
+        cascading
         visible={visible}
         toggle={toggle}
         onClose={this._close}
         position={Menu.Positions.BELOW}
+        listHeightRestricted={false}
       >
         {items.map(mapToListParts)}
       </Menu>

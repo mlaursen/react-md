@@ -3,7 +3,6 @@ import cn from 'classnames';
 import Subheader from '../Subheaders';
 
 import deprecated from 'react-prop-types/lib/deprecated';
-import contextTypes from '../Menus/contextTypes';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
@@ -31,12 +30,26 @@ export default class List extends PureComponent {
      * `Subheader`.
      */
     children: PropTypes.node,
+
+    /**
+     * Boolean if the list should appear horizontally instead of vertically.
+     */
+    inline: PropTypes.bool,
     subheader: deprecated(PropTypes.string, 'Use the `Subheader` component as a child instead'),
     primarySubheader: deprecated(PropTypes.bool, 'Use the `Subheader` component as a child instead'),
   };
 
-  static childContextTypes = contextTypes;
-  static contextTypes = contextTypes;
+  static childContextTypes = {
+    listLevel: PropTypes.number,
+    cascadingMenu: PropTypes.bool,
+    cascadingZDepth: PropTypes.number,
+  };
+
+  static contextTypes = {
+    listLevel: PropTypes.number,
+    cascadingMenu: PropTypes.bool,
+    cascadingZDepth: PropTypes.number,
+  };
 
   getChildContext() {
     const { listLevel, ...context } = this.context;
@@ -49,8 +62,16 @@ export default class List extends PureComponent {
   }
 
   render() {
-    const { className, ordered, children, subheader, primarySubheader, ...props } = this.props;
-    const { menuPosition, menuCascading, listLevel } = this.context;
+    const {
+      className,
+      ordered,
+      children,
+      subheader,
+      inline,
+      primarySubheader,
+      ...props
+    } = this.props;
+    const { cascadingMenu, cascadingZDepth, listLevel } = this.context;
 
     let subheaderEl;
     if (subheader) {
@@ -62,12 +83,10 @@ export default class List extends PureComponent {
       <Component
         {...props}
         className={cn('md-list', {
-          'md-list--menu': menuPosition,
-          'md-list--menu-scrollable': menuPosition && !menuCascading,
-          'md-list--menu-cascading': menuCascading,
-          'md-list--menu-nested': menuPosition && listLevel,
-          [`md-list--nested-${listLevel}`]: listLevel && !menuPosition,
-          [`md-list--menu-${menuPosition}`]: menuPosition,
+          'md-list--inline': inline,
+          'md-list--menu-cascading': cascadingMenu,
+          [`md-paper md-paper--${cascadingZDepth}`]: cascadingZDepth && cascadingMenu,
+          [`md-list--nested-${listLevel}`]: listLevel && !cascadingMenu,
         }, className)}
       >
         {subheaderEl}

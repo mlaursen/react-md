@@ -5,6 +5,7 @@ $md-picker-include-forceful-classes: true;
 $md-primary-color: $md-light-blue-500;
 $md-secondary-color: $md-deep-orange-a-200;
 $md-badge-include-default: true;
+$md-list-include-inline: true;
 
 @include react-md-everything;
 @include react-md-make-custom-grid('24-40', 24px, 40px, 0);

@@ -12,6 +12,7 @@ import Collapser from '../FontIcons/Collapser';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
+import Menu from '../Menus2/Menu';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -42,6 +43,16 @@ export default class ListItem extends PureComponent {
      * @see {@link #component}
      */
     tileClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the nested `List` that gets created when using `nestedItems`.
+     */
+    nestedListStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the nested `List` that gets created when using `nestedItems`.
+     */
+    nestedListClassName: PropTypes.string,
 
     /**
      * Any additional children to display in the `.md-list-tile`. If you use this prop,
@@ -132,11 +143,17 @@ export default class ListItem extends PureComponent {
      * `.md-list-item` and defaults to the `<li>` element.
      *
      * @see {@link #component}
+     * @see {@link #itemProps}
      */
     itemComponent: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.func,
     ]).isRequired,
+
+    /**
+     * Any additional props that you would like to apply to the surrounding `<li>` element/component.
+     */
+    itemProps: PropTypes.object,
 
     /**
      * An optional list of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` components
@@ -261,6 +278,25 @@ export default class ListItem extends PureComponent {
     expanderIconChildren: 'keyboard_arrow_down',
   };
 
+  static contextTypes = {
+    cascadingId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+    cascadingMenu: PropTypes.bool,
+    cascadingAnchor: PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.string,
+    }),
+    cascadingFixedTo: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.shape({
+        x: PropTypes.object,
+        y: PropTypes.object,
+      }),
+    ]),
+  };
+
   constructor(props) {
     super(props);
 
@@ -321,6 +357,7 @@ export default class ListItem extends PureComponent {
   _setTile(tile) {
     if (tile) {
       this._tile = tile;
+      this._tileNode = findDOMNode(tile);
     }
   }
 
@@ -418,6 +455,8 @@ export default class ListItem extends PureComponent {
       className,
       tileStyle,
       tileClassName,
+      nestedListStyle,
+      nestedListClassName,
       disabled,
       leftIcon,
       leftAvatar,
@@ -435,6 +474,7 @@ export default class ListItem extends PureComponent {
       expanderIconChildren,
       expanderIconClassName,
       itemComponent: ItemComponent,
+      itemProps,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
       isOpen, // deprecated
@@ -449,6 +489,7 @@ export default class ListItem extends PureComponent {
       ...props
     } = this.props;
 
+    const { cascadingId, cascadingMenu, cascadingAnchor, cascadingFixedTo } = this.context;
     let visible = getField(this.props, this.state, 'visible');
     if (typeof isOpen !== 'undefined') {
       visible = isOpen;
@@ -476,7 +517,13 @@ export default class ListItem extends PureComponent {
 
     let nestedList;
     if (nestedItems) {
-      nestedList = <Collapse collapsed={!visible} animate={animateNestedItems}><List>{nestedItems}</List></Collapse>;
+      if (!cascadingMenu) {
+        nestedList = (
+          <Collapse collapsed={!visible} animate={animateNestedItems}>
+            <List style={nestedListStyle} className={nestedListClassName}>{nestedItems}</List>
+          </Collapse>
+        );
+      }
 
       if (!rightIcon || !rightAvatar) {
         rightNode = (
@@ -495,58 +542,83 @@ export default class ListItem extends PureComponent {
     const icond = !!leftIcon || !!rightIcon;
     const avatard = !!leftAvatar || !!rightAvatar;
 
-    return (
-      <ItemComponent
-        style={style}
-        className={cn('md-list-item', {
-          'md-list-item--nested-container': nestedItems,
-        }, className)}
-        aria-setsize={ariaSize}
-        aria-posinset={ariaPos}
-        ref={this._setContainer}
+    const tile = (
+      <AccessibleFakeInkedButton
+        {...props}
+        __SUPER_SECRET_REF__={this._setTile}
+        key="tile"
+        onClick={this._handleClick}
+        onMouseOver={this._handleMouseOver}
+        onMouseLeave={this._handleMouseLeave}
+        onTouchStart={this._handleTouchStart}
+        onTouchEnd={this._handleTouchEnd}
+        onKeyDown={this._handleKeyDown}
+        onKeyUp={this._handleKeyUp}
+        disabled={disabled}
+        style={tileStyle}
+        className={cn('md-list-tile', {
+          'md-text': !disabled,
+          'md-text--disabled': disabled,
+          'md-list-tile--active': this.state.active && !this._touched,
+          'md-list-tile--icon': !secondaryText && icond && !avatard,
+          'md-list-tile--avatar': !secondaryText && avatard,
+          'md-list-tile--two-lines': secondaryText && !threeLines,
+          'md-list-tile--three-lines': secondaryText && threeLines,
+          'md-list-item--inset': inset && !leftIcon && !leftAvatar,
+        }, tileClassName)}
+        aria-expanded={nestedList ? visible : null}
       >
-        <AccessibleFakeInkedButton
-          {...props}
-          __SUPER_SECRET_REF__={this._setTile}
-          key="tile"
-          onClick={this._handleClick}
-          onMouseOver={this._handleMouseOver}
-          onMouseLeave={this._handleMouseLeave}
-          onTouchStart={this._handleTouchStart}
-          onTouchEnd={this._handleTouchEnd}
-          onKeyDown={this._handleKeyDown}
-          onKeyUp={this._handleKeyUp}
+        {leftNode}
+        <ListItemText
+          active={active}
+          activeClassName={activeClassName}
           disabled={disabled}
-          style={tileStyle}
-          className={cn('md-list-tile', {
-            'md-text': !disabled,
-            'md-text--disabled': disabled,
-            'md-list-tile--active': this.state.active && !this._touched,
-            'md-list-tile--icon': !secondaryText && icond && !avatard,
-            'md-list-tile--avatar': !secondaryText && avatard,
-            'md-list-tile--two-lines': secondaryText && !threeLines,
-            'md-list-tile--three-lines': secondaryText && threeLines,
-            'md-list-item--inset': inset && !leftIcon && !leftAvatar,
-          }, tileClassName)}
-          aria-expanded={nestedList ? visible : null}
+          primaryText={primaryText}
+          secondaryText={secondaryText}
+          threeLines={threeLines}
+          className={cn({
+            'md-tile-content--left-icon': leftIcon,
+            'md-tile-content--left-avatar': leftAvatar,
+            'md-tile-content--right-padding': rightIcon || rightAvatar,
+          })}
+        />
+        {rightNode}
+        {children}
+      </AccessibleFakeInkedButton>
+    );
+
+    const sharedProps = {
+      ...itemProps,
+      style,
+      className: cn('md-list-item', { 'md-list-item--nested-container': nestedItems }, className),
+      'aria-setsize': ariaSize,
+      'aria-posinset': ariaPos,
+      ref: this._setContainer,
+    };
+    if (cascadingMenu && nestedItems) {
+      return (
+        <Menu
+          id={cascadingId}
+          visible={visible}
+          onClose={this._handleClick}
+          toggle={tile}
+          block
+          anchor={cascadingAnchor}
+          position={Menu.Positions.BELOW}
+          component={ItemComponent}
+          listStyle={nestedListStyle}
+          listClassName={nestedListClassName}
+          {...sharedProps}
+          fixedTo={cascadingFixedTo}
         >
-          {leftNode}
-          <ListItemText
-            active={active}
-            activeClassName={activeClassName}
-            disabled={disabled}
-            primaryText={primaryText}
-            secondaryText={secondaryText}
-            threeLines={threeLines}
-            className={cn({
-              'md-tile-content--left-icon': leftIcon,
-              'md-tile-content--left-avatar': leftAvatar,
-              'md-tile-content--right-padding': rightIcon || rightAvatar,
-            })}
-          />
-          {rightNode}
-          {children}
-        </AccessibleFakeInkedButton>
+          {nestedItems}
+        </Menu>
+      );
+    }
+
+    return (
+      <ItemComponent {...sharedProps}>
+        {tile}
         {nestedList}
       </ItemComponent>
     );
