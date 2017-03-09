@@ -14,6 +14,7 @@ interface NavigationDrawerProps extends Props {
   children?: React.ReactNode;
   includeDrawerHeader?: boolean;
   drawerHeader?: React.ReactNode;
+  drawerHeaderChildren?: React.ReactNode;
   drawerTitle?: React.ReactNode;
   drawerChildren?: React.ReactNode;
   position?: DrawerPositions;
