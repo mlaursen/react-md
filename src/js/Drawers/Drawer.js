@@ -387,7 +387,9 @@ export default class Drawer extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    this._updateType(this.props);
+    if (typeof this.props.visible === 'undefined' && !this.props.defaultVisible) {
+      this._updateType(this.props);
+    }
   }
 
   componentWillReceiveProps(nextProps) {

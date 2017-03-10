@@ -1,7 +1,8 @@
 /* eslint-env jest */
 jest.unmock('../Drawer');
 jest.unmock('../../Dialogs/Dialog');
-jest.unmock('../../Dialogs/DialogContainer');
+jest.unmock('../isType');
+jest.unmock('../../Papers/Paper');
 
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -12,29 +13,14 @@ import {
 
 import Drawer from '../Drawer';
 import Dialog from '../../Dialogs/Dialog';
-import DialogContainer from '../../Dialogs/DialogContainer';
 import Portal from '../../Helpers/Portal';
 
 describe('Drawer', () => {
   it('should inherit the dialog\'s renderNode context', () => {
     const dialog = renderIntoDocument(<Dialog id="test"><Drawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, Drawer);
-    expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
-  });
-
-  it('should inerhit and pass the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(
-      <Dialog id="test">
-        <Drawer defaultVisible id="test-2">
-          <DialogContainer id="nested-dialog" visible onHide={jest.fn()} />
-        </Drawer>
-      </Dialog>
-    );
-    const drawer = findRenderedComponentWithType(dialog, Drawer);
-    const dialogContainer = findRenderedComponentWithType(dialog, DialogContainer);
     const { renderNode } = dialog.getChildContext();
     expect(drawer.context.renderNode).toBe(renderNode);
-    expect(dialogContainer.context.renderNode).toBe(renderNode);
   });
 
   it('should not render in the Portal component by default', () => {
@@ -46,6 +32,36 @@ describe('Drawer', () => {
     const drawer = shallow(<Drawer portal />);
     // One for overlay and one for the drawer itself
     expect(drawer.find(Portal).length).toBe(2);
+  });
+
+  it('should call the updateType function after initial mount', () => {
+    const onVisibilityToggle = jest.fn();
+    renderIntoDocument(
+      <Drawer
+        onVisibilityToggle={onVisibilityToggle}
+        drawerType={Drawer.DrawerTypes.PERSISTENT}
+      />
+    );
+
+    expect(onVisibilityToggle.mock.calls.length).toBe(1);
+  });
+
+
+  it('should not call the updateType function after mounting if defaultVisible is true', () => {
+    const onVisibilityToggle = jest.fn();
+    const onMediaTypeChange = jest.fn();
+    const drawer = renderIntoDocument(
+      <Drawer
+        defaultVisible
+        onMediaTypeChange={onMediaTypeChange}
+        onVisibilityToggle={onVisibilityToggle}
+        drawerType={Drawer.DrawerTypes.PERSISTENT}
+      />
+    );
+
+    expect(onVisibilityToggle.mock.calls.length).toBe(0);
+    expect(onMediaTypeChange.mock.calls.length).toBe(0);
+    expect(drawer.state.visible).toBe(true);
   });
 
   describe('matchesMedia', () => {
