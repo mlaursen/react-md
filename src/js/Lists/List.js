@@ -4,6 +4,7 @@ import cn from 'classnames';
 import Subheader from '../Subheaders';
 
 import deprecated from 'react-prop-types/lib/deprecated';
+import getField from '../utils/getField';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
@@ -70,7 +71,7 @@ export default class List extends PureComponent {
 
   getChildContext() {
     const { listLevel, ...context } = this.context;
-    const { cascadingFixedTo } = this.state;
+    const cascadingFixedTo = getField(this.state, this.context, 'cascadingFixedTo');
     return {
       ...context,
       cascadingFixedTo,
@@ -82,8 +83,11 @@ export default class List extends PureComponent {
 
   componentDidMount() {
     if (this.context.cascadingMenu) {
-      const cascadingFixedTo = { y: findDOMNode(this) };
-      this.setState({ cascadingFixedTo }); // eslint-disable-line react/no-did-mount-set-state
+      const list = findDOMNode(this);
+      if (list.offsetHeight < list.scrollHeight) {
+        const cascadingFixedTo = { y: findDOMNode(this) };
+        this.setState({ cascadingFixedTo }); // eslint-disable-line react/no-did-mount-set-state
+      }
     }
   }
 
