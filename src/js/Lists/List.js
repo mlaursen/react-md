@@ -1,4 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import Subheader from '../Subheaders';
 
@@ -42,23 +43,48 @@ export default class List extends PureComponent {
   static childContextTypes = {
     listLevel: PropTypes.number,
     cascadingMenu: PropTypes.bool,
+    cascadingFixedTo: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.shape({
+        x: PropTypes.object,
+        y: PropTypes.object,
+      }),
+    ]),
     cascadingZDepth: PropTypes.number,
   };
 
   static contextTypes = {
     listLevel: PropTypes.number,
     cascadingMenu: PropTypes.bool,
+    cascadingFixedTo: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.shape({
+        x: PropTypes.object,
+        y: PropTypes.object,
+      }),
+    ]),
     cascadingZDepth: PropTypes.number,
   };
 
+  state = {};
+
   getChildContext() {
     const { listLevel, ...context } = this.context;
+    const { cascadingFixedTo } = this.state;
     return {
       ...context,
+      cascadingFixedTo,
       listLevel: typeof listLevel === 'undefined'
         ? 1
         : listLevel + 1,
     };
+  }
+
+  componentDidMount() {
+    if (this.context.cascadingMenu) {
+      const cascadingFixedTo = { y: findDOMNode(this) };
+      this.setState({ cascadingFixedTo }); // eslint-disable-line react/no-did-mount-set-state
+    }
   }
 
   render() {
@@ -85,7 +111,7 @@ export default class List extends PureComponent {
         className={cn('md-list', {
           'md-list--inline': inline,
           'md-list--menu-cascading': cascadingMenu,
-          [`md-paper md-paper--${cascadingZDepth}`]: cascadingZDepth && cascadingMenu,
+          [`md-paper md-paper--${cascadingZDepth}`]: cascadingZDepth && cascadingMenu && listLevel > 0,
           [`md-list--nested-${listLevel}`]: listLevel && !cascadingMenu,
         }, className)}
       >

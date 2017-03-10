@@ -39,27 +39,24 @@ $btn-lr-padding: 12px;
   left: $md-toolbar-tablet-title-keyline - $btn-lr-padding;
   position: absolute;
 
-  .md-tile-content {
-    padding-left: 28px;
+  $icon-padding: 8px;
+
+  .md-list-tile {
+    padding-left: $md-menu-cascading-padding + ($icon-padding * 1.5);
   }
 
-  .md-tile-content--left-icon {
-    padding-left: 8px;
-  }
-
+  .left-icon-tile,
+  .md-tile-content--left-icon,
+  .md-tile-content--left-button,
   .md-list-tile--control-left {
-    padding-left: 8px;
+    padding-left: $icon-padding;
   }
 
   *[role="checkbox"] {
     flex-shrink: 0;
-    height: $md-menu-cascading-height;
-    padding: ($md-menu-cascading-height - $md-font-icon-dense-size) / 2;
-    width: $md-menu-cascading-height;
-  }
-
-  .md-tile-content--left-button {
-    padding-left: 12px;
+    height: $md-font-icon-dense-size;
+    padding: 0;
+    width: $md-font-icon-dense-size;
   }
 }
 
@@ -71,11 +68,41 @@ $toolbar-height: 80px;
 
 .google-docs-toolbar {
   height: $toolbar-height;
-  position: relative;
 }
 
 .google-docs-playground {
+  margin-top: $toolbar-height;
   min-height: calc(100vh - #{$toolbar-height});
   padding-bottom: 2em;
   padding-top: 2em;
+}
+
+.unicode-icon {
+  display: block;
+  font-size: 16px;
+  width: $md-font-icon-dense-size;
+}
+
+.google-docs-list {
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.google-docs-search {
+  padding-left: $md-menu-cascading-padding + $btn-lr-padding;
+  padding-right: $md-menu-cascading-padding;
+  width: 240px;
+
+  .md-text-field {
+    border: 1px solid get-color('divider', $md-light-theme);
+    padding: 8px 12px;
+  }
+}
+
+.last-edit {
+  position: relative;
+
+  &--hover {
+    text-decoration: underline;
+  }
 }

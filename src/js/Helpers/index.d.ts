@@ -73,7 +73,7 @@ export enum LayoverPositionsEnum {
   BELOW
 }
 
-interface LayoverProps extends Props {
+export interface LayoverProps extends Props {
   id?: IdPropType;
   style?: React.CSSProperties;
   className?: string;
@@ -84,6 +84,7 @@ interface LayoverProps extends Props {
   children?: React.ReactElement<any>;
   block?: boolean;
   centered?: boolean;
+  fullWidth?: boolean;
   sameWidth?: boolean;
   onClose: Function;
   component?: string | Function;
@@ -95,6 +96,8 @@ interface LayoverProps extends Props {
   closeOnOutsideClick?: boolean;
   anchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
   animationPosition?: string | LayoverPositions | LayoverPositionsEnum;
+  onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
+  preventContextMenu?: boolean;
 }
 
 interface PortalProps extends Props {

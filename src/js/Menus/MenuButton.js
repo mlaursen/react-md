@@ -1,41 +1,27 @@
 import React, { PureComponent, PropTypes } from 'react';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-
-import Menu from './Menu';
+import controlled from '../utils/PropTypes/controlled';
+import getField from '../utils/getField';
 import Button from '../Buttons/Button';
-import Positions from './Positions';
+import Menu from './Menu';
 
-/**
- * A simple wrapper for creating Menus wrapped with Button. The props used are a
- * combination of the `Menu` and `Button` components. Menu props will be extracted
- * and any props that are not `Menu` related will be passed to the `Button`.
- *
- * The only main difference is that the `children` for the button are now defined with
- * `buttonChildren`.
- */
 export default class MenuButton extends PureComponent {
-  static Positions = Positions;
-
   static propTypes = {
     /**
-     * An id to use for the menu button. This is required for a11y
+     * An id to use for the menu button. This is required for accessibility.
+     *
+     * @see {@link Menus#id}
      */
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ])),
-
-    /**
-     * An optional id to give the button instead of the menu.
-     */
-    buttonId: PropTypes.oneOfType([
+    id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
     /**
-     * An optional id to give the list that appears in the menu.
+     * An optional id to provide to the menu's list.
+     *
+     * @see {@link Menus#listId}
      */
     listId: PropTypes.oneOfType([
       PropTypes.number,
@@ -43,131 +29,44 @@ export default class MenuButton extends PureComponent {
     ]),
 
     /**
-     * An optional style to apply to the button.
+     * An optional id to provide to the button.
      */
-    style: PropTypes.object,
-
-    /**
-     * An optional className to apply to the button.
-     */
-    className: PropTypes.string,
-
-    /**
-     * An optional style to apply to the menu.
-     */
-    menuStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the menu.
-     */
-    menuClassName: PropTypes.string,
-
-    /**
-     * An optional style to apply to the menu's list when it is open.
-     */
-    listStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the menu's list when it is open.
-     */
-    listClassName: PropTypes.string,
-
-    /**
-     * Any children used to render icons or anything else for the button.
-     */
-    buttonChildren: PropTypes.node,
-
-    /**
-     * An optional function to call when the button is clicked.
-     */
-    onClick: PropTypes.func,
-
-    /**
-     * An optional function to call when the menu's visiblity is toggled. The callback
-     * will include the next `open` state and the click event.
-     */
-    onMenuToggle: PropTypes.func,
-
-    /**
-     * Boolean if the MenuButton is open by default.
-     */
-    defaultOpen: PropTypes.bool,
-
-    /**
-     * The position for the menu.
-     */
-    position: PropTypes.oneOf([
-      Positions.TOP_LEFT,
-      Positions.TOP_RIGHT,
-      Positions.BOTTOM_LEFT,
-      Positions.BOTTOM_RIGHT,
-      Positions.BELOW,
+    buttonId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
     ]),
-
-    /**
-     * A list of `ListItem`s to render when the Menu is toggled open.
-     */
+    style: PropTypes.object,
+    className: PropTypes.string,
+    menuStyle: PropTypes.object,
+    menuClassName: PropTypes.string,
+    listStyle: PropTypes.object,
+    listClassName: PropTypes.string,
     children: PropTypes.node,
+    buttonChildren: PropTypes.node,
+    visible: controlled(PropTypes.bool, 'onVisibleToggle', 'defaultVisible'),
+    defaultVisible: PropTypes.bool.isRequired,
 
-    /**
-     * Boolean if the `Menu` is displayed as full width.
-     */
-    fullWidth: PropTypes.bool,
+    onMenuToggle: deprecated(PropTypes.bool, 'Use `onVisibleChange` instead'),
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+  };
 
-    /**
-     * Boolean if the max width of the menu's list should be equal to the `Button`.
-     */
-    contained: PropTypes.bool,
-
-    /**
-     * An optional transition name to use for the menu transitions.
-     */
-    transitionName: PropTypes.string,
-
-    /**
-     * An optional transition leave timeout to use for the menu transitions.
-     */
-    transitionEnterTimeout: PropTypes.number,
-
-    /**
-     * An optional transition leave timeout to use for the menu transitions.
-     */
-    transitionLeaveTimeout: PropTypes.number,
+  static defaultProps = {
+    defaultVisible: false,
   };
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      isOpen: props.defaultOpen || false,
-    };
-    this._toggleMenu = this._toggleMenu.bind(this);
-    this._closeMenu = this._closeMenu.bind(this);
-  }
-
-  _toggleMenu(e) {
-    const isOpen = !this.state.isOpen;
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    this.state = {};
+    if (typeof props.visible === 'undefined') {
+      this.state.visible = typeof props.defaultOpen !== 'undefined'
+        ? props.defaultOpen
+        : props.defaultVisible;
     }
-
-    if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(isOpen, e);
-    }
-
-    this.setState({ isOpen });
-  }
-
-  _closeMenu(e) {
-    if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(false, e);
-    }
-
-    this.setState({ isOpen: false });
   }
 
   render() {
-    const { isOpen } = this.state;
     const {
       id,
       listId,
@@ -176,26 +75,28 @@ export default class MenuButton extends PureComponent {
       menuClassName,
       listStyle,
       listClassName,
-      buttonChildren,
       children,
-      fullWidth,
-      position,
-      contained,
-      transitionName,
-      transitionEnterTimeout,
-      transitionLeaveTimeout,
-      onClick, // eslint-disable-line no-unused-vars
-      defaultOpen, // eslint-disable-line no-unused-vars
-      onMenuToggle, // eslint-disable-line no-unused-vars
+      buttonChildren,
+      isOpen, // deprecated
+
+      /* eslint-disable no-unused-vars */
+      visible: propVisible,
+      defaultVisible,
+
+      // deprecated
+      defaultOpen,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+
+    const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
 
     const toggle = (
       <Button
         key="menu-button"
         {...props}
         id={buttonId}
-        onClick={this._toggleMenu}
+        onClick={this._handleClick}
       >
         {buttonChildren}
       </Button>
@@ -210,14 +111,7 @@ export default class MenuButton extends PureComponent {
         listStyle={listStyle}
         listClassName={listClassName}
         toggle={toggle}
-        isOpen={isOpen}
-        onClose={this._closeMenu}
-        contained={contained}
-        position={position}
-        fullWidth={fullWidth}
-        transitionName={transitionName}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
+        visible={visible}
       >
         {children}
       </Menu>

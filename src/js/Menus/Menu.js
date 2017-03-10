@@ -1,35 +1,57 @@
-import React, { PureComponent, PropTypes, cloneElement, Children } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
+import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { ENTER } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
-import contextTypes from './contextTypes';
-import Positions from './Positions';
+import getField from '../utils/getField';
 import List from '../Lists/List';
+import Layover from '../Helpers/Layover';
 
-/**
- * The `Menu` component is a controlled component that will display
- * a `List` of `ListItem` once it has been toggled open.
- */
 export default class Menu extends PureComponent {
-  static Positions = Positions;
+  static HorizontalAnchors = Layover.HorizontalAnchors;
+  static VerticalAnchors = Layover.VerticalAnchors;
+
+  static Positions = {
+    // Can't do ...Layover.Positions since it triggers the get for CONTEXT
+    TOP_LEFT: Layover.Positions.TOP_LEFT,
+    TOP_RIGHT: Layover.Positions.TOP_RIGHT,
+    BOTTOM_LEFT: Layover.Positions.BOTTOM_LEFT,
+    BOTTOM_RIGHT: Layover.Positions.BOTTOM_RIGHT,
+    BELOW: Layover.Positions.BELOW,
+    _warned: false,
+    get CONTEXT() {
+      if (!this._warned) {
+        /* eslint-disable no-console */
+        console.error(
+          'The `Menu.Positions.CONTEXT` position has been depreacted and will be removed ' +
+          'in the next major release. To make the `Menu` behave as a context menu, provide ' +
+          'the `onContextMenu` prop instead.'
+        );
+      }
+
+      this._warned = true;
+      return 'context';
+    },
+  };
 
   static propTypes = {
     /**
-     * An optional id to give to the menu's container. This is used for accessibility and is
-     * generally recommended.
+     * An id to provide to the menu's container. This is required for accessibility as it generates
+     * the `aria-` attributes for dynamic content.
+     *
+     * @see {@link #listId}
      */
-    id: PropTypes.oneOfType([
+    id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ]),
+    ])),
 
     /**
-     * An optional id to give to the `List` that gets generated when open. This is used for
-     * accessibility and generally recommended. If this prop is given, the `aria-owns` attribute
-     * will be added to the list.
+     * An optional id to provide to the menu's list. If this prop is omitted, the list's id will be
+     * `\`${id}-list\``
      */
     listId: PropTypes.oneOfType([
       PropTypes.number,
@@ -37,111 +59,210 @@ export default class Menu extends PureComponent {
     ]),
 
     /**
-     * An optional style to apply to the main container for a menu.
+     * An optional style to apply to the main container for the menu.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the main container for a menu.
+     * An optional class name to apply to the main container for the menu.
      */
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the menu's `List` once it has been toggled open.
+     * An optional style to apply to the list once the menu has opened.
      */
     listStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the menu's `List` once it has been toggled open.
+     * An optional class name to apply to the list once the menu has opened.
      */
     listClassName: PropTypes.string,
 
     /**
-     * The component to render the container as.
+     * The component to render the main container as.
+     *
+     * @see {@link Helpers/Layovers#component}
      */
     component: PropTypes.oneOfType([
-      PropTypes.func,
       PropTypes.string,
-    ]).isRequired,
-
-    /**
-     * This can either be a single `List` component or an array of `ListItem`, `ListItemControl`,
-     * `Divider`, or `Subheader` to display when the menu is open. If it is the `List` component,
-     * it will be cloned with some additional class names.
-     */
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element),
+      PropTypes.func,
     ]),
 
     /**
-     * Boolean if the `Menu` is currently open.
+     * This is how the menu's `List` get's anchored to the `toggle` element.
+     *
+     * @see {@link Helpers/Layovers#anchor}
      */
-    isOpen: PropTypes.bool.isRequired,
+    anchor: Layover.propTypes.anchor,
 
     /**
-     * The transition name to use for the menu's enter and leave transitions
+     * This is the animation position for the list that appears.
+     *
+     * @see {@link Helpers/Layovers#animationPosition}
      */
-    transitionName: PropTypes.string.isRequired,
+    position: Layover.propTypes.animationPosition,
 
     /**
-     * The timeout for the enter transition.
-     */
-    transitionEnterTimeout: PropTypes.number.isRequired,
-
-    /**
-     * The timeout for the leave transition.
-     */
-    transitionLeaveTimeout: PropTypes.number.isRequired,
-
-    /**
-     * The node to use as the toggle for the menu.
+     * This is the component/element that should toggle the menu open.
+     *
+     * @see {@link Helpers/Layovers#toggle}
      */
     toggle: PropTypes.node,
 
     /**
-     * The position that the menu should appear from. If the position is set to
-     * `Menu.Positions.CONTEXT`, the `onClose` function will be called when something
-     * outside of the `List` is clicked instead of something outside of the `Menu`.
+     * This is how the menu's list will be "fixed" to the `toggle` component.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
      */
-    position: PropTypes.oneOf([
-      Menu.Positions.TOP_LEFT,
-      Menu.Positions.TOP_RIGHT,
-      Menu.Positions.BOTTOM_LEFT,
-      Menu.Positions.BOTTOM_RIGHT,
-      Menu.Positions.CONTEXT,
-      Menu.Positions.BELOW,
-    ]).isRequired,
+    fixedTo: Layover.propTypes.fixedTo,
 
     /**
-     * A function used to close the menu. This is used when the user clicks outside
-     * of the menu or when a `ListItem` is clicked.
+     * Boolean if the menu's list should appear horizontally instead of vertically.
+     */
+    listInline: PropTypes.bool,
+
+    /**
+     * The list's z-depth for applying box shadow. This should be a number from 0 to 5.
+     */
+    listZDepth: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
+     * `$md-menu-desktop-max-height` values.
+     *
+     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     */
+    listHeightRestricted: PropTypes.bool,
+
+    /**
+     * Boolean if the menu's list is visible.
+     */
+    visible: PropTypes.bool.isRequired,
+
+    /**
+     * Any children to render in the menu's list. This _should_ normally be `ListItem`, or
+     * `ListItemControl`.
+     */
+    children: PropTypes.node,
+
+    /**
+     * An optional function to call when en element in the menu has been clicked.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when a key is pressed anywhere in the menn.
+     */
+    onKeyDown: PropTypes.func,
+
+    /**
+     * A function to call to close the menu. This is used for closing on outside clicks,
+     * closing when a list item has been clicked, or the user presses escape.
      */
     onClose: PropTypes.func.isRequired,
 
     /**
-     * Boolean if the menu is cascading. This isn't really working too well yet.
+     * Boolean if the menu should be cascading. This means that the menu will pop the additional
+     * `nestedItems` on any `ListItem` to be appear either to the right or left of the visible list.
      */
     cascading: PropTypes.bool,
 
     /**
-     * Boolean if the width of the `List` should be limited to the width of the `toggle`
+     * This is how the cascading lists get anchored to the list item.
+     *
+     * @see {@link Helpers/Layovers#anchor}
      */
-    contained: PropTypes.bool,
+    cascadingAnchor: Layover.propTypes.anchor,
 
     /**
-     * Boolean if the menu should be displayed full width instead of inline.
+     * This is the z-depth the list should gain for a cascading menu. This only gets applied on
+     * items that are more than 1 level deep.
+     */
+    cascadingZDepth: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the `md-full-width` class name should get applied to the menu's container.
      */
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the menu should wait for the `ListItem`'s ink transition to finish before triggering
-     * the `onClose` callback.
+     * Boolean if the menu should be displayed as a block instead of as an inline block.
+     *
+     * @see {@link #fullWidth}
      */
-    autocloseAfterInk: PropTypes.bool,
+    block: PropTypes.bool,
 
+    /**
+     * @see {@link Helpers/Layovers#centered}
+     */
+    centered: Layover.propTypes.centered,
+
+    /**
+     * @see {@link Helpers/Layovers#sameWidth}
+     */
+    sameWidth: Layover.propTypes.sameWidth,
+
+    /**
+     * If you would like the menu to interact as a context menu, provide this prop.
+     *
+     * @see {@link Helpers/Layovers#onContextMenu}
+     */
+    onContextMenu: Layover.propTypes.onContextMenu,
+
+    /**
+     * Boolean if the default behavior of the context menu should be prevented when using the
+     * `onContextMenu` prop.
+     *
+     * @see {@link Helpers/Layovers#preventContextMenu}
+     */
+    preventContextMenu: Layover.propTypes.preventContextMenu,
+
+    /**
+     * @see {@link Helpers/Layovers#xThreshold}
+     */
+    xThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#yThreshold}
+     */
+    yThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     */
+    closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#toggleQuery}
+     */
+    toggleQuery: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.object,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional transition name to use for the list appearing/disappearing.
+     *
+     * @see {@link Helpers/Layoers#transitionName}
+     */
+    transitionName: PropTypes.string,
+
+    /**
+     * @see {@link Helpers/Layoers#transitionEnterTimeout}
+     */
+    transitionEnterTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layoers#transitionLeaveTimeout}
+     */
+    transitionLeaveTimeout: PropTypes.number,
+
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),
+    contained: deprecated(PropTypes.bool, 'Use `sameWidth` instead'),
     limitHeight: deprecated(PropTypes.bool, 'The menus will always be limited in height as according to the specs'),
     expanderIconClassName: deprecated(
       PropTypes.node,
@@ -156,116 +277,125 @@ export default class Menu extends PureComponent {
   };
 
   static defaultProps = {
-    component: 'div',
-    transitionName: 'md-menu',
-    transitionEnterTimeout: 200,
-    transitionLeaveTimeout: 200,
-    position: Menu.Positions.TOP_RIGHT,
+    anchor: {
+      x: Layover.HorizontalAnchors.INNER_RIGHT,
+      y: Layover.VerticalAnchors.OVERLAP,
+    },
+    cascadingAnchor: {
+      x: Layover.HorizontalAnchors.RIGHT,
+      y: Layover.VerticalAnchors.OVERLAP,
+    },
+    position: Layover.Positions.TOP_RIGHT,
+    fixedTo: window,
+    listZDepth: 2,
+    listHeightRestricted: true,
+    cascadingZDepth: 3,
   };
 
-  static childContextTypes = contextTypes;
+  static contextTypes = {
+    listLevel: PropTypes.number,
+    cascadingId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    cascadingMenu: PropTypes.bool,
+    cascadingAnchor: PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.string,
+    }),
+    cascadingZDepth: PropTypes.number,
+  };
 
-  constructor(props) {
-    super(props);
-
-    this._setList = this._setList.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._handleListClick = this._handleListClick.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-  }
+  static childContextTypes = {
+    listLevel: PropTypes.number,
+    cascadingId: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    cascadingMenu: PropTypes.bool,
+    cascadingFixedTo: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.shape({
+        x: PropTypes.object,
+        y: PropTypes.object,
+      }),
+    ]),
+    cascadingAnchor: PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.string,
+    }),
+    cascadingZDepth: PropTypes.number,
+  };
 
   getChildContext() {
-    const { cascading: menuCascading, position: menuPosition } = this.props;
+    const { cascading, id, fixedTo } = this.props;
+    const listLevel = this.context.listLevel || 0;
+    const cascadingMenu = typeof cascading !== 'undefined' ? cascading : this.context.cascadingMenu;
+    const cascadingZDepth = getField(this.context, this.props, 'cascadingZDepth');
+    const cascadingAnchor = getField(this.props, this.context, 'cascadingAnchor');
+    const cascadingFixedTo = typeof fixedTo !== 'undefined' ? fixedTo : this.context.cascadingFixedTo;
+
     return {
-      menuCascading,
-      menuPosition,
-      listLevel: 0,
+      listLevel,
+      cascadingId: `${id}-level-${listLevel + 1}`,
+      cascadingMenu,
+      cascadingAnchor,
+      cascadingZDepth,
+      cascadingFixedTo,
     };
   }
 
   componentDidMount() {
-    const { isOpen } = this.props;
-    if (isOpen) {
-      window.addEventListener('click', this._handleOutsideClick);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const { isOpen } = this.props;
-    if (isOpen === prevProps.isOpen) {
-      return;
-    }
-
-    window[`${isOpen ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
+    this._container = findDOMNode(this);
   }
 
   componentWillUnmount() {
-    const { isOpen } = this.props;
-    if (isOpen) {
-      window.removeEventListener('click', this._handleOutsideClick);
-    }
-
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
   }
 
-  _setList(list) {
-    if (list !== null) {
-      this._list = findDOMNode(list);
+  _handleClose = (e) => {
+    const { close, onClose } = this.props;
+    if (close || onClose) {
+      (close || onClose)(e);
     }
+  };
 
-    try {
-      const children = Children.only(this.props.children);
-      if (typeof children.ref === 'function') {
-        children.ref(list);
-      }
-    } catch (e) {
-      // do nothing
+  _handleClick = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick(e);
     }
-  }
-
-  _setContainer(container) {
-    if (container !== null) {
-      this._container = findDOMNode(container);
-    }
-  }
-
-  _handleOutsideClick(e) {
-    const isInContextMenu = this.props.position === Positions.CONTEXT
-      && !this._list.contains(e.target);
-
-    if (isInContextMenu || !this._container.contains(e.target)) {
-      const { onClose, close } = this.props;
-      if (close) {
-        close(e);
-      } else if (onClose) {
-        onClose(e);
-      }
-    }
-  }
-
-  _handleListClick(e) {
-    const { onClose, close, autocloseAfterInk } = this.props;
 
     let node = e.target;
-    while (this._container.contains(node)) {
-      if (!node.classList.contains('md-list-item--nested-container') && node.classList.contains('md-list-item')) {
+    while (this._container && this._container.contains(node)) {
+      if (node.classList.contains('md-list-control')) {
+        return;
+      } else if (
+        !node.classList.contains('md-list-item--nested-container') &&
+        node.classList.contains('md-list-item')
+      ) {
         this._timeout = setTimeout(() => {
           this._timeout = null;
-
-          if (close) {
-            close(e);
-          } else if (onClose) {
-            onClose(e);
-          }
-        }, autocloseAfterInk ? 300 : TICK);
+          this._handleClose(e);
+        }, TICK);
 
         return;
       }
+
       node = node.parentNode;
     }
-  }
+  };
+
+  _handleKeyDown = (e) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    if ((e.which || e.keyKode) === ENTER) {
+      this._handleClick(e);
+    }
+  };
 
   render() {
     const {
@@ -273,16 +403,22 @@ export default class Menu extends PureComponent {
       className,
       listStyle,
       listClassName,
-      isOpen,
-      fullWidth,
-      toggle,
-      contained,
+      visible,
       children,
       position,
+      listZDepth,
+      listInline,
+      listHeightRestricted,
+      sameWidth,
+      contained, // deprecated
+      isOpen, // deprecated
       /* eslint-disable no-unused-vars */
-      onClose,
-      cascading,
+      fixedTo: propFixedTo,
       listId: propListId,
+      cascading,
+      cascadingAnchor,
+      cascadingZDepth,
+      onClose,
 
       // deprecated
       close,
@@ -295,53 +431,41 @@ export default class Menu extends PureComponent {
     } = this.props;
 
     let { listId } = this.props;
-    if (!listId && id) {
-      listId = `${id}List`;
+    if (!listId) {
+      listId = `${id}-list`;
     }
 
-    const menuClassName = cn({ 'md-list--menu-contained': contained }, listClassName);
-    let menuItems;
-    try {
-      const list = Children.only(children);
-
-      menuItems = cloneElement(children, {
-        id: list.props.id || listId,
-        key: 'menu-list',
-        className: cn(menuClassName, list.props.className),
-        onClick: this._handleListClick,
-        ref: this._setList,
-      });
-    } catch (e) {
-      menuItems = (
+    const fixedTo = typeof propFixedTo !== 'undefined' ? propFixedTo : this.context.cascadingFixedTo;
+    const listVisible = typeof isOpen !== 'undefined' ? isOpen : visible;
+    return (
+      <Layover
+        id={id}
+        className={cn('md-menu-container', className)}
+        {...props}
+        sameWidth={contained || sameWidth}
+        fixedTo={fixedTo}
+        onClick={this._handleClick}
+        onKeyDown={this._handleKeyDown}
+        onClose={this._handleClose}
+        animationPosition={position}
+        visible={listVisible}
+        aria-haspopup
+        aria-expanded={listVisible}
+        aria-owns={listId}
+      >
         <List
           id={listId}
           key="menu-list"
           style={listStyle}
-          className={menuClassName}
-          onClick={this._handleListClick}
-          ref={this._setList}
+          className={cn('md-list--menu', {
+            'md-list--menu-restricted': listHeightRestricted,
+            [`md-paper md-paper--${listZDepth}`]: listZDepth,
+          }, listClassName)}
+          inline={listInline}
         >
           {children}
         </List>
-      );
-    }
-
-    return (
-      <CSSTransitionGroup
-        {...props}
-        id={id}
-        ref={this._setContainer}
-        className={cn('md-inline-block md-menu-container', {
-          'md-full-width': fullWidth,
-          'md-menu-container--menu-below': position === Positions.BELOW,
-        }, className)}
-        aria-haspopup
-        aria-expanded={isOpen}
-        aria-owns={listId}
-      >
-        {toggle}
-        {isOpen ? menuItems : null}
-      </CSSTransitionGroup>
+      </Layover>
     );
   }
 }

@@ -66,7 +66,6 @@ export default [{
     'lists',
     'media',
     'menus',
-    'menus-2',
     'navigation-drawers',
     'papers', {
       path: 'pickers',

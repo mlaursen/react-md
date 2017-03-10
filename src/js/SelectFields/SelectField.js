@@ -12,7 +12,7 @@ import addSuffix from '../utils/StringUtils/addSuffix';
 import List from '../Lists/List';
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
-import Positions from '../Menus/Positions';
+import Positions from '../constants/LayoverPositions';
 import FloatingLabel from '../TextFields/FloatingLabel';
 import TextFieldMessage from '../TextFields/TextFieldMessage';
 import Field from './Field';

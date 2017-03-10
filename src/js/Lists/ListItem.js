@@ -12,7 +12,7 @@ import Collapser from '../FontIcons/Collapser';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
-import Menu from '../Menus2/Menu';
+import Menu from '../Menus/Menu';
 
 /**
  * The `ListItem` component is used for rendering a `li` tag with text and optional
@@ -53,6 +53,11 @@ export default class ListItem extends PureComponent {
      * An optional className to apply to the nested `List` that gets created when using `nestedItems`.
      */
     nestedListClassName: PropTypes.string,
+
+    /**
+     * Boolean if the nested `List` in a cascading menu should be restricted.
+     */
+    nestedListHeightRestricted: PropTypes.bool,
 
     /**
      * Any additional children to display in the `.md-list-tile`. If you use this prop,
@@ -188,6 +193,11 @@ export default class ListItem extends PureComponent {
      * An icon className to use to render the expander icon.
      */
     expanderIconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the expander icon should appear as the left icon instead of the right.
+     */
+    expanderLeft: PropTypes.bool,
 
     /**
      * An optional function to call when the `.md-list-tile` is clicked. This is required if the
@@ -457,6 +467,7 @@ export default class ListItem extends PureComponent {
       tileClassName,
       nestedListStyle,
       nestedListClassName,
+      nestedListHeightRestricted,
       disabled,
       leftIcon,
       leftAvatar,
@@ -471,6 +482,7 @@ export default class ListItem extends PureComponent {
       active,
       activeClassName,
       animateNestedItems,
+      expanderLeft,
       expanderIconChildren,
       expanderIconClassName,
       itemComponent: ItemComponent,
@@ -495,7 +507,7 @@ export default class ListItem extends PureComponent {
       visible = isOpen;
     }
 
-    const leftNode = (
+    let leftNode = (
       <TileAddon
         key="left-addon"
         active={active}
@@ -525,21 +537,28 @@ export default class ListItem extends PureComponent {
         );
       }
 
-      if (!rightIcon || !rightAvatar) {
-        rightNode = (
-          <TileAddon
-            key="expander-addon"
-            icon={(
-              <Collapser flipped={visible} iconClassName={expanderIconClassName}>
-                {expanderIconChildren}
-              </Collapser>
-            )}
-            avatar={null}
-          />
-        );
+      const collapser = (
+        <TileAddon
+          key="expander-addon"
+          icon={
+            <Collapser flipped={visible} iconClassName={expanderIconClassName}>
+              {expanderIconChildren}
+            </Collapser>
+          }
+          avatar={null}
+        />
+      );
+
+      if (expanderLeft) {
+        if (!leftIcon && !leftAvatar) {
+          leftNode = collapser;
+        }
+      } else if (!rightIcon && !rightAvatar) {
+        rightNode = collapser;
       }
     }
-    const icond = !!leftIcon || !!rightIcon;
+
+    const icond = !!leftIcon || !!rightIcon || !!nestedItems;
     const avatard = !!leftAvatar || !!rightAvatar;
 
     const tile = (
@@ -608,6 +627,7 @@ export default class ListItem extends PureComponent {
           component={ItemComponent}
           listStyle={nestedListStyle}
           listClassName={nestedListClassName}
+          listHeightRestricted={nestedListHeightRestricted}
           {...sharedProps}
           fixedTo={cascadingFixedTo}
         >

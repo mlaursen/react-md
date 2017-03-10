@@ -72,6 +72,8 @@ $md-list-include-inline: true;
 
 .fa.md-icon {
   font-size: $md-font-icon-size;
+  height: $md-font-icon-size;
+  width: $md-font-icon-size;
 }
 
 .powerlevel-over-9000 {
@@ -81,5 +83,7 @@ $md-list-include-inline: true;
 @media #{$md-desktop-media} {
   .fa.md-icon {
     font-size: $md-font-icon-dense-size;
+    height: $md-font-icon-dense-size;
+    width: $md-font-icon-dense-size;
   }
 }

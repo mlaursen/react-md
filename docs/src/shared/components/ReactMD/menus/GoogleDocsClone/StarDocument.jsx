@@ -11,6 +11,7 @@ export default () => (
     type="checkbox"
     inline
     tooltipLabel="Star"
+    tooltipDelay={300}
     aria-label="Star the document"
     className="md-btn--toolbar"
     checkedCheckboxIconChildren="star"

@@ -5,6 +5,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import LayoverPositions from '../constants/LayoverPositions';
+import getSelectedTextPosition from '../utils/getSelectedTextPosition';
 import getScroll from '../utils/getScroll';
 import viewport from '../utils/viewport';
 import isOutOfBounds from '../utils/isOutOfBounds';
@@ -119,16 +120,16 @@ export default class Layover extends PureComponent {
     block: PropTypes.bool,
 
     /**
-     * Boolean if the layover should gain the `md-full-width` class name.
-     */
-    fullWidth: PropTypes.bool,
-
-    /**
      * Boolean if the `children` should be centered horizontally and vertically while keeping
      * its height in mind as well. This is *only* valid if both the x and y `anchor` targets
      * are `CENTER`.
      */
     centered: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should gain the `md-full-width` class name.
+     */
+    fullWidth: PropTypes.bool,
 
     /**
      * Boolean if the width of the children should be updated automatically to be the width
@@ -790,9 +791,8 @@ export default class Layover extends PureComponent {
       return;
     }
 
-    if (window.getSelection) {
-      this._contextRect = window.getSelection().getRangeAt(0).getBoundingClientRect();
-    }
+    this._contextRect = getSelectedTextPosition(e);
+
 
     if (preventContextMenu && (!this._child || !this._child.contains(e.target))) {
       e.preventDefault();

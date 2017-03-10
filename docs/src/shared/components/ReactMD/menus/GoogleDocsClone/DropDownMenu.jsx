@@ -46,7 +46,10 @@ export default class DropDownMenu extends PureComponent {
 
     const toggle = (
       <AccessibleFakeInkedButton
-        className={cn('google-docs-dd-menu', { 'md-btn--hover': mouseover })}
+        className={cn('google-docs-dd-menu', {
+          'md-btn--hover': mouseover,
+          'md-paper md-paper--2': visible,
+        })}
         onClick={this._toggle}
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
@@ -60,6 +63,7 @@ export default class DropDownMenu extends PureComponent {
       <Menu
         {...props}
         id={`doc-control-${toClassName(text)}`}
+        listClassName="google-docs-list"
         anchor={anchor}
         cascading
         visible={visible}
