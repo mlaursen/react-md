@@ -44,7 +44,7 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
   }
 
   .md-no-scroll {
-    overflow-y: scroll;
+    overflow-y: hidden;
     position: fixed;
   }
 
