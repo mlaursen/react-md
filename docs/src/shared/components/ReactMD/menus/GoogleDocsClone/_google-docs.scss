@@ -1,4 +1,6 @@
 @import '~react-md-scss';
+$toolbar-height: 80px;
+
 
 .md-text-field--docs-title {
   font-size: 18px;
@@ -64,10 +66,15 @@ $btn-lr-padding: 12px;
   padding: 8px $btn-lr-padding;
 }
 
-$toolbar-height: 80px;
-
 .google-docs-toolbar {
   height: $toolbar-height;
+}
+
+.google-docs-title {
+  height: $md-toolbar-tablet-height;
+  max-width: 375px;
+  min-width: 180px;
+  width: auto;
 }
 
 .google-docs-playground {
@@ -75,6 +82,10 @@ $toolbar-height: 80px;
   min-height: calc(100vh - #{$toolbar-height});
   padding-bottom: 2em;
   padding-top: 2em;
+
+  .md-list--inline .md-tile-content--left-icon {
+    padding-left: 8px;
+  }
 }
 
 .unicode-icon {

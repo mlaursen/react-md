@@ -1,5 +1,12 @@
 const ZERO_WIDTH_CHARACTER = '\u200b';
 
+/**
+ * A utility function to attempt to get the current highlighted text position.
+ *
+ * When a context menu is opened, this function attempts to find the bounding client rect
+ * for the highlighted text. However, if the text is in the text field, some weird stuff
+ * happens and it is unable to get it correctly.
+ */
 export default function getSelectedTextPosition(e) {
   if (window.getSelection) {
     const selection = window.getSelection();

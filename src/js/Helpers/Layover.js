@@ -5,6 +5,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import LayoverPositions from '../constants/LayoverPositions';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import getSelectedTextPosition from '../utils/getSelectedTextPosition';
 import getScroll from '../utils/getScroll';
 import viewport from '../utils/viewport';
@@ -660,7 +661,7 @@ export default class Layover extends PureComponent {
     const { fixedTo, centered, xThreshold, yThreshold } = this.props;
     const vp = viewport(this._child);
     if (vp !== true) {
-      const fixed = this._attemptFix(vp);
+      const fixed = !this._contextRect && this._attemptFix(vp);
       if (!fixed) {
         this.props.onClose();
         this._ticking = false;
@@ -786,19 +787,22 @@ export default class Layover extends PureComponent {
   }
 
   _handleContextMenu(e) {
-    const { onContextMenu, preventContextMenu } = this.props;
+    const { onContextMenu, preventContextMenu, fixedTo, anchor, sameWidth, centered, visible } = this.props;
     if (!onContextMenu) {
       return;
     }
 
     this._contextRect = getSelectedTextPosition(e);
-
-
     if (preventContextMenu && (!this._child || !this._child.contains(e.target))) {
       e.preventDefault();
     }
 
+    // If this isn't done, firefox immediate closes the context menu. :/
+    captureNextEvent('click');
     onContextMenu(e);
+    if (visible) {
+      this._init(fixedTo, anchor, sameWidth, centered, this._contextRect);
+    }
   }
 
   render() {

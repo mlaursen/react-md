@@ -23,7 +23,12 @@ export default class EditableDocument extends PureComponent {
   }
 
   _open = () => {
-    this.setState({ visible: true });
+    // It can already be open if the user right clicks in another location
+    // while it is currently open. The context menu callback will still be
+    // called.
+    if (!this.state.visible) {
+      this.setState({ visible: true });
+    }
   };
 
   _close = () => {
@@ -54,6 +59,7 @@ export default class EditableDocument extends PureComponent {
         listInline
         anchor={anchor}
         centered
+        position={Menu.Positions.BELOW}
       >
         <ListItem leftIcon={<FontIcon>content_cut</FontIcon>} primaryText="Cut" />
         <ListItem leftIcon={<FontIcon>content_copy</FontIcon>} primaryText="Copy" />
