@@ -4,7 +4,7 @@ const DateTimeFormat = (() => {
   }
 
   // Very bad 'mock' of Intl.DateTimeFormat
-  return { format: () => date => date };
+  return (/* locales, formatOptions */) => ({ format: date => date.toLocaleString() });
 })();
 
 export default DateTimeFormat;
