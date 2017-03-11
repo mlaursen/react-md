@@ -38,9 +38,35 @@ $md-menu-z-index: null !default;
 /// @deprecated
 $md-menu-transition-time: null !default;
 
+/// The max width to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-max-width
+/// @see md-menu-desktop-max-width
+/// @type Number
+$md-menu-max-width: 100vw !default;
+
+/// The max height to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-max-height
+/// @see md-menu-desktop-max-height
+/// @type Number
+$md-menu-max-height: null !default;
+
+/// An optional max width to apply to menus on mobile devices.
+///
+/// @see md-menu-max-width
+/// @type Number
+$md-menu-mobile-max-width: null !default;
+
 /// The max height for menus on mobile devices.
 /// @type Number
 $md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2 !default;
+
+/// An optional max width to apply to menus on desktop screens.
+///
+/// @see md-menu-max-width
+/// @type Number
+$md-menu-desktop-max-width: null !default;
 
 /// The max height for menus on deskop screens.
 /// @type Number
@@ -74,10 +100,11 @@ $md-menu-cascading-list-padding: 16px !default;
 ///     styles for menus should be included.
 @mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading, $include-cascading-styles: $md-menu-include-cascading-styles) {
   .md-list--menu {
+    max-width: $md-menu-max-width;
     z-index: $md-menu-z-index;
 
     &-restricted {
-      max-height: $md-menu-desktop-max-height;
+      max-height: $md-menu-max-height;
       overflow-y: auto;
     }
   }
@@ -138,8 +165,16 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-mobile {
-  .md-list--menu-restricted {
-    max-height: $md-menu-mobile-max-height;
+  @if $md-menu-max-height == null {
+    .md-list--menu-restricted {
+      max-height: $md-menu-mobile-max-height;
+    }
+  }
+
+  @if $md-menu-max-width == null {
+    .md-list--menu {
+      max-width: $md-menu-mobile-max-width;
+    }
   }
 }
 
@@ -152,8 +187,16 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-desktop {
-  .md-list--menu-restricted {
-    max-height: $md-menu-desktop-max-height;
+  @if $md-menu-max-height == null {
+    .md-list--menu {
+      max-height: $md-menu-desktop-max-height;
+    }
+  }
+
+  @if $md-menu-max-width == null {
+    .md-list--menu-restricted {
+      max-height: $md-menu-desktop-max-height;
+    }
   }
 }
 
@@ -163,11 +206,13 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   @include react-md-menus-media;
 /// @group menus, media-queries
 @mixin react-md-menus-media {
-  @media #{$md-mobile-media} {
-    @include react-md-menus-mobile;
-  }
+  @if $md-menu-max-height == null or $md-menu-max-width == null  {
+    @media #{$md-mobile-media} {
+      @include react-md-menus-mobile;
+    }
 
-  @media #{$md-desktop-media} {
-    @include react-md-menus-desktop;
+    @media #{$md-desktop-media} {
+      @include react-md-menus-desktop;
+    }
   }
 }

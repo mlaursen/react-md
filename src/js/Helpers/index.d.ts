@@ -84,6 +84,9 @@ export interface SharedLayoverProps extends Props {
   sameWidth?: boolean;
   xThreshold?: number;
   yThreshold?: number;
+  transitionName?: string;
+  transitionEnterTimeout?: number;
+  transitionLeaveTimeout?: number;
   closeOnOutsideClick?: boolean;
   anchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
 }
@@ -98,9 +101,6 @@ export interface LayoverProps extends SharedLayoverProps {
   animationPosition?: string | LayoverPositions | LayoverPositionsEnum;
   onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
   preventContextMenu?: boolean;
-  transitionName?: string;
-  transitionEnterTimeout?: number;
-  transitionLeaveTimeout?: number;
 }
 
 interface PortalProps extends Props {

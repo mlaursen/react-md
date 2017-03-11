@@ -27,9 +27,6 @@ interface MenuProps extends SharedLayoverProps {
   onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
   preventContextMenu?: boolean;
   toggleQuery?: string | {} | toggleQueryFn;
-  transitionName?: string;
-  transitionEnterTimeout?: number;
-  transitionLeaveTimeout?: number;
   position?: LayoverPositions | LayoverPositionsEnum;
 }
 

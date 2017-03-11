@@ -58,6 +58,7 @@ $md-layover-child-positions: (
           &.md-layover-enter {
             transform: scaleY(0);
 
+            // scss-lint:disable NestingDepth
             &.md-layover-enter-active {
               transform: scaleY(1);
             }

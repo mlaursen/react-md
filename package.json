@@ -94,11 +94,15 @@
     "react-dom": ">= 15.3.0"
   },
   "jest": {
-    "automock": true,
-    "timers": "fake",
     "cacheDirectory": "./.jest-cache",
     "setupFiles": [
       "<rootDir>/src/beforeTest.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "dist",
+      "lib",
+      "docs",
+      "api"
     ],
     "unmockedModulePathPatterns": [
       "<rootDir>/src/js/utils/omit.js",
