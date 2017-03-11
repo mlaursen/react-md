@@ -44,9 +44,9 @@ interface IconSeparatorProps extends Props {
   component?: Function | string;
 }
 
-type toggleQueryFn = () => string;
+export type toggleQueryFn = () => string;
 
-type HorizontalAnchors = 'left' | 'inner left' | 'center' | 'right' | 'inner right';
+export type HorizontalAnchors = 'left' | 'inner left' | 'center' | 'right' | 'inner right';
 export enum HorizontalAnchorsEnum {
   LEFT,
   INNER_LEFT,
@@ -55,7 +55,7 @@ export enum HorizontalAnchorsEnum {
   INNER_RIGHT
 }
 
-type VerticalAnchors = 'top' | 'center' | 'overlap' | 'bottom';
+export type VerticalAnchors = 'top' | 'center' | 'overlap' | 'bottom';
 export enum VerticalAnchorsEnum {
   TOP,
   CENTER,
@@ -63,7 +63,7 @@ export enum VerticalAnchorsEnum {
   BOTTOM
 }
 
-type LayoverPositions = 'tl' | 'tr' | 'bl' | 'br' | 'below';
+export type LayoverPositions = 'tl' | 'tr' | 'bl' | 'br' | 'below';
 
 export enum LayoverPositionsEnum {
   TOP_LEFT,
@@ -73,31 +73,34 @@ export enum LayoverPositionsEnum {
   BELOW
 }
 
-export interface LayoverProps extends Props {
+export interface SharedLayoverProps extends Props {
   id?: IdPropType;
   style?: React.CSSProperties;
   className?: string;
-  visible: boolean;
   fixedTo?: {} | { x?: {}, y?: {} };
-  toggle?: React.ReactNode;
-  toggleQuery?: string | {} | toggleQueryFn;
-  children?: React.ReactElement<any>;
   block?: boolean;
   centered?: boolean;
   fullWidth?: boolean;
   sameWidth?: boolean;
-  onClose: Function;
-  component?: string | Function;
-  transitionName?: string;
-  transitionEnterTimeout?: number;
-  transitionLeaveTimeout?: number;
   xThreshold?: number;
   yThreshold?: number;
   closeOnOutsideClick?: boolean;
   anchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
+}
+
+export interface LayoverProps extends SharedLayoverProps {
+  component?: string | Function;
+  visible: boolean;
+  toggle?: React.ReactNode;
+  children?: React.ReactElement<any>;
+  toggleQuery?: string | {} | toggleQueryFn;
+  onClose: Function;
   animationPosition?: string | LayoverPositions | LayoverPositionsEnum;
   onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
   preventContextMenu?: boolean;
+  transitionName?: string;
+  transitionEnterTimeout?: number;
+  transitionLeaveTimeout?: number;
 }
 
 interface PortalProps extends Props {

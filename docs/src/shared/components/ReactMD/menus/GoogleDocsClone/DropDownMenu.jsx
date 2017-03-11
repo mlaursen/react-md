@@ -1,6 +1,6 @@
 import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import Menu from 'react-md/lib/Menus2/Menu';
+import Menu from 'react-md/lib/Menus/Menu';
 import AccessibleFakeInkedButton from 'react-md/lib/Helpers/AccessibleFakeInkedButton';
 import mapToListParts from 'react-md/lib/utils/mapToListParts';
 

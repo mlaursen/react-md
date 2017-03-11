@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 import ListItem from 'react-md/lib/Lists/ListItem';
-import Menu from 'react-md/lib/Menus2/Menu';
+import Menu from 'react-md/lib/Menus/Menu';
 
 export default class MenuExample extends PureComponent {
   static propTypes = {
