@@ -206,7 +206,7 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   @include react-md-menus-media;
 /// @group menus, media-queries
 @mixin react-md-menus-media {
-  @if $md-menu-max-height == null or $md-menu-max-width == null  {
+  @if $md-menu-max-height == null or $md-menu-max-width == null {
     @media #{$md-mobile-media} {
       @include react-md-menus-mobile;
     }
