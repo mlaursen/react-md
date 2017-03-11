@@ -1,4 +1,3 @@
-/* eslint-disable comma-dangle */
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
@@ -553,7 +552,17 @@ export default class Layover extends PureComponent {
    * stuff.
    */
   _initialFix() {
-    const vp = viewport(this._child);
+    // Need to make a clone that disables any transitions to calculate positioning stuff
+    const clone = this._child.cloneNode(true);
+    clone.style.webkitTransform = 'none';
+    clone.style.transfrom = 'none';
+    clone.style.webkitTransition = 'none';
+    clone.style.transition = 'none';
+
+    this._child.parentNode.appendChild(clone);
+    const vp = viewport(clone);
+    this._child.parentNode.removeChild(clone);
+
     if (vp === true || !this._toggle || !this._child) {
       return;
     }
