@@ -117,6 +117,12 @@ export default class Menu extends PureComponent {
     fixedTo: Layover.propTypes.fixedTo,
 
     /**
+     * Any additional props that should be applied to the list in the menu. This is really used
+     * when additional `aria-` tags need to be applied.
+     */
+    listProps: PropTypes.object,
+
+    /**
      * Boolean if the menu's list should appear horizontally instead of vertically.
      */
     listInline: PropTypes.bool,
@@ -406,6 +412,7 @@ export default class Menu extends PureComponent {
       visible,
       children,
       position,
+      listProps,
       listZDepth,
       listInline,
       listHeightRestricted,
@@ -454,6 +461,7 @@ export default class Menu extends PureComponent {
         aria-owns={listId}
       >
         <List
+          {...listProps}
           id={listId}
           key="menu-list"
           style={listStyle}

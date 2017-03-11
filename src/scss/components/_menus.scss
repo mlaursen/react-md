@@ -165,15 +165,15 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-mobile {
-  @if $md-menu-max-height == null {
-    .md-list--menu-restricted {
-      max-height: $md-menu-mobile-max-height;
-    }
-  }
-
   @if $md-menu-max-width == null {
     .md-list--menu {
       max-width: $md-menu-mobile-max-width;
+    }
+  }
+
+  @if $md-menu-max-height == null {
+    .md-list--menu-restricted {
+      max-height: $md-menu-mobile-max-height;
     }
   }
 }
@@ -187,13 +187,13 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-desktop {
-  @if $md-menu-max-height == null {
+  @if $md-menu-max-width == null {
     .md-list--menu {
-      max-height: $md-menu-desktop-max-height;
+      max-width: $md-menu-desktop-max-width;
     }
   }
 
-  @if $md-menu-max-width == null {
+  @if $md-menu-max-height == null {
     .md-list--menu-restricted {
       max-height: $md-menu-desktop-max-height;
     }

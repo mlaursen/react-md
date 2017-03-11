@@ -13,6 +13,7 @@ import {
 
 interface MenuProps extends SharedLayoverProps {
   listId?: IdPropType;
+  listProps?: {};
   listStyle?: React.CSSProperties;
   listClassName?: string;
   component?: Function | string;
