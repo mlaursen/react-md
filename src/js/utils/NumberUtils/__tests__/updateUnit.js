@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../updateUnit');
-
 import updateUnit from '../updateUnit';
 
 describe('updateUnit', () => {

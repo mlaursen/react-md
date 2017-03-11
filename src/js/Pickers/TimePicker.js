@@ -78,18 +78,11 @@ export default class TimePicker extends PureComponent {
     hoverMode: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._updateTime = this._updateTime.bind(this);
-    this._handleTimeChosen = this._handleTimeChosen.bind(this);
-  }
-
   /**
    * Takes in the new time (number o'clock or minutes), updates the temp time
    * with that new time, and then calls the setTempTime prop.
    */
-  _updateTime(newTime) {
+  _updateTime = (newTime) => {
     let timePart = newTime;
     const { tempTime, setTempTime, timeMode, timePeriod } = this.props;
     const time = new Date(tempTime);
@@ -108,9 +101,9 @@ export default class TimePicker extends PureComponent {
     }
 
     setTempTime(time);
-  }
+  };
 
-  _handleTimeChosen() {
+  _handleTimeChosen = () => {
     const { hoverMode, setTimeMode, onOkClick, timeMode } = this.props;
 
     if (hoverMode) {
@@ -120,7 +113,7 @@ export default class TimePicker extends PureComponent {
         onOkClick();
       }
     }
-  }
+  };
 
   render() {
     const {

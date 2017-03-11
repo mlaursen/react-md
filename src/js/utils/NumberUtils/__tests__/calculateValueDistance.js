@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../calculateValueDistance');
-
 import calculateValueDistance from '../calculateValueDistance';
 
 describe('calculateValueDistance', () => {

@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../Layover');
-
 import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import { shallow } from 'enzyme';

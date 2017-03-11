@@ -404,24 +404,6 @@ export default class TextField extends PureComponent {
       width: props.resize ? props.resize.min : null,
       currentLength,
     };
-
-    this.focus = this.focus.bind(this);
-    this.getField = this.getField.bind(this);
-    this._blur = this._blur.bind(this);
-    this._setField = this._setField.bind(this);
-    this._setDivider = this._setDivider.bind(this);
-    this._setMessage = this._setMessage.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._setPasswordBtn = this._setPasswordBtn.bind(this);
-    this._setFloatingLabel = this._setFloatingLabel.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleHeightChange = this._handleHeightChange.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._updateMultilineHeight = this._updateMultilineHeight.bind(this);
-    this._togglePasswordField = this._togglePasswordField.bind(this);
-    this._handleContainerClick = this._handleContainerClick.bind(this);
   }
 
   componentDidMount() {
@@ -507,9 +489,7 @@ export default class TextField extends PureComponent {
    * this._field.getField(); // `input` node
    * ```
    */
-  getField() {
-    return this._field.getField();
-  }
+  getField = () => this._field.getField();
 
   /**
    * A helper function for focusing the `input` field or the `textarea` in the `TextField`.
@@ -522,9 +502,9 @@ export default class TextField extends PureComponent {
    * this._field.focus(); // `input` node
    * ```
    */
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
+  };
 
   get value() {
     return this.getField().value;
@@ -566,43 +546,43 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _setField(field) {
+  _setField = (field) => {
     if (field !== null) {
       this._field = field;
     }
-  }
+  };
 
-  _setMessage(message) {
+  _setMessage = (message) => {
     if (message !== null) {
       this._message = findDOMNode(message);
     }
-  }
+  };
 
-  _setDivider(divider) {
+  _setDivider = (divider) => {
     if (divider !== null) {
       this._divider = findDOMNode(divider);
     }
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container !== null) {
       this._node = container;
     }
-  }
+  };
 
-  _setPasswordBtn(btn) {
+  _setPasswordBtn = (btn) => {
     if (btn !== null) {
       this._password = findDOMNode(btn);
     }
-  }
+  };
 
-  _setFloatingLabel(label) {
+  _setFloatingLabel = (label) => {
     if (label !== null) {
       this._label = findDOMNode(label);
     }
-  }
+  };
 
-  _handleContainerClick(e) {
+  _handleContainerClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -610,9 +590,9 @@ export default class TextField extends PureComponent {
     if (!this.props.disabled) {
       this.focus();
     }
-  }
+  };
 
-  _updateMultilineHeight(props = this.props) {
+  _updateMultilineHeight = (props = this.props) => {
     const { block } = props;
     const multiline = this._isMultiline(props);
     if (!multiline) {
@@ -630,9 +610,9 @@ export default class TextField extends PureComponent {
     if (this._message) {
       this._additionalHeight += this._message.offsetHeight;
     }
-  }
+  };
 
-  _blur() {
+  _blur = () => {
     const value = this._field.getValue();
 
     const state = { active: false, error: this.props.required && !value };
@@ -641,15 +621,15 @@ export default class TextField extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
     if (!this._node.contains(e.target)) {
       this._blur();
     }
-  }
+  };
 
-  _handleFocus(e) {
+  _handleFocus = (e) => {
     const { onFocus, block } = this.props;
     if (onFocus) {
       onFocus(e);
@@ -661,9 +641,9 @@ export default class TextField extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     const { onChange, maxLength, required, resize } = this.props;
     const { value } = e.target;
     if (onChange) {
@@ -693,9 +673,9 @@ export default class TextField extends PureComponent {
     if (state) {
       this.setState(state);
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -703,17 +683,17 @@ export default class TextField extends PureComponent {
     if ((e.which || e.keyCode) === TAB) {
       this._blur();
     }
-  }
+  };
 
-  _togglePasswordField() {
+  _togglePasswordField = () => {
     this.setState({ passwordVisible: !this.state.passwordVisible }, this.focus);
-  }
+  };
 
-  _handleHeightChange(height) {
+  _handleHeightChange = (height) => {
     if (this._additionalHeight) {
       this.setState({ height: height + this._additionalHeight });
     }
-  }
+  };
 
   render() {
     const { currentLength, passwordVisible, height, width } = this.state;

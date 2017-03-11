@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../getScroll');
-
 import getScroll from '../getScroll';
 
 describe('getScroll', () => {

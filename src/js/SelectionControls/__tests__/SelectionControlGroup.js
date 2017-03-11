@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../SelectionControlGroup');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -48,7 +46,7 @@ describe('SelectionControlGroup', () => {
     const props = Object.assign({}, PROPS, { component: 'div' });
     const group = renderIntoDocument(<SelectionControlGroup {...props} />);
     const divs = scryRenderedDOMComponentsWithTag(group, 'div');
-    expect(divs.length).toBe(1);
+    expect(divs.length).toBe(4);
   });
 
   it('renders the label prop in a legend by default', () => {
@@ -63,7 +61,7 @@ describe('SelectionControlGroup', () => {
     const props = Object.assign({}, PROPS, { label: 'Test', labelComponent: 'label' });
     const group = renderIntoDocument(<SelectionControlGroup {...props} />);
     const labels = scryRenderedDOMComponentsWithTag(group, 'label');
-    expect(labels.length).toBe(1);
+    expect(labels.length).toBe(2); // what
     expect(labels[0].innerHTML).toBe(props.label);
   });
 
@@ -185,7 +183,7 @@ describe('SelectionControlGroup', () => {
   });
 
   it('checks the checkbox that has the same value as the value prop', () => {
-    const props = Object.assign({}, PROPS_2, { value: ' ' });
+    const props = Object.assign({}, PROPS_2, { value: ' ', onChange: jest.fn() });
     let group = renderIntoDocument(<SelectionControlGroup {...props} />);
     let [f, s] = scryRenderedComponentsWithType(group, SelectionControl);
     expect(f.props.checked).toBe(false);
@@ -215,7 +213,7 @@ describe('SelectionControlGroup', () => {
   });
 
   it('expects a comma-delimited value prop when multiple checkboxes are checked by default', () => {
-    const props = Object.assign({}, PROPS_2, { value: 'eyyy,something' });
+    const props = Object.assign({}, PROPS_2, { value: 'eyyy,something', onChange: jest.fn() });
     const group = renderIntoDocument(<SelectionControlGroup {...props} />);
     const [f, s] = scryRenderedComponentsWithType(group, SelectionControl);
     expect(f.props.checked).toBe(true);
@@ -223,7 +221,7 @@ describe('SelectionControlGroup', () => {
   });
 
   it('does not matter what order the comma-delimited value prop when multiple checkboxes are checked by default is', () => {
-    const props = Object.assign({}, PROPS_2, { value: 'something,eyyy' });
+    const props = Object.assign({}, PROPS_2, { value: 'something,eyyy', onChange: jest.fn() });
     const group = renderIntoDocument(<SelectionControlGroup {...props} />);
     const [f, s] = scryRenderedComponentsWithType(group, SelectionControl);
     expect(f.props.checked).toBe(true);
@@ -247,7 +245,7 @@ describe('SelectionControlGroup', () => {
   });
 
   it('checkes the radio button that matches the value', () => {
-    const props = Object.assign({}, PROPS_2, { type: 'radio', value: 'something' });
+    const props = Object.assign({}, PROPS_2, { type: 'radio', value: 'something', onChange: jest.fn() });
     const group = renderIntoDocument(<SelectionControlGroup {...props} />);
     const [f, s] = scryRenderedComponentsWithType(group, SelectionControl);
     expect(f.props.checked).toBe(false);

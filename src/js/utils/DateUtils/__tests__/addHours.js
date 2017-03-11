@@ -1,5 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../addHours');
 import addHours from '../addHours';
 
 const threeFiftyOne = new Date(2016, 3, 2, 3, 51);

@@ -1,7 +1,4 @@
 /* eslint-env jest*/
-/* eslint-disable global-require */
-jest.unmock('../DatePicker');
-
 import React from 'react';
 import {
   renderIntoDocument,
@@ -14,15 +11,18 @@ import DatePickerCalendar from '../DatePickerCalendar';
 import YearPicker from '../YearPicker';
 import DialogFooter from '../../Dialogs/DialogFooter';
 
+import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
+
+jest.mock('../../utils/DateUtils/DateTimeFormat');
+
 describe('DatePicker', () => {
   it('renders a DatePickerHeader and a DialogFooter', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
-      okLabel: 'a',
+      okLabel: 'ok',
       okPrimary: false,
       onOkClick: jest.fn(),
-      cancelLabel: 'a',
+      cancelLabel: 'cancel',
       cancelPrimary: false,
       onCancelClick: jest.fn(),
       DateTimeFormat,
@@ -32,6 +32,11 @@ describe('DatePicker', () => {
       calendarMode: 'calendar',
       changeCalendarMode: jest.fn(),
       onSwipeChange: jest.fn(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
+      onCalendarDateClick: jest.fn(),
+      nextIconChildren: 'a',
+      previousIconChildren: 'a',
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -43,13 +48,12 @@ describe('DatePicker', () => {
   });
 
   it('renders a calendar when the calendarMode is calendar', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
-      okLabel: 'a',
+      okLabel: 'ok',
       okPrimary: false,
       onOkClick: jest.fn(),
-      cancelLabel: 'a',
+      cancelLabel: 'cancel',
       cancelPrimary: false,
       onCancelClick: jest.fn(),
       DateTimeFormat,
@@ -59,6 +63,12 @@ describe('DatePicker', () => {
       calendarMode: 'calendar',
       changeCalendarMode: jest.fn(),
       onSwipeChange: jest.fn(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
+      onCalendarDateClick: jest.fn(),
+      onCalendarYearClick: jest.fn(),
+      nextIconChildren: 'a',
+      previousIconChildren: 'a',
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -69,13 +79,12 @@ describe('DatePicker', () => {
   });
 
   it('renders a year picker when the calendarMode is year', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       className: 'a',
-      okLabel: 'a',
+      okLabel: 'ok',
       okPrimary: false,
       onOkClick: jest.fn(),
-      cancelLabel: 'a',
+      cancelLabel: 'cancel',
       cancelPrimary: false,
       onCancelClick: jest.fn(),
       DateTimeFormat,
@@ -85,6 +94,13 @@ describe('DatePicker', () => {
       calendarMode: 'year',
       changeCalendarMode: jest.fn(),
       onSwipeChange: jest.fn(),
+      onPreviousClick: jest.fn(),
+      onNextClick: jest.fn(),
+      onCalendarDateClick: jest.fn(),
+      onCalendarYearClick: jest.fn(),
+      nextIconChildren: 'a',
+      previousIconChildren: 'a',
+      yearsDisplayed: 30,
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);

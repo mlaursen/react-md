@@ -1,12 +1,8 @@
 /* eslint-env jest */
-jest.unmock('../CardActions');
-
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
-import {
-  renderIntoDocument,
-  scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+import { renderIntoDocument } from 'react-addons-test-utils';
 
 import CardActions from '../CardActions';
 import CardExpander from '../CardExpander';
@@ -26,14 +22,10 @@ describe('CardActions', () => {
   });
 
   it('renders the CardExpander component when the isExpander prop is true', () => {
-    const props = { expander: false };
-    let actions = renderIntoDocument(<CardActions {...props} />);
-    let expanders = scryRenderedComponentsWithType(actions, CardExpander);
-    expect(expanders.length).toBe(0);
+    const actions = shallow(<CardActions />, { iconChildren: 'woop' });
+    expect(actions.find(CardExpander).length).toBe(0);
+    actions.setProps({ expander: true });
 
-    props.expander = true;
-    actions = renderIntoDocument(<CardActions {...props} />);
-    expanders = scryRenderedComponentsWithType(actions, CardExpander);
-    expect(expanders.length).toBe(1);
+    expect(actions.find(CardExpander).length).toBe(1);
   });
 });

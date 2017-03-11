@@ -1,5 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../isWithinStep');
 import isWithinStep from '../isWithinStep';
 
 describe('isWithinStep', () => {

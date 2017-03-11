@@ -189,15 +189,6 @@ export default class Tabs extends PureComponent {
     if (typeof props.activeTabIndex === 'undefined') {
       this.state.activeTabIndex = defaultTabIndex;
     }
-
-    this._setContainer = this._setContainer.bind(this);
-    this._positionElements = this._positionElements.bind(this);
-    this._scrollActiveIntoView = this._scrollActiveIntoView.bind(this);
-    this._handleTabChange = this._handleTabChange.bind(this);
-    this._nextIndexes = this._nextIndexes.bind(this);
-    this._showNextTabs = this._showNextTabs.bind(this);
-    this._showPreviousTabs = this._showPreviousTabs.bind(this);
-    this._mapToOverflowTabProps = this._mapToOverflowTabProps.bind(this);
   }
 
   componentDidMount() {
@@ -295,12 +286,12 @@ export default class Tabs extends PureComponent {
     };
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._positionElements(this._container !== null);
-  }
+  };
 
-  _positionElements(initialRender) {
+  _positionElements = (initialRender) => {
     initialRender = typeof initialRender === 'boolean' && initialRender;
     if (!this._container) {
       return;
@@ -322,9 +313,9 @@ export default class Tabs extends PureComponent {
     const indicatorPosition = this._calcIndicatorPosition(this._container, initialRender ? paddingLeft : 0);
 
     this.setState({ mobile, paddingLeft, overflowAtIndex, ...indicatorPosition }, this._scrollActiveIntoView);
-  }
+  };
 
-  _scrollActiveIntoView() {
+  _scrollActiveIntoView = () => {
     if (!this._container || !this.state.mobile) {
       return;
     }
@@ -358,9 +349,9 @@ export default class Tabs extends PureComponent {
     });
 
     this._container.scrollLeft = offset;
-  }
+  };
 
-  _handleTabChange(index, tabId, tabControlsId, tabChildren, event) {
+  _handleTabChange = (index, tabId, tabControlsId, tabChildren, event) => {
     if (this.props.onTabChange) {
       this.props.onTabChange(index, tabId, tabControlsId, tabChildren, event);
     }
@@ -371,9 +362,9 @@ export default class Tabs extends PureComponent {
         ...this._calcIndicatorPosition(this._container, 0, index, this.state.overflowAtIndex),
       });
     }
-  }
+  };
 
-  _mapToOverflowTabProps(tab, i) {
+  _mapToOverflowTabProps = (tab, i) => {
     const index = i + this.state.overflowAtIndex;
     const active = getField(this.props, this.state, 'activeTabIndex') === index;
     const tabEl = Children.only(tab);
@@ -391,9 +382,9 @@ export default class Tabs extends PureComponent {
         handleTabChange(index, id, controlsId, children, event);
       },
     };
-  }
+  };
 
-  _nextIndexes(increment) {
+  _nextIndexes = (increment) => {
     const { overflowIndex, overflowAtIndex } = this.state;
     const visibleAmt = (overflowAtIndex - overflowIndex) * (increment ? 1 : -1);
 
@@ -401,15 +392,15 @@ export default class Tabs extends PureComponent {
       overflowIndex: overflowIndex + visibleAmt,
       overflowAtIndex: overflowAtIndex + visibleAmt,
     });
-  }
+  };
 
-  _showNextTabs() {
+  _showNextTabs = () => {
     this._nextIndexes(true);
-  }
+  };
 
-  _showPreviousTabs() {
+  _showPreviousTabs = () => {
     this._nextIndexes(false);
-  }
+  };
 
   render() {
     const {

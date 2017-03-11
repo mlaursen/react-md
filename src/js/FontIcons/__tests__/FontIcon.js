@@ -1,6 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../FontIcon');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument, Simulate } from 'react-addons-test-utils';

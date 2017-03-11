@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../PasswordButton');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

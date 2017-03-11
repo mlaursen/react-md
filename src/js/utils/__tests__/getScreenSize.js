@@ -1,5 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../getScreenSize');
 import getScreenSize from '../getScreenSize';
 
 describe('getScreenSize', () => {
@@ -8,7 +7,7 @@ describe('getScreenSize', () => {
     expect(getScreenSize('Width')).toBe(window.innerWidth);
   });
 
-  it('should fallback to the document.docuemntElement if the window attributes do not exist', () => {
+  it('should fallback to the document.documentElement if the window attributes do not exist', () => {
     // I don't know how to actually test this.
     expect(true).toBe(true);
   });

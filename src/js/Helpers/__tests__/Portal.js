@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../Portal');
-
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 

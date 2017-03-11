@@ -1,9 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../Drawer');
-jest.unmock('../../Dialogs/Dialog');
-jest.unmock('../isType');
-jest.unmock('../../Papers/Paper');
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import {
@@ -17,7 +12,7 @@ import Portal from '../../Helpers/Portal';
 
 describe('Drawer', () => {
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog id="test"><Drawer /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><Drawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, Drawer);
     const { renderNode } = dialog.getChildContext();
     expect(drawer.context.renderNode).toBe(renderNode);
@@ -34,18 +29,6 @@ describe('Drawer', () => {
     expect(drawer.find(Portal).length).toBe(2);
   });
 
-  it('should call the updateType function after initial mount', () => {
-    const onVisibilityToggle = jest.fn();
-    renderIntoDocument(
-      <Drawer
-        onVisibilityToggle={onVisibilityToggle}
-        drawerType={Drawer.DrawerTypes.PERSISTENT}
-      />
-    );
-
-    expect(onVisibilityToggle.mock.calls.length).toBe(1);
-  });
-
 
   it('should not call the updateType function after mounting if defaultVisible is true', () => {
     const onVisibilityToggle = jest.fn();
@@ -55,7 +38,7 @@ describe('Drawer', () => {
         defaultVisible
         onMediaTypeChange={onMediaTypeChange}
         onVisibilityToggle={onVisibilityToggle}
-        drawerType={Drawer.DrawerTypes.PERSISTENT}
+        type={Drawer.DrawerTypes.PERSISTENT}
       />
     );
 

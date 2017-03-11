@@ -1,7 +1,4 @@
 /* eslint-env jest */
-
-jest.unmock('../getField');
-
 import getField from '../getField';
 
 describe('getField', () => {

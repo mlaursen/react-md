@@ -665,10 +665,6 @@ export default class NavigationDrawer extends PureComponent {
         ? defaultVisible
         : isPermanent(type);
     }
-
-    this._handleTypeChange = this._handleTypeChange.bind(this);
-    this._handleVisibility = this._handleVisibility.bind(this);
-    this._toggleVisibility = this._toggleVisibility.bind(this);
   }
 
   getChildContext() {
@@ -715,7 +711,7 @@ export default class NavigationDrawer extends PureComponent {
     }
   }
 
-  _toggleVisibility(e) {
+  _toggleVisibility = (e) => {
     const { onVisibilityToggle, onDrawerChange } = this.props;
     const visible = !getField(this.props, this.state, 'visible');
     if (onVisibilityToggle || onDrawerChange) {
@@ -725,9 +721,9 @@ export default class NavigationDrawer extends PureComponent {
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible });
     }
-  }
+  };
 
-  _handleVisibility(visible, e) {
+  _handleVisibility = (visible, e) => {
     if (this.props.onVisibilityToggle) {
       this.props.onVisibilityToggle(visible, e);
     }
@@ -735,9 +731,9 @@ export default class NavigationDrawer extends PureComponent {
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible });
     }
-  }
+  };
 
-  _handleTypeChange(drawerType, mediaState) {
+  _handleTypeChange = (drawerType, mediaState) => {
     const { onMediaTypeChange } = this.props;
     if (onMediaTypeChange) {
       onMediaTypeChange(drawerType, mediaState);
@@ -757,7 +753,7 @@ export default class NavigationDrawer extends PureComponent {
     }
 
     this.setState(mediaState);
-  }
+  };
 
   render() {
     const {

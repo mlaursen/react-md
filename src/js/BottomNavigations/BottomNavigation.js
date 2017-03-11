@@ -13,6 +13,7 @@ import BottomNav from './BottomNav';
  * only on mobile devices.
  */
 export default class BottomNavigation extends PureComponent {
+
   static propTypes = {
     /**
      * An optional style to apply.
@@ -193,16 +194,10 @@ export default class BottomNavigation extends PureComponent {
       visible,
       portalVisible: visible,
     };
+
     if (typeof props.activeIndex === 'undefined') {
       this.state.activeIndex = props.defaultActiveIndex;
     }
-
-    this._handleNavChange = this._handleNavChange.bind(this);
-    this._addTouchEvents = this._addTouchEvents.bind(this);
-    this._removeTouchEvents = this._removeTouchEvents.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
   }
 
   componentDidMount() {
@@ -240,26 +235,26 @@ export default class BottomNavigation extends PureComponent {
     }
   }
 
-  _addTouchEvents() {
+  _addTouchEvents = () => {
     window.addEventListener('touchstart', this._handleTouchStart);
     window.addEventListener('touchmove', this._handleTouchMove);
     window.addEventListener('touchend', this._handleTouchEnd);
-  }
+  };
 
-  _removeTouchEvents() {
+  _removeTouchEvents = () => {
     window.removeEventListener('touchstart', this._handleTouchStart);
     window.removeEventListener('touchmove', this._handleTouchMove);
     window.removeEventListener('touchend', this._handleTouchEnd);
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart =(e) => {
     const { pageY } = e.changedTouches[0];
 
     this._pageY = pageY;
     this._scrolling = true;
-  }
+  };
 
-  _handleTouchMove(e) {
+  _handleTouchMove = (e) => {
     const { visible } = this.state;
     if (!this._scrolling) {
       return;
@@ -293,13 +288,13 @@ export default class BottomNavigation extends PureComponent {
       this._pageY = touchY;
       this.setState({ portalVisible: true });
     }
-  }
+  };
 
-  _handleTouchEnd() {
+  _handleTouchEnd = () => {
     this._scrolling = false;
-  }
+  };
 
-  _handleNavChange(index, e) {
+  _handleNavChange = (index, e) => {
     if (this.props.onNavChange || this.props.onChange) {
       (this.props.onNavChange || this.props.onChange)(index, e);
     }
@@ -307,7 +302,7 @@ export default class BottomNavigation extends PureComponent {
     if (typeof this.props.activeIndex === 'undefined') {
       this.setState({ activeIndex: index });
     }
-  }
+  };
 
   render() {
     const { visible, portalVisible } = this.state;

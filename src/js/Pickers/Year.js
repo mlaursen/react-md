@@ -13,33 +13,25 @@ export default class Year extends PureComponent {
     year: PropTypes.number.isRequired,
   };
 
-  constructor(props) {
-    super(props);
+  state = { desktopActive: false };
 
-    this.state = { desktopActive: false };
-    this._handleClick = this._handleClick.bind(this);
-    this._setActive = this._setActive.bind(this);
-    this._setInactive = this._setInactive.bind(this);
-    this._setActiveFocus = this._setActiveFocus.bind(this);
-  }
-
-  _setActiveFocus(btn) {
+  _setActiveFocus = (btn) => {
     if (btn && this.props.active) {
       btn.focus();
     }
-  }
+  };
 
-  _setActive() {
+  _setActive = () => {
     this.setState({ desktopActive: true });
-  }
+  };
 
-  _setInactive() {
+  _setInactive = () => {
     this.setState({ desktopActive: false });
-  }
+  };
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     this.props.onClick(this.props.year, e);
-  }
+  };
 
   render() {
     const { desktopActive } = this.state;

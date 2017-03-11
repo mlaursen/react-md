@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../Slider');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

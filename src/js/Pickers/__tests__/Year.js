@@ -1,6 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../Year');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

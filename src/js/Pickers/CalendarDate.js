@@ -22,12 +22,7 @@ export default class CalendarDate extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = this._getFormattedDate(props);
-    this.state.desktopActive = false;
-    this._handleClick = this._handleClick.bind(this);
-    this._setActive = this._setActive.bind(this);
-    this._setInactive = this._setInactive.bind(this);
-    this._setFocus = this._setFocus.bind(this);
+    this.state = { ...this._getFormattedDate(props), desktopActive: false };
   }
 
   componentWillUpdate(nextProps) {
@@ -37,33 +32,33 @@ export default class CalendarDate extends PureComponent {
     }
   }
 
-  _setFocus(btn) {
-    if (btn && this.props.active) {
-      btn.focus();
-    }
-  }
-
   _getFormattedDate({ DateTimeFormat, locales, date }) {
     return {
       date: new DateTimeFormat(locales, { day: 'numeric' }).format(date),
     };
   }
 
-  _handleClick(e) {
-    this.props.onClick(new Date(this.props.date), e);
-  }
+  _setFocus = (btn) => {
+    if (btn && this.props.active) {
+      btn.focus();
+    }
+  };
 
-  _setActive() {
+  _handleClick = (e) => {
+    this.props.onClick(new Date(this.props.date), e);
+  };
+
+  _setActive = () => {
     if (!this.props.disabled) {
       this.setState({ desktopActive: true });
     }
-  }
+  };
 
-  _setInactive() {
+  _setInactive = () => {
     if (!this.props.disabled) {
       this.setState({ desktopActive: false });
     }
-  }
+  };
 
   render() {
     const { date, desktopActive } = this.state;

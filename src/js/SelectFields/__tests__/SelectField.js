@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../SelectField');
-
 import React from 'react';
 import {
   renderIntoDocument,

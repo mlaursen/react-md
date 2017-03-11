@@ -1,9 +1,5 @@
 /* eslint-env jest*/
-/* eslint-disable global-require,max-len */
-jest.unmock('../DatePickerContainer');
-jest.unmock('../DatePicker');
-jest.unmock('../../Dialogs/DialogContainer');
-
+/* eslint-disable max-len */
 import React from 'react';
 import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
@@ -44,7 +40,7 @@ describe('DatePickerContainer', () => {
     const DateTimeFormat = require('intl').DateTimeFormat;
     const stringValue = '3/17/2017';
     let container = renderIntoDocument(
-      <DatePickerContainer id="test" value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     let textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -52,14 +48,14 @@ describe('DatePickerContainer', () => {
 
     const dateValue = new Date(2017, 2, 17);
     container = renderIntoDocument(
-      <DatePickerContainer id="test" value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
     expect(textField.value).toBe(stringValue);
 
     container = renderIntoDocument(
-      <DatePickerContainer id="test" value={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={null} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');

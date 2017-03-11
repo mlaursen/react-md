@@ -36,14 +36,7 @@ export default class BottomNav extends PureComponent {
     role: null,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     const { onClick, onNavChange, index } = this.props;
     if (onClick) {
       onClick(index, e);
@@ -52,7 +45,7 @@ export default class BottomNav extends PureComponent {
     if (onNavChange) {
       onNavChange(index, e);
     }
-  }
+  };
 
   render() {
     const {

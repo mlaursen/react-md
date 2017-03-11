@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types,max-len */
-jest.unmock('../TablePagination');
-
 import React from 'react';
 import {
   renderIntoDocument,

@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../getLastDay');
-jest.unmock('../stripTime'); // Depends heavily on it.
-
 import getLastDay from '../getLastDay';
 
 const march14 = new Date(2016, 2, 14, 15, 22, 18, 450);

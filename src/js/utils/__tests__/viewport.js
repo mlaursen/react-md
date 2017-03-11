@@ -1,5 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../viewport');
 import viewport from '../viewport';
 
 // The viewport is 1920x1080

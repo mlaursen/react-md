@@ -25,24 +25,17 @@ export default class TimePeriods extends PureComponent {
     timePeriod: PropTypes.string.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._setAM = this._setAM.bind(this);
-    this._setPM = this._setPM.bind(this);
-  }
-
-  _setAM() {
+  _setAM = () => {
     if (this.props.timePeriod !== 'AM') {
       this.props.setTempTime(addHours(this.props.tempTime, 12));
     }
-  }
+  };
 
-  _setPM() {
+  _setPM = () => {
     if (this.props.timePeriod !== 'PM') {
       this.props.setTempTime(addHours(this.props.tempTime, -12));
     }
-  }
+  };
 
   render() {
     const { timePeriod } = this.props;

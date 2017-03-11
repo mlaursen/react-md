@@ -1,7 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../../constants/keyCodes');
-jest.unmock('../injectTooltip');
-
 import React, { PropTypes } from 'react';
 import {
   Simulate,

@@ -1,10 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../DataTable');
-jest.unmock('../TableHeader');
-jest.unmock('../TableBody');
-jest.unmock('../TableRow');
-jest.unmock('../TableColumn');
-
 import React from 'react';
 import {
   Simulate,
@@ -27,7 +21,7 @@ describe('TableRow', () => {
     const style = { display: 'block' };
     const className = 'test';
     const table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow style={style} className={className}>
             <TableColumn>c</TableColumn>
@@ -53,7 +47,7 @@ describe('TableRow', () => {
     const onTouchCancel = jest.fn();
 
     const table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow
             onClick={onClick}
@@ -114,7 +108,7 @@ describe('TableRow', () => {
     expect(checkboxes.length).toBe(0);
 
     table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow>
             <TableColumn>A</TableColumn>

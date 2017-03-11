@@ -9,12 +9,6 @@ export default class ToolbarTitle extends PureComponent {
     title: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { title, className, prominent, offset, ...props } = this.props;
     if (!title) {

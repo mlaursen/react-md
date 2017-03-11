@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../SelectionControl');
-jest.unmock('../../utils/StringUtils/capitalizeFirst'); // required to test FontIcon generation
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -117,7 +114,7 @@ describe('SelectionControl', () => {
     props.type = 'switch';
     control = renderIntoDocument(<SelectionControl {...props} />);
     btns = scryRenderedComponentsWithType(control, AccessibleFakeInkedButton);
-    expect(btns.length).toBe(0);
+    expect(btns.length).toBe(1); // really 1 for the ball
   });
 
   it('renders a SwitchTrack when the type is switch only', () => {

@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types */
-jest.unmock('../ToolbarTitle');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument } from 'react-addons-test-utils';

@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types, react/no-multi-comp, max-len */
-jest.unmock('../injectInk');
-
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 

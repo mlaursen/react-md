@@ -1,8 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../NavigationDrawer');
-jest.unmock('../../Drawers/Drawer');
-jest.unmock('../../Dialogs/Dialog');
-
 import React from 'react';
 import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
@@ -52,7 +48,7 @@ describe('NavigationDrawer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog id="test"><NavigationDrawer /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

@@ -19,7 +19,6 @@ export default class YearPicker extends PureComponent {
     super(props);
 
     this.state = this._getYearRange(props);
-    this._setContainer = this._setContainer.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {

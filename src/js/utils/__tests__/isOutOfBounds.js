@@ -1,11 +1,11 @@
 /* eslint-env jest */
-jest.unmock('../isOutOfBounds');
-
 import isOutOfBounds from '../isOutOfBounds';
 import getScreenSize from '../getScreenSize';
 
 const vThresh = 1;
 const hThresh = 1;
+
+jest.mock('../getScreenSize');
 
 describe('isOutOfBounds', () => {
   beforeEach(() => {

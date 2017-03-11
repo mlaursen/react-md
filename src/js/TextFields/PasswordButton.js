@@ -16,15 +16,7 @@ export default class PasswordButton extends PureComponent {
     floating: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { keyboardFocus: false };
-
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-  }
+  state = { keyboardFocus: false };
 
   componentWillUnmount() {
     if (this.state.keyboardFocus) {
@@ -32,14 +24,14 @@ export default class PasswordButton extends PureComponent {
     }
   }
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
     if (this._button && !this._button.contains(e.target)) {
       window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ keyboardFocus: false });
     }
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -48,9 +40,9 @@ export default class PasswordButton extends PureComponent {
       window.addEventListener('click', this._handleOutsideClick);
       this.setState({ keyboardFocus: true });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -60,7 +52,7 @@ export default class PasswordButton extends PureComponent {
       window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ keyboardFocus: false });
     }
-  }
+  };
 
   render() {
     const { keyboardFocus } = this.state;

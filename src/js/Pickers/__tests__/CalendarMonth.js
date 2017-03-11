@@ -1,13 +1,4 @@
 /* eslint-env jest*/
-/* eslint-disable global-require */
-jest.unmock('../CalendarMonth');
-
-// Required to actually render the days
-jest.unmock('../../utils/DateUtils/stripTime');
-jest.unmock('../../utils/DateUtils/getDayOfWeek');
-jest.unmock('../../utils/DateUtils/getLastDay');
-jest.unmock('../../utils/DateUtils/addDate');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -17,10 +8,12 @@ import {
 
 import CalendarDate from '../CalendarDate';
 import CalendarMonth from '../CalendarMonth';
+import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
+
+jest.mock('../../utils/DateUtils/DateTimeFormat');
 
 describe('CalendarMonth', () => {
   it('merges className and style', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const style = { display: 'block' };
     const className = 'test';
     const props = {
@@ -40,7 +33,6 @@ describe('CalendarMonth', () => {
   });
 
   it('renders the number of days in a month', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',
