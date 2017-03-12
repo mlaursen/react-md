@@ -334,11 +334,10 @@ export default class Menu extends PureComponent {
   };
 
   getChildContext() {
-    const { cascading, id, fixedTo } = this.props;
+    const { cascading, id, fixedTo, cascadingAnchor } = this.props;
     const listLevel = this.context.listLevel || 0;
     const cascadingMenu = typeof cascading !== 'undefined' ? cascading : this.context.cascadingMenu;
     const cascadingZDepth = getField(this.context, this.props, 'cascadingZDepth');
-    const cascadingAnchor = getField(this.props, this.context, 'cascadingAnchor');
     const cascadingFixedTo = typeof fixedTo !== 'undefined' ? fixedTo : this.context.cascadingFixedTo;
 
     return {
@@ -411,7 +410,6 @@ export default class Menu extends PureComponent {
       listClassName,
       visible,
       children,
-      position,
       listProps,
       listZDepth,
       listInline,
@@ -426,6 +424,7 @@ export default class Menu extends PureComponent {
       cascadingAnchor,
       cascadingZDepth,
       onClose,
+      position: propPosition,
 
       // deprecated
       close,
@@ -437,9 +436,13 @@ export default class Menu extends PureComponent {
       ...props
     } = this.props;
 
-    let { listId } = this.props;
+    let { listId, position } = this.props;
     if (!listId) {
       listId = `${id}-list`;
+    }
+
+    if (position === 'context') {
+      position = Menu.Positions.BELOW;
     }
 
     const fixedTo = typeof propFixedTo !== 'undefined' ? propFixedTo : this.context.cascadingFixedTo;
