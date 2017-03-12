@@ -36,7 +36,7 @@ describe('SelectField', () => {
     expect(field.value).toBe('hello');
 
     _field = null;
-    field = renderIntoDocument(<SelectField {...PROPS} value="testing" ref={ref} />);
+    field = renderIntoDocument(<SelectField {...PROPS} value="testing" ref={ref} onChange={jest.fn()} />);
     expect(_field).not.toBe(null);
     expect(_field.value).toBe('testing');
     expect(field.value).toBe('testing');

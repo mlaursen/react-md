@@ -33,17 +33,26 @@ $md-menu-include-cascading-styles: true !default;
 /// @group menus, z-indexes
 $md-menu-z-index: null !default;
 
+$md-menu-units-width: 56px !default;
+
 /// The transition time to use for menus
 /// type Number
 /// @deprecated
 $md-menu-transition-time: null !default;
+
+/// The min width to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-min-width
+/// @see md-menu-desktop-min-width
+/// @type Number
+$md-menu-min-width: $md-menu-units-width * 2 !default;
 
 /// The max width to apply to menus. If this value is set, the mobile/desktop values will not be used.
 ///
 /// @see md-menu-mobile-max-width
 /// @see md-menu-desktop-max-width
 /// @type Number
-$md-menu-max-width: 100vw !default;
+$md-menu-max-width: null !default;
 
 /// The max height to apply to menus. If this value is set, the mobile/desktop values will not be used.
 ///
@@ -52,15 +61,26 @@ $md-menu-max-width: 100vw !default;
 /// @type Number
 $md-menu-max-height: null !default;
 
+
+/// An optional min width to apply to menus on tablet displays.
+/// @see md-menu-min-width
+/// @type Number
+$md-menu-mobile-min-width: null !default;
+
 /// An optional max width to apply to menus on mobile devices.
 ///
 /// @see md-menu-max-width
 /// @type Number
-$md-menu-mobile-max-width: null !default;
+$md-menu-mobile-max-width: calc(100vw - 32px) !default;
 
 /// The max height for menus on mobile devices.
 /// @type Number
 $md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2 !default;
+
+/// An optional min width to apply to menus on desktop displays.
+/// @see md-menu-min-width
+/// @type Number
+$md-menu-desktop-min-width: null !default;
 
 /// An optional max width to apply to menus on desktop screens.
 ///
@@ -101,6 +121,7 @@ $md-menu-cascading-list-padding: 16px !default;
 @mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading, $include-cascading-styles: $md-menu-include-cascading-styles) {
   .md-list--menu {
     max-width: $md-menu-max-width;
+    min-width: $md-menu-min-width;
     z-index: $md-menu-z-index;
 
     &-restricted {
@@ -165,9 +186,10 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-mobile {
-  @if $md-menu-max-width == null {
+  @if $md-menu-max-width == null or $md-menu-min-width == null {
     .md-list--menu {
-      max-width: $md-menu-mobile-max-width;
+      max-width: if($md-menu-max-width == null, $md-menu-mobile-max-width, null);
+      min-width: if($md-menu-min-width == null, $md-menu-mobile-min-width, null);
     }
   }
 
@@ -187,9 +209,10 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-desktop {
-  @if $md-menu-max-width == null {
+  @if $md-menu-max-width == null or $md-menu-min-width == null {
     .md-list--menu {
-      max-width: $md-menu-desktop-max-width;
+      max-width: if($md-menu-max-width == null, $md-menu-desktop-max-width, null);
+      min-width: if($md-menu-min-width == null, $md-menu-desktop-min-width, null);
     }
   }
 
@@ -206,7 +229,7 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   @include react-md-menus-media;
 /// @group menus, media-queries
 @mixin react-md-menus-media {
-  @if $md-menu-max-height == null or $md-menu-max-width == null {
+  @if $md-menu-max-height == null or $md-menu-max-width == null or $md-menu-min-width == null {
     @media #{$md-mobile-media} {
       @include react-md-menus-mobile;
     }
