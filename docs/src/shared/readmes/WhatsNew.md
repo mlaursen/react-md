@@ -1,9 +1,15 @@
 ## March 2017
+### v1.0.8 Released
+
+##### Changelog
+- My initial attempt at the defaultVisible prop not working correctly was incorrect. Updated the behavior as mentioned in
+the new ticket. [#288](https://github.com/mlaursen/react-md/issues/288)
+
 ### v1.0.7 Released
 
 ##### Changelog
-- Fixed the Drawer's defaultVisible prop not working entirely corrrectly. [#286](https://github.com/mlaursen/react-md/286)
-- Fixed the DateTimeFormat fake mock. [#285](https://github.com/mlaursen/react-md/285)
+- Fixed the Drawer's defaultVisible prop not working entirely corrrectly. [#286](https://github.com/mlaursen/react-md/issues/286)
+- Fixed the DateTimeFormat fake mock. [#285](https://github.com/mlaursen/react-md/issues/285)
 - Fixed the Date/Time pickers to not open when disabled. [#281](https://github.com/mlaursen/react-md/issues/281)
 - Fixed the prop warning for MenuButton and passed correct props to Menu. [#278](https://github.com/mlaursen/react-md/issues/278)
 - Fixed the Menu attempting to setState after it had unmounted. [#268](https://github.com/mlaursen/react-md/issues/268)

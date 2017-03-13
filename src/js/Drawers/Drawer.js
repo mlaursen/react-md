@@ -223,7 +223,7 @@ export default class Drawer extends PureComponent {
 
     /**
      * An optional function to call when the visibility of the drawer is changed. The function will
-     * be called with the new visibility statee.
+     * be called with the new visibility state.
      *
      * ```js
      * onVisibilityToggle(!currentlyVisible);
