@@ -55,6 +55,12 @@ the [issue for more details](#issues-243).
 - TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
 
 ## March 2017
+### v1.0.8 Released
+
+##### Changelog
+- My initial attempt at the defaultVisible prop not working correctly was incorrect. Updated the behavior as mentioned in
+the new ticket. [#288](#issues-288)
+
 ### v1.0.7 Released
 
 ##### Changelog
