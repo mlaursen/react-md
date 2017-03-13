@@ -358,10 +358,10 @@ export default class NavigationDrawer extends PureComponent {
 
     /**
      * An optional function to call when the visibility of the drawer changes. The callback
-     * will include the new visibility and the event that triggered the change.
+     * will include the new visibility.
      *
      * ```js
-     * this.props.onVisibilityToggle(false, event);
+     * this.props.onVisibilityToggle(false);
      * ```
      */
     onVisibilityToggle: PropTypes.func,
@@ -723,9 +723,9 @@ export default class NavigationDrawer extends PureComponent {
     }
   };
 
-  _handleVisibility = (visible, e) => {
+  _handleVisibility = (visible) => {
     if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(visible, e);
+      this.props.onVisibilityToggle(visible);
     }
 
     if (typeof this.props.visible === 'undefined') {
@@ -735,24 +735,16 @@ export default class NavigationDrawer extends PureComponent {
 
   _handleTypeChange = (drawerType, mediaState) => {
     const { onMediaTypeChange } = this.props;
+    let state = mediaState;
     if (onMediaTypeChange) {
       onMediaTypeChange(drawerType, mediaState);
     }
 
     if (typeof this.props.drawerType === 'undefined') {
-      mediaState.drawerType = drawerType;
+      state = { ...mediaState, drawerType };
     }
 
-    const { mobile, tablet, desktop } = this.state;
-    if (typeof this.props.visible === 'undefined'
-      && (mediaState.mobile !== mobile
-        || mediaState.tablet !== tablet
-        || mediaState.desktop !== desktop)
-    ) {
-      mediaState.visible = isPermanent(drawerType);
-    }
-
-    this.setState(mediaState);
+    this.setState(state);
   };
 
   render() {

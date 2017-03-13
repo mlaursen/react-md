@@ -234,10 +234,10 @@ export default class Drawer extends PureComponent {
 
     /**
      * An optional function to call when the visibility of the drawer is changed. The function will
-     * be called with the new visibility state and an event that triggered the visibility change.
+     * be called with the new visibility state.
      *
      * ```js
-     * onVisibilityToggle(!currentlyVisible, event);
+     * onVisibilityToggle(!currentlyVisible);
      * ```
      */
     onVisibilityToggle: PropTypes.func,
@@ -365,6 +365,7 @@ export default class Drawer extends PureComponent {
     }
 
     const type = getField(props, this.state, 'type');
+    this._initialFix = true;
 
     if (typeof props.visible === 'undefined') {
       this.state.visible = typeof defaultVisible !== 'undefined'
@@ -387,9 +388,7 @@ export default class Drawer extends PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    if (typeof this.props.visible === 'undefined' && !this.props.defaultVisible) {
-      this._updateType(this.props);
-    }
+    this._updateType(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -446,26 +445,39 @@ export default class Drawer extends PureComponent {
 
     let state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
+    const diffMedia = state.mobile !== this.state.mobile
+      || state.tablet !== this.state.tablet
+      || state.desktop !== this.state.desktop;
 
-    if (onMediaTypeChange && (diffType ||
-      ['mobile', 'tablet', 'desktop'].filter(key => state[key] !== this.state[key]).length)
-    ) {
+    if (onMediaTypeChange && (diffType || diffMedia)) {
       onMediaTypeChange(state.type, { mobile: state.mobile, tablet: state.tablet, desktop: state.desktop });
+    }
+
+    if (diffType) {
+      let visible = isPermanent(state.type);
+      if (this._initialFix) {
+        if (props.defaultVisible) {
+          visible = props.defaultVisible;
+        } else if (props.visible) {
+          visible = props.visible;
+        }
+
+        this._initialFix = false;
+      }
+      const prevVisible = getField(props, this.state, 'visible');
+
+      if (onVisibilityToggle && (visible !== prevVisible)) {
+        onVisibilityToggle(visible);
+      }
+
+      if (typeof props.visible === 'undefined') {
+        state.visible = visible;
+      }
     }
 
     if (typeof props.type !== 'undefined') {
       const { type, ...realState } = state; // eslint-disable-line no-unused-vars
       state = realState;
-    }
-
-    const type = getField(props, state, 'type');
-    const visible = isPermanent(type);
-    if (onVisibilityToggle && getField(props, this.state, 'visible') !== visible) {
-      onVisibilityToggle(visible);
-    }
-
-    if (typeof props.visible === 'undefined' && diffType) {
-      state.visible = visible;
     }
 
     this.setState(state);
@@ -527,9 +539,9 @@ export default class Drawer extends PureComponent {
     }
   }
 
-  _closeDrawer(e) {
+  _closeDrawer() {
     if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(false, e);
+      this.props.onVisibilityToggle(false);
     }
 
     if (typeof this.props.visible === 'undefined') {
