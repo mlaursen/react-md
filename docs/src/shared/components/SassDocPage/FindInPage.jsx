@@ -14,7 +14,7 @@ function buildSubList(docs) {
 
   return [{
     primaryText: toTitle(docs[0].type),
-    defaultOpen: true,
+    defaultVisible: true,
     nestedItems: docs.map(doc => ({
       primaryText: doc.name,
       component: Link,
@@ -90,6 +90,8 @@ export default class FindInPage extends PureComponent {
       <Drawer
         visible={visible}
         onVisibilityToggle={onVisibilityToggle}
+        tabletType={Drawer.DrawerTypes.TEMPORARY}
+        desktopType={Drawer.DrawerTypes.TEMPORARY}
         type={Drawer.DrawerTypes.TEMPORARY}
         className="powerlevel-over-9000"
         clickableDesktopOverlay={false}

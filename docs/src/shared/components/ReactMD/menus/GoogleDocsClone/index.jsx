@@ -45,7 +45,7 @@ export default class GoogleDocsClone extends PureComponent {
         <Dialog
           id="google-docs-clone-dialog"
           fullPage
-          aria-label="A google docs clone with about 1% of the functionality"
+          aria-label="A google docs clone with about 0.01% of the functionality"
           visible={visible}
           onHide={this._close}
         >

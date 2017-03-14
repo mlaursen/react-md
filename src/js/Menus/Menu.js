@@ -136,8 +136,8 @@ export default class Menu extends PureComponent {
      * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
      * `$md-menu-desktop-max-height` values.
      *
-     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
-     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     * @see [md-menu-mobile-max-height](/components/menus?tab=2#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=2#variable-md-menu-desktop-max-height)
      */
     listHeightRestricted: PropTypes.bool,
 
@@ -251,17 +251,17 @@ export default class Menu extends PureComponent {
     /**
      * An optional transition name to use for the list appearing/disappearing.
      *
-     * @see {@link Helpers/Layoers#transitionName}
+     * @see {@link Helpers/Layovers#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * @see {@link Helpers/Layoers#transitionEnterTimeout}
+     * @see {@link Helpers/Layovers#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * @see {@link Helpers/Layoers#transitionLeaveTimeout}
+     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
 

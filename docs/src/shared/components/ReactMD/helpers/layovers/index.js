@@ -5,9 +5,9 @@ import ContextMenuLayoverRaw from '!!raw!./ContextMenuLayover';
 
 import LayoverPlayground from './LayoverPlayground';
 import LayoverPlaygroundRaw from '!!raw!./LayoverPlayground';
+import PlaygroundFormRaw from '!!raw!./PlaygroundForm';
 
-import DialogExample from './DialogExample';
-import DialogExampleRaw from '!!raw!./DialogExample';
+import LayoverPlaygroundStyles from '!!raw!./_layovers.scss';
 
 export default [{
   title: 'Context Menu Layover',
@@ -19,10 +19,17 @@ export default [{
 Here is a little playground where you can try some of the different
 use cases of the layover.
   `,
-  code: LayoverPlaygroundRaw,
+  code: `
+/* LayoverPlayground.jsx */
+${LayoverPlaygroundRaw}
+\`\`\`
+
+\`\`\`js
+${PlaygroundFormRaw}
+\`\`\`
+
+\`\`\`scss
+${LayoverPlaygroundStyles}
+`,
   children: <LayoverPlayground />,
-}, {
-  title: 'Layover in Dialog',
-  code: DialogExampleRaw,
-  children: <DialogExample />,
 }];

@@ -100,7 +100,7 @@ export default class LayoverPlayground extends PureComponent {
     switch (contents) {
       case 'list':
         children = (
-          <List className="md-paper md-paper--1 md-list--menu" {...this.props}>
+          <List className="md-paper md-paper--2 md-list--menu md-list--menu-restricted">
             <ListItem primaryText="Item 1" />
             <ListItem primaryText="Item 2" />
             <ListItem primaryText="Item 3" />

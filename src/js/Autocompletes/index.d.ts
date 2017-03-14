@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { Props, IdPropType } from '../index';
-import { SharedLayoverProps, LayoverPositions, LayoverPositionsEnum } from '../Helpers/index'
+import { LayoverPositions, LayoverPositionsEnum } from '../Helpers'
+import { SharedMenuProps } from '../Menus'
 
 type OnOffType = 'on' | 'off';
 
 type DataType = Array<React.ReactElement<any> | string | number | { [dataLabel: string]: string | number }>;
 
-interface AutocompleteProps extends SharedLayoverProps {
+interface AutocompleteProps extends SharedMenuProps {
   menuId?: IdPropType;
-  listId?: IdPropType;
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
-  listStyle?: React.CSSProperties;
-  listClassName?: string;
   disabled?: boolean;
   label?: string;
   value?: string | number;
@@ -37,9 +35,6 @@ interface AutocompleteProps extends SharedLayoverProps {
   onMenuClose?: Function;
   autoComplete?: OnOffType;
   position?: LayoverPositions | LayoverPositionsEnum;
-  listInline?: boolean;
-  listZDepth?: number;
-  listHeightRestricted?: boolean;
 }
 
 export default class Autocomplete extends React.Component<AutocompleteProps, {}> {

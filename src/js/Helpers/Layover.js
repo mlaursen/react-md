@@ -317,6 +317,21 @@ export default class Layover extends PureComponent {
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
 
+  componentDidMount() {
+    const { visible, fixedTo, anchor, sameWidth, centered } = this.props;
+    if (visible) {
+      window.addEventListener('click', this._handleOutsideClick);
+      const rect = this._contextRect || this._toggle.getBoundingClientRect();
+      if (this._dialog) {
+        this._manageFixedToListener(this._dialog, true);
+      } else if (!this._inFixed) {
+        this._manageFixedToListener(fixedTo, true);
+      }
+
+      this._init(fixedTo, anchor, sameWidth, centered, rect);
+    }
+  }
+
   componentWillReceiveProps({ fixedTo, visible, anchor, children, sameWidth, centered }) {
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;

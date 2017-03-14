@@ -102,6 +102,9 @@ export default class SelectField extends PureComponent {
     toolbar: PropTypes.bool,
     stripActiveItem: PropTypes.bool,
 
+    iconChildren: PropTypes.node,
+    iconClassName: PropTypes.string,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
