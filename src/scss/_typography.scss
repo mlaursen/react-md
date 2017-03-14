@@ -31,6 +31,14 @@ $md-font-family: '#{$md-font-name}', sans-serif !default;
 /// @type Number
 $md-typography-max-line-length: 640px !default;
 
+/// The min width to apply to the `html` tag. This is set mostly if you are using
+/// components that rely on hiding the main window's toolbar to prevent scrolling.
+///
+/// Setting this value to `null` will not update the `html` with the min-width.
+///
+/// @type Number
+$md-html-min-width: 100% !default;
+
 
 
 /// The light text weight.
@@ -453,6 +461,7 @@ $md-line-height: 20 / $md-font-size-base !default;
   html {
     background: if($light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
     font-size: #{$md-font-size-base}px;
+    min-width: $md-html-min-width;
   }
 
   body {
