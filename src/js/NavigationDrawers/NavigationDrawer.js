@@ -570,6 +570,12 @@ export default class NavigationDrawer extends PureComponent {
      */
     lastChild: PropTypes.bool,
 
+    /**
+     * Boolean if the `drawerType` should remain constant across all media. This is really only valid
+     * if the `drawerType` is one of the temporary types.
+     */
+    constantDrawerType: PropTypes.bool,
+
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
@@ -603,6 +609,10 @@ export default class NavigationDrawer extends PureComponent {
   static defaultProps = {
     autoclose: Drawer.defaultProps.autoclose,
     contentId: 'main-content',
+    // Defaults to false since it keeps the state of the drawerType in sync and makes the Drawer
+    // controlled. On initial mount without any defaultMedia updates, it would always be considered
+    // temporary
+    constantDrawerType: false,
     jumpLabel: 'Jump to content',
     extractMini: true,
     position: Drawer.defaultProps.position,
@@ -638,10 +648,11 @@ export default class NavigationDrawer extends PureComponent {
       mobileDrawerType: mobileType,
       tabletDrawerType: tabletType,
       desktopDrawerType: desktopType,
+      constantDrawerType: constantType,
       ...others
     } = props;
 
-    return Drawer.getCurrentMedia({ mobileType, tabletType, desktopType, ...others });
+    return Drawer.getCurrentMedia({ mobileType, tabletType, desktopType, constantType, ...others });
   }
 
   constructor(props) {
@@ -796,6 +807,7 @@ export default class NavigationDrawer extends PureComponent {
       includeDrawerHeader,
       contentId,
       contentProps,
+      constantDrawerType,
       ...props
     } = this.props;
     delete props.drawerType;
@@ -913,6 +925,7 @@ export default class NavigationDrawer extends PureComponent {
         {miniDrawer}
         <Drawer
           {...props}
+          constantType={constantDrawerType}
           transitionDuration={drawerTransitionDuration}
           header={drawerHeader}
           style={drawerStyle}
