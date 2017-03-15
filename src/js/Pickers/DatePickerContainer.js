@@ -219,7 +219,7 @@ export default class DatePickerContainer extends PureComponent {
      */
     maxDate: (props, propName, component, ...others) => {
       const err = PropTypes.instanceOf(Date)(props, propName, component, ...others);
-      if (err || typeof props.minDate === 'undefined' || typeof props[propName] === 'undefined') {
+      if (err || !props.minDate || !props[propName]) {
         return err;
       }
 
