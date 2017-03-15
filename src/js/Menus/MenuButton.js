@@ -7,6 +7,10 @@ import getField from '../utils/getField';
 import Button from '../Buttons/Button';
 import Menu from './Menu';
 
+/**
+ * The `MenuButton` is a simple wrapper / combination of the `Button` and the `Menu`
+ * components that can be uncontrolled.
+ */
 export default class MenuButton extends PureComponent {
   static Positions = Menu.Positions;
   static HorizontalAnchors = Menu.HorizontalAnchors;

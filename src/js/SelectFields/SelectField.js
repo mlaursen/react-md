@@ -23,92 +23,409 @@ export default class SelectField extends PureComponent {
   static VerticalAnchors = Menu.VerticalAnchors;
 
   static propTypes = {
+    /**
+     * An id to give the select field. This is required for accessibility.
+     */
     id: isRequiredForA11y(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ])),
-    listId: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
+
+    /**
+     * An optional id to provide to the select field's menu. If this is omitted,
+     * it will default to `${id}-menu`.
+     */
     menuId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
+
+    /**
+     * An optional id to provide to the select field's list.
+     *
+     * @see {@link #menuId}
+     * @see {@link Menus/Menu#menuId}
+     */
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional style to apply to the select field's container (the menu).
+     */
     style: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field's container (the menu).
+     */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the menu's list.
+     */
     listStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the menu's list.
+     */
     listClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the select field's toggle.
+     */
     toggleStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the select field's toggle.
+     */
     toggleClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `AccessibleFakeInkedButton` that is the trigger
+     * for the select field.
+     */
     inputStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `AccessibleFakeInkedButton` that is the trigger
+     * for the select field.
+     */
     inputClassName: PropTypes.string,
-    textFieldStyle: PropTypes.object,
-    textFieldClassName: PropTypes.string,
+
+    /**
+     * Boolean if the select field should be have the menu's list visible by default.
+     */
     defaultVisible: PropTypes.bool.isRequired,
+
+    /**
+     * Boolean if the select field should have the menu's list visible. This will make
+     * the select field controlled and require the `onVisibilityChange` prop to be defined,
+     */
     visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
+    /**
+     * An optional function to call when the select field's menu has it's visibility changed. The callback
+     * will include the next visible state and the event that triggered it.
+     */
+    onVisibilityChange: PropTypes.func,
+
+    /**
+     * A list of `number`, `string`, or `object` that should be used to create `ListItem`
+     * in the menu's list. When it is an `object`, it will use the `dataLabel` prop as the
+     * `primaryText` and use the value of `dataValue`.
+     *
+     * @see {@link #dataLabel}
+     * @see {@link #dataValue}
+     */
     menuItems: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
     ])).isRequired,
+
+    /**
+     * The amount of time that a list of letters should be used when finding a menu item
+     * while typing. Since a user can select items by typing multiple letters in a row,
+     * this will be used as the timeout for clearing those letters.
+     *
+     * For example:
+     * - User types `g`
+     *
+     * Full match is now `'g'`.
+     *
+     * - User delays 200ms and types `u`
+     *
+     * Full match is now `'gu'`
+     *
+     * - User delays 1000ms and types `a`.
+     *
+     * Full match is now `'a'`
+     */
     keyboardMatchingTimeout: PropTypes.number.isRequired,
 
+    /**
+     * The key to use for extracting a menu item's label if the menu item is an object.
+     *
+     * Example:
+     *
+     * ```js
+     * const item = { something: 'My Label', somethingElse: 'value' };
+     * const itemLabel = 'something';
+     * const itemValue = 'somethingElse';
+     * ```
+     */
     itemLabel: PropTypes.string.isRequired,
+
+    /**
+     * The key to use for extracting a menu item'value label if the menu item is an object.
+     *
+     * Example:
+     *
+     * ```js
+     * const item = { something: 'My Label', somethingElse: 'value' };
+     * const itemLabel = 'something';
+     * const itemValue = 'somethingElse';
+     * ```
+     */
     itemValue: PropTypes.string.isRequired,
 
+    /**
+     * The default value to use for the select field. If this is set, it should either match
+     * one of the `number` or `string` in your `menuItems` list or be the empty string. If
+     * the `menuItems` is a list of `object`, this value should match one of the menu item's
+     * `dataValue` or be the empty string.
+     *
+     * ```js
+     * const menuItems = [{ label: 'Something': value: 0 }, { label: 'Something else', value: 1 }];
+     *
+     * // both valid
+     * defaultValue={0}
+     * defaultValue=""
+     * ```
+     */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
+
+    /**
+     * The value to use for the select field. If this is defined, it becomes a controlled component
+     * and requires the `onChange` prop to be defined. See the `defaultValue` for more behavior info.
+     *
+     * @see {@link #defaultValue}
+     */
     value: controlled(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]), 'onChange', 'defaultValue'),
 
+    /**
+     * An optional function to call when the select field's value has been changed either when the user
+     * has click/touched/keyboard selected a value in the list, or the user has selected a value by typing
+     * in the select field while the menu's list is closed.
+     *
+     * The callback will include the next text field value, the selected item's index, and the event that
+     * triggered the change.
+     *
+     * ```js
+     * onChange(value, index, event);
+     * ```
+     */
     onChange: PropTypes.func,
-    onVisibilityChange: PropTypes.func,
 
+    /**
+     * An optional label to use with the select field. This will be a floating label as seen on the text field.
+     */
     label: PropTypes.string,
+
+    /**
+     * An optional placeholder to use in the select field. This will only appear when no value has been selected.
+     */
     placeholder: PropTypes.string,
+
+    /**
+     * Boolean if the select field should be disabled.
+     */
     disabled: PropTypes.bool,
+
+    /**
+     * Boolean if the select field is required. This will update the label and placeholder to include a `*` suffix.
+     */
     required: PropTypes.bool,
+
+    /**
+     * Boolean if the select field is considered to be in an `error` state.
+     *
+     * @see {@link TextFields/TextField#error}
+     */
     error: PropTypes.bool,
+
+    /**
+     * An optional text to display whent he text select field is in an error state.
+     *
+     * @see {@link TextFields/TextField#errorText}
+     */
     errorText: PropTypes.node,
+
+    /**
+     * An optional text to display below the select field to provide input help to the user.
+     * This will only be displayed if the select field is not in an error state.
+     *
+     * @see {@link #helpOnFocus}
+     * @see {@link TextFields/TextField#errorText}
+     */
     helpText: PropTypes.node,
+
+    /**
+     * Boolean if the `helpText` should only appear on focus.
+     *
+     * @see {@link #helpText}
+     * @see {@link TextFields/TextField#helpOnFocus}
+     */
     helpOnFocus: PropTypes.bool,
 
+    /**
+     * An optional function to call when any element in the select field has been clicked.
+     */
     onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the `keydown` event has been triggered anywhere in the
+     * select field.
+     */
     onKeyDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the select field's toggle has gained focus.
+     */
     onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the select field's toggle has been blurred. This
+     * will be triggered if the user hits the up or down arrow keys to traverse the list
+     * of items.
+     */
     onBlur: PropTypes.func,
 
-    anchor: Menu.propTypes.anchor,
-    fixedTo: Menu.propTypes.fixedTo,
-    position: Menu.propTypes.position,
-    xThreshold: PropTypes.number,
-    yThreshold: PropTypes.number,
-    listInline: PropTypes.bool,
-    listZDepth: PropTypes.number,
-    listHeightRestricted: PropTypes.bool,
-    sameWidth: PropTypes.bool,
-    fullWidth: PropTypes.bool,
-    block: PropTypes.bool,
-    centered: PropTypes.bool,
+    /**
+     * Any children used to render the select field's drop down icon.
+     */
+    iconChildren: PropTypes.node,
 
-    transitionName: PropTypes.string.isRequired,
-    transitionTime: PropTypes.number.isRequired,
+    /**
+     * The icon class name to use to render the select field's drop down icon.
+     */
+    iconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the select field is in a toolbar. This should automatically be injected by the `Toolbar`
+     * component if being used as a `titleMenu` or one of the `actions`.
+     *
+     * @see {@link Toolbars/Toolbar#titleMenu}
+     * @see {@link Toolbars/Toolbar#actions}
+     */
     toolbar: PropTypes.bool,
+
+    /**
+     * Boolean if the currently active item should be removed from the list of available `menuItems`.
+     * If this is `undefined`, it will strip out the active one only when the
+     * `position === SelectField.Positions.BELOW`.
+     */
     stripActiveItem: PropTypes.bool,
 
-    iconChildren: PropTypes.node,
-    iconClassName: PropTypes.string,
+    /**
+     * The transition name to use when a new value has been selected. By default, it will have the
+     * new item _drop_ into the select field's input location.
+     */
+    transitionName: PropTypes.string.isRequired,
+
+    /**
+     * The transition time to use when a new value has been selected. If this value is `0`, there
+     * will be no transition.
+     */
+    transitionTime: PropTypes.number.isRequired,
+
+    /**
+     * This is how the menu's `List` get's anchored to the select field.
+     *
+     * @see {@link Helpers/Layovers#anchor}
+     */
+    anchor: Menu.propTypes.anchor,
+
+    /**
+     * This is the animation position for the list that appears.
+     *
+     * @see {@link Helpers/Layovers#animationPosition}
+     */
+    position: Menu.propTypes.position,
+
+    /**
+     * This is how the menu's list will be "fixed" to the `toggle` component.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    fixedTo: Menu.propTypes.fixedTo,
+
+    /**
+     * Boolean if the menu's list should appear horizontally instead of vertically.
+     */
+    listInline: PropTypes.bool,
+
+    /**
+     * The list's z-depth for applying box shadow. This should be a number from 0 to 5.
+     */
+    listZDepth: PropTypes.number,
+
+    /**
+     * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
+     * `$md-menu-desktop-max-height` values.
+     *
+     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     */
+    listHeightRestricted: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#xThreshold}
+     */
+    xThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#yThreshold}
+     */
+    yThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     */
+    closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * An optional transition name to use for the list appearing/disappearing.
+     *
+     * @see {@link Menus/Menu#transitionName}
+     */
+    menuTransitionName: PropTypes.string,
+
+    /**
+     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     */
+    menuTransitionEnterTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     */
+    menuTransitionLeaveTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Menus/Menu#block}
+     */
+    block: PropTypes.bool,
+
+    /**
+     * @see {@link Menus/Menu#fullWidth}
+     */
+    fullWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#centered}
+     */
+    centered: Menu.propTypes.centered,
+
+    /**
+     * @see {@link Helpers/Layovers#sameWidth}
+     */
+    sameWidth: Menu.propTypes.sameWidth,
 
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     onMenuToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
+    stretchList: deprecated(
+      PropTypes.bool,
+      'No longer valid after the changes to the `Menu` component. Possibly use `sameWidth` instead'
+    ),
     menuStyle: deprecated(PropTypes.object, 'Use `style` instead'),
     menuClassName: deprecated(PropTypes.string, 'Use `className` instead'),
     floatingLabel: deprecated(
@@ -559,6 +876,9 @@ export default class SelectField extends PureComponent {
       centered,
       sameWidth,
       fullWidth,
+      menuTransitionName,
+      menuTransitionEnterTimeout,
+      menuTransitionLeaveTimeout,
       isOpen, // deprecated
       /* eslint-disable no-unused-vars */
       error: propError,
@@ -577,6 +897,7 @@ export default class SelectField extends PureComponent {
       defaultOpen,
       initiallyOpen,
       onMenuToggle,
+      stretchList,
       menuStyle,
       menuClassName,
       floatingLabel,
@@ -646,6 +967,9 @@ export default class SelectField extends PureComponent {
         block={block}
         centered={centered}
         fullWidth={fullWidth}
+        transitionName={menuTransitionName}
+        transitionEnterTimeout={menuTransitionEnterTimeout}
+        transitionLeaveTimeout={menuTransitionLeaveTimeout}
       >
         {menuItems.reduce(this._reduceItems, [])}
       </Menu>

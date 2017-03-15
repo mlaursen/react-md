@@ -18,7 +18,7 @@ interface BottomNavigationProps extends Props {
   component?: Function | string;
   renderNode?: Object;
   transitionDuration?: number;
-  onVisiblityChange?: (visible: boolean) => void;
+  onVisibilityChange?: (visible: boolean) => void;
   lastChild?: boolean;
   animate?: boolean;
   portal?: boolean;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Props, IdPropType } from '../index';
 import { InjectedTooltipProps } from '../Tooltips';
 import { TextFieldTypes } from '../TextFields';
-import { Positions as SelectFieldPositions } from '../SelectFields';
+import { LayoverPositions, LayoverPositionsEnum } from '../Helpers';
 
 type template = (rowIndex: number) => string;
 
@@ -97,7 +97,7 @@ interface SelectFieldColumnProps extends Props {
   inputClassName?: string;
   header?: boolean;
   onMenuToggle?: (open: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  position?: SelectFieldPositions;
+  position?: LayoverPositions | LayoverPositionsEnum;
   defaultOpen?: boolean;
   scrollThreshold?: number;
 }

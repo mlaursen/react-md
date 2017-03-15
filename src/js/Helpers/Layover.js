@@ -275,7 +275,7 @@ export default class Layover extends PureComponent {
     },
     animationPosition: LayoverPositions.BELOW,
     component: 'div',
-    fixedTo: window,
+    fixedTo: typeof window !== 'undefined' ? window : {},
     toggleQuery: '.md-text-field-container,button,*[role="button"]',
     transitionName: 'md-layover',
     transitionEnterTimeout: 200,

@@ -125,7 +125,7 @@ export class Collapse extends React.Component<CollapseProps, {}> { }
 export class FocusContainer extends React.Component<FocusContainerProps, {}> { }
 export class IconSeparator extends React.Component<IconSeparatorProps, {}> { }
 export class Layover extends React.Component<LayoverProps, {}> {
-  static LayoverPositions: LayoverPositions | LayoverPositionsEnum;
+  static Positions: LayoverPositions | LayoverPositionsEnum;
   static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
   static HorizontalAnchors: HorizontalAnchors | HorizontalAnchorsEnum;
 }

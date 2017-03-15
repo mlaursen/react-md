@@ -10,6 +10,10 @@ import getField from '../utils/getField';
 import List from '../Lists/List';
 import Layover from '../Helpers/Layover';
 
+/**
+ * The `Menu` controlled component is used to display a list of children in the `List`
+ * component once the `visible` prop is true.
+ */
 export default class Menu extends PureComponent {
   static HorizontalAnchors = Layover.HorizontalAnchors;
   static VerticalAnchors = Layover.VerticalAnchors;
@@ -292,7 +296,7 @@ export default class Menu extends PureComponent {
       y: Layover.VerticalAnchors.OVERLAP,
     },
     position: Layover.Positions.TOP_RIGHT,
-    fixedTo: window,
+    fixedTo: typeof window !== 'undefined' ? window : {},
     listZDepth: 2,
     listHeightRestricted: true,
     cascadingZDepth: 3,

@@ -22,6 +22,9 @@ import TextField from '../TextFields/TextField';
  * or filtering.
  */
 export default class Autocomplete extends PureComponent {
+  static Positions = Menu.Positions;
+  static HorizontalAnchors = Menu.HorizontalAnchors;
+  static VerticalAnchors = Menu.VerticalAnchors;
   static fuzzyFilter = fuzzyFilter;
   static caseInsensitiveFilter = caseInsensitiveFilter;
   static findIgnoreCase = findIgnoreCase;
@@ -400,7 +403,7 @@ export default class Autocomplete extends PureComponent {
       y: Menu.VerticalAnchors.BOTTOM,
     },
     autocompleteWithLabel: false,
-    fixedTo: window,
+    fixedTo: typeof window !== 'undefined' ? window : {},
     position: Menu.Positions.BELOW,
     sameWidth: true,
     offset: 0,

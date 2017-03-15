@@ -116,7 +116,7 @@ describe('Menu', () => {
       onClose: jest.fn(),
       listInline: false,
       listProps,
-      toggle: <div />,
+      toggle: <button />,
       children: <div />,
     };
 

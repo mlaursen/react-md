@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { Props, IdPropType } from '../index';
-import { LayoverPositions, LayoverPositionsEnum } from '../Helpers'
+import {
+  LayoverPositions,
+  LayoverPositionsEnum,
+  HorizontalAnchors,
+  HorizontalAnchorsEnum,
+  VerticalAnchors,
+  VerticalAnchorsEnum,
+} from '../Helpers'
 import { SharedMenuProps } from '../Menus'
 
 type OnOffType = 'on' | 'off';
@@ -38,6 +45,9 @@ interface AutocompleteProps extends SharedMenuProps {
 }
 
 export default class Autocomplete extends React.Component<AutocompleteProps, {}> {
+  static Positions: LayoverPositions | LayoverPositionsEnum;
+  static HorizontalAnchors: HorizontalAnchors | HorizontalAnchorsEnum;
+  static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
   static caseInsensitiveFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   static fuzzyFilter(data: DataType, filterText: string | number, dataLabel?: string): Array<string>;
   static findIgnoreCase(data: DataType, filterText: string, dataLabel?: string): string;

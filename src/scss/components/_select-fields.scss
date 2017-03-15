@@ -43,10 +43,6 @@ $md-select-field-right-padding: 16px !default;
     }
   }
 
-  .md-select-field-menu--stretch .md-list {
-    min-width: 100%;
-  }
-
   // To override text field padding
   .md-select-field--btn.md-select-field--btn {
     padding-bottom: $md-default-padding;
