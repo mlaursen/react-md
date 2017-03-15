@@ -276,6 +276,15 @@ export default class Drawer extends PureComponent {
      */
     autocloseAfterInk: PropTypes.bool,
 
+    /**
+     * Boolean if the `type` prop should be constant across all media sizes. This is only valid if the `type` is
+     * one of the temporary types.
+     *
+     * This will basically mean that when attempting to do a media adjustment, it will use the `type` prop instead of
+     * `mobileType`, `tabletType`, and `desktopType` to determine the next drawer type.
+     */
+    constantType: PropTypes.bool.isRequired,
+
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
   };
 
@@ -291,6 +300,7 @@ export default class Drawer extends PureComponent {
     transitionDuration: 300,
     autoclose: true,
     clickableDesktopOverlay: true,
+    constantType: true,
   };
 
   /**
@@ -304,9 +314,18 @@ export default class Drawer extends PureComponent {
    * @return {Object} an object containing the media matches and the current type to use for the drawer.
    */
   static getCurrentMedia(props = Drawer.defaultProps) {
-    const { mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType } = props;
+    const {
+      mobileMinWidth,
+      tabletMinWidth,
+      desktopMinWidth,
+      mobileType,
+      tabletType,
+      desktopType,
+      constantType,
+    } = props;
     if (typeof window === 'undefined') {
-      return { mobile: true, tablet: false, desktop: false, type: mobileType };
+      const type = constantType && props.type ? props.type : mobileType;
+      return { mobile: true, tablet: false, desktop: false, type };
     }
 
     const mobile = Drawer.matchesMedia(mobileMinWidth, tabletMinWidth - 1);
@@ -314,7 +333,9 @@ export default class Drawer extends PureComponent {
     const desktop = Drawer.matchesMedia(desktopMinWidth);
 
     let type;
-    if (desktop) {
+    if (constantType && props.type && isTemporary(props.type)) {
+      type = props.type;
+    } else if (desktop) {
       type = desktopType;
     } else if (tablet) {
       type = tabletType;
@@ -570,6 +591,7 @@ export default class Drawer extends PureComponent {
       type: propType,
       visible: propVisible,
       renderNode: propRenderNode,
+      constantType,
       defaultVisible,
       defaultMedia,
       mobileType,
