@@ -159,5 +159,38 @@ describe('NavigationDrawer', () => {
       expect(props.onMediaTypeChange).toBeCalledWith(NavigationDrawer.defaultProps.mobileDrawerType, { mobile: true, tablet: false, desktop: false });
       expect(props.onVisibilityToggle).toBeCalledWith(true);
     });
+
+    it('should not attempt to update the drawer type be the media drawer type if constantDrawerType is enabled', () => {
+      const { TEMPORARY } = NavigationDrawer.DrawerTypes;
+      const onMediaTypeChange = jest.fn();
+      renderIntoDocument(<NavigationDrawer constantDrawerType drawerType={TEMPORARY} onMediaTypeChange={onMediaTypeChange} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(0);
+    });
+
+    it('should attempt to update the drawer type to be the media drawer type if the constantDrawerType is not enabled', () => {
+      window.matchMedia = matchesMobile;
+      const { TEMPORARY, PERSISTENT, FULL_HEIGHT } = NavigationDrawer.DrawerTypes;
+      const onMediaTypeChange = jest.fn();
+      const props = {
+        drawerType: TEMPORARY,
+        mobileDrawerType: TEMPORARY,
+        tabletDrawerType: PERSISTENT,
+        desktopDrawerType: FULL_HEIGHT,
+        onMediaTypeChange,
+        constantDrawerType: false,
+      };
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(0);
+
+      window.matchMedia = matchesTablet;
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(1);
+      expect(onMediaTypeChange).toBeCalledWith(PERSISTENT, { mobile: false, tablet: true, desktop: false });
+
+      window.matchMedia = matchesDesktop;
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(2);
+      expect(onMediaTypeChange).toBeCalledWith(FULL_HEIGHT, { mobile: false, tablet: false, desktop: true });
+    });
   });
 });
