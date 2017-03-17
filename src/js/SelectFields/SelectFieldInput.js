@@ -120,6 +120,8 @@ export default class SelectFieldInput extends PureComponent {
       visibleLabel = ((!label || active) && placeholder) || '';
     }
 
+    const labelActive = !!activeLabel || activeLabel === 0;
+
     return (
       <AccessibleFakeInkedButton
         {...props}
@@ -128,8 +130,8 @@ export default class SelectFieldInput extends PureComponent {
         zDepth={below && active ? 1 : 0}
         inkDisabled={!below}
         className={cn('md-select-field', {
-          'md-text': activeLabel,
-          'md-text--secondary': !activeLabel && placeholder,
+          'md-text': !disabled && labelActive,
+          'md-text--secondary': !disabled && !labelActive && placeholder,
           'md-text--disabled': disabled,
         }, className)}
       >
@@ -137,11 +139,11 @@ export default class SelectFieldInput extends PureComponent {
           label={visibleLabel}
           labelClassName={transition}
           className={cn('md-text-field', {
-            'md-select-field--text-field': !below,
-            'md-select-field--btn': below,
             'md-text-field--margin': !below && !label,
             'md-text-field--floating-margin': label,
             'md-text-field--toolbar': toolbar && !below,
+            'md-select-field--text-field': !below,
+            'md-select-field--btn': below,
           })}
         >
           <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
@@ -154,6 +156,7 @@ export default class SelectFieldInput extends PureComponent {
           name={name}
           value={value}
           required={required}
+          disabled={disabled}
         />
       </AccessibleFakeInkedButton>
     );

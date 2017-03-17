@@ -524,17 +524,6 @@ export default class SelectField extends PureComponent {
     return v === value || v === parseInt(value, 10) ? label : '';
   };
 
-  _attemptItemFocus = (index) => {
-    if (index === -1) {
-      return;
-    }
-
-    const item = this._items[index];
-    if (item) {
-      item.focus();
-    }
-  };
-
   _getActive = (props, state) => {
     let activeLabel = '';
     let activeIndex = -1;
@@ -554,6 +543,17 @@ export default class SelectField extends PureComponent {
     }
 
     return { activeLabel, activeIndex };
+  };
+
+  _attemptItemFocus = (index) => {
+    if (index === -1) {
+      return;
+    }
+
+    const item = this._items[index];
+    if (item) {
+      item.focus();
+    }
   };
 
   _setListItem = (item) => {
