@@ -150,6 +150,87 @@ describe('Drawer', () => {
       expect(props.onMediaTypeChange).toBeCalledWith(Drawer.defaultProps.mobileType, { mobile: true, tablet: false, desktop: false });
       expect(props.onVisibilityToggle).toBeCalledWith(true);
     });
+
+    it('should update the overlayActive state correctly on initial mount when defaultVisible', () => {
+      window.matchMedia = matchesMobile;
+      const props = { defaultVisible: true, type: Drawer.DrawerTypes.TEMPORARY };
+      let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(true);
+
+      window.matchMedia = matchesTablet;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(true);
+
+      window.matchMedia = matchesDesktop;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(false);
+    });
+
+    it('should set overlayActive to true on any screen size if the overlay prop is enabled', () => {
+      window.matchMedia = matchesMobile;
+      const props = { defaultVisible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: true };
+      let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(true);
+
+      window.matchMedia = matchesTablet;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(true);
+
+      window.matchMedia = matchesDesktop;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(true);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(true);
+    });
+
+    it('should set overlayActive to false on any screen size if the overlay prop is enabled', () => {
+      window.matchMedia = matchesMobile;
+      const props = { defaultVisible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: false };
+      let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(false);
+
+      window.matchMedia = matchesTablet;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(false);
+
+      window.matchMedia = matchesDesktop;
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
+      expect(drawer.state.overlayActive).toBe(false);
+      drawer = renderIntoDocument(<Drawer {...props} defaultMedia="desktop" />);
+      expect(drawer.state.overlayActive).toBe(false);
+    });
   });
 
   describe('matchesMedia', () => {
