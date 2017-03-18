@@ -7,6 +7,8 @@ import { LayoverPositions, LayoverPositionsEnum } from '../Helpers';
 type template = (rowIndex: number) => string;
 
 interface DataTableProps extends Props {
+  tableStyle?: React.CSSProperties;
+  tableClassName?: string;
   baseId?: IdPropType;
   defaultSelectedRows?: Array<boolean>;
   responsive?: boolean;
