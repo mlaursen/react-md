@@ -1,6 +1,6 @@
 {
   "name": "react-md-documentation",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "",
   "scripts": {
     "prebuild": "rimraf dist && rimraf src/server/themes",

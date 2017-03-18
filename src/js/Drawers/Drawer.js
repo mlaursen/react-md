@@ -276,6 +276,15 @@ export default class Drawer extends PureComponent {
      */
     autocloseAfterInk: PropTypes.bool,
 
+    /**
+     * Boolean if the `type` prop should be constant across all media sizes. This is only valid if the `type` is
+     * one of the temporary types.
+     *
+     * This will basically mean that when attempting to do a media adjustment, it will use the `type` prop instead of
+     * `mobileType`, `tabletType`, and `desktopType` to determine the next drawer type.
+     */
+    constantType: PropTypes.bool.isRequired,
+
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
   };
 
@@ -291,6 +300,7 @@ export default class Drawer extends PureComponent {
     transitionDuration: 300,
     autoclose: true,
     clickableDesktopOverlay: true,
+    constantType: true,
   };
 
   /**
@@ -304,9 +314,18 @@ export default class Drawer extends PureComponent {
    * @return {Object} an object containing the media matches and the current type to use for the drawer.
    */
   static getCurrentMedia(props = Drawer.defaultProps) {
-    const { mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType } = props;
+    const {
+      mobileMinWidth,
+      tabletMinWidth,
+      desktopMinWidth,
+      mobileType,
+      tabletType,
+      desktopType,
+      constantType,
+    } = props;
     if (typeof window === 'undefined') {
-      return { mobile: true, tablet: false, desktop: false, type: mobileType };
+      const type = constantType && props.type ? props.type : mobileType;
+      return { mobile: true, tablet: false, desktop: false, type };
     }
 
     const mobile = Drawer.matchesMedia(mobileMinWidth, tabletMinWidth - 1);
@@ -314,7 +333,9 @@ export default class Drawer extends PureComponent {
     const desktop = Drawer.matchesMedia(desktopMinWidth);
 
     let type;
-    if (desktop) {
+    if (constantType && props.type && isTemporary(props.type)) {
+      type = props.type;
+    } else if (desktop) {
       type = desktopType;
     } else if (tablet) {
       type = tabletType;
@@ -349,7 +370,7 @@ export default class Drawer extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { defaultVisible, defaultMedia } = props;
+    const { defaultVisible, defaultMedia, overlay } = props;
 
     this.state = {
       mobile: defaultMedia === 'mobile',
@@ -375,7 +396,8 @@ export default class Drawer extends PureComponent {
 
     const visible = getField(props, this.state, 'visible');
 
-    this.state.overlayActive = isTemporary(type) && visible && !this.state.desktop;
+    this.state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(type) && !this.state.desktop)
+      && visible;
     this.state.drawerActive = visible;
 
     this._animate = this._animate.bind(this);
@@ -386,9 +408,14 @@ export default class Drawer extends PureComponent {
     this._updateMedia = this._updateMedia.bind(this);
   }
 
+  componentWillMount() {
+    if (typeof window !== 'undefined') {
+      this._updateType(this.props);
+    }
+  }
+
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    this._updateType(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -441,6 +468,7 @@ export default class Drawer extends PureComponent {
     const {
       onMediaTypeChange,
       onVisibilityToggle,
+      overlay,
     } = props;
 
     let state = Drawer.getCurrentMedia(props);
@@ -461,11 +489,9 @@ export default class Drawer extends PureComponent {
         } else if (props.visible) {
           visible = props.visible;
         }
-
-        this._initialFix = false;
       }
-      const prevVisible = getField(props, this.state, 'visible');
 
+      const prevVisible = getField(props, this.state, 'visible');
       if (onVisibilityToggle && (visible !== prevVisible)) {
         onVisibilityToggle(visible);
       }
@@ -473,6 +499,9 @@ export default class Drawer extends PureComponent {
       if (typeof props.visible === 'undefined') {
         state.visible = visible;
       }
+    } else if (this._initialFix && diffMedia) {
+      state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(state.type) && !state.desktop)
+        && getField(props, this.state, 'visible');
     }
 
     if (typeof props.type !== 'undefined') {
@@ -480,6 +509,7 @@ export default class Drawer extends PureComponent {
       state = realState;
     }
 
+    this._initialFix = false;
     this.setState(state);
   }
 
@@ -584,6 +614,7 @@ export default class Drawer extends PureComponent {
       autoclose,
       autocloseAfterInk,
       closeOnNavItemClick,
+      constantType,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
