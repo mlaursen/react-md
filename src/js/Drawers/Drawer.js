@@ -370,7 +370,7 @@ export default class Drawer extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { defaultVisible, defaultMedia } = props;
+    const { defaultVisible, defaultMedia, overlay } = props;
 
     this.state = {
       mobile: defaultMedia === 'mobile',
@@ -396,7 +396,8 @@ export default class Drawer extends PureComponent {
 
     const visible = getField(props, this.state, 'visible');
 
-    this.state.overlayActive = isTemporary(type) && visible && !this.state.desktop;
+    this.state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(type) && !this.state.desktop)
+      && visible;
     this.state.drawerActive = visible;
 
     this._animate = this._animate.bind(this);
@@ -407,9 +408,14 @@ export default class Drawer extends PureComponent {
     this._updateMedia = this._updateMedia.bind(this);
   }
 
+  componentWillMount() {
+    if (typeof window !== 'undefined') {
+      this._updateType(this.props);
+    }
+  }
+
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    this._updateType(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -462,6 +468,7 @@ export default class Drawer extends PureComponent {
     const {
       onMediaTypeChange,
       onVisibilityToggle,
+      overlay,
     } = props;
 
     let state = Drawer.getCurrentMedia(props);
@@ -482,11 +489,9 @@ export default class Drawer extends PureComponent {
         } else if (props.visible) {
           visible = props.visible;
         }
-
-        this._initialFix = false;
       }
-      const prevVisible = getField(props, this.state, 'visible');
 
+      const prevVisible = getField(props, this.state, 'visible');
       if (onVisibilityToggle && (visible !== prevVisible)) {
         onVisibilityToggle(visible);
       }
@@ -494,6 +499,9 @@ export default class Drawer extends PureComponent {
       if (typeof props.visible === 'undefined') {
         state.visible = visible;
       }
+    } else if (this._initialFix && diffMedia) {
+      state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(state.type) && !state.desktop)
+        && getField(props, this.state, 'visible');
     }
 
     if (typeof props.type !== 'undefined') {
@@ -501,6 +509,7 @@ export default class Drawer extends PureComponent {
       state = realState;
     }
 
+    this._initialFix = false;
     this.setState(state);
   }
 

@@ -57,6 +57,18 @@ the [issue for more details](#issues-243).
 - TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
 
 ## March 2017
+### v1.0.9 Released
+
+This was really another patch for drawers. 
+
+##### Changelog
+- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [#291](https://github.com/mlaursen/react-md/issues/291)
+- Fixed the DatePicker's min/max date validation error. [#293](https://github.com/mlaursen/react-md/issues/293)
+- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [#298](https://github.com/mlaursen/react-md/issues/298)
+- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [#299](https://github.com/mlaursen/react-md/issues/299)
+- Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
+re-renders. [#300](https://github.com/mlaursen/react-md/issues/300)
+
 ### v1.0.8 Released
 
 ##### Changelog

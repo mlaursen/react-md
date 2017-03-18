@@ -7,12 +7,23 @@ import {
   findRenderedComponentWithType,
 } from 'react-addons-test-utils';
 
+import matchMedia, { matchesMobile, matchesTablet, matchesDesktop } from '../../../../__mocks__/matchMedia';
 import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../../Drawers/Drawer';
 import Dialog from '../../Dialogs/Dialog';
 import Portal from '../../Helpers/Portal';
 
 describe('NavigationDrawer', () => {
+  beforeEach(() => {
+    matchesMobile.mockClear();
+    matchesTablet.mockClear();
+    matchesDesktop.mockClear();
+  });
+
+  afterAll(() => {
+    window.matchMedia = matchMedia;
+  });
+
   it('should inherit the dialog\'s renderNode context', () => {
     const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
@@ -20,35 +31,18 @@ describe('NavigationDrawer', () => {
   });
 
   it('should not render in the Portal component by default', () => {
-    const MATCH_MEDIA = window.matchMedia;
-    window.matchMedia = jest.fn(() => ({ matches: false }));
+    window.matchMedia = matchesMobile;
     const drawer = mount(<NavigationDrawer />);
     expect(drawer.find(Portal).length).toBe(0);
-
-    window.matchMedia = MATCH_MEDIA;
   });
 
   it('should render in the Portal component if the portal prop is enabled', () => {
+    window.matchMedia = matchesMobile;
     const drawer = mount(<NavigationDrawer portal />);
     expect(drawer.find(Portal).length).toBe(1);
   });
 
   describe('Drawer', () => {
-    const MATCH_MEDIA = window.matchMedia;
-    const matchesMobile = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.mobileMinWidth) !== -1,
-    }));
-    const matchesTablet = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.tabletMinWidth) !== -1,
-    }));
-    const matchesDesktop = jest.fn(query => ({
-      matches: query.indexOf('max') === -1
-        && query.indexOf(Drawer.defaultProps.desktopMinWidth) !== -1,
-    }));
-    afterAll(() => {
-      window.matchMedia = MATCH_MEDIA;
-    });
-
     it('should correctly set the default visibility on mobile devices', () => {
       const props = {
         navItems: [],
