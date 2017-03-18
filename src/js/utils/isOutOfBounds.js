@@ -1,12 +1,9 @@
 import getScreenSize from './getScreenSize';
 
-function isOutHorizontally(fixedTo, child, centered, threshold) {
+function isOutHorizontally(fixedTo, child, threshold) {
   const { left: fixedLeft, right: fixedRight } = fixedTo.getBoundingClientRect();
   const { left: childLeft, right: childRight } = child.getBoundingClientRect();
-  let offset = 0;
-  if (centered) {
-    offset = child.offsetWidth * threshold;
-  }
+  const offset = child.offsetWidth * threshold;
 
   const left = childLeft + offset;
   const right = childRight - offset;
@@ -31,20 +28,19 @@ function isOutVertically(fixedTo, child, toggle, threshold) {
  * @param {Object} fixedTo - The Layover's `fixedTo` prop.
  * @param {Object} child - The Layover's `children` prop as a DOM element.
  * @param {Object} toggle - The Layover's `toggle` prop as a DOM element.
- * @param {boolean} centered - Boolean if the `children` prop has been centered.
  * @param {number} verticalThreshold - The vertical threshold multiplier to apply.
  * @param {number} horizontalThreshold - The horizontal threshold multiplier to apply.
  * @return {boolean} true if the Layover's `fixedTo` prop is considered out of bounds.
  */
-export default function isOutOfBounds(fixedTo, child, toggle, centered, verticalThreshold, horizontalThreshold) {
+export default function isOutOfBounds(fixedTo, child, toggle, verticalThreshold, horizontalThreshold) {
   if (fixedTo === window) {
     return false;
   } else if (fixedTo.x || fixedTo.y) {
     const { x, y } = fixedTo;
     return (!!y && isOutVertically(y, child, toggle, verticalThreshold)) ||
-      (!!x && isOutHorizontally(x, child, centered, horizontalThreshold));
+      (!!x && isOutHorizontally(x, child, horizontalThreshold));
   }
 
   return isOutVertically(fixedTo, child, toggle, verticalThreshold) ||
-    isOutHorizontally(fixedTo, child, centered, horizontalThreshold);
+    isOutHorizontally(fixedTo, child, horizontalThreshold);
 }

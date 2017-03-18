@@ -669,7 +669,7 @@ export default class Layover extends PureComponent {
    * x and y position for the new scroll position.
    */
   _handleTick = () => {
-    const { fixedTo, centered, xThreshold, yThreshold } = this.props;
+    const { fixedTo, xThreshold, yThreshold } = this.props;
     const vp = viewport(this._child);
     if (vp !== true) {
       const fixed = !this._contextRect && this._attemptFix(vp);
@@ -680,7 +680,7 @@ export default class Layover extends PureComponent {
 
       return;
     } else if (
-      isOutOfBounds(fixedTo, this._child, this._toggle, centered, yThreshold, xThreshold)
+      isOutOfBounds(fixedTo, this._child, this._toggle, yThreshold, xThreshold)
     ) {
       this.props.onClose();
       this._ticking = false;

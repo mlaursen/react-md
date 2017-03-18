@@ -17,7 +17,7 @@ describe('isOutOfBounds', () => {
     const child = { getBoundingClientRect };
     const toggle = { getBoundingClientRect };
 
-    expect(isOutOfBounds(window, child, toggle, false, vThresh, hThresh)).toBe(false);
+    expect(isOutOfBounds(window, child, toggle, vThresh, hThresh)).toBe(false);
     expect(getBoundingClientRect.mock.calls.length).toBe(0);
   });
 
@@ -25,7 +25,7 @@ describe('isOutOfBounds', () => {
     const child = { getBoundingClientRect: jest.fn(() => ({})) };
     const toggle = { getBoundingClientRect: jest.fn() };
     const fixedTo = { getBoundingClientRect: jest.fn(() => ({})) };
-    expect(isOutOfBounds(fixedTo, child, toggle, false, vThresh, hThresh)).toBe(false);
+    expect(isOutOfBounds(fixedTo, child, toggle, vThresh, hThresh)).toBe(false);
 
     expect(child.getBoundingClientRect.mock.calls.length).toBe(2);
     expect(toggle.getBoundingClientRect.mock.calls.length).toBe(0);
@@ -39,7 +39,7 @@ describe('isOutOfBounds', () => {
     const child = { getBoundingClientRect: jest.fn(() => ({})) };
     const toggle = { getBoundingClientRect: jest.fn() };
     const fixedTo = { x: { getBoundingClientRect: jest.fn(() => ({})) } };
-    expect(isOutOfBounds(fixedTo, child, toggle, false, vThresh, hThresh)).toBe(false);
+    expect(isOutOfBounds(fixedTo, child, toggle, vThresh, hThresh)).toBe(false);
 
     expect(child.getBoundingClientRect.mock.calls.length).toBe(1);
     expect(toggle.getBoundingClientRect.mock.calls.length).toBe(0);
@@ -52,7 +52,7 @@ describe('isOutOfBounds', () => {
     const child = { getBoundingClientRect: jest.fn(() => ({})) };
     const toggle = { getBoundingClientRect: jest.fn() };
     const fixedTo = { y: { getBoundingClientRect: jest.fn(() => ({})) } };
-    expect(isOutOfBounds(fixedTo, child, toggle, false, vThresh, hThresh)).toBe(false);
+    expect(isOutOfBounds(fixedTo, child, toggle, vThresh, hThresh)).toBe(false);
 
     expect(child.getBoundingClientRect.mock.calls.length).toBe(1);
     expect(toggle.getBoundingClientRect.mock.calls.length).toBe(0);
@@ -68,7 +68,7 @@ describe('isOutOfBounds', () => {
       x: { getBoundingClientRect: jest.fn(() => ({})) },
       y: { getBoundingClientRect: jest.fn(() => ({})) },
     };
-    expect(isOutOfBounds(fixedTo, child, toggle, false, vThresh, hThresh)).toBe(false);
+    expect(isOutOfBounds(fixedTo, child, toggle, vThresh, hThresh)).toBe(false);
 
     expect(child.getBoundingClientRect.mock.calls.length).toBe(2);
     expect(toggle.getBoundingClientRect.mock.calls.length).toBe(0);
