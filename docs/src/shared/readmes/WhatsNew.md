@@ -1,4 +1,7 @@
 ## March 2017
+### v1.0.10 Released
+The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. Republished correctly with `npm`.
+
 ### v1.0.9 Released
 
 This was really another patch for drawers. 
