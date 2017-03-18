@@ -600,6 +600,7 @@ export default class Drawer extends PureComponent {
       type: propType,
       visible: propVisible,
       renderNode: propRenderNode,
+      constantType,
       defaultVisible,
       defaultMedia,
       mobileType,
