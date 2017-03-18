@@ -243,9 +243,53 @@ $md-data-table-contextual-fallback-color: null !default;
 
     &--responsive {
       overflow-x: auto;
+      overflow-y: hidden;
+
+      &-header-placeholder {
+        display: table;
+        padding-top: 56px;
+        position: relative;
+      }
+
+      &-vertical-scroll {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
 
       .md-data-table {
         width: 100%;
+      }
+
+      tr > .md-table-column--header,
+      tr > .md-table-checkbox--header {
+        height: 0;
+        line-height: 0;
+        padding-bottom: 0;
+        padding-top: 0;
+        visibility: hidden;
+        white-space: nowrap;
+      }
+
+      tr > .md-table-column--header > *,
+      tr > .md-table-checkbox--header > * {
+        display: none;
+      }
+
+      tr > .md-table-column--header > .md-table-column--responsive-header,
+      tr > .md-table-checkbox--header > .md-table-checkbox--responsive-header {
+        display: block;
+        line-height: normal;
+        position: absolute;
+        top: 0;
+        visibility: visible;
+      }
+
+      .md-table-column--responsive-header .md-table-column--header {
+        padding-top: 20px;
+      }
+
+      .md-table-checkbox--responsive-header .md-selection-control-container {
+        height: 56px;
       }
     }
 

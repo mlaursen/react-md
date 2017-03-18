@@ -213,6 +213,17 @@ export default class DataTable extends PureComponent {
     delete props.defaultSelectedRows;
     delete props.baseId;
     delete props.onRowToggle;
+    const {
+      width,
+      height,
+      ...style
+    } = props.style || {};
+    delete props.style;
+    if (!responsive) {
+      style.width = width;
+      style.height = height;
+    }
+    props.style = style;
 
     const table = (
       <table
@@ -225,6 +236,14 @@ export default class DataTable extends PureComponent {
       </table>
     );
 
-    return responsive ? <div className="md-data-table--responsive">{table}</div> : table;
+    return responsive ? (
+      <div className="md-data-table--responsive" style={{ width }}>
+        <div className="md-data-table--responsive-header-placeholder">
+          <div className="md-data-table--responsive-vertical-scroll" style={{ height: height - 56 }}>
+            {table}
+          </div>
+        </div>
+      </div>
+    ) : table;
   }
 }

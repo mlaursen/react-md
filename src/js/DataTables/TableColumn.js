@@ -135,26 +135,38 @@ class TableColumn extends PureComponent {
       );
     }
 
+    const _className = cn({
+      'md-table-column--header': header,
+      'md-table-column--data': !header,
+      'md-table-column--adjusted': adjusted,
+      'md-table-column--sortable md-pointer--hover': sortable,
+      'md-table-column--relative': !__fixedColumn && tooltip,
+      'md-table-column--select-field': selectColumnHeader,
+      'md-text': !header,
+      'md-text--secondary': header,
+      'md-text-left': !numeric,
+      'md-text-right': numeric,
+    }, className);
+
+    let responsiveHelper;
+    if (header) {
+      responsiveHelper = (
+        <div className="md-table-column--responsive-header">
+          <div className={_className}>
+            {tooltip}
+            {displayedChildren}
+          </div>
+        </div>
+      );
+    }
+
     const Component = header ? 'th' : 'td';
 
     return (
-      <Component
-        {...props}
-        className={cn('md-table-column', {
-          'md-table-column--header': header,
-          'md-table-column--data': !header,
-          'md-table-column--adjusted': adjusted,
-          'md-table-column--sortable md-pointer--hover': sortable,
-          'md-table-column--relative': !__fixedColumn && tooltip,
-          'md-table-column--select-field': selectColumnHeader,
-          'md-text': !header,
-          'md-text--secondary': header,
-          'md-text-left': !numeric,
-          'md-text-right': numeric,
-        }, className)}
-      >
+      <Component {...props} className={cn('md-table-column', _className)}>
         {tooltip}
         {displayedChildren}
+        {responsiveHelper}
       </Component>
     );
   }
