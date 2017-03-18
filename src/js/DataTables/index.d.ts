@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Props, IdPropType } from '../index';
 import { InjectedTooltipProps } from '../Tooltips';
 import { TextFieldTypes } from '../TextFields';
-import { LayoverPositions, LayoverPositionsEnum } from '../Helpers';
+import { SharedLayoverProps, LayoverPositions, LayoverPositionsEnum } from '../Helpers';
 
 type template = (rowIndex: number) => string;
 
@@ -55,42 +55,63 @@ interface TableColumnProps extends Props, InjectedTooltipProps {
   scope?: 'row' | 'col';
 }
 
-interface EditDialogColumnProps extends Props {
-  id?: number | string;
+interface EditDialogColumnProps extends SharedLayoverProps {
+  dialogId?: IdPropType;
+  layoverStyle?: React.CSSProperties;
+  layoverClassName?: string;
   dialogStyle?: React.CSSProperties;
   dialogClassName?: string;
+  dialogContentStyle?: React.CSSProperties;
+  dialogContentClassName?: string;
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
-  transitionDuration?: number;
   disabled?: boolean;
-  maxLength?: number;
+  inline?: boolean;
   value?: number | string;
   defaultValue?: number | string;
   onChange?: (value: number | string, event: React.FormEvent<HTMLElement>) => void;
-  large?: boolean;
-  title?: string;
-  onOkClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
-  onCancelClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
-  okLabel?: string;
-  cancelLabel?: string;
-  onOutsideClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  okOnOutsideClick?: boolean;
-  label?: React.ReactNode;
+  label?: string;
   placeholder?: string;
-  inline?: boolean;
+  large?: boolean;
+  title?: React.ReactNode;
+  maxLength?: number;
   inlineIconChildren?: React.ReactNode;
   inlineIconClassName?: string;
   noIcon?: boolean;
-  header?: boolean;
+  onOkClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
+  okLabel?: React.ReactNode;
+  okPrimary?: boolean;
+  okSecondary?: boolean;
+  onCancelClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
+  cancelLabel?: React.ReactNode;
+  cancelPrimary?: boolean;
+  cancelSecondary?: boolean;
+  okOnOutsideClick?: boolean;
+  onOutsideClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  closeOnOutsideClick?: boolean;
   type?: TextFieldTypes;
+  animationPosition?: LayoverPositions | LayoverPositionsEnum;
+
+  /**
+   * @deprecated
+   */
   enforceMinWidth?: boolean;
+
+  /**
+   * @deprecated
+   */
   scrollThreshold?: number;
+
+  /**
+   * @deprecated
+   */
+  transitionDuration?: number;
 }
 
 interface SelectFieldColumnProps extends Props {
-  id?: number | string;
+  id?: IdPropType;
   wrapperStyle?: React.CSSProperties;
   wrapperClassName?: string;
   menuStyle?: React.CSSProperties;

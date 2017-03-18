@@ -34,6 +34,11 @@ $md-data-table-include-table-card-headers: true !default;
 /// @type Number
 $md-edit-dialog-min-width: 300px !default;
 
+/// The amount of padding to apply to the `AccessibleFakeButton` that gets used in the
+/// edit dialog column to trigger the dialog to appear.
+/// @type Number
+$md-edit-dialog-label-padding: 16px 0 !default;
+
 /// For some reason, the edit dialogs on mobile devices don't position themselves like tablets
 /// and desktop screens so this value is required for positioning the dialog from the right edge
 /// of the screen.
@@ -41,23 +46,23 @@ $md-edit-dialog-min-width: 300px !default;
 $md-data-table-edit-dialog-mobile-right: $md-grid-phone-margin !default;
 
 /// The default left/right padding for a `TableColumn`.
-/// @type String
+/// @type Number
 $md-data-table-padding: 24px !default;
 
 /// The minimum distance between a cell's content and the next cell.
-/// @type String
+/// @type Number
 $md-data-table-min-padding: 56px !default;
 
 /// The font size for content inside of the `TableBody` component.
-/// @type String
+/// @type Number
 $md-data-table-content-font-size: 13px !default;
 
 /// The font size for the content inside of the `TableHeader` component.
-/// @type String
+/// @type Number
 $md-data-table-header-font-size: 12px !default;
 
 /// The height for the `TableHeader`'s row.
-/// @type String
+/// @type Number
 $md-data-table-header-height: 56px !default;
 
 /// The font size for a font-icon in the `md-table-column--header`.
@@ -67,6 +72,10 @@ $md-data-table-header-icon-font-size: 16px !default;
 /// The height for a column in a data table.
 /// @type Number
 $md-data-table-column-height: 48px !default;
+
+/// The border size to use for each row.
+/// @type Number
+$md-data-table-border-size: 1px !default;
 
 /// The hover color for a row when using the light theme.
 /// @type Color
@@ -150,17 +159,9 @@ $md-data-table-contextual-fallback-color: null !default;
   $include-pagination: $md-data-table-include-pagination,
   $include-table-card-headers: $md-data-table-include-table-card-headers
 ) {
-  @if $include-media {
-    @include react-md-data-tables-media($include-edit-dialog);
-  }
-
   @include react-md-data-table($include-plain);
   @include react-md-data-table-rows($light-theme);
   @include react-md-data-table-column;
-
-  @if $include-select-fields or $include-edit-dialog {
-    @include react-md-data-table-fixed-columns;
-  }
 
   @if $include-checkboxes {
     @include react-md-data-table-checkboxes;
@@ -273,7 +274,7 @@ $md-data-table-contextual-fallback-color: null !default;
 @mixin react-md-data-table-rows($light-theme: $md-light-theme) {
   thead .md-table-row,
   tbody .md-table-row:not(:last-child) {
-    border-bottom: 1px solid get-color('divider', $light-theme);
+    border-bottom: $md-data-table-border-size solid get-color('divider', $light-theme);
   }
 
   tbody .md-table-row {
@@ -351,51 +352,25 @@ $md-data-table-contextual-fallback-color: null !default;
 /// Creates the styles for edit dialogs in a data table.
 @mixin react-md-data-table-edit-dialogs {
   .md-edit-dialog-column {
-    padding-right: 0;
+    min-width: $md-edit-dialog-min-width;
   }
 
   .md-edit-dialog {
-    left: 0;
-    min-height: $md-data-table-column-height;
-    padding-right: $md-data-table-padding;
-    top: 0;
-    transition-duration: .3s;
-    transition-property: background, box-shadow, padding;
-
-    &--min-width {
-      min-width: $md-edit-dialog-min-width;
+    &__label {
+      padding: $md-edit-dialog-label-padding;
     }
 
-    &--active {
-      @include md-box-shadow(1);
-
-      padding: $md-data-table-padding;
+    &__content {
+      padding: $md-dialog-padding;
       padding-bottom: 0;
-      z-index: 2;
-    }
 
-    &--inline {
-      .md-text-field-container--input-block {
-        padding-bottom: 12px;
-        padding-top: 12px;
+      &:not(:first-child) {
+        padding-top: 0;
       }
     }
 
-    .md-title {
-      margin: 0;
-    }
-
-    .md-dialog-footer {
-      margin-right: -$md-data-table-padding;
-    }
-
-
-    .md-text-field-icon-container {
-      align-items: center;
-    }
-
-    .md-text-field-icon {
-      margin-bottom: 0;
+    &__blocked-field {
+      height: $md-data-table-column-height - $md-data-table-border-size;
     }
   }
 }
@@ -408,7 +383,7 @@ $md-data-table-contextual-fallback-color: null !default;
 
   .md-select-field-column {
     .md-select-field--btn {
-      height: $md-data-table-column-height;
+      height: $md-data-table-column-height - $md-data-table-border-size;
     }
   }
 }
@@ -495,34 +470,6 @@ $md-data-table-contextual-fallback-color: null !default;
       transform: translate3d(0, -100%, 0);
       transition-duration: $md-transition-time;
       transition-property: transform;
-    }
-  }
-}
-
-@mixin react-md-data-table-fixed-columns {
-  .md-table-column--fixed {
-    position: absolute;
-  }
-
-  .md-table-column--fixed-active {
-    z-index: 1;
-  }
-}
-
-/// Creates the media queries and styles for data tables. If the edit dialog column is not included, nothing
-/// will be created.
-///
-/// @param {Boolean} include-edit-dialog [$md-data-table-include-edit-dialog] - Boolean if the edit dialog
-///     should be included.
-/// @group data-tables, media
-@mixin react-md-data-tables-media($include-edit-dialog: $md-data-table-include-edit-dialog) {
-  @if $include-edit-dialog {
-    @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
-      // Remove the default padding of 20px and make it the same height as a normal row
-      .md-edit-dialog-column .md-text-field-container--input-block {
-        padding-bottom: 14.5px;
-        padding-top: 14.5px;
-      }
     }
   }
 }
