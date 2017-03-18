@@ -169,7 +169,7 @@ export default class FocusContainer extends PureComponent {
       return;
     }
 
-    const { focusOnMount } = this.props;
+    const { focusOnMount, containFocus } = this.props;
     this._container = findDOMNode(containerRef);
     this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
       .filter(el => el.tabIndex !== -1);
@@ -178,7 +178,9 @@ export default class FocusContainer extends PureComponent {
       this._attemptInitialFocus();
     }
 
-    this._enableFocusTrap();
+    if (containFocus) {
+      this._enableFocusTrap();
+    }
   }
 
   _handleFocus(e) {
