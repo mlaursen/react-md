@@ -366,7 +366,8 @@ export default class SelectField extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value || this.props.menuItems !== nextProps.menuItems) {
-      this.setState({ activeLabel: this._getActiveLabel(nextProps, nextProps.value) });
+      const value = getField(nextProps, this.state, 'value');
+      this.setState({ activeLabel: this._getActiveLabel(nextProps, value) });
     }
   }
 
