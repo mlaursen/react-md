@@ -304,17 +304,6 @@ export default class Layover extends PureComponent {
     this._initialLeft = null;
     this._childLeft = null;
     this._childRight = null;
-
-    this._init = this._init.bind(this);
-    this._attemptFix = this._attemptFix.bind(this);
-    this._handleTick = this._handleTick.bind(this);
-    this._initialFix = this._initialFix.bind(this);
-    this._fixateChild = this._fixateChild.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._mergeStyles = this._mergeStyles.bind(this);
-    this._handleScroll = this._handleScroll.bind(this);
-    this._handleContextMenu = this._handleContextMenu.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
 
   componentDidMount() {
@@ -422,7 +411,7 @@ export default class Layover extends PureComponent {
    * defined, the `window` still needs to have a scroll listener to make sure it
    * doesn't go off screen.
    */
-  _manageFixedToListener(fixedTo, add) {
+  _manageFixedToListener = (fixedTo, add) => {
     const listener = `${add ? 'add' : 'remove'}EventListener`;
     if (fixedTo !== window && (fixedTo.x || fixedTo.y)) {
       const { x, y } = fixedTo;
@@ -449,25 +438,23 @@ export default class Layover extends PureComponent {
         window[listener]('scroll', this._handleScroll);
       }
     }
-  }
+  };
 
   /**
    * This is just a simple utility function to merge the existing state styles,
    * any new styles, and the children's styles (with most precidence).
    */
-  _mergeStyles(style) {
-    return {
-      ...this.state.styles,
-      ...style,
-      ...React.Children.only(this.props.children).props.style,
-    };
-  }
+  _mergeStyles = (style) => ({
+    ...this.state.styles,
+    ...style,
+    ...React.Children.only(this.props.children).props.style,
+  });
 
   /**
    * This initializes the popover with the default styles, and the intitial bookkeeping
    * variables to update while it is open.
    */
-  _init(fixedTo, anchor, sameWidth, centered, rect) {
+  _init = (fixedTo, anchor, sameWidth, centered, rect) => {
     const { top, left, right, height, width } = rect;
     let x;
     let y;
@@ -528,9 +515,9 @@ export default class Layover extends PureComponent {
     });
 
     this.setState({ styles });
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._toggle = null;
     if (this._container) {
@@ -559,14 +546,14 @@ export default class Layover extends PureComponent {
         node = node.offsetParent;
       }
     }
-  }
+  };
 
   /**
    * Attempts to fix the child by setting it's location ONLY for the entire
    * page viewport. I didn't bother attempting to fix it for additional fixedTo
    * stuff.
    */
-  _initialFix() {
+  _initialFix = () => {
     // Need to make a clone that disables any transitions to calculate positioning stuff
     const clone = this._child.cloneNode(true);
     clone.style.webkitTransform = 'none';
@@ -632,13 +619,13 @@ export default class Layover extends PureComponent {
 
       this.setState({ styles: this._mergeStyles({ top: this._initialTop, left: this._initialLeft }) });
     }
-  }
+  };
 
   /**
    * When the child is initially mounted, it will update the styles for centering
    * the element (if enabled) and then attempt to fix any viewport issues.
    */
-  _fixateChild(child) {
+  _fixateChild = (child) => {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
@@ -666,22 +653,22 @@ export default class Layover extends PureComponent {
     } else if (this._childComponent && typeof this._childComponent.ref === 'function') {
       this._childComponent.ref(child);
     }
-  }
+  };
 
-  _handleScroll() {
+  _handleScroll = () => {
     if (!this._ticking) {
       requestAnimationFrame(this._handleTick);
     }
 
     this._ticking = true;
-  }
+  };
 
   /**
    * This is the meat of the stuff. Do lots of viewport / container checks to make sure
    * the element should still be visible. If it is still visible, it will update its
    * x and y position for the new scroll position.
    */
-  _handleTick() {
+  _handleTick = () => {
     const { fixedTo, centered, xThreshold, yThreshold } = this.props;
     const vp = viewport(this._child);
     if (vp !== true) {
@@ -750,16 +737,17 @@ export default class Layover extends PureComponent {
     } else {
       this._ticking = false;
     }
-  }
+  };
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
+
     if (
       (this._contextRect && this._child && !this._child.contains(e.target)) ||
       (this._container && !this._container.contains(e.target))
     ) {
       this.props.onClose(e);
     }
-  }
+  };
 
   /**
    * Attempts to fix a viewport problem by swapping the positioning. This only does
@@ -768,7 +756,7 @@ export default class Layover extends PureComponent {
    * @param {Object} vp - The result of the viewport function
    * @return {boolean} true if the fix was able to be done and successful.
    */
-  _attemptFix(vp) {
+  _attemptFix = (vp) => {
     const { x, y } = this.props.anchor;
     const centered = x === HorizontalAnchors.CENTER && y === VerticalAnchors.CENTER && this.props.centered;
     if (centered || (this._lastYFix === 'top' && !vp.top) || (this._lastYFix === 'bottom' && !vp.bottom)) {
@@ -808,9 +796,9 @@ export default class Layover extends PureComponent {
     }
 
     return false;
-  }
+  };
 
-  _handleContextMenu(e) {
+  _handleContextMenu = (e) => {
     const { onContextMenu, preventContextMenu, fixedTo, anchor, sameWidth, centered, visible } = this.props;
     if (!onContextMenu) {
       return;
@@ -827,7 +815,7 @@ export default class Layover extends PureComponent {
     if (visible) {
       this._init(fixedTo, anchor, sameWidth, centered, this._contextRect);
     }
-  }
+  };
 
   render() {
     const {
