@@ -615,7 +615,6 @@ export default class Drawer extends PureComponent {
       autoclose,
       autocloseAfterInk,
       closeOnNavItemClick,
-      constantType,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
