@@ -38,7 +38,7 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
     background: transparent;
     position: relative;
 
-    &:focus {
+    &--no-outline {
       outline: none;
     }
   }

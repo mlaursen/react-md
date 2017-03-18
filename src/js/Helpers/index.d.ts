@@ -4,6 +4,7 @@ import { IdPropType, Props } from '../index';
 import { InjectedInkProps } from '../Inks';
 
 interface AccessibleFakeButtonProps {
+  noFocusOutline?: boolean;
   tabbedClassName?: string;
   onTabFocus?: (event: Event) => void;
   component?: Function | string;

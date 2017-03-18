@@ -740,7 +740,6 @@ export default class Layover extends PureComponent {
   };
 
   _handleOutsideClick = (e) => {
-
     if (
       (this._contextRect && this._child && !this._child.contains(e.target)) ||
       (this._container && !this._container.contains(e.target))
