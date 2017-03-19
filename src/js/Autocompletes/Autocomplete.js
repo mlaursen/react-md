@@ -12,6 +12,9 @@ import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
@@ -22,9 +25,9 @@ import TextField from '../TextFields/TextField';
  * or filtering.
  */
 export default class Autocomplete extends PureComponent {
-  static Positions = Menu.Positions;
   static HorizontalAnchors = Menu.HorizontalAnchors;
   static VerticalAnchors = Menu.VerticalAnchors;
+  static Positions = Menu.Positions;
   static fuzzyFilter = fuzzyFilter;
   static caseInsensitiveFilter = caseInsensitiveFilter;
   static findIgnoreCase = findIgnoreCase;
@@ -319,21 +322,21 @@ export default class Autocomplete extends PureComponent {
      *
      * @see {@link Helpers/Layovers#anchor}
      */
-    anchor: Menu.propTypes.anchor,
+    anchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
      * @see {@link Helpers/Layovers#animationPosition}
      */
-    position: Menu.propTypes.position,
+    position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
      * @see {@link Helpers/Layovers#fixedTo}
      */
-    fixedTo: Menu.propTypes.fixedTo,
+    fixedTo: fixedToShape,
 
     /**
      * Boolean if the menu's list should appear horizontally instead of vertically.
@@ -403,7 +406,6 @@ export default class Autocomplete extends PureComponent {
       y: Menu.VerticalAnchors.BOTTOM,
     },
     autocompleteWithLabel: false,
-    fixedTo: typeof window !== 'undefined' ? window : {},
     position: Menu.Positions.BELOW,
     sameWidth: true,
     offset: 0,

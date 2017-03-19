@@ -6,6 +6,8 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import { TAB } from '../constants/keyCodes';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
 import Collapser from '../FontIcons/Collapser';
@@ -294,17 +296,8 @@ export default class ListItem extends PureComponent {
       PropTypes.string,
     ]),
     cascadingMenu: PropTypes.bool,
-    cascadingAnchor: PropTypes.shape({
-      x: PropTypes.string,
-      y: PropTypes.string,
-    }),
-    cascadingFixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]),
+    cascadingAnchor: anchorShape,
+    cascadingFixedTo: fixedToShape,
   };
 
   constructor(props) {

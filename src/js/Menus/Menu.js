@@ -7,6 +7,9 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import { ENTER } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import List from '../Lists/List';
 import Layover from '../Helpers/Layover';
 
@@ -17,7 +20,6 @@ import Layover from '../Helpers/Layover';
 export default class Menu extends PureComponent {
   static HorizontalAnchors = Layover.HorizontalAnchors;
   static VerticalAnchors = Layover.VerticalAnchors;
-
   static Positions = {
     // Can't do ...Layover.Positions since it triggers the get for CONTEXT
     TOP_LEFT: Layover.Positions.TOP_LEFT,
@@ -97,14 +99,14 @@ export default class Menu extends PureComponent {
      *
      * @see {@link Helpers/Layovers#anchor}
      */
-    anchor: Layover.propTypes.anchor,
+    anchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
      * @see {@link Helpers/Layovers#animationPosition}
      */
-    position: Layover.propTypes.animationPosition,
+    position: positionShape,
 
     /**
      * This is the component/element that should toggle the menu open.
@@ -118,7 +120,7 @@ export default class Menu extends PureComponent {
      *
      * @see {@link Helpers/Layovers#fixedTo}
      */
-    fixedTo: Layover.propTypes.fixedTo,
+    fixedTo: fixedToShape,
 
     /**
      * Any additional props that should be applied to the list in the menu. This is really used
@@ -309,10 +311,7 @@ export default class Menu extends PureComponent {
       PropTypes.number,
     ]),
     cascadingMenu: PropTypes.bool,
-    cascadingAnchor: PropTypes.shape({
-      x: PropTypes.string,
-      y: PropTypes.string,
-    }),
+    cascadingAnchor: anchorShape,
     cascadingZDepth: PropTypes.number,
   };
 
@@ -323,17 +322,8 @@ export default class Menu extends PureComponent {
       PropTypes.number,
     ]),
     cascadingMenu: PropTypes.bool,
-    cascadingFixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]),
-    cascadingAnchor: PropTypes.shape({
-      x: PropTypes.string,
-      y: PropTypes.string,
-    }),
+    cascadingFixedTo: fixedToShape,
+    cascadingAnchor: anchorShape,
     cascadingZDepth: PropTypes.number,
   };
 

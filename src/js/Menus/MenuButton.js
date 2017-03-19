@@ -4,6 +4,9 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import controlled from '../utils/PropTypes/controlled';
 import mapToListParts from '../utils/mapToListParts';
 import getField from '../utils/getField';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import Button from '../Buttons/Button';
 import Menu from './Menu';
 
@@ -166,50 +169,21 @@ export default class MenuButton extends PureComponent {
      *
      * @see {@link Helpers/Layovers#anchor}
      */
-    anchor: PropTypes.shape({
-      x: PropTypes.oneOf([
-        MenuButton.HorizontalAnchors.LEFT,
-        MenuButton.HorizontalAnchors.INNER_LEFT,
-        MenuButton.HorizontalAnchors.CENTER,
-        MenuButton.HorizontalAnchors.RIGHT,
-        MenuButton.HorizontalAnchors.INNER_RIGHT,
-      ]).isRequired,
-      y: PropTypes.oneOf([
-        MenuButton.VerticalAnchors.TOP,
-        MenuButton.VerticalAnchors.CENTER,
-        MenuButton.VerticalAnchors.OVERLAP,
-        MenuButton.VerticalAnchors.BOTTOM,
-      ]).isRequired,
-    }),
+    anchor: anchorShape,
 
     /**
      * This is how the menu's list is fixed to the toggle.
      *
      * @see {@link Menus/Menu#fixedTo}
      */
-    fixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]),
+    fixedTo: fixedToShape,
 
     /**
      * This is the animation position for the menu's list.
      *
      * @see {@link Menus/Menu#position}
      */
-    position: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.oneOf([
-        MenuButton.Positions.TOP_LEFT,
-        MenuButton.Positions.TOP_RIGHT,
-        MenuButton.Positions.BOTTOM_LEFT,
-        MenuButton.Positions.BOTTOM_RIGHT,
-        MenuButton.Positions.BELOW,
-      ]),
-    ]),
+    position: positionShape,
 
     /**
      * Boolean if the menu's list should gan the cascading styles.
@@ -230,21 +204,7 @@ export default class MenuButton extends PureComponent {
      *
      * @see {@link Menus/Menu#cascadingAnchor}
      */
-    cascadingAnchor: PropTypes.shape({
-      x: PropTypes.oneOf([
-        MenuButton.HorizontalAnchors.LEFT,
-        MenuButton.HorizontalAnchors.INNER_LEFT,
-        MenuButton.HorizontalAnchors.CENTER,
-        MenuButton.HorizontalAnchors.RIGHT,
-        MenuButton.HorizontalAnchors.INNER_RIGHT,
-      ]).isRequired,
-      y: PropTypes.oneOf([
-        MenuButton.VerticalAnchors.TOP,
-        MenuButton.VerticalAnchors.CENTER,
-        MenuButton.VerticalAnchors.OVERLAP,
-        MenuButton.VerticalAnchors.BOTTOM,
-      ]).isRequired,
-    }),
+    cascadingAnchor: anchorShape,
 
     /**
      * Boolean if the menu should display as a full width container. This will *not* update the button
@@ -396,10 +356,7 @@ export default class MenuButton extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-
-
       isOpen, // deprecated
-
       /* eslint-disable no-unused-vars */
       buttonId: propButtonId,
       visible: propVisible,

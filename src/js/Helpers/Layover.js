@@ -3,26 +3,14 @@ import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
-import LayoverPositions from '../constants/LayoverPositions';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import getSelectedTextPosition from '../utils/getSelectedTextPosition';
 import getScroll from '../utils/getScroll';
 import viewport from '../utils/viewport';
 import isOutOfBounds from '../utils/isOutOfBounds';
-
-const HorizontalAnchors = {
-  LEFT: 'left',
-  INNER_LEFT: 'inner left',
-  CENTER: 'center',
-  RIGHT: 'right',
-  INNER_RIGHT: 'inner right',
-};
-const VerticalAnchors = {
-  TOP: 'top',
-  CENTER: 'center',
-  OVERLAP: 'overlap',
-  BOTTOM: 'bottom',
-};
+import anchorShape, { HorizontalAnchors, VerticalAnchors } from './anchorShape';
+import positionShape, { Positions } from './positionShape';
+import fixedToShape from './fixedToShape';
 
 /**
  * The Layover component is used to keep a component fixed to another component
@@ -32,20 +20,9 @@ const VerticalAnchors = {
  * > NOTE: Don't look at source code. Plz.
  */
 export default class Layover extends PureComponent {
-  /**
-   * The animation positions for the layover child.
-   */
-  static Positions = LayoverPositions;
-
-  /**
-   * The horizontal anchor enum.
-   */
   static HorizontalAnchors = HorizontalAnchors;
-
-  /**
-   * The vertical anchor enum.
-   */
   static VerticalAnchors = VerticalAnchors;
+  static Positions = Positions;
 
   static propTypes = {
     /**
@@ -83,13 +60,7 @@ export default class Layover extends PureComponent {
      * If the component is no longer considered to be in view after scrolling, the `onClose`
      * prop will be called.
      */
-    fixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]).isRequired,
+    fixedTo: fixedToShape.isRequired,
 
     /**
      * The renderable item that causes the Layover to become visible. This _should_
@@ -220,36 +191,13 @@ export default class Layover extends PureComponent {
      * Layover.VerticalAnchors.BOTTOM
      * ```
      */
-    anchor: PropTypes.shape({
-      x: PropTypes.oneOf([
-        HorizontalAnchors.LEFT,
-        HorizontalAnchors.INNER_LEFT,
-        HorizontalAnchors.CENTER,
-        HorizontalAnchors.RIGHT,
-        HorizontalAnchors.INNER_RIGHT,
-      ]).isRequired,
-      y: PropTypes.oneOf([
-        VerticalAnchors.TOP,
-        VerticalAnchors.CENTER,
-        VerticalAnchors.OVERLAP,
-        VerticalAnchors.BOTTOM,
-      ]).isRequired,
-    }).isRequired,
+    anchor: anchorShape.isRequired,
 
     /**
      * This is the position that the children should animate from. It directly ties into
      * the `$md-layover-child-positions` Sass variable.
      */
-    animationPosition: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.oneOf([
-        LayoverPositions.TOP_LEFT,
-        LayoverPositions.TOP_RIGHT,
-        LayoverPositions.BOTTOM_LEFT,
-        LayoverPositions.BOTTOM_RIGHT,
-        LayoverPositions.BELOW,
-      ]),
-    ]).isRequired,
+    animationPosition: positionShape.isRequired,
 
     /**
      * If you  would the the layover to interact as a context menu, provide this prop. It will
@@ -273,7 +221,7 @@ export default class Layover extends PureComponent {
       x: Layover.HorizontalAnchors.INNER_LEFT,
       y: Layover.VerticalAnchors.OVERLAP,
     },
-    animationPosition: LayoverPositions.BELOW,
+    animationPosition: Layover.Positions.BELOW,
     component: 'div',
     fixedTo: typeof window !== 'undefined' ? window : {},
     toggleQuery: '.md-text-field-container,button,*[role="button"]',

@@ -1,10 +1,11 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import Subheader from '../Subheaders';
-
 import deprecated from 'react-prop-types/lib/deprecated';
+
 import getField from '../utils/getField';
+import fixedToShape from '../Helpers/fixedToShape';
+import Subheader from '../Subheaders';
 
 /**
  * Lists present multiple line items vertically as a single continuous element.
@@ -44,13 +45,7 @@ export default class List extends PureComponent {
   static childContextTypes = {
     listLevel: PropTypes.number,
     cascadingMenu: PropTypes.bool,
-    cascadingFixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]),
+    cascadingFixedTo: fixedToShape,
     cascadingZDepth: PropTypes.number,
   };
 

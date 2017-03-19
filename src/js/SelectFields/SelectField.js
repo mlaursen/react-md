@@ -9,6 +9,9 @@ import omit from '../utils/omit';
 import getField from '../utils/getField';
 import isBetween from '../utils/NumberUtils/isBetween';
 import controlled from '../utils/PropTypes/controlled';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import Menu from '../Menus/Menu';
 import ListItem from '../Lists/ListItem';
 
@@ -18,9 +21,9 @@ const MOBILE_LIST_PADDING = 8;
 const VALID_LIST_ITEM_PROPS = Object.keys(ListItem.propTypes);
 
 export default class SelectField extends PureComponent {
-  static Positions = Menu.Positions;
   static HorizontalAnchors = Menu.HorizontalAnchors;
   static VerticalAnchors = Menu.VerticalAnchors;
+  static Positions = Menu.Positions;
 
   static propTypes = {
     /**
@@ -331,21 +334,21 @@ export default class SelectField extends PureComponent {
      *
      * @see {@link Helpers/Layovers#anchor}
      */
-    anchor: Menu.propTypes.anchor,
+    anchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
      *
      * @see {@link Helpers/Layovers#animationPosition}
      */
-    position: Menu.propTypes.position,
+    position: positionShape,
 
     /**
      * This is how the menu's list will be "fixed" to the `toggle` component.
      *
      * @see {@link Helpers/Layovers#fixedTo}
      */
-    fixedTo: Menu.propTypes.fixedTo,
+    fixedTo: fixedToShape,
 
     /**
      * Boolean if the menu's list should appear horizontally instead of vertically.

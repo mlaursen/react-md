@@ -6,6 +6,9 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import Layover from '../Helpers/Layover';
 import FontIcon from '../FontIcons/FontIcon';
 import TextField from '../TextFields/TextField';
@@ -322,23 +325,23 @@ export default class EditDialogColumn extends PureComponent {
      *
      * @see {@link Helpers/Layovers#anchor}
      */
-    anchor: PropTypes.object,
+    anchor: anchorShape,
 
     /**
      * This is the animation position to use for the dialog.
      *
      * @see {@link Helpers/Layovers#animationPosition}
      */
-    animationPosition: Layover.propTypes.animationPosition,
+    animationPosition: positionShape,
 
     /**
-     * This is how the dialog should be fixd within the table. When this is omitted, it will
+     * This is how the dialog should be fixed within the table. When this is omitted, it will
      * automatically use the responsive table as the fixture so that the dialog will close/adjust itself
      * to the scrolling of the table.
      *
      * @see {@link Helpers/Layovers#fixedTo}
      */
-    fixedTo: PropTypes.object,
+    fixedTo: fixedToShape,
 
     /**
      * @see {@link Helpers/Layovers#xThreshold}
