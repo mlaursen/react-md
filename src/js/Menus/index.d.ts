@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IdPropType } from '../index';
 import {
+  LayoverAnchor,
   SharedLayoverProps,
   HorizontalAnchors,
   HorizontalAnchorsEnum,
@@ -26,7 +27,7 @@ interface MenuProps extends SharedMenuProps {
   visible: boolean;
   children?: React.ReactNode;
   cascading?: boolean;
-  cascadingAnchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
+  cascadingAnchor?: LayoverAnchor;
   cascadingZDepth?: number;
   onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
   preventContextMenu?: boolean;

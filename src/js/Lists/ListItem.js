@@ -616,6 +616,7 @@ export default class ListItem extends PureComponent {
           toggle={tile}
           block
           anchor={cascadingAnchor}
+          belowAnchor={null}
           position={Menu.Positions.BELOW}
           component={ItemComponent}
           listStyle={nestedListStyle}

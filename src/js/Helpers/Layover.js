@@ -194,6 +194,14 @@ export default class Layover extends PureComponent {
     anchor: anchorShape.isRequired,
 
     /**
+     * This is how the children get "anchored" when the `animationPositions` is set to `Layover.Positions.BELOW`.
+     * Set this to `null` to continue using the base `anchor` prop instead of switching to this anchor.
+     *
+     * @see {@link #anchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
      * This is the position that the children should animate from. It directly ties into
      * the `$md-layover-child-positions` Sass variable.
      */
@@ -220,6 +228,10 @@ export default class Layover extends PureComponent {
     anchor: {
       x: Layover.HorizontalAnchors.INNER_LEFT,
       y: Layover.VerticalAnchors.OVERLAP,
+    },
+    belowAnchor: {
+      x: Layover.HorizontalAnchors.CENTER,
+      y: Layover.VerticalAnchors.BOTTOM,
     },
     animationPosition: Layover.Positions.BELOW,
     component: 'div',
@@ -255,7 +267,8 @@ export default class Layover extends PureComponent {
   }
 
   componentDidMount() {
-    const { visible, fixedTo, anchor, sameWidth, centered } = this.props;
+    const { visible, fixedTo, sameWidth, centered } = this.props;
+    const anchor = this._getAnchor(this.props);
     if (visible) {
       window.addEventListener('click', this._handleOutsideClick);
       const rect = this._contextRect || this._toggle.getBoundingClientRect();
@@ -269,7 +282,9 @@ export default class Layover extends PureComponent {
     }
   }
 
-  componentWillReceiveProps({ fixedTo, visible, anchor, children, sameWidth, centered }) {
+  componentWillReceiveProps(nextProps) {
+    const { fixedTo, visible, children, sameWidth, centered } = nextProps;
+    const anchor = this._getAnchor(nextProps);
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
 
@@ -310,6 +325,10 @@ export default class Layover extends PureComponent {
       this._manageFixedToListener(this.props.fixedTo, false);
       window.removeEventListener('click', this._handleOutsideClick);
     }
+  }
+
+  _getAnchor({ anchor, belowAnchor, animationPosition }) {
+    return animationPosition === Layover.Positions.BELOW && belowAnchor || anchor;
   }
 
   _createStyles(anchor, centered, child, rect) {
@@ -517,7 +536,7 @@ export default class Layover extends PureComponent {
       return;
     }
 
-    const { x, y } = this.props.anchor;
+    const { x, y } = this._getAnchor(this.props);
     const { offsetHeight: childHeight, offsetWidth: childWidth } = this._child;
     let toggleHeight;
     let toggleWidth;
@@ -577,7 +596,8 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      const { children, anchor, centered } = this.props;
+      const { children, centered } = this.props;
+      const anchor = this._getAnchor(this.props);
       this._childComponent = React.Children.only(children);
 
       // If child also has a ref callback, simulate the same thing
@@ -704,7 +724,7 @@ export default class Layover extends PureComponent {
    * @return {boolean} true if the fix was able to be done and successful.
    */
   _attemptFix = (vp) => {
-    const { x, y } = this.props.anchor;
+    const { x, y } = this._getAnchor(this.props);
     const centered = x === HorizontalAnchors.CENTER && y === VerticalAnchors.CENTER && this.props.centered;
     if (centered || (this._lastYFix === 'top' && !vp.top) || (this._lastYFix === 'bottom' && !vp.bottom)) {
       return false;
@@ -746,7 +766,8 @@ export default class Layover extends PureComponent {
   };
 
   _handleContextMenu = (e) => {
-    const { onContextMenu, preventContextMenu, fixedTo, anchor, sameWidth, centered, visible } = this.props;
+    const anchor = this._getAnchor(this.props);
+    const { onContextMenu, preventContextMenu, fixedTo, sameWidth, centered, visible } = this.props;
     if (!onContextMenu) {
       return;
     }
@@ -775,6 +796,7 @@ export default class Layover extends PureComponent {
       animationPosition,
       /* eslint-disable no-unused-vars */
       anchor,
+      belowAnchor,
       onClose,
       sameWidth,
       centered,

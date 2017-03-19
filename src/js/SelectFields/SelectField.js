@@ -330,11 +330,18 @@ export default class SelectField extends PureComponent {
     transitionTime: PropTypes.number.isRequired,
 
     /**
-     * This is how the menu's `List` get's anchored to the select field.
+     * This is how the menu's `List` gets anchored to the select field.
      *
      * @see {@link Helpers/Layovers#anchor}
      */
     anchor: anchorShape,
+
+    /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
@@ -874,6 +881,7 @@ export default class SelectField extends PureComponent {
       toggleClassName,
       menuItems,
       anchor,
+      belowAnchor,
       fixedTo,
       position,
       xThreshold,
@@ -965,6 +973,7 @@ export default class SelectField extends PureComponent {
         onKeyDown={this._handleKeyDown}
         onClick={this._handleClick}
         anchor={anchor}
+        belowAnchor={belowAnchor}
         fixedTo={fixedTo}
         position={position}
         xThreshold={xThreshold}

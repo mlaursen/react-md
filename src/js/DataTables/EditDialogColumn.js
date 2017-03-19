@@ -328,6 +328,13 @@ export default class EditDialogColumn extends PureComponent {
     anchor: anchorShape,
 
     /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
      * This is the animation position to use for the dialog.
      *
      * @see {@link Helpers/Layovers#animationPosition}
@@ -589,6 +596,7 @@ export default class EditDialogColumn extends PureComponent {
       placeholder,
       header,
       anchor,
+      belowAnchor,
       fixedTo,
       animationPosition,
       xThreshold,
@@ -685,6 +693,7 @@ export default class EditDialogColumn extends PureComponent {
           title={title}
           placeholder={dialogLabel === placeholder || dialogLabel === label}
           anchor={anchor}
+          belowAnchor={belowAnchor}
           animationPosition={animationPosition}
           xThreshold={xThreshold}
           yThreshold={yThreshold}

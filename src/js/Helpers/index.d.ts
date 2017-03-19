@@ -74,6 +74,11 @@ export enum LayoverPositionsEnum {
   BELOW
 }
 
+export interface LayoverAnchor {
+  x: HorizontalAnchors | HorizontalAnchorsEnum;
+  y: VerticalAnchors | VerticalAnchorsEnum;
+}
+
 export interface SharedLayoverProps extends Props {
   id?: IdPropType;
   style?: React.CSSProperties;
@@ -89,7 +94,8 @@ export interface SharedLayoverProps extends Props {
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
   closeOnOutsideClick?: boolean;
-  anchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
+  anchor?: LayoverAnchor;
+  belowAnchor?: LayoverAnchor;
 }
 
 export interface LayoverProps extends SharedLayoverProps {

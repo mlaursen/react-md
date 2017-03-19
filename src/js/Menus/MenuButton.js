@@ -172,6 +172,13 @@ export default class MenuButton extends PureComponent {
     anchor: anchorShape,
 
     /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
      * This is how the menu's list is fixed to the toggle.
      *
      * @see {@link Menus/Menu#fixedTo}
@@ -341,6 +348,7 @@ export default class MenuButton extends PureComponent {
       buttonChildren,
       children,
       anchor,
+      belowAnchor,
       fixedTo,
       position,
       cascading,
@@ -415,6 +423,7 @@ export default class MenuButton extends PureComponent {
         visible={visible}
         onClose={this._handleClose}
         anchor={anchor}
+        belowAnchor={belowAnchor}
         fixedTo={fixedTo}
         position={position}
         cascading={cascading}

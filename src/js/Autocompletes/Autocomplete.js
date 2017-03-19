@@ -318,11 +318,18 @@ export default class Autocomplete extends PureComponent {
     autoComplete: PropTypes.oneOf(['on', 'off']),
 
     /**
-     * This is how the menu's `List` get's anchored to the `toggle` element.
+     * This is how the menu's `List` gets anchored to the `toggle` element.
      *
      * @see {@link Helpers/Layovers#anchor}
      */
     anchor: anchorShape,
+
+    /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
@@ -898,6 +905,7 @@ export default class Autocomplete extends PureComponent {
       menuId,
       inline,
       anchor,
+      belowAnchor,
       position,
       fixedTo,
       listId,
@@ -1008,6 +1016,7 @@ export default class Autocomplete extends PureComponent {
         sameWidth={sameWidth}
         centered={centered}
         anchor={anchor}
+        belowAnchor={belowAnchor}
         position={position}
         fixedTo={fixedTo}
         listInline={listInline}

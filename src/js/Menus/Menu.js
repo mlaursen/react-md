@@ -95,11 +95,19 @@ export default class Menu extends PureComponent {
     ]),
 
     /**
-     * This is how the menu's `List` get's anchored to the `toggle` element.
+     * This is how the menu's `List` gets anchored to the `toggle` element.
      *
      * @see {@link Helpers/Layovers#anchor}
      */
     anchor: anchorShape,
+
+    /**
+     * This is the optional anchor to use when the `position` is set to `Menu.Positions.BELOW`.
+     * Set this to `null` to use the default `anchor` prop.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
 
     /**
      * This is the animation position for the list that appears.
