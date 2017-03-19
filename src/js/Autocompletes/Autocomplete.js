@@ -114,7 +114,7 @@ export default class Autocomplete extends PureComponent {
     label: PropTypes.string,
 
     /**
-     * An optional value to use for the text field. This will horse this component
+     * An optional value to use for the text field. This will forse this component
      * to be controlled and require the `onChange` function.
      */
     value: controlled(PropTypes.oneOfType([
@@ -794,7 +794,7 @@ export default class Autocomplete extends PureComponent {
         context.font = font;
         const padding = this.props.block ? (fontSize * 1.5) : 8;
 
-        // Update suggestion style to be offset and not physically physically expand past text field
+        // Update suggestion style to be offset and not expand past text field
         const left = context.measureText(value).width + padding;
         suggestionStyle = { ...suggestionStyle, left };
       }
