@@ -12,7 +12,7 @@ import {
 } from '../Helpers';
 import { SharedMenuProps } from '../Menus';
 
-interface SelectFieldProps extends SharedMenuProps {
+export interface SelectFieldProps extends SharedMenuProps {
   id: number | string;
   menuId?: number | string;
   listId?: number | string;

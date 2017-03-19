@@ -31,7 +31,9 @@ export default class EditDialogColumn extends PureComponent {
   static propTypes = {
     /**
      * An optional id to use for the text field in the column. If this is omitted,
-     * the id will be the current row id and `-edit-dialog-field`.
+     * the id will be `${dialogId}-field`.
+     *
+     * @see {@link #dialogId}
      */
     id: PropTypes.oneOfType([
       PropTypes.number,
@@ -40,7 +42,7 @@ export default class EditDialogColumn extends PureComponent {
 
     /**
      * An optional id to use for the dialog that appears in the column. If this is omitted,
-     * the id will be the current row id and `-edit-dialog`.
+     * the id will be `${rowId}-${cellIndex}-edit-dialog-field`.
      */
     dialogId: PropTypes.oneOfType([
       PropTypes.number,
@@ -391,6 +393,14 @@ export default class EditDialogColumn extends PureComponent {
      */
     header: PropTypes.bool,
 
+    /**
+     * This is injected by the `TableRow` component and used to help generate the unique id for the text
+     * field.
+     *
+     * @access private
+     */
+    cellIndex: PropTypes.number,
+
     enforceMinWidth: deprecated(
       PropTypes.bool,
       'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable.'
@@ -433,12 +443,21 @@ export default class EditDialogColumn extends PureComponent {
       value: props.defaultValue,
       cancelValue: props.defaultValue,
       actions: this._makeActions(props),
+      cellIndex: undefined,
     };
   }
 
   componentDidMount() {
     this._column = findDOMNode(this);
     this._table = findTable(this._column);
+
+    // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
+    // might not be defined if they don't pass ...props
+    const { cellIndex } = this.props;
+    if (!cellIndex && cellIndex !== 0) {
+      const columns = [].slice.call(this._column.parentNode.querySelectorAll('th,td'));
+      this.setState({ cellIndex: columns.indexOf(this._column) }); // eslint-disable-line react/no-did-mount-set-state
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -609,6 +628,7 @@ export default class EditDialogColumn extends PureComponent {
       /* eslint-disable no-unused-vars */
       id: propId,
       dialogId: propDialogId,
+      cellIndex: propCellIndex,
       onOkClick,
       okLabel,
       okPrimary,
@@ -629,14 +649,15 @@ export default class EditDialogColumn extends PureComponent {
     } = this.props;
     const { visible, actions } = this.state;
     const value = getField(this.props, this.state, 'value');
+    const cellIndex = getField(this.props, this.state, 'cellIndex');
 
     let { id, dialogId } = this.props;
-    if (!id) {
-      id = `${rowId}-edit-dialog-field`;
+    if (!dialogId) {
+      dialogId = `${rowId}-${cellIndex}-edit-dialog`;
     }
 
-    if (!dialogId) {
-      dialogId = `${rowId}-edit-dialog`;
+    if (!id) {
+      id = `${dialogId}-field`;
     }
 
     let inlineEditIcon;

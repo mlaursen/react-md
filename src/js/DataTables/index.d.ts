@@ -3,6 +3,7 @@ import { Props, IdPropType } from '../index';
 import { InjectedTooltipProps } from '../Tooltips';
 import { TextFieldTypes } from '../TextFields';
 import { SharedLayoverProps, LayoverPositions, LayoverPositionsEnum } from '../Helpers';
+import { SelectFieldProps } from '../SelectFields';
 
 type template = (rowIndex: number) => string;
 
@@ -94,6 +95,9 @@ interface EditDialogColumnProps extends SharedLayoverProps {
   type?: TextFieldTypes;
   animationPosition?: LayoverPositions | LayoverPositionsEnum;
 
+  header?: boolean;
+  cellIndex?: number;
+
   /**
    * @deprecated
    */
@@ -110,19 +114,26 @@ interface EditDialogColumnProps extends SharedLayoverProps {
   transitionDuration?: number;
 }
 
-interface SelectFieldColumnProps extends Props {
-  id?: IdPropType;
-  wrapperStyle?: React.CSSProperties;
-  wrapperClassName?: string;
+interface SelectFieldColumnProps extends SelectFieldProps {
   menuStyle?: React.CSSProperties;
   menuClassName?: string;
-  inputStyle?: React.CSSProperties;
-  inputClassName?: string;
   header?: boolean;
-  onMenuToggle?: (open: boolean, event: React.MouseEvent<HTMLElement>) => void;
-  position?: LayoverPositions | LayoverPositionsEnum;
-  defaultOpen?: boolean;
+  cellIndex?: number;
+
+  /**
+   * @deprecated
+   */
   scrollThreshold?: number;
+
+  /**
+   * @deprecated
+   */
+  wrapperStyle?: React.CSSProperties;
+
+  /**
+   * @deprecated
+   */
+  wrapperClassName?: string;
 }
 
 interface TablePaginationProps extends Props {

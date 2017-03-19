@@ -219,6 +219,7 @@ export default class TableRow extends Component {
 
     const length = children.length;
     const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
+      cellIndex: i + (checkbox ? 1 : 0),
       header: getField(col.props, this.context, 'header'),
       className: cn({
         'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,

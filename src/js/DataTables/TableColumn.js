@@ -109,18 +109,17 @@ class TableColumn extends PureComponent {
     plain: PropTypes.bool,
 
     /**
-     * Boolean if the TableColumn is coming from the EditDialogColumn or SelectFieldColumn
-     * components. When this is false, it will update the column to have `position: relative`
-     * so that tooltips can be displayed.
-     */
-    __fixedColumn: PropTypes.bool,
-
-    /**
      * An optional scope to apply to the table column. If omitted, the scope will be set to
      * `'col'` if inside of the `TableHeader` component. This is really only needed for
      * header columns.
      */
     scope: PropTypes.oneOf(['row', 'col']),
+
+    /**
+     * This is injected by the `TableRow` component to help with generating ids
+     * @access private
+     */
+    cellIndex: PropTypes.number,
   };
 
   static defaultProps = {
@@ -145,9 +144,11 @@ class TableColumn extends PureComponent {
       sortIconClassName,
       tooltip,
       selectColumnHeader,
-      __fixedColumn,
-      plain: propPlain, // eslint-disable-line no-unused-vars
-      scope: propScope, // eslint-disable-line no-unused-vars
+      /* eslint-disable no-unused-vars */
+      plain: propPlain,
+      scope: propScope,
+      cellIndex,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
@@ -180,7 +181,7 @@ class TableColumn extends PureComponent {
           'md-table-column--plain': !header && plain,
           'md-table-column--adjusted': adjusted,
           'md-table-column--sortable md-pointer--hover': sortable,
-          'md-table-column--relative': !__fixedColumn && tooltip,
+          'md-table-column--relative': tooltip,
           'md-table-column--select-field': selectColumnHeader,
           'md-text': !header,
           'md-text--secondary': header,
