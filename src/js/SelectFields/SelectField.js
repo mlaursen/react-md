@@ -364,19 +364,27 @@ export default class SelectField extends PureComponent {
     this._activeItem = null;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value || this.props.menuItems !== nextProps.menuItems) {
-      const value = getField(nextProps, this.state, 'value');
-      this.setState({ activeLabel: this._getActiveLabel(nextProps, value) });
-    }
-  }
-
   componentWillUpdate(nextProps, nextState) {
+    const prevValue = getField(this.props, this.state, 'value');
+    const value = getField(nextProps, nextState, 'value');
     const error = getField(nextProps, nextState, 'error');
     const isOpen = getField(nextProps, nextState, 'isOpen');
     const valued = !getField(nextProps, nextState, 'value');
+
+    let state;
+    if (prevValue !== value || this.props.menuItems !== nextProps.menuItems) {
+      state = {
+        activeLabel: this._getActiveLabel(nextProps, value),
+      };
+    }
+
     if (nextProps.required && !isOpen && error !== valued) {
-      this.setState({ error: valued });
+      state = state || {};
+      state.error = valued;
+    }
+
+    if (state) {
+      this.setState(state);
     }
   }
 
