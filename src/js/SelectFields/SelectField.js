@@ -481,22 +481,25 @@ export default class SelectField extends PureComponent {
     this._field = this._container.querySelector('.md-select-field');
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { value, menuItems } = this.props;
-    if (value !== nextProps.value || menuItems !== nextProps.menuItems) {
-      this.setState(this._getActive(nextProps, this.state));
-    }
-  }
-
   componentWillUpdate(nextProps, nextState) {
+    const { value, menuItems } = this.props;
     const { active, listProps } = nextState;
+
+    let state;
+    if (value !== nextProps.value || menuItems !== nextProps.menuItems) {
+      state = this._getActive(nextProps, nextState);
+    }
+
     if (this.state.active !== active) {
-      this.setState({
-        listProps: {
-          ...listProps,
-          'aria-activedescendant': active ? `${nextProps.id}-options-active` : null,
-        },
-      });
+      state = state || {};
+      state.listProps = {
+        ...listProps,
+        'aria-activedescendant': active ? `${nextProps.id}-options-active` : null,
+      };
+    }
+
+    if (state) {
+      this.setState(state);
     }
   }
 
