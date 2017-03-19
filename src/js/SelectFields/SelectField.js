@@ -618,9 +618,12 @@ export default class SelectField extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
+    const state = { active: false };
     if (typeof this.props.visible === 'undefined') {
-      this.setState({ visible: false });
+      state.visible = false;
     }
+
+    this.setState(state);
   };
 
   _handleClick = (e) => {
