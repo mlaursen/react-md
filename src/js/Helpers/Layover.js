@@ -288,7 +288,7 @@ export default class Layover extends PureComponent {
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
 
-    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible && !this._inFixed) {
+    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible) {
       this._manageFixedToListener(this.props.fixedTo, false);
       this._manageFixedToListener(fixedTo, true);
     } else if (visibileDiff && visible) {
@@ -422,13 +422,22 @@ export default class Layover extends PureComponent {
    * variables to update while it is open.
    */
   _init = (fixedTo, anchor, sameWidth, centered, rect) => {
-    const { top, left, right, height, width } = rect;
+    const centeredDialog = this._dialog && this._dialog.classList.contains('md-dialog--centered');
+    const { height, width } = rect;
+    let { top, left, right } = rect;
     let x;
     let y;
     if (this._dialog) {
       const scroll = getScroll(this._dialog);
       x = scroll.x;
       y = scroll.y;
+
+      if (centeredDialog) {
+        const dialogRect = this._dialog.getBoundingClientRect();
+        left -= dialogRect.left;
+        top -= dialogRect.top;
+        right -= dialogRect.right;
+      }
     } else if (fixedTo !== window && (fixedTo.y || fixedTo.x)) {
       x = getScroll(fixedTo.x || window).x;
       y = getScroll(fixedTo.y || window).y;
@@ -504,6 +513,9 @@ export default class Layover extends PureComponent {
         const fixed = window.getComputedStyle(node).position === 'fixed';
         if (fixed && node.classList.contains('md-dialog--full-page')) {
           this._dialog = node;
+          return;
+        } else if (fixed && node.classList.contains('md-dialog-container')) {
+          this._dialog = node.firstChild;
           return;
         } else if (fixed && !node.classList.contains('md-layover-child')) {
           this._inFixed = true;
@@ -606,6 +618,10 @@ export default class Layover extends PureComponent {
       }
 
       if (!this._child || (!this._toggle && !this._contextRect)) {
+        return;
+      }
+
+      if (this._dialog && this._dialog.classList.contains('md-dialog--centered')) {
         return;
       }
 
