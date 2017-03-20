@@ -461,19 +461,6 @@ export default class Autocomplete extends PureComponent {
         window.removeEventListener('resize', this._updateFont);
       }
     }
-
-    if (nextProps.data !== this.props.data || nextProps.value !== this.props.value) {
-      const { data, filter, dataLabel } = nextProps;
-      const value = getField(nextProps, this.state, 'value');
-
-      const matches = filter ? filter(data, value, dataLabel) : data;
-      const next = { matches };
-      if (value && this.state.focus && matches.length) {
-        next.visible = true;
-      }
-
-      this.setState(next);
-    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -482,6 +469,19 @@ export default class Autocomplete extends PureComponent {
       if (menuFn) {
         menuFn();
       }
+    }
+
+    if (nextProps.data !== this.props.data || nextProps.value !== this.props.value) {
+      const { data, filter, dataLabel } = nextProps;
+      const value = getField(nextProps, nextState, 'value');
+
+      const matches = filter ? filter(data, value, dataLabel) : data;
+      const next = { matches };
+      if (value && nextState.focus && matches.length) {
+        next.visible = true;
+      }
+
+      this.setState(next);
     }
   }
 
@@ -585,7 +585,7 @@ export default class Autocomplete extends PureComponent {
         this.props.onBlur(e);
       }
 
-      this.setState({ focus: false });
+      // this.setState({ focus: false });
     }
   };
 

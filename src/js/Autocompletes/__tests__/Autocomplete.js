@@ -329,4 +329,15 @@ describe('Autocomplete', () => {
     expect(autocomplete.state('suggestion')).toBe('');
     expect(autocomplete.state('value')).toBe(DATA[0]);
   });
+
+  it('should update the matches if the value or data props change', () => {
+    const autocomplete = shallow(<Autocomplete id="autocomplete" data={['Hello', 'World', 'Something', 'Else']} />);
+    expect(autocomplete.state('matches')).toEqual(['Hello', 'World', 'Something', 'Else']);
+
+    autocomplete.setProps({ value: 'hel', onChange: jest.fn() });
+    expect(autocomplete.state('matches')).toEqual(['Hello']);
+
+    autocomplete.setProps({ data: ['Helium', 'Horrible'] });
+    expect(autocomplete.state('matches')).toEqual(['Helium']);
+  });
 });
