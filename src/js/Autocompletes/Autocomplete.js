@@ -585,7 +585,7 @@ export default class Autocomplete extends PureComponent {
         this.props.onBlur(e);
       }
 
-      // this.setState({ focus: false });
+      this.setState({ focus: false });
     }
   };
 
