@@ -143,7 +143,7 @@ export default class MenuButton extends PureComponent {
      * @see {@link Lists/ListItem}
      * @see {@link Menus/Menu#children}
      */
-    items: PropTypes.oneOfType([
+    menuItems: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.object,
@@ -282,7 +282,7 @@ export default class MenuButton extends PureComponent {
 
     buttonChildren: deprecated(
       PropTypes.node,
-      'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `items` prop'
+      'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `menuItems` prop'
     ),
     onMenuToggle: deprecated(PropTypes.bool, 'Use `onVisibilityChange` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -344,7 +344,7 @@ export default class MenuButton extends PureComponent {
       listZDepth,
       listInline,
       listHeightRestricted,
-      items,
+      menuItems,
       buttonChildren,
       children,
       anchor,
@@ -385,14 +385,14 @@ export default class MenuButton extends PureComponent {
 
     const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
 
-    let menuItems = children;
+    let items = children;
     let toggleChildren = buttonChildren;
-    if (typeof items !== 'undefined') {
+    if (typeof menuItems !== 'undefined') {
       toggleChildren = children;
-      if (!Array.isArray(items)) {
-        menuItems = mapToListParts(items);
+      if (!Array.isArray(menuItems)) {
+        items = mapToListParts(menuItems);
       } else {
-        menuItems = items.map(mapToListParts);
+        items = menuItems.map(mapToListParts);
       }
     }
 
@@ -440,7 +440,7 @@ export default class MenuButton extends PureComponent {
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
-        {menuItems}
+        {items}
       </Menu>
     );
   }

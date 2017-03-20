@@ -12,7 +12,7 @@ const MenuButtonExampes = () => (
       label="Toggle the Menu"
       raised
       secondary
-      items={['Item One', 'Item Two', 'Item Three', 'Item Four']}
+      menuItems={['Item One', 'Item Two', 'Item Three', 'Item Four']}
     >
       chat
     </MenuButton>
@@ -26,7 +26,7 @@ const MenuButtonExampes = () => (
       position={MenuButton.Positions.TOP_LEFT}
       flat
       primary
-      items={[{
+      menuItems={[{
         primaryText: 'Item One',
         rightIcon: <FontIcon>home</FontIcon>,
       }, {
@@ -39,7 +39,7 @@ const MenuButtonExampes = () => (
     <MenuButton
       id="menu-button-2"
       icon
-      items={[
+      menuItems={[
         <ListItem key={1} primaryText="Item One" />,
         <ListItem key={2} primaryText="Item Two" />,
       ]}

@@ -77,7 +77,7 @@ interface MenuButtonProps extends SharedMenuProps {
   cascading?: boolean;
   cascadingAnchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
   cascadingZDepth?: number;
-  items?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
+  menuItems?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
   children?: React.ReactNode;
   position?: LayoverPositions | LayoverPositionsEnum;
 
