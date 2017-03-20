@@ -351,20 +351,20 @@ export default class NavigationDrawer extends PureComponent {
 
     /**
      * Boolean if the temporary or persistent drawers are visible. If this is defined,
-     * it will make the component controlled and require the `onVisibilityToggle` prop
+     * it will make the component controlled and require the `onVisibilityChange` prop
      * to be defined.
      */
-    visible: controlled(PropTypes.bool, 'onVisibilityToggle', 'defaultVisible'),
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
     /**
      * An optional function to call when the visibility of the drawer changes. The callback
      * will include the new visibility.
      *
      * ```js
-     * this.props.onVisibilityToggle(false);
+     * onVisibilityChange(false);
      * ```
      */
-    onVisibilityToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
      * A boolean if the mini drawer's list should be generated from the `navItems` prop. When building
@@ -579,7 +579,8 @@ export default class NavigationDrawer extends PureComponent {
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
     closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIconClassName` instead'),
-    onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityToggle` or `onMediaTypeChange` instead'),
+    onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityChange` or `onMediaTypeChange` instead'),
+    onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
     contentTransitionName: deprecated(PropTypes.string, 'Use `transitionName` instead'),
     contentTransitionEnterTimeout: deprecated(PropTypes.number, 'Use `transtionEnterTimeout` instead'),
     contentTransitionLeaveTimeout: deprecated(PropTypes.number, 'Use `transtionLeaveTimeout` instead'),
@@ -723,10 +724,11 @@ export default class NavigationDrawer extends PureComponent {
   }
 
   _toggleVisibility = (e) => {
-    const { onVisibilityToggle, onDrawerChange } = this.props;
+    const { onVisibilityToggle, onVisibilityChange, onDrawerChange } = this.props;
     const visible = !getField(this.props, this.state, 'visible');
-    if (onVisibilityToggle || onDrawerChange) {
-      (onDrawerChange || onVisibilityToggle)(visible, e);
+    const callback = onVisibilityChange || onVisibilityToggle || onDrawerChange;
+    if (callback) {
+      callback(visible, e);
     }
 
     if (typeof this.props.visible === 'undefined') {
@@ -735,8 +737,10 @@ export default class NavigationDrawer extends PureComponent {
   };
 
   _handleVisibility = (visible) => {
-    if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(visible);
+    const { onVisibilityToggle, onVisibilityChange, onDrawerChange } = this.props;
+    const callback = onVisibilityChange || onVisibilityToggle || onDrawerChange;
+    if (callback) {
+      callback(visible);
     }
 
     if (typeof this.props.visible === 'undefined') {
@@ -934,7 +938,7 @@ export default class NavigationDrawer extends PureComponent {
           desktopType={desktopType}
           type={getNonMiniType(drawerType)}
           visible={visible}
-          onVisibilityToggle={this._handleVisibility}
+          onVisibilityChange={this._handleVisibility}
           onMediaTypeChange={this._handleTypeChange}
         >
           {drawerChildren}

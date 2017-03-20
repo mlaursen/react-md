@@ -26,7 +26,7 @@ function buildSubList(docs) {
 export default class FindInPage extends PureComponent {
   static propTypes = {
     visible: PropTypes.bool.isRequired,
-    onVisibilityToggle: PropTypes.func.isRequired,
+    onVisibilityChange: PropTypes.func.isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
     placeholders: PropTypes.array.isRequired,
@@ -75,8 +75,8 @@ export default class FindInPage extends PureComponent {
 
   render() {
     const { filteredNavItems } = this.state;
-    const { visible, onVisibilityToggle } = this.props;
-    const closeButton = <Button icon onClick={onVisibilityToggle}>keyboard_arrow_left</Button>;
+    const { visible, onVisibilityChange } = this.props;
+    const closeButton = <Button icon onClick={onVisibilityChange}>keyboard_arrow_left</Button>;
     const autocomplete = (
       <TextField
         id="sassdoc-finder"
@@ -89,7 +89,7 @@ export default class FindInPage extends PureComponent {
     return (
       <Drawer
         visible={visible}
-        onVisibilityToggle={onVisibilityToggle}
+        onVisibilityChange={onVisibilityChange}
         tabletType={Drawer.DrawerTypes.TEMPORARY}
         desktopType={Drawer.DrawerTypes.TEMPORARY}
         type={Drawer.DrawerTypes.TEMPORARY}

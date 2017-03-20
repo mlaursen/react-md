@@ -33,7 +33,7 @@ interface NavigationDrawerProps extends Props {
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   defaultVisible?: boolean;
   visible?: boolean;
-  onVisibilityToggle?: (visible: boolean, event: Event) => void;
+  onVisibilityChange?: (visible: boolean, event: Event) => void;
   extractMini?: boolean;
   miniDrawerHeader?: React.ReactNode;
   miniDrawerChildren?: React.ReactNode;
@@ -59,6 +59,11 @@ interface NavigationDrawerProps extends Props {
   contentProps?: Object;
   contentId?: number | string;
   jumpLabel?: string;
+
+  /**
+   * @deprecated
+   */
+  onVisibilityToggle?: (visible: boolean, event: Event) => void;
 }
 
 interface CloseButtonProps extends Props {

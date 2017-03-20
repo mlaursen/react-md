@@ -56,7 +56,7 @@ export default class SassDocPage extends PureComponent {
         <FindInPage
           key="finder"
           visible={this.state.finderVisible}
-          onVisibilityToggle={this._toggleFinder}
+          onVisibilityChange={this._toggleFinder}
           placeholders={placeholders}
           variables={variables}
           functions={functions}

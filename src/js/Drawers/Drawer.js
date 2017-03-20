@@ -227,20 +227,20 @@ export default class Drawer extends PureComponent {
     defaultVisible: PropTypes.bool,
 
     /**
-     * Boolean if the drawer is visible. This will force the component to define the `onVisibilityToggle`
+     * Boolean if the drawer is visible. This will force the component to define the `onVisibilityChange`
      * prop as well as manually updating the drawer's visibility.
      */
-    visible: controlled(PropTypes.bool, 'onVisibilityToggle', 'defaultVisible'),
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
     /**
      * An optional function to call when the visibility of the drawer is changed. The function will
      * be called with the new visibility state.
      *
      * ```js
-     * onVisibilityToggle(!currentlyVisible);
+     * onVisibilityChange(!currentlyVisible);
      * ```
      */
-    onVisibilityToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
      * The drawer's position on the page when it is not `inline`. When the drawer's position is `left`,
@@ -286,6 +286,7 @@ export default class Drawer extends PureComponent {
     constantType: PropTypes.bool.isRequired,
 
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
+    onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
   };
 
   static defaultProps = {
@@ -399,13 +400,6 @@ export default class Drawer extends PureComponent {
     this.state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(type) && !this.state.desktop)
       && visible;
     this.state.drawerActive = visible;
-
-    this._animate = this._animate.bind(this);
-    this._closeDrawer = this._closeDrawer.bind(this);
-    this._setNavigation = this._setNavigation.bind(this);
-    this._handleNavClick = this._handleNavClick.bind(this);
-    this._updateType = this._updateType.bind(this);
-    this._updateMedia = this._updateMedia.bind(this);
   }
 
   componentWillMount() {
@@ -464,12 +458,13 @@ export default class Drawer extends PureComponent {
     window.removeEventListener('resize', this._updateMedia);
   }
 
-  _updateType(props) {
+  _updateType = (props) => {
     const {
       onMediaTypeChange,
-      onVisibilityToggle,
       overlay,
     } = props;
+
+    const onVisibilityChange = props.onVisibilityToggle || props.onVisibilityChange;
 
     let state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
@@ -492,8 +487,8 @@ export default class Drawer extends PureComponent {
       }
 
       const prevVisible = getField(props, this.state, 'visible');
-      if (onVisibilityToggle && (visible !== prevVisible)) {
-        onVisibilityToggle(visible);
+      if (onVisibilityChange && (visible !== prevVisible)) {
+        onVisibilityChange(visible);
       }
 
       if (typeof props.visible === 'undefined') {
@@ -511,13 +506,13 @@ export default class Drawer extends PureComponent {
 
     this._initialFix = false;
     this.setState(state);
-  }
+  };
 
-  _updateMedia() {
+  _updateMedia = () => {
     this._updateType(this.props);
-  }
+  };
 
-  _animate(visible, type, timeout, overlay, desktop) {
+  _animate = (visible, type, timeout, overlay, desktop) => {
     if (visible) {
       this.timeout = setTimeout(() => {
         this.timeout = null;
@@ -536,13 +531,13 @@ export default class Drawer extends PureComponent {
       }, timeout);
       this.setState({ animating: true, overlayActive: false, drawerActive: false });
     }
-  }
+  };
 
-  _setNavigation(navigation) {
+  _setNavigation = (navigation) => {
     this._navigation = findDOMNode(navigation);
-  }
+  };
 
-  _handleNavClick(e) {
+  _handleNavClick = (e) => {
     const { closeOnNavItemClick, autoclose, autocloseAfterInk } = this.props;
     const enabled = typeof closeOnNavItemClick !== 'undefined' ? closeOnNavItemClick : autoclose;
     if (!enabled || !isTemporary(getField(this.props, this.state, 'type'))) {
@@ -567,17 +562,19 @@ export default class Drawer extends PureComponent {
 
       target = target.parentNode;
     }
-  }
+  };
 
-  _closeDrawer() {
-    if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(false);
+  _closeDrawer = () => {
+    const { onVisibilityChange, onVisibilityToggle } = this.props;
+    const callback = onVisibilityToggle || onVisibilityChange;
+    if (callback) {
+      callback(false);
     }
 
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible: false });
     }
-  }
+  };
 
   render() {
     const { overlayActive, drawerActive, animating } = this.state;
@@ -610,10 +607,12 @@ export default class Drawer extends PureComponent {
       desktopType,
       desktopMinWidth,
       transitionDuration,
-      onVisibilityToggle,
       onMediaTypeChange,
+      onVisibilityChange,
       autoclose,
       autocloseAfterInk,
+      // deprecated
+      onVisibilityToggle,
       closeOnNavItemClick,
       /* eslint-enable no-unused-vars */
       ...props
