@@ -69,7 +69,7 @@ export default class AccessibleFakeButton extends PureComponent {
     ]).isRequired,
 
     /**
-     * Boolean if the default outline should be removed the when thee fake button has been focused.
+     * Boolean if the default outline should be removed the when the fake button has been focused.
      *
      * @see {@link #tabbedClassName}
      */

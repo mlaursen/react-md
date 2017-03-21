@@ -1,30 +1,47 @@
-### General Website Updates
-There were some minor improvements done to the documentation website to hopefully make
-finding component documentation or SassDoc easier.
-
-- It is now possible to be redirect to a specific prop type for a component. Ex:
-[/components/cards?tab=1#card-proptypes-animate](http://localhost:8080/components/cards?tab=1#card-proptypes-animate)
-- SassDoc will now redirect correctly when clicking on any Sass variable/mixin/function/placeholder in the "Requires",
-"Used By", and "See" sections.
-- When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
-list.
-
-
 ### react-md@1.1.0 Released
 Please see the [upgrade guide](/discover-more/upgrade-guides/v1.1.0) for upgrade help.
 
-#### App Breaking Changes
+Alot of components had their props renamed to follow a more consistent naming scheme between all components. There were a couple
+of components that still used `isOpen`, `defaultOpen`, or `onSOMETHINGToggle` (`onVisibilityToggle`). They have now been renamed to `visible`, `defaultVisible`,
+and `onSOMETHINGChange` (`onVisibilityChange`). This _should_ not break any functionality in your app, but it will display helpful
+migration messages for you.
 
-##### Dialogs
+Touched Components: `Drawer`, `NavigationDrawer`, `Menu`, `MenuButton`, `SelectField`, `Autocomplete`, `SelectFieldColumn`, `EditDialogColumn`.
+
+The `Menu` component has been completely redone to attempt to keep itself within the current viewport. This means that all the components
+that also used this have been modified. The only thing that should be an immediate concern is that the width of `Autocomplete`s in a toolbar
+will no longer span the entire viewport width on mobile devices. More work is being done behind the scenes to automatically position the menu.
+Finally, cascading menus have been fully integrated.
+
+To help combat the weird resizing of content when a `Dialog` is opened, the `html` has been modified to gain a
+`min-width: 100%`. This can be changed by the [md-html-min-width](/customization/typography?tab=1#variable-md-html-min-width) variable.
+
+### App Breaking Changes
+##### Menus
+If you were using context menus befofore, please see the upgrade guide for new behavior.
+
+#### Dialogs
 If you were using the UMD build or specifying `import { Dialog } from 'react-md'`, your app will probably now
 be broken. One of the changes that was made in this release was to expose the `Dialog` itself instead of just
-the container that displays it. The switch will be do specify `import { DialogContainer } from 'react-md'` instead.
+the container that displays it.
+```js
+// Before
+import { Dialog } from 'react-md';
+import { Dialog } from window.ReactMD; // UMD
 
-##### Tables
+// After
+import { DialogContainer as Dialog } from 'react-md';
+import { DialogContainer as Dialog } from window.ReactMD; // UMD
+```
+
+#### Tables
 If you were using the callbacks for when a row or checkbox was clicked, the number will probably be off now. Please see
 the [issue for more details](#issues-243).
 
 ##### Changelog
+You can see the [milestone for this release](https://github.com/mlaursen/react-md/issues?utf8=%E2%9C%93&q=milestone%3Av1.1.0) to see what went in it.
+There were also some undocumented changes that might appear in the list below.
+
 - Deprecated the `closeOnNavItemClick` for drawers - [#207](#issues-207)
 - Updated `ListItem` to allow a custom [li wrapper](#commit-13d1235f4ba95039c0ddc2add8252907df45946d).
 - Stopped the `waitForInkTransition` on most components by default - [#210](#issues-210)
@@ -55,6 +72,21 @@ the [issue for more details](#issues-243).
 - Buttons, Lists, and Toolbars can now have a consistent size across all devices. [#226](#issues-226)
 - Most components no longer use the Portal component since it lead to a lot of issues. [#230](#issues-230)
 - TextFields can now [auto resize](#commit-10e54d3269d8941480ec2019861dcc492458fd22).
+- Keeping Menus within the viewport. Giant change. [#303](#pull-303)
+
+### General Website Updates
+There were some minor improvements done to the documentation website to hopefully make
+finding component documentation or SassDoc easier.
+
+- It is now possible to be redirect to a specific prop type for a component. Ex:
+[/components/cards?tab=1#card-proptypes-animate](http://localhost:8080/components/cards?tab=1#card-proptypes-animate)
+This mostly means that component prop type descriptions have been updated to link to related components/props.
+- SassDoc will now redirect correctly when clicking on any Sass variable/mixin/function/placeholder in the "Requires",
+"Used By", and "See" sections.
+- When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
+list.
+
+
 
 ## March 2017
 ### v1.0.10 Released

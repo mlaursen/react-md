@@ -169,7 +169,7 @@ export default class ListItem extends PureComponent {
      *
      * The nested items will be visible once the user clicks on the `ListItem`.
      *
-     * @see {@link #visible]
+     * @see {@link #visible}
      */
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 

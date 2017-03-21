@@ -148,7 +148,7 @@ export default class SelectFieldColumn extends PureComponent {
 
     let { id } = this.props;
     if (!id) {
-      id = `${rowId}-${cellIndex}-select`;
+      id = `${rowId}-${cellIndex}-select-field`;
     }
 
     return (
