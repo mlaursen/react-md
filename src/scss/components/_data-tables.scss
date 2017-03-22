@@ -371,6 +371,10 @@ $md-data-table-contextual-fallback-color: null !default;
 
     &__blocked-field {
       height: $md-data-table-column-height - $md-data-table-border-size;
+
+      .md-text-field-icon-container {
+        align-items: center;
+      }
     }
   }
 }

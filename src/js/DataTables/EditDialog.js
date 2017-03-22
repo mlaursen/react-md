@@ -75,6 +75,7 @@ export default class EditDialog extends PureComponent {
         toggle={field}
         visible={visible}
         block
+        belowAnchor={null}
       >
         <Dialog
           id={id}
