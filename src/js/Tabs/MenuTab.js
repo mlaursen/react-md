@@ -83,25 +83,19 @@ export default class MenuTab extends PureComponent {
     label: PropTypes.node.isRequired,
   };
 
-  constructor(props) {
-    super(props);
+  state = { visible: false }
 
-    this.state = { isOpen: false };
-    this._toggleOpen = this._toggleOpen.bind(this);
-    this._handleClose = this._handleClose.bind(this);
-  }
-
-  _toggleOpen(e) {
+  _toggleVisible = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
 
-    this.setState({ isOpen: !this.state.isOpen });
-  }
+    this.setState({ visible: !this.state.visible });
+  };
 
-  _handleClose() {
-    this.setState({ isOpen: false });
-  }
+  _handleClose = () => {
+    this.setState({ visible: false });
+  };
 
   render() {
     const {
@@ -121,7 +115,7 @@ export default class MenuTab extends PureComponent {
     const tab = (
       <AccessibleFakeInkedButton
         {...props}
-        onClick={this._toggleOpen}
+        onClick={this._toggleVisible}
         style={tabStyle}
         className={cn('md-tab md-tab--menu', tabClassName)}
       >
@@ -138,7 +132,7 @@ export default class MenuTab extends PureComponent {
           'md-tab--inactive': !active,
         }, className)}
         toggle={tab}
-        isOpen={this.state.isOpen}
+        visible={this.state.visible}
         onClose={this._handleClose}
       >
         {tabs.map(mapToListParts)}

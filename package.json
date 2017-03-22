@@ -65,7 +65,7 @@
     "eslint-plugin-react": "^6.1.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "intl": "^1.2.5",
-    "jest-cli": "^18.1.0",
+    "jest-cli": "^19.0.2",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
     "react": "^15.4.2",
@@ -98,22 +98,17 @@
     "setupFiles": [
       "<rootDir>/src/beforeTest.js"
     ],
-    "modulePathIgnorePatterns": [
-      "dist",
-      "lib",
-      "docs",
-      "api"
+    "roots": [
+      "<rootDir>/src"
     ],
     "unmockedModulePathPatterns": [
-      "<rootDir>/src/js/utils/omit.js",
-      "<rootDir>/src/js/utils/getField.js",
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/enzyme",
       "<rootDir>/node_modules/intl",
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-transtion-group",
       "<rootDir>/node_modules/react-addons-css-transition-group",
+      "<rootDir>/node_modules/react-addons-transtion-group",
+      "<rootDir>/node_modules/react-dom",
       "<rootDir>/node_modules/react-test-renderer"
     ]
   }
