@@ -33,6 +33,9 @@ $md-menu-include-cascading-styles: true !default;
 /// @group menus, z-indexes
 $md-menu-z-index: null !default;
 
+/// The width for a menu's `unit`. I don't really get it myself. It is a part of the material design
+/// specs though.
+/// @type Number
 $md-menu-units-width: 56px !default;
 
 /// The transition time to use for menus

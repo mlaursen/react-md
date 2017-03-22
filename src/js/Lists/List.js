@@ -52,13 +52,7 @@ export default class List extends PureComponent {
   static contextTypes = {
     listLevel: PropTypes.number,
     cascadingMenu: PropTypes.bool,
-    cascadingFixedTo: PropTypes.oneOfType([
-      PropTypes.object,
-      PropTypes.shape({
-        x: PropTypes.object,
-        y: PropTypes.object,
-      }),
-    ]),
+    cascadingFixedTo: fixedToShape,
     cascadingZDepth: PropTypes.number,
   };
 

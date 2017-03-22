@@ -408,10 +408,6 @@ export default class Autocomplete extends PureComponent {
   };
 
   static defaultProps = {
-    anchor: {
-      x: Menu.HorizontalAnchors.CENTER,
-      y: Menu.VerticalAnchors.BOTTOM,
-    },
     autocompleteWithLabel: false,
     position: Menu.Positions.BELOW,
     sameWidth: true,

@@ -31,6 +31,10 @@ $md-list-include-inline: false !default;
 /// @type Boolean
 $md-list-include-unstyled-class-name: true !default;
 
+/// The amount of padding to apply to the `List` component when displayed inline.
+/// @type Number
+$md-list-inline-padding: 0 !default;
+
 /// This is really the keyline to use for lists. When a list item is inset, this will
 /// be applied to the tile.
 /// @type Number
@@ -469,8 +473,7 @@ $md-list-three-lines-addon-margin-top: null !default;
     // I'm really cheating here.. Since it is after media query, doesn't require more precidence to override
     .md-list--inline {
       display: flex;
-      padding-bottom: 0;
-      padding-top: 0;
+      padding: $md-list-inline-padding;
     }
   }
 }

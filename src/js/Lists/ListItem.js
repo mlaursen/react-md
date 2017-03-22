@@ -578,7 +578,7 @@ export default class ListItem extends PureComponent {
           'md-list-tile--three-lines': secondaryText && threeLines,
           'md-list-item--inset': inset && !leftIcon && !leftAvatar,
         }, tileClassName)}
-        aria-expanded={nestedList ? visible : null}
+        aria-expanded={nestedList && !cascadingMenu ? visible : null}
       >
         {leftNode}
         <ListItemText
