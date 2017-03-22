@@ -83,7 +83,7 @@ export default class EditDialog extends PureComponent {
           className={cn('md-background md-edit-dialog', dialogClassName)}
           contentStyle={dialogContentStyle}
           contentClassName={cn('md-edit-dialog__content', dialogContentClassName)}
-          title={large && title}
+          title={large ? title : null}
           focusOnMount
           containFocus={large}
           paddedContent={false}
