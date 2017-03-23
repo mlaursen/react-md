@@ -152,7 +152,12 @@ export default class SelectFieldColumn extends PureComponent {
     }
 
     return (
-      <TableColumn header={header} style={style} className={cn('md-select-field-column', className)}>
+      <TableColumn
+        header={header}
+        style={style}
+        className={cn('md-select-field-column', className)}
+        adjusted={false}
+      >
         <SelectField
           {...props}
           id={id}

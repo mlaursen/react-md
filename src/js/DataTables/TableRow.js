@@ -1,4 +1,5 @@
 import React, { Component, PropTypes, Children, cloneElement } from 'react';
+import deprecated from 'react-prop-types/lib/deprecated';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
@@ -10,10 +11,6 @@ import TableCheckbox from './TableCheckbox';
  * A component for displaying a row in a `DataTable`. This will
  * automatically add a `Checkbox` component to the row if it is not
  * a `plain` table.
- *
- * This component will also automatically adjust the padding between
- * columns based on the longest column if the `autoAdjust` prop
- * is set to true.
  */
 export default class TableRow extends Component {
   static propTypes = {
@@ -52,13 +49,6 @@ export default class TableRow extends Component {
     onCheckboxClick: PropTypes.func,
 
     /**
-     * A boolean if the row should automatically check all the `TableColumn`s in the row
-     * and add the className `grow` to the one that is the biggest. You can also disable
-     * individual columns by adding the className `.prevent-grow` to them.
-     */
-    autoAdjust: PropTypes.bool.isRequired,
-
-    /**
      * An optional function to call onMouseOver.
      */
     onMouseOver: PropTypes.func,
@@ -73,10 +63,8 @@ export default class TableRow extends Component {
      * injected by the `TableHeader` or `TableBody` component.
      */
     selected: PropTypes.bool,
-  };
 
-  static defaultProps = {
-    autoAdjust: true,
+    autoAdjust: deprecated(PropTypes.bool, 'Manually specify `grow` on one of the columns instead'),
   };
 
   static contextTypes = headerContextTypes;
@@ -85,24 +73,15 @@ export default class TableRow extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      rowIndex: null,
-      biggest: null,
-      hover: false,
-      selects: [],
-    };
-
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._setLongestColumn = this._setLongestColumn.bind(this);
-    this._handleCheckboxClick = this._handleCheckboxClick.bind(this);
+    this.state = { hover: false };
   }
 
   getChildContext() {
     const { baseId, ...context } = this.context;
+    const id = `${baseId}-${this._row ? this._row.rowIndex : null}`;
     return {
       ...context,
-      rowId: context.header ? `${baseId}-toggle-all` : `${baseId}-${this.state.rowIndex}`,
+      rowId: context.header ? `${baseId}-toggle-all` : id,
     };
   }
 
@@ -117,7 +96,7 @@ export default class TableRow extends Component {
     return classList.contains('md-list--menu') || classList.contains('md-edit-dialog');
   }
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -137,9 +116,9 @@ export default class TableRow extends Component {
     }
 
     this.setState({ hover: true });
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -149,61 +128,35 @@ export default class TableRow extends Component {
     }
 
     this.setState({ hover: false });
-  }
+  };
 
-  _handleCheckboxClick(checked, e) {
-    const { rowIndex } = this.state;
+  _handleCheckboxClick = (checked, e) => {
+    const { rowIndex } = this._row;
     if (this.props.onCheckboxClick) {
       this.props.onCheckboxClick(rowIndex, checked, e);
     }
 
     this.context.toggleSelectedRow(rowIndex, this.context.header, e);
-  }
+  };
 
-  _setLongestColumn(row) {
-    if (!row) {
-      return;
-    }
-
-    const { rowIndex } = row;
-    if (!this.props.autoAdjust) {
-      this.setState({ rowIndex });
-      return;
-    }
-
-    const selects = [];
-    const cols = Array.prototype.slice.call(row.querySelectorAll('.md-table-column'));
-    const biggest = cols.reduce((prevBiggest, col, i) => {
-      selects.push(!!col.className.match(/select-field/));
-      if (col.className.match(/prevent-grow/)) {
-        return prevBiggest;
-      }
-
-      const width = col.offsetWidth;
-      if (prevBiggest.width < width) {
-        return { width, index: i };
-      }
-
-      return prevBiggest;
-    }, { width: 0, index: 0 });
-
-    if (this.state.biggest && this.state.biggest.index === biggest.index) {
-      return;
-    }
-
-    this.setState({ biggest, selects, rowIndex });
-  }
+  _setRow = (row) => {
+    this._row = row;
+  };
 
   render() {
-    const { hover, biggest, selects } = this.state;
     const {
       className,
       children,
       selected,
-      onCheckboxClick, // eslint-disable-line no-unused-vars
-      autoAdjust, // eslint-disable-line no-unused-vars
+      /* eslint-disable no-unused-vars */
+      onCheckboxClick,
+      // deprecated
+      autoAdjust,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+
+    const { hover } = this.state;
 
     let checkbox;
     if (!this.context.plain && this.context.selectableRows) {
@@ -212,25 +165,20 @@ export default class TableRow extends Component {
           key="checkbox"
           checked={selected}
           onChange={this._handleCheckboxClick}
-          index={this.state.rowIndex}
+          index={this._row ? this._row.rowIndex : null}
         />
       );
     }
 
-    const length = children.length;
     const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
       cellIndex: i + (checkbox ? 1 : 0),
       header: getField(col.props, this.context, 'header'),
-      className: cn({
-        'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,
-        'md-table-column--adjusted': selects.length && !selects[i] && biggest && biggest.index !== i && i + 1 < length,
-      }, col.props.className),
     }));
 
     return (
       <tr
         {...props}
-        ref={this._setLongestColumn}
+        ref={this._setRow}
         className={cn('md-table-row', className, {
           'md-table-row--hover': hover,
           'md-table-row--active': !this.context.header && selected,

@@ -100,6 +100,7 @@ export default class ComplexDataTableComments extends PureComponent {
                 sorted={titleSorted}
                 onClick={typeof titleSorted === 'boolean' ? this._sort : null}
                 tooltipLabel="The movie's title"
+                grow
               >
                 Title
               </TableColumn>
@@ -111,7 +112,7 @@ export default class ComplexDataTableComments extends PureComponent {
               >
                 Year
               </TableColumn>
-              <TableColumn className="prevent-grow">
+              <TableColumn>
                 <IconSeparator label="Comments" iconBefore>
                   <FontIcon>chat</FontIcon>
                 </IconSeparator>

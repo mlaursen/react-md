@@ -1,6 +1,7 @@
 /* eslint-env jest*/
 /* eslint-disable react/prop-types,react/prefer-stateless-function */
 import React from 'react';
+import { mount } from 'enzyme';
 import {
   Simulate,
   renderIntoDocument,
@@ -8,6 +9,8 @@ import {
 } from 'react-addons-test-utils';
 
 import TableColumn from '../TableColumn';
+import Collapser from '../../FontIcons/Collapser';
+import IconSeparator from '../../Helpers/IconSeparator';
 
 // need valid table nesting
 class Table extends React.Component {
@@ -102,5 +105,176 @@ describe('TableColumn', () => {
 
     const ths = scryRenderedDOMComponentsWithTag(table, 'th');
     expect(ths.length).toBe(1);
+  });
+
+  it('should apply the correct class names', () => {
+    let table = mount(
+      <table>
+        <thead>
+          <tr>
+            <TableColumn header>Woop</TableColumn>
+          </tr>
+        </thead>
+      </table>
+    );
+
+    let column = table.find(TableColumn);
+    expect(column.hasClass('md-table-column')).toBe(true);
+    expect(column.hasClass('md-table-column--header')).toBe(true);
+    expect(column.hasClass('md-table-column--data')).toBe(false);
+    expect(column.hasClass('md-table-column--plain')).toBe(false);
+    expect(column.hasClass('md-table-column--adjusted')).toBe(true);
+    expect(column.hasClass('md-table-column--grow')).toBe(false);
+    expect(column.hasClass('md-table-column--sortable')).toBe(false);
+    expect(column.hasClass('md-table-column--relative')).toBe(false);
+    expect(column.hasClass('md-table-column--select-field')).toBe(false);
+    expect(column.hasClass('md-text')).toBe(false);
+    expect(column.hasClass('md-text--secondary')).toBe(true);
+    expect(column.hasClass('md-text-left')).toBe(true);
+    expect(column.hasClass('md-text-right')).toBe(false);
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn>Woop</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    column = table.find(TableColumn);
+
+    expect(column.hasClass('md-table-column--header')).toBe(false);
+    expect(column.hasClass('md-table-column--data')).toBe(true);
+    expect(column.hasClass('md-text')).toBe(true);
+    expect(column.hasClass('md-text--secondary')).toBe(false);
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn grow tooltipLabel="Woop" numeric>3</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    column = table.find(TableColumn);
+
+    expect(column.hasClass('md-table-column--adjusted')).toBe(false);
+    expect(column.hasClass('md-table-column--grow')).toBe(true);
+    expect(column.hasClass('md-table-column--relative')).toBe(true);
+    expect(column.hasClass('md-text-left')).toBe(false);
+    expect(column.hasClass('md-text-right')).toBe(true);
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn plain>Hello, World</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    column = table.find(TableColumn);
+    expect(column.hasClass('md-table-column--header')).toBe(false);
+    expect(column.hasClass('md-table-column--data')).toBe(false);
+    expect(column.hasClass('md-table-column--plain')).toBe(true);
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn sorted>Hello, World</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    column = table.find(TableColumn);
+    expect(column.hasClass('md-table-column--sortable')).toBe(true);
+  });
+
+  it('should render an IconSeparator and the Collapser component when sortable', () => {
+    let table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn>Hello, World</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    expect(table.find(IconSeparator).length).toBe(0);
+    expect(table.find(Collapser).length).toBe(0);
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn sorted>Hello, World</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    expect(table.find(IconSeparator).length).toBe(1);
+    expect(table.find(Collapser).length).toBe(1);
+  });
+
+  it('should apply the correct aria-sort when sortable', () => {
+    let table = mount(
+      <table>
+        <thead>
+          <tr>
+            <TableColumn>Hello, World</TableColumn>
+          </tr>
+        </thead>
+      </table>
+    );
+    expect(table.find('td').at(0).props()['aria-sort']).toBeUndefined();
+
+    table = mount(
+      <table>
+        <thead>
+          <tr>
+            <TableColumn sorted>Hello, World</TableColumn>
+          </tr>
+        </thead>
+      </table>
+    );
+    expect(table.find('td').at(0).props()['aria-sort']).toBe('ascending');
+
+    table = mount(
+      <table>
+        <thead>
+          <tr>
+            <TableColumn sorted={false}>Hello, World</TableColumn>
+          </tr>
+        </thead>
+      </table>
+    );
+    expect(table.find('td').at(0).props()['aria-sort']).toBe('descending');
+  });
+
+  it('should correctly apply the col scope when header prop is enabled', () => {
+    let table = mount(
+      <table>
+        <thead>
+          <tr>
+            <TableColumn header>Hello, World</TableColumn>
+          </tr>
+        </thead>
+      </table>
+    );
+    expect(table.find('th').at(0).props().scope).toBe('col');
+
+    table = mount(
+      <table>
+        <tbody>
+          <tr>
+            <TableColumn>Hello, World</TableColumn>
+          </tr>
+        </tbody>
+      </table>
+    );
+    expect(table.find('td').at(0).props().scope).toBeUndefined();
   });
 });

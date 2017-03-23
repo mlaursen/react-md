@@ -33,7 +33,7 @@ export default class PropTypeRow extends PureComponent {
     const deprecated = type.indexOf('deprecated') !== -1;
 
     return (
-      <TableRow autoAdjust={false} id={`${baseId}-${toClassName(propName)}`}>
+      <TableRow id={`${baseId}-${toClassName(propName)}`}>
         <TableColumn
           className={cn('prop-name', {
             'prop-name--deprecated md-text--secondary': deprecated,

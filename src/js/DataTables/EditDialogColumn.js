@@ -737,6 +737,7 @@ export default class EditDialogColumn extends PureComponent {
         numeric={numeric}
         className={cn('md-edit-dialog-column', className)}
         header={header}
+        adjusted={false}
       >
         {children}
       </TableColumn>

@@ -25,10 +25,10 @@ export default class PropTypeTable extends PureComponent {
     return (
       <DataTable plain>
         <TableHeader>
-          <TableRow autoAdjust={false}>
-            <TableColumn className="md-table-column--adjusted" onClick={sortProps} sorted={ascending}>Prop name</TableColumn>
-            <TableColumn className="md-table-column--adjusted">Prop type</TableColumn>
-            <TableColumn className="md-table-column--grow">Description</TableColumn>
+          <TableRow>
+            <TableColumn onClick={sortProps} sorted={ascending}>Prop name</TableColumn>
+            <TableColumn>Prop type</TableColumn>
+            <TableColumn grow>Description</TableColumn>
           </TableRow>
         </TableHeader>
         <TableBody>{rows}</TableBody>

@@ -29,7 +29,7 @@ const DataTableExample = ({ onRowToggle }) => {
     <DataTable baseId="nutrition" className="nutrition-table" onRowToggle={onRowToggle}>
       <TableHeader>
         <TableRow>
-          <TableColumn>Dessert (100g serving)</TableColumn>
+          <TableColumn grow>Dessert (100g serving)</TableColumn>
           <TableColumn selectColumnHeader>Type</TableColumn>
           <TableColumn numeric>Calories</TableColumn>
           <TableColumn numeric>Fat (g)</TableColumn>

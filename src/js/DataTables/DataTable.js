@@ -45,7 +45,7 @@ export default class DataTable extends PureComponent {
      * An optional style to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
      * `responsive`, use the `style` prop.
      *
-     * @see @{link #style}
+     * @see {@link #style}
      * @see {@link #responsive}
      */
     tableStyle: PropTypes.object,
@@ -54,7 +54,7 @@ export default class DataTable extends PureComponent {
      * An optional className to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
      * `responsive`, use the `className` prop.
      *
-     * @see @{link #className}
+     * @see {@link #className}
      * @see {@link #responsive}
      */
     tableClassName: PropTypes.string,

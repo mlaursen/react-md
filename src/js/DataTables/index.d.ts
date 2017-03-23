@@ -39,8 +39,12 @@ interface TableBodyProps extends Props {
 interface TableRowProps extends Props {
   children?: Array<React.ReactElement<any>> | React.ReactElement<any>;
   onCheckboxClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement>) => void;
-  autoAdjust?: boolean;
   selected?: boolean;
+
+  /**
+   * @deprecated
+   */
+  autoAdjust?: boolean;
 }
 
 interface TableColumnProps extends Props, InjectedTooltipProps {
@@ -49,11 +53,13 @@ interface TableColumnProps extends Props, InjectedTooltipProps {
   sortIconClassName?: string;
   numeric?: boolean;
   adjusted?: boolean;
+  grow?: boolean;
   selectColumnHeader?: boolean;
   header?: boolean;
   children?: React.ReactNode;
   plain?: boolean;
   scope?: 'row' | 'col';
+  cellIndex?: boolean;
 }
 
 interface EditDialogColumnProps extends SharedLayoverProps {
