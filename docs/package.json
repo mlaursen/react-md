@@ -55,7 +55,7 @@
     "react-waypoint": "^5.2.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "smooth-scroll": "^0.1.4",
+    "smooth-scroll": "cferdinandi/smooth-scroll",
     "webfontloader": "^1.6.26"
   },
   "devDependencies": {
