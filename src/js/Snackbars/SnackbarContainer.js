@@ -23,8 +23,8 @@ export default class SnackbarContainer extends PureComponent {
   static propTypes = {
     /**
      * An id for the Snackbar once a toast has been added and is visible. This is a recommended
-     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbarAlert'`
-     * when there is no action on the toast, or `'snackbarAlertDialog'` when there is an action
+     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbar-alert'`
+     * when there is no action on the toast, or `'snackbar-alert-dialog'` when there is an action
      * on the toast.
      */
     id: PropTypes.oneOfType([
@@ -182,12 +182,6 @@ export default class SnackbarContainer extends PureComponent {
       visible,
       toast: null,
     };
-
-    this._isMultiline = this._isMultiline.bind(this);
-    this._initAndToast = this._initAndToast.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._createSwapTimer = this._createSwapTimer.bind(this);
-    this._createLeaveTimer = this._createLeaveTimer.bind(this);
   }
 
   componentDidMount() {
@@ -230,9 +224,9 @@ export default class SnackbarContainer extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
-  }
+  };
 
   /**
    * This function takes in a new toast object and checks if the message will span
@@ -240,7 +234,7 @@ export default class SnackbarContainer extends PureComponent {
    * gets made, checking the height of the message, and then removing the temporary
    * snackbar.
    */
-  _isMultiline(toast) {
+  _isMultiline = (toast) => {
     const container = this._container;
     if (container === null) {
       return false;
@@ -274,9 +268,9 @@ export default class SnackbarContainer extends PureComponent {
     container.removeChild(snackbar);
 
     return multiline;
-  }
+  };
 
-  _initAndToast(toast) {
+  _initAndToast = (toast) => {
     this._initTimeout = setTimeout(() => {
       this._initTimeout = null;
 
@@ -284,9 +278,9 @@ export default class SnackbarContainer extends PureComponent {
     }, TICK);
 
     this.setState({ visible: true });
-  }
+  };
 
-  _createLeaveTimer() {
+  _createLeaveTimer = () => {
     const { transitionLeaveTimeout: time } = this.props;
     this._leaveTimeout = setTimeout(() => {
       this._leaveTimeout = null;
@@ -295,9 +289,9 @@ export default class SnackbarContainer extends PureComponent {
     }, time + TICK);
 
     this.setState({ toast: null });
-  }
+  };
 
-  _createSwapTimer(toast) {
+  _createSwapTimer = (toast) => {
     this._swapTimeout = setTimeout(() => {
       this._swapTimeout = null;
 
@@ -305,7 +299,7 @@ export default class SnackbarContainer extends PureComponent {
     }, this.props.transitionLeaveTimeout + CHAINED_TOAST_DELAY);
 
     this.setState({ toast: null });
-  }
+  };
 
   render() {
     const { visible, toast, multiline } = this.state;

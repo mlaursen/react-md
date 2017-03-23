@@ -54,7 +54,7 @@ export default class SimpleExample extends PureComponent {
         <Drawer
           {...this.state}
           navItems={inboxListItems}
-          onVisibilityToggle={this._handleToggle}
+          onVisibilityChange={this._handleToggle}
           type={Drawer.DrawerTypes.TEMPORARY}
           header={header}
           style={{ zIndex: 100 }}

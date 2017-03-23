@@ -114,8 +114,7 @@ export default class TableRow extends Component {
    * @return {Boolean} true if the hover state should be ignored for this classList
    */
   _ignoreHoverState(classList) {
-    return classList.contains('md-list--menu')
-      || ['md-edit-dialog', 'md-edit-dialog--active'].every(className => classList.contains(className));
+    return classList.contains('md-list--menu') || classList.contains('md-edit-dialog');
   }
 
   _handleMouseOver(e) {
@@ -220,6 +219,7 @@ export default class TableRow extends Component {
 
     const length = children.length;
     const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
+      cellIndex: i + (checkbox ? 1 : 0),
       header: getField(col.props, this.context, 'header'),
       className: cn({
         'md-table-column--grow': getField(col.props, this.context, 'header') && biggest && biggest.index === i,

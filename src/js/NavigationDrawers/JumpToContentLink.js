@@ -30,19 +30,13 @@ export default class JumpToContentLink extends PureComponent {
     label: PropTypes.string.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
 
     document.getElementById(this.context.id).focus();
-  }
+  };
 
   render() {
     const { className, ...props } = this.props;

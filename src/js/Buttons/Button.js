@@ -295,26 +295,11 @@ class Button extends PureComponent {
     noIcon: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pressed: false,
-      snackbar: false,
-      snackbarType: null,
-    };
-
-    this._blur = this._blur.bind(this);
-    this._animateForSnackbar = this._animateForSnackbar.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
+  state = {
+    pressed: false,
+    snackbar: false,
+    snackbarType: null,
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
@@ -361,7 +346,7 @@ class Button extends PureComponent {
     return 'flat';
   }
 
-  _blur() {
+  _blur = () => {
     if (this.props.disabled) {
       return;
     }
@@ -371,17 +356,17 @@ class Button extends PureComponent {
     } else {
       this.setState({ pressed: false });
     }
-  }
+  };
 
-  _handleMouseUp(e) {
+  _handleMouseUp = (e) => {
     if (this.props.onMouseUp) {
       this.props.onMouseUp(e);
     }
 
     this._blur();
-  }
+  };
 
-  _handleMouseDown(e) {
+  _handleMouseDown = (e) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
@@ -389,9 +374,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
@@ -399,18 +384,18 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(e);
     }
 
     this._blur();
     captureNextEvent('mouseover');
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -420,9 +405,9 @@ class Button extends PureComponent {
       window.addEventListener('click', this._blur);
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -431,9 +416,9 @@ class Button extends PureComponent {
       window.removeEventListener('click', this._blur);
       this.setState({ pressed: false });
     }
-  }
+  };
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -441,9 +426,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: true });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -451,9 +436,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: false });
     }
-  }
+  };
 
-  _animateForSnackbar(multiline, leaveTimeout) {
+  _animateForSnackbar = (multiline, leaveTimeout) => {
     if (typeof leaveTimeout === 'number') {
       this._snackbarTimeout = setTimeout(() => {
         this._snackbarTimeout = setTimeout(() => {
@@ -471,7 +456,7 @@ class Button extends PureComponent {
         this.setState({ snackbar: true, snackbarType: multiline ? 'multiline-' : '' });
       }, TICK);
     }
-  }
+  };
 
   render() {
     const {

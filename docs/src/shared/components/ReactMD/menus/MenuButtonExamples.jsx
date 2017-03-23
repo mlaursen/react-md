@@ -1,40 +1,58 @@
 import React from 'react';
-import MenuButton from 'react-md/lib/Menus/MenuButton';
+import FontIcon from 'react-md/lib/FontIcons';
 import ListItem from 'react-md/lib/Lists/ListItem';
+import MenuButton from 'react-md/lib/Menus/MenuButton';
 
-const styles = {
-  display: 'flex',
-  alignItems: 'center',
-  flexWrap: 'wrap',
-};
+// Numbers, strings, and objects will not require `key` while components will.
 
-const MenuButtonExamples = () => (
-  <div style={styles}>
+const MenuButtonExampes = () => (
+  <div className="menu-examples">
     <MenuButton
-      id="button-menu"
-      label="Toggle Open a Menu"
+      id="menu-button-1"
+      label="Toggle the Menu"
       raised
-      buttonChildren="chat"
-      className="menu-example"
+      secondary
+      menuItems={['Item One', 'Item Two', 'Item Three', 'Item Four']}
     >
-      <ListItem primaryText="Item One" />
-      <ListItem primaryText="Item Two" />
-      <ListItem primaryText="Item Three" />
-      <ListItem primaryText="Item Four" />
+      chat
     </MenuButton>
     <MenuButton
-      id="vert-menu"
+      id="menu-button-2"
+      label="Toggle the Menu"
+      anchor={{
+        x: MenuButton.HorizontalAnchors.INNER_LEFT,
+        y: MenuButton.VerticalAnchors.TOP,
+      }}
+      position={MenuButton.Positions.TOP_LEFT}
+      flat
+      primary
+      menuItems={[{
+        primaryText: 'Item One',
+        rightIcon: <FontIcon>home</FontIcon>,
+      }, {
+        primaryText: 'Item Two',
+      }, {
+        primaryText: 'Item Three',
+        secondaryText: 'Sub item three',
+      }]}
+    />
+    <MenuButton
+      id="menu-button-2"
       icon
-      buttonChildren="more_vert"
-      className="menu-example"
-      tooltipLabel="Open some menu"
+      menuItems={[
+        <ListItem key={1} primaryText="Item One" />,
+        <ListItem key={2} primaryText="Item Two" />,
+      ]}
+      listInline
+      centered
+      anchor={{
+        x: MenuButton.HorizontalAnchors.CENTER,
+        y: MenuButton.VerticalAnchors.CENTER,
+      }}
     >
-      <ListItem primaryText="Item One" />
-      <ListItem primaryText="Item Two" />
-      <ListItem primaryText="Item Three" />
-      <ListItem primaryText="Item Four" />
+      more_vert
     </MenuButton>
   </div>
 );
 
-export default MenuButtonExamples;
+export default MenuButtonExampes;

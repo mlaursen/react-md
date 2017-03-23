@@ -1,58 +1,49 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../Drawer');
-jest.unmock('../DrawerTypes');
-jest.unmock('../isType');
-jest.unmock('../../constants/media');
-jest.unmock('../../Dialogs/Dialog');
-jest.unmock('../../Papers/Paper');
-
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
 } from 'react-addons-test-utils';
 
+import matchMedia, { matchesMobile, matchesTablet, matchesDesktop } from '../../../../__mocks__/matchMedia';
 import Drawer from '../Drawer';
 import Dialog from '../../Dialogs/Dialog';
 import Portal from '../../Helpers/Portal';
 
 describe('Drawer', () => {
+  beforeEach(() => {
+    matchesMobile.mockClear();
+    matchesTablet.mockClear();
+    matchesDesktop.mockClear();
+  });
+
+  afterAll(() => {
+    window.matchMedia = matchMedia;
+  });
+
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog id="test"><Drawer /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><Drawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, Drawer);
     const { renderNode } = dialog.getChildContext();
     expect(drawer.context.renderNode).toBe(renderNode);
   });
 
   it('should not render in the Portal component by default', () => {
-    const drawer = shallow(<Drawer />);
+    window.matchMedia = matchesMobile;
+    const drawer = mount(<Drawer />);
     expect(drawer.find(Portal).length).toBe(0);
   });
 
   it('should render in the Portal component if the portal prop is enabled', () => {
-    const drawer = shallow(<Drawer portal />);
-    // One for overlay and one for the drawer itself
-    expect(drawer.find(Portal).length).toBe(2);
+    window.matchMedia = matchesMobile;
+    const drawer = mount(<Drawer portal />);
+    // One for the drawer itself
+    expect(drawer.find(Portal).length).toBe(1);
   });
 
   describe('updateType', () => {
-    const MATCH_MEDIA = window.matchMedia;
-    const matchesMobile = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.mobileMinWidth) !== -1,
-    }));
-    const matchesTablet = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.tabletMinWidth) !== -1,
-    }));
-    const matchesDesktop = jest.fn(query => ({
-      matches: query.indexOf('max') === -1
-        && query.indexOf(Drawer.defaultProps.desktopMinWidth) !== -1,
-    }));
-    afterAll(() => {
-      window.matchMedia = MATCH_MEDIA;
-    });
-
     it('should correctly set the default visibility on mobile devices', () => {
       const props = {
         navItems: [],
@@ -60,7 +51,7 @@ describe('Drawer', () => {
         tabletType: Drawer.DrawerTypes.PERSISTENT,
         desktopType: Drawer.DrawerTypes.FULL_HEIGHT,
         onMediaTypeChange: jest.fn(),
-        onVisibilityToggle: jest.fn(),
+        onVisibilityChange: jest.fn(),
       };
 
       window.matchMedia = matchesMobile;
@@ -68,7 +59,7 @@ describe('Drawer', () => {
       expect(drawer.state.visible).toBe(false);
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.TEMPORARY);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(0);
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(0);
     });
 
     it('should correctly set the default visibility on tablets', () => {
@@ -78,7 +69,7 @@ describe('Drawer', () => {
         tabletType: Drawer.DrawerTypes.PERSISTENT,
         desktopType: Drawer.DrawerTypes.FULL_HEIGHT,
         onMediaTypeChange: jest.fn(),
-        onVisibilityToggle: jest.fn(),
+        onVisibilityChange: jest.fn(),
       };
 
       window.matchMedia = matchesTablet;
@@ -87,7 +78,7 @@ describe('Drawer', () => {
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.PERSISTENT);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
       expect(props.onMediaTypeChange).toBeCalledWith(Drawer.DrawerTypes.PERSISTENT, { mobile: false, tablet: true, desktop: false });
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(0);
     });
 
     it('should correctly set the default visibility on desktop', () => {
@@ -97,7 +88,7 @@ describe('Drawer', () => {
         tabletType: Drawer.DrawerTypes.PERSISTENT,
         desktopType: Drawer.DrawerTypes.FULL_HEIGHT,
         onMediaTypeChange: jest.fn(),
-        onVisibilityToggle: jest.fn(),
+        onVisibilityChange: jest.fn(),
       };
 
       window.matchMedia = matchesDesktop;
@@ -106,8 +97,8 @@ describe('Drawer', () => {
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.FULL_HEIGHT);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
       expect(props.onMediaTypeChange).toBeCalledWith(Drawer.DrawerTypes.FULL_HEIGHT, { mobile: false, tablet: false, desktop: true });
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(1);
-      expect(props.onVisibilityToggle).toBeCalledWith(true);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(1);
+      expect(props.onVisibilityChange).toBeCalledWith(true);
     });
 
     it('should not update the visibility to false when the defaultVisible prop is enabled and the drawer type is temporary for any screen size', () => {
@@ -118,7 +109,7 @@ describe('Drawer', () => {
         tabletType: Drawer.DrawerTypes.TEMPORARY,
         desktopType: Drawer.DrawerTypes.TEMPORARY,
         onMediaTypeChange: jest.fn(),
-        onVisibilityToggle: jest.fn(),
+        onVisibilityChange: jest.fn(),
       };
 
       window.matchMedia = matchesMobile;
@@ -126,7 +117,7 @@ describe('Drawer', () => {
       expect(drawer.state.visible).toBe(true);
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.TEMPORARY);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(0);
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(0);
 
       window.matchMedia = matchesTablet;
       drawer = renderIntoDocument(<Drawer {...props} />);
@@ -134,7 +125,7 @@ describe('Drawer', () => {
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.TEMPORARY);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
       expect(props.onMediaTypeChange).toBeCalledWith(props.tabletType, { mobile: false, tablet: true, desktop: false });
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(0);
 
       window.matchMedia = matchesDesktop;
       drawer = renderIntoDocument(<Drawer {...props} />);
@@ -142,27 +133,26 @@ describe('Drawer', () => {
       expect(drawer.state.type).toBe(Drawer.DrawerTypes.TEMPORARY);
       expect(props.onMediaTypeChange.mock.calls.length).toBe(2);
       expect(props.onMediaTypeChange).toBeCalledWith(props.desktopType, { mobile: false, tablet: false, desktop: true });
-      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+      expect(props.onVisibilityChange.mock.calls.length).toBe(0);
     });
-
 
     it('should correctly update the visibility when the visible prop was defined and there was a media type change with visibility', () => {
       const props = {
         visible: false,
         defaultMedia: 'mobile',
         onMediaTypeChange: jest.fn(),
-        onVisibilityToggle: jest.fn(),
+        onVisibilityChange: jest.fn(),
       };
 
       window.matchMedia = matchesDesktop;
       renderIntoDocument(<Drawer {...props} />);
       expect(props.onMediaTypeChange).toBeCalledWith(Drawer.defaultProps.desktopType, { mobile: false, tablet: false, desktop: true });
-      expect(props.onVisibilityToggle).toBeCalledWith(true);
+      expect(props.onVisibilityChange).toBeCalledWith(true);
 
       window.matchMedia = matchesMobile;
       renderIntoDocument(<Drawer {...props} visible defaultMedia="desktop" />);
       expect(props.onMediaTypeChange).toBeCalledWith(Drawer.defaultProps.mobileType, { mobile: true, tablet: false, desktop: false });
-      expect(props.onVisibilityToggle).toBeCalledWith(true);
+      expect(props.onVisibilityChange).toBeCalledWith(true);
     });
 
     it('should update the overlayActive state correctly on initial mount when defaultVisible', () => {
@@ -248,7 +238,7 @@ describe('Drawer', () => {
 
     it('should update the overlayActive state correctly on initial mount when visible', () => {
       window.matchMedia = matchesMobile;
-      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, onVisibilityToggle: jest.fn() };
+      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, onVisibilityChange: jest.fn() };
       let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
       expect(drawer.state.overlayActive).toBe(true);
       drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
@@ -275,7 +265,7 @@ describe('Drawer', () => {
 
     it('should set overlayActive to true on any screen size if the overlay prop is enabled', () => {
       window.matchMedia = matchesMobile;
-      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: true, onVisibilityToggle: jest.fn() };
+      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: true, onVisibilityChange: jest.fn() };
       let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
       expect(drawer.state.overlayActive).toBe(true);
       drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
@@ -302,7 +292,7 @@ describe('Drawer', () => {
 
     it('should set overlayActive to false on any screen size if the overlay prop is enabled', () => {
       window.matchMedia = matchesMobile;
-      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: false, onVisibilityToggle: jest.fn() };
+      const props = { visible: true, type: Drawer.DrawerTypes.TEMPORARY, overlay: false, onVisibilityChange: jest.fn() };
       let drawer = renderIntoDocument(<Drawer {...props} defaultMedia="mobile" />);
       expect(drawer.state.overlayActive).toBe(false);
       drawer = renderIntoDocument(<Drawer {...props} defaultMedia="tablet" />);
@@ -329,10 +319,11 @@ describe('Drawer', () => {
   });
 
   describe('matchesMedia', () => {
-    const MATCH_MEDIA = window.matchMedia;
-    let matchMedia;
     beforeEach(() => {
-      matchMedia = jest.fn(() => ({ matches: false }));
+      window.matchMedia.mockClear();
+    });
+
+    beforeAll(() => {
       window.matchMedia = matchMedia;
     });
 
@@ -351,45 +342,30 @@ describe('Drawer', () => {
       expect(matchMedia.mock.calls.length).toBe(1);
       expect(matchMedia.mock.calls[0][0]).toBe('screen and (min-width: 320px) and (max-width: 800px)');
     });
-
-    afterAll(() => {
-      window.matchMedia = MATCH_MEDIA;
-    });
   });
 
   describe('getCurrentMedia', () => {
-    const { mobileMinWidth, tabletMinWidth, desktopMinWidth } = Drawer.defaultProps;
-    const matchMobile = jest.fn(query => ({
-      matches: !!query.match(`min-width: ${mobileMinWidth}`),
-    }));
-    const matchTablet = jest.fn(query => ({
-      matches: !!query.match(`min-width: ${tabletMinWidth}`),
-    }));
-    const matchDesktop = jest.fn(query => ({
-      matches: !!query.match(`min-width: ${desktopMinWidth}`),
-    }));
-    const MATCH_MEDIA = window.matchMedia;
     it('should return the mobile drawer type when the media matches mobile', () => {
-      window.matchMedia = matchMobile;
+      window.matchMedia = matchesMobile;
       const expected = { mobile: true, tablet: false, desktop: false, type: Drawer.defaultProps.mobileType };
       expect(Drawer.getCurrentMedia()).toEqual(expected);
     });
 
     it('should return the tablet drawer type when the media matches tablet', () => {
-      window.matchMedia = matchTablet;
+      window.matchMedia = matchesTablet;
       const expected = { mobile: false, tablet: true, desktop: false, type: Drawer.defaultProps.tabletType };
       expect(Drawer.getCurrentMedia()).toEqual(expected);
     });
 
     it('should return the desktop drawer type when the media matches desktop', () => {
-      window.matchMedia = matchDesktop;
+      window.matchMedia = matchesDesktop;
       const expected = { mobile: false, tablet: false, desktop: true, type: Drawer.defaultProps.desktopType };
       expect(Drawer.getCurrentMedia()).toEqual(expected);
     });
 
     it('should return the current type prop if constantType is enabled for any media', () => {
       const props = { ...Drawer.defaultProps, type: Drawer.DrawerTypes.TEMPORARY, constantType: true };
-      window.matchMedia = matchMobile;
+      window.matchMedia = matchesMobile;
       const expected = {
         mobile: true,
         tablet: false,
@@ -399,12 +375,12 @@ describe('Drawer', () => {
 
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
 
-      window.matchMedia = matchTablet;
+      window.matchMedia = matchesTablet;
       expected.mobile = false;
       expected.tablet = true;
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
 
-      window.matchMedia = matchDesktop;
+      window.matchMedia = matchesDesktop;
       expected.tablet = false;
       expected.desktop = true;
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
@@ -421,7 +397,7 @@ describe('Drawer', () => {
         desktopType: FULL_HEIGHT,
       };
 
-      window.matchMedia = matchMobile;
+      window.matchMedia = matchesMobile;
       const expected = {
         mobile: true,
         tablet: false,
@@ -431,21 +407,17 @@ describe('Drawer', () => {
 
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
 
-      window.matchMedia = matchTablet;
+      window.matchMedia = matchesTablet;
       expected.mobile = false;
       expected.tablet = true;
       expected.type = PERSISTENT;
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
 
-      window.matchMedia = matchDesktop;
+      window.matchMedia = matchesDesktop;
       expected.tablet = false;
       expected.desktop = true;
       expected.type = FULL_HEIGHT;
       expect(Drawer.getCurrentMedia(props)).toEqual(expected);
-    });
-
-    afterAll(() => {
-      window.matchMedia = MATCH_MEDIA;
     });
   });
 });

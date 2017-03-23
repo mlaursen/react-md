@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../BottomNavigation');
-jest.unmock('../../Dialogs/Dialog');
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import {
@@ -16,7 +13,11 @@ import Portal from '../../Helpers/Portal';
 describe('BottomNavigation', () => {
   it('should inherit the dialog\'s renderNode context', () => {
     const links = [{ label: '' }, { label: '' }, { label: '' }];
-    const dialog = renderIntoDocument(<Dialog id="test"><BottomNavigation links={links} /></Dialog>);
+    const dialog = renderIntoDocument(
+      <Dialog id="test" aria-label="Test">
+        <BottomNavigation links={links} />
+      </Dialog>
+    );
     const bottomNav = findRenderedComponentWithType(dialog, BottomNavigation);
     expect(bottomNav.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

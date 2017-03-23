@@ -3,7 +3,7 @@ import SelectField from 'react-md/lib/SelectFields';
 import states from 'constants/states';
 
 const stateItems = [''].concat(states);
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 export default class SelectFieldExamples extends PureComponent {
   constructor(props) {
@@ -47,7 +47,7 @@ export default class SelectFieldExamples extends PureComponent {
           id="numbers"
           label="Some Number"
           placeholder="0"
-          defaultValue={1}
+          defaultValue={0}
           menuItems={numbers}
           className="md-cell"
         />

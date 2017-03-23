@@ -60,7 +60,7 @@ export default class DocumentationTabs extends PureComponent {
     }
 
     let sassdocTab;
-    if (section !== 'helpers' || colors) {
+    if (section !== 'helpers' || colors || pathname.indexOf('layovers') !== -1) {
       sassdocTab = (
         <Tab label="SassDoc" id="documentation-sassdoc" />
       );

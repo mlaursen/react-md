@@ -9,12 +9,6 @@ export default class ToolbarTitle extends PureComponent {
     title: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     const { title, className, prominent, offset, ...props } = this.props;
     if (!title) {
@@ -29,6 +23,7 @@ export default class ToolbarTitle extends PureComponent {
     if (isValidElement(title)) {
       const titleEl = Children.only(title);
       return cloneElement(title, {
+        ...props,
         className: cn(fullClassName, titleEl.props.className),
       });
     }

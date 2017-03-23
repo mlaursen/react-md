@@ -1,52 +1,116 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType } from '../index';
+import {
+  LayoverAnchor,
+  SharedLayoverProps,
+  HorizontalAnchors,
+  HorizontalAnchorsEnum,
+  VerticalAnchors,
+  VerticalAnchorsEnum,
+  LayoverPositions,
+  LayoverPositionsEnum,
+  toggleQueryFn,
+} from '../Helpers';
 
-export enum Positions {
-  TOP_LEFT,
-  TOP_RIGHT,
-  BOTTOM_LEFT,
-  BOTTOM_RIGHT,
-  CONTEXT,
-  BELOW
-}
-
-export type PositionsType = 'tl' | 'tr' | 'bl' | 'br' | 'below' | 'context';
-
-interface SharedProps extends Props {
-  id?: number | string;
-  listId?: number | string;
+export interface SharedMenuProps extends SharedLayoverProps {
+  listId?: IdPropType;
+  listProps?: {};
   listStyle?: React.CSSProperties;
   listClassName?: string;
+  listInline?: boolean;
+  listZDepth?: number;
+  listHeightRestricted?: boolean;
+}
+
+interface MenuProps extends SharedMenuProps {
   component?: Function | string;
-  children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
-  transitionName?: string;
-  transitionEnterTimeout?: number;
-  transitionLeaveTimeout?: number;
-  toggle?: React.ReactNode;
-  position?: Positions | PositionsType;
-  onClose: (event?: Event) => void;
+  visible: boolean;
+  children?: React.ReactNode;
   cascading?: boolean;
-  contained?: boolean;
-  fullWidth?: boolean;
-}
+  cascadingAnchor?: LayoverAnchor;
+  cascadingZDepth?: number;
+  onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
+  preventContextMenu?: boolean;
+  toggleQuery?: string | {} | toggleQueryFn;
+  position?: LayoverPositions | LayoverPositionsEnum;
 
-interface MenuProps extends SharedProps {
-  isOpen: boolean;
-}
-
-interface MenuButtonProps extends SharedProps {
-  buttonId?: number | string;
-  menuStyle?: React.CSSProperties;
-  menuClassName?: string;
-  buttonChildren?: React.ReactNode;
-  onMenuToggle?: (isOpen: boolean, event: Event) => void;
+  /**
+   * @deprecated
+   * */
   isOpen?: boolean;
+
+  /**
+   * @deprecated
+   * */
+  close?: Function;
+
+  /**
+   * @deprecated
+   * */
+  autoclose?: boolean;
+
+  /**
+   * @deprecated
+   * */
+  contained?: boolean;
+
+  /**
+   * @deprecated
+   * */
+  limitHeight?: boolean;
+
+  /**
+   * @deprecated
+   * */
+  expanderIconClassName?: string;
+
+  /**
+   * @deprecated
+   * */
+  expanderIconChildren?: React.ReactNode;
+}
+
+interface MenuButtonProps extends SharedMenuProps {
+  defaultVisible?: boolean;
+  visible?: boolean;
+  onVisibilityChange?: (visible: boolean, e: React.MouseEvent<HTMLElement>) => void;
+  cascading?: boolean;
+  cascadingAnchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
+  cascadingZDepth?: number;
+  menuItems?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
+  children?: React.ReactNode;
+  position?: LayoverPositions | LayoverPositionsEnum;
+
+  /**
+   * @deprecated
+   * */
+  buttonChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   * */
+  onMenuToggle?: Function;
+
+  /**
+   * @deprecated
+   * */
+  isOpen?: boolean;
+
+  /**
+   * @deprecated
+   * */
   defaultOpen?: boolean;
 }
 
 export default class Menu extends React.Component<MenuProps, {}> {
-  static Positions: Positions;
+  static Positions: LayoverPositions | LayoverPositionsEnum;
+  static HorizontalAnchors: HorizontalAnchors | HorizontalAnchorsEnum;
+  static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
 }
-
 export { Menu };
-export class MenuButton extends React.Component<MenuButtonProps, {}> { }
+
+export class MenuButton extends React.Component<MenuButtonProps, {}> {
+  static Positions: LayoverPositions | LayoverPositionsEnum;
+  static HorizontalAnchors: HorizontalAnchors | HorizontalAnchorsEnum;
+  static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
+}

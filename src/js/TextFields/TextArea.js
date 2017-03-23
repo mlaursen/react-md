@@ -22,17 +22,7 @@ export default class TextArea extends PureComponent {
     label: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { height: null };
-    this.focus = this.focus.bind(this);
-    this.getField = this.getField.bind(this);
-    this.getValue = this.getValue.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleResize = this._handleResize.bind(this);
-    this._syncHeightWithMask = this._syncHeightWithMask.bind(this);
-  }
+  state = { height: null };
 
   componentDidMount() {
     this._rowHeight = this._calcRowHeight(this._field, this.props);
@@ -54,36 +44,32 @@ export default class TextArea extends PureComponent {
     window.removeEventListener('resize', this._handleResize);
   }
 
-  getField() {
-    return this._field;
-  }
+  getField = () => this._field;
 
-  getValue() {
-    return this._field.value;
-  }
+  getValue = () => this._field.value;
 
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
-
-  _setMask(mask) {
-    this._mask = mask;
-  }
-
-  _setField(field) {
-    this._field = field;
-  }
+  };
 
   _calcRowHeight(field, props) {
     return field.offsetHeight / props.rows;
   }
 
-  _handleResize() {
+  _setMask = (mask) => {
+    this._mask = mask;
+  };
+
+  _setField = (field) => {
+    this._field = field;
+  };
+
+  _handleResize = () => {
     this._rowHeight = this._calcRowHeight(this._field, this.props);
     this._syncHeightWithMask();
-  }
+  };
 
-  _syncHeightWithMask(value) {
+  _syncHeightWithMask = (value) => {
     if (value !== undefined) {
       this._mask.value = value;
     }
@@ -107,15 +93,15 @@ export default class TextArea extends PureComponent {
     }
 
     this.setState({ height });
-  }
+  };
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     this._syncHeightWithMask(e.target.value, e);
 
     if (this.props.onChange) {
       this.props.onChange(e);
     }
-  }
+  };
 
   render() {
     const { height } = this.state;

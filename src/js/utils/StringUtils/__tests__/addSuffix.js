@@ -1,7 +1,4 @@
 /* eslint-env jest */
-
-jest.unmock('../addSuffix');
-
 import addSuffix from '../addSuffix';
 
 describe('addSuffix', () => {

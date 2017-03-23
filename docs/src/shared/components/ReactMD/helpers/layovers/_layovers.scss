@@ -1,0 +1,36 @@
+@import '~react-md-scss';
+
+.layover-playground-wrapper {
+  height: 250px;
+  overflow: auto;
+}
+
+.layover-playground {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+
+  &__horizontal {
+    justify-content: initial;
+
+    > * {
+      flex-shrink: 0;
+    }
+
+    &-block {
+      content: '';
+      display: block;
+      width: 1000px;
+    }
+  }
+
+  &__vertical {
+    align-items: initial;
+    height: 800px;
+
+    .md-layover {
+      margin-top: 400px;
+    }
+  }
+}

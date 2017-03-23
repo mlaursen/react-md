@@ -1,7 +1,5 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
-jest.unmock('../FileInput');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

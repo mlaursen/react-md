@@ -52,18 +52,6 @@ export default class ClockFace extends PureComponent {
 
     this.state = { radius: 136, moving: false };
     this._center = {};
-    this._setFace = this._setFace.bind(this);
-    this._calcNewTime = this._calcNewTime.bind(this);
-    this._enableMouseMoving = this._enableMouseMoving.bind(this);
-    this._disableMouseMoving = this._disableMouseMoving.bind(this);
-    this._handleMouseEnter = this._handleMouseEnter.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleMouseMove = this._handleMouseMove.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
   }
 
   componentWillUnmount() {
@@ -73,7 +61,7 @@ export default class ClockFace extends PureComponent {
     window.removeEventListener('touchend', this._handleTouchEnd);
   }
 
-  _setFace(face) {
+  _setFace = (face) => {
     this._face = face;
 
     if (face !== null) {
@@ -84,25 +72,25 @@ export default class ClockFace extends PureComponent {
       this._top = offset.top;
       this.setState({ radius });
     }
-  }
+  };
 
-  _handleMouseEnter() {
+  _handleMouseEnter = () => {
     const { hoverMode } = this.props;
 
     if (hoverMode) {
       this._enableMouseMoving();
     }
-  }
+  };
 
-  _handleMouseLeave() {
+  _handleMouseLeave = () => {
     const { hoverMode } = this.props;
 
     if (hoverMode) {
       this._disableMouseMoving();
     }
-  }
+  };
 
-  _handleMouseDown(e) {
+  _handleMouseDown = (e) => {
     if (!isValidClick(e)) {
       return;
     }
@@ -112,18 +100,18 @@ export default class ClockFace extends PureComponent {
     if (!hoverMode) {
       this._enableMouseMoving();
     }
-  }
+  };
 
-  _handleMouseMove(e) {
+  _handleMouseMove = (e) => {
     if (!this.state.moving) {
       return;
     }
 
     e.preventDefault();
     this._calcNewTime(e);
-  }
+  };
 
-  _handleMouseUp(e) {
+  _handleMouseUp = (e) => {
     if (!isValidClick(e)) {
       return;
     }
@@ -142,26 +130,26 @@ export default class ClockFace extends PureComponent {
     if (!hoverMode) {
       this._disableMouseMoving();
     }
-  }
+  };
 
-  _handleTouchStart() {
+  _handleTouchStart = () => {
     captureNextEvent('mousedown');
 
     window.addEventListener('touchmove', this._handleTouchMove);
     window.addEventListener('touchend', this._handleTouchEnd);
     this.setState({ moving: true });
-  }
+  };
 
-  _handleTouchMove(e) {
+  _handleTouchMove = (e) => {
     if (!this.state.moving) {
       return;
     }
     e.preventDefault();
 
     this._calcNewTime(e);
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     this._calcNewTime(e);
     if (this._face && !this._face.contains(e.target)) {
       captureNextEvent('click');
@@ -171,28 +159,28 @@ export default class ClockFace extends PureComponent {
     window.removeEventListener('touchend', this._handleTouchEnd);
 
     this.setState({ moving: false });
-  }
+  };
 
-  _calcNewTime(e) {
+  _calcNewTime = (e) => {
     const { pageX: x, pageY: y } = e.changedTouches ? e.changedTouches[0] : e;
     const innerRadius = this.state.radius - 48;
     const { onChange, minutes, timePeriod } = this.props;
     onChange(calcTimeFromPoint({ x, y }, this._center, innerRadius, minutes, timePeriod));
-  }
+  };
 
-  _enableMouseMoving() {
+  _enableMouseMoving = () => {
     window.addEventListener('mousemove', this._handleMouseMove);
     window.addEventListener('mouseup', this._handleMouseUp);
 
     this.setState({ moving: true });
-  }
+  };
 
-  _disableMouseMoving() {
+  _disableMouseMoving = () => {
     window.removeEventListener('mousemove', this._handleMouseMove);
     window.removeEventListener('mouseup', this._handleMouseUp);
 
     this.setState({ moving: false });
-  }
+  };
 
   render() {
     const { time, minutes, timePeriod, onChange, hoverMode } = this.props;

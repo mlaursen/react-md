@@ -93,13 +93,7 @@ export default class Avatar extends PureComponent {
     ],
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { color: null };
-
-    this._setRandomColor = this._setRandomColor.bind(this);
-  }
+  state = { color: null };
 
   componentWillMount() {
     if (this.props.random) {
@@ -115,12 +109,12 @@ export default class Avatar extends PureComponent {
     }
   }
 
-  _setRandomColor() {
+  _setRandomColor = () => {
     const { suffixes } = this.props;
 
     const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
     this.setState({ color: suffixes[i] });
-  }
+  };
 
   _getColor(suffix, suffixes, color) {
     if (suffix) {

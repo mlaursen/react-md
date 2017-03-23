@@ -22,9 +22,18 @@ $md-list-include-three-lines: true !default;
 /// @type Boolean
 $md-list-include-controls: true !default;
 
+/// Boolean if inline lists should be included. This will display a list horizontally
+/// instead of vertically.
+/// @type Boolean
+$md-list-include-inline: false !default;
+
 /// Boolean if the `.md-list-unstyled` should be included by default.
 /// @type Boolean
 $md-list-include-unstyled-class-name: true !default;
+
+/// The amount of padding to apply to the `List` component when displayed inline.
+/// @type Number
+$md-list-inline-padding: 0 !default;
 
 /// This is really the keyline to use for lists. When a list item is inset, this will
 /// be applied to the tile.
@@ -240,6 +249,7 @@ $md-list-three-lines-addon-margin-top: null !default;
 ///     with controls to be included.
 /// @param {Boolean} include-unstyled [$md-list-include-unstyled-class-name] - Boolean if the `.md-list-unstyled`
 ///     class name should also be generated.
+/// @param {Boolean} include-inline [$md-list-include-inline] - Boolean if inline lists should also be created.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense styles
 ///     for icons should be included.
 @mixin react-md-lists(
@@ -253,6 +263,7 @@ $md-list-three-lines-addon-margin-top: null !default;
   $include-three-lines: $md-list-include-three-lines,
   $include-controls: $md-list-include-controls,
   $include-unstyled: $md-list-include-unstyled-class-name,
+  $include-inline: $md-list-include-inline,
   $include-dense-icons: $md-font-icon-include-dense
 ) {
   @if $include-unstyled {
@@ -456,6 +467,14 @@ $md-list-three-lines-addon-margin-top: null !default;
 
   @if $include-media {
     @include react-md-lists-media($include-icon, $include-avatar, $include-two-lines, $include-three-lines, $include-dense-icons);
+  }
+
+  @if $include-inline {
+    // I'm really cheating here.. Since it is after media query, doesn't require more precidence to override
+    .md-list--inline {
+      display: flex;
+      padding: $md-list-inline-padding;
+    }
   }
 }
 

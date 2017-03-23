@@ -1,8 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../TimePickerContainer');
-jest.unmock('../../Dialogs/DialogContainer');
-
 import React from 'react';
 import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';

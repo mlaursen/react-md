@@ -5,6 +5,7 @@ export type TextFieldTypes = 'text' | 'password' | 'number' | 'email' | 'search'
 export type TextFieldLineDirections = 'left' | 'center' | 'right';
 
 interface TextFieldProps extends Props {
+  id?: number | string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
   value?: number | string;
@@ -14,7 +15,6 @@ interface TextFieldProps extends Props {
   disabled?: boolean;
   label?: string;
   placeholder?: string;
-  id?: number | string;
   type?: TextFieldTypes;
   onChange?: (value: number | string, event: Event) => void;
   active?: boolean;

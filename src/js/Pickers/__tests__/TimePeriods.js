@@ -1,7 +1,5 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
-jest.unmock('../TimePeriods');
-
 import React from 'react';
 import {
   renderIntoDocument,

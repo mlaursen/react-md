@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../InputField');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

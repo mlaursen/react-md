@@ -24,14 +24,40 @@ export default class DataTable extends PureComponent {
     ]), 'plain'),
 
     /**
-     * Optional style to apply to the table.
+     * Optional style to apply to the table. If the table is `responsive`, this will be applied to the surrounding `div`
+     * instead of the table itself. Use the `tableStyle` in this case.
+     *
+     * @see {@link #tableStyle}
+     * @see {@link #responsive}
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the table.
+     * An optional className to apply to the table. If the table is `responsive`, this will be applied to the
+     * surrounding `div` instead of the table itself. Use the `tableClassName` in this case.
+     *
+     * @see {@link #tableClassName}
+     * @see {@link #responsive}
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
+     * `responsive`, use the `style` prop.
+     *
+     * @see @{link #style}
+     * @see {@link #responsive}
+     */
+    tableStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
+     * `responsive`, use the `className` prop.
+     *
+     * @see @{link #className}
+     * @see {@link #responsive}
+     */
+    tableClassName: PropTypes.string,
 
     /**
      * The table contents to display. This *should* be a list of `TableHeader` and `TableBody`
@@ -260,7 +286,10 @@ export default class DataTable extends PureComponent {
 
   render() {
     const {
+      style,
       className,
+      tableStyle,
+      tableClassName,
       children,
       plain,
       responsive,
@@ -285,15 +314,26 @@ export default class DataTable extends PureComponent {
     const table = (
       <table
         {...props}
+        style={responsive ? tableStyle : style}
         ref={tableEl => this._initializeRows(tableEl)}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
-        }, className)}
+          [className]: !responsive && className,
+          [tableClassName]: responsive && tableClassName,
+        })}
       >
         {children}
       </table>
     );
 
-    return responsive ? <div className="md-data-table--responsive">{table}</div> : table;
+    if (!responsive) {
+      return table;
+    }
+
+    return (
+      <div style={style} className={cn('md-data-table--responsive', className)}>
+        {table}
+      </div>
+    );
   }
 }

@@ -199,7 +199,6 @@ export default class SelectionControlGroup extends PureComponent {
         this.state.value = props.type === 'radio' ? props.controls[0].value : '';
       }
     }
-    this._handleChange = this._handleChange.bind(this);
   }
 
   _isChecked(value, controlValue, type) {
@@ -208,7 +207,7 @@ export default class SelectionControlGroup extends PureComponent {
       : value.split(',').indexOf(controlValue) !== -1;
   }
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     let value = e.target.value;
     if (this.props.type === 'checkbox') {
       const { checked } = e.target;
@@ -231,7 +230,7 @@ export default class SelectionControlGroup extends PureComponent {
     if (typeof this.props.value === 'undefined') {
       this.setState({ value });
     }
-  }
+  };
 
   render() {
     const {

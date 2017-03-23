@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../isDateEqual');
-
 import isDateEqual from '../isDateEqual';
 
 describe('isDateEqual', () => {

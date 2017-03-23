@@ -378,17 +378,6 @@ export default class TimePickerContainer extends PureComponent {
       timeMode: props.initialTimeMode || props.defaultTimeMode,
       tempTime: initialDate,
     };
-
-    this._setContainer = this._setContainer.bind(this);
-    this._toggleOpen = this._toggleOpen.bind(this);
-    this._closeOnEsc = this._closeOnEsc.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._getTextFieldValue = this._getTextFieldValue.bind(this);
-    this._setTimeMode = this._setTimeMode.bind(this);
-    this._setTempTime = this._setTempTime.bind(this);
-    this._handleOkClick = this._handleOkClick.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleCancelClick = this._handleCancelClick.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -433,27 +422,27 @@ export default class TimePickerContainer extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = container;
-  }
+  };
 
   _getTimeParts(date, props) {
     return extractTimeParts(props.DateTimeFormat, props.locales, date);
   }
 
-  _closeOnEsc(e) {
+  _closeOnEsc = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       this._handleCancelClick(e);
     }
-  }
+  };
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
     if (this._container && !this._container.contains(e.target)) {
       this._handleCancelClick(e);
     }
-  }
+  };
 
-  _toggleOpen(e) {
+  _toggleOpen = (e) => {
     if (this.props.disabled) {
       return;
     }
@@ -475,27 +464,27 @@ export default class TimePickerContainer extends PureComponent {
 
       this.setState({ visible });
     }
-  }
+  };
 
-  _setTimeMode(timeMode) {
+  _setTimeMode = (timeMode) => {
     if (this.state.timeMode === timeMode) { return; }
 
     this.setState({ timeMode });
-  }
+  };
 
-  _setTempTime(time) {
+  _setTempTime = (time) => {
     if (this.state.tempTime === time) { return; }
 
     this.setState({ tempTime: time });
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if ((e.which || e.keyCode) === ENTER) {
       this._toggleOpen(e);
     }
-  }
+  };
 
-  _handleOkClick(e) {
+  _handleOkClick = (e) => {
     const { onVisibilityChange, onChange, DateTimeFormat, locales } = this.props;
     const value = new Date(this.state.tempTime);
     if (onChange) {
@@ -519,9 +508,9 @@ export default class TimePickerContainer extends PureComponent {
     if (state) {
       this.setState(state);
     }
-  }
+  };
 
-  _handleCancelClick(e) {
+  _handleCancelClick = (e) => {
     if (this.props.onVisibilityChange) {
       this.props.onVisibilityChange(false, e);
     }
@@ -532,7 +521,7 @@ export default class TimePickerContainer extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
   _getTextFieldValue(props, state) {
     const { DateTimeFormat, locales } = props;

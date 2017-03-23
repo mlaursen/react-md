@@ -69,6 +69,13 @@ export default class AccessibleFakeButton extends PureComponent {
     ]).isRequired,
 
     /**
+     * Boolean if the default outline should be removed the when the fake button has been focused.
+     *
+     * @see {@link #tabbedClassName}
+     */
+    noFocusOutline: PropTypes.bool,
+
+    /**
      * The tab index to use for the Fake button so it is keyboard focusable.
      */
     tabIndex: PropTypes.number,
@@ -95,6 +102,7 @@ export default class AccessibleFakeButton extends PureComponent {
     component: 'div',
     tabIndex: 0,
     role: 'button',
+    noFocusOutline: true,
   };
 
   constructor(props) {
@@ -193,6 +201,7 @@ export default class AccessibleFakeButton extends PureComponent {
       disabled,
       tabIndex,
       ink,
+      noFocusOutline,
       /* eslint-disable no-unused-vars */
       onBlur,
       onClick,
@@ -215,6 +224,7 @@ export default class AccessibleFakeButton extends PureComponent {
         ref={this._setNode}
         className={cn('md-fake-btn', {
           'md-pointer--hover': !disabled,
+          'md-fake-btn--no-outline': noFocusOutline,
           [tabbedClassName]: tabbedClassName && this.state.tabFocused,
         }, className)}
         disabled={disabled}

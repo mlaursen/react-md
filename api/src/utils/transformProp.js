@@ -71,6 +71,7 @@ function addExternalPropLinks(description) {
       prop = '';
       hash = ''; // eslint-disable-line no-param-reassign
     }
+
     if (section.match(/(helpers|pickers|progress|selectioncontrols)/i)) {
       section = `${section}/${toClassName(component)}`; // eslint-disable-line no-param-reassign
     }

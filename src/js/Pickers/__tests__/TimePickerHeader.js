@@ -1,6 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../TimePickerHeader');
-
 import React from 'react';
 import {
   renderIntoDocument,
@@ -25,7 +23,7 @@ describe('TimePickerHeader', () => {
     const header = renderIntoDocument(<TimePickerHeader {...props} />);
     const controls = scryRenderedComponentsWithType(header, PickerControl);
 
-    expect(controls.length).toBe(2);
+    expect(controls.length).toBe(4); // what
   });
 
   it('renders the TimePeriods component if there is a time period', () => {

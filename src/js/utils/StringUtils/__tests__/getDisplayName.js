@@ -1,7 +1,4 @@
 /* eslint-env jest */
-
-jest.unmock('../getDisplayName');
-
 import React from 'react';
 import getDisplayName from '../getDisplayName';
 

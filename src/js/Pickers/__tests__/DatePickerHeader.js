@@ -1,7 +1,4 @@
 /* eslint-env jest*/
-/* eslint-disable global-require */
-jest.unmock('../DatePickerHeader');
-
 import React from 'react';
 import {
   renderIntoDocument,
@@ -11,10 +8,12 @@ import {
 import DatePickerHeader from '../DatePickerHeader';
 import PickerControl from '../PickerControl';
 
+import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
+
+jest.mock('../../utils/DateUtils/DateTimeFormat');
+
 describe('DatePickerHeader', () => {
   it('displays a picker control for selecting the year and a picker control for selecting the calendar', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
-
     const props = {
       changeCalendarMode: jest.fn(),
       DateTimeFormat,
@@ -33,7 +32,6 @@ describe('DatePickerHeader', () => {
   });
 
   it('formats the calendar temp date', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
       locales: 'en-US',

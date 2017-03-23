@@ -1,37 +1,30 @@
 import React from 'react';
 
-import MenuExamples from './MenuExamples';
-import MenuExamplesRaw from '!!raw!./MenuExamples';
+import GoogleDocsClone from './GoogleDocsClone';
+import GoogleDocsCloneRaw from './GoogleDocsClone/code';
 
 import MenuButtonExamples from './MenuButtonExamples';
 import MenuButtonExamplesRaw from '!!raw!./MenuButtonExamples';
 
-import ContextMenuExample from './ContextMenuExample';
-import ContextMenuExampleRaw from '!!raw!./ContextMenuExample';
-
-import './_menus.scss';
+import './_styles.scss';
 
 export default [{
-  title: 'Static Examples',
-  description: `This example shows some static menus that are always open. To make the
-menu accessible to screen readers, it is recommended to add an \`id\` prop.`,
-  code: MenuExamplesRaw,
-  children: <MenuExamples />,
-}, {
-  title: 'Menu Button Examples',
   description: `
-The \`Menu\` component might not be used as much since it is generally used by existing components.
-The \`Autocomplete\`, \`SelectField\` and \`MenuButton\` components use this behind the scene.
-
-The example below shows how a menu can be linked together with a button.
+If you are on a desktop device, you can view a google docs clone that has about 0.01% of the
+functionality! Quite amazing. It is a good example of showing how you can do cascading menus
+as well as context menus.
   `,
+  title: 'Google Docs Clone',
+  code: GoogleDocsCloneRaw,
+  children: <GoogleDocsClone />,
+}, {
+  description: `
+The \`MenuButton\` is just a simple wrapper for merging the \`Button\` and \`Menu\` components
+into one that no longer requires it to be a fully controlled component. The list of items to be
+displayed in the \`Menu\` will now be the \`items\` prop instead of the \`children\`. The \`children\`
+should be anything required to render the button correctly.
+  `,
+  title: 'MenuButton Examples',
   code: MenuButtonExamplesRaw,
   children: <MenuButtonExamples />,
-}, {
-  title: 'Context Menu Example',
-  description: `
-###### This is an example replacing the default context menu with the \`Menu\` component. The items will be visible if you right click anywhere in the Lorem Ipsum text below.
-`,
-  code: ContextMenuExampleRaw,
-  children: <ContextMenuExample />,
 }];

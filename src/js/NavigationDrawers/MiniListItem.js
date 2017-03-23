@@ -36,15 +36,7 @@ export default class MiniListItem extends PureComponent {
     itemComponent: 'li',
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { active: false };
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
+  state = { active: false };
 
   componentWillUnmount() {
     if (this._touchTimeout) {
@@ -52,7 +44,7 @@ export default class MiniListItem extends PureComponent {
     }
   }
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -60,9 +52,9 @@ export default class MiniListItem extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ active: true });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -70,9 +62,9 @@ export default class MiniListItem extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ active: false });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
@@ -80,9 +72,9 @@ export default class MiniListItem extends PureComponent {
     this._touched = true;
 
     this.setState({ active: true, touchedAt: Date.now() });
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(e);
     }
@@ -93,7 +85,7 @@ export default class MiniListItem extends PureComponent {
 
       this.setState({ active: false });
     }, time > 450 ? 0 : 450 - time);
-  }
+  };
 
   render() {
     const {

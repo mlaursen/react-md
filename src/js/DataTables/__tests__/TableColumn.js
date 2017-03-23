@@ -1,7 +1,5 @@
 /* eslint-env jest*/
 /* eslint-disable react/prop-types,react/prefer-stateless-function */
-jest.unmock('../TableColumn');
-
 import React from 'react';
 import {
   Simulate,

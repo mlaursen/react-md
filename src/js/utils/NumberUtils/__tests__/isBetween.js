@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../isBetween');
-
 import isBetween from '../isBetween';
 
 describe('isBetween', () => {

@@ -28,36 +28,27 @@ export default class InputField extends PureComponent {
     onHeightChange: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.getValue = this.getValue.bind(this);
-    this.getField = this.getField.bind(this);
-    this.focus = this.focus.bind(this);
-    this._setField = this._setField.bind(this);
-  }
-
-  getField() {
+  getField = () => { // eslint-disable-line arrow-body-style
     return typeof this.props.rows === 'undefined'
       ? this._field
       : this._field.getField();
-  }
+  };
 
-  getValue() {
+  getValue = () => {
     if (typeof this.props.rows === 'undefined') {
       return this._field.value;
     }
 
     return this._field.getValue();
-  }
+  };
 
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
+  };
 
-  _setField(field) {
+  _setField = (field) => {
     this._field = field;
-  }
+  };
 
   render() {
     const {

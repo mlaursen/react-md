@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../CardTitleBlock');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

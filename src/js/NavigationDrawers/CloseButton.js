@@ -28,13 +28,7 @@ export default class CloseButton extends PureComponent {
     onCloseClick: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -42,7 +36,7 @@ export default class CloseButton extends PureComponent {
     if (this.context.onCloseClick) {
       this.context.onCloseClick(e);
     }
-  }
+  };
 
   render() {
     const {

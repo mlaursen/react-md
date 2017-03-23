@@ -142,7 +142,7 @@ export default class MobileRightDrawerExample extends PureComponent {
         />
         <Drawer
           position="right"
-          onVisibilityToggle={this._handleVisibility}
+          onVisibilityChange={this._handleVisibility}
           visible={visible}
           renderNode={this._renderNode}
         >

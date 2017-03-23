@@ -4,7 +4,7 @@ import Subheader from '../Subheaders/Subheader';
 import ListItem from '../Lists/ListItem';
 
 export default function mapToListParts(item, index) {
-  if (typeof item === 'string') {
+  if (typeof item === 'string' || typeof item === 'number') {
     return createElement(ListItem, { key: item, primaryText: item });
   } else if (isValidElement(item)) {
     return item;

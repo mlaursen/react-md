@@ -1,5 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../addDate');
 import addDate from '../addDate';
 
 const march14 = new Date(2016, 2, 14, 15, 22, 18, 450);

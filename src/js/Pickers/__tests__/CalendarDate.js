@@ -1,7 +1,4 @@
 /* eslint-env jest*/
-/* eslint-disable global-require */
-jest.unmock('../CalendarDate');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -10,10 +7,12 @@ import {
 } from 'react-addons-test-utils';
 
 import CalendarDate from '../CalendarDate';
+import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
+
+jest.mock('../../utils/DateUtils/DateTimeFormat');
 
 describe('CalendarDate', () => {
   it('calls the onClick prop with the date prop when not disabled', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',
@@ -36,7 +35,6 @@ describe('CalendarDate', () => {
   });
 
   it('formats the date as the state', () => {
-    const DateTimeFormat = require('../../utils/DateUtils/DateTimeFormat');
     const props = {
       DateTimeFormat,
       locales: 'en-US',

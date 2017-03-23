@@ -59,6 +59,7 @@ export default [{
         'collapse',
         'focus-container',
         'icon-separator',
+        'layovers',
         'portal',
       ],
     }, 'inks',

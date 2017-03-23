@@ -251,7 +251,6 @@ $md-toolbar-select-field-margin: null !default;
     @include react-md-toolbars-media(
       $include-prominent,
       $include-btn-text,
-      $include-autocompletes,
       $include-select-fields,
       $include-dense-icons,
       $include-relative-padding-class-names,
@@ -547,8 +546,6 @@ $md-toolbar-select-field-margin: null !default;
 ///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
-/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
-///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
 /// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
@@ -559,7 +556,6 @@ $md-toolbar-select-field-margin: null !default;
 @mixin react-md-toolbars-mobile(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
   $relative-padding: $md-toolbar-relative-padding
@@ -603,15 +599,6 @@ $md-toolbar-select-field-margin: null !default;
       margin-top: $md-toolbar-mobile-select-field-margin;
     }
   }
-
-  @if $include-autocompletes {
-    .md-toolbar .md-autocomplete-list {
-      left: 0;
-      position: fixed;
-      top: $md-toolbar-mobile-portrait-height;
-      width: 100vw;
-    }
-  }
 }
 
 /// Includes the styles for toolbars on landscape mobile devices. This should normally be
@@ -626,8 +613,6 @@ $md-toolbar-select-field-margin: null !default;
 ///     toolbar styles should be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
-/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
-///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
 /// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
@@ -638,7 +623,6 @@ $md-toolbar-select-field-margin: null !default;
 @mixin react-md-toolbars-mobile-landscape(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
   $relative-padding: $md-toolbar-relative-padding
@@ -668,15 +652,6 @@ $md-toolbar-select-field-margin: null !default;
 
   @include react-md-toolbar-actions($margin);
   @include react-md-toolbar-titles($toolbar-height, $md-toolbar-mobile-title-keyline, $md-btn-icon-size, $margin);
-
-  @if $include-autocompletes {
-    .md-toolbar .md-autocomplete-list {
-      left: 0;
-      position: fixed;
-      top: $md-toolbar-mobile-landscape-height;
-      width: 100vw;
-    }
-  }
 }
 
 /// Includes the styles for toolbars on tablets and desktop screens. This should usually be used
@@ -691,8 +666,6 @@ $md-toolbar-select-field-margin: null !default;
 ///     toolbar styles shoudl be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
-/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
-///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
 /// @param {Boolean} include-relative-padding-class-names [$md-toolbar-include-relative-padding-class-names] - Boolean if the
@@ -703,7 +676,6 @@ $md-toolbar-select-field-margin: null !default;
 @mixin react-md-toolbars-tablet(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
   $relative-padding: $md-toolbar-relative-padding
@@ -745,15 +717,6 @@ $md-toolbar-select-field-margin: null !default;
     .md-select-field--toolbar.md-select-field--toolbar {
       margin-bottom: $md-toolbar-tablet-select-field-margin;
       margin-top: $md-toolbar-tablet-select-field-margin;
-    }
-  }
-
-  @if $include-autocompletes {
-    .md-toolbar .md-autocomplete-list {
-      left: 0;
-      position: absolute;
-      top: $md-toolbar-tablet-height;
-      width: 100%;
     }
   }
 }
@@ -869,8 +832,6 @@ $md-toolbar-select-field-margin: null !default;
 ///     toolbar styles shoudl be included.
 /// @param {Boolean} include-btn-text [$md-toolbar-include-btn-text] - Boolean if the flat or raised
 ///     button styles in toolbars should be included.
-/// @param {Boolean} include-autocompletes [$md-toolbar-include-autocompletes] - Boolean if the styles
-///     for autocompletes in toolbars should be included.
 /// @param {Boolean} include-select-fields [$md-toolbar-include-select-fields] - Boolean if the styles
 ///     for select fields in toolbars should be included.
 /// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons/buttons
@@ -883,7 +844,6 @@ $md-toolbar-select-field-margin: null !default;
 @mixin react-md-toolbars-media(
   $include-prominent: $md-toolbar-include-prominent,
   $include-btn-text: $md-toolbar-include-btn-text,
-  $include-autocompletes: $md-toolbar-include-autocompletes,
   $include-select-fields: $md-toolbar-include-select-fields,
   $include-dense-icons: $md-font-icon-include-dense,
   $include-relative-padding-class-names: $md-toolbar-include-relative-padding-class-names,
@@ -896,7 +856,6 @@ $md-toolbar-select-field-margin: null !default;
       @include react-md-toolbars-mobile(
         $include-prominent,
         $include-btn-text,
-        $include-autocompletes,
         $include-select-fields,
         $include-relative-padding-class-names,
         $relative-padding
@@ -907,7 +866,6 @@ $md-toolbar-select-field-margin: null !default;
       @include react-md-toolbars-mobile-landscape(
         $include-prominent,
         $include-btn-text,
-        $include-autocompletes,
         $include-select-fields,
         $include-relative-padding-class-names,
         $relative-padding
@@ -918,7 +876,6 @@ $md-toolbar-select-field-margin: null !default;
       @include react-md-toolbars-tablet(
         $include-prominent,
         $include-btn-text,
-        $include-autocompletes,
         $include-select-fields,
         $include-relative-padding-class-names,
         $relative-padding

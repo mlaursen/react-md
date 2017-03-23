@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../CardText');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { renderIntoDocument } from 'react-addons-test-utils';

@@ -8,10 +8,12 @@ export default class SwitchTrack extends PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
+    inkDisabled: PropTypes.bool,
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
   };
 
   render() {
-    const { disabled, checked, className, ...props } = this.props;
+    const { disabled, checked, className, inkDisabled, disabledInteractions, ...props } = this.props;
     return (
       <div
         {...props}
@@ -22,7 +24,13 @@ export default class SwitchTrack extends PureComponent {
           'md-switch-track--off': !checked,
         }, className)}
       >
-        <SwitchThumb disabled={disabled} checked={checked} onClick={props.onClick} />
+        <SwitchThumb
+          disabled={disabled}
+          checked={checked}
+          onClick={props.onClick}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
+        />
       </div>
     );
   }

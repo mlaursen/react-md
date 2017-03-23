@@ -8,6 +8,30 @@
 /// @type Boolean
 $md-inline-autocomplete: true !default;
 
+/// The position from the top of the text field that the inline autocomplete suggestion should appear.
+/// @type Number
+$md-autocomplete-suggestion-top: 12px !default;
+
+/// The position from the top of the text field with a floating label that the inline autocomplete suggestion
+/// should appear on mobile devices.
+/// @type Number
+$md-autocomplete-suggestion-mobile-floating-top: $md-text-field-mobile-floating-label-margin - 1 !default;
+
+/// The position from the top of a blocked text field that the inline autocomplete suggestion should appear on
+/// mobile devices.
+/// @type Number
+$md-autocomplete-suggestion-mobile-block-top: 18px !default;
+
+/// The position from the top of the text field with a floating label that the inline autocomplete suggestion
+/// should appear.
+/// @type Number
+$md-autocomplete-suggestion-desktop-floating-top: $md-text-field-desktop-floating-label-margin - 1 !default;
+
+/// The position from the top of a blocked text field that the inline autocomplete suggestion should appear on
+/// desktop screens.
+/// @type Number
+$md-autocomplete-suggestion-desktop-block-top: 15px !default;
+
 
 /// Includes any additional styles for autocompletes if `include-inline` is `true`.
 /// The `Autocomplete` component really depends on all the styles for text fields and menus.
@@ -21,11 +45,15 @@ $md-inline-autocomplete: true !default;
 ///     for autocompletes should be included.
 @mixin react-md-autocompletes($light-theme: $md-light-theme, $include-media: $md-media-included, $include-inline: $md-inline-autocomplete) {
   @if $include-inline {
+    .md-autocomplete-container {
+      position: relative;
+    }
+
     .md-autocomplete-suggestion {
       color: get-color('secondary', $light-theme);
       overflow: hidden;
       position: absolute;
-      top: 12px;
+      top: $md-autocomplete-suggestion-top;
       white-space: nowrap;
     }
 
@@ -67,11 +95,11 @@ $md-inline-autocomplete: true !default;
       font-size: $md-text-field-mobile-font-size;
 
       &--floating {
-        top: $md-text-field-mobile-floating-label-margin;
+        top: $md-autocomplete-suggestion-mobile-floating-top;
       }
 
       &--block {
-        top: 18px;
+        top: $md-autocomplete-suggestion-mobile-block-top;
       }
     }
   }
@@ -94,11 +122,11 @@ $md-inline-autocomplete: true !default;
       font-size: $md-text-field-desktop-font-size;
 
       &--floating {
-        top: $md-text-field-desktop-floating-label-margin;
+        top: $md-autocomplete-suggestion-desktop-floating-top;
       }
 
       &--block {
-        top: 15px;
+        top: $md-autocomplete-suggestion-desktop-block-top;
       }
     }
   }

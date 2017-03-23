@@ -62,7 +62,7 @@ export default class ColorPalette extends PureComponent {
       );
     });
     return (
-      <section className="md-grid md-grid--24-40">
+      <section className="md-grid">
         {palette}
       </section>
     );

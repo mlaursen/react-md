@@ -2,42 +2,104 @@ import * as React from 'react';
 import { Props } from '../index';
 import { TextFieldLineDirections } from '../TextFields';
 
-export type Positions = 'tl' | 'tr' | 'br' | 'bl' | 'below';
+import {
+  LayoverPositions,
+  LayoverPositionsEnum,
+  HorizontalAnchors,
+  HorizontalAnchorsEnum,
+  VerticalAnchors,
+  VerticalAnchorsEnum,
+} from '../Helpers';
+import { SharedMenuProps } from '../Menus';
 
-interface SelectFieldProps extends Props {
+export interface SelectFieldProps extends SharedMenuProps {
   id: number | string;
-  name?: string;
   menuId?: number | string;
   listId?: number | string;
-  position?: Positions;
   listStyle?: React.CSSProperties;
   listClassName?: string;
+  toggleStyle?: React.CSSProperties;
+  toggleClassName?: string;
   inputStyle?: React.CSSProperties;
   inputClassName?: string;
-  value?: number | string;
-  defaultValue?: number | string;
-  defaultOpen?: boolean;
-  isOpen?: boolean;
-  onMenuToggle?: (isOpen: boolean, event: Event) => void;
-  onChange?: (value: number | string, itemIndex: number, event: Event) => void;
+  defaultVisible?: boolean;
+  visible?: boolean;
+  onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
   menuItems?: Array<number | string | Object>;
+  keyboardMatchingTimeout?: number;
+  itemLabel?: string;
+  itemValue?: string;
+  defaultValue?: number | string;
+  value?: number | string;
+  onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>) => void;
   label?: string;
   placeholder?: string;
   disabled?: boolean;
-  itemLabel?: string;
-  itemValue?: string;
-  iconChildren?: React.ReactNode;
-  iconClassName?: string;
-  lineDirection?: TextFieldLineDirections;
-  keyboardMatchingTimeout?: number;
-  stretchList?: boolean;
+  required?: boolean;
   error?: boolean;
   errorText?: React.ReactNode;
   helpText?: React.ReactNode;
   helpOnFocus?: boolean;
-  required?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  iconChildren?: React.ReactNode;
+  iconClassName?: string;
   toolbar?: boolean;
-  fullWidth?: boolean;
+  stripActiveItem?: boolean;
+  transitionName?: string;
+  transitionTime?: number;
+  menuTransitionName?: string;
+  menuTransitionEnterTimeout?: number;
+  menuTransitionLeaveTiemout?: number;
+
+  /**
+   * @deprecated
+   */
+  isOpen?: boolean;
+
+  /**
+   * @deprecated
+   */
+  defaultOpen?: boolean;
+
+  /**
+   * @deprecated
+   */
+  initiallyOpen?: boolean;
+
+  /**
+   * @deprecated
+   */
+  onMenuToggle?: Function;
+
+  /**
+   * @deprecated
+   */
+  stretchList?: boolean;
+
+  /**
+   * @deprecated
+   */
+  menuStyle?: React.CSSProperties;
+
+  /**
+   * @deprecated
+   */
+  menuClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  floatingLabel?: boolean;
+
+  /**
+   * @deprecated
+   */
+  noAutoAdjust?: boolean;
+
+  /**
+   * @deprecated
+   */
+  adjustMinWidth?: boolean;
 }
 
 export default class SelectField extends React.Component<SelectFieldProps, {}> { }

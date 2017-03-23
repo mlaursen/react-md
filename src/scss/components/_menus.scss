@@ -2,12 +2,26 @@
 /// @group menus
 ////
 
-/// Boolean if the cascading styles for menus should be included
+/// Boolean if the cascading menu styles should be included. This will update the
+/// collapser icon to be rotated to the side.
+///
 /// @type {Boolean}
+/// @see md-menu-include-cascading-styles
 $md-menu-include-cascading: true !default;
 
-/// The z-index to use for menus
-/// type Number
+/// Boolean if the additional styles for cascading menus should be included. I'm not
+/// really sure why these styles are part of the spec.
+///
+/// @type Boolean
+/// @see md-menu-cascading-font-size
+/// @see md-menu-cascading-height
+/// @see md-menu-cascading-padding
+/// @see md-menu-cascading-list-padding
+$md-menu-include-cascading-styles: true !default;
+
+/// The z-index to use for menus. This is really only if the z-index for a layover
+/// is not preferred.
+/// @type Number
 /// @see md-btn-fixed-z-index
 /// @see md-dialog-full-page-z-index
 /// @see md-dialog-overlay-z-index
@@ -17,15 +31,65 @@ $md-menu-include-cascading: true !default;
 /// @see md-snackbar-z-index
 /// @see md-toolbar-z-index
 /// @group menus, z-indexes
-$md-menu-z-index: 10 !default;
+$md-menu-z-index: null !default;
+
+/// The width for a menu's `unit`. I don't really get it myself. It is a part of the material design
+/// specs though.
+/// @type Number
+$md-menu-units-width: 56px !default;
 
 /// The transition time to use for menus
 /// type Number
-$md-menu-transition-time: .2s !default;
+/// @deprecated
+$md-menu-transition-time: null !default;
+
+/// The min width to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-min-width
+/// @see md-menu-desktop-min-width
+/// @type Number
+$md-menu-min-width: $md-menu-units-width * 2 !default;
+
+/// The max width to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-max-width
+/// @see md-menu-desktop-max-width
+/// @type Number
+$md-menu-max-width: null !default;
+
+/// The max height to apply to menus. If this value is set, the mobile/desktop values will not be used.
+///
+/// @see md-menu-mobile-max-height
+/// @see md-menu-desktop-max-height
+/// @type Number
+$md-menu-max-height: null !default;
+
+
+/// An optional min width to apply to menus on tablet displays.
+/// @see md-menu-min-width
+/// @type Number
+$md-menu-mobile-min-width: null !default;
+
+/// An optional max width to apply to menus on mobile devices.
+///
+/// @see md-menu-max-width
+/// @type Number
+$md-menu-mobile-max-width: calc(100vw - 32px) !default;
 
 /// The max height for menus on mobile devices.
 /// @type Number
 $md-menu-mobile-max-height: $md-height * 5 + $md-height / 3 + $md-list-mobile-padding * 2 !default;
+
+/// An optional min width to apply to menus on desktop displays.
+/// @see md-menu-min-width
+/// @type Number
+$md-menu-desktop-min-width: null !default;
+
+/// An optional max width to apply to menus on desktop screens.
+///
+/// @see md-menu-max-width
+/// @type Number
+$md-menu-desktop-max-width: null !default;
 
 /// The max height for menus on deskop screens.
 /// @type Number
@@ -57,143 +121,52 @@ $md-menu-cascading-list-padding: 16px !default;
 ///     for menus.
 /// @param {Boolean} include-cascading [$md-menu-include-cascading] - Boolean if the desktop cascading
 ///     styles for menus should be included.
-@mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading) {
-  @if $include-media {
-    @include react-md-menus-media;
-  }
+@mixin react-md-menus($include-media: $md-media-included, $include-cascading: $md-menu-include-cascading, $include-cascading-styles: $md-menu-include-cascading-styles) {
+  .md-list--menu {
+    max-width: $md-menu-max-width;
+    min-width: $md-menu-min-width;
+    z-index: $md-menu-z-index;
 
-  .md-menu-container {
-    position: relative;
-  }
-
-  .md-menu-container--menu-below {
-    .md-menu-enter {
-      transform: scaleY(0);
-
-      &.md-menu-enter-active {
-        transform: scaleY(1);
-      }
+    &-restricted {
+      max-height: $md-menu-max-height;
+      overflow-y: auto;
     }
   }
 
-  .md-list--menu {
-    @include md-box-shadow(2);
-
-    position: absolute;
-    top: 0;
-    z-index: $md-menu-z-index;
-  }
-
-  .md-list--menu-contained {
-    width: 100%;
-  }
-
-  .md-list--menu-scrollable {
-    overflow-y: auto;
-  }
-
-  .md-list--menu-tr {
-    right: 0;
-    transform-origin: 100% 0;
-  }
-
-  .md-list--menu-tl {
-    transform-origin: 0 0;
-  }
-
-  .md-list--menu-br {
-    right: 0;
-    transform-origin: 100% 100%;
-  }
-
-  .md-list--menu-bl {
-    transform-origin: 0 100%;
-  }
-
-  .md-list--menu-context {
-    transform-origin: 50% 0;
-  }
-
-  .md-list--menu-nested {
-    @include md-box-shadow(3);
-
-    position: absolute;
-    z-index: $md-menu-z-index + 1;
-  }
-
-  .md-list--menu-below {
-    left: 0;
-    top: 100%;
-    transform-origin: 50% 0;
-    width: 100%;
-  }
-
-  .md-menu-enter {
-    transform: scale(0);
-  }
-
-  .md-menu-leave {
-    opacity: 1;
-  }
-
-  .md-menu-enter-active,
-  .md-menu-leave-active {
-    transition-duration: $md-menu-transition-time;
-  }
-
-  .md-menu-enter.md-menu-enter-active {
-    transform: scale(1);
-    transition-property: transform;
-  }
-
-  .md-menu-leave.md-menu-leave-active {
-    opacity: 0;
-    transition-property: opacity;
-  }
-
-  .md-menu-enter.md-menu-enter-active {
-    transition-timing-function: $md-transition-deceleration;
-  }
-
-  .md-menu-leave.md-menu-enter-leave {
-    transition-timing-function: $md-transition-acceleration;
-  }
-
   @if $include-cascading {
-    @include react-md-menus-cascading;
+    @include react-md-menus-cascading($include-cascading-styles);
+  }
+
+  @if $include-media {
+    @include react-md-menus-media;
   }
 }
 
-@mixin react-md-menus-cascading {
+/// Creates the styles for cascading menus. This really just rotates the collapser icon to change
+/// from vertical to horizontal.
+///
+/// @param {Boolean} include-cascading-styles [$md-menu-include-cascading-styles] - Boolean if the material design
+///     spec styles should also be included. This changes font-size, padding, and height of the items in a cascading
+///     menu.
+@mixin react-md-menus-cascading($include-cascading-styles: $md-menu-include-cascading-styles) {
   @media #{$md-desktop-media} {
     .md-list--menu-cascading {
-      padding-bottom: $md-menu-cascading-list-padding;
-      padding-top: $md-menu-cascading-list-padding;
+      @if $include-cascading-styles {
+        padding-bottom: $md-menu-cascading-list-padding;
+        padding-top: $md-menu-cascading-list-padding;
 
-      .md-list-tile {
-        height: $md-menu-cascading-height;
-        padding-left: $md-menu-cascading-padding;
-        padding-right: $md-menu-cascading-padding;
-      }
+        .md-list-tile {
+          padding-left: $md-menu-cascading-padding;
+          padding-right: $md-menu-cascading-padding;
 
-      .md-tile-text--primary {
-        font-size: $md-menu-cascading-font-size;
-      }
+          &:not(.md-list-tile--two-lines):not(.md-list-tile--three-lines) {
+            height: $md-menu-cascading-height;
+          }
+        }
 
-      .md-list-item--nested-container {
-        position: relative;
-      }
-
-      .md-list--menu-tr,
-      .md-list--menu-br {
-        left: 100%;
-        right: initial;
-      }
-
-      .md-list--menu-tl,
-      .md-list--menu-bl {
-        left: initial;
-        right: 100%;
+        .md-tile-text--primary {
+          font-size: $md-menu-cascading-font-size;
+        }
       }
 
       .md-collapser {
@@ -216,8 +189,17 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-mobile {
-  .md-list--menu-scrollable {
-    max-height: $md-menu-mobile-max-height;
+  @if $md-menu-max-width == null or $md-menu-min-width == null {
+    .md-list--menu {
+      max-width: if($md-menu-max-width == null, $md-menu-mobile-max-width, null);
+      min-width: if($md-menu-min-width == null, $md-menu-mobile-min-width, null);
+    }
+  }
+
+  @if $md-menu-max-height == null {
+    .md-list--menu-restricted {
+      max-height: $md-menu-mobile-max-height;
+    }
   }
 }
 
@@ -230,8 +212,17 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   }
 /// @group menus, media-queries
 @mixin react-md-menus-desktop {
-  .md-list--menu-scrollable {
-    max-height: $md-menu-desktop-max-height;
+  @if $md-menu-max-width == null or $md-menu-min-width == null {
+    .md-list--menu {
+      max-width: if($md-menu-max-width == null, $md-menu-desktop-max-width, null);
+      min-width: if($md-menu-min-width == null, $md-menu-desktop-min-width, null);
+    }
+  }
+
+  @if $md-menu-max-height == null {
+    .md-list--menu-restricted {
+      max-height: $md-menu-desktop-max-height;
+    }
   }
 }
 
@@ -241,11 +232,13 @@ $md-menu-cascading-list-padding: 16px !default;
 ///   @include react-md-menus-media;
 /// @group menus, media-queries
 @mixin react-md-menus-media {
-  @media #{$md-mobile-media} {
-    @include react-md-menus-mobile;
-  }
+  @if $md-menu-max-height == null or $md-menu-max-width == null or $md-menu-min-width == null {
+    @media #{$md-mobile-media} {
+      @include react-md-menus-mobile;
+    }
 
-  @media #{$md-desktop-media} {
-    @include react-md-menus-desktop;
+    @media #{$md-desktop-media} {
+      @include react-md-menus-desktop;
+    }
   }
 }

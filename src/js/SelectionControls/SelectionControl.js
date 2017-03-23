@@ -191,6 +191,20 @@ export default class SelectionControl extends PureComponent {
      */
     tooltip: PropTypes.node,
 
+    /**
+     * Boolean if the ink should be disabled for radios or checkboxes.
+     *
+     * @see {@link Inks#inkDisabled}
+     */
+    inkDisabled: PropTypes.bool,
+
+    /**
+     * An optional list of ink interactions that should be disabled.
+     *
+     * @see {@link Inks#disabledInteractions}
+     */
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -220,32 +234,25 @@ export default class SelectionControl extends PureComponent {
     if (typeof props.checked === 'undefined') {
       this.state.checked = !!props.defaultChecked;
     }
-
-    this._setInput = this._setInput.bind(this);
-    this._setControl = this._setControl.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleControlClick = this._handleControlClick.bind(this);
-    this._getIcon = this._getIcon.bind(this);
   }
 
   get checked() {
     return getField(this.props, this.state, 'checked');
   }
 
-  _setInput(input) {
+  _setInput = (input) => {
     this._input = input;
-  }
+  };
 
-  _setControl(control) {
+  _setControl = (control) => {
     this._control = control;
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = container;
-  }
+  };
 
-  _getIcon() {
+  _getIcon = () => {
     const { checkedIcon, uncheckedIcon, type } = this.props;
     const checked = getField(this.props, this.state, 'checked');
     if (checkedIcon || uncheckedIcon) {
@@ -258,9 +265,9 @@ export default class SelectionControl extends PureComponent {
         {this.props[`${prefix}Children`]}
       </FontIcon>
     );
-  }
+  };
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     const { type, onChange } = this.props;
     const checked = !getField(this.props, this.state, 'checked');
     if (onChange) {
@@ -276,13 +283,13 @@ export default class SelectionControl extends PureComponent {
     if (typeof this.props.checked === 'undefined') {
       this.setState({ checked });
     }
-  }
+  };
 
-  _handleControlClick() {
+  _handleControlClick = () => {
     this._fromFakeButton = true;
     // Trigger the change
     this._input.click();
-  }
+  };
 
   render() {
     const {
@@ -297,6 +304,8 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      inkDisabled,
+      disabledInteractions,
       'aria-label': ariaLabel,
       /* eslint-disable no-unused-vars */
       label: propLabel,
@@ -339,6 +348,8 @@ export default class SelectionControl extends PureComponent {
       control = (
         <SwitchTrack
           disabled={disabled}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
           checked={checked}
           onClick={this._handleControlClick}
           onBlur={onBlur}
@@ -349,6 +360,8 @@ export default class SelectionControl extends PureComponent {
       control = (
         <AccessibleFakeInkedButton
           ref={this._setControl}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
           onBlur={onBlur}
           onFocus={onFocus}
           disabled={disabled}

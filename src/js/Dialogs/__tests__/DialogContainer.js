@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../DialogContainer');
-jest.unmock('../Dialog');
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
@@ -17,21 +14,16 @@ import DialogContainer from '../DialogContainer';
 import Dialog from '../Dialog';
 import Portal from '../../Helpers/Portal';
 
-const PROPS = { id: 'test', visible: true, onHide: jest.fn() };
+const PROPS = {
+  id: 'test',
+  visible: true,
+  onHide: jest.fn(),
+  'aria-label': 'Test',
+  focusOnMount: false,
+};
+jest.useFakeTimers();
 
 describe('DialogContainer', () => {
-  it('merges className and style', () => {
-    const props = Object.assign({}, PROPS, {
-      style: { background: 'black' },
-      className: 'test',
-    });
-
-    const dialogContainer = renderIntoDocument(<DialogContainer {...props} />);
-    const css = findRenderedComponentWithType(dialogContainer, CSSTransitionGroup);
-    expect(css.props.style).toEqual(props.style);
-    expect(css.props.className).toContain(props.className);
-  });
-
   it('creates two timeouts when the _mountDialog function is called and the full page prop is false', () => {
     const props = Object.assign({}, PROPS, { visible: false });
     const container = renderIntoDocument(<DialogContainer {...props} />);
@@ -129,18 +121,18 @@ describe('DialogContainer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog id="test"><DialogContainer {...PROPS} /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><DialogContainer {...PROPS} /></Dialog>);
     const container = findRenderedComponentWithType(dialog, DialogContainer);
     expect(container.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 
   it('should not render in the Portal component by default', () => {
-    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} />);
+    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} aria-label="Test" />);
     expect(dialog.find(Portal).length).toBe(0);
   });
 
   it('should render in the Portal component if the portal prop is enabled', () => {
-    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} portal />);
+    const dialog = shallow(<DialogContainer id="test" visible onHide={jest.fn()} portal aria-label="Test" />);
     expect(dialog.find(Portal).length).toBe(1);
   });
 });

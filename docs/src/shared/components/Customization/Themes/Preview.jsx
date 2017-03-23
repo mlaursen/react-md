@@ -17,46 +17,19 @@ export default class Preview extends PureComponent {
     super(props);
 
     this.state = { visible: false };
-    this._setContainer = this._setContainer.bind(this);
-    this._toggleDrawer = this._toggleDrawer.bind(this);
-    this._handleVisibilityToggle = this._handleVisibilityToggle.bind(this);
   }
 
-  _setContainer(container) {
-    this._container = container;
-    if (this._container) {
-      // trigger rerender
-      this.setState({ found: true });
-    }
-  }
-
-  _toggleDrawer() {
+  _toggleDrawer = () => {
     this.setState({ visible: !this.state.visible });
   }
 
-  _handleVisibilityToggle(visible) {
+  _handleVisibilityChange = (visible) => {
     this.setState({ visible });
-  }
+  };
 
   render() {
-    let drawer;
-    if (this._container) {
-      drawer = (
-        <Drawer
-          renderNode={this._container}
-          header={<Toolbar title="Theme Preview" />}
-          navClassName="md-toolbar-relative"
-          navItems={NAV_ITEMS}
-          visible={this.state.visible}
-          onVisibilityToggle={this._handleVisibilityToggle}
-          overlay
-          type={Drawer.DrawerTypes.TEMPORARY}
-        />
-      );
-    }
-
     return (
-      <section className="md-background--card theme-preview" ref={this._setContainer}>
+      <section className="md-background--card theme-preview" ref={container => { this._container = container; }}>
         <Toolbar
           nav={<Button icon onClick={this._toggleDrawer}>menu</Button>}
           title="Theme Preview"
@@ -68,7 +41,16 @@ export default class Preview extends PureComponent {
           <LoremIpsum units="sentences" className="md-cell md-cell--12" component="p" />
           <Button label="Button" primary raised style={{ marginLeft: 8, marginTop: '1em' }} />
         </div>
-        {drawer}
+        <Drawer
+          renderNode={this._container}
+          header={<Toolbar title="Theme Preview" />}
+          navClassName="md-toolbar-relative"
+          navItems={NAV_ITEMS}
+          visible={this.state.visible}
+          onVisibilityChange={this._handleVisibilityChange}
+          overlay
+          type={Drawer.DrawerTypes.TEMPORARY}
+        />
         <Button floating secondary fixed>email</Button>
       </section>
     );

@@ -36,6 +36,7 @@ interface DrawerProps extends Props {
   desktopMinWidth?: number;
   type?: DrawerTypes | DrawerTypesType;
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
+  onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
   defaultMedia: MediaTypes;
   overlay?: boolean;
   portal?: boolean;
@@ -43,12 +44,16 @@ interface DrawerProps extends Props {
   lastChild?: boolean;
   defaultVisible?: boolean;
   visible?: boolean;
-  onVisibilityToggle?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
   position?: DrawerPositions;
   inline?: boolean;
   transitionDuration?: number;
   clickableDesktopOverlay?: boolean;
   children?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  onVisibilityToggle?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export default class Drawer extends React.Component<DrawerProps, {}> {

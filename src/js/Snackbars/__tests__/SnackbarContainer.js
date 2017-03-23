@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../SnackbarContainer');
-jest.unmock('../../Dialogs/Dialog');
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import {
@@ -14,6 +11,8 @@ import SnackbarContainer from '../SnackbarContainer';
 import Snackbar from '../Snackbar';
 import Dialog from '../../Dialogs/Dialog';
 import Portal from '../../Helpers/Portal';
+
+jest.useFakeTimers();
 
 const PROPS = { onDismiss: jest.fn(), toasts: [] };
 describe('SnackbarContainer', () => {
@@ -96,7 +95,7 @@ describe('SnackbarContainer', () => {
   });
 
   it('should inherit the dialog\'s renderNode context', () => {
-    const dialog = renderIntoDocument(<Dialog id="test"><SnackbarContainer {...PROPS} /></Dialog>);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test"><SnackbarContainer {...PROPS} /></Dialog>);
     const snackbar = findRenderedComponentWithType(dialog, SnackbarContainer);
     expect(snackbar.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });

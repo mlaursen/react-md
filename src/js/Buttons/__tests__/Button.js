@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../Button');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {

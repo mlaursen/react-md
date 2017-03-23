@@ -488,20 +488,6 @@ export default class DatePickerContainer extends PureComponent {
       calendarTempDate,
       calendarMode: props.initialCalendarMode || props.defaultCalendarMode,
     };
-
-    this._setContainer = this._setContainer.bind(this);
-    this._toggleOpen = this._toggleOpen.bind(this);
-    this._closeOnEsc = this._closeOnEsc.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._handleOkClick = this._handleOkClick.bind(this);
-    this._handleCancelClick = this._handleCancelClick.bind(this);
-    this._changeCalendarMode = this._changeCalendarMode.bind(this);
-    this._nextMonth = this._nextMonth.bind(this);
-    this._previousMonth = this._previousMonth.bind(this);
-    this._setCalendarTempDate = this._setCalendarTempDate.bind(this);
-    this._setCalendarTempYear = this._setCalendarTempYear.bind(this);
-    this._validateDateRange = this._validateDateRange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -557,23 +543,23 @@ export default class DatePickerContainer extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = container;
-  }
+  };
 
-  _closeOnEsc(e) {
+  _closeOnEsc = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       this._handleCancelClick(e);
     }
-  }
+  };
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
     if (this._container && !this._container.contains(e.target)) {
       this._handleCancelClick(e);
     }
-  }
+  };
 
-  _toggleOpen(e) {
+  _toggleOpen = (e) => {
     if (this.props.disabled) {
       return;
     }
@@ -589,15 +575,15 @@ export default class DatePickerContainer extends PureComponent {
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
       this.setState({ visible });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if ((e.which || e.keyCode) === ENTER) {
       this._toggleOpen(e);
     }
-  }
+  };
 
-  _handleOkClick(e) {
+  _handleOkClick = (e) => {
     const { DateTimeFormat, locales, onChange, formatOptions, onVisibilityChange } = this.props;
     const value = DateTimeFormat(locales, formatOptions).format(this.state.calendarTempDate);
     if (onChange) {
@@ -621,9 +607,9 @@ export default class DatePickerContainer extends PureComponent {
     if (state) {
       this.setState(state);
     }
-  }
+  };
 
-  _handleCancelClick(e) {
+  _handleCancelClick = (e) => {
     const state = { calendarTempDate: this.state.calendarDate };
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.isOpen === 'undefined') {
       state.visible = false;
@@ -634,25 +620,25 @@ export default class DatePickerContainer extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _changeCalendarMode(calendarMode) {
+  _changeCalendarMode = (calendarMode) => {
     if (this.state.calendarMode === calendarMode) { return; }
 
     this.setState({ calendarMode });
-  }
+  };
 
-  _previousMonth() {
+  _previousMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, -1, 'M');
     this.setState({ calendarDate });
-  }
+  };
 
-  _nextMonth() {
+  _nextMonth = () => {
     const calendarDate = addDate(this.state.calendarDate, 1, 'M');
     this.setState({ calendarDate });
-  }
+  };
 
-  _setCalendarTempDate(calendarTempDate) {
+  _setCalendarTempDate = (calendarTempDate) => {
     const { autoOk, DateTimeFormat, locales, onChange, formatOptions } = this.props;
 
     const state = { calendarTempDate };
@@ -679,9 +665,9 @@ export default class DatePickerContainer extends PureComponent {
       });
     }
     this.setState(state);
-  }
+  };
 
-  _setCalendarTempYear(year) {
+  _setCalendarTempYear = (year) => {
     const { calendarTempDate, calendarDate } = this.state;
     if (calendarTempDate.getFullYear() === year) { return; }
 
@@ -703,7 +689,7 @@ export default class DatePickerContainer extends PureComponent {
       calendarDate: nextDate,
       calendarTempDate: nextTemp,
     });
-  }
+  };
 
   /**
    * Gets the current value from the date picker as a formatted string.

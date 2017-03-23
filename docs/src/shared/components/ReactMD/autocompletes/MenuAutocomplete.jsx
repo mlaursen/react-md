@@ -56,7 +56,7 @@ export default class MenuAutocomplete extends PureComponent {
     return (
       <div>
         <SelectionControlGroup
-          id="filterType"
+          id="filter-type"
           name="filterType"
           type="radio"
           onChange={this._handleFilterChange}
@@ -72,7 +72,7 @@ export default class MenuAutocomplete extends PureComponent {
           }]}
         />
         <Autocomplete
-          id="programmingLanguages"
+          id="programming-languages"
           label="Type a programming language"
           className="md-cell md-cell--4"
           data={programmingLanguages}

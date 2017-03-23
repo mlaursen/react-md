@@ -4,7 +4,16 @@ const DateTimeFormat = (() => {
   }
 
   // Very bad 'mock' of Intl.DateTimeFormat
-  return (/* locales, formatOptions */) => ({ format: date => date.toLocaleString() });
+  return class DateTimeFormat { // eslint-disable-line no-shadow
+    constructor(locales, formatOptions) {
+      this.locales = locales;
+      this.options = formatOptions;
+    }
+
+    format(date) {
+      return date.toLocaleString();
+    }
+  };
 })();
 
 export default DateTimeFormat;

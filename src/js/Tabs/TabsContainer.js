@@ -196,12 +196,9 @@ export default class TabsContainer extends PureComponent {
     if (typeof props.activeTabIndex === 'undefined') {
       this.state.activeTabIndex = props.defaultTabIndex;
     }
-
-    this._handleTabChange = this._handleTabChange.bind(this);
-    this._handleSwipeChange = this._handleSwipeChange.bind(this);
   }
 
-  _handleTabChange(index, tabId, tabControlsId, tabChildren, event) {
+  _handleTabChange = (index, tabId, tabControlsId, tabChildren, event) => {
     if (this.props.onTabChange) {
       this.props.onTabChange(index, tabId, tabControlsId, tabChildren, event);
     }
@@ -209,11 +206,11 @@ export default class TabsContainer extends PureComponent {
     if (typeof this.props.activeTabIndex === 'undefined') {
       this.setState({ activeTabIndex: index });
     }
-  }
+  };
 
-  _handleSwipeChange(activeTabIndex) {
+  _handleSwipeChange = (activeTabIndex) => {
     this._handleTabChange(activeTabIndex);
-  }
+  };
 
   render() {
     const { panelHeight } = this.state;

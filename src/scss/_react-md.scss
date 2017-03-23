@@ -24,6 +24,7 @@
 @import 'components/file-inputs';
 @import 'components/icons';
 @import 'components/inks';
+@import 'components/layovers';
 @import 'components/lists';
 @import 'components/media';
 @import 'components/menus';
@@ -73,6 +74,7 @@
   @include react-md-file-inputs;
   @include react-md-inks;
   @include react-md-icons;
+  @include react-md-layovers;
   @include react-md-lists;
   @include react-md-media;
   @include react-md-menus;

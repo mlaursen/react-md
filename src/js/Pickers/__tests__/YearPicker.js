@@ -1,6 +1,4 @@
 /* eslint-env jest*/
-jest.unmock('../YearPicker');
-
 import React from 'react';
 import {
   renderIntoDocument,

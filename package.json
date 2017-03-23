@@ -65,7 +65,7 @@
     "eslint-plugin-react": "^6.1.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "intl": "^1.2.5",
-    "jest-cli": "^18.1.0",
+    "jest-cli": "^19.0.2",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
     "react": "^15.4.2",
@@ -73,6 +73,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-test-renderer": "^15.4.2",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
@@ -84,7 +85,7 @@
     "invariant": "^2.2.1",
     "react-motion": "^0.4.5",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.7.10"
+    "react-swipeable-views": "^0.11.1"
   },
   "peerDependencies": {
     "react": ">= 15.3.0",
@@ -93,24 +94,22 @@
     "react-dom": ">= 15.3.0"
   },
   "jest": {
-    "automock": true,
-    "timers": "fake",
     "cacheDirectory": "./.jest-cache",
     "setupFiles": [
       "<rootDir>/src/beforeTest.js"
     ],
+    "roots": [
+      "<rootDir>/src"
+    ],
     "unmockedModulePathPatterns": [
-      "<rootDir>/src/js/utils/omit.js",
-      "<rootDir>/src/js/utils/getField.js",
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/enzyme",
       "<rootDir>/node_modules/intl",
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/react-addons-pure-render-mixin",
+      "<rootDir>/node_modules/react-addons-css-transition-group",
       "<rootDir>/node_modules/react-addons-transtion-group",
-      "<rootDir>/node_modules/react-addons-css-transition-group"
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-test-renderer"
     ]
   }
 }

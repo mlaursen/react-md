@@ -1,7 +1,6 @@
 /* eslint-env jest*/
-jest.unmock('../DataTable');
-
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -11,17 +10,49 @@ import {
 
 import DataTable from '../DataTable';
 
-describe('DataTable', () => {
-  it('merges className and style', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const table = renderIntoDocument(
-      <DataTable style={style} className={className} baseId="woop"><tbody><tr><td>c</td></tr></tbody></DataTable>
+class Body extends React.Component {
+  render() {
+    return (
+      <tbody>
+        <tr>
+          <td />
+        </tr>
+      </tbody>
     );
+  }
+}
 
-    const tableNode = findRenderedDOMComponentWithTag(table, 'table');
-    expect(tableNode.style.display).toBe(style.display);
-    expect(tableNode.className).toContain(className);
+describe('DataTable', () => {
+  it('should wrap the table in a responsive container by default', () => {
+    const wrapper = shallow(<DataTable baseId="test"><Body /></DataTable>);
+    expect(wrapper.hasClass('md-data-table--responsive')).toBe(true);
+
+    wrapper.setProps({ responsive: true });
+    expect(wrapper.hasClass('md-data-table--responsive')).toBe(true);
+
+    wrapper.setProps({ responsive: false });
+    expect(wrapper.hasClass('md-data-table--responsive')).toBe(false);
+  });
+
+  it('should merge style and className correctly based on the responsive prop', () => {
+    const props = {
+      baseId: 'test-table',
+      style: { background: 'red' },
+      className: 'test-1',
+      tableStyle: { background: 'orange' },
+      tableClassName: 'test-2',
+      responsive: true,
+    };
+
+    const wrapper = shallow(<DataTable {...props}><Body /></DataTable>);
+    let table = wrapper.find('table');
+    expect(wrapper.hasClass(props.className)).toBe(true);
+    expect(table.hasClass(props.tableClassName)).toBe(true);
+
+    wrapper.setProps({ responsive: false });
+    table = wrapper.find('table');
+    expect(table.hasClass(props.className)).toBe(true);
+    expect(wrapper.hasClass(props.className)).toBe(true);
   });
 
   it('adds any event listeners', () => {

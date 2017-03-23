@@ -449,23 +449,6 @@ export default class Slider extends PureComponent {
       maskInked: false,
     };
     this._dragAdded = false;
-
-    this._focusThumb = this._focusThumb.bind(this);
-    this._updatePosition = this._updatePosition.bind(this);
-    this._handleDragStart = this._handleDragStart.bind(this);
-    this._handleDragMove = this._handleDragMove.bind(this);
-    this._handleDragEnd = this._handleDragEnd.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleIncrement = this._handleIncrement.bind(this);
-    this._handleTextFieldChange = this._handleTextFieldChange.bind(this);
-    this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
-    this._calcTrackWidth = this._calcTrackWidth.bind(this);
-    this._animateDiscreteInk = this._animateDiscreteInk.bind(this);
-    this._setTrack = this._setTrack.bind(this);
-    this._setField = this._setField.bind(this);
-    this._setNode = this._setNode.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -535,16 +518,6 @@ export default class Slider extends PureComponent {
   }
 
   /**
-   * Checks if the target is within the text field container.
-   *
-   * @param {Object} target - The event target.
-   * @return {Boolean} true if the target is in the text field.
-   */
-  _isTextField(target) {
-    return this._textField && this._textField.contains(target);
-  }
-
-  /**
    * Checks if a classList does not contain all the *bad* class names.
    *
    * @param {function} classList - The classList to check.
@@ -559,6 +532,14 @@ export default class Slider extends PureComponent {
 
     return !invalid;
   }
+
+  /**
+   * Checks if the target is within the text field container.
+   *
+   * @param {Object} target - The event target.
+   * @return {Boolean} true if the target is in the text field.
+   */
+  _isTextField = (target) => this._textField && this._textField.contains(target);
 
   /**
    * Updates the slider's thumb position and the slider's track fill width based
@@ -578,7 +559,7 @@ export default class Slider extends PureComponent {
    * @param {bool} normalize - Boolean if the distance should be normalized
    *    to the current scale of the slider.
    */
-  _updatePosition(e, normalize) {
+  _updatePosition = (e, normalize) => {
     const x = (e.changedTouches ? e.changedTouches[0] : e).clientX;
     const { scale } = this.state;
     const { onChange, onDragChange, min, max, step } = this.props;
@@ -620,7 +601,7 @@ export default class Slider extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
   /**
    * This will either allow a user to start dragging the slider or quickly
@@ -630,7 +611,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - The touchstart or mousedown event.
    */
-  _handleDragStart(e) {
+  _handleDragStart = (e) => {
     if (e.type === 'mousedown' && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     } else if (e.type === 'touchstart' && this.props.onTouchStart) {
@@ -651,22 +632,22 @@ export default class Slider extends PureComponent {
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
-  }
+  };
 
-  _setNode(node) {
+  _setNode = (node) => {
     this._node = findDOMNode(node);
-  }
+  };
 
-  _setTrack(track) {
+  _setTrack = (track) => {
     this._track = findDOMNode(track);
-  }
+  };
 
-  _setField(field) {
+  _setField = (field) => {
     this._field = findDOMNode(field);
     this._calcTrackWidth(this.props);
-  }
+  };
 
-  _handleDragMove(e) {
+  _handleDragMove = (e) => {
     if (this.props.disabled || !this.state.dragging) {
       return;
     }
@@ -675,16 +656,15 @@ export default class Slider extends PureComponent {
     e.preventDefault();
 
     this._updatePosition(e, false);
-  }
+  };
 
-  _handleDragEnd(e) {
+  _handleDragEnd = (e) => {
     if (!this.state.dragging || this.props.disabled || (e.type === 'mouseup' && !isValidClick(e))) {
       return;
     }
 
     this._updatePosition(e, true);
-  }
-
+  };
 
   /**
    * This will set the active state of the slider to false if the user
@@ -692,7 +672,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - The window's click event.
    */
-  _blurOnOutsideClick(e) {
+  _blurOnOutsideClick = (e) => {
     if ((this.state.dragging && !this.state.manualIncrement) || this.props.disabled) {
       return;
     }
@@ -700,7 +680,7 @@ export default class Slider extends PureComponent {
     if (!this._node.contains(e.target)) {
       this.setState({ active: false, maskInked: false });
     }
-  }
+  };
 
     /**
      * Updates the slider with the `step` prop and calls the `onChange`
@@ -711,7 +691,7 @@ export default class Slider extends PureComponent {
      *    touch start event.
      * @param {bool} disableTransition - Boolean if the jump's transition should be disabled.
      */
-  _handleIncrement(incrementedValue, e, disableTransition) {
+  _handleIncrement = (incrementedValue, e, disableTransition) => {
     const { onChange, min, max, discrete } = this.props;
 
     const distance = Math.max(0, Math.min(100, ((incrementedValue - min) / (max - min)) * 100));
@@ -738,11 +718,11 @@ export default class Slider extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleTextFieldChange(newValue, e) {
+  _handleTextFieldChange = (newValue, e) => {
     this._handleIncrement(newValue, e, false);
-  }
+  };
 
   /**
    * This will increment the Slider's value by the `step` prop. if the left or
@@ -750,7 +730,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - the keydown event.
    */
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     const key = e.which || e.keyCode;
     const { min, max, step, disabled } = this.props;
     if (disabled) {
@@ -771,7 +751,7 @@ export default class Slider extends PureComponent {
     );
 
     this._handleIncrement(nextValue, e, true);
-  }
+  };
 
   /**
    * This function will animate the discrete Slider's ink if it gains focus
@@ -779,7 +759,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - the key up event.
    */
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if ((e.which || e.keyCode) !== TAB) {
       return;
     }
@@ -789,11 +769,11 @@ export default class Slider extends PureComponent {
     }
 
     this.setState({ maskInked: true });
-  }
+  };
 
-  _handleFocus() {
+  _handleFocus = () => {
     this.setState({ active: true });
-  }
+  };
 
   /**
    * For some reason the width of the track gets set to 0 if the `Slider` has a label and
@@ -803,7 +783,7 @@ export default class Slider extends PureComponent {
    *
    * This function just checks these things, and sets the width accordingly.
    */
-  _calcTrackWidth(props) {
+  _calcTrackWidth = (props) => {
     const { editable, leftIcon, rightIcon, inputWidth, label } = props;
 
     if (!label) {
@@ -825,13 +805,13 @@ export default class Slider extends PureComponent {
     if (trackWidth) {
       this.setState({ trackWidth });
     }
-  }
+  };
 
   /**
    * The ink for a Discrete slider is only visible for a short time on initial
    * focus. This function will handle the in/out transitions.
    */
-  _animateDiscreteInk() {
+  _animateDiscreteInk = () => {
     const wait = this.props.discreteInkTransitionTime;
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
@@ -845,14 +825,14 @@ export default class Slider extends PureComponent {
         this.setState({ leaving: false });
       }, wait);
     }, wait);
-  }
+  };
 
   /**
    * This is a helper function for focusing the Slider's thumb comopnent. There
    * is a short delay because the body sometimes gets focused immediately after
    * if there is no timeout..
    */
-  _focusThumb() {
+  _focusThumb = () => {
     if (this._focusTimeout) {
       clearTimeout(this._focusTimeout);
     }
@@ -865,7 +845,7 @@ export default class Slider extends PureComponent {
 
       this._thumb.focus();
     }, 100);
-  }
+  };
 
   render() {
     const {
