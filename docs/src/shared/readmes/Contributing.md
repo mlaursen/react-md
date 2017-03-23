@@ -2,7 +2,7 @@
 Here are a few guidelines:
 
 ### Questions
-For general how-to and other non-issues, please use [gitter](https://gitter.im/mlaursen/react-md)
+For general how-to and other non-issues, please use [Slack](https://react-md.herokuapp.com)
 instead of GitHub issues.
 
 ### New Feature or Bug
@@ -92,5 +92,5 @@ site and create a new example.
 See the documentation's site [README](https://github.com/mlaursen/react-md/docs) for information on running the dev server.
 
 ### License
-By contributing your code to to the `mlaursen/react-md` or `mlaursen/react-md-docs` GitHub repository,
-you agree to license your contribution under the [MIT License](https://github.com/mlaursen/react-md/blob/master/LICENSE)
+By contributing your code to to the `mlaursen/react-md` GitHub repository, you agree to license your contribution under the
+[MIT License](https://github.com/mlaursen/react-md/blob/master/LICENSE).
