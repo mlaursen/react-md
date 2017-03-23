@@ -91,6 +91,11 @@ export default class SelectFieldColumn extends PureComponent {
      */
     cellIndex: PropTypes.number,
 
+    /**
+     * @access private
+     */
+    adjusted: PropTypes.bool,
+
     wrapperStyle: deprecated(PropTypes.object, 'There is no longer a wrapper'),
     wrapperClassName: deprecated(PropTypes.string, 'There is no longer a wrapper'),
   };
@@ -140,6 +145,7 @@ export default class SelectFieldColumn extends PureComponent {
       cellIndex: propCellIndex,
       wrapperStyle,
       wrapperClassName,
+      adjusted,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

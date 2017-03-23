@@ -1,5 +1,6 @@
 /* eslint-env jest*/
 import React from 'react';
+import { mount } from 'enzyme';
 import {
   Simulate,
   renderIntoDocument,
@@ -120,6 +121,25 @@ describe('TableRow', () => {
 
     checkboxes = scryRenderedComponentsWithType(table, TableCheckbox);
     expect(checkboxes.length).toBe(1);
+  });
+
+  it('should update the last TableColumn to set the adjusted prop to false automatically', () => {
+    const table = mount(
+      <DataTable baseId="wowza">
+        <TableBody>
+          <TableRow>
+            <TableColumn>1</TableColumn>
+            <TableColumn>2</TableColumn>
+            <TableColumn>3</TableColumn>
+          </TableRow>
+        </TableBody>
+      </DataTable>
+    );
+
+    const columns = table.find(TableColumn);
+    expect(columns.get(0).props.adjusted).toBeUndefined();
+    expect(columns.get(1).props.adjusted).toBeUndefined();
+    expect(columns.get(2).props.adjusted).toBe(false);
   });
 
   describe('_handleCheckboxClick', () => {

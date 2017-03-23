@@ -401,6 +401,11 @@ export default class EditDialogColumn extends PureComponent {
      */
     cellIndex: PropTypes.number,
 
+    /**
+     * @access private
+     */
+    adjusted: PropTypes.bool,
+
     enforceMinWidth: deprecated(
       PropTypes.bool,
       'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable.'
@@ -639,6 +644,7 @@ export default class EditDialogColumn extends PureComponent {
       cancelSecondary,
       okOnOutsideClick,
       defaultValue,
+      adjusted,
 
       // deprecated
       scrollThreshold,

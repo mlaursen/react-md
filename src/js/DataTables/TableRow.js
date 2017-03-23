@@ -170,9 +170,11 @@ export default class TableRow extends Component {
       );
     }
 
+    const length = Children.count(children) - 1;
     const columns = Children.map(Children.toArray(children), (col, i) => cloneElement(col, {
       cellIndex: i + (checkbox ? 1 : 0),
       header: getField(col.props, this.context, 'header'),
+      adjusted: i === length ? false : undefined,
     }));
 
     return (
