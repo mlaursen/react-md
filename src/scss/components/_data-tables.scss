@@ -361,6 +361,8 @@ $md-data-table-contextual-fallback-color: null !default;
     }
 
     &__content {
+      // For the multiline text fields
+      display: flex;
       padding: $md-dialog-padding;
       padding-bottom: 0;
 
