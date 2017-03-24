@@ -76,6 +76,7 @@ export default class FocusContainer extends PureComponent {
 
   static defaultProps = {
     component: 'div',
+    containFocus: true,
   };
 
   constructor(props) {
