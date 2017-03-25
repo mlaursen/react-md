@@ -1,0 +1,15 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "watch": [
+    "webpack.config.js",
+    "WIT.config.js",
+    "package.json",
+    "nodemon.json",
+    ".eslintrc",
+    ".babelrc",
+    "index.js",
+    "src/server/**/*.js"
+  ]
+}
