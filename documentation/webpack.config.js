@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const client = './src/client/index.jsx';
-const dist = path.resolve(process.cwd(), 'public');
+const dist = path.resolve(process.cwd(), 'public', 'assets');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const WITConfig = require('./WIT.config');
 
@@ -33,7 +33,7 @@ module.exports = ({ production }) => {
   const extractStyles = new ExtractTextPlugin({
     filename: 'styles.min.css',
     allChunks: true,
-    disable: production,
+    disable: !production,
   });
 
   return {
@@ -81,9 +81,44 @@ module.exports = ({ production }) => {
           }],
           fallback: 'style-loader',
         }),
+      }, {
+        test: /(\.md|logo\.svg)$/,
+        exclude: /node_modules/,
+        loader: 'raw-loader',
+      }, {
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json-loader',
+      }, {
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        exclude: /node_modules|logo\.svg/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+          },
+        }],
+      }, {
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        exclude: /node_modules/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10240,
+          },
+        }, {
+          loader: 'image-webpack-loader',
+          options: {
+            bypassOnDebug: true,
+          },
+        }],
       }],
     },
     plugins: [
+      new webpack.NormalModuleReplacementPlugin(
+        /routes$/,
+        `routes/${production ? 'a' : ''}sync.js`
+      ),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {

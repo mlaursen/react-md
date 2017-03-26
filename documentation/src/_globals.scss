@@ -1,4 +1,20 @@
 @import '~react-md/src/scss/react-md';
 
 $md-primary-color: $md-light-blue-500;
-$md-secondary-color: $md-orange-a-200;
+$md-secondary-color: $md-deep-orange-a-200;
+
+$md-picker-include-forceful-classes: true;
+
+@mixin style-logo-to-theme($primary, $secondary, $force: false) {
+  @if $primary != $md-primary-color or $force {
+    .home__logo--primary {
+      fill: $primary;
+    }
+  }
+
+  @if $secondary != $md-secondary-color or $force {
+    .home__logo--secondary {
+      fill: $secondary;
+    }
+  }
+}

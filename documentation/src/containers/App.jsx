@@ -1,9 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { updateMedia } from 'state/media';
+import { Home } from 'routes';
 
 const helmetConfig = {
   htmlAttributes: { lang: 'en' },
@@ -25,10 +28,12 @@ const helmetConfig = {
   }],
 };
 
+@withRouter
 @connect(({ media: { defaultMedia } }) => ({ defaultMedia }))
 export default class App extends PureComponent {
   static propTypes = {
     defaultMedia: PropTypes.string.isRequired,
+    location: PropTypes.object.isRequired,
 
     dispatch: PropTypes.func.isRequired,
   };
@@ -44,17 +49,24 @@ export default class App extends PureComponent {
   };
 
   render() {
-    const { defaultMedia } = this.props;
+    const { defaultMedia, location } = this.props;
+    const home = location.pathname === '/';
+
     return (
-      <NavigationDrawer
-        drawerTitle="react-md"
-        toolbarTitle="Woop"
-        defaultMedia={defaultMedia}
-        onMediaTypeChange={this.updateMedia}
-      >
-        <Helmet {...helmetConfig} />
-        <h1>Hello, world!</h1>
-      </NavigationDrawer>
+      <Route
+        render={({ location }) => (
+          <NavigationDrawer
+            drawerTitle="react-md"
+            toolbarTitle="Woop"
+            defaultMedia={defaultMedia}
+            onMediaTypeChange={this.updateMedia}
+            toolbarZDepth={home ? 0 : 1}
+          >
+            <Helmet {...helmetConfig} />
+            <Route exact path="/" location={location} component={Home} key={location.key} />
+          </NavigationDrawer>
+        )}
+      />
     );
   }
 }

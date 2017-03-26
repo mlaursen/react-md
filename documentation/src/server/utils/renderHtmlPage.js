@@ -14,7 +14,7 @@ export default function renderHtmlPage(store, html = '') {
     `<link href="${assets.styles[style]}" rel="stylesheet" type="text/css">`
   ).join('');
 
-  page += `</head><body><div id="app"><div>${html}</div></div>`;
+  page += `</head><body><div id="app">${html}</div>`;
   if (store) {
     page += `<script type="text/javascript">window.__INITIAL_STATE__=${serialize(store.getState())}</script>`;
   }

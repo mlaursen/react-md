@@ -10,8 +10,11 @@ module.exports = {
   alias: {
     /* eslint-disable quote-props */
     'react-md': path.resolve(process.cwd(), '..'),
+    'components': path.join(src, 'components'),
     'containers': path.join(src, 'containers'),
+    'routes': path.join(src, 'routes', 'sync.js'),
     'state': path.join(src, 'state'),
+    'utils': path.join(src, 'utils'),
   },
   assets: {
     images: {
