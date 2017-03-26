@@ -18,3 +18,31 @@ $md-picker-include-forceful-classes: true;
     }
   }
 }
+
+@mixin style-404-page-to-theme($primary, $secondary, $force: false) {
+  @if $force or $primary != $md-primary-color {
+    .not-found {
+      background: get-swatch($primary, 800);
+
+      &__svg--circle {
+        &-1 {
+          fill: get-swatch($primary, 700);
+        }
+
+        &-2 {
+          fill: get-swatch($primary, 600);
+        }
+
+        &-3 {
+          fill: $primary;
+        }
+      }
+    }
+  }
+
+  @if $force or $secondary != $md-secondary-color {
+    .not-found__svg-oval {
+      fill: $secondary;
+    }
+  }
+}

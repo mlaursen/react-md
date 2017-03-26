@@ -1,12 +1,12 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { updateMedia } from 'state/media';
-import { Home } from 'routes';
+import { Home, NotFound } from 'routes';
 
 const helmetConfig = {
   htmlAttributes: { lang: 'en' },
@@ -63,7 +63,10 @@ export default class App extends PureComponent {
             toolbarZDepth={home ? 0 : 1}
           >
             <Helmet {...helmetConfig} />
-            <Route exact path="/" location={location} component={Home} key={location.key} />
+            <Switch>
+              <Route exact path="/" location={location} component={Home} key={location.key} />
+              <Route component={NotFound} />
+            </Switch>
           </NavigationDrawer>
         )}
       />

@@ -82,7 +82,7 @@ module.exports = ({ production }) => {
           fallback: 'style-loader',
         }),
       }, {
-        test: /(\.md|logo\.svg)$/,
+        test: /(\.md|(logo|404)\.svg)$/,
         exclude: /node_modules/,
         loader: 'raw-loader',
       }, {
@@ -91,7 +91,7 @@ module.exports = ({ production }) => {
         loader: 'json-loader',
       }, {
         test: /\.(woff2?|ttf|eot|svg)$/,
-        exclude: /node_modules|logo\.svg/,
+        exclude: /node_modules|(logo|404)\.svg/,
         use: [{
           loader: 'url-loader',
           options: {
