@@ -6,3 +6,13 @@ html,
 body {
   margin: 0;
 }
+
+.md-avatar__google-logo {
+  background: $md-white-base;
+}
+
+@media #{$md-desktop-media} {
+  .material-icons.md-icon {
+    font-size: $md-font-icon-dense-size;
+  }
+}

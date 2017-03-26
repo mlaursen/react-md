@@ -1,12 +1,17 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Helmet from 'react-helmet';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { updateMedia } from 'state/media';
-import { Home, NotFound } from 'routes';
+import { updateLocation } from 'state/routing';
+import Link from 'components/Link';
+import navItems from 'constants/navItems';
+import scrollRestoration from 'utils/scrollRestoration';
+
+import Routing from './Routing';
 
 const helmetConfig = {
   htmlAttributes: { lang: 'en' },
@@ -29,11 +34,16 @@ const helmetConfig = {
 };
 
 @withRouter
-@connect(({ media: { defaultMedia } }) => ({ defaultMedia }))
+@connect(({ media: { defaultMedia }, drawer }) => ({ defaultMedia, ...drawer }))
 export default class App extends PureComponent {
   static propTypes = {
     defaultMedia: PropTypes.string.isRequired,
+    visibleToolbarTitle: PropTypes.bool.isRequired,
+    toolbarTitle: PropTypes.string.isRequired,
+    toolbarProminent: PropTypes.bool.isRequired,
+    visibleBoxShadow: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 
     dispatch: PropTypes.func.isRequired,
   };
@@ -44,29 +54,53 @@ export default class App extends PureComponent {
     this.state = {};
   }
 
+  componentDidMount() {
+    const { history, dispatch } = this.props;
+    history.listen((location) => {
+      dispatch(updateLocation(location));
+      if (typeof window.ga !== 'undefined') {
+        window.ga('send', 'pageview', location.pathname);
+      }
+    });
+    scrollRestoration();
+  }
+
+  componentDidUpdate() {
+    scrollRestoration();
+  }
+
   updateMedia = (drawerType, media) => {
     this.props.dispatch(updateMedia(drawerType, media));
   };
 
   render() {
-    const { defaultMedia, location } = this.props;
-    const home = location.pathname === '/';
+    const {
+      defaultMedia,
+      toolbarTitle,
+      visibleBoxShadow,
+      toolbarProminent,
+    } = this.props;
 
     return (
       <Route
         render={({ location }) => (
           <NavigationDrawer
             drawerTitle="react-md"
-            toolbarTitle="Woop"
+            toolbarTitle={toolbarTitle}
             defaultMedia={defaultMedia}
             onMediaTypeChange={this.updateMedia}
-            toolbarZDepth={home ? 0 : 1}
+            toolbarZDepth={visibleBoxShadow ? undefined : 0}
+            toolbarProminent={toolbarProminent}
+            navItems={navItems.map(({ divider, subheader, ...route }) => {
+              if (divider || subheader) {
+                return { divider, subheader, ...route };
+              }
+
+              return <Link {...route} />;
+            })}
           >
-            <Helmet {...helmetConfig} />
-            <Switch>
-              <Route exact path="/" location={location} component={Home} key={location.key} />
-              <Route component={NotFound} />
-            </Switch>
+            <Helmet {...helmetConfig} title={toolbarTitle} />
+            <Routing location={location} key={location.key} />
           </NavigationDrawer>
         )}
       />

@@ -1,0 +1,44 @@
+@import '~globals';
+
+.color-palette {
+  &__color {
+    color: $md-white-base;
+    font-weight: $md-font-bold;
+    padding: 15px;
+
+    &--light {
+      color: $md-black-base;
+    }
+
+    &--divide {
+      margin-top: 4px;
+    }
+
+    &-name {
+      color: inherit;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__sass-variable {
+    &::before {
+      content: '$';
+    }
+
+    &::after {
+      float: right;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@each $name, $color in $md-color-map {
+  .color-palette__color--#{$name} {
+    background: $color;
+
+    .color-palette__sass-variable::after {
+      content: '#{$color}';
+    }
+  }
+}

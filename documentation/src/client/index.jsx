@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import App from 'containers/App';
+import App from 'components/App';
 
 import configureStore from 'state/store';
 

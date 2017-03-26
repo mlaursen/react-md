@@ -119,6 +119,10 @@ module.exports = ({ production }) => {
         /routes$/,
         `routes/${production ? 'a' : ''}sync.js`
       ),
+      new webpack.NormalModuleReplacementPlugin(
+        /\.\/routes$/,
+        `./${production ? 'a' : ''}sync.js`
+      ),
       new webpack.LoaderOptionsPlugin({
         options: {
           eslint: {

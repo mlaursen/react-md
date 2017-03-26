@@ -26,6 +26,10 @@
     "import/no-extraneous-dependencies": 0,
     "import/no-webpack-loader-syntax": 0,
 
-    "react/forbid-prop-types": 0
+    "jsx-a11y/anchor-has-content": 0, // getting incorrect flags with vim linter
+
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
+    "react/no-unused-prop-types": 0
   }
 }

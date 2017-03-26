@@ -1,16 +1,24 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import Media from 'react-md/lib/Media/Media';
 
+import { pageNotFound } from 'state/drawer';
 import InlineSVG from 'components/InlineSVG';
 import notFound from './404.svg';
 
 import './_styles.scss';
 
+@connect(() => ({}))
 export default class NotFound extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
+
+  componentWillMount() {
+    this.props.dispatch(pageNotFound());
+  }
 
   goHome = () => {
     this.props.history.replace('/');

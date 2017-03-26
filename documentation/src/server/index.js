@@ -11,6 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
+import { toPageTitle } from 'utils/strings';
 import configureStore from '../state/store';
 import renderHtmlPage from './utils/renderHtmlPage';
 
@@ -67,6 +68,12 @@ app.get('*', (req, res) => {
 
   const store = configureStore({
     media: { mobile, tablet, desktop, defaultMedia },
+    drawer: {
+      visibleToolbarTitle: true,
+      toolbarTitle: toPageTitle(req.url),
+      toolbarProminent: false,
+      visibleBoxShadow: req.url !== '/',
+    },
   });
 
   if (!__SSR__) {
@@ -75,7 +82,7 @@ app.get('*', (req, res) => {
   }
 
   const context = {};
-  const App = require('containers/App').default;
+  const App = require('components/App').default;
 
   const html = renderToString(
     <StaticRouter context={context} location={req.url}>
