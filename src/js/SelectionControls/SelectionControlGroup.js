@@ -180,6 +180,11 @@ export default class SelectionControlGroup extends PureComponent {
      * Boolean if the `SelectionControl` should be displayed inline.
      */
     inline: PropTypes.bool,
+
+    /**
+     * Boolean if all the selection controls in the group are disabled.
+     */
+    disabled: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -246,6 +251,7 @@ export default class SelectionControlGroup extends PureComponent {
       component: Component,
       labelComponent: LabelComponent,
       inline,
+      disabled,
       ...props
     } = this.props;
     delete props.value;
@@ -261,6 +267,7 @@ export default class SelectionControlGroup extends PureComponent {
         name: `${name}${type === 'checkbox' ? '[]' : ''}`,
         type,
         inline,
+        disabled,
         checked: this._isChecked(value, control.value, type),
       }, control, {
         style: Object.assign({}, control.style, controlStyle),
@@ -284,7 +291,6 @@ export default class SelectionControlGroup extends PureComponent {
         {ariaLabel}
         {controls}
       </Component>
-
     );
   }
 }
