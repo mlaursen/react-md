@@ -447,6 +447,13 @@ export default class NavigationDrawer extends PureComponent {
     toolbarChildren: Toolbar.propTypes.children,
 
     /**
+     * An optional zDepth to apply to the toolbar.
+     *
+     * @see {@link Toolbars/Toolbar#zDepth}
+     */
+    toolbarZDepth: PropTypes.number,
+
+    /**
      * The component to render the content in.
      */
     contentComponent: PropTypes.oneOfType([
@@ -789,6 +796,7 @@ export default class NavigationDrawer extends PureComponent {
       toolbarThemeType,
       toolbarSingleColor,
       toolbarChildren,
+      toolbarZDepth,
       mobileDrawerType: mobileType,
       tabletDrawerType: tabletType,
       desktopDrawerType: desktopType,
@@ -920,6 +928,7 @@ export default class NavigationDrawer extends PureComponent {
           nav={nav}
           actions={toolbarActions}
           fixed
+          zDepth={toolbarZDepth}
         >
           {toolbarChildren}
         </Toolbar>

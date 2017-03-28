@@ -25,7 +25,7 @@ $md-list-include-controls: true !default;
 /// Boolean if inline lists should be included. This will display a list horizontally
 /// instead of vertically.
 /// @type Boolean
-$md-list-include-inline: false !default;
+$md-list-include-inline: true !default;
 
 /// Boolean if the `.md-list-unstyled` should be included by default.
 /// @type Boolean

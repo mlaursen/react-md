@@ -9,7 +9,7 @@ $md-badge-include-circular: true !default;
 /// Boolean if the default badge styles should be included. This will be
 /// just a background color change for the badge.
 /// @type Boolean
-$md-badge-include-default: false !default;
+$md-badge-include-default: true !default;
 
 /// The top position for a badge within the container. You can set this value to
 /// null if it should not be applied.
