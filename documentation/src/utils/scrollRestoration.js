@@ -1,6 +1,11 @@
-import { animateScroll } from 'smooth-scroll';
-
 export default function scrollRestoration() {
+  if (!__CLIENT__) {
+    return;
+  }
+
+  /* eslint-disable global-require */
+  const animateScroll = require('smooth-scroll').animateScroll;
+
   const { hash } = window.location;
   let el = null;
   if (hash) {

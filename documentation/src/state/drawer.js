@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { toPageTitle } from 'utils/strings';
 import { LOCATION_CHANGE } from './routing';
 
@@ -7,20 +8,40 @@ export function pageNotFound() {
   return { type: NOT_FOUND };
 }
 
-const INITIAL_STATE = {
-  visibleToolbarTitle: true,
-  toolbarTitle: typeof window !== 'undefined' ? toPageTitle(window.location.pathname) : '',
-  toolbarProminent: false,
-  visibleBoxShadow: false,
-};
-
-export default function drawer(state = INITIAL_STATE, action) {
-  if (action.type === NOT_FOUND) {
-    return { ...state, toolbarTitle: 'Not Found!', visibleBoxShadow: false };
-  } else if (action.type === LOCATION_CHANGE) {
-    const { pathname } = action.payload.location;
-    return { ...state, toolbarTitle: toPageTitle(pathname), visibleBoxShadow: pathname !== '/' };
+function toolbarTitle(state = '', action) {
+  if (action.type === LOCATION_CHANGE) {
+    return toPageTitle(action.payload.location.pathname);
+  } else if (action.type === NOT_FOUND) {
+    return 'Not Found!';
   }
 
   return state;
 }
+
+function toolbarProminent(state = false, action) {
+  if (action.type === LOCATION_CHANGE) {
+    const { pathname } = action.payload.location;
+    return !pathname.match(/minimzing/) && !!pathname.match(/components|customization/);
+  } else if (action.type === NOT_FOUND) {
+    return false;
+  }
+
+  return state;
+}
+
+function visibleBoxShadow(state = true, action) {
+  if (action.type === LOCATION_CHANGE) {
+    const { pathname } = action.payload.location;
+    return !pathname || pathname !== '/';
+  } else if (action.type === NOT_FOUND) {
+    return false;
+  }
+
+  return state;
+}
+
+export default combineReducers({
+  toolbarTitle,
+  toolbarProminent,
+  visibleBoxShadow,
+});

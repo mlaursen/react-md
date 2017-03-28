@@ -1,20 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React from 'react';
+import MarkdownPage from 'components/Markdown/MarkdownPage';
 
-export default class Themes extends PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
+import markdown from './README.md';
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div />
-    );
-  }
-}
+const Themes = () => <MarkdownPage markdown={markdown} />;
+export default Themes;

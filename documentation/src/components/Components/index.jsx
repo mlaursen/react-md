@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
+import { components, sections } from 'constants/navItems';
 
-import { NotFound } from 'routes';
+import { NotFound, ExamplesPage } from 'routes';
 
-const Customization = ({ match: { params: { section, component } }, history }) => {
-  if (component === 'autocompletes') {
-    return null;
-  } else if (section === 'pickers') {
-    return null;
+const Customization = (props) => {
+  const { match: { params: { section, component } }, history } = props;
+  if (components.indexOf(component) === -1 || (section && sections.indexOf(section) === -1)) {
+    return <NotFound history={history} />;
   }
 
-  return <NotFound history={history} />;
+  return <ExamplesPage {...props} />;
 };
 
 Customization.propTypes = {

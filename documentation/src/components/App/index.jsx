@@ -7,9 +7,10 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import { updateMedia } from 'state/media';
 import { updateLocation } from 'state/routing';
-import Link from 'components/Link';
 import navItems from 'constants/navItems';
 import scrollRestoration from 'utils/scrollRestoration';
+import Link from 'components/Link';
+import DocumentationTabs from 'components/DocumentationTabs';
 
 import Routing from './Routing';
 
@@ -38,7 +39,6 @@ const helmetConfig = {
 export default class App extends PureComponent {
   static propTypes = {
     defaultMedia: PropTypes.string.isRequired,
-    visibleToolbarTitle: PropTypes.bool.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
     visibleBoxShadow: PropTypes.bool.isRequired,
@@ -81,6 +81,11 @@ export default class App extends PureComponent {
       toolbarProminent,
     } = this.props;
 
+    let tabs;
+    if (toolbarProminent) {
+      tabs = <DocumentationTabs key={tabs} />;
+    }
+
     return (
       <Route
         render={({ location }) => (
@@ -91,6 +96,7 @@ export default class App extends PureComponent {
             onMediaTypeChange={this.updateMedia}
             toolbarZDepth={visibleBoxShadow ? undefined : 0}
             toolbarProminent={toolbarProminent}
+            toolbarChildren={tabs}
             navItems={navItems.map(({ divider, subheader, ...route }) => {
               if (divider || subheader) {
                 return { divider, subheader, ...route };

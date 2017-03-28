@@ -4,6 +4,9 @@
     "system-import-transformer",
     "syntax-async-functions",
     "transform-regenerator",
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    ["inline-import", {
+      "extensions": [".md"]
+    }]
   ]
 }

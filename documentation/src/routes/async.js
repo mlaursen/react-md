@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import asyncComponent from 'utils/asyncComponent';
 
 export const Home = asyncComponent(() => System.import('components/Home'));
@@ -10,3 +9,4 @@ export const Themes = asyncComponent(() => System.import('components/Customizati
 export const Typography = asyncComponent(() => System.import('components/Customization/Typography'));
 export const MediaQueries = asyncComponent(() => System.import('components/Customization/MediaQueries'));
 export const MinimizingBundle = asyncComponent(() => System.import('components/Customization/MinimizingBundle'));
+export const ExamplesPage = asyncComponent(() => System.import('components/ExamplesPage'));

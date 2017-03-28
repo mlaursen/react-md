@@ -12,7 +12,7 @@ module.exports = {
     'react-md': path.resolve(process.cwd(), '..'),
     'constants': path.join(src, 'constants'),
     'components': path.join(src, 'components'),
-    'containers': path.join(src, 'containers'),
+    'imgs': path.join(src, 'imgs'),
     'routes': path.join(src, 'routes', 'sync.js'),
     'state': path.join(src, 'state'),
     'utils': path.join(src, 'utils'),

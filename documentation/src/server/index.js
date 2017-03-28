@@ -69,9 +69,8 @@ app.get('*', (req, res) => {
   const store = configureStore({
     media: { mobile, tablet, desktop, defaultMedia },
     drawer: {
-      visibleToolbarTitle: true,
       toolbarTitle: toPageTitle(req.url),
-      toolbarProminent: false,
+      toolbarProminent: !req.url.match(/minimizing/) && !!req.url.match(/components|customization/),
       visibleBoxShadow: req.url !== '/',
     },
   });

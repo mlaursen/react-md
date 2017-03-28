@@ -6,6 +6,65 @@ import googleLogo from 'imgs/googleLogo.svg';
 import reactLogo from 'imgs/reactLogo.svg';
 import { toTitle, toPageTitle } from 'utils/strings';
 
+const componentRoutes = [
+  'autocompletes',
+  'avatars',
+  'badges',
+  'bottom-navigations',
+  'buttons',
+  'cards',
+  'chips',
+  'data-tables',
+  'dialogs',
+  'dividers',
+  'drawers',
+  'expansion-panels',
+  'file-inputs',
+  'font-icons', {
+    to: 'helpers',
+    routes: [
+      'accessible-fake-button',
+      'collapse',
+      'focus-container',
+      'icon-separator',
+      'layovers',
+      'portal',
+    ],
+  }, 'inks',
+  'lists',
+  'media',
+  'menus',
+  'navigation-drawers',
+  'papers', {
+    to: 'pickers',
+    routes: ['date', 'time'],
+  }, {
+    to: 'progress',
+    routes: ['circular', 'linear'],
+  }, 'select-fields', {
+    to: 'selection-controls',
+    routes: ['selection-control', 'checkboxes', 'radios', 'switches'],
+  },
+  'sliders',
+  'snackbars',
+  'subheaders',
+  'tabs',
+  'text-fields',
+  'toolbars',
+  'tooltips',
+];
+
+export const { components, sections } = componentRoutes.reduce((map, route) => {
+  if (typeof route === 'string') {
+    map.components.push(route);
+  } else {
+    map.sections.push(route.to);
+    map.components = map.components.concat(route.routes); // eslint-disable-line no-param-reassign
+  }
+
+  return map;
+}, { components: [], sections: [] });
+
 function toNavItem(route, parents = []) {
   const prefix = `${parents.length ? '/' : ''}${parents.join('/')}/`;
   if (typeof route === 'string') {
@@ -90,53 +149,7 @@ const routes = [{
 }, {
   to: 'components',
   icon: 'build',
-  routes: [
-    'autocompletes',
-    'avatars',
-    'badges',
-    'bottom-navigations',
-    'buttons',
-    'cards',
-    'chips',
-    'data-tables',
-    'dialogs',
-    'dividers',
-    'drawers',
-    'expansion-panels',
-    'file-inputs',
-    'font-icons', {
-      to: 'helpers',
-      routes: [
-        'accessible-fake-button',
-        'collapse',
-        'focus-container',
-        'icon-separator',
-        'layovers',
-        'portal',
-      ],
-    }, 'inks',
-    'lists',
-    'media',
-    'menus',
-    'navigation-drawers',
-    'papers', {
-      to: 'pickers',
-      routes: ['date', 'time'],
-    }, {
-      to: 'progress',
-      routes: ['circular', 'linear'],
-    }, 'select-fields', {
-      to: 'selection-controls',
-      routes: ['selection-control', 'checkboxes', 'radios', 'switches'],
-    },
-    'sliders',
-    'snackbars',
-    'subheaders',
-    'tabs',
-    'text-fields',
-    'toolbars',
-    'tooltips',
-  ],
+  routes: componentRoutes,
 }];
 
 const allRoutes = routes.concat([{ divider: true }, {
