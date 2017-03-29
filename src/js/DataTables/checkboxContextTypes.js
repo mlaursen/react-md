@@ -10,4 +10,6 @@ export default {
     PropTypes.string,
   ]).isRequired,
   baseName: PropTypes.string.isRequired,
+  createCheckbox: PropTypes.func.isRequired,
+  removeCheckbox: PropTypes.func.isRequired,
 };

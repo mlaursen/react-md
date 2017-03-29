@@ -1,7 +1,15 @@
 /* eslint-env jest*/
+/* eslint-disable react/no-multi-comp */
 jest.unmock('../DataTable');
+jest.unmock('../TableHeader');
+jest.unmock('../TableBody');
+jest.unmock('../TableRow');
+jest.unmock('../TableColumn');
+jest.unmock('../TableCheckbox');
+jest.unmock('../findTable');
 
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -10,6 +18,10 @@ import {
 } from 'react-addons-test-utils';
 
 import DataTable from '../DataTable';
+import TableHeader from '../TableHeader';
+import TableBody from '../TableBody';
+import TableRow from '../TableRow';
+import TableColumn from '../TableColumn';
 
 describe('DataTable', () => {
   it('merges className and style', () => {
@@ -92,5 +104,116 @@ describe('DataTable', () => {
     tableNode = findDOMNode(table);
     expect(tableNode.className).toBe('md-data-table');
     expect(tableNode.nodeName).toBe('TABLE');
+  });
+
+  it('should correctly initialize the checkbox state', () => {
+    const table = mount(
+      <DataTable baseId="test">
+        <TableHeader>
+          <TableRow>
+            <TableColumn />
+            <TableColumn />
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableColumn />
+            <TableColumn />
+          </TableRow>
+          <TableRow>
+            <TableColumn />
+            <TableColumn />
+          </TableRow>
+        </TableBody>
+      </DataTable>
+    );
+
+    expect(table.state('selectedRows')).toEqual([false, false]);
+  });
+
+  it('should correctly update the checkbox state when new rows are added', () => {
+    class Test extends React.Component {
+      state = { rowCount: 2 };
+      render() {
+        const rows = [...new Array(this.state.rowCount)].map((_, i) => (
+          <TableRow key={i}>
+            <TableColumn />
+            <TableColumn />
+          </TableRow>
+        ));
+
+        return (
+          <DataTable baseId="test">
+            <TableHeader>
+              <TableRow>
+                <TableColumn />
+                <TableColumn />
+              </TableRow>
+            </TableHeader>
+            <TableBody>{rows}</TableBody>
+          </DataTable>
+        );
+      }
+    }
+
+    const findTableState = (table) => table.find(DataTable).get(0).state;
+    const table = mount(<Test />);
+    let state = findTableState(table);
+    let expected = [false, false];
+    expect(state.selectedRows).toEqual(expected);
+
+    table.find(DataTable).get(0).setState({ selectedRows: [false, true] });
+    expected = [false, true];
+    state = findTableState(table);
+    expect(state.selectedRows).toEqual(expected);
+
+    table.setState({ rowCount: 8 });
+    state = findTableState(table);
+    expected = [false, true, false, false, false, false, false, false];
+    expect(state.selectedRows).toEqual(expected);
+  });
+
+  it('should correctly update the checkbox state when rows are removed', () => {
+    class Test extends React.Component {
+      state = { rows: ['row-1', 'row-2', 'row-3', 'row-4', 'row-5', 'row-6'] };
+      render() {
+        const rows = this.state.rows.map((key) => (
+          <TableRow key={key}>
+            <TableColumn />
+            <TableColumn />
+          </TableRow>
+        ));
+
+        return (
+          <DataTable baseId="test">
+            <TableHeader>
+              <TableRow>
+                <TableColumn />
+                <TableColumn />
+              </TableRow>
+            </TableHeader>
+            <TableBody>{rows}</TableBody>
+          </DataTable>
+        );
+      }
+    }
+    const findTableState = (table) => table.find(DataTable).get(0).state;
+    const table = mount(<Test />);
+    let state = findTableState(table);
+    let expected = [false, false, false, false, false, false];
+    expect(state.selectedRows).toEqual(expected);
+
+    // Check row 3, 5, and 6
+    expected = [false, false, true, false, true, true];
+    table.find(DataTable).get(0).setState({ selectedRows: expected });
+    state = findTableState(table);
+    expect(state.selectedRows).toEqual(expected);
+
+
+    // Remove the "checked" rows
+    table.setState({ rows: ['row-1', 'row-2', 'row-4'] });
+    state = findTableState(table);
+    expected = [false, false, false];
+    expect(state.selectedRows).toEqual(expected);
   });
 });

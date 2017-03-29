@@ -8,6 +8,8 @@ export default {
   plain: PropTypes.bool,
   allSelected: PropTypes.bool.isRequired,
   selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  createCheckbox: PropTypes.func.isRequired,
+  removeCheckbox: PropTypes.func.isRequired,
   toggleAllRows: PropTypes.func.isRequired,
   toggleSelectedRow: PropTypes.func.isRequired,
   baseId: PropTypes.oneOfType([
