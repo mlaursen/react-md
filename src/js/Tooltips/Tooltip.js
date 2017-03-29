@@ -26,6 +26,12 @@ export default class Tooltip extends PureComponent {
     this._timeout = null;
   }
 
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+  }
+
   componentWillEnter(cb) {
     this._timeout = setTimeout(() => {
       this._timeout = setTimeout(() => {
