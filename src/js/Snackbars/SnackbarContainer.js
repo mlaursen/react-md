@@ -191,7 +191,8 @@ export default class SnackbarContainer extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const [toast] = nextProps.toasts;
-    if (toast === this.state.toast) {
+    const [prevToast] = this.props.toasts;
+    if (toast === prevToast || toast === this.state.toast) {
       return;
     }
 
