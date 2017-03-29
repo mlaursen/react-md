@@ -376,6 +376,12 @@ $md-data-table-contextual-fallback-color: null !default;
     }
 
     &--inline {
+      // Really just a hack for when no icon is displayed. I think it is
+      // fixed already in 1.1.0 after the menu changes
+      .md-text-field {
+        height: $md-font-icon-size;
+      }
+
       .md-text-field-container--input-block {
         padding-bottom: 12px;
         padding-top: 12px;

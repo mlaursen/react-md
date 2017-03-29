@@ -8,6 +8,11 @@ $md-secondary-color: $md-deep-orange-a-200;
 @include react-md-everything;
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
 
+html,
+body {
+  width: 100%;
+}
+
 .md-title--toolbar {
   ~ .documentation-tabs {
     left: 0;
