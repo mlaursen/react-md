@@ -151,7 +151,12 @@ export default class Search extends PureComponent {
 
     let secondaryText = type;
     if (value) {
-      secondaryText = [type, <VariableFormat key="value">{value}</VariableFormat>];
+      secondaryText = (
+        <div>
+          <div>{type}</div>
+          <VariableFormat>{value}</VariableFormat>
+        </div>
+      );
     }
 
     return {

@@ -518,10 +518,8 @@ export default class Autocomplete extends PureComponent {
   _updateFont = () => {
     if (this._field) {
       const cs = window.getComputedStyle(this._field);
-      this.setState({
-        fontSize: parseInt(cs.fontSize, 10),
-        font: cs.font,
-      });
+      this._fontSize = parseInt(cs.fontSize, 10);
+      this._font = cs.font;
     }
   };
 
@@ -756,7 +754,8 @@ export default class Autocomplete extends PureComponent {
 
   _findInlineSuggestions = (value) => {
     const { data, dataLabel, findInlineSuggestion } = this.props;
-    const { font, fontSize } = this.state;
+    const font = this._font;
+    const fontSize = this._fontSize;
     let { suggestionStyle } = this.state;
 
     let suggestion = findInlineSuggestion(data, value, dataLabel);
