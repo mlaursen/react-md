@@ -3,6 +3,9 @@ import React from 'react';
 import GoogleDocsClone from './GoogleDocsClone';
 import GoogleDocsCloneRaw from './GoogleDocsClone/code';
 
+import DropdownMenuExamples from './DropdownMenuExamples';
+import DropdownMenuExamplesRaw from '!!raw!./DropdownMenuExamples';
+
 import MenuButtonExamples from './MenuButtonExamples';
 import MenuButtonExamplesRaw from '!!raw!./MenuButtonExamples';
 
@@ -17,6 +20,10 @@ as well as context menus.
   title: 'Google Docs Clone',
   code: GoogleDocsCloneRaw,
   children: <GoogleDocsClone />,
+}, {
+  title: 'Dropdown Menu Example',
+  code: DropdownMenuExamplesRaw,
+  children: <DropdownMenuExamples />,
 }, {
   description: `
 The \`MenuButton\` is just a simple wrapper for merging the \`Button\` and \`Menu\` components

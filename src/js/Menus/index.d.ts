@@ -70,6 +70,18 @@ interface MenuProps extends SharedMenuProps {
   expanderIconChildren?: React.ReactNode;
 }
 
+interface DropdownProps extends SharedMenuProps {
+  defaultVisible?: boolean;
+  visible?: boolean;
+  onVisibilityChange?: (visible: boolean, e: React.MouseEvent<HTMLElement>) => void;
+  cascading?: boolean;
+  cascadingAnchor?: { x: HorizontalAnchors | HorizontalAnchorsEnum, y: VerticalAnchors | VerticalAnchorsEnum };
+  cascadingZDepth?: number;
+  menuItems?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
+  children?: React.ReactElement<any>;
+  position?: LayoverPositions | LayoverPositionsEnum;
+}
+
 interface MenuButtonProps extends SharedMenuProps {
   defaultVisible?: boolean;
   visible?: boolean;
@@ -108,6 +120,12 @@ export default class Menu extends React.Component<MenuProps, {}> {
   static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
 }
 export { Menu };
+
+export class DropdownMenu extends React.Component<DropdownProps, {}> {
+  static Positions: LayoverPositions | LayoverPositionsEnum;
+  static HorizontalAnchors: HorizontalAnchors | HorizontalAnchorsEnum;
+  static VerticalAnchors: VerticalAnchors | VerticalAnchorsEnum;
+}
 
 export class MenuButton extends React.Component<MenuButtonProps, {}> {
   static Positions: LayoverPositions | LayoverPositionsEnum;
