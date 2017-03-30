@@ -42,6 +42,7 @@ interface SelectionControlGroupProps extends Props {
   defaultValue?: number | string;
   value?: number | string;
   controls: Array<{ key?: number | string, label: React.ReactNode, value: number | string }>;
+  disabled?: boolean;
 }
 
 interface CheckboxProps extends CommonProps {
