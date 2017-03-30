@@ -505,6 +505,17 @@ export default class Layover extends PureComponent {
       } else {
         this._toggle = toggleQuery;
       }
+
+      if (!this._toggle) {
+        const error = new Error(
+          'Unable to find a toggle component with the provided `toggleQuery` and `toggle` element. \n' +
+          `\`toggleQuery\`: \`${toggleQuery}\``
+        );
+        error.toggleQuery = toggleQuery;
+        error.toggle = this.props.toggle;
+
+        throw error;
+      }
     }
 
     if (this._container) {
