@@ -3,21 +3,14 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import MenuButton from '../MenuButton';
-import Menu from '../Menu';
+import DropdownMenu from '../DropdownMenu';
 import Button from '../../Buttons/Button';
 
 describe('MenuButton', () => {
-  it('should render a Menu and a Button component', () => {
+  it('should render a DropdownMenu and a Button component', () => {
     const menuButton = mount(<MenuButton id="test" raised menuItems={['Hello']} label="Woop" />);
-    expect(menuButton.find(Menu).length).toBe(1);
+    expect(menuButton.find(DropdownMenu).length).toBe(1);
     expect(menuButton.find(Button).length).toBe(1);
-  });
-
-  it('should toggle the menu open when the button is clicked', () => {
-    const menu = mount(<MenuButton id="test" raised label="Woop" menuItems={['Hello']} />);
-    expect(menu.state('visible')).toBe(false);
-    menu.find('button').simulate('click');
-    expect(menu.state('visible')).toBe(true);
   });
 
   it('should call the onClick and onVisibilityChange props when the button is clicked', () => {

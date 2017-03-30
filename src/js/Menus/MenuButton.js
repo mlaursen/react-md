@@ -2,22 +2,20 @@ import React, { PureComponent, PropTypes } from 'react';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import controlled from '../utils/PropTypes/controlled';
-import mapToListParts from '../utils/mapToListParts';
-import getField from '../utils/getField';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
 import Button from '../Buttons/Button';
-import Menu from './Menu';
+import DropdownMenu from './DropdownMenu';
 
 /**
  * The `MenuButton` is a simple wrapper / combination of the `Button` and the `Menu`
  * components that can be uncontrolled.
  */
 export default class MenuButton extends PureComponent {
-  static Positions = Menu.Positions;
-  static HorizontalAnchors = Menu.HorizontalAnchors;
-  static VerticalAnchors = Menu.VerticalAnchors;
+  static Positions = DropdownMenu.Positions;
+  static HorizontalAnchors = DropdownMenu.HorizontalAnchors;
+  static VerticalAnchors = DropdownMenu.VerticalAnchors;
 
   static propTypes = {
     /**
@@ -293,49 +291,11 @@ export default class MenuButton extends PureComponent {
     defaultVisible: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    if (typeof props.visible === 'undefined') {
-      this.state.visible = typeof props.defaultOpen !== 'undefined'
-        ? props.defaultOpen
-        : props.defaultVisible;
-    }
-  }
-
-  _handleClick = (e) => {
-    const { onClick, onVisibilityChange, onMenuToggle, isOpen } = this.props;
-    if (onClick) {
-      onClick(e);
-    }
-
-    const visible = !(typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible'));
-    if (onVisibilityChange || onMenuToggle) {
-      (onVisibilityChange || onMenuToggle)(visible, e);
-    }
-
-    if (typeof isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      this.setState({ visible });
-    }
-  };
-
-  _handleClose = (e) => {
-    const { isOpen, onVisibilityChange, onMenuToggle } = this.props;
-    const visible = false;
-    if (onVisibilityChange || onMenuToggle) {
-      (onVisibilityChange || onMenuToggle)(visible, e);
-    }
-
-    if (typeof isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      this.setState({ visible });
-    }
-  };
-
   render() {
     const {
       id,
       listId,
+      buttonId,
       menuStyle,
       menuClassName,
       listStyle,
@@ -364,51 +324,24 @@ export default class MenuButton extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      isOpen, // deprecated
-      /* eslint-disable no-unused-vars */
-      buttonId: propButtonId,
-      visible: propVisible,
-      onVisibilityChange,
+      visible,
       defaultVisible,
-
-      // deprecated
-      defaultOpen,
-      onMenuToggle,
-      /* eslint-enable no-unused-vars */
+      onVisibilityChange,
+      isOpen, // deprecated
+      defaultOpen, // deprecated
+      onMenuToggle, // deprecated
       ...props
     } = this.props;
-
-    let { buttonId } = this.props;
-    if (!buttonId) {
-      buttonId = `${id}-toggle`;
-    }
-
-    const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
 
     let items = children;
     let toggleChildren = buttonChildren;
     if (typeof menuItems !== 'undefined') {
       toggleChildren = children;
-      if (!Array.isArray(menuItems)) {
-        items = mapToListParts(menuItems);
-      } else {
-        items = menuItems.map(mapToListParts);
-      }
+      items = menuItems;
     }
 
-    const toggle = (
-      <Button
-        key="menu-button"
-        {...props}
-        id={buttonId}
-        onClick={this._handleClick}
-      >
-        {toggleChildren}
-      </Button>
-    );
-
     return (
-      <Menu
+      <DropdownMenu
         id={id}
         listId={listId}
         style={menuStyle}
@@ -419,9 +352,9 @@ export default class MenuButton extends PureComponent {
         listInline={listInline}
         listZDepth={listZDepth}
         listHeightRestricted={listHeightRestricted}
-        toggle={toggle}
-        visible={visible}
-        onClose={this._handleClose}
+        visible={typeof isOpen !== 'undefined' ? isOpen : visible}
+        defaultVisible={typeof defaultOpen !== 'undefined' ? defaultOpen : defaultVisible}
+        menuItems={items}
         anchor={anchor}
         belowAnchor={belowAnchor}
         fixedTo={fixedTo}
@@ -439,9 +372,12 @@ export default class MenuButton extends PureComponent {
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
+        onVisibilityChange={onMenuToggle || onVisibilityChange}
       >
-        {items}
-      </Menu>
+        <Button {...props} id={buttonId}>
+          {toggleChildren}
+        </Button>
+      </DropdownMenu>
     );
   }
 }
