@@ -197,7 +197,7 @@ describe('TableRow', () => {
 
     it('should update the table\'s state correctly', () => {
       const table = renderIntoDocument(
-        <DataTable plain>
+        <DataTable baseId="test">
           <TableHeader>
             <TableRow>
               <TableColumn>H1</TableColumn>
@@ -228,7 +228,7 @@ describe('TableRow', () => {
       const event2 = { target: { checked: false } };
       row1._handleCheckboxClick(false, event2);
       expect(table.state.allSelected).toBe(false);
-      expect(table.state.selectedRows).toEqual([false, true]);
+      expect(table.state.selectedRows).toEqual([true, false]);
     });
   });
 });

@@ -11,6 +11,11 @@ $md-list-include-inline: true;
 @include react-md-make-custom-grid('24-40', 24px, 40px, 0);
 @include react-md-make-custom-grid('40-16', 40px, 16px, 0);
 
+html,
+body {
+  width: 100%;
+}
+
 .md-title--toolbar {
   ~ .documentation-tabs {
     left: 0;

@@ -89,6 +89,16 @@ list.
 
 
 ## March 2017
+### v1.0.11 Released
+
+##### Changelog
+- Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
+re-renders (... take 2 :( ). [#300](https://github.com/mlaursen/react-md/issues/300)
+- Fixed the tooltip's [unmounting errors](https://github.com/mlaursen/react-md/commit/ba8e734c663d87cc098d569258489c66590feb8b).
+- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [#308](https://github.com/mlaursen/react-md/issues/308)
+- Fixed the checkboxes for DataTables when the rows are dynamic. [#297](https://github.com/mlaursen/react-md/issues/297)
+- Fixed the snackbar's transition bug. [#311](https://github.com/mlaursen/react-md/issues/311)
+
 ### v1.0.10 Released
 The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. Republished correctly with `npm`.
 

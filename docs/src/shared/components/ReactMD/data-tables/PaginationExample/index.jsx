@@ -9,7 +9,7 @@ import TablePagination from 'react-md/lib/DataTables/TablePagination';
 
 import { FOOD_DATA_URL } from 'constants/application';
 import { fetchCreator } from 'actions/fetch';
-import PaginationLoader from './PaginationLoader';
+import Loader from './Loader';
 
 @connect(({ entities: { foodInspections } }) => ({ foodInspections }), { fetchCreator })
 export default class PaginationExample extends PureComponent {
@@ -83,7 +83,7 @@ export default class PaginationExample extends PureComponent {
     ));
 
     return (
-      <PaginationLoader fetching={fetching} loaded={!!inspections.length} onLoad={this._load}>
+      <Loader fetching={fetching} loaded={!!inspections.length} onLoad={this._load}>
         <DataTable className="pagination-table" baseId="pagination">
           <TableHeader>
             <TableRow>
@@ -95,7 +95,7 @@ export default class PaginationExample extends PureComponent {
           </TableBody>
           <TablePagination onPagination={this._handlePagination} rows={rows} />
         </DataTable>
-      </PaginationLoader>
+      </Loader>
     );
   }
 }

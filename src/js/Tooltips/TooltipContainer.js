@@ -42,6 +42,10 @@ export default class TooltipContainer extends PureComponent {
       this._container.removeEventListener('keyup', this._handleKeyUp);
       this._container.removeEventListener('blur', this._hideTooltip);
     }
+
+    if (this._delayedTimeout) {
+      clearTimeout(this._delayedTimeout);
+    }
   }
 
   _setContainers(container) {

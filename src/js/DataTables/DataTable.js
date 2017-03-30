@@ -180,15 +180,16 @@ export default class DataTable extends PureComponent {
   constructor(props) {
     super(props);
 
+    const rows = props.defaultSelectedRows;
     this.state = {
-      header: true,
-      allSelected: false,
-      selectedRows: props.defaultSelectedRows,
+      header: false,
       indeterminate: props.indeterminate ? false : undefined,
+      allSelected: this._allSelected(rows),
+      selectedRows: rows,
     };
 
-    this._initializeRows = this._initializeRows.bind(this);
-    this._toggleSelectedRow = this._toggleSelectedRow.bind(this);
+    this._removed = 0;
+    this._initial = true;
   }
 
   getChildContext() {
@@ -218,6 +219,8 @@ export default class DataTable extends PureComponent {
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
       toggleSelectedRow: this._toggleSelectedRow,
+      createCheckbox: this._createCheckbox,
+      removeCheckbox: this._removeCheckbox,
       baseId,
       baseName: `${baseId}-control`,
       selectableRows,
@@ -226,7 +229,48 @@ export default class DataTable extends PureComponent {
     };
   }
 
-  _toggleSelectedRow(row, header, e) {
+  componentDidUpdate() {
+    this._removed = 0;
+    this._initial = false;
+  }
+
+  _allSelected(rows) {
+    let all = rows.length !== 0;
+    rows.some(checked => {
+      if (!checked) {
+        all = false;
+      }
+
+      return !all;
+    });
+
+    return all;
+  }
+
+  _createCheckbox = (index) => {
+    this.setState((state, props) => {
+      const selectedRows = state.selectedRows.slice();
+      // Only use the default selected rows prop on first mount. If other changes occur after,
+      // default to false.
+      const selected = this._initial && props.defaultSelectedRows[index] || false;
+      selectedRows.splice(index, 0, selected);
+      return { selectedRows, allSelected: this._allSelected(selectedRows) };
+    });
+  };
+
+  _removeCheckbox = (index) => {
+    this.setState((state) => {
+      // When multiple checkboxes are removed in a render cycle, they are removed in list order.
+      // So to keep the index correct while removing, need to keep subract the provided index by
+      // the current number of removed elements. This value gets reset to 0 after a finished cycle.
+      const selectedRows = state.selectedRows.slice();
+      selectedRows.splice(index - this._removed, 1);
+      this._removed += 1;
+      return { selectedRows, allSelected: this._allSelected(selectedRows) };
+    });
+  };
+
+  _toggleSelectedRow = (row, header, e) => {
     let selectedRows;
     let allSelected = this.state.allSelected;
     let selectedCount = 0;
@@ -250,39 +294,7 @@ export default class DataTable extends PureComponent {
     const indeterminate = this.props.indeterminate && !allSelected && selectedCount > 0;
 
     this.setState({ selectedRows, allSelected, indeterminate });
-  }
-
-  _initializeRows(table) {
-    if (!table) {
-      return;
-    }
-
-    const header = !!table.querySelector('thead');
-    const rows = table.querySelectorAll('tbody tr').length;
-    let nextState;
-    if (rows !== this.state.selectedRows.length) {
-      const selectedRows = [];
-      for (let i = 0; i < rows; i++) {
-        selectedRows[i] = this.state.selectedRows[i] || false;
-      }
-
-      const selectedLength = selectedRows.filter(b => b).length;
-      nextState = {
-        selectedRows,
-        allSelected: selectedLength === rows,
-        indeterminate: selectedLength > 0 && selectedLength !== rows,
-      };
-    }
-
-    if (header !== this.state.header) {
-      nextState = nextState || {};
-      nextState.header = header;
-    }
-
-    if (nextState) {
-      this.setState(nextState);
-    }
-  }
+  };
 
   render() {
     const {
@@ -315,7 +327,6 @@ export default class DataTable extends PureComponent {
       <table
         {...props}
         style={responsive ? tableStyle : style}
-        ref={tableEl => this._initializeRows(tableEl)}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
           [className]: !responsive && className,
