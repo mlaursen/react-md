@@ -56,7 +56,6 @@ export default class Row extends PureComponent {
       type={name === 'name' ? 'text' : 'number'}
       inline
       noIcon
-      enforceMinWidth={name === 'name' ? this.props.mobile : false}
       className={cn({
         'nutrition-table__number-column': name !== 'name',
       })}

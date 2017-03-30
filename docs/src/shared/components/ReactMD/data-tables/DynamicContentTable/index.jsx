@@ -45,10 +45,10 @@ export default class DynamicContentTable extends PureComponent {
 
   handleRowToggle = (row, toggled, count) => {
     let selectedRows = this.state.selectedRows.slice();
-    if (row === -1) {
+    if (row === 0) {
       selectedRows = selectedRows.map(() => toggled);
     } else {
-      selectedRows[row] = toggled;
+      selectedRows[row - 1] = toggled;
     }
 
     this.setState({ count, selectedRows });
