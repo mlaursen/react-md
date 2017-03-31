@@ -146,8 +146,8 @@ class TableColumn extends PureComponent {
   static contextTypes = {
     plain: PropTypes.bool,
     footer: PropTypes.bool,
-    fixedHeader: PropTypes.bool.isRequired,
-    fixedFooter: PropTypes.bool.isRequired,
+    fixedHeader: PropTypes.bool,
+    fixedFooter: PropTypes.bool,
   };
 
   render() {
@@ -193,6 +193,14 @@ class TableColumn extends PureComponent {
 
     const fixedHeader = header && this.context.fixedHeader;
     const fixedFooter = this.context.footer && this.context.fixedFooter;
+    const fixed = fixedHeader || fixedFooter;
+    const baseClassNames = cn({
+      'md-text': !header,
+      'md-text--secondary': header,
+      'md-table-column--relative': tooltip,
+      'md-table-column--select-field': selectColumnHeader,
+    });
+
     const mergedClassNames = cn({
       'md-table-column--header': header,
       'md-table-column--data': !header && !plain,
@@ -200,15 +208,10 @@ class TableColumn extends PureComponent {
       'md-table-column--adjusted': adjusted && !grow && !selectColumnHeader,
       'md-table-column--grow': grow,
       'md-table-column--sortable md-pointer--hover': sortable,
-      'md-table-column--relative': tooltip && !fixedHeader && !fixedFooter,
-      'md-table-column--select-field': selectColumnHeader && !fixedHeader && !fixedFooter,
-      'md-text': !header,
-      'md-text--secondary': header,
-      'md-text-left': !numeric,
-      'md-text-right': numeric,
+      [baseClassNames]: !fixed,
     }, className);
 
-    if (fixedHeader || fixedFooter) {
+    if (fixed) {
       displayedChildren = (
         <div
           className={cn('md-table-column__fixed', {
@@ -218,7 +221,8 @@ class TableColumn extends PureComponent {
         >
           <div
             style={fixedStyle}
-            className={cn(mergedClassNames, {
+            className={cn(baseClassNames, mergedClassNames, 'md-table-column__fixed--flex', {
+              'md-table-column__fixed--flex-right': numeric,
               'md-table-column--relative': tooltip,
               'md-table-column--select-field': selectColumnHeader,
             }, fixedClassName)}
@@ -236,7 +240,9 @@ class TableColumn extends PureComponent {
         {...props}
         scope={scope}
         className={cn('md-table-column', {
-          'md-table-column--fixed': fixedHeader || fixedFooter,
+          'md-table-column--fixed': fixed,
+          'md-text-left': !numeric && !fixed,
+          'md-text-right': numeric && !fixed,
         }, mergedClassNames)}
       >
         {!fixedHeader && !fixedFooter && tooltip}

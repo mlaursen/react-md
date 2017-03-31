@@ -389,6 +389,21 @@ export default class EditDialogColumn extends PureComponent {
     transitionLeaveTimeout: PropTypes.number,
 
     /**
+     * The optional tooltip to render on hover.
+     */
+    tooltipLabel: PropTypes.string,
+
+    /**
+     * An optional delay to apply to the tooltip before it appears.
+     */
+    tooltipDelay: PropTypes.number,
+
+    /**
+     * The position of the tooltip.
+     */
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -632,6 +647,9 @@ export default class EditDialogColumn extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      tooltipLabel,
+      tooltipDelay,
+      tooltipPosition,
       /* eslint-disable no-unused-vars */
       id: propId,
       dialogId: propDialogId,
@@ -684,7 +702,10 @@ export default class EditDialogColumn extends PureComponent {
         ref={this._setField}
         style={textFieldStyle}
         className={cn({ 'md-edit-dialog__blocked-field': inline }, textFieldClassName)}
-        inputClassName={cn({ 'md-text-right': numeric }, inputClassName)}
+        inputClassName={cn({
+          'md-text--secondary md-edit-dialog__header': header && inline,
+          'md-text-right': numeric,
+        }, inputClassName)}
         id={id}
         label={label}
         placeholder={placeholder}
@@ -720,6 +741,7 @@ export default class EditDialogColumn extends PureComponent {
           actions={actions}
           large={large}
           title={title}
+          header={header}
           placeholder={dialogLabel === placeholder || dialogLabel === label}
           anchor={anchor}
           belowAnchor={belowAnchor}
@@ -746,6 +768,9 @@ export default class EditDialogColumn extends PureComponent {
         className={cn('md-edit-dialog-column', className)}
         header={header}
         adjusted={false}
+        tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
+        tooltipPosition={tooltipPosition}
       >
         {children}
       </TableColumn>

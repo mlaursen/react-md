@@ -60,6 +60,54 @@ export default class DataTable extends PureComponent {
     tableClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the fixed table wrapper that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     * @see {@link #fixedScrollWrapperClassName}
+     */
+    fixedWrapperStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the fixed table wrapper that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedScrollWrapperStyle}
+     * @see {@link #fixedScrollWrapperClassName}
+     */
+    fixedWrapperClassName: PropTypes.string,
+
+    /**
+     * An optional sty;e to apply to the fixed table wrapper's scroll container that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     */
+    fixedScrollWrapperStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the fixed table wrapper's scroll container that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     */
+    fixedScrollWrapperClassName: PropTypes.string,
+
+    /**
      * The table contents to display. This *should* be a list of `TableHeader` and `TableBody`
      * components.
      */
@@ -163,8 +211,71 @@ export default class DataTable extends PureComponent {
       PropTypes.string,
     ]).isRequired,
 
+    /**
+     * Boolean if the table should include a fixed header. This will allow the `TableHeader` component
+     * to stay fixed to the top of the table while the `TableBody` scrolls horizontally.
+     *
+     * @see {@link #fixedFooter}
+     * @see [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+     */
     fixedHeader: PropTypes.bool,
+
+    /**
+     * Boolean if the table should include a fixed footer. This will allow the `TableFooter` component
+     * to stay fixed to the bottom of the table while the `TableBody` scrolls horizontally.
+     *
+     * @see {@link #fixedHeader}
+     * @see [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+     */
     fixedFooter: PropTypes.bool,
+
+    /**
+     * Either a boolean or a shape of booleans for if a divider should appear at the top or bottom of the table
+     * when there is a fixed header/footer. By default, this will automatically create dividers.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     */
+    fixedDividers: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        header: PropTypes.bool.isRequired,
+        footer: PropTypes.bool.isRequired,
+      }),
+    ]),
+
+    /**
+     * An optional height to set for a table with a fixed header and/or a fixed footer. It is recommended to use
+     * the related `react-md-make-fixed-table` mixin instead.
+     *
+     * @see {@link #headerHeight}
+     * @see {@link #columnHeight}
+     */
+    fixedHeight: PropTypes.number,
+
+    /**
+     * An optional width to set for a table with a fixed header and/or a fixed footer. It is recommended to use
+     * the related `react-md-make-fixed-table` mixin instead.
+     */
+    fixedWidth: PropTypes.number,
+
+    /**
+     * This is the height of the table's header columns. This should be equal to the `md-data-table-header-height`
+     * variable.
+     *
+     * @see [md-data-table-header-height](/components/data-tables?tab=2#variable-md-data-table-header-height)
+     * @see {@link fixedHeight}
+     */
+    headerHeight: PropTypes.number.isRequired,
+
+    /**
+     * This is the height of the table's header columns. This should be equal to the `md-data-table-header-height`
+     * variable.
+     *
+     * @see [md-data-table-column-height](/components/data-tables?tab=2#variable-md-data-table-column-height)
+     * @see {@link fixedHeight}
+     */
+    columnHeight: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -178,6 +289,9 @@ export default class DataTable extends PureComponent {
     checkboxLabelTemplate: 'Toggle row {{row}}',
     fixedHeader: false,
     fixedFooter: false,
+    fixedDividers: true,
+    headerHeight: 56,
+    columnHeight: 48,
   };
 
   static childContextTypes = contextTypes;
@@ -315,11 +429,20 @@ export default class DataTable extends PureComponent {
       className,
       tableStyle,
       tableClassName,
+      fixedWrapperStyle,
+      fixedWrapperClassName,
+      fixedScrollWrapperStyle,
+      fixedScrollWrapperClassName,
       children,
       plain,
       responsive,
       fixedHeader,
       fixedFooter,
+      fixedDividers,
+      fixedHeight,
+      fixedWidth,
+      headerHeight,
+      columnHeight,
       /* eslint-disable no-unused-vars */
       checkedIconChildren,
       checkedIconClassName,
@@ -341,6 +464,7 @@ export default class DataTable extends PureComponent {
     const table = (
       <table
         {...props}
+        ref={this._setTable}
         style={responsive ? tableStyle : style}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
@@ -358,14 +482,33 @@ export default class DataTable extends PureComponent {
 
     let content = table;
     if (fixedHeader || fixedFooter) {
+      let height = fixedHeight;
+      if (fixedHeight) {
+        if (fixedHeader) {
+          height -= headerHeight;
+        }
+
+        if (fixedFooter) {
+          height -= columnHeight;
+        }
+      }
+
       content = (
         <div
+          style={fixedWrapperStyle}
           className={cn('md-data-table__fixed-wrapper', {
             'md-data-table__fixed-wrapper--header': fixedHeader,
             'md-data-table__fixed-wrapper--footer': fixedFooter,
-          })}
+          }, fixedWrapperClassName)}
         >
-          <div className="md-data-table__scroll-wrapper">
+          <div
+            style={{ height, ...fixedScrollWrapperStyle }}
+            className={cn('md-data-table__scroll-wrapper', {
+              'md-divider-border': fixedDividers,
+              'md-divider-border--top': fixedHeader && (fixedDividers === true || fixedDividers.header),
+              'md-divider-border--bottom': fixedFooter && (fixedDividers === true || fixedDividers.footer),
+            }, fixedScrollWrapperClassName)}
+          >
             {table}
           </div>
         </div>
@@ -374,7 +517,7 @@ export default class DataTable extends PureComponent {
 
     return (
       <div
-        style={style}
+        style={{ width: fixedWidth, ...style }}
         className={cn('md-data-table--responsive', {
           'md-data-table--fixed': fixedHeader || fixedFooter,
         }, className)}

@@ -36,7 +36,12 @@ $md-data-table-fixed-include-headers: true !default;
 /// created styles.
 ///
 /// @see react-md-make-fixed-table
-$md-data-table-fixed-include-footers: false !default;
+$md-data-table-fixed-include-footers: true !default;
+
+/// Boolean if the `react-md-make-fixed-table` mixin should make the table fixed relative to the
+/// view height instead of just using height.
+/// @type Boolean
+$md-data-table-fixed-use-view-height: false !default;
 
 /// Boolean if the table pagination styles should be included.
 /// @type Boolean
@@ -396,8 +401,21 @@ $md-data-table-contextual-fallback-color: null !default;
       }
     }
 
+    &__header {
+      font-weight: $md-font-medium;
+
+      &.md-text-field {
+        font-size: $md-data-table-header-font-size;
+      }
+    }
+
     &__blocked-field {
       height: $md-data-table-column-height - $md-data-table-border-size;
+
+      &.md-edit-dialog__blocked-field {
+        padding-bottom: 0;
+        padding-top: 0;
+      }
 
       .md-text-field-icon-container {
         align-items: center;
@@ -488,49 +506,105 @@ $md-data-table-contextual-fallback-color: null !default;
       bottom: 0;
     }
 
-    .md-table-column--header {
-      padding-top: $md-data-table-header-height / 2 - $md-data-table-header-font-size / 2;
+    &--flex {
+      align-items: center;
+      display: flex;
+
+      &-right {
+        justify-content: flex-end;
+      }
     }
 
-    .md-table-column--data {
-      padding-top: $md-data-table-column-height / 2 - $md-data-table-content-font-size / 2;
-    }
-  }
+    .md-table-checkbox {
+      &--header {
+        height: $md-data-table-header-height;
+      }
 
-  .md-table-checkbox--fixed {
-    padding-top: 10px;
+      &--footer {
+        height: $md-data-table-column-height;
+      }
+    }
   }
 }
 
+/// This is a utility function for making a fixed table via css instead of inline styles. This one is a bit more
+/// reliable since you can provide the cell heights correctly.
 ///
 /// @example scss - Example Usage
-/// .fixed-table {
+/// .fixed-table--200-300 {
 ///   @include react-md-make-fixed-table(300px);
 ///
 ///   width: 200px;
 /// }
 ///
+/// .fixed-table__footless--200-300 {
+///   @include react-md-make-fixed-table(300px, $md-data-table-header-height, null);
+/// }
 ///
-/// @param {Number} height - The height to use for the fixed table.
+/// .fixed-table--viewport {
+///   @include react-md-make-fixed-table(true);
+/// }
+///
+/// @example scss - Example Usage CSS Output
+/// .fixed-table--200-300 {
+///   width: 200px;
+/// }
+///
+/// .fixed-table--200-300 .md-data-table__scroll-wrapper {
+///   max-height: 196px;
+/// }
+///
+/// .fixed-table__footless--200-300 .md-data-table__scroll-wrapper {
+///   max-height: 244px;
+/// }
+///
+/// .fixed-table--viewport .md-data-table__scroll-wrapper {
+///   max-height: calc(100vh - 104px);
+/// }
+///
+///
+/// @param {Number | Boolean} height - The height to use for the fixed table.
 /// @param {Number} header-height [$md-data-table-header-height] - The height for the table's header. If this is `null`,
 ///     this table should *not* have a fixed header.
 /// @param {Number} footer-height [$md-data-table-column-height] - The height for the table's footer. If this is `null`,
 ///     the table should *not* have a fixed footer.
-@mixin react-md-make-fixed-table($height, $header-height: $md-data-table-header-height, $footer-height: $md-data-table-column-height) {
-  $wrapper-height: $height;
-  @if $md-data-table-fixed-include-headers and $header-height != null {
-    $wrapper-height: $wrapper-height - $header-height;
-  }
-
-  @if $md-data-table-fixed-include-footers and $footer-height != null {
-    $wrapper-height: $wrapper-height - $footer-height;
-  }
-
-  @if ($wrapper-height != $height) {
+/// @param {Number} toolbar-height [null] - An optinal height of the toolbar to exclude when making the max-height of the
+///     table.
+@mixin react-md-make-fixed-table($height, $header-height: $md-data-table-header-height, $footer-height: $md-data-table-column-height, $toolbar-height: null) {
+  @if $height == true {
     .md-data-table__scroll-wrapper {
-      height: $height - $header-height;
+      $wrapper-height: 0;
+      @if $md-data-table-fixed-include-headers and $header-height != null {
+        $wrapper-height: $wrapper-height + $header-height;
+      }
+
+      @if $md-data-table-fixed-include-footers and $footer-height != null {
+        $wrapper-height: $wrapper-height + $footer-height;
+      }
+
+      @if $toolbar-height != null {
+        $wrapper-height: $wrapper-height + $toolbar-height;
+      }
+
+      max-height: calc(100vh - #{$wrapper-height});
+    }
+  } @else {
+    $wrapper-height: $height;
+    @if $md-data-table-fixed-include-headers and $header-height != null {
+      $wrapper-height: $wrapper-height - $header-height;
+    }
+
+    @if $md-data-table-fixed-include-footers and $footer-height != null {
+      $wrapper-height: $wrapper-height - $footer-height;
+    }
+
+    @if ($wrapper-height != $height) {
+      .md-data-table__scroll-wrapper {
+        max-height: $wrapper-height;
+      }
     }
   }
+
 }
 
 /// Creates the styles for the `TableCardHeader` component only. The contextual

@@ -64,6 +64,12 @@ export default class TableRow extends Component {
      */
     selected: PropTypes.bool,
 
+    /**
+     * Boolean if the current row is selectable. This value will take precedence over anything inherited
+     * by the `DataTable`.
+     */
+    selectable: PropTypes.bool,
+
     autoAdjust: deprecated(PropTypes.bool, 'Manually specify `grow` on one of the columns instead'),
   };
 
@@ -148,6 +154,7 @@ export default class TableRow extends Component {
       className,
       children,
       selected,
+      selectable,
       /* eslint-disable no-unused-vars */
       onCheckboxClick,
       // deprecated
@@ -159,7 +166,7 @@ export default class TableRow extends Component {
     const { hover } = this.state;
 
     let checkbox;
-    if (!this.context.plain && this.context.selectableRows) {
+    if (typeof selectable !== 'undefined' ? selectable : (!this.context.plain && this.context.selectableRows)) {
       checkbox = (
         <TableCheckbox
           key="checkbox"

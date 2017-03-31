@@ -29,10 +29,6 @@
   right: -8px;
 }
 
-.nutrition-table {
-  @include react-md-make-fixed-table(300px);
-}
-
 .movies-table {
-  @include react-md-make-fixed-table(300px);
+  @include react-md-make-fixed-table(true, $md-data-table-header-height, $md-data-table-column-height, $md-toolbar-prominent-height);
 }

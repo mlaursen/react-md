@@ -2,13 +2,19 @@ import React, { PropTypes } from 'react';
 import TableHeader from 'react-md/lib/DataTables/TableHeader';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import FontIcon from 'react-md/lib/FontIcons';
-import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
 
+import FontIcon from 'react-md/lib/FontIcons';
+// import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
+
+// Since the fixed stuff comes from context and most components are Pure, can cheat a bit
+// for the demo to do timestamps as keys to get the update. The fixed part should really
+// be more static instead of dynamic
 const Header = ({ titleSorted, yearSorted, sort }) => (
   <TableHeader>
     <TableRow>
       <TableColumn
+        key={Date.now()}
         sorted={titleSorted}
         onClick={typeof titleSorted === 'boolean' ? sort : null}
         tooltipLabel="The movie's title"
@@ -16,6 +22,7 @@ const Header = ({ titleSorted, yearSorted, sort }) => (
         Title
       </TableColumn>
       <TableColumn
+        key={Date.now() + 1}
         numeric
         sorted={yearSorted}
         onClick={typeof yearSorted === 'boolean' ? sort : null}
@@ -23,11 +30,14 @@ const Header = ({ titleSorted, yearSorted, sort }) => (
       >
         Year
       </TableColumn>
-      <TableColumn className="prevent-grow">
-        <IconSeparator label="Comments" iconBefore>
-          <FontIcon>chat</FontIcon>
-        </IconSeparator>
-      </TableColumn>
+      <EditDialogColumn
+        key={Date.now() + 2}
+        inline
+        noIcon
+        leftIcon={<FontIcon>chat</FontIcon>}
+        defaultValue="Comments"
+        tooltipLabel="Add a comment!"
+      />
     </TableRow>
   </TableHeader>
 );

@@ -16,7 +16,6 @@ export default class TableCheckbox extends Component {
       PropTypes.string,
     ]).isRequired,
     baseName: PropTypes.string.isRequired,
-    header: PropTypes.bool,
     indeterminate: PropTypes.bool,
     checkedIconChildren: PropTypes.node,
     checkedIconClassName: PropTypes.string,
@@ -31,6 +30,8 @@ export default class TableCheckbox extends Component {
     ]).isRequired,
     createCheckbox: PropTypes.func.isRequired,
     removeCheckbox: PropTypes.func.isRequired,
+    header: PropTypes.bool,
+    footer: PropTypes.bool,
     fixedHeader: PropTypes.bool.isRequired,
     fixedFooter: PropTypes.bool.isRequired,
   };
@@ -72,6 +73,7 @@ export default class TableCheckbox extends Component {
       indeterminateIconClassName,
       indeterminate,
       header,
+      footer,
       rowId,
       baseName,
       checkboxHeaderLabel,
@@ -103,17 +105,22 @@ export default class TableCheckbox extends Component {
       />
     );
     const fixedHeader = header && this.context.fixedHeader;
+    const fixedFooter = footer && this.context.fixedFooter;
 
     if (fixedHeader) {
       content = (
         <div
           className={cn('md-table-column__fixed', {
             'md-table-column__fixed--header': fixedHeader,
+            'md-table-column__fixed--footer': fixedFooter,
           })}
         >
-          <div className="md-table-checkbox--fixed">
-            {content}
-          </div>
+          {React.cloneElement(content, {
+            className: cn({
+              'md-table-checkbox--header': header,
+              'md-table-checkbox--footer': footer,
+            }),
+          })}
         </div>
       );
     }

@@ -7,7 +7,7 @@ import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
 const Body = ({ inline, large, okOnOutsideClick, movies }) => {
   const rows = movies.map(({ title, year }) => (
     <TableRow key={title}>
-      <TableColumn>{title}</TableColumn>
+      <TableColumn grow>{title}</TableColumn>
       <TableColumn numeric>{year}</TableColumn>
       <EditDialogColumn
         label={inline ? null : 'Add some comment'}
