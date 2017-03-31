@@ -111,7 +111,7 @@ export default class DynamicContentTable extends PureComponent {
           removeSelected={this.removeSelected}
           openAddRowDialog={this.openAddRowDialog}
         />
-        <DataTable baseId="nutrition" onRowToggle={this.handleRowToggle} className="nutrition-table">
+        <DataTable baseId="nutrition" onRowToggle={this.handleRowToggle} className="nutrition-table" fixedHeader>
           <Header />
           <Body facts={facts} mobile={mobile} />
         </DataTable>

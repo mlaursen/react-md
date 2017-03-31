@@ -15,6 +15,7 @@ import TextField from '../TextFields/TextField';
 import TableColumn from './TableColumn';
 import EditDialog from './EditDialog';
 import findTable from './findTable';
+import findFixedTo from './findFixedTo';
 
 /**
  * The `EditDialogColumn` is used when there should be used when a table column's value
@@ -455,6 +456,7 @@ export default class EditDialogColumn extends PureComponent {
   componentDidMount() {
     this._column = findDOMNode(this);
     this._table = findTable(this._column);
+    this._fixedTo = findFixedTo(this._table);
 
     // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
     // might not be defined if they don't pass ...props
@@ -726,7 +728,7 @@ export default class EditDialogColumn extends PureComponent {
           yThreshold={yThreshold}
           centered={centered}
           sameWidth={sameWidth}
-          fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._table}
+          fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
           transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}

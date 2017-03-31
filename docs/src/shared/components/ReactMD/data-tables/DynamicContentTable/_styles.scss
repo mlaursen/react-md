@@ -9,6 +9,11 @@
   }
 }
 
+.nutrition-table__fixed-number {
+  min-width: 120px;
+  padding-right: 24px;
+}
+
 .nutrition-table__number-column {
   min-width: 120px;
 
@@ -22,4 +27,12 @@
   content: '%';
   position: absolute;
   right: -8px;
+}
+
+.nutrition-table {
+  @include react-md-make-fixed-table(300px);
+}
+
+.movies-table {
+  @include react-md-make-fixed-table(300px);
 }

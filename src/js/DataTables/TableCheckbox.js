@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import cn from 'classnames';
 import SelectionControl from '../SelectionControls/SelectionControl';
 
 import findTable from './findTable';
@@ -30,6 +31,8 @@ export default class TableCheckbox extends Component {
     ]).isRequired,
     createCheckbox: PropTypes.func.isRequired,
     removeCheckbox: PropTypes.func.isRequired,
+    fixedHeader: PropTypes.bool.isRequired,
+    fixedFooter: PropTypes.bool.isRequired,
   };
 
   constructor(props, context) {
@@ -85,20 +88,45 @@ export default class TableCheckbox extends Component {
       label = checkboxLabelTemplate.replace(/{{row}}/g, index);
     }
 
+    let content = (
+      <SelectionControl
+        {...props}
+        id={rowId}
+        name={`${baseName}-checkbox`}
+        type="checkbox"
+        checked={checked}
+        uncheckedCheckboxIconChildren={header && indeterminate ? indeterminateIconChildren : uncheckedIconChildren}
+        uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
+        checkedCheckboxIconChildren={checkedIconChildren}
+        checkedCheckboxIconClassName={checkedIconClassName}
+        aria-label={label}
+      />
+    );
+    const fixedHeader = header && this.context.fixedHeader;
+
+    if (fixedHeader) {
+      content = (
+        <div
+          className={cn('md-table-column__fixed', {
+            'md-table-column__fixed--header': fixedHeader,
+          })}
+        >
+          <div className="md-table-checkbox--fixed">
+            {content}
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <Cell className="md-table-checkbox" scope={header ? 'col' : undefined} ref={this._handleMount}>
-        <SelectionControl
-          {...props}
-          id={rowId}
-          name={`${baseName}-checkbox`}
-          type="checkbox"
-          checked={checked}
-          uncheckedCheckboxIconChildren={header && indeterminate ? indeterminateIconChildren : uncheckedIconChildren}
-          uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
-          checkedCheckboxIconChildren={checkedIconChildren}
-          checkedCheckboxIconClassName={checkedIconClassName}
-          aria-label={label}
-        />
+      <Cell
+        className={cn('md-table-checkbox', {
+          'md-table-column--fixed': fixedHeader,
+        })}
+        scope={header ? 'col' : undefined}
+        ref={this._handleMount}
+      >
+        {content}
       </Cell>
     );
   }

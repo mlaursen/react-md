@@ -162,6 +162,9 @@ export default class DataTable extends PureComponent {
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+
+    fixedHeader: PropTypes.bool,
+    fixedFooter: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -173,6 +176,8 @@ export default class DataTable extends PureComponent {
     selectableRows: true,
     checkboxHeaderLabel: 'Toggle All Rows',
     checkboxLabelTemplate: 'Toggle row {{row}}',
+    fixedHeader: false,
+    fixedFooter: false,
   };
 
   static childContextTypes = contextTypes;
@@ -205,6 +210,8 @@ export default class DataTable extends PureComponent {
       selectableRows,
       checkboxHeaderLabel,
       checkboxLabelTemplate,
+      fixedHeader,
+      fixedFooter,
     } = this.props;
 
     return {
@@ -226,6 +233,8 @@ export default class DataTable extends PureComponent {
       selectableRows,
       checkboxHeaderLabel,
       checkboxLabelTemplate,
+      fixedHeader,
+      fixedFooter,
     };
   }
 
@@ -305,6 +314,8 @@ export default class DataTable extends PureComponent {
       children,
       plain,
       responsive,
+      fixedHeader,
+      fixedFooter,
       /* eslint-disable no-unused-vars */
       checkedIconChildren,
       checkedIconClassName,
@@ -341,9 +352,30 @@ export default class DataTable extends PureComponent {
       return table;
     }
 
+    let content = table;
+    if (fixedHeader || fixedFooter) {
+      content = (
+        <div
+          className={cn('md-data-table__fixed-wrapper', {
+            'md-data-table__fixed-wrapper--header': fixedHeader,
+            'md-data-table__fixed-wrapper--footer': fixedFooter,
+          })}
+        >
+          <div className="md-data-table__scroll-wrapper">
+            {table}
+          </div>
+        </div>
+      );
+    }
+
     return (
-      <div style={style} className={cn('md-data-table--responsive', className)}>
-        {table}
+      <div
+        style={style}
+        className={cn('md-data-table--responsive', {
+          'md-data-table--fixed': fixedHeader || fixedFooter,
+        }, className)}
+      >
+        {content}
       </div>
     );
   }

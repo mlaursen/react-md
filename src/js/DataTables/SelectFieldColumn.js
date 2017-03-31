@@ -8,6 +8,7 @@ import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
 import SelectField from '../SelectFields/SelectField';
 import findTable from './findTable';
+import findFixedTo from './findFixedTo';
 import TableColumn from './TableColumn';
 
 /**
@@ -112,23 +113,23 @@ export default class SelectFieldColumn extends PureComponent {
     ]),
   }
 
-  state = { table: undefined, cellIndex: undefined };
+  state = { cellIndex: undefined };
 
   componentDidMount() {
     const { cellIndex } = this.props;
     const column = findDOMNode(this);
     const table = findTable(column);
-
-    const state = { table };
+    this._fixedTo = findFixedTo(table);
 
     // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
     // might not be defined if they don't pass ...props
     if (!cellIndex && cellIndex !== 0) {
       const columns = [].slice.call(column.parentNode.querySelectorAll('th,td'));
-      state.cellIndex = columns.indexOf(column);
+      this.setState({ cellIndex: columns.indexOf(column) }); // eslint-disable-line react/no-did-mount-set-state
+    } else {
+      // need to apply the _fixedTo for the select field
+      this.forceUpdate();
     }
-
-    this.setState(state); // eslint-disable-line react/no-did-mount-set-state
   }
 
   render() {
@@ -167,7 +168,7 @@ export default class SelectFieldColumn extends PureComponent {
         <SelectField
           {...props}
           id={id}
-          fixedTo={fixedTo || this.state.table}
+          fixedTo={fixedTo || this._fixedTo}
           style={menuStyle}
           className={menuClassName}
         />

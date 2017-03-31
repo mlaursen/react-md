@@ -77,7 +77,7 @@ export default class ConfigurableTableExample extends PureComponent {
           saveChecked={okOnOutsideClick}
           onSaveChange={this.handleSaveChange}
         />
-        <DataTable baseId="movies">
+        <DataTable baseId="movies" className="movies-table" fixedHeader>
           <Header yearSorted={yearSorted} titleSorted={titleSorted} sort={this.sort} />
           <Body movies={sortedMovies} inline={inline} large={large} okOnOutsideClick={okOnOutsideClick} />
         </DataTable>
