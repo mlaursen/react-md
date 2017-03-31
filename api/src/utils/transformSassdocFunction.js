@@ -1,5 +1,4 @@
-import transformSassdocVariable from './transformSassdocVariable';
-import { buildSassDocLink } from './buildSassDocList';
+import transformSassdocVariable, { refList } from './transformSassdocVariable';
 
 function transformParams({ name, default: value }) {
   return `$${name}${value ? `: ${value}` : ''}`;
@@ -12,7 +11,7 @@ function transformRequires({ name, type, item: { group } }) {
 export default function transformSassdocFunction(sassdoc) {
   const {
     parameter: parameters,
-    require: requires,
+    require,
     return: returns,
     context: { name, type, code },
   } = sassdoc;
@@ -21,10 +20,15 @@ export default function transformSassdocFunction(sassdoc) {
     ? `(${parameters.map(transformParams).join(', ')})`
     : '';
 
+  let requires = [];
+  if (require) {
+    requires = refList(requires.map(transformRequires));
+  }
+
   return Object.assign(transformSassdocVariable(sassdoc), {
     code: `@${type} ${name}${params} {${code}}`,
     parameters: parameters || [],
-    requires: requires ? requires.map(transformRequires).map(buildSassDocLink) : [],
+    requires,
     returns,
   });
 }
