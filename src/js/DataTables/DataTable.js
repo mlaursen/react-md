@@ -256,6 +256,10 @@ export default class DataTable extends PureComponent {
     return all;
   }
 
+  _setTable = (table) => {
+    this._table = table;
+  };
+
   _createCheckbox = (index) => {
     this.setState((state, props) => {
       const selectedRows = state.selectedRows.slice();
@@ -283,7 +287,7 @@ export default class DataTable extends PureComponent {
     let selectedRows;
     let allSelected = this.state.allSelected;
     let selectedCount = 0;
-    const i = this.state.header ? row - 1 : row;
+    const i = this._table && this._table.querySelector('.md-table-header') ? row - 1 : row;
     const { checked } = e.target;
     if (header) {
       selectedRows = this.state.selectedRows.map(() => checked);
