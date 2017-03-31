@@ -390,15 +390,15 @@ export default class TextField extends PureComponent {
 
     let currentLength = 0;
     if (typeof props.value !== 'undefined') {
-      currentLength = props.value.length;
+      currentLength = String(props.value).length;
     } else if (typeof props.defaultValue !== 'undefined') {
-      currentLength = props.defaultValue.length;
+      currentLength = String(props.defaultValue).length;
     }
 
     this.state = {
       active: false,
       error: false,
-      floating: !!props.defaultValue || !!props.value,
+      floating: !!props.defaultValue || !!props.value || props.defaultValue === 0 || props.value === 0,
       passwordVisible: props.passwordInitiallyVisible,
       height: null,
       width: props.resize ? props.resize.min : null,
@@ -442,7 +442,7 @@ export default class TextField extends PureComponent {
 
       this.setState({
         error,
-        floating: !!value || (this.state.floating && this.state.active),
+        floating: value === 0 || !!value || (this.state.floating && this.state.active),
         currentLength: value.length,
       });
     }
@@ -617,7 +617,7 @@ export default class TextField extends PureComponent {
 
     const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
-      state.floating = !!value;
+      state.floating = !!value || value === 0;
     }
 
     this.setState(state);

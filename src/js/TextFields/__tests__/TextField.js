@@ -256,4 +256,12 @@ describe('TextField', () => {
   it('does some stuff that seems hard to automatically test', () => {
     expect(true).toBe(true);
   });
+
+  it('should set to floating state to true when the defaultValue or value is 0', () => {
+    const field = shallow(<TextField id="test" defaultValue={0} type="number" />);
+    expect(field.state('floating')).toBe(true);
+
+    field.setProps({ value: 0, onChange: jest.fn() });
+    expect(field.state('floating')).toBe(true);
+  });
 });
