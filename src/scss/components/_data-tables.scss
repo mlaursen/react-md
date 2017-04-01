@@ -439,6 +439,12 @@ $md-data-table-contextual-fallback-color: null !default;
 
 /// Creates the styles for table pagination.
 @mixin react-md-data-table-paginations {
+  .md-table-footer--pagination {
+    .md-table-column {
+      padding-left: 0;
+    }
+  }
+
   .md-table-pagination {
     height: $md-data-table-header-height;
 
@@ -452,6 +458,7 @@ $md-data-table-contextual-fallback-color: null !default;
   }
 }
 
+/// Creates the styles for fixed headers and footers in a data table.
 @mixin react-md-data-table-fixed-headers-footers {
   .md-data-table {
     &--fixed {
@@ -563,7 +570,8 @@ $md-data-table-contextual-fallback-color: null !default;
 /// }
 ///
 ///
-/// @param {Number | Boolean} height - The height to use for the fixed table.
+/// @param {Number | Boolean} height - The height to use for the fixed table. If this value is a boolean, the height
+///     will be calculated from the view height.
 /// @param {Number} header-height [$md-data-table-header-height] - The height for the table's header. If this is `null`,
 ///     this table should *not* have a fixed header.
 /// @param {Number} footer-height [$md-data-table-column-height] - The height for the table's footer. If this is `null`,

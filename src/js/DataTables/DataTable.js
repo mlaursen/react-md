@@ -239,8 +239,8 @@ export default class DataTable extends PureComponent {
     fixedDividers: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.shape({
-        header: PropTypes.bool.isRequired,
-        footer: PropTypes.bool.isRequired,
+        header: PropTypes.bool,
+        footer: PropTypes.bool,
       }),
     ]),
 
@@ -249,7 +249,7 @@ export default class DataTable extends PureComponent {
      * the related `react-md-make-fixed-table` mixin instead.
      *
      * @see {@link #headerHeight}
-     * @see {@link #columnHeight}
+     * @see {@link #footerHeight}
      */
     fixedHeight: PropTypes.number,
 
@@ -275,7 +275,7 @@ export default class DataTable extends PureComponent {
      * @see [md-data-table-column-height](/components/data-tables?tab=2#variable-md-data-table-column-height)
      * @see {@link fixedHeight}
      */
-    columnHeight: PropTypes.number.isRequired,
+    footerHeight: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -291,7 +291,7 @@ export default class DataTable extends PureComponent {
     fixedFooter: false,
     fixedDividers: true,
     headerHeight: 56,
-    columnHeight: 48,
+    footerHeight: 48,
   };
 
   static childContextTypes = contextTypes;
@@ -442,7 +442,7 @@ export default class DataTable extends PureComponent {
       fixedHeight,
       fixedWidth,
       headerHeight,
-      columnHeight,
+      footerHeight,
       /* eslint-disable no-unused-vars */
       checkedIconChildren,
       checkedIconClassName,
@@ -489,8 +489,18 @@ export default class DataTable extends PureComponent {
         }
 
         if (fixedFooter) {
-          height -= columnHeight;
+          height -= footerHeight;
         }
+      }
+
+      let borderTop = fixedHeader;
+      let borderBot = fixedFooter;
+      if (typeof fixedDividers === 'boolean') {
+        borderTop = borderTop && fixedDividers;
+        borderBot = borderBot && fixedDividers;
+      } else {
+        borderTop = borderTop && (typeof fixedDividers.header === 'undefined' || fixedDividers.header);
+        borderBot = borderBot && (typeof fixedDividers.footer === 'undefined' || fixedDividers.footer);
       }
 
       content = (
@@ -505,8 +515,8 @@ export default class DataTable extends PureComponent {
             style={{ height, ...fixedScrollWrapperStyle }}
             className={cn('md-data-table__scroll-wrapper', {
               'md-divider-border': fixedDividers,
-              'md-divider-border--top': fixedHeader && (fixedDividers === true || fixedDividers.header),
-              'md-divider-border--bottom': fixedFooter && (fixedDividers === true || fixedDividers.footer),
+              'md-divider-border--top': borderTop,
+              'md-divider-border--bottom': borderBot,
             }, fixedScrollWrapperClassName)}
           >
             {table}

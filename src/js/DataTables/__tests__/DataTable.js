@@ -1,5 +1,5 @@
 /* eslint-env jest*/
-/* eslint-disable react/no-multi-comp */
+/* eslint-disable react/no-multi-comp,max-len */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
@@ -331,5 +331,116 @@ describe('DataTable', () => {
     state = findTableState(table);
     expected = [false, false, false];
     expect(state.selectedRows).toEqual(expected);
+  });
+
+  it('should add additional wrappers when either the fixedHeader or fixedFooter prop has been enabled.', () => {
+    const table = shallow(
+      <DataTable baseId="woop" fixedHeader>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+
+    expect(table.hasClass('md-data-table--responsive')).toBe(true);
+    expect(table.hasClass('md-data-table--fixed')).toBe(true);
+
+    expect(table.find('.md-data-table__fixed-wrapper').length).toBe(1);
+    expect(table.find('.md-data-table__scroll-wrapper').length).toBe(1);
+  });
+
+  it('should add the divider borders to the scroll wrapper when enabled', () => {
+    const table = shallow(
+      <DataTable baseId="woop" fixedHeader fixedFooter>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(1);
+    expect(table.find('.md-divider-border--bottom').length).toBe(1);
+
+    table.setProps({ fixedFooter: false });
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(1);
+    expect(table.find('.md-divider-border--bottom').length).toBe(0);
+
+    table.setProps({ fixedHeader: false, fixedFooter: true });
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(0);
+    expect(table.find('.md-divider-border--bottom').length).toBe(1);
+
+    table.setProps({ fixedHeader: false, fixedFooter: false });
+    expect(table.find('.md-divider-border').length).toBe(0);
+    expect(table.find('.md-divider-border--top').length).toBe(0);
+    expect(table.find('.md-divider-border--bottom').length).toBe(0);
+  });
+
+  it('should not apply the divider class names when the fixedDividers prop is set to false', () => {
+    const table = shallow(
+      <DataTable baseId="woop" fixedHeader fixedFooter fixedDividers={false}>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+    expect(table.find('.md-divider-border').length).toBe(0);
+    expect(table.find('.md-divider-border--top').length).toBe(0);
+    expect(table.find('.md-divider-border--bottom').length).toBe(0);
+  });
+
+  it('should not apply the divider classNames when the fixedDividers prop is set to false for either header or footer', () => {
+    const table = shallow(
+      <DataTable baseId="woop" fixedHeader fixedFooter fixedDividers={{ header: true, footer: false }}>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(1);
+    expect(table.find('.md-divider-border--bottom').length).toBe(0);
+
+    table.setProps({ fixedDividers: { header: false, footer: true } });
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(0);
+    expect(table.find('.md-divider-border--bottom').length).toBe(1);
+
+    table.setProps({ fixedDividers: { header: undefined, footer: true } });
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(1);
+    expect(table.find('.md-divider-border--bottom').length).toBe(1);
+
+    table.setProps({ fixedDividers: { header: true, footer: undefined } });
+    expect(table.find('.md-divider-border').length).toBe(1);
+    expect(table.find('.md-divider-border--top').length).toBe(1);
+    expect(table.find('.md-divider-border--bottom').length).toBe(1);
+  });
+
+  it('should apply the fixedWidth to the main responsive wrapper', () => {
+    const table = mount(
+      <DataTable baseId="woop" fixedHeader fixedFooter fixedWidth={300}>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+
+    expect(table.getDOMNode().style.width).toBe('300px');
+  });
+
+  it('should apply the fixedHeight prop to the scroll container and correctly subtract the header and footer if enabled', () => {
+    const headerHeight = 50;
+    const footerHeight = 40;
+    const table = mount(
+      <DataTable baseId="woop" fixedHeader fixedFooter fixedHeight={500} headerHeight={headerHeight} footerHeight={footerHeight}>
+        <tbody><tr><td>woop</td></tr></tbody>
+      </DataTable>
+    );
+
+    const getHeight = (t) => t.find('.md-data-table__scroll-wrapper').get(0).style.height;
+
+    let height = getHeight(table);
+    expect(height).toBe('410px');
+
+    table.setProps({ fixedFooter: false });
+    height = getHeight(table);
+    expect(height).toBe('450px');
+
+    table.setProps({ fixedFooter: true, fixedHeader: false });
+    height = getHeight(table);
+    expect(height).toBe('460px');
   });
 });

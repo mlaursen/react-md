@@ -97,6 +97,27 @@ export default class SelectFieldColumn extends PureComponent {
      */
     adjusted: PropTypes.bool,
 
+    /**
+     * The optional tooltip to render on hover.
+     *
+     * @see {@link DataTables/TableColumn#tooltipLabel}
+     */
+    tooltipLabel: PropTypes.string,
+
+    /**
+     * An optional delay to apply to the tooltip before it appears.
+     *
+     * @see {@link DataTables/TableColumn#tooltipDelay}
+     */
+    tooltipDelay: PropTypes.number,
+
+    /**
+     * The position of the tooltip.
+     *
+     * @see {@link DataTables/TableColumn#tooltipPosition}
+     */
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
     wrapperStyle: deprecated(PropTypes.object, 'There is no longer a wrapper'),
     wrapperClassName: deprecated(PropTypes.string, 'There is no longer a wrapper'),
   };
@@ -141,6 +162,9 @@ export default class SelectFieldColumn extends PureComponent {
       menuClassName,
       header,
       fixedTo,
+      tooltipLabel,
+      tooltipDelay,
+      tooltipPosition,
       /* eslint-disable no-unused-vars */
       id: propId,
       cellIndex: propCellIndex,
@@ -164,6 +188,9 @@ export default class SelectFieldColumn extends PureComponent {
         style={style}
         className={cn('md-select-field-column', className)}
         adjusted={false}
+        tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
+        tooltipPosition={tooltipPosition}
       >
         <SelectField
           {...props}

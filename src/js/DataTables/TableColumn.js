@@ -223,8 +223,6 @@ class TableColumn extends PureComponent {
             style={fixedStyle}
             className={cn(baseClassNames, mergedClassNames, 'md-table-column__fixed--flex', {
               'md-table-column__fixed--flex-right': numeric,
-              'md-table-column--relative': tooltip,
-              'md-table-column--select-field': selectColumnHeader,
             }, fixedClassName)}
           >
             {tooltip}
