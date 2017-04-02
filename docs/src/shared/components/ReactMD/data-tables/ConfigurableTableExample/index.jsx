@@ -7,6 +7,7 @@ import sort from 'utils/ListUtils/sort';
 import Configuration from './Configuration';
 import Header from './Header';
 import Body from './Body';
+import Footer from './Footer';
 
 export default class ConfigurableTableExample extends PureComponent {
   constructor(props) {
@@ -20,6 +21,10 @@ export default class ConfigurableTableExample extends PureComponent {
       titleSorted: true,
       yearSorted: null,
       okOnOutsideClick: true,
+      fixedHeader: true,
+      fixedFooter: true,
+      fixedHeight: 0,
+      fixedWidth: 0,
     };
   }
 
@@ -55,6 +60,22 @@ export default class ConfigurableTableExample extends PureComponent {
     this.setState({ okOnOutsideClick });
   };
 
+  handleFixedHeaderChange = (fixedHeader) => {
+    this.setState({ fixedHeader });
+  };
+
+  handleFixedFooterChange = (fixedFooter) => {
+    this.setState({ fixedFooter });
+  };
+
+  handleHeightChange = (value) => {
+    this.setState({ fixedHeight: parseFloat(value || 0) });
+  };
+
+  handleWidthChange = (value) => {
+    this.setState({ fixedWidth: parseFloat(value || 0) });
+  };
+
   render() {
     const {
       large,
@@ -64,7 +85,12 @@ export default class ConfigurableTableExample extends PureComponent {
       titleSorted,
       sortedType,
       sortedMovies,
+      fixedHeader,
+      fixedFooter,
+      fixedWidth,
+      fixedHeight,
     } = this.state;
+
     return (
       <div>
         <Configuration
@@ -76,10 +102,26 @@ export default class ConfigurableTableExample extends PureComponent {
           onSortChange={this.changeSortType}
           saveChecked={okOnOutsideClick}
           onSaveChange={this.handleSaveChange}
+          fixedHeader={fixedHeader}
+          onFixedHeaderChange={this.handleFixedHeaderChange}
+          fixedFooter={fixedFooter}
+          onFixedFooterChange={this.handleFixedFooterChange}
+          fixedHeight={fixedHeight}
+          onHeightChange={this.handleHeightChange}
+          fixedWidth={fixedWidth}
+          onWidthChange={this.handleWidthChange}
         />
-        <DataTable baseId="movies">
+        <DataTable
+          baseId="movies"
+          className="movies-table"
+          fixedHeader={fixedHeader}
+          fixedFooter={fixedFooter}
+          fixedHeight={fixedHeight !== 0 ? fixedHeight : null}
+          fixedWidth={fixedWidth !== 0 ? fixedWidth : null}
+        >
           <Header yearSorted={yearSorted} titleSorted={titleSorted} sort={this.sort} />
           <Body movies={sortedMovies} inline={inline} large={large} okOnOutsideClick={okOnOutsideClick} />
+          <Footer />
         </DataTable>
       </div>
     );

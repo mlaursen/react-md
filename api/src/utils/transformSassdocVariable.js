@@ -1,6 +1,11 @@
+import { uniqBy } from 'lodash/array';
 import { buildSassDocLink } from './buildSassDocList';
 
 const GITHUB_URL = require('../../../package.json').bugs.url.replace('/issues', '');
+
+export function refList(list) {
+  return list ? uniqBy(list.map(buildSassDocLink), ({ name }) => name) : [];
+}
 
 export default function transformSassdocVariable(sassdoc) {
   const {
@@ -11,7 +16,6 @@ export default function transformSassdocVariable(sassdoc) {
       scope,
     },
     description,
-    usedBy,
     file: { path },
     type: variableType,
     example: examples,
@@ -26,10 +30,9 @@ export default function transformSassdocVariable(sassdoc) {
     code = `%${name} {${code}}`;
   }
 
-  let { see } = sassdoc;
-  if (see && see.length) {
-    see = see.map(buildSassDocLink);
-  }
+  let { see, usedBy } = sassdoc;
+  see = refList(see);
+  usedBy = refList(usedBy);
 
   return {
     name,
@@ -40,7 +43,7 @@ export default function transformSassdocVariable(sassdoc) {
     links,
     examples,
     see,
-    usedBy: usedBy ? usedBy.map(buildSassDocLink) : [],
+    usedBy,
     path: `${GITHUB_URL}/blob/master/src/scss/${path}`,
   };
 }

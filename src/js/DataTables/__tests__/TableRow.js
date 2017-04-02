@@ -228,7 +228,7 @@ describe('TableRow', () => {
       const event2 = { target: { checked: false } };
       row1._handleCheckboxClick(false, event2);
       expect(table.state.allSelected).toBe(false);
-      expect(table.state.selectedRows).toEqual([true, false]);
+      expect(table.state.selectedRows).toEqual([false, true]);
     });
   });
 });

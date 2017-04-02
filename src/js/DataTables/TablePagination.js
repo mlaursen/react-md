@@ -1,11 +1,13 @@
 import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import { findDOMNode } from 'react-dom';
 
 import getField from '../utils/getField';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 import findTable from './findTable';
+import TableFooter from './TableFooter';
+import TableColumn from './TableColumn';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps
@@ -105,6 +107,7 @@ export default class TablePagination extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
+    fixedFooter: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -127,17 +130,11 @@ export default class TablePagination extends PureComponent {
       rowsPerPage: props.defaultRowsPerPage,
       controlsMarginLeft: 0,
     };
-
-    this._setControls = this._setControls.bind(this);
-    this._position = this._position.bind(this);
-    this._increment = this._increment.bind(this);
-    this._decrement = this._decrement.bind(this);
-    this._setRowsPerPage = this._setRowsPerPage.bind(this);
   }
 
   componentDidMount() {
-    this._position();
     window.addEventListener('resize', this._position);
+    this._position();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -153,22 +150,47 @@ export default class TablePagination extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this._position);
-  }
-
-  _setControls(controls) {
-    this._controls = findDOMNode(controls);
-  }
-
-  _position() {
-    const table = findTable(findDOMNode(this));
-    if (table) {
-      this.setState({
-        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
-      });
+    if (this._table) {
+      this._table.removeEventListener('scroll', this._throttledPosition);
     }
   }
 
-  _increment() {
+  _setControls = (controls) => {
+    this._controls = findDOMNode(controls);
+    this._table = findTable(this._controls);
+
+    if (this._table && this.context.fixedFooter) {
+      this._table.addEventListener('scroll', this._throttledPosition);
+    }
+  };
+
+  _position = () => {
+    if (this._table) {
+      const { fixedFooter } = this.context;
+      const { offsetWidth, scrollLeft } = this._table;
+
+      let controlsMarginLeft = offsetWidth - this._controls.offsetWidth;
+      if (fixedFooter) {
+        controlsMarginLeft += scrollLeft;
+      }
+      this.setState({
+        controlsMarginLeft: Math.max(24, controlsMarginLeft),
+      });
+    }
+  };
+
+  _throttledPosition = () => {
+    if (!this._ticking) {
+      requestAnimationFrame(() => {
+        this._ticking = false;
+        this._position();
+      });
+    }
+
+    this._ticking = true;
+  };
+
+  _increment = () => {
     const { rows, onPagination } = this.props;
     const { start } = this.state;
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
@@ -182,9 +204,9 @@ export default class TablePagination extends PureComponent {
 
     onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart, page: nextPage });
-  }
+  };
 
-  _decrement() {
+  _decrement = () => {
     const { start } = this.state;
     const page = getField(this.props, this.state, 'page');
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
@@ -193,14 +215,14 @@ export default class TablePagination extends PureComponent {
 
     this.props.onPagination(newStart, rowsPerPage, nextPage);
     this.setState({ start: newStart, page: nextPage });
-  }
+  };
 
-  _setRowsPerPage(rowsPerPage) {
+  _setRowsPerPage = (rowsPerPage) => {
     const page = getField(this.props, this.state, 'page');
     const newStart = (page - 1) * rowsPerPage;
     this.props.onPagination(newStart, rowsPerPage, page);
     this.setState({ start: newStart, rowsPerPage });
-  }
+  };
 
   render() {
     const { controlsMarginLeft, start } = this.state;
@@ -227,10 +249,10 @@ export default class TablePagination extends PureComponent {
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
-      <tfoot {...props} className={cn('md-table-footer', className)}>
+      <TableFooter {...props} className={cn('md-table-footer--pagination', className)}>
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
-          <td colSpan="100%">
+          <TableColumn colSpan="100%">
             <div
               ref={this._setControls}
               className="md-table-pagination md-table-pagination--controls md-text"
@@ -268,9 +290,9 @@ export default class TablePagination extends PureComponent {
               * we have a mask to correctly set the height of the footer.
               */}
             <div className="md-table-pagination" />
-          </td>
+          </TableColumn>
         </tr>
-      </tfoot>
+      </TableFooter>
     );
   }
 }

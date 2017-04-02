@@ -46,6 +46,53 @@ manually on your end.
 The \`EditDialogColumn\` can be displayed in a dialog, a large dialog, or inline. The defalt behavior for the dialog
 versions is to "save" the cell when the user presses enter. If the user hits escape, their changes will be undone and
 the value will be reset before the dialog was opened.
+
+This example will also allow you to play with fixed headers/footers for a table.  To be able to get fixed tables,
+the table must be \`responsive\` to get horizontal scrolling. Once a table has become "fixed" with header/footer,
+the markup changes remarkably.
+
+\`\`\`html
+<!-- before -->
+<div class="md-data-table--responsive">
+  <table class="md-data-table">
+    <thead class="md-table-header">
+      <tr class="md-table-row">
+        <th class="md-table-column">
+          Hi!
+        </th>
+      </tr>
+    </thead>
+    <!-- table stuffs -->
+  </table>
+</div>
+
+<!-- after -->
+<div class="md-data-table--responsive">
+  <div class="md-data-table__fixed-wrapper">
+    <div class="md-data-table--scroll-wrapper">
+      <table class="md-data-table">
+        <thead class="md-table-header">
+          <tr class="md-table-row">
+            <th class="md-table-column">
+              <div class="md-table-column__fixed">
+                <div class"md-table-column--header">
+                  Hi!
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <!-- table stuffs -->
+      </table>
+    </div>
+  </div>
+</div>
+\`\`\`
+
+It's quite beautiful, huh? To help with styling, \`style\` and \`className\` props have been exposed on the \`DataTable\`
+and \`TableColumn\` components to help with this. In addition, there is a
+[react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table) mixin to help making your fixed
+table to a specific size.
   `,
   code: ConfigurableTableExampleRaw,
   children: <ConfigurableTableExample />,

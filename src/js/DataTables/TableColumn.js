@@ -29,6 +29,18 @@ class TableColumn extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the surroudning div when the DataTable has been
+     * set to include a fixed header or a fixed footer.
+     */
+    fixedStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the surroudning div when the DataTable has been
+     * set to include a fixed header or a fixed footer.
+     */
+    fixedClassName: PropTypes.string,
+
+    /**
      * The children to display in the column.
      */
     children: PropTypes.node,
@@ -133,11 +145,16 @@ class TableColumn extends PureComponent {
 
   static contextTypes = {
     plain: PropTypes.bool,
+    footer: PropTypes.bool,
+    fixedHeader: PropTypes.bool,
+    fixedFooter: PropTypes.bool,
   };
 
   render() {
     const {
       className,
+      fixedStyle,
+      fixedClassName,
       numeric,
       header,
       children,
@@ -174,27 +191,59 @@ class TableColumn extends PureComponent {
       );
     }
 
+    const fixedHeader = header && this.context.fixedHeader;
+    const fixedFooter = this.context.footer && this.context.fixedFooter;
+    const fixed = fixedHeader || fixedFooter;
+    const baseClassNames = cn({
+      'md-text': !header,
+      'md-text--secondary': header,
+      'md-table-column--relative': tooltip,
+      'md-table-column--select-field': selectColumnHeader,
+    });
+
+    const mergedClassNames = cn({
+      'md-table-column--header': header,
+      'md-table-column--data': !header && !plain,
+      'md-table-column--plain': !header && plain,
+      'md-table-column--adjusted': adjusted && !grow && !selectColumnHeader,
+      'md-table-column--grow': grow,
+      'md-table-column--sortable md-pointer--hover': sortable,
+      [baseClassNames]: !fixed,
+    }, className);
+
+    if (fixed) {
+      displayedChildren = (
+        <div
+          className={cn('md-table-column__fixed', {
+            'md-table-column__fixed--header': fixedHeader,
+            'md-table-column__fixed--footer': fixedFooter,
+          })}
+        >
+          <div
+            style={fixedStyle}
+            className={cn(baseClassNames, mergedClassNames, 'md-table-column__fixed--flex', {
+              'md-table-column__fixed--flex-right': numeric,
+            }, fixedClassName)}
+          >
+            {tooltip}
+            {displayedChildren}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <Component
         aria-sort={ariaSort}
         {...props}
         scope={scope}
         className={cn('md-table-column', {
-          'md-table-column--header': header,
-          'md-table-column--data': !header && !plain,
-          'md-table-column--plain': !header && plain,
-          'md-table-column--adjusted': adjusted && !grow && !selectColumnHeader,
-          'md-table-column--grow': grow,
-          'md-table-column--sortable md-pointer--hover': sortable,
-          'md-table-column--relative': tooltip,
-          'md-table-column--select-field': selectColumnHeader,
-          'md-text': !header,
-          'md-text--secondary': header,
-          'md-text-left': !numeric,
-          'md-text-right': numeric,
-        }, className)}
+          'md-table-column--fixed': fixed,
+          'md-text-left': !numeric && !fixed,
+          'md-text-right': numeric && !fixed,
+        }, mergedClassNames)}
       >
-        {tooltip}
+        {!fixedHeader && !fixedFooter && tooltip}
         {displayedChildren}
       </Component>
     );

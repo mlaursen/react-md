@@ -15,6 +15,7 @@ import TextField from '../TextFields/TextField';
 import TableColumn from './TableColumn';
 import EditDialog from './EditDialog';
 import findTable from './findTable';
+import findFixedTo from './findFixedTo';
 
 /**
  * The `EditDialogColumn` is used when there should be used when a table column's value
@@ -388,6 +389,21 @@ export default class EditDialogColumn extends PureComponent {
     transitionLeaveTimeout: PropTypes.number,
 
     /**
+     * The optional tooltip to render on hover.
+     */
+    tooltipLabel: PropTypes.string,
+
+    /**
+     * An optional delay to apply to the tooltip before it appears.
+     */
+    tooltipDelay: PropTypes.number,
+
+    /**
+     * The position of the tooltip.
+     */
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -455,6 +471,7 @@ export default class EditDialogColumn extends PureComponent {
   componentDidMount() {
     this._column = findDOMNode(this);
     this._table = findTable(this._column);
+    this._fixedTo = findFixedTo(this._table);
 
     // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
     // might not be defined if they don't pass ...props
@@ -630,6 +647,9 @@ export default class EditDialogColumn extends PureComponent {
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      tooltipLabel,
+      tooltipDelay,
+      tooltipPosition,
       /* eslint-disable no-unused-vars */
       id: propId,
       dialogId: propDialogId,
@@ -682,7 +702,10 @@ export default class EditDialogColumn extends PureComponent {
         ref={this._setField}
         style={textFieldStyle}
         className={cn({ 'md-edit-dialog__blocked-field': inline }, textFieldClassName)}
-        inputClassName={cn({ 'md-text-right': numeric }, inputClassName)}
+        inputClassName={cn({
+          'md-text--secondary md-edit-dialog__header': header && inline,
+          'md-text-right': numeric,
+        }, inputClassName)}
         id={id}
         label={label}
         placeholder={placeholder}
@@ -718,6 +741,7 @@ export default class EditDialogColumn extends PureComponent {
           actions={actions}
           large={large}
           title={title}
+          header={header}
           placeholder={dialogLabel === placeholder || dialogLabel === label}
           anchor={anchor}
           belowAnchor={belowAnchor}
@@ -726,7 +750,7 @@ export default class EditDialogColumn extends PureComponent {
           yThreshold={yThreshold}
           centered={centered}
           sameWidth={sameWidth}
-          fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._table}
+          fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
           transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}
@@ -744,6 +768,9 @@ export default class EditDialogColumn extends PureComponent {
         className={cn('md-edit-dialog-column', className)}
         header={header}
         adjusted={false}
+        tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
+        tooltipPosition={tooltipPosition}
       >
         {children}
       </TableColumn>

@@ -22,4 +22,6 @@ export default {
   baseName: PropTypes.string,
   checkboxHeaderLabel: PropTypes.string.isRequired,
   checkboxLabelTemplate: PropTypes.string.isRequired,
+  fixedHeader: PropTypes.bool.isRequired,
+  fixedFooter: PropTypes.bool.isRequired,
 };

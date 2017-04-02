@@ -33,6 +33,7 @@ export default class EditDialog extends PureComponent {
     large: PropTypes.bool,
     actions: Dialog.propTypes.actions,
     dialogZDepth: PropTypes.number,
+    header: PropTypes.bool,
   };
 
   render() {
@@ -44,6 +45,7 @@ export default class EditDialog extends PureComponent {
       dialogContentClassName,
       textFieldId,
       visible,
+      header,
       onOpen,
       children,
       label,
@@ -58,7 +60,8 @@ export default class EditDialog extends PureComponent {
     const field = (
       <AccessibleFakeButton
         className={cn('md-edit-dialog__label', {
-          'md-text--secondary': placeholder,
+          'md-edit-dialog__header': header,
+          'md-text--secondary': placeholder || header,
         })}
         noFocusOutline={visible}
         onClick={onOpen}
@@ -86,7 +89,7 @@ export default class EditDialog extends PureComponent {
           contentClassName={cn('md-edit-dialog__content', dialogContentClassName)}
           title={large ? title : null}
           focusOnMount
-          containFocus={large}
+          containFocus={!!large}
           paddedContent={false}
           actions={large ? actions : null}
           zDepth={dialogZDepth}

@@ -84,7 +84,7 @@ export default class PaginationExample extends PureComponent {
 
     return (
       <Loader fetching={fetching} loaded={!!inspections.length} onLoad={this._load}>
-        <DataTable className="pagination-table" baseId="pagination">
+        <DataTable className="pagination-table" baseId="pagination" fixedHeader fixedFooter fixedHeight={400} footerHeight={56}>
           <TableHeader>
             <TableRow>
               {headers}

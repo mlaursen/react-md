@@ -8,6 +8,11 @@ import {
   scryRenderedDOMComponentsWithTag,
 } from 'react-addons-test-utils';
 
+import DataTable from '../DataTable';
+import TableHeader from '../TableHeader';
+import TableBody from '../TableBody';
+import TableFooter from '../TableFooter';
+import TableRow from '../TableRow';
 import TableColumn from '../TableColumn';
 import Collapser from '../../FontIcons/Collapser';
 import IconSeparator from '../../Helpers/IconSeparator';
@@ -276,5 +281,48 @@ describe('TableColumn', () => {
       </table>
     );
     expect(table.find('td').at(0).props().scope).toBeUndefined();
+  });
+
+  it('should update the classname when the DataTable is fixed only for the header or footer', () => {
+    const table = mount(
+      <DataTable baseId="woop" fixedHeader fixedFooter>
+        <TableHeader>
+          <TableRow>
+            <TableColumn id="head" />
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableColumn id="body" />
+          </TableRow>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableColumn id="foot" />
+          </TableRow>
+        </TableFooter>
+      </DataTable>
+    );
+
+    expect(table.find('#head').hasClass('md-table-column--fixed')).toBe(true);
+    expect(table.find('#body').hasClass('md-table-column--fixed')).toBe(false);
+    expect(table.find('#foot').hasClass('md-table-column--fixed')).toBe(true);
+  });
+
+  it('should create 2 additional divs for fixed columns', () => {
+    const table = mount(
+      <DataTable baseId="woop" fixedHeader fixedFooter>
+        <TableHeader>
+          <TableRow>
+            <TableColumn id="head" />
+          </TableRow>
+        </TableHeader>
+      </DataTable>
+    );
+
+    const col = table.find(TableColumn);
+    expect(col.find('.md-table-column__fixed').length).toBe(1);
+    expect(col.find('.md-table-column__fixed--header').length).toBe(1);
+    expect(col.find('.md-table-column__fixed--flex').length).toBe(1);
   });
 });
