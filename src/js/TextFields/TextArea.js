@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * The `TextArea` component is used to allow a dynamic height for the
  * `textarea`. The height will keep on changing until the maxRows prop

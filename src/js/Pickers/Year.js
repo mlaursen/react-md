@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * This is a component for rendering a year in the Date Picker's Year picker
  * list.

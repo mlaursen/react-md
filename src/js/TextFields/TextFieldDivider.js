@@ -1,5 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import Divider from '../Dividers/Divider';
 
 export default class TextFieldDivider extends PureComponent {

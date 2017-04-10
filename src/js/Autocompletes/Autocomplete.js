@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
@@ -868,7 +869,7 @@ export default class Autocomplete extends PureComponent {
     }
   };
 
-  _setField = (field) => {
+  _setField(field) {
     if (field) {
       this._field = field.getField();
 
@@ -876,7 +877,7 @@ export default class Autocomplete extends PureComponent {
         this._updateFont();
       }
     }
-  };
+  }
 
   _setMenu = (menu) => {
     this._menu = findDOMNode(menu);

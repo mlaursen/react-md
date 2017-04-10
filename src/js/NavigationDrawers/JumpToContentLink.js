@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * This is an accessibility only component that should be used in the `NavigationDrawer`
  * component. It allows keyboard users to quickly jump to the main content.

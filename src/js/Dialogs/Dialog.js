@@ -1,8 +1,8 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-
+import PropTypes from 'prop-types';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import FocusContainer from '../Helpers/FocusContainer';
 import Paper from '../Papers/Paper';

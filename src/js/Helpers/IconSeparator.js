@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes, cloneElement, isValidElement, Children } from 'react';
+import React, { PureComponent, cloneElement, isValidElement, Children } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * The `IconSeparator` component is a simple helper component to render some text and
  * an icon with some space between them while centering the text. The icon can either

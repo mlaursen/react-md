@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * The `Subheader` component is generally used inside of lists or menus.
  */

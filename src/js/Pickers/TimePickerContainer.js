@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
-
+import PropTypes from 'prop-types';
 import { ESC, ENTER } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';

@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * The `MediaOverlay` component is just a very simple wrapper that adds the
  * `.md-media-overlay` class name to a div. The overlay will be positioned

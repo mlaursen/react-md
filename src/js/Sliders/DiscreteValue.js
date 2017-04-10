@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 export default class DiscreteValue extends PureComponent {
   static propTypes = {
     style: PropTypes.object,

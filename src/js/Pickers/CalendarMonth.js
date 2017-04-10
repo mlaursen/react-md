@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 import addDate from '../utils/DateUtils/addDate';
 import stripTime from '../utils/DateUtils/stripTime';
 import getLastDay from '../utils/DateUtils/getLastDay';

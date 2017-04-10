@@ -1,5 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';

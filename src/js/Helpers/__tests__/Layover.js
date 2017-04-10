@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { shallow } from 'enzyme';
 import Layover from '../Layover';
 

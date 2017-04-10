@@ -22,7 +22,7 @@
     "lint:fix": "eslint -c .eslintrc --fix src",
     "css-bundles": "node ./makeBundles.js",
     "build:umd": "npm run css-bundles && webpack --progress --colors",
-    "prebuild": "rimraf lib && rimraf dist && rimraf src/scss/bundles && npm run lint",
+    "prebuild": "rimraf lib && rimraf dist && rimraf src/scss/bundles",
     "build": "npm run scripts && npm run build:umd"
   },
   "repository": {
@@ -83,9 +83,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "invariant": "^2.2.1",
+    "prop-types": "^15.5.6",
     "react-motion": "^0.4.5",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.11.1"
+    "react-swipeable-views": "^0.11.1",
+    "react-transition-group": "^1.1.1"
   },
   "peerDependencies": {
     "react": ">= 15.3.0",

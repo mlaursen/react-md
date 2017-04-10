@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
+import PropTypes from 'prop-types';
 
 import invalidIf from '../utils/PropTypes/invalidIf';
 import between from '../utils/PropTypes/between';

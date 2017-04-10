@@ -1,8 +1,8 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
-
+import PropTypes from 'prop-types';
 import getField from '../utils/getField';
 import fixedToShape from '../Helpers/fixedToShape';
 import Subheader from '../Subheaders';

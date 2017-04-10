@@ -1,6 +1,6 @@
-import { PureComponent, PropTypes, createElement } from 'react';
+import { PureComponent, createElement } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 import TextArea from './TextArea';
 
 /**

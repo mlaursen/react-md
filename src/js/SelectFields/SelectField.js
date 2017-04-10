@@ -1,9 +1,9 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-
+import PropTypes from 'prop-types';
 import { UP, DOWN, ENTER, ESC, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import omit from '../utils/omit';
 import getField from '../utils/getField';

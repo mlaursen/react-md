@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 import addSuffix from '../utils/StringUtils/addSuffix';
 import FloatingLabel from '../TextFields/FloatingLabel';
 import TextFieldMessage from '../TextFields/TextFieldMessage';
