@@ -10,6 +10,10 @@ type template = (rowIndex: number) => string;
 interface DataTableProps extends Props {
   tableStyle?: React.CSSProperties;
   tableClassName?: string;
+  fixedWrapperStyle?: React.CSSProperties;
+  fixedWrapperClassName?: string;
+  fixedScrollWrapperStyle?: React.CSSProperties;
+  fixedScrollWrapperClassName?: string;
   baseId?: IdPropType;
   defaultSelectedRows?: Array<boolean>;
   responsive?: boolean;
@@ -26,6 +30,13 @@ interface DataTableProps extends Props {
   indeterminateIconClassName?: string;
   checkboxHeaderLabel?: string;
   checkboxLabelTemplate?: string | template;
+  fixedHeader?: boolean;
+  fixedFooter?: boolean;
+  fixedDividers?: boolean | { header: boolean; footer: boolean };
+  fixedHeight?: number;
+  fixedWidth?: number;
+  headerHeight?: number;
+  footerHeight?: number;
 }
 
 interface TableHeaderProps extends Props {
@@ -40,6 +51,7 @@ interface TableRowProps extends Props {
   children?: Array<React.ReactElement<any>> | React.ReactElement<any>;
   onCheckboxClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement>) => void;
   selected?: boolean;
+  selectable?: boolean;
 
   /**
    * @deprecated
@@ -48,6 +60,8 @@ interface TableRowProps extends Props {
 }
 
 interface TableColumnProps extends Props, InjectedTooltipProps {
+  fixedStyle?: React.CSSProperties;
+  fixedClassName?: string;
   sorted?: boolean;
   sortIconChildren?: React.ReactNode;
   sortIconClassName?: string;
@@ -62,7 +76,7 @@ interface TableColumnProps extends Props, InjectedTooltipProps {
   cellIndex?: boolean;
 }
 
-interface EditDialogColumnProps extends SharedLayoverProps {
+interface EditDialogColumnProps extends SharedLayoverProps, InjectedTooltipProps {
   dialogId?: IdPropType;
   layoverStyle?: React.CSSProperties;
   layoverClassName?: string;
@@ -120,7 +134,7 @@ interface EditDialogColumnProps extends SharedLayoverProps {
   transitionDuration?: number;
 }
 
-interface SelectFieldColumnProps extends SelectFieldProps {
+interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps {
   menuStyle?: React.CSSProperties;
   menuClassName?: string;
   header?: boolean;
@@ -157,6 +171,10 @@ interface TablePaginationProps extends Props {
   decrementIconClassName?: string;
 }
 
+interface TableFooterProps extends Props {
+  children?: React.ReactNode;
+}
+
 export default class DataTable extends React.Component<DataTableProps, {}> { }
 export { DataTable };
 
@@ -167,3 +185,4 @@ export class TableColumn extends React.Component<TableColumnProps, {}> { }
 export class EditDialogColumn extends React.Component<EditDialogColumnProps, {}> { }
 export class SelectFieldColumn extends React.Component<SelectFieldColumnProps, {}> { }
 export class TablePagination extends React.Component<TablePaginationProps, {}> { }
+export class TableFooter extends React.Component<TableFooterProps, {}> { }

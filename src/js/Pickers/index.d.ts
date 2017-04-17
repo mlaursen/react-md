@@ -92,6 +92,7 @@ interface TimePickerProps extends CommonProps {
   defaultTimeMode?: 'hour' | 'minute';
   value?: Date,
   defaultValue?: Date;
+  onChange?: (formattedTime: string, date: Date, event: Event) => void;
 }
 
 export class DatePicker extends React.Component<DatePickerProps, {}> { }
