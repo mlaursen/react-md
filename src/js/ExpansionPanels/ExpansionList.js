@@ -1,5 +1,6 @@
-import { PureComponent, PropTypes, createElement, cloneElement, Children } from 'react';
+import { PureComponent, createElement, cloneElement, Children } from 'react';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';

@@ -1,7 +1,7 @@
 /* eslint-env jest*/
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument, Simulate } from 'react-addons-test-utils';
+import { renderIntoDocument, Simulate } from 'react-dom/test-utils';
 
 import FontIcon from '../FontIcon';
 

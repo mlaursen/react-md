@@ -1,5 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
-
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Drawer from '../Drawers/Drawer';
 import componentDeprecated from '../utils/PropTypes/componentDeprecated';
 

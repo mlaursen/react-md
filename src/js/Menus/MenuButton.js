@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import deprecated from 'react-prop-types/lib/deprecated';
-
+import PropTypes from 'prop-types';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';

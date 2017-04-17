@@ -1,5 +1,6 @@
-import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
+import React, { PureComponent, Children, cloneElement, isValidElement } from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 /**

@@ -1,7 +1,7 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 import TICK from '../constants/CSSTransitionGroupTick';
 import oneRequired from '../utils/PropTypes/oneRequired';
 import invalidIf from '../utils/PropTypes/invalidIf';

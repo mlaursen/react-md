@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 function validateAspectRatio(props, propName, component, ...args) {
   const value = props[propName];
   let err = PropTypes.string.isRequired(props, propName, component, ...args);

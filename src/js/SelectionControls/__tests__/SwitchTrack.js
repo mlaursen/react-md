@@ -3,7 +3,7 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SwitchTrack from '../SwitchTrack';
 

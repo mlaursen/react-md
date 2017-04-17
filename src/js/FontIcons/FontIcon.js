@@ -1,5 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
+import PropTypes from 'prop-types';
 
 const styles = {
   sized: { width: 24, height: 24 },

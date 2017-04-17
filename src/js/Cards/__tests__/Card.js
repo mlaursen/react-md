@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Card from '../Card';
 

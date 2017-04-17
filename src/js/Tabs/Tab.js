@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
+import React, { PureComponent, Children, cloneElement, isValidElement } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 import oneRequired from '../utils/PropTypes/oneRequired';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 

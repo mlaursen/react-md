@@ -1,7 +1,7 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import { Motion, spring } from 'react-motion';
-
+import PropTypes from 'prop-types';
 /**
  * The `Collapse` component is used to animate a single child entering
  * or leaving. This uses the `react-motion` library to animate the height,

@@ -7,7 +7,7 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import InputField from '../InputField';
 import TextArea from '../TextArea';

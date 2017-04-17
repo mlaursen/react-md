@@ -1,7 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-
+import PropTypes from 'prop-types';
 import between from '../utils/PropTypes/between';
 
 const ROATE_DISTANCE = 360 * 1.75;

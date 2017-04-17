@@ -1,6 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import cn from 'classnames';
-
+import PropTypes from 'prop-types';
 /**
  * The `CardText` component is a simple wrapper for text or any content in a `Card`.
  * It really just adds correct padding and font color.

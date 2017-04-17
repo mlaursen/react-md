@@ -1,7 +1,8 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
+import PropTypes from 'prop-types';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
