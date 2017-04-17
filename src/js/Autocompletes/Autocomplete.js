@@ -21,6 +21,7 @@ import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
 import TextField from '../TextFields/TextField';
 
+
 /**
  * The `Autocomplete` component is useful for presenting real-time suggestions, completions,
  * or filtering.
@@ -869,7 +870,7 @@ export default class Autocomplete extends PureComponent {
     }
   };
 
-  _setField(field) {
+  _setField = (field) => {
     if (field) {
       this._field = field.getField();
 
@@ -877,7 +878,7 @@ export default class Autocomplete extends PureComponent {
         this._updateFont();
       }
     }
-  }
+  };
 
   _setMenu = (menu) => {
     this._menu = findDOMNode(menu);

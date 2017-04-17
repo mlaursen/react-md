@@ -5,7 +5,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SnackbarContainer from '../SnackbarContainer';
 import Snackbar from '../Snackbar';

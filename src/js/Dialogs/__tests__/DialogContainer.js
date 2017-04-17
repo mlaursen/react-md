@@ -8,7 +8,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DialogContainer from '../DialogContainer';
 import Dialog from '../Dialog';

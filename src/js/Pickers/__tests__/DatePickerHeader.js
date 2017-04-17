@@ -3,7 +3,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DatePickerHeader from '../DatePickerHeader';
 import PickerControl from '../PickerControl';
