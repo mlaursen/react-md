@@ -327,13 +327,13 @@ export default class TextField extends PureComponent {
      * of the text field's value is greater than the `maxLength` prop, or the field is
      * required and the user blurs the text field with no value.
      */
-    errorText: invalidIf(PropTypes.string, 'block'),
+    errorText: invalidIf(PropTypes.node, 'block'),
 
     /**
      * An optional help text to display below the text field. This will always be visible
      * unless the `helpOnFocus` prop is set to true. Otherwise it will appear on focus.
      */
-    helpText: invalidIf(PropTypes.string, 'block'),
+    helpText: invalidIf(PropTypes.node, 'block'),
 
     /**
      * Boolean if the help text should display on focus only.

@@ -33,7 +33,7 @@ interface TextFieldProps extends Props {
   rows?: number;
   maxRows?: number;
   customSize?: string;
-  erorText?: string;
+  errorText?: string;
   helpText?: string;
   helpOnFocus?: boolean;
   maxLength?: number;
@@ -43,6 +43,21 @@ interface TextFieldProps extends Props {
   max?: number;
   step?: number;
   resize?: { min: number, max: number, noShrink?: boolean };
+
+  /**
+   * @deprecated
+   */
+  icon?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  floatingLabel?: boolean;
+
+  /**
+   * @deprecated
+   */
+  adjustMinWidth?: boolean;
 }
 
 export default class TextField extends React.Component<TextFieldProps, {}> {
