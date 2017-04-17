@@ -266,6 +266,11 @@ export default class DialogContainer extends PureComponent {
      */
     lastChild: PropTypes.bool,
 
+    /**
+     * An optional title for the dialog.
+     */
+    title: PropTypes.node,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),

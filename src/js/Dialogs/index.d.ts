@@ -20,6 +20,8 @@ interface SharedDialogProps extends Props {
   focusOnMount?: boolean;
   additionalFocusKeys?: Array<number>;
   containFocus?: boolean;
+  fullPage?: boolean;
+  title?: React.ReactNode;
 }
 
 interface DialogContainerProps extends SharedDialogProps {
@@ -30,10 +32,8 @@ interface DialogContainerProps extends SharedDialogProps {
   onShow?: Function;
   onHide?: Function;
   modal?: boolean;
-  fullPage?: boolean;
   pageX?: number;
   pageY?: number;
-  focusOnMount?: boolean;
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
   closeOnEsc?: boolean;
@@ -43,7 +43,6 @@ interface DialogContainerProps extends SharedDialogProps {
 }
 
 interface DialogProps extends SharedDialogProps {
-  title?: React.ReactNode;
 }
 
 export default class DialogContainer extends React.Component<DialogContainerProps, {}> { }
