@@ -69,9 +69,9 @@
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
     "react": "^15.5.4",
-    "react-transition-group": "^1.1.1",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
+    "react-transition-group": "^1.1.1",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
@@ -89,7 +89,6 @@
   },
   "peerDependencies": {
     "react": ">= 15.5.0",
-    "react-transition-group": "^1.1.1",
     "react-dom": ">= 15.5.0"
   },
   "jest": {
