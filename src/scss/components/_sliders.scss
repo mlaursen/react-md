@@ -220,7 +220,7 @@ $md-slider-warn-md: true !default;
 
   .md-slider-thumb--mask-disabled {
     background: $bg-color;
-    border-radius: initial;
+    border-radius: 0;
     transform: scale(1.1);
     z-index: $md-slider-thumb-z-index - 1;
   }

@@ -369,7 +369,7 @@ $md-clock-padding: 4px;
     @include react-md-pickers-make-landscape;
 
     .md-picker-header {
-      height: initial;
+      height: auto;
     }
   }
 }

@@ -158,7 +158,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px;
     @if $include-shifting {
       &--shifting {
         min-width: $md-bottom-navigation-shifting-active-min-width;
-        position: initial;
+        position: static;
         transition-duration: $md-transition-time;
         transition-property: max-width;
 
