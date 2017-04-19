@@ -120,6 +120,7 @@ $md-slider-warn-md: true !default;
   .md-slider-container {
     display: flex;
     flex-wrap: wrap;
+    text-align: left;
   }
 
   .md-slider-label {
