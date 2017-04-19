@@ -5,7 +5,7 @@ export default class FloatingLabel extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.node,
     floating: PropTypes.bool,
     error: PropTypes.bool,
     active: PropTypes.bool,

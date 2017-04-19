@@ -17,11 +17,11 @@ export default class PanelContent extends PureComponent {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     saveType: PropTypes.string,
-    saveLabel: PropTypes.string.isRequired,
+    saveLabel: PropTypes.node.isRequired,
     savePrimary: PropTypes.bool,
     saveSecondary: PropTypes.bool,
     cancelType: PropTypes.string,
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
     cancelPrimary: PropTypes.bool,
     cancelSecondary: PropTypes.bool,
   };

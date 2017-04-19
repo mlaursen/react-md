@@ -153,7 +153,7 @@ export default class SelectField extends PureComponent {
      * An optional floating label to display with the text field. This is invalid
      * if the `position` is set to `SelectField.Positions.BELOW`.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to display in the select field.

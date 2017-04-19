@@ -75,7 +75,7 @@ class TableColumn extends PureComponent {
     /**
      * The optional tooltip to render on hover.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay to apply to the tooltip before it appears.

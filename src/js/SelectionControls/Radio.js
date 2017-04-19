@@ -35,7 +35,7 @@ export default class Radio extends PureComponent {
      * A label to display with the radio. This is required for accessibility and triggering
      * the toggle.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the label should appear before the radio icon.

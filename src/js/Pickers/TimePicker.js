@@ -13,10 +13,10 @@ export default class TimePicker extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
     cancelPrimary: PropTypes.bool.isRequired,
     onCancelClick: PropTypes.func.isRequired,
     DateTimeFormat: PropTypes.func.isRequired,
@@ -126,13 +126,13 @@ export default class TimePicker extends PureComponent {
     const hoursInt = parseInt(hours, 10);
     const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''), 10);
     const actions = [{
-      key: cancelLabel,
+      key: 'cancel',
       onClick: onCancelClick,
       primary: cancelPrimary,
       secondary: !cancelPrimary,
       label: cancelLabel,
     }, {
-      key: okLabel,
+      key: 'ok',
       onClick: onOkClick,
       primary: okPrimary,
       secondary: !okPrimary,

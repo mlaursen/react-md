@@ -67,7 +67,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * A label to display with the autocomplete.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional value to use for the text field. This will force this component

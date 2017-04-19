@@ -100,7 +100,7 @@ export default class TimePickerContainer extends PureComponent {
      * An optional label to be displayed in the time picker's text
      * field.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to be displayed in the time picker's text field.
@@ -148,7 +148,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * The label to use for the ok button on the year picker.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the ok button should be styled with the primary color.
@@ -158,7 +158,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * The label to use for the cancel button on the year picker.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the cancel button should be styled with the primary color.

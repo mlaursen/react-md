@@ -35,7 +35,7 @@ export default class Chip extends PureComponent {
     /**
      * The label to display on the chip.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the chip is removable.

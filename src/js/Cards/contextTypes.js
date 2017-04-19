@@ -4,8 +4,8 @@ export default {
   onExpandClick: PropTypes.func,
   expanded: PropTypes.bool,
   iconClassName: PropTypes.string,
-  iconChildren: PropTypes.string,
+  iconChildren: PropTypes.node,
   tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  tooltipLabel: PropTypes.string,
+  tooltipLabel: PropTypes.node,
   tooltipDelay: PropTypes.number,
 };

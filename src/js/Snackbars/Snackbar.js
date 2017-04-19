@@ -15,11 +15,11 @@ export default class Snackbar extends PureComponent {
     children: PropTypes.node,
     onDismiss: PropTypes.func.isRequired,
     toast: PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
       action: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.node,
         PropTypes.shape({
-          label: PropTypes.string.isRequired,
+          label: PropTypes.node.isRequired,
           onClick: PropTypes.func,
         }),
       ]),

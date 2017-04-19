@@ -20,7 +20,7 @@ export default class InputField extends PureComponent {
     disabled: PropTypes.bool,
     rows: PropTypes.number,
     maxRows: PropTypes.number,
-    label: PropTypes.string,
+    label: PropTypes.node,
     fullWidth: PropTypes.bool,
     customSize: PropTypes.string,
     passwordVisible: PropTypes.bool,

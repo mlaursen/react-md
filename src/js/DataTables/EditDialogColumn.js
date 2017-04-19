@@ -155,9 +155,9 @@ export default class EditDialogColumn extends PureComponent {
      */
     title: (props, propName, component, ...others) => {
       if (props.large) {
-        return PropTypes.string.isRequired(props, propName, component, ...others);
+        return PropTypes.node.isRequired(props, propName, component, ...others);
       } else {
-        return PropTypes.string(props, propName, component, ...others);
+        return PropTypes.node(props, propName, component, ...others);
       }
     },
 
@@ -171,7 +171,7 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The label to use for the OK button.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * An optional function to call when the Cancel button is clicked.
@@ -183,7 +183,7 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The label to use for the Cancel button.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * An optional function to call when the edit dialog is open and the user clicks

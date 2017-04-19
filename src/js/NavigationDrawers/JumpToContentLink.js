@@ -27,7 +27,7 @@ export default class JumpToContentLink extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
   }
 
   constructor(props) {

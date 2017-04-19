@@ -99,7 +99,7 @@ export default class DatePickerContainer extends PureComponent {
      * An optional label to be displayed in the date picker's text
      * field.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to be displayed in the date picker's text field.
@@ -165,7 +165,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The label to use for the ok button on the date picker.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the ok button should be styled with the primary color.
@@ -175,7 +175,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The label to use for the cancel button on the date picker.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the cancel button should be styled with the primary color.

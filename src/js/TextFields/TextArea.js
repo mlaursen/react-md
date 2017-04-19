@@ -19,7 +19,7 @@ export default class TextArea extends PureComponent {
     value: PropTypes.string,
     onHeightChange: PropTypes.func,
     block: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.node,
   };
 
   constructor(props) {

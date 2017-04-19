@@ -155,7 +155,7 @@ export default class ExpansionPanel extends PureComponent {
     /**
      * The label for the Save button.
      */
-    saveLabel: PropTypes.string.isRequired,
+    saveLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the Save button should be styled with the primary color.
@@ -176,7 +176,7 @@ export default class ExpansionPanel extends PureComponent {
     /**
      * The label for the Cancel button.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the Cancel button should be styled with the primary color,
