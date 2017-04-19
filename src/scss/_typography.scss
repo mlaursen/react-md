@@ -445,6 +445,7 @@ $md-line-height: 20 / $md-font-size-base !default;
   html {
     background: if($light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
     font-size: #{$md-font-size-base}px;
+    width: 100%;
   }
 
   body {

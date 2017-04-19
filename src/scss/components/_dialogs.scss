@@ -79,7 +79,7 @@ $md-dialog-horizontal-keyline: 40px;
     @include react-md-dialog-width;
 
     cursor: initial;
-    position: absolute;
+    position: fixed;
   }
 
   .md-dialog--centered {
