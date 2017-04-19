@@ -1,6 +1,19 @@
 {
-  "presets": ["es2015", "react", "stage-0"],
-  "plugins": ["react-hot-loader/babel", "transform-decorators-legacy", "syntax-async-functions", "transform-regenerator"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 11"]
+      }
+    }],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-decorators-legacy",
+    "syntax-async-functions",
+    "transform-regenerator"
+  ],
   "env": {
     "development": {
       "sourceMaps": true
