@@ -9,6 +9,7 @@ export default {
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
+  header: PropTypes.bool,
   baseName: PropTypes.string.isRequired,
   createCheckbox: PropTypes.func.isRequired,
   removeCheckbox: PropTypes.func.isRequired,

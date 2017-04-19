@@ -46,10 +46,13 @@ export default class TableCheckbox extends Component {
       checkedIconClassName,
       rowId,
       baseName,
+      header,
     } = this.context;
 
+    const Cell = header ? 'th' : 'td';
+
     return (
-      <td className="md-table-checkbox" ref={this._handleMount}>
+      <Cell className="md-table-checkbox" ref={this._handleMount}>
         <SelectionControl
           {...props}
           id={rowId}
@@ -61,7 +64,7 @@ export default class TableCheckbox extends Component {
           checkedCheckboxIconChildren={checkedIconChildren}
           checkedCheckboxIconClassName={checkedIconClassName}
         />
-      </td>
+      </Cell>
     );
   }
 }
