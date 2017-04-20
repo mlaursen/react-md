@@ -400,9 +400,16 @@ export default class Autocomplete extends PureComponent {
       filter,
     } = props;
 
+    let matches = [];
+    if (defaultValue && filter) {
+      matches = filter(data, defaultValue, dataLabel);
+    } else if (!filter) {
+      matches = data;
+    }
+
     this.state = {
       value: defaultValue,
-      matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : [],
+      matches,
       isOpen: false,
       matchIndex: -1,
       manualFocus: false,
@@ -459,8 +466,8 @@ export default class Autocomplete extends PureComponent {
 
       const matches = filter ? filter(data, value, dataLabel) : data;
       const next = { matches };
-      if (value && nextState.focus && matches.length) {
-        next.isOpen = true;
+      if (nextState.focus) {
+        next.isOpen = !!matches.length;
       }
 
       this.setState(next);
@@ -531,12 +538,17 @@ export default class Autocomplete extends PureComponent {
       return findInlineSuggestion ? this._findInlineSuggestions(value) : null;
     }
 
+    let { isOpen } = this.state;
     let matches = value ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, isOpen: !!matches.length, value });
+    if (filter) {
+      isOpen = !!matches.length;
+    }
+
+    return this.setState({ matches, isOpen, value });
   }
 
   _handleFocus(e) {

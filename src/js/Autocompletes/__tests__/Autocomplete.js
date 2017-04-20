@@ -9,6 +9,7 @@ import {
   findRenderedDOMComponentWithTag,
 } from 'react-addons-test-utils';
 
+import { mount } from 'enzyme';
 import { TAB } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
 import TextField from '../../TextFields/TextField';
@@ -142,6 +143,45 @@ describe('Autocomplete', () => {
 
     autocomplete.setState({ isOpen: false });
     expect(props.onMenuClose.mock.calls.length).toBe(1);
+  });
+
+  it('should update the isOpen state when a filter function has been provided and the value has changed', () => {
+    const props = { data: ['Hello', 'World'], defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'he' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: '' } });
+    expect(autocomplete.state('isOpen')).toBe(false);
+
+    input.simulate('change', { target: { value: 'h' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('isOpen')).toBe(false);
+  });
+
+  it('should not change the isOpen state when a filter function has not been provided', () => {
+    const data = ['Hello', 'World'];
+    const props = { data, filter: null, defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(false);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
   });
 
   describe('caseInsensitiveFilter', () => {
