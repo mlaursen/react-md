@@ -84,8 +84,8 @@ $md-dialog-horizontal-keyline: 40px;
 
   .md-dialog--centered {
     left: 50%;
-    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
-    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
+    max-height: calc(100% - #{$md-dialog-vertical-keyline * 2});
+    max-width: calc(100% - #{$md-dialog-horizontal-keyline * 2});
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
 
@@ -125,10 +125,9 @@ $md-dialog-horizontal-keyline: 40px;
   }
 
   .md-dialog--full-page {
-    height: 100vh;
+    bottom: 0;
     left: 0;
-    overflow-y: auto;
-    position: fixed;
+    overflow: auto;
     top: 0;
     width: 100vw;
     z-index: $md-dialog-full-page-z-index;

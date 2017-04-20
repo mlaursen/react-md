@@ -64,7 +64,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
     transition-property: transform;
 
     &--fixed {
-      height: 100vh;
+      bottom: 0;
       position: fixed;
       top: 0;
       z-index: $md-drawer-z-index;
@@ -93,7 +93,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-list--drawer {
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
   }
 
@@ -115,13 +115,13 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 
     &--left {
       max-width: $md-drawer-mobile-max-width;
-      transform: translate3d(-100vw, 0, 0);
+      transform: translate3d(-100%, 0, 0);
       width: calc(100vw - #{$md-drawer-mobile-margin});
     }
 
     &--right {
-      transform: translate3d(100vw, 0, 0);
-      width: 100vw;
+      left: 0;
+      transform: translate3d(100%, 0, 0);
     }
 
     &--mini.md-drawer--mini {
@@ -139,7 +139,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-toolbar ~ .md-list--drawer {
-    height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
+    height: calc(100% - #{$md-toolbar-mobile-portrait-height});
   }
 }
 
@@ -154,7 +154,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 /// @group drawers, media-queries
 @mixin react-md-drawers-mobile-landscape {
   .md-toolbar ~ .md-list--drawer {
-    height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
+    height: calc(100% - #{$md-toolbar-mobile-landscape-height});
   }
 }
 
@@ -199,7 +199,7 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-toolbar ~ .md-list--drawer {
-    height: calc(100vh - #{$md-toolbar-tablet-height});
+    height: calc(100% - #{$md-toolbar-tablet-height});
   }
 }
 

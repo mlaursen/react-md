@@ -301,8 +301,8 @@ $md-clock-padding: 4px;
   }
 
   .md-dialog--picker {
-    max-height: calc(100vh - #{$md-picker-mobile-margin});
-    max-width: calc(100vw - #{$md-picker-mobile-margin});
+    max-height: calc(100% - #{$md-picker-mobile-margin});
+    max-width: calc(100% - #{$md-picker-mobile-margin});
     width: auto;
   }
 
