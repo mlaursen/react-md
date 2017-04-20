@@ -25,8 +25,9 @@ $ npm i -S react \
 here are some steps to get it working:
 
 ```bash
-$ create-react-app my-app --scripts-version --custom-react-scripts
-$ npm i -S react-md
+$ create-react-app my-app --scripts-version custom-react-scripts
+$ cd my-app
+$ yarn add react-md
 ```
 
 Customize the `.env` to include SASS. See [custom-react-scripts](https://github.com/kitze/create-react-app)
