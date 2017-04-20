@@ -3,7 +3,7 @@ jest.unmock('../Menu');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument, findRenderedComponentWithType } from 'react-addons-test-utils';
+import { renderIntoDocument, findRenderedComponentWithType } from 'react-dom/test-utils';
 
 import Menu from '../Menu';
 import List from '../../Lists/List';

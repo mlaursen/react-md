@@ -7,7 +7,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Dialog from '../Dialog';
 import FocusContainer from '../../Helpers/FocusContainer';

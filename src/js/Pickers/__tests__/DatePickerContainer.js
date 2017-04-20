@@ -8,7 +8,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DatePickerContainer from '../DatePickerContainer';
 import { ENTER } from '../../constants/keyCodes';

@@ -10,7 +10,7 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SelectionControl from '../SelectionControl';
 import SwitchTrack from '../SwitchTrack';

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TablePagination from '../TablePagination';
 

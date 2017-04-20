@@ -9,7 +9,7 @@ import {
   findRenderedComponentWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';

@@ -10,7 +10,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../../Drawers/Drawer';

@@ -11,7 +11,7 @@ import {
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DataTable from '../DataTable';
 import TableBody from '../TableBody';

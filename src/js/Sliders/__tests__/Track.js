@@ -7,7 +7,7 @@ import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithClass,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Track from '../Track';
 import TrackFill from '../TrackFill';

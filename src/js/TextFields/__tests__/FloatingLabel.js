@@ -3,7 +3,7 @@ jest.unmock('../FloatingLabel');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 import FloatingLabel from '../FloatingLabel';
 

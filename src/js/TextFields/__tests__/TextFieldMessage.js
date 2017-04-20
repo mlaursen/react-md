@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TextFieldMessage from '../TextFieldMessage';
 import Message from '../Message';

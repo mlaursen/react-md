@@ -5,7 +5,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithClass,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import CalendarHeader from '../CalendarHeader';
 
