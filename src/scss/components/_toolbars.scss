@@ -208,6 +208,7 @@ $md-toolbar-tablet-title-keyline: 80px;
 
   @if $include-autocompletes {
     .md-toolbar {
+      .md-autocomplete-container,
       .md-autocomplete {
         height: 100%;
       }
