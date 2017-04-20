@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, isValidElement } from 'react';
+import React, { PureComponent, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';

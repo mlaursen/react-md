@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, isValidElement, cloneElement } from 'react';
+import React, { PureComponent, Children, isValidElement, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 export default class ToolbarTitle extends PureComponent {

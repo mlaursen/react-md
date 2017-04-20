@@ -2,7 +2,8 @@
 jest.unmock('../../constants/keyCodes');
 jest.unmock('../injectTooltip');
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Simulate,
   renderIntoDocument,

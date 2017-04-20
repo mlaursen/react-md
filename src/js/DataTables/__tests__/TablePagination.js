@@ -3,6 +3,7 @@
 jest.unmock('../TablePagination');
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -12,9 +13,9 @@ import TablePagination from '../TablePagination';
 
 class Table extends React.Component {
   static childContextTypes = {
-    baseId: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.string,
+    baseId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
     ]).isRequired,
   }
 
