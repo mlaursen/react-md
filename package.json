@@ -78,8 +78,7 @@
     "prop-types": "^15.5.8",
     "react-motion": "^0.4.8",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.7.10",
-    "react-test-renderer": "^15.5.4",
+    "react-swipeable-views": "^0.12.1",
     "react-transition-group": "^1.1.2"
   },
   "peerDependencies": {
