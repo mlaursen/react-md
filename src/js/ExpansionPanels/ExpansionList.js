@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 
 /**
  * The `ExpansionList` component is a wrapper for the `ExpansionPanel` that helps
@@ -69,14 +70,14 @@ export default class ExpansionList extends PureComponent {
       return;
     }
 
-    if (this.state.focusedIndex === -1) {
-      window.removeEventListener('click', this._removeFocus);
-    } else {
-      window.addEventListener('click', this._removeFocus);
-    }
+    handleWindowClickListeners(this._removeFocus, this.state.focusedIndex !== -1);
   }
 
   componentWillUnmount() {
+    if (this.state.focusedIndex === -1) {
+      handleWindowClickListeners(this._removeFocus, false);
+    }
+
     window.removeEventListener('keyup', this._determineTabFocus);
   }
 

@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import DialogFooter from '../Dialogs/DialogFooter';
 import TableColumn from './TableColumn';
@@ -315,11 +316,11 @@ export default class EditDialogColumn extends PureComponent {
       this._scrollLeft = active ? this._table.scrollLeft : null;
     }
 
-    window[`${active ? 'add' : 'remove'}EventListener`]('click', this._handleClickOutside);
+    handleWindowClickListeners(this._handleClickOutside, active);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this._handleClickOutside);
+    handleWindowClickListeners(this._handleClickOutside, false);
 
     if (this._timeout) {
       clearTimeout(this._timeout);

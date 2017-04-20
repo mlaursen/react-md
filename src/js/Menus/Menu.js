@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import contextTypes from './contextTypes';
 import Positions from './Positions';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import List from '../Lists/List';
 
 /**
@@ -179,7 +180,7 @@ export default class Menu extends PureComponent {
   componentDidMount() {
     const { isOpen } = this.props;
     if (isOpen) {
-      window.addEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, true);
     }
   }
 
@@ -189,13 +190,13 @@ export default class Menu extends PureComponent {
       return;
     }
 
-    window[`${isOpen ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
+    handleWindowClickListeners(this._handleOutsideClick, isOpen);
   }
 
   componentWillUnmount() {
     const { isOpen } = this.props;
     if (isOpen) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
     }
 
     if (this._timeout) {

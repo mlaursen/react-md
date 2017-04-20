@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ESC, ENTER } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import controlled from '../utils/PropTypes/controlled';
 import isDateEqual from '../utils/DateUtils/isDateEqual';
 import addDate from '../utils/DateUtils/addDate';
@@ -521,11 +522,11 @@ export default class DatePickerContainer extends PureComponent {
 
     if (visible) {
       if (inline) {
-        window.addEventListener('click', this._handleOutsideClick);
+        handleWindowClickListeners(this._handleOutsideClick, true);
         window.addEventListener('keydown', this._closeOnEsc);
       }
     } else if (inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
@@ -536,7 +537,7 @@ export default class DatePickerContainer extends PureComponent {
       : getField(this.props, this.state, 'visible');
 
     if (visible && this.props.inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
