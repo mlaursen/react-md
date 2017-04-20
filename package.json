@@ -65,9 +65,7 @@
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
     "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
-    "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
@@ -80,12 +78,11 @@
     "prop-types": "^15.5.8",
     "react-motion": "^0.4.8",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.7.10"
+    "react-swipeable-views": "^0.7.10",
+    "react-transition-group": "^1.1.2"
   },
   "peerDependencies": {
     "react": ">= 15.3.0",
-    "react-addons-css-transition-group": ">= 15.3.0",
-    "react-addons-transition-group": ">= 15.3.0",
     "react-dom": ">= 15.3.0"
   },
   "jest": {
@@ -100,12 +97,10 @@
       "<rootDir>/node_modules/classnames",
       "<rootDir>/node_modules/intl",
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/prop-types",
       "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/react-addons-pure-render-mixin",
-      "<rootDir>/node_modules/react-addons-transtion-group",
-      "<rootDir>/node_modules/react-addons-css-transition-group"
+      "<rootDir>/node_modules/react-transition-group",
+      "<rootDir>/node_modules/prop-types",
+      "<rootDir>/node_modules/react-addons-test-utils"
     ]
   }
 }

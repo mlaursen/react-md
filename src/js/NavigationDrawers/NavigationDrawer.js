@@ -1,7 +1,7 @@
 import React, { PureComponent, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
