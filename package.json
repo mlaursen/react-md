@@ -94,6 +94,7 @@
     "setupFiles": [
       "<rootDir>/src/beforeTest.js"
     ],
+    "testPathDirs": ["<rootDir>/src/"],
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/enzyme",
       "<rootDir>/node_modules/classnames",
