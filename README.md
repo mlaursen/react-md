@@ -18,122 +18,35 @@ $ npm i -S react \
            react-md
 ```
 
-## Usage
+## Customizing the theme
+The application should define a `primary` and `secondary` color. The `primary` color
+should be chosen from one of the `'-500'` colors and the `secondary` should be one of
+the `'a-'` colors.
 
-### Using create-react-app
-`create-react-app` does [not support Sass](https://github.com/facebookincubator/create-react-app/issues/78), so
-here are some steps to get it working:
-
-```bash
-$ create-react-app my-app --scripts-version custom-react-scripts
-$ cd my-app
-$ yarn add react-md
-```
-
-Customize the `.env` to include SASS. See [custom-react-scripts](https://github.com/kitze/create-react-app)
-for more information.
-
-If this is not a solution for you, you can always run `yarn run eject` (or `npm run eject`) from your app and add Sass yourself.
-
-```bash
-$ create-react-app my-app
-$ yarn run eject
-$ yarn add react-md
-$ yarn add --dev sass-loader node-sass
-$ vim -O config/webpack.config.dev.js config/webpack.config.prod.js
-```
-
-Add an scss/sass exclusion on line 109 (webpack.config.dev.js) and line 115 (webpack.config.prod.js)
-
-```js
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.json$/,
-          /\.svg$/,
-          /\.s(c|a)ss$/,
-        ],
-```
-
-In the dev config, add a new loader after the CSS loader:
-
-```js
-      {
-        test: /\.s(a|c)ss$/,
-        loader: 'style!css?importLoaders=2!postcss!sass?sourceMap&outputStyle=expanded'
-      },
-```
-
-In the prod config:
-```js
-      {
-        test: /\.s(a|c)ss$/,
-        loader: ExtractTextPlugin.extract('style', 'css?importLoaders=2!postcss!sass?outputStyle=compressed')
-      },
-```
-
-### Using one of the Boilerplates
-If `create-react-app` is not your thing, you can try using one of the available [boilerplates](https://react-md.mlaursen.com/discover-more/boilerplates).
-
-### Basic Webpack Usage
-
-```js
-/* App.jsx */
-
-import React from 'react';
-import { render } from 'react-dom';
-import WebFont from 'webfontloader';
-
-WebFont.load({
-  google: {
-		families: ['Roboto:300,400,500,700', 'Material Icons'],
-	},
-});
-
-import './_styles.scss';
-import MyAwesomeComponent from './MyAwesomeComponent';
-
-const App = () => (
-	<MyAwesomeComponent />
-);
-
-render(<App />, document.getElementById('app'));
-```
-
-```js
-/* MyAwesomeComponent.jsx */
-
-import React, { Component }  from 'react';
-import Button from 'react-md/lib/Buttons';
-
-export default class MyAwesomeComponent extends Component {
-  render() {
-		return <Button raised label="Hello, World!" />;
-	}
-}
-```
-
+The default color palette is defined as:
 
 ```scss
-/* _styles.scss */
-
-@import '~react-md/scss/react-md';
+$md-primary-color: $md-indigo-500 !default;
+$md-secondary-color: $md-pink-a-200 !default;
 ```
 
+If you change these variables before the `react-md-everything` mixin is included, your entire
+application will be styled with your new theme.
 
-You can also use the UMD build from [unpkg](https://unpkg.com/#/):
+```scss
+@import '~react-md/src/scss/react-md';
 
-```html
-<!-- Production Version -->
-<link rel="stylesheet" href="https://unpkg.com/react-md@1.0.11/dist/react-md.deep_purple-pink.min.css">
-<script src="https://unpkg.com/react-md@1.0.11/dist/react-md.min.js"></script>
+$md-primary-color: $md-teal-500;
+$md-secondary-color: $md-lime-a-400;
 
-<!-- Development Version -->
-<!-- development version of CSS unavailable -->
-<script src="https://unpkg.com/react-md@1.0.11/dist/react-md.js"></script>
+@include react-md-everything;
 ```
 
+See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
+is also a theme builder available to try mix and matching different colors.
+
+## Usage
+Please see the list of [examples](examples/) for how you can get a project started off quickly with React and React MD.
 
 ### UMD Usage
 
@@ -161,33 +74,6 @@ You can also use the UMD build from [unpkg](https://unpkg.com/#/):
   </body>
 </html>
 ```
-
-## Customizing the theme
-The application should define a `primary` and `secondary` color. The `primary` color
-should be chosen from one of the `'-500'` colors and the `secondary` should be one of
-the `'a-'` colors.
-
-The default color palette is defined as:
-
-```scss
-$md-primary-color: $md-indigo-500 !default;
-$md-secondary-color: $md-pink-a-200 !default;
-```
-
-If you change these variables before the `react-md-everything` mixin is included, your entire
-application will be styled with your new theme.
-
-```scss
-@import '~react-md/src/scss/react-md';
-
-$md-primary-color: $md-teal-500;
-$md-secondary-color: $md-lime-a-400;
-
-@include react-md-everything;
-```
-
-See the [themes page](http://react-md.mlaursen.com/customization/themes) on the documentation website. There
-is also a theme builder available to try mix and matching different colors.
 
 ## Known Bugs/Works in Progress/Future Changes
 
