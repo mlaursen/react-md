@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH, DESKTOP_MIN_WIDTH } from '../constants/media';
+import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
 import mapToListParts from '../utils/mapToListParts';
 import controlled from '../utils/PropTypes/controlled';
@@ -511,7 +512,7 @@ export default class Drawer extends PureComponent {
           drawerActive: true,
           animating: true,
         });
-      }, 17);
+      }, TICK);
     } else {
       this._timeout = setTimeout(() => {
         this._timeout = null;
@@ -543,7 +544,7 @@ export default class Drawer extends PureComponent {
           this._closeTimeout = null;
 
           this._closeDrawer(e);
-        }, 450);
+        }, TICK);
         return;
       }
 

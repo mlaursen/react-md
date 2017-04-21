@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import contextTypes from './contextTypes';
 import Positions from './Positions';
+import TICK from '../constants/CSSTransitionGroupTick';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import List from '../Lists/List';
 
@@ -253,7 +254,7 @@ export default class Menu extends PureComponent {
           } else if (onClose) {
             onClose(e);
           }
-        }, 300);
+        }, TICK);
 
         return;
       }

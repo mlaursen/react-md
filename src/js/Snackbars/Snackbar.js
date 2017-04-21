@@ -149,7 +149,6 @@ export default class Snackbar extends PureComponent {
 
       let btnProps = {
         flat: true,
-        waitForInkTransition: true,
         onClick: this._handleClick,
         label: action,
         secondary: true,
