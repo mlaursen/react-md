@@ -1,0 +1,41 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "node": false,
+    "browser": true
+  },
+  "globals": {
+    "__DEV__": false
+  },
+  "rules": {
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-named-as-default": 0, // when exporting containers and a component
+    "import/extensions": 0,
+    "new-cap": 0,
+    "no-shadow": 0,
+    "max-len": [2, 140],
+
+    // Reassigning when reducing is nice.
+    "no-param-reassign": 0,
+
+    // Don't want to force static for React component methods
+    "class-methods-use-this": 0,
+
+    // Make it possible to quote object keys
+    "quote-props": 0,
+
+    // Need to allow object for style props.
+    "react/forbid-prop-types": [2, { "forbid": ["any", "array"] }],
+
+    "react/require-default-props": 0,
+      "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }]
+  }
+}
