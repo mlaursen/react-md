@@ -1,3 +1,31 @@
+## April 2017
+### Added Showcases
+Added a new place to showcase apps that are using react-md. You can view them [here](/discover-more/showcases).
+
+### v1.0.12 Released
+This release is mostly about fixing some of the cross-browser support and weird issues in mobile safari.
+In addition, an [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) has been added
+to hopefully help newer people get a react-md project started up.
+
+In addition, I decided to move the ticket from `v1.1.0` to `v1.0.12` about the annoying delay when a menu/drawer/toast
+is closed by a click action.
+
+##### Changelog
+- Fixed the annoying delay on multiple components. [#210](https://github.com/mlaursen/react-md/issues/210)
+- Fixed the `DatePicker`'s next/previous month logic. [#315](https://github.com/mlaursen/react-md/issues/315)
+- Fixed the `CardActions` not centering correctly. [#316](https://github.com/mlaursen/react-md/issues/316)
+- Halfly fixed the hidden content in full page dialogs. [#320](https://github.com/mlaursen/react-md/issues/320)
+- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been chaged. [#322](https://github.com/mlaursen/react-md/issues/322)
+- Fixed the `Slider`'s bullet position when in a `text-align: center` container. [#323](https://github.com/mlaursen/react-md/issues/323)
+- Updated props from `string` to `node` for `react-intl` support. [#327](https://github.com/mlaursen/react-md/issues/327)
+- Fixed the Ajax Autocomplete flashing bug. [#330](https://github.com/mlaursen/react-md/issues/330)
+- Fixed the `Dialog`'s page layout breaking when it appears. [#333](https://github.com/mlaursen/react-md/issues/333)
+- Updated the `TableCheckbox` to appear in a `th` component when in the table header. [#334](https://github.com/mlaursen/react-md/issues/334)
+- Fixed some of the styles for better IE 11 support. [#339](https://github.com/mlaursen/react-md/issues/339)
+- Fixed the mobile safari click event delegation bug that prevented Menus and other components to be closed when an area outside was clicked.
+[#340](https://github.com/mlaursen/react-md/issues/340)
+
+
 ## March 2017
 ### v1.0.11 Released
 
