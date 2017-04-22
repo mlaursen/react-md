@@ -9,12 +9,14 @@ import {
   findRenderedComponentWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
+  scryRenderedComponentsWithType,
+  createRenderer,
 } from 'react-addons-test-utils';
 
 import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';
 
-describe('Button', () => {
+describe.only('Button', () => {
   it('merges className and style', () => {
     const props = {
       flat: true,
@@ -134,5 +136,37 @@ describe('Button', () => {
     const button = renderIntoDocument(<Button {...props} />);
     const icon = findRenderedComponentWithType(button, FontIcon);
     expect(icon.props.children).toBe(props.children);
+  });
+
+  it('renders markup specified in a label prop', () => {
+    const className = 'label-class';
+    const label = 'label text';
+    const props = { label: <span className={className}>{label}</span>, flat: true };
+    const button = renderIntoDocument(<Button {...props} />);
+    const innerNode = findRenderedDOMComponentWithTag(button, 'span');
+    expect(innerNode.getAttribute('class')).toBe(className);
+    expect(innerNode.innerHTML).toBe(label);
+  });
+
+  it('does not wrap children in a FontIcon component when noIcon prop is set', () => {
+    const props = { children: 'content', flat: true, noIcon: true };
+    const button = renderIntoDocument(<Button {...props} />);
+    const icons = scryRenderedComponentsWithType(button, FontIcon);
+    expect(icons.length).toBe(0);
+  });
+
+  it('renders specified children when noIcon prop is set', () => {
+    const children = (
+      <span>
+        Text with a
+        <FontIcon>star</FontIcon>
+        icon
+      </span>
+    );
+    const props = { children, raised: true, noIcon: true };
+    const renderer = createRenderer();
+    renderer.render(<Button {...props} />);
+    const renderOutput = renderer.getRenderOutput();
+    expect(renderOutput.props.children).toEqual(children);
   });
 });
