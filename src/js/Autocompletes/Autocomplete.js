@@ -872,7 +872,7 @@ export default class Autocomplete extends PureComponent {
 
   _setField = (field) => {
     if (field) {
-      this._field = findDOMNode(field);
+      this._field = field.getField();
 
       if (this.props.inline) {
         this._updateFont();

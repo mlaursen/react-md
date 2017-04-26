@@ -1,12 +1,11 @@
 /* eslint-env jest*/
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
 } from 'react-dom/test-utils';
 import injectTooltip from '../injectTooltip';
-import PropTypes from 'prop-types';
 
 
 class Link extends React.Component {
