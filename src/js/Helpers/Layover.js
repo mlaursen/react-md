@@ -497,45 +497,45 @@ export default class Layover extends PureComponent {
   _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._toggle = null;
-    if (this._container) {
-      const { toggleQuery } = this.props;
-      if (typeof toggleQuery === 'function') {
-        this._toggle = toggleQuery();
-      } else if (typeof toggleQuery === 'string') {
-        this._toggle = this._container.querySelector(toggleQuery);
-      } else {
-        this._toggle = toggleQuery;
-      }
-
-      if (!this._toggle) {
-        const error = new Error(
-          'Unable to find a toggle component with the provided `toggleQuery` and `toggle` element. \n' +
-          `\`toggleQuery\`: \`${toggleQuery}\``
-        );
-        error.toggleQuery = toggleQuery;
-        error.toggle = this.props.toggle;
-
-        throw error;
-      }
+    if (!this._container) {
+      return;
     }
 
-    if (this._container) {
-      let node = this._container;
-      while (node) {
-        const fixed = window.getComputedStyle(node).position === 'fixed';
-        if (fixed && node.classList.contains('md-dialog--full-page')) {
-          this._dialog = node;
-          return;
-        } else if (fixed && node.classList.contains('md-dialog-container')) {
-          this._dialog = node.firstChild;
-          return;
-        } else if (fixed && !node.classList.contains('md-layover-child')) {
-          this._inFixed = true;
-          return;
-        }
+    const { toggleQuery, onContextMenu } = this.props;
+    if (typeof toggleQuery === 'function') {
+      this._toggle = toggleQuery();
+    } else if (typeof toggleQuery === 'string') {
+      this._toggle = this._container.querySelector(toggleQuery);
+    } else {
+      this._toggle = toggleQuery;
+    }
 
-        node = node.offsetParent;
+    if (!this._toggle && !onContextMenu && process.env.NODE_ENV !== 'production') {
+      const error = new Error(
+        'Unable to find a toggle component with the provided `toggleQuery` and `toggle` element. \n' +
+        `\`toggleQuery\`: \`${toggleQuery}\``
+      );
+      error.toggleQuery = toggleQuery;
+      error.toggle = this.props.toggle;
+
+      throw error;
+    }
+
+    let node = this._container;
+    while (node) {
+      const fixed = window.getComputedStyle(node).position === 'fixed';
+      if (fixed && node.classList.contains('md-dialog--full-page')) {
+        this._dialog = node;
+        return;
+      } else if (fixed && node.classList.contains('md-dialog-container')) {
+        this._dialog = node.firstChild;
+        return;
+      } else if (fixed && !node.classList.contains('md-layover-child')) {
+        this._inFixed = true;
+        return;
       }
+
+      node = node.offsetParent;
     }
   };
 
