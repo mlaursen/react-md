@@ -196,7 +196,7 @@ $md-snackbar-desktop-max-width: 568px !default;
     left: 50%;
     max-width: $md-snackbar-desktop-max-width;
     min-width: $md-snackbar-desktop-min-width;
-    right: initial;
+    right: auto;
     transform: translate3d(-50%, 0, 0);
   }
 

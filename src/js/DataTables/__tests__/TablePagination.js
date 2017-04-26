@@ -47,9 +47,9 @@ describe('TablePagination', () => {
       const pagination = findRenderedComponentWithType(table, TablePagination);
 
       pagination._setRowsPerPage(30);
-      expect(onPagination.mock.calls[0][0]).toBe(120);
+      expect(onPagination.mock.calls[0][0]).toBe(0);
       expect(onPagination.mock.calls[0][1]).toBe(30);
-      expect(onPagination.mock.calls[0][2]).toBe(props.defaultPage);
+      expect(onPagination.mock.calls[0][2]).toBe(1);
     });
 
     it('should call the onPagination prop with the correct values when controlled', () => {
@@ -59,9 +59,9 @@ describe('TablePagination', () => {
       const pagination = findRenderedComponentWithType(table, TablePagination);
 
       pagination._setRowsPerPage(50);
-      expect(onPagination.mock.calls[0][0]).toBe(950);
+      expect(onPagination.mock.calls[0][0]).toBe(0);
       expect(onPagination.mock.calls[0][1]).toBe(50);
-      expect(onPagination.mock.calls[0][2]).toBe(20);
+      expect(onPagination.mock.calls[0][2]).toBe(1);
     });
   });
 

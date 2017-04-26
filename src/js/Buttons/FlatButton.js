@@ -8,7 +8,7 @@ export default class FlatButton extends PureComponent {
     /**
      * The label to display in the button.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * An optional className to apply to the button.

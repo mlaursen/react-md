@@ -1070,7 +1070,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
   .md-text-field-message--counter {
     display: block;
-    flex-grow: initial;
+    flex-grow: 0;
     flex-shrink: 0;
     padding-left: $md-default-padding;
   }

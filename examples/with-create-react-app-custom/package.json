@@ -1,0 +1,22 @@
+{
+  "name": "with-create-react-app-custom",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An example usage of react-md and create-react-app custom-react-scripts.",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-transition-group": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-md": "^1.0.11"
+  },
+  "devDependencies": {
+    "custom-react-scripts": "0.0.23"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

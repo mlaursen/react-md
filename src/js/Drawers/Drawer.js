@@ -81,7 +81,7 @@ export default class Drawer extends PureComponent {
       PropTypes.shape({
         divider: PropTypes.bool,
         subheader: PropTypes.bool,
-        primaryText: PropTypes.string,
+        primaryText: PropTypes.node,
       }),
     ])),
 

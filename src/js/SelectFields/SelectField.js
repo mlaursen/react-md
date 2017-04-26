@@ -220,7 +220,7 @@ export default class SelectField extends PureComponent {
     /**
      * An optional label to use with the select field. This will be a floating label as seen on the text field.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to use in the select field. This will only appear when no value has been selected.

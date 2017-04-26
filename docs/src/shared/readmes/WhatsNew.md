@@ -88,16 +88,44 @@ list.
 
 
 
+## April 2017
+### Added Showcases
+Added a new place to showcase apps that are using react-md. You can view them [here](/discover-more/showcases).
+
+### v1.0.12 Released
+This release is mostly about fixing some of the cross-browser support and weird issues in mobile safari.
+In addition, an [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) has been added
+to hopefully help newer people get a react-md project started up.
+
+In addition, I decided to move the ticket from `v1.1.0` to `v1.0.12` about the annoying delay when a menu/drawer/toast
+is closed by a click action.
+
+##### Changelog
+- Fixed the annoying delay on multiple components. [#210](#issues-210)
+- Fixed the `DatePicker`'s next/previous month logic. [#315](#issues-315)
+- Fixed the `CardActions` not centering correctly. [#316](#issues-316)
+- Halfly fixed the hidden content in full page dialogs. [#320](#issues-320)
+- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been chaged. [#322](#issues-322)
+- Fixed the `Slider`'s bullet position when in a `text-align: center` container. [#323](#issues-323)
+- Updated props from `string` to `node` for `react-intl` support. [#327](#issues-327)
+- Fixed the Ajax Autocomplete flashing bug. [#330](#issues-330)
+- Fixed the `Dialog`'s page layout breaking when it appears. [#333](#issues-333)
+- Updated the `TableCheckbox` to appear in a `th` component when in the table header. [#334](#issues-334)
+- Fixed some of the styles for better IE 11 support. [#339](#issues-339)
+- Fixed the mobile safari click event delegation bug that prevented Menus and other components to be closed when an area outside was clicked.
+[#340](#issues-340)
+
+
 ## March 2017
 ### v1.0.11 Released
 
 ##### Changelog
 - Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
-re-renders (... take 2 :( ). [#300](https://github.com/mlaursen/react-md/issues/300)
-- Fixed the tooltip's [unmounting errors](https://github.com/mlaursen/react-md/commit/ba8e734c663d87cc098d569258489c66590feb8b).
-- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [#308](https://github.com/mlaursen/react-md/issues/308)
-- Fixed the checkboxes for DataTables when the rows are dynamic. [#297](https://github.com/mlaursen/react-md/issues/297)
-- Fixed the snackbar's transition bug. [#311](https://github.com/mlaursen/react-md/issues/311)
+re-renders (... take 2 :( ). [#300](#issues-300)
+- Fixed the tooltip's [unmounting errors](#commit-ba8e734c663d87cc098d569258489c66590feb8b).
+- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [#308](#issues-308)
+- Fixed the checkboxes for DataTables when the rows are dynamic. [#297](#issues-297)
+- Fixed the snackbar's transition bug. [#311](#issues-311)
 
 ### v1.0.10 Released
 The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. Republished correctly with `npm`.
@@ -107,12 +135,12 @@ The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. 
 This was really another patch for drawers. 
 
 ##### Changelog
-- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [#291](https://github.com/mlaursen/react-md/issues/291)
-- Fixed the DatePicker's min/max date validation error. [#293](https://github.com/mlaursen/react-md/issues/293)
-- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [#298](https://github.com/mlaursen/react-md/issues/298)
-- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [#299](https://github.com/mlaursen/react-md/issues/299)
+- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [#291](#issues-291)
+- Fixed the DatePicker's min/max date validation error. [#293](#issues-293)
+- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [#298](#issues-298)
+- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [#299](#issues-299)
 - Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
-re-renders. [#300](https://github.com/mlaursen/react-md/issues/300)
+re-renders. [#300](#issues-300)
 
 ### v1.0.8 Released
 
@@ -281,7 +309,7 @@ This release was focused on having a more consistent naming convention. Boolean 
 tag defaults. This also included some small bugfixes as well as updating the Portal component to stop using the undocumented
 `CSSPropertyOperations` since it crashed in React 15.4.0.
 
-The `SelectField` was also updated to no longer use the `TextField` component internally and behave more like [the html select](https://github.com/mlaursen/react-md/issues/144).
+The `SelectField` was also updated to no longer use the `TextField` component internally and behave more like [the html select](#issues-144).
 
 ### v1.0.0.alpha.2 Released
 

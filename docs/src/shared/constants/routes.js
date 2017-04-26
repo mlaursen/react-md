@@ -26,6 +26,7 @@ export default [{
   icon: 'search',
   nestedItems: [
     'whats-new',
+    'showcases',
     'boilerplates', {
       path: 'upgrade-guides',
       nestedItems: upgradeGuides.map(version => ({

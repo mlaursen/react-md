@@ -78,7 +78,7 @@ export default class FileUpload extends PureComponent {
     /**
      * A label to display on the `FileInput`.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * The icon children to use for the upload icon.

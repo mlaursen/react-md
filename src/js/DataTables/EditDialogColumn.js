@@ -177,7 +177,7 @@ export default class EditDialogColumn extends PureComponent {
      * @see {@link #placeholder}
      * @see {@link TextFields/TextField#block}
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder for the text field.
@@ -391,7 +391,7 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The optional tooltip to render on hover.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay to apply to the tooltip before it appears.

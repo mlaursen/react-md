@@ -125,6 +125,7 @@ export default class TableCheckbox extends Component {
       );
     }
 
+
     return (
       <Cell
         className={cn('md-table-checkbox', {

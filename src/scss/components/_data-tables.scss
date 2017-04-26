@@ -146,7 +146,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// `md-table-column--plain` class. The `white-space` will still need to manually
 /// be changed from `nowrap` to `initial` if you want line wrapping.
 %md-table-column--plain {
-  height: initial;
+  height: auto;
   min-height: $md-data-table-column-height;
   padding-bottom: $md-default-padding;
   padding-top: $md-default-padding;
@@ -324,7 +324,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// Creates the styles for a column in a data table.
 @mixin react-md-data-table-column {
   .md-table-column {
-    line-height: initial;
+    line-height: normal;
     padding-right: $md-data-table-padding;
     white-space: nowrap;
 

@@ -12,15 +12,28 @@ function toMarkdownPage(path) {
 
 const childRoutes = ['whats-new', 'boilerplates', 'contributing'].map(toMarkdownPage);
 
-childRoutes.splice(3, 0, {
+childRoutes.splice(1, 0, {
+  path: 'showcases',
+  getComponent(state, cb) {
+    if (__CLIENT__) {
+      require.ensure([], require => {
+        cb(null, require('components/DiscoverMore/Showcases').default);
+      });
+    } else {
+      cb(null, require('components/DiscoverMore/Showcases').default);
+    }
+  },
+});
+
+childRoutes.splice(4, 0, {
   path: 'community',
   getComponent(state, cb) {
     if (__CLIENT__) {
       require.ensure([], require => {
-        cb(null, require('components/Community').default);
+        cb(null, require('components/DiscoverMore/Community').default);
       });
     } else {
-      cb(null, require('components/Community').default);
+      cb(null, require('components/DiscoverMore/Community').default);
     }
   },
 });

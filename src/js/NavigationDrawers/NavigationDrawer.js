@@ -228,7 +228,7 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.shape({
         divider: PropTypes.bool,
         subheader: PropTypes.bool,
-        primaryText: PropTypes.string,
+        primaryText: PropTypes.node,
       }),
     ])),
 
@@ -547,7 +547,7 @@ export default class NavigationDrawer extends PureComponent {
      * The label to use for a keyboard accessibility link that jumps all the navigation and allows a user to focus
      * the main content. This is created in the drawer's header.
      */
-    jumpLabel: PropTypes.string.isRequired,
+    jumpLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
@@ -609,7 +609,7 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
     renderNode: PropTypes.object,
   }
 

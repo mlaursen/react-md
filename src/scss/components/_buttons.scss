@@ -490,8 +490,8 @@ $md-btn-floating-margin: null !default;
     @if $md-btn-text-height == null {
       .md-btn--text {
         height: $md-btn-desktop-height;
-        margin-bottom: initial;
-        margin-top: initial;
+        margin-bottom: 0;
+        margin-top: 0;
 
         @if $md-btn-text-height == null {
           font-size: $md-btn-desktop-font-size;

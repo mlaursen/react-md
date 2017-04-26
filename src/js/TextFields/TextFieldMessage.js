@@ -7,8 +7,8 @@ export default class TextFieldMessage extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     error: PropTypes.bool,
-    helpText: PropTypes.string,
-    errorText: PropTypes.string,
+    helpText: PropTypes.node,
+    errorText: PropTypes.node,
     active: PropTypes.bool,
     helpOnFocus: PropTypes.bool,
     maxLength: PropTypes.number,

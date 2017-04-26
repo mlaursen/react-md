@@ -57,7 +57,7 @@ export default class CardActions extends Component {
         className={cn('md-dialog-footer--card', {
           'md-dialog-footer--inline': !stacked,
           'md-dialog-footer--stacked': stacked,
-          'md-dialog-footer--centered': centered,
+          'md-dialog-footer--card-centered': centered,
         }, className)}
       >
         {children}

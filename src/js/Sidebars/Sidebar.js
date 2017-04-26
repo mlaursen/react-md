@@ -91,7 +91,7 @@ export default class Sidebar extends PureComponent {
       /**
        * The primary text to display in a `ListItem` or a `Subheader`.
        */
-      primaryText: PropTypes.string,
+      primaryText: PropTypes.node,
     })),
   };
 

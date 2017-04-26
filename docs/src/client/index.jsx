@@ -6,6 +6,7 @@ import match from 'react-router/lib/match';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
+import 'babel-polyfill';
 
 import './_styles.scss';
 import configureStore from 'stores/configureStore';

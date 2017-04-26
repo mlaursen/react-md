@@ -218,8 +218,8 @@ export default class TablePagination extends PureComponent {
   };
 
   _setRowsPerPage = (rowsPerPage) => {
-    const page = getField(this.props, this.state, 'page');
-    const newStart = (page - 1) * rowsPerPage;
+    const page = 1;
+    const newStart = 0;
     this.props.onPagination(newStart, rowsPerPage, page);
     this.setState({ start: newStart, rowsPerPage });
   };

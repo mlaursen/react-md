@@ -55,7 +55,7 @@ export default class Card extends PureComponent {
     /**
      * Any icon children required for the expander icon.
      */
-    expanderIconChildren: PropTypes.string,
+    expanderIconChildren: PropTypes.node,
 
     /**
      * The tooltip position for the expander icon.
@@ -65,7 +65,7 @@ export default class Card extends PureComponent {
     /**
      * The optional tooltip to display for the expander icon.
      */
-    expanderTooltipLabel: PropTypes.string,
+    expanderTooltipLabel: PropTypes.node,
 
     /**
      * An optional delay before the tooltip appears for the expander icon on hover.

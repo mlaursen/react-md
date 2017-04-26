@@ -98,7 +98,7 @@ describe('Autocomplete', () => {
 
   it('should find new matches when the value has changed in the text field', () => {
     const autocomplete = shallow(<Autocomplete id="test" data={DATA} />);
-    expect(autocomplete.state('matches')).toEqual(DATA);
+    expect(autocomplete.state('matches')).toEqual([]);
 
     const event = { target: { value: 'wo' } };
     autocomplete.instance()._handleChange(event.target.value, event);
@@ -331,13 +331,53 @@ describe('Autocomplete', () => {
   });
 
   it('should update the matches if the value or data props change', () => {
-    const autocomplete = shallow(<Autocomplete id="autocomplete" data={['Hello', 'World', 'Something', 'Else']} />);
-    expect(autocomplete.state('matches')).toEqual(['Hello', 'World', 'Something', 'Else']);
+    const data = ['Hello', 'World', 'Something', 'Else'];
+    const autocomplete = shallow(<Autocomplete id="autocomplete" data={data} />);
+    expect(autocomplete.state('matches')).toEqual([]);
 
     autocomplete.setProps({ value: 'hel', onChange: jest.fn() });
     expect(autocomplete.state('matches')).toEqual(['Hello']);
 
     autocomplete.setProps({ data: ['Helium', 'Horrible'] });
     expect(autocomplete.state('matches')).toEqual(['Helium']);
+  });
+
+  it('should update the visible state when a filter function has been provided and the value has changed', () => {
+    const props = { id: 'test', data: ['Hello', 'World'], defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('visible')).toBe(true);
+
+    input.simulate('change', { target: { value: 'he' } });
+    expect(autocomplete.state('visible')).toBe(true);
+
+    input.simulate('change', { target: { value: '' } });
+    expect(autocomplete.state('visible')).toBe(false);
+
+    input.simulate('change', { target: { value: 'h' } });
+    expect(autocomplete.state('visible')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('visible')).toBe(false);
+  });
+
+  it('should not change the visible state when a filter function has not been provided', () => {
+    const data = ['Hello', 'World'];
+    const props = { id: 'test-2', data, filter: null, defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('visible')).toBe(false);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('visible')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('visible')).toBe(true);
   });
 });

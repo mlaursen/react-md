@@ -221,7 +221,7 @@ class Button extends PureComponent {
      *
      * If this prop is omitted, no tooltip will be included.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay before the tooltip appears on mouse over.

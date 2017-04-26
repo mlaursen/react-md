@@ -265,8 +265,8 @@ $md-toolbar-select-field-margin: null !default;
     &--fixed {
       left: 0;
       position: fixed;
+      right: 0;
       top: 0;
-      width: 100vw;
       z-index: $md-toolbar-z-index;
     }
 
@@ -379,6 +379,7 @@ $md-toolbar-select-field-margin: null !default;
 
   @if $include-autocompletes {
     .md-toolbar {
+      .md-autocomplete-container,
       .md-autocomplete {
         height: 100%;
       }

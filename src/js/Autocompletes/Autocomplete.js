@@ -111,7 +111,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * A label to display with the autocomplete.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional value to use for the text field. This will forse this component
@@ -430,9 +430,16 @@ export default class Autocomplete extends PureComponent {
       filter,
     } = props;
 
+    let matches = [];
+    if (defaultValue && filter) {
+      matches = filter(data, defaultValue, dataLabel);
+    } else if (!filter) {
+      matches = data;
+    }
+
     this.state = {
       value: defaultValue,
-      matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : data,
+      matches,
       visible: false,
       matchIndex: -1,
       manualFocus: false,
@@ -473,8 +480,8 @@ export default class Autocomplete extends PureComponent {
 
       const matches = filter ? filter(data, value, dataLabel) : data;
       const next = { matches };
-      if (value && nextState.focus && matches.length) {
-        next.visible = true;
+      if (nextState.focus) {
+        next.visible = !!matches.length;
       }
 
       this.setState(next);
@@ -543,13 +550,18 @@ export default class Autocomplete extends PureComponent {
       return findInlineSuggestion ? this._findInlineSuggestions(value) : null;
     }
 
+    let { visible } = this.state;
     let matches = value ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, visible: !!matches.length, value });
-  };
+    if (filter) {
+      visible = !!matches.length;
+    }
+
+    return this.setState({ matches, visible, value });
+  }
 
   _handleFocus = (e) => {
     if (this.props.onFocus) {

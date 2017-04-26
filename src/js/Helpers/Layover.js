@@ -4,6 +4,7 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
 
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import getSelectedTextPosition from '../utils/getSelectedTextPosition';
 import getScroll from '../utils/getScroll';
 import viewport from '../utils/viewport';
@@ -270,7 +271,7 @@ export default class Layover extends PureComponent {
     const { visible, fixedTo, sameWidth, centered } = this.props;
     const anchor = this._getAnchor(this.props);
     if (visible) {
-      window.addEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, true);
       const rect = this._contextRect || this._toggle.getBoundingClientRect();
       if (this._dialog) {
         this._manageFixedToListener(this._dialog, true);
@@ -314,16 +315,16 @@ export default class Layover extends PureComponent {
   componentDidUpdate(prevProps) {
     const { visible, closeOnOutsideClick } = this.props;
     if (visible !== prevProps.visible && closeOnOutsideClick) {
-      window[`${visible ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, visible);
     } else if (closeOnOutsideClick !== prevProps.closeOnOutsideClick && visible) {
-      window[`${closeOnOutsideClick ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, closeOnOutsideClick);
     }
   }
 
   componentWillUnmount() {
     if (this.props.visible) {
       this._manageFixedToListener(this.props.fixedTo, false);
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
     }
   }
 

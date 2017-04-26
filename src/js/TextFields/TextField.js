@@ -95,7 +95,7 @@ export default class TextField extends PureComponent {
      * into a floating label text field. You can make it single line by only using the
      * `placeholder` prop.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder text to display in the text field. If there is no `label` prop,
