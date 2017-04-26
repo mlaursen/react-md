@@ -6,7 +6,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import PanelContent from '../PanelContent';
 import DialogFooter from '../../Dialogs/DialogFooter';

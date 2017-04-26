@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, PropTypes } from 'react';
+
 import getField from '../utils/getField';
 import getDisplayName from '../utils/StringUtils/getDisplayName';
 

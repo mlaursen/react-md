@@ -6,7 +6,7 @@ import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import SelectionControlGroup from '../SelectionControlGroup';
 import SelectionControl from '../SelectionControl';

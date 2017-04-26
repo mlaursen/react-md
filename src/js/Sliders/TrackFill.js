@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 /**
  * The `TrackFill` component is used for showing a colored bar
  * within the `Track` component to show the `Slider`'s position.

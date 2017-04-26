@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, PropTypes } from 'react';
+
 import controlled from '../utils/PropTypes/controlled';
 import mapToListParts from '../utils/mapToListParts';
 import getField from '../utils/getField';

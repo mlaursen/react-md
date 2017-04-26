@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import PropTypes from 'prop-types';
 import FileInput from './FileInput';
 
 import omit from '../utils/omit';

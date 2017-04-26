@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithClass,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import LinearProgress from '../LinearProgress';
 

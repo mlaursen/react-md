@@ -1,5 +1,5 @@
 /** @module PropTypes/controlled */
-import PropTypes from 'prop-types';
+import { PropTypes } from 'react';
 
 /**
  * Validates the a component is fully controlled or uncontrolled.  If the given prop is not

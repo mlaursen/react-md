@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import TimePickerContainer from '../TimePickerContainer';
 import Portal from '../../Helpers/Portal';

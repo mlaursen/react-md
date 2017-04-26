@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import TransitionGroup from 'react-addons-transition-group';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import { ENTER, SPACE } from '../constants/keyCodes';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';

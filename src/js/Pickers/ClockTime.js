@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import { TAB } from '../constants/keyCodes';
 
 const CLOCK_PADDING = 4;

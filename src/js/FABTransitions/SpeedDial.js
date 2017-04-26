@@ -1,7 +1,6 @@
-import React, { PureComponent } from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import React, { PureComponent, PropTypes } from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 
 import Button from '../Buttons/Button';
 

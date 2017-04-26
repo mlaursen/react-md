@@ -1,6 +1,6 @@
 /* eslint-env jest*/
 import React from 'react';
-import { renderIntoDocument, findRenderedComponentWithType } from 'react-dom/test-utils';
+import { renderIntoDocument, findRenderedComponentWithType } from 'react-addons-test-utils';
 
 import Switch from '../Switch';
 import SelectionControl from '../SelectionControl';

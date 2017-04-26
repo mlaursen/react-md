@@ -4,7 +4,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import TablePagination from '../TablePagination';
 

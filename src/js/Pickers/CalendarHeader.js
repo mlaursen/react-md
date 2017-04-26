@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, PropTypes } from 'react';
+
 import isMonthBefore from '../utils/DateUtils/isMonthBefore';
 import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
 import addDate from '../utils/DateUtils/addDate';

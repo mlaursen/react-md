@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 /**
  * The divider component will pass all other props such as style or
  * event listeners on to the component.

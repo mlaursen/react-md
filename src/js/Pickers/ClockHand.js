@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 /**
  * The `ClockHand` component is just used to display the hand of the clock
  * and a ball to surround the selected time.

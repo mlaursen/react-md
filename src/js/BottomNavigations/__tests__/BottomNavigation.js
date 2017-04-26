@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import BottomNavigation from '../BottomNavigation';
 import Dialog from '../../Dialogs/Dialog';

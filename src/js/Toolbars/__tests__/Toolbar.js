@@ -6,7 +6,7 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithClass,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import Toolbar from '../Toolbar';
 import ToolbarTitle from '../ToolbarTitle';

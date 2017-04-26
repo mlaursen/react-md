@@ -1,6 +1,6 @@
-import React, { Component, Children } from 'react';
+import React, { Component, PropTypes, Children } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import contextTypes from './contextTypes';
 
 /**

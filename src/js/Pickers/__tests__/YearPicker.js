@@ -3,7 +3,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import YearPicker from '../YearPicker';
 import Year from '../Year';

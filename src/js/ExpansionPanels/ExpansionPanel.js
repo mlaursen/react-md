@@ -1,6 +1,5 @@
-import React, { PureComponent, Children } from 'react';
+import React, { PureComponent, PropTypes, Children } from 'react';
 import { findDOMNode } from 'react-dom';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import getField from '../utils/getField';

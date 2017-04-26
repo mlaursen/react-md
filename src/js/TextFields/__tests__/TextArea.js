@@ -5,7 +5,7 @@ import {
   Simulate,
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import TextArea from '../TextArea';
 

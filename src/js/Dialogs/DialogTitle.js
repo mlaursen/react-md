@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 export default class DialogTitle extends PureComponent {
   static propTypes = {
     id: PropTypes.oneOfType([

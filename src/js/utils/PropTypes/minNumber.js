@@ -1,6 +1,6 @@
 /** @module PropTypes/minNumber */
 
-import PropTypes from 'prop-types';
+import { PropTypes } from 'react';
 
 /**
  * Validates the a prop's value is greater than or equal to the minimum value.

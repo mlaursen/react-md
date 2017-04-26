@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { Motion, spring } from 'react-motion';
-import PropTypes from 'prop-types';
+
 export default class TabIndicator extends PureComponent {
   static propTypes = {
     offset: PropTypes.number.isRequired,

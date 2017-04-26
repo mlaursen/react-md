@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, PropTypes } from 'react';
+
 import addHours from '../utils/DateUtils/addHours';
 import PickerControl from './PickerControl';
 

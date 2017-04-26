@@ -1,9 +1,9 @@
-import React, { PureComponent, isValidElement } from 'react';
+import React, { PureComponent, PropTypes, isValidElement } from 'react';
 import cn from 'classnames';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-import PropTypes from 'prop-types';
+
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';

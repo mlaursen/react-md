@@ -4,7 +4,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import SwitchThumb from '../SwitchThumb';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';

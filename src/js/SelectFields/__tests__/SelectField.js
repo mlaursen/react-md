@@ -7,7 +7,7 @@ import { shallow, mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import SelectField from '../SelectField';
 import Menu from '../../Menus/Menu';

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 /**
  * The `PickerControl` component is the button that goes in the header
  * of a `Picker` component. It is used to switch the view of the `Picker`

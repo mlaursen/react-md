@@ -1,6 +1,6 @@
-import React, { PureComponent, Children, cloneElement } from 'react';
+import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import ListItemText from './ListItemText';
 import TileAddon from './TileAddon';
 

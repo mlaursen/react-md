@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 
 /**
  * The `TileAddon` component is used to render either a `FontIcon` or an `Avatar`

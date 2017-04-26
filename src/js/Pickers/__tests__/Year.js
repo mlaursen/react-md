@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import Year from '../Year';
 

@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { renderIntoDocument } from 'react-dom/test-utils';
+import { renderIntoDocument } from 'react-addons-test-utils';
 
 import { TAB, DOWN, UP, ENTER, SPACE } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';

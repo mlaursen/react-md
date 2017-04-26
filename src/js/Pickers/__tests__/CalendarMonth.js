@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import CalendarDate from '../CalendarDate';
 import CalendarMonth from '../CalendarMonth';

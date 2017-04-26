@@ -7,7 +7,7 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 
 import SelectionControl from '../SelectionControl';

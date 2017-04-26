@@ -6,7 +6,7 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import FileUpload from '../FileUpload';
 

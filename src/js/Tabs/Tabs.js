@@ -1,7 +1,6 @@
-import React, { PureComponent, Children, cloneElement } from 'react';
+import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { DESKTOP_MIN_WIDTH } from '../constants/media';

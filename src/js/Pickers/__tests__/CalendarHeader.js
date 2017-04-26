@@ -3,7 +3,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithClass,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import CalendarHeader from '../CalendarHeader';
 import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';

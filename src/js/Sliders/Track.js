@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import updateUnit from '../utils/NumberUtils/updateUnit';
 import TrackFill from './TrackFill';
 import Thumb from './Thumb';

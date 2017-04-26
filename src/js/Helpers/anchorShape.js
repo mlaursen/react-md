@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { PropTypes } from 'react';
 export const HorizontalAnchors = {
   LEFT: 'left',
   INNER_LEFT: 'inner left',

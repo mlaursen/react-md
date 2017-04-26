@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-dom/test-utils';
+} from 'react-addons-test-utils';
 
 import Badge from '../Badge';
 

@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
+
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import contextTypes from './contextTypes';

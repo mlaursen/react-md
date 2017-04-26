@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 import SelectionControl from '../SelectionControls/SelectionControl';
 
 import findTable from './findTable';

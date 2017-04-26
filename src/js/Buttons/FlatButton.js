@@ -1,5 +1,4 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, PropTypes } from 'react';
 
 import deprecated from '../utils/PropTypes/componentDeprecated';
 import Button from './Button';
