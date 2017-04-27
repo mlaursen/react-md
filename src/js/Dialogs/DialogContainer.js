@@ -239,6 +239,15 @@ export default class DialogContainer extends PureComponent {
      */
     lastChild: PropTypes.bool,
 
+    /**
+     * Boolean if the dialog should animate into view if it is constructed with `visible` enabled.
+     *
+     * This basically means that if the `Dialog` has `visible` enabled on initial page load, does it animate?
+     * In some cases, it can also mean if the `Dialog` is added to the render tree with `visible` enabled,
+     * does it animate?
+     */
+    defaultVisibleTransitionable: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -255,6 +264,7 @@ export default class DialogContainer extends PureComponent {
     focusOnMount: true,
     transitionEnterTimeout: 300,
     transitionLeaveTimeout: 300,
+    defaultVisibleTransitionable: false,
   };
 
   static contextTypes = {
@@ -265,12 +275,13 @@ export default class DialogContainer extends PureComponent {
     super(props);
 
     const visible = typeof props.isOpen !== 'undefined' ? props.isOpen : props.visible;
+    const dialogVisible = visible && !props.defaultVisibleTransitionable;
 
     this.state = {
       active: visible && !props.fullPage,
       overlay: visible && !props.fullPage,
       portalVisible: visible,
-      dialogVisible: false,
+      dialogVisible,
     };
     this._setContainer = this._setContainer.bind(this);
     this._handleClick = this._handleClick.bind(this);
@@ -439,6 +450,7 @@ export default class DialogContainer extends PureComponent {
     delete props.transitionEnter;
     delete props.transitionLeave;
     delete props.closeOnEsc;
+    delete props.defaultVisibleTransitionable;
 
     const renderNode = getField(this.props, this.context, 'renderNode');
 
