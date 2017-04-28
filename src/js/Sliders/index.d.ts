@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType, Props } from '../index';
 
-interface SliderProps extends Props {
-  id?: number | string;
+export interface SliderProps extends Props {
+  id?: IdPropType;
   thumbStyle?: React.CSSProperties;
   thumbClassName?: string;
   trackStyle?: React.CSSProperties;
@@ -31,4 +31,5 @@ interface SliderProps extends Props {
   valuePrecision?: number;
 }
 
-export default class Slider extends React.Component<SliderProps, {}> { }
+declare const Slider: React.ComponentClass<SliderProps>;
+export default Slider;

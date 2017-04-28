@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-interface BadgeProps extends Props {
+export interface BadgeProps extends Props {
   badgeStyle?: React.CSSProperties;
   badgeClassName?: string;
   badgeId: string | number;

@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType, Props } from '../index';
 
 interface CommonProps extends Props {
-  id: number | string;
+  id: IdPropType;
   value?: number;
   centered?: boolean;
 }
 
-interface CircularProgressProps extends CommonProps {
+export interface CircularProgressProps extends CommonProps {
   scale?: number;
   determinateDashoffset?: number;
 }
 
-interface LinearProgressProps extends CommonProps {
+export interface LinearProgressProps extends CommonProps {
   query?: boolean;
 }
 

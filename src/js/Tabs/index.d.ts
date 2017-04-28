@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Props, BaseProps } from '../index';
+import { IdPropType, Props, BaseProps } from '../index';
 import { MediaTypes } from '../Drawers';
 
-interface TabsContainerProps extends Props {
+export interface TabsContainerProps extends Props {
   panelStyle?: React.CSSProperties;
   panelClassName?: string;
   headerStyle?: React.CSSProperties;
@@ -12,9 +12,9 @@ interface TabsContainerProps extends Props {
   slideStyle?: React.CSSProperties;
   slideClassName?: string;
   children?: React.ReactElement<Tabs>,
-  component?: Function | string;
-  panelComponent?: Function | string;
-  headerComponent?: Function | string;
+  component?: React.ReactType;
+  panelComponent?: React.ReactType;
+  headerComponent?: React.ReactType;
   toolbar?: React.ReactElement<any>;
   onTabChange?: (activeTabIndex : number, tabId: number | string, tabControlsId: number | string, tabChildren: React.ReactNode, event: Event) => void;
   activeTabIndex?: number;
@@ -26,15 +26,21 @@ interface TabsContainerProps extends Props {
   swipeableViewsProps?: Object;
 }
 
-interface TabsProps extends Props {
-  tabId: number | string;
-  component?: Function | string;
+export interface TabsProps extends Props {
+  tabId: IdPropType;
+  component?: React.ReactType;
   children?: React.ReactElement<Tab> | Array<React.ReactElement<Tab>>;
   centered?: boolean;
   alignToKeyline?: boolean;
   colored?: boolean;
   overflowMenu?: boolean;
-  onTabChange?: (activeTabIndex : number, tabId: number | string, tabControlsId: number | string, tabChildren: React.ReactNode, event: Event) => void;
+  onTabChange?: (
+    activeTabIndex : number,
+    tabId: IdPropType,
+    tabControlsId: IdPropType,
+    tabChildren: React.ReactNode,
+    event: Event
+  ) => void;
   activeTabIndex?: number;
   defaultTabIndex?: number;
   defaultMedia?: MediaTypes;
@@ -48,28 +54,28 @@ interface TabsProps extends Props {
   overflowMenuIconClassName?: string;
 }
 
-interface TabProps extends BaseProps {
-  id?: number | string;
-  controlsId?: number | string;
-  component?: Function | string;
+export interface TabProps extends BaseProps {
+  id?: IdPropType;
+  controlsId?: IdPropType;
+  component?: React.ReactType;
   children?: React.ReactNode;
   icon?: React.ReactElement<any>;
   label?: React.ReactNode;
-  onClick?: (index: number, id: number | string, controlsId: number | string, children: React.ReactNode, event: Event) => void;
+  onClick?: (index: number, id: IdPropType, controlsId: IdPropType, children: React.ReactNode, event: Event) => void;
   active?: boolean;
   index?: number;
 }
 
-interface TabPanelProps extends Props {
-  id: number | string;
-  contolledById: number | string;
-  component?: Function | string;
+export interface TabPanelProps extends Props {
+  id: IdPropType;
+  contolledById: IdPropType;
+  component?: React.ReactType;
   active?: boolean;
   children?: React.ReactNode;
 }
 
-interface MenuTabProps extends Props {
-  id: number | string;
+export interface MenuTabProps extends Props {
+  id: IdPropType;
   activeTabIndex: number;
   overflowAtIndex: number;
   tabs: Array<React.ReactElement<Tab> | string | { divider?: boolean, subheader?: boolean, primaryText?: string }>

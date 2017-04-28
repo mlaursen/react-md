@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-export enum DrawerTypes {
+export type DrawerTypes = {
   // Permanent drawers
-  FULL_HEIGHT,
-  CLIPPED,
-  FLOATING,
+  FULL_HEIGHT: 'FULL_HEIGHT',
+  CLIPPED: 'CLIPPED',
+  FLOATING: 'FLOATING',
 
   // Persistent drawers
-  PERSISTENT,
-  PERSISTENT_MINI,
+  PERSISTENT: 'PERSISTENT',
+  PERSISTENT_MINI: 'PERSISTENT_MINI',
 
   // Temporary
-  TEMPORARY,
-  TEMPORARY_MINI,
+  TEMPORARY: 'TEMPORARY',
+  TEMPORARY_MINI: 'TEMPORARY_MINI',
 }
 
 export type DrawerTypesType = 'full-height' | 'clipped' | 'floating' | 'persistent' | 'persistent-mini' | 'temporary' | 'temporary-mini';
@@ -21,7 +21,7 @@ export type DrawerTypesType = 'full-height' | 'clipped' | 'floating' | 'persiste
 export type MediaTypes = 'mobile' | 'tablet' | 'desktop';
 export type DrawerPositions = 'left' | 'right';
 
-interface DrawerProps extends Props {
+export interface DrawerProps extends Props {
   navStyle?: React.CSSProperties;
   navClassName?: string;
   component?: Function | string;
@@ -30,11 +30,11 @@ interface DrawerProps extends Props {
   header?: React.ReactNode;
   mobileType?: 'temporary' | 'temporary-mini';
   mobileMinWidth?: number;
-  tabletType?: DrawerTypes | DrawerTypesType;
+  tabletType?: DrawerTypesType;
   tabletMinWidth?: number;
-  desktopType?: DrawerTypes | DrawerTypesType;
+  desktopType?: DrawerTypesType;
   desktopMinWidth?: number;
-  type?: DrawerTypes | DrawerTypesType;
+  type?: DrawerTypesType;
   onMediaTypeChange?: (type: DrawerTypesType, media: { mobile: boolean, tablet: boolean, desktop: boolean }) => void;
   onVisibilityChange?: (visible: boolean, event: React.MouseEvent<HTMLElement>) => void;
   defaultMedia: MediaTypes;

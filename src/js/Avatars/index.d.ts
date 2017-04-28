@@ -3,7 +3,7 @@ import { Props } from '../index';
 
 type Role = 'presentation';
 
-interface AvatarProps extends Props {
+export interface AvatarProps extends Props {
   src?: string;
   alt?: string;
   icon?: React.ReactNode;

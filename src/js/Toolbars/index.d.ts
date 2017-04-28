@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-interface ToolbarProps extends Props {
+export interface ToolbarProps extends Props {
   titleStyle?: React.CSSProperties;
   titleClassName?: string;
   prominent?: boolean;
@@ -15,9 +15,10 @@ interface ToolbarProps extends Props {
   singleColor?: boolean;
   themed?: boolean;
   colored?: boolean;
-  component?: Function | string;
+  component?: React.ReactType;
   inset?: boolean;
   zDepth?: number;
 }
 
-export default class Toolbar extends React.Component<ToolbarProps, {}> { }
+declare const Toolbar: React.ComponentClass<ToolbarProps>;
+export default Toolbar;

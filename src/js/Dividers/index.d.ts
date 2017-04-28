@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-interface DividerProps extends Props {
+export interface DividerProps extends Props {
   vertical?: boolean;
   inset?: boolean;
   children?: React.ReactNode;

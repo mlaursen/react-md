@@ -23,6 +23,6 @@ export interface InkedComponent extends React.Component<{}, {}> {
   getComposedComponent(): React.Component<{}, {}>;
 }
 
-type injectInk = (ComposedComponent: React.Component<InjectedInkProps, {}>) => InkedComponent;
-
-export default injectInk;
+export default function injectInk<P>(
+  ComposedComponent: React.ComponentClass<P & { ink: React.ReactNode | null }>
+): React.ComponentClass<P & InjectedInkProps>;

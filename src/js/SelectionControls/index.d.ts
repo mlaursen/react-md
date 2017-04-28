@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType, Props } from '../index';
 
 type Types = 'checkbox' | 'radio' | 'switch';
 
 interface CommonProps extends Props {
-  id: number | string;
+  id: IdPropType;
   name: number | string;
   labelBefore?: boolean;
   disabled?: boolean;
@@ -14,7 +14,7 @@ interface CommonProps extends Props {
   inline?: boolean;
 }
 
-interface SelectionControlProps extends CommonProps {
+export interface SelectionControlProps extends CommonProps {
   checkedCheckboxIconChildren?: React.ReactNode;
   checkedCheckboxIconClassName?: string;
   uncheckedCheckboxIconChildren?: React.ReactNode;
@@ -28,15 +28,15 @@ interface SelectionControlProps extends CommonProps {
   'aria-label'?: string;
 }
 
-interface SelectionControlGroupProps extends Props {
+export interface SelectionControlGroupProps extends Props {
   controlStyle?: React.CSSProperties;
   controlClassName?: string;
-  id?: number | string;
+  id?: IdPropType;
   type: 'checkbox' | 'radio';
-  component?: Function | string;
+  component?: React.ReactType;
   label?: React.ReactNode;
   labelClassName?: string;
-  labelCompoennt?: Function | string;
+  labelComponent?: React.ReactType;
   onChange?: (value: string, event: Event) => void;
   name?: string | number;
   defaultValue?: number | string;
@@ -45,7 +45,7 @@ interface SelectionControlGroupProps extends Props {
   disabled?: boolean;
 }
 
-interface CheckboxProps extends CommonProps {
+export interface CheckboxProps extends CommonProps {
   onChange?: (checked: boolean, event: Event) => void;
   checkedIconChildren?: React.ReactNode;
   checkedIconClassName?: string;
@@ -53,7 +53,7 @@ interface CheckboxProps extends CommonProps {
   uncheckedIconClassName?: string;
 }
 
-interface RadioProps extends CommonProps {
+export interface RadioProps extends CommonProps {
   onChange?: (value: number | string, event: Event) => void;
   checkedIconChildren?: React.ReactNode;
   checkedIconClassName?: string;
@@ -61,7 +61,7 @@ interface RadioProps extends CommonProps {
   uncheckedIconClassName?: string;
 }
 
-interface SwitchProps extends CommonProps {
+export interface SwitchProps extends CommonProps {
   onChange?: (checked: boolean, event: Event) => void;
 }
 

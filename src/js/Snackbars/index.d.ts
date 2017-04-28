@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType, Props } from '../index';
 
-interface SnackbarProps extends Props {
-  id?: number | string;
+export interface SnackbarProps extends Props {
+  id?: IdPropType;
   toasts: Array<{ text: string, action?: string | { onClick?: Function, label: string }}>;
   onDismiss: Function;
   autohide?: boolean;
@@ -16,5 +16,5 @@ interface SnackbarProps extends Props {
   lastChild?: boolean;
 }
 
-export default class Snackbar extends React.Component<SnackbarProps, {}> { }
-export { Snackbar as SnackbarContainer };
+declare const Snackbar: React.ComponentClass<SnackbarProps>;
+export default Snackbar;

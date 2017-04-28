@@ -2,14 +2,14 @@ import * as React from 'react';
 import { Props, IdPropType } from '../index';
 import { Positions } from '../Tooltips';
 
-interface CardProps extends Props {
+export interface CardProps extends Props {
   defaultExpanded?: boolean;
   raise?: boolean;
   expanded?: boolean;
   onExpanderClick?: Function;
   expanderIconClassName?: string;
   expanderIconChildren?: React.ReactNode;
-  expanderTooltipLabel?: string;
+  expanderTooltipLabel?: React.ReactNode;
   expanderTooltipDelay?: number;
   expanderTooltipPosition?: Positions;
   tableCard?: boolean;
@@ -17,20 +17,20 @@ interface CardProps extends Props {
   animate?: boolean;
 }
 
-interface CardActionsProps extends Props {
+export interface CardActionsProps extends Props {
   expander?: boolean;
   centered?: boolean;
   stacked?: boolean;
   children?: React.ReactNode;
 }
 
-interface CardTextProps extends Props {
+export interface CardTextProps extends Props {
   component?: Function | string;
   expandable?: boolean;
   children?: React.ReactNode;
 }
 
-interface CardTitleProps extends Props {
+export interface CardTitleProps extends Props {
   id?: IdPropType;
   title: React.ReactNode;
   subtitle?: React.ReactNode;

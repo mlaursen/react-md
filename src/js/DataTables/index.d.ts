@@ -7,7 +7,7 @@ import { SelectFieldProps } from '../SelectFields';
 
 type template = (rowIndex: number) => string;
 
-interface DataTableProps extends Props {
+export interface DataTableProps extends Props {
   tableStyle?: React.CSSProperties;
   tableClassName?: string;
   fixedWrapperStyle?: React.CSSProperties;
@@ -39,15 +39,15 @@ interface DataTableProps extends Props {
   footerHeight?: number;
 }
 
-interface TableHeaderProps extends Props {
+export interface TableHeaderProps extends Props {
   children?: React.ReactElement<any>;
 }
 
-interface TableBodyProps extends Props {
+export interface TableBodyProps extends Props {
   children?: React.ReactElement<any> | Array<React.ReactElement<any>>;
 }
 
-interface TableRowProps extends Props {
+export interface TableRowProps extends Props {
   children?: Array<React.ReactElement<any>> | React.ReactElement<any>;
   onCheckboxClick?: (rowIndex: number, event: React.MouseEvent<HTMLTableRowElement>) => void;
   selected?: boolean;
@@ -59,7 +59,7 @@ interface TableRowProps extends Props {
   autoAdjust?: boolean;
 }
 
-interface TableColumnProps extends Props, InjectedTooltipProps {
+export interface TableColumnProps extends Props, InjectedTooltipProps {
   fixedStyle?: React.CSSProperties;
   fixedClassName?: string;
   sorted?: boolean;
@@ -76,7 +76,7 @@ interface TableColumnProps extends Props, InjectedTooltipProps {
   cellIndex?: boolean;
 }
 
-interface EditDialogColumnProps extends SharedLayoverProps, InjectedTooltipProps {
+export interface EditDialogColumnProps extends SharedLayoverProps, InjectedTooltipProps {
   dialogId?: IdPropType;
   layoverStyle?: React.CSSProperties;
   layoverClassName?: string;
@@ -134,7 +134,7 @@ interface EditDialogColumnProps extends SharedLayoverProps, InjectedTooltipProps
   transitionDuration?: number;
 }
 
-interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps {
+export interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps {
   menuStyle?: React.CSSProperties;
   menuClassName?: string;
   header?: boolean;
@@ -156,7 +156,7 @@ interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps 
   wrapperClassName?: string;
 }
 
-interface TablePaginationProps extends Props {
+export interface TablePaginationProps extends Props {
   onPagination: (startIndex: number, rowsPerPage: number, currentPage: number) => void;
   rowsPerPage?: number;
   page?: number;
@@ -171,7 +171,7 @@ interface TablePaginationProps extends Props {
   decrementIconClassName?: string;
 }
 
-interface TableFooterProps extends Props {
+export interface TableFooterProps extends Props {
   children?: React.ReactNode;
 }
 

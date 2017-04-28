@@ -3,7 +3,7 @@ import { Props } from '../index';
 
 import { ButtonTypes } from '../Buttons';
 
-interface ExpansionPanelProps extends Props {
+export interface ExpansionPanelProps extends Props {
   headerStyle?: React.CSSProperties;
   headerClassName?: string;
   contentStyle?: React.CSSProperties;
@@ -36,7 +36,7 @@ interface ExpansionPanelProps extends Props {
   animateContent?: boolean;
 }
 
-interface ExpansionListProps extends Props {
+export interface ExpansionListProps extends Props {
   component?: Function | string;
   children?: React.ReactNode;
   animateContent?: boolean;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Props } from '../index';
+import { IdPropType, Props } from '../index';
 import { TextFieldLineDirections } from '../TextFields';
 
 import {
@@ -13,9 +13,9 @@ import {
 import { SharedMenuProps } from '../Menus';
 
 export interface SelectFieldProps extends SharedMenuProps {
-  id: number | string;
-  menuId?: number | string;
-  listId?: number | string;
+  id: IdPropType;
+  menuId?: IdPropType;
+  listId?: IdPropType;
   listStyle?: React.CSSProperties;
   listClassName?: string;
   toggleStyle?: React.CSSProperties;
@@ -32,7 +32,7 @@ export interface SelectFieldProps extends SharedMenuProps {
   defaultValue?: number | string;
   value?: number | string;
   onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>) => void;
-  label?: string;
+  label?: React.ReactNode;
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;
@@ -102,4 +102,5 @@ export interface SelectFieldProps extends SharedMenuProps {
   adjustMinWidth?: boolean;
 }
 
-export default class SelectField extends React.Component<SelectFieldProps, {}> { }
+declare const SelectField: React.ComponentClass<SelectFieldProps>;
+export default SelectField;

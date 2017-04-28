@@ -3,7 +3,7 @@ import { IdPropType, Props } from '../index';
 
 import { InjectedInkProps } from '../Inks';
 
-interface AccessibleFakeButtonProps {
+export interface AccessibleFakeButtonProps {
   noFocusOutline?: boolean;
   tabbedClassName?: string;
   onTabFocus?: (event: Event) => void;
@@ -17,10 +17,10 @@ interface AccessibleFakeButtonProps {
 interface AccessibleFakeButtonPropsFull extends AccessibleFakeButtonProps, Props {
 }
 
-interface AccessibleFakeInkedButtonProps extends AccessibleFakeButtonProps, InjectedInkProps {
+export interface AccessibleFakeInkedButtonProps extends AccessibleFakeButtonProps, InjectedInkProps {
 }
 
-interface CollapseProps extends Props {
+export interface CollapseProps extends Props {
   defaultStyle?: React.CSSProperties;
   collapsed: boolean;
   springConfig: Object;
@@ -28,7 +28,7 @@ interface CollapseProps extends Props {
   animate?: boolean;
 }
 
-interface FocusContainerProps extends Props {
+export interface FocusContainerProps extends Props {
   component?: Function | string;
   children?: React.ReactNode;
   initialFocus?: string;
@@ -37,7 +37,7 @@ interface FocusContainerProps extends Props {
   containFocus?: boolean;
 }
 
-interface IconSeparatorProps extends Props {
+export interface IconSeparatorProps extends Props {
   labelStyle?: React.CSSProperties;
   labelClassName?: string;
   children?: React.ReactNode;

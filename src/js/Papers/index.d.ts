@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-interface PaperProps extends Props {
-  component?: Function | string;
+export interface PaperProps extends Props {
+  component?: React.ReactType;
   children?: React.ReactNode;
   zDepth?: number;
   raiseOnHover?: boolean;
 }
 
-export default class Paper extends React.Component<PaperProps, {}> { }
+declare const Paper: React.ComponentClass<PaperProps>;
+export default Paper;

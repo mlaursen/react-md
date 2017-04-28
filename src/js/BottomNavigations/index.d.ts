@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props } from '../index';
 
-interface BottomNavigationProps extends Props {
+export interface BottomNavigationProps extends Props {
   links: Array<{
     label: React.ReactNode,
     iconChildren?: React.ReactNode,

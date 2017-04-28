@@ -2,7 +2,7 @@ import * as React from 'react';
 export type Positions = 'top' | 'right' | 'bottom' | 'left';
 
 export interface InjectedTooltipProps {
-  tooltipLabel?: string;
+  tooltipLabel?: React.ReactNode;
   tooltipDelay?: number;
   tooltipPosition?: Positions;
   tooltipContainerStyle?: React.CSSProperties;
@@ -13,10 +13,11 @@ export interface InjectedTooltipProps {
   tooltipTransitionLeaveTimeout?: number;
 }
 
-export interface TooltippedComponent extends React.Component<InjectedTooltipProps, {}> {
-  getComposedComponent(): React.Component<{}, {}>;
+
+export interface TooltippedComponent extends React.ComponentClass<InjectedTooltipProps> {
+  getComposedComponent(): React.ReactInstance;
 }
 
-type injectTooltip = (ComposedComponent: React.Component<InjectedTooltipProps, {}>) => React.Component<{}, {}>;
-
-export default injectTooltip;
+export default function injectTooltip<P>(
+  ComposedComponent: React.ComponentClass<P & { tooltip: React.ReactNode | null }>
+): TooltippedComponent;

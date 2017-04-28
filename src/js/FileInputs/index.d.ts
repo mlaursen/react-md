@@ -3,7 +3,7 @@ import { Props, IdPropType } from '../index';
 
 export type FileReaderTypes = 'DataURL' | 'ArrayBuffer' | 'Text';
 
-interface FileInputProps extends Props {
+export interface FileInputProps extends Props {
   id: IdPropType;
   primary?: boolean;
   secondary?: boolean;
@@ -20,7 +20,7 @@ interface FileInputProps extends Props {
 
 type ReadAs = (fileType: string, file: File, fileReader: FileReader) => void;
 
-interface FileUploadProps extends FileInputProps {
+export interface FileUploadProps extends FileInputProps {
   maxSize?: number;
   readAs?: FileReaderTypes | ReadAs;
   onSizeError?: (errorFiles: Array<File>) => void;

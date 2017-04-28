@@ -14,7 +14,7 @@ type OnOffType = 'on' | 'off';
 
 type DataType = Array<React.ReactElement<any> | string | number | { [dataLabel: string]: string | number }>;
 
-interface AutocompleteProps extends SharedMenuProps {
+export interface AutocompleteProps extends SharedMenuProps {
   menuId?: IdPropType;
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
