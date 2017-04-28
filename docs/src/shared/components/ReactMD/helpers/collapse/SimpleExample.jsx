@@ -5,16 +5,11 @@ import Collapse from 'react-md/lib/Helpers/Collapse';
 import LoremIpsum from 'components/LoremIpsum';
 
 export default class SimpleExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { collapsed: true };
 
-    this.state = { collapsed: true };
-    this._toggleCollapse = this._toggleCollapse.bind(this);
-  }
-
-  _toggleCollapse() {
+  _toggleCollapse = () => {
     this.setState({ collapsed: !this.state.collapsed });
-  }
+  };
 
   render() {
     return (

@@ -4,16 +4,11 @@ import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 // import { Checkbox } from 'react-md/lib/SelectionControls';
 
 export default class StatefulExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { checked: false };
 
-    this.state = { checked: false };
-    this._handleChange = this._handleChange.bind(this);
-  }
-
-  _handleChange(checked) {
+  _handleChange = (checked) => {
     this.setState({ checked });
-  }
+  };
 
   render() {
     const { checked } = this.state;

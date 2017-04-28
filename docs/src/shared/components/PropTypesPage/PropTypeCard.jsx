@@ -38,9 +38,6 @@ export default class PropTypeCard extends PureComponent {
       ascending: true,
       visibleProps: sort(propList, 'propName', true),
     };
-
-    this._sortProps = this._sortProps.bind(this);
-    this._filterProperties = this._filterProperties.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -74,22 +71,22 @@ export default class PropTypeCard extends PureComponent {
     return props.docgen.props.filter(({ propName }) => propName.indexOf('deprecated' === -1));
   }
 
-  _filterProperties(propFilter) {
+  _filterProperties = (propFilter) => {
     this.setState({
       propFilter,
       visibleProps: propFilter
         ? this._fuse.search(propFilter)
         : sort(this.state.propList, 'propName', this.state.ascending),
     });
-  }
+  };
 
-  _sortProps() {
+  _sortProps = () => {
     const ascending = !this.state.ascending;
     this.setState({
       ascending,
       visibleProps: sort(this.state.visibleProps, 'propName', ascending),
     });
-  }
+  };
 
   render() {
     const { propFilter, ascending, visibleProps } = this.state;

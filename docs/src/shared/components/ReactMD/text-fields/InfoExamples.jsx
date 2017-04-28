@@ -3,19 +3,11 @@ import TextField from 'react-md/lib/TextFields';
 import FontIcon from 'react-md/lib/FontIcons';
 
 export default class InfoExamples extends PureComponent {
-  constructor(props, context) {
-    super(props, context);
+  state = { value: 'Wow, look at me!' };
 
-    this.state = {
-      value: 'Wow, look at me!',
-    };
-
-    this._handleChange = this._handleChange.bind(this);
-  }
-
-  _handleChange(value) {
+  _handleChange = (value) => {
     this.setState({ value });
-  }
+  };
 
   render() {
     return (

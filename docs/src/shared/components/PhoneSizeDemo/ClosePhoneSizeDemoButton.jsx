@@ -16,13 +16,7 @@ export default class ClosePhoneSizeDemoButton extends PureComponent {
     hideDemo: PropTypes.func,
   };
 
-  constructor(props, context) {
-    super(props, context);
-
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -30,7 +24,7 @@ export default class ClosePhoneSizeDemoButton extends PureComponent {
     if (this.context.hideDemo) {
       this.context.hideDemo(e);
     }
-  }
+  };
 
   render() {
     return <Button {...this.props} onClick={this._handleClick} />;

@@ -47,25 +47,12 @@ export default class ShiftingExample extends PureComponent {
     mobile: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeIndex: 0,
-      className: themeClassNames[0],
-      phone: null,
-      visible: true,
-    };
-
-    this._previousScroll = 0;
-    this._setContent = this._setContent.bind(this);
-    this._setNavigation = this._setNavigation.bind(this);
-    this._stopScroll = this._stopScroll.bind(this);
-    this._enableScroll = this._enableScroll.bind(this);
-    this._handleScroll = this._handleScroll.bind(this);
-    this._handleNavChange = this._handleNavChange.bind(this);
-    this._handleVisibilityChange = this._handleVisibilityChange.bind(this);
-  }
+  state = {
+    activeIndex: 0,
+    className: themeClassNames[0],
+    phone: null,
+    visible: true,
+  };
 
   /* ignore most of this code since it is used to hack the examples 💩 */
   componentDidMount() {
@@ -78,8 +65,10 @@ export default class ShiftingExample extends PureComponent {
     window.removeEventListener('mousemove', this._enableScroll);
   }
 
+  _previousScroll = 0;
+
   /** Still 💩 */
-  _setContent(content) {
+  _setContent = (content) => {
     if (content) {
       this._content = findDOMNode(content).parentNode;
 
@@ -87,34 +76,34 @@ export default class ShiftingExample extends PureComponent {
     } else {
       this.setState({ phone: null });
     }
-  }
+  };
 
   /** Still 💩 */
-  _setNavigation(nav) {
+  _setNavigation = (nav) => {
     this._nav = nav;
-  }
+  };
 
   /** Still 💩 */
-  _stopScroll() {
+  _stopScroll = () => {
     window.removeEventListener('mousemove', this._enableScroll);
 
     if (this._enabled) {
       this._content.removeEventListener('scroll', this._handleScroll);
     }
     this._enabled = false;
-  }
+  };
 
   /** Still 💩 */
-  _enableScroll() {
+  _enableScroll = () => {
     if (!this._enabled) {
       this._content.addEventListener('scroll', this._handleScroll);
     }
 
     this._enabled = true;
-  }
+  };
 
   /** Still 💩 */
-  _handleScroll(e) {
+  _handleScroll = (e) => {
     if (!this._nav) {
       return;
     }
@@ -134,19 +123,19 @@ export default class ShiftingExample extends PureComponent {
     this._nav._scrolling = true;
     this._nav._handleTouchMove({ changedTouches: [{ pageY: scrollTop }] });
     this._previousScroll = scrollTop;
-  }
+  };
   /* Ok, you can start looking at the code again */
 
-  _handleNavChange(activeIndex) {
+  _handleNavChange = (activeIndex) => {
     if (this._content) {
       this._content.scrollTop = 0;
     }
     this.setState({ activeIndex, className: themeClassNames[activeIndex] });
-  }
+  };
 
-  _handleVisibilityChange(visible) {
+  _handleVisibilityChange = (visible) => {
     this.setState({ visible });
-  }
+  };
 
   render() {
     const { activeIndex, className, visible } = this.state;

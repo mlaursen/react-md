@@ -44,10 +44,7 @@ export default class SimpleExample extends PureComponent {
     super(props);
 
     this.state = { visible: false, dialog: null, key: inboxListItems[0].key };
-    this._setPage = this._setPage.bind(this);
-    this._findContent = this._findContent.bind(this);
-    this._openDemo = this._openDemo.bind(this);
-    this._closeDemo = this._closeDemo.bind(this);
+    this._timeout = null;
     this._navItems = inboxListItems.map(item => {
       if (!item.divider) {
         item.onClick = () => this._setPage(item.key);
@@ -72,7 +69,7 @@ export default class SimpleExample extends PureComponent {
     }
   }
 
-  _setPage(key) {
+  _setPage = (key) => {
     this._navItems = this._navItems.map(item => {
       if (!item.divider) {
         item.active = item.key === key;
@@ -81,20 +78,20 @@ export default class SimpleExample extends PureComponent {
     });
 
     this.setState({ key });
-  }
+  };
 
-  _findContent() {
+  _findContent = () => {
     const dialog = document.querySelector('.md-dialog.md-dialog--full-page');
     this.setState({ dialog });
-  }
+  };
 
-  _openDemo() {
+  _openDemo = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  _closeDemo() {
+  _closeDemo = () => {
     this.setState({ visible: false, dialog: null });
-  }
+  };
 
   render() {
     const { visible, dialog, key } = this.state;

@@ -15,12 +15,7 @@ export default class PhoneSizeDemoContainer extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { demoComponent: null, statusBar: null };
-    this._resolveDemoComponent = this._resolveDemoComponent.bind(this);
-  }
+  state = { demoComponent: null, statusBar: null };
 
   componentWillMount() {
     this._resolveDemoComponent(this.props);
@@ -32,7 +27,7 @@ export default class PhoneSizeDemoContainer extends PureComponent {
     }
   }
 
-  _resolveDemoComponent(props) {
+  _resolveDemoComponent = (props) => {
     if (props.mobile) {
       if (__CLIENT__) {
         require.ensure([], require => {
@@ -48,7 +43,7 @@ export default class PhoneSizeDemoContainer extends PureComponent {
     } else {
       this.setState({ demoComponent: PhoneSizeDemo, statusBar: require('components/PhoneSizeDemo/StatusBar').default });
     }
-  }
+  };
 
   render() {
     const { demoComponent: Demo, statusBar } = this.state;

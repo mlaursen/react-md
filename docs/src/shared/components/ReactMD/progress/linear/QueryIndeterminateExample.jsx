@@ -4,7 +4,7 @@ import LinearProgress from 'react-md/lib/Progress/LinearProgress';
 import Button from 'react-md/lib/Buttons/Button';
 
 import LoremIpsum from 'components/LoremIpsum';
-const progressId = 'queryContentProgress';
+const progressId = 'query-content-progress';
 
 // Since this isn't the best example since it isn't real world... Here
 // is basically what is happening..

@@ -17,14 +17,10 @@ export default class AjaxAutocomplete extends PureComponent {
     super(props);
 
     this.state = { artists: [], fetching: false, albums: [] };
-    this._searchForArtists = this._searchForArtists.bind(this);
-    this._fetchAlbums = this._fetchAlbums.bind(this);
-    this._hideAlbums = this._hideAlbums.bind(this);
-
     this._throttledSearch = throttle(this._searchForArtists, 250);
   }
 
-  _searchForArtists(value) {
+  _searchForArtists = (value) => {
     if (!value) {
       this.setState({ artists: [], fetching: false });
       return;
@@ -54,18 +50,18 @@ export default class AjaxAutocomplete extends PureComponent {
 
         this.setState({ artists, total });
       });
-  }
+  };
 
-  _fetchAlbums(artist, index) {
+  _fetchAlbums = (artist, index) => {
     fetchSpotify.getArtistAlbums(this.state.artists[index])
       .then(albums => Promise.all(albums.map(fetchSpotify.getAlbum)))
       .then(albums => this.setState({ albums, fetching: false }));
     this.setState({ artist, fetching: true });
-  }
+  };
 
-  _hideAlbums() {
+  _hideAlbums = () => {
     this.setState({ albums: [], total: 0 });
-  }
+  };
 
   render() {
     const { artists, albums, artist, fetching, total } = this.state;

@@ -4,7 +4,7 @@ import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Button from 'react-md/lib/Buttons/Button';
 
 import LoremIpsum from 'components/LoremIpsum';
-const progressId = 'contentLoadingProgress';
+const progressId = 'content-loading-progress';
 
 export default class IndeterminateExample extends PureComponent {
   constructor(props) {

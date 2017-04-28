@@ -13,25 +13,14 @@ const noop = e => {
 };
 
 export default class SimpleExamples extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = {
+    toasts: [],
+    text: 'Hello, World!',
+    action: '',
+    autohide: true,
+  };
 
-    this.state = {
-      toasts: [],
-      text: 'Hello, World!',
-      action: '',
-      autohide: true,
-    };
-
-    this._reset = this._reset.bind(this);
-    this._addToast = this._addToast.bind(this);
-    this._removeToast = this._removeToast.bind(this);
-    this._handleTextChange = this._handleTextChange.bind(this);
-    this._handleActionChange = this._handleActionChange.bind(this);
-    this._handleAutohideChange = this._handleAutohideChange.bind(this);
-  }
-
-  _addToast() {
+  _addToast = () => {
     const { text, action } = this.state;
     const toasts = this.state.toasts.slice();
     toasts.push({ text, action });
@@ -43,28 +32,28 @@ export default class SimpleExamples extends PureComponent {
     );
 
     this.setState({ toasts, autohideTimeout });
-  }
+  };
 
-  _removeToast() {
+  _removeToast = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts });
-  }
+  };
 
-  _handleTextChange(text) {
+  _handleTextChange = (text) => {
     this.setState({ text });
-  }
+  };
 
-  _handleActionChange(action) {
+  _handleActionChange = (action) => {
     this.setState({ action, autohide: this.state.autohide || !action });
-  }
+  };
 
-  _handleAutohideChange(autohide) {
+  _handleAutohideChange = (autohide) => {
     this.setState({ autohide });
-  }
+  };
 
-  _reset() {
+  _reset = () => {
     this.setState({ text: '', action: '', autohide: true, autohideTimeout: undefined });
-  }
+  };
 
   render() {
     const { text, action, toasts, autohide } = this.state;

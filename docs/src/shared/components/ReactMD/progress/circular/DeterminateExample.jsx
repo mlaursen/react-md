@@ -7,7 +7,7 @@ import FileInput from 'react-md/lib/FileInputs';
 
 import { addNotification } from 'actions/notifications';
 
-const progressId = 'fileUploadProgress';
+const progressId = 'file-upload-progress';
 
 @connect(() => ({}), {
   addNotification,

@@ -2,22 +2,16 @@ import React, { PureComponent } from 'react';
 import Radio from 'react-md/lib/SelectionControls/Radio';
 
 export default class SimpleExamples extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { stackedValue: 'A', inlineValue: 'C' };
 
-    this.state = { stackedValue: 'A', inlineValue: 'C' };
-    this._handleStackedChange = this._handleStackedChange.bind(this);
-    this._handleInlineChange = this._handleInlineChange.bind(this);
-  }
-
-  _handleStackedChange(stackedValue) {
+  _handleStackedChange = (stackedValue) => {
     this.setState({ stackedValue });
-  }
+  };
 
-  _handleInlineChange(e) {
+  _handleInlineChange = (e) => {
     // Basically how the `SelectionControlGroup` works
     this.setState({ inlineValue: e.target.value });
-  }
+  };
 
   render() {
     const { stackedValue, inlineValue } = this.state;

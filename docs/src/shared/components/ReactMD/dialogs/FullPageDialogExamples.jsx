@@ -7,15 +7,9 @@ import Toolbar from 'react-md/lib/Toolbars';
 import loremIpsum from 'lorem-ipsum';
 
 export default class FullPageDialogExamples extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { visible: false, pageX: null, pageY: null };
 
-    this.state = { visible: false, pageX: null, pageY: null };
-    this._openDialog = this._openDialog.bind(this);
-    this._closeDialog = this._closeDialog.bind(this);
-  }
-
-  _openDialog(e) {
+  _openDialog = (e) => {
     let { pageX, pageY } = e;
     if (e.changedTouches) {
       const [touch] = e.changedTouches;
@@ -24,11 +18,11 @@ export default class FullPageDialogExamples extends PureComponent {
     }
 
     this.setState({ visible: true, pageX, pageY });
-  }
+  };
 
-  _closeDialog() {
+  _closeDialog = () => {
     this.setState({ visible: false });
-  }
+  };
 
   render() {
     const nav = <Button icon onClick={this._closeDialog}>close</Button>;

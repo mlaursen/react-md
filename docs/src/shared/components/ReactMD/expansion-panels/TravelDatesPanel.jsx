@@ -119,7 +119,7 @@ export default class TravelDatesPanel extends PureComponent {
           formatOptions={formatOptions}
           onChange={this._setEndDate}
           minDate={minEndDate}
-          initialCalendarDate={minEndDate}
+          defaultCalendarDate={minEndDate}
         />
       </ExpansionPanel>
     );

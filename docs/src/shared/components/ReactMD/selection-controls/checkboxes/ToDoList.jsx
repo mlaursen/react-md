@@ -15,25 +15,13 @@ export default class ToDoList extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
+  state = { value: '', todos: [], remaining: 0 };
 
-    this.state = {
-      value: '',
-      todos: [],
-      remaining: 0,
-    };
-
-    this._handleChange = this._handleChange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleChange(value) {
+  _handleChange = (value) => {
     this.setState({ value });
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if ((e.which || e.keyCode) === ENTER) {
       const key = Date.now();
       const todo = {
@@ -50,15 +38,15 @@ export default class ToDoList extends PureComponent {
         remaining: this.state.remaining + 1,
       });
     }
-  }
+  };
 
-  _handleClick(checked, todo) {
+  _handleClick = (checked, todo) => {
     const todos = this.state.todos.slice();
     const i = findIndex(todos, t => t.key === todo.key);
     todos[i] = Object.assign({}, todos[i], { checked });
 
     this.setState({ remaining: this.state.remaining + (checked ? -1 : 1), todos });
-  }
+  };
 
   render() {
     const { todos, value, remaining } = this.state;

@@ -28,14 +28,7 @@ export default class PaginationExample extends PureComponent {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { inspections: [], rows: 0 };
-
-    this._load = this._load.bind(this);
-    this._handlePagination = this._handlePagination.bind(this);
-  }
+  state = { inspections: [], rows: 0 };
 
   componentWillMount() {
     const { inspections } = this.props.foodInspections;
@@ -55,13 +48,13 @@ export default class PaginationExample extends PureComponent {
     }
   }
 
-  _load() {
+  _load = () => {
     this.props.fetchCreator(FOOD_DATA_URL, 'inspections', ['entities']);
-  }
+  };
 
-  _handlePagination(start, rowsPerPage) {
+  _handlePagination = (start, rowsPerPage) => {
     this.setState({ inspections: this.props.foodInspections.inspections.slice(start, start + rowsPerPage) });
-  }
+  };
 
   render() {
     const { fetching, meta } = this.props.foodInspections;

@@ -7,14 +7,7 @@ import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
 import TICK from 'react-md/lib/constants/CSSTransitionGroupTick';
 
 export default class SimpleExample extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { overlay: false, overlayActive: false };
-    this._showOverlay = this._showOverlay.bind(this);
-    this._hideOverlay = this._hideOverlay.bind(this);
-    this._setButton = this._setButton.bind(this);
-  }
+  state = { overlay: false, overlayActive: false };
 
   componentWillUnmount() {
     if (this._timeout) {
@@ -22,7 +15,7 @@ export default class SimpleExample extends PureComponent {
     }
   }
 
-  _showOverlay() {
+  _showOverlay = () => {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
@@ -32,9 +25,9 @@ export default class SimpleExample extends PureComponent {
       this.setState({ overlayActive: true });
     }, TICK);
     this.setState({ overlay: true });
-  }
+  };
 
-  _hideOverlay() {
+  _hideOverlay = () => {
     if (this._timeout) {
       clearTimeout(this._timeout);
     }
@@ -44,11 +37,11 @@ export default class SimpleExample extends PureComponent {
       this.setState({ overlay: false });
     }, 150);
     this.setState({ overlayActive: false });
-  }
+  };
 
-  _setButton(button) {
+  _setButton = (button) => {
     this._button = button;
-  }
+  };
 
   render() {
     const { overlay, overlayActive } = this.state;

@@ -121,6 +121,10 @@ $phone-status-bar-height: 24px;
     .md-toolbar {
       top: $phone-status-bar-height;
 
+      &--prominent {
+        height: $md-toolbar-prominent-height;
+      }
+
       &:not(.md-toolbar--inset)::before {
         background: $md-light-blue-500;
         content: '';

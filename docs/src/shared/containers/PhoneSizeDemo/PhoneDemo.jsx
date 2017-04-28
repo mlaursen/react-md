@@ -31,26 +31,20 @@ export default class PhoneDemo extends PureComponent {
     hideDemo: PropTypes.func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = { visible: false };
-    this._showDemo = this._showDemo.bind(this);
-    this._hideDemo = this._hideDemo.bind(this);
-  }
+  state = { visible: false };
 
   getChildContext() {
     return { hideDemo: this._hideDemo };
   }
 
-  _showDemo(e) {
+  _showDemo = (e) => {
     const { pageX, pageY } = (e.changedTouches ? e.changedTouches[0] : e);
     this.setState({ visible: true, pageX, pageY });
-  }
+  };
 
-  _hideDemo() {
+  _hideDemo = () => {
     this.setState({ visible: false });
-  }
+  };
 
   render() {
     const { visible } = this.state;

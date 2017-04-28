@@ -28,10 +28,6 @@ export default class ExpandableSource extends PureComponent {
     } else {
       this.state = { multiline: false };
     }
-
-    this._setContainer = this._setContainer.bind(this);
-    this._updateHeight = this._updateHeight.bind(this);
-    this._toggleSource = this._toggleSource.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,24 +36,24 @@ export default class ExpandableSource extends PureComponent {
     }
   }
 
-  _updateHeight() {
+  _updateHeight = () => {
     if (!this._container) {
       return;
     }
 
     this.setState({ height: this._container.querySelector('pre').offsetHeight + 32 });
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container) {
       this._container = container;
     }
-  }
+  };
 
-  _toggleSource() {
+  _toggleSource = () => {
     const collapsed = !this.state.collapsed;
     this.setState({ collapsed, height: collapsed ? INITIAL_HEIGHT : this.state.height });
-  }
+  };
 
   render() {
     const { multiline, collapsed, height, oneLineCode } = this.state;

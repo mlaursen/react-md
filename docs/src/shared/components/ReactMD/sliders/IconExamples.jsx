@@ -5,21 +5,15 @@ import FontIcon from 'react-md/lib/FontIcons';
 import Button from 'react-md/lib/Buttons/Button';
 
 export default class IconExamples extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { visible: false };
 
-    this.state = { visible: false };
-    this._openVolumes = this._openVolumes.bind(this);
-    this._closeVolumes = this._closeVolumes.bind(this);
-  }
-
-  _openVolumes() {
+  _openVolumes = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  _closeVolumes() {
+  _closeVolumes = () => {
     this.setState({ visible: false });
-  }
+  };
 
   render() {
     const { visible } = this.state;

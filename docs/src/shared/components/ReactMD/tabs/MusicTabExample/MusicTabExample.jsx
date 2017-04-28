@@ -21,26 +21,13 @@ import NewReleases from './NewReleases';
 import TopSongs from './TopSongs';
 
 export default class MusicTabExample extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeTabIndex: 0,
-      newReleases: [],
-      topTracks: [],
-      artists: [],
-      visible: false,
-    };
-
-    this._setTabsContainer = this._setTabsContainer.bind(this);
-    this._openStore = this._openStore.bind(this);
-    this._closeStore = this._closeStore.bind(this);
-    this._handleTabChange = this._handleTabChange.bind(this);
-    this._showTopSongs = this._showTopSongs.bind(this);
-    this._showNewReleases = this._showNewReleases.bind(this);
-    this._fetchTopAlbumTopTracksFromTop3 = this._fetchTopAlbumTopTracksFromTop3.bind(this);
-    this._forceHeightCalculation = this._forceHeightCalculation.bind(this);
-  }
+  state = {
+    activeTabIndex: 0,
+    newReleases: [],
+    topTracks: [],
+    artists: [],
+    visible: false,
+  };
 
   componentWillMount() {
     this._fetchBTBAMRelated().then(this._fetchTopAlbumTopTracksFromTop3).then(({ albums, tracks, artists }) => {
@@ -48,25 +35,25 @@ export default class MusicTabExample extends PureComponent {
     });
   }
 
-  _openStore() {
+  _openStore = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  _closeStore() {
+  _closeStore = () => {
     this.setState({ visible: false });
-  }
+  };
 
-  _handleTabChange(activeTabIndex) {
+  _handleTabChange = (activeTabIndex) => {
     this.setState({ activeTabIndex });
-  }
+  };
 
-  _showNewReleases() {
+  _showNewReleases = () => {
     this.setState({ activeTabIndex: 3 });
-  }
+  };
 
-  _showTopSongs() {
+  _showTopSongs = () => {
     this.setState({ activeTabIndex: 4 });
-  }
+  };
 
   _fetchBTBAMRelated() {
     return fetchSpotify.search('between the buried and me', 1)
@@ -75,10 +62,8 @@ export default class MusicTabExample extends PureComponent {
       );
   }
 
-  _fetchTopAlbumTopTracksFromTop3(artists) {
-    return Promise.all([this._fetchAlbumFromTop3(artists), this._fetchTrackFromTop3(artists)])
-      .then(([albums, tracks]) => ({ albums, tracks, artists }));
-  }
+  _fetchTopAlbumTopTracksFromTop3 = (artists) => Promise.all([this._fetchAlbumFromTop3(artists), this._fetchTrackFromTop3(artists)])
+    .then(([albums, tracks]) => ({ albums, tracks, artists }));
 
   _fetchAlbumFromTop3(artists) {
     const prices = ['$9.99', '$5.99', '$9.49'];
@@ -105,15 +90,15 @@ export default class MusicTabExample extends PureComponent {
       })));
   }
 
-  _setTabsContainer(tabsContainer) {
+  _setTabsContainer = (tabsContainer) => {
     this._tabsContainer = tabsContainer;
-  }
+  };
 
-  _forceHeightCalculation() {
+  _forceHeightCalculation = () => {
     if (this._tabsContainer) {
       this._tabsContainer.forceUpdate();
     }
-  }
+  };
 
   render() {
     const { activeTabIndex, newReleases, topTracks, artists } = this.state;

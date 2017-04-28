@@ -13,12 +13,7 @@ export default class MarkdownPage extends PureComponent {
     }).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { markdown: '' };
-    this._getMarkdown = this._getMarkdown.bind(this);
-  }
+  state = { markdown: '' };
 
   componentWillMount() {
     const { location: { pathname } } = this.props;
@@ -26,7 +21,7 @@ export default class MarkdownPage extends PureComponent {
     this._getMarkdown(pathname);
   }
 
-  _getMarkdown(pathname) {
+  _getMarkdown = (pathname) => {
     let fileName;
     if (pathname.match(/upgrade-guides/)) {
       fileName = `upgrade-guides/${pathname.split('/').reverse()[0]}`;
@@ -43,7 +38,7 @@ export default class MarkdownPage extends PureComponent {
     }
 
     this.setState({ markdown: require(`readmes/${fileName}`) });
-  }
+  };
 
   render() {
     const { style, className } = this.props;

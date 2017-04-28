@@ -3,31 +3,23 @@ import Button from 'react-md/lib/Buttons/Button';
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 
 export default class FullyControlledExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { value: null, visible: false };
 
-    this.state = { value: null, visible: false };
-    this._reset = this._reset.bind(this);
-    this._openPicker = this._openPicker.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleVisibilityChange = this._handleVisibilityChange.bind(this);
-  }
-
-  _reset() {
+  _reset = () => {
     this.setState({ value: null });
-  }
+  };
 
-  _openPicker() {
+  _openPicker = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  _handleChange(value) {
+  _handleChange = (value) => {
     this.setState({ value });
-  }
+  };
 
-  _handleVisibilityChange(visible) {
+  _handleVisibilityChange = (visible) => {
     this.setState({ visible });
-  }
+  };
 
   render() {
     const { value, visible } = this.state;

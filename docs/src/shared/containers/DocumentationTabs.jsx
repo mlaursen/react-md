@@ -24,14 +24,7 @@ export default class DocumentationTabs extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this._handleTabChange = this._handleTabChange.bind(this);
-  }
-
-  _handleTabChange(activeTabIndex) {
+  _handleTabChange = (activeTabIndex) => {
     const { router: { replace, location: { pathname } } } = this.props;
     let query;
     if (activeTabIndex > 0) {
@@ -39,7 +32,7 @@ export default class DocumentationTabs extends PureComponent {
     }
 
     replace({ pathname, query });
-  }
+  };
 
   render() {
     const {

@@ -6,42 +6,32 @@ import Slider from 'react-md/lib/Sliders';
 import './_editable-example.scss';
 
 export default class EditableExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = {
+    visible: false,
+    r: 10,
+    g: 188,
+    b: 212,
+  };
 
-    this.state = {
-      visible: false,
-      r: 10,
-      g: 188,
-      b: 212,
-    };
-
-    this._updateR = this._updateR.bind(this);
-    this._updateG = this._updateG.bind(this);
-    this._updateB = this._updateB.bind(this);
-    this._openColorChanger = this._openColorChanger.bind(this);
-    this._closeColorChanger = this._closeColorChanger.bind(this);
-  }
-
-  _openColorChanger() {
+  _openColorChanger = () => {
     this.setState({ visible: true });
-  }
+  };
 
-  _closeColorChanger() {
+  _closeColorChanger = () => {
     this.setState({ visible: false });
-  }
+  };
 
-  _updateR(r) {
+  _updateR = (r) => {
     this.setState({ r });
-  }
+  };
 
-  _updateG(g) {
+  _updateG = (g) => {
     this.setState({ g });
-  }
+  };
 
-  _updateB(b) {
+  _updateB = (b) => {
     this.setState({ b });
-  }
+  };
 
   render() {
     const { r, g, b, visible } = this.state;

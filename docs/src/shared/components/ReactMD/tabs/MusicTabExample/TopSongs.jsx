@@ -11,6 +11,7 @@ import KebabMenu from './KebabMenu';
 
 export default class TopSongs extends PureComponent {
   static propTypes = {
+    active: PropTypes.bool,
     artists: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
     })).isRequired,
@@ -19,13 +20,7 @@ export default class TopSongs extends PureComponent {
     onLoad: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { songs: [] };
-    this._fetching = false;
-    this._fetchSongs = this._fetchSongs.bind(this);
-  }
+  state = { songs: [] };
 
   componentWillReceiveProps(nextProps) {
     if (!this._fetching && nextProps.active && !this.state.songs.length) {
@@ -33,7 +28,9 @@ export default class TopSongs extends PureComponent {
     }
   }
 
-  _fetchSongs(artists) {
+  _fetching = false;
+
+  _fetchSongs = (artists) => {
     this._fetching = true;
     Promise.all(artists.map(({ id: artistId, name: artistName }) => fetchSpotify.getArtistTopTracks(artistId, 1)
       .then(song => ({
@@ -44,7 +41,7 @@ export default class TopSongs extends PureComponent {
         images: song.album.images,
         popularity: song.popularity,
       })))).then(songs => this.setState({ songs: sort(songs, 'popularity') }, this.props.onLoad));
-  }
+  };
 
   render() {
     const songs = this.state.songs.map(({ images, songName, artistName, songId }, i) => (

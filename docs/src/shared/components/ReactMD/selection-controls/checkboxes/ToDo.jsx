@@ -14,15 +14,9 @@ export default class ToDo extends PureComponent {
     checked: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._handleChange = this._handleChange.bind(this);
-  }
-
-  _handleChange(checked) {
+  _handleChange = (checked) => {
     this.props.onClick(checked, this.props.todo);
-  }
+  };
 
   render() {
     const { todo: { todo }, checked, id, name } = this.props;

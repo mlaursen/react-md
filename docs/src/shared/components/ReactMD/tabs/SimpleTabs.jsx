@@ -9,12 +9,7 @@ import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import LoremIpsum from 'components/LoremIpsum';
 
 export default class SimpleTabs extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { activeTabIndex: 0, tabTwoChildren: null };
-    this._handleTabChange = this._handleTabChange.bind(this);
-  }
+  state = { activeTabIndex: 0, tabTwoChildren: null };
 
   componentWillUnmount() {
     if (this._timeout) {
@@ -22,7 +17,7 @@ export default class SimpleTabs extends PureComponent {
     }
   }
 
-  _handleTabChange(activeTabIndex) {
+  _handleTabChange = (activeTabIndex) => {
     if (activeTabIndex === 1 && !this.state.tabTwoChildren) {
       // Fake async loading
       this._timeout = setTimeout(() => {
@@ -38,7 +33,7 @@ export default class SimpleTabs extends PureComponent {
     }
 
     this.setState({ activeTabIndex });
-  }
+  };
 
   render() {
     const { activeTabIndex } = this.state;

@@ -12,14 +12,9 @@ export default class AlbumArtwork extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
+  state = { imgSrc: null };
 
-    this.state = { imgSrc: null };
-    this._findSrc = this._findSrc.bind(this);
-  }
-
-  _findSrc(media) {
+  _findSrc = (media) => {
     if (media === null) {
       return;
     }
@@ -40,7 +35,7 @@ export default class AlbumArtwork extends PureComponent {
     }
 
     this.setState({ imgSrc: src });
-  }
+  };
 
   render() {
     return (

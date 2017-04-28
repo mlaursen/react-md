@@ -7,35 +7,23 @@ import inboxListItems from 'constants/inboxListItems';
 
 
 export default class SimpleExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { visible: false, position: 'left' };
 
-    this.state = {
-      visible: false,
-      position: 'left',
-    };
-
-    this._toggleLeft = this._toggleLeft.bind(this);
-    this._toggleRight = this._toggleRight.bind(this);
-    this._closeDrawer = this._closeDrawer.bind(this);
-    this._handleToggle = this._handleToggle.bind(this);
-  }
-
-  _handleToggle(visible) {
+  _handleToggle = (visible) => {
     this.setState({ visible });
-  }
+  };
 
-  _closeDrawer() {
+  _closeDrawer = () => {
     this.setState({ visible: false });
-  }
+  };
 
-  _toggleLeft() {
+  _toggleLeft = () => {
     this.setState({ visible: !this.state.visible, position: 'left' });
-  }
+  };
 
-  _toggleRight() {
+  _toggleRight = () => {
     this.setState({ visible: !this.state.visible, position: 'right' });
-  }
+  };
 
   render() {
     const left = this.state.position === 'left';

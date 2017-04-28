@@ -17,26 +17,21 @@ export default class NewReleases extends PureComponent {
     onLoad: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { releases: [] };
-    this._fetching = false;
-    this._getNewReleases = this._getNewReleases.bind(this);
-  }
-
+  state = { releases: [] };
   componentWillReceiveProps(nextProps) {
     if (!this._fetching && nextProps.active && !this.state.releases.length) {
       this._getNewReleases();
     }
   }
 
+  _fetching = false;
+
   _getArtistAlbums(artist) {
     return fetchSpotify.getArtistAlbums(artist.id)
       .then(albums => Promise.all(albums.slice(0, 5).map(album => fetchSpotify.getAlbum(album.id))));
   }
 
-  _getNewReleases() {
+  _getNewReleases = () => {
     this._fetching = true;
     Promise.all(this.props.artists.slice(0, 5).map(this._getArtistAlbums))
       .then(albums => {
@@ -46,7 +41,7 @@ export default class NewReleases extends PureComponent {
         );
         this.setState({ releases }, this.props.onLoad);
       });
-  }
+  };
 
   render() {
     return (

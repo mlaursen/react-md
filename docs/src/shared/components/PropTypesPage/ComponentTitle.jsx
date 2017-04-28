@@ -25,8 +25,6 @@ export default class ComponentTitle extends PureComponent {
     this.state = {
       filtering: !props.mobile,
     };
-
-    this._toggleFilter = this._toggleFilter.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -37,9 +35,9 @@ export default class ComponentTitle extends PureComponent {
     this.setState({ filtering: !nextProps.mobile });
   }
 
-  _toggleFilter() {
+  _toggleFilter = () => {
     this.setState({ filtering: !this.state.filtering });
-  }
+  };
 
   render() {
     const { filtering } = this.state;

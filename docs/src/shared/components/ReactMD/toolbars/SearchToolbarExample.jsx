@@ -6,35 +6,23 @@ import Autocomplete from 'react-md/lib/Autocompletes';
 import pastries from 'constants/pastries';
 
 export default class SearchToolbarExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { searching: false, value: '' };
 
-    this.state = {
-      searching: false,
-      value: '',
-    };
-
-    this._showSearch = this._showSearch.bind(this);
-    this._hideSearch = this._hideSearch.bind(this);
-    this._resetSearch = this._resetSearch.bind(this);
-    this._handleSearchChange = this._handleSearchChange.bind(this);
-  }
-
-  _showSearch() {
+  _showSearch = () => {
     this.setState({ searching: true });
-  }
+  };
 
-  _hideSearch() {
+  _hideSearch = () => {
     this.setState({ searching: false });
-  }
+  };
 
-  _resetSearch() {
+  _resetSearch = () => {
     this.setState({ value: '' });
-  }
+  };
 
-  _handleSearchChange(value) {
+  _handleSearchChange = (value) => {
     this.setState({ value });
-  }
+  };
 
   render() {
     const { searching } = this.state;

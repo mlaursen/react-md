@@ -53,13 +53,6 @@ export default class ThemeBuilder extends PureComponent {
       filteredSecondaries: filter(ACCENTABLE_COLORS, DEFAULT_STATE.primary),
       saved: hasStorage() && localStorage.getItem(THEME_STORAGE_KEY) !== null,
     };
-
-    this._closeWarning = this._closeWarning.bind(this);
-    this._handleHueChange = this._handleHueChange.bind(this);
-    this._handleLightChange = this._handleLightChange.bind(this);
-    this._handleSavedChange = this._handleSavedChange.bind(this);
-    this._handlePrimaryChange = this._handlePrimaryChange.bind(this);
-    this._handleSecondaryChange = this._handleSecondaryChange.bind(this);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -95,37 +88,37 @@ export default class ThemeBuilder extends PureComponent {
     }
   }
 
-  _handlePrimaryChange(primary) {
+  _handlePrimaryChange = (primary) => {
     const state = Object.assign({}, this.state, { primary });
     const saveDisabled = !DIFF_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
     this.setState({ primary, saveDisabled });
-  }
+  };
 
-  _handleSecondaryChange(secondary) {
+  _handleSecondaryChange = (secondary) => {
     const state = Object.assign({}, this.state, { secondary });
     const saveDisabled = !DIFF_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
     this.setState({ secondary, saveDisabled });
-  }
+  };
 
-  _handleHueChange(hue) {
+  _handleHueChange = (hue) => {
     const state = Object.assign({}, this.state, { hue });
     const saveDisabled = !DIFF_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
     this.setState({ hue, saveDisabled });
-  }
+  };
 
-  _handleLightChange(light) {
+  _handleLightChange = (light) => {
     const state = Object.assign({}, this.state, { light });
     const saveDisabled = !DIFF_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
     this.setState({ light, saveDisabled });
-  }
+  };
 
-  _handleSavedChange(saved) {
+  _handleSavedChange = (saved) => {
     this.setState({ saved });
-  }
+  };
 
-  _closeWarning() {
+  _closeWarning = () => {
     this.setState({ warningVisible: false });
-  }
+  };
 
   render() {
     const { primary, secondary, hue, light } = this.state;

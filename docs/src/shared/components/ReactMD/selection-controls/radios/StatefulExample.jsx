@@ -13,16 +13,11 @@ const controls = [{
 }];
 
 export default class StatefulExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { value: controls[0].value };
 
-    this.state = { value: controls[0].value };
-    this._handleChange = this._handleChange.bind(this);
-  }
-
-  _handleChange(value) {
+  _handleChange = (value) => {
     this.setState({ value });
-  }
+  };
 
   render() {
     return (

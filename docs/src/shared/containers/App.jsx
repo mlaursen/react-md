@@ -41,17 +41,7 @@ export default class App extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      minOffset: 256 + 64,
-    };
-
-    this._setContainer = this._setContainer.bind(this);
-    this._calcMinHeight = this._calcMinHeight.bind(this);
-    this._handleMediaTypeChange = this._handleMediaTypeChange.bind(this);
-  }
+  state = { minOffset: 256 + 64 };
 
   componentWillMount() {
     if (hasStorage() && localStorage.getItem(THEME_STORAGE_KEY) !== null) {
@@ -72,12 +62,12 @@ export default class App extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._calcMinHeight();
-  }
+  };
 
-  _calcMinHeight() {
+  _calcMinHeight = () => {
     if (!this._container) {
       return;
     }
@@ -85,12 +75,12 @@ export default class App extends PureComponent {
     const { offsetHeight: toolbarHeight } = this._container.querySelector('.main-toolbar');
     const { offsetHeight: footerHeight } = this._container.querySelector('.app-footer');
     this.setState({ minOffset: toolbarHeight + footerHeight });
-  }
+  };
 
-  _handleMediaTypeChange(drawerType, media) {
+  _handleMediaTypeChange = (drawerType, media) => {
     this._calcMinHeight();
     this.props.onMediaTypeChange(drawerType, media);
-  }
+  };
 
   render() {
     const {

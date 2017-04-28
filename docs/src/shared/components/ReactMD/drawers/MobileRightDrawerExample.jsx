@@ -40,50 +40,42 @@ export default class MobileRightDrawerExample extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { images: [], visible: false, stats: null };
-    this._visibilityCount = 0;
-    this._setRenderNode = this._setRenderNode.bind(this);
-    this._fetchImages = this._fetchImages.bind(this);
-    this._closeDrawer = this._closeDrawer.bind(this);
-    this._openSideDisplay = this._openSideDisplay.bind(this);
-    this._handleVisibility = this._handleVisibility.bind(this);
-  }
+  state = { images: [], visible: false, stats: null };
 
   componentDidMount() {
     this._fetchImages();
   }
 
-  _setRenderNode(renderNode) {
+  _visibilityCount = 0;
+
+  _setRenderNode = (renderNode) => {
     if (renderNode) {
       this._renderNode = findDOMNode(renderNode).parentNode;
     }
-  }
+  };
 
-  _closeDrawer() {
+  _closeDrawer = () => {
     this.setState({ visible: false });
-  }
+  };
 
-  _fetchImages() {
+  _fetchImages = () => {
     fetchProxy('https://unsplash.it/list')
       .then(list => {
         this.setState({ images: list.splice(randomInt({ min: 0, max: list.length - 11 }), 10) });
       });
-  }
+  };
 
-  _openSideDisplay(stats) {
+  _openSideDisplay = (stats) => {
     this.setState({ visible: true, stats });
-  }
+  };
 
-  _handleVisibility(visible) {
+  _handleVisibility = (visible) => {
     if (this._visibilityCount < 2) {
       this._visibilityCount = this._visibilityCount + 1;
     } else {
       this.setState({ visible });
     }
-  }
+  };
 
   render() {
     const { visible, stats } = this.state;

@@ -35,34 +35,20 @@ const ACTIONS = [
  * touch events since... lazy.
  */
 export default class FlexibleSpaceExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { height: IMG_HEIGHT };
 
-    this.state = {
-      height: IMG_HEIGHT,
-    };
-
-    this._setSection = this._setSection.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._handleWheel = this._handleWheel.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._updateHeight = this._updateHeight.bind(this);
-  }
-
-  _setSection(section) {
+  _setSection = (section) => {
     this._section = section;
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
     if (this._container !== null) {
       this.setState({ statusBar: !!document.querySelector('.phone-status-bar') });
     }
-  }
+  };
 
-  _updateHeight(nextAmt) {
+  _updateHeight = (nextAmt) => {
     const height = Math.min(
       IMG_HEIGHT,
       Math.max(MOBILE_TOOLBAR_HEIGHT, this.state.height + nextAmt)
@@ -103,9 +89,9 @@ export default class FlexibleSpaceExample extends PureComponent {
     }
 
     this._ticking = true;
-  }
+  };
 
-  _handleWheel(e) {
+  _handleWheel = (e) => {
     if (!this._container || !this._container.contains(e.target)) {
       return;
     }
@@ -124,9 +110,9 @@ export default class FlexibleSpaceExample extends PureComponent {
     deltaY *= (-1);
 
     this._updateHeight(deltaY);
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (!this._section || !this._section.contains(e.target)) {
       return;
     }
@@ -134,9 +120,9 @@ export default class FlexibleSpaceExample extends PureComponent {
     const { clientY } = e.changedTouches[0];
     this._touched = true;
     this._touchY = clientY;
-  }
+  };
 
-  _handleTouchMove(e) {
+  _handleTouchMove = (e) => {
     if (!this._touched) {
       return;
     }
@@ -147,12 +133,11 @@ export default class FlexibleSpaceExample extends PureComponent {
     const diff = (clientY - this._touchY);
     this._touchY = clientY;
     this._updateHeight(diff);
-  }
+  };
 
-  _handleTouchEnd() {
+  _handleTouchEnd = () => {
     this._touched = false;
-  }
-
+  };
 
   render() {
     const { height, fontSize, btnTransform, imgOpacity, statusBar } = this.state;

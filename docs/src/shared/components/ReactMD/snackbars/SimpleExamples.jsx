@@ -14,21 +14,7 @@ export default class SimpleExamples extends PureComponent {
     tablet: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      toasts: [],
-      autohide: true,
-    };
-
-    this._addToast = this._addToast.bind(this);
-    this._removeToast = this._removeToast.bind(this);
-    this._toastHello = this._toastHello.bind(this);
-    this._toastRetry = this._toastRetry.bind(this);
-    this._toastMultiple = this._toastMultiple.bind(this);
-    this._toastMultiline = this._toastMultiline.bind(this);
-  }
+  state = { toasts: [], autohide: true };
 
   componentWillUpdate(nextProps, nextState) {
     const { toasts } = nextState;
@@ -41,27 +27,27 @@ export default class SimpleExamples extends PureComponent {
     this.setState({ autohide });
   }
 
-  _addToast(text, action) {
+  _addToast = (text, action) => {
     const toasts = this.state.toasts.slice();
     toasts.push({ text, action });
 
     this.setState({ toasts });
-  }
+  };
 
-  _removeToast() {
+  _removeToast = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts });
-  }
+  };
 
-  _toastHello() {
+  _toastHello = () => {
     this._addToast('Hello, World!');
-  }
+  };
 
-  _toastRetry() {
+  _toastRetry = () => {
     this._addToast('Something Happened.', 'Retry');
-  }
+  };
 
-  _toastMultiple() {
+  _toastMultiple = () => {
     const toasts = this.state.toasts.slice();
     toasts.push({ text: 'Sent', action: 'Undo' });
 
@@ -76,12 +62,11 @@ export default class SimpleExamples extends PureComponent {
     });
 
     this.setState({ toasts });
-  }
+  };
 
-
-  _toastMultiline() {
+  _toastMultiline = () => {
     this._addToast(this.props.mobile ? MOBILE_MULTILINE : DESKTOP_MULTILINE);
-  }
+  };
 
   render() {
     return (

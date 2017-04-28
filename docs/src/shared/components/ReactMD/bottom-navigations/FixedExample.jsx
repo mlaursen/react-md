@@ -23,27 +23,21 @@ export default class FixedExample extends PureComponent {
     children: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
+  state = { page: 0 };
 
-    this.state = { page: 0 };
-    this._setPage = this._setPage.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-  }
-
-  _setPage(page) {
+  _setPage = (page) => {
     if (this._container) {
       this._container.scrollTop = 0;
     }
     this.setState({ page });
-  }
+  };
 
-  _setContainer(phoneDemo) {
+  _setContainer = (phoneDemo) => {
     this._container = findDOMNode(phoneDemo);
     if (this._container) {
       this.setState({ found: true });
     }
-  }
+  };
 
   render() {
     const { page } = this.state;

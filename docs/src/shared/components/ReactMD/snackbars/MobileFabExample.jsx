@@ -7,16 +7,9 @@ import Button from 'react-md/lib/Buttons/Button';
 import PhoneSizeDemo from 'containers/PhoneSizeDemo';
 
 export default class MobileFabExample extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { toasts: [] };
 
-    this.state = { toasts: [] };
-    this._addToast = this._addToast.bind(this);
-    this._removeToast = this._removeToast.bind(this);
-    this._setFAB = this._setFAB.bind(this);
-  }
-
-  _addToast() {
+  _addToast = () => {
     const toasts = this.state.toasts.slice();
     toasts.push({
       text: loremIpsum({ count: 8, units: 'words' }),
@@ -24,19 +17,19 @@ export default class MobileFabExample extends PureComponent {
     });
 
     this.setState({ toasts });
-  }
+  };
 
-  _removeToast() {
+  _removeToast = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts });
-  }
+  };
 
-  _setFAB(fab) {
+  _setFAB = (fab) => {
     this._fab = fab;
     if (fab !== null) {
       this._phone = findDOMNode(fab).parentNode;
     }
-  }
+  };
 
   render() {
     const { toasts } = this.state;
