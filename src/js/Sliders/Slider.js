@@ -489,14 +489,12 @@ export default class Slider extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this._dragAdded) {
-      const rm = window.removeEventListener;
-      rm('mousemove', this._handleMouseMove);
-      rm('mouseup', this._handleMouseUp);
-      rm('touchmove', this._handleDragMove);
-      rm('touchend', this._handleDragEnd);
-      rm('click', this._blurOnOutsideClick);
-    }
+    const rm = window.removeEventListener;
+    rm('mousemove', this._handleMouseMove);
+    rm('mouseup', this._handleMouseUp);
+    rm('touchmove', this._handleDragMove);
+    rm('touchend', this._handleDragEnd);
+    rm('click', this._blurOnOutsideClick);
 
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
