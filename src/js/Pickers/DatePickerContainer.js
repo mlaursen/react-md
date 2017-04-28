@@ -133,7 +133,7 @@ export default class DatePickerContainer extends PureComponent {
      * If this is omitted, it will either be the `defaultValue`, `value`, or
      * today.
      */
-    initialCalendarDate: PropTypes.oneOfType([
+    defaultCalendarDate: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.instanceOf(Date),
     ]),
@@ -411,8 +411,12 @@ export default class DatePickerContainer extends PureComponent {
     previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
     nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
-    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
+    initialCalendarDate: deprecated(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.instanceOf(Date),
+    ]), 'Use `defaultCalendarDate` instead'),
     initialCalendarMode: deprecated(PropTypes.oneOf(['calendar', 'year']), 'Use `defaultCalendarMode` instead'),
     initialYearsDisplayed: deprecated(
       PropTypes.number,
@@ -450,7 +454,6 @@ export default class DatePickerContainer extends PureComponent {
       DateTimeFormat,
       locales,
       formatOptions,
-      initialCalendarDate,
       minDate,
       maxDate,
     } = props;
@@ -467,11 +470,14 @@ export default class DatePickerContainer extends PureComponent {
 
     date = this._validateDateRange(date, minDate, maxDate);
 
+    const defaultCalendarDate = typeof props.initialCalendarDate !== 'undefined'
+      ? props.initialCalendarDate
+      : props.defaultCalendarDate;
     let calendarTempDate = date;
-    if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
-      calendarTempDate = typeof initialCalendarDate === 'string'
-        ? new Date(initialCalendarDate)
-        : initialCalendarDate;
+    if (typeof defaultCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
+      calendarTempDate = typeof defaultCalendarDate === 'string'
+        ? new Date(defaultCalendarDate)
+        : defaultCalendarDate;
       date = calendarTempDate;
     } else if (calendarTempDate === null) {
       calendarTempDate = new Date();
@@ -783,8 +789,10 @@ export default class DatePickerContainer extends PureComponent {
       defaultVisible,
       onChange,
       onVisibilityChange,
+      defaultCalendarDate,
 
       // deprecated
+      initialCalendarDate,
       initiallyOpen,
       adjustMinWidth,
       nextIcon,

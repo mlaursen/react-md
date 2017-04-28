@@ -150,28 +150,28 @@ describe('DatePickerContainer', () => {
   });
 
   it('allows for an initial calendar date as a string', () => {
-    const initialCalendarDateStr = '3/17/2016';
-    const initialCalendarDate = new Date(initialCalendarDateStr);
+    const defaultCalendarDateStr = '3/17/2016';
+    const defaultCalendarDate = new Date(defaultCalendarDateStr);
     const props = {
       locales: 'en-US',
-      initialCalendarDate: initialCalendarDateStr,
+      defaultCalendarDate: defaultCalendarDateStr,
       id: 'test',
     };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
-    expect(container.state.calendarDate).toEqual(initialCalendarDate);
-    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarDate).toEqual(defaultCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(defaultCalendarDate);
   });
 
   it('allows for an initial calendar date as a Date object', () => {
-    const initialCalendarDate = new Date(2016, 2, 18);
-    const props = { locales: 'en-US', initialCalendarDate, id: 'test' };
+    const defaultCalendarDate = new Date(2016, 2, 18);
+    const props = { locales: 'en-US', defaultCalendarDate, id: 'test' };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
-    expect(container.state.calendarDate).toEqual(initialCalendarDate);
-    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarDate).toEqual(defaultCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(defaultCalendarDate);
   });
 
   it('modifies the initial state\'s calendarDate if the min date is greater than the calendarDate', () => {
