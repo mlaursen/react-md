@@ -304,13 +304,6 @@ export default class DialogContainer extends PureComponent {
       portalVisible: visible,
       dialogVisible: false,
     };
-    this._setContainer = this._setContainer.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleDialogMounting = this._handleDialogMounting.bind(this);
-    this._mountPortal = this._mountPortal.bind(this);
-    this._mountDialog = this._mountDialog.bind(this);
-    this._unmountPortal = this._unmountPortal.bind(this);
-    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   componentDidMount() {
@@ -392,24 +385,24 @@ export default class DialogContainer extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container !== null) {
       this._container = findDOMNode(container);
     }
-  }
+  };
 
-  _handleEscClose(e) {
+  _handleEscClose = (e) => {
     if ((e.which || e.keyCode) === ESC) {
       (this.props.onHide || this.props.close)(e);
     }
-  }
+  };
 
-  _mountPortal(props) {
+  _mountPortal = (props) => {
     this._mountDialog(props);
     this.setState({ portalVisible: true });
-  }
+  };
 
-  _mountDialog(props) {
+  _mountDialog = (props) => {
     const { fullPage, onShow } = props;
     this._inTimeout = setTimeout(() => {
       this._inTimeout = fullPage ? null : setTimeout(() => {
@@ -418,22 +411,22 @@ export default class DialogContainer extends PureComponent {
       }, TICK);
       this.setState({ dialogVisible: true, overlay: !fullPage }, onShow);
     }, TICK);
-  }
+  };
 
-  _unmountPortal() {
+  _unmountPortal = () => {
     this.setState({ portalVisible: false });
-  }
+  };
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     const visible = typeof this.props.isOpen !== 'undefined' ? this.props.isOpen : this.props.visible;
     if (this.props.modal || !visible || e.target !== this._container) {
       return;
     }
 
     (this.props.onHide || this.props.close)(e);
-  }
+  };
 
-  _handleDialogMounting(dialog) {
+  _handleDialogMounting = (dialog) => {
     if (dialog === null) {
       if (this._activeElement) {
         this._activeElement.focus();
@@ -442,7 +435,7 @@ export default class DialogContainer extends PureComponent {
       this._activeElement = null;
       this.setState({ overlay: false });
     }
-  }
+  };
 
   render() {
     const { overlay, active, dialogVisible, portalVisible } = this.state;

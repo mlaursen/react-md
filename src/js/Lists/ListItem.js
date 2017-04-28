@@ -314,18 +314,6 @@ export default class ListItem extends PureComponent {
 
       this.state.visible = visible;
     }
-
-    this.focus = this.focus.bind(this);
-    this._setTile = this._setTile.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
   }
 
   componentWillUnmount() {
@@ -342,42 +330,42 @@ export default class ListItem extends PureComponent {
    * A utility function to focus the `AccessibleFakeInkedButton` in the `ListItem` and also
    * inject an ink to indicate focus.
    */
-  focus() {
+  focus = () => {
     if (this._tile) {
       this._tile.focus();
     }
-  }
+  };
 
   /**
    * A utility function to blur the `AccessibleFakeInkedButton` in the `ListItem`.
    */
-  blur() {
+  blur = () => {
     if (this._tile) {
       this._tile.blur();
     }
-  }
+  };
 
-  _setTile(tile) {
+  _setTile = (tile) => {
     if (tile) {
       this._tile = tile;
       this._tileNode = findDOMNode(tile);
     }
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container) {
       this._container = findDOMNode(container);
     }
-  }
+  };
 
-  _handleOutsideClick(e) {
+  _handleOutsideClick = (e) => {
     if (this._container && !this._container.contains(e.target)) {
       window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ active: false });
     }
-  }
+  };
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -385,9 +373,9 @@ export default class ListItem extends PureComponent {
     if (typeof this.state.visible !== 'undefined') {
       this.setState({ visible: !this.state.visible });
     }
-  }
+  };
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -395,9 +383,9 @@ export default class ListItem extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ active: true });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -405,9 +393,9 @@ export default class ListItem extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ active: false });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
@@ -415,9 +403,9 @@ export default class ListItem extends PureComponent {
     this._touched = true;
 
     this.setState({ active: true, touchedAt: Date.now() });
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(e);
     }
@@ -428,9 +416,9 @@ export default class ListItem extends PureComponent {
 
       this.setState({ active: false });
     }, time > 450 ? 0 : 450 - time);
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -439,9 +427,9 @@ export default class ListItem extends PureComponent {
       window.addEventListener('click', this._handleOutsideClick);
       this.setState({ active: true });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -450,7 +438,7 @@ export default class ListItem extends PureComponent {
       window.removeEventListener('click', this._handleOutsideClick);
       this.setState({ active: false });
     }
-  }
+  };
 
   render() {
     const {

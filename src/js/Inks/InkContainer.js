@@ -38,31 +38,7 @@ export default class InkContainer extends PureComponent {
     transitionLeaveTimeout: 300,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { inks: [] };
-    this.createInk = this.createInk.bind(this);
-    this.focus = this.focus.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._createInk = this._createInk.bind(this);
-    this._removeInk = this._removeInk.bind(this);
-    this._setContainers = this._setContainers.bind(this);
-    this._maybeDelayClick = this._maybeDelayClick.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleRemove = this._handleRemove.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._getKeyboardContainer = this._getKeyboardContainer.bind(this);
-    this._stopPropagationToFocus = this._stopPropagationToFocus.bind(this);
-    this._initOrRemoveEvents = this._initOrRemoveEvents.bind(this);
-  }
+  state = { inks: [] };
 
   componentWillReceiveProps(nextProps) {
     const { disabledInteractions: di } = this.props;
@@ -101,19 +77,30 @@ export default class InkContainer extends PureComponent {
    * @param {number} pageX - The page x coordinate of the click or touch event.
    * @param {number} pageY - The page y coordinate of the click or touch event.
    */
-  createInk(pageX, pageY) {
+  createInk = (pageX, pageY) => {
     this._createInk(pageX, pageY);
     this._removeTimeout = setTimeout(() => {
       this._removeTimeout = null;
       this._removeInk();
     }, this.props.transitionOverlap);
-  }
+  };
 
   /**
    * Focuses the main element.
    */
-  focus() {
+  focus = () => {
     this._getKeyboardContainer().focus();
+  };
+
+  _isListenerDisabledDiff(interaction, disabledInteractions, nextDisabledInteractions) {
+    const i = disabledInteractions.indexOf(interaction);
+    const ni = nextDisabledInteractions.indexOf(interaction);
+
+    return (i < 0 && ni >= 0) || (i >= 0 && ni < 0);
+  }
+
+  _isListenerDisabled(interaction, disabledInteractions) {
+    return disabledInteractions && disabledInteractions.indexOf(interaction) !== -1;
   }
 
   /**
@@ -126,7 +113,7 @@ export default class InkContainer extends PureComponent {
    * @param {number} pageX - The page x coordinate of the click or touch event.
    * @param {number} pageY - The page y coordinate of the click or touch event.
    */
-  _createInk(pageX, pageY) {
+  _createInk = (pageX, pageY) => {
     const { offsetWidth, offsetHeight } = this._inkContainer;
 
     let x;
@@ -158,29 +145,29 @@ export default class InkContainer extends PureComponent {
     const inks = this.state.inks.slice();
     inks.push(ink);
     this.setState({ inks });
-  }
+  };
 
   /**
    * Removes an ink from the container.
    */
-  _removeInk() {
+  _removeInk = () => {
     const inks = this.state.inks.slice();
     inks.pop();
 
     this.setState({ inks });
-  }
+  };
 
   /**
    * Gets the container for any keyboard events. This will almost always be the main element,
    * but text fields will need to be the input itself.
    */
-  _getKeyboardContainer() {
+  _getKeyboardContainer = () => {
     if (this._container.classList.contains('md-text-field-container')) {
       return this._container.querySelector('.md-text-field');
     }
 
     return this._container;
-  }
+  };
 
   /**
    * Sets the ink container and the main container from the ref callback. When the component
@@ -188,7 +175,7 @@ export default class InkContainer extends PureComponent {
    *
    * @param {Object} inkContainer - The ink container.
    */
-  _setContainers(inkContainer) {
+  _setContainers = (inkContainer) => {
     if (inkContainer !== null) {
       this._inkContainer = findDOMNode(inkContainer);
       this._container = this._inkContainer.parentNode;
@@ -197,7 +184,7 @@ export default class InkContainer extends PureComponent {
         this._initOrRemoveEvents(this.props);
       }
     }
-  }
+  };
 
   /**
    * This function will either add or remove the event listeners for creating inks.
@@ -211,7 +198,7 @@ export default class InkContainer extends PureComponent {
    * @param {bool=} touchDiff - Boolean if there was a difference between the current props and either
    *    the previous or next props for the touch interactions being disabled.
    */
-  _initOrRemoveEvents(props, keyboardDiff = true, mouseDiff = true, touchDiff = true) {
+  _initOrRemoveEvents = (props, keyboardDiff = true, mouseDiff = true, touchDiff = true) => {
     const mouseDisabled = this._isListenerDisabled('mouse', props.disabledInteractions);
     const touchDisabled = this._isListenerDisabled('touch', props.disabledInteractions);
     const keyboardDisabled = this._isListenerDisabled('keyboard', props.disabledInteractions);
@@ -245,28 +232,17 @@ export default class InkContainer extends PureComponent {
       this._container[fn]('touchstart', this._handleTouchStart);
       this._container[fn]('touchend', this._handleTouchEnd);
     }
-  }
+  };
 
-  _isListenerDisabledDiff(interaction, disabledInteractions, nextDisabledInteractions) {
-    const i = disabledInteractions.indexOf(interaction);
-    const ni = nextDisabledInteractions.indexOf(interaction);
-
-    return (i < 0 && ni >= 0) || (i >= 0 && ni < 0);
-  }
-
-  _isListenerDisabled(interaction, disabledInteractions) {
-    return disabledInteractions && disabledInteractions.indexOf(interaction) !== -1;
-  }
-
-  _maybeDelayClick() {
+  _maybeDelayClick = () => {
     if (!this.props.waitForInkTransition) {
       return;
     }
 
     captureNextEvent('click', this._container);
-  }
+  };
 
-  _handleRemove() {
+  _handleRemove = () => {
     if (this._clicked && this.props.waitForInkTransition) {
       // For some reason if the click event will make the ink unmount, it will no longer
       // have a debug id in the TransitionGroup and it displays a warning. Adding a 1ms timeout
@@ -277,32 +253,32 @@ export default class InkContainer extends PureComponent {
     }
 
     this._clicked = false;
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     const key = e.which || e.keyCode;
     if (key === ENTER || key === SPACE) {
       this._clicked = true;
       this.createInk();
       this._maybeDelayClick();
     }
-  }
+  };
 
-  _handleFocus() {
+  _handleFocus = () => {
     if (this._clicked) {
       return;
     }
 
     this._createInk();
     this._getKeyboardContainer().addEventListener('blur', this._handleBlur);
-  }
+  };
 
-  _handleBlur() {
+  _handleBlur = () => {
     this._getKeyboardContainer().removeEventListener('blur', this._handleBlur);
     this._removeInk();
-  }
+  };
 
-  _handleMouseDown(e) {
+  _handleMouseDown = (e) => {
     this._clicked = true;
     if (!isValidClick(e) || this._skipNextMouse) {
       this._skipNextMouse = false;
@@ -312,15 +288,15 @@ export default class InkContainer extends PureComponent {
     this._mouseLeave = false;
     this._container.addEventListener('mouseleave', this._handleMouseLeave);
     this._createInk(e.pageX, e.pageY);
-  }
+  };
 
-  _handleMouseLeave() {
+  _handleMouseLeave = () => {
     this._container.removeEventListener('mouseleave', this._handleMouseLeave);
     this._mouseLeave = true;
     this._removeInk();
-  }
+  };
 
-  _handleMouseUp() {
+  _handleMouseUp = () => {
     if (this._mouseLeave) {
       return;
     }
@@ -328,9 +304,9 @@ export default class InkContainer extends PureComponent {
     this._maybeDelayClick();
     this._container.removeEventListener('mouseleave', this._handleMouseLeave);
     this._removeInk();
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     this._aborted = false;
     this._clicked = true;
     this._skipNextMouse = true;
@@ -338,9 +314,9 @@ export default class InkContainer extends PureComponent {
 
     const { pageX, pageY } = e.changedTouches[0];
     this._createInk(pageX, pageY);
-  }
+  };
 
-  _handleTouchMove() {
+  _handleTouchMove = () => {
     window.removeEventListener('touchmove', this._handleTouchMove);
     const lastInk = this.state.inks[this.state.inks.length - 1];
     if (!lastInk || Date.now() > (lastInk.key + 200)) {
@@ -356,9 +332,9 @@ export default class InkContainer extends PureComponent {
 
     this._aborted = true;
     this.setState({ inks }, this._removeInk);
-  }
+  };
 
-  _handleTouchEnd() {
+  _handleTouchEnd = () => {
     this._skipNextMouse = true;
 
     if (this._aborted) {
@@ -368,7 +344,7 @@ export default class InkContainer extends PureComponent {
     }
 
     this._removeInk();
-  }
+  };
 
   /**
    * If a form was submitted that contains the container of the ink and the current focus element
@@ -376,16 +352,16 @@ export default class InkContainer extends PureComponent {
    *
    * The current focus check is added so that two inks are not created.
    */
-  _handleSubmit(e) {
+  _handleSubmit = (e) => {
     if (document.activeElement === this._container || !e.target.contains(this._container)) {
       return;
     }
 
     this._maybeDelayClick();
     this.createInk();
-  }
+  };
 
-  _stopPropagationToFocus(e) {
+  _stopPropagationToFocus = (e) => {
     const { type } = e;
     const mousedown = type === 'mousedown';
     this._clicked = mousedown || type === 'touchstart';
@@ -395,7 +371,7 @@ export default class InkContainer extends PureComponent {
     } else {
       window.removeEventListener(e.type, this._stopPropagationToFocus, true);
     }
-  }
+  };
 
   render() {
     const {

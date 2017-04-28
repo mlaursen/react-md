@@ -56,8 +56,6 @@ export default class Collapse extends PureComponent {
     } else {
       this.state = { height: 0, paddingTop: 0, paddingBottom: 0 };
     }
-
-    this._setHeight = this._setHeight.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -75,7 +73,7 @@ export default class Collapse extends PureComponent {
     return spring(nextValue, config);
   }
 
-  _setHeight(child) {
+  _setHeight = (child) => {
     if (this._child && typeof this._child.ref === 'function') {
       this._child.ref(child);
     }
@@ -92,7 +90,7 @@ export default class Collapse extends PureComponent {
     }
 
     this.setState({ height, paddingTop, paddingBottom });
-  }
+  };
 
   render() {
     const { height, paddingTop, paddingBottom, initialOpen } = this.state;

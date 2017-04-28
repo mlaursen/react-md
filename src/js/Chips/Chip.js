@@ -71,29 +71,23 @@ export default class Chip extends PureComponent {
     children: 'add_circle',
   };
 
-  constructor(props) {
-    super(props);
+  state = { hover: false };
 
-    this.state = { hover: false };
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
-
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
 
     this.setState({ hover: true });
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
 
     this.setState({ hover: false });
-  }
+  };
 
   render() {
     const { hover } = this.state;

@@ -60,16 +60,7 @@ export default class ExpansionList extends PureComponent {
     animateContent: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { columnWidths: [], focusedIndex: -1 };
-
-    this._setContainer = this._setContainer.bind(this);
-    this._removeFocus = this._removeFocus.bind(this);
-    this._calcColumnWidths = this._calcColumnWidths.bind(this);
-    this._determineTabFocus = this._determineTabFocus.bind(this);
-  }
+  state = { columnWidths: [], focusedIndex: -1 };
 
   getChildContext() {
     const { animateContent } = this.props;
@@ -99,31 +90,31 @@ export default class ExpansionList extends PureComponent {
     window.removeEventListener('keyup', this._determineTabFocus);
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container !== null) {
       this._container = findDOMNode(container);
       window.addEventListener('keyup', this._determineTabFocus);
 
       this._calcColumnWidths();
     }
-  }
+  };
 
-  _determineTabFocus(e) {
+  _determineTabFocus = (e) => {
     if ((e.which || e.keyCode) === TAB) {
       const panels = Array.prototype.slice.call(findDOMNode(this).querySelectorAll('.md-panel-header'));
       this.setState({ focusedIndex: panels.indexOf(e.target) });
     }
-  }
+  };
 
-  _removeFocus() {
+  _removeFocus = () => {
     this.setState({ focusedIndex: -1 });
-  }
+  };
 
   /**
    * Since this should really be rendered as a table, need to calculate the max width for each _column_
    * on the panel's header and apply that as a min width for the other panels.
    */
-  _calcColumnWidths() {
+  _calcColumnWidths = () => {
     if (!this._container) {
       return;
     }
@@ -145,7 +136,7 @@ export default class ExpansionList extends PureComponent {
       }, [0]);
 
     this.setState({ columnWidths });
-  }
+  };
 
   render() {
     const { columnWidths, focusedIndex } = this.state;

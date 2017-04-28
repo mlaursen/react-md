@@ -105,16 +105,6 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
 
   static contextTypes = inkContextTypes;
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.focus = this.focus.bind(this);
-    this.createInk = this.createInk.bind(this);
-    this.getComposedComponent = this.getComposedComponent.bind(this);
-    this._setInkRef = this._setInkRef.bind(this);
-    this._setComposedComponent = this._setComposedComponent.bind(this);
-  }
-
   componentDidMount() {
     const { __SUPER_SECRET_REF__: ref } = this.props;
     // Emulate the ref callback...
@@ -143,11 +133,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * @param {number=} pageX - An optional pageX of the click or touch event.
    * @param {number=} pageY - An optional pageY of the click or touch event.
    */
-  createInk(pageX, pageY) {
+  createInk = (pageX, pageY) => {
     if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
       this._inkContainer.createInk(pageX, pageY);
     }
-  }
+  };
 
   /**
    * This will attempt to focus the composed component. If the component is disabled, nothing
@@ -158,11 +148,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * <SomeInkedComponent ref={inkHOC => inkHOC.focus()} />
    * ```
    */
-  focus() {
+  focus = () => {
     if (this._inkContainer) {
       this._inkContainer.focus();
     }
-  }
+  };
 
   /**
    * Gets the composed component as a ref. This is usefull if you need to access the ref of the
@@ -176,19 +166,17 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * />
    * ```
    */
-  getComposedComponent() {
-    return this._composed;
-  }
+  getComposedComponent = () => this._composed;
 
-  _setInkRef(inkContainer) {
+  _setInkRef= (inkContainer) => {
     if (inkContainer) {
       this._inkContainer = inkContainer;
     }
-  }
+  };
 
-  _setComposedComponent(component) {
+  _setComposedComponent = (component) => {
     this._composed = component;
-  }
+  };
 
   render() {
     const {

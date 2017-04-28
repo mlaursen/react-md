@@ -20,18 +20,7 @@ export default class TooltipContainer extends PureComponent {
     leaveTimeout: PropTypes.number.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { visible: false };
-    this._delayedTimeout = null;
-
-    this._setContainers = this._setContainers.bind(this);
-    this._showTooltip = this._showTooltip.bind(this);
-    this._hideTooltip = this._hideTooltip.bind(this);
-    this._stopContextMenu = this._stopContextMenu.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-  }
+  state = { visible: false };
 
   componentWillUnmount() {
     if (this._container) {
@@ -48,7 +37,9 @@ export default class TooltipContainer extends PureComponent {
     }
   }
 
-  _setContainers(container) {
+  _delayedTimeout = null;
+
+  _setContainers = (container) => {
     if (container) {
       this._container = findDOMNode(container).parentNode;
 
@@ -59,16 +50,16 @@ export default class TooltipContainer extends PureComponent {
       this._container.addEventListener('keyup', this._handleKeyUp);
       this._container.addEventListener('blur', this._hideTooltip);
     }
-  }
+  };
 
-  _stopContextMenu(e) {
+  _stopContextMenu = (e) => {
     e.preventDefault();
     window.removeEventListener('contextmenu', this._stopContextMenu, true);
     captureNextEvent('click');
     this.setState({ visible: true });
-  }
+  };
 
-  _showTooltip(e) {
+  _showTooltip = (e) => {
     if (e.type === 'mouseover' && this._touched) {
       return;
     }
@@ -95,9 +86,9 @@ export default class TooltipContainer extends PureComponent {
     } else {
       this.setState({ visible: true });
     }
-  }
+  };
 
-  _hideTooltip(e) {
+  _hideTooltip = (e) => {
     if (this._delayedTimeout) {
       clearTimeout(this._delayedTimeout);
     }
@@ -107,13 +98,13 @@ export default class TooltipContainer extends PureComponent {
     }
 
     this.setState({ visible: false });
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if ((e.which || e.keyCode) === TAB) {
       this._showTooltip(e);
     }
-  }
+  };
 
   render() {
     const { visible } = this.state;

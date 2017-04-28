@@ -20,31 +20,7 @@ export default class DialogFooter extends PureComponent {
     ]),
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { stacked: false };
-
-    this._toElement = this._toElement.bind(this);
-    this._generateActions = this._generateActions.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-  }
-
-  _setContainer(container) {
-    if (container !== null) {
-      this._container = container;
-      const maxWidth = (this._container.offsetWidth - (FOOTER_PADDING * 3)) / 2;
-
-      let stacked = false;
-      Array.prototype.slice.call(this._container.querySelectorAll('.md-btn'))
-        .some(({ offsetWidth }) => {
-          stacked = offsetWidth > maxWidth;
-          return stacked;
-        });
-
-      this.setState({ stacked });
-    }
-  }
+  state = { stacked: false };
 
   _toElement(action, index) {
     if (isValidElement(action)) {
@@ -66,14 +42,30 @@ export default class DialogFooter extends PureComponent {
     );
   }
 
-  _generateActions() {
+  _setContainer = (container) => {
+    if (container !== null) {
+      this._container = container;
+      const maxWidth = (this._container.offsetWidth - (FOOTER_PADDING * 3)) / 2;
+
+      let stacked = false;
+      Array.prototype.slice.call(this._container.querySelectorAll('.md-btn'))
+        .some(({ offsetWidth }) => {
+          stacked = offsetWidth > maxWidth;
+          return stacked;
+        });
+
+      this.setState({ stacked });
+    }
+  };
+
+  _generateActions = () => {
     const { actions } = this.props;
     if (Array.isArray(actions)) {
       return actions.map(this._toElement);
     }
 
     return this._toElement(actions);
-  }
+  };
 
   render() {
     const { stacked } = this.state;

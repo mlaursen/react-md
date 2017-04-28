@@ -233,11 +233,6 @@ export default class ExpansionPanel extends PureComponent {
     if (typeof props.expanded === 'undefined') {
       this.state.expanded = props.defaultExpanded;
     }
-
-    this._handleSave = this._handleSave.bind(this);
-    this._handleCancel = this._handleCancel.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._determineIfTwoLine = this._determineIfTwoLine.bind(this);
   }
 
   componentDidMount() {
@@ -275,15 +270,15 @@ export default class ExpansionPanel extends PureComponent {
     return typeof props.expanded === 'undefined' ? state.expanded : props.expanded;
   }
 
-  _determineIfTwoLine() {
+  _determineIfTwoLine = () => {
     let twoLine = false;
     Array.prototype.slice.call(findDOMNode(this).querySelectorAll('.md-panel-column'))
       .some(el => (twoLine = el.offsetHeight > SINGLE_LINE_HEIGHT));
 
     this.setState({ twoLine });
-  }
+  };
 
-  _handleClick() {
+  _handleClick = () => {
     const expanded = !this._isExpanded(this.props, this.state);
     if (this.props.onExpandToggle) {
       this.props.onExpandToggle(expanded);
@@ -293,9 +288,9 @@ export default class ExpansionPanel extends PureComponent {
     if (typeof this.props.expanded === 'undefined') {
       this.setState({ expanded });
     }
-  }
+  };
 
-  _handleSave(e) {
+  _handleSave = (e) => {
     const { onSave, onExpandToggle, closeOnSave } = this.props;
     if (onSave) {
       onSave(e);
@@ -310,9 +305,9 @@ export default class ExpansionPanel extends PureComponent {
         this.setState({ expanded: false });
       }
     }
-  }
+  };
 
-  _handleCancel(e) {
+  _handleCancel = (e) => {
     const { onCancel, onExpandToggle, closeOnCancel } = this.props;
     if (onCancel) {
       onCancel(e);
@@ -327,7 +322,7 @@ export default class ExpansionPanel extends PureComponent {
         this.setState({ expanded: false });
       }
     }
-  }
+  };
 
   render() {
     const {

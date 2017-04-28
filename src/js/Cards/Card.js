@@ -128,10 +128,6 @@ export default class Card extends PureComponent {
       zDepth: 1,
       expanded: typeof props.initiallyExpanded !== 'undefined' ? props.initiallyExpanded : !!props.defaultExpanded,
     };
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handleExpandClick = this._handleExpandClick.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
   }
 
   getChildContext() {
@@ -160,7 +156,7 @@ export default class Card extends PureComponent {
     };
   }
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -168,9 +164,9 @@ export default class Card extends PureComponent {
     if (this.props.raise && !this._touched) {
       this.setState({ zDepth: 4 });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -180,17 +176,17 @@ export default class Card extends PureComponent {
     if (this.props.raise && this.state.zDepth !== 1) {
       this.setState({ zDepth: 1 });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
 
     this._touched = true;
-  }
+  };
 
-  _handleExpandClick(e) {
+  _handleExpandClick = (e) => {
     const { onExpanderClick } = this.props;
     const expanded = !getField(this.props, this.state, 'expanded');
     if (onExpanderClick) {
@@ -200,7 +196,7 @@ export default class Card extends PureComponent {
     if (typeof this.props.expanded === 'undefined') {
       this.setState({ expanded });
     }
-  }
+  };
 
   render() {
     const { zDepth } = this.state;

@@ -216,12 +216,7 @@ export default class Dialog extends PureComponent {
     renderNode: PropTypes.object,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { transformOrigin: null };
-    this._setContent = this._setContent.bind(this);
-  }
+  state = { transformOrigin: null };
 
   getChildContext() {
     return { renderNode: this._renderNode };
@@ -254,14 +249,14 @@ export default class Dialog extends PureComponent {
     this._renderNode = findDOMNode(dialog);
   };
 
-  _setContent(content) {
+  _setContent = (content) => {
     if (content !== null) {
       this._content = findDOMNode(content);
       const contentPadded = this._content.querySelectorAll('.md-list').length === 0;
 
       this.setState({ contentPadded });
     }
-  }
+  };
 
   render() {
     const { contentPadded, transformOrigin } = this.state;

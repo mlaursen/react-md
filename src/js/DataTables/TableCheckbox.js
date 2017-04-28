@@ -36,15 +36,10 @@ export default class TableCheckbox extends Component {
     fixedFooter: PropTypes.bool.isRequired,
   };
 
-  constructor(props, context) {
-    super(props, context);
+  _td = null;
+  _header = false;
 
-    this._td = null;
-    this._header = false;
-    this._handleMount = this._handleMount.bind(this);
-  }
-
-  _handleMount(td) {
+  _handleMount = (td) => {
     if (td) {
       const header = findTable(td).querySelector('thead');
       const index = td.parentNode.rowIndex - (header ? 1 : 0);
@@ -60,7 +55,7 @@ export default class TableCheckbox extends Component {
       this._td = null;
       this._header = false;
     }
-  }
+  };
 
   render() {
     const { checked, index, ...props } = this.props;

@@ -105,42 +105,33 @@ export default class AccessibleFakeButton extends PureComponent {
     noFocusOutline: true,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { pressed: false, tabFocused: false };
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._setNode = this._setNode.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-  }
+  state = { pressed: false, tabFocused: false };
 
   /**
    * Focuses the button.
    */
-  focus() {
+  focus = () => {
     if (this._node) {
       this._node.focus();
     }
-  }
+  };
 
   /**
    * Blurs the button.
    */
-  blur() {
+  blur = () => {
     if (this._node) {
       this._node.blur();
     }
-  }
+  };
 
-  _setNode(node) {
+  _setNode = (node) => {
     if (node) {
       this._node = findDOMNode(node);
     }
-  }
+  };
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.disabled) {
       return;
     }
@@ -151,9 +142,9 @@ export default class AccessibleFakeButton extends PureComponent {
 
     this._node.focus();
     this.setState({ pressed: !this.state.pressed });
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.disabled) {
       return;
     }
@@ -165,9 +156,9 @@ export default class AccessibleFakeButton extends PureComponent {
     if ((e.which || e.keyCode) === ENTER) {
       this._handleClick(e);
     }
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     const { onKeyUp, onTabFocus } = this.props;
     if (onKeyUp) {
       onKeyUp(e);
@@ -180,9 +171,9 @@ export default class AccessibleFakeButton extends PureComponent {
 
       this.setState({ tabFocused: true });
     }
-  }
+  };
 
-  _handleBlur(e) {
+  _handleBlur = (e) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
@@ -190,7 +181,7 @@ export default class AccessibleFakeButton extends PureComponent {
     if (this.state.tabFocused) {
       this.setState({ tabFocused: false });
     }
-  }
+  };
 
   render() {
     const {

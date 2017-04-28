@@ -201,14 +201,7 @@ export default class FileUpload extends PureComponent {
     onChange: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this.abort = this.abort.bind(this);
-    this._uploadFile = this._uploadFile.bind(this);
-    this._handleUpload = this._handleUpload.bind(this);
-  }
+  state = {};
 
   /**
    * Attempts to abort the upload of a file. This function takes an optional `file` or `fileName`
@@ -218,7 +211,7 @@ export default class FileUpload extends PureComponent {
    * @param {Object|string=} file - The file or the file name to use to find the
    *     correct `FileReader`.
    */
-  abort(file) {
+  abort = (file) => {
     let fileName = file;
     if (!file) {
       // Attempt to remove first file added...
@@ -234,9 +227,9 @@ export default class FileUpload extends PureComponent {
 
       this.setState(omit(this.state, [fileName]));
     }
-  }
+  };
 
-  _uploadFile(file) {
+  _uploadFile = (file) => {
     const {
       onAbort,
       onError,
@@ -307,9 +300,9 @@ export default class FileUpload extends PureComponent {
     }
 
     return fr;
-  }
+  };
 
-  _handleUpload(fileList, e) {
+  _handleUpload = (fileList, e) => {
     if (this.props.onChange) {
       this.props.onChange(fileList, e);
     }
@@ -339,7 +332,7 @@ export default class FileUpload extends PureComponent {
     });
 
     this.setState(nextState);
-  }
+  };
 
   render() {
     const {
