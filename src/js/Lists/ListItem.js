@@ -100,12 +100,6 @@ export default class ListItem extends PureComponent {
     leftIcon: PropTypes.node,
 
     /**
-     * Boolean if the list item should be inset as if there is a `leftIcon` or a `leftAvatar`.
-     * This is used for some lists where only a parent contains the icon.
-     */
-    inset: PropTypes.bool,
-
-    /**
      * An optional `Avatar` to display to the left of the text. If you have a mixed `List` of
      * `FontIcon` and `Avatar`, it is recommended to set the `iconSized` prop on the `Avatar` to
      * `true` so that the `Avatar` will be scaled down to the `FontIcon` size.
@@ -123,6 +117,12 @@ export default class ListItem extends PureComponent {
      * `true` so that the `Avatar` will be scaled down to the `FontIcon` size.
      */
     rightAvatar: PropTypes.node,
+
+    /**
+     * Boolean if the list item should be inset as if there is a `leftIcon` or a `leftAvatar`.
+     * This is used for some lists where only a parent contains the icon.
+     */
+    inset: PropTypes.bool,
 
     /**
      * Boolean if the `secondaryText` should span two lines instead of one. This will include

@@ -1,136 +1,95 @@
 // Type definitions for react-md
 // Project: https://github.com/mlaursen/react-md
 
-
-import Autocomplete from './src/js/Autocompletes';
-import Avatar from './src/js/Avatars';
-import Badge from './src/js/Badges';
-import BottomNavigation from './src/js/BottomNavigations';
-import Button from './src/js/Buttons';
-import { Card, CardActions, CardText, CardTitle } from './src/js/Cards';
-import Chip from './src/js/Chips';
-import { DataTable, TableHeader, TableRow, TableColumn, TableBody, EditDialogColumn, SelectFieldColumn, TablePagination } from './src/js/DataTables';
-import { DialogContainer, Dialog } from './src/js/Dialogs';
-import Divider from './src/js/Dividers';
-import Drawer from './src/js/Drawers';
-import { ExpansionPanel, ExpansionList } from './src/js/ExpansionPanels';
-import { FileInput, FileUpload } from './src/js/FileInputs';
-import FontIcon from './src/js/FontIcons';
-import { AccessibleFakeButton, AccessibleFakeInkedButton, Collapse, FocusContainer, IconSeparator, Portal } from './src/js/Helpers';
-import injectInk from './src/js/Inks';
-import { List, ListItem, ListItemControl } from './src/js/Lists';
-import { Media, MediaOverlay } from './src/js/Media';
-import { Menu, MenuButton } from './src/js/Menus';
-import { NavigationDrawer, CloseButton, JumpToContentLink } from './src/js/NavigationDrawers';
-import Paper from './src/js/Papers';
-import { DatePicker, TimePicker } from './src/js/Pickers';
-import { CircularProgress, LinearProgress } from './src/js/Progress';
-import SelectField from './src/js/SelectFields';
-import { SelectionControl, SelectionControlGroup, Checkbox, Radio, Switch } from './src/js/SelectionControls';
-import Slider from './src/js/Sliders';
-import Snackbar from './src/js/Snackbars';
-import Subheader from './src/js/Subheaders';
-import { TabsContainer, Tabs, Tab, TabPanel, MenuTab } from './src/js/Tabs';
-import TextField from './src/js/TextFields';
-import Toolbar from './src/js/Toolbars';
-import injectTooltip from './src/js/Tooltips';
-
+export { default as Autocomplete, AutocompleteProps } from './lib/Autocompletes';
+export { default as Avatar, AvatarProps } from './lib/Avatars';
+export { default as Badge, BadgeProps } from './lib/Badges';
+export { default as BottomNavigation, BottomNavigationProps } from './lib/BottomNavigations';
+export { default as Button, ButtonProps } from './lib/Buttons';
 export {
-  Autocomplete,
-
-  Avatar,
-
-  Badge,
-
-  BottomNavigation,
-
-  Button,
-
-  Card,
-  CardActions,
-  CardText,
-  CardTitle,
-
-  Chip,
-
-  DataTable,
-  TableHeader,
-  TableRow,
-  TableColumn,
-  TableBody,
-  EditDialogColumn,
-  SelectFieldColumn,
-  TablePagination,
-
-  DialogContainer,
-  Dialog,
-
-  Divider,
-
-  Drawer,
-
-  ExpansionPanel,
-  ExpansionList,
-
-  FileInput,
-  FileUpload,
-
-  FontIcon,
-
-  AccessibleFakeButton,
-  AccessibleFakeInkedButton,
-  Collapse,
-  FocusContainer,
-  IconSeparator,
-  Portal,
-
-  injectInk,
-
-  List,
-  ListItem,
-  ListItemControl,
-
-  Media,
-  MediaOverlay,
-
-  Menu,
-  MenuButton,
-
-  NavigationDrawer,
-  CloseButton,
-  JumpToContentLink,
-
-  Paper,
-
-  DatePicker,
-  TimePicker,
-
-  CircularProgress,
-  LinearProgress,
-
-  SelectField,
-
-  SelectionControl,
-  SelectionControlGroup,
-  Checkbox,
-  Radio,
-  Switch,
-
-  Slider,
-
-  Snackbar,
-
-  Subheader,
-
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanel,
-  MenuTab,
-
-  TextField,
-
-  Toolbar,
-
-  injectTooltip
-}
+  Card, CardProps,
+  CardActions, CardActionsProps,
+  CardText, CardTextProps,
+  CardTitle, CardTitleProps
+} from './lib/Cards';
+export { default as Chip, ChipProps } from './lib/Chips';
+export {
+  DataTable, DataTableProps,
+  TableHeader, TableHeaderProps,
+  TableBody, TableBodyProps,
+  TableFooter, TableFooterProps,
+  TablePagination, TablePaginationProps,
+  TableRow, TableRowProps,
+  TableColumn, TableColumnProps,
+  EditDialogColumn, EditDialogColumnProps,
+  SelectFieldColumn, SelectFieldColumnProps,
+} from './lib/DataTables';
+export {
+  DialogContainer, DialogContainerProps,
+  Dialog, DialogProps,
+} from './lib/Dialogs';
+export { default as Divider, DividerProps } from './lib/Dividers';
+export { default as Drawer, DrawerProps, MobileDrawerTypes, DrawerTypes } from './lib/Drawers';
+export {
+  ExpansionPanel, ExpansionPanelProps,
+  ExpansionList, ExpansionListProps,
+} from './lib/ExpansionPanels';
+export { default as FontIcon, FontIconProps } from './lib/FontIcons';
+export {
+  AccessibleFakeButton, AccessibleFakeButtonProps,
+  AccessibleFakeInkedButton, AccessibleFakeInkedButtonProps,
+  Collapse, CollapseProps,
+  FocusContainer, FocusContainerProps,
+  IconSeparator, IconSeparatorProps,
+  Portal, PortalProps,
+} from './lib/Helpers';
+export { default as injectInk, InjectedInkProps, InkedComponent } from './lib/Inks';
+export {
+  List, ListProps,
+  ListItem, ListItemProps,
+  ListItemControl, ListItemControlProps,
+} from './lib/Lists';
+export {
+  Media, MediaProps,
+  MediaOverlay, MediaOverlayProps,
+} from './lib/Media';
+export {
+  Menu, MenuProps,
+  DropdownMenu, DropdownMenuProps,
+  MenuButton, MenuButtonProps,
+} from './lib/Menus';
+export {
+  NavigationDrawer, NavigationDrawerProps,
+  CloseButton, CloseButtonProps,
+  JumpToContentLink, JumpToContentLinkProps,
+} from './lib/NavigationDrawers';
+export { default as Paper, PaperProps } from './lib/Papers';
+export {
+  DatePicker, DatePickerProps,
+  TimePicker, TimePickerProps,
+} from './lib/Pickers';
+export {
+  CircularProgress, CircularProgressProps,
+  LinearProgress, LinearProgressProps,
+} from './lib/Progress';
+export { default as SelectField, SelectFieldProps } from './lib/SelectFields';
+export {
+  SelectionControl, SelectionControlProps,
+  SelectionControlGroup, SelectionControlGroupProps,
+  Checkbox, CheckboxProps,
+  Radio, RadioProps,
+  Switch, SwitchProps,
+} from './lib/SelectionControls';
+export { default as Slider, SliderProps } from './lib/Sliders';
+export { default as Snackbar, SnackbarProps } from './lib/Snackbars';
+export { default as Subheader, SubheaderProps } from './lib/Subheaders';
+export {
+  TabsContainer, TabsContainerProps,
+  Tabs, TabsProps,
+  Tab, TabProps,
+  TabPanel, TabPanelProps,
+  MenuTab, MenuTabProps,
+} from './lib/Tabs';
+export { default as TextField, TextFieldProps } from './lib/TextFields';
+export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
+export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent } from './lib/Tooltips';

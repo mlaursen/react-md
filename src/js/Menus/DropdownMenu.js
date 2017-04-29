@@ -139,8 +139,6 @@ export default class DropdownMenu extends PureComponent {
     ]),
 
     /**
-     *
-     *
      * @see {@link Menus/Menu#toggle}
      */
     children: PropTypes.element.isRequired,

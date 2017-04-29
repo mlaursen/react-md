@@ -1,20 +1,11 @@
 import * as React from 'react';
 import { IdPropType, Props } from '../index';
 
-interface CommonProps extends Props {
+export interface BaseProgressProps extends Props {
   id: IdPropType;
   value?: number;
   centered?: boolean;
 }
 
-export interface CircularProgressProps extends CommonProps {
-  scale?: number;
-  determinateDashoffset?: number;
-}
-
-export interface LinearProgressProps extends CommonProps {
-  query?: boolean;
-}
-
-export class CircularProgress extends React.Component<CircularProgressProps, {}> { }
-export class LinearProgress extends React.Component<LinearProgressProps, {}> { }
+export { default as CircularProgress, CircularProgressProps } from './CircularProgress';
+export { default as LinearProgress, LinearProgressProps } from './LinearProgress';
