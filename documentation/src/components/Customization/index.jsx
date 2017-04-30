@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
+import { getTab } from 'utils/routing';
 
 import { NotFound, Colors, Themes, Typography, MediaQueries, MinimizingBundle } from 'routes';
 
-const Customization = ({ match: { params: { location } }, history }) => {
+const Customization = ({ match: { params: { location } }, history, location: { search } }) => {
+  const tab = getTab(search);
   if (location === 'colors') {
     return <Colors />;
   } else if (location === 'themes') {
-    return <Themes />;
+    return <Themes tab={tab} />;
   } else if (location === 'typography') {
     return <Typography />;
   } else if (location === 'media-queries') {
@@ -21,5 +23,6 @@ const Customization = ({ match: { params: { location } }, history }) => {
 Customization.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 export default Customization;
