@@ -69,6 +69,7 @@ export default class Radio extends PureComponent {
      * The value for the `Radio` component.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,

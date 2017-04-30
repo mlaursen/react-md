@@ -19,6 +19,7 @@ export interface DialogContainerProps extends DialogProps {
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
+  defaultVisibleTransitionable?: boolean;
 }
 
 declare const DialogContainer: React.ComponentClass<DialogContainerProps>;

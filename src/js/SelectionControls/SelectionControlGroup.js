@@ -143,6 +143,7 @@ export default class SelectionControlGroup extends PureComponent {
      * value of the `controls` prop will be used as the defalt value.
      */
     defaultValue: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -153,8 +154,9 @@ export default class SelectionControlGroup extends PureComponent {
      * can either be a single value or a comma-delimited list of checkbox values.
      */
     value: controlled(PropTypes.oneOfType([
-      PropTypes.string,
+      PropTypes.bool,
       PropTypes.number,
+      PropTypes.string,
     ]), 'onChange'),
 
     /**
@@ -171,8 +173,9 @@ export default class SelectionControlGroup extends PureComponent {
       ]),
       label: PropTypes.node.isRequired,
       value: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.bool,
         PropTypes.number,
+        PropTypes.string,
       ]).isRequired,
     })).isRequired,
 

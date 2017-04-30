@@ -169,4 +169,43 @@ describe('SelectField', () => {
     expect(renderCount).toBe(2);
     expect(test.find(SelectField).get(0).state.activeLabel).toBe('World');
   });
+
+  it('should not update the error state on update if it has not been focused yet', () => {
+    let renderCount = 0;
+    class Test extends React.Component {
+      render() {
+        renderCount += 1;
+
+        return (
+          <div>
+            <SelectField
+              id="test"
+              menuItems={[{ label: 'Hello', value: 0 }, { label: 'World', value: 1 }, { label: 'Omega', value: 2 }]}
+              required
+            />
+          </div>
+        );
+      }
+    }
+
+    const test = mount(<Test />);
+    expect(renderCount).toBe(1);
+
+    let field = test.find(SelectField).get(0);
+    expect(field.state.error).toBe(false);
+
+    test.update();
+    expect(renderCount).toBe(2);
+    field = test.find(SelectField).get(0);
+    expect(field.state.error).toBe(false);
+
+    const input = test.find('.md-select-field');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(field.state.error).toBe(false);
+
+    input.simulate('blur');
+    expect(field.state.error).toBe(true);
+  });
 });

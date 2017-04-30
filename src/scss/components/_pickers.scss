@@ -303,12 +303,11 @@ $md-clock-padding: 4px !default;
   .md-dialog--picker {
     max-height: calc(100% - #{$md-picker-mobile-margin});
     max-width: calc(100% - #{$md-picker-mobile-margin});
+    overflow: auto;
     width: auto;
   }
 
   .md-dialog-content--picker {
-    max-height: inherit;
-    max-width: inherit;
     padding: 0;
   }
 

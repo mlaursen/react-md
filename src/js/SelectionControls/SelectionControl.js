@@ -120,6 +120,7 @@ export default class SelectionControl extends PureComponent {
      * but it is recommended.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),

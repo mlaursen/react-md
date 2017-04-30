@@ -65,6 +65,7 @@ export default class Switch extends PureComponent {
      * An optional value for the `Switch`. It is recommended to use a value though.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),
