@@ -40,19 +40,25 @@ export default function reactMD(req, res) {
     } else if (renderProps) {
       const { params, components } = renderProps;
 
-      await Promise.all(
+      try {
+        await Promise.all(
         components.filter(c => c && c.fetch)
           .map(({ fetch }) => fetch(store.dispatch, params))
       );
 
-      res.render('index', {
-        initialState: JSON.stringify(store.getState()),
-        html: renderToString(
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
-          </Provider>
-        ),
-      });
+        res.render('index', {
+          initialState: JSON.stringify(store.getState()),
+          html: renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          ),
+        });
+      } catch (e) {
+        res.render('index', {
+          initialState: JSON.stringify(store.getState()),
+        });
+      }
     } else {
       res.sendStatus(404);
     }
