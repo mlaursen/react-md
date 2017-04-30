@@ -58,6 +58,7 @@ $dialog-title-height: 60px;
 
 .notification-dialog {
   height: $dialog-height;
+  position: absolute;
   right: 0;
   width: 340px;
   z-index: 33;

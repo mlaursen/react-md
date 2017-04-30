@@ -47,6 +47,7 @@ const Configuration = ({
       name="edit-dialog"
       checked={dialogChecked}
       onChange={onDialogChange}
+      disabled={inlineChecked}
     />
     <SelectionControl
       type="switch"

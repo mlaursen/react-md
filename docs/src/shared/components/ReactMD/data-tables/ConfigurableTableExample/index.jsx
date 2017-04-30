@@ -53,7 +53,11 @@ export default class ConfigurableTableExample extends PureComponent {
   };
 
   handleInlineChange = (inline) => {
-    this.setState({ inline });
+    let { large } = this.state;
+    if (inline) {
+      large = false;
+    }
+    this.setState({ inline, large });
   };
 
   handleSaveChange = (okOnOutsideClick) => {
