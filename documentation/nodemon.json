@@ -10,6 +10,7 @@
     ".eslintrc",
     ".babelrc",
     "index.js",
-    "src/server/**/*.js"
+    "src/server/**/*.js",
+    ".env"
   ]
 }

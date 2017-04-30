@@ -60,7 +60,16 @@ module.exports = ({ production }) => {
         loader: 'babel-loader',
         options: {
           babelrc: false,
-          presets: [['es2015', { modules: false }], 'react', 'stage-0'],
+          presets: [
+            ['env', {
+              targets: {
+                browsers: ['last 2 versions', 'safari >= 7'],
+              },
+              modules: false,
+            }],
+            'react',
+            'stage-0',
+          ],
           plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
         },
       }, {
