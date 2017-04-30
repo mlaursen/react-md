@@ -69,6 +69,7 @@ export default class Checkbox extends PureComponent {
      * An optional value for the `Checkbox`. It is recommended to use a value though.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),
