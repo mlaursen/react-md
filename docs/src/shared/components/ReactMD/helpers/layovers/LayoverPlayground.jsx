@@ -147,6 +147,7 @@ export default class LayoverPlayground extends PureComponent {
               onClose={this._close}
               closeOnOutsideClick={closeOnOutsideClick}
               sameWidth={sameWidth}
+              animationPosition={Layover.Positions.TOP_LEFT}
             >
               {children}
             </Layover>
