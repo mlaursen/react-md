@@ -5,7 +5,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TimePickerHeader from '../TimePickerHeader';
 import PickerControl from '../PickerControl';

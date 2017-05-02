@@ -6,7 +6,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import BottomNavigation from '../BottomNavigation';
 import Dialog from '../../Dialogs/Dialog';

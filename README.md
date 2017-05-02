@@ -13,8 +13,6 @@ react-md is a set of React components and sass files for implementing [Google's 
 ```bash
 $ npm i -S react \
            react-dom \
-           react-addons-transition-group \
-           react-addons-css-transition-group \
            react-md
 ```
 

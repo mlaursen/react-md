@@ -8,7 +8,7 @@ import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SelectionControlGroup from '../SelectionControlGroup';
 import SelectionControl from '../SelectionControl';

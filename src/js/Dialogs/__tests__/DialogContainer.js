@@ -4,13 +4,13 @@ jest.unmock('../Dialog');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DialogContainer from '../DialogContainer';
 import Dialog from '../Dialog';

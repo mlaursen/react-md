@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars, no-shadow */
-import React, { PureComponent, PropTypes, Children } from 'react';
+import React, { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import SelectionControlGroup from './SelectionControlGroup';
