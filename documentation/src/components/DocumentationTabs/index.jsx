@@ -42,7 +42,7 @@ export default class DocumentationTabs extends PureComponent {
     let sassdocTab;
     let propTypesTab;
     if (!customization) {
-      propTypesTab = <Tab label="Prop Types" id="docmentation-prop-types" key="prop-types" />;
+      propTypesTab = <Tab label="Prop Types" id="documentation-prop-types" key="prop-types" />;
     }
 
     if (colors || pathname.indexOf('layovers') !== -1 || section !== 'helpers') {
@@ -60,7 +60,7 @@ export default class DocumentationTabs extends PureComponent {
         activeTabIndex={activeTabIndex}
         onTabChange={this.handleTabChange}
       >
-        <Tab label={firstTabLabel} id={`documentation-${firstTabLabel.toLowerCase()}`} />
+        <Tab label={firstTabLabel} id={`documentation-${firstTabLabel.toLowerCase()}`} key="first-tab" />
         {propTypesTab}
         {themer}
         {sassdocTab}

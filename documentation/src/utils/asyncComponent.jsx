@@ -11,7 +11,7 @@ export default function asyncComponent(getComponent, loadingChildren = null) {
           AsyncComponent.Component = Component;
           this.setState({ Component });
         });
-      } else {
+      } else if (!this.state.Component) {
         this.setState({ Component: AsyncComponent.Component });
       }
     }

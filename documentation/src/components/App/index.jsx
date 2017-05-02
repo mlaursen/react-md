@@ -83,33 +83,29 @@ export default class App extends PureComponent {
 
     let tabs;
     if (toolbarProminent) {
-      tabs = <DocumentationTabs key={tabs} />;
+      tabs = <DocumentationTabs key="tabs" />;
     }
 
     return (
-      <Route
-        render={({ location }) => (
-          <NavigationDrawer
-            drawerTitle="react-md"
-            toolbarTitle={toolbarTitle}
-            defaultMedia={defaultMedia}
-            onMediaTypeChange={this.updateMedia}
-            toolbarZDepth={visibleBoxShadow ? undefined : 0}
-            toolbarProminent={toolbarProminent}
-            toolbarChildren={tabs}
-            navItems={navItems.map(({ divider, subheader, ...route }) => {
-              if (divider || subheader) {
-                return { divider, subheader, ...route };
-              }
+      <NavigationDrawer
+        drawerTitle="react-md"
+        toolbarTitle={toolbarTitle}
+        defaultMedia={defaultMedia}
+        onMediaTypeChange={this.updateMedia}
+        toolbarZDepth={visibleBoxShadow ? undefined : 0}
+        toolbarProminent={toolbarProminent}
+        toolbarChildren={tabs}
+        navItems={navItems.map(({ divider, subheader, ...route }) => {
+          if (divider || subheader) {
+            return { divider, subheader, ...route };
+          }
 
-              return <Link {...route} />;
-            })}
-          >
-            <Helmet {...helmetConfig} title={toolbarTitle} />
-            <Routing location={location} key={location.key} />
-          </NavigationDrawer>
-        )}
-      />
+          return <Link {...route} />;
+        })}
+      >
+        <Helmet {...helmetConfig} title={toolbarTitle} />
+        <Route render={({ location }) => <Routing location={location} />} />
+      </NavigationDrawer>
     );
   }
 }
