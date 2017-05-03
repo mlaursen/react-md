@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { findDOMNode } from 'react-dom';
 import deprecated from 'react-prop-types/lib/deprecated';
@@ -362,6 +363,7 @@ export default class SelectField extends PureComponent {
 
     this._items = [];
     this._activeItem = null;
+    this._focusedAtLeastOnce = false;
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -378,7 +380,7 @@ export default class SelectField extends PureComponent {
       };
     }
 
-    if (nextProps.required && !isOpen && error !== valued) {
+    if (this._focusedAtLeastOnce && nextProps.required && !isOpen && error !== valued) {
       state = state || {};
       state.error = valued;
     }
@@ -511,6 +513,7 @@ export default class SelectField extends PureComponent {
   }
 
   _handleFocus(e) {
+    this._focusedAtLeastOnce = true;
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }

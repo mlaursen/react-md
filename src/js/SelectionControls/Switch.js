@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -65,6 +66,7 @@ export default class Switch extends PureComponent {
      * An optional value for the `Switch`. It is recommended to use a value though.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),

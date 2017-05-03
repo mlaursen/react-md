@@ -8,7 +8,7 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import FileInput from '../FileInput';
 

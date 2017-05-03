@@ -7,7 +7,7 @@ import { shallow, mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SelectField from '../SelectField';
 import Menu from '../../Menus/Menu';
@@ -90,5 +90,45 @@ describe('SelectField', () => {
     test.update();
     expect(renderCount).toBe(2);
     expect(test.find(SelectField).get(0).state.activeLabel).toBe('World');
+  });
+
+  it('should not update the error state on update if it has not been focused yet', () => {
+    // Can't really test the other stuff until 1.1.0 since I need the use of not mocking everything. Sigh
+    let renderCount = 0;
+    class Test extends React.Component {
+      render() {
+        renderCount += 1;
+
+        return (
+          <div>
+            <SelectField
+              id="test"
+              menuItems={[{ label: 'Hello', value: 0 }, { label: 'World', value: 1 }, { label: 'Omega', value: 2 }]}
+              required
+            />
+          </div>
+        );
+      }
+    }
+
+    const test = mount(<Test />);
+    expect(renderCount).toBe(1);
+
+    let field = test.find(SelectField).get(0);
+    expect(field.state.error).toBe(false);
+
+    test.update();
+    expect(renderCount).toBe(2);
+    field = test.find(SelectField).get(0);
+    expect(field.state.error).toBe(false);
+
+    // since I can't do it real way...
+    field._handleFocus();
+    expect(field.state.error).toBe(true);
+
+    test.update();
+    expect(renderCount).toBe(3);
+    field = test.find(SelectField).get(0);
+    expect(field.state.error).toBe(true);
   });
 });

@@ -7,7 +7,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import { mount } from 'enzyme';
 import { TAB } from '../../constants/keyCodes';

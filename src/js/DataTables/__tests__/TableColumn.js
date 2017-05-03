@@ -7,7 +7,7 @@ import {
   Simulate,
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TableColumn from '../TableColumn';
 

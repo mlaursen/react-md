@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
@@ -301,10 +302,10 @@ export default class TextField extends PureComponent {
 
     /**
      * The number of rows for the `multiline` text field. This value must be greater than
-     * or equal to 2. When this value is set, the text field will be converted to a multiline
+     * or equal to 1. When this value is set, the text field will be converted to a multiline
      * field.
      */
-    rows: minNumber(2, false),
+    rows: minNumber(1, false),
 
     /**
      * The maximum number of rows for a `multiline` text field. If this value is

@@ -11,7 +11,7 @@ import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Drawer from '../Drawer';
 import Dialog from '../../Dialogs/Dialog';

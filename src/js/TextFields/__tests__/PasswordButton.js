@@ -7,7 +7,7 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import PasswordButton from '../PasswordButton';
 import FontIcon from '../../FontIcons/FontIcon';

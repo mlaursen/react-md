@@ -1,4 +1,5 @@
-import React, { Component, PropTypes, Children, cloneElement } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
@@ -47,7 +48,7 @@ export default class TableRow extends Component {
      * A function to call when the checkbox is clicked. This
      * function will will be called with `(rowIndex, event)`. The
      * `TableBody` and `TableHeader` components will automatically
-     * merge in a function to goggle the checkbox.
+     * merge in a function to toggle the checkbox.
      */
     onCheckboxClick: PropTypes.func,
 
