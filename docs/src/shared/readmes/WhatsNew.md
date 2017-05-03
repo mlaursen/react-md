@@ -1,3 +1,18 @@
+## May 2017
+### v1.0.13 Released
+This patch was about removing the prop type warnings from the new React version and other small bugs.
+
+##### Changelog
+- Migrate React.PropTypes to prop-types. [#325](https://github.com/mlaursen/react-md/issues/325)
+- Allow boolean values in selection controls [#350](https://github.com/mlaursen/react-md/issues/350)
+- Fixed the picker diplay bug. [#354](https://github.com/mlaursen/react-md/issues/354)
+- Fixed the SelectField error state bug. [#354](https://github.com/mlaursen/react-md/issues/353)
+- Fixed the dialog mounting animation bug. [#348](https://github.com/mlaursen/react-md/issues/348)
+- Allow a multiline textfield to grow from 1 row to multiple. [#347](https://github.com/mlaursen/react-md/issues/347)
+- Fixed the AccessibleFakeButton to click when spacebar is pressed. [#346](https://github.com/mlaursen/react-md/issues/346)
+
+
+
 ## April 2017
 ### Added Showcases
 Added a new place to showcase apps that are using react-md. You can view them [here](/discover-more/showcases).
