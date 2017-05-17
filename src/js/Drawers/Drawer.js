@@ -14,6 +14,7 @@ import List from '../Lists/List';
 
 import { isTemporary, isPermanent, isMini } from './isType';
 import DrawerTypes from './DrawerTypes';
+import Overlay from './Overlay';
 
 const oneOfDrawerTypes = PropTypes.oneOf([
   DrawerTypes.FULL_HEIGHT,
@@ -668,14 +669,12 @@ export default class Drawer extends PureComponent {
         {header}
         {navigation}
         {children}
-        <Portal visible={overlayVisible} renderNode={renderNode}>
-          <div
-            className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
-              'md-overlay--active': overlayActive,
-            })}
-            onClick={this._closeDrawer}
-          />
-        </Portal>
+        <Overlay
+          active={overlayActive}
+          visible={overlayVisible}
+          onClick={this._closeDrawer}
+          renderNode={renderNode}
+        />
       </Paper>
     );
 

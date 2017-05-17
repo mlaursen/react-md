@@ -1,5 +1,5 @@
 /* eslint-env jest */
-/* eslint-disable react/prop-types,max-len */
+/* eslint-disable react/prop-types,max-len,react/no-multi-comp */
 jest.unmock('../TablePagination');
 
 import React from 'react';
@@ -8,6 +8,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
 } from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 import TablePagination from '../TablePagination';
 
@@ -148,5 +149,39 @@ describe('TablePagination', () => {
       expect(onPagination.mock.calls[0][1]).toBe(props.rowsPerPage);
       expect(onPagination.mock.calls[0][2]).toBe(4);
     });
+  });
+
+  it('should update the start state if the page or rowsPerPage prop changes', () => {
+    const onPagination = jest.fn();
+    const rowsPerPageItems = [1, 2, 3];
+
+    class TestTable extends React.Component {
+      state = {
+        page: 3,
+        rowsPerPage: 1,
+      };
+
+      render() {
+        return (
+          <Table>
+            <TablePagination
+              onPagination={onPagination}
+              page={this.state.page}
+              rows={1000}
+              rowsPerPage={this.state.rowsPerPage}
+              rowsPerPageItems={rowsPerPageItems}
+            />
+          </Table>
+        );
+      }
+    }
+
+    const test = mount(<TestTable />);
+    let pagination = test.find(TablePagination).get(0);
+    expect(pagination.state.start).toBe(2);
+
+    test.setState({ page: 1 });
+    pagination = test.find(TablePagination).get(0);
+    expect(pagination.state.start).toBe(0);
   });
 });

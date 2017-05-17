@@ -9,6 +9,7 @@ import contextTypes from './contextTypes';
 import Positions from './Positions';
 import TICK from '../constants/CSSTransitionGroupTick';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import List from '../Lists/List';
 
 /**
@@ -166,6 +167,7 @@ export default class Menu extends PureComponent {
 
     this._setList = this._setList.bind(this);
     this._setContainer = this._setContainer.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleListClick = this._handleListClick.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
@@ -241,6 +243,10 @@ export default class Menu extends PureComponent {
     }
   }
 
+  _handleKeyDown(e) {
+    handleKeyboardAccessibility(e, this._handleListClick, true, true);
+  }
+
   _handleListClick(e) {
     const { onClose, close } = this.props;
 
@@ -298,6 +304,7 @@ export default class Menu extends PureComponent {
         key: 'menu-list',
         className: cn(menuClassName, list.props.className),
         onClick: this._handleListClick,
+        onKeyDown: this._handleKeyDown,
         ref: this._setList,
       });
     } catch (e) {
@@ -307,6 +314,7 @@ export default class Menu extends PureComponent {
           key="menu-list"
           style={listStyle}
           className={menuClassName}
+          onKeyDown={this._handleKeyDown}
           onClick={this._handleListClick}
           ref={this._setList}
         >

@@ -141,6 +141,16 @@ export default class TablePagination extends PureComponent {
     window.addEventListener('resize', this._position);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { rowsPerPage, page } = this.props;
+    if (page !== nextProps.page || rowsPerPage !== nextProps.rowsPerPage) {
+      const rpp = getField(nextProps, this.state, 'rowsPerPage');
+      const p = getField(nextProps, this.state, 'page');
+
+      this.setState({ start: (p - 1) * rpp });
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { rows } = this.props;
     const { start, rowsPerPage } = this.state;
