@@ -5,11 +5,11 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { SPACE, ENTER } from '../constants/keyCodes';
 import contextTypes from './contextTypes';
 import Positions from './Positions';
 import TICK from '../constants/CSSTransitionGroupTick';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import List from '../Lists/List';
 
 /**
@@ -244,10 +244,7 @@ export default class Menu extends PureComponent {
   }
 
   _handleKeyDown(e) {
-    const key = e.which || e.keyCode;
-    if (key === SPACE || key === ENTER) {
-      this._handleListClick(e);
-    }
+    handleKeyboardAccessibility(e, this._handleListClick, true, true);
   }
 
   _handleListClick(e) {
