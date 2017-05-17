@@ -21,8 +21,9 @@ import isFormPartRole from '../isFormPartRole';
  *      is for a form role.
  * @param {boolean=true} listenToSpace - boolean if the space key should be used to trigger the
  *      click event.
+ * @return {Boolean} true if the enter or space keys were pressed while their listener is also active.
  */
-export default function handleKeyboardAccesibility(e, onClick, listenToEnter = true, listenToSpace = true) {
+export default function handleKeyboardAccessibility(e, onClick, listenToEnter = true, listenToSpace = true) {
   const key = e.which || e.keyCode;
   const space = listenToSpace && key === SPACE;
   const enter = key === ENTER;
@@ -39,10 +40,14 @@ export default function handleKeyboardAccesibility(e, onClick, listenToEnter = t
       submit.click();
     }
 
-    return;
+    return true;
   }
 
   if ((enter && listenToEnter) || space) {
     onClick(e);
+
+    return true;
   }
+
+  return false;
 }
