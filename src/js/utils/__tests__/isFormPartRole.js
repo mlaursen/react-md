@@ -19,4 +19,14 @@ describe('isFormPartRole', () => {
     const el = { getAttribute: () => 'radio' };
     expect(isFormPartRole(el)).toBe(true);
   });
+
+  it('should return true if the nodeName is INPUT', () => {
+    const el = { nodeName: 'INPUT', getAttribute: jest.fn() };
+    expect(isFormPartRole(el)).toBe(true);
+  });
+
+  it('should return false if the nodeName is DIV', () => {
+    const el = { nodeName: 'DIV', getAttribute: jest.fn() };
+    expect(isFormPartRole(el)).toBe(false);
+  });
 });

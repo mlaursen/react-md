@@ -7,6 +7,7 @@
  * - checkbox
  * - radio
  * - listbox
+ * - input
  *
  * @param {HTMLElement} el - the element to check.
  * @return {boolean} true if the element is considered an element part of a form.
@@ -14,6 +15,8 @@
 export default function isFormPartRole(el) {
   if (!el) {
     return false;
+  } else if (el.nodeName === 'INPUT') {
+    return true;
   }
 
   const role = el.getAttribute('role');
