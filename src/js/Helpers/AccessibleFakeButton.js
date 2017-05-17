@@ -2,7 +2,8 @@ import React, { PureComponent, Children } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import { TAB, ENTER, SPACE } from '../constants/keyCodes';
+import { TAB } from '../constants/keyCodes';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 
 /**
  * The `AccessibleFakeButton` is a generic component that can be used to render
@@ -90,12 +91,28 @@ export default class AccessibleFakeButton extends PureComponent {
      * @access private
      */
     ink: PropTypes.node,
+
+    /**
+     * Boolean if the spacebar should be used to trigger the click event. This _should_ be `true`
+     * is almost all cases.
+     */
+    listenToSpace: PropTypes.bool,
+
+    /**
+     * Boolean if the enter key should be used to trigger the click event. This _should_ be `true`
+     * in most cases. By default, the param will be ignored if the `role` attribute is for a `checkbox`
+     * or `radio`. When it is a checkbox or radio, it will attempt to submit the form on the enter
+     * keypress instead like the native elements.
+     */
+    listenToEnter: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'div',
     tabIndex: 0,
     role: 'button',
+    listenToEnter: true,
+    listenToSpace: true,
   };
 
   constructor(props) {
@@ -147,24 +164,16 @@ export default class AccessibleFakeButton extends PureComponent {
   }
 
   _handleKeyDown(e) {
-    if (this.props.disabled) {
+    const { disabled, onKeyDown, listenToEnter, listenToSpace } = this.props;
+    if (disabled) {
       return;
     }
 
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
+    if (onKeyDown) {
+      onKeyDown(e);
     }
 
-    const key = e.which || e.keyCode;
-    const space = key === SPACE;
-    if (space) {
-      // prevent the page from scrolling
-      e.preventDefault();
-    }
-
-    if (key === ENTER || space) {
-      this._handleClick(e);
-    }
+    handleKeyboardAccessibility(e, this._handleClick, listenToEnter, listenToSpace);
   }
 
   _handleKeyUp(e) {
@@ -208,6 +217,8 @@ export default class AccessibleFakeButton extends PureComponent {
     delete props.onKeyUp;
     delete props.onKeyDown;
     delete props.onTabFocus;
+    delete props.listenToEnter;
+    delete props.listenToSpace;
 
     let childElements = children;
     if (ink) {

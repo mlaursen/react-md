@@ -5,8 +5,9 @@ import { findDOMNode } from 'react-dom';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { UP, DOWN, ESC, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
+import { UP, DOWN, ESC, ENTER, SPACE, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import isBetween from '../utils/NumberUtils/isBetween';
 import addSuffix from '../utils/StringUtils/addSuffix';
@@ -711,10 +712,14 @@ export default class SelectField extends PureComponent {
 
     if (key === UP || key === DOWN) {
       e.preventDefault();
+
+      if (!isOpen) {
+        this._handleOpen(e);
+        return;
+      }
     }
 
-    if (!isOpen && (key === DOWN || key === UP || key === ENTER)) {
-      this._handleOpen(e);
+    if (!isOpen && handleKeyboardAccessibility(e, this._handleOpen, true, true)) {
       return;
     } else if (isOpen && (key === ESC || key === TAB)) {
       if (this._field && key === ESC) {
@@ -731,6 +736,7 @@ export default class SelectField extends PureComponent {
         this._advanceFocus(key === UP, e);
         break;
       case ENTER:
+      case SPACE:
         if (this._field) {
           this._field.focus();
         }

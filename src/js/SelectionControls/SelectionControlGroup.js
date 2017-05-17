@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
+import { UP, DOWN, LEFT, RIGHT } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import minMaxLoop from '../utils/NumberUtils/minMaxLoop';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
 
@@ -189,6 +192,11 @@ export default class SelectionControlGroup extends PureComponent {
      * Boolean if all the selection controls in the group are disabled.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * An optional function to call when the keydown event is triggered.
+     */
+    onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
@@ -200,15 +208,34 @@ export default class SelectionControlGroup extends PureComponent {
   constructor(props) {
     super(props);
 
+    const radio = props.type === 'radio';
     this.state = {};
-    if (typeof props.value === 'undefined') {
-      this.state.value = props.defaultValue;
 
-      if (typeof props.defaultValue === 'undefined') {
-        this.state.value = props.type === 'radio' ? props.controls[0].value : '';
+    if (typeof props.value === 'undefined') {
+      let value = props.defaultValue;
+
+      if (typeof value === 'undefined') {
+        value = radio ? props.controls[0].value : '';
       }
+
+      this.state.value = value;
     }
+
+    const groupValue = getField(props, this.state, 'value');
+    props.controls.some(({ value }, i) => {
+      if (value === groupValue) {
+        this._activeIndex = i;
+      }
+
+      return typeof this._activeIndex !== 'undefined';
+    });
+
     this._handleChange = this._handleChange.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+  }
+
+  componentDidMount() {
+    this._group = findDOMNode(this);
   }
 
   _isChecked(value, controlValue, type) {
@@ -242,6 +269,34 @@ export default class SelectionControlGroup extends PureComponent {
     }
   }
 
+  _handleKeyDown(e) {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+    const dec = key === UP || key === LEFT;
+    const inc = key === DOWN || key === RIGHT;
+    if (!this._group || (!dec && !inc)) {
+      return;
+    }
+
+    e.preventDefault();
+    const radios = this._group.querySelectorAll('*[role="radio"]');
+    this._activeIndex = minMaxLoop(this._activeIndex, 0, radios.length - 1, inc);
+    radios[this._activeIndex].focus();
+    const { value } = this.props.controls[this._activeIndex];
+    if (getField(this.props, this.state, 'value') !== value) {
+      if (this.props.onChange) {
+        this.props.onChange(value, e);
+      }
+
+      if (typeof this.props.value === 'undefined') {
+        this.setState({ value });
+      }
+    }
+  }
+
   render() {
     const {
       id,
@@ -263,20 +318,28 @@ export default class SelectionControlGroup extends PureComponent {
     delete props.defaultValue;
 
     const value = getField(this.props, this.state, 'value');
+    const radio = type === 'radio';
 
     const controls = this.props.controls.map((control, i) => {
-      const controlProps = Object.assign({
+      let style = control.style;
+      if (controlStyle) {
+        style = style ? { ...controlStyle, ...style } : controlStyle;
+      }
+
+      const checked = this._isChecked(value, control.value, type);
+      const controlProps = {
         id: `${id}${i}`,
         key: `control${i}`,
         name: `${name}${type === 'checkbox' ? '[]' : ''}`,
         type,
         inline,
         disabled,
-        checked: this._isChecked(value, control.value, type),
-      }, control, {
-        style: Object.assign({}, control.style, controlStyle),
+        checked,
+        tabIndex: checked && radio ? undefined : -1,
+        ...control,
+        style,
         className: cn(controlClassName, control.className),
-      });
+      };
 
       return <SelectionControl {...controlProps} />;
     });
@@ -291,6 +354,7 @@ export default class SelectionControlGroup extends PureComponent {
         {...props}
         className={cn('md-selection-control-group', className)}
         onChange={this._handleChange}
+        onKeyDown={radio ? this._handleKeyDown : null}
       >
         {ariaLabel}
         {controls}

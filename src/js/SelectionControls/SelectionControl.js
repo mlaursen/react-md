@@ -179,6 +179,11 @@ export default class SelectionControl extends PureComponent {
      */
     uncheckedRadioIconClassName: PropTypes.string,
 
+    /**
+     * An optional tab index to apply to the selection control.
+     */
+    tabIndex: PropTypes.number,
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -281,6 +286,7 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      tabIndex,
       ...props
     } = this.props;
     delete props.label;
@@ -340,6 +346,7 @@ export default class SelectionControl extends PureComponent {
           })}
           role={type}
           aria-checked={checked}
+          tabIndex={tabIndex}
         >
           {this._getIcon()}
         </AccessibleFakeInkedButton>
