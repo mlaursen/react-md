@@ -1,4 +1,24 @@
 ## May 2017
+### v1.0.14 Released
+This patch is mostly for keyboard accessibility updates so that the custom components interact the same way
+as native form inputs.
+
+##### Changelog
+- Updated the menu component so that it correctly closes when a list item is "clicked" with spacebar or enter.
+[#360](https://github.com/mlaursen/react-md/issues/360)
+- Fixed the keyboard accessibility for selection controls, pickers, and select field. [#371](https://github.com/mlaursen/react-md/issues/371)
+  - switch, radio, and checkbox will no longer be toggle-able with the enter key to emulate the native checkbox and radio
+  - select fields, date pickers, and time pickers can only be opened by spacebar. The enter key will attempt to submit a form instead.
+  - only the currently checked radio button will be tabbable in the `SelectionControlGroup`. Other options can be be selected by pressing
+  the up, down, right, or left arrow keys like the native radio.
+  - correctly updated the role for the `SelectField` to be a `"listbox"`
+- Fixed the `readOnly` state for the date and time pickers [#371](https://github.com/mlaursen/react-md/issues/371)
+- Fixed the text field display error in Firefox. [#368](https://github.com/mlaursen/react-md/issues/368)
+- Fixed the `TablePagination` labels when fully controlled. [#369](https://github.com/mlaursen/react-md/issues/369)
+- Added a final fallback for nested dialogs to render inline if rendered inside of pure components.
+[#229](https://github.com/mlaursen/react-md/issues/368)
+- Fixed the scroll locking of dialogs. [#361](https://github.com/mlaursen/react-md/issues/361)
+
 ### v1.0.13 Released
 This patch was about removing the prop type warnings from the new React version and other small bugs.
 
