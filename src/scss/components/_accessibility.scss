@@ -43,8 +43,10 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
     }
   }
 
-  .md-no-scroll {
-    overflow-y: hidden;
+  // Need to add one additional level of precidence for some dialogs,
+  // but don't want to use !important
+  .md-no-scroll.md-no-scroll {
+    overflow: hidden;
     position: fixed;
   }
 

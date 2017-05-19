@@ -140,6 +140,11 @@ $md-text-field-mobile-floating-label-margin: 37px !default;
 /// @type Number
 $md-text-field-desktop-floating-label-margin: 33px !default;
 
+/// The line-height to use for the text field's input. This will not be applied to multiline
+/// text fields. This value should be more than 1 to support firefox clipping letters.
+/// @type Number
+$md-text-field-line-height: 1.15 !default;
+
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,
 /// icons, or password styles can be ommitted by disabling the defaults or passing
@@ -604,7 +609,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   .md-text-field-container--input {
-    line-height: 1;
+    line-height: $md-text-field-line-height;
   }
 
   @if $include-block {

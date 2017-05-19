@@ -5,14 +5,14 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { ENTER } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
-import List from '../Lists/List';
 import Layover from '../Helpers/Layover';
+import List from '../Lists/List';
 
 /**
  * The `Menu` controlled component is used to display a list of children in the `List`
@@ -383,6 +383,7 @@ export default class Menu extends PureComponent {
         !node.classList.contains('md-list-item--nested-container') &&
         node.classList.contains('md-list-item')
       ) {
+        e.persist();
         this._timeout = setTimeout(() => {
           this._timeout = null;
           this._handleClose(e);
@@ -400,9 +401,7 @@ export default class Menu extends PureComponent {
       this.props.onKeyDown(e);
     }
 
-    if ((e.which || e.keyKode) === ENTER) {
-      this._handleClick(e);
-    }
+    handleKeyboardAccessibility(e, this._handleClick, true, true);
   };
 
   render() {

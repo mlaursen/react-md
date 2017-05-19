@@ -5,9 +5,10 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
 import { ENTER, SPACE } from '../constants/keyCodes';
+import calcPageOffset from '../utils/calcPageOffset';
+import isFormPartRole from '../utils/isFormPartRole';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
-import calcPageOffset from '../utils/calcPageOffset';
 import calculateHypotenuse from '../utils/NumberUtils/calculateHypotenuse';
 
 import Ink from './Ink';
@@ -258,7 +259,10 @@ export default class InkContainer extends PureComponent {
 
   _handleKeyDown = (e) => {
     const key = e.which || e.keyCode;
-    if (key === ENTER || key === SPACE) {
+    const enter = key === ENTER;
+    const space = key === SPACE;
+    // Don't trigger ink when enter key is pressed and the target has an input inside of it (SelectField)
+    if (space || (enter && !isFormPartRole(e.target) && !e.target.querySelector('input'))) {
       this._clicked = true;
       this.createInk();
       this._maybeDelayClick();

@@ -281,6 +281,13 @@ export default class DialogContainer extends PureComponent {
      */
     defaultVisibleTransitionable: PropTypes.bool,
 
+    /**
+     * Boolean if the Dialog should no longer try to prevent the parent container from scrolling while visible.
+     * In most cases, this will attempt to prevent the main window scrolling. If this dialog is nested in another
+     * dialog, it will attempt to prevent the parent dialog from scrolling.
+     */
+    disableScrollLocking: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     transitionName: deprecated(PropTypes.string, 'The transition name will be managed by the component'),
     transitionEnter: deprecated(PropTypes.bool, 'The transition will always be enforced'),
@@ -323,7 +330,6 @@ export default class DialogContainer extends PureComponent {
       return;
     }
 
-    toggleScroll(true);
     this._mountDialog(this.props);
   }
 
@@ -345,7 +351,6 @@ export default class DialogContainer extends PureComponent {
 
     this._pageX = pageX;
     this._pageY = pageY;
-    toggleScroll(visible);
 
     if (visible) {
       this._activeElement = document.activeElement;
@@ -438,14 +443,37 @@ export default class DialogContainer extends PureComponent {
     (this.props.onHide || this.props.close)(e);
   };
 
-  _handleDialogMounting = (dialog) => {
+  _handleDialogMounting= (dialog) => {
+    const { disableScrollLocking } = this.props;
     if (dialog === null) {
       if (this._activeElement) {
         this._activeElement.focus();
       }
 
+      if (!disableScrollLocking) {
+        toggleScroll(false, this.scrollEl);
+      }
+
       this._activeElement = null;
       this.setState({ overlay: false });
+    } else {
+      const container = document.querySelector(`#${this.props.id}`);
+      if (!container || disableScrollLocking) {
+        return;
+      }
+
+      let el = getField(this.props, this.context, 'renderNode');
+      let node = container.parentNode;
+      while (node && node.classList && !el) {
+        if (node.classList.contains('md-dialog')) {
+          el = node;
+        }
+
+        node = node.parentNode;
+      }
+
+      this.scrollEl = el;
+      toggleScroll(true, el);
     }
   };
 
@@ -469,6 +497,7 @@ export default class DialogContainer extends PureComponent {
       closeOnEsc,
       onShow,
       onHide,
+      disableScrollLocking,
       defaultVisibleTransitionable,
 
       // deprecated

@@ -5,9 +5,10 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC, ENTER } from '../constants/keyCodes';
+import { ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import isDateEqual from '../utils/DateUtils/isDateEqual';
 import addDate from '../utils/DateUtils/addDate';
@@ -405,6 +406,12 @@ export default class DatePickerContainer extends PureComponent {
     renderNode: PropTypes.object,
 
     /**
+     * Boolean if the DatePicker should be read only. This will prevent the user from opening the picker
+     * and only display the current date in the text field.
+     */
+    readOnly: PropTypes.bool,
+
+    /**
      * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
      * of the first.
      */
@@ -568,7 +575,7 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   _toggleOpen = (e) => {
-    if (this.props.disabled) {
+    if (this.props.disabled || this.props.readOnly) {
       return;
     }
 
@@ -586,8 +593,10 @@ export default class DatePickerContainer extends PureComponent {
   };
 
   _handleKeyDown = (e) => {
-    if ((e.which || e.keyCode) === ENTER) {
-      this._toggleOpen(e);
+    handleKeyboardAccessibility(e, this._toggleOpen, true, true);
+
+    if ((e.which || e.keyCode) === TAB && this.state.active) {
+      this.setState({ active: false });
     }
   };
 
@@ -789,6 +798,7 @@ export default class DatePickerContainer extends PureComponent {
       defaultValue,
       defaultVisible,
       onChange,
+      readOnly,
       onVisibilityChange,
       defaultCalendarDate,
 

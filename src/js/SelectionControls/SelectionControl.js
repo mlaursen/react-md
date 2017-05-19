@@ -207,6 +207,11 @@ export default class SelectionControl extends PureComponent {
      */
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
 
+    /**
+     * An optional tab index to apply to the selection control.
+     */
+    tabIndex: PropTypes.number,
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -306,6 +311,7 @@ export default class SelectionControl extends PureComponent {
       labelBefore,
       onBlur,
       onFocus,
+      tabIndex,
       inkDisabled,
       disabledInteractions,
       'aria-label': ariaLabel,
@@ -375,6 +381,7 @@ export default class SelectionControl extends PureComponent {
           })}
           role={type}
           aria-checked={checked}
+          tabIndex={tabIndex}
         >
           {tooltip}
           {this._getIcon()}

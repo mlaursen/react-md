@@ -10,7 +10,6 @@ import {
 
 import DatePickerContainer from '../DatePickerContainer';
 import Portal from '../../Helpers/Portal';
-import { ENTER } from '../../constants/keyCodes';
 
 describe('DatePickerContainer', () => {
   it('merges className and style', () => {
@@ -211,14 +210,6 @@ describe('DatePickerContainer', () => {
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
     container._toggleOpen({ target: { tagName: 'input' } });
-    expect(container.state.visible).toBe(false);
-  });
-
-  it('should not open the DatePicker if it is disabled and the users pressed the enter key while focused on the keyboard', () => {
-    const props = { id: 'test', disabled: true };
-    const container = renderIntoDocument(<DatePickerContainer {...props} />);
-
-    container._handleKeyDown({ keyCode: ENTER, target: { tagName: 'input' } });
     expect(container.state.visible).toBe(false);
   });
 

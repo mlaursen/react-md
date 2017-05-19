@@ -5,9 +5,9 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
+  scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
-  scryRenderedComponentsWithType,
 } from 'react-dom/test-utils';
 
 import Button from '../Button';

@@ -238,7 +238,7 @@ export default class Layover extends PureComponent {
     animationPosition: Layover.Positions.BELOW,
     component: 'div',
     fixedTo: typeof window !== 'undefined' ? window : {},
-    toggleQuery: '.md-text-field-container,button,*[role="button"]',
+    toggleQuery: '.md-text-field-container,button,*[role="button"],*[role="listbox"]',
     transitionName: 'md-layover',
     transitionEnterTimeout: 200,
     transitionLeaveTimeout: 200,

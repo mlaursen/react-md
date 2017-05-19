@@ -1,5 +1,7 @@
 /* eslint-env jest */
 jest.unmock('../AccessibleFakeButton');
+jest.unmock('../../utils/EventUtils/handleKeyboardAccessibility');
+
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 

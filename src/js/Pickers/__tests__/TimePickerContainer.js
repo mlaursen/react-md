@@ -11,7 +11,6 @@ import {
 import TimePickerContainer from '../TimePickerContainer';
 import Portal from '../../Helpers/Portal';
 import TextField from '../../TextFields/TextField';
-import { ENTER } from '../../constants/keyCodes';
 
 describe('TimePickerContainer', () => {
   it('merges className and style', () => {
@@ -82,14 +81,6 @@ describe('TimePickerContainer', () => {
     const container = renderIntoDocument(<TimePickerContainer {...props} />);
 
     container._toggleOpen({ target: { tagName: 'input' } });
-    expect(container.state.visible).toBe(false);
-  });
-
-  it('should not open the TimePicker if it is disabled and the users pressed the enter key while focused on the keyboard', () => {
-    const props = { id: 'test', disabled: true };
-    const container = renderIntoDocument(<TimePickerContainer {...props} />);
-
-    container._handleKeyDown({ keyCode: ENTER, target: { tagName: 'input' } });
     expect(container.state.visible).toBe(false);
   });
 });

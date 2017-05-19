@@ -5,10 +5,11 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { UP, DOWN, ENTER, ESC, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
+import { UP, DOWN, ESC, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import omit from '../utils/omit';
 import getField from '../utils/getField';
 import isBetween from '../utils/NumberUtils/isBetween';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
@@ -626,12 +627,13 @@ export default class SelectField extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
-    const state = { active: false };
-    if (typeof this.props.visible === 'undefined') {
-      state.visible = false;
+    if (e.type === 'keydown' && this._field) {
+      this._field.focus();
     }
 
-    this.setState(state);
+    if (typeof this.props.visible === 'undefined') {
+      this.setState({ visible: false });
+    }
   };
 
   _handleClick = (e) => {
@@ -672,10 +674,6 @@ export default class SelectField extends PureComponent {
       state.value = value;
     }
 
-    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined' && e.type !== 'click') {
-      state.visible = false;
-    }
-
     this.setState(state);
   };
 
@@ -708,29 +706,26 @@ export default class SelectField extends PureComponent {
     const key = e.which || e.keyCode;
     const up = key === UP;
     const down = key === DOWN;
-    const enter = key === ENTER;
     const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
 
     if (up || down) {
       e.preventDefault();
-    }
 
-    if (!visible && (up || down || enter)) {
-      this._toggle(e);
+      if (!visible) {
+        this._toggle(e);
+        return;
+      }
+
+      this._advanceFocus(up);
+    } else if (!visible && handleKeyboardAccessibility(e, this._toggle, true, true)) {
+      return;
     } else if (visible && (key === ESC || key === TAB)) {
       if (this._field && key === ESC) {
         this._field.focus();
       }
 
       this._close(e);
-    } else if (up || down) {
-      this._advanceFocus(up);
-    } else if (enter) {
-      if (this._field) {
-        this._field.focus();
-      }
-
-      this._handleClick(e);
+      return;
     } else {
       this._selectItemByLetter(key, e);
     }

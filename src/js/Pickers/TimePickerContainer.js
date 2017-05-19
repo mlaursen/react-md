@@ -5,9 +5,10 @@ import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC, ENTER } from '../constants/keyCodes';
+import { ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 import formatTime from '../utils/DateUtils/formatTime';
@@ -334,6 +335,13 @@ export default class TimePickerContainer extends PureComponent {
      * of the first.
      */
     lastChild: PropTypes.bool,
+
+    /**
+     * Boolean if the TimePicker should be read only. This will prevent the user from opening the picker
+     * and only display the current date in the text field.
+     */
+    readOnly: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
@@ -445,7 +453,7 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _toggleOpen = (e) => {
-    if (this.props.disabled) {
+    if (this.props.disabled || this.props.readOnly) {
       return;
     }
 
@@ -481,8 +489,10 @@ export default class TimePickerContainer extends PureComponent {
   };
 
   _handleKeyDown = (e) => {
-    if ((e.which || e.keyCode) === ENTER) {
-      this._toggleOpen(e);
+    handleKeyboardAccessibility(e, this._toggleOpen, true, true);
+
+    if ((e.which || e.keyCode) === TAB && this.state.active) {
+      this.setState({ active: false });
     }
   };
 
@@ -589,6 +599,7 @@ export default class TimePickerContainer extends PureComponent {
       /* eslint-disable no-unused-vars */
       value: propValue,
       visible: propVisible,
+      readOnly,
       defaultValue,
       defaultVisible,
       defaultTimeMode,

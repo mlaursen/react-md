@@ -126,6 +126,7 @@ export default class SelectFieldInput extends PureComponent {
     return (
       <AccessibleFakeInkedButton
         {...props}
+        role="listbox"
         disabled={disabled}
         component={Paper}
         zDepth={below && active ? 1 : 0}

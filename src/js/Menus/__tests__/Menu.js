@@ -2,8 +2,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
+import { SPACE, TAB, ENTER } from '../../constants/keyCodes';
 import Menu from '../Menu';
-import { ENTER } from '../../constants/keyCodes';
 import List from '../../Lists/List';
 import ListItem from '../../Lists/ListItem';
 import Layover from '../../Helpers/Layover';
@@ -250,5 +250,59 @@ describe('Menu', () => {
     item.simulate('keyDown', event);
     jest.runAllTimers();
     expect(onClose.mock.calls.length).toBe(1);
+  });
+  it('should call the onClose function when a ListItem is clicked', () => {
+    const onClose = jest.fn();
+    const menu = mount(
+      <Menu visible id="test" onClose={onClose}>
+        <ListItem primaryText="My Test" />
+        <ListItem primaryText="Another" />
+      </Menu>
+    );
+
+    const items = menu.find(ListItem);
+    expect(items.length).toBe(2);
+    items.at(0).simulate('click');
+
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(1);
+  });
+
+  it('should call the onClose function when a ListItem is pressed with the enter or space keys', () => {
+    const onClose = jest.fn();
+    const menu = mount(
+      <Menu id="test" visible onClose={onClose}>
+        <ListItem primaryText="My Test" />
+        <ListItem primaryText="My Test 2" />
+      </Menu>
+    );
+
+    const item = menu.find(ListItem).at(0);
+    item.simulate('keyDown', { which: TAB, keyCode: TAB });
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(0);
+
+    item.simulate('keyDown', { which: ENTER, keyCode: ENTER });
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(1);
+
+    item.simulate('keyDown', { which: SPACE, keyCode: SPACE });
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(2);
+  });
+
+  it('should not call the onClose function if a ListItem has nested children', () => {
+    const onClose = jest.fn();
+    const menu = mount(
+      <Menu id="test" visible onClose={onClose}>
+        <ListItem primaryText="My Test" nestedItems={[<ListItem key="1" primaryText="Nested" />]} />
+        <ListItem primaryText="My Test 2" />
+      </Menu>
+    );
+
+    const item = menu.find(ListItem).at(0);
+    item.simulate('click');
+    jest.runAllTimers();
+    expect(onClose.mock.calls.length).toBe(0);
   });
 });

@@ -88,6 +88,41 @@ list.
 
 
 
+## May 2017
+### v1.0.14 Released
+This patch is mostly for keyboard accessibility updates so that the custom components interact the same way
+as native form inputs.
+
+##### Changelog
+- Updated the menu component so that it correctly closes when a list item is "clicked" with spacebar or enter.
+[#360](#issues-360)
+- Fixed the keyboard accessibility for selection controls, pickers, and select field. [#371](#issues-371)
+  - switch, radio, and checkbox will no longer be toggle-able with the enter key to emulate the native checkbox and radio
+  - select fields, date pickers, and time pickers can only be opened by spacebar. The enter key will attempt to submit a form instead.
+  - only the currently checked radio button will be tabbable in the `SelectionControlGroup`. Other options can be be selected by pressing
+  the up, down, right, or left arrow keys like the native radio.
+  - correctly updated the role for the `SelectField` to be a `"listbox"`
+- Fixed the `readOnly` state for the date and time pickers [#371](#issues-371)
+- Fixed the text field display error in Firefox. [#368](#issues-368)
+- Fixed the `TablePagination` labels when fully controlled. [#369](#issues-369)
+- Added a final fallback for nested dialogs to render inline if rendered inside of pure components.
+[#229](#issues-229)
+- Fixed the scroll locking of dialogs. [#361](#issues-361)
+
+### v1.0.13 Released
+This patch was about removing the prop type warnings from the new React version and other small bugs.
+
+##### Changelog
+- Migrate React.PropTypes to prop-types. [#325](#issues-325)
+- Allow boolean values in selection controls [#350](#issues-350)
+- Fixed the picker diplay bug. [#354](#issues-354)
+- Fixed the SelectField error state bug. [#354](#issues-353)
+- Fixed the dialog mounting animation bug. [#348](#issues-348)
+- Allow a multiline textfield to grow from 1 row to multiple. [#347](#issues-347)
+- Fixed the AccessibleFakeButton to click when spacebar is pressed. [#346](#issues-346)
+
+
+
 ## April 2017
 ### Added Showcases
 Added a new place to showcase apps that are using react-md. You can view them [here](/discover-more/showcases).
