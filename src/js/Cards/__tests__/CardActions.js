@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 import CardActions from '../CardActions';
 import CardExpander from '../CardExpander';

@@ -8,8 +8,7 @@ import {
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
   scryRenderedComponentsWithType,
-  createRenderer,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';
@@ -151,20 +150,5 @@ describe('Button', () => {
     const button = renderIntoDocument(<Button {...props} />);
     const icons = scryRenderedComponentsWithType(button, FontIcon);
     expect(icons.length).toBe(0);
-  });
-
-  it('renders specified children when noIcon prop is set', () => {
-    const children = (
-      <span>
-        Text with a
-        <FontIcon>star</FontIcon>
-        icon
-      </span>
-    );
-    const props = { children, raised: true, noIcon: true };
-    const renderer = createRenderer();
-    renderer.render(<Button {...props} />);
-    const renderOutput = renderer.getRenderOutput();
-    expect(renderOutput.props.children).toEqual(children);
   });
 });

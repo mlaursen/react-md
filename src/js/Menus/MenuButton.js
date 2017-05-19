@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import controlled from '../utils/PropTypes/controlled';

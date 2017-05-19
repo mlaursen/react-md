@@ -6,7 +6,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Chip from '../Chip';
 import FontIcon from '../../FontIcons/FontIcon';

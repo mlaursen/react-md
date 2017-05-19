@@ -7,7 +7,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TextField from '../TextField';
 import InputField from '../InputField';

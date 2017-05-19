@@ -1,18 +1,19 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types,max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TablePagination from '../TablePagination';
 
 class Table extends React.Component {
   static childContextTypes = {
-    baseId: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.string,
+    baseId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
     ]).isRequired,
   }
 

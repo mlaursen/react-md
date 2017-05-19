@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import matchMedia, { matchesMobile, matchesTablet, matchesDesktop } from '../../../../__mocks__/matchMedia';
 import NavigationDrawer from '../NavigationDrawer';
