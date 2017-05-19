@@ -26,7 +26,7 @@
     "fuse.js": "^2.5.0",
     "helmet": "^3.1.0",
     "morgan": "^1.7.0",
-    "react-docgen": "^2.12.1",
+    "react-docgen": "^2.15.0",
     "sassdoc": "^2.1.20",
     "vhost": "^3.0.2"
   },
