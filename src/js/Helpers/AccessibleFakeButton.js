@@ -209,8 +209,6 @@ export default class AccessibleFakeButton extends PureComponent {
       disabled,
       tabIndex,
       ink,
-      listenToEnter,
-      listenToSpace,
       noFocusOutline,
       /* eslint-disable no-unused-vars */
       onBlur,
@@ -218,6 +216,8 @@ export default class AccessibleFakeButton extends PureComponent {
       onKeyUp,
       onKeyDown,
       onTabFocus,
+      listenToEnter,
+      listenToSpace,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
