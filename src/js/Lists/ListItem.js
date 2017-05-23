@@ -136,6 +136,11 @@ export default class ListItem extends PureComponent {
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
     /**
+     * An optional parameter determining whether `nestedItems` should be placed before or after `ListItemText`
+     */
+    prependNested: PropTypes.bool,
+
+    /**
      * Boolean if the `nestedItems` are visible by default.
      */
     defaultOpen: PropTypes.bool,
@@ -374,6 +379,7 @@ export default class ListItem extends PureComponent {
       threeLines,
       children,
       nestedItems,
+      prependNested,
       active,
       activeClassName,
       expanderIconChildren,
@@ -414,7 +420,7 @@ export default class ListItem extends PureComponent {
           <TileAddon
             key="expander-addon"
             icon={(
-              <Collapser flipped={isOpen} iconClassName={expanderIconClassName}>
+              <Collapser flipped={prependNested ? !isOpen : isOpen} iconClassName={expanderIconClassName}>
                 {expanderIconChildren}
               </Collapser>
             )}
@@ -434,6 +440,7 @@ export default class ListItem extends PureComponent {
         }, className)}
         ref={this._setContainer}
       >
+        {prependNested ? nestedList : null}
         <AccessibleFakeInkedButton
           {...props}
           __SUPER_SECRET_REF__={this._setTile}
@@ -476,7 +483,7 @@ export default class ListItem extends PureComponent {
           {rightNode}
           {children}
         </AccessibleFakeInkedButton>
-        {nestedList}
+        {prependNested ? null : nestedList}
       </li>
     );
   }
