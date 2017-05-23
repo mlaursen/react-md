@@ -25,6 +25,11 @@ export default class FileInput extends PureComponent {
     ])),
 
     /**
+     * An optional name to provide to the input.
+     */
+    name: PropTypes.string,
+
+    /**
      * An optional style to apply.
      */
     style: PropTypes.object,
@@ -325,6 +330,7 @@ export default class FileInput extends PureComponent {
       secondary,
       flat,
       id,
+      name,
       iconBefore,
       disabled,
       accept,
@@ -387,11 +393,12 @@ export default class FileInput extends PureComponent {
           {labelChildren}
         </AccessibleFakeInkedButton>
         <input
-          multiple={multiple}
-          disabled={disabled}
           id={id}
+          name={name}
           accept={accept}
           type="file"
+          multiple={multiple}
+          disabled={disabled}
           aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}

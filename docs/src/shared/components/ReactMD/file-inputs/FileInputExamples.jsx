@@ -35,26 +35,29 @@ export default class FileInputExamples extends PureComponent {
 
     return (
       <div className="md-grid file-input-grid">
-        <FileInput id="imageInput" onChange={this._handleFileSelect} accept="image/*" />
+        <FileInput id="imageInput" onChange={this._handleFileSelect} accept="image/*" name="images" />
         <FileInput
           id="imageInput1"
           onChange={this._handleFileSelect}
           accept="image/*"
           primary
+          name="images-1"
         />
         <FileInput
           id="imageInput2"
           onChange={this._handleFileSelect}
           accept="image/*"
+          name="images-2"
           secondary
           flat
           iconBefore
         />
-        <FileInput id="imageInputDisabled" disabled onChange={this._handleFileSelect} accept="image/*" />
+        <FileInput id="imageInputDisabled" disabled onChange={this._handleFileSelect} accept="image/*" name="images-disabled" />
         <FileInput
           id="imageInput1Disabled"
           onChange={this._handleFileSelect}
           accept="image/*"
+          name="images-disabled-1"
           primary
           disabled
         />
@@ -62,6 +65,7 @@ export default class FileInputExamples extends PureComponent {
           id="imageInput2Disabled"
           onChange={this._handleFileSelect}
           accept="image/*"
+          name="images-2-disabled"
           secondary
           flat
           iconBefore
