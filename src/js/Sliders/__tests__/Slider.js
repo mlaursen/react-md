@@ -2,6 +2,7 @@
 jest.unmock('../Slider');
 
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -177,5 +178,41 @@ describe('Slider', () => {
 
     slider = renderSliderWithProps(1076, 20000);
     expect(slider.state.distance).toEqual(5.38);
+  });
+
+  it('should set the initial value to the defaultValue if defined', () => {
+    const slider = shallow(<Slider id="some-slider" min={10} defaultValue={15} />);
+    expect(slider.state('value')).toBe(15);
+  });
+
+  it('should set the initial value to be the min value if undefined', () => {
+    const slider = shallow(<Slider id="some-slider" min={10} />);
+    expect(slider.state('value')).toBe(10);
+  });
+
+  it('should consider the track to be "on" correctly', () => {
+    let slider = shallow(<Slider id="some-slider" />);
+    let track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(false);
+
+    slider.instance()._handleIncrement(1, {});
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" defaultValue={50} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" discrete min={50} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(false);
+
+    slider.instance()._handleIncrement(51, {});
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" discrete min={50} defaultValue={75} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
   });
 });
