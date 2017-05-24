@@ -67,6 +67,10 @@ export default class TextArea extends PureComponent {
     this._field.focus();
   }
 
+  blur() {
+    this._field.blur();
+  }
+
   _setMask(mask) {
     this._mask = mask;
   }
