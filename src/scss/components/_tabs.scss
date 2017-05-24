@@ -338,6 +338,8 @@ $md-tab-desktop-padding: 24px;
   }
 
   .md-tabs {
+    @include md-ios-scroll-momentum;
+
     overflow-x: auto;
   }
 

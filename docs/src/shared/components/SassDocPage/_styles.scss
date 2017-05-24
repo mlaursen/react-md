@@ -13,6 +13,8 @@
   }
 
   .md-list-unstyled {
+    @include md-ios-scroll-momentum;
+
     overflow-x: auto;
   }
 }

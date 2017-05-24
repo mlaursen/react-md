@@ -93,6 +93,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-list--drawer {
+    @include md-ios-scroll-momentum;
+
     height: 100%;
     overflow-y: auto;
   }

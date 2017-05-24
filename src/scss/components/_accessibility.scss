@@ -2,6 +2,10 @@
 /// @group accessibility
 ////
 
+/// Boolean if iOS should allow scroll momentum in places where manual scrolling
+/// is enabled.
+/// @type Boolean
+$md-enable-ios-scroll-momentum: true !default;
 
 /// Creates the _accessible_ styles and class names.
 ///
@@ -49,5 +53,16 @@
       left: 0;
       top: 0;
     }
+  }
+}
+
+/// A simple mixin that will add scroll momentum to a class ONLY if the momentum is
+/// enabled via the mixin or the `$md-enable-ios-scroll-momentum` variable.
+///
+/// @param {Boolean} enable-momentum [$md-enable-ios-scroll-momentum] - Boolean if the momentum
+///     should be added
+@mixin md-ios-scroll-momentum($enable-momentum: $md-enable-ios-scroll-momentum) {
+  @if $enable-momentum {
+    -webkit-overflow-scrolling: touch;
   }
 }

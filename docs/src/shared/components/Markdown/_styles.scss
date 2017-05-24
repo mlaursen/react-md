@@ -22,6 +22,8 @@ pre {
 }
 
 .code-block {
+  @include md-ios-scroll-momentum;
+
   background: rgba($md-black-base, .06);
   overflow-x: auto;
   padding: $md-default-padding;

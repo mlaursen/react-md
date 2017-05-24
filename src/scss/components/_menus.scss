@@ -72,6 +72,8 @@ $md-menu-cascading-list-padding: 16px;
   }
 
   .md-list--menu-scrollable {
+    @include md-ios-scroll-momentum;
+
     overflow-y: auto;
   }
 

@@ -219,6 +219,7 @@ export default class FlexibleSpaceExample extends PureComponent {
             marginTop: height + (statusBar ? STATUS_BAR_HEIGHT : 0),
             height: `calc(100% - ${height}px)`,
             overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch',
           }}
           className="phone-size-content"
           ref={this._setSection}

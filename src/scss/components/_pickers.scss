@@ -301,6 +301,8 @@ $md-clock-padding: 4px;
   }
 
   .md-dialog--picker {
+    @include md-ios-scroll-momentum;
+
     max-height: calc(100% - #{$md-picker-mobile-margin});
     max-width: calc(100% - #{$md-picker-mobile-margin});
     overflow: auto;
@@ -421,6 +423,8 @@ $md-clock-padding: 4px;
   }
 
   .md-picker-content--year {
+    @include md-ios-scroll-momentum;
+
     overflow-y: auto;
   }
 
