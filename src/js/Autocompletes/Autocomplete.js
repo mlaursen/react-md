@@ -524,7 +524,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur();
     }
 
-    this.setState({ focus: false, isOpen: false });
+    this.setState({ isOpen: false });
   }
 
   _handleChange(value, event) {
@@ -540,7 +540,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     let { isOpen } = this.state;
-    let matches = value ? this.state.matches : [];
+    let matches = value || !filter ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
