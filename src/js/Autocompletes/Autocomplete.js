@@ -465,7 +465,11 @@ export default class Autocomplete extends PureComponent {
       const { data, filter, dataLabel } = nextProps;
       const value = getField(nextProps, nextState, 'value');
 
-      const matches = filter ? filter(data, value, dataLabel) : data;
+      let { matches } = nextState;
+      if (nextProps.data !== this.props.data) {
+        matches = filter ? filter(data, value, dataLabel) : data;
+      }
+
       const next = { matches };
       if (nextState.focus) {
         next.isOpen = !!matches.length;
