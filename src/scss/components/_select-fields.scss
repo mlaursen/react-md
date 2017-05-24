@@ -51,6 +51,12 @@ $md-select-field-right-padding: 16px;
     padding-top: $md-default-padding;
   }
 
+  .md-select-field--text-field {
+    // without this, mobile safari will not bubble the click event up to the toggle element so the
+    // options never appear.
+    pointer-events: none;
+  }
+
   @include react-md-select-fields-drop-transition;
 
   @if $include-media {
