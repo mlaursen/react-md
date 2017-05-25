@@ -26,7 +26,7 @@ const DEV_PLUGINS = [
 
 module.exports = function build({ production }) {
   const extractStyles = new ExtractTextPlugin({
-    filename: 'styles.min.css',
+    filename: 'styles-[hash].min.css',
     allChunks: true,
     disable: !production,
   });
