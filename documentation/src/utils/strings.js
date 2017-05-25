@@ -26,7 +26,7 @@ export function toTitle(str) {
  * @return {String} the current page title for the pathname
  */
 export function toPageTitle(pathname) {
-  const path = pathname.replace('/', '');
+  const path = pathname.replace('/', '').replace(/\?.*/, '');
   if (!path) {
     return '';
   }
