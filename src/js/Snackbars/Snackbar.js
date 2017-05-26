@@ -157,10 +157,12 @@ export default class Snackbar extends PureComponent {
       };
 
       if (typeof action !== 'string') {
-        btnProps = Object.assign(btnProps, action, {
+        btnProps = Object.assign(btnProps, {
           className: cn(btnProps.className, action.className),
         });
+        btnProps.label = action.label;
       }
+
 
       action = <Button {...btnProps} />;
     }
