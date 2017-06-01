@@ -89,6 +89,25 @@ list.
 
 
 ## May 2017
+### v1.0.15 Released
+General mobile Safari bugfixes and other small changes.
+
+##### Changelog
+- Fixed the "stiffness" of scrolling in mobile Safari. [#383](#issues-383)
+- Fixed the weird bug of requiring two taps in mobile Safari to open a `SelectField`. [#381](#issues-381)
+- Updated the `Slider` to automatically set the `defaultValue` to the provided `min` value and fixed the discrete slider's
+visibility issue. [#379](#issues-379)
+- Correctly added the `name` attribute to the `FileInput` and `FileUpload` components. [#378](#issues-378)
+- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via ajax.
+[#374](#issues-378)
+- Fixed the `TablePagination`'s start value to only update when the `page` prop updates (if defined).
+[#372](#issues-372)
+- Fixed the `TextField`s not blurring correctly when a touch device scrolls the page after focusing
+the text field. [#366](#issues-366)
+- Updated the `ListItem` to allow the `nestedItems` to appear above the text instead of only below.
+[#380](#pull-380)
+
+
 ### v1.0.14 Released
 This patch is mostly for keyboard accessibility updates so that the custom components interact the same way
 as native form inputs.

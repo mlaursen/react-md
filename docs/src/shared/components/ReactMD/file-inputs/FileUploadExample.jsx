@@ -96,6 +96,7 @@ export default class FileUploadExample extends PureComponent {
           id="multiFileUpload"
           multiple
           secondary
+          name="mutlipart-file-upload"
           ref={this._setUpload}
           label="Select files to upload"
           onLoadStart={this._setFile}

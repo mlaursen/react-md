@@ -123,14 +123,22 @@ export default class TablePagination extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
-    const rpp = typeof props.rowsPerPage !== 'undefined' ? props.rowsPerPage : props.defaultRowsPerPage;
-    const p = typeof props.page !== 'undefined' ? props.page : props.defaultPage;
+    const controlledPage = typeof props.page !== 'undefined';
+    const controlledRowsPerPage = typeof props.rowsPerPage !== 'undefined';
+    const rowsPerPage = controlledRowsPerPage ? props.rowsPerPage : props.defaultRowsPerPage;
+    const page = controlledPage ? props.page : props.defaultPage;
     this.state = {
-      page: props.defaultPage,
-      start: (p - 1) * rpp,
-      rowsPerPage: props.defaultRowsPerPage,
+      start: (page - 1) * rowsPerPage,
       controlsMarginLeft: 0,
     };
+
+    if (!controlledPage) {
+      this.state.page = page;
+    }
+
+    if (!controlledRowsPerPage) {
+      this.state.rowsPerPage = props.defaultRowsPerPage;
+    }
   }
 
   componentDidMount() {
@@ -214,7 +222,9 @@ export default class TablePagination extends PureComponent {
     const nextPage = page + 1;
 
     onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
   };
 
   _decrement = () => {
@@ -225,14 +235,28 @@ export default class TablePagination extends PureComponent {
     const nextPage = page - 1;
 
     this.props.onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
   };
 
   _setRowsPerPage = (rowsPerPage) => {
     const page = 1;
     const newStart = 0;
     this.props.onPagination(newStart, rowsPerPage, page);
-    this.setState({ start: newStart, rowsPerPage });
+    let nextState;
+    if (typeof this.props.rowsPerPage === 'undefined') {
+      nextState = { rowsPerPage };
+    }
+
+    if (typeof this.props.page === 'undefined') {
+      nextState = nextState || {};
+      nextState.start = newStart;
+    }
+
+    if (nextState) {
+      this.setState(nextState);
+    }
   };
 
   render() {

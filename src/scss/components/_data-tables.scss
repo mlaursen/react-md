@@ -277,6 +277,8 @@ $md-data-table-contextual-fallback-color: null !default;
     max-width: 100%;
 
     &--responsive {
+      @include md-ios-scroll-momentum;
+
       overflow-x: auto;
 
       .md-data-table {

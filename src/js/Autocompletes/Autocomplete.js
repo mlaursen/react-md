@@ -479,7 +479,11 @@ export default class Autocomplete extends PureComponent {
       const { data, filter, dataLabel } = nextProps;
       const value = getField(nextProps, nextState, 'value');
 
-      const matches = filter ? filter(data, value, dataLabel) : data;
+      let { matches } = nextState;
+      if (nextProps.data !== this.props.data) {
+        matches = filter ? filter(data, value, dataLabel) : data;
+      }
+
       const next = { matches };
       if (nextState.focus) {
         next.visible = !!matches.length;
@@ -536,7 +540,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur(e);
     }
 
-    this.setState({ focus: false, visible: false });
+    this.setState({ visible: false });
   };
 
   _handleChange = (value, event) => {
@@ -552,7 +556,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     let { visible } = this.state;
-    let matches = value ? this.state.matches : [];
+    let matches = value || !filter ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }

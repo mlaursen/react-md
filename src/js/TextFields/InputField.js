@@ -47,6 +47,10 @@ export default class InputField extends PureComponent {
     this._field.focus();
   };
 
+  blur = () => {
+    this._field.blur();
+  };
+
   _setField = (field) => {
     this._field = field;
   };

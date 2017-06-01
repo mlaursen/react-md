@@ -6,8 +6,10 @@ import FileInput from './FileInput';
 import omit from '../utils/omit';
 
 /**
- * The `FileUpload` component is used to upload files locally. If you want
- * to upload files to a server, use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+ * The `FileUpload` component is used to upload files locally This is a wrapper of the `FileInput` component
+ * with some additional functionality so any props that are undocumented on `FileUpload` but are present
+ * on `FileInput` are correctly provided. If you want to upload files to a server, use
+ * [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
  * by attaching the `File`.
  *
  * Quick example:

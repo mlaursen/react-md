@@ -500,7 +500,7 @@ export default class TextField extends PureComponent {
    * ```js
    * <TextField ref={field => this._field = field;} label="Hello" />;
    *
-   * this._field.focus(); // `input` node
+   * this._field.focus();
    * ```
    */
   focus = () => {
@@ -509,6 +509,22 @@ export default class TextField extends PureComponent {
 
   get value() {
     return this.getField().value;
+  }
+
+
+  /**
+   * A helper function for blurring the `input` field or the `textarea` in the `TextField`.
+   * This is accessibile if you use `refs`.
+   * Example:
+   *
+   * ```js
+   * <TextField ref={field => this._field = field;} label="Hello" />;
+   *
+   * this._field.blur();
+   * ```
+   */
+  blur() {
+    this._field.blur();
   }
 
   _isMultiline(props) {
@@ -621,7 +637,7 @@ export default class TextField extends PureComponent {
       state.floating = !!value || value === 0;
     }
 
-    this.setState(state);
+    this.setState(state, this._field.blur);
   };
 
   _handleOutsideClick = (e) => {

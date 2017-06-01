@@ -175,6 +175,11 @@ export default class ListItem extends PureComponent {
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
     /**
+     * An optional parameter determining whether `nestedItems` should be placed before or after `ListItemText`
+     */
+    prependNested: PropTypes.bool,
+
+    /**
      * Boolean if the `nestedItems` are visible by default.
      */
     defaultVisible: PropTypes.bool,
@@ -461,6 +466,7 @@ export default class ListItem extends PureComponent {
       threeLines,
       children,
       nestedItems,
+      prependNested,
       active,
       activeClassName,
       animateNestedItems,
@@ -621,8 +627,9 @@ export default class ListItem extends PureComponent {
 
     return (
       <ItemComponent {...sharedProps}>
+        {prependNested ? nestedList : null}
         {tile}
-        {nestedList}
+        {prependNested ? null : nestedList}
       </ItemComponent>
     );
   }
