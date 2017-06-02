@@ -22,11 +22,12 @@ export default class IconExamples extends PureComponent {
       <div>
         <Button
           raised
-          label="Change Some Volues"
           onClick={this._openVolumes}
           secondary
           className="margin-centered"
-        />
+        >
+          Change Some Values
+        </Button>
         <Dialog
           id="volumeChanger"
           visible={visible}

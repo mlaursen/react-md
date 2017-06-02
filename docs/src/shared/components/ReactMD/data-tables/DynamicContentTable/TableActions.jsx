@@ -14,8 +14,8 @@ const TableActions = ({ mobile, count, reset, openAddRowDialog, removeSelected }
       <Button key="delete" icon onClick={removeSelected} tooltipLabel="Remove selected rows" tooltipDelay={300} tooltipPosition="left">delete</Button>,
     ]}
   >
-    <IconOrFlat mobile={mobile} label="Add" onClick={openAddRowDialog}>add</IconOrFlat>
-    <IconOrFlat mobile={mobile} label="Reset" onClick={reset}>refresh</IconOrFlat>
+    <IconOrFlat mobile={mobile} onClick={openAddRowDialog} iconChildren="add">Add</IconOrFlat>
+    <IconOrFlat mobile={mobile} onClick={reset} iconChildren="refresh">Reset</IconOrFlat>
   </TableCardHeader>
 );
 

@@ -4,11 +4,12 @@ import Button from 'react-md/lib/Buttons/Button';
 const More = props => (
   <Button
     {...props}
-    label="More"
     raised
     className="md-cell--right"
     primary
-  />
+  >
+    More
+  </Button>
 );
 More.propTypes = {
   onClick: PropTypes.func,

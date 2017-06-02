@@ -63,6 +63,7 @@ export default class MealPreferencesPanel extends PureComponent {
           onChange={this._handleChange}
           lineDirection="right"
           className="md-cell md-cell--5"
+          deleteKeys="description"
         />
         <CSSTransitionGroup
           component="section"

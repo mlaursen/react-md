@@ -16,7 +16,7 @@ const OptionsToolbar = ({ close }) => (
     nav={<Button icon onClick={close}>arrow_back</Button>}
     title={<TextField id="document-title" block customSize="docs-title" placeholder="Untitled Document" className="google-docs-title" resize={resize} />}
     className="google-docs-toolbar md-background--card"
-    actions={<Button flat label="some.email@gmail.com" />}
+    actions={<Button flat>some.email@gmail.com</Button>}
     fixed
     zDepth={1}
   >

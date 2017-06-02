@@ -71,10 +71,18 @@ export default class SimpleExamples extends PureComponent {
   render() {
     return (
       <div className="btn-group">
-        <Button raised label="Toast Hello, World" onClick={this._toastHello} />
-        <Button raised label="Toast Multiple Lines" onClick={this._toastMultiline} />
-        <Button raised label="Require Action to Dismiss" onClick={this._toastRetry} />
-        <Button raised label="Chain Toasts" onClick={this._toastMultiple} />
+        <Button raised onClick={this._toastHello}>
+          Toast Hello, World
+        </Button>
+        <Button raised onClick={this._toastMultiline}>
+          Toast Multiple Lines
+        </Button>
+        <Button raised onClick={this._toastRetry}>
+          Require Action to Dismiss
+        </Button>
+        <Button raised onClick={this._toastMultiple}>
+          Chain Toasts
+        </Button>
         <Snackbar {...this.state} onDismiss={this._removeToast} />
       </div>
     );

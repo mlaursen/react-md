@@ -41,7 +41,9 @@ export default class InToolbarExample extends PureComponent {
 
     return (
       <div className="md-text-container">
-        <Button label="Open Toolbar Example" onClick={this._open} raised secondary />
+        <Button onClick={this._open} raised secondary>
+          Open Toolbar Example
+        </Button>
         <Dialog
           id="autocomplete-toolbar-examples"
           aria-label="Autocomplete in a Toolbar Example"

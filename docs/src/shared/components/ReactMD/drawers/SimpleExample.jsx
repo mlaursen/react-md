@@ -37,8 +37,12 @@ export default class SimpleExample extends PureComponent {
     );
     return (
       <div className="md-grid">
-        <Button raised label="Toggle Drawer Left" onClick={this._toggleLeft} />
-        <Button raised label="Toggle Drawer Right" onClick={this._toggleRight} />
+        <Button raised onClick={this._toggleLeft}>
+          Toggle Drawer Left
+        </Button>
+        <Button raised onClick={this._toggleRight}>
+          Toggle Drawer Right
+        </Button>
         <Drawer
           {...this.state}
           navItems={inboxListItems}

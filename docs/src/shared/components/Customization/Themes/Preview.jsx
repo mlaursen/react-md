@@ -39,7 +39,9 @@ export default class Preview extends PureComponent {
         <div className="md-grid md-toolbar-relative">
           <h2 className="md-display-1 md-cell md-cell--12">Look at this</h2>
           <LoremIpsum units="sentences" className="md-cell md-cell--12" component="p" />
-          <Button label="Button" primary raised style={{ marginLeft: 8, marginTop: '1em' }} />
+          <Button primary raised style={{ marginLeft: 8, marginTop: '1em' }}>
+            Button
+          </Button>
         </div>
         <Drawer
           renderNode={this._container}

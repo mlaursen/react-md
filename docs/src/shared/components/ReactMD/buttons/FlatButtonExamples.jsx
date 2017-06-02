@@ -4,12 +4,12 @@ import Button from 'react-md/lib/Buttons/Button';
 const FlatButtonExamples = () => (
   <div className="btn-example">
     <h5>Theme Examples</h5>
-    <Button flat label="Hello, World!" />
-    <Button flat primary label="Chat">chat_bubble_outline</Button>
-    <Button flat secondary iconBefore={false} label="Chat">chat_bubble_outline</Button>
+    <Button flat>Hello, World!</Button>
+    <Button flat primary iconChildren="chat_bubble_outline">Chat</Button>
+    <Button flat secondary iconBefore={false} iconChildren="chat_bubble_outline">Chat</Button>
     <h5>Disabled Examples</h5>
-    <Button flat disabled label="Disabled Button" />
-    <Button flat disabled label="Disabled Button">close</Button>
+    <Button flat disabled>Disabled Button</Button>
+    <Button flat disabled iconChildren="close">Disabled Button</Button>
   </div>
 );
 

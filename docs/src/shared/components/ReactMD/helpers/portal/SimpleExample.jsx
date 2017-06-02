@@ -48,7 +48,9 @@ export default class SimpleExample extends PureComponent {
 
     return (
       <div>
-        <Button raised label="Show Overlay" onClick={this._showOverlay} ref={this._setButton} />
+        <Button raised onClick={this._showOverlay} ref={this._setButton}>
+          Show Overlay
+        </Button>
         <Portal visible={overlay}>
           <AccessibleFakeButton
             ref={overlay => {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 import LinearProgress from 'react-md/lib/Progress/LinearProgress';
 import FileUpload from 'react-md/lib/FileInputs/FileUpload';
 
@@ -85,7 +85,7 @@ export default class FileUploadExample extends PureComponent {
     if (typeof progress === 'number') {
       stats = [
         <LinearProgress key="progress" value={progress} id="upload-progress" />,
-        <Button raised key="abort" label="Abort Upload" onClick={this._abortUpload} />,
+        <Button raised key="abort" onClick={this._abortUpload}>Abort Upload</Button>,
       ];
     }
 

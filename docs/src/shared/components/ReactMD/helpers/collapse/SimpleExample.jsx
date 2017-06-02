@@ -14,7 +14,9 @@ export default class SimpleExample extends PureComponent {
   render() {
     return (
       <div>
-        <Button raised label="Toggle Collapse Thing" onClick={this._toggleCollapse} style={{ marginBottom: 16 }} />
+        <Button raised onClick={this._toggleCollapse} style={{ marginBottom: 16 }}>
+          Toggle Collapse Thing
+        </Button>
         <Collapse collapsed={this.state.collapsed}>
           <LoremIpsum count={3} className="md-text-container" />
         </Collapse>

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 import FileInput from 'react-md/lib/FileInputs';
 import SelectField from 'react-md/lib/SelectFields';
 import TextField from 'react-md/lib/TextFields';
@@ -72,7 +72,7 @@ export default class FileConverterExample extends PureComponent {
 
     if (visible) {
       dialogProps.children = [
-        <LinearProgress key="progress" value={progress} />,
+        <LinearProgress key="progress" value={progress} id="conversion-progress" />,
         <span key="counter">{progress}%</span>,
       ];
     }
@@ -119,10 +119,11 @@ export default class FileConverterExample extends PureComponent {
             raised
             secondary
             type="submit"
-            label="Submit"
             disabled={!file}
             onClick={this._fakeSubmit}
-          />
+          >
+            Submit
+          </Button>
         </div>
         <Dialog {...dialogProps} />
       </form>

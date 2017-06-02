@@ -9,16 +9,15 @@ const MenuButtonExampes = () => (
   <div className="menu-examples">
     <MenuButton
       id="menu-button-1"
-      label="Toggle the Menu"
       raised
       secondary
       menuItems={['Item One', 'Item Two', 'Item Three', 'Item Four']}
+      iconChildren="chat"
     >
-      chat
+      Toggle the Menu
     </MenuButton>
     <MenuButton
       id="menu-button-2"
-      label="Toggle the Menu"
       anchor={{
         x: MenuButton.HorizontalAnchors.INNER_LEFT,
         y: MenuButton.VerticalAnchors.TOP,
@@ -35,7 +34,9 @@ const MenuButtonExampes = () => (
         primaryText: 'Item Three',
         secondaryText: 'Sub item three',
       }]}
-    />
+    >
+      Toggle the Menu
+    </MenuButton>
     <MenuButton
       id="menu-button-2"
       icon

@@ -133,7 +133,9 @@ export default class SimpleExample extends PureComponent {
 
     return (
       <div>
-        <Button raised label="Open the demo" onClick={this._openDemo} />
+        <Button raised onClick={this._openDemo}>
+          Open the Demo
+        </Button>
         <Dialog
           id="nav-drawer-demo"
           aria-label="Navigation Drawer Demo"

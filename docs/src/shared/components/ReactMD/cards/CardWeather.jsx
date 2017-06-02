@@ -65,7 +65,7 @@ export default class CardWeather extends PureComponent {
           <ListItem primaryText="Thursday" rightIcon={thursday} />
         </List>
         <CardActions className="md-divider-border md-divider-border--top">
-          <Button flat label="Full Report" secondary />
+          <Button flat secondary>Full Report</Button>
         </CardActions>
       </Card>
     );
