@@ -25,6 +25,19 @@ export default class SassDocPage extends PureComponent {
     this.state = { finderVisible: false };
   }
 
+  componentDidMount() {
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ finderVisible: true }); // eslint-disable-line react/no-did-mount-set-state
+    }, 450);
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+  }
+
   _toggleFinder = () => {
     this.setState({ finderVisible: !this.state.finderVisible });
   };
