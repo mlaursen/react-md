@@ -45,7 +45,7 @@ export default class JumpToContentLink extends PureComponent {
     return (
       <a
         {...props}
-        id={`skipTo${id}`}
+        id={`jump-to-${id}`}
         href={`#${id}`}
         onClick={this._handleClick}
         className={cn('md-content-jump', className)}

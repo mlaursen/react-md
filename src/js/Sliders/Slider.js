@@ -908,7 +908,7 @@ export default class Slider extends PureComponent {
     if (editable) {
       rightChildren = (
         <TextField
-          id={`${id}Editor`}
+          id={`${id}-editor`}
           ref={this._setField}
           type="number"
           value={value}
