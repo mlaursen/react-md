@@ -13,6 +13,7 @@ import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 
+import Footer from './Footer';
 
 const helmetConfig = {
   htmlAttributes: { lang: 'en' },
@@ -136,6 +137,7 @@ export default class App extends PureComponent {
       >
         <Helmet {...helmetConfig} title={toolbarTitle} />
         {children}
+        <Footer />
       </NavigationDrawer>
     );
   }

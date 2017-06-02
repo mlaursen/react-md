@@ -11,8 +11,6 @@ const WITConfig = require('./WIT.config');
 
 const modules = path.resolve(process.cwd(), 'node_modules');
 
-process.traceDeprecation = true;
-
 const PROD_PLUGINS = [
   new webpack.optimize.UglifyJsPlugin({
     compress: {

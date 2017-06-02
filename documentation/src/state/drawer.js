@@ -1,12 +1,7 @@
 import { combineReducers } from 'redux';
 import { toPageTitle } from 'utils/strings';
-import { LOCATION_CHANGE } from './routing';
+import { LOCATION_CHANGE, NOT_FOUND } from './routing';
 
-export const NOT_FOUND = 'NOT_FOUND';
-
-export function pageNotFound() {
-  return { type: NOT_FOUND };
-}
 
 function toolbarTitle(state = '', action) {
   if (action.type === LOCATION_CHANGE) {
