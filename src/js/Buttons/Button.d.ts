@@ -8,9 +8,7 @@ type FixedPositions = 'tr' | 'tl' | 'br' | 'bl';
 
 export interface SharedButtonProps {
   tabIndex?: number;
-  label?: React.ReactNode;
   iconBefore?: boolean;
-  iconClassName?: string;
   type?: ButtonTypes;
   primary?: boolean;
   secondary?: boolean;
@@ -21,9 +19,15 @@ export interface SharedButtonProps {
   raised?: boolean;
   icon?: boolean;
   floating?: boolean;
+  iconClassName?: string;
+  iconChildren?: React.ReactNode;
   forceIconSize?: boolean | number;
   forceIconFontSize?: boolean;
-  noIcon?: boolean;
+
+  /**
+   * @deprecated
+   */
+  label?: React.ReactNode;
 }
 
 export interface ButtonProps extends Props, SharedButtonProps, InjectedTooltipProps, InjectedInkProps {

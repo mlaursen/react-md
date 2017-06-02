@@ -5,7 +5,6 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-  scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
 } from 'react-dom/test-utils';
@@ -17,7 +16,7 @@ describe('Button', () => {
   it('merges className and style', () => {
     const props = {
       flat: true,
-      label: 'Test',
+      children: 'Test',
       style: { background: 'black' },
       className: 'test',
     };
@@ -58,7 +57,7 @@ describe('Button', () => {
       onKeyUp,
       onClick,
       flat: true,
-      label: 'Hello',
+      children: 'Hello',
     };
     const button = renderIntoDocument(<Button {...props} />);
     const btn = findDOMNode(button);
@@ -104,7 +103,7 @@ describe('Button', () => {
   });
 
   it('renders a button component if there is no href prop', () => {
-    const props = { label: 'test', flat: true };
+    const props = { children: 'test', flat: true };
     const button = renderIntoDocument(<Button {...props} />);
     const btns = scryRenderedDOMComponentsWithTag(button, 'button');
     const links = scryRenderedDOMComponentsWithTag(button, 'a');
@@ -113,7 +112,7 @@ describe('Button', () => {
   });
 
   it('renders a link component if there is a href prop', () => {
-    const props = { label: 'test', flat: true, href: '#' };
+    const props = { children: 'test', flat: true, href: '#' };
     const button = renderIntoDocument(<Button {...props} />);
     const btns = scryRenderedDOMComponentsWithTag(button, 'button');
     const links = scryRenderedDOMComponentsWithTag(button, 'a');
@@ -122,7 +121,7 @@ describe('Button', () => {
   });
 
   it('removes the button type if there is a href prop', () => {
-    const props = { label: 'test', flat: true, href: '#' };
+    const props = { children: 'test', flat: true, href: '#' };
     const button = renderIntoDocument(<Button {...props} />);
     const link = findRenderedDOMComponentWithTag(button, 'a');
     expect(link.getAttribute('type')).toBe(null);
@@ -133,22 +132,5 @@ describe('Button', () => {
     const button = renderIntoDocument(<Button {...props} />);
     const icon = findRenderedComponentWithType(button, FontIcon);
     expect(icon.props.children).toBe(props.children);
-  });
-
-  it('renders markup specified in a label prop', () => {
-    const className = 'label-class';
-    const label = 'label text';
-    const props = { label: <span className={className}>{label}</span>, flat: true };
-    const button = renderIntoDocument(<Button {...props} />);
-    const innerNode = findRenderedDOMComponentWithTag(button, 'span');
-    expect(innerNode.getAttribute('class')).toBe(className);
-    expect(innerNode.innerHTML).toBe(label);
-  });
-
-  it('does not wrap children in a FontIcon component when noIcon prop is set', () => {
-    const props = { children: 'content', flat: true, noIcon: true };
-    const button = renderIntoDocument(<Button {...props} />);
-    const icons = scryRenderedComponentsWithType(button, FontIcon);
-    expect(icons.length).toBe(0);
   });
 });
