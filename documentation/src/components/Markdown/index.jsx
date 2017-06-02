@@ -3,6 +3,7 @@ import cn from 'classnames';
 import formatMarkdown from 'utils/formatMarkdown';
 import Prism from 'prismjs';
 
+import 'prismjs/themes/prism.css';
 import './_styles.scss';
 
 export default class Markdown extends PureComponent {

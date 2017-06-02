@@ -33,7 +33,7 @@ module.exports = ({ production }) => {
     .development(!production);
 
   const extractStyles = new ExtractTextPlugin({
-    filename: 'styles.min.css',
+    filename: 'styles-[hash].min.css',
     allChunks: true,
     disable: !production,
   });
@@ -73,6 +73,24 @@ module.exports = ({ production }) => {
           plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
         },
       }, {
+        test: /\.css$/,
+        loader: extractStyles.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+            },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [autoprefixer],
+            },
+          }],
+          fallback: 'style-loader',
+        }),
+      }, {
         test: /\.scss$/,
         exclude: /node_modules/,
         loader: extractStyles.extract({
@@ -80,9 +98,14 @@ module.exports = ({ production }) => {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+              importLoaders: 2,
             },
           }, {
             loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [autoprefixer],
+            },
           }, {
             loader: 'sass-loader',
             options: {

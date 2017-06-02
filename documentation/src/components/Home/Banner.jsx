@@ -12,11 +12,12 @@ const Banner = () => (
     <Button
       raised
       secondary
-      label="View Demo"
       type={null}
       to="/components"
       component={Link}
-    />
+    >
+      View Demo
+    </Button>
   </header>
 );
 

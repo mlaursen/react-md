@@ -1,4 +1,5 @@
 export const LOCATION_CHANGE = 'LOCATION_CHANGE';
+
 export function updateLocation(location) {
   return { type: LOCATION_CHANGE, payload: { location } };
 }
