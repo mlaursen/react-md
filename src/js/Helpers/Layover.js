@@ -640,7 +640,10 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      this._observer.observe(this._child);
+      if (this._observer) {
+        this._observer.observe(this._child);
+      }
+
       window.addEventListener('resize', this._handleWindowResize);
       this._childComponent = React.Children.only(this.props.children);
 

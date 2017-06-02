@@ -66,7 +66,7 @@ describe('Autocomplete', () => {
   });
 
   it('should not filter any data when the filter prop is null and the data prop or value prop change', () => {
-    const autocomplete = shallow(<Autocomplete id="test" data={DATA} defaultValue="the s" onChange={jest.fn()} filter={null} />);
+    const autocomplete = shallow(<Autocomplete id="test" data={DATA} value="the s" onChange={jest.fn()} filter={null} />);
     expect(autocomplete.state('matches')).toEqual(DATA);
 
     autocomplete.setProps({ value: 'the ' });
@@ -402,17 +402,17 @@ describe('Autocomplete', () => {
 
     autocomplete.find('input').simulate('change', { value: 'a' });
     expect(autocomplete.state('matches')).toBe(data);
-    expect(autocomplete.state('isOpen')).toBe(false);
+    expect(autocomplete.state('visible')).toBe(false);
 
     data = ['Apples', 'Bananas', 'Oranges', 'Avacados'];
     autocomplete.setProps({ data }); // return from ajax call
     expect(autocomplete.state('matches')).toBe(data);
-    expect(autocomplete.state('isOpen')).toBe(true);
+    expect(autocomplete.state('visible')).toBe(true);
 
     autocomplete.find(ListItem).at(1).simulate('click');
     expect(onAutocomplete).toBeCalled();
     expect(autocomplete.state('focus')).toBe(true);
-    expect(autocomplete.state('isOpen')).toBe(false);
+    expect(autocomplete.state('visible')).toBe(false);
     expect(autocomplete.state('matches')).toBe(data);
     expect(autocomplete.state('value')).toBe('');
 
@@ -423,11 +423,11 @@ describe('Autocomplete', () => {
 
     autocomplete.find('input').simulate('change', { value: 'b' });
     expect(autocomplete.state('matches')).toBe(data);
-    expect(autocomplete.state('isOpen')).toBe(false);
+    expect(autocomplete.state('visible')).toBe(false);
 
     data = ['Bapples', 'Bananas', 'Boranges', 'Bavacados'];
     autocomplete.setProps({ data });
     expect(autocomplete.state('matches')).toBe(data);
-    expect(autocomplete.state('isOpen')).toBe(true);
+    expect(autocomplete.state('visible')).toBe(true);
   });
 });
