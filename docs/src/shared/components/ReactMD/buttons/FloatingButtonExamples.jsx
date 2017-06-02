@@ -10,6 +10,9 @@ const FloatingButtonExamples = () => (
     <h5>Disabled Examples</h5>
     <Button floating primary disabled>favorite</Button>
     <Button floating secondary disabled>close</Button>
+    <h5>Theme Swapped Examples</h5>
+    <Button floating primary swapTheming>favorite</Button>
+    <Button floating secondary swapTheming>favorite</Button>
   </div>
 );
 

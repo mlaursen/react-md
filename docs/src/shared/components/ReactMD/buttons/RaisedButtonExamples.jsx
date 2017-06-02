@@ -12,6 +12,9 @@ const RaisedButtonExamples = () => (
     <h5>Disabled Examples</h5>
     <Button raised disabled>Disabled Button</Button>
     <Button raised disabled iconChildren="close">Disabled Button</Button>
+    <h5>Theme Swapped Examples</h5>
+    <Button raised primary swapTheming>Hello</Button>
+    <Button raised secondary swapTheming>World</Button>
   </div>
 );
 

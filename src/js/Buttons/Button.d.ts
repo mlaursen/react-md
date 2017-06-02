@@ -23,6 +23,7 @@ export interface SharedButtonProps {
   iconChildren?: React.ReactNode;
   forceIconSize?: boolean | number;
   forceIconFontSize?: boolean;
+  swapTheming?: boolean;
 
   /**
    * @deprecated

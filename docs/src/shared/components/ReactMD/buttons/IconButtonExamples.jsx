@@ -16,6 +16,9 @@ const IconButtonExamples = () => (
     <Button icon tooltipLabel="Click to favorite something imaginary">
       favorite
     </Button>
+    <h5>Theme Swapped Examples</h5>
+    <Button icon primary swapTheming>favorite</Button>
+    <Button icon secondary swapTheming>favorite</Button>
   </div>
 );
 

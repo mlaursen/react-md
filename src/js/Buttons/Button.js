@@ -197,6 +197,19 @@ class Button extends PureComponent {
     floating: PropTypes.bool,
 
     /**
+     * Boolean if the theming of `primary` or `secondary` should be swapped. By default,
+     * only flat and icon buttons can gain the theme colors as text color while the raised
+     * and floating buttons can gain the theme colors as background color.
+     *
+     * If this prop is enabled, the flat and icon buttons will gain the theme background colors
+     * while the raised and icon will gain the theme text colors instead.
+     *
+     * @see {@link #primary}
+     * @see {@link #secondary}
+     */
+    swapTheming: PropTypes.bool,
+
+    /**
      * An optional label to use for the tooltip. This is normally only used for
      * `IconButton`s or `FloatingButton`s, but can be used on `FlatButton`s and
      * `RaisedButton`s if you wish. Knock yourself out!
@@ -464,6 +477,7 @@ class Button extends PureComponent {
       forceIconFontSize,
       type,
       children,
+      swapTheming,
       label, // deprecated
       ...props
     } = this.props;
@@ -500,14 +514,17 @@ class Button extends PureComponent {
       visibleChildren = fontIcon;
     }
 
+    const flatStyles = flat || icon;
     const raisedStyles = raised || floating;
+    const textTheming = (flatStyles && !swapTheming) || (raisedStyles && swapTheming);
+    const backgroundTheming = (raisedStyles && !swapTheming) || (flatStyles && swapTheming);
     const themeClassNames = !disabled && cn({
-      'md-text--theme-primary md-ink--primary': !raisedStyles && primary,
-      'md-text--theme-secondary md-ink--secondary': !raisedStyles && secondary,
-      'md-background--primary md-background--primary-hover': raisedStyles && primary,
-      'md-background--secondary md-background--secondary-hover': raisedStyles && secondary,
-      'md-btn--color-primary-active': !raisedStyles && hover && primary,
-      'md-btn--color-secondary-active': !raisedStyles && hover && secondary,
+      'md-text--theme-primary md-ink--primary': primary && textTheming,
+      'md-text--theme-secondary md-ink--secondary': secondary && textTheming,
+      'md-background--primary md-background--primary-hover': primary && backgroundTheming,
+      'md-background--secondary md-background--secondary-hover': secondary && backgroundTheming,
+      'md-btn--color-primary-active': primary && hover && textTheming,
+      'md-btn--color-secondary-active': secondary && hover && textTheming,
     });
 
     const Component = component || (href ? 'a' : 'button');

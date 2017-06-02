@@ -10,6 +10,9 @@ const FlatButtonExamples = () => (
     <h5>Disabled Examples</h5>
     <Button flat disabled>Disabled Button</Button>
     <Button flat disabled iconChildren="close">Disabled Button</Button>
+    <h5>Theme Swapped Examples</h5>
+    <Button flat primary swapTheming>Hello</Button>
+    <Button flat secondary swapTheming>World</Button>
   </div>
 );
 
