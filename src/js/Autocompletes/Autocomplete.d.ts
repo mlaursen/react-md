@@ -19,6 +19,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   inputClassName?: string;
   disabled?: boolean;
   label?: React.ReactNode;
+  placeholder?: string;
   value?: string | number;
   defaultValue?: string | number;
   dataLabel?: string;

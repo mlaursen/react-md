@@ -11,7 +11,7 @@ export interface DialogProps extends Props {
   contentClassName?: string;
   contentComponent?: React.ReactType;
   contentProps?: Object;
-  actions: React.ReactElement<any> | ButtonProps | Array<React.ReactElement<any> | ButtonProps>;
+  actions?: React.ReactElement<any> | ButtonProps | Array<React.ReactElement<any> | ButtonProps>;
   paddedContent?: boolean;
   autopadContent?: boolean;
   children?: React.ReactNode;
