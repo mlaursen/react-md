@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /* eslint-disable react/no-danger */
 const InlineSVG = ({ component: Component, src, ...props }) => (

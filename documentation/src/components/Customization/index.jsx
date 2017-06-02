@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { getTab } from 'utils/routing';
 
 import { NotFound, Colors, Themes, Typography, MediaQueries, MinimizingBundle } from 'routes';

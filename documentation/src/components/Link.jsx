@@ -1,5 +1,5 @@
-/* eslint-disable no-nested-ternary */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link as RouterLink, Route } from 'react-router-dom';
 import Avatar from 'react-md/lib/Avatars';
 import FontIcon from 'react-md/lib/FontIcons';

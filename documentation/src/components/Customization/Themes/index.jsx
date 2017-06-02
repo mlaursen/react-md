@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MarkdownPage from 'components/Markdown/MarkdownPage';
 
 import markdown from './README.md';

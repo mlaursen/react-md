@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connectAdvanced } from 'react-redux';
 import { withRouter } from 'react-router';
 import shallowEqual from 'shallowequal';
