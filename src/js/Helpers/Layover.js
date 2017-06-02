@@ -345,6 +345,7 @@ export default class Layover extends PureComponent {
 
     this._manageFixedToListener(this.props.fixedTo, false);
     handleWindowClickListeners(this._handleOutsideClick, false);
+    window.removeEventListener('resize', this._handleWindowResize);
   }
 
   _getAnchor({ anchor, belowAnchor, animationPosition }) {
@@ -640,6 +641,7 @@ export default class Layover extends PureComponent {
 
     if (this._child !== null) {
       this._observer.observe(this._child);
+      window.addEventListener('resize', this._handleWindowResize);
       this._childComponent = React.Children.only(this.props.children);
 
       // If child also has a ref callback, simulate the same thing
@@ -768,6 +770,11 @@ export default class Layover extends PureComponent {
     ) {
       this.props.onClose(e);
     }
+  };
+
+  _handleWindowResize = () => {
+    this.props.onClose();
+    window.removeEventListener('resize', this._handleWindowResize);
   };
 
   /**
