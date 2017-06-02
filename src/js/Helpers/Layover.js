@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
@@ -282,6 +283,23 @@ export default class Layover extends PureComponent {
 
       this._init(fixedTo, anchor, sameWidth, centered, rect);
     }
+
+    this._observer = new ResizeObserver((entries) => {
+      if (!this._observer || !this._toggle || !this._child) {
+        return;
+      }
+
+      for (const entry of entries) {
+        if (!entry) {
+          return;
+        }
+
+        const { height, width } = entry.contentRect;
+        if ((height && height !== this._height) || (width && width !== this._width)) {
+          this._positionChild();
+        }
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -323,10 +341,10 @@ export default class Layover extends PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.props.visible) {
-      this._manageFixedToListener(this.props.fixedTo, false);
-      handleWindowClickListeners(this._handleOutsideClick, false);
-    }
+    this._observer = null;
+
+    this._manageFixedToListener(this.props.fixedTo, false);
+    handleWindowClickListeners(this._handleOutsideClick, false);
   }
 
   _getAnchor({ anchor, belowAnchor, animationPosition }) {
@@ -621,9 +639,8 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      const { children, centered } = this.props;
-      const anchor = this._getAnchor(this.props);
-      this._childComponent = React.Children.only(children);
+      this._observer.observe(this._child);
+      this._childComponent = React.Children.only(this.props.children);
 
       // If child also has a ref callback, simulate the same thing
       if (typeof this._childComponent.ref === 'function') {
@@ -638,17 +655,25 @@ export default class Layover extends PureComponent {
         return;
       }
 
-      const rect = this._contextRect || this._toggle.getBoundingClientRect();
-      const styles = this._createStyles(anchor, centered, this._child, rect);
-      if (styles.top || styles.left) {
-        this._initialLeft = styles.left || this._initialLeft;
-        this._initialTop = styles.top || this._initialTop;
-        this.setState({ styles: this._mergeStyles(styles) }, this._initialFix);
-      } else {
-        this._initialFix();
-      }
+      this._positionChild();
     } else if (this._childComponent && typeof this._childComponent.ref === 'function') {
       this._childComponent.ref(child);
+    }
+  };
+
+  _positionChild = () => {
+    const { centered } = this.props;
+    const anchor = this._getAnchor(this.props);
+    const rect = this._contextRect || this._toggle.getBoundingClientRect();
+    this._height = rect.height;
+    this._width = rect.width;
+    const styles = this._createStyles(anchor, centered, this._child, rect);
+    if (styles.top || styles.left) {
+      this._initialLeft = styles.left || this._initialLeft;
+      this._initialTop = styles.top || this._initialTop;
+      this.setState({ styles: this._mergeStyles(styles) }, this._initialFix);
+    } else {
+      this._initialFix();
     }
   };
 
