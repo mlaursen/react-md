@@ -28,6 +28,7 @@
     "helmet": "^3.6.0",
     "lodash": "^4.17.4",
     "morgan": "^1.8.1",
+    "pluralize": "^5.0.0",
     "react-docgen": "^2.15.0",
     "sassdoc": "^2.2.2",
     "vhost": "^3.0.2"
