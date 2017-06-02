@@ -7,6 +7,11 @@
 /// @type Number
 $md-content-jump-left-active: 0 !default;
 
+/// Boolean if iOS should allow scroll momentum in places where manual scrolling
+/// is enabled.
+/// @type Boolean
+$md-enable-ios-scroll-momentum: true !default;
+
 /// The left position of the content jump link when it does not have keyboard focus. This is
 /// for the link that appears in the navigation drawer that skips to the main content.
 /// @type Number
@@ -68,5 +73,16 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
       left: $md-content-jump-left-active;
       top: $md-content-jump-top-active;
     }
+  }
+}
+
+/// A simple mixin that will add scroll momentum to a class ONLY if the momentum is
+/// enabled via the mixin or the `$md-enable-ios-scroll-momentum` variable.
+///
+/// @param {Boolean} enable-momentum [$md-enable-ios-scroll-momentum] - Boolean if the momentum
+///     should be added
+@mixin md-ios-scroll-momentum($enable-momentum: $md-enable-ios-scroll-momentum) {
+  @if $enable-momentum {
+    -webkit-overflow-scrolling: touch;
   }
 }

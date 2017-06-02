@@ -26,11 +26,11 @@ export default class FullPageDialogExamples extends PureComponent {
 
   render() {
     const nav = <Button icon onClick={this._closeDialog}>close</Button>;
-    const action = <Button flat label="Save" onClick={this._closeDialog} />;
+    const action = <Button flat onClick={this._closeDialog}>Save</Button>;
 
     return (
       <div>
-        <Button raised label="Open full page dialog" onClick={this._openDialog} />
+        <Button raised onClick={this._openDialog}>Open full page dialog</Button>
         <Dialog
           id="fullPageExample"
           {...this.state}

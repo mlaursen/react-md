@@ -29,8 +29,8 @@ const ExpandableMediaCard = () => (
       subtitle="Card Subtitle"
     />
     <CardActions expander>
-      <Button flat label="Action 1" />
-      <Button flat label="Action 2" />
+      <Button flat>Action 1</Button>
+      <Button flat>Action 2</Button>
     </CardActions>
     <CardText expandable>
       <LoremIpsum units="paragraphs" count={4} />

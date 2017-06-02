@@ -643,7 +643,7 @@ export default class TimePickerContainer extends PureComponent {
     } else {
       content = (
         <Dialog
-          id={`${id}Dialog`}
+          id={`${id}-dialog`}
           visible={visible}
           onHide={this._handleCancelClick}
           dialogClassName="md-dialog--picker"

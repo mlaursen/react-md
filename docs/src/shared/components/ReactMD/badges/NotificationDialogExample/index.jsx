@@ -83,14 +83,15 @@ export default class ComplexExample extends PureComponent {
       <div>
         <Button
           secondary
-          label="Reset"
           type="reset"
           raised
           onClick={this._reset}
           ref={this._setReset}
           className="notification-reset-btn"
           aria-controls="example-notifications"
-        />
+        >
+          Reset
+        </Button>
         <Toolbar
           colored
           nav={<Button icon>menu</Button>}

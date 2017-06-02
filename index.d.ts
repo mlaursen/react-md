@@ -34,6 +34,7 @@ export {
   ExpansionPanel, ExpansionPanelProps,
   ExpansionList, ExpansionListProps,
 } from './lib/ExpansionPanels';
+export { FileInput, FileInputProps, FileUpload, FileUploadProps } from './lib/FileInputs';
 export { default as FontIcon, FontIconProps } from './lib/FontIcons';
 export {
   AccessibleFakeButton, AccessibleFakeButtonProps,

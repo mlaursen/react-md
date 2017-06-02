@@ -90,9 +90,10 @@ export default class Slider extends PureComponent {
     discreteValueClassName: PropTypes.string,
 
     /**
-     * The default value for the slider.
+     * The default value for the slider. This number must be between the min and max values if
+     * defined. If this is undefined, it's value will be set to the min value.
      */
-    defaultValue: PropTypes.number.isRequired,
+    defaultValue: PropTypes.number,
 
     /**
      * The min value for the slider. The min and max values must be on the same
@@ -105,7 +106,7 @@ export default class Slider extends PureComponent {
         let name;
         if (min > props.value) {
           name = 'value';
-        } else if (min > props.defaultValue) {
+        } else if (typeof props.defaultValue !== 'undefined' && min > props.defaultValue) {
           name = 'defaultValue';
         }
 
@@ -256,9 +257,21 @@ export default class Slider extends PureComponent {
           );
         } else {
           const valueDefined = typeof props.value !== 'undefined';
+          const defaultDefined = typeof props.defaultValue !== 'undefined';
+          let value = props.value;
+          if (!valueDefined) {
+            value = defaultDefined ? props.defaultValue : props.min;
+          }
+
           let name;
-          if (!isWithinStep(valueDefined ? props.value : props.defaultValue, step)) {
-            name = valueDefined ? 'value' : 'defaultValue';
+          if (!isWithinStep(value, step)) {
+            if (valueDefined) {
+              name = 'value';
+            } else if (defaultDefined) {
+              name = 'defaultValue';
+            } else {
+              name = 'min';
+            }
           }
 
           if (name) {
@@ -396,7 +409,6 @@ export default class Slider extends PureComponent {
   };
 
   static defaultProps = {
-    defaultValue: 0,
     min: 0,
     max: 100,
     step: 1,
@@ -409,23 +421,18 @@ export default class Slider extends PureComponent {
   constructor(props) {
     super(props);
 
-    const scale = Math.abs(props.max - props.min) / props.step;
+    const { min, max, step } = props;
+    const scale = Math.abs(max - min) / step;
 
     let value = typeof props.value !== 'undefined'
       ? props.value
       : props.defaultValue;
 
-    let distance = value;
-    if (distance === props.min) {
-      distance = 0;
-    } else if (distance === props.max) {
-      distance = 100;
-    } else if (props.min > 1 && props.defaultValue !== 0) {
-      distance = Math.max(0, Math.min(100, ((props.defaultValue - props.min) / (props.max - props.min)) * 100));
-    } else {
-      distance = value / props.max * 100;
+    if (typeof value === 'undefined') {
+      value = min;
     }
 
+    const distance = this._calcDistance(value, min, max);
     const thumbLeft = this._calcLeft(distance);
     const trackFillWidth = `${distance}%`;
 
@@ -514,6 +521,10 @@ export default class Slider extends PureComponent {
    */
   _calcLeft(value) {
     return `calc(${value}% - 6px)`;
+  }
+
+  _calcDistance(value, min, max) {
+    return Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
   }
 
   /**
@@ -693,8 +704,8 @@ export default class Slider extends PureComponent {
   _handleIncrement = (incrementedValue, e, disableTransition) => {
     const { onChange, min, max, discrete } = this.props;
 
-    const distance = Math.max(0, Math.min(100, ((incrementedValue - min) / (max - min)) * 100));
     const value = Math.max(min, Math.min(max, incrementedValue));
+    const distance = this._calcDistance(value, min, max);
 
     if (onChange) {
       onChange(value, e);
@@ -743,7 +754,7 @@ export default class Slider extends PureComponent {
       return;
     }
 
-    let nextValue = getField(this.props, this.state);
+    let nextValue = getField(this.props, this.state, 'value');
     nextValue = Math.max(
       min,
       Math.min((key === LEFT ? -step : step) + nextValue, max)
@@ -897,7 +908,7 @@ export default class Slider extends PureComponent {
     if (editable) {
       rightChildren = (
         <TextField
-          id={`${id}Editor`}
+          id={`${id}-editor`}
           ref={this._setField}
           type="number"
           value={value}
@@ -947,7 +958,7 @@ export default class Slider extends PureComponent {
           disabled={disabled}
           thumbLeft={thumbLeft}
           trackFillWidth={trackFillWidth}
-          on={!disabled && distance > min}
+          on={!disabled && distance > 0}
           off={distance === 0}
           maskInked={maskInked}
           onThumbKeyUp={this._handleKeyUp}

@@ -24,5 +24,5 @@ export interface InkedComponent {
 }
 
 export default function injectInk<P>(
-  ComposedComponent: React.ComponentClass<P & { ink: React.ReactNode | null } & InkedComponent>
-): React.ComponentClass<P & InjectedInkProps>;
+  ComposedComponent: React.ComponentClass<P & { ink: React.ReactNode | null }>
+): React.ComponentClass<P & InjectedInkProps> & InkedComponent;

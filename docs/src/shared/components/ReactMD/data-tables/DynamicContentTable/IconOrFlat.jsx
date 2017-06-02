@@ -1,20 +1,21 @@
 import React, { PropTypes } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 
-const IconOrFlat = ({ mobile, label, ...props }) => (
+const IconOrFlat = ({ mobile, children, ...props }) => (
   <Button
     icon={mobile}
     flat={!mobile}
-    label={mobile ? null : label}
     primary
-    tooltipLabel={mobile ? label : null}
+    tooltipLabel={mobile ? children : null}
     {...props}
-  />
+  >
+    {mobile ? null : children}
+  </Button>
 );
 
 IconOrFlat.propTypes = {
   mobile: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default IconOrFlat;

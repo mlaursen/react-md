@@ -841,7 +841,7 @@ export default class DatePickerContainer extends PureComponent {
     } else {
       content = (
         <Dialog
-          id={`${id}Dialog`}
+          id={`${id}-dialog`}
           visible={visible}
           onHide={this._handleCancelClick}
           dialogClassName="md-dialog--picker"

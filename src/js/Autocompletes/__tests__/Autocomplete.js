@@ -8,6 +8,7 @@ import { TAB, DOWN, UP, ENTER, SPACE } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
 import Menu from '../../Menus/Menu';
 import TextField from '../../TextFields/TextField';
+import ListItem from '../../Lists/ListItem';
 
 const DATA = [
   'Woop woop',
@@ -65,7 +66,7 @@ describe('Autocomplete', () => {
   });
 
   it('should not filter any data when the filter prop is null and the data prop or value prop change', () => {
-    const autocomplete = shallow(<Autocomplete id="test" data={DATA} defaultValue="the s" onChange={jest.fn()} filter={null} />);
+    const autocomplete = shallow(<Autocomplete id="test" data={DATA} value="the s" onChange={jest.fn()} filter={null} />);
     expect(autocomplete.state('matches')).toEqual(DATA);
 
     autocomplete.setProps({ value: 'the ' });
@@ -378,6 +379,55 @@ describe('Autocomplete', () => {
     expect(autocomplete.state('visible')).toBe(true);
 
     input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('visible')).toBe(true);
+  });
+
+  it('should allow for ajax autocompletion flows', () => {
+    let data = [];
+    const onAutocomplete = jest.fn();
+    const autocomplete = mount(
+      <Autocomplete
+        id="ajax-example"
+        data={data}
+        label="Ajax"
+        filter={null}
+        onChange={jest.fn()}
+        clearOnAutocomplete
+        onAutocomplete={onAutocomplete}
+      />
+    );
+
+    autocomplete.find('input').simulate('focus');
+    expect(autocomplete.state('focus')).toBe(true);
+
+    autocomplete.find('input').simulate('change', { value: 'a' });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('visible')).toBe(false);
+
+    data = ['Apples', 'Bananas', 'Oranges', 'Avacados'];
+    autocomplete.setProps({ data }); // return from ajax call
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('visible')).toBe(true);
+
+    autocomplete.find(ListItem).at(1).simulate('click');
+    expect(onAutocomplete).toBeCalled();
+    expect(autocomplete.state('focus')).toBe(true);
+    expect(autocomplete.state('visible')).toBe(false);
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('value')).toBe('');
+
+    data = [];
+    autocomplete.setProps({ data });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('focus')).toBe(true);
+
+    autocomplete.find('input').simulate('change', { value: 'b' });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('visible')).toBe(false);
+
+    data = ['Bapples', 'Bananas', 'Boranges', 'Bavacados'];
+    autocomplete.setProps({ data });
+    expect(autocomplete.state('matches')).toBe(data);
     expect(autocomplete.state('visible')).toBe(true);
   });
 });

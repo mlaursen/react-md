@@ -83,7 +83,9 @@ export default class InlineAutocomplete extends PureComponent {
           onChange={this._updateQuantity}
           onBlur={this._fixQuantity}
         />
-        <Button raised label="Order" type="submit" secondary className="md-cell--right md-cell--bottom" />
+        <Button raised type="submit" secondary className="md-cell--right md-cell--bottom">
+          Order
+        </Button>
       </form>
     );
   }

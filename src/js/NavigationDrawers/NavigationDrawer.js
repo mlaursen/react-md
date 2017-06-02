@@ -43,7 +43,9 @@ function toMiniListItem(item, index) {
 
 /**
  * The `NavigationDrawer` is used when you want a full layout configuration. It is a combination
- * of the `Toolbar` component and the `Drawer` component.
+ * of the `Toolbar` component and the `Drawer` component. Any props that are not specifically
+ * listed below will be provided to the `Drawer` component. So if there are props on the `Drawer`
+ * that are not listed here, they will be passed along.
  *
  * The main benfit of using this component is that it will manage adding respective offset
  * classes automatically for you to the content and the drawer. It will also manage using
@@ -164,6 +166,16 @@ export default class NavigationDrawer extends PureComponent {
      * An optional className to apply to the drawer.
      */
     drawerClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `List` surrounding the `navItems`.
+     */
+    navStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `List` surrounding the `navItems`.
+     */
+    navClassName: PropTypes.string,
 
     /**
      * An optional style to apply to the content. This is the container surrounding whatever

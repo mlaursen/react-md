@@ -25,7 +25,7 @@ export default class FullyControlledExample extends PureComponent {
     const { value, visible } = this.state;
     return (
       <div>
-        <Button label="Open the Picker" raised onClick={this._openPicker} />
+        <Button raised onClick={this._openPicker}>Open the Picker</Button>
         <div className="md-grid">
           <DatePicker
             id="fully-controlled"

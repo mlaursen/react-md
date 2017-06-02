@@ -18,5 +18,5 @@ export interface TooltippedComponent {
 }
 
 export default function injectTooltip<P>(
-  ComposedComponent: React.ComponentClass<P & { tooltip: React.ReactNode | null } & TooltippedComponent>
-): React.ComponentClass<P & InjectedTooltipProps>;
+  ComposedComponent: React.ComponentClass<P & { tooltip: React.ReactNode | null }>
+): React.ComponentClass<P & InjectedTooltipProps> & TooltippedComponent;

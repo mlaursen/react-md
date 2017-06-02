@@ -509,13 +509,13 @@ export default class EditDialogColumn extends PureComponent {
 
     return [{
       key: 'cancel',
-      label: cancelLabel,
+      children: cancelLabel,
       onClick: this._handleCancel,
       primary: cancelPrimary && !cancelSecondary,
       secondary: cancelSecondary,
     }, {
       key: 'ok',
-      label: okLabel,
+      children: okLabel,
       onClick: this._handleOk,
       primary: okPrimary && !okSecondary,
       secondary: okSecondary,

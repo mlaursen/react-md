@@ -86,7 +86,9 @@ export default class QueryIndeterminateExample extends PureComponent {
 
     return (
       <div>
-        <Button raised label="Fake load a new page" onClick={this._startFakeProgress} />
+        <Button raised onClick={this._startFakeProgress}>
+          Fake load a new page
+        </Button>
         <h3 className="md-title" style={{ marginTop: '2em' }}>Some Amazing Content</h3>
         <CSSTransitionGroup
           component="article"

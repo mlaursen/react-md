@@ -35,7 +35,7 @@ export default class AddRowDialog extends PureComponent {
 
   render() {
     const { visible } = this.props;
-    const submit = <Button type="submit" label="Submit" flat />;
+    const submit = <Button type="submit" flat>Submit</Button>;
 
     const groups = [...new Array(this.state.count)].map((_, i) => (
       <FormGroup key={i} index={i} />

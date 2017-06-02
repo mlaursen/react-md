@@ -105,7 +105,9 @@ export default class MusicTabExample extends PureComponent {
 
     return (
       <div>
-        <Button label="Open Music Store" raised secondary onClick={this._openStore} />
+        <Button raised secondary onClick={this._openStore}>
+          Open Music Store
+        </Button>
         <Dialog
           id="music-store"
           aria-label="Fake Music Store"

@@ -49,7 +49,9 @@ export default class IndeterminateExample extends PureComponent {
 
     return (
       <div>
-        <Button raised label="Refresh Lorem Ipsum" onClick={this.refreshLoremIpsum} />
+        <Button raised onClick={this.refreshLoremIpsum}>
+          Refresh Lorem Ipsum
+        </Button>
         <h3 className="md-title" style={{ marginTop: '2em' }}>Some Amazing Content</h3>
         <CSSTransitionGroup
           component="div"

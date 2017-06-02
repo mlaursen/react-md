@@ -39,11 +39,12 @@ export default class EditableExample extends PureComponent {
       <div>
         <Button
           raised
-          label="Open Color Changer"
           secondary
           onClick={this._openColorChanger}
           className="margin-centered"
-        />
+        >
+          Open Color Changer
+        </Button>
         <Dialog
           id="colorChanger"
           visible={visible}

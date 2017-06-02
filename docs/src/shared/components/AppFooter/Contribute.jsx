@@ -10,7 +10,9 @@ const Contribute = () => (
       This project is currently developed by a single person. Feel free
       to contribute!
     </p>
-    <Button flat secondary label="Github" href={GITHUB_URL} iconClassName="fa fa-github" />
+    <Button flat secondary href={GITHUB_URL} iconClassName="fa fa-github">
+      Github
+    </Button>
   </section>
 );
 

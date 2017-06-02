@@ -35,7 +35,7 @@ export default class ContainedFormExample extends PureComponent {
         <p className="md-cell md-cell--12">
           The keyboard focus containment can be disabled by clicking the following button.
         </p>
-        <Button label="Let me off Mr. Bones Wild Ride!" onClick={this._disableFocusTrap} raised primary />
+        <Button onClick={this._disableFocusTrap} raised primary>Let me off Mr. Bones Wild Ride!</Button>
         <DialogFooter
           className="md-cell md-cell--12"
           actions={[{

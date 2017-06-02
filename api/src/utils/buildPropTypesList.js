@@ -1,3 +1,4 @@
+import pluralize from 'pluralize';
 import flatten from 'utils/ListUtils/flatten';
 import toClassName from 'utils/StringUtils/toClassName';
 
@@ -13,8 +14,8 @@ export default async function buildPropTypesList() {
   const components = flatten(stats.map(({ components: cs, folder }) => cs.map(c => ({ component: c.replace('inject', ''), folder }))));
 
   return components.map(({ component: c, folder }) => {
-    const pluralized = `${c}${!c.match(/^tab/i) && !folder.match(/helpers/i) ? 's' : ''}`;
-    const lowerName = toClassName(c).replace(/-inked/, '');
+    const pluralized = (c.endsWith('ss') ? c : pluralize(c)).replace(/([A-Z])/g, ' $1').trim();
+    const lowerName = toClassName(pluralized).replace(/-inked/, '');
     const ref = `#${lowerName}-proptypes`;
     let link = toClassName(folder);
     if (link.match(/helpers|pickers|progress/)) {
