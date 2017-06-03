@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardTitle, CardActions } from 'react-md/lib/Cards';
 import Media from 'react-md/lib/Media';
 import MediaOverlay from 'react-md/lib/Media/MediaOverlay';
-import Button from 'react-md/lib/Buttons';
+import Button from 'react-md/lib/Buttons/Button';
 
 import { randomImage } from 'utils/RandomUtils';
 

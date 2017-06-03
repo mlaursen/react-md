@@ -23,7 +23,9 @@ const Home = () => (
     <header className="banner">
       <h1 className="md-display-2">react-md</h1>
       <InlineSVG src={logo} className="react-md-logo" />
-      <Button component={Link} to={`/${FIRST_ROUTE}`} raised secondary label="View Demo" type={null} />
+      <Button component={Link} to={`/${FIRST_ROUTE}`} raised secondary type={null}>
+        View Demo
+      </Button>
     </header>
     <h3 className="md-text-container about">{about}</h3>
     <footer className="md-grid quick-links">

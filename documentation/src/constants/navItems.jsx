@@ -173,7 +173,8 @@ const allRoutes = routes.concat([{ divider: true }, {
   label: 'Contrast Checker',
 }]);
 
-export default allRoutes.map(route => toNavItem(route));
+const navItems = allRoutes.map(route => toNavItem(route));
+export default navItems;
 
 function extractRealRoutes(route) {
   if (route.routes) {
@@ -190,4 +191,4 @@ function extractRealRoutes(route) {
   return null;
 }
 
-export const quickNavRoutes = flattenDeep(allRoutes.map(extractRealRoutes)).filter(r => !!r);
+export const quickNavRoutes = flattenDeep(navItems.map(extractRealRoutes)).filter(r => !!r);

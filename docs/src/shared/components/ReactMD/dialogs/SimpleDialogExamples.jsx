@@ -32,7 +32,7 @@ export default class SimpleDialogExamples extends PureComponent {
     ));
     return (
       <div>
-        <Button raised label="Open Simple Dialog" onClick={this.openDialog} />
+        <Button raised onClick={this.openDialog}>Open Simple Dialog</Button>
         <Dialog
           id="simpleDialogExample"
           visible={visible}

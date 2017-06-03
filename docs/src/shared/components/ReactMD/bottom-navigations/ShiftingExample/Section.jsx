@@ -24,7 +24,7 @@ const Section = ({ className, listClassName, cardClassName, title, data, titleIc
     <section className={cn('md-cell md-cell--12 bottom-nav-section', className)} {...props}>
       <header className="md-cell md-cell--12 section-header">
         <h3 style={{ marginBottom: 0 }}>{title}</h3>
-        <Button flat label="More" className="md-cell--right" primary />
+        <Button flat className="md-cell--right" primary>More</Button>
       </header>
       <div className={cn('md-grid', listClassName)}>
         {cards}

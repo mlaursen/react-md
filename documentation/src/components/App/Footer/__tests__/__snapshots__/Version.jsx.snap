@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Version should render with the version prop 1`] = `
+<p
+  className="md-text-right md-cell md-cell--12"
+>
+  Current version 
+  <i>
+    v1.1.0
+  </i>
+</p>
+`;

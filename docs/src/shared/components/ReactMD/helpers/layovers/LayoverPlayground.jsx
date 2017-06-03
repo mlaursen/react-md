@@ -94,7 +94,7 @@ export default class LayoverPlayground extends PureComponent {
       'anchor-x': anchorX,
       'anchor-y': anchorY,
     } = this.state;
-    const toggle = <Button style={{ whiteSpace: 'nowrap' }} onClick={this._toggle} label="Toggle Layover" raised primary />;
+    const toggle = <Button style={{ whiteSpace: 'nowrap' }} onClick={this._toggle} raised primary>Toggle Layover </Button>;
 
     let children;
     switch (contents) {
@@ -132,6 +132,7 @@ export default class LayoverPlayground extends PureComponent {
       [`${prefix}horizontal`]: horizontal,
       [`${prefix}vertical`]: vertical,
     });
+
     return (
       <div style={{ marginTop: 200 }}>
         <div className="layover-playground-wrapper md-background" ref={this._setWrapper}>

@@ -21,7 +21,7 @@ export default class ModalDialogExamples extends PureComponent {
     const { visible } = this.state;
     return (
       <div>
-        <Button raised onClick={this.openDialog} label="Open Modal Dialog" />
+        <Button raised onClick={this.openDialog}>Open Modal Dialog</Button>
         <Dialog
           id="speedBoost"
           visible={visible}

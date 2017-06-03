@@ -1,7 +1,8 @@
-import React, { PureComponent, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connectAdvanced } from 'react-redux';
 import { withRouter } from 'react-router';
+import shallowEqual from 'shallowequal';
 import Helmet from 'react-helmet';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
@@ -12,7 +13,7 @@ import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 
-import Routing from './Routing';
+import Footer from './Footer';
 
 const helmetConfig = {
   htmlAttributes: { lang: 'en' },
@@ -35,15 +36,40 @@ const helmetConfig = {
 };
 
 @withRouter
-@connect(({ media: { defaultMedia }, drawer }) => ({ defaultMedia, ...drawer }))
+@connectAdvanced((dispatch) => {
+  let result;
+
+  return (state, props) => {
+    const {
+      drawer,
+      media: { defaultMedia, desktop },
+    } = state;
+
+    const nextResult = {
+      ...props,
+      ...drawer,
+      dispatch,
+      defaultMedia,
+      desktop,
+    };
+
+    if (!shallowEqual(result, nextResult)) {
+      result = nextResult;
+    }
+
+    return result;
+  };
+})
 export default class App extends PureComponent {
   static propTypes = {
+    desktop: PropTypes.bool.isRequired,
     defaultMedia: PropTypes.string.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
     visibleBoxShadow: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    children: PropTypes.node,
 
     dispatch: PropTypes.func.isRequired,
   };
@@ -79,11 +105,17 @@ export default class App extends PureComponent {
       toolbarTitle,
       visibleBoxShadow,
       toolbarProminent,
+      desktop,
     } = this.props;
 
+    let { children } = this.props;
     let tabs;
-    if (toolbarProminent) {
+    if (desktop && toolbarProminent) {
       tabs = <DocumentationTabs key="tabs" />;
+    }
+
+    if (children) {
+      children = React.cloneElement(children, { key: location.pathname });
     }
 
     return (
@@ -93,7 +125,7 @@ export default class App extends PureComponent {
         defaultMedia={defaultMedia}
         onMediaTypeChange={this.updateMedia}
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
-        toolbarProminent={toolbarProminent}
+        toolbarProminent={desktop && toolbarProminent}
         toolbarChildren={tabs}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {
@@ -104,7 +136,8 @@ export default class App extends PureComponent {
         })}
       >
         <Helmet {...helmetConfig} title={toolbarTitle} />
-        <Route render={({ location }) => <Routing location={location} />} />
+        {children}
+        <Footer />
       </NavigationDrawer>
     );
   }

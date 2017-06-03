@@ -53,6 +53,10 @@ export default class TextArea extends PureComponent {
     this._field.focus();
   };
 
+  blur = () => {
+    this._field.blur();
+  };
+
   _calcRowHeight(field, props) {
     return field.offsetHeight / props.rows;
   }

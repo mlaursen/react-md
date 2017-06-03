@@ -26,7 +26,7 @@ export default class MenuExample extends PureComponent {
   render() {
     const { visible } = this.state;
     const toggle = (
-      <Button raised label="Open Menu" onClick={this._toggle} />
+      <Button raised onClick={this._toggle}>Open Menu</Button>
     );
 
     return (

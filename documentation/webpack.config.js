@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const WebpackChunkHash = require('webpack-chunk-hash');
 
 const client = './src/client/index.jsx';
 const dist = path.resolve(process.cwd(), 'public', 'assets');
@@ -10,8 +11,6 @@ const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const WITConfig = require('./WIT.config');
 
 const modules = path.resolve(process.cwd(), 'node_modules');
-
-process.traceDeprecation = true;
 
 const PROD_PLUGINS = [
   new webpack.optimize.UglifyJsPlugin({
@@ -33,7 +32,7 @@ module.exports = ({ production }) => {
     .development(!production);
 
   const extractStyles = new ExtractTextPlugin({
-    filename: 'styles.min.css',
+    filename: 'styles-[hash].min.css',
     allChunks: true,
     disable: !production,
   });
@@ -73,6 +72,24 @@ module.exports = ({ production }) => {
           plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
         },
       }, {
+        test: /\.css$/,
+        loader: extractStyles.extract({
+          use: [{
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+            },
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [autoprefixer],
+            },
+          }],
+          fallback: 'style-loader',
+        }),
+      }, {
         test: /\.scss$/,
         exclude: /node_modules/,
         loader: extractStyles.extract({
@@ -80,9 +97,14 @@ module.exports = ({ production }) => {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+              importLoaders: 2,
             },
           }, {
             loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: [autoprefixer],
+            },
           }, {
             loader: 'sass-loader',
             options: {
@@ -141,12 +163,14 @@ module.exports = ({ production }) => {
           },
           context: '/',
           debug: !production,
-          postcss: [autoprefixer],
         },
       }),
+      new webpack.HashedModuleIdsPlugin(),
+      new WebpackChunkHash(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'chunks',
+        name: ['chunks', 'manifest'],
         filename: `chunks${!production ? '' : '-[hash].min'}.js`,
+        minChunks: Infinity,
       }),
       new webpack.DefinePlugin({
         __DEV__: !production,

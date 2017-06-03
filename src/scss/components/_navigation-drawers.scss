@@ -64,6 +64,8 @@ $md-cross-fade-distance: 16px !default;
     }
 
     @if $md-navigation-drawer-enforce-height {
+      @include md-ios-scroll-momentum;
+
       overflow-y: auto;
     }
 

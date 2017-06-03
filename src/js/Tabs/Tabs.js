@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import { DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
@@ -193,7 +194,23 @@ export default class Tabs extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this._positionElements);
+    window.addEventListener('load', this._positionElements);
+    this._observer = new ResizeObserver((entries) => {
+      if (!this._container) {
+        return;
+      }
+
+      for (const entry of entries) {
+        if (entry !== this._container) {
+          return;
+        }
+
+        const { offsetHeight, offsetWidth } = entry.target;
+        if ((offsetHeight && offsetHeight !== this._height) || (offsetWidth && offsetWidth !== this._width)) {
+          this._positionElements();
+        }
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -224,7 +241,7 @@ export default class Tabs extends PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this._positionElements);
+    window.removeEventListener('load', this._positionElements);
   }
 
   _shouldAlign(props) {
@@ -290,6 +307,11 @@ export default class Tabs extends PureComponent {
   _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._positionElements(this._container !== null);
+    if (this._container !== null) {
+      const { offsetHeight, offsetWidth } = this._container;
+      this._height = offsetHeight;
+      this._width = offsetWidth;
+    }
   };
 
   _positionElements = (initialRender) => {

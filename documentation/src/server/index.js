@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
@@ -13,6 +14,7 @@ import { Provider } from 'react-redux';
 
 import { toPageTitle } from 'utils/strings';
 import configureStore from '../state/store';
+import { DEFAULT_STATE, handleLocationChange } from '../state/quickNav';
 import renderHtmlPage from './utils/renderHtmlPage';
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
@@ -73,6 +75,7 @@ app.get('*', (req, res) => {
       toolbarProminent: !req.url.match(/minimizing/) && !!req.url.match(/components|customization/),
       visibleBoxShadow: req.url !== '/',
     },
+    quickNav: handleLocationChange(DEFAULT_STATE, { pathname: req.url }),
   });
 
   if (!__SSR__) {

@@ -457,13 +457,32 @@ export default class Autocomplete extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.inline !== nextProps.inline) {
-      if (nextProps.inline) {
+    const { inline, value: nextValue, data, filter, dataLabel } = nextProps;
+    if (inline !== this.props.inline) {
+      if (inline) {
         this._updateFont();
         window.addEventListener('resize', this._updateFont);
       } else {
         window.removeEventListener('resize', this._updateFont);
       }
+    }
+
+    const dataDiff = data !== this.props.data;
+    if (nextValue !== this.props.value || dataDiff) {
+      let { visible, matches } = this.state;
+      const value = getField(nextProps, this.state, 'value');
+
+      if (filter) {
+        matches = filter(data, value, dataLabel);
+      } else if (dataDiff) {
+        matches = data;
+      }
+
+      if (this.state.focus) {
+        visible = !!matches.length;
+      }
+
+      this.setState({ matches, visible });
     }
   }
 
@@ -473,19 +492,6 @@ export default class Autocomplete extends PureComponent {
       if (menuFn) {
         menuFn();
       }
-    }
-
-    if (nextProps.data !== this.props.data || nextProps.value !== this.props.value) {
-      const { data, filter, dataLabel } = nextProps;
-      const value = getField(nextProps, nextState, 'value');
-
-      const matches = filter ? filter(data, value, dataLabel) : data;
-      const next = { matches };
-      if (nextState.focus) {
-        next.visible = !!matches.length;
-      }
-
-      this.setState(next);
     }
   }
 
@@ -536,7 +542,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur(e);
     }
 
-    this.setState({ focus: false, visible: false });
+    this.setState({ visible: false });
   };
 
   _handleChange = (value, event) => {
@@ -552,7 +558,7 @@ export default class Autocomplete extends PureComponent {
     }
 
     let { visible } = this.state;
-    let matches = value ? this.state.matches : [];
+    let matches = value || !filter ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }

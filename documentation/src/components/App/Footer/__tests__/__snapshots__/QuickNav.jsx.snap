@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PureQuickNav should render as null when at the home page 1`] = `
+<nav
+  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  style={
+    Object {
+      "height": undefined,
+      "overflow": "hidden",
+      "paddingBottom": undefined,
+      "paddingTop": undefined,
+    }
+  }
+/>
+`;
+
+exports[`PureQuickNav should render as null when there is no previous name and no next name 1`] = `null`;
+
+exports[`PureQuickNav should render correctly on mobile devices 1`] = `
+<nav
+  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  style={
+    Object {
+      "height": undefined,
+      "overflow": "hidden",
+      "paddingBottom": undefined,
+      "paddingTop": undefined,
+    }
+  }
+>
+  <a
+    className="footer__link"
+    href="/previous"
+    onClick={[Function]}
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      arrow_back
+    </i>
+  </a>
+  <a
+    className="footer__link md-cell--right"
+    href="/next"
+    onClick={[Function]}
+  >
+    <div
+      className="footer__link-label"
+    >
+      <h4
+        className="md-headline"
+      >
+        Next
+      </h4>
+      <h6
+        className="md-subheading-2"
+      >
+        Next
+      </h6>
+    </div>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      arrow_forward
+    </i>
+  </a>
+</nav>
+`;
+
+exports[`PureQuickNav should render correctly on non-mobile devices 1`] = `
+<nav
+  className="footer__quick-nav md-cell md-cell--12 md-grid md-grid--no-spacing"
+  style={
+    Object {
+      "height": undefined,
+      "overflow": "hidden",
+      "paddingBottom": undefined,
+      "paddingTop": undefined,
+    }
+  }
+>
+  <a
+    className="footer__link"
+    href="/previous"
+    onClick={[Function]}
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      arrow_back
+    </i>
+    <div
+      className="footer__link-label"
+    >
+      <h4
+        className="md-headline"
+      >
+        Previous
+      </h4>
+      <h6
+        className="md-subheading-2"
+      >
+        Previous
+      </h6>
+    </div>
+  </a>
+  <a
+    className="footer__link md-cell--right"
+    href="/next"
+    onClick={[Function]}
+  >
+    <div
+      className="footer__link-label"
+    >
+      <h4
+        className="md-headline"
+      >
+        Next
+      </h4>
+      <h6
+        className="md-subheading-2"
+      >
+        Next
+      </h6>
+    </div>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      arrow_forward
+    </i>
+  </a>
+</nav>
+`;

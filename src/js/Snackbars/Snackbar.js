@@ -142,7 +142,7 @@ export default class Snackbar extends PureComponent {
       let btnProps = {
         flat: true,
         onClick: this._handleClick,
-        label: action,
+        children: action,
         secondary: true,
         className: 'md-btn--snackbar',
       };
@@ -150,6 +150,7 @@ export default class Snackbar extends PureComponent {
       if (typeof action !== 'string') {
         btnProps = Object.assign(btnProps, action, {
           className: cn(btnProps.className, action.className),
+          onClick: this._handleClick,
         });
       }
 

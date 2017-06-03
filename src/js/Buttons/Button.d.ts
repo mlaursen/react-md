@@ -6,27 +6,36 @@ import { InjectedInkProps } from '../Inks';
 export type ButtonTypes = 'button' | 'submit' | 'reset';
 type FixedPositions = 'tr' | 'tl' | 'br' | 'bl';
 
-export interface ButtonProps extends Props, InjectedTooltipProps, InjectedInkProps {
-  label?: React.ReactNode;
+export interface SharedButtonProps {
+  tabIndex?: number;
   iconBefore?: boolean;
-  children?: React.ReactNode;
-  iconClassName?: string;
   type?: ButtonTypes;
   primary?: boolean;
   secondary?: boolean;
   disabled?: boolean;
   href?: string;
-  component?: React.ReactType;
-  fixed?: boolean;
-  fixedPosition?: FixedPositions;
   mini?: boolean;
   flat?: boolean;
   raised?: boolean;
   icon?: boolean;
   floating?: boolean;
+  iconClassName?: string;
+  iconChildren?: React.ReactNode;
   forceIconSize?: boolean | number;
   forceIconFontSize?: boolean;
-  noIcon?: boolean;
+  swapTheming?: boolean;
+
+  /**
+   * @deprecated
+   */
+  label?: React.ReactNode;
+}
+
+export interface ButtonProps extends Props, SharedButtonProps, InjectedTooltipProps, InjectedInkProps {
+  children?: React.ReactNode;
+  component?: React.ReactType;
+  fixed?: boolean;
+  fixedPosition?: FixedPositions;
 }
 
 interface ButtonComponent extends React.ComponentClass<ButtonProps> {

@@ -26,8 +26,8 @@ const Books = () => (
         <div>
           <CardTitle title={title} subtitle={subtitle} style={{ paddingTop: 16 }} />
           <CardActions style={{ marginTop: 1 }}>
-            <Button flat label="Free Sample" primary />
-            <Button flat label="Review" primary />
+            <Button flat primary>Free Sample</Button>
+            <Button flat primary>Review</Button>
           </CardActions>
         </div>
       </Card>

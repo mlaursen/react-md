@@ -92,17 +92,19 @@ export default class SimpleExamples extends PureComponent {
             secondary
             disabled={!text}
             type="submit"
-            label="Toast"
             onClick={this._addToast}
             className="md-btn--dialog md-cell--right"
-          />
+          >
+            Toast
+          </Button>
           <Button
             raised
             type="reset"
-            label="Reset"
             className="md-btn--dialog"
             onClick={this._reset}
-          />
+          >
+            Reset
+          </Button>
         </footer>
         <Snackbar toasts={toasts} autohide={autohide} onDismiss={this._removeToast} />
       </form>

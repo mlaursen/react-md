@@ -33,13 +33,17 @@ export default class DialogFooter extends PureComponent {
       });
     }
 
+    // Both label and children are valid for dialog actions
+    const { label, children, ...remaining } = action;
     return (
       <Button
         key={index}
         flat
-        {...action}
+        {...remaining}
         className={cn('md-btn--dialog', action.className)}
-      />
+      >
+        {label || children}
+      </Button>
     );
   }
 

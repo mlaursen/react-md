@@ -36,7 +36,7 @@ export default class PaginationLoader extends PureComponent {
             on <a href="http://catalog.data.gov/dataset">data.gov</a>. Click the load
             button to see an example of pagination.
           </p>
-          <Button raised primary label="Load Data" onClick={onLoad} />
+          <Button raised primary onClick={onLoad}>Load Data</Button>
         </CardText>
       );
     } else {

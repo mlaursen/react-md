@@ -2,8 +2,9 @@ import * as React from 'react';
 import { IdPropType } from '../index';
 import { DropdownMenuProps } from './DropdownMenu';
 import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
+import { SharedButtonProps } from '../Buttons/Button';
 
-export interface MenuButtonProps extends DropdownMenuProps {
+export interface MenuButtonProps extends DropdownMenuProps, SharedButtonProps {
   /**
    * @deprecated
    * */

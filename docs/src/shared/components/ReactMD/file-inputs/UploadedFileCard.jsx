@@ -1,8 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
 import classnames from 'classnames';
 
-import Button from 'react-md/lib/Buttons';
-import { Card, CardTitle } from 'react-md/lib/Cards';
+import Button from 'react-md/lib/Buttons/Button';
+import Card from 'react-md/lib/Cards/Card';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
 import FontIcon from 'react-md/lib/FontIcons';
 import Media, { MediaOverlay } from 'react-md/lib/Media';
 

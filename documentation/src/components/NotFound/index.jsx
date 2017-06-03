@@ -1,9 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import Media from 'react-md/lib/Media/Media';
 
-import { pageNotFound } from 'state/drawer';
+import { pageNotFound } from 'state/routing';
 import InlineSVG from 'components/InlineSVG';
 import notFound from './404.svg';
 

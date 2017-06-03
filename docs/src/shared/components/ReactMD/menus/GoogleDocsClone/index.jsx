@@ -41,7 +41,9 @@ export default class GoogleDocsClone extends PureComponent {
     const { visible } = this.state;
     return (
       <div>
-        <Button label="Open Google Docs Clone" raised onClick={this._toggle} />
+        <Button raised onClick={this._toggle}>
+          Open Google Docs Clone
+        </Button>
         <Dialog
           id="google-docs-clone-dialog"
           fullPage
