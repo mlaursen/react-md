@@ -55,3 +55,11 @@ export function toPageTitle(pathname) {
 export function toCaterpillarCase(str) {
   return str.split(/\s|(?=[A-Z])/).join('-').toLowerCase();
 }
+
+export function underscore(s) {
+  return s.replace('-', '_');
+}
+
+export function getCompiledStylesName(primary, secondary, light) {
+  return `react-md.${underscore(primary)}-${underscore(secondary)}${light ? '' : '.dark'}.min.css`;
+}
