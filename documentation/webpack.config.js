@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const WebpackChunkHash = require('webpack-chunk-hash');
 
 const client = './src/client/index.jsx';
 const dist = path.resolve(process.cwd(), 'public', 'assets');
@@ -162,12 +163,14 @@ module.exports = ({ production }) => {
           },
           context: '/',
           debug: !production,
-          postcss: [autoprefixer],
         },
       }),
+      new webpack.HashedModuleIdsPlugin(),
+      new WebpackChunkHash(),
       new webpack.optimize.CommonsChunkPlugin({
-        name: 'chunks',
+        name: ['chunks', 'manifest'],
         filename: `chunks${!production ? '' : '-[hash].min'}.js`,
+        minChunks: Infinity,
       }),
       new webpack.DefinePlugin({
         __DEV__: !production,
