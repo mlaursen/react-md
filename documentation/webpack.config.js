@@ -3,7 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const WebpackChunkHash = require('webpack-chunk-hash');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 const client = './src/client/index.jsx';
 const dist = path.resolve(process.cwd(), 'public', 'assets');
@@ -14,17 +16,37 @@ const modules = path.resolve(process.cwd(), 'node_modules');
 
 const PROD_PLUGINS = [
   new webpack.optimize.UglifyJsPlugin({
+    beautify: false,
+    mangle: {
+      screw_ie8: true,
+      keep_fnames: true,
+    },
     compress: {
       screw_ie8: true,
       warnings: false,
       drop_console: true,
     },
-    output: { comments: false },
-    sourceMap: false,
+    comments: false,
+  }),
+  // Better caching. hash on file content instead of build time. Hashes
+  // will only change on content change now
+  new WebpackMd5Hash(),
+  new ManifestPlugin(),
+  new webpack.HashedModuleIdsPlugin(),
+  // Inline the webpackManifest variable for SSR
+  new ChunkManifestPlugin({
+    filename: 'chunk-manifest.json',
+    manifestVariable: 'webpackManifest',
+    inlineManifest: false,
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: ['chunks', 'manifest'],
+    minChunks: Infinity,
   }),
 ];
 const DEV_PLUGINS = [
   new webpack.HotModuleReplacementPlugin(),
+  new webpack.NamedModulesPlugin(),
 ];
 
 module.exports = ({ production }) => {
@@ -39,7 +61,7 @@ module.exports = ({ production }) => {
 
   return {
     cache: !production,
-    devtool: !production ? 'eval' : 'hidden-source-map',
+    devtool: !production ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
     entry: !production ? ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', client] : client,
     output: {
       path: dist,
@@ -72,6 +94,7 @@ module.exports = ({ production }) => {
           plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
         },
       }, {
+        // Loading css dependencies from dependencies (normalize.css and Prism.css)
         test: /\.css$/,
         loader: extractStyles.extract({
           use: [{
@@ -148,6 +171,7 @@ module.exports = ({ production }) => {
       }],
     },
     plugins: [
+      // Use async routes in production and synchronous in development
       new webpack.NormalModuleReplacementPlugin(
         /routes$/,
         `routes/${production ? 'a' : ''}sync.js`
@@ -164,13 +188,6 @@ module.exports = ({ production }) => {
           context: '/',
           debug: !production,
         },
-      }),
-      new webpack.HashedModuleIdsPlugin(),
-      new WebpackChunkHash(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['chunks', 'manifest'],
-        filename: `chunks${!production ? '' : '-[hash].min'}.js`,
-        minChunks: Infinity,
       }),
       new webpack.DefinePlugin({
         __DEV__: !production,
@@ -189,12 +206,13 @@ module.exports = ({ production }) => {
         'react-md': path.resolve(process.cwd(), '..'),
         'react': path.join(modules, 'react'),
         'react-dom': path.join(modules, 'react-dom'),
-        'react-addons-css-transition-group': path.join(modules, 'react-addons-css-transition-group'),
-        'react-addons-transition-group': path.join(modules, 'react-addons-transition-group'),
       },
       extensions: ['.js', '.jsx'],
+
+      // resolve dependencies first and then files in src. Allows for
+      // import Something from 'components/Something' instead of '../../../../compoennts/Something'
       modules: ['node_modules', 'src'],
     },
-    stats: 'errors-only',
+    stats: 'minimal',
   };
 };

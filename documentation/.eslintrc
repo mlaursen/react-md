@@ -11,6 +11,7 @@
     "__SSR__": false
   },
   "rules": {
+    "max-len": [2, 140],
     "no-shadow": 0,
     "no-underscore-dangle": 0,
     "comma-dangle": ["error", {

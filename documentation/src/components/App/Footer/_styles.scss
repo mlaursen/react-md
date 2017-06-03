@@ -8,6 +8,10 @@ $footer-padding: 2.5em;
   background: $md-grey-800;
   color: $md-white-base;
 
+  &:only-child {
+    margin-top: 100vh;
+  }
+
   p,
   .md-title,
   .md-body-2 {

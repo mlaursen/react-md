@@ -1,6 +1,24 @@
 import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
 
+let manifest;
+try {
+  if (!__SSR__) {
+    throw new Error('Server side rendering must be enabled for inlining manifiest.');
+  }
+
+  /* eslint-disable global-require */
+  const manifestJSON = require('../../../public/assets/chunk-manifest.json');
+
+  manifest = `<script>
+//<![CDATA[
+window.webpackManifest = ${JSON.stringify(manifestJSON)}
+//]]>
+</script>`;
+} catch (e) {
+  manifest = '';
+}
+
 export default function renderHtmlPage(store, html = '') {
   const head = Helmet.renderStatic();
   const assets = global.webpackIsomorphicTools.assets();
@@ -13,6 +31,7 @@ export default function renderHtmlPage(store, html = '') {
   page += Object.keys(assets.styles).map(style =>
     `<link href="${assets.styles[style]}" rel="stylesheet" type="text/css">`
   ).join('');
+  page += manifest;
 
   page += `</head><body><div id="app">${html}</div>`;
   if (store) {

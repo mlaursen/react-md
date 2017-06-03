@@ -5,7 +5,12 @@ import Markdown from './index';
 
 const MarkdownPage = ({ style, className, markdownStyle, markdownClassName, markdown }) => (
   <section style={style} className={cn('md-grid', className)}>
-    <Markdown style={markdownStyle} className={cn('md-cell md-cell--12 md-text-container', markdownClassName)} markdown={markdown} component="div" />
+    <Markdown
+      style={markdownStyle}
+      className={cn('md-cell md-cell--12 md-text-container', markdownClassName)}
+      markdown={markdown}
+      component="div"
+    />
   </section>
 );
 

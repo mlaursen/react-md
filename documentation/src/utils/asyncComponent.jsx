@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 
+let renderedOnce = false;
 export default function asyncComponent(getComponent, loadingChildren = null) {
   return class AsyncComponent extends PureComponent {
     static Component = null;
@@ -32,6 +33,11 @@ export default function asyncComponent(getComponent, loadingChildren = null) {
     }
 
     transitionIn = () => {
+      if (!renderedOnce) {
+        renderedOnce = true;
+        return;
+      }
+
       this.setState({ enter: true });
       this.timeout = setTimeout(() => {
         this.transitionInActive();
