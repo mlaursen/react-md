@@ -19,20 +19,6 @@ const helmetConfig = {
   htmlAttributes: { lang: 'en' },
   defaultTitle: 'react-md',
   titleTemplate: '%s - react-md',
-  meta: [{
-    name: 'description',
-    content: 'Google\'s Material Design UI Components built with accessibility in mind, Sass, And React.',
-  }, {
-    name: 'keywords',
-    content: 'react-md,material design,react,components,material ui',
-  }],
-  link: [{
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css?family=Roboto:400,500,700|Material+Icons',
-  }, {
-    rel: 'stylesheet',
-    href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css',
-  }],
 };
 
 @withRouter
@@ -42,12 +28,14 @@ const helmetConfig = {
   return (state, props) => {
     const {
       drawer,
+      helmet,
       media: { defaultMedia, desktop },
     } = state;
 
     const nextResult = {
       ...props,
       ...drawer,
+      ...helmet,
       dispatch,
       defaultMedia,
       desktop,
@@ -70,6 +58,14 @@ export default class App extends PureComponent {
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     children: PropTypes.node,
+    meta: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })).isRequired,
+    link: PropTypes.arrayOf(PropTypes.shape({
+      rel: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+    })).isRequired,
 
     dispatch: PropTypes.func.isRequired,
   };
@@ -106,6 +102,8 @@ export default class App extends PureComponent {
       visibleBoxShadow,
       toolbarProminent,
       desktop,
+      meta,
+      link,
     } = this.props;
 
     let { children } = this.props;
@@ -135,7 +133,7 @@ export default class App extends PureComponent {
           return <Link {...route} />;
         })}
       >
-        <Helmet {...helmetConfig} title={toolbarTitle} />
+        <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
         {children}
         <Footer />
       </NavigationDrawer>
