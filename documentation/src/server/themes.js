@@ -17,9 +17,8 @@ const mkdir = Promise.promisify(fs.mkdir);
 const THEMES_FOLDER = path.resolve(process.cwd(), 'public', 'themes');
 
 const DARK_THEME_STYLES = `
-.example-code,
-.code-block {
-  background: $md-grey-300;
+ul:not(.md-list) {
+  color: get-color('text', false);
 }
 
 a:not(.md-btn) {
@@ -65,36 +64,38 @@ $md-secondary-color: $md-deep-orange-a-200;
 @include react-md-theme-everything(${primaryVar}, ${secondaryVar}, ${!darkTheme}, 'custom-theme');
 
 .custom-theme {
-  .banner {
-    background: ${primaryVar};
-  }
+  .home {
+    &__banner {
+      background: ${primaryVar};
+    }
 
-  .react-md-logo {
-    text,
-    #Group > path:first-child,
-    path#Oval-210 {
-      fill: ${secondaryVar};
+    &__logo {
+      text,
+      #Group > path:first-child,
+      path#Oval-210 {
+        fill: ${secondaryVar};
+      }
     }
   }
 
-  .react-md-404 {
+  .not-found {
     background: $md-${primary}-800;
-  }
 
-  .react-md-404-oval {
-    fill: ${secondaryVar};
-  }
+    &__svg-oval {
+      fill: ${secondaryVar};
+    }
 
-  #not-found-circle-1 {
-    fill: $md-${primary}-700;
-  }
+    &__svg--circle-1 {
+      fill: $md-${primary}-700;
+    }
 
-  #not-found-circle-2 {
-    fill: $md-${primary}-600;
-  }
+    &__svg--circle-2 {
+      fill: $md-${primary}-600;
+    }
 
-  #not-found-circle-3 {
-    fill: ${primaryVar};
+    &__svg--circle-3 {
+      fill: ${primaryVar};
+    }
   }
 
   ${darkStyles}

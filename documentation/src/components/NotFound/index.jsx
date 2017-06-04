@@ -10,14 +10,14 @@ import notFound from './404.svg';
 
 import './_styles.scss';
 
-@connect(() => ({}))
+@connect(null)
 export default class NotFound extends PureComponent {
   static propTypes = {
     history: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(pageNotFound());
   }
 
@@ -37,8 +37,9 @@ export default class NotFound extends PureComponent {
           secondary
           raised
           onClick={this.goHome}
-          label="Return Home"
-        />
+        >
+          Return Home
+        </Button>
       </Media>
     );
   }

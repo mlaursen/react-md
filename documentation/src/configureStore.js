@@ -2,8 +2,8 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './index';
 import sagas from 'sagas';
+import rootReducer from './state';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,9 +16,9 @@ export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, compose(...middlewares));
 
   if (module.hot) {
-    module.hot.accept('./index', () => {
+    module.hot.accept('./state', () => {
       /* eslint-disable global-require */
-      const nextRootReducer = require('./index').default;
+      const nextRootReducer = require('./state').default;
 
       store.replaceReducer(nextRootReducer);
     });

@@ -21,6 +21,11 @@ export function updateTheme(id, value) {
   };
 }
 
+export const CLEAR_THEME = 'CLEAR_THEME';
+export function clearTheme() {
+  return { type: CLEAR_THEME };
+}
+
 export const DEFAULT_STATE = {
   [PRIMARY]: 'light-blue',
   [SECONDARY]: 'deep-orange',
@@ -45,7 +50,12 @@ export function isSaveDisabled(state) {
   return !THEME_KEYS.some(key => state[key] !== DEFAULT_STATE[key]);
 }
 
-export function getStylesheetHref({ [PRIMARY]: primary, [SECONDARY]: secondary, [HUE]: hue, [LIGHT]: light }) {
+export function getStylesheetHref(state) {
+  if (THEME_KEYS.filter(key => DEFAULT_STATE[key] === state[key]).length === THEME_KEYS.length) {
+    return null;
+  }
+
+  const { [PRIMARY]: primary, [SECONDARY]: secondary, [HUE]: hue, [LIGHT]: light } = state;
   return `${underscore(primary)}-${underscore(secondary)}-${hue}${light ? '' : '-dark'}.css`;
 }
 
@@ -73,6 +83,10 @@ function handleThemeChange(state, { id, value: nextValue }) {
   }
 
   return state;
+}
+
+function handleClearTheme(state) {
+  return { ...state, ...DEFAULT_STATE };
 }
 
 export function getInitialState(savedData) {
@@ -111,6 +125,8 @@ export const INITIAL_STATE = getInitialState(
 
 export default function theme(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case CLEAR_THEME:
+      return handleClearTheme(state);
     case UPDATE_THEME:
       return handleThemeChange(state, action.payload);
     default:

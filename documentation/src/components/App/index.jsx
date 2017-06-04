@@ -13,6 +13,7 @@ import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 
+import Routes from './Routes';
 import Footer from './Footer';
 
 const helmetConfig = {
@@ -106,14 +107,9 @@ export default class App extends PureComponent {
       link,
     } = this.props;
 
-    let { children } = this.props;
     let tabs;
     if (desktop && toolbarProminent) {
       tabs = <DocumentationTabs key="tabs" />;
-    }
-
-    if (children) {
-      children = React.cloneElement(children, { key: location.pathname });
     }
 
     return (
@@ -134,7 +130,7 @@ export default class App extends PureComponent {
         })}
       >
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
-        {children}
+        <Routes />
         <Footer />
       </NavigationDrawer>
     );

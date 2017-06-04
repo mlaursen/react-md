@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 
-import { updateTheme } from 'state/theme';
+import { updateTheme, clearTheme } from 'state/theme';
 import Markdown from 'components/Markdown';
 
 import './_styles.scss';
@@ -27,9 +27,10 @@ export class PureThemeBuilder extends PureComponent {
     light: PropTypes.bool.isRequired,
     saved: PropTypes.bool.isRequired,
     saveDisabled: PropTypes.bool.isRequired,
-    href: PropTypes.string.isRequired,
+    href: PropTypes.string,
     filteredPrimaries: PropTypes.arrayOf(PropTypes.string).isRequired,
     filteredSecondaries: PropTypes.arrayOf(PropTypes.string).isRequired,
+    clearTheme: PropTypes.func.isRequired,
     updateTheme: PropTypes.func.isRequired,
   };
 
@@ -43,6 +44,12 @@ export class PureThemeBuilder extends PureComponent {
     const { primary, secondary, hue } = this.props;
     if (primary !== nextProps.primary || secondary !== nextProps.secondary || hue !== nextProps.hue) {
       this.setState(this.getNextState(nextProps));
+    }
+  }
+
+  componentWillUnmount() {
+    if (!this.props.saved) {
+      this.props.clearTheme();
     }
   }
 
@@ -69,7 +76,7 @@ export class PureThemeBuilder extends PureComponent {
   render() {
     const { primaryColor, secondaryColor } = this.state;
     const { light, hue } = this.props;
-    const { href, updateTheme, ...props } = this.props; // eslint-disable-line no-unused-vars
+    const { href, updateTheme, clearTheme, ...props } = this.props; // eslint-disable-line no-unused-vars
     let howToUse = `
 #### Using with Sass
 
@@ -122,7 +129,7 @@ precompiled.
 
 export default connectAdvanced((dispatch) => {
   let result;
-  const actions = bindActionCreators({ updateTheme }, dispatch);
+  const actions = bindActionCreators({ updateTheme, clearTheme }, dispatch);
   return (state) => {
     const nextResult = { ...state.theme, ...actions };
     if (!shallowEqual(result, nextResult)) {

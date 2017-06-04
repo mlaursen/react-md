@@ -13,13 +13,15 @@ import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
-import { getInitialState } from 'state/theme';
 import { updateCustomTheme } from 'state/helmet';
-import configureStore from 'state/store';
+import { pageNotFound } from 'state/routing';
+import { getInitialState } from 'state/theme';
 import { DEFAULT_STATE, handleLocationChange } from 'state/quickNav';
 import { toPageTitle } from 'utils/strings';
+import routes from './routes';
 import themes from './themes';
 import renderHtmlPage from './utils/renderHtmlPage';
+import configureStore from '../configureStore';
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
 const dist = path.resolve(process.cwd(), 'public');
@@ -86,6 +88,9 @@ app.get('*', (req, res) => {
   });
 
   store.dispatch(updateCustomTheme(store.getState().theme.href));
+  if (routes.indexOf(req.url.replace(/\?.*/, '')) === -1) {
+    store.dispatch(pageNotFound());
+  }
 
   if (!__SSR__) {
     res.send(renderHtmlPage(store));

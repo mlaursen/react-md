@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { takeLatest, select, put, all, fork } from 'redux-saga/effects';
 import { PRIMARY, SECONDARY, HUE, LIGHT } from 'constants/colors';
-import { UPDATE_THEME } from 'state/theme';
+import { UPDATE_THEME, CLEAR_THEME } from 'state/theme';
 import { updateCustomTheme } from 'state/helmet';
 import * as cookie from 'utils/cookies';
 
@@ -14,7 +14,7 @@ let removed = false;
  * for the new href.
  */
 export function* watchThemeChanges() {
-  yield takeLatest(UPDATE_THEME, function* handleThemeChange() {
+  yield takeLatest([UPDATE_THEME, CLEAR_THEME], function* handleThemeChange() {
     const { href, saved, primary, secondary, hue, light } = yield select(themeSelector);
 
     if (href && saved) {

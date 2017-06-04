@@ -1,12 +1,13 @@
-export function create(name, content, maxAge = null) {
-  let cookie = `${name}=${content}`;
-  if (maxAge) {
-    cookie += `; maxAge=${maxAge}`;
-  }
+const EXPIRES = new Date();
+EXPIRES.setYear(2000);
 
-  document.cookie = cookie;
+const MAX_AGE = new Date();
+MAX_AGE.setYear(MAX_AGE.getFullYear() + 5);
+
+export function create(name, content, maxAge = MAX_AGE) {
+  document.cookie = `${name}=${content}; maxAge=${maxAge}; path=/`;
 }
 
 export function remove(name) {
-  document.cookie = `${name}=; maxAge=${new Date().toUTCString()}; path=/`;
+  document.cookie = `${name}=; expires=${EXPIRES}; path=/`;
 }
