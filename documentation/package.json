@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run prebuild && nodemon index.js",
-    "prebuild": "rimraf public/assets && rimraf public/themes",
+    "clean": "rimraf public/assets && rimraf public/themes",
+    "sassdoc": "sassdoc ../src/scss -c sassdoc.yml",
+    "prebuild": "npm run clean && npm run sassdoc",
     "build": "webpack --progress --colors --env.production",
     "start": "cross-env NODE_ENV=production node index.js",
     "start:prod": "npm run build && npm run start",
@@ -88,6 +90,7 @@
     "redux-saga-tester": "^1.0.260",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.5",
+    "sassdoc": "^2.2.2",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",

@@ -1,6 +1,6 @@
 # Prerequisites
 To use this library, it is recommended to have previous experience using React
-and styling with sass or css. You should also be familiar with immutable data
+and styling with Sass and/or CSS. You should also be familiar with immutable data
 structures.
 
 #### Sass
@@ -12,7 +12,7 @@ They can be included by using the `react-md.${PRIMARY_COLOR}-${ACCENT_COLOR}.min
 - `https://unpkg.com/react-md/dist/react-md.indigo-pink.min.css`
 - `https://unpkg.com/react-md/dist/react-md.deep_purple-deep_orange.min.css`
 
-> There are currently 255 precompiled themes. Every color is available with any secondary color but only with an accent of `400` and only the light theme.
+> There are currently 255 pre-compiled themes. Every color is available with any secondary color but only with an accent of `400` and only the light theme.
 
 
 #### Javascript

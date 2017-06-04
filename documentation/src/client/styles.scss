@@ -14,6 +14,16 @@ h3 {
   white-space: normal;
 }
 
+.md-icon.fa {
+  font-size: $md-font-icon-size;
+
+  @media #{$md-desktop-media} {
+    font-size: $md-font-icon-dense-size;
+    height: $md-font-icon-dense-size;
+    width: $md-font-icon-dense-size;
+  }
+}
+
 .md-avatar__google-logo {
   background: $md-white-base;
 }

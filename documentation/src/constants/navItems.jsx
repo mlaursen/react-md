@@ -142,9 +142,9 @@ const routes = [{
         'v0.3.0',
       ],
     },
+    'showcases',
     'community',
     'contributing',
-    'boilderplates',
   ],
 }, {
   to: 'components',

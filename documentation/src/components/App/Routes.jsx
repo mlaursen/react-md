@@ -10,6 +10,7 @@ const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/getting-started/:location" component={GettingStarted} />
+    <Redirect from="/customization/grids" to="/components/grids" />
     <Route path="/customization/:location" component={Customization} />
     <Route path="/discover-more/upgrade-guides/:version" component={DiscoverMore} />
     <Route path="/discover-more/:location" component={DiscoverMore} />

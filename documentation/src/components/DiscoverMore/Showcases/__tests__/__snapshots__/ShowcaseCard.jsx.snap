@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowcaseCard should render correctly 1`] = `
+<li
+  className="md-paper md-paper--1 md-card md-background--card showcase-card"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <a
+    className="md-media md-media--16-9"
+    href="https://react-md.mlaursen.com"
+    title="react-md Documentation website"
+  >
+    <img
+      alt="react-md Documentation website"
+      src="https://react-md.mlaursen.com/assets/logo.svg"
+    />
+  </a>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <div
+      className="md-card-title--title-block"
+    >
+      <h2
+        className="md-card-title--title md-text md-card-title--large"
+        id={undefined}
+      >
+        react-md Documentation website
+      </h2>
+      <h3
+        className="md-card-title--title md-text--secondary"
+      >
+        MIkkel Laursen
+      </h3>
+    </div>
+  </div>
+  <section
+    className="md-card-text"
+  >
+    It is a website about documenting react-md. Who'da thunk?
+  </section>
+</li>
+`;
+
+exports[`ShowcaseCard should render correctly 2`] = `
+<li
+  className="md-paper md-paper--1 md-card md-background--card showcase-card"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <a
+    className="md-media md-media--16-9"
+    href="https://react-md.mlaursen.com"
+    title="react-md Documentation website"
+  >
+    <img
+      alt="react-md Documentation website"
+      src="https://react-md.mlaursen.com/assets/logo.svg"
+    />
+  </a>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <div
+      className="md-card-title--title-block"
+    >
+      <h2
+        className="md-card-title--title md-text md-card-title--large"
+        id={undefined}
+      >
+        react-md Documentation website
+      </h2>
+      <h3
+        className="md-card-title--title md-text--secondary"
+      >
+        MIkkel Laursen
+      </h3>
+    </div>
+    <a
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+      disabled={undefined}
+      href="https://github.com/mlaursen/react-md"
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+    >
+      <i
+        className="md-icon fa fa-github"
+        style={undefined}
+      />
+    </a>
+  </div>
+  <section
+    className="md-card-text"
+  >
+    It is a website about documenting react-md. Who'da thunk?
+  </section>
+</li>
+`;

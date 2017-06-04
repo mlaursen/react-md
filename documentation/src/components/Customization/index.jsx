@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getTab } from 'utils/routing';
 
-import { NotFound, Colors, Themes, Typography, MediaQueries, MinimizingBundle } from 'routes';
+import {
+  NotFound,
+  Colors,
+  Themes,
+  Typography,
+  MediaQueries,
+  MinimizingBundle,
+} from 'routes';
 
 const Customization = ({ match: { params: { location } }, history, location: { search } }) => {
   const tab = getTab(search);

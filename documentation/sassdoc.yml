@@ -1,0 +1,6 @@
+package:
+  - '../package.json'
+dest:
+  'public/sassdoc'
+googleAnalytics:
+  'UA-76079335-1'

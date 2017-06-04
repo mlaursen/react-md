@@ -1,7 +1,7 @@
 import React from 'react';
 import MarkdownPage from 'components/Markdown/MarkdownPage';
 
-import markdown from './Prerequisites.md';
+import markdown from './README.md';
 
 const Prerequisites = () => <MarkdownPage markdown={markdown} />;
 export default Prerequisites;

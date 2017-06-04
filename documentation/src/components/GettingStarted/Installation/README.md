@@ -4,11 +4,7 @@ react-md is available as an [npm package](https://www.npmjs.com/package/react-md
 You can install with:
 
 ```bash
-$ npm install -S react \
-                 react-dom \
-                 react-addons-transition-group \
-                 react-addons-css-transition-group \
-                 react-md
+$ npm install -S react react-dom react-md
 ```
 
 Once installed, the components can be accessed by `react-md` or `react-md/lib` and the styles from `react-md/src/scss/_react-md.scss`.
@@ -17,7 +13,7 @@ Once installed, the components can be accessed by `react-md` or `react-md/lib` a
 The [Roboto font](https://www.google.com/fonts/specimen/Roboto) and 
 [material-icons](https://design.google.com/icons/) should be included as well
 (or some equivalent). These fonts can be included via [WebFontLoader](https://github.com/typekit/webfontloader)
-or by locally hosting and using the provided sass mixins to include them. See [host-material-icons](/customization/typography?tab=1#mixin-host-material-icons)
+or by locally hosting and using the provided Sass mixins to include them. See [host-material-icons](/customization/typography?tab=1#mixin-host-material-icons)
 and [host-google-font](/customization/typography?tab=1#mixin-host-google-font) for more details.
 
 ### Examples
