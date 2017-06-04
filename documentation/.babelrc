@@ -8,5 +8,25 @@
     ["inline-import", {
       "extensions": [".md"]
     }]
-  ]
+  ],
+  "env": {
+    "scripts": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": "current"
+          }
+        }]
+      ],
+      "plugins": [
+        ["module-resolver", {
+          "alias": {
+            "constants": "./src/constants",
+            "server": "./src/server",
+            "utils": "./src/utils"
+          }
+        }]
+      ]
+    }
+  }
 }

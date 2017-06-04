@@ -18,6 +18,7 @@ import { pageNotFound } from 'state/routing';
 import { getInitialState } from 'state/theme';
 import { DEFAULT_STATE, handleLocationChange } from 'state/quickNav';
 import { toPageTitle } from 'utils/strings';
+import api from './api';
 import routes from './routes';
 import themes from './themes';
 import renderHtmlPage from './utils/renderHtmlPage';
@@ -30,7 +31,6 @@ const app = express();
 app.use(helmet({
   noCache: false,
 }));
-app.use(cookieParser());
 app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
@@ -39,7 +39,7 @@ app.use(express.static(dist, {
   maxAge: CACHE_DURATION,
 }));
 
-if (__DEV__) {
+if (__DEV__ && !global.__SERVER_ONLY) {
   /* eslint-disable import/no-extraneous-dependencies, global-require */
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -57,9 +57,10 @@ if (__DEV__) {
   app.use(webpackHotMiddleware(compiler));
 }
 
+app.use('/api', api);
 app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
 
-app.get('*', (req, res) => {
+app.get('*', cookieParser(), (req, res) => {
   if (__DEV__) {
     global.webpackIsomorphicTools.refresh();
   }
