@@ -37,6 +37,11 @@ export default class SelectField extends PureComponent {
     ])),
 
     /**
+     * An optional name to give to the select field.
+     */
+    name: PropTypes.string,
+
+    /**
      * An optional id to provide to the select field's menu. If this is omitted,
      * it will default to `${id}-menu`.
      */
@@ -210,11 +215,11 @@ export default class SelectField extends PureComponent {
      * has click/touched/keyboard selected a value in the list, or the user has selected a value by typing
      * in the select field while the menu's list is closed.
      *
-     * The callback will include the next text field value, the selected item's index, and the event that
-     * triggered the change.
+     * The callback will include the next text field value, the selected item's index, the event that
+     * triggered the change, and the id, name, and value of the select field.
      *
      * ```js
-     * onChange(value, index, event);
+     * onChange(value, index, event, { id, name, value });
      * ```
      */
     onChange: PropTypes.func,
@@ -658,11 +663,11 @@ export default class SelectField extends PureComponent {
   };
 
   _selectItem = (dataIndex, dataValue, e) => {
-    const { required, menuItems, itemLabel, itemValue, onChange } = this.props;
+    const { required, menuItems, itemLabel, itemValue, onChange, id, name } = this.props;
     const value = this._getItemPart(menuItems[dataIndex], itemLabel, itemValue);
     const prevValue = getField(this.props, this.state, 'value');
     if (prevValue !== value && onChange) {
-      onChange(value, dataIndex, e);
+      onChange(value, dataIndex, e, { id, name, value });
     }
 
     const state = {
@@ -782,7 +787,7 @@ export default class SelectField extends PureComponent {
   };
 
   _selectFirstMatch = (letter, e) => {
-    const { menuItems, itemLabel, itemValue, isOpen, onChange } = this.props;
+    const { menuItems, itemLabel, itemValue, isOpen, onChange, id, name } = this.props;
     const { lastSearch } = this.state;
     let match = -1;
     const search = `${lastSearch || ''}${letter}`.toUpperCase();
@@ -815,7 +820,7 @@ export default class SelectField extends PureComponent {
         const prevValue = getField(this.props, this.state, 'value');
 
         if (value !== prevValue && onChange) {
-          onChange(value, match, e);
+          onChange(value, match, e, { id, name, value });
         }
 
         if (typeof this.props.value === 'undefined') {
