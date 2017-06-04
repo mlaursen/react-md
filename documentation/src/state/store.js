@@ -1,11 +1,14 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { apiMiddleware } from 'redux-api-middleware';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from './index';
+import sagas from 'sagas';
+
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState) {
-  const middlewares = [applyMiddleware(thunk, apiMiddleware)];
+  const middlewares = [applyMiddleware(thunk, sagaMiddleware)];
   if (__DEV__ && typeof window !== 'undefined' && window.devToolsExtension) {
     middlewares.push(window.devToolsExtension());
   }
@@ -20,6 +23,8 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  sagaMiddleware.run(sagas);
 
   return store;
 }

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { CUSTOM_THEME_ROUTE } from 'constants/application';
+import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import reducer, {
   INITIAL_STATE,
   CUSTOM_THEME_LINK,
@@ -35,7 +35,7 @@ describe('link', () => {
     });
 
     it('should update an existing link', () => {
-      const state = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: '/themes/something.css' }];
+      const state = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: 'something.css' }];
 
       const href = 'react-md.light_blue-deep_purple-dark.css';
       const expected = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: `/${CUSTOM_THEME_ROUTE}/${href}` }];
@@ -43,7 +43,7 @@ describe('link', () => {
     });
 
     it('should remove a link if the href is null', () => {
-      const state = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: '/themes/something.css' }];
+      const state = [...INITIAL_STATE, { ...CUSTOM_THEME_LINK, href: 'something.css' }];
       expect(reducer(state, updateCustomTheme(null))).toEqual(INITIAL_STATE);
     });
   });

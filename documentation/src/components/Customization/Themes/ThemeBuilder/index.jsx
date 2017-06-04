@@ -1,11 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ACCENTABLE_COLORS, PRIMARY_COLORS } from 'constants/colors';
-import { getCompiledStylesName } from 'utils/strings';
+import { bindActionCreators } from 'redux';
+import { connectAdvanced } from 'react-redux';
+import shallowEqual from 'shallowequal';
+
+import { updateTheme } from 'state/theme';
 import Markdown from 'components/Markdown';
 
 import './_styles.scss';
 import Preview from './Preview';
+import Configuration from './Configuration';
 
 const ABOUT_THEME_BUILDER = `
 ### Custom CSS Theme Builder
@@ -15,63 +19,71 @@ to view a specific theme. When you have selected colors you like, either referen
 or [pre-compiled themes](#pre-compiled-themes). Not all themes will already be compiled and hosted on \`unpkg\`.
 `;
 
-const DEFAULT_STATE = {
-  primary: 'light-blue',
-  secondary: 'deep-orange',
-  hue: 200,
-  light: true,
-  saveDisabled: true,
-};
-// const DIFF_KEYS = Object.keys(DEFAULT_STATE).filter(key => key !== 'saveDisabled');
-
-
-export default class ThemeBuilder extends PureComponent {
+export class PureThemeBuilder extends PureComponent {
   static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
+    primary: PropTypes.string.isRequired,
+    secondary: PropTypes.string.isRequired,
+    hue: PropTypes.number.isRequired,
+    light: PropTypes.bool.isRequired,
+    saved: PropTypes.bool.isRequired,
+    saveDisabled: PropTypes.bool.isRequired,
+    href: PropTypes.string.isRequired,
+    filteredPrimaries: PropTypes.arrayOf(PropTypes.string).isRequired,
+    filteredSecondaries: PropTypes.arrayOf(PropTypes.string).isRequired,
+    updateTheme: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
 
-    const { primary, secondary, hue, light } = DEFAULT_STATE;
-
-    this.state = {
-      ...DEFAULT_STATE,
-      primaryColor: `$md-${primary}-500`,
-      secondaryColor: `$md-${secondary}-a-${hue}`,
-      compiledName: getCompiledStylesName(primary, secondary, light),
-      warningVisible: false,
-      filteredPrimaries: this.filter(PRIMARY_COLORS, DEFAULT_STATE.secondary),
-      filteredSecondaries: this.filter(ACCENTABLE_COLORS, DEFAULT_STATE.primary),
-      saved: false,
-    };
+    this.state = this.getNextState(props);
   }
 
-  filter = (list, invalid) => list.filter(color => color !== invalid);
+  componentWillReceiveProps(nextProps) {
+    const { primary, secondary, hue } = this.props;
+    if (primary !== nextProps.primary || secondary !== nextProps.secondary || hue !== nextProps.hue) {
+      this.setState(this.getNextState(nextProps));
+    }
+  }
+
+  getNextState = ({ primary, secondary, hue }) => ({
+    primaryColor: `$md-${primary}-500`,
+    secondaryColor: `$md-${secondary}-a-${hue}`,
+  });
+
+  handleChange = (e) => {
+    const { updateTheme } = this.props;
+    const { value, checked, type } = e.target;
+    let { id } = e.target;
+    if (id === 'save-theme') {
+      id = 'saved';
+    }
+
+    updateTheme(id, type === 'checkbox' ? checked : value);
+  };
+
+  handleSelectChange = (value, items, e, field) => {
+    this.handleChange({ target: field });
+  };
 
   render() {
-    const { primaryColor, secondaryColor, compiledName, ...state } = this.state;
-    const { hue, light } = state;
-
+    const { primaryColor, secondaryColor } = this.state;
+    const { light, hue } = this.props;
+    const { href, updateTheme, ...props } = this.props; // eslint-disable-line no-unused-vars
     let howToUse = `
 #### Using with Sass
 
 \`\`\`scss
 @import '~react-md/src/scss/react-md';
-${light ? '' : '\n$md-light-theme: false;'}
+
+$md-light-theme: ${light};${light ? ' // optional for light theme' : ''}
 $md-primary-color: ${primaryColor};
 $md-secondary-color: ${secondaryColor};
 
 @include react-md-everything;
 
 // Or for a subsection
-${light
-  ? `
-.custom-theme {
-  @include react-md-theme-everything(${primaryColor}, ${secondaryColor});
-}`
-  : `@include react-md-theme-everything(${primaryColor}, ${secondaryColor}, false, 'custom-theme');`}
+@include react-md-theme-everything(${primaryColor}, ${secondaryColor}, $md-light-theme, 'custom-theme');
 \`\`\`
 
 #### Pre-compiled Themes
@@ -81,12 +93,12 @@ ${light
       howToUse = `${howToUse}
 ##### SCSS Import
 \`\`\`scss
-@import '~react-md/dist/${compiledName}';
+@import '~react-md/dist/${href}';
 \`\`\`
 
 ##### CDN
 \`\`\`html
-<link rel="stylesheet" href="//unpkg.com/react-md/dist/${compiledName}">
+<link rel="stylesheet" href="//unpkg.com/react-md/dist/${href}">
 \`\`\`
 `;
     } else {
@@ -97,6 +109,7 @@ precompiled.
     }
     return (
       <div className="md-grid">
+        <Configuration {...props} onChange={this.handleChange} onSelectChange={this.handleSelectChange} />
         <section className="md-cell md-cell--8 md-cell--6-desktop">
           <Markdown markdown={ABOUT_THEME_BUILDER} className="md-text-container" />
           <Preview />
@@ -106,3 +119,16 @@ precompiled.
     );
   }
 }
+
+export default connectAdvanced((dispatch) => {
+  let result;
+  const actions = bindActionCreators({ updateTheme }, dispatch);
+  return (state) => {
+    const nextResult = { ...state.theme, ...actions };
+    if (!shallowEqual(result, nextResult)) {
+      result = nextResult;
+    }
+
+    return result;
+  };
+})(PureThemeBuilder);

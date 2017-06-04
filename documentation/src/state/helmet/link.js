@@ -1,4 +1,4 @@
-import { CUSTOM_THEME_ROUTE } from 'constants/application';
+import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import { findIndex } from 'lodash/array';
 
 export const UPDATE_CUSTOM_THEME = 'UPDATE_CUSTOM_THEME';

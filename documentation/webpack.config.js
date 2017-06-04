@@ -14,6 +14,9 @@ const WITConfig = require('./WIT.config');
 
 const modules = path.resolve(process.cwd(), 'node_modules');
 
+const PROD_ENTRY = ['babel-polyfill', client];
+const DEV_ENTRY = ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', 'babel-polyfill', client];
+
 const PROD_PLUGINS = [
   new webpack.optimize.UglifyJsPlugin({
     beautify: false,
@@ -62,7 +65,7 @@ module.exports = ({ production }) => {
   return {
     cache: !production,
     devtool: !production ? 'cheap-module-eval-source-map' : 'cheap-module-source-map',
-    entry: !production ? ['react-hot-loader/patch', 'webpack-hot-middleware/client?reload=true', client] : client,
+    entry: production ? PROD_ENTRY : DEV_ENTRY,
     output: {
       path: dist,
       publicPath: '/assets/',
@@ -91,7 +94,13 @@ module.exports = ({ production }) => {
             'react',
             'stage-0',
           ],
-          plugins: ['react-hot-loader/babel', 'transform-decorators-legacy'],
+          plugins: [
+            'react-hot-loader/babel',
+            'transform-decorators-legacy',
+            'transform-regenerator',
+            'syntax-async-functions',
+            'lodash',
+          ],
         },
       }, {
         // Loading css dependencies from dependencies (normalize.css and Prism.css)
@@ -213,6 +222,6 @@ module.exports = ({ production }) => {
       // import Something from 'components/Something' instead of '../../../../compoennts/Something'
       modules: ['node_modules', 'src'],
     },
-    stats: 'minimal',
+    stats: 'errors-only',
   };
 };

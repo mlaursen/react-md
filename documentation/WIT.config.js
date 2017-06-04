@@ -14,6 +14,7 @@ module.exports = {
     'components': path.join(src, 'components'),
     'imgs': path.join(src, 'imgs'),
     'routes': path.join(src, 'routes', 'sync.js'),
+    'sagas': path.join(src, 'sagas'),
     'state': path.join(src, 'state'),
     'utils': path.join(src, 'utils'),
   },

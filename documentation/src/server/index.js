@@ -6,15 +6,19 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import favicon from 'serve-favicon';
-import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
+import { CUSTOM_THEME_ROUTE } from 'constants/colors';
+import { getInitialState } from 'state/theme';
+import { updateCustomTheme } from 'state/helmet';
+import configureStore from 'state/store';
+import { DEFAULT_STATE, handleLocationChange } from 'state/quickNav';
 import { toPageTitle } from 'utils/strings';
-import configureStore from '../state/store';
-import { DEFAULT_STATE, handleLocationChange } from '../state/quickNav';
+import themes from './themes';
 import renderHtmlPage from './utils/renderHtmlPage';
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
@@ -24,7 +28,7 @@ const app = express();
 app.use(helmet({
   noCache: false,
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
@@ -51,6 +55,8 @@ if (__DEV__) {
   app.use(webpackHotMiddleware(compiler));
 }
 
+app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
+
 app.get('*', (req, res) => {
   if (__DEV__) {
     global.webpackIsomorphicTools.refresh();
@@ -76,7 +82,10 @@ app.get('*', (req, res) => {
       visibleBoxShadow: req.url !== '/',
     },
     quickNav: handleLocationChange(DEFAULT_STATE, { pathname: req.url }),
+    theme: getInitialState(req.cookies),
   });
+
+  store.dispatch(updateCustomTheme(store.getState().theme.href));
 
   if (!__SSR__) {
     res.send(renderHtmlPage(store));

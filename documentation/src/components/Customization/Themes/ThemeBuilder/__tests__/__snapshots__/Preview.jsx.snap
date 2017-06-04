@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preivew should render correctly 1`] = `
+<section
+  className="md-background--card theme-preview"
+>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Theme Preview
+    </h2>
+  </header>
+  <div
+    className="md-grid md-toolbar-relative"
+  >
+    <h2
+      className="md-display-1 md-cell md-cell--12"
+    >
+      Look at this
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text theme-preview__btn"
+      disabled={undefined}
+      href={undefined}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <button
+    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    disabled={undefined}
+    href={undefined}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      email
+    </i>
+  </button>
+</section>
+`;

@@ -33,7 +33,7 @@ export default function renderHtmlPage(store, html = '') {
   ).join('');
   page += manifest;
 
-  page += `</head><body><div id="app">${html}</div>`;
+  page += `</head><body ${head.bodyAttributes.toString()}><div id="app">${html}</div>`;
   if (store) {
     page += `<script type="text/javascript">window.__INITIAL_STATE__=${serialize(store.getState())}</script>`;
   }

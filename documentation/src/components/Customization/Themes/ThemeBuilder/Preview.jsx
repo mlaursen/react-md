@@ -3,13 +3,11 @@ import Button from 'react-md/lib/Buttons/Button';
 import Toolbar from 'react-md/lib/Toolbars';
 import Drawer from 'react-md/lib/Drawers';
 
-const NAV_ITEMS = ['Woop woop', 'That\'s the sound', 'Of the Police'];
-const styles = {
-  button: {
-    marginLeft: 8,
-    marginTop: '1em',
-  },
-};
+const NAV_ITEMS = [
+  { primaryText: 'Woop woop' },
+  { primaryText: 'That\'s the sound' },
+  { primaryText: 'Of the Police' },
+];
 
 export default class Preview extends PureComponent {
   constructor(props) {
@@ -37,7 +35,7 @@ export default class Preview extends PureComponent {
         />
         <div className="md-grid md-toolbar-relative">
           <h2 className="md-display-1 md-cell md-cell--12">Look at this</h2>
-          <Button primary raised style={styles.button}>
+          <Button primary raised className="theme-preview__btn">
             Button
           </Button>
         </div>

@@ -16,7 +16,7 @@ import DocumentationTabs from 'components/DocumentationTabs';
 import Footer from './Footer';
 
 const helmetConfig = {
-  htmlAttributes: { lang: 'en' },
+  htmlAttributes: { lang: 'en', class: 'custom-theme' },
   defaultTitle: 'react-md',
   titleTemplate: '%s - react-md',
 };
