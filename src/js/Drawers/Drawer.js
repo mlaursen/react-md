@@ -38,6 +38,26 @@ export default class Drawer extends PureComponent {
   static DrawerTypes = DrawerTypes;
   static propTypes = {
     /**
+     * An optional id to provide to the drawer. This is generally a good idea to provide if
+     * there are any `navItems` defined.
+     *
+     * @see {@link #navItemsId}
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the navItems list. If this is omitted and the `id` prop is
+     * defined, it will be defaulted to `${id}-nav-items`.
+     */
+    navItemsId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
      * An optional style to apply.
      */
     style: PropTypes.object,
@@ -580,6 +600,7 @@ export default class Drawer extends PureComponent {
   render() {
     const { overlayActive, drawerActive, animating } = this.state;
     const {
+      id,
       style,
       className,
       navStyle,
@@ -598,6 +619,7 @@ export default class Drawer extends PureComponent {
       type: propType,
       visible: propVisible,
       renderNode: propRenderNode,
+      navItemsId: propNavItemsId,
       constantType,
       defaultVisible,
       defaultMedia,
@@ -618,6 +640,11 @@ export default class Drawer extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+
+    let { navItemsId } = this.props;
+    if (!navItemsId && id) {
+      navItemsId = `${id}-nav-items`;
+    }
 
     const { desktop } = this.state;
     const renderNode = getField(this.props, this.context, 'renderNode');
@@ -643,6 +670,7 @@ export default class Drawer extends PureComponent {
         <List
           ref={this._setNavigation}
           key="navigation"
+          id={navItemsId}
           style={navStyle}
           className={cn('md-list--drawer', {
             'md-toolbar-relative': mini && !visible,
@@ -668,6 +696,7 @@ export default class Drawer extends PureComponent {
     const drawer = (
       <Paper
         {...props}
+        id={id}
         key="drawer"
         component={Component}
         zDepth={zDepth}

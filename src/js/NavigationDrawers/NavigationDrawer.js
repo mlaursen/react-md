@@ -128,6 +128,56 @@ export default class NavigationDrawer extends PureComponent {
 
   static propTypes = {
     /**
+     * An optional id to provide to the entire div wrapper.
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the drawer. This is generally a good idea to provide if
+     * there are any `navItems` defined.
+     *
+     * @see {@link #navItemsId}
+     */
+    drawerId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the navItems list. If this is omitted and the `drawerId` prop is
+     * defined, it will be defaulted to `${drawerId}-nav-items`.
+     *
+     * @see {@link #drawerId}
+     * @see {@link Drawers#navItemsId}
+     */
+    navItemsId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the main toolbar.
+     */
+    toolbarId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An id to give the main content. A hidden link is created in the main drawer's header that links to the main
+     * content. This is used for keyboard only users to jump the navigation and jump straight to the content.
+     *
+     * If you provide your own `drawerHeader`, it is suggested to include the link yourself.
+     */
+    contentId: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
      * An optional style to apply to the surrounding container.
      */
     style: PropTypes.object,
@@ -546,17 +596,6 @@ export default class NavigationDrawer extends PureComponent {
     contentProps: PropTypes.object,
 
     /**
-     * An id to give the main content. A hidden link is created in the main drawer's header that links to the main
-     * content. This is used for keyboard only users to jump the navigation and jump straight to the content.
-     *
-     * If you provide your own `drawerHeader`, it is suggested to include the link yourself.
-     */
-    contentId: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ])),
-
-    /**
      * The label to use for a keyboard accessibility link that jumps all the navigation and allows a user to focus
      * the main content. This is created in the drawer's header.
      */
@@ -784,6 +823,7 @@ export default class NavigationDrawer extends PureComponent {
 
   render() {
     const {
+      id,
       style,
       className,
       toolbarStyle,
@@ -795,10 +835,12 @@ export default class NavigationDrawer extends PureComponent {
       contentComponent: Content,
       navItems,
       children,
+      drawerId,
       drawerTitle,
       drawerChildren,
       drawerHeaderChildren,
       drawerTransitionDuration,
+      toolbarId,
       toolbarTitle,
       toolbarTitleMenu,
       toolbarTitleStyle,
@@ -917,8 +959,9 @@ export default class NavigationDrawer extends PureComponent {
     const desktopOffset = !clipped && !floating && offset;
 
     return (
-      <div style={style} className={className}>
+      <div style={style} className={className} id={id}>
         <Toolbar
+          id={toolbarId}
           colored={toolbarThemeType === 'colored'}
           themed={toolbarThemeType === 'themed'}
           singleColor={toolbarSingleColor}
@@ -948,6 +991,7 @@ export default class NavigationDrawer extends PureComponent {
         {miniDrawer}
         <Drawer
           {...props}
+          id={drawerId}
           constantType={constantDrawerType}
           transitionDuration={drawerTransitionDuration}
           header={drawerHeader}
