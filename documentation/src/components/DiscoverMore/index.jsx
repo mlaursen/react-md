@@ -12,27 +12,28 @@ import {
   NotFound,
 } from 'routes';
 
-const DiscoverMore = ({ match: { params: { location, version } }, history }) => {
+const DiscoverMore = ({ match: { params: { location, version } }, history, staticContext }) => {
   if (version === 'v1.1.0') {
-    return <UpgradeV110 />;
+    return <UpgradeV110 staticContext={staticContext} />;
   } else if (version === 'v1.0.0') {
-    return <UpgradeV100 />;
+    return <UpgradeV100 staticContext={staticContext} />;
   } else if (version === 'v0.3.0') {
-    return <UpgradeV030 />;
+    return <UpgradeV030 staticContext={staticContext} />;
   } else if (location === 'whats-new') {
-    return <WhatsNew />;
+    return <WhatsNew staticContext={staticContext} />;
   } else if (location === 'showcases') {
-    return <Showcases />;
+    return <Showcases staticContext={staticContext} />;
   } else if (location === 'contributing') {
-    return <Contributing />;
+    return <Contributing staticContext={staticContext} />;
   } else if (location === 'community') {
-    return <Community />;
+    return <Community staticContext={staticContext} />;
   }
 
-  return <NotFound history={history} />;
+  return <NotFound history={history} staticContext={staticContext} />;
 };
 
 DiscoverMore.propTypes = {
+  staticContext: PropTypes.object,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };

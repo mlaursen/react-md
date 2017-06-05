@@ -97,8 +97,9 @@ module.exports = ({ production }) => {
           plugins: [
             'react-hot-loader/babel',
             'transform-decorators-legacy',
-            'transform-regenerator',
+            'syntax-dynamic-import',
             'syntax-async-functions',
+            'transform-regenerator',
             'lodash',
           ],
         },

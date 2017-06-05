@@ -1,73 +1,42 @@
 import React, { PureComponent } from 'react';
-import cn from 'classnames';
 
-let renderedOnce = false;
 export default function asyncComponent(getComponent, loadingChildren = null) {
   return class AsyncComponent extends PureComponent {
     static Component = null;
-    state = {
-      Component: AsyncComponent.Component,
-      enter: false,
-      active: false,
-    };
-    timeout = null;
+    static async loadComponent() {
+      const { default: Component } = await getComponent();
+      AsyncComponent.Component = Component;
+      return Component;
+    }
 
-    componentWillMount() {
+    state = { Component: AsyncComponent.Component };
+    mounted = false;
+
+    async componentWillMount() {
       if (!AsyncComponent.Component) {
-        getComponent().then(({ default: Component }) => {
-          AsyncComponent.Component = Component;
-          this.transitionIn();
+        const Component = await AsyncComponent.getComponent();
+        if (this.mounted) {
           this.setState({ Component });
-        });
+        }
       } else if (!this.state.Component) {
         this.setState({ Component: AsyncComponent.Component });
-      } else {
-        this.transitionIn();
       }
+    }
+
+    componentDidMount() {
+      this.mounted = true;
     }
 
     componentWillUnmount() {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
+      this.mounted = false;
     }
-
-    transitionIn = () => {
-      if (!renderedOnce) {
-        renderedOnce = true;
-        return;
-      }
-
-      this.setState({ enter: true });
-      this.timeout = setTimeout(() => {
-        this.transitionInActive();
-        this.setState({ active: true });
-      }, 17);
-    };
-
-    transitionInActive = () => {
-      this._timeout = setTimeout(() => {
-        this.timeout = null;
-        this.setState({ active: false, enter: false });
-      }, 300);
-    };
-
     render() {
-      const { Component, enter, active } = this.state;
+      const { Component } = this.state;
       if (!Component) {
         return loadingChildren;
       }
 
-      return (
-        <div
-          className={cn({
-            'md-cross-fade-enter': enter,
-            'md-cross-fade-enter-active': enter && active,
-          })}
-        >
-          <Component {...this.props} />
-        </div>
-      );
+      return <Component {...this.props} />;
     }
   };
 }

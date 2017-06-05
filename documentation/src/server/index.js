@@ -98,25 +98,30 @@ app.get('*', cookieParser(), (req, res) => {
     return;
   }
 
-  const context = {};
-  const App = require('components/App').default;
+  try {
+    const context = { bundles: [] };
+    const App = require('components/App').default;
 
-  const html = renderToString(
-    <StaticRouter context={context} location={req.url}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </StaticRouter>
-  );
+    const html = renderToString(
+      <StaticRouter context={context} location={req.url}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </StaticRouter>
+    );
 
-  if (context.url) {
-    res.writeHead(301, {
-      Location: context.url,
-    });
+    if (context.url) {
+      res.writeHead(301, {
+        Location: context.url,
+      });
 
-    res.end();
-  } else {
-    res.send(renderHtmlPage(store, html));
+      res.end();
+    } else {
+      res.send(renderHtmlPage(store, context.bundles, html));
+    }
+  } catch (e) {
+    console.error(e.message); // eslint-disable-line no-console
+    res.send(renderHtmlPage);
   }
 });
 

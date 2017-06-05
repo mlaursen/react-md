@@ -1,7 +1,7 @@
 {
   "presets": ["es2015", "react", "stage-0"],
   "plugins": [
-    "system-import-transformer",
+    "syntax-dynamic-import",
     "syntax-async-functions",
     "transform-regenerator",
     "transform-decorators-legacy",

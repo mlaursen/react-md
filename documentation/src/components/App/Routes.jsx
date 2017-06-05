@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Home, NotFound } from 'routes';
-import GettingStarted from 'components/GettingStarted';
+import { Home, NotFound, GettingStarted } from 'routes';
 import Customization from 'components/Customization';
 import DiscoverMore from 'components/DiscoverMore';
 import Components from 'components/Components';

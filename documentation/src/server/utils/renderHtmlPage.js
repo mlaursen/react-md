@@ -19,7 +19,7 @@ window.webpackManifest = ${JSON.stringify(manifestJSON)}
   manifest = '';
 }
 
-export default function renderHtmlPage(store, html = '') {
+export default function renderHtmlPage(store, bundles = [], html = '') {
   const head = Helmet.renderStatic();
   const assets = global.webpackIsomorphicTools.assets();
 
@@ -34,9 +34,11 @@ export default function renderHtmlPage(store, html = '') {
   page += manifest;
 
   page += `</head><body ${head.bodyAttributes.toString()}><div id="app">${html}</div>`;
+  page += `<script type="text/javascript">window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
   if (store) {
-    page += `<script type="text/javascript">window.__INITIAL_STATE__=${serialize(store.getState())}</script>`;
+    page += `window.__INITIAL_STATE__=${serialize(store.getState())};`;
   }
+  page += '</script>';
 
   page += Object.keys(assets.javascript).reverse().map(script =>
     `<script src="${assets.javascript[script]}"></script>`
