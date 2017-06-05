@@ -3,6 +3,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { middleware as cache } from 'apicache';
 import docgens from './docgens';
+import sassdocs from './sassdocs';
+import search from './search';
 
 const CACHE_DURATION = '10 days';
 const apiRouter = express.Router();
@@ -12,5 +14,7 @@ apiRouter.use(bodyParser.urlencoded({ extended: true }));
 apiRouter.use(bodyParser.json());
 
 apiRouter.use('/docgens', docgens);
+apiRouter.use('/sassdocs', sassdocs);
+apiRouter.use('/search', search);
 
 export default apiRouter;

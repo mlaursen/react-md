@@ -186,7 +186,7 @@ module.exports = ({ production }) => {
         `routes/${production ? 'a' : ''}sync.js`
       ),
       new webpack.NormalModuleReplacementPlugin(
-        /\.\/routes$/,
+        /^\.\/routes$/,
         `./${production ? 'a' : ''}sync.js`
       ),
       new webpack.LoaderOptionsPlugin({

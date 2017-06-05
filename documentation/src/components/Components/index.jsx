@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { components, sections } from 'constants/navItems';
+import { componentRoutes } from 'constants/navigationRoutes';
+
+const { components, sections } = componentRoutes.reduce((map, route) => {
+  if (typeof route === 'string') {
+    map.components.push(route);
+  } else {
+    map.sections.push(route.to);
+    map.components = map.components.concat(route.routes); // eslint-disable-line no-param-reassign
+  }
+
+  return map;
+}, { components: [], sections: [] });
 
 import { NotFound, ExamplesPage } from 'routes';
 

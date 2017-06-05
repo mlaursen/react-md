@@ -1,24 +1,25 @@
 import { kebabCase } from 'lodash/string';
+import formatMarkdown from 'utils/formatMarkdown';
 
 const MANUAL_DEFINITITION_REGEX = /```docgen(.*\r?\n)*```/;
 
 
 /* eslint-disable no-use-before-define */
-function formatOneOf(values) {
+export function formatOneOf(values) {
   return `oneOf([${values.map(value => value.value).join(', ')}])`;
 }
 
-function formatOneOfType(values, customPropTypes, manualDefinition) {
+export function formatOneOfType(values, customPropTypes, manualDefinition) {
   return `oneOfType([${values.map(value => formatType(value, customPropTypes, manualDefinition)).join(', ')}])`;
 }
 
-function formatShape(shape, customPropTypes, manualDefinition) {
+export function formatShape(shape, customPropTypes, manualDefinition) {
   return `shape({ ${
     Object.keys(shape).map(key => `${key}: ${formatType(shape[key], customPropTypes, manualDefinition)}`).join(', ')
   } })`;
 }
 
-function formatCustom(raw, customPropTypes, manualDefinition) {
+export function formatCustom(raw, customPropTypes, manualDefinition) {
   if (raw.match(/deprecated/)) {
     return raw.replace(/(\r?\n)|\s/g, '').replace(/,'.*/, ')');
   } else if (raw.match(new RegExp(customPropTypes.join('|')))) {
@@ -31,11 +32,11 @@ function formatCustom(raw, customPropTypes, manualDefinition) {
   return 'custom';
 }
 
-function addRequired(value, required) {
+export function addRequired(value, required) {
   return `${value}${required ? '.isRequired' : ''}`;
 }
 
-function formatType({ name, value, raw, required }, customPropTypes, manualDefinition) {
+export function formatType({ name, value, raw, required }, customPropTypes, manualDefinition) {
   switch (name) {
     case 'union':
       return addRequired(formatOneOfType(value, customPropTypes, manualDefinition), required);
@@ -54,15 +55,15 @@ function formatType({ name, value, raw, required }, customPropTypes, manualDefin
   }
 }
 
-function createHash(component, propName) {
+export function createHash(component, propName) {
   return `#${kebabCase(component)}-proptypes${propName ? `-${kebabCase(propName)}` : ''}`;
 }
 
-function addComponentPropLinks(description, component) {
+export function addComponentPropLinks(description, component) {
   return description.replace(/\{@link #(\w+(-\w+)*)\}/g, (match, propName) => `[${propName}](${createHash(component, propName)})`);
 }
 
-function addExternalPropLinks(description) {
+export function addExternalPropLinks(description) {
   return description.replace(/{@link (\w+)\/(\w+)(#\w+(-\w+)*)?}/g, (match, section, component, hash) => {
     let prop;
     if (hash && hash.indexOf('#') !== -1) {
@@ -80,11 +81,14 @@ function addExternalPropLinks(description) {
   });
 }
 
-function addLinks(description, component) {
+export function addLinks(description, component) {
   return addComponentPropLinks(addExternalPropLinks(description), component);
 }
 
 
+/**
+ * Takes in a prop from the output of react-docgen and formats it for use on the client.
+ */
 export default function prettifyProp(prop, propName, customPropTypes, file) {
   let { description, defaultValue } = prop;
   const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DEFINITITION_REGEX));
@@ -107,6 +111,7 @@ ${prop.type.raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.`;
     propName,
     type,
     description,
+    descriptionMarkdown: formatMarkdown(description),
     required: prop.required,
     defaultValue,
   };

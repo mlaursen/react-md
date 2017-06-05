@@ -3,3 +3,4 @@ webpack-stats.json
 .env
 
 public/assets
+src/server/databases

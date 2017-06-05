@@ -21,6 +21,7 @@
       "plugins": [
         ["module-resolver", {
           "alias": {
+            "imgs": "./src/imgs",
             "constants": "./src/constants",
             "server": "./src/server",
             "utils": "./src/utils"

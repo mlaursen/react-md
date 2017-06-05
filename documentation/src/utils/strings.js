@@ -1,4 +1,4 @@
-import capitalizeFirst from 'react-md/lib/utils/StringUtils/capitalizeFirst';
+import { upperFirst } from 'lodash/string';
 
 /**
  * Formats a string into a 'Title Cased String'.
@@ -11,7 +11,7 @@ import capitalizeFirst from 'react-md/lib/utils/StringUtils/capitalizeFirst';
  * @return {String} the title cased string.
  */
 export function toTitle(str) {
-  return str.split(/-|[A-Z]+/).reduce((s, split) => `${s ? `${s} ` : ''}${capitalizeFirst(split)}`, '');
+  return str.split(/-|[A-Z]+/).reduce((s, split) => `${s ? `${s} ` : ''}${upperFirst(split)}`, '');
 }
 
 /**

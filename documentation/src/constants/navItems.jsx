@@ -1,69 +1,9 @@
-// import React from 'react';
 import { flattenDeep } from 'lodash/array';
 
-// import Link from 'components/Link';
+import routes from './navigationRoutes';
 import googleLogo from 'imgs/googleLogo.svg';
 import reactLogo from 'imgs/reactLogo.svg';
 import { toTitle, toPageTitle } from 'utils/strings';
-
-const componentRoutes = [
-  'autocompletes',
-  'avatars',
-  'badges',
-  'bottom-navigations',
-  'buttons',
-  'cards',
-  'chips',
-  'data-tables',
-  'dialogs',
-  'dividers',
-  'drawers',
-  'expansion-panels',
-  'file-inputs',
-  'font-icons', {
-    to: 'helpers',
-    routes: [
-      'accessible-fake-button',
-      'collapse',
-      'focus-container',
-      'icon-separator',
-      'layovers',
-      'portal',
-    ],
-  }, 'inks',
-  'lists',
-  'media',
-  'menus',
-  'navigation-drawers',
-  'papers', {
-    to: 'pickers',
-    routes: ['date', 'time'],
-  }, {
-    to: 'progress',
-    routes: ['circular', 'linear'],
-  }, 'select-fields', {
-    to: 'selection-controls',
-    routes: ['selection-control', 'checkboxes', 'radios', 'switches'],
-  },
-  'sliders',
-  'snackbars',
-  'subheaders',
-  'tabs',
-  'text-fields',
-  'toolbars',
-  'tooltips',
-];
-
-export const { components, sections } = componentRoutes.reduce((map, route) => {
-  if (typeof route === 'string') {
-    map.components.push(route);
-  } else {
-    map.sections.push(route.to);
-    map.components = map.components.concat(route.routes); // eslint-disable-line no-param-reassign
-  }
-
-  return map;
-}, { components: [], sections: [] });
 
 function toNavItem(route, parents = []) {
   const prefix = `${parents.length ? '/' : ''}${parents.join('/')}/`;
@@ -108,49 +48,6 @@ function toNavItem(route, parents = []) {
     routes,
   };
 }
-
-const routes = [{
-  to: '',
-  exact: true,
-  icon: 'home',
-}, {
-  to: 'getting-started',
-  icon: 'info_outline',
-  routes: ['prerequisites', 'installation'],
-}, {
-  to: 'customization',
-  icon: 'color_lens',
-  routes: [
-    'colors',
-    'themes',
-    'typography',
-    'media-queries',
-    'minimizing-bundle', {
-      label: 'SassDoc',
-      href: '/sassdoc',
-    },
-  ],
-}, {
-  to: 'discover-more',
-  icon: 'search',
-  routes: [
-    'whats-new', {
-      to: 'upgrade-guides',
-      routes: [
-        'v1.1.0',
-        'v1.0.0',
-        'v0.3.0',
-      ],
-    },
-    'showcases',
-    'community',
-    'contributing',
-  ],
-}, {
-  to: 'components',
-  icon: 'build',
-  routes: componentRoutes,
-}];
 
 const allRoutes = routes.concat([{ divider: true }, {
   subheader: true,
