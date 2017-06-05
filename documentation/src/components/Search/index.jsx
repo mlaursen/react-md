@@ -9,12 +9,14 @@ import { Link } from 'react-router-dom';
 import Autocomplete from 'react-md/lib/Autocompletes';
 import FontIcon from 'react-md/lib/FontIcons';
 
-import { searchRequest } from 'state/search';
+import './_styles.scss';
+import { searchRequest, searchNextRequest } from 'state/search';
 import CodeVariable from 'components/CodeVariable';
 
 export class PureSearch extends PureComponent {
   static propTypes = {
     search: PropTypes.func.isRequired,
+    searchNext: PropTypes.func.isRequired,
     /**
      * A list of matches/results from the current search.
      */
@@ -61,6 +63,17 @@ export class PureSearch extends PureComponent {
   };
 
   /**
+   * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
+   * When autocomplete menu opens for the first time, the `previousPosition` will be undefined and the
+   * next results would also be fetched.
+   */
+  fetchNext = ({ previousPosition }) => {
+    if (previousPosition) {
+      this.props.searchNext(this.props.meta.next);
+    }
+  };
+
+  /**
    * Basically map the results shape into props for a `ListItem`.
    *
    * @param {Object} result - The result object to convert.
@@ -81,21 +94,18 @@ export class PureSearch extends PureComponent {
       to = ref;
     }
 
+    let primaryText = name;
     let secondaryText = type;
     if (value) {
-      secondaryText = (
-        <div>
-          <div>{type}</div>
-          <CodeVariable>{value}</CodeVariable>
-        </div>
-      );
+      primaryText = type;
+      secondaryText = <CodeVariable>${name}: {value}</CodeVariable>;
     }
 
     return {
       to,
       href,
       component,
-      primaryText: name,
+      primaryText,
       secondaryText,
       threeLines: !!value,
       key: `${name}-${type}`,
@@ -123,7 +133,10 @@ export class PureSearch extends PureComponent {
           filter={null}
           onChange={search}
           data={data}
+          total={total}
           leftIcon={<FontIcon>search</FontIcon>}
+          listClassName="search__results"
+          sameWidth={false}
         />
       </div>
     );
@@ -132,10 +145,13 @@ export class PureSearch extends PureComponent {
 
 export default connectAdvanced((dispatch) => {
   let result;
-  const actions = bindActionCreators({ search: searchRequest }, dispatch);
+  const actions = bindActionCreators({
+    search: value => searchRequest(value),
+    searchNext: searchNextRequest,
+  }, dispatch);
 
   return (state, props) => {
-    const nextResult = { ...props, ...actions };
+    const nextResult = { ...props, ...actions, ...state.search };
 
     if (!shallowEqual(result, nextResult)) {
       result = nextResult;

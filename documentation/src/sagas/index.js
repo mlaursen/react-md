@@ -1,10 +1,10 @@
-/* eslint-disable no-console */
-/* eslint-disable */
-import { takeLatest, select, put, all, fork, take, throttle } from 'redux-saga/effects';
+import { takeLatest, select, put, all, fork, throttle, call } from 'redux-saga/effects';
+import { API_ENDPOINT, SEARCH_ENDPOINT } from 'constants/application';
 import { PRIMARY, SECONDARY, HUE, LIGHT } from 'constants/colors';
 import { updateCustomTheme } from 'state/helmet';
-import { SEARCH_REQUEST } from 'state/search';
+import { SEARCH_REQUEST, searchSuccess } from 'state/search';
 import { UPDATE_THEME, CLEAR_THEME } from 'state/theme';
+import fetch from 'utils/api';
 import * as cookie from 'utils/cookies';
 
 const themeSelector = state => state.theme;
@@ -38,7 +38,14 @@ export function* watchThemeChanges() {
 }
 
 export function* handleSearch(action) {
-  console.log('action:', action);
+  const { query, start, href } = action.payload;
+  if (!query && !href) {
+    return;
+  }
+  const endpoint = href || `${API_ENDPOINT}${SEARCH_ENDPOINT}?q=${query}&start=${start}`;
+  const { meta, data } = yield call(fetch, endpoint);
+
+  yield put(searchSuccess({ meta, data }));
 }
 
 export function* watchSearches() {

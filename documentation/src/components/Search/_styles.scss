@@ -1,0 +1,30 @@
+@import '~globals';
+
+.search {
+
+  &__results.md-list {
+    max-width: 300px;
+    width: 100%;
+
+    pre {
+      margin: 0;
+    }
+  }
+
+  .md-divider--text-field,
+  .md-divider--text-field.md-divider--text-field::after {
+    background: $md-white-base;
+  }
+
+  .md-icon.md-icon {
+    color: get-color('secondary', false);
+
+    &.md-text-field-icon--active {
+      color: $md-white-base;
+    }
+  }
+}
+
+.custom-theme .search .md-divider--text-field:not(.md-divider--text-field-error)::after {
+  background: $md-white-base;
+}

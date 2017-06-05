@@ -70,11 +70,11 @@ export default function search(req, res) {
     return;
   }
 
-  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`.replace(/\?.*/, '');
   let next = null;
   let previous = null;
   if (total > start + limit) {
-    next = `${url}&start=${start + limit}&limit=${limit}`;
+    next = `${url}?q=${q}&start=${start + limit}&limit=${limit}`;
   }
 
   if (start + limit > limit) {
