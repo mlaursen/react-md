@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
-import { takeLatest, select, put, all, fork } from 'redux-saga/effects';
+/* eslint-disable */
+import { takeLatest, select, put, all, fork, take, throttle } from 'redux-saga/effects';
 import { PRIMARY, SECONDARY, HUE, LIGHT } from 'constants/colors';
-import { UPDATE_THEME, CLEAR_THEME } from 'state/theme';
 import { updateCustomTheme } from 'state/helmet';
+import { SEARCH_REQUEST } from 'state/search';
+import { UPDATE_THEME, CLEAR_THEME } from 'state/theme';
 import * as cookie from 'utils/cookies';
 
 const themeSelector = state => state.theme;
@@ -35,8 +37,17 @@ export function* watchThemeChanges() {
   });
 }
 
+export function* handleSearch(action) {
+  console.log('action:', action);
+}
+
+export function* watchSearches() {
+  yield throttle(250, SEARCH_REQUEST, handleSearch);
+}
+
 export default function* sagas() {
   yield all([
     fork(watchThemeChanges),
+    fork(watchSearches),
   ]);
 }

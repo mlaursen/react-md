@@ -60,6 +60,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-waypoint": "^7.0.3",
     "redux": "^3.6.0",
     "redux-saga": "^0.15.3",
     "reselect": "^3.0.1",

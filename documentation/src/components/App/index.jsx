@@ -12,6 +12,7 @@ import navItems from 'constants/navItems';
 import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
+import Search from 'components/Search';
 
 import Routes from './Routes';
 import Footer from './Footer';
@@ -71,12 +72,6 @@ export default class App extends PureComponent {
     dispatch: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   componentDidMount() {
     const { history, dispatch } = this.props;
     history.listen((location) => {
@@ -121,6 +116,7 @@ export default class App extends PureComponent {
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
         toolbarProminent={desktop && toolbarProminent}
         toolbarChildren={tabs}
+        toolbarActions={<Search key="search" />}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {
             return { divider, subheader, ...route };
