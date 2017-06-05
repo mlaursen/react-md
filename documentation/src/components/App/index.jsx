@@ -31,7 +31,7 @@ const helmetConfig = {
     const {
       drawer,
       helmet,
-      media: { defaultMedia, desktop },
+      media: { defaultMedia, mobile },
     } = state;
 
     const nextResult = {
@@ -40,7 +40,7 @@ const helmetConfig = {
       ...helmet,
       dispatch,
       defaultMedia,
-      desktop,
+      mobile,
     };
 
     if (!shallowEqual(result, nextResult)) {
@@ -52,7 +52,7 @@ const helmetConfig = {
 })
 export default class App extends PureComponent {
   static propTypes = {
-    desktop: PropTypes.bool.isRequired,
+    mobile: PropTypes.bool.isRequired,
     defaultMedia: PropTypes.string.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
@@ -97,24 +97,25 @@ export default class App extends PureComponent {
       toolbarTitle,
       visibleBoxShadow,
       toolbarProminent,
-      desktop,
+      mobile,
       meta,
       link,
     } = this.props;
 
     let tabs;
-    if (desktop && toolbarProminent) {
+    if (!mobile && toolbarProminent) {
       tabs = <DocumentationTabs key="tabs" />;
     }
 
     return (
       <NavigationDrawer
+        drawerId="main-navigation"
         drawerTitle="react-md"
         toolbarTitle={toolbarTitle}
         defaultMedia={defaultMedia}
         onMediaTypeChange={this.updateMedia}
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
-        toolbarProminent={desktop && toolbarProminent}
+        toolbarProminent={!mobile && toolbarProminent}
         toolbarChildren={tabs}
         toolbarActions={<Search key="search" />}
         navItems={navItems.map(({ divider, subheader, ...route }) => {

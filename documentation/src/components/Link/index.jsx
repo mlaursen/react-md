@@ -5,8 +5,10 @@ import Avatar from 'react-md/lib/Avatars';
 import FontIcon from 'react-md/lib/FontIcons';
 import ListItem from 'react-md/lib/Lists/ListItem';
 
+import { routeRef, scrollIntoView } from './scrollIntoView';
+
 const Link = ({ label, to, exact, icon, href, avatar, routes }) => (
-  <Route path={to} exact={exact}>
+  <Route path={to} exact={exact} ref={routeRef}>
     {({ match }) => {
       let leftIcon;
       let component;
@@ -29,17 +31,21 @@ const Link = ({ label, to, exact, icon, href, avatar, routes }) => (
         nestedItems = routes.map(route => <Link {...route} key={route.to || route.label} />);
       }
 
+      const active = !!match && !href;
+
       return (
         <ListItem
+          key={href || to}
           href={href}
           component={component}
-          active={!!match && !href}
+          active={active}
           to={to}
           rel={href && 'noopener noreferrer'}
           primaryText={label}
           leftIcon={leftIcon}
           nestedItems={nestedItems}
           defaultVisible={routes && !!match}
+          ref={active && !routes && scrollIntoView}
         />
       );
     }}

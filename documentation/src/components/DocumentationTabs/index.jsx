@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
@@ -8,8 +9,10 @@ import { parse, stringify } from 'qs';
 import './_styles.scss';
 
 @withRouter
+@connect(({ media: { defaultMedia } }) => ({ defaultMedia }))
 export default class DocumentationTabs extends PureComponent {
   static propTypes = {
+    defaultMedia: PropTypes.string.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -27,6 +30,7 @@ export default class DocumentationTabs extends PureComponent {
 
   render() {
     const {
+      defaultMedia,
       location: { pathname, search },
       match: { params: { section } },
     } = this.props;
@@ -60,6 +64,7 @@ export default class DocumentationTabs extends PureComponent {
         className="documentation-tabs"
         activeTabIndex={activeTabIndex}
         onTabChange={this.handleTabChange}
+        defaultMedia={defaultMedia}
       >
         <Tab label={firstTabLabel} id={`documentation-${firstTabLabel.toLowerCase()}`} key="first-tab" />
         {propTypesTab}

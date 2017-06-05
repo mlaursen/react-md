@@ -19,6 +19,10 @@ export const CUSTOM_THEME_LINK = { id: CUSTOM_THEME_ID, rel: 'stylesheet' };
 
 function handleCustomThemeChange(state, { href }) {
   const i = findIndex(state, link => link.id === CUSTOM_THEME_ID);
+  if (href === null && i === -1) {
+    return state;
+  }
+
   const preview = href === null
     ? null
     : { ...(state[i] || CUSTOM_THEME_LINK), href: `/${CUSTOM_THEME_ROUTE}/${href}` };

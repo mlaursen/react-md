@@ -11,6 +11,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
+import MobileDetect from 'mobile-detect';
 
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import { updateCustomTheme } from 'state/helmet';
@@ -65,9 +66,9 @@ app.get('*', cookieParser(), (req, res) => {
     global.webpackIsomorphicTools.refresh();
   }
 
-  const userAgent = req.header('user-agent');
-  const mobile = !!userAgent.match(/mobile/i);
-  const tablet = !!userAgent.match(/ipad/i);
+  const md = new MobileDetect(req.header('user-agent'));
+  const tablet = !!md.tablet();
+  const mobile = !tablet && !!md.mobile();
   const desktop = !mobile && !tablet;
 
   let defaultMedia = 'desktop';
