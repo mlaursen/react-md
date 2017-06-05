@@ -5,8 +5,8 @@ import fs from 'fs';
 import Promise from 'bluebird';
 import { parse } from 'sassdoc';
 import { REACT_MD_SCSS, SASSDOC_DATABASE, SASSDOC_LINKS_DATABASE } from 'server/constants';
-import { formatVariable, formatFunction } from 'server/utils/sassdocFormats';
-import getSassDocLinks from 'server/utils/getSassDocLinks';
+import { formatVariable, formatFunction } from './utils/sassdocFormats';
+import getSassDocLinks from './utils/getSassDocLinks';
 
 const writeFile = Promise.promisify(fs.writeFile);
 

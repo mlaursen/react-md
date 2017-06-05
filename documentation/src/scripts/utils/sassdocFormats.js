@@ -1,7 +1,7 @@
 import { uniqBy } from 'lodash/array';
 import { BASE_SOURCE_PATH } from 'server/constants';
 import formatMarkdown from 'utils/formatMarkdown';
-import { createSassDocLink } from 'server/utils/getSassDocLinks';
+import { createSassDocLink } from './getSassDocLinks';
 
 const MAP_DELIMETER = ': (';
 const MIXIN_DELIMITER = '{';

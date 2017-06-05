@@ -38,7 +38,10 @@ export function createSassDocLink({ context: { type, name, value, scope }, group
   }
 
   if (value) {
-    value = `${value}${scope === 'default' ? ' !default' : ''}`;
+    value = `${value}${scope === 'default' ? ' !default' : ''}`
+      .replace(/\r?\n/g, '') // make on eline
+      .replace(/ +/g, ' ') // remove additional spaces
+      .replace(/(((\() )|,(\)))/g, '$3$4'); // final trimming for sass maps
   }
 
   return { name, type: toTitle(type), ref, value };

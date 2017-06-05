@@ -6,10 +6,10 @@ import Promise from 'bluebird';
 import pluralize from 'pluralize';
 import { kebabCase } from 'lodash/string';
 import { NESTED_GROUPS, DOCGEN_DATABASE, PROP_TYPE_DATABASE } from 'server/constants';
-import createComponentsDocgen from 'server/utils/createComponentsDocgen';
-import getCustomPropTypes from 'server/utils/getCustomPropTypes';
-import getDocumentableComponents from 'server/utils/getDocumentableComponents';
-import getPropTypeLinks from 'server/utils/getPropTypeLinks';
+import createComponentsDocgen from './utils/createComponentsDocgen';
+import getCustomPropTypes from './utils/getCustomPropTypes';
+import getDocumentableComponents from './utils/getDocumentableComponents';
+import getPropTypeLinks from './utils/getPropTypeLinks';
 
 const writeFile = Promise.promisify(fs.writeFile);
 
