@@ -122,6 +122,10 @@ app.get('*', cookieParser(), (req, res) => {
     }
   } catch (e) {
     console.error(e.message); // eslint-disable-line no-console
+    if (__DEV__) {
+      throw e;
+    }
+
     res.send(renderHtmlPage);
   }
 });
