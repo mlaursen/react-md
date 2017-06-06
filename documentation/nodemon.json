@@ -11,6 +11,7 @@
     ".babelrc",
     "index.js",
     "src/server/**/*.js",
+    "src/server/databases/**/*.json",
     ".env"
   ]
 }
