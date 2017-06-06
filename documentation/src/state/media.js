@@ -14,12 +14,12 @@ if (mobile) {
   defaultMedia = 'tablet';
 }
 
-const INITIAL_STATE = { mobile, tablet, desktop, defaultMedia };
+export const INITIAL_STATE = { mobile, tablet, desktop, defaultMedia };
 
 export default function media(state = INITIAL_STATE, action) {
   switch (action.type) {
     case UPDATE_MEDIA:
-      return { ...state, media: action.payload.media };
+      return { ...state, ...action.payload.media };
     default:
       return state;
   }
