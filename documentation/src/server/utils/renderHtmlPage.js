@@ -28,7 +28,15 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
   page += '<meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">';
   page += head.base.toString() + head.title.toString() + head.meta.toString() + head.link.toString();
-  page += Object.keys(assets.styles).map(style =>
+
+  const styleKeys = Object.keys(assets.styles);
+  if (__DEV__ && !styleKeys.length) {
+    // this should really be every scss file, but I just need the base styles
+    const styles = require('../../client/styles.scss')._style;
+    page += `<style>${styles}</style>`;
+  }
+
+  page += styleKeys.map(style =>
     `<link href="${assets.styles[style]}" rel="stylesheet" type="text/css">`
   ).join('');
   page += manifest;
