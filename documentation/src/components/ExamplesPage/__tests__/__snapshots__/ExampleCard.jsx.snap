@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExampleCard should display correctly as a table card 1`] = `
+<div
+  className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id={undefined}
+    >
+      Table Example
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        code
+      </i>
+    </button>
+  </div>
+  <table
+    className="md-data-table"
+  >
+    <thead
+      className="md-table-header"
+    >
+      <tr
+        className="md-table-row"
+      >
+        <th
+          className="md-table-column md-table-column--header"
+        >
+          Hello!
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="md-table-body"
+    >
+      <tr
+        className="md-table-row"
+      >
+        <td
+          className="md-table-column md-table-column--header"
+        >
+          Hello!
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`ExampleCard should display correctly as a table card 2`] = `
+<div
+  className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id={undefined}
+    >
+      Table Example
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        code
+      </i>
+    </button>
+  </div>
+  <section
+    className="md-card-text"
+  >
+    <section
+      className="markdown-container md-text-container"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>Some <strong>description</strong> <em>markdown</em></p>
+        ",
+        }
+      }
+    />
+  </section>
+  <table
+    className="md-data-table"
+  >
+    <thead
+      className="md-table-header"
+    >
+      <tr
+        className="md-table-row"
+      >
+        <th
+          className="md-table-column md-table-column--header"
+        >
+          Hello!
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="md-table-body"
+    >
+      <tr
+        className="md-table-row"
+      >
+        <td
+          className="md-table-column md-table-column--header"
+        >
+          Hello!
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`ExampleCard should display correctly with a description 1`] = `
+<div
+  className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id={undefined}
+    >
+      Second Example
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        code
+      </i>
+    </button>
+  </div>
+  <section
+    className="md-card-text"
+  >
+    <section
+      className="markdown-container md-text-container"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<pre><code># Second Example
+        That contains some markdown!
+        
+        - one
+        - two
+        - three
+        
+        &gt; some note
+        </code></pre>",
+        }
+      }
+    />
+    <h1>
+      Hello, World!
+    </h1>
+    <div>
+      This should have some content...
+    </div>
+  </section>
+</div>
+`;
+
+exports[`ExampleCard should display correctly without a description 1`] = `
+<div
+  className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="md-card-title md-card-title--primary"
+    style={undefined}
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id={undefined}
+    >
+      First Example
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        code
+      </i>
+    </button>
+  </div>
+  <section
+    className="md-card-text"
+  >
+    <div />
+  </section>
+</div>
+`;

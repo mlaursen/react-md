@@ -7,7 +7,7 @@ import CardText from 'react-md/lib/Cards/CardText';
 
 import Markdown from 'components/Markdown';
 
-const ExampleCard = ({ title, description, code, component: Example, tableCard, ...props }) => {
+const ExampleCard = ({ title, description, code, children: propChildren, tableCard, ...props }) => {
   const markdown = `
 \`\`\`js
 ${code}
@@ -19,7 +19,7 @@ ${code}
     descriptionMarkdown = <Markdown key="description" markdown={description} className="md-text-container" />;
   }
 
-  let children = <Example key="example" />;
+  let children = propChildren;
   if (tableCard && description) {
     children = [<CardText key="description">{descriptionMarkdown}</CardText>, children];
   } else if (!tableCard) {
@@ -46,7 +46,7 @@ ExampleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   code: PropTypes.string.isRequired,
-  component: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
   tableCard: PropTypes.bool,
 };
 
