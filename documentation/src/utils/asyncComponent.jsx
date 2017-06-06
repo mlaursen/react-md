@@ -14,7 +14,7 @@ export default function asyncComponent(getComponent, loadingChildren = null) {
 
     async componentWillMount() {
       if (!AsyncComponent.Component) {
-        const Component = await AsyncComponent.getComponent();
+        const Component = await AsyncComponent.loadComponent();
         if (this.mounted) {
           this.setState({ Component });
         }
