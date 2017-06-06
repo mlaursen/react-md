@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { componentRoutes } from 'constants/navigationRoutes';
+import { getTab } from 'utils/routing';
 
 const { components, sections } = componentRoutes.reduce((map, route) => {
   if (typeof route === 'string') {
@@ -13,21 +14,51 @@ const { components, sections } = componentRoutes.reduce((map, route) => {
   return map;
 }, { components: [], sections: [] });
 
-import { NotFound, ExamplesPage } from 'routes';
+import {
+  NotFound,
+  Autocompletes,
+} from 'routes';
 
 const Components = (props) => {
-  const { match: { params: { section, component } }, history, staticContext } = props;
+  const {
+    match: {
+      params: { section, component },
+    },
+    history,
+    location: { search, pathname },
+    staticContext,
+  } = props;
+
+  const tab = getTab(search);
   if (components.indexOf(component) === -1 || (section && sections.indexOf(section) === -1)) {
     return <NotFound history={history} staticContext={staticContext} />;
+  } else if (tab === 1) {
+    return null;
+  } else if (tab === 2) {
+    return null;
   }
 
-  return <ExamplesPage {...props} />;
+  let Component;
+  switch (component) {
+    case 'autocompletes':
+      Component = Autocompletes;
+      break;
+    default:
+      Component = null;
+  }
+
+  if (Component) {
+    return <Component key={pathname} {...props} />;
+  }
+
+  return null;
 };
 
 Components.propTypes = {
   staticContext: PropTypes.object,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 };
 
 export default Components;

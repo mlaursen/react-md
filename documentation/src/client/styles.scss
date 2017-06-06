@@ -1,6 +1,7 @@
 @import '~globals';
 
 @include react-md-everything;
+@include react-md-make-custom-grid('40-16', 40px, 16px);
 
 html,
 body {

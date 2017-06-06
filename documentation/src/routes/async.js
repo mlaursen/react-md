@@ -16,4 +16,6 @@ export const UpgradeV110 = asyncComponent(() => import(/* webpackChunkName: Upgr
 export const Showcases = asyncComponent(() => import(/* webpackChunkName: Showcases */ 'components/DiscoverMore/Showcases'));
 export const Community = asyncComponent(() => import(/* webpackChunkName: Community */ 'components/DiscoverMore/Community'));
 export const Contributing = asyncComponent(() => import(/* webpackChunkName: Contributing */ 'components/DiscoverMore/Contributing'));
-export const ExamplesPage = asyncComponent(() => import(/* webpackChunkName: ExamplesPage */ 'components/ExamplesPage'));
+
+// components
+export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));

@@ -16,4 +16,6 @@ export const UpgradeV110 = syncComponent('UpgradeV110', require('components/Disc
 export const Showcases = syncComponent('Showcases', require('components/DiscoverMore/Showcases'));
 export const Community = syncComponent('Community', require('components/DiscoverMore/Community'));
 export const Contributing = syncComponent('Contributing', require('components/DiscoverMore/Contributing'));
-export const ExamplesPage = syncComponent('ExamplesPage', require('components/ExamplesPage'));
+
+// components
+export const Autocompletes = syncComponent('Autocompletes', require('components/Components/autocompletes'));

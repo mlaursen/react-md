@@ -11,7 +11,12 @@ import {
   MinimizingBundle,
 } from 'routes';
 
-const Customization = ({ match: { params: { location } }, history, location: { search }, staticContext }) => {
+const Customization = ({
+  match: { params: { location } },
+  history,
+  location: { search },
+  staticContext,
+}) => {
   const tab = getTab(search);
   if (location === 'colors') {
     return <Colors staticContext={staticContext} />;
