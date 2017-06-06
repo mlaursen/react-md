@@ -7,16 +7,23 @@ import shallowEqual from 'shallowequal';
 import Waypoint from 'react-waypoint';
 import { Link } from 'react-router-dom';
 import Autocomplete from 'react-md/lib/Autocompletes';
+import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
 
 import './_styles.scss';
-import { searchRequest, searchNextRequest } from 'state/search';
+import { searchRequest, searchNextRequest, showSearch, hideSearch } from 'state/search';
 import CodeVariable from 'components/CodeVariable';
+
+const TRANSITION_TIME = 317; // 300ms for transition and 17 to match up with original CSSTransitionGroup
 
 export class PureSearch extends PureComponent {
   static propTypes = {
     search: PropTypes.func.isRequired,
     searchNext: PropTypes.func.isRequired,
+    searching: PropTypes.bool.isRequired,
+    showSearch: PropTypes.func.isRequired,
+    hideSearch: PropTypes.func.isRequired,
+
     /**
      * A list of matches/results from the current search.
      */
@@ -54,13 +61,46 @@ export class PureSearch extends PureComponent {
     meta: {},
   };
 
-  setInput = (div) => {
-    if (div) {
-      this.input = div.querySelector('input');
-    } else {
-      this.input = null;
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      animating: false,
+      data: this.makeDataList(props),
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { searching, results } = nextProps;
+
+    if (this.props.results !== results) {
+      this.setState({ data: this.makeDataList(nextProps) });
     }
-  };
+
+    if (this.props.searching === searching) {
+      return;
+    }
+
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+
+    if (!searching) {
+      this.timeout = setTimeout(() => {
+        this.timeout = null;
+        this.setState({ animating: false });
+      }, TRANSITION_TIME);
+      this.setState({ animating: true });
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
+
+  timeout = null;
 
   /**
    * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
@@ -71,6 +111,19 @@ export class PureSearch extends PureComponent {
     if (previousPosition) {
       this.props.searchNext(this.props.meta.next);
     }
+  };
+
+  /**
+   * Need to make a cached list of the data in state so that the autocomplete doesn't get a this.props.data
+   * diff and reopen the menu when closing.
+   */
+  makeDataList = ({ results, searching, meta: { start, total, limit, next } }) => {
+    const data = results.map(this.mapToLink);
+    if (searching && next && start + limit < total) {
+      data.push(<Waypoint key="lazy-load" onEnter={this.fetchNext} />);
+    }
+
+    return data;
   };
 
   /**
@@ -112,32 +165,51 @@ export class PureSearch extends PureComponent {
     };
   };
 
+  handleClick = (e) => {
+    const { classList } = e.target;
+    const { searching, showSearch } = this.props;
+    if (!searching && (classList.contains('md-icon') || classList.contains('md-text-field-icon-container'))) {
+      showSearch();
+    }
+  };
+
   render() {
+    const { animating, data } = this.state;
     const {
       search,
-      results,
-      meta: { next, start, total, limit },
+      searching,
+      hideSearch,
+      meta: { total },
     } = this.props;
 
-    const data = results.map(this.mapToLink);
-    if (next && start + limit < total) {
-      data.push(<Waypoint key="lazy-load" onEnter={this.fetchNext} />);
+    let hideBtn;
+    if (searching || animating) {
+      hideBtn = (
+        <Button key="hide" icon onClick={hideSearch}>
+          close
+        </Button>
+      );
     }
 
     return (
-      <div className="search md-grid md-grid--no-spacing" ref={this.setInput}>
+      <div className="search md-grid md-grid--no-spacing">
         <Autocomplete
           id="documentation-search"
           placeholder="Search"
           className={cn('search__autocomplete')}
+          inputClassName={cn('search__input', {
+            'search__input--visible': searching,
+            'search__input--active': searching || animating,
+          })}
           filter={null}
           onChange={search}
           data={data}
           total={total}
           leftIcon={<FontIcon>search</FontIcon>}
           listClassName="search__results"
-          sameWidth={false}
+          onClick={this.handleClick}
         />
+        {hideBtn}
       </div>
     );
   }
@@ -148,6 +220,8 @@ export default connectAdvanced((dispatch) => {
   const actions = bindActionCreators({
     search: value => searchRequest(value),
     searchNext: searchNextRequest,
+    showSearch,
+    hideSearch,
   }, dispatch);
 
   return (state, props) => {

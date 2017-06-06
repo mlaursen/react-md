@@ -1,6 +1,27 @@
 @import '~globals';
 
+$search-size: 180px;
+
 .search {
+  cursor: pointer;
+
+  &.md-grid {
+    flex-wrap: nowrap;
+  }
+
+  &__input {
+    max-width: 0;
+    transition-duration: $md-transition-time * 2;
+    transition-property: max-width;
+
+    &--active {
+      min-width: $search-size;
+    }
+
+    &--visible {
+      max-width: $search-size;
+    }
+  }
 
   &__results.md-list {
     max-width: 300px;
