@@ -59,7 +59,7 @@ exports[`Showcases should render all the showcases 1`] = `
         <a
           className="md-inline-block md-btn md-btn--icon md-pointer--hover"
           disabled={undefined}
-          href="https://github.com/sniphpet"
+          href="https://github.com/fkhadra"
           onKeyDown={[Function]}
           onKeyUp={[Function]}
           onMouseDown={[Function]}
