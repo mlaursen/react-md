@@ -32,7 +32,6 @@ export async function createComponentDocgen(folder, fullPath, file, customPropTy
         return list;
       }, []),
       description,
-      descriptionMarkdown: formatMarkdown(description),
     };
   } catch (e) {
     throw new Error(`There was an error creating docgen for \`${fileName}\`. ${e.message}`);

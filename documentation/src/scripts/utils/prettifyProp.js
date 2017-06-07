@@ -111,7 +111,6 @@ ${prop.type.raw.split(',')[1].replace(/\)$/, '').replace(/'/g, '').trim()}.`;
     propName,
     type,
     description,
-    descriptionMarkdown: formatMarkdown(description),
     required: prop.required,
     defaultValue,
   };

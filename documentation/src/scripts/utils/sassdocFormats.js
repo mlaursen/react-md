@@ -1,6 +1,5 @@
 import { uniqBy } from 'lodash/array';
 import { BASE_SOURCE_PATH } from 'server/constants';
-import formatMarkdown from 'utils/formatMarkdown';
 import { createSassDocLink } from './getSassDocLinks';
 
 const MAP_DELIMETER = ': (';
@@ -57,8 +56,8 @@ export function formatVariable(sassdoc) {
     name,
     type,
     variableType,
-    code: formatMarkdown(`\`\`\`scss\n${code}\n\`\`\``),
-    oneLineCode: formatMarkdown(`\`\`\`scss\n${toOneLineCode(code)}\n\`\`\``),
+    code,
+    oneLineCode: toOneLineCode(code),
     description,
     links,
     examples,
@@ -97,8 +96,8 @@ export function formatFunction(sassdoc) {
   const fullCode = `@${type} ${name}${params} {${code}}`;
   return {
     ...formatVariable(sassdoc),
-    code: formatMarkdown(`\`\`\`scss\n${fullCode}\n\`\`\``),
-    oneLineCode: formatMarkdown(`\`\`\`scss\n${toOneLineCode(fullCode)}\n\`\`\``),
+    code: fullCode,
+    oneLineCode: toOneLineCode(fullCode),
     requires,
     returns,
   };

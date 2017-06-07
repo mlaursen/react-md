@@ -46,5 +46,5 @@ export default async function getDocumentableComponents() {
   const folders = (await readdir(REACT_MD_JS))
     .filter(folder => folder.match(/^(?!(Transitions|FAB|Sidebar))[A-Z]/));
 
-  return await Promise.all(folders.map(makeDocumentableObject));
+  return Promise.all(folders.map(makeDocumentableObject));
 }
