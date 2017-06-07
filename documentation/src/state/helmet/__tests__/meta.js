@@ -28,18 +28,22 @@ describe('meta', () => {
     });
 
     describe('updateKeywords', () => {
-      it('should create the correct action when a keywords is provided', () => {
+      it('should create the correct action when only keywords are provided', () => {
         const keywords = 'Lorem Ipsum';
-        const expected = { type: UPDATE_KEYWORDS, payload: { keywords } };
+        const expected = { type: UPDATE_KEYWORDS, payload: { keywords, merge: true } };
         expect(updateKeywords(keywords)).toEqual(expected);
       });
 
-      it('should default to the DEFAULT_KEYWORDS when the keywords is false-ish', () => {
-        const expected = { type: UPDATE_KEYWORDS, payload: { keywords: DEFAULT_KEYWORDS } };
-        expect(updateKeywords()).toEqual(expected);
-        expect(updateKeywords(undefined)).toEqual(expected);
-        expect(updateKeywords(null)).toEqual(expected);
-        expect(updateKeywords('')).toEqual(expected);
+      it('should create the correct aciton when keywords and merge are provided', () => {
+        const keywords = 'Lorem Ipsum';
+        let merge = false;
+
+        let expected = { type: UPDATE_KEYWORDS, payload: { keywords, merge } };
+        expect(updateKeywords(keywords, merge)).toEqual(expected);
+
+        merge = true;
+        expected = { type: UPDATE_KEYWORDS, payload: { keywords, merge } };
+        expect(updateKeywords(keywords, merge)).toEqual(expected);
       });
     });
   });
@@ -59,14 +63,33 @@ describe('meta', () => {
       expect(reducer(INITIAL_STATE, updateDescription(description))).toEqual(expected);
     });
 
-    it('should update the keywords after the UPDATE_KEYWORDS action type', () => {
+    it('should merge the keywords correctly', () => {
+      const keywords = 'Hello, World!';
+      const expected = [
+        INITIAL_STATE[0],
+        { name: 'keywords', content: `${DEFAULT_KEYWORDS},${keywords}` },
+      ];
+
+      expect(reducer(INITIAL_STATE, updateKeywords(keywords))).toEqual(expected);
+    });
+
+    it('should replace the keywords correctly', () => {
       const keywords = 'Hello, World!';
       const expected = [
         INITIAL_STATE[0],
         { name: 'keywords', content: keywords },
       ];
 
-      expect(reducer(INITIAL_STATE, updateKeywords(keywords))).toEqual(expected);
+      expect(reducer(INITIAL_STATE, updateKeywords(keywords, false))).toEqual(expected);
+    });
+
+    it('should set the keywords content to the DEFAULT_KEYWORDS if the new keywords are null', () => {
+      const state = [
+        INITIAL_STATE[0],
+        { name: 'keywords', content: `${DEFAULT_KEYWORDS},some other keywords` },
+      ];
+
+      expect(reducer(state, updateKeywords(null))).toEqual(INITIAL_STATE);
     });
   });
 });

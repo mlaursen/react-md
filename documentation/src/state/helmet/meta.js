@@ -9,12 +9,12 @@ export function updateDescription(description) {
 }
 
 export const UPDATE_KEYWORDS = 'UPDATE_KEYWORDS';
-export const DEFAULT_KEYWORDS = 'react-md,material design,react,components,material ui';
+export const DEFAULT_KEYWORDS = 'react-md,material design,react material design,material ui,react components';
 
-export function updateKeywords(keywords) {
+export function updateKeywords(keywords = null, merge = true) {
   return {
     type: UPDATE_KEYWORDS,
-    payload: { keywords: keywords || DEFAULT_KEYWORDS },
+    payload: { keywords, merge },
   };
 }
 
@@ -37,14 +37,21 @@ function handleDescriptionChange(state, { description }) {
   return nextState;
 }
 
-function handleKeywordsChange(state, { keywords }) {
+function handleKeywordsChange(state, { keywords, merge }) {
   const [, existing] = state;
-  if (existing.content === keywords) {
+  let content = keywords;
+  if (content === null) {
+    content = DEFAULT_KEYWORDS;
+  } else if (merge) {
+    content = `${DEFAULT_KEYWORDS},${keywords}`;
+  }
+
+  if (existing.content === content) {
     return state;
   }
 
   const nextState = state.slice();
-  nextState[1] = { name: 'keywords', content: keywords };
+  nextState[1] = { name: 'keywords', content };
   return nextState;
 }
 
