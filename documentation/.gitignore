@@ -3,5 +3,6 @@ webpack-stats.json
 .env
 
 public/assets
+public/sassdoc
 public/themes
 src/server/databases
