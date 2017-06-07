@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf public/assets && rimraf public/themes",
+    "clean": "rimraf public/assets && rimraf public/themes && rimraf src/server/databases/*.json",
     "prebuild": "npm run clean && npm run sassdoc:site && npm run docgen && npm run sassdoc",
     "build": "webpack --progress --colors --env.production",
     "docgen": "cross-env BABEL_ENV=scripts babel-node src/scripts/createDocgen.js",
