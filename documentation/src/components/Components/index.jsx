@@ -15,8 +15,9 @@ const { components, sections } = componentRoutes.reduce((map, route) => {
 }, { components: [], sections: [] });
 
 import {
-  NotFound,
   Autocompletes,
+  SassDocPage,
+  NotFound,
 } from 'routes';
 
 const Components = (props) => {
@@ -35,7 +36,7 @@ const Components = (props) => {
   } else if (tab === 1) {
     return null;
   } else if (tab === 2) {
-    return null;
+    return <SassDocPage key="sassdoc" {...props} />;
   }
 
   let Component;

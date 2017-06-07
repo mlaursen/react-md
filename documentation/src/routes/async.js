@@ -17,5 +17,7 @@ export const Showcases = asyncComponent(() => import(/* webpackChunkName: Showca
 export const Community = asyncComponent(() => import(/* webpackChunkName: Community */ 'components/DiscoverMore/Community'));
 export const Contributing = asyncComponent(() => import(/* webpackChunkName: Contributing */ 'components/DiscoverMore/Contributing'));
 
+export const SassDocPage = asyncComponent(() => import(/* webpackChunkName: SassDocPage */ 'components/SassDocPage'));
+
 // components
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));

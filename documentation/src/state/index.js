@@ -6,6 +6,7 @@ import theme from './theme';
 import media from './media';
 import drawer from './drawer';
 import quickNav from './quickNav';
+import sassdocs from './sassdocs';
 import routing from './routing'; // until react-router-redux@5
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   media,
   drawer,
   quickNav,
+  sassdocs,
   routing,
 });
