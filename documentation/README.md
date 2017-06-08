@@ -18,8 +18,8 @@ mlaursen @ ~/code/react-md/documentation
 $ yarn
 $ cp .env.example .env
 $ vim .env              # change port to whatever you want
-$ yarn dev              # watch all changes and run dev server
-$ yarn dev:minimal      # watch react-md source changes and run dev server
+$ yarn dev              # watch react-md source changes and run dev server
+$ yarn dev:all          # watch all changes and run dev server
 ```
 
 ## About
@@ -37,7 +37,7 @@ $ yarn dev:minimal      # watch react-md source changes and run dev server
   * [start:dev](#startdev)
   * [start:prod](#startprod)
 * [dev](#dev)
-  * [dev:minimal](#devminimal)
+  * [dev:all](#devall)
 * [watch:all](#watchall)
   * [watch:docgen](#watchdocgen)
   * [watch:sassdoc](#watchsassdoc)
@@ -93,7 +93,7 @@ be started.
 ### start:dev
 This will start up the server in development mode. This is helpful if you don't need every watcher running and have already
 built the databases or you need to test server code independently so you have access to the `nodemon` `restart` ability. Both
-[dev](#dev) and [dev:minimal](#devminimal) end up using this behind the scenes.
+[dev](#dev) and [dev:all](#devall) end up using this behind the scenes.
 
 The development server will be restarted each time any config file changes, or server related files.
 
@@ -102,15 +102,15 @@ This will run the [build](#build) command followed by the [start](#start). It is
 the production mode quickly without deploying to my main website.
 
 ### dev
+This is the second most useful development script. It will only run the [prebuild](#prebuild) script
+and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
+use this script if you only need to see the examples changes without any docgen or SassDoc updates.
+
+### dev:all
 Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
 and then concurrently run all the watchers and start up the dev server.
 
 > SEE: [watch:all](#watchall)
-
-### dev:minimal
-This is the second most useful development script. It will only run the [prebuild](#prebuild) script
-and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
-use this script if you only need to see the examples changes without any docgen or SassDoc updates.
 
 ### watch:all
 This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md

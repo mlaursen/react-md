@@ -18,8 +18,8 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "start:dev": "nodemon index.js",
     "start:prod": "npm run build && npm run start",
-    "dev": "npm run prebuild && concurrently --kill-others \"npm run watch:all\" \"npm run start:dev\"",
-    "dev:minimal": "npm run prebuild && concurrently --kill-others \"npm run watch:react-md\" \"npm run start:dev\"",
+    "dev": "npm run prebuild && concurrently --kill-others \"npm run watch:react-md\" \"npm run start:dev\"",
+    "dev:full": "npm run prebuild && concurrently --kill-others \"npm run watch:all\" \"npm run start:dev\"",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
