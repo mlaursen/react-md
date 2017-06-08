@@ -15,6 +15,10 @@ function refList(list) {
 }
 
 function toOneLineCode(code) {
+  if (!code.match(/\r?\n/)) {
+    return code;
+  }
+
   let startDelimiter = MIXIN_DELIMITER;
   let endDelimiter = '}';
   if (!code.match(/^(@(mixin|function)|%)/)) {

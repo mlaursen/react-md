@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createRouterSnapshot } from 'utils/testing';
 
 import ExamplesPage from '../';
 
@@ -26,7 +26,7 @@ describe('ExamplesPage', () => {
       - three
       `,
     };
-    const tree = renderer.create(<ExamplesPage {...props} />).toJSON();
+    const tree = createRouterSnapshot(<ExamplesPage {...props} />);
     expect(tree).toMatchSnapshot();
   });
 });

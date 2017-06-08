@@ -10,7 +10,7 @@ function highlight(code) {
 }
 
 const CodeVariable = ({ children, className }) => (
-  <pre className={cn('language-css', className)} ref={highlight}>
+  <pre className={cn('language-scss', className)} ref={highlight}>
     {children}
   </pre>
 );

@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createRouterSnapshot } from 'utils/testing';
 
 import Showcases from '../';
 
 describe('Showcases', () => {
   it('should render all the showcases', () => {
-    const tree = renderer.create(<Showcases />).toJSON();
+    const tree = createRouterSnapshot(<Showcases />);
     expect(tree).toMatchSnapshot();
   });
 });

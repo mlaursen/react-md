@@ -38,6 +38,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
+    "clipboard": "^1.7.1",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.0.0",

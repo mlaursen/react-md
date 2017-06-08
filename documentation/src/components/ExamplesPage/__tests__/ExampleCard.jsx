@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createRouterSnapshot } from 'utils/testing';
 
 import ExampleCard from '../ExampleCard';
 
 describe('ExampleCard', () => {
   it('should display correctly without a description', () => {
-    const tree = renderer.create(
+    const tree = createRouterSnapshot(
       <ExampleCard
         title="First Example"
         description=""
@@ -14,7 +14,7 @@ describe('ExampleCard', () => {
       >
         <div />
       </ExampleCard>
-    ).toJSON();
+    );
     expect(tree).toMatchSnapshot();
   });
 
@@ -33,7 +33,7 @@ describe('ExampleCard', () => {
 
     > some note
     `;
-    const tree = renderer.create(
+    const tree = createRouterSnapshot(
       <ExampleCard
         title="Second Example"
         description={description}
@@ -42,7 +42,7 @@ describe('ExampleCard', () => {
         <h1>Hello, World!</h1>
         <div>This should have some content...</div>
       </ExampleCard>
-    ).toJSON();
+    );
     expect(tree).toMatchSnapshot();
   });
 
@@ -91,10 +91,10 @@ describe('ExampleCard', () => {
       ),
     };
 
-    let tree = renderer.create(<ExampleCard {...props} />).toJSON();
+    let tree = createRouterSnapshot(<ExampleCard {...props} />);
     expect(tree).toMatchSnapshot();
 
-    tree = renderer.create(<ExampleCard {...props} description="Some **description** _markdown_" />).toJSON();
+    tree = createRouterSnapshot(<ExampleCard {...props} description="Some **description** _markdown_" />);
     expect(tree).toMatchSnapshot();
   });
 });
