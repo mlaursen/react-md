@@ -5,12 +5,11 @@ import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import { get } from 'lodash/object';
 import Button from 'react-md/lib/Buttons/Button';
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Helmet from 'react-helmet';
 
 import sassdocPageShape from 'propTypes/sassdocPageShape';
 import { sassdocRequest } from 'state/sassdocs';
 import scrollRestoration from 'utils/scrollRestoration';
+import DocumentationPage from 'components/DocumentationPage';
 
 import './_styles.scss';
 import Section from './Section';
@@ -63,21 +62,14 @@ export class PureSassDocPage extends PureComponent {
 
   render() {
     const { sassdoc, toolbarTitle } = this.props;
-    let children;
-    let accessibilityProps;
-    if (sassdoc === null) {
-      accessibilityProps = {
-        'aria-describedby': 'loading-sassdoc',
-        'aria-busy': true,
-      };
-      children = <CircularProgress id="loading-sassdoc" key="loader" />;
-    } else {
-      const { placeholders, variables, mixins, functions } = sassdoc;
-      children = [
-        <Section key="placeholders" title="Placeholders" data={placeholders} />,
-        <Section key="variables" title="Variables" data={variables} />,
-        <Section key="functions" title="Functions" data={functions} />,
-        <Section key="mixins" title="Mixins" data={mixins} />,
+    const { placeholders, variables, mixins, functions } = sassdoc || {};
+
+    return (
+      <DocumentationPage title={`${toolbarTitle} SassDoc`} loading={sassdoc === null}>
+        <Section key="placeholders" title="Placeholders" data={placeholders} />
+        <Section key="variables" title="Variables" data={variables} />
+        <Section key="functions" title="Functions" data={functions} />
+        <Section key="mixins" title="Mixins" data={mixins} />
         <Button
           key="fab"
           floating
@@ -88,7 +80,7 @@ export class PureSassDocPage extends PureComponent {
           tooltipLabel="Find SassDoc in Page"
         >
           find_in_page
-        </Button>,
+        </Button>
         <Finder
           key="finder"
           visible={this.state.finderVisible}
@@ -97,15 +89,8 @@ export class PureSassDocPage extends PureComponent {
           variables={variables}
           functions={functions}
           mixins={mixins}
-        />,
-      ];
-    }
-
-    return (
-      <section {...accessibilityProps} className="md-grid md-grid--40-16">
-        <Helmet title={`${toolbarTitle} SassDoc`} />
-        {children}
-      </section>
+        />
+      </DocumentationPage>
     );
   }
 }
