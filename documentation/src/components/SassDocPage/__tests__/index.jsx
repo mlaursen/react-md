@@ -212,10 +212,10 @@ const TYPOGRAPHY_SASSDOC = {
 
 describe('PureSassDocPage', () => {
   it('should render correctly when there is no sassdoc', () => {
-    let tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop />);
+    let tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop toolbarTitle="Test" />);
     expect(tree).toMatchSnapshot();
 
-    tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop={false} />);
+    tree = createRouterSnapshot(<PureSassDocPage sassdoc={null} sassdocRequest={jest.fn()} desktop={false} toolbarTitle="Test" />);
     expect(tree).toMatchSnapshot();
   });
 
@@ -225,6 +225,7 @@ describe('PureSassDocPage', () => {
         desktop
         sassdoc={TYPOGRAPHY_SASSDOC}
         sassdocRequest={jest.fn()}
+        toolbarTitle="Test"
       />
     );
     expect(tree).toMatchSnapshot();
@@ -234,6 +235,7 @@ describe('PureSassDocPage', () => {
         desktop={false}
         sassdoc={TYPOGRAPHY_SASSDOC}
         sassdocRequest={jest.fn()}
+        toolbarTitle="Test"
       />
     );
     expect(tree).toMatchSnapshot();
@@ -241,7 +243,7 @@ describe('PureSassDocPage', () => {
 
   it('should correctly call the sassdocRequest on mount', () => {
     const sassdocRequest = jest.fn();
-    mount(<PureSassDocPage sassdoc={null} sassdocRequest={sassdocRequest} desktop />);
+    mount(<PureSassDocPage sassdoc={null} sassdocRequest={sassdocRequest} desktop toolbarTitle="Test" />);
     expect(sassdocRequest).toBeCalled();
   });
 });

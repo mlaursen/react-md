@@ -6,6 +6,7 @@ import shallowEqual from 'shallowequal';
 import { get } from 'lodash/object';
 import Button from 'react-md/lib/Buttons/Button';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Helmet from 'react-helmet';
 
 import { sassdocRequest } from 'state/sassdocs';
 import scrollRestoration from 'utils/scrollRestoration';
@@ -26,6 +27,7 @@ export class PureSassDocPage extends PureComponent {
       variables: PropTypes.array.isRequired,
     }),
     desktop: PropTypes.bool.isRequired,
+    toolbarTitle: PropTypes.string.isRequired,
   };
 
   state = { finderVisible: false };
@@ -64,7 +66,7 @@ export class PureSassDocPage extends PureComponent {
   };
 
   render() {
-    const { sassdoc } = this.props;
+    const { sassdoc, toolbarTitle } = this.props;
     let children;
     let accessibilityProps;
     if (sassdoc === null) {
@@ -105,6 +107,7 @@ export class PureSassDocPage extends PureComponent {
 
     return (
       <section {...accessibilityProps} className="md-grid md-grid--40-16">
+        <Helmet title={`${toolbarTitle} SassDoc`} />
         {children}
       </section>
     );
@@ -131,6 +134,7 @@ export default connectAdvanced((dispatch) => {
       component: component || location,
       sassdoc,
       desktop: state.media.desktop,
+      toolbarTitle: state.drawer.toolbarTitle,
     };
 
     if (!shallowEqual(result, nextResult)) {

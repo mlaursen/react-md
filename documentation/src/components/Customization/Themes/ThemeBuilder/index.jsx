@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
+import Helmet from 'react-helmet';
 
 import { updateTheme, clearTheme } from 'state/theme';
 import Markdown from 'components/Markdown';
@@ -116,6 +117,7 @@ precompiled.
     }
     return (
       <div className="md-grid">
+        <Helmet title="Theme Builder" />
         <Configuration {...props} onChange={this.handleChange} onSelectChange={this.handleSelectChange} />
         <section className="md-cell md-cell--8 md-cell--6-desktop">
           <Markdown markdown={ABOUT_THEME_BUILDER} className="md-text-container" />
