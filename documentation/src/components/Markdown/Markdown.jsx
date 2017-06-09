@@ -1,0 +1,134 @@
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { findDOMNode } from 'react-dom';
+import cn from 'classnames';
+import formatMarkdown from 'utils/formatMarkdown';
+import Prism from 'prismjs';
+import { withRouter } from 'react-router';
+
+import 'prismjs/themes/prism.css';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-css-extras';
+import 'prismjs/components/prism-scss';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+import 'prismjs/plugins/toolbar/prism-toolbar';
+import 'prismjs/plugins/toolbar/prism-toolbar.css';
+import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
+import 'prismjs/plugins/show-language/prism-show-language';
+
+export class PureMarkdown extends PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    markdown: PropTypes.string.isRequired,
+    component: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func,
+    ]).isRequired,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    staticContext: PropTypes.object,
+    onHighlightFinish: PropTypes.func,
+  };
+
+  static defaultProps = {
+    component: 'section',
+  };
+
+  state = { html: { __html: null } };
+
+  componentWillMount() {
+    this.updateHTML(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.markdown !== nextProps.markdown) {
+      this.updateHTML(nextProps);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.html !== prevState.html) {
+      this.updateLinks();
+    }
+  }
+
+  setContainer = (container) => {
+    if (process.env.NODE_ENV !== 'test') {
+      this.container = findDOMNode(container);
+      this.updateLinks();
+    }
+  };
+
+  updateLinks = () => {
+    const { history } = this.props;
+    if (!this.container) {
+      return;
+    }
+
+    const links = this.container.querySelectorAll('a');
+    for (let i = 0; i < links.length; i += 1) {
+      const link = links[i];
+      if (link.href.match(/sassdoc/)) {
+        return;
+      }
+
+      if (link.href.match(/https?:\/\/(localhost|react-md).*\//)) {
+        link.onclick = (e) => {
+          e.preventDefault();
+          const href = link.href.replace(window.location.origin, '');
+          history.push(href);
+        };
+      } else {
+        link.rel = 'noopener noreferrer';
+      }
+    }
+  };
+
+  updateHTML = ({ markdown }) => {
+    this.setState({ html: { __html: formatMarkdown(markdown) } }, () => {
+      if (this.container) {
+        const pres = this.container.querySelectorAll('pre');
+        for (let i = 0; i < pres.length; i += 1) {
+          const pre = pres[i];
+          const code = pre.querySelector('code');
+          if (code && code.innerHTML.match(/\r?\n.*\r?\n/)) {
+            pre.classList.add('line-numbers');
+          }
+
+          Prism.highlightElement(code || pre, false, this.props.onHighlightFinish);
+        }
+      }
+    });
+  };
+
+  render() {
+    const { html } = this.state;
+
+    const {
+      component: Component,
+      className,
+      /* eslint-disable no-unused-vars */
+      markdown,
+      history,
+      location,
+      match,
+      staticContext,
+      onHighlightFinish,
+      /* eslint-enable no-unused-vars */
+      ...props
+    } = this.props;
+
+    return (
+      <Component
+        {...props}
+        ref={this.setContainer}
+        dangerouslySetInnerHTML={html}
+        className={cn('markdown-container', className)}
+      />
+    );
+  }
+}
+
+export default withRouter(PureMarkdown);

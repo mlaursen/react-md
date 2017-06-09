@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import Markdown from './index';
+import Markdown from './Markdown';
 
 const MarkdownPage = ({ style, className, markdownStyle, markdownClassName, markdown }) => (
   <section style={style} className={cn('md-grid', className)}>

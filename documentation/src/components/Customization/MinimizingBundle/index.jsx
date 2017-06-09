@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownPage from 'components/Markdown/MarkdownPage';
+import { MarkdownPage } from 'components/Markdown';
 
 import markdown from './README.md';
 

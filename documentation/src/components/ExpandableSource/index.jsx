@@ -4,7 +4,7 @@ import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
 import { Motion, spring } from 'react-motion';
 
 import './_styles.scss';
-import ScssMarkdown from 'components/Markdown/ScssMarkdown';
+import { ScssMarkdown } from 'components/Markdown';
 import getSelectedText from 'utils/getSelectedText';
 
 const BUTTON_HEIGHT = 49;

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { createRouterSnapshot } from 'utils/testing';
-import Markdown from '../';
+import Markdown from '../Markdown';
 
 describe('Markdown', () => {
   it('should render correctly with simple markdown', () => {

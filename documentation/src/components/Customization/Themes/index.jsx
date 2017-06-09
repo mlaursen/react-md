@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MarkdownPage from 'components/Markdown/MarkdownPage';
+import { MarkdownPage } from 'components/Markdown';
 import ThemeBuilder from './ThemeBuilder';
 
 import markdown from './README.md';

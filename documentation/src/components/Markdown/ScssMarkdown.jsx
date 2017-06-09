@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from 'components/Markdown';
+import Markdown from './Markdown';
 
 const ScssMarkdown = ({ markdown, ...props }) => <Markdown {...props} markdown={`\`\`\`scss\n${markdown}\`\`\``} />;
 
