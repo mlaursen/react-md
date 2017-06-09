@@ -1,7 +1,7 @@
 ## Upgrading to 1.1.0
 ### DataTables
 The unique id generation for EditDialogColumn and SelectFieldColumn have been updated to also include the current cell index.
-```
+```js
 // Before
 const id = `${baseId}-${rowIndex}-edit-dialog`;
 const id = `${baseId}-${rowIndex}-select`;
@@ -48,11 +48,11 @@ the container that displays it.
 ```js
 // Before
 import { Dialog } from 'react-md';
-import { Dialog } from window.ReactMD; // UMD
+const { Dialog } = window.ReactMD; // UMD
 
 // After
 import { DialogContainer as Dialog } from 'react-md';
-import { DialogContainer as Dialog } from window.ReactMD; // UMD
+const { DialogContainer: Dialog } = window.ReactMD; // UMD
 ```
 
 ### Drawers/NavigationDrawers

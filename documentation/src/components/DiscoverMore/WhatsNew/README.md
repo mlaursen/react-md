@@ -27,11 +27,11 @@ the container that displays it.
 ```js
 // Before
 import { Dialog } from 'react-md';
-import { Dialog } from window.ReactMD; // UMD
+const { Dialog } = window.ReactMD; // UMD
 
 // After
 import { DialogContainer as Dialog } from 'react-md';
-import { DialogContainer as Dialog } from window.ReactMD; // UMD
+const { DialogContainer: Dialog } = window.ReactMD; // UMD
 ```
 
 #### Tables
