@@ -18,7 +18,7 @@ const TYPOGRAPHY = 'typography';
 const MEDIA_QUERIES = 'media-queries';
 const MINIMIZING_BUNDLE = 'minimizing-bundle';
 
-const SASSDOC_ROUTES = [COLORS, TYPOGRAPHY, MEDIA_QUERIES, MINIMIZING_BUNDLE];
+const SASSDOC_ROUTES = [COLORS, TYPOGRAPHY, MEDIA_QUERIES];
 
 const Customization = (props) => {
   const {

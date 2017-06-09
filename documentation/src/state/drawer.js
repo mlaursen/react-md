@@ -16,7 +16,7 @@ function toolbarTitle(state = '', action) {
 function toolbarProminent(state = false, action) {
   if (action.type === LOCATION_CHANGE) {
     const { pathname } = action.payload.location;
-    return !pathname.match(/minimzing/) && !!pathname.match(/components|customization/);
+    return !pathname.match(/minimizing/) && !!pathname.match(/components|customization/);
   } else if (action.type === NOT_FOUND) {
     return false;
   }
