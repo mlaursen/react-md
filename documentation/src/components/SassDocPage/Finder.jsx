@@ -40,6 +40,13 @@ export default class FindInPage extends PureComponent {
     mixins: PropTypes.array.isRequired,
   };
 
+  static defaultProps = {
+    placeholders: [],
+    variables: [],
+    functions: [],
+    mixins: [],
+  };
+
   constructor(props) {
     super(props);
 

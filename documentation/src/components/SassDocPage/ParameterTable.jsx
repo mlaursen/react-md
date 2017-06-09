@@ -7,7 +7,7 @@ import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import TableBody from 'react-md/lib/DataTables/TableBody';
 
 import Markdown from 'components/Markdown';
-import parameterShape from './parameterShape';
+import parameterShape from 'propTypes/parameterShape';
 
 const ParameterTable = ({ parameters }) => {
   if (!parameters.length) {

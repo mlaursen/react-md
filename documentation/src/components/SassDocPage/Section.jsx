@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import sassdocShape from './sassdocShape';
+import sassdocShape from 'propTypes/sassdocShape';
 
 import SassDoc from './SassDoc';
 
@@ -20,6 +20,10 @@ const Section = ({ title, data }) => {
 Section.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(sassdocShape).isRequired,
+};
+
+Section.defaultProps = {
+  data: [],
 };
 
 export default Section;

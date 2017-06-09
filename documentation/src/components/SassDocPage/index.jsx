@@ -8,6 +8,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Helmet from 'react-helmet';
 
+import sassdocPageShape from 'propTypes/sassdocPageShape';
 import { sassdocRequest } from 'state/sassdocs';
 import scrollRestoration from 'utils/scrollRestoration';
 
@@ -20,12 +21,7 @@ export class PureSassDocPage extends PureComponent {
     sassdocRequest: PropTypes.func.isRequired,
     component: PropTypes.string,
     section: PropTypes.string,
-    sassdoc: PropTypes.shape({
-      placeholders: PropTypes.array.isRequired,
-      mixins: PropTypes.array.isRequired,
-      functions: PropTypes.array.isRequired,
-      variables: PropTypes.array.isRequired,
-    }),
+    sassdoc: sassdocPageShape,
     desktop: PropTypes.bool.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
   };

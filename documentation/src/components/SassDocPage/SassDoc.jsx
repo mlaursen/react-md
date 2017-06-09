@@ -5,7 +5,7 @@ import CardText from 'react-md/lib/Cards/CardText';
 
 import Markdown from 'components/Markdown';
 import ExpandableSource from 'components/ExpandableSource';
-import sassdocShape from './sassdocShape';
+import sassdocShape from 'propTypes/sassdocShape';
 import ParameterTable from './ParameterTable';
 import ReferenceList from './ReferenceList';
 
@@ -118,7 +118,7 @@ const SassDoc = ({
 };
 
 SassDoc.propTypes = {
-  sassdoc: sassdocShape,
+  sassdoc: sassdocShape.isRequired,
 };
 
 export default SassDoc;
