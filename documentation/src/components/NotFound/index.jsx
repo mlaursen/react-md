@@ -29,8 +29,8 @@ export default class NotFound extends PureComponent {
     return (
       <Media className="not-found">
         <InlineSVG src={notFound} />
-        <p className="md-display-2 not-found__display">Uhhh...</p>
-        <p className="md-headline not-found__headline">Looks like the page can not be found.</p>
+        <h4 className="md-display-2 not-found__display">Uhhh...</h4>
+        <h4 className="md-headline not-found__headline">Looks like the page can not be found.</h4>
         <Button
           id="return-home"
           className="not-found__return-home"
