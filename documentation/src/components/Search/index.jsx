@@ -149,15 +149,18 @@ export class PureSearch extends PureComponent {
 
     let primaryText = name;
     let secondaryText = type;
+    let className = '';
     if (value) {
       primaryText = type;
       secondaryText = <CodeVariable>${name}: {value}</CodeVariable>;
+      className = 'search__scss-item';
     }
 
     return {
       to,
       href,
       component,
+      className,
       primaryText,
       secondaryText,
       threeLines: !!value,

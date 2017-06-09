@@ -32,6 +32,18 @@ $search-size: 180px;
     }
   }
 
+  &__scss-item {
+    .md-list-tile {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .md-tile-text--primary {
+      padding-left: $md-default-padding;
+      padding-right: $md-default-padding;
+    }
+  }
+
   .md-divider--text-field,
   .md-divider--text-field.md-divider--text-field::after {
     background: $md-white-base;
