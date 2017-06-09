@@ -17,9 +17,7 @@ import 'prismjs/plugins/toolbar/prism-toolbar.css';
 import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 import 'prismjs/plugins/show-language/prism-show-language';
 
-import './_styles.scss';
-
-export class Markdown extends PureComponent {
+export class PureMarkdown extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     markdown: PropTypes.string.isRequired,
@@ -31,6 +29,7 @@ export class Markdown extends PureComponent {
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     staticContext: PropTypes.object,
+    onHighlightFinish: PropTypes.func,
   };
 
   static defaultProps = {
@@ -98,7 +97,7 @@ export class Markdown extends PureComponent {
             pre.classList.add('line-numbers');
           }
 
-          Prism.highlightElement(code || pre);
+          Prism.highlightElement(code || pre, false, this.props.onHighlightFinish);
         }
       }
     });
@@ -116,6 +115,7 @@ export class Markdown extends PureComponent {
       location,
       match,
       staticContext,
+      onHighlightFinish,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -131,4 +131,4 @@ export class Markdown extends PureComponent {
   }
 }
 
-export default withRouter(Markdown);
+export default withRouter(PureMarkdown);

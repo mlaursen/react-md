@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScssMarkdown should render correctly 1`] = `
+<section
+  className="markdown-container"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<pre><code class=\\"lang-scss\\">
+    @mixin react-md-something($var-one: blue, $var-two: orange) {
+      background: $var-two;
+      color: $var-one;
+    }
+    </code></pre>
+    ",
+    }
+  }
+/>
+`;
