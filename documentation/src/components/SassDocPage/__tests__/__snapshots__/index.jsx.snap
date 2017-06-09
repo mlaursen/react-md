@@ -1,0 +1,1719 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
+<section
+  className="md-grid md-grid--40-16"
+>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Placeholders
+    </h2>
+    <div
+      className="sassdoc"
+      id="placeholder-md-tracking--10"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#placeholder-md-tracking--10"
+        onClick={[Function]}
+      >
+        md-tracking--10
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">%md-tracking--10 { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>A placeholder for styling a class with the material design tracking of -10.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\">md-display-4</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Variables
+    </h2>
+    <div
+      className="sassdoc"
+      id="variable-md-typography-extended"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#variable-md-typography-extended"
+        onClick={[Function]}
+      >
+        md-typography-extended
+      </a>
+      <div
+        aria-pressed={false}
+        className="md-fake-btn md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<pre><code class=\\"lang-scss\\">$md-typography-extended: true !default;
+          </code></pre>
+          ",
+          }
+        }
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        role="button"
+        tabIndex={null}
+      />
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Boolean if the typography should extend the base html tags as well.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title md-grid md-grid--no-spacing"
+      >
+        Type 
+      </h4>
+      <pre
+        className="sassdoc__section sassdoc__variable md-text--theme-primary"
+      >
+        Boolean
+      </pre>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Functions
+    </h2>
+    <div
+      className="sassdoc"
+      id="function-get-font-suffix"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#function-get-font-suffix"
+        onClick={[Function]}
+      >
+        get-font-suffix
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">@function get-font-suffix($font-weight) { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Converts a font weight into the google font suffix.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Returns
+      </h4>
+      <div
+        className="sassdoc__section sassdoc__returns"
+      >
+        <pre
+          className="sassdoc__variable md-text--primary-color"
+        >
+          String
+        </pre>
+        —
+        <section
+          className="markdown-container"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>the font suffix</p>
+            ",
+            }
+          }
+        />
+      </div>
+      <h4
+        className="md-title"
+      >
+        Requires
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-light\\">md-font-light</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\">md-font-regular</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-medium\\">md-font-medium</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-bold\\">md-font-bold</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-host-google-font\\">host-google-font</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Mixins
+    </h2>
+    <div
+      className="sassdoc"
+      id="mixin-react-md-typography"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#mixin-react-md-typography"
+        onClick={[Function]}
+      >
+        react-md-typography
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>This includes the css for simple typography in react-md. It will
+          update all items to use <code>box-sizing: border-box</code>, set the font
+          family, set the line-height, text-rendering, and create the base
+          class names for the typography. If the <code>$extend-html-tags</code> is true,
+          the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
+          corresponding css class name.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Requires
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-media\\">react-md-typography-media</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-utilities\\">react-md-typography-utilities</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-text-container\\">react-md-typography-text-container</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Function
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#function-get-color\\">get-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-1\\">md-display-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-headline\\">md-headline</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-title\\">md-title</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-2\\">md-subheading-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-1\\">md-subheading-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-2\\">md-body-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-1\\">md-body-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-caption\\">md-caption</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-2\\">md-display-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-3\\">md-display-3</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\">md-display-4</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/sassdoc/#transitions-variable-md-transition-standard\\">md-transition-standard</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-light-theme-background-color\\">md-light-theme-background-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-dark-theme-background-color\\">md-dark-theme-background-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-size-base\\">md-font-size-base</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-html-min-width\\">md-html-min-width</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-family\\">md-font-family</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\">md-font-regular</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-line-height\\">md-line-height</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/sassdoc/#base, themes-mixin-react-md-everything\\">react-md-everything</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <button
+    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    disabled={undefined}
+    href={undefined}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      find_in_page
+    </i>
+  </button>
+</section>
+`;
+
+exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
+<section
+  className="md-grid md-grid--40-16"
+>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Placeholders
+    </h2>
+    <div
+      className="sassdoc"
+      id="placeholder-md-tracking--10"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#placeholder-md-tracking--10"
+        onClick={[Function]}
+      >
+        md-tracking--10
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">%md-tracking--10 { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>A placeholder for styling a class with the material design tracking of -10.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\">md-display-4</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Variables
+    </h2>
+    <div
+      className="sassdoc"
+      id="variable-md-typography-extended"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#variable-md-typography-extended"
+        onClick={[Function]}
+      >
+        md-typography-extended
+      </a>
+      <div
+        aria-pressed={false}
+        className="md-fake-btn md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<pre><code class=\\"lang-scss\\">$md-typography-extended: true !default;
+          </code></pre>
+          ",
+          }
+        }
+        disabled={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        role="button"
+        tabIndex={null}
+      />
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Boolean if the typography should extend the base html tags as well.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title md-grid md-grid--no-spacing"
+      >
+        Type 
+      </h4>
+      <pre
+        className="sassdoc__section sassdoc__variable md-text--theme-primary"
+      >
+        Boolean
+      </pre>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Functions
+    </h2>
+    <div
+      className="sassdoc"
+      id="function-get-font-suffix"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#function-get-font-suffix"
+        onClick={[Function]}
+      >
+        get-font-suffix
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">@function get-font-suffix($font-weight) { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Converts a font weight into the google font suffix.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Returns
+      </h4>
+      <div
+        className="sassdoc__section sassdoc__returns"
+      >
+        <pre
+          className="sassdoc__variable md-text--primary-color"
+        >
+          String
+        </pre>
+        —
+        <section
+          className="markdown-container"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>the font suffix</p>
+            ",
+            }
+          }
+        />
+      </div>
+      <h4
+        className="md-title"
+      >
+        Requires
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-light\\">md-font-light</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\">md-font-regular</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-medium\\">md-font-medium</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-bold\\">md-font-bold</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-host-google-font\\">host-google-font</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section
+    className="md-cell md-cell--12"
+  >
+    <h2
+      className="md-display-1"
+    >
+      Mixins
+    </h2>
+    <div
+      className="sassdoc"
+      id="mixin-react-md-typography"
+    >
+      <a
+        className="md-display-1 sassdoc__link"
+        href="#mixin-react-md-typography"
+        onClick={[Function]}
+      >
+        react-md-typography
+      </a>
+      <div>
+        <div
+          aria-pressed={false}
+          className="md-fake-btn md-pointer--hover md-fake-btn--no-outline markdown-container md-paper md-paper--1 expandable-source"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<pre><code class=\\"lang-scss\\">@mixin react-md-typography($light-theme: $md-light-theme, $include-media: $md-media-included, $extend-html-tags: $md-typography-extended, $include-text-container: $md-typography-include-text-container, $include-utilities: $md-typography-include-utilities) { … }
+            </code></pre>
+            ",
+            }
+          }
+          disabled={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          role="button"
+          style={undefined}
+          tabIndex={0}
+        />
+        <h5
+          className="md-cell--right md-color--secondary-text md-text-right expandable-source__label"
+        >
+          Click to expand
+        </h5>
+      </div>
+      <h4
+        className="md-title"
+      >
+        Description
+      </h4>
+      <section
+        className="markdown-container sassdoc__section"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>This includes the css for simple typography in react-md. It will
+          update all items to use <code>box-sizing: border-box</code>, set the font
+          family, set the line-height, text-rendering, and create the base
+          class names for the typography. If the <code>$extend-html-tags</code> is true,
+          the <code>h1</code> - <code>h6</code>, <code>p</code>, and <code>caption</code> tags will be updated with the
+          corresponding css class name.</p>
+          ",
+          }
+        }
+      />
+      <h4
+        className="md-title"
+      >
+        Requires
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-media\\">react-md-typography-media</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-utilities\\">react-md-typography-utilities</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#mixin-react-md-typography-text-container\\">react-md-typography-text-container</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Function
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#function-get-color\\">get-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-1\\">md-display-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-headline\\">md-headline</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-title\\">md-title</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-2\\">md-subheading-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-subheading-1\\">md-subheading-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-2\\">md-body-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-body-1\\">md-body-1</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-caption\\">md-caption</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-2\\">md-display-2</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-3\\">md-display-3</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Placeholder
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#placeholder-md-display-4\\">md-display-4</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/sassdoc/#transitions-variable-md-transition-standard\\">md-transition-standard</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-light-theme-background-color\\">md-light-theme-background-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/colors?tab=1#variable-md-dark-theme-background-color\\">md-dark-theme-background-color</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-size-base\\">md-font-size-base</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-html-min-width\\">md-html-min-width</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-family\\">md-font-family</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-font-regular\\">md-font-regular</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Variable
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/customization/typography?tab=1#variable-md-line-height\\">md-line-height</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+      <h4
+        className="md-title"
+      >
+        Used by
+      </h4>
+      <ul
+        className="md-list-unstyled sassdoc__section sassdoc__reference-list"
+      >
+        <li
+          className="sassdoc__reference-item"
+        >
+          [
+          Mixin
+          ]
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p><a href=\\"/sassdoc/#base, themes-mixin-react-md-everything\\">react-md-everything</a></p>
+              ",
+              }
+            }
+          />
+        </li>
+      </ul>
+    </div>
+  </section>
+  <button
+    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    disabled={undefined}
+    href={undefined}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      find_in_page
+    </i>
+  </button>
+</section>
+`;
+
+exports[`PureSassDocPage should render correctly when there is no sassdoc 1`] = `
+<section
+  aria-busy={true}
+  aria-describedby="loading-sassdoc"
+  className="md-grid md-grid--40-16"
+>
+  <svg
+    aria-valuemax={100}
+    aria-valuemin={0}
+    className="md-progress md-progress--circular md-block-centered md-progress--circular-indeterminate"
+    height={24}
+    id="loading-sassdoc"
+    role="progressbar"
+    style={Object {}}
+    viewBox="0 0 66 66"
+    width={24}
+  >
+    <circle
+      className="md-circular-progress-path md-circular-progress-path--animated"
+      cx="33"
+      cy="33"
+      r="30"
+      strokeLinecap="round"
+      strokeWidth="6"
+      style={undefined}
+    />
+  </svg>
+</section>
+`;
+
+exports[`PureSassDocPage should render correctly when there is no sassdoc 2`] = `
+<section
+  aria-busy={true}
+  aria-describedby="loading-sassdoc"
+  className="md-grid md-grid--40-16"
+>
+  <svg
+    aria-valuemax={100}
+    aria-valuemin={0}
+    className="md-progress md-progress--circular md-block-centered md-progress--circular-indeterminate"
+    height={24}
+    id="loading-sassdoc"
+    role="progressbar"
+    style={Object {}}
+    viewBox="0 0 66 66"
+    width={24}
+  >
+    <circle
+      className="md-circular-progress-path md-circular-progress-path--animated"
+      cx="33"
+      cy="33"
+      r="30"
+      strokeLinecap="round"
+      strokeWidth="6"
+      style={undefined}
+    />
+  </svg>
+</section>
+`;

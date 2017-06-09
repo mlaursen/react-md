@@ -4,9 +4,15 @@ import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
 import { get } from 'lodash/object';
+import Button from 'react-md/lib/Buttons/Button';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 
 import { sassdocRequest } from 'state/sassdocs';
+import scrollRestoration from 'utils/scrollRestoration';
+
+import './_styles.scss';
+import Section from './Section';
+import Finder from './Finder';
 
 export class PureSassDocPage extends PureComponent {
   static propTypes = {
@@ -19,18 +25,43 @@ export class PureSassDocPage extends PureComponent {
       functions: PropTypes.array.isRequired,
       variables: PropTypes.array.isRequired,
     }),
+    desktop: PropTypes.bool.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
+  state = { finderVisible: false };
 
   componentDidMount() {
     const { sassdocRequest, component, section } = this.props;
     sassdocRequest(component, section);
+
+    this.setFinderTimeout();
   }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.sassdoc !== prevProps.sassdoc) {
+      this.setFinderTimeout();
+      scrollRestoration();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
+
+  setFinderTimeout = () => {
+    if (this.props.sassdoc !== null && this.props.desktop) {
+      this.timeout = setTimeout(() => {
+        this.timeout = null;
+        this.setState({ finderVisible: true });
+      }, 450);
+    }
+  };
+
+  toggleFinder = () => {
+    this.setState({ finderVisible: !this.state.finderVisible });
+  };
 
   render() {
     const { sassdoc } = this.props;
@@ -43,7 +74,33 @@ export class PureSassDocPage extends PureComponent {
       };
       children = <CircularProgress id="loading-sassdoc" key="loader" />;
     } else {
-      children = <h1>Loaded!</h1>;
+      const { placeholders, variables, mixins, functions } = sassdoc;
+      children = [
+        <Section key="placeholders" title="Placeholders" data={placeholders} />,
+        <Section key="variables" title="Variables" data={variables} />,
+        <Section key="functions" title="Functions" data={functions} />,
+        <Section key="mixins" title="Mixins" data={mixins} />,
+        <Button
+          key="fab"
+          floating
+          secondary
+          fixed
+          onClick={this.toggleFinder}
+          tooltipPosition="left"
+          tooltipLabel="Find SassDoc in Page"
+        >
+          find_in_page
+        </Button>,
+        <Finder
+          key="finder"
+          visible={this.state.finderVisible}
+          onVisibilityChange={this.toggleFinder}
+          placeholders={placeholders}
+          variables={variables}
+          functions={functions}
+          mixins={mixins}
+        />,
+      ];
     }
 
     return (
@@ -73,6 +130,7 @@ export default connectAdvanced((dispatch) => {
       section,
       component: component || location,
       sassdoc,
+      desktop: state.media.desktop,
     };
 
     if (!shallowEqual(result, nextResult)) {

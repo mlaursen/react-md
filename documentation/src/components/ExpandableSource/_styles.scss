@@ -1,0 +1,13 @@
+@import '~globals';
+
+.expandable-source {
+  margin: 1em 0;
+
+  pre {
+    margin: 0;
+  }
+
+  &__label {
+    margin-bottom: 0;
+  }
+}
