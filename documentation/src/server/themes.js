@@ -16,19 +16,8 @@ const mkdir = Promise.promisify(fs.mkdir);
 
 const THEMES_FOLDER = path.resolve(process.cwd(), 'public', 'themes');
 
-const DARK_THEME_STYLES = `
-ul:not(.md-list) {
-  color: get-color('text', false);
-}
-
-a:not(.md-btn) {
-  color: $md-purple-a-400;
-
-  &:visited {
-    color: $md-purple-a-100;
-  }
-}
-`;
+const REACT_MD_SCSS = path.resolve(process.cwd(), '..', 'src', 'scss');
+const DOCUMENTATION_SCSS = path.resolve(process.cwd(), 'src', 'scss');
 
 function isValidPrimary(color) {
   return color && PRIMARY_COLORS.indexOf(color) !== -1;
@@ -55,62 +44,20 @@ async function compileSass(fileName) {
 
   const primaryVar = `$md-${primary}-500`;
   const secondaryVar = `$md-${secondary}-a-${hue}`;
-  const darkStyles = darkTheme ? DARK_THEME_STYLES : '';
   const styles = `
 @import 'react-md';
+@import 'all';
 
-$md-primary-color: $md-light-blue-500;
-$md-secondary-color: $md-deep-orange-a-200;
 @include react-md-theme-everything(${primaryVar}, ${secondaryVar}, ${!darkTheme}, 'custom-theme');
-
-.custom-theme {
-  .home {
-    &__banner {
-      background: ${primaryVar};
-    }
-
-    &__logo {
-      text,
-      #Group > path:first-child,
-      path#Oval-210 {
-        fill: ${secondaryVar};
-      }
-    }
-  }
-
-  .not-found {
-    background: $md-${primary}-800;
-
-    &__svg-oval {
-      fill: ${secondaryVar};
-    }
-
-    &__svg--circle-1 {
-      fill: $md-${primary}-700;
-    }
-
-    &__svg--circle-2 {
-      fill: $md-${primary}-600;
-    }
-
-    &__svg--circle-3 {
-      fill: ${primaryVar};
-    }
-  }
-
-  ${darkStyles}
-}
-
-@media #{$md-tablet-media} {
-  .custom-theme .phone-size-container .md-toolbar:not(.md-toolbar--inset)::before {
-    background: ${primaryVar};
-  }
-}
+@include custom-theme(${primaryVar}, ${secondaryVar}, ${!!darkTheme});
   `;
 
   const stats = await sass({
     data: styles,
-    includePaths: [path.resolve(process.cwd(), '..', 'src', 'scss')],
+    includePaths: [
+      REACT_MD_SCSS,
+      DOCUMENTATION_SCSS,
+    ],
     outputStyle: __DEV__ ? 'expanded' : 'compressed',
   });
 
@@ -124,7 +71,7 @@ async function createStylesheet(fileName, css) {
   } catch (e) { // eslint-disable-line no-empty
   }
 
-  return await writeFile(path.join(THEMES_FOLDER, `${fileName}.css`), css, 'UTF-8');
+  await writeFile(path.join(THEMES_FOLDER, `${fileName}.css`), css, 'UTF-8');
 }
 
 export default async function themes(req, res) {
@@ -138,6 +85,10 @@ export default async function themes(req, res) {
     res.header('Content-Type', 'text/css');
     res.send(css.toString());
   } catch (e) {
+    if (__DEV__) {
+      throw e;
+    }
+
     res.sendStatus(e.status || 500);
   }
 }
