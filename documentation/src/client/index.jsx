@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from 'components/App';
 import * as Routes from 'routes';
 
-import configureStore from '../configureStore';
+import configureStore from './configureStore';
 
 import './styles.scss';
 

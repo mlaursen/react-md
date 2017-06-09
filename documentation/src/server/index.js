@@ -11,19 +11,12 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import MobileDetect from 'mobile-detect';
 
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
-import { updateCustomTheme } from 'state/helmet';
-import { pageNotFound } from 'state/routing';
-import { getInitialState } from 'state/theme';
-import { DEFAULT_STATE, handleLocationChange } from 'state/quickNav';
-import { toPageTitle } from 'utils/strings';
+import configureStore from './configureStore';
 import api from './api';
-import routes from './routes';
 import themes from './themes';
 import renderHtmlPage from './utils/renderHtmlPage';
-import configureStore from '../configureStore';
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
 const dist = path.resolve(process.cwd(), 'public');
@@ -61,39 +54,12 @@ if (__DEV__ && !global.__SERVER_ONLY) {
 app.use('/api', api);
 app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
 
-app.get('*', cookieParser(), (req, res) => {
+app.get('*', cookieParser(), async (req, res) => {
   if (__DEV__) {
     global.webpackIsomorphicTools.refresh();
   }
 
-  const md = new MobileDetect(req.header('user-agent'));
-  const tablet = !!md.tablet();
-  const mobile = !tablet && !!md.mobile();
-  const desktop = !mobile && !tablet;
-
-  let defaultMedia = 'desktop';
-  if (tablet) {
-    defaultMedia = 'tablet';
-  } else if (mobile) {
-    defaultMedia = 'mobile';
-  }
-
-  const store = configureStore({
-    media: { mobile, tablet, desktop, defaultMedia },
-    drawer: {
-      toolbarTitle: toPageTitle(req.url),
-      toolbarProminent: !req.url.match(/minimizing/) && !!req.url.match(/components|customization/),
-      visibleBoxShadow: req.url !== '/',
-    },
-    quickNav: handleLocationChange(DEFAULT_STATE, { pathname: req.url }),
-    theme: getInitialState(req.cookies),
-  });
-
-  store.dispatch(updateCustomTheme(store.getState().theme.href));
-  if (routes.indexOf(req.url.replace(/\?.*/, '')) === -1) {
-    store.dispatch(pageNotFound());
-  }
-
+  const store = await configureStore(req);
   if (!__SSR__) {
     res.send(renderHtmlPage(store));
     return;

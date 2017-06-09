@@ -102,6 +102,7 @@ export function formatFunction(sassdoc) {
     ...formatVariable(sassdoc),
     code: fullCode,
     oneLineCode: toOneLineCode(fullCode),
+    parameters: parameters || [],
     requires,
     returns,
   };

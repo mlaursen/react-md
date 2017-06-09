@@ -6875,6 +6875,10 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
+redux-devtools-extension@^2.13.2:
+  version "2.13.2"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.2.tgz#e0f9a8e8dfca7c17be92c7124958a3b94eb2911d"
+
 redux-saga-tester@^1.0.260:
   version "1.0.261"
   resolved "https://registry.yarnpkg.com/redux-saga-tester/-/redux-saga-tester-1.0.261.tgz#56091612c613fd16f4253629bfc3b059487c504c"

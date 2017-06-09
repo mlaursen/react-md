@@ -1,5 +1,7 @@
 import { flattenDeep } from 'lodash/array';
-import definedRoutes from 'constants/navigationRoutes';
+import definedRoutes, {
+  componentRoutes as definedComponentRoutes,
+} from 'constants/navigationRoutes';
 
 function extractRealRoute(route, parents = []) {
   const prefix = `${parents.length ? '/' : ''}${parents.join('/')}/`;
@@ -17,6 +19,7 @@ function extractRealRoute(route, parents = []) {
 }
 
 export const baseRoutes = flattenDeep(definedRoutes.map(route => extractRealRoute(route))).filter(r => !!r);
+export const componentRoutes = flattenDeep(definedComponentRoutes.map(route => extractRealRoute(route, ['components']))).filter(r => !!r);
 
 const routes = baseRoutes.slice();
 routes.push('/');

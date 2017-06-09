@@ -34,6 +34,21 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
     // this should really be every scss file, but I just need the base styles
     const styles = require('../../client/styles.scss')._style;
     page += `<style>${styles}</style>`;
+
+    // Can also do this for faster page loads, but have to reload page if styles get removed
+    // const styles = require('../../client/styles.scss')._style
+    //   + require('../../components/App/Footer/_styles.scss')._style
+    //   + require('../../components/Customization/Colors/_styles.scss')._style
+    //   + require('../../components/Customization/Themes/ThemeBuilder/_styles.scss')._style
+    //   + require('../../components/DiscoverMore/Showcases/_styles.scss')._scss
+    //   + require('../../components/DocumentationTabs/_styles.scss')._style
+    //   + require('../../components/ExamplesPage/_styles.scss')._style
+    //   + require('../../components/ExpandableSource/_styles.scss')._style
+    //   + require('../../components/Home/_styles.scss')._style
+    //   + require('../../components/SassDocPage/_styles.scss')._style
+    //   + require('../../components/Search/_styles.scss')._style;
+
+    // page += `<style>${styles}</style>`;
   }
 
   page += styleKeys.map(style =>
