@@ -3,7 +3,7 @@ import { updateCustomTheme } from 'state/helmet';
 import { updateTheme } from 'state/theme';
 import SagaTester from 'redux-saga-tester';
 import * as cookie from 'utils/cookies';
-import { watchThemeChanges } from '../';
+import watchThemeChanges from '../themes';
 
 jest.mock('utils/cookies');
 const DONE = 'DONE_TESTING';

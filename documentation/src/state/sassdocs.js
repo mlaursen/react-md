@@ -35,9 +35,9 @@ function updateSassDocs(state, { ids, data }) {
   if (component) {
     return {
       ...state,
-      [component]: {
-        ...state[component],
-        [section]: data,
+      [section]: {
+        ...state[section],
+        [component]: data,
       },
     };
   }
