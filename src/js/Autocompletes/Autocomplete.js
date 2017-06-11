@@ -509,6 +509,12 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
+  /**
+   * Gets the current value from the text field. This is used when you have an uncontrolled
+   * text field and simply need the value from a ref callback.
+   *
+   * @return {String} the text field's value
+   */
   get value() {
     return getField(this.props, this.state, 'value');
   }

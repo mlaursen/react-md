@@ -243,6 +243,12 @@ export default class SelectionControl extends PureComponent {
     }
   }
 
+  /**
+   * Gets the current checked value from the selection control. This is used when you have
+   * an uncontrolled selection control and simply need the checked state from a ref callback.
+   *
+   * @return {String} the text field's value
+   */
   get checked() {
     return getField(this.props, this.state, 'checked');
   }

@@ -507,6 +507,12 @@ export default class TextField extends PureComponent {
     this._field.focus();
   };
 
+  /**
+   * Gets the current value from the text field. This is used when you have an uncontrolled
+   * text field and simply need the value from a ref callback.
+   *
+   * @return {String} the text field's value
+   */
   get value() {
     return this.getField().value;
   }

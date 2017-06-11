@@ -331,8 +331,8 @@ export default class Drawer extends PureComponent {
    *
    * If this is used server side, it will default to only matching mobile.
    *
-   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min
-   *    widths. This defaults to the drawer's default props.
+   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet,
+   *    and desktop type/min widths. This defaults to the drawer's default props.
    * @return {Object} an object containing the media matches and the current type to use for the drawer.
    */
   static getCurrentMedia(props = Drawer.defaultProps) {
@@ -372,9 +372,9 @@ export default class Drawer extends PureComponent {
    * Simply does a `window.matchMedia(query)` where the query gets defined as a min width
    * and optional max width.
    *
-   * @param {Number} min - The min width for the media query.
-   * @param {Number=} max - An optional max width to include for the media query.
-   * @return true if the media matches.
+   * @param {number} min - The min width for the media query.
+   * @param {number=} max - An optional max width to include for the media query.
+   * @return {boolean} true if the media matches.
    */
   static matchesMedia(min, max) {
     let media = `screen and (min-width: ${min}px)`;

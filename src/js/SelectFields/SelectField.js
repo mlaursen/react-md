@@ -520,6 +520,12 @@ export default class SelectField extends PureComponent {
     }
   }
 
+  /**
+   * Gets the current value from the select field. This is used when you have an uncontrolled
+   * text field and simply need the value from a ref callback.
+   *
+   * @return {String} the select field's value
+   */
   get value() {
     return getField(this.props, this.state, 'value');
   }
