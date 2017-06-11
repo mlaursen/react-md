@@ -6,3 +6,4 @@ public/assets
 public/sassdoc
 public/themes
 src/server/databases
+jsdoc.json

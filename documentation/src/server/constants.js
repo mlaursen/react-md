@@ -11,6 +11,7 @@ export const NESTED_GROUPS = ['helpers', 'selection-controls', 'pickers', 'progr
 
 const SERVER_PATH = path.resolve(process.cwd(), 'src', 'server');
 const DBS_PATH = path.join(SERVER_PATH, 'databases');
+export const JSDOC_DATABASE = path.join(DBS_PATH, 'jsdocs.json');
 export const DOCGEN_DATABASE = path.join(DBS_PATH, 'docgens.json');
 export const PROP_TYPE_DATABASE = path.join(DBS_PATH, 'proptypeLinks.json');
 export const SASSDOC_DATABASE = path.join(DBS_PATH, 'sassdocs.json');

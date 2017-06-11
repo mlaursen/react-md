@@ -30,7 +30,11 @@ $ yarn dev:all          # watch all changes and run dev server
 * [clean](#clean)
 * [prebuild](#prebuild)
 * [build](#build)
+* [jsdoc](#jsdoc)
+  * [jsdoc:build](#jsdocbuild)
+  * [jsdoc:create](#jsdoccreate)
 * [docgen](#docgen)
+  * [docgen:create](#docgencreate)
 * [sassdoc](#sassdoc)
   * [sassdoc:site](#sassdocsite)
 * [start](#start)
@@ -49,7 +53,7 @@ $ yarn dev:all          # watch all changes and run dev server
 This will clean up any existing assets, generated themes for the website,
 and any of the "databases" that have been built.
 
-> SEE: [sassdoc](#sassdoc) or [docgen](#docgen) for more information
+> SEE: [jsdoc](#jsdoc), [sassdoc](#sassdoc), or [docgen](#docgen) for more information
 about "databases".
 
 ### prebuild
@@ -69,7 +73,23 @@ with server side rendering.
 > SEE: [sassdoc](#sassdoc) or [docgen](#docgen) for more information
 about "databases".
 
+### jsdoc
+This task just runs the `jsdoc:build` follwed by `jsdoc:create`.
+> SEE: [jsdoc:build](#jsdocbuild) and [jsdoc:create](#jsdoccreate) for more information.
+
+### jsdoc:build
+This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
+documentation on static component class attributes that are not picked up with `react-docgen`. Examples are the
+`Layover.HorizontalAnchors` and `Autocomplete.fuzzyFilter`.This will create a `jsdoc.json` file in the home directory
+to be parsed by [jsdoc:create](#jsdoccreate).
+
 ### docgen
+This will run the [jsdoc](#jsdoc) script followed by the [docgen:create](#docgencreate) task. The jsdoc "database" *must*
+be created before the `docgen:create` script can be ran.
+
+> SEE: [jsdoc](#jsdoc) or [docgen:create](#docgencreate) for more information.
+
+### docgen:create
 This will create a "database" of component documentation that can be used for the api
 endpoints. The "database" is just a JSON file of the results of [react-docgen](https://github.com/reactjs/react-docgen)
 component's endpoint and it's docgen. This will also create another "database" that is used for searching within the
