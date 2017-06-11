@@ -21,7 +21,7 @@ export default class Avatar extends PureComponent {
     /**
      * An optional image source to use for the avatar.
      */
-    src: PropTypes.string,
+    src: oneRequiredForA11yIf(PropTypes.string, 'role', 'alt'),
 
     /**
      * An optional image alt to use for the avatar if it is
@@ -67,7 +67,7 @@ export default class Avatar extends PureComponent {
      * A role for the avatar's image. When the `src` prop is set, either a `role` of `presentation`
      * or the `alt` prop must be defined for a11y.
      */
-    role: oneRequiredForA11yIf(PropTypes.oneOf(['presentation']), 'src', 'alt'),
+    role: PropTypes.oneOf(['presentation']),
   };
 
   static defaultProps = {
