@@ -1,3 +1,5 @@
+/** @module utils/isOutOfBounds */
+
 import getScreenSize from './getScreenSize';
 
 function isOutHorizontally(fixedTo, child, threshold) {

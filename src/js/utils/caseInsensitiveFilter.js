@@ -1,3 +1,4 @@
+/** @module utils/caseInsensitiveFilter */
 import React from 'react';
 
 /**
@@ -9,6 +10,7 @@ import React from 'react';
  *  - an object's `dataLabel` value that contains each letter/number in exact order ignoring case.
  *
  * Example:
+ *
  * ```js
  * const haystack = ['Apple', 'Banana', 'Orange'];
  * caseInsensitiveFilter(haystack, 'An') // ['Banana', 'Orange'];

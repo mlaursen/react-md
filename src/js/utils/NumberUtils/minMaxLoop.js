@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/minMaxLoop */
+
 /**
  * Keeps a number within the min and max values. When the number becomes less
  * than the min, it will loop around and be the max value. When the number is

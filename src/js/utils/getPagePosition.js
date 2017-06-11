@@ -1,3 +1,5 @@
+/** @module utils/getPagePosition */
+
 /**
  * Gets the current page position.
  *

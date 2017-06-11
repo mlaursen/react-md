@@ -1,3 +1,5 @@
+/** @module utils/DateUtils/getDayOfWeek */
+
 /**
  * Gets a day in the week. 0 = Sunday 6 = Saturday
  *

@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/isBetween */
+
 /**
  * Checks if a number is between a min and maximum (inclusive)
  *

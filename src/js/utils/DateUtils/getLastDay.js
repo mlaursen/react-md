@@ -1,3 +1,5 @@
+/** @module utils/DateUtils/getLastDay */
+
 /**
  * Gets the last day in a month
  *

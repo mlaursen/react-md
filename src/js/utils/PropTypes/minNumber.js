@@ -1,3 +1,4 @@
+/** @module utils/PropTypes/minNumber */
 import PropTypes from 'prop-types';
 
 /**

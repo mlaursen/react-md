@@ -1,3 +1,4 @@
+/** @module utils/DateUtils/addDate */
 
 /**
  * Adds a given amount to a date.

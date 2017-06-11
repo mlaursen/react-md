@@ -1,3 +1,5 @@
+/** @module utils/isFormPartRole */
+
 /**
  * A simple utility function to determine if an element has a role that should
  * be used as a form part. This is mostly used for changing the behavior of keyboard

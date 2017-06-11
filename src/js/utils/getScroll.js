@@ -1,3 +1,5 @@
+/** @module utils/getScroll */
+
 /**
  * A utility function to just get an element's scroll x and y
  * values. This is really just needed because `window` uses

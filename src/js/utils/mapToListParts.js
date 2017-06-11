@@ -1,3 +1,5 @@
+/** @module utils/mapToListParts */
+
 import { createElement, isValidElement } from 'react';
 import Divider from '../Dividers/Divider';
 import Subheader from '../Subheaders/Subheader';

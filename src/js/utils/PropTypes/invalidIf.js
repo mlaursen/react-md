@@ -1,3 +1,5 @@
+/** @module utils/PropTypes/invalidIf */
+
 /**
  * A custom validator that will throw an error if any of the `ifDefinedProps` are also defined.
  *

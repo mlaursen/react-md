@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/updateUnit */
+
 /**
  * Takes in a css unit (px, rem, em, etc) or a number and applies a function to the
  * number part of the unit.

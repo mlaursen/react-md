@@ -1,3 +1,5 @@
+/** @module utils/closest */
+
 /**
  * A _very_ primitive polyfill for the Element.closest function. If this is a browser that doesn't
  * support it (IE, Edge, etc), it will just keep searching the parent elements until the nodeName

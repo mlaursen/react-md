@@ -1,3 +1,5 @@
+/** @module utils/EventUtils/captureNextEvent */
+
 /**
  * This function will capture the next event and stop propagation during the
  * bubbling cycle of events. This is really only useful if you want to stop

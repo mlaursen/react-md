@@ -1,4 +1,4 @@
-/** @module PropTypes/between */
+/** @module utils/PropTypes/between */
 
 import isBetween from '../NumberUtils/isBetween';
 

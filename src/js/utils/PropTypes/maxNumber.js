@@ -1,3 +1,4 @@
+/** @module utils/PropTypes/maxNumber */
 import PropTypes from 'prop-types';
 
 /**

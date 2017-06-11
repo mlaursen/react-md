@@ -1,3 +1,4 @@
+/** @module utils/PropTypes/controlled */
 import PropTypes from 'prop-types';
 
 /**

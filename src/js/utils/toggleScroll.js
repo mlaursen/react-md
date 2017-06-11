@@ -1,3 +1,4 @@
+/** @module utils/toggleScroll */
 import getPagePosition from './getPagePosition';
 
 /**

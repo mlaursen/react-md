@@ -1,3 +1,4 @@
+/** @module utils/EventUtils/isValidClick */
 import { LEFT_MOUSE } from '../../constants/keyCodes';
 
 /**

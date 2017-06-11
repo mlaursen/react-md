@@ -1,3 +1,4 @@
+/** @module utils/findIgnoreCase */
 import React from 'react';
 
 /**

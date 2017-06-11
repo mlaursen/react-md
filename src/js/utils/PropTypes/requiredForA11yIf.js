@@ -1,3 +1,5 @@
+/** @module utils/PropTypes/requiredForA11yIf */
+
 /**
  * This validator checks that the given prop is valid. If any of the `otherPropNames` are true,
  * it also requires this to be defined for a11y.

@@ -1,3 +1,4 @@
+/** @module utils/StringUtils/getDisplayName */
 
 /**
  * Gets the display name for a composed component.

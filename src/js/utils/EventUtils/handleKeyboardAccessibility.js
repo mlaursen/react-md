@@ -1,3 +1,5 @@
+/** @module utils/EventUtils/handleKeyboardAccessibility */
+
 import { SPACE, ENTER } from '../../constants/keyCodes';
 import closest from '../closest';
 import isFormPartRole from '../isFormPartRole';

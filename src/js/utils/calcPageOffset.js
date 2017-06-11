@@ -1,3 +1,4 @@
+/** @module utils/calcPageOffset */
 import getPagePosition from './getPagePosition';
 
 /**

@@ -1,3 +1,5 @@
+/** @module utils/getField */
+
 /**
  * Gets the current field for a component that can the field
  * as either uncontrolled or controlled.

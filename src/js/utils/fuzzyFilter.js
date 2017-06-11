@@ -1,3 +1,4 @@
+/** @module utils/fuzzyFilter */
 import React from 'react';
 
 /**

@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/calculateValueDistance */
+
 /**
  * This calculates the distance from a screen x location to a position in some element
  * by comparing the width of the element and the element's page position to the screen

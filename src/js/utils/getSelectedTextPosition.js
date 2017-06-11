@@ -1,3 +1,5 @@
+/** @module utils/getSelectedTextPosition */
+
 const ZERO_WIDTH_CHARACTER = '\u200b';
 
 /**

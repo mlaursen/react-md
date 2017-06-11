@@ -1,3 +1,4 @@
+/** @module utils/DateUtils/isDateEqual */
 
 /**
  * Checks if two dates are equal by comparing the exact time.

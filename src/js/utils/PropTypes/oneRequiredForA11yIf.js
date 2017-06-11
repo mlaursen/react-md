@@ -1,3 +1,5 @@
+/** @module utils/PropTypes/oneRequiredForA11yIf */
+
 export default function oneRequiredForA11yIf(validator, requiringProp, ...otherPropNames) {
   return function validate(props, propName, componentName, location, propFullName, ...args) {
     const filterUndefined = pn => typeof props[pn] !== 'undefined';

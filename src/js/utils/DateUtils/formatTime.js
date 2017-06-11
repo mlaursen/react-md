@@ -1,3 +1,5 @@
+/** @module utils/DateUtils/formatTime */
+
 /**
  * Formats a date as a time string using the DateTimeFormat function and locales.
  *

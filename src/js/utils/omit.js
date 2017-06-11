@@ -1,3 +1,4 @@
+/** @module utils/omit */
 
 /**
  * This should hopefully be very similar to lodash's omit function. It will

@@ -1,3 +1,5 @@
+/** @module utils/StringUtils/addSuffix */
+
 /**
  * Optionally adds a suffix to a string if it does
  * not already contain that string.

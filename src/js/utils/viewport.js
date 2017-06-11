@@ -1,3 +1,4 @@
+/** @module utils/viewport */
 import getScreenSize from './getScreenSize';
 
 /**

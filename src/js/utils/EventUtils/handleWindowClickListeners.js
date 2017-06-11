@@ -1,3 +1,4 @@
+/** @module utils/EventUtils/handleWindowClickListeners */
 let mobileSafari;
 
 /**
