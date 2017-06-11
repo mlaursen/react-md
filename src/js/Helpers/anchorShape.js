@@ -1,17 +1,6 @@
 import PropTypes from 'prop-types';
-export const HorizontalAnchors = {
-  LEFT: 'left',
-  INNER_LEFT: 'inner left',
-  CENTER: 'center',
-  RIGHT: 'right',
-  INNER_RIGHT: 'inner right',
-};
-export const VerticalAnchors = {
-  TOP: 'top',
-  CENTER: 'center',
-  OVERLAP: 'overlap',
-  BOTTOM: 'bottom',
-};
+import HorizontalAnchors from './HorizontalAnchors';
+import VerticalAnchors from './VerticalAnchors';
 
 export default PropTypes.shape({
   x: PropTypes.oneOf([

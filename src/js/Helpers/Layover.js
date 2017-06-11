@@ -11,9 +11,12 @@ import getSelectedTextPosition from '../utils/getSelectedTextPosition';
 import getScroll from '../utils/getScroll';
 import viewport from '../utils/viewport';
 import isOutOfBounds from '../utils/isOutOfBounds';
-import anchorShape, { HorizontalAnchors, VerticalAnchors } from './anchorShape';
-import positionShape, { Positions } from './positionShape';
+import anchorShape from './anchorShape';
 import fixedToShape from './fixedToShape';
+import positionShape from './positionShape';
+import HorizontalAnchors from './HorizontalAnchors';
+import VerticalAnchors from './VerticalAnchors';
+import Positions from './Positions';
 
 /**
  * The Layover component is used to keep a component fixed to another component

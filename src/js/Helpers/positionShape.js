@@ -1,12 +1,5 @@
 import PropTypes from 'prop-types';
-
-export const Positions = {
-  TOP_LEFT: 'tl',
-  TOP_RIGHT: 'tr',
-  BOTTOM_LEFT: 'bl',
-  BOTTOM_RIGHT: 'br',
-  BELOW: 'below',
-};
+import Positions from './Positions';
 
 export default PropTypes.oneOfType([
   PropTypes.oneOf([
