@@ -18,6 +18,7 @@ export const Community = syncComponent('Community', require('components/Discover
 export const Contributing = syncComponent('Contributing', require('components/DiscoverMore/Contributing'));
 
 export const SassDocPage = syncComponent('SassDocPage', require('components/SassDocPage'));
+export const PropTypesPage = syncComponent('PropTypesPage', require('components/PropTypesPage'));
 
 // components
 export const Autocompletes = syncComponent('Autocompletes', require('components/Components/autocompletes'));

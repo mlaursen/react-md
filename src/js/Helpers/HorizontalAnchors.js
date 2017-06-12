@@ -1,7 +1,7 @@
 /** @module Helpers/HorizontalAnchors */
 
 /**
- * An enum for all the different types of horizontal anchors * on a layover.
+ * An enum for all the different types of horizontal anchors on a layover.
  *
  * @readonly
  * @enum {string}

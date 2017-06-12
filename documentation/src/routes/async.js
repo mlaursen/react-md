@@ -18,6 +18,7 @@ export const Community = asyncComponent(() => import(/* webpackChunkName: Commun
 export const Contributing = asyncComponent(() => import(/* webpackChunkName: Contributing */ 'components/DiscoverMore/Contributing'));
 
 export const SassDocPage = asyncComponent(() => import(/* webpackChunkName: SassDocPage */ 'components/SassDocPage'));
+export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: PropTypesPage */ 'components/PropTypesPage'));
 
 // components
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));

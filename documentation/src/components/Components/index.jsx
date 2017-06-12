@@ -16,6 +16,7 @@ const { components, sections } = componentRoutes.reduce((map, route) => {
 
 import {
   Autocompletes,
+  PropTypesPage,
   SassDocPage,
   NotFound,
 } from 'routes';
@@ -34,7 +35,7 @@ const Components = (props) => {
   if (components.indexOf(component) === -1 || (section && sections.indexOf(section) === -1)) {
     return <NotFound history={history} staticContext={staticContext} />;
   } else if (tab === 1) {
-    return null;
+    return <PropTypesPage key="prop-types" {...props} />;
   } else if (tab === 2) {
     return <SassDocPage key="sassdoc" {...props} />;
   }
