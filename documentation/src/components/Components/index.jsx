@@ -16,6 +16,7 @@ const { components, sections } = componentRoutes.reduce((map, route) => {
 
 import {
   Autocompletes,
+  Avatars,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -44,6 +45,9 @@ const Components = (props) => {
   switch (component) {
     case 'autocompletes':
       Component = Autocompletes;
+      break;
+    case 'avatars':
+      Component = Avatars;
       break;
     default:
       Component = null;

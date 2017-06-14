@@ -22,3 +22,4 @@ export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: Pr
 
 // components
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));
+export const Avatars = asyncComponent(() => import(/* webpackChunkName: Avatars */ 'components/Components/avatars'));
