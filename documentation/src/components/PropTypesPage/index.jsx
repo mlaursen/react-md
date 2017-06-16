@@ -21,7 +21,14 @@ export default connectAdvanced((dispatch) => {
     const ids = ['docgens', section, component].filter(id => !!id);
     const docgens = get(state, ids.join('.'), null);
 
-    const nextResult = { component, section, docgens, toolbarTitle, ...actions };
+    const nextResult = {
+      component,
+      section,
+      docgens,
+      toolbarTitle,
+      mobile: state.media.mobile,
+      ...actions,
+    };
     if (!shallowEqual(result, nextResult)) {
       result = nextResult;
     }

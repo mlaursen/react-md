@@ -1,0 +1,379 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FunctionsSection should render correctly 1`] = `
+<section
+  className="prop-types__functions"
+  id="some-test-id-welcomeToTheTestingClass"
+>
+  <h3
+    className="markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass()
+      </code></pre>
+      ",
+      }
+    }
+  />
+  <section
+    className="md-card-text markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>This does stuff. Yah</p>
+      ",
+      }
+    }
+  />
+</section>
+`;
+
+exports[`FunctionsSection should render correctly 2`] = `
+<section
+  className="prop-types__functions"
+  id="some-test-id-welcomeToTheTestingClass"
+>
+  <h3
+    className="markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(): string
+      </code></pre>
+      ",
+      }
+    }
+  />
+  <section
+    className="md-card-text markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>This does stuff. Yah</p>
+      ",
+      }
+    }
+  />
+</section>
+`;
+
+exports[`FunctionsSection should render correctly 3`] = `
+<section
+  className="prop-types__functions"
+  id="some-test-id-welcomeToTheTestingClass"
+>
+  <h3
+    className="markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething)
+      </code></pre>
+      ",
+      }
+    }
+  />
+  <section
+    className="md-card-text markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>This does stuff. Yah</p>
+      ",
+      }
+    }
+  />
+  <div
+    className="md-data-table--responsive"
+    style={
+      Object {
+        "width": undefined,
+      }
+    }
+  >
+    <table
+      className="md-data-table md-data-table--plain"
+      style={undefined}
+    >
+      <thead
+        className="md-table-header"
+      >
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            scope="col"
+          >
+            Name
+          </th>
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            scope="col"
+          >
+            Type
+          </th>
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-text--secondary"
+            scope="col"
+          >
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className="md-table-body"
+      >
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              something
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              string
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-text"
+            scope={undefined}
+          >
+            <section
+              className="markdown-container"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>It is something that does something. Quite amazing</p>
+                ",
+                }
+              }
+            />
+          </td>
+        </tr>
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              requiredSomething *
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              boolean
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-text"
+            scope={undefined}
+          >
+            <section
+              className="markdown-container"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>This is a param that is required.</p>
+                ",
+                }
+              }
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+`;
+
+exports[`FunctionsSection should render correctly 4`] = `
+<section
+  className="prop-types__functions"
+  id="some-test-id-welcomeToTheTestingClass"
+>
+  <h3
+    className="markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code class=\\"lang-js\\">welcomeToTheTestingClass(something, requiredSomething): string
+      </code></pre>
+      ",
+      }
+    }
+  />
+  <section
+    className="md-card-text markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>This does stuff. Yah</p>
+      ",
+      }
+    }
+  />
+  <div
+    className="md-data-table--responsive"
+    style={
+      Object {
+        "width": undefined,
+      }
+    }
+  >
+    <table
+      className="md-data-table md-data-table--plain"
+      style={undefined}
+    >
+      <thead
+        className="md-table-header"
+      >
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            scope="col"
+          >
+            Name
+          </th>
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+            scope="col"
+          >
+            Type
+          </th>
+          <th
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--header md-text--secondary"
+            scope="col"
+          >
+            Description
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className="md-table-body"
+      >
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              something
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              string
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-text"
+            scope={undefined}
+          >
+            <section
+              className="markdown-container"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>It is something that does something. Quite amazing</p>
+                ",
+                }
+              }
+            />
+          </td>
+        </tr>
+        <tr
+          className="md-table-row"
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+        >
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              requiredSomething *
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text"
+            scope={undefined}
+          >
+            <code
+              className="code-variable language-js"
+            >
+              boolean
+            </code>
+          </td>
+          <td
+            aria-sort={undefined}
+            className="md-table-column md-text-left md-table-column--plain md-text"
+            scope={undefined}
+          >
+            <section
+              className="markdown-container"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>This is a param that is required.</p>
+                ",
+                }
+              }
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+`;

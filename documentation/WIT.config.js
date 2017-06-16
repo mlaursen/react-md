@@ -17,6 +17,7 @@ module.exports = {
     'sagas': path.join(src, 'sagas'),
     'server': path.join(src, 'server'),
     'state': path.join(src, 'state'),
+    'propTypes': path.join(src, 'propTypes'),
     'utils': path.join(src, 'utils'),
   },
   assets: {

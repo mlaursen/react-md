@@ -65,8 +65,8 @@ app.get('*', cookieParser(), async (req, res) => {
     return;
   }
 
+  const context = { bundles: [] };
   try {
-    const context = { bundles: [] };
     const App = require('components/App').default;
 
     const html = renderToString(
@@ -92,7 +92,7 @@ app.get('*', cookieParser(), async (req, res) => {
       throw e;
     }
 
-    res.send(renderHtmlPage);
+    res.send(renderHtmlPage(store, context.bundles));
   }
 });
 

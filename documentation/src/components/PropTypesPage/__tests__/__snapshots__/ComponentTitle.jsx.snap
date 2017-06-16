@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComponentTitle should render correctly 1`] = `
+<header
+  className="md-table-card-header"
+  style={undefined}
+>
+  <div
+    className="md-card-title"
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id="autocompletes-proptypes"
+    >
+      Autocomplete
+    </h2>
+    <a
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+      disabled={undefined}
+      href="https://github.com/malursen/react-md/master/tree/src/js/Autocompletes/Autocomplete.js"
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+    >
+      <i
+        className="md-icon fa fa-github"
+        style={undefined}
+      />
+    </a>
+  </div>
+</header>
+`;
+
+exports[`ComponentTitle should render correctly 2`] = `
+<header
+  className="md-table-card-header"
+  style={undefined}
+>
+  <div
+    className="md-card-title"
+  >
+    <h2
+      className="md-card-title--title md-text md-card-title--large"
+      id="autocompletes-proptypes"
+    >
+      Autocomplete
+    </h2>
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-cell--right"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        filter_list
+      </i>
+    </button>
+  </div>
+</header>
+`;

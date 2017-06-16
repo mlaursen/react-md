@@ -1,0 +1,454 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropTypesTable should render correctly when there are props 1`] = `
+<div
+  className="md-data-table--responsive"
+  style={
+    Object {
+      "width": undefined,
+    }
+  }
+>
+  <table
+    className="md-data-table md-data-table--plain"
+    style={undefined}
+  >
+    <thead
+      className="md-table-header"
+    >
+      <tr
+        className="md-table-row"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <th
+          aria-sort="ascending"
+          className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-table-column--sortable md-pointer--hover md-text--secondary"
+          onClick={undefined}
+          scope="col"
+        >
+          <div
+            className="md-icon-separator"
+          >
+            <i
+              className="md-icon material-icons md-collapser"
+              style={undefined}
+            >
+              arrow_upward
+            </i>
+            <span
+              className="md-icon-text"
+              style={undefined}
+            >
+              Prop name
+            </span>
+          </div>
+        </th>
+        <th
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+          scope="col"
+        >
+          Prop type
+        </th>
+        <th
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--header md-text--secondary"
+          scope="col"
+        >
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="md-table-body"
+    >
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-style"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          style
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">object
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>An optional style to apply.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-class-name"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          className
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">string
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>An optional className to apply to the <code>FontIcon</code>.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-icon-class-name"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          iconClassName
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text md-table-column--relative prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">string *
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>default: <code>&#39;material-icons&#39;</code></p>
+              <p>The icon font library className to use to display the icon.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-children"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          children
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">node
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>Any children required to display the icon with the font library.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-disabled"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          disabled
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">bool
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>Boolean if the <code>FontIcon</code> should gain the disabled colors.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-force-size"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          forceSize
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">oneOfType([bool, number])
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
+              to enforce. This is useful when using other font icon libraries that do not have a consistent
+              size.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+      <tr
+        className="md-table-row"
+        id="font-icons-proptypes-proptypes-force-font-size"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-name"
+          scope={undefined}
+        >
+          forceFontSize
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-table-column--adjusted md-text prop-types__prop-type"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<pre><code class=\\"lang-js\\">custom
+              </code></pre>
+              ",
+              }
+            }
+          />
+        </td>
+        <td
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--plain md-text prop-types__normal-column"
+          scope={undefined}
+        >
+          <section
+            className="markdown-container"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<p>Boolean if the <code>forceSize</code> prop should also force the <code>font-size</code> instead of only <code>width</code> and <code>height</code>.</p>
+              ",
+              }
+            }
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`PropTypesTable should render correctly with no props 1`] = `
+<div
+  className="md-data-table--responsive"
+  style={
+    Object {
+      "width": undefined,
+    }
+  }
+>
+  <table
+    className="md-data-table md-data-table--plain"
+    style={undefined}
+  >
+    <thead
+      className="md-table-header"
+    >
+      <tr
+        className="md-table-row"
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+      >
+        <th
+          aria-sort="ascending"
+          className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-table-column--sortable md-pointer--hover md-text--secondary"
+          onClick={undefined}
+          scope="col"
+        >
+          <div
+            className="md-icon-separator"
+          >
+            <i
+              className="md-icon material-icons md-collapser"
+              style={undefined}
+            >
+              arrow_upward
+            </i>
+            <span
+              className="md-icon-text"
+              style={undefined}
+            >
+              Prop name
+            </span>
+          </div>
+        </th>
+        <th
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--header md-table-column--adjusted md-text--secondary"
+          scope="col"
+        >
+          Prop type
+        </th>
+        <th
+          aria-sort={undefined}
+          className="md-table-column md-text-left md-table-column--header md-text--secondary"
+          scope="col"
+        >
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="md-table-body"
+    />
+  </table>
+</div>
+`;
