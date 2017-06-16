@@ -15,12 +15,12 @@ export const componentRoutes = [
   'font-icons', {
     to: 'helpers',
     routes: [
-      'accessible-fake-button',
-      'collapse',
-      'focus-container',
-      'icon-separator',
+      'accessible-fake-buttons',
+      'collapses',
+      'focus-containers',
+      'icon-separators',
       'layovers',
-      'portal',
+      'portals',
     ],
   }, 'inks',
   'lists',

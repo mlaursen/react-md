@@ -13,6 +13,11 @@ const Routes = () => (
     <Route path="/customization/:location" component={Customization} />
     <Route path="/discover-more/upgrade-guides/:version" component={DiscoverMore} />
     <Route path="/discover-more/:location" component={DiscoverMore} />
+    <Redirect from="/components/helpers/accessible-fake-button" to="/components/helpers/accessible-fake-buttons" />
+    <Redirect from="/components/helpers/collapse" to="/components/helpers/collapses" />
+    <Redirect from="/components/helpers/focus-container" to="/components/helpers/focus-containers" />
+    <Redirect from="/components/helpers/icon-separator" to="/components/helpers/icon-separators" />
+    <Redirect from="/components/helpers/portal" to="/components/helpers/portals" />
     <Route path="/components/:section/:component" component={Components} />
     <Route path="/components/:component" component={Components} />
     <Redirect from="/getting-started" to="/getting-started/prerequisites" />
