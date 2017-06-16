@@ -5,20 +5,7 @@
   .custom-theme {
     @include style-logo-to-theme($primary, $secondary, $force);
     @include style-404-page-to-theme($primary, $secondary, $force);
-
-    @if $dark-theme {
-      ul:not(.md-list) {
-        color: get-color(text, false);
-      }
-
-      a:not(.md-btn) {
-        color: $md-purple-a-400;
-
-        &:visited {
-          color: $md-purple-a-100;
-        }
-      }
-    }
+    @include style-markdown-to-theme($dark-theme);
   }
 }
 
@@ -64,6 +51,38 @@
   @if $force or $secondary != $md-secondary-color {
     .not-found__svg-oval {
       fill: $secondary;
+    }
+  }
+}
+
+@mixin style-markdown-to-theme($dark-theme) {
+  @if $dark-theme {
+    blockquote {
+      border-left-color: get-color('divider', false);
+
+      p {
+        color: get-color('secondary', false);
+      }
+    }
+
+    ul:not(.md-list) {
+      color: get-color('text', false);
+    }
+
+    a:not(.md-btn) {
+      color: $md-purple-a-400;
+
+      &:visited {
+        color: $md-purple-a-100;
+      }
+    }
+
+    .prop-types__prop-type {
+      pre,
+      code {
+        color: $md-white-base;
+        text-shadow: 0 1px get-color('secondary', true);
+      }
     }
   }
 }

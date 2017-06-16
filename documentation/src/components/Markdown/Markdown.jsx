@@ -16,6 +16,7 @@ import 'prismjs/plugins/toolbar/prism-toolbar';
 import 'prismjs/plugins/toolbar/prism-toolbar.css';
 import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard';
 import 'prismjs/plugins/show-language/prism-show-language';
+import './_styles.scss';
 
 export class PureMarkdown extends PureComponent {
   static propTypes = {
@@ -30,10 +31,12 @@ export class PureMarkdown extends PureComponent {
     match: PropTypes.object.isRequired,
     staticContext: PropTypes.object,
     onHighlightFinish: PropTypes.func,
+    lineNumbers: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'section',
+    lineNumbers: true,
   };
 
   state = { html: { __html: null } };
@@ -93,7 +96,7 @@ export class PureMarkdown extends PureComponent {
         for (let i = 0; i < pres.length; i += 1) {
           const pre = pres[i];
           const code = pre.querySelector('code');
-          if (code && code.innerHTML.match(/\r?\n.*\r?\n/)) {
+          if (this.props.lineNumbers && code && code.innerHTML.match(/\r?\n.*\r?\n/)) {
             pre.classList.add('line-numbers');
           }
 
@@ -115,6 +118,7 @@ export class PureMarkdown extends PureComponent {
       location,
       match,
       staticContext,
+      lineNumbers,
       onHighlightFinish,
       /* eslint-enable no-unused-vars */
       ...props

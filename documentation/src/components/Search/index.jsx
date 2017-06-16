@@ -152,7 +152,7 @@ export class PureSearch extends PureComponent {
     let className = '';
     if (value) {
       primaryText = type;
-      secondaryText = <CodeVariable>${name}: {value}</CodeVariable>;
+      secondaryText = <CodeVariable component="pre">${name}: {value}</CodeVariable>;
       className = 'search__scss-item';
     }
 

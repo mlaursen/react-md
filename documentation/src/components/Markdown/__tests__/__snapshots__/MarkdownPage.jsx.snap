@@ -36,7 +36,15 @@ exports[`MarkdownPage should render correctly 1`] = `
       <li><a href=\\"#clean\\">clean</a></li>
       <li><a href=\\"#prebuild\\">prebuild</a></li>
       <li><a href=\\"#build\\">build</a></li>
-      <li><a href=\\"#docgen\\">docgen</a></li>
+      <li><a href=\\"#jsdoc\\">jsdoc</a><ul>
+      <li><a href=\\"#jsdocbuild\\">jsdoc:build</a></li>
+      <li><a href=\\"#jsdoccreate\\">jsdoc:create</a></li>
+      </ul>
+      </li>
+      <li><a href=\\"#docgen\\">docgen</a><ul>
+      <li><a href=\\"#docgencreate\\">docgen:create</a></li>
+      </ul>
+      </li>
       <li><a href=\\"#sassdoc\\">sassdoc</a><ul>
       <li><a href=\\"#sassdocsite\\">sassdoc:site</a></li>
       </ul>
@@ -65,7 +73,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This will clean up any existing assets, generated themes for the website,
       and any of the &quot;databases&quot; that have been built.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\">docgen</a> for more information
+      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a>, <a href=\\"#sassdoc\\">sassdoc</a>, or <a href=\\"#docgen\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
       <h3 id=\\"prebuild\\">prebuild</h3>
@@ -86,7 +94,23 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
+      <h3 id=\\"jsdoc\\">jsdoc</h3>
+      <p>This task just runs the <code>jsdoc:build</code> follwed by <code>jsdoc:create</code>.</p>
+      <blockquote>
+      <p>SEE: <a href=\\"#jsdocbuild\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\">jsdoc:create</a> for more information.</p>
+      </blockquote>
+      <h3 id=\\"jsdoc-build\\">jsdoc:build</h3>
+      <p>This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
+      documentation on static component class attributes that are not picked up with <code>react-docgen</code>. Examples are the
+      <code>Layover.HorizontalAnchors</code> and <code>Autocomplete.fuzzyFilter</code>.This will create a <code>jsdoc.json</code> file in the home directory
+      to be parsed by <a href=\\"#jsdoccreate\\">jsdoc:create</a>.</p>
       <h3 id=\\"docgen\\">docgen</h3>
+      <p>This will run the <a href=\\"#jsdoc\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
+      be created before the <code>docgen:create</code> script can be ran.</p>
+      <blockquote>
+      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a> or <a href=\\"#docgencreate\\">docgen:create</a> for more information.</p>
+      </blockquote>
+      <h3 id=\\"docgen-create\\">docgen:create</h3>
       <p>This will create a &quot;database&quot; of component documentation that can be used for the api
       endpoints. The &quot;database&quot; is just a JSON file of the results of <a href=\\"https://github.com/reactjs/react-docgen\\">react-docgen</a>
       component&#39;s endpoint and it&#39;s docgen. This will also create another &quot;database&quot; that is used for searching within the
