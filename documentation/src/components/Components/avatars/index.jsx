@@ -9,7 +9,7 @@ import RandomRaw from '!!raw-loader!./Random';
 
 const examples = [{
   title: 'Simple',
-  desscription: `
+  description: `
 An avatar can be made from one of the following:
 - an image
 - a \`FontIcon\`,
