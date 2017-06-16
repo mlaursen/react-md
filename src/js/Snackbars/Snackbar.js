@@ -38,6 +38,7 @@ export default class Snackbar extends PureComponent {
 
     this._clearTimeout = this._clearTimeout.bind(this);
     this._handleClick = this._handleClick.bind(this);
+    this._handleClose = this._handleClose.bind(this);
     this._handleAutohide = this._handleAutohide.bind(this);
     this._handleWindowBlur = this._handleWindowBlur.bind(this);
     this._handleWindowFocus = this._handleWindowFocus.bind(this);
@@ -76,6 +77,16 @@ export default class Snackbar extends PureComponent {
     if (typeof action.onClick === 'function') {
       action.onClick(e);
     }
+
+    if (this._fab) {
+      this._fab._animateForSnackbar(multiline, leaveTimeout);
+    }
+
+    onDismiss();
+  }
+
+  _handleClose() {
+    const { onDismiss, leaveTimeout, multiline } = this.props;
 
     if (this._fab) {
       this._fab._animateForSnackbar(multiline, leaveTimeout);
@@ -144,6 +155,7 @@ export default class Snackbar extends PureComponent {
     let { id } = this.props;
 
     let Component = 'p';
+    let closeButton;
     if (action) {
       Component = 'section';
       text = <p className="md-snackbar--toast md-snackbar--action">{text}</p>;
@@ -161,6 +173,10 @@ export default class Snackbar extends PureComponent {
           className: cn(btnProps.className, action.className),
           onClick: this._handleClick,
         });
+
+        if (action.closeButton) {
+          closeButton = <Button icon primary onClick={this._handleClose}>close</Button>;
+        }
       }
 
 
@@ -184,6 +200,7 @@ export default class Snackbar extends PureComponent {
       >
         {text}
         {action}
+        {closeButton}
       </Component>
     );
   }
