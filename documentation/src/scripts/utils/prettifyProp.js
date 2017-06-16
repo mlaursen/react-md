@@ -1,5 +1,5 @@
 import { kebabCase } from 'lodash/string';
-import formatMarkdown from 'utils/formatMarkdown';
+import { toCaterpillarCase } from 'utils/strings';
 
 const MANUAL_DEFINITITION_REGEX = /```docgen(.*\r?\n)*```/;
 
@@ -74,10 +74,12 @@ export function addExternalPropLinks(description) {
     }
 
     if (section.match(/(helpers|pickers|progress|selectioncontrols)/i)) {
-      section = `${section}/${kebabCase(component)}`; // eslint-disable-line no-param-reassign
+      section = `${toCaterpillarCase(section)}/${kebabCase(component)}`; // eslint-disable-line no-param-reassign
+    } else {
+      section = kebabCase(section);
     }
 
-    return `[${component}${hash}](/components/${kebabCase(section)}?tab=1${createHash(component, prop)})`;
+    return `[${component}${hash}](/components/${section}?tab=1${createHash(component, prop)})`;
   });
 }
 

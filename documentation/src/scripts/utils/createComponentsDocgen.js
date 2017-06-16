@@ -3,6 +3,7 @@ import path from 'path';
 import Promise from 'bluebird';
 import { parse } from 'react-docgen';
 import { kebabCase } from 'lodash/string';
+import { toCaterpillarCase } from 'utils/strings';
 
 import jsdocs from 'server/databases/jsdocs.json';
 import { BASE_SOURCE_PATH } from 'server/constants';
@@ -38,7 +39,7 @@ function getParams(parameters, file, method) {
     return [];
   }
 
-  return parameters.map(({ name, description, type, optional }) => {
+  return parameters.map(({ name, description, type, required }) => {
     if (!type) {
       throw new Error(`There is no defined param type for \`${file}\`'s method \`${method}\` param \`${name}\`. Please add one.`);
     }
@@ -47,13 +48,13 @@ function getParams(parameters, file, method) {
       name,
       description,
       type: type.name,
-      required: !optional,
+      required,
     };
   });
 }
 
-function getMethods(componentMethods, file) {
-  return componentMethods.reduce((methods, { name, params, returns, description, modifiers }) => {
+function getFunctions(componentFunctions, file) {
+  return componentFunctions.reduce((functions, { name, params, returns, description, modifiers }) => {
     if (!isPrivate(name)) {
       if (!description) {
         throw new Error(`There is no documentation for \`${file}\`'s method \`${name}\`. Please add one.`);
@@ -61,16 +62,16 @@ function getMethods(componentMethods, file) {
         throw new Error(`There is no defined return type for \`${file}\`'s method \`${name}\`. Please add one.`);
       }
 
-      methods.push({
+      functions.push({
         name,
-        type: modifiers.length ? 'function' : 'getter',
+        type: modifiers.length || !returns ? 'function' : 'getter',
         description,
         returns: returns ? { description: returns.description, type: returns.type.name } : null,
         params: getParams(params, file, name),
       });
     }
 
-    return methods;
+    return functions;
   }, []);
 }
 
@@ -79,11 +80,11 @@ export async function createComponentDocgen(folder, fullPath, file, customPropTy
 
   try {
     const source = await readFile(path.join(fullPath, fileName), 'UTF-8');
-    const { description, methods: allMethods, props } = await parse(source.replace(/ComposedComponent => /, ''));
-    const { methods, getters, enums } = getEnums(source).concat(getMethods(allMethods, file)).reduce((types, type) => {
+    const { description, methods: allFunctions, props } = await parse(source.replace(/ComposedComponent => /, ''));
+    const { functions, getters, enums } = getEnums(source).concat(getFunctions(allFunctions, file)).reduce((types, type) => {
       switch (type.type) {
         case 'function':
-          types.methods.push(type);
+          types.functions.push(type);
           break;
         case 'getter':
           types.getters.push(type);
@@ -92,16 +93,17 @@ export async function createComponentDocgen(folder, fullPath, file, customPropTy
           types.enums.push(type);
           break;
         default:
-          types.methods.push(type);
+          types.functions.push(type);
       }
 
       return types;
-    }, { methods: [], getters: [], enums: [] });
+    }, { functions: [], getters: [], enums: [] });
+
     return {
-      id: kebabCase(file),
+      id: toCaterpillarCase(file),
       source: `${BASE_SOURCE_PATH}/src/js/${folder}/${fileName}`,
       component: file,
-      methods,
+      functions,
       enums,
       getters,
       props: Object.keys(props).reduce((list, propName) => {

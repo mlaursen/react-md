@@ -21,11 +21,12 @@ function reduceProperties(props, { name, description, defaultvalue: value, kind 
   return props;
 }
 
-function reduceParams(params, { name, description, type }) {
+function reduceParams(params, { name, description, type, optional }) {
   params.push({
     name,
     description,
     type: type.names[0],
+    required: !optional,
   });
 
   return params;
