@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import ReactResizeDetector from 'react-resize-detector';
 
 import getField from '../utils/getField';
 import SelectField from '../SelectFields/SelectField';
@@ -146,7 +147,6 @@ export default class TablePagination extends PureComponent {
 
   componentDidMount() {
     this._position();
-    window.addEventListener('resize', this._position);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -168,10 +168,6 @@ export default class TablePagination extends PureComponent {
     ) {
       this._position();
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._position);
   }
 
   _setControls(controls) {
@@ -303,6 +299,7 @@ export default class TablePagination extends PureComponent {
             <div className="md-table-pagination" />
           </td>
         </tr>
+        <ReactResizeDetector handleWidth onResize={this._position} />
       </tfoot>
     );
   }
