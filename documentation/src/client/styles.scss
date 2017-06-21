@@ -34,3 +34,19 @@ h3 {
     font-size: $md-font-icon-dense-size;
   }
 }
+
+.link {
+  color: $md-primary-color;
+  display: inline-block;
+  text-decoration: none;
+  transition: color $md-transition-time;
+
+  &:visited {
+    color: get-swatch($md-primary-color, 200, true);
+  }
+
+  &:hover {
+    color: get-color('text', $md-light-theme);
+    text-decoration: underline;
+  }
+}

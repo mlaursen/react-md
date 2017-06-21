@@ -14,5 +14,6 @@ marked.setOptions({
 
 export default function formatMarkdown(markdown) {
   return marked(markdown)
-    .replace(/#(commit|pull|issues)-(\w+)/g, `${GITHUB_URL}/$1/$2`);
+    .replace(/#(commit|pull|issues)-(\w+)/g, `${GITHUB_URL}/$1/$2`)
+    .replace(/<a (href=".*")>/g, '<a $1 class="link">');
 }

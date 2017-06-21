@@ -13,7 +13,7 @@ exports[`Showcases should render all the showcases 1`] = `
       <p>The following is a list of products/apps that use react-md other than this documentation site. Their entire
       interface might not be implemented with react-md, but it should give a good idea of how it is used.</p>
       <p>Want to showcase your app/product? Either open a pull request adding your application or look at
-      <a href=\\"https://github.com/mlaursen/react-md/issues/196\\">the github issue</a> for getting your site added.</p>
+      <a href=\\"https://github.com/mlaursen/react-md/issues/196\\" class=\\"link\\">the github issue</a> for getting your site added.</p>
       ",
       }
     }

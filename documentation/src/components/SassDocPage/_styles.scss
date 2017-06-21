@@ -36,17 +36,6 @@ $sassdoc-color-size: 32px;
     }
   }
 
-  &__link {
-    color: $md-primary-color;
-    display: inline-block;
-    text-decoration: none;
-    transition: color $md-transition-time;
-
-    &:hover {
-      color: get-color('text', true);
-    }
-  }
-
   &__reference-list {
     @include md-ios-scroll-momentum;
 

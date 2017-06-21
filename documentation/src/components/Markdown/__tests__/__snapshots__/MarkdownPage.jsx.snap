@@ -10,14 +10,14 @@ exports[`MarkdownPage should render correctly 1`] = `
     dangerouslySetInnerHTML={
       Object {
         "__html": "<h1 id=\\"react-md-documentation\\">react-md documentation</h1>
-      <p>This is the main website for <a href=\\"https://react-md.mlaursen.com\\">https://react-md.mlaursen.com</a> that holds all the documentation
+      <p>This is the main website for <a href=\\"https://react-md.mlaursen.com\\" class=\\"link\\">https://react-md.mlaursen.com</a> that holds all the documentation
       and examples.</p>
       <h1 id=\\"table-of-contents\\">Table of Contents</h1>
       <ul>
-      <li><a href=\\"#getting-started\\">Getting Started</a></li>
-      <li><a href=\\"#about\\">About</a></li>
-      <li><a href=\\"#contributing\\">Contributing</a></li>
-      <li><a href=\\"#scripts\\">Scripts</a></li>
+      <li><a href=\\"#getting-started\\" class=\\"link\\">Getting Started</a></li>
+      <li><a href=\\"#about\\" class=\\"link\\">About</a></li>
+      <li><a href=\\"#contributing\\" class=\\"link\\">Contributing</a></li>
+      <li><a href=\\"#scripts\\" class=\\"link\\">Scripts</a></li>
       </ul>
       <h2 id=\\"getting-started\\">Getting Started</h2>
       <p>This repo uses <code>yarn</code> instead of <code>npm</code> as the package manager. If you use npm,
@@ -33,39 +33,39 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h2 id=\\"contributing\\">Contributing</h2>
       <h2 id=\\"scripts\\">Scripts</h2>
       <ul>
-      <li><a href=\\"#clean\\">clean</a></li>
-      <li><a href=\\"#prebuild\\">prebuild</a></li>
-      <li><a href=\\"#build\\">build</a></li>
-      <li><a href=\\"#jsdoc\\">jsdoc</a><ul>
-      <li><a href=\\"#jsdocbuild\\">jsdoc:build</a></li>
-      <li><a href=\\"#jsdoccreate\\">jsdoc:create</a></li>
+      <li><a href=\\"#clean\\" class=\\"link\\">clean</a></li>
+      <li><a href=\\"#prebuild\\" class=\\"link\\">prebuild</a></li>
+      <li><a href=\\"#build\\" class=\\"link\\">build</a></li>
+      <li><a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a><ul>
+      <li><a href=\\"#jsdocbuild\\" class=\\"link\\">jsdoc:build</a></li>
+      <li><a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a></li>
       </ul>
       </li>
-      <li><a href=\\"#docgen\\">docgen</a><ul>
-      <li><a href=\\"#docgencreate\\">docgen:create</a></li>
+      <li><a href=\\"#docgen\\" class=\\"link\\">docgen</a><ul>
+      <li><a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a></li>
       </ul>
       </li>
-      <li><a href=\\"#sassdoc\\">sassdoc</a><ul>
-      <li><a href=\\"#sassdocsite\\">sassdoc:site</a></li>
+      <li><a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a><ul>
+      <li><a href=\\"#sassdocsite\\" class=\\"link\\">sassdoc:site</a></li>
       </ul>
       </li>
-      <li><a href=\\"#start\\">start</a><ul>
-      <li><a href=\\"#startdev\\">start:dev</a></li>
-      <li><a href=\\"#startprod\\">start:prod</a></li>
+      <li><a href=\\"#start\\" class=\\"link\\">start</a><ul>
+      <li><a href=\\"#startdev\\" class=\\"link\\">start:dev</a></li>
+      <li><a href=\\"#startprod\\" class=\\"link\\">start:prod</a></li>
       </ul>
       </li>
-      <li><a href=\\"#dev\\">dev</a><ul>
-      <li><a href=\\"#devall\\">dev:all</a></li>
+      <li><a href=\\"#dev\\" class=\\"link\\">dev</a><ul>
+      <li><a href=\\"#devall\\" class=\\"link\\">dev:all</a></li>
       </ul>
       </li>
-      <li><a href=\\"#watchall\\">watch:all</a><ul>
-      <li><a href=\\"#watchdocgen\\">watch:docgen</a></li>
-      <li><a href=\\"#watchsassdoc\\">watch:sassdoc</a></li>
-      <li><a href=\\"#watchreact-md\\">watch:react-md</a></li>
+      <li><a href=\\"#watchall\\" class=\\"link\\">watch:all</a><ul>
+      <li><a href=\\"#watchdocgen\\" class=\\"link\\">watch:docgen</a></li>
+      <li><a href=\\"#watchsassdoc\\" class=\\"link\\">watch:sassdoc</a></li>
+      <li><a href=\\"#watchreact-md\\" class=\\"link\\">watch:react-md</a></li>
       </ul>
       </li>
-      <li><a href=\\"#test\\">test</a><ul>
-      <li><a href=\\"#testwatch\\">test:watch</a></li>
+      <li><a href=\\"#test\\" class=\\"link\\">test</a><ul>
+      <li><a href=\\"#testwatch\\" class=\\"link\\">test:watch</a></li>
       </ul>
       </li>
       </ul>
@@ -73,46 +73,46 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This will clean up any existing assets, generated themes for the website,
       and any of the &quot;databases&quot; that have been built.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a>, <a href=\\"#sassdoc\\">sassdoc</a>, or <a href=\\"#docgen\\">docgen</a> for more information
+      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a>, <a href=\\"#sassdoc\\">sassdoc</a>, or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
       <h3 id=\\"prebuild\\">prebuild</h3>
-      <p>This script automatically gets run before the <a href=\\"#build\\">build</a> script. It will
+      <p>This script automatically gets run before the <a href=\\"#build\\" class=\\"link\\">build</a> script. It will
       run (in order):</p>
       <ul>
-      <li><a href=\\"#clean\\">clean</a></li>
-      <li><a href=\\"#sassdoc-site\\">sassdoc:site</a></li>
-      <li><a href=\\"#docgen\\">docgen</a></li>
-      <li><a href=\\"#sassdoc\\">sassdoc</a></li>
+      <li><a href=\\"#clean\\" class=\\"link\\">clean</a></li>
+      <li><a href=\\"#sassdoc-site\\" class=\\"link\\">sassdoc:site</a></li>
+      <li><a href=\\"#docgen\\" class=\\"link\\">docgen</a></li>
+      <li><a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a></li>
       </ul>
       <h3 id=\\"build\\">build</h3>
       <p>This will build the website for production. All the files will be bundled and
       minified. In addition, all the &quot;databases&quot; will be created for searching and documentation.
-      Once it has been built, you can run <a href=\\"#start\\">start</a> to run the production server
+      Once it has been built, you can run <a href=\\"#start\\" class=\\"link\\">start</a> to run the production server
       with server side rendering.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\">docgen</a> for more information
+      <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
       <h3 id=\\"jsdoc\\">jsdoc</h3>
       <p>This task just runs the <code>jsdoc:build</code> follwed by <code>jsdoc:create</code>.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdocbuild\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\">jsdoc:create</a> for more information.</p>
+      <p>SEE: <a href=\\"#jsdocbuild\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a> for more information.</p>
       </blockquote>
       <h3 id=\\"jsdoc-build\\">jsdoc:build</h3>
       <p>This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
       documentation on static component class attributes that are not picked up with <code>react-docgen</code>. Examples are the
       <code>Layover.HorizontalAnchors</code> and <code>Autocomplete.fuzzyFilter</code>.This will create a <code>jsdoc.json</code> file in the home directory
-      to be parsed by <a href=\\"#jsdoccreate\\">jsdoc:create</a>.</p>
+      to be parsed by <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a>.</p>
       <h3 id=\\"docgen\\">docgen</h3>
-      <p>This will run the <a href=\\"#jsdoc\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
+      <p>This will run the <a href=\\"#jsdoc\\">jsdoc</a> script followed by the <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> task. The jsdoc &quot;database&quot; <em>must</em>
       be created before the <code>docgen:create</code> script can be ran.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a> or <a href=\\"#docgencreate\\">docgen:create</a> for more information.</p>
+      <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a> or <a href=\\"#docgencreate\\" class=\\"link\\">docgen:create</a> for more information.</p>
       </blockquote>
       <h3 id=\\"docgen-create\\">docgen:create</h3>
       <p>This will create a &quot;database&quot; of component documentation that can be used for the api
-      endpoints. The &quot;database&quot; is just a JSON file of the results of <a href=\\"https://github.com/reactjs/react-docgen\\">react-docgen</a>
+      endpoints. The &quot;database&quot; is just a JSON file of the results of <a href=\\"https://github.com/reactjs/react-docgen\\" class=\\"link\\">react-docgen</a>
       component&#39;s endpoint and it&#39;s docgen. This will also create another &quot;database&quot; that is used for searching within the
       site for specific component Prop Types or SassDoc.</p>
       <h3 id=\\"sassdoc\\">sassdoc</h3>
@@ -120,41 +120,41 @@ exports[`MarkdownPage should render correctly 1`] = `
       it is a simple mapping of the component group to related documentation. This command will also create a SassDoc search
       &quot;database&quot; so that functions, mixins, selectors, and variables can be found in the main search.</p>
       <h3 id=\\"sassdoc-site\\">sassdoc:site</h3>
-      <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for sassdoc. This is mostly used
+      <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for sassdoc. This is mostly used
       as a fallback for things that are not directly documentable within the main website.</p>
       <h3 id=\\"start\\">start</h3>
-      <p>This will start the production server. The <a href=\\"#build\\">build</a> <strong>must</strong> have been run before the production server can
+      <p>This will start the production server. The <a href=\\"#build\\" class=\\"link\\">build</a> <strong>must</strong> have been run before the production server can
       be started.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#startprod\\">start:prod</a> for a simple wrapper to run the build and then start the server immediately.</p>
+      <p>SEE: <a href=\\"#startprod\\" class=\\"link\\">start:prod</a> for a simple wrapper to run the build and then start the server immediately.</p>
       </blockquote>
       <h3 id=\\"start-dev\\">start:dev</h3>
       <p>This will start up the server in development mode. This is helpful if you don&#39;t need every watcher running and have already
       built the databases or you need to test server code independently so you have access to the <code>nodemon</code> <code>restart</code> ability. Both
-      <a href=\\"#dev\\">dev</a> and <a href=\\"#devall\\">dev:all</a> end up using this behind the scenes.</p>
+      <a href=\\"#dev\\">dev</a> and <a href=\\"#devall\\" class=\\"link\\">dev:all</a> end up using this behind the scenes.</p>
       <p>The development server will be restarted each time any config file changes, or server related files.</p>
       <h3 id=\\"start-prod\\">start:prod</h3>
-      <p>This will run the <a href=\\"#build\\">build</a> command followed by the <a href=\\"#start\\">start</a>. It is really just for testing
+      <p>This will run the <a href=\\"#build\\">build</a> command followed by the <a href=\\"#start\\" class=\\"link\\">start</a>. It is really just for testing
       the production mode quickly without deploying to my main website.</p>
       <h3 id=\\"dev\\">dev</h3>
-      <p>This is the second most useful development script. It will only run the <a href=\\"#prebuild\\">prebuild</a> script
-      and concurrently run the <a href=\\"#watchreact-md\\">watch:react-md</a> and <a href=\\"#startdev\\">start:dev</a>. Mostly
+      <p>This is the second most useful development script. It will only run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
+      and concurrently run the <a href=\\"#watchreact-md\\">watch:react-md</a> and <a href=\\"#startdev\\" class=\\"link\\">start:dev</a>. Mostly
       use this script if you only need to see the examples changes without any docgen or SassDoc updates.</p>
       <h3 id=\\"dev-all\\">dev:all</h3>
-      <p>Whew. This is the most useful development script to use. It will run the <a href=\\"#prebuild\\">prebuild</a> script
+      <p>Whew. This is the most useful development script to use. It will run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
       and then concurrently run all the watchers and start up the dev server.</p>
       <blockquote>
-      <p>SEE: <a href=\\"#watchall\\">watch:all</a></p>
+      <p>SEE: <a href=\\"#watchall\\" class=\\"link\\">watch:all</a></p>
       </blockquote>
       <h3 id=\\"watch-all\\">watch:all</h3>
       <p>This will run a watcher for rebuilding the docgen and SassDoc databases as well as recompiling the react-md
       source code into the <code>lib/</code> folder.</p>
       <h3 id=\\"watch-docgen\\">watch:docgen</h3>
-      <p>This will create a watcher for the <a href=\\"#docgen\\">docgen</a> script and rebuild the &quot;database&quot; when a component&#39;s
+      <p>This will create a watcher for the <a href=\\"#docgen\\" class=\\"link\\">docgen</a> script and rebuild the &quot;database&quot; when a component&#39;s
       source code has changed. This isn&#39;t completely optimized since it doesn&#39;t check differences in content before
       writing.</p>
       <h3 id=\\"watch-sassdoc\\">watch:sassdoc</h3>
-      <p>This will create a watcher for the <a href=\\"#sassdoc\\">sassdoc</a> script and rebuild the &quot;database&quot; when a component&#39;s
+      <p>This will create a watcher for the <a href=\\"#sassdoc\\" class=\\"link\\">sassdoc</a> script and rebuild the &quot;database&quot; when a component&#39;s
       source code has changed. This isn&#39;t completely optimized since it doesn&#39;t check differences in content before
       writing.</p>
       <h3 id=\\"watch-react-md\\">watch:react-md</h3>

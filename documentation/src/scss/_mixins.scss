@@ -5,6 +5,7 @@
   .custom-theme {
     @include style-logo-to-theme($primary, $secondary, $force);
     @include style-404-page-to-theme($primary, $secondary, $force);
+    @include style-links-to-theme($primary, $dark-theme, $force);
     @include style-markdown-to-theme($dark-theme);
   }
 }
@@ -55,6 +56,24 @@
   }
 }
 
+@mixin style-links-to-theme($primary: $md-primary-color, $dark-theme: false, $force: false) {
+  @if $force or $primary != $md-primary-color {
+    .link:not(:hover) {
+      color: $primary;
+
+      &:visited {
+        color: get-swatch($primary, 200, true);
+      }
+    }
+  }
+
+  @if $force or $dark-theme {
+    .link:hover {
+      color: get-color('secondary', false);
+    }
+  }
+}
+
 @mixin style-markdown-to-theme($dark-theme) {
   @if $dark-theme {
     blockquote {
@@ -67,14 +86,6 @@
 
     ul:not(.md-list) {
       color: get-color('text', false);
-    }
-
-    a:not(.md-btn) {
-      color: $md-purple-a-400;
-
-      &:visited {
-        color: $md-purple-a-100;
-      }
     }
 
     .prop-types__prop-type {
