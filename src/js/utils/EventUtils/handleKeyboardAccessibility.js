@@ -30,7 +30,7 @@ export default function handleKeyboardAccessibility(e, onClick, listenToEnter = 
   const space = listenToSpace && key === SPACE;
   const enter = key === ENTER;
 
-  if (space) {
+  if (space && e.target.tagName !== 'INPUT') {
     // Stop page scrolling
     e.preventDefault();
   }
