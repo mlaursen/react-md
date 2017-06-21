@@ -6,6 +6,8 @@ import MenuAutocomplete from './MenuAutocomplete';
 import MenuAutocompleteRaw from '!!raw-loader!./MenuAutocomplete.jsx';
 import InlineAutocomplete from './InlineAutocomplete';
 import InlineAutocompleteRaw from '!!raw-loader!./InlineAutocomplete.jsx';
+import GithubAjaxExample from './GithubAjaxExample';
+import GithubAjaxExampleRaw from '!!raw-loader!./GithubAjaxExample';
 
 const examples = [{
   title: 'Menu Completion View',
@@ -29,6 +31,10 @@ The default \`findInlineSuggestion\` function just does a simple ignore case mat
   `,
   code: InlineAutocompleteRaw,
   children: <InlineAutocomplete />,
+}, {
+  title: 'Github Ajax Example',
+  code: GithubAjaxExampleRaw,
+  children: <GithubAjaxExample />,
 }];
 
 const Autocompletes = () => <ExamplesPage description={readme} examples={examples} />;

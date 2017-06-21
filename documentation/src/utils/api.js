@@ -5,6 +5,7 @@ import {
   SEARCH_ENDPOINT,
   DOCGENS_ENDPOINT,
   SASSDOCS_ENDPOINT,
+  GITHUB_API_ENDPOINT,
 } from 'constants/application';
 
 export default function fetch(endpoint) {
@@ -30,4 +31,14 @@ export function fetchDocgen(endpoint, server = '') {
 
 export function fetchSassdoc(endpoint, server = '') {
   return fetch(`${server}${API_ENDPOINT}${SASSDOCS_ENDPOINT}/${endpoint}`);
+}
+
+export function fetchGithub(endpoint, options) {
+  return fetch(`${GITHUB_API_ENDPOINT}${endpoint}`, {
+    ...options,
+    headers: {
+      ...(options ? options.headers : undefined),
+      Accept: 'application/vnd.github.v3+json',
+    },
+  });
 }
