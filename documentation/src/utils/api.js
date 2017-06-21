@@ -6,6 +6,7 @@ import {
   DOCGENS_ENDPOINT,
   SASSDOCS_ENDPOINT,
   GITHUB_API_ENDPOINT,
+  // VERSION,
 } from 'constants/application';
 
 export default function fetch(endpoint) {
@@ -33,12 +34,26 @@ export function fetchSassdoc(endpoint, server = '') {
   return fetch(`${server}${API_ENDPOINT}${SASSDOCS_ENDPOINT}/${endpoint}`);
 }
 
-export function fetchGithub(endpoint, options) {
-  return fetch(`${GITHUB_API_ENDPOINT}${endpoint}`, {
-    ...options,
-    headers: {
-      ...(options ? options.headers : undefined),
-      Accept: 'application/vnd.github.v3+json',
-    },
+export function fetchGithub(endpoint, options = {}) {
+  const headers = new Headers({
+    ...options.headers,
+    Accept: 'application/vnd.github.v3+json',
+    // 'User-Agent': `react-md-documentation/${VERSION} mlaursen`,
   });
+  return global.fetch(`${GITHUB_API_ENDPOINT}${endpoint}`, {
+    ...options,
+    headers,
+  });
+}
+
+export function getGithubRateLimits({ headers }) {
+  const limit = headers.get('X-RateLimit-Limit');
+  const remaining = headers.get('X-RateLimit-Remaining');
+  const reset = new Date(headers.get('X-RateLimit-Reset') * 1000);
+  return { limit, remaining, reset };
+}
+
+export async function fetchGithubRateLimits() {
+  const response = await fetchGithub('/users/mlaursen');
+  return getGithubRateLimits(response);
 }
