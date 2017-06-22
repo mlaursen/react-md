@@ -18,7 +18,7 @@ export default class SimpleTabs extends PureComponent {
 
   componentWillUnmount() {
     if (this._timeout) {
-      clearTimeout(this._timeut);
+      clearTimeout(this._timeout);
     }
   }
 
