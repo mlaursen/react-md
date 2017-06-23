@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import ResizeObserver from 'resize-observer-polyfill';
 
 /**
  * The `TextArea` component is used to allow a dynamic height for the
@@ -21,19 +22,24 @@ export default class TextArea extends PureComponent {
     onHeightChange: PropTypes.func,
     block: PropTypes.bool,
     label: PropTypes.node,
+    setContainerRef: PropTypes.func,
   };
 
-  state = { height: null };
+  constructor() {
+    super();
+    this.state = { height: null };
+    this._resizeObserver = new ResizeObserver(this._handleResize);
+  }
 
   componentDidMount() {
-    this._rowHeight = this._calcRowHeight(this._field, this.props);
+    this._rowHeight = this._calcRowHeight();
     this._syncHeightWithMask();
-    window.addEventListener('resize', this._handleResize);
+    this._resizeObserver.observe(this._container);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.rows !== nextProps.rows) {
-      this._rowHeight = this._calcRowHeight(this._field, this.props);
+      this._rowHeight = this._calcRowHeight();
     }
 
     if (this.props.value !== nextProps.value || this.props.maxRows !== nextProps.maxRows) {
@@ -42,7 +48,7 @@ export default class TextArea extends PureComponent {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this._handleResize);
+    this._resizeObserver.disconnect();
   }
 
   getField = () => this._field;
@@ -57,8 +63,8 @@ export default class TextArea extends PureComponent {
     this._field.blur();
   };
 
-  _calcRowHeight(field, props) {
-    return field.offsetHeight / props.rows;
+  _calcRowHeight() {
+    return this._mask.offsetHeight / this.props.rows;
   }
 
   _setMask = (mask) => {
@@ -69,8 +75,15 @@ export default class TextArea extends PureComponent {
     this._field = field;
   };
 
+  _setContainer = (container) => {
+    this._container = container;
+    if (this.props.setContainerRef) {
+      this.props.setContainerRef(container);
+    }
+  };
+
   _handleResize = () => {
-    this._rowHeight = this._calcRowHeight(this._field, this.props);
+    this._rowHeight = this._calcRowHeight();
     this._syncHeightWithMask();
   };
 
@@ -122,6 +135,7 @@ export default class TextArea extends PureComponent {
       maxRows,
       onChange,
       onHeightChange,
+      setContainerRef,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -129,6 +143,7 @@ export default class TextArea extends PureComponent {
     return (
       <div
         style={{ height: height && height + 5 }}
+        ref={this._setContainer}
         className={cn('md-text-field-multiline-container', {
           'md-text-field--margin': !label && !block,
           'md-text-field--floating-margin': label && !block,
