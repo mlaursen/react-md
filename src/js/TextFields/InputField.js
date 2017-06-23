@@ -27,6 +27,7 @@ export default class InputField extends PureComponent {
     passwordVisible: PropTypes.bool,
     inlineIndicator: PropTypes.bool,
     onHeightChange: PropTypes.func,
+    setContainerRef: PropTypes.func,
   };
 
   getField = () => { // eslint-disable-line arrow-body-style
@@ -68,6 +69,7 @@ export default class InputField extends PureComponent {
       inlineIndicator,
       maxRows,
       onHeightChange,
+      setContainerRef,
       ...props
     } = this.props;
 
@@ -80,6 +82,7 @@ export default class InputField extends PureComponent {
       props.block = block;
       props.maxRows = maxRows;
       props.onHeightChange = onHeightChange;
+      props.setContainerRef = setContainerRef;
     }
 
     return createElement(Component, {

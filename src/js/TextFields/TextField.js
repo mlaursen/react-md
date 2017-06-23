@@ -4,6 +4,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
@@ -405,12 +406,13 @@ export default class TextField extends PureComponent {
       width: props.resize ? props.resize.min : null,
       currentLength,
     };
+
+    this._resizeObserver = new ResizeObserver(this._updateMultilineHeight);
   }
 
   componentDidMount() {
     if (this._isMultiline(this.props)) {
       this._updateMultilineHeight();
-      window.addEventListener('resize', this._updateMultilineHeight);
     }
 
     const value = this.props.value || this.props.defaultValue;
@@ -428,7 +430,11 @@ export default class TextField extends PureComponent {
     const multiline = this._isMultiline(nextProps);
     if (this._isMultiline(this.props) !== multiline) {
       this._updateMultilineHeight(nextProps);
-      window[`${multiline ? 'add' : 'remove'}EventListener`]('resize', this._updateMultilineHeight);
+      if (multiline) {
+        this.elementResizeDetector.listenTo(this._node, this._updateMultilineHeight);
+      } else {
+        this.elementResizeDetector.removeListener(this._node, this._updateMultilineHeight);
+      }
     }
 
     if (this.props.value !== nextProps.value) {
@@ -461,7 +467,7 @@ export default class TextField extends PureComponent {
     }
 
     if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
-      this._updateMultilineHeight(this.props);
+      this._updateMultilineHeight();
     }
   }
 
@@ -473,9 +479,7 @@ export default class TextField extends PureComponent {
       rm('touchstart', this._handleOutsideClick);
     }
 
-    if (this._isMultiline(this.props)) {
-      rm('resize', this._updateMultilineHeight);
-    }
+    this._resizeObserver.disconnect();
   }
 
   /**
@@ -582,9 +586,19 @@ export default class TextField extends PureComponent {
   };
 
   _setContainer = (container) => {
-    if (container !== null) {
+    if (container !== this._node) {
+      if (this._node) {
+        this._resizeObserver.unobserve(this._node);
+      }
       this._node = container;
+      if (this._node) {
+        this._resizeObserver.observe(this._node);
+      }
     }
+  };
+
+  _setMultilineFieldContainer = (multilineFieldContainer) => {
+    this._multilineFieldContainer = multilineFieldContainer;
   };
 
   _setPasswordBtn = (btn) => {
@@ -609,14 +623,14 @@ export default class TextField extends PureComponent {
     }
   };
 
-  _updateMultilineHeight = (props = this.props) => {
-    const { block } = props;
-    const multiline = this._isMultiline(props);
+  _updateMultilineHeight = () => {
+    const { block } = this.props;
+    const multiline = this._isMultiline(this.props);
     if (!multiline) {
       return;
     }
 
-    const cs = window.getComputedStyle(findDOMNode(this._field));
+    const cs = window.getComputedStyle(this._multilineFieldContainer);
     this._additionalHeight = parseInt(cs.getPropertyValue('margin-top'), 10);
 
     if (!block) {
@@ -872,6 +886,7 @@ export default class TextField extends PureComponent {
         fullWidth={fullWidth}
         passwordVisible={passwordVisible}
         placeholder={placeholder}
+        setContainerRef={this._setMultilineFieldContainer}
         block={block}
         onFocus={this._handleFocus}
         onKeyDown={this._handleKeyDown}
