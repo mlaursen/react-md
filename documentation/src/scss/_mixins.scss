@@ -62,7 +62,7 @@
       color: $primary;
 
       &:visited {
-        color: get-swatch($primary, 200, true);
+        color: get-swatch($primary, 700);
       }
     }
   }

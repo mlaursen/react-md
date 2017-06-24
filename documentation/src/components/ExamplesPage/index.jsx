@@ -38,7 +38,7 @@ ExamplesPage.propTypes = {
     title: PropTypes.string.isRequired,
     code: PropTypes.string.isRequired,
     description: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     tableCard: PropTypes.bool,
   })).isRequired,
 };

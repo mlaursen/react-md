@@ -46,7 +46,7 @@ ExampleCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   code: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   tableCard: PropTypes.bool,
 };
 

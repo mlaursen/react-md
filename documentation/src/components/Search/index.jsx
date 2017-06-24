@@ -103,7 +103,7 @@ export class PureSearch extends PureComponent {
   timeout = null;
 
   /**
-   * Basically make sure the `Waypoint` has been mounted before attempting to fetch the next results.
+   * Make sure the `Waypoint` has been mounted before attempting to fetch the next results.
    * When autocomplete menu opens for the first time, the `previousPosition` will be undefined and the
    * next results would also be fetched.
    */
@@ -127,7 +127,7 @@ export class PureSearch extends PureComponent {
   };
 
   /**
-   * Basically map the results shape into props for a `ListItem`.
+   * Map the results shape into props for a `ListItem`.
    *
    * @param {Object} result - The result object to convert.
    * @param {String} result.name - The name for the search result.
