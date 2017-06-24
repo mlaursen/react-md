@@ -19,6 +19,7 @@ import {
   Avatars,
   Badges,
   BottomNavigations,
+  Buttons,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -56,6 +57,9 @@ const Components = (props) => {
       break;
     case 'bottom-navigations':
       Component = BottomNavigations;
+      break;
+    case 'buttons':
+      Component = Buttons;
       break;
     default:
       Component = null;

@@ -25,3 +25,4 @@ export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Au
 export const Avatars = asyncComponent(() => import(/* webpackChunkName: Avatars */ 'components/Components/avatars'));
 export const Badges = asyncComponent(() => import(/* webpackChunkName: Badges */ 'components/Components/badges'));
 export const BottomNavigations = asyncComponent(() => import(/* webpackChunkName: BottomNavigations */ 'components/Components/bottom-navigations'));
+export const Buttons = asyncComponent(() => import(/* webpackChunkName: Buttons */ 'components/Components/buttons'));

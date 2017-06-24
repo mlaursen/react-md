@@ -25,3 +25,4 @@ export const Autocompletes = syncComponent('Autocompletes', require('components/
 export const Avatars = syncComponent('Avatars', require('components/Components/avatars'));
 export const Badges = syncComponent('Badges', require('components/Components/badges'));
 export const BottomNavigations = syncComponent('BottomNavigations', require('components/Components/bottom-navigations'));
+export const Buttons = syncComponent('Buttons', require('components/Components/buttons'));
