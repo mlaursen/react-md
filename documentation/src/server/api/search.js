@@ -1,4 +1,5 @@
 import Fuse from 'fuse.js';
+import { BAD_REQUEST, NOT_FOUND } from 'constants/responseCodes';
 import { toTitle } from 'utils/strings';
 import { baseRoutes } from 'server/routes';
 import proptypesDatabase from 'server/databases/proptypeLinks.json';
@@ -56,7 +57,7 @@ export default function search(req, res) {
   }
 
   if (!q || !isInt(start) || !isInt(limit) || start < 0 || limit > 50 || limit < 1) {
-    res.sendStatus(400);
+    res.sendStatus(BAD_REQUEST);
     return;
   }
   start = parseInt(start, 10);
@@ -66,7 +67,7 @@ export default function search(req, res) {
 
   const total = data.length;
   if (start > total) {
-    res.sendStatus(400);
+    res.sendStatus(BAD_REQUEST);
     return;
   }
 

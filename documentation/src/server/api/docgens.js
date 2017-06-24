@@ -1,6 +1,7 @@
 /* eslint-disable new-cap */
 import express from 'express';
 import { difference } from 'lodash/array';
+import { BAD_REQUEST, NOT_FOUND } from 'constants/responseCodes';
 import { NESTED_GROUPS } from 'server/constants';
 import database from 'server/databases/docgens.json';
 
@@ -12,9 +13,9 @@ function docgens(req, res) {
   const nested = section && NESTED_GROUPS.indexOf(section) !== -1 && database[section][component];
   const data = nested || database[component];
   if (!component) {
-    return res.sendStatus(400);
+    return res.sendStatus(BAD_REQUEST);
   } else if (GROUPS.indexOf(component) === -1 && !data) {
-    return res.sendStatus(404);
+    return res.sendStatus(NOT_FOUND);
   }
 
   return res.json(data);

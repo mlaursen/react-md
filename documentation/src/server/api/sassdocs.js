@@ -1,5 +1,6 @@
 /* eslint-disable new-cap */
 import express from 'express';
+import { BAD_REQUEST, NOT_FOUND } from 'constants/responseCodes';
 import database from 'server/databases/sassdocs.json';
 
 const sassdocsRouter = express.Router();
@@ -9,12 +10,12 @@ function sassdocs(req, res) {
   const layovers = component === 'layovers';
   const helpers = section === 'helpers';
   if (!component || (section && !helpers)) {
-    res.sendStatus(400);
+    res.sendStatus(BAD_REQUEST);
   }
 
   const data = helpers && !layovers ? database[section] : database[component];
   if (!data) {
-    res.sendStatus(404);
+    res.sendStatus(NOT_FOUND);
   } else {
     res.json(data);
   }
