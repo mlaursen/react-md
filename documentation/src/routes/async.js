@@ -24,3 +24,4 @@ export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: Pr
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));
 export const Avatars = asyncComponent(() => import(/* webpackChunkName: Avatars */ 'components/Components/avatars'));
 export const Badges = asyncComponent(() => import(/* webpackChunkName: Badges */ 'components/Components/badges'));
+export const BottomNavigations = asyncComponent(() => import(/* webpackChunkName: BottomNavigations */ 'components/Components/bottom-navigations'));

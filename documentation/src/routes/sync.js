@@ -24,3 +24,4 @@ export const PropTypesPage = syncComponent('PropTypesPage', require('components/
 export const Autocompletes = syncComponent('Autocompletes', require('components/Components/autocompletes'));
 export const Avatars = syncComponent('Avatars', require('components/Components/avatars'));
 export const Badges = syncComponent('Badges', require('components/Components/badges'));
+export const BottomNavigations = syncComponent('BottomNavigations', require('components/Components/bottom-navigations'));

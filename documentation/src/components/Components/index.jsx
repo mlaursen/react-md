@@ -18,6 +18,7 @@ import {
   Autocompletes,
   Avatars,
   Badges,
+  BottomNavigations,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -52,6 +53,9 @@ const Components = (props) => {
       break;
     case 'badges':
       Component = Badges;
+      break;
+    case 'bottom-navigations':
+      Component = BottomNavigations;
       break;
     default:
       Component = null;
