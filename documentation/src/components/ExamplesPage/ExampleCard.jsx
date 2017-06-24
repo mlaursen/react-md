@@ -36,7 +36,9 @@ ${code}
       expanderTooltipDelay={300}
     >
       <CardTitle expander title={title} />
-      <Markdown markdown={markdown} expandable component={CardText} />
+      <CardText expandable>
+        <Markdown markdown={markdown} />
+      </CardText>
       {children}
     </Card>
   );

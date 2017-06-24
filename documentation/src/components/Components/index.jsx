@@ -17,6 +17,7 @@ const { components, sections } = componentRoutes.reduce((map, route) => {
 import {
   Autocompletes,
   Avatars,
+  Badges,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -48,6 +49,9 @@ const Components = (props) => {
       break;
     case 'avatars':
       Component = Avatars;
+      break;
+    case 'badges':
+      Component = Badges;
       break;
     default:
       Component = null;
