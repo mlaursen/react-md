@@ -30,13 +30,10 @@ export class PureSassDocPage extends PureComponent {
   componentDidMount() {
     const { sassdocRequest, component, section } = this.props;
     sassdocRequest(component, section);
-
-    this.setFinderTimeout();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.sassdoc !== prevProps.sassdoc) {
-      this.setFinderTimeout();
       scrollRestoration();
     }
   }
@@ -46,15 +43,6 @@ export class PureSassDocPage extends PureComponent {
       clearTimeout(this.timeout);
     }
   }
-
-  setFinderTimeout = () => {
-    if (this.props.sassdoc !== null && this.props.desktop) {
-      this.timeout = setTimeout(() => {
-        this.timeout = null;
-        this.setState({ finderVisible: true });
-      }, 450);
-    }
-  };
 
   toggleFinder = () => {
     this.setState({ finderVisible: !this.state.finderVisible });
