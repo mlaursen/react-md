@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
+import { padStart } from 'lodash/string';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn } from 'react-md/lib/DataTables';
 
 import Markdown from 'components/Markdown';
 import { githubRateLimitRequest } from 'state/github';
+import { M_DASH } from 'constants/unicode';
 
 import './_rate-limiting.scss';
 
@@ -53,10 +55,10 @@ export class AboutRateLimiting extends PureComponent {
   getResetTime = ({ reset }) => {
     const diff = reset - Math.floor(Date.now() / 1000);
     if (diff <= 0) {
-      return '-';
+      return M_DASH;
     }
 
-    return `${Math.floor(diff / 60)}:${diff % 60}`;
+    return `${padStart(Math.floor(diff / 60), 2, '0')}:${padStart(diff % 60, 2, '0')}`;
   };
 
   getResetTimes = ({ core, search }) => ({
@@ -92,8 +94,8 @@ export class AboutRateLimiting extends PureComponent {
             </TableRow>
             <TableRow>
               <TableColumn header scope="row">Remaining</TableColumn>
-              <TableColumn numeric>{core.remaining}</TableColumn>
-              <TableColumn numeric>{search.remaining}</TableColumn>
+              <TableColumn numeric>{core.remaining === -1 ? M_DASH : core.remaining}</TableColumn>
+              <TableColumn numeric>{search.remaining === -1 ? M_DASH : search.remaining}</TableColumn>
             </TableRow>
             <TableRow>
               <TableColumn header scope="row">Resets in</TableColumn>
