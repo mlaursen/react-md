@@ -1,5 +1,6 @@
 import shallowEqual from 'shallowequal';
 import { GITHUB_SUCCESS } from './cache';
+import { RATE_LIMIT, RATE_REMAINING, RATE_RESET } from 'constants/headerKeys';
 
 export const GITHUB_RATE_LIMIT_REQUEST = 'GITHUB_RATE_LIMIT_REQUEST';
 export const GITHUB_RATE_LIMIT_SUCCESS = 'GITHUB_RATE_LIMIT_SUCCESS';
@@ -33,18 +34,18 @@ function setRateLimits(state, { core, search }) {
 
 function updateRateLimiting(state, { headers, endpoint }) {
   const key = endpoint.indexOf('/search') === 0 ? 'search' : 'core';
-  const limit = headers.get('X-RateLimit-Limit');
-  const remaining = headers.get('X-RateLimit-Remaining');
-  const reset = headers.get('X-RateLimit-Reset');
+  const limit = parseInt(headers.get(RATE_LIMIT), 10);
+  const remaining = parseInt(headers.get(RATE_REMAINING), 10);
+  const reset = parseInt(headers.get(RATE_RESET), 10);
   state[key] = { limit, remaining, reset };
 
   return state;
 }
 
 const RESET = 1372700873;
-const INITIAL_STATE = {
-  core: { limit: 60, remaining: 60, reset: RESET },
-  search: { limit: 10, remaining: 10, reset: RESET },
+export const INITIAL_STATE = {
+  core: { limit: 60, remaining: -1, reset: RESET },
+  search: { limit: 10, remaining: -1, reset: RESET },
 };
 
 export default function rateLimits(state = INITIAL_STATE, action) {
