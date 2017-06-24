@@ -7,7 +7,7 @@ import MenuAutocompleteRaw from '!!raw-loader!./MenuAutocomplete.jsx';
 import InlineAutocomplete from './InlineAutocomplete';
 import InlineAutocompleteRaw from '!!raw-loader!./InlineAutocomplete.jsx';
 import GithubAjaxExample from './GithubAjaxExample';
-import GithubAjaxExampleRaw from '!!raw-loader!./GithubAjaxExample';
+import GithubAjaxExampleRaw from './GithubAjaxExample/code';
 
 const examples = [{
   title: 'Menu Completion View',

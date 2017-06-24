@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default PropTypes.shape({
+export const userShape = PropTypes.shape({
   avatar_url: PropTypes.string.isRequired,
   events_url: PropTypes.string.isRequired,
   followers_url: PropTypes.string.isRequired,
@@ -19,3 +19,8 @@ export default PropTypes.shape({
   type: PropTypes.oneOf(['User', 'Organization']).isRequired,
   url: PropTypes.string.isRequired,
 });
+
+export const repoShape = {
+  name: PropTypes.string.isRequired,
+  full_name: PropTypes.string.isRequired,
+};
