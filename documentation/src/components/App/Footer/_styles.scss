@@ -4,6 +4,10 @@ $footer-height: 88px;
 $footer-margin: -8px;
 $footer-padding: 2.5em;
 
+*[aria-busy] ~ .footer {
+  margin-top: 100vh;
+}
+
 .footer {
   background: $md-grey-800;
   color: $md-white-base;
