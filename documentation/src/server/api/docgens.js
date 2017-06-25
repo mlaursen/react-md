@@ -9,9 +9,14 @@ const GROUPS = difference(Object.keys(database), NESTED_GROUPS);
 const docgensRouter = express.Router();
 
 function docgens(req, res) {
-  const { component, section } = req.params;
-  const nested = section && NESTED_GROUPS.indexOf(section) !== -1 && database[section][component];
-  const data = nested || database[component];
+  const { section } = req.params;
+  let { component } = req.params;
+  if (component === 'selection-control') {
+    component += 's';
+  }
+
+  const data = (section && NESTED_GROUPS.indexOf(section) !== -1 && database[section][component])
+    || database[component];
   if (!component) {
     return res.sendStatus(BAD_REQUEST);
   } else if (GROUPS.indexOf(component) === -1 && !data) {

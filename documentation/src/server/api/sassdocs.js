@@ -6,11 +6,17 @@ import database from 'server/databases/sassdocs.json';
 const sassdocsRouter = express.Router();
 
 function sassdocs(req, res) {
-  const { component, section } = req.params;
+  const { section } = req.params;
+  let { component } = req.params;
+  if (component === 'font-icons') {
+    component = 'icons';
+  }
+
   const layovers = component === 'layovers';
   const helpers = section === 'helpers';
   if (!component || (section && !helpers)) {
     res.sendStatus(BAD_REQUEST);
+    return;
   }
 
   const data = helpers && !layovers ? database[section] : database[component];

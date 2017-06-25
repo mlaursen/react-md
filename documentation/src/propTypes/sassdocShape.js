@@ -3,7 +3,7 @@ import parameterShape from './parameterShape';
 import sassdocLinkShape from './sassdocLinkShape';
 import exampleShape from './exampleShape';
 
-const variableType = PropTypes.oneOf(['Boolean', 'Number', 'String', 'Map', 'Color']);
+const variableType = PropTypes.oneOf(['Boolean', 'Number', 'String', 'Map', 'Color', 'List']);
 
 export default PropTypes.shape({
   code: PropTypes.string.isRequired,

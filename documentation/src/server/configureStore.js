@@ -65,18 +65,26 @@ export default async function configureStore(req) {
   });
 
   store.dispatch(updateCustomTheme(store.getState().theme.href));
-  if (routes.indexOf(pathname.replace(/\?.*/, '')) === -1) {
-    store.dispatch(pageNotFound());
-  } else if (tab === 1 && componentRoutes.indexOf(pathname) !== -1) {
-    const endpoint = getEndpoint(pathname);
-    const ids = endpoint.split('/');
-    const data = await fetchDocgen(endpoint, getServerUrl(req));
-    store.dispatch(docgenSuccess(ids, data));
-  } else if (isSassDocRoute(pathname, tab)) {
-    const endpoint = getEndpoint(pathname);
-    const ids = endpoint.split('/');
-    const data = await fetchSassdoc(endpoint, getServerUrl(req));
-    store.dispatch(sassdocSuccess(ids, data));
+  try {
+    if (routes.indexOf(pathname.replace(/\?.*/, '')) === -1) {
+      store.dispatch(pageNotFound());
+    } else if (tab === 1 && componentRoutes.indexOf(pathname) !== -1) {
+      const endpoint = getEndpoint(pathname);
+      const ids = endpoint.split('/');
+      const data = await fetchDocgen(endpoint, getServerUrl(req));
+      store.dispatch(docgenSuccess(ids, data));
+    } else if (isSassDocRoute(pathname, tab)) {
+      const endpoint = getEndpoint(pathname)
+        .replace(/\/(date|time|linear|circular|selection-control|checkboxes|radios|switches)/, '');
+      const ids = endpoint.split('/');
+      const data = await fetchSassdoc(endpoint, getServerUrl(req));
+      store.dispatch(sassdocSuccess(ids, data));
+    }
+  } catch (e) {
+    winston.error(e, e.message);
+    if (__DEV__) {
+      throw e;
+    }
   }
 
   return store;

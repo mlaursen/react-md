@@ -32,7 +32,6 @@ export default class DocumentationTabs extends PureComponent {
     const {
       defaultMedia,
       location: { pathname, search },
-      match: { params: { section } },
     } = this.props;
 
     const { tab } = parse(search.replace('?', ''));
@@ -50,7 +49,7 @@ export default class DocumentationTabs extends PureComponent {
       propTypesTab = <Tab label="Prop Types" id="documentation-prop-types" key="prop-types" />;
     }
 
-    if (colors || pathname.indexOf('layovers') !== -1 || section !== 'helpers') {
+    if (colors || pathname.match(/layovers/) || !pathname.match(/helpers/)) {
       sassdocTab = <Tab label="SassDoc" id="documentation-sassdoc" key="sassdoc" />;
     }
 

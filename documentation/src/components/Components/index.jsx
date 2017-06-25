@@ -40,7 +40,7 @@ const Components = (props) => {
     return <NotFound history={history} staticContext={staticContext} />;
   } else if (tab === 1) {
     return <PropTypesPage key="prop-types" {...props} />;
-  } else if (tab === 2) {
+  } else if (tab === 2 && !component.match(/accessible|collapse|focus-container|icon-container|portal/)) {
     return <SassDocPage key="sassdoc" {...props} />;
   }
 
