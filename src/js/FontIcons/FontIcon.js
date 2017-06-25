@@ -17,12 +17,12 @@ const styles = {
  * to update the `.md-icon` styles to set the width and height to `$md-font-icon-size`.
  * However, this will prevent different sided icons.
  *
- * \`\`\`scss
+ * ```scss
  * .md-icon.fa {
  *   height: $md-font-icon-size;
  *   width: $md-font-icon-size;
  * }
- * \`\`\`
+ * ```
  */
 export default class FontIcon extends PureComponent {
   static propTypes = {

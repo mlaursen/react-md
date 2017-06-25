@@ -183,19 +183,8 @@ export default class Layover extends PureComponent {
      * The `CENTER` and `OVERLAP` positions can not be automatically adjusted.
      *
      * > To be safe, you should use the enum values for the `x` and `y` values.
-     *
-     * ```
-     * Layover.HorizontalAnchors.LEFT
-     * Layover.HorizontalAnchors.INNER_LEFT
-     * Layover.HorizontalAnchors.CENTER
-     * Layover.HorizontalAnchors.RIGHT
-     * Layover.HorizontalAnchors.INNER_RIGHT
-     *
-     * Layover.VerticalAnchors.TOP
-     * Layover.VerticalAnchors.CENTER
-     * Layover.VerticalAnchors.OVERLAP
-     * Layover.VerticalAnchors.BOTTOM
-     * ```
+     * @see {@link #VerticalAnchors}
+     * @see {@link #HorizontalAnchors}
      */
     anchor: anchorShape.isRequired,
 
