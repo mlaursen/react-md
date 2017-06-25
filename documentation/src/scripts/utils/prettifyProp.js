@@ -1,8 +1,6 @@
 import { kebabCase } from 'lodash/string';
 import { toCaterpillarCase } from 'utils/strings';
-
-const MANUAL_DEFINITITION_REGEX = /```docgen(.*\r?\n)*```/;
-
+import updateMarkdownLinks, { MANUAL_DOCGEN_DEFINTIION_REGEX } from './updateMarkdownLinks.js';
 
 /* eslint-disable no-use-before-define */
 export function formatOneOf(values) {
@@ -55,48 +53,15 @@ export function formatType({ name, value, raw, required }, customPropTypes, manu
   }
 }
 
-export function createHash(component, propName) {
-  return `#${kebabCase(component)}-proptypes${propName ? `-${kebabCase(propName)}` : ''}`;
-}
-
-export function addComponentPropLinks(description, component) {
-  return description.replace(/\{@link #(\w+(-\w+)*)\}/g, (match, propName) => `[${propName}](${createHash(component, propName)})`);
-}
-
-export function addExternalPropLinks(description) {
-  return description.replace(/{@link (\w+)\/(\w+)(#\w+(-\w+)*)?}/g, (match, section, component, hash) => {
-    let prop;
-    if (hash && hash.indexOf('#') !== -1) {
-      prop = hash.substring(1);
-    } else {
-      prop = '';
-      hash = ''; // eslint-disable-line no-param-reassign
-    }
-
-    if (section.match(/(helpers|pickers|progress|selectioncontrols)/i)) {
-      section = `${toCaterpillarCase(section)}/${kebabCase(component)}`; // eslint-disable-line no-param-reassign
-    } else {
-      section = kebabCase(section);
-    }
-
-    return `[${component}${hash}](/components/${section}?tab=1${createHash(component, prop)})`;
-  });
-}
-
-export function addLinks(description, component) {
-  return addComponentPropLinks(addExternalPropLinks(description), component);
-}
-
-
 /**
  * Takes in a prop from the output of react-docgen and formats it for use on the client.
  */
 export default function prettifyProp(prop, propName, customPropTypes, file) {
   let { description, defaultValue } = prop;
-  const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DEFINITITION_REGEX));
+  const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DOCGEN_DEFINTIION_REGEX));
 
   if (description) {
-    description = addLinks(description.replace(MANUAL_DEFINITITION_REGEX, ''), file);
+    description = updateMarkdownLinks(description, file);
   }
 
   if (type.indexOf('deprecated') !== -1) {

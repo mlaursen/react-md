@@ -33,7 +33,7 @@ async function createDocgen() {
         if (name.match(/selection-control-group/)) {
           entry[name.replace(/-group/, '')].push(docgen);
         } else {
-          entry[name] = [docgen];
+          entry[name.replace(/-(pickers|progress)/, '')] = [docgen];
         }
 
         return entry;
