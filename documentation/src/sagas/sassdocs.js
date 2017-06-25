@@ -13,7 +13,13 @@ export default function* watchSassDocRequests() {
       return;
     }
 
-    const data = yield call(fetchSassdoc, ids.join('/'));
-    yield put(sassdocSuccess(ids, data));
+    try {
+      const data = yield call(fetchSassdoc, ids.join('/'));
+      yield put(sassdocSuccess(ids, data));
+    } catch (e) {
+      if (__DEV__) {
+        console.log('e:', e); // eslint-disable-line no-console
+      }
+    }
   });
 }

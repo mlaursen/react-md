@@ -1,5 +1,6 @@
 import { createStore } from 'redux';
 import MobileDetect from 'mobile-detect';
+import winston from 'winston';
 
 import routes, { componentRoutes } from 'server/routes';
 import rootReducer from 'state';

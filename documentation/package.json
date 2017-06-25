@@ -78,7 +78,8 @@
     "serve-favicon": "^2.4.3",
     "shallowequal": "^1.0.1",
     "smooth-scroll": "cferdinandi/smooth-scroll",
-    "webpack-isomorphic-tools": "^3.0.2"
+    "webpack-isomorphic-tools": "^3.0.2",
+    "winston": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",

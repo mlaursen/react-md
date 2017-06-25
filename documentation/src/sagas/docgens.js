@@ -13,7 +13,13 @@ export default function* watchDocgenRequests() {
       return;
     }
 
-    const data = yield call(fetchDocgen, ids.join('/'));
-    yield put(docgenSuccess(ids, data));
+    try {
+      const data = yield call(fetchDocgen, ids.join('/'));
+      yield put(docgenSuccess(ids, data));
+    } catch (e) {
+      if (__DEV__) {
+        console.log('e:', e); // eslint-disable-line no-console
+      }
+    }
   });
 }

@@ -11,6 +11,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
+import winston from 'winston';
 
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import configureStore from './configureStore';
@@ -59,14 +60,16 @@ app.get('*', cookieParser(), async (req, res) => {
     global.webpackIsomorphicTools.refresh();
   }
 
-  const store = await configureStore(req);
-  if (!__SSR__) {
-    res.send(renderHtmlPage(store));
-    return;
-  }
-
+  let store;
   const context = { bundles: [] };
   try {
+    store = await configureStore(req);
+
+    if (!__SSR__) {
+      res.send(renderHtmlPage(store));
+      return;
+    }
+
     const App = require('components/App').default;
 
     const html = renderToString(
@@ -87,7 +90,7 @@ app.get('*', cookieParser(), async (req, res) => {
       res.send(renderHtmlPage(store, context.bundles, html));
     }
   } catch (e) {
-    console.error(e.message); // eslint-disable-line no-console
+    winston.error(e);
     if (__DEV__) {
       throw e;
     }
@@ -102,6 +105,5 @@ app.listen(port, (err) => {
     throw err;
   }
 
-  /* eslint-disable no-console */
-  console.log(`Started documentation server on port: '${port}'`);
+  winston.log(`Started documentation server on port: '${port}'`);
 });
