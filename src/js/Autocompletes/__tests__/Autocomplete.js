@@ -14,7 +14,10 @@ import { TAB } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
 import TextField from '../../TextFields/TextField';
 import Menu from '../../Menus/Menu';
+import List from '../../Lists/List';
 import ListItem from '../../Lists/ListItem';
+
+jest.mock('../../Inks/InkContainer'); // can't read left of undefined
 
 class Test extends React.Component {
   render() {
@@ -232,6 +235,24 @@ describe('Autocomplete', () => {
     autocomplete.setProps({ data });
     expect(autocomplete.state('matches')).toBe(data);
     expect(autocomplete.state('isOpen')).toBe(true);
+  });
+
+  it('should be renderable inside of a ListItem', () => {
+    const autocomplete = <Autocomplete id="inside-list" data={[]} />;
+
+    let error = false;
+    try {
+      const list = mount(
+        <List>
+          <ListItem primaryText={autocomplete} />
+        </List>
+      );
+      list.find(Autocomplete).simulate('click');
+    } catch (e) {
+      error = true;
+    }
+
+    expect(error).toBe(false);
   });
 
   describe('caseInsensitiveFilter', () => {
