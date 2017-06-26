@@ -9,6 +9,7 @@ import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
 } from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 import DatePickerContainer from '../DatePickerContainer';
 import { ENTER } from '../../constants/keyCodes';
@@ -211,6 +212,38 @@ describe('DatePickerContainer', () => {
 
     container._handleKeyDown({ keyCode: ENTER, target: { tagName: 'input' } });
     expect(container.state.visible).toBe(false);
+  });
+
+  describe('value prop', () => {
+    const console = global.console;
+    beforeEach(() => {
+      global.console = {
+        warn: message => {
+          throw new Error(message);
+        },
+        error: message => {
+          throw new Error(message);
+        },
+      };
+    });
+
+    afterAll(() => {
+      global.console = console;
+    });
+
+    it('should not throw prop type warnings when the value prop is set to the empty string or null', () => {
+      let error = false;
+
+      try {
+        mount(<DatePickerContainer id="test" value={null} />);
+        const picker = mount(<DatePickerContainer id="test" value="" />);
+        picker.setProps({ value: null });
+        picker.setProps({ value: '' });
+      } catch (e) {
+        error = true;
+      }
+      expect(error).toBe(false);
+    });
   });
 
   describe('validateDateRange', () => {

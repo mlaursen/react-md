@@ -446,24 +446,24 @@ export default class DatePickerContainer extends PureComponent {
       minDate,
       maxDate,
     } = props;
-    if (typeof props.value !== 'undefined' && props.value !== null) {
-      date = typeof props.value === 'string' ? new Date(props.value) : props.value;
+
+    if (typeof props.value !== 'undefined') {
+      date = this._getDate(props.value);
     } else if (defaultValue) {
-      date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
+      date = this._getDate(defaultValue);
       value = typeof defaultValue === 'string'
         ? defaultValue
         : DateTimeFormat(locales, formatOptions).format(defaultValue);
     } else {
       date = new Date();
+      value = '';
     }
 
     date = this._validateDateRange(date, minDate, maxDate);
 
     let calendarTempDate = date;
     if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
-      calendarTempDate = typeof initialCalendarDate === 'string'
-        ? new Date(initialCalendarDate)
-        : initialCalendarDate;
+      calendarTempDate = this._getDate(initialCalendarDate);
       date = calendarTempDate;
     } else if (calendarTempDate === null) {
       calendarTempDate = new Date();
@@ -504,7 +504,7 @@ export default class DatePickerContainer extends PureComponent {
     if (this.props.value !== value || !minEqual || !maxEqual) {
       let { calendarDate } = this.state;
       if (typeof value !== 'undefined') {
-        calendarDate = typeof value === 'string' ? new Date(value) : value;
+        calendarDate = this._getDate(value);
       }
 
       calendarDate = this._validateDateRange(calendarDate, minDate, maxDate);
@@ -548,6 +548,16 @@ export default class DatePickerContainer extends PureComponent {
       handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
+  }
+
+  _getDate(value) {
+    if (value === '' || value === null) {
+      return new Date();
+    } else if (typeof value === 'string') {
+      return new Date(value);
+    }
+
+    return value;
   }
 
   _setContainer(container) {
