@@ -79,14 +79,9 @@ $md-switch-ball-fallback-color: null !default;
   $include-group: $md-selection-controls-include-group,
   $include-switches: $md-selection-controls-include-switches
 ) {
-  .md-selection-control-container {
-    align-items: center;
-    display: flex;
-    height: $md-height;
-  }
 
   .md-selection-control-container--inline {
-    display: inline-flex;
+    display: inline-block;
   }
 
   .md-selection-control-input {
@@ -98,7 +93,11 @@ $md-switch-ball-fallback-color: null !default;
   }
 
   .md-selection-control-label {
-    cursor: inherit;
+    align-items: center;
+    display: flex;
+  }
+
+  .md-selection-control-toggle {
     display: inline-block;
   }
 
@@ -134,7 +133,13 @@ $md-switch-ball-fallback-color: null !default;
   $swatch: get-swatch($secondary-color, if($light-theme, 500, 200), false, $fallback-color, md-switch-ball-fallback-color);
 
   .md-switch-container {
+    align-items: center;
+    display: flex;
     height: $md-switch-height;
+
+    &.md-selection-control-container--inline {
+      display: inline-flex;
+    }
   }
 
   .md-switch-track {
