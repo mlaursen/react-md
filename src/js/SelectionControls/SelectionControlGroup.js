@@ -335,7 +335,7 @@ export default class SelectionControlGroup extends PureComponent {
         inline,
         disabled,
         checked,
-        tabIndex: checked && radio ? undefined : -1,
+        tabIndex: !radio || checked ? undefined : -1,
         ...control,
         style,
         className: cn(controlClassName, control.className),
