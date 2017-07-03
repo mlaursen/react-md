@@ -44,8 +44,7 @@ if (__DEV__ && !global.__SERVER_ONLY) {
   const compiler = webpack(config);
   app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    noInfo: true,
-    stats: { colors: true },
+    stats: 'errors-only',
   }));
 
 

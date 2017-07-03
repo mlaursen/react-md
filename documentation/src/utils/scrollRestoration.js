@@ -1,17 +1,20 @@
-import smoothScroll from 'smooth-scroll';
 
 /**
  * A utility function to scroll to a single element. This will use the smooth-scroll
  * animation when scrolling.
  */
 export function scrollTo(el) {
+  if (!__CLIENT__) {
+    return;
+  }
+
   if (!el) {
     window.scrollTo(0, 0);
   } else {
     const { top: elTop } = el.getBoundingClientRect();
     const { top: bodyTop } = (document.body || document.documentElement).getBoundingClientRect();
     const position = Math.abs(elTop - bodyTop);
-    smoothScroll.animateScroll(position);
+    require('smooth-scroll').animateScroll(position); // eslint-disable-line global-require
   }
 }
 

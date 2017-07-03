@@ -3,9 +3,12 @@ require('babel-core/register');
 require('babel-polyfill');
 require('dotenv').config();
 const fs = require('fs');
+const path = require('path');
 const hacker = require('require-hacker');
 
 const RAW_LOADER = '!!raw-loader!./';
+const RAW_COMPONENT_LOADER = '!!raw-loader!components';
+const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
 
 /**
  * Need access to the manual code-sourcing with the raw-loader when doing ssr. I don't
@@ -16,12 +19,18 @@ const RAW_LOADER = '!!raw-loader!./';
  * When using the raw-loader, you **must** specify the file extension as well to get it to work.
  */
 hacker.global_hook('raw-loader', (path, module) => {
-  if (path.indexOf(RAW_LOADER) === -1) {
+  if (path.indexOf(RAW_LOADER) === -1 && path.indexOf(RAW_COMPONENT_LOADER) === -1) {
     return undefined;
   }
 
-  const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
-  const filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;
+  let filePath = '';
+  if (path.match(RAW_COMPONENT_LOADER)) {
+    filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
+  } else {
+    const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
+    filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;
+  }
+
   return {
     source: `module.exports = ${JSON.stringify(fs.readFileSync(filePath, 'UTF-8'))};`,
     path,
