@@ -12,9 +12,22 @@ import './styles.scss';
 
 const store = configureStore(window.__INITIAL_STATE__);
 
+function loadIntl() {
+  if (!global.Intl) {
+    const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
+    return Promise.all([
+      import('intl'),
+      import(`intl/locale-data/jsonp/${lang}`),
+    ]);
+  }
+
+  return null;
+}
+
 (async function renderApp() {
   const bundles = window.__WEBPACK_BUNDLES__ || [];
   await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
+  await loadIntl();
   const root = document.getElementById('app');
 
   render(

@@ -51,6 +51,7 @@
     "fuse.js": "^3.0.4",
     "helmet": "^3.6.1",
     "hpp": "^0.2.2",
+    "intl": "^1.2.5",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
