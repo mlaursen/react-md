@@ -20,6 +20,7 @@ import {
   Badges,
   BottomNavigations,
   Buttons,
+  Cards,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -60,6 +61,9 @@ const Components = (props) => {
       break;
     case 'buttons':
       Component = Buttons;
+      break;
+    case 'cards':
+      Component = Cards;
       break;
     default:
       Component = null;

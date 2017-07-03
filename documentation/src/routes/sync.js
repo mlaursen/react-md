@@ -26,3 +26,4 @@ export const Avatars = syncComponent('Avatars', require('components/Components/a
 export const Badges = syncComponent('Badges', require('components/Components/badges'));
 export const BottomNavigations = syncComponent('BottomNavigations', require('components/Components/bottom-navigations'));
 export const Buttons = syncComponent('Buttons', require('components/Components/buttons'));
+export const Cards = syncComponent('Cards', require('components/Components/cards'));
