@@ -19,7 +19,7 @@ const PropTypesRow = ({ propName, type, required, defaultValue, description, bas
     <TableRow id={`${baseId}-proptypes-${kebabCase(propName)}`}>
       <TableColumn
         className={cn('prop-types__prop-name', {
-          'prop-types-page__prop-name--deprecated md-text--secondary': deprecated,
+          'prop-types__prop-name--deprecated md-text--secondary': deprecated,
         })}
       >
         {propName}

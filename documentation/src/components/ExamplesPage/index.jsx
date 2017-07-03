@@ -7,7 +7,7 @@ import ExampleCard from './ExampleCard';
 
 import './_styles.scss';
 
-const ExamplesPage = ({ style, className, description, examples }) => {
+const ExamplesPage = ({ style, className, description, examples, children }) => {
   const cards = examples.map(example => <ExampleCard key={example.title} {...example} />);
 
   let componentDescription;
@@ -26,6 +26,7 @@ const ExamplesPage = ({ style, className, description, examples }) => {
     <section style={style} className={cn('md-grid md-grid--40-16 examples-page', className)}>
       {componentDescription}
       {cards}
+      {children}
     </section>
   );
 };
@@ -41,6 +42,7 @@ ExamplesPage.propTypes = {
     children: PropTypes.node,
     tableCard: PropTypes.bool,
   })).isRequired,
+  children: PropTypes.node,
 };
 
 ExamplesPage.defaultProps = {
