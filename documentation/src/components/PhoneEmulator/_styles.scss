@@ -1,0 +1,113 @@
+@import '~globals';
+
+.phone-emulator {
+  $gutter: $md-grid-phone-gutter / 2;
+  height: 100%;
+
+  &__content {
+    height: 100%;
+    padding-top: $md-toolbar-mobile-portrait-height;
+
+    &.md-grid {
+      padding-top: $md-toolbar-mobile-portrait-height + $gutter;
+    }
+  }
+
+  @media #{$md-tablet-media} {
+    @include react-md-toolbars-mobile;
+
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: $phone-emulator-width;
+
+    .md-btn--fixed,
+    .md-toolbar--fixed,
+    .md-drawer--fixed,
+    .md-snackbar,
+    .md-bottom-navigation {
+      position: absolute;
+    }
+
+    &__content {
+      $height: $phone-emulator-status-bar-height;
+
+      height: $phone-emulator-height;
+      overflow: auto;
+      padding-top: $height;
+
+      &.md-grid {
+        padding-top: $height + $gutter;
+      }
+
+      &--offset {
+        $height: $height + $md-toolbar-mobile-portrait-height;
+        padding-top: $height;
+
+        &.md-grid {
+          padding-top: $height + $gutter;
+        }
+      }
+    }
+
+    &__toolbar {
+      &.md-toolbar {
+        top: $phone-emulator-status-bar-height;
+        z-index: $phone-emulator-toolbar-z-index;
+      }
+
+      &:not(.md-toolbar--inset)::before {
+        background: $md-primary-color;
+        content: '';
+        height: $phone-emulator-status-bar-height;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: -$phone-emulator-status-bar-height;
+      }
+    }
+  }
+
+  @media #{$md-desktop-media} {
+    @include react-md-typography-mobile;
+    @include react-md-tabs-mobile;
+    @include react-md-text-fields-mobile;
+    @include react-md-text-field-custom-sizes;
+    @include react-md-lists-mobile;
+    @include react-md-buttons-mobile;
+    @include react-md-snackbars-mobile;
+
+    .material-icons.md-icon {
+      font-size: $md-font-icon-size;
+    }
+
+    .md-btn--icon {
+      height: $md-btn-icon-size;
+      padding: $md-btn-icon-padding;
+      width: $md-btn-icon-size;
+    }
+  }
+
+  &__status-bar {
+    align-items: center;
+    background: $phone-emulator-status-bar-color;
+    display: flex;
+    height: $phone-emulator-status-bar-height;
+    justify-content: flex-end;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: $phone-emulator-toolbar-z-index + 1;
+
+    &__time {
+      color: $md-white-base;
+      font-weight: $md-font-medium;
+      padding-right: .5em;
+    }
+
+    .md-icon {
+      color: get-color('secondary', false);
+    }
+  }
+}

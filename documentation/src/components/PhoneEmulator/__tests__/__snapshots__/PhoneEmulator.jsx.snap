@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhoneEmulator should be able to render without a toolbar 1`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="phone-emulator__status-bar"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_wifi
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_cell
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      battery_full
+    </i>
+    <span
+      className="phone-emulator__status-bar__time"
+    >
+      12:30
+    </span>
+  </header>
+  <section
+    className="phone-emulator__content"
+    id={undefined}
+    style={undefined}
+  >
+    <h2>
+      This is some content that should appear in the phone emulator!
+    </h2>
+  </section>
+</div>
+`;
+
+exports[`PhoneEmulator should render correctly with the base required props 1`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="phone-emulator__status-bar"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_wifi
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_cell
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      battery_full
+    </i>
+    <span
+      className="phone-emulator__status-bar__time"
+    >
+      12:30
+    </span>
+  </header>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Title
+    </h2>
+  </header>
+  <section
+    className="phone-emulator__content phone-emulator__content--offset"
+    id={undefined}
+    style={undefined}
+  >
+    <h2>
+      This is some content that should appear in the phone emulator!
+    </h2>
+  </section>
+</div>
+`;
+
+exports[`PhoneEmulator should render correctly with the base required props 2`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Title
+    </h2>
+  </header>
+  <section
+    className="phone-emulator__content phone-emulator__content--offset"
+    id={undefined}
+    style={undefined}
+  >
+    <h2>
+      This is some content that should appear in the phone emulator!
+    </h2>
+  </section>
+</div>
+`;
+
+exports[`PhoneEmulator should render only the children if mobileOnly is provided and not mobile 1`] = `
+<h2>
+  This is some content that should appear in the phone emulator!
+</h2>
+`;
+
+exports[`PhoneEmulator should render only the children if mobileOnly is provided and not mobile 2`] = `
+<section
+  className={undefined}
+  id={undefined}
+  style={undefined}
+>
+  <div>
+    Line 1
+  </div>
+  <div>
+    Line 2
+  </div>
+</section>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CloseEmulator should render correctly 1`] = `
+<button
+  className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+  disabled={undefined}
+  href={undefined}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  type="button"
+>
+  <i
+    className="md-icon material-icons"
+    style={undefined}
+  >
+    close
+  </i>
+</button>
+`;
+
+exports[`CloseEmulator should render correctly 2`] = `
+<button
+  className="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text"
+  disabled={undefined}
+  href={undefined}
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseOver={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  type="button"
+>
+  Hello, World!
+</button>
+`;

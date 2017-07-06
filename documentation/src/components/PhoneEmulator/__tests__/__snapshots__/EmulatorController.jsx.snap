@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmulatorController should render correctly with the base required props 1`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="phone-emulator__status-bar"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_wifi
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_cell
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      battery_full
+    </i>
+    <span
+      className="phone-emulator__status-bar__time"
+    >
+      12:30
+    </span>
+  </header>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Title
+    </h2>
+  </header>
+  <section
+    className="phone-emulator__content phone-emulator__content--offset"
+    id={undefined}
+    style={undefined}
+  >
+    <h1>
+      Wowza!
+    </h1>
+  </section>
+</div>
+`;
+
+exports[`EmulatorController should render correctly with the base required props 2`] = `
+<section>
+  <section
+    className="markdown-container"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>The current example will need to be opened in a dialog to be viewed because
+      it requires the full screen on mobile devices to be viewed correctly.</p>
+      ",
+      }
+    }
+  />
+  <button
+    className="md-inline-block md-btn md-btn--raised md-text md-pointer--hover md-btn--text"
+    disabled={undefined}
+    href={undefined}
+    onClick={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    type="button"
+  >
+    View Example
+  </button>
+</section>
+`;

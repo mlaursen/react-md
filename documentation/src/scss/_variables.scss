@@ -2,3 +2,12 @@ $md-primary-color: $md-light-blue-500;
 $md-secondary-color: $md-deep-orange-a-200;
 
 $md-picker-include-forceful-classes: true;
+
+////////////////////////////
+// Phone Emulator
+// These variables are needed ins ome other components, so just moving them to the variables file
+$phone-emulator-height: 580px;
+$phone-emulator-width: 360px;
+$phone-emulator-status-bar-color: rgba($md-black-base, .32);
+$phone-emulator-status-bar-height: 24px;
+$phone-emulator-toolbar-z-index: 2;
