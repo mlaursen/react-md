@@ -61,3 +61,17 @@ $search-size: 180px;
 .custom-theme .search .md-divider--text-field:not(.md-divider--text-field-error)::after {
   background: $md-white-base;
 }
+
+@media (max-width: #{$md-tablet-min-width - 1}) {
+  .main-toolbar__title {
+    max-width: calc(100% - #{$md-btn-icon-size * 2 + $md-default-padding});
+    overflow: hidden;
+    transition-duration: $md-transition-time;
+    transition-property: margin-left, max-width;
+
+    &--minified.md-title--toolbar {
+      margin-left: 0;
+      max-width: 0;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { connectAdvanced } from 'react-redux';
 import { withRouter } from 'react-router';
 import shallowEqual from 'shallowequal';
@@ -32,12 +33,14 @@ const helmetConfig = {
       drawer,
       helmet,
       media: { defaultMedia, mobile },
+      search: { searching },
     } = state;
 
     const nextResult = {
       ...props,
       ...drawer,
       ...helmet,
+      searching,
       dispatch,
       defaultMedia,
       mobile,
@@ -68,6 +71,7 @@ export default class App extends PureComponent {
       rel: PropTypes.string.isRequired,
       href: PropTypes.string.isRequired,
     })).isRequired,
+    searching: PropTypes.bool.isRequired,
 
     dispatch: PropTypes.func.isRequired,
   };
@@ -97,6 +101,7 @@ export default class App extends PureComponent {
       toolbarTitle,
       visibleBoxShadow,
       toolbarProminent,
+      searching,
       mobile,
       meta,
       link,
@@ -111,9 +116,12 @@ export default class App extends PureComponent {
       <NavigationDrawer
         drawerId="main-navigation"
         drawerTitle="react-md"
-        toolbarTitle={toolbarTitle}
         defaultMedia={defaultMedia}
         onMediaTypeChange={this.updateMedia}
+        toolbarTitle={toolbarTitle}
+        toolbarTitleClassName={cn('main-toolbar__title', {
+          'main-toolbar__title--minified': searching,
+        })}
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
         toolbarProminent={!mobile && toolbarProminent}
         toolbarChildren={tabs}
