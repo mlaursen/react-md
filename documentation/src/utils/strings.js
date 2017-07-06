@@ -53,7 +53,7 @@ export function toPageTitle(pathname) {
  * @return {String} the caterpillar-cased string.
  */
 export function toCaterpillarCase(str) {
-  return str.split(/\s|(?=[A-Z])/).join('-').toLowerCase();
+  return str.replace(/\/|\\|\[|]/g, '').split(/\s|(?=[A-Z])/).join('-').toLowerCase();
 }
 
 export function underscore(s) {
