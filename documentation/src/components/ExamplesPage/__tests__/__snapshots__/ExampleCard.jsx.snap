@@ -3,6 +3,7 @@
 exports[`ExampleCard should display correctly as a table card 1`] = `
 <div
   className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  id="table-example"
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
@@ -76,6 +77,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
 exports[`ExampleCard should display correctly as a table card 2`] = `
 <div
   className="md-paper md-paper--1 md-card md-card--table md-background--card md-cell md-cell--12"
+  id="table-example"
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
@@ -162,6 +164,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
 exports[`ExampleCard should display correctly with a description 1`] = `
 <div
   className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  id="second-example"
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
@@ -231,6 +234,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
 exports[`ExampleCard should display correctly without a description 1`] = `
 <div
   className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+  id="first-example"
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}

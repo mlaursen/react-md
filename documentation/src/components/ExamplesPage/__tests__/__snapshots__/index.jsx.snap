@@ -23,6 +23,7 @@ exports[`ExamplesPage should render correctly 1`] = `
   />
   <div
     className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+    id="first-example"
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
     onTouchStart={[Function]}

@@ -4,6 +4,7 @@ import cn from 'classnames';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
+import { toCaterpillarCase } from 'utils/strings';
 
 import Markdown from 'components/Markdown';
 
@@ -28,6 +29,7 @@ ${code}
 
   return (
     <Card
+      id={toCaterpillarCase(title)}
       {...props}
       tableCard={tableCard}
       className={cn('md-cell md-cell--12')}
