@@ -35,7 +35,7 @@ export const componentRoutes = [
     routes: ['circular', 'linear'],
   }, 'select-fields', {
     to: 'selection-controls',
-    routes: ['selection-control', 'checkboxes', 'radios', 'switches'],
+    routes: ['selection-controls', 'checkboxes', 'radios', 'switches'],
   },
   'sliders',
   'snackbars',

@@ -71,8 +71,8 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   const styleKeys = Object.keys(assets.styles);
   if (__DEV__ && !styleKeys.length) {
     // this should really be every scss file, but I just need the base styles
-    const styles = require('../../client/styles.scss')._style;
-    page += `<style>${styles}</style>`;
+    // const styles = require('../../client/styles.scss')._style;
+    // page += `<style>${styles}</style>`;
 
     // Can also do this for faster page loads, but have to reload page if styles get removed
     // const styles = require('../../client/styles.scss')._style

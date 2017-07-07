@@ -94,8 +94,8 @@ export default connectAdvanced((dispatch) => {
       },
     } = props;
 
-    const ids = ['sassdocs', section, component, location]
-      .filter(id => !!id && !id.match(/date|time|linear|circular|checkbox|radio|switch/) && id !== 'selection-control');
+    const ids = ['sassdocs', section, component === section ? null : component, location]
+      .filter(id => !!id && !id.match(/date|time|linear|circular|checkbox|radio|switch/));
     const sassdoc = get(state, ids.join('.'), null);
 
     const nextResult = {
