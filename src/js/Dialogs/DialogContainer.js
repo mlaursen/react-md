@@ -443,7 +443,7 @@ export default class DialogContainer extends PureComponent {
     (this.props.onHide || this.props.close)(e);
   };
 
-  _handleDialogMounting= (dialog) => {
+  _handleDialogMounting = (dialog) => {
     const { disableScrollLocking } = this.props;
     if (dialog === null) {
       if (this._activeElement) {
@@ -541,6 +541,7 @@ export default class DialogContainer extends PureComponent {
         transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
+        tabIndex={-1}
         onClick={this._handleClick}
       >
         {dialogVisible ? dialog : null}
