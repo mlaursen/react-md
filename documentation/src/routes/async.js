@@ -27,3 +27,4 @@ export const Badges = asyncComponent(() => import(/* webpackChunkName: Badges */
 export const BottomNavigations = asyncComponent(() => import(/* webpackChunkName: BottomNavigations */ 'components/Components/bottom-navigations'));
 export const Buttons = asyncComponent(() => import(/* webpackChunkName: Buttons */ 'components/Components/buttons'));
 export const Cards = asyncComponent(() => import(/* webpackChunkName: Cards */ 'components/Components/cards'));
+export const Chips = asyncComponent(() => import(/* webpackChunkName: Chips */ 'components/Components/chips'));
