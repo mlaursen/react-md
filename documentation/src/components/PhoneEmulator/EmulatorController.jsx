@@ -19,6 +19,8 @@ export default class EmulatorController extends PureComponent {
     demoDescription: PropTypes.string,
     demoIconClose: PropTypes.node,
     toggleLabel: PropTypes.node,
+    dialogStyle: PropTypes.object,
+    dialogClassName: PropTypes.string,
   };
 
   static defaultProps = {
@@ -54,6 +56,8 @@ export default class EmulatorController extends PureComponent {
       demoDescription,
       demoIconClose,
       toggleLabel,
+      dialogStyle,
+      dialogClassName,
       ...props
     } = this.props;
 
@@ -74,6 +78,8 @@ export default class EmulatorController extends PureComponent {
           id={demoId}
           visible={visible}
           aria-label={demoLabel}
+          dialogStyle={dialogStyle}
+          dialogClassName={dialogClassName}
           fullPage
         >
           <PhoneEmulator {...props} toolbarNavIcon={props.toolbarNavIcon || 'keyboard_arrow_left'} />
