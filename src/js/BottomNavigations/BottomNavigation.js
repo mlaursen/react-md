@@ -180,7 +180,7 @@ export default class BottomNavigation extends PureComponent {
     defaultVisible: true,
     transitionDuration: 300,
     portal: false,
-    dynamicThreshold: 20,
+    dynamicThreshold: 5,
   };
 
   static contextTypes = {
@@ -248,7 +248,33 @@ export default class BottomNavigation extends PureComponent {
     window.removeEventListener('touchend', this._handleTouchEnd);
   };
 
-  _handleTouchStart =(e) => {
+  _animateIn = () => {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ visible: true });
+    }, 17);
+
+    this.setState({ portalVisible: true });
+  };
+
+  _animateOut = () => {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ portalVisible: false });
+    }, this.props.transitionDuration);
+
+    this.setState({ visible: false });
+  };
+
+  _handleTouchStart = (e) => {
     const { pageY } = e.changedTouches[0];
 
     this._pageY = pageY;
@@ -262,32 +288,14 @@ export default class BottomNavigation extends PureComponent {
     }
 
     const touchY = e.changedTouches[0].pageY;
-    const { transitionDuration, dynamicThreshold } = this.props;
+    const { dynamicThreshold } = this.props;
     const passedThreshold = Math.abs(this._pageY - touchY) >= dynamicThreshold;
     if (this._pageY > touchY && visible && passedThreshold) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
-      }
-
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-        this.setState({ portalVisible: false });
-      }, transitionDuration);
-
       this._pageY = touchY;
-      this.setState({ visible: false });
+      this._animateOut();
     } else if (this._pageY < touchY && !visible && passedThreshold) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
-      }
-
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-        this.setState({ visible: true });
-      }, 17);
-
       this._pageY = touchY;
-      this.setState({ portalVisible: true });
+      this._animateIn();
     }
   };
 
