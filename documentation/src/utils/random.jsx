@@ -1,5 +1,12 @@
 import { defaults } from 'lodash/object';
 
+const INT_DEFAULTS = { min: 0, max: 10 };
+
+export function randomInt(options) {
+  const { min, max } = defaults(options, INT_DEFAULTS);
+  return Math.floor(Math.random() * max) + min;
+}
+
 const IMAGE_DEFAULTS = {
   height: 40,
   width: 40,
@@ -17,7 +24,7 @@ export function randomImage(options = {}) {
     return `http://lorempixel.com/${size}/${section}`;
   }
 
-  return `https://unsplash.it/${size}?random}`;
+  return `https://unsplash.it/${size}?random&time=${randomInt()}`;
 }
 
 export function randomImages(num, options = { width: 40 }) {
