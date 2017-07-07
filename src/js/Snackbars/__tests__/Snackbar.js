@@ -1,11 +1,13 @@
 /* eslint-env jest */
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
 } from 'react-dom/test-utils';
 
 import Snackbar from '../Snackbar';
+import Button from '../../Buttons/Button';
 
 const PROPS = {
   leaveTimeout: 300,
@@ -70,5 +72,21 @@ describe('Snackbar', () => {
     const snackbar = renderIntoDocument(<Snackbar {...props} />);
     const node = findDOMNode(snackbar);
     expect(node.getAttribute('role')).toBe('alertdialog');
+  });
+
+  it('should correctly trigger the action\'s onClick function when clicked', () => {
+    const onClick = jest.fn();
+    const props = {
+      ...PROPS,
+      toast: {
+        text: 'Hello',
+        action: { onClick, children: 'Something' },
+      },
+    };
+
+    const snackbar = mount(<Snackbar {...props} />);
+    snackbar.find(Button).at(0).simulate('click');
+    expect(onClick).toBeCalled();
+    expect(props.onDismiss).toBeCalled();
   });
 });

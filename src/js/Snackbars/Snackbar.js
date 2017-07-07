@@ -20,7 +20,8 @@ export default class Snackbar extends PureComponent {
       action: PropTypes.oneOfType([
         PropTypes.node,
         PropTypes.shape({
-          label: PropTypes.node.isRequired,
+          label: PropTypes.node,
+          children: PropTypes.node.isRequired,
           onClick: PropTypes.func,
         }),
       ]),
@@ -153,6 +154,7 @@ export default class Snackbar extends PureComponent {
           onClick: this._handleClick,
         });
       }
+
 
       action = <Button {...btnProps} />;
     }

@@ -388,7 +388,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 }
 
 @mixin react-md-cell-offset($size, $columns, $gutter) {
-  margin-left: calc(#{percentage($size / $columns)} - #{$gutter});
+  margin-left: calc(#{percentage($size / $columns)} + #{$gutter / 2});
 
   .md-grid--no-spacing > & {
     margin-left: percentage($size / $columns);

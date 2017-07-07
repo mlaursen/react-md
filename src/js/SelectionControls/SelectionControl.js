@@ -4,6 +4,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { SPACE } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
@@ -107,14 +108,9 @@ export default class SelectionControl extends PureComponent {
     onChange: PropTypes.func,
 
     /**
-     * An optional function to call when the `SelectionControl` triggers the `blur` event.
+     * An optional function to call when the `keydown` event is triggered.
      */
-    onBlur: PropTypes.func,
-
-    /**
-     * An optional function to call when the `SelectionControl` triggers the `focus` event.
-     */
-    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * The value for the `SelectionControl`. It is not required for `Checkbox` and `Switch`,
@@ -280,6 +276,17 @@ export default class SelectionControl extends PureComponent {
     );
   };
 
+  _handleKeyDown = (e) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+    if (key === SPACE) {
+      this._input.click();
+    }
+  }
+
   _handleChange = (e) => {
     const { type, onChange } = this.props;
     const checked = !getField(this.props, this.state, 'checked');
@@ -287,21 +294,9 @@ export default class SelectionControl extends PureComponent {
       onChange(type === 'radio' ? e.target.value : checked, e);
     }
 
-    if (!this._fromFakeButton && type !== 'switch' && typeof this._control.createInk === 'function') {
-      // create ink doesn't exist when testing atm
-      this._control.createInk();
-    }
-    this._fromFakeButton = false;
-
     if (typeof this.props.checked === 'undefined') {
       this.setState({ checked });
     }
-  };
-
-  _handleControlClick = () => {
-    this._fromFakeButton = true;
-    // Trigger the change
-    this._input.click();
   };
 
   render() {
@@ -315,8 +310,6 @@ export default class SelectionControl extends PureComponent {
       value,
       disabled,
       labelBefore,
-      onBlur,
-      onFocus,
       tabIndex,
       inkDisabled,
       disabledInteractions,
@@ -343,51 +336,25 @@ export default class SelectionControl extends PureComponent {
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = this.props.label && (
-      <label
-        key="label"
-        htmlFor={id}
-        className={cn('md-selection-control-label', {
-          'md-pointer--hover': !disabled,
-          'md-text--disabled': disabled,
-          'md-text': !disabled,
-        })}
-      >
-        {this.props.label}
-      </label>
-    );
+    const label = this.props.label && <span>{this.props.label}</span>;
 
     let control;
     if (isSwitch) {
-      control = (
-        <SwitchTrack
-          disabled={disabled}
-          inkDisabled={inkDisabled}
-          disabledInteractions={disabledInteractions}
-          checked={checked}
-          onClick={this._handleControlClick}
-          onBlur={onBlur}
-          onFocus={onFocus}
-        />
-      );
+      control = <SwitchTrack disabled={disabled} checked={checked} />;
     } else {
       control = (
         <AccessibleFakeInkedButton
-          ref={this._setControl}
           inkDisabled={inkDisabled}
           disabledInteractions={disabledInteractions}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          disabled={disabled}
-          onClick={this._handleControlClick}
-          className={cn('md-btn md-btn--icon', {
-            'md-text--disabled': disabled,
-            'md-text--theme-secondary': !disabled && checked,
-            'md-text--secondary': !disabled && !checked,
-          })}
           role={type}
+          className={cn('md-selection-control-toggle md-btn md-btn--icon', {
+            'md-text--disabled': disabled,
+            'md-text--secondary': !disabled && !checked,
+            'md-text--theme-secondary': checked && !disabled,
+          })}
           aria-checked={checked}
           tabIndex={tabIndex}
+          disabled={disabled}
         >
           {tooltip}
           {this._getIcon()}
@@ -399,14 +366,13 @@ export default class SelectionControl extends PureComponent {
     return (
       <div
         {...props}
-        ref={this._setContainer}
         style={style}
         className={cn('md-selection-control-container', {
           'md-selection-control-container--inline': inline,
           'md-switch-container': isSwitch,
         }, className)}
+        onKeyDown={this._handleKeyDown}
       >
-        {labelBefore && label}
         <input
           ref={this._setInput}
           id={id}
@@ -420,8 +386,17 @@ export default class SelectionControl extends PureComponent {
           aria-hidden
           aria-label={ariaLabel}
         />
-        {control}
-        {!labelBefore && label}
+        <label
+          htmlFor={id}
+          className={cn('md-selection-control-label', {
+            'md-text md-pointer--hover': !disabled,
+            'md-text--disabled': disabled,
+          })}
+        >
+          {labelBefore && label}
+          {control}
+          {!labelBefore && label}
+        </label>
       </div>
     );
   }

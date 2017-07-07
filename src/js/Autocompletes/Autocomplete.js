@@ -691,7 +691,7 @@ export default class Autocomplete extends PureComponent {
    */
   _handleClick = (e) => {
     let target = e.target;
-    while (target && target.parentNode) {
+    while (this._menu && this._menu.contains(target)) {
       if (target.classList.contains('md-list-item')) {
         let items = target.parentNode.querySelectorAll('.md-list-item');
         items = Array.prototype.slice.call(items);

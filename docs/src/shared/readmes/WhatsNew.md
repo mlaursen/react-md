@@ -87,6 +87,28 @@ This mostly means that component prop type descriptions have been updated to lin
 list.
 
 
+## June 2017
+### v1.0.16 Released
+
+##### Changelog
+- Updated the slider to no longer call `onChange` or `onDragChange` when dragging and the value
+or distance have not been updated. [d588fb4](#commit-d588fb4e000ecc7d00131c6d29b99908bb715532)
+- Fixed a small bug with my `handleKeyboardAccessibility` so that spacebar didn't work in autocompletes.
+[b13f316](#commit-b13f316d23dd3ba3d25d557a79f5fb32754b2fae)
+- Fixed a keyboard accessibility problem with `SelectionControlGroup`. [eb6629d](#commit-eb6629d8fb5117a565b309422d7225a790f5ffd9)
+- Fixed an error where rendering the `Autocomplete` in a `ListItem` threw an error. [#412](#issues-412)
+- Updated the default `z-index` for the `Snackbar` so that it appears over the mini `Drawer`. [#410](#issues-410)
+- Fixed the `DatePicker` so that it can accept a `value` of `null` and the empty string (`""`).
+  - [#384](#issues-384)
+  - [#396](#issues-396)
+  - [#409](#issues-409)
+- Fixed the cell offset calculations. [#401](#issues-401)
+- Fixed non-contained menus. [#391](#issues-391)
+- Fixed the `onClick` prop for `SelectionControl`. [#390](#issues-390)
+- Fixed the `Snackbar` not working as intended when the action has an `onClick` function. [#385](#issues-385)
+- Fixed the slider displaying the wrong value while sliding with touch or mouse. [#379](#issues-379)
+- Updated `.npmignore` to stop include the `jest-cache` with the published code. [#403](#issues-403)
+- Small typo fix. [#400](#issues-400)
 
 ## May 2017
 ### v1.0.15 Released

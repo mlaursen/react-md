@@ -2,6 +2,7 @@ node_modules
 *.DS_STORE
 .sass-cache
 .publish
+.jest-cache
 *.log
 .babelrc
 .eslintrc

@@ -67,7 +67,7 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
     distance = value / scale * 100;
     value += min;
   } else {
-    value = Math.round(distance / 100 * scale);
+    value = min + Math.round(distance / 100 * scale);
   }
 
   if (step > 1) {

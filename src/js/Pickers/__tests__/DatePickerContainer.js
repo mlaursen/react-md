@@ -213,6 +213,38 @@ describe('DatePickerContainer', () => {
     expect(container.state.visible).toBe(false);
   });
 
+  describe('value prop', () => {
+    const console = global.console;
+    beforeEach(() => {
+      global.console = {
+        warn: message => {
+          throw new Error(message);
+        },
+        error: message => {
+          throw new Error(message);
+        },
+      };
+    });
+
+    afterAll(() => {
+      global.console = console;
+    });
+
+    it('should not throw prop type warnings when the value prop is set to the empty string or null', () => {
+      let error = false;
+
+      try {
+        mount(<DatePickerContainer id="test" value={null} onChange={jest.fn()} />);
+        const picker = mount(<DatePickerContainer id="test" value="" onChange={jest.fn()} />);
+        picker.setProps({ value: null });
+        picker.setProps({ value: '' });
+      } catch (e) {
+        error = true;
+      }
+      expect(error).toBe(false);
+    });
+  });
+
   describe('validateDateRange', () => {
     const picker = renderIntoDocument(<DatePickerContainer id="validate-date-range-test" />);
     it('should return the date if there is no min or max date', () => {
