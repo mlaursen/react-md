@@ -604,11 +604,12 @@ export default class Slider extends PureComponent {
       normalize
     );
 
-    if (onChange) {
+    const isNewValue = getField(this.props, this.state, 'value') !== value;
+    if (onChange && isNewValue) {
       onChange(value, e);
     }
 
-    if (!normalize && onDragChange) {
+    if (!normalize && onDragChange && (isNewValue || this.state.distance !== distance)) {
       onDragChange(distance, value, e);
     }
 
