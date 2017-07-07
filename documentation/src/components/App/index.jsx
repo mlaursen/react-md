@@ -14,6 +14,7 @@ import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 import Search from 'components/Search';
+import MobileNavigation from 'components/MobileNavigation';
 
 import Routes from './Routes';
 import Footer from './Footer';
@@ -105,11 +106,15 @@ export default class App extends PureComponent {
       mobile,
       meta,
       link,
+      location: { pathname },
     } = this.props;
 
     let tabs;
+    let bottomNav;
     if (!mobile && toolbarProminent) {
       tabs = <DocumentationTabs key="tabs" />;
+    } else if (mobile && pathname.startsWith('/components')) {
+      bottomNav = <MobileNavigation key="bottom-navigation" />;
     }
 
     return (
@@ -136,6 +141,7 @@ export default class App extends PureComponent {
       >
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
         <Routes />
+        {bottomNav}
         <Footer />
       </NavigationDrawer>
     );

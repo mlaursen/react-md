@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
-import { parse, stringify } from 'qs';
+import { stringify } from 'qs';
+import { getTab } from 'utils/routing';
 
 import './_styles.scss';
 
@@ -34,8 +35,7 @@ export default class DocumentationTabs extends PureComponent {
       location: { pathname, search },
     } = this.props;
 
-    const { tab } = parse(search.replace('?', ''));
-    const activeTabIndex = parseInt(tab, 10) || 0;
+    const activeTabIndex = getTab(search) || 0;
     const colors = pathname.indexOf('colors') !== -1;
     const themes = pathname.indexOf('themes') !== -1;
     const customization = pathname.indexOf('customization') !== -1;
