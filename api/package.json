@@ -1,6 +1,6 @@
 {
   "name": "react-md-api",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "private": true,
   "description": "The Read in CRUD for react-md",
   "main": "src/server/index.js",
