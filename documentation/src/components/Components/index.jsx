@@ -22,6 +22,41 @@ import {
   Buttons,
   Cards,
   Chips,
+  DataTables,
+  Dialogs,
+  Dividers,
+  Drawers,
+  ExpansionPanels,
+  FileInputs,
+  FontIcons,
+  AccessibleFakeButtons,
+  Collapses,
+  FocusContainers,
+  IconSeparators,
+  Layovers,
+  Portals,
+  Inks,
+  Lists,
+  Media,
+  Menus,
+  NavigationDrawers,
+  Papers,
+  DatePickers,
+  TimePickers,
+  CircularProgress,
+  LinearProgress,
+  SelectFields,
+  SelectionControls,
+  Checkboxes,
+  Radios,
+  Switches,
+  Sliders,
+  Snackbars,
+  Subheaders,
+  Tabs,
+  TextFields,
+  Toolbars,
+  Tooltips,
   PropTypesPage,
   SassDocPage,
   NotFound,
@@ -69,6 +104,111 @@ const Components = (props) => {
     case 'chips':
       Component = Chips;
       break;
+    case 'data-tables':
+      Component = DataTables;
+      break;
+    case 'dialogs':
+      Component = Dialogs;
+      break;
+    case 'dividers':
+      Component = Dividers;
+      break;
+    case 'drawers':
+      Component = Drawers;
+      break;
+    case 'expansion-panels':
+      Component = ExpansionPanels;
+      break;
+    case 'file-inputs':
+      Component = FileInputs;
+      break;
+    case 'font-icons':
+      Component = FontIcons;
+      break;
+    case 'accessible-fake-buttons':
+      Component = AccessibleFakeButtons;
+      break;
+    case 'collapses':
+      Component = Collapses;
+      break;
+    case 'focus-containers':
+      Component = FocusContainers;
+      break;
+    case 'icon-separators':
+      Component = IconSeparators;
+      break;
+    case 'layovers':
+      Component = Layovers;
+      break;
+    case 'portals':
+      Component = Portals;
+      break;
+    case 'inks':
+      Component = Inks;
+      break;
+    case 'lists':
+      Component = Lists;
+      break;
+    case 'media':
+      Component = Media;
+      break;
+    case 'menus':
+      Component = Menus;
+      break;
+    case 'navigation-drawers':
+      Component = NavigationDrawers;
+      break;
+    case 'papers':
+      Component = Papers;
+      break;
+    case 'date':
+      Component = DatePickers;
+      break;
+    case 'time':
+      Component = TimePickers;
+      break;
+    case 'circular':
+      Component = CircularProgress;
+      break;
+    case 'linear':
+      Component = LinearProgress;
+      break;
+    case 'select-fields':
+      Component = SelectFields;
+      break;
+    case 'selection-controls':
+      Component = SelectionControls;
+      break;
+    case 'checkboxes':
+      Component = Checkboxes;
+      break;
+    case 'radios':
+      Component = Radios;
+      break;
+    case 'switches':
+      Component = Switches;
+      break;
+    case 'sliders':
+      Component = Sliders;
+      break;
+    case 'snackbars':
+      Component = Snackbars;
+      break;
+    case 'subheaders':
+      Component = Subheaders;
+      break;
+    case 'tabs':
+      Component = Tabs;
+      break;
+    case 'text-fields':
+      Component = TextFields;
+      break;
+    case 'toolbars':
+      Component = Toolbars;
+      break;
+    case 'tooltips':
+      Component = Tooltips;
+      break;
     default:
       Component = null;
   }
@@ -77,7 +217,7 @@ const Components = (props) => {
     return <Component key={pathname} {...props} />;
   }
 
-  return null;
+  return <NotFound history={history} staticContext={staticContext} />;
 };
 
 Components.propTypes = {
