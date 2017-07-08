@@ -3,7 +3,7 @@ Some of the general changes across components was to have more consistent naming
 Most booleans are now an adjective instead of the `is` prefix. The `initial` prefix was also changed
 to be `default` to match the initial React implementation for default values. For example:
 
-```
+```bash
 isExpander -> expander
 initialDrawerType -> defaultDrawerType
 ```

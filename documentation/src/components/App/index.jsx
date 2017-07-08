@@ -106,7 +106,7 @@ export default class App extends PureComponent {
       mobile,
       meta,
       link,
-      location: { pathname },
+      location: { pathname, search },
     } = this.props;
 
     let tabs;
@@ -140,7 +140,7 @@ export default class App extends PureComponent {
         })}
       >
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
-        <Routes />
+        <Routes key={`${pathname}${search}`} />
         {bottomNav}
         <Footer />
       </NavigationDrawer>
