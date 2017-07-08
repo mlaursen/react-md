@@ -18,6 +18,7 @@ const TRANSITION_TIME = 317; // 300ms for transition and 17 to match up with ori
 
 export class PureSearch extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     search: PropTypes.func.isRequired,
     searchNext: PropTypes.func.isRequired,
     searching: PropTypes.bool.isRequired,
@@ -183,6 +184,7 @@ export class PureSearch extends PureComponent {
       searching,
       hideSearch,
       meta: { total },
+      className,
     } = this.props;
 
     let hideBtn;
@@ -195,7 +197,7 @@ export class PureSearch extends PureComponent {
     }
 
     return (
-      <div className="search md-grid md-grid--no-spacing">
+      <div className={cn('search md-grid md-grid--no-spacing', className)}>
         <Autocomplete
           id="documentation-search"
           placeholder="Search"

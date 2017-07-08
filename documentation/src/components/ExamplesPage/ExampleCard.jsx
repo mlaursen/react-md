@@ -8,7 +8,7 @@ import { toCaterpillarCase } from 'utils/strings';
 
 import Markdown from 'components/Markdown';
 
-const ExampleCard = ({ title, description, code, children: propChildren, tableCard, ...props }) => {
+const ExampleCard = ({ title, description, code, children: propChildren, tableCard, className, ...props }) => {
   const markdown = `
 \`\`\`js
 ${code}
@@ -17,7 +17,14 @@ ${code}
 
   let descriptionMarkdown;
   if (description) {
-    descriptionMarkdown = <Markdown key="description" markdown={description} className="md-text-container" />;
+    descriptionMarkdown = (
+      <Markdown
+        key="description"
+        component="div"
+        markdown={description}
+        className="md-text-container examples-page__card__description"
+      />
+    );
   }
 
   let children = propChildren;
@@ -32,7 +39,7 @@ ${code}
       id={toCaterpillarCase(title)}
       {...props}
       tableCard={tableCard}
-      className={cn('md-cell md-cell--12')}
+      className={cn('md-cell md-cell--12', className)}
       expanderIconChildren="code"
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
@@ -52,6 +59,7 @@ ExampleCard.propTypes = {
   code: PropTypes.string.isRequired,
   children: PropTypes.node,
   tableCard: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default ExampleCard;

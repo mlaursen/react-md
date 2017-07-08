@@ -64,8 +64,8 @@ exports[`ExamplesPage should render correctly 1`] = `
     <section
       className="md-card-text"
     >
-      <section
-        className="markdown-container md-text-container"
+      <div
+        className="markdown-container md-text-container examples-page__card__description"
         dangerouslySetInnerHTML={
           Object {
             "__html": "<p>Something that has some <strong>markdown</strong> and <strong>other stuff</strong>.</p>
