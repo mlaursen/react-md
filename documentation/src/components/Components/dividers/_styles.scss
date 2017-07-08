@@ -1,0 +1,19 @@
+@import '~globals';
+
+.dividers__example {
+  margin: 2em auto;
+  max-width: 320px;
+}
+
+.dividers__border-example {
+  @include md-box-shadow(1);
+
+  display: inline-block;
+  margin: 1em;
+  padding: 2em;
+
+  .md-divider-border {
+    height: 80px;
+    width: 80px;
+  }
+}

@@ -15,6 +15,8 @@ import SimpleFullPageDialogRaw from '!!raw-loader!./SimpleFullPageDialog.jsx';
 import StaticDialog from './StaticDialog';
 import StaticDialogRaw from '!!raw-loader!./StaticDialog.jsx';
 
+import stylesRaw from '!!raw-loader!./_styles.scss';
+
 const examples = [{
   title: 'Simple List Dialog',
   description: `
@@ -67,7 +69,14 @@ The default export from the dialogs module is a wrapper for dynamically displayi
 or creating some overlay and displaying the dialog inside. There is also the base \`Dialog\` element that can be used.
 This element will always be visible and can be styled/placed with your own styles.
   `,
-  code: StaticDialogRaw,
+  code: `/* StaticDialig.jsx */
+${StaticDialogRaw}
+\`\`\`
+
+\`\`\`scss
+/* _styles.scss */
+${stylesRaw}
+  `,
   children: <StaticDialog />,
 }];
 
