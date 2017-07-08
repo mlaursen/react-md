@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { bindActionCreators } from 'redux';
 import { connectAdvanced } from 'react-redux';
 import shallowEqual from 'shallowequal';
@@ -23,6 +24,7 @@ export class PureSassDocPage extends PureComponent {
     sassdoc: sassdocPageShape,
     desktop: PropTypes.bool.isRequired,
     toolbarTitle: PropTypes.string.isRequired,
+    fabOffset: PropTypes.bool,
   };
 
   state = { finderVisible: false };
@@ -49,7 +51,7 @@ export class PureSassDocPage extends PureComponent {
   };
 
   render() {
-    const { sassdoc, toolbarTitle } = this.props;
+    const { sassdoc, toolbarTitle, fabOffset } = this.props;
     const { placeholders, variables, mixins, functions } = sassdoc || {};
 
     return (
@@ -63,6 +65,9 @@ export class PureSassDocPage extends PureComponent {
           floating
           secondary
           fixed
+          className={cn('sassdoc__fab', {
+            'sassdoc__fab--offset': fabOffset,
+          })}
           onClick={this.toggleFinder}
           tooltipPosition="left"
           tooltipLabel="Find SassDoc in Page"
@@ -103,6 +108,7 @@ export default connectAdvanced((dispatch) => {
       section,
       component: component || location,
       sassdoc,
+      fabOffset: state.sassdocFab && state.media.mobile,
       desktop: state.media.desktop,
       toolbarTitle: state.drawer.toolbarTitle,
     };

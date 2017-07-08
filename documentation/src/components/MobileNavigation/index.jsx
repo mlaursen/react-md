@@ -5,17 +5,19 @@ import { withRouter } from 'react-router';
 import { stringify } from 'qs';
 import { getTab } from 'utils/routing';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
+import { updateFinderVisibility } from 'state/sassdocFab';
 
 import './_styles.scss';
 
 @withRouter
-@connect(({ media: { defaultMedia } }) => ({ defaultMedia }))
+@connect(({ media: { defaultMedia } }) => ({ defaultMedia }), { updateFinderVisibility })
 export default class DocumentationTabs extends PureComponent {
   static propTypes = {
     defaultMedia: PropTypes.string.isRequired,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    updateFinderVisibility: PropTypes.func,
   };
 
   constructor(props) {
@@ -66,7 +68,7 @@ export default class DocumentationTabs extends PureComponent {
 
   render() {
     const { links } = this.state;
-    const { location: { search } } = this.props;
+    const { location: { search }, updateFinderVisibility } = this.props;
     const activeIndex = getTab(search) || 0;
     return (
       <BottomNavigation
@@ -75,6 +77,7 @@ export default class DocumentationTabs extends PureComponent {
         dynamic
         links={links}
         colored
+        onVisibilityChange={updateFinderVisibility}
       />
     );
   }

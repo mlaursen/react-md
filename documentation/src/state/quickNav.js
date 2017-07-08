@@ -15,7 +15,7 @@ export function handleLocationChange(state, pathname, routes = quickNavRoutes) {
 
   let i = -1;
   routes.some((r, index) => {
-    if (r.to === pathname) {
+    if (r.to === pathname || pathname.match(r.to)) {
       i = index;
       return true;
     }
@@ -38,7 +38,7 @@ export function handleLocationChange(state, pathname, routes = quickNavRoutes) {
 }
 
 const pathname = __CLIENT__ ? location.pathname : '';
-const INITIAL_STATE = handleLocationChange(DEFAULT_STATE, { pathname });
+const INITIAL_STATE = handleLocationChange(DEFAULT_STATE, pathname);
 
 export default function quickNav(state = INITIAL_STATE, action) {
   switch (action.type) {

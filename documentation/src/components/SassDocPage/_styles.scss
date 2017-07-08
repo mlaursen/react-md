@@ -87,3 +87,13 @@ $sassdoc-color-size: 32px;
     }
   }
 }
+
+.md-btn.sassdoc__fab {
+  transition-duration: $md-bottom-navigation-transition-time;
+  transition-property: bottom;
+  will-change: bottom;
+
+  &--offset {
+    bottom: $md-bottom-navigation-height + $md-btn-mobile-floating-margin;
+  }
+}

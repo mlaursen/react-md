@@ -9,6 +9,7 @@ import drawer from './drawer';
 import github from './github';
 import quickNav from './quickNav';
 import sassdocs from './sassdocs';
+import sassdocFab from './sassdocFab';
 import routing from './routing'; // until react-router-redux@5
 
 export default combineReducers({
@@ -21,5 +22,6 @@ export default combineReducers({
   drawer,
   quickNav,
   sassdocs,
+  sassdocFab,
   routing,
 });

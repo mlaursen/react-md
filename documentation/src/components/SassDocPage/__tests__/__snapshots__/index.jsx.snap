@@ -805,7 +805,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     </div>
   </section>
   <button
-    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}
@@ -1634,7 +1634,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     </div>
   </section>
   <button
-    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}
