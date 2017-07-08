@@ -432,8 +432,6 @@ describe('Autocomplete', () => {
     expect(autocomplete.state('visible')).toBe(true);
   });
 
-  
-
   it('should be renderable inside of a ListItem', () => {
     const autocomplete = <Autocomplete id="inside-list" data={[]} />;
 
