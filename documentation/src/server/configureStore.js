@@ -60,7 +60,7 @@ export default async function configureStore(req) {
       toolbarProminent: !pathname.match(/minimizing/) && !!pathname.match(/components|customization/),
       visibleBoxShadow: pathname !== '/',
     },
-    quickNav: handleLocationChange(DEFAULT_QUICK_NAV_STATE, { pathname }),
+    quickNav: handleLocationChange(DEFAULT_QUICK_NAV_STATE, pathname),
     theme: getInitialThemeState(req.cookies),
   });
 

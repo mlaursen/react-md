@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import Autocomplete from 'react-md/lib/Autocompletes';
 import Button from 'react-md/lib/Buttons/Button';
@@ -9,7 +10,7 @@ import Toolbar from 'react-md/lib/Toolbars';
 
 import { toTitle } from 'utils/strings';
 
-function buildSubList(docs) {
+function buildSubList(docs, { location: { pathname, search } }) {
   if (!docs.length) {
     return [];
   }
@@ -22,12 +23,13 @@ function buildSubList(docs) {
       return {
         primaryText: name,
         component: Link,
-        to: `${window.location.pathname}${window.location.search}${hash}`,
+        to: `${pathname}${search}${hash}`,
       };
     }),
   }];
 }
 
+@withRouter
 export default class FindInPage extends PureComponent {
   static propTypes = {
     visible: PropTypes.bool.isRequired,
@@ -50,10 +52,10 @@ export default class FindInPage extends PureComponent {
   constructor(props) {
     super(props);
 
-    const navItems = buildSubList(props.placeholders)
-      .concat(buildSubList(props.variables))
-      .concat(buildSubList(props.functions))
-      .concat(buildSubList(props.mixins));
+    const navItems = buildSubList(props.placeholders, props)
+      .concat(buildSubList(props.variables, props))
+      .concat(buildSubList(props.functions, props))
+      .concat(buildSubList(props.mixins, props));
 
     this.state = { navItems, filteredNavItems: navItems };
   }
@@ -62,10 +64,10 @@ export default class FindInPage extends PureComponent {
     const { variables: v, placeholders: p, mixins: m, functions: f } = nextProps;
 
     if (v !== this.props.variables || p !== this.props.placeholders || m !== this.props.mixins || f !== this.props.functions) {
-      const navItems = buildSubList(p)
-        .concat(buildSubList(v))
-        .concat(buildSubList(f))
-        .concat(buildSubList(m));
+      const navItems = buildSubList(p, nextProps)
+        .concat(buildSubList(v, nextProps))
+        .concat(buildSubList(f, nextProps))
+        .concat(buildSubList(m, nextProps));
 
       this.setState({ navItems, filteredNavItems: navItems });
     }

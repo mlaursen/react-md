@@ -1,5 +1,5 @@
 import React from 'react';
-import List from 'react-md/lib/Lists?list';
+import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 
