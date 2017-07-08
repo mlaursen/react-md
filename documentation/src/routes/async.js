@@ -20,6 +20,9 @@ export const Contributing = asyncComponent(() => import(/* webpackChunkName: Con
 export const SassDocPage = asyncComponent(() => import(/* webpackChunkName: SassDocPage */ 'components/SassDocPage'));
 export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: PropTypesPage */ 'components/PropTypesPage'));
 
+// routing examples
+export const BottomNavigationRouting = asyncComponent(() => import(/* webpackChunkName: BottomNavigationRouting */ 'components/Components/bottom-navigations/RoutingExample'));
+
 // components
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));
 export const Avatars = asyncComponent(() => import(/* webpackChunkName: Avatars */ 'components/Components/avatars'));

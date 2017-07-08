@@ -54,6 +54,25 @@ describe('quickNav', () => {
       };
       expect(handleLocationChange(undefined, '/something-third', ROUTES)).toEqual(expected);
     });
+
+    it('should regex match routes in the routing examples subpath', () => {
+      const navigations = '/discover-more/routing-examples/bottom-navigations';
+      const routes = [
+        ...ROUTES,
+        { label: 'Bottom Navigations', to: navigations },
+        { label: 'Drawers', to: '/discover-more/routing-examples/drawers' },
+      ];
+
+      const expected = {
+        previousTo: '/something-third',
+        previousName: 'Something Third',
+        nextTo: '/discover-more/routing-examples/drawers',
+        nextName: 'Drawers',
+      };
+
+      expect(handleLocationChange(undefined, navigations, routes)).toEqual(expected);
+      expect(handleLocationChange(undefined, `${navigations}/music`, routes)).toEqual(expected);
+    });
   });
 
   describe('reducer', () => {

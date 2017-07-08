@@ -15,7 +15,7 @@ export function handleLocationChange(state, pathname, routes = quickNavRoutes) {
 
   let i = -1;
   routes.some((r, index) => {
-    if (r.to === pathname || pathname.match(r.to)) {
+    if (r.to === pathname || (pathname.match(/routing-examples/) && pathname.match(r.to))) {
       i = index;
       return true;
     }

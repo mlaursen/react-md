@@ -29,6 +29,8 @@ export function toPageTitle(pathname) {
   const path = pathname.replace('/', '').replace(/\?.*/, '');
   if (!path) {
     return '';
+  } else if (path.match(/routing-examples/)) {
+    return 'Routing Examples';
   }
 
   const [id, section] = path.split('/').reverse();

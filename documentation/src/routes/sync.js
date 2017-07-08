@@ -20,6 +20,9 @@ export const Contributing = syncComponent('Contributing', require('components/Di
 export const SassDocPage = syncComponent('SassDocPage', require('components/SassDocPage'));
 export const PropTypesPage = syncComponent('PropTypesPage', require('components/PropTypesPage'));
 
+// routing examples
+export const BottomNavigationRouting = syncComponent('BottomNavigationRouting', require('components/Components/bottom-navigations/RoutingExample'));
+
 // components
 export const Autocompletes = syncComponent('Autocompletes', require('components/Components/autocompletes'));
 export const Avatars = syncComponent('Avatars', require('components/Components/avatars'));

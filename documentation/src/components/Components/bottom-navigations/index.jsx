@@ -1,10 +1,13 @@
 import React from 'react';
 import ExamplesPage from 'components/ExamplesPage';
+import { Link } from 'react-router-dom';
 
 import Fixed from './Fixed';
 import FixedRaw from './Fixed/code';
 import Shifting from './Shifting';
 import ShiftingRaw from './Shifting/code';
+
+import RoutingExampleRaw from '!!raw-loader!./RoutingExample.jsx';
 
 import README from './README.md';
 
@@ -36,6 +39,18 @@ upwards.
   `,
   code: ShiftingRaw,
   children: <Shifting />,
+}, {
+  title: 'React Router Example',
+  description: `
+Since this is a **navigation** component, the bottom navigation can be updated to be used with \`react-router\`.
+This example will be exactly the same as the shifting example above, just using \`react-router\`'s \`Link\` and
+\`Route\` components to change the index and figure out which components to render.
+
+Since my site uses path params to fetch documentation/examples/sassdoc, you will need to navigate to a different
+route to actually view the demo. Please click the link below to see this example in action.
+  `,
+  code: RoutingExampleRaw,
+  children: <Link to="/discover-more/routing-examples/bottom-navigations">View Demo</Link>,
 }];
 
 const BottomNavigations = () => <ExamplesPage description={README} examples={examples} className="bottom-navigations" />;

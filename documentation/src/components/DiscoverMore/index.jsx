@@ -27,6 +27,8 @@ const DiscoverMore = ({ match: { params: { location, version } }, history, stati
     return <Contributing staticContext={staticContext} />;
   } else if (location === 'community') {
     return <Community staticContext={staticContext} />;
+  } else if (location === 'routing-examples') {
+    return null;
   }
 
   return <NotFound history={history} staticContext={staticContext} />;

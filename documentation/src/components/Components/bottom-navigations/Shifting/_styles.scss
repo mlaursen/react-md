@@ -8,10 +8,6 @@
 
 .bottom-navigations {
   @include react-md-media-aspect-ratio(2, 3);
-
-  a {
-    color: inherit;
-  }
 }
 
 // This is really a combination of the `.md-toolbar-relative` class name and then adding some

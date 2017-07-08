@@ -81,7 +81,12 @@ const navigationRoutes = [{
     },
     'showcases',
     'community',
-    'contributing',
+    'contributing', {
+      to: 'routing-examples',
+      routes: [
+        'bottom-navigations',
+      ],
+    },
   ],
 }, {
   to: 'components',
