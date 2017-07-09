@@ -18,6 +18,7 @@ const PhoneEmulator = ({
   toolbarClassName,
   toolbar,
   toolbarTitle,
+  toolbarActions,
   toolbarZDepth,
   toolbarProminent,
   toolbarProminentTitle,
@@ -75,6 +76,7 @@ const PhoneEmulator = ({
         style={toolbarStyle}
         className={cn('phone-emulator__toolbar', toolbarClassName)}
         nav={<CloseEmulator icon>{toolbarNavIcon}</CloseEmulator>}
+        actions={toolbarActions}
         title={toolbarTitle}
         prominent={toolbarProminent}
         prominentTitle={toolbarProminentTitle}
@@ -95,6 +97,7 @@ const PhoneEmulator = ({
         {...contentProps}
         className={cn('phone-emulator__content', {
           'phone-emulator__content--offset': toolbar,
+          'phone-emulator__content--offset-prominent': toolbar && (toolbarProminent || toolbarProminentTitle),
         }, contentClassName)}
       >
         {children}
