@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import viewport from '../utils/viewport';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
@@ -413,6 +414,20 @@ export default class EditDialogColumn extends PureComponent {
     repositionOnScroll: PropTypes.bool,
 
     /**
+     * Boolean if the edit dialog should attempt to scroll into view if the full
+     * dialog can not be displayed in the viewport when it was toggled open.
+     *
+     * @see {@link #scrollIntoViewPadding}
+     */
+    scrollIntoView: PropTypes.bool,
+
+    /**
+     * The amount of padding that should be applied when the cell is scrolled into view.
+     * This will be applied to the left of the cell.
+     */
+    scrollIntoViewPadding: PropTypes.number,
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -457,6 +472,8 @@ export default class EditDialogColumn extends PureComponent {
     animationPosition: EditDialogColumn.Positions.BELOW,
     dialogZDepth: 1,
     repositionOnScroll: true,
+    scrollIntoView: true,
+    scrollIntoViewPadding: 16,
   };
 
   static contextTypes = {
@@ -535,8 +552,12 @@ export default class EditDialogColumn extends PureComponent {
     if (this._skipNextOpen) {
       this._skipNextOpen = false;
     } else {
-      if (this._table && this._column && !this.props.inline) {
-        this._table.scrollLeft = this._column.offsetLeft;
+      const { scrollIntoView, scrollIntoViewPadding } = this.props;
+      if (scrollIntoView) {
+        const vp = viewport(this._column);
+        if (vp !== true && this._table && this._column && !this.props.inline) {
+          this._table.scrollLeft = this._column.offsetLeft - scrollIntoViewPadding;
+        }
       }
 
       this.setState({ visible: true, cancelValue: getField(this.props, this.state, 'value') });
@@ -676,6 +697,8 @@ export default class EditDialogColumn extends PureComponent {
       okOnOutsideClick,
       defaultValue,
       adjusted,
+      scrollIntoView,
+      scrollIntoViewPadding,
 
       // deprecated
       scrollThreshold,
