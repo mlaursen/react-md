@@ -48,12 +48,16 @@ function addAdditionalLineToSee(markdown) {
   return markdown.replace(/(\r?\n)(@see)/g, '$1$1$2');
 }
 
+function removeMarginFromSeeParagraphs(markdown) {
+  return markdown.replace(/<p>@see/g, '<p style="margin-bottom:0">@see');
+}
+
 const transforms = [
   addSimpleGithubLinking,
   addLinkStyles,
-  addAdditionalLineToSee,
+  removeMarginFromSeeParagraphs,
 ];
 
 export default function formatMarkdown(markdown) {
-  return transforms.reduce((formatted, transform) => transform(formatted), marked(markdown));
+  return transforms.reduce((formatted, transform) => transform(formatted), marked(addAdditionalLineToSee(markdown)));
 }
