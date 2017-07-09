@@ -682,14 +682,14 @@ export default class Layover extends PureComponent {
     }
   };
 
-  _handleScroll = () => {
+  _handleScroll = (e) => {
     if (!this.props.repositionOnScroll) {
       this._manageFixedToListener(this.props.fixedTo, false);
-      this.props.onClose();
+      this.props.onClose(e);
     }
 
     if (!this._ticking) {
-      requestAnimationFrame(this._handleTick);
+      requestAnimationFrame(() => this._handleTick(e));
     }
 
     this._ticking = true;
@@ -700,13 +700,13 @@ export default class Layover extends PureComponent {
    * the element should still be visible. If it is still visible, it will update its
    * x and y position for the new scroll position.
    */
-  _handleTick = () => {
+  _handleTick = (e) => {
     const { fixedTo, xThreshold, yThreshold } = this.props;
     const vp = viewport(this._child);
-    if (vp !== true) {
+    if (vp !== true && vp.left && vp.right) {
       const fixed = !this._contextRect && this._attemptFix(vp);
       if (!fixed) {
-        this.props.onClose();
+        this.props.onClose(e);
         this._ticking = false;
       }
 
@@ -714,7 +714,7 @@ export default class Layover extends PureComponent {
     } else if (
       isOutOfBounds(fixedTo, this._child, this._toggle, yThreshold, xThreshold)
     ) {
-      this.props.onClose();
+      this.props.onClose(e);
       this._ticking = false;
       return;
     }
@@ -780,8 +780,8 @@ export default class Layover extends PureComponent {
     }
   };
 
-  _handleWindowResize = () => {
-    this.props.onClose();
+  _handleWindowResize = (e) => {
+    this.props.onClose(e);
     window.removeEventListener('resize', this._handleWindowResize);
   };
 
