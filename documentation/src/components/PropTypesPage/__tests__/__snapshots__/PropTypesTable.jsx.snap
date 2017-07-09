@@ -68,6 +68,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-style"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -113,6 +114,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-class-name"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -158,6 +160,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-icon-class-name"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -204,6 +207,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-children"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -249,6 +253,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-disabled"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -294,6 +299,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-force-size"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}
@@ -341,6 +347,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
         id="font-icons-proptypes-proptypes-force-font-size"
         onMouseLeave={[Function]}
         onMouseOver={[Function]}
+        tabIndex={-1}
       >
         <td
           aria-sort={undefined}

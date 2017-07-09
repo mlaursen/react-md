@@ -15,6 +15,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     <div
       className="sassdoc"
       id="placeholder-md-tracking--10"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -101,6 +102,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     <div
       className="sassdoc"
       id="variable-md-typography-extended"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -164,6 +166,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     <div
       className="sassdoc"
       id="function-get-font-suffix"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -347,6 +350,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     <div
       className="sassdoc"
       id="mixin-react-md-typography"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -844,6 +848,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     <div
       className="sassdoc"
       id="placeholder-md-tracking--10"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -930,6 +935,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     <div
       className="sassdoc"
       id="variable-md-typography-extended"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -993,6 +999,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     <div
       className="sassdoc"
       id="function-get-font-suffix"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"
@@ -1176,6 +1183,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     <div
       className="sassdoc"
       id="mixin-react-md-typography"
+      tabIndex={-1}
     >
       <a
         className="md-display-1 link"

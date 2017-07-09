@@ -29,7 +29,10 @@ ${code}
 
   let children = propChildren;
   if (tableCard && description) {
-    children = [<CardText key="description">{descriptionMarkdown}</CardText>, children];
+    children = [
+      <CardText key="description">{descriptionMarkdown}</CardText>,
+      React.cloneElement(children, { key: 'table-card-example' }),
+    ];
   } else if (!tableCard) {
     children = <CardText key="example-card-text">{descriptionMarkdown}{children}</CardText>;
   }
@@ -38,6 +41,7 @@ ${code}
     <Card
       id={toCaterpillarCase(title)}
       {...props}
+      tabIndex={-1}
       tableCard={tableCard}
       className={cn('md-cell md-cell--12', className)}
       expanderIconChildren="code"

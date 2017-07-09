@@ -7,6 +7,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
+  tabIndex={-1}
 >
   <div
     className="md-card-title md-card-title--primary"
@@ -81,6 +82,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
+  tabIndex={-1}
 >
   <div
     className="md-card-title md-card-title--primary"
@@ -168,6 +170,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
+  tabIndex={-1}
 >
   <div
     className="md-card-title md-card-title--primary"
@@ -238,6 +241,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
   onTouchStart={[Function]}
+  tabIndex={-1}
 >
   <div
     className="md-card-title md-card-title--primary"

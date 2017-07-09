@@ -27,6 +27,7 @@ exports[`ExamplesPage should render correctly 1`] = `
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
     onTouchStart={[Function]}
+    tabIndex={-1}
   >
     <div
       className="md-card-title md-card-title--primary"

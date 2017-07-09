@@ -15,6 +15,9 @@ export function scrollTo(el) {
     const { top: bodyTop } = (document.body || document.documentElement).getBoundingClientRect();
     const position = Math.abs(elTop - bodyTop);
     require('smooth-scroll').animateScroll(position); // eslint-disable-line global-require
+    setTimeout(() => {
+      el.focus();
+    }, 17);
   }
 }
 

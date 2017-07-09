@@ -15,6 +15,10 @@ h3 {
   white-space: normal;
 }
 
+*[tabindex="-1"]:focus {
+  outline: none;
+}
+
 .md-icon.fa {
   font-size: $md-font-icon-size;
 

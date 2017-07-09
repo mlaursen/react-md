@@ -102,6 +102,7 @@ export default class FindInPage extends PureComponent {
 
     return (
       <Drawer
+        id="sassdoc-finder-drawer"
         visible={visible}
         onVisibilityChange={onVisibilityChange}
         tabletType={Drawer.DrawerTypes.TEMPORARY}

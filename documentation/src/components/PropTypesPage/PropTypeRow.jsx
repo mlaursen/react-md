@@ -16,7 +16,7 @@ const PropTypesRow = ({ propName, type, required, defaultValue, description, bas
   const deprecated = type.indexOf('deprecated') !== -1;
 
   return (
-    <TableRow id={`${baseId}-proptypes-${kebabCase(propName)}`}>
+    <TableRow id={`${baseId}-proptypes-${kebabCase(propName)}`} tabIndex={-1}>
       <TableColumn
         className={cn('prop-types__prop-name', {
           'prop-types__prop-name--deprecated md-text--secondary': deprecated,

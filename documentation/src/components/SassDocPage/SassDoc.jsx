@@ -109,7 +109,7 @@ const SassDoc = ({
   }
 
   return (
-    <div className="sassdoc" id={`${type}-${name}`}>
+    <div className="sassdoc" id={`${type}-${name}`} tabIndex={-1}>
       <a href={`#${type}-${name}`} className="md-display-1 link" onClick={preventDefault}>{name}</a>
       <ExpandableSource code={code} oneLineCode={oneLineCode} />
       {children}
