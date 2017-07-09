@@ -47,7 +47,8 @@ This example will be exactly the same as the shifting example above, just using 
 \`Route\` components to change the index and figure out which components to render.
 
 Since my site uses path params to fetch documentation/examples/sassdoc, you will need to navigate to a different
-route to actually view the demo. Please click the link below to see this example in action.
+route to actually view the demo. Please click the link below to see this example in action. The code for the example
+is still available here by clicking the code expander button.
   `,
   code: RoutingExampleRaw,
   children: <Link to="/discover-more/routing-examples/bottom-navigations">View Demo</Link>,

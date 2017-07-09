@@ -85,6 +85,7 @@ const navigationRoutes = [{
       to: 'routing-examples',
       routes: [
         'bottom-navigations',
+        'drawers',
       ],
     },
   ],

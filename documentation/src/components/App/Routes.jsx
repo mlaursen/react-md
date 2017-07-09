@@ -1,9 +1,15 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Home, NotFound, GettingStarted, BottomNavigationRouting } from 'routes';
 import Customization from 'components/Customization';
 import DiscoverMore from 'components/DiscoverMore';
 import Components from 'components/Components';
+import {
+  Home,
+  NotFound,
+  GettingStarted,
+  BottomNavigationRouting,
+  DrawerRouting,
+} from 'routes';
 
 const Routes = () => (
   <Switch>
@@ -12,6 +18,7 @@ const Routes = () => (
     <Redirect from="/customization/grids" to="/components/grids" />
     <Route path="/customization/:location" component={Customization} />
     <Route path="/discover-more/routing-examples/bottom-navigations" component={BottomNavigationRouting} />
+    <Route path="/discover-more/routing-examples/drawers" component={DrawerRouting} />
     <Route path="/discover-more/upgrade-guides/:version" component={DiscoverMore} />
     <Route path="/discover-more/:location" component={DiscoverMore} />
     <Redirect from="/components/helpers/accessible-fake-button" to="/components/helpers/accessible-fake-buttons" />

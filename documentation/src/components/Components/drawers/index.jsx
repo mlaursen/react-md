@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ExamplesPage from 'components/ExamplesPage';
 
 import README from './README.md';
@@ -7,6 +8,7 @@ import SimpleDrawer from './SimpleDrawer';
 import SimpleDrawerRaw from '!!raw-loader!./SimpleDrawer.jsx';
 import DrawerWithContent from './DrawerWithContent';
 import DrawerWithContentRaw from './DrawerWithContent/code';
+import RoutingExampleRaw from './RoutingExample/code';
 
 const examples = [{
   title: 'Simple Example',
@@ -34,6 +36,18 @@ more information about images.
   `,
   code: DrawerWithContentRaw,
   children: <DrawerWithContent />,
+}, {
+  title: 'React Router Example',
+  description: `
+Since one of the main use cases of the \`Drawer\` is to act as navigation, there is _some_ support for integrating
+with \`react-router\`.
+
+Since my site uses path params to fetch documentation/examples/sassdocs, you will need to navigate to a different
+route to actually view the demo. Please click the link below to see this example in action. The code for the example
+is still available here by clicking the code expander button.
+  `,
+  code: RoutingExampleRaw,
+  children: <Link to="/discover-more/routing-examples/drawers">View Demo</Link>,
 }];
 
 const Drawers = () => <ExamplesPage description={README} examples={examples} />;
