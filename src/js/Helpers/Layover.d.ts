@@ -48,6 +48,7 @@ export interface SharedLayoverProps extends Props {
   closeOnOutsideClick?: boolean;
   anchor?: LayoverAnchor;
   belowAnchor?: LayoverAnchor;
+  repositionOnScroll?: boolean;
 }
 
 export interface LayoverProps extends SharedLayoverProps {

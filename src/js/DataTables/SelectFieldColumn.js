@@ -119,6 +119,14 @@ export default class SelectFieldColumn extends PureComponent {
      */
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
     wrapperStyle: deprecated(PropTypes.object, 'There is no longer a wrapper'),
     wrapperClassName: deprecated(PropTypes.string, 'There is no longer a wrapper'),
   };
@@ -126,6 +134,7 @@ export default class SelectFieldColumn extends PureComponent {
   static defaultProps = {
     position: SelectFieldColumn.Positions.BELOW,
     fullWidth: true,
+    repositionOnScroll: true,
   };
 
   static contextTypes = {

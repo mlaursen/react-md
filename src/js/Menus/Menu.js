@@ -280,6 +280,14 @@ export default class Menu extends PureComponent {
      */
     transitionLeaveTimeout: PropTypes.number,
 
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),
@@ -311,6 +319,7 @@ export default class Menu extends PureComponent {
     listZDepth: 2,
     listHeightRestricted: true,
     cascadingZDepth: 3,
+    repositionOnScroll: true,
   };
 
   static contextTypes = {

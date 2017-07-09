@@ -435,6 +435,14 @@ export default class SelectField extends PureComponent {
      */
     sameWidth: Menu.propTypes.sameWidth,
 
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
@@ -469,6 +477,7 @@ export default class SelectField extends PureComponent {
     keyboardMatchingTimeout: 1000,
     transitionName: 'md-drop',
     transitionTime: 300,
+    repositionOnScroll: true,
   };
 
   constructor(props) {
@@ -900,6 +909,7 @@ export default class SelectField extends PureComponent {
       centered,
       sameWidth,
       fullWidth,
+      repositionOnScroll,
       menuTransitionName,
       menuTransitionEnterTimeout,
       menuTransitionLeaveTimeout,
@@ -992,6 +1002,7 @@ export default class SelectField extends PureComponent {
         block={block}
         centered={centered}
         fullWidth={fullWidth}
+        repositionOnScroll={repositionOnScroll}
         transitionName={menuTransitionName}
         transitionEnterTimeout={menuTransitionEnterTimeout}
         transitionLeaveTimeout={menuTransitionLeaveTimeout}

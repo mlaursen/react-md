@@ -406,6 +406,14 @@ export default class Autocomplete extends PureComponent {
      * @see {@link Helpers/Layovers#sameWidth}
      */
     sameWidth: Menu.propTypes.sameWidth,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -419,6 +427,7 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
+    repositionOnScroll: true,
   };
 
   constructor(props) {
@@ -940,6 +949,7 @@ export default class Autocomplete extends PureComponent {
       transitionLeaveTimeout,
       centered,
       sameWidth,
+      repositionOnScroll,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -1053,6 +1063,7 @@ export default class Autocomplete extends PureComponent {
         className={cn('md-autocomplete-container', className)}
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
+        repositionOnScroll={repositionOnScroll}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

@@ -405,6 +405,14 @@ export default class EditDialogColumn extends PureComponent {
     tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
 
     /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -448,6 +456,7 @@ export default class EditDialogColumn extends PureComponent {
     cancelPrimary: true,
     animationPosition: EditDialogColumn.Positions.BELOW,
     dialogZDepth: 1,
+    repositionOnScroll: true,
   };
 
   static contextTypes = {
@@ -645,6 +654,7 @@ export default class EditDialogColumn extends PureComponent {
       yThreshold,
       centered,
       sameWidth,
+      repositionOnScroll,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
@@ -753,6 +763,7 @@ export default class EditDialogColumn extends PureComponent {
           sameWidth={sameWidth}
           fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
+          repositionOnScroll={repositionOnScroll}
           transitionName={transitionName}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}

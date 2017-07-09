@@ -217,6 +217,13 @@ export default class Layover extends PureComponent {
      * @see {@link #onContextMenu}
      */
     preventContextMenu: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should attempt to automatically adjust the position of the element to
+     * keep it within the viewport. If this value is set to `false`, the `onClose` prop will be called
+     * instead.
+     */
+    repositionOnScroll: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -229,6 +236,7 @@ export default class Layover extends PureComponent {
       y: Layover.VerticalAnchors.BOTTOM,
     },
     animationPosition: Layover.Positions.BELOW,
+    repositionOnScroll: true,
     component: 'div',
     fixedTo: typeof window !== 'undefined' ? window : {},
     toggleQuery: '.md-text-field-container,button,*[role="button"],*[role="listbox"]',
@@ -675,6 +683,11 @@ export default class Layover extends PureComponent {
   };
 
   _handleScroll = () => {
+    if (!this.props.repositionOnScroll) {
+      this._manageFixedToListener(this.props.fixedTo, false);
+      this.props.onClose();
+    }
+
     if (!this._ticking) {
       requestAnimationFrame(this._handleTick);
     }
@@ -854,6 +867,7 @@ export default class Layover extends PureComponent {
       anchor,
       belowAnchor,
       onClose,
+      repositionOnScroll,
       sameWidth,
       centered,
       fixedTo,

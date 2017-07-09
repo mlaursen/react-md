@@ -279,6 +279,14 @@ export default class MenuButton extends PureComponent {
      */
     transitionLeaveTimeout: PropTypes.number,
 
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
     buttonChildren: deprecated(
       PropTypes.node,
       'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `menuItems` prop'
@@ -290,6 +298,7 @@ export default class MenuButton extends PureComponent {
 
   static defaultProps = {
     defaultVisible: false,
+    repositionOnScroll: true,
   };
 
   render() {
@@ -319,6 +328,7 @@ export default class MenuButton extends PureComponent {
       block,
       centered,
       sameWidth,
+      repositionOnScroll,
       xThreshold,
       yThreshold,
       closeOnOutsideClick,
@@ -367,6 +377,7 @@ export default class MenuButton extends PureComponent {
         block={block}
         centered={centered}
         sameWidth={sameWidth}
+        repositionOnScroll={repositionOnScroll}
         xThreshold={xThreshold}
         yThreshold={yThreshold}
         closeOnOutsideClick={closeOnOutsideClick}

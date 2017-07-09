@@ -259,10 +259,19 @@ export default class DropdownMenu extends PureComponent {
      * @see {@link Menus/Menu#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
   };
 
   static defaultProps = {
     defaultVisible: false,
+    repositionOnScroll: true,
   };
 
   constructor(props) {
