@@ -17,7 +17,7 @@ function loadIntl() {
     const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
     return Promise.all([
       import('intl'),
-      import(`intl/locale-data/jsonp/${lang}`),
+      import(`intl/locale-data/jsonp/${__DEV__ ? 'en-US' : lang}`),
     ]);
   }
 
