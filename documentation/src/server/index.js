@@ -13,6 +13,7 @@ import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import winston from 'winston';
 
+import { API_ENDPOINT } from 'constants/application';
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
 import configureStore from './configureStore';
 import api from './api';
@@ -51,7 +52,7 @@ if (__DEV__ && !global.__SERVER_ONLY) {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use('/api', api);
+app.use(API_ENDPOINT, api);
 app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
 
 app.get('*', cookieParser(), async (req, res) => {

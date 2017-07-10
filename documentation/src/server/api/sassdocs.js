@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 import express from 'express';
 import { BAD_REQUEST, NOT_FOUND } from 'constants/responseCodes';
 import database from 'server/databases/sassdocs.json';

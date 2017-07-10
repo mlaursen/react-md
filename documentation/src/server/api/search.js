@@ -1,9 +1,9 @@
 import Fuse from 'fuse.js';
-import { BAD_REQUEST, NOT_FOUND } from 'constants/responseCodes';
 import { toTitle } from 'utils/strings';
 import { baseRoutes } from 'server/routes';
 import proptypesDatabase from 'server/databases/proptypeLinks.json';
 import sassdocsDatabase from 'server/databases/sassdocLinks';
+import createPaginatedRoute from 'server/utils/createPaginatedRoute';
 
 const searchRoutes = baseRoutes.map((route) => {
   let upgrade = false;
@@ -40,56 +40,4 @@ const indexer = new Fuse(database, {
   keys: [{ name: 'name', weight: 0.85 }, { name: 'type', weight: 0.15 }],
 });
 
-function isInt(x) {
-  return !Number.isNaN(x) && x % 1 === 0;
-}
-
-export default function search(req, res) {
-  const { q } = req.query;
-  let { start, limit } = req.query;
-
-  if (!start) {
-    start = 0;
-  }
-
-  if (!limit) {
-    limit = 10;
-  }
-
-  if (!q || !isInt(start) || !isInt(limit) || start < 0 || limit > 50 || limit < 1) {
-    res.sendStatus(BAD_REQUEST);
-    return;
-  }
-  start = parseInt(start, 10);
-  limit = parseInt(limit, 10);
-
-  const data = indexer.search(q);
-
-  const total = data.length;
-  if (start > total) {
-    res.sendStatus(BAD_REQUEST);
-    return;
-  }
-
-  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`.replace(/\?.*/, '');
-  let next = null;
-  let previous = null;
-  if (total > start + limit) {
-    next = `${url}?q=${q}&start=${start + limit}&limit=${limit}`;
-  }
-
-  if (start + limit > limit) {
-    previous = `${url}&start=${Math.max(0, start - limit)}&limit=${limit}`;
-  }
-
-  res.json({
-    meta: {
-      start,
-      limit,
-      total,
-      next,
-      previous,
-    },
-    data: data.slice(start, start + limit),
-  });
-}
+export default createPaginatedRoute(q => indexer.search(q));

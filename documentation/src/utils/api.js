@@ -5,6 +5,7 @@ import {
   SEARCH_ENDPOINT,
   DOCGENS_ENDPOINT,
   SASSDOCS_ENDPOINT,
+  GITHUB_ENDPOINT,
   GITHUB_API_ENDPOINT,
 } from 'constants/application';
 
@@ -73,7 +74,7 @@ export function fetchSassdoc(endpoint, server = '') {
  * @return {Promise} a promise to the fetch api call.
  */
 export function fetchGithub(endpoint, options = {}) {
-  const prefix = __CLIENT__ ? '/api/github' : GITHUB_API_ENDPOINT;
+  const prefix = __CLIENT__ ? `${API_ENDPOINT}${GITHUB_ENDPOINT}` : GITHUB_API_ENDPOINT;
   return global.fetch(`${prefix}${endpoint}`, options);
 }
 
