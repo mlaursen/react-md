@@ -8,6 +8,7 @@
     "clean": "rimraf public/assets && rimraf public/themes && rimraf src/server/databases/*.json && rimraf jsdoc.json",
     "prebuild": "npm run clean && npm run sassdoc:site && npm run docgen && npm run sassdoc",
     "build": "webpack --progress --colors --env.production",
+    "build:first-time": "webpack --progress --colors --env.development",
     "jsdoc": "npm run jsdoc:build && npm run jsdoc:create",
     "jsdoc:build": "jsdoc -c jsdoc-conf.json ../src/js -X > jsdoc.json",
     "jsdoc:create": "cross-env BABEL_ENV=scripts babel-node src/scripts/createJSDoc.js",

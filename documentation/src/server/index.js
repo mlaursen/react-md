@@ -104,5 +104,9 @@ app.listen(port, (err) => {
     throw err;
   }
 
-  winston.log(`Started documentation server on port: '${port}'`);
+  winston.info(`Started documentation server on port: '${port}'`);
+  if (__DEV__ && !global.__SERVER_ONLY) {
+    winston.info('Starting webpack compilation...');
+    winston.info(`Please wait until webpack spams your console, then you can navigate to http://localhost:${port}`);
+  }
 });
