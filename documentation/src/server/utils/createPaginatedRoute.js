@@ -45,15 +45,18 @@ export default function createPaginatedRoute(getData, queryable = true) {
       return;
     }
 
-    const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`.replace(/\?.*/, '');
+    let url = `${`${req.protocol}://${req.get('host')}${req.originalUrl}`.replace(/\?.*/, '')}?`;
+    if (queryable) {
+      url = `${url}q=${q}&`;
+    }
     let next = null;
     let previous = null;
     if (total > start + limit) {
-      next = `${url}?q=${q}&start=${start + limit}&limit=${limit}`;
+      next = `${url}start=${start + limit}&limit=${limit}`;
     }
 
     if (start + limit > limit) {
-      previous = `${url}&start=${Math.max(0, start - limit)}&limit=${limit}`;
+      previous = `${url}start=${Math.max(0, start - limit)}&limit=${limit}`;
     }
 
     res.json({
