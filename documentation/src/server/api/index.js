@@ -13,6 +13,7 @@ import {
   SASSDOCS_ENDPOINT,
   SEARCH_ENDPOINT,
   GITHUB_ENDPOINT,
+  AIR_QUALITY_ENDPOINT,
 } from 'constants/application';
 
 const CACHE_DURATION = '10 days';
@@ -26,6 +27,7 @@ apiRouter.use(DOCGENS_ENDPOINT, docgens);
 apiRouter.use(SASSDOCS_ENDPOINT, sassdocs);
 apiRouter.use(SEARCH_ENDPOINT, search);
 apiRouter.use(GITHUB_ENDPOINT, github);
+apiRouter.use(AIR_QUALITY_ENDPOINT, airQuality);
 apiRouter.get('*', (req, res) => {
   res.sendStatus(NOT_FOUND);
 });

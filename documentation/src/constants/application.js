@@ -7,4 +7,7 @@ export const SEARCH_ENDPOINT = '/search';
 export const DOCGENS_ENDPOINT = '/docgens';
 export const SASSDOCS_ENDPOINT = '/sassdocs';
 export const GITHUB_ENDPOINT = '/github';
+export const AIR_QUALITY_ENDPOINT = '/air-quality';
+export const AIR_QUALITY_META_ENDPOINT = '/meta';
+export const AIR_QUALITY_DATA_ENDPOINT = '/data';
 export const GITHUB_API_ENDPOINT = 'https://api.github.com';
