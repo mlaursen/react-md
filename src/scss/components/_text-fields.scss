@@ -1071,6 +1071,7 @@ $md-text-field-line-height: 1.15 !default;
     flex-grow: 1;
     transition-duration: $md-transition-time;
     transition-property: opacity;
+    white-space: normal;
   }
 
   .md-text-field-message--counter {

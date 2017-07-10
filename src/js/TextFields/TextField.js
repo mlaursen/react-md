@@ -398,7 +398,7 @@ export default class TextField extends PureComponent {
 
     this.state = {
       active: false,
-      error: false,
+      error: props.maxLength ? props.maxLength < currentLength : false,
       floating: !!props.defaultValue || !!props.value || props.defaultValue === 0 || props.value === 0,
       passwordVisible: props.passwordInitiallyVisible,
       height: null,

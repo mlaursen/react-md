@@ -5,6 +5,7 @@
 @import '../grids';
 @import 'dialogs';
 @import 'select-fields';
+@import 'text-fields';
 
 /// Boolean if the plain table styles should be included.
 /// @type Boolean
@@ -53,12 +54,31 @@ $md-data-table-include-table-card-headers: true !default;
 
 /// The min width for an edit dialog's column.
 /// @type Number
+/// @deprecated Use the `$md-edit-dialog-width` variable instead.
 $md-edit-dialog-min-width: 300px !default;
+
+/// The width for the edit dialog.
+/// @type Number
+$md-edit-dialog-width: 250px !default;
+
+/// The width for the label for the edit dialog column. When this width
+/// is reached, the text will be ellipsed.
+/// @type Number
+$md-edit-dialog-label-width: 250px !default;
 
 /// The amount of padding to apply to the `AccessibleFakeButton` that gets used in the
 /// edit dialog column to trigger the dialog to appear.
 /// @type Number
 $md-edit-dialog-label-padding: 16px 0 !default;
+
+/// The amount of padding to provide to the edit dialog.
+/// @type Number
+$md-edit-dialog-padding: $md-dialog-padding !default;
+
+/// The amount of padding-bottom to provide to the edit dialog. If you set this value to
+/// null, only the `$md-edit-dialog-padding` variable will be used.
+/// @type Number
+$md-edit-dialog-padding-bottom: 8px !default;
 
 /// For some reason, the edit dialogs on mobile devices don't position themselves like tablets
 /// and desktop screens so this value is required for positioning the dialog from the right edge
@@ -280,10 +300,6 @@ $md-data-table-contextual-fallback-color: null !default;
       @include md-ios-scroll-momentum;
 
       overflow-x: auto;
-
-      .md-data-table {
-        width: 100%;
-      }
     }
 
     @if $include-plain {
@@ -383,20 +399,27 @@ $md-data-table-contextual-fallback-color: null !default;
 
 /// Creates the styles for edit dialogs in a data table.
 @mixin react-md-data-table-edit-dialogs {
-  .md-edit-dialog-column {
-    min-width: $md-edit-dialog-min-width;
-  }
-
   .md-edit-dialog {
+    &.md-dialog {
+      width: $md-edit-dialog-width;
+    }
+
     &__label {
+      overflow: hidden;
       padding: $md-edit-dialog-label-padding;
+      text-overflow: ellipsis;
+      width: $md-edit-dialog-label-width;
+
+      @media screen and (max-width: #{$md-desktop-min-width - 1}) {
+        font-size: $md-text-field-mobile-font-size;
+      }
     }
 
     &__content {
       // For the multiline text fields
       display: flex;
-      padding: $md-dialog-padding;
-      padding-bottom: 0;
+      padding: $md-edit-dialog-padding;
+      padding-bottom: $md-edit-dialog-padding-bottom;
 
       &:not(:first-child) {
         padding-top: 0;
@@ -413,6 +436,7 @@ $md-data-table-contextual-fallback-color: null !default;
 
     &__blocked-field {
       height: $md-data-table-column-height - $md-data-table-border-size;
+      width: $md-edit-dialog-width;
 
       &.md-edit-dialog__blocked-field {
         padding-bottom: 0;
