@@ -31,7 +31,7 @@ async function createAirQualityDB() {
       keys.push(name.substring(0, 1).toLowerCase() + name.substring(1));
       list.push({
         id,
-        name,
+        name: name.split(/(?=[A-Z])/).join(' '),
         description,
         numeric: dataTypeName === 'number',
       });
@@ -51,7 +51,7 @@ async function createAirQualityDB() {
   }, {}));
 
   await writeFile(fileName, JSON.stringify({ meta, data }), 'utf-8');
-  console.log(`Created air quality database at ${fileName}`);
+  console.log(`Created air quality database at '${fileName}'`);
 }
 
 createAirQualityDB();

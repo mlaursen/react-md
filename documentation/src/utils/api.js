@@ -7,6 +7,9 @@ import {
   SASSDOCS_ENDPOINT,
   GITHUB_ENDPOINT,
   GITHUB_API_ENDPOINT,
+  AIR_QUALITY_ENDPOINT,
+  AIR_QUALITY_META_ENDPOINT,
+  AIR_QUALITY_DATA_ENDPOINT,
 } from 'constants/application';
 
 export default function fetch(endpoint) {
@@ -93,4 +96,30 @@ export function getGithubRateLimits({ headers }) {
   const remaining = headers.get('X-RateLimit-Remaining');
   const reset = new Date(headers.get('X-RateLimit-Reset') * 1000);
   return { limit, remaining, reset };
+}
+
+/**
+ * Gets the meta data for the air quality endpoint.
+ *
+ * @param {String=''} server - the server to call from. This is required to be an absolute
+ *    url when calling from SSR.
+ * @return {Promise} a promise to the fetch request.
+ */
+export function fetchAirQualityMeta(server = '') {
+  return fetch(`${server}${API_ENDPOINT}${AIR_QUALITY_ENDPOINT}${AIR_QUALITY_META_ENDPOINT}`);
+}
+
+/**
+ * Gets the data for the air quality endpoint in a paginated manner. This can either take in
+ * a start and limit to generate a url, or an already generated href.
+ *
+ * @param {Object} options - The options to use for the request.
+ * @param {String=} options.href - An already generated href to use for the request.
+ * @param {number=} options.start - A start index to use for the request.
+ * @param {number=} options.limit - The total number of rows to return.
+ * @return {Promise} a promise to the fetch request.
+ */
+export function fetchAirQualityData({ href, start, limit }, server = '') {
+  const endpoint = href || `${server}${API_ENDPOINT}${AIR_QUALITY_ENDPOINT}${AIR_QUALITY_DATA_ENDPOINT}?start=${start}&limit=${limit}`;
+  return fetch(endpoint);
 }

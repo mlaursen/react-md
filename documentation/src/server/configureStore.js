@@ -10,7 +10,8 @@ import { getInitialState as getInitialThemeState } from 'state/theme';
 import { DEFAULT_STATE as DEFAULT_QUICK_NAV_STATE, handleLocationChange } from 'state/quickNav';
 import { docgenSuccess } from 'state/docgens';
 import { sassdocSuccess } from 'state/sassdocs';
-import { fetchSassdoc, fetchDocgen } from 'utils/api';
+import { airQualityMetaSuccess, airQualityDataSuccess } from 'state/airQuality';
+import { fetchSassdoc, fetchDocgen, fetchAirQualityMeta, fetchAirQualityData } from 'utils/api';
 import { toPageTitle } from 'utils/strings';
 
 function isSassDocRoute(pathname, tab) {
@@ -66,19 +67,25 @@ export default async function configureStore(req) {
 
   store.dispatch(updateCustomTheme(store.getState().theme.href));
   try {
+    const server = getServerUrl(req);
     if (routes.indexOf(pathname.replace(/\?.*/, '')) === -1) {
       store.dispatch(pageNotFound());
     } else if (tab === 1 && componentRoutes.indexOf(pathname) !== -1) {
       const endpoint = getEndpoint(pathname);
       const ids = endpoint.split('/');
-      const data = await fetchDocgen(endpoint, getServerUrl(req));
+      const data = await fetchDocgen(endpoint, server);
       store.dispatch(docgenSuccess(ids, data));
     } else if (isSassDocRoute(pathname, tab)) {
       const endpoint = getEndpoint(pathname)
         .replace(/\/(date|time|linear|circular|selection-control|checkboxes|radios|switches)/, '');
       const ids = endpoint.split('/');
-      const data = await fetchSassdoc(endpoint, getServerUrl(req));
+      const data = await fetchSassdoc(endpoint, server);
       store.dispatch(sassdocSuccess(ids, data));
+    } else if (!tab && pathname === '/components/data-tables') {
+      const meta = await fetchAirQualityMeta(server);
+      const data = await fetchAirQualityData({ start: 0, limit: 10 }, server);
+      store.dispatch(airQualityMetaSuccess(meta));
+      store.dispatch(airQualityDataSuccess(data));
     }
   } catch (e) {
     winston.error(e, e.message);

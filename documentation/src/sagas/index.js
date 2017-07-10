@@ -1,17 +1,19 @@
-import { all, fork } from 'redux-saga/effects';
+import { all, spawn } from 'redux-saga/effects';
 
 import docgens from './docgens';
 import sassdocs from './sassdocs';
 import search from './search';
 import themes from './themes';
 import github from './github';
+import airQuality from './airQuality';
 
 export default function* sagas() {
   yield all([
-    fork(docgens),
-    fork(sassdocs),
-    fork(search),
-    fork(themes),
-    fork(github),
+    spawn(docgens),
+    spawn(sassdocs),
+    spawn(search),
+    spawn(themes),
+    spawn(github),
+    spawn(airQuality),
   ]);
 }
