@@ -86,6 +86,7 @@ const navigationRoutes = [{
       routes: [
         'bottom-navigations',
         'drawers',
+        'navigation-drawers',
       ],
     },
   ],
