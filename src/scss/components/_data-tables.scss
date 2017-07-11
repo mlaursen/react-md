@@ -296,6 +296,10 @@ $md-data-table-contextual-fallback-color: null !default;
     border-collapse: collapse;
     max-width: 100%;
 
+    &--full-width {
+      width: 100%;
+    }
+
     &--responsive {
       @include md-ios-scroll-momentum;
 
@@ -550,10 +554,12 @@ $md-data-table-contextual-fallback-color: null !default;
 
     .md-table-checkbox {
       &--header {
+        display: flex;
         height: $md-data-table-header-height;
       }
 
       &--footer {
+        display: flex;
         height: $md-data-table-column-height;
       }
     }

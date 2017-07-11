@@ -277,6 +277,11 @@ export default class DataTable extends PureComponent {
      * @see {@link fixedHeight}
      */
     footerHeight: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the `<table>` element should always span the entire width of its container.
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -293,6 +298,7 @@ export default class DataTable extends PureComponent {
     fixedDividers: true,
     headerHeight: 56,
     footerHeight: 48,
+    fullWidth: true,
   };
 
   static childContextTypes = contextTypes;
@@ -444,6 +450,7 @@ export default class DataTable extends PureComponent {
       fixedWidth,
       headerHeight,
       footerHeight,
+      fullWidth,
       /* eslint-disable no-unused-vars */
       checkedIconChildren,
       checkedIconClassName,
@@ -469,6 +476,7 @@ export default class DataTable extends PureComponent {
         style={responsive ? tableStyle : style}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
+          'md-data-table--full-width': fullWidth,
           [className]: !responsive && className,
           [tableClassName]: responsive && tableClassName,
         })}
