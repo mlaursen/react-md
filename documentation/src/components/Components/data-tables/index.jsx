@@ -10,6 +10,8 @@ import EditableTables from './EditableTables';
 import EditableTablesRaw from '!!raw-loader!./EditableTables.jsx';
 import EditDialogExample from './EditDialogExample';
 import EditDialogExampleRaw from '!!raw-loader!./EditDialogExample.jsx';
+import PaginationExample from './PaginationExample';
+import PaginationExampleRaw from './PaginationExample/code';
 
 const examples = [{
   tableCard: true,
@@ -29,6 +31,11 @@ checkbox to be in an "indeterminate" state when not all the rows have been check
   `,
   code: SimpleSelectableTableRaw,
   children: <SimpleSelectableTable />,
+}, {
+  title: 'Pagination Example',
+  description: '',
+  code: PaginationExampleRaw,
+  children: <PaginationExample />,
 }, {
   tableCard: true,
   title: 'Editable Content Tables',

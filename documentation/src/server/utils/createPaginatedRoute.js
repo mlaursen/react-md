@@ -17,7 +17,7 @@ function isInt(x) {
  * @param {boolean=true} queryable - boolean if the route should be queryable.
  * @return {function} a route handler for getting paginated data.
  */
-export default function createPaginatedRoute(getData, queryable = true) {
+export default function createPaginatedRoute(getData, queryable = true, maxResults = 50) {
   return function handlePaginationRequest(req, res) {
     const { q } = req.query;
     let { start, limit } = req.query;
@@ -30,7 +30,7 @@ export default function createPaginatedRoute(getData, queryable = true) {
       limit = 10;
     }
 
-    if ((queryable && !q) || !isInt(start) || !isInt(limit) || start < 0 || limit > 50 || limit < 1) {
+    if ((queryable && !q) || !isInt(start) || !isInt(limit) || start < 0 || limit > maxResults || limit < 1) {
       res.sendStatus(BAD_REQUEST);
       return;
     }

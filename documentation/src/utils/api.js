@@ -8,7 +8,7 @@ import {
   GITHUB_ENDPOINT,
   GITHUB_API_ENDPOINT,
   AIR_QUALITY_ENDPOINT,
-  AIR_QUALITY_META_ENDPOINT,
+  AIR_QUALITY_COLUMNS_ENDPOINT,
   AIR_QUALITY_DATA_ENDPOINT,
 } from 'constants/application';
 
@@ -99,14 +99,14 @@ export function getGithubRateLimits({ headers }) {
 }
 
 /**
- * Gets the meta data for the air quality endpoint.
+ * Gets the column data for the air quality endpoint.
  *
  * @param {String=''} server - the server to call from. This is required to be an absolute
  *    url when calling from SSR.
  * @return {Promise} a promise to the fetch request.
  */
-export function fetchAirQualityMeta(server = '') {
-  return fetch(`${server}${API_ENDPOINT}${AIR_QUALITY_ENDPOINT}${AIR_QUALITY_META_ENDPOINT}`);
+export function fetchAirQualityColumns(server = '') {
+  return fetch(`${server}${API_ENDPOINT}${AIR_QUALITY_ENDPOINT}${AIR_QUALITY_COLUMNS_ENDPOINT}`);
 }
 
 /**

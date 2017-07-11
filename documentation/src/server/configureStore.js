@@ -10,8 +10,8 @@ import { getInitialState as getInitialThemeState } from 'state/theme';
 import { DEFAULT_STATE as DEFAULT_QUICK_NAV_STATE, handleLocationChange } from 'state/quickNav';
 import { docgenSuccess } from 'state/docgens';
 import { sassdocSuccess } from 'state/sassdocs';
-import { airQualityMetaSuccess, airQualityDataSuccess } from 'state/airQuality';
-import { fetchSassdoc, fetchDocgen, fetchAirQualityMeta, fetchAirQualityData } from 'utils/api';
+import { airQualityColumnsSuccess, airQualityDataSuccess } from 'state/airQuality';
+import { fetchSassdoc, fetchDocgen, fetchAirQualityColumns, fetchAirQualityData } from 'utils/api';
 import { toPageTitle } from 'utils/strings';
 
 function isSassDocRoute(pathname, tab) {
@@ -82,9 +82,9 @@ export default async function configureStore(req) {
       const data = await fetchSassdoc(endpoint, server);
       store.dispatch(sassdocSuccess(ids, data));
     } else if (!tab && pathname === '/components/data-tables') {
-      const meta = await fetchAirQualityMeta(server);
+      const columns = await fetchAirQualityColumns(server);
       const data = await fetchAirQualityData({ start: 0, limit: 10 }, server);
-      store.dispatch(airQualityMetaSuccess(meta));
+      store.dispatch(airQualityColumnsSuccess(columns));
       store.dispatch(airQualityDataSuccess(data));
     }
   } catch (e) {
