@@ -37,6 +37,7 @@ $ yarn dev:all          # watch all changes and run dev server
   * [docgen:create](#docgencreate)
 * [sassdoc](#sassdoc)
   * [sassdoc:site](#sassdocsite)
+* [air-quality](#air-quality)
 * [start](#start)
   * [start:dev](#startdev)
   * [start:prod](#startprod)
@@ -103,6 +104,10 @@ it is a simple mapping of the component group to related documentation. This com
 ### sassdoc:site
 This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for sassdoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.
+
+### air-quality
+This will remake the airQuality "database" by fetching the data from the https://data.gov website, parse/format the response,
+and limit the number of results. This is really only useful if you need to get some fresher data.
 
 ### start
 This will start the production server. The [build](#build) **must** have been run before the production server can

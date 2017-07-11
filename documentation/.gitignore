@@ -5,5 +5,6 @@ webpack-stats.json
 public/assets
 public/sassdoc
 public/themes
-src/server/databases
+src/server/databases/*
+!src/server/databases/airQuality.json
 jsdoc.json
