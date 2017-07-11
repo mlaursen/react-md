@@ -12,7 +12,7 @@ exports[`FunctionParameterTable should render correctly 2`] = `
   }
 >
   <table
-    className="md-data-table md-data-table--plain"
+    className="md-data-table md-data-table--plain md-data-table--full-width"
     style={undefined}
   >
     <thead

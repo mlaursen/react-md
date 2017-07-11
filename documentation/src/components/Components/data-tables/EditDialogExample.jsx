@@ -11,7 +11,7 @@ const styles = {
 };
 
 const EditDialogExample = () => (
-  <DataTable baseId="edit-dialog-example" style={styles.container}>
+  <DataTable baseId="edit-dialog-example" style={styles.container} fullWidth={false}>
     <TableHeader>
       <TableRow>
         <TableColumn>Some Data</TableColumn>

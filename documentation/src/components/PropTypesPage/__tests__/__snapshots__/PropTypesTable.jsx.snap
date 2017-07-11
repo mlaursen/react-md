@@ -10,7 +10,7 @@ exports[`PropTypesTable should render correctly when there are props 1`] = `
   }
 >
   <table
-    className="md-data-table md-data-table--plain"
+    className="md-data-table md-data-table--plain md-data-table--full-width"
     style={undefined}
   >
     <thead
@@ -403,7 +403,7 @@ exports[`PropTypesTable should render correctly with no props 1`] = `
   }
 >
   <table
-    className="md-data-table md-data-table--plain"
+    className="md-data-table md-data-table--plain md-data-table--full-width"
     style={undefined}
   >
     <thead

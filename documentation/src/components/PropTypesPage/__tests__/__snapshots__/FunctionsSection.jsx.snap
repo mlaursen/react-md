@@ -87,7 +87,7 @@ exports[`FunctionsSection should render correctly 3`] = `
     }
   >
     <table
-      className="md-data-table md-data-table--plain"
+      className="md-data-table md-data-table--plain md-data-table--full-width"
       style={undefined}
     >
       <thead
@@ -249,7 +249,7 @@ exports[`FunctionsSection should render correctly 4`] = `
     }
   >
     <table
-      className="md-data-table md-data-table--plain"
+      className="md-data-table md-data-table--plain md-data-table--full-width"
       style={undefined}
     >
       <thead

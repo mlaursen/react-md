@@ -1,5 +1,11 @@
 @import '~globals';
 
+pre,
+code {
+  word-break: break-word;
+  word-break: break-all;
+}
+
 blockquote {
   border-left: 4px solid get-color('divider', $md-light-theme);
   margin-left: 0;
