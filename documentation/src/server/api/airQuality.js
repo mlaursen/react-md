@@ -8,7 +8,7 @@ import airQuality from 'server/databases/airQuality.json';
 const airQualityRouter = express.Router();
 
 airQualityRouter.get(AIR_QUALITY_COLUMNS_ENDPOINT, (req, res) => {
-  res.json(airQuality.meta);
+  res.json(airQuality.columns);
 });
 airQualityRouter.get(AIR_QUALITY_DATA_ENDPOINT, createPaginatedRoute(() => airQuality.data, false, 100));
 

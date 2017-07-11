@@ -1,4 +1,4 @@
-import { takeLatest, call, put, fork, select } from 'redux-saga/effects';
+import { takeLatest, takeEvery, call, put, fork, select, spawn } from 'redux-saga/effects';
 import {
   AIR_QUALITY_COLUMNS_REQUEST,
   AIR_QUALITY_DATA_REQUEST,
@@ -8,6 +8,11 @@ import {
 } from 'state/airQuality';
 import { fetchAirQualityColumns, fetchAirQualityData } from 'utils/api';
 
+function* retrieveData() {
+  const data = yield call(fetchAirQualityColumns);
+  yield put(airQualityColumnsSuccess(data));
+}
+
 export function* watchColumnsRequests() {
   yield takeLatest(AIR_QUALITY_COLUMNS_REQUEST, function* handleAirQualityColumnsRequests() {
     const { columns } = yield select(state => state.airQuality);
@@ -15,13 +20,12 @@ export function* watchColumnsRequests() {
       return;
     }
 
-    const data = yield call(fetchAirQualityColumns);
-    yield put(airQualityColumnsSuccess(data));
+    yield spawn(retrieveData);
   });
 }
 
 export function* watchDataRequests() {
-  yield takeLatest([AIR_QUALITY_DATA_REQUEST, AIR_QUALITY_DATA_REQUEST_NEXT], function* handleAirQualityDataRequests(action) {
+  yield takeEvery([AIR_QUALITY_DATA_REQUEST, AIR_QUALITY_DATA_REQUEST_NEXT], function* handleAirQualityDataRequests(action) {
     const { start, limit, href } = action.payload;
     const keys = Object.keys(yield select(state => state.airQuality.data));
     const nextKeys = [...new Array(start + limit)].map((_, i) => `${i}`);

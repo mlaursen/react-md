@@ -21,8 +21,7 @@ async function createAirQualityDB() {
   console.log('Parsing and formatting data...');
   let startIndex = -1;
   const keys = [];
-  const { columns } = sourceData.meta.view;
-  const meta = columns.reduce((list, { id, name, dataTypeName, position, fieldName }, i) => {
+  const columns = sourceData.meta.view.columns.reduce((list, { id, name, dataTypeName, position, fieldName }, i) => {
     if (position > 0) { // non-hidden field
       if (startIndex === -1) {
         startIndex = i;
@@ -45,7 +44,7 @@ async function createAirQualityDB() {
     data.push(datum.reduce((formatted, part, i) => {
       if (i >= startIndex) {
         const j = i - startIndex;
-        const { numeric } = meta[j + 1];
+        const { numeric } = columns[j + 1];
         formatted[keys[j]] = numeric ? parseInt(part, 10) : part;
       }
 
@@ -54,7 +53,7 @@ async function createAirQualityDB() {
     return index > LIMIT;
   });
 
-  await writeFile(fileName, JSON.stringify({ meta, data }), 'utf-8');
+  await writeFile(fileName, JSON.stringify({ columns, data }), 'utf-8');
   console.log(`Created air quality database at '${fileName}'`);
 }
 
