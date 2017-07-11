@@ -79,6 +79,7 @@ export default class App extends PureComponent {
 
   componentDidMount() {
     const { history, dispatch } = this.props;
+    dispatch(updateLocation(this.props.location));
     history.listen((location) => {
       dispatch(updateLocation(location));
       if (typeof window.ga !== 'undefined') {

@@ -63,13 +63,12 @@ app.get('*', cookieParser(), async (req, res) => {
   let store;
   const context = { bundles: [] };
   try {
-    store = await configureStore(req);
-
     if (!__SSR__) {
       res.send(renderHtmlPage(store));
       return;
     }
 
+    store = await configureStore(req);
     const App = require('components/App').default;
 
     const html = renderToString(
