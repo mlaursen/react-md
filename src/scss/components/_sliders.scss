@@ -133,7 +133,6 @@ $md-slider-warn-md: true !default;
     position: absolute;
     visibility: hidden;
     width: 0;
-    z-index: -1;
   }
 
   .md-slider-track {
@@ -209,7 +208,6 @@ $md-slider-warn-md: true !default;
 
   .md-slider-thumb--mask {
     transform: scale(1);
-    z-index: -1;
   }
 
   .md-slider-thumb--mask-inked {
