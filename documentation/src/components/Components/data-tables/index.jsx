@@ -11,8 +11,12 @@ import EditableTables from './EditableTables';
 import EditableTablesRaw from '!!raw-loader!./EditableTables.jsx';
 import EditDialogExample from './EditDialogExample';
 import EditDialogExampleRaw from '!!raw-loader!./EditDialogExample.jsx';
-import PaginationExample from './PaginationExample';
-import PaginationExampleRaw from './PaginationExample/code';
+import SimplePagination from './SimplePagination';
+import SimplePaginationRaw from '!!raw-loader!./SimplePagination.jsx';
+import FixedTablePagination from './FixedTablePagination';
+import FixedTablePaginationRaw from './FixedTablePagination/code';
+import DynamicContentTable from './DynamicContentTable';
+import DynamicContentTableRaw from './DynamicContentTable/code';
 
 const examples = [{
   tableCard: true,
@@ -33,10 +37,19 @@ checkbox to be in an "indeterminate" state when not all the rows have been check
   code: SimpleSelectableTableRaw,
   children: <SimpleSelectableTable />,
 }, {
-  title: 'Pagination Example',
-  description: '',
-  code: PaginationExampleRaw,
-  children: <PaginationExample />,
+  tableCard: true,
+  title: 'Simple Pagination',
+  description: `
+When you have large datasets, you can improve some of your app's performance by paginating your results and
+limiting the number of rows displayed at a time. This example shows how you can work with the \`TablePagination\`
+component and its API to easily accomplish this.
+
+This component will be displayed at as a \`<tfoot>\` and attached to the bottom of the table. It will allow the user
+to paginate forwards or backwards by a preset number of rows. The default is to start at \`10\` rows per page and allows
+for \`10\`, \`20\`, \`30\`, \`40\`, \`50\`, and \`100\` by default (both of these can be configured).
+`,
+  code: SimplePaginationRaw,
+  children: <SimplePagination />,
 }, {
   tableCard: true,
   title: 'Editable Content Tables',
@@ -106,6 +119,42 @@ multiline fields, etc for the this component as well.
   `,
   code: EditDialogExampleRaw,
   children: <EditDialogExample />,
+}, {
+  title: 'Fixed Headers/Footers and Pagination',
+  description: `
+There is some _very limited_ support for fixed table headers/footers built into \`react-md\`. However, it
+is advisable to use a third party library such as [react-virtualized](https://github.com/bvaughn/react-virtualized)
+when dealing with heavy interaction-based tables or using fixed headers. Part of the problem with the implementation
+that is built into this library is that the vertical scrollbar does not appear ntil you have scrolled horizontally
+to the end which is confusing for users on OSes that display scroll bars.
+
+If this still seems fine, there is a mixin built in that will help you create fixed tables at a specific size or
+to span the entire page. See [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+for some more information there.
+
+This example will show how you can use your fixed table headers/footers along with the \`TablePagination\` component
+to dynamically retrieve data from an API and display it in your table.
+  `,
+  code: FixedTablePaginationRaw,
+  children: <FixedTablePagination />,
+}, {
+  title: 'Dynamic Content Table',
+  description: `
+One of the use cases of tables is to have dynamic content that can be added or removed. There is a component built to
+help with this named the \`TableCardHeader\` which works well with the \`DataTable\`'s selectable rows. The \`TableCardHeader\`
+was built to display an optional title and any children in a \`CardTitle\` component until it is toggled to a "contextual" view
+where another title and any additional actions can be displayed. A great example of this is when rows in the \`DataTable\` are
+selected and you would like to allow the user to delete them.
+
+This example will show how you can integrate \`DataTable\`s into \`Card\`s (with built in styling changes) and allow the user
+to add/remove rows from the table.
+
+> NOTE: One of the problems with the built-in checkbox support is that it uses \`React\`'s \`context\` to push the changes
+down to each component. However if you ever use \`shouldComponentUpdate\` or a \`PureComponent\`, these changes won't be
+persisted to the child components since they block context updates. It is recommended to take full control instead.
+  `,
+  code: DynamicContentTableRaw,
+  children: <DynamicContentTable />,
 }];
 
 const DataTables = () => <ExamplesPage description={README} examples={examples} />;

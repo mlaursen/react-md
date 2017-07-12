@@ -8,7 +8,7 @@ import {
   airQualityDataRequestNext,
 } from 'state/airQuality';
 
-import PaginationExample from './PaginationExample';
+import FixedTablePagination from './FixedTablePagination';
 
 export default connectAdvanced((dispatch) => {
   let result;
@@ -21,6 +21,7 @@ export default connectAdvanced((dispatch) => {
   }, dispatch);
 
   return (state, props) => {
+    const { mobile, tablet, desktop } = state.media;
     const { columns, meta, data } = state.airQuality;
     if (!shallowEqual(cachedData, data)) {
       cachedData = data;
@@ -33,6 +34,9 @@ export default connectAdvanced((dispatch) => {
       columns,
       meta,
       data: dataList,
+      mobile,
+      tablet,
+      desktop,
     };
 
     if (!shallowEqual(result, nextResult)) {
@@ -41,4 +45,4 @@ export default connectAdvanced((dispatch) => {
 
     return result;
   };
-})(PaginationExample);
+})(FixedTablePagination);

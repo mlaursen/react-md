@@ -1,0 +1,10 @@
+@import '~globals';
+
+// need this for dev mode since styles are backwards so requires more precedence
+.md-table-row.md-table-row.data-tables__desserts__row {
+  transition-duration: 2s;
+}
+
+.md-table-row.data-tables__desserts__row--highlight {
+  background: $md-yellow-200;
+}

@@ -124,6 +124,7 @@ export default class App extends PureComponent {
         drawerTitle="react-md"
         defaultMedia={defaultMedia}
         onMediaTypeChange={this.updateMedia}
+        toolbarId="main-toolbar"
         toolbarTitle={toolbarTitle}
         toolbarTitleClassName={cn('main-toolbar__title', {
           'main-toolbar__title--minified': searching,
