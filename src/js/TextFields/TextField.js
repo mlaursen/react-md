@@ -5,7 +5,6 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -208,14 +207,14 @@ export default class TextField extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * An optional function to call when the text field is blurred.
+     */
+    onBlur: PropTypes.func,
+
+    /**
      * An optional function to call when the text field is focused.
      */
     onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field has the `keydown` event.
-     */
-    onKeyDown: PropTypes.func,
 
     /**
      * An optional boolean if the `active` state of the text field can be externally
@@ -397,18 +396,16 @@ export default class TextField extends PureComponent {
 
     this.focus = this.focus.bind(this);
     this.getField = this.getField.bind(this);
-    this._blur = this._blur.bind(this);
     this._setField = this._setField.bind(this);
     this._setDivider = this._setDivider.bind(this);
     this._setMessage = this._setMessage.bind(this);
     this._setContainer = this._setContainer.bind(this);
     this._setPasswordBtn = this._setPasswordBtn.bind(this);
     this._setFloatingLabel = this._setFloatingLabel.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleHeightChange = this._handleHeightChange.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
     this._updateMultilineHeight = this._updateMultilineHeight.bind(this);
     this._togglePasswordField = this._togglePasswordField.bind(this);
     this._handleContainerClick = this._handleContainerClick.bind(this);
@@ -446,32 +443,15 @@ export default class TextField extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { block, active } = this.props;
-    if (block !== prevProps.block
-      || active !== prevProps.active
-      || this.state.active !== prevState.active
-    ) {
-      const fn = window[`${(active || this.state.active) ? 'add' : 'remove'}EventListener`];
-      fn('mousedown', this._handleOutsideClick);
-      fn('touchstart', this._handleOutsideClick);
-    }
-
+  componentDidUpdate(prevProps) {
     if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
       this._updateMultilineHeight(this.props);
     }
   }
 
   componentWillUnmount() {
-    const { active } = this.props;
-    const rm = window.removeEventListener;
-    if (active || this.state.active) {
-      rm('mousedown', this._handleOutsideClick);
-      rm('touchstart', this._handleOutsideClick);
-    }
-
     if (this._isMultiline(this.props)) {
-      rm('resize', this._updateMultilineHeight);
+      window.removeEventListener('resize', this._updateMultilineHeight);
     }
   }
 
@@ -613,21 +593,18 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _blur() {
-    const value = this._field.getValue();
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
 
+    const { value } = e.target;
     const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
       state.floating = !!value;
     }
 
-    this.setState(state, this._field.blur);
-  }
-
-  _handleOutsideClick(e) {
-    if (!this._node.contains(e.target)) {
-      this._blur();
-    }
+    this.setState(state);
   }
 
   _handleFocus(e) {
@@ -655,16 +632,6 @@ export default class TextField extends PureComponent {
       this.setState({ currentLength, error: currentLength > maxLength });
     } else if (required && this.state.error) {
       this.setState({ error: !currentLength });
-    }
-  }
-
-  _handleKeyDown(e) {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-
-    if ((e.which || e.keyCode) === TAB) {
-      this._blur();
     }
   }
 
@@ -726,7 +693,6 @@ export default class TextField extends PureComponent {
     delete props.adjustMinWidth;
     delete props.onClick;
     delete props.onChange;
-    delete props.onKeyDown;
     delete props.onFocus;
     delete props.floatingLabel;
 
@@ -835,7 +801,7 @@ export default class TextField extends PureComponent {
         placeholder={placeholder}
         block={block}
         onFocus={this._handleFocus}
-        onKeyDown={this._handleKeyDown}
+        onBlur={this._handleBlur}
         onChange={this._handleChange}
         onHeightChange={this._handleHeightChange}
         inlineIndicator={!!inlineIndicator}

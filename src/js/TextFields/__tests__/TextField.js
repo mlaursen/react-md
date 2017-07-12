@@ -116,7 +116,6 @@ describe('TextField', () => {
     const onCopy = jest.fn();
     const onCut = jest.fn();
     const onPaste = jest.fn();
-    const onBlur = jest.fn();
     const onInput = jest.fn();
     const onSelect = jest.fn();
     const onCompositionStart = jest.fn();
@@ -129,7 +128,6 @@ describe('TextField', () => {
       onCopy,
       onCut,
       onPaste,
-      onBlur,
       onInput,
       onSelect,
       onCompositionStart,
@@ -145,7 +143,6 @@ describe('TextField', () => {
     expect(input.props.onCopy).toBe(onCopy);
     expect(input.props.onCut).toBe(onCut);
     expect(input.props.onPaste).toBe(onPaste);
-    expect(input.props.onBlur).toBe(onBlur);
     expect(input.props.onInput).toBe(onInput);
     expect(input.props.onSelect).toBe(onSelect);
     expect(input.props.onCompositionStart).toBe(onCompositionStart);
@@ -159,14 +156,6 @@ describe('TextField', () => {
 
     field._handleFocus();
     expect(props.onFocus).toBeCalled();
-  });
-
-  it('calls the onKeyDown prop when the _handleKeyDown function is called', () => {
-    const props = { onKeyDown: jest.fn() };
-    const field = renderIntoDocument(<TextField {...props} />);
-
-    field._handleKeyDown({ which: 2, keyCode: 2 });
-    expect(props.onKeyDown).toBeCalled();
   });
 
   it('calls the onChange prop when the _handleChange function is called', () => {
