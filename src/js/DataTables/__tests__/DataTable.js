@@ -120,13 +120,13 @@ describe('DataTable', () => {
     };
     let table = renderIntoDocument(<DataTable {...props} />);
     let tableNode = findDOMNode(table);
-    expect(tableNode.className).toBe('md-data-table--responsive');
+    expect(tableNode.className).toContain('md-data-table--responsive');
     expect(tableNode.nodeName).toBe('DIV');
 
     props.responsive = false;
     table = renderIntoDocument(<DataTable {...props} />);
     tableNode = findDOMNode(table);
-    expect(tableNode.className).toBe('md-data-table');
+    expect(tableNode.className).toContain('md-data-table');
     expect(tableNode.nodeName).toBe('TABLE');
   });
 
