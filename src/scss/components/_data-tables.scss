@@ -48,6 +48,20 @@ $md-data-table-fixed-use-view-height: false !default;
 /// @type Boolean
 $md-data-table-include-pagination: true !default;
 
+/// Boolean if the `TablePagination`'s styles should be updated for mobiles deviecs
+/// so that the select field shrinks its font size to 13px;
+///
+/// This should normally be used along with the `md-data-table-pagination-mobile-label-hidden`
+/// variable if you want to support mobile devices.
+///
+/// @type Boolean
+/// @see md-data-table-pagination-mobile-label-hidden
+$md-data-table-pagination-mobile-shrinking: true !default;
+
+/// This will hide the `TablePagination`s label on mobile devices.
+/// @type Boolean
+$md-data-table-pagination-mobile-label-hidden: true !default;
+
 /// Boolean if the the table card header styles should be included.
 /// @type Boolean
 $md-data-table-include-table-card-headers: true !default;
@@ -223,6 +237,12 @@ $md-data-table-contextual-fallback-color: null !default;
 
   @if $include-pagination {
     @include react-md-data-table-paginations;
+
+    @if $include-media {
+      @media (max-width: $md-tablet-min-width - 1) {
+        @include react-md-data-table-paginations-shrink;
+      }
+    }
   }
 
   @if $include-table-card-headers {
@@ -714,6 +734,38 @@ $md-data-table-contextual-fallback-color: null !default;
       transform: translate3d(0, -100%, 0);
       transition-duration: $md-transition-time;
       transition-property: transform;
+    }
+  }
+}
+
+/// A mixin that can shrink the select field in the TablePagination component as well as hide the label
+/// so it displays better on mobile devices. This mixin should usually be used in a media query that uses
+/// the max-width.
+///
+///
+/// @example scss - Example Usage SCSS
+///   @media (max-width: #{$md-tablet-min-width - 1}) {
+///     @include react-md-data-table-paginations-shrink(true, true);
+///   }
+///
+/// @param {Boolean} shrink [$md-data-table-pagination-mobile-shrinking] - Boolena if the select field should shrink by
+///     reducing the font size to 13px and reducing the padding by 75%.
+/// @param {Boolean} hide-label [$md-data-table-pagination-mobile-label-hidden] - Boolean if the pagination label (Rows per page)
+///     should be hidden.
+@mixin react-md-data-table-paginations-shrink($shrink: $md-data-table-pagination-mobile-shrinking, $hide-label: $md-data-table-pagination-mobile-label-hidden) {
+  @if $shrink {
+    .md-table-pagination .md-text-field {
+      font-size: 13px;
+    }
+
+    .md-table-pagination .md-icon-text:first-child {
+      padding-right: $md-default-padding / 4;
+    }
+  }
+
+  @if $hide-label {
+    .md-table-pagination__label {
+      display: none;
     }
   }
 }

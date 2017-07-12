@@ -293,7 +293,9 @@ export default class TablePagination extends PureComponent {
               className="md-table-pagination md-table-pagination--controls md-text"
               style={{ marginLeft: controlsMarginLeft }}
             >
-              {rowsPerPageLabel}
+              <span className="md-table-pagination__label">
+                {rowsPerPageLabel}
+              </span>
               <SelectField
                 id={`${this.context.baseId}-pagination`}
                 menuItems={rowsPerPageItems}
