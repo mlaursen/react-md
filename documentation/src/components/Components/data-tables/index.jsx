@@ -1,6 +1,7 @@
 import React from 'react';
 import ExamplesPage from 'components/ExamplesPage';
 
+import './_styles.scss';
 import README from './README.md';
 import SimplePlainTable from './SimplePlainTable';
 import SimplePlainTableRaw from '!!raw-loader!./SimplePlainTable.jsx';

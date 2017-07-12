@@ -6,12 +6,8 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
 
-const styles = {
-  container: { display: 'flex', justifyContent: 'center' },
-};
-
 const EditDialogExample = () => (
-  <DataTable baseId="edit-dialog-example" style={styles.container} fullWidth={false}>
+  <DataTable baseId="edit-dialog-example" fullWidth={false} className="data-tables__edit-table-example">
     <TableHeader>
       <TableRow>
         <TableColumn>Some Data</TableColumn>
