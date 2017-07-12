@@ -444,6 +444,7 @@ export default class Tabs extends PureComponent {
     delete props.defaultMedia;
     delete props.desktopMinWidth;
     delete props.onTabChange;
+    delete props.alignToKeyline;
 
     const activeTabIndex = getField(this.props, this.state, 'activeTabIndex');
 
