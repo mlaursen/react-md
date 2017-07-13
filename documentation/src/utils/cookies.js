@@ -13,6 +13,10 @@ export function remove(name) {
 }
 
 export function getParsedCookie() {
+  if (!__CLIENT__) {
+    return null;
+  }
+
   const cookie = decodeURIComponent(document.cookie);
   if (!cookie) {
     return null;
