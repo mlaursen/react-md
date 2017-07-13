@@ -456,6 +456,7 @@ export default class Tabs extends PureComponent {
       defaultMedia,
       desktopMinWidth,
       onTabChange,
+      alignToKeyline,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

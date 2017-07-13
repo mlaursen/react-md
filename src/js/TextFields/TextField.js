@@ -5,7 +5,6 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -208,14 +207,14 @@ export default class TextField extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * An optional function to call when the text field is blurred.
+     */
+    onBlur: PropTypes.func,
+
+    /**
      * An optional function to call when the text field is focused.
      */
     onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field has the `keydown` event.
-     */
-    onKeyDown: PropTypes.func,
 
     /**
      * An optional boolean if the `active` state of the text field can be externally
@@ -359,16 +358,6 @@ export default class TextField extends PureComponent {
      */
     inlineIndicator: PropTypes.element,
 
-    /**
-     * This is a configuration object if the text field should automatically resize to keep within the min
-     * and max widths provided.
-     */
-    resize: PropTypes.shape({
-      min: PropTypes.number.isRequired,
-      max: PropTypes.number.isRequired,
-      noShrink: PropTypes.bool,
-    }),
-
     icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
@@ -402,7 +391,6 @@ export default class TextField extends PureComponent {
       floating: !!props.defaultValue || !!props.value || props.defaultValue === 0 || props.value === 0,
       passwordVisible: props.passwordInitiallyVisible,
       height: null,
-      width: props.resize ? props.resize.min : null,
       currentLength,
     };
   }
@@ -411,16 +399,6 @@ export default class TextField extends PureComponent {
     if (this._isMultiline(this.props)) {
       this._updateMultilineHeight();
       window.addEventListener('resize', this._updateMultilineHeight);
-    }
-
-    const value = this.props.value || this.props.defaultValue;
-    if (this.props.resize && value) {
-      if (!this._canvas) {
-        this._canvas = document.createElement('canvas');
-      }
-
-      const width = this._calcWidth(this._canvas, this._field.getField(), value, this.props.resize);
-      this.setState({ width }); // eslint-disable-line react/no-did-mount-set-state
     }
   }
 
@@ -449,32 +427,15 @@ export default class TextField extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { block, active } = this.props;
-    if (block !== prevProps.block
-      || active !== prevProps.active
-      || this.state.active !== prevState.active
-    ) {
-      const fn = window[`${(active || this.state.active) ? 'add' : 'remove'}EventListener`];
-      fn('mousedown', this._handleOutsideClick);
-      fn('touchstart', this._handleOutsideClick);
-    }
-
+  componentDidUpdate(prevProps) {
     if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
       this._updateMultilineHeight(this.props);
     }
   }
 
   componentWillUnmount() {
-    const { active } = this.props;
-    const rm = window.removeEventListener;
-    if (active || this.state.active) {
-      rm('mousedown', this._handleOutsideClick);
-      rm('touchstart', this._handleOutsideClick);
-    }
-
     if (this._isMultiline(this.props)) {
-      rm('resize', this._updateMultilineHeight);
+      window.removeEventListener('resize', this._updateMultilineHeight);
     }
   }
 
@@ -535,17 +496,6 @@ export default class TextField extends PureComponent {
 
   _isMultiline(props) {
     return typeof props.rows !== 'undefined';
-  }
-
-  _calcWidth(canvas, field, value, { min, max }) {
-    if (!canvas || !field) {
-      return undefined;
-    }
-
-    const context = canvas.getContext('2d');
-    context.font = window.getComputedStyle(field).font;
-
-    return Math.min(max, Math.max(min, context.measureText(value).width));
   }
 
   _cloneIcon(icon, active, error, disabled, stateful, block, dir) {
@@ -635,21 +585,18 @@ export default class TextField extends PureComponent {
     }
   };
 
-  _blur = () => {
-    const value = this._field.getValue();
+  _handleBlur = (e) => {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
 
+    const { value } = e.target;
     const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
       state.floating = !!value || value === 0;
     }
 
-    this.setState(state, this._field.blur);
-  };
-
-  _handleOutsideClick = (e) => {
-    if (!this._node.contains(e.target)) {
-      this._blur();
-    }
+    this.setState(state);
   };
 
   _handleFocus = (e) => {
@@ -667,7 +614,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleChange = (e) => {
-    const { onChange, maxLength, required, resize } = this.props;
+    const { onChange, maxLength, required } = this.props;
     const { value } = e.target;
     if (onChange) {
       onChange(e.target.value, e);
@@ -681,30 +628,8 @@ export default class TextField extends PureComponent {
       state = { error: !currentLength };
     }
 
-    if (resize && (!resize.noShrink || this.state.width !== resize.max)) {
-      if (!this._canvas) {
-        this._canvas = document.createElement('canvas');
-      }
-
-      const width = this._calcWidth(this._canvas, this._field.getField(), value, resize);
-      if (width !== this.state.width && (!resize.noShrink || width > this.state.width)) {
-        state = state || {};
-        state.width = width;
-      }
-    }
-
     if (state) {
       this.setState(state);
-    }
-  };
-
-  _handleKeyDown = (e) => {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-
-    if ((e.which || e.keyCode) === TAB) {
-      this._blur();
     }
   };
 
@@ -719,7 +644,7 @@ export default class TextField extends PureComponent {
   };
 
   render() {
-    const { currentLength, passwordVisible, height, width } = this.state;
+    const { currentLength, passwordVisible, height } = this.state;
     const {
       id,
       type,
@@ -762,10 +687,9 @@ export default class TextField extends PureComponent {
       floating: propFloating,
       leftIcon: propLeftIcon,
       rightIcon: propRightIcon,
-      resize,
       onClick,
       onChange,
-      onKeyDown,
+      onBlur,
       onFocus,
 
       // deprecated
@@ -880,7 +804,7 @@ export default class TextField extends PureComponent {
         placeholder={placeholder}
         block={block}
         onFocus={this._handleFocus}
-        onKeyDown={this._handleKeyDown}
+        onBlur={this._handleBlur}
         onChange={this._handleChange}
         onHeightChange={this._handleHeightChange}
         inlineIndicator={!!inlineIndicator}
@@ -927,7 +851,7 @@ export default class TextField extends PureComponent {
     return (
       <div
         ref={this._setContainer}
-        style={{ height, width, ...style }}
+        style={{ height, ...style }}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,

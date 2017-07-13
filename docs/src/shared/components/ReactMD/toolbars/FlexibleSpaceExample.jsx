@@ -127,8 +127,6 @@ export default class FlexibleSpaceExample extends PureComponent {
       return;
     }
 
-    e.preventDefault();
-
     const { clientY } = e.changedTouches[0];
     const diff = (clientY - this._touchY);
     this._touchY = clientY;

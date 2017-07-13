@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';
 import calcPageOffset from '../utils/calcPageOffset';
 
@@ -58,8 +59,9 @@ export default class ClockFace extends PureComponent {
   componentWillUnmount() {
     window.removeEventListener('mousemove', this._handleMouseMove);
     window.removeEventListener('mouseup', this._handleMouseMove);
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
+
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
   }
 
   _setFace = (face) => {
@@ -136,8 +138,8 @@ export default class ClockFace extends PureComponent {
   _handleTouchStart = () => {
     captureNextEvent('mousedown');
 
-    window.addEventListener('touchmove', this._handleTouchMove);
-    window.addEventListener('touchend', this._handleTouchEnd);
+    addTouchEvent(window, 'move', this._handleTouchMove);
+    addTouchEvent(window, 'end', this._handleTouchEnd);
     this.setState({ moving: true });
   };
 
@@ -145,7 +147,6 @@ export default class ClockFace extends PureComponent {
     if (!this.state.moving) {
       return;
     }
-    e.preventDefault();
 
     this._calcNewTime(e);
   };
@@ -156,8 +157,8 @@ export default class ClockFace extends PureComponent {
       captureNextEvent('click');
     }
 
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
 
     this.setState({ moving: false });
   };

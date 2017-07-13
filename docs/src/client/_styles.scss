@@ -16,6 +16,18 @@ body {
   width: 100%;
 }
 
+pre,
+code {
+  word-wrap: break-word;
+}
+
+.md-display-3,
+.md-display-4,
+.md-title,
+h3 {
+  white-space: normal;
+}
+
 .md-title--toolbar {
   ~ .documentation-tabs {
     left: 0;

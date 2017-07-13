@@ -16,7 +16,7 @@ export default function controlled(validator, funcName, fallbackPropName = 'defa
     const propFullNameSafe = propFullName || propName;
 
     let err = validator(props, propName, componentName, location, propFullName, ...args);
-    if (!err && typeof props[propName] !== 'undefined' && !props.readOnly) {
+    if (!err && typeof props[propName] !== 'undefined' && !props.readOnly && !props.disabled) {
       const funcError = PropTypes.func.isRequired(props, funcName, componentName, location, propFullName, ...args);
       if (funcError) {
         err = new Error(

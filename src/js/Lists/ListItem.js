@@ -159,11 +159,6 @@ export default class ListItem extends PureComponent {
     ]).isRequired,
 
     /**
-     * Any additional props that you would like to apply to the surrounding `<li>` element/component.
-     */
-    itemProps: PropTypes.object,
-
-    /**
      * An optional list of `ListItem`, `ListItemControl`, `Divider`, or `Subheader` components
      * to render in a nested list. This will inject an expander icon to the right of the text
      * in the `.md-list-tile` that rotates 180 degrees when open.
@@ -283,6 +278,30 @@ export default class ListItem extends PureComponent {
 
       return validator(props, propName, ...args);
     },
+
+    /**
+     * Any additional props you would like to supply to the surrounding `<li>` tag for the `ListItem`.
+     * By default, all props will be provided to the inner `AccessibleFakeButton`. If the `passPropsToItem`
+     * prop is enabled, the remaining props will be provided to the `<lI>` tag instead and this prop
+     * is probably useless.
+     */
+    itemProps: PropTypes.object,
+
+    /**
+     * Any additional props you would like to add to the inner `AccessibleFakeButton`. By default, all the
+     * remaining props will be provided to the `AccessibleFakeButton`, so this prop is probably useless.
+     * Enabling the `passPropsToItem` prop will change the default behavior so that the remaining props
+     * are provided to the surrounding `<li>` node instead and this prop becomes usefull.
+     */
+    tileProps: PropTypes.object,
+
+    /**
+     * All the remaining props should be passed to the surrounding `<li>` node instead of the `AccessibleFakeButton`.
+     *
+     * > NOTE: This will most likely become the default in the next *major* release. Migration warnings will be added
+     * if that is the case.
+     */
+    passPropsToItem: PropTypes.bool,
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -473,8 +492,11 @@ export default class ListItem extends PureComponent {
       expanderLeft,
       expanderIconChildren,
       expanderIconClassName,
+      component,
       itemComponent: ItemComponent,
       itemProps,
+      tileProps,
+      passPropsToItem,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
       isOpen, // deprecated
@@ -551,7 +573,9 @@ export default class ListItem extends PureComponent {
 
     const tile = (
       <AccessibleFakeInkedButton
-        {...props}
+        {...tileProps}
+        {...(passPropsToItem ? undefined : props)}
+        component={component}
         __SUPER_SECRET_REF__={this._setTile}
         key="tile"
         onClick={this._handleClick}
@@ -596,6 +620,7 @@ export default class ListItem extends PureComponent {
 
     const sharedProps = {
       ...itemProps,
+      ...(passPropsToItem ? props : undefined),
       style,
       className: cn('md-list-item', { 'md-list-item--nested-container': nestedItems }, className),
       'aria-setsize': ariaSize,
