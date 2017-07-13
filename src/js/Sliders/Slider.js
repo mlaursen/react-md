@@ -8,6 +8,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
+import { setTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import calculateValueDistance from '../utils/NumberUtils/calculateValueDistance';
 import isWithinStep from '../utils/NumberUtils/isWithinStep';
 import controlled from '../utils/PropTypes/controlled';
@@ -506,8 +507,8 @@ export default class Slider extends PureComponent {
     if (this._dragAdded !== addDrag) {
       fn('mousemove', this._handleDragMove);
       fn('mouseup', this._handleDragEnd);
-      fn('touchmove', this._handleDragMove);
-      fn('touchend', this._handleDragEnd);
+      setTouchEvent(addDrag, window, 'move', this._handleDragMove);
+      setTouchEvent(addDrag, window, 'end', this._handleDragEnd);
 
       this._dragAdded = addDrag;
     }
@@ -515,11 +516,11 @@ export default class Slider extends PureComponent {
 
   componentWillUnmount() {
     const rm = window.removeEventListener;
+    rm('click', this._blurOnOutsideClick);
     rm('mousemove', this._handleMouseMove);
     rm('mouseup', this._handleMouseUp);
-    rm('touchmove', this._handleDragMove);
-    rm('touchend', this._handleDragEnd);
-    rm('click', this._blurOnOutsideClick);
+    removeTouchEvent(window, 'move', this._handleDragMove);
+    removeTouchEvent(window, 'end', this._handleDragEnd);
 
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
@@ -658,7 +659,9 @@ export default class Slider extends PureComponent {
     const isDiscreteValue = classList.contains('md-slider-discrete-value');
     if (classList.contains('md-slider-thumb') || isDiscreteValue) {
       // Prevents text highlighting while dragging.
-      e.preventDefault();
+      if (e.type.match(/mouse/)) {
+        e.preventDefault();
+      }
       this.setState({ dragging: true, active: true, manualIncrement: false, maskInked: false });
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
@@ -684,7 +687,9 @@ export default class Slider extends PureComponent {
     }
 
     // Stops the text highlighting while dragging
-    e.preventDefault();
+    if (e.type.match(/mouse/)) {
+      e.preventDefault();
+    }
 
     this._updatePosition(e, false);
   }

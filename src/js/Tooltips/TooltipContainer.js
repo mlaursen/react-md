@@ -6,6 +6,7 @@ import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import Tooltip from './Tooltip';
 
 export default class TooltipContainer extends PureComponent {
@@ -36,10 +37,10 @@ export default class TooltipContainer extends PureComponent {
 
   componentWillUnmount() {
     if (this._container) {
+      removeTouchEvent(this._container, 'start', this._showTooltip);
+      removeTouchEvent(this._container, 'end', this._hideTooltip);
       this._container.removeEventListener('mouseover', this._showTooltip);
       this._container.removeEventListener('mouseleave', this._hideTooltip);
-      this._container.removeEventListener('touchstart', this._showTooltip);
-      this._container.removeEventListener('touchend', this._hideTooltip);
       this._container.removeEventListener('keyup', this._handleKeyUp);
       this._container.removeEventListener('blur', this._hideTooltip);
     }
@@ -53,10 +54,10 @@ export default class TooltipContainer extends PureComponent {
     if (container) {
       this._container = findDOMNode(container).parentNode;
 
+      addTouchEvent(this._container, 'start', this._showTooltip);
+      addTouchEvent(this._container, 'end', this._hideTooltip);
       this._container.addEventListener('mouseover', this._showTooltip);
       this._container.addEventListener('mouseleave', this._hideTooltip);
-      this._container.addEventListener('touchstart', this._showTooltip);
-      this._container.addEventListener('touchend', this._hideTooltip);
       this._container.addEventListener('keyup', this._handleKeyUp);
       this._container.addEventListener('blur', this._hideTooltip);
     }
