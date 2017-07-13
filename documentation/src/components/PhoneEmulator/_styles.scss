@@ -86,6 +86,10 @@
     }
 
     &__toolbar {
+      &.md-toolbar--fixed {
+        top: $phone-emulator-status-bar-height;
+      }
+
       &:not(.md-toolbar--inset)::before {
         background: $md-primary-color;
         content: '';

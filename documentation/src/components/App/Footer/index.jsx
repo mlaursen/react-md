@@ -10,7 +10,7 @@ import Contribute from './Contribute';
 import Version from './Version';
 
 const Footer = ({ className, ...props }) => (
-  <footer {...props} className={cn('md-grid footer', className)}>
+  <footer {...props} id="main-footer" className={cn('md-grid footer', className)}>
     <QuickNav />
     <Contact />
     <Contribute />

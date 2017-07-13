@@ -25,6 +25,11 @@ function loadIntl() {
 }
 
 (async function renderApp() {
+  if (__DEV__) {
+    const { updateCustomTheme } = require('state/helmet'); // eslint-disable-line global-require
+    store.dispatch(updateCustomTheme(store.getState().theme.href));
+  }
+
   const bundles = window.__WEBPACK_BUNDLES__ || [];
   await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
   await loadIntl();

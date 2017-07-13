@@ -1,52 +1,100 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import shallowEqual from 'shallowequal';
 
 import Markdown from 'components/Markdown';
-import ExampleCard from './ExampleCard';
 
 import './_styles.scss';
+import ExampleCard from './ExampleCard';
 
-const ExamplesPage = ({ style, className, description, examples, children }) => {
-  const cards = examples.map(example => <ExampleCard key={example.title} {...example} />);
+export default class ExamplesPage extends PureComponent {
+  static propTypes = {
+    style: PropTypes.object,
+    className: PropTypes.string,
+    description: PropTypes.string,
+    examples: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      code: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      children: PropTypes.node,
+      tableCard: PropTypes.bool,
+    })).isRequired,
+    children: PropTypes.node,
+  };
 
-  let componentDescription;
-  if (description) {
-    componentDescription = (
-      <Markdown
-        key="description"
-        component="header"
-        className="md-text-container md-cell md-cell--12"
-        markdown={description}
-      />
-    );
+  constructor(props) {
+    super();
+
+    this.state = { style: props.style };
   }
 
-  return (
-    <section style={style} className={cn('md-grid md-grid--40-16 examples-page', className)}>
-      {componentDescription}
-      {cards}
-      {children}
-    </section>
-  );
-};
+  componentDidMount() {
+    this.updateMinHeight(this.props);
 
-ExamplesPage.propTypes = {
-  style: PropTypes.object,
-  className: PropTypes.string,
-  description: PropTypes.string,
-  examples: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    children: PropTypes.node,
-    tableCard: PropTypes.bool,
-  })).isRequired,
-  children: PropTypes.node,
-};
+    window.addEventListener('resize', this.handleResize);
+    if (__DEV__) {
+      window.addEventListener('load', () => this.updateMinHeight(this.props));
+    }
+  }
 
-ExamplesPage.defaultProps = {
-  examples: [],
-};
+  componentWillReceiveProps(nextProps) {
+    if (this.props.style !== nextProps.style) {
+      this.updateMinHeight();
+    }
+  }
 
-export default ExamplesPage;
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  updateMinHeight = (props) => {
+    const toolbar = document.getElementById('main-toolbar');
+    const footer = document.getElementById('main-footer');
+    if (!toolbar || !footer) { // tests
+      return;
+    }
+
+    const minHeight = window.innerHeight - toolbar.offsetHeight - footer.offsetHeight;
+
+    const style = { ...props.style, minHeight };
+    if (!shallowEqual(this.state.style, style)) {
+      this.setState({ style });
+    }
+  };
+
+  handleResize = () => {
+    this.updateMinHeight(this.props);
+  };
+
+  render() {
+    const { style } = this.state;
+    const {
+      className,
+      description,
+      examples,
+      children,
+    } = this.props;
+    const cards = examples.map(example => <ExampleCard key={example.title} {...example} />);
+
+    let componentDescription;
+    if (description) {
+      componentDescription = (
+        <Markdown
+          key="description"
+          component="header"
+          className="md-text-container md-cell md-cell--12"
+          markdown={description}
+        />
+      );
+    }
+
+    return (
+      <section style={style} className={cn('md-grid md-grid--40-16 examples-page', className)}>
+        {componentDescription}
+        {cards}
+        {children}
+      </section>
+    );
+  }
+}

@@ -106,7 +106,7 @@ export class RoutingExample extends PureComponent {
     const { className, visible, defaultIndex } = this.state;
     const { mobile, location } = this.props;
     const { pathname } = location;
-    const inset = !!pathname.match(/news-stand/);
+    const inset = !pathname.match(/news-stand/);
 
     return (
       <div className="md-grid md-grid--40-16">

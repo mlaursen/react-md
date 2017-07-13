@@ -11,6 +11,7 @@ import {
 import { underscore } from 'utils/strings';
 import hasStorage from 'utils/hasStorage';
 import shallowEqual from 'shallowequal';
+import { getParsedCookie } from 'utils/cookies';
 
 export const UPDATE_THEME = 'UPDATE_THEME';
 
@@ -121,6 +122,7 @@ export function getInitialState(savedData) {
 
 export const INITIAL_STATE = getInitialState(
   (hasStorage() && JSON.parse(localStorage.getItem(THEME_STORAGE_KEY)))
+  || getParsedCookie()
 );
 
 export default function theme(state = INITIAL_STATE, action) {
