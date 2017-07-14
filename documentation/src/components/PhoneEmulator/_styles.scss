@@ -2,6 +2,8 @@
 
 // scss-lint:disable NestingDepth
 .phone-emulator {
+  height: 100%;
+
   $gutter: $md-grid-phone-gutter / 2;
 
   &__content {
@@ -16,7 +18,6 @@
   @media #{$md-tablet-media} {
     @include react-md-toolbars-mobile;
 
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;

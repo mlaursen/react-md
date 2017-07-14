@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import DataTable from 'react-md/lib/DataTables/DataTable';
@@ -169,8 +170,8 @@ export default class FixedTablePagination extends PureComponent {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {slicedData.map(airQuality => (
-            <TableRow key={airQuality.index}>
+          {slicedData.map((airQuality, i) => (
+            <TableRow key={i}>
               {Object.keys(airQuality).map((key, i) => (
                 <TableColumn key={key} numeric={columns[i].numeric}>{airQuality[key]}</TableColumn>
               ))}
