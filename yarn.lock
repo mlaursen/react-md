@@ -4234,6 +4234,12 @@ react-prop-types@^0.4.0:
   dependencies:
     warning "^3.0.0"
 
+react-resize-detector@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-0.5.0.tgz#e1eaaba654c08008dc22dc70c75ab6d3f2e82624"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-swipeable-views-core@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/react-swipeable-views-core/-/react-swipeable-views-core-0.11.1.tgz#61d046799f90725bbf91a0eb3abcab805c774cac"
