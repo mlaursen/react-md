@@ -615,6 +615,11 @@ $md-text-field-line-height: 1.15 !default;
     .md-text-field-multiline-container {
       position: relative;
     }
+
+    .md-text-field-container--multiline {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
