@@ -1,0 +1,23 @@
+@import '~globals';
+
+.text-fields {
+  // Allow them to be stacked on top of each other to show their positioning
+  // and sizing a bit better. Also shrink the container so it isn't full width
+  &__blocked-phones {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // The inline indicator expects an icon sized element
+  &__inline-btn.md-btn {
+    height: $md-font-icon-size;
+    padding: 0;
+    width: $md-font-icon-size;
+
+    @media #{$md-desktop-media} {
+      height: $md-font-icon-dense-size;
+      width: $md-font-icon-dense-size;
+    }
+  }
+}
