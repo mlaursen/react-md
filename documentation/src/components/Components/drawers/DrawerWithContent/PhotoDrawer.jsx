@@ -20,7 +20,7 @@ const PhotoDrawer = ({ visible, onVisibilityChange, photo }) => (
     visible={visible}
     onVisibilityChange={onVisibilityChange}
     position="right"
-    renderNode={document.querySelector('.phone-emulator__content')}
+    renderNode={__CLIENT__ ? document.querySelector('.phone-emulator__content') : undefined}
   >
     <Toolbar
       colored

@@ -41,6 +41,11 @@ export default class RoutingExample extends PureComponent {
   };
   state = { visible: false };
 
+  componentDidMount() {
+    // Need to set the renderNode since the drawer uses an overlay
+    this.dialog = document.getElementById('drawer-routing-example-dialog');
+  }
+
   showDrawer = () => {
     this.setState({ visible: true });
   };
@@ -56,6 +61,7 @@ export default class RoutingExample extends PureComponent {
   render() {
     const { location } = this.props;
     const { visible } = this.state;
+
     return (
       <div>
         <Toolbar colored fixed title="Routing Example" nav={<Button icon onClick={this.showDrawer}>menu</Button>} />
@@ -78,7 +84,7 @@ export default class RoutingExample extends PureComponent {
           visible={visible}
           onVisibilityChange={this.handleVisibility}
           header={<Toolbar title={<Link to="/components/drawers#react-router-example">Drawer examples</Link>} />}
-          renderNode={document.getElementById('drawer-routing-example-dialog')}
+          renderNode={this.dialog}
           navItems={navItems.map(props => <NavItemLink {...props} key={props.to} />)}
         />
       </div>
