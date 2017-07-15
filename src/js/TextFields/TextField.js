@@ -377,38 +377,34 @@ export default class TextField extends PureComponent {
   constructor(props) {
     super(props);
 
-    let currentLength = 0;
-    if (typeof props.value !== 'undefined') {
-      currentLength = String(props.value).length;
-    } else if (typeof props.defaultValue !== 'undefined') {
-      currentLength = String(props.defaultValue).length;
-    }
+    const currentLength = this._getLength(typeof props.value !== 'undefined' ? props.value : props.defaultValue);
 
     this.state = {
       active: false,
       error: props.maxLength ? props.maxLength < currentLength : false,
-      floating: !!props.defaultValue || !!props.value || props.defaultValue === 0 || props.value === 0,
+      floating: this._isValued(props.defaultValue) || this._isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
-      height: null,
       currentLength,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value) {
-      const value = typeof nextProps.value !== 'undefined' ? nextProps.value.toString() : '';
+    const { value, maxLength, required } = nextProps;
+    if (this.props.value !== value) {
       let error = this.state.error;
+      const currentLength = this._getLength(value);
+      if (required && error) {
+        error = !this._isValued(value);
+      }
 
-      if (nextProps.maxLength) {
-        error = value.length > nextProps.maxLength;
-      } else if (nextProps.required && error) {
-        error = !value;
+      if (maxLength) {
+        error = error || currentLength > maxLength;
       }
 
       this.setState({
         error,
-        floating: value === 0 || !!value || (this.state.floating && this.state.active),
-        currentLength: value.length,
+        currentLength,
+        floating: this._isValued(value) || (this.state.floating && this.state.active),
       });
     }
   }
@@ -489,6 +485,17 @@ export default class TextField extends PureComponent {
     }
   }
 
+  _isValued = (v) => v === 0 || !!v;
+
+  _getLength = (v) => {
+    if (this._isValued(v)) {
+      return String(v).length;
+    }
+
+    return 0;
+  };
+
+
   _setField = (field) => {
     if (field !== null) {
       this._field = field;
@@ -506,14 +513,19 @@ export default class TextField extends PureComponent {
   };
 
   _handleBlur = (e) => {
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
+    const { required, maxLength, onBlur } = this.props;
+    if (onBlur) {
+      onBlur(e);
     }
 
     const { value } = e.target;
-    const state = { active: false, error: this.props.required && !value };
+    const state = {
+      active: false,
+      error: (required && !this._isValued(value)) || (maxLength && String(value).length > maxLength),
+    };
+
     if (!this.props.block) {
-      state.floating = !!value || value === 0;
+      state.floating = this._isValued(value);
     }
 
     this.setState(state);
