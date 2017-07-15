@@ -1,6 +1,5 @@
 import React, { PureComponent, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
@@ -395,20 +394,7 @@ export default class TextField extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    if (this._isMultiline(this.props)) {
-      this._updateMultilineHeight();
-      window.addEventListener('resize', this._updateMultilineHeight);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    const multiline = this._isMultiline(nextProps);
-    if (this._isMultiline(this.props) !== multiline) {
-      this._updateMultilineHeight(nextProps);
-      window[`${multiline ? 'add' : 'remove'}EventListener`]('resize', this._updateMultilineHeight);
-    }
-
     if (this.props.value !== nextProps.value) {
       const value = typeof nextProps.value !== 'undefined' ? nextProps.value.toString() : '';
       let error = this.state.error;
@@ -424,18 +410,6 @@ export default class TextField extends PureComponent {
         floating: value === 0 || !!value || (this.state.floating && this.state.active),
         currentLength: value.length,
       });
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
-      this._updateMultilineHeight(this.props);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this._isMultiline(this.props)) {
-      window.removeEventListener('resize', this._updateMultilineHeight);
     }
   }
 
@@ -494,10 +468,6 @@ export default class TextField extends PureComponent {
     this._field.blur();
   }
 
-  _isMultiline(props) {
-    return typeof props.rows !== 'undefined';
-  }
-
   _cloneIcon(icon, active, error, disabled, stateful, block, dir) {
     if (!icon) {
       return icon;
@@ -525,36 +495,6 @@ export default class TextField extends PureComponent {
     }
   };
 
-  _setMessage = (message) => {
-    if (message !== null) {
-      this._message = findDOMNode(message);
-    }
-  };
-
-  _setDivider = (divider) => {
-    if (divider !== null) {
-      this._divider = findDOMNode(divider);
-    }
-  };
-
-  _setContainer = (container) => {
-    if (container !== null) {
-      this._node = container;
-    }
-  };
-
-  _setPasswordBtn = (btn) => {
-    if (btn !== null) {
-      this._password = findDOMNode(btn);
-    }
-  };
-
-  _setFloatingLabel = (label) => {
-    if (label !== null) {
-      this._label = findDOMNode(label);
-    }
-  };
-
   _handleContainerClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
@@ -562,26 +502,6 @@ export default class TextField extends PureComponent {
 
     if (!this.props.disabled) {
       this.focus();
-    }
-  };
-
-  _updateMultilineHeight = (props = this.props) => {
-    const { block } = props;
-    const multiline = this._isMultiline(props);
-    if (!multiline) {
-      return;
-    }
-
-    const floating = this._node.querySelector('md-text-field--floating-margin');
-    this._additionalHeight = floating ? parseInt(window.getComputedStyle(floating).marginTop, 10) : 0;
-
-    if (!block) {
-      const mb = parseInt(window.getComputedStyle(this._divider).getPropertyValue('margin-bottom'), 10);
-      this._additionalHeight += (mb === 4 ? 12 : 16);
-    }
-
-    if (this._message) {
-      this._additionalHeight += this._message.offsetHeight;
     }
   };
 
@@ -725,7 +645,6 @@ export default class TextField extends PureComponent {
       rightIcon = (
         <PasswordButton
           key="password-btn"
-          ref={this._setPasswordBtn}
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
@@ -752,7 +671,6 @@ export default class TextField extends PureComponent {
     const floatingLabel = (
       <FloatingLabel
         key="label"
-        ref={this._setFloatingLabel}
         label={label}
         htmlFor={id}
         active={active}
@@ -767,7 +685,6 @@ export default class TextField extends PureComponent {
     const message = (
       <TextFieldMessage
         key="message"
-        ref={this._setMessage}
         active={active}
         error={error}
         errorText={errorText}
@@ -809,7 +726,6 @@ export default class TextField extends PureComponent {
       divider = (
         <TextFieldDivider
           key="text-divider"
-          ref={this._setDivider}
           active={active}
           error={error}
           lineDirection={lineDirection}
@@ -840,16 +756,15 @@ export default class TextField extends PureComponent {
 
     children = [floatingLabel, children, message];
 
-    const multiline = this._isMultiline(this.props);
+    const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        ref={this._setContainer}
         style={style}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
           'md-text-field-container--disabled': disabled,
-          'md-text-field-container--input': typeof props.rows === 'undefined',
+          'md-text-field-container--input': !multiline,
           'md-text-field-container--input-block': block && !multiline,
           'md-text-field-container--multiline': multiline,
           'md-text-field-container--multiline-block': multiline && block,

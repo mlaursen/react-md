@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
@@ -175,12 +174,10 @@ export default class InkContainer extends PureComponent {
   /**
    * Sets the ink container and the main container from the ref callback. When the component
    * is mounting, the keyboard, mouse, and keyboard events will be initialized.
-   *
-   * @param {Object} inkContainer - The ink container.
    */
-  _setContainers = (inkContainer) => {
-    if (inkContainer !== null) {
-      this._inkContainer = findDOMNode(inkContainer);
+  _setContainers = (span) => {
+    if (span !== null) {
+      this._inkContainer = span.parentNode;
       this._container = this._inkContainer.parentNode;
 
       if (this._container) {
@@ -408,11 +405,11 @@ export default class InkContainer extends PureComponent {
 
     return (
       <TransitionGroup
-        ref={this._setContainers}
         component="div"
         style={style}
         className={cn('md-ink-container', className)}
       >
+        <span ref={this._setContainers} aria-hidden />
         {inks}
       </TransitionGroup>
     );
