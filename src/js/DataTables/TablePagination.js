@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 import findTable from './findTable';
@@ -142,11 +142,9 @@ export default class TablePagination extends PureComponent {
     this._increment = this._increment.bind(this);
     this._decrement = this._decrement.bind(this);
     this._setRowsPerPage = this._setRowsPerPage.bind(this);
-  }
 
-  componentDidMount() {
-    this._position();
-    window.addEventListener('resize', this._position);
+    this._table = null;
+    this._ticking = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -159,33 +157,29 @@ export default class TablePagination extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { rows } = this.props;
-    const { start, rowsPerPage } = this.state;
-    if (rows !== prevProps.rows
-      || start !== prevState.start
-      || rowsPerPage !== prevState.rowsPerPage
-    ) {
-      this._position();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._position);
-  }
-
   _setControls(controls) {
-    this._controls = findDOMNode(controls);
+    this._controls = controls;
+    this._table = findTable(controls);
   }
 
   _position() {
-    const table = findTable(findDOMNode(this));
-    if (table) {
+    if (this._table) {
       this.setState({
-        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
+        controlsMarginLeft: Math.max(0, this._table.offsetWidth - this._controls.offsetWidth),
       });
     }
   }
+
+  _throttledPosition = () => {
+    if (!this._ticking) {
+      requestAnimationFrame(() => {
+        this._ticking = false;
+        this._position();
+      });
+    }
+
+    this._ticking = true;
+  };
 
   _increment() {
     const { rows, onPagination } = this.props;
@@ -261,6 +255,8 @@ export default class TablePagination extends PureComponent {
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
       <tfoot {...props} className={cn('md-table-footer', className)}>
+        <ResizeObserver watchWidth component="tr" onResize={this._throttledPosition} />
+        <ResizeObserver watchWidth component="tr" target={this._table} onResize={this._throttledPosition} />
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
           <td colSpan="100%">
