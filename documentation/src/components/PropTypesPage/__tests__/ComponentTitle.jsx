@@ -4,8 +4,6 @@ import renderer from 'react-test-renderer';
 
 import ComponentTitle from '../ComponentTitle';
 
-jest.mock('react-md/lib/TextFields/TextField');
-
 const PROPS = {
   id: 'autocompletes',
   component: 'Autocomplete',
