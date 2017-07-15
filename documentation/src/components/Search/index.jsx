@@ -66,6 +66,7 @@ export class PureSearch extends PureComponent {
     super(props);
 
     this.state = {
+      value: '',
       animating: false,
       data: this.makeDataList(props),
     };
@@ -81,6 +82,8 @@ export class PureSearch extends PureComponent {
     if (this.props.searching === searching) {
       return;
     }
+
+    this.setState({ value: '' });
 
     if (this.timeout) {
       clearTimeout(this.timeout);
@@ -177,10 +180,14 @@ export class PureSearch extends PureComponent {
     }
   };
 
+  handleChange = (value) => {
+    this.props.search(value);
+    this.setState({ value });
+  };
+
   render() {
-    const { animating, data } = this.state;
+    const { animating, data, value } = this.state;
     const {
-      search,
       searching,
       hideSearch,
       meta: { total },
@@ -207,12 +214,13 @@ export class PureSearch extends PureComponent {
             'search__input--active': searching || animating,
           })}
           filter={null}
-          onChange={search}
+          onChange={this.handleChange}
           data={data}
           total={total}
           leftIcon={<FontIcon>search</FontIcon>}
           listClassName="search__results"
           onClick={this.handleClick}
+          value={value}
         />
         {hideBtn}
       </div>
