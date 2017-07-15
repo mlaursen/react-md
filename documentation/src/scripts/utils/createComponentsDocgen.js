@@ -48,7 +48,7 @@ function getParams(parameters, file, method) {
       name,
       description,
       type: type.name,
-      required,
+      required: !!required,
     };
   });
 }

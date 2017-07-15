@@ -7,7 +7,7 @@ export default function getPropTypeLinks(documentableComponents) {
     folder,
     component: c.replace('inject', ''),
   })))).map(({ component: c, folder }) => {
-    const pluralized = (c.endsWith('ss') ? c : pluralize(c)).replace(/([A-Z])/g, ' $1').trim();
+    const pluralized = (c.endsWith('ss') || c === 'Tab' ? c : pluralize(c)).replace(/([A-Z])/g, ' $1').trim();
     const kebabCased = kebabCase(pluralized).replace('-inked', '');
     const ref = `#${kebabCased}-proptypes`;
     let link = kebabCase(folder);
