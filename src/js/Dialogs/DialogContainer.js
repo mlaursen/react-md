@@ -512,6 +512,7 @@ export default class DialogContainer extends PureComponent {
           transitionName={`md-dialog--${fullPage ? 'full-page' : 'centered'}`}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
+          tabIndex={-1}
           onClick={this._handleClick}
         >
           {dialogVisible ? dialog : null}
