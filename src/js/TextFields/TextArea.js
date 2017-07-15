@@ -52,10 +52,6 @@ export default class TextArea extends PureComponent {
     this._field.blur();
   };
 
-  _calcRowHeight(field, props) {
-    return field.offsetHeight / props.rows;
-  }
-
   _calcRowHeight = ({ rows } = this.props) => {
     if (!this._field) {
       return 19;
@@ -76,7 +72,7 @@ export default class TextArea extends PureComponent {
     this._field = field;
   };
 
-  _handleResize() {
+  _handleResize = () => {
     this._rowHeight = this._calcRowHeight();
     this._syncHeightWithMask();
   };
@@ -121,7 +117,6 @@ export default class TextArea extends PureComponent {
       /* eslint-disable no-unused-vars */
       maxRows,
       onChange,
-      onHeightChange,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

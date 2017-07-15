@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
