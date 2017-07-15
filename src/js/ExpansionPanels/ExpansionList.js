@@ -52,6 +52,12 @@ export default class ExpansionList extends PureComponent {
      * > The default value is really `true` since it gets passed down to the `Collapse` component.
      */
     animateContent: PropTypes.bool,
+
+    /**
+     * The threshold that should be used for when the list should recalculate the positioning of all
+     * the columns. This will only compare the difference between updates.
+     * So if the size changes from 80 -> 120 -> 160 -> 140. It will only update on the third resize (160)
+     */
     recalculateThreshold: PropTypes.number.isRequired,
   };
 
