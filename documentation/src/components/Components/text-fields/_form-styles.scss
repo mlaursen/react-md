@@ -1,0 +1,26 @@
+@import '~globals';
+
+.text-fields__application__price {
+  &::before {
+    bottom: 16px;
+    color: get-color('text', true);
+    content: '$';
+    font-size: $md-text-field-mobile-font-size;
+    position: absolute;
+  }
+
+  .md-text-field {
+    padding-left: .75em;
+  }
+}
+
+.text-fields__application__publishes {
+  padding: 0;
+
+  .md-selection-control-container {
+    // Checkboxes and radios have additional padding due to being buttons and requiring
+    // some "accessibility" for clicking/touching. So when they are in forms, it is
+    // helpful to apply some negative padding to fix the alignment with other form inputs.
+    margin-left: -12px;
+  }
+}

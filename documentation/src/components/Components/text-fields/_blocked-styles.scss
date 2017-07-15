@@ -1,0 +1,10 @@
+@import '~globals';
+
+.text-fields__contacts {
+  padding: $md-default-padding;
+}
+
+.text-fields__contact-chip:nth-child(n + 2) {
+  display: block;
+  margin-top: $md-default-padding / 2;
+}

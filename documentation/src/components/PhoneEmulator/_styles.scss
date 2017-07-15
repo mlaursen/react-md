@@ -121,6 +121,34 @@
       padding: $md-btn-icon-padding;
       width: $md-btn-icon-size;
     }
+
+    .md-chip-icon {
+      margin-left: $md-chip-icon-padding;
+      margin-right: $md-chip-icon-padding;
+      top: ($md-chip-height - $md-font-icon-size) / 2;
+    }
+
+    .md-selection-control-container {
+      height: auto;
+    }
+
+    .md-snackbar-container {
+      position: static;
+    }
+
+    .md-snackbar {
+      transform: translate3d(0, 0, 0);
+
+      &-enter,
+      &-leave.md-snackbar-leave-active {
+        transform: translate3d(0, 100%, 0);
+      }
+
+      &-leave,
+      &-enter.md-snackbar-enter-active {
+        transform: translate3d(0, 0, 0);
+      }
+    }
   }
 
   &__status-bar {

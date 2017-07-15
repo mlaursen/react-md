@@ -11,7 +11,7 @@ const AppToolbar = ({ inset }) => {
   if (!inset) {
     actions.unshift(<Button key="refresh" icon>refresh</Button>);
   } else {
-    search = <TextField key="search" placeholder="Search" block className="md-title--toolbar" />;
+    search = <TextField key="search" placeholder="Search" block className="md-title--toolbar" id="search-content" />;
   }
 
   return (
