@@ -25,6 +25,15 @@ import TextFieldDivider from './TextFieldDivider';
 export default class TextField extends PureComponent {
   static propTypes = {
     /**
+     * The id for a text field. This is required when using the `label` prop for accessibility,
+     * but normally a good idea to include one anyways.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
+    /**
      * An optional style to apply to the text field's container.
      */
     style: PropTypes.object,
@@ -66,17 +75,7 @@ export default class TextField extends PureComponent {
      * the `full width` text field in the Material Design specs. This view will disable
      * floating labels and remove the text divider from the component.
      */
-    block: (props, propName, component, ...others) => {
-      let err = PropTypes.bool(props, propName, component, ...others);
-      if (!err && props[propName] && props.label) {
-        err = new Error(
-          `The \`${component}\` is unable to have a \`label\` and be displayed as \`block\`. ` +
-          `If you would like a \`label\` for the block \`${component}\`, please use the \`placeholder\` prop.`
-        );
-      }
-
-      return err;
-    },
+    block: PropTypes.bool,
 
     /**
      * Boolean if the `block` text field should include padding to the left and right of
@@ -94,7 +93,7 @@ export default class TextField extends PureComponent {
      * into a floating label text field. You can make it single line by only using the
      * `placeholder` prop.
      */
-    label: PropTypes.node,
+    label: invalidIf(PropTypes.node, 'block'),
 
     /**
      * An optional placeholder text to display in the text field. If there is no `label` prop,
@@ -102,21 +101,6 @@ export default class TextField extends PureComponent {
      * this will only be visible when there is no value and the user focused the text field.
      */
     placeholder: PropTypes.string,
-
-    /**
-     * The id for the text field.  This is required for a11y if the `label` prop is defined.
-     */
-    id: (props, propName, component, ...others) => {
-      const validator = PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]);
-      if (typeof props.label !== 'undefined') {
-        return isRequiredForA11y(validator)(props, propName, component, ...others);
-      }
-
-      return validator(props, propName, component, ...others);
-    },
 
     /**
      * The type for the text field. This is one of the most import props for mobile accessibility
@@ -325,13 +309,13 @@ export default class TextField extends PureComponent {
      * of the text field's value is greater than the `maxLength` prop, or the field is
      * required and the user blurs the text field with no value.
      */
-    errorText: invalidIf(PropTypes.node, 'block'),
+    errorText: PropTypes.node,
 
     /**
      * An optional help text to display below the text field. This will always be visible
      * unless the `helpOnFocus` prop is set to true. Otherwise it will appear on focus.
      */
-    helpText: invalidIf(PropTypes.node, 'block'),
+    helpText: PropTypes.node,
 
     /**
      * Boolean if the help text should display on focus only.

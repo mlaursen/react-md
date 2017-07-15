@@ -65,7 +65,9 @@ export default class DialogFooter extends PureComponent {
 
   _generateActions = () => {
     const { actions } = this.props;
-    if (Array.isArray(actions)) {
+    if (!actions) {
+      return null;
+    } else if (Array.isArray(actions)) {
       return actions.map(this._toElement);
     }
 
@@ -81,7 +83,7 @@ export default class DialogFooter extends PureComponent {
       ...props
     } = this.props;
 
-    if (!actions || (Array.isArray(actions) && !actions.length)) {
+    if (!children && (!actions || (Array.isArray(actions) && !actions.length))) {
       return null;
     }
 
