@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
+import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
-import ResizeObserver from 'resize-observer-polyfill';
 
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
@@ -17,6 +16,7 @@ import positionShape from './positionShape';
 import HorizontalAnchors from './HorizontalAnchors';
 import VerticalAnchors from './VerticalAnchors';
 import Positions from './Positions';
+import ResizeObserver from './ResizeObserver';
 
 /**
  * The Layover component is used to keep a component fixed to another component
@@ -267,9 +267,17 @@ export default class Layover extends PureComponent {
     this._initialLeft = null;
     this._childLeft = null;
     this._childRight = null;
+    this._child = null;
+    this._toggle = null;
   }
 
   componentDidMount() {
+    if (process.env.NODE_ENV === 'development') {
+      window.addEventListener('load', () => {
+        this._setContainer(this._container);
+      });
+    }
+
     const { visible, fixedTo, sameWidth, centered } = this.props;
     const anchor = this._getAnchor(this.props);
     if (visible) {
@@ -283,23 +291,6 @@ export default class Layover extends PureComponent {
 
       this._init(fixedTo, anchor, sameWidth, centered, rect);
     }
-
-    this._observer = new ResizeObserver((entries) => {
-      if (!this._observer || !this._toggle || !this._child) {
-        return;
-      }
-
-      for (const entry of entries) {
-        if (!entry) {
-          return;
-        }
-
-        const { height, width } = entry.contentRect;
-        if ((height && height !== this._height) || (width && width !== this._width)) {
-          this._positionChild();
-        }
-      }
-    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -341,8 +332,6 @@ export default class Layover extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._observer = null;
-
     this._manageFixedToListener(this.props.fixedTo, false);
     handleWindowClickListeners(this._handleOutsideClick, false);
     window.removeEventListener('resize', this._handleWindowResize);
@@ -640,10 +629,6 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      if (this._observer) {
-        this._observer.observe(this._child);
-      }
-
       window.addEventListener('resize', this._handleWindowResize);
       this._childComponent = React.Children.only(this.props.children);
 
@@ -679,6 +664,12 @@ export default class Layover extends PureComponent {
       this.setState({ styles: this._mergeStyles(styles) }, this._initialFix);
     } else {
       this._initialFix();
+    }
+  };
+
+  _handleResize = () => {
+    if (this.props.visible) {
+      this._positionChild();
     }
   };
 
@@ -914,6 +905,7 @@ export default class Layover extends PureComponent {
         transitionLeave={props.transitionLeaveTimeout !== 0}
         onContextMenu={this._handleContextMenu}
       >
+        <ResizeObserver watchWidth watchHeight target={this._child} onResize={this._handleResize} />
         {toggle}
         {child}
       </CSSTransitionGroup>
