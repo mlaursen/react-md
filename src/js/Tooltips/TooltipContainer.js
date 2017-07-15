@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
@@ -50,9 +49,9 @@ export default class TooltipContainer extends PureComponent {
     }
   }
 
-  _setContainers(container) {
-    if (container) {
-      this._container = findDOMNode(container).parentNode;
+  _setContainers(span) {
+    if (span) {
+      this._container = span.parentNode.parentNode;
 
       addTouchEvent(this._container, 'start', this._showTooltip);
       addTouchEvent(this._container, 'end', this._hideTooltip);
@@ -147,9 +146,9 @@ export default class TooltipContainer extends PureComponent {
       <TransitionGroup
         style={style}
         className={cn('md-tooltip-container', className)}
-        ref={this._setContainers}
         component="div"
       >
+        <span ref={this._setContainers} aria-hidden />
         {visible ? tooltip : null}
       </TransitionGroup>
     );
