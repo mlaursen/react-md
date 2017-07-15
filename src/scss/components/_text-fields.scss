@@ -84,7 +84,7 @@ $md-text-field-mobile-font-size: 16px !default;
 
 /// The padding above a floating label on mobile devices.
 /// @type Number
-$md-text-field-mobile-top-padding: 16px !default;
+$md-text-field-mobile-top-padding: $md-default-padding !default;
 
 /// The padding between a _floating_ floating label and the text field
 /// on mobile devices.
@@ -128,7 +128,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px !default;
 
 // The padding above and below the block text field on desktop screens.
 // @type Number
-$md-text-field-desktop-block-padding: 16px !default;
+$md-text-field-desktop-block-padding: $md-default-padding !default;
 
 /// This is the position from the top of the text field's container that the floating
 /// label should appear.
@@ -257,14 +257,14 @@ $md-text-field-line-height: 1.15 !default;
 
   @if $include-message and ($include-dense-icons and $include-icon) {
     .md-text-field-message-container {
-      $margin: 36px;
+      $margin: if($md-font-icon-include-dense, $md-font-icon-dense-size, $md-font-icon-size) + $md-default-padding;
 
       &--left-icon-offset {
-        margin-left: $margin;
+        padding-left: $margin;
       }
 
       &--right-icon-offset {
-        margin-right: $margin;
+        padding-right: $margin;
       }
     }
   }
@@ -383,10 +383,6 @@ $md-text-field-line-height: 1.15 !default;
   $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
-  @if $include-media {
-    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
-  }
-
   @include react-md-text-field-container($light-theme, $include-multiline, $include-block, $include-message);
   @include react-md-text-field($light-theme, $include-multiline);
   @include react-md-text-field-divider($primary-color, $error-color);
@@ -409,6 +405,10 @@ $md-text-field-line-height: 1.15 !default;
 
   @if $include-password {
     @include react-md-text-field-password($light-theme);
+  }
+
+  @if $include-media {
+    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
   }
 
   @include react-md-text-field-custom-sizes($md-text-field-custom-sizes, $include-floating-label);
@@ -799,7 +799,13 @@ $md-text-field-line-height: 1.15 !default;
   }
 
   .md-floating-label--icon-offset {
-    left: 40px;
+    left: $md-font-icon-size + $md-default-padding;
+
+    @if $md-font-icon-include-dense {
+      @media #{$md-desktop-media} {
+        left: $md-font-icon-dense-size + $md-default-padding;
+      }
+    }
   }
 }
 
@@ -866,7 +872,7 @@ $md-text-field-line-height: 1.15 !default;
   }
 
   .md-floating-label--floating {
-    transform: translate3d(0, 16px, 0);
+    transform: translate3d(0, $md-default-padding, 0);
   }
 }
 
@@ -1060,12 +1066,16 @@ $md-text-field-line-height: 1.15 !default;
   }
 
   @if $include-icon {
-    .md-text-field-message-container--left-icon-offset {
-      margin-left: 40px;
-    }
+    .md-text-field-message-container {
+      $padding: $md-font-icon-size + $md-default-padding;
 
-    .md-text-field-message-container--right-icon-offset {
-      margin-right: 40px;
+      &--left-icon-offset {
+        padding-left: $padding;
+      }
+
+      &--right-icon-offset {
+        padding-right: $padding;
+      }
     }
   }
 
@@ -1150,7 +1160,7 @@ $md-text-field-line-height: 1.15 !default;
 
   .md-text-field-icon + .md-text-field-divider-container,
   .md-text-field-divider-container + .md-text-field-icon {
-    margin-left: 16px;
+    margin-left: $md-default-padding;
   }
 
   .md-text-field-icon--disabled {
@@ -1223,7 +1233,7 @@ $md-text-field-line-height: 1.15 !default;
   $text-field-height: 19px;
 
   .md-text-field-icon--positioned {
-    margin-bottom: 16px - (($md-font-icon-size - $text-field-height) / 2);
+    margin-bottom: $md-default-padding - (($md-font-icon-size - $text-field-height) / 2);
   }
 }
 
