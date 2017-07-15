@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-import ResizeObserver from 'resize-observer-polyfill';
 
 import { DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import TabIndicator from './TabIndicator';
 import IconSeparator from '../Helpers/IconSeparator';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import FontIcon from '../FontIcons/FontIcon';
 import MenuTab from './MenuTab';
 import TabOverflowButton from './TabOverflowButton';
@@ -193,26 +193,6 @@ export default class Tabs extends PureComponent {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('load', this._positionElements);
-    this._observer = new ResizeObserver((entries) => {
-      if (!this._container) {
-        return;
-      }
-
-      for (const entry of entries) {
-        if (entry !== this._container) {
-          return;
-        }
-
-        const { offsetHeight, offsetWidth } = entry.target;
-        if ((offsetHeight && offsetHeight !== this._height) || (offsetWidth && offsetWidth !== this._width)) {
-          this._positionElements();
-        }
-      }
-    });
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.activeTabIndex !== nextProps.activeTabIndex) {
       this.setState({
@@ -238,10 +218,6 @@ export default class Tabs extends PureComponent {
         }, this._scrollActiveIntoView);
       }
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('load', this._positionElements);
   }
 
   _shouldAlign(props) {
@@ -540,6 +516,7 @@ export default class Tabs extends PureComponent {
         }, className)}
         role="tablist"
       >
+        <ResizeObserver watchWidth watchHeight onResize={this._positionElements} />
         {previousControl}
         {children}
         {nextControl}

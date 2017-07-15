@@ -56,6 +56,20 @@ $md-expansion-panel-expanded-height: 64px !default;
     }
   }
 
+  .md-panel-column {
+    &:not(:last-child) {
+      padding-right: $md-default-padding;
+    }
+
+    &--overflown {
+      flex-shrink: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: break-word;
+    }
+  }
+
   .md-panel-column:not(:last-child) {
     padding-right: $md-default-padding;
   }

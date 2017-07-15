@@ -572,8 +572,8 @@ export default class TextField extends PureComponent {
       return;
     }
 
-    const cs = window.getComputedStyle(findDOMNode(this._field));
-    this._additionalHeight = parseInt(cs.getPropertyValue('margin-top'), 10);
+    const floating = this._node.querySelector('md-text-field--floating-margin');
+    this._additionalHeight = floating ? parseInt(window.getComputedStyle(floating).marginTop, 10) : 0;
 
     if (!block) {
       const mb = parseInt(window.getComputedStyle(this._divider).getPropertyValue('margin-bottom'), 10);
@@ -637,14 +637,8 @@ export default class TextField extends PureComponent {
     this.setState({ passwordVisible: !this.state.passwordVisible }, this.focus);
   };
 
-  _handleHeightChange = (height) => {
-    if (this._additionalHeight) {
-      this.setState({ height: height + this._additionalHeight });
-    }
-  };
-
   render() {
-    const { currentLength, passwordVisible, height } = this.state;
+    const { currentLength, passwordVisible } = this.state;
     const {
       id,
       type,
@@ -806,7 +800,6 @@ export default class TextField extends PureComponent {
         onFocus={this._handleFocus}
         onBlur={this._handleBlur}
         onChange={this._handleChange}
-        onHeightChange={this._handleHeightChange}
         inlineIndicator={!!inlineIndicator}
       />
     );
@@ -851,7 +844,7 @@ export default class TextField extends PureComponent {
     return (
       <div
         ref={this._setContainer}
-        style={{ height, ...style }}
+        style={style}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,

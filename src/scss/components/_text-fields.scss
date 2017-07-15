@@ -455,8 +455,16 @@ $md-text-field-line-height: 1.15 !default;
   $include-password: $md-text-field-include-password
 ) {
   @if $light-theme != $md-light-theme {
-    .md-text-field-container {
-      @include react-md-theme-placeholders(get-color('secondary', $light-theme));
+    .md-text-field {
+      @include react-md-style-placeholders {
+        color: get-color('secondary', $light-theme);
+      };
+
+      &[disabled] {
+        @include react-md-style-placeholders {
+          color: get-color('disabled', $light-theme);
+        };
+      }
     }
   }
 
@@ -586,26 +594,7 @@ $md-text-field-line-height: 1.15 !default;
 ) {
 
   .md-text-field-container {
-    @include react-md-theme-placeholders(get-color('secondary', $light-theme));
-
     position: relative;
-
-    // scss-lint:disable VendorPrefix, PseudoElement
-    :-moz-placeholder {
-      opacity: 1;
-    }
-
-    ::-moz-placeholder {
-      opacity: 1;
-    }
-
-    :-ms-input-placeholder {
-      opacity: 1;
-    }
-
-    ::-webkit-input-placeholder {
-      opacity: 1;
-    }
   }
 
   .md-text-field-container--input {
@@ -634,6 +623,11 @@ $md-text-field-line-height: 1.15 !default;
     .md-text-field-multiline-container {
       position: relative;
     }
+
+    .md-text-field-container--multiline {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
@@ -659,6 +653,10 @@ $md-text-field-line-height: 1.15 !default;
     padding: 0;
     width: 100%;
 
+    @include react-md-style-placeholders {
+      color: get-color('secondary', $light-theme);
+    }
+
     &:focus {
       outline: none;
     }
@@ -670,6 +668,12 @@ $md-text-field-line-height: 1.15 !default;
 
     &--margin {
       margin-top: 13px;
+    }
+
+    &[disabled] {
+      @include react-md-style-placeholders {
+        color: get-color('disabled', $light-theme);
+      }
     }
   }
 
@@ -1604,6 +1608,112 @@ $md-text-field-line-height: 1.15 !default;
 
 
 
+/// A mixin for adding custom styles to placeholders since the autoprefixer doesn't seem
+/// to be able to pick it up correctly.
+///
+/// @example scss - Example Scss Usage
+///   .md-text-field[disabled] {
+///     @include react-md-style-placeholders {
+///       color: get-color(disabled, true);
+///     }
+///   }
+///
+///   .some-field-contaner {
+///     @include react-md-style-placeholders(true) {
+///       color: red;
+///     }
+///   }
+///
+/// @example scss - Example CSS Output
+///   .md-text-field[disabled]:placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]:-moz-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]::-moz-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]:-ms-input-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]::-webkit-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///
+///   .some-field-container :placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container :-moz-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container ::-moz-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container :-ms-input-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container ::-webkit-placeholder {
+///     color: red;
+///   }
+///
+/// @param {Boolean} child [true] - Boolean if the placeholder should apply to a child of the class
+///   name instead of applying to the current class name/selector.
+@mixin react-md-style-placeholders($child: false) {
+  @if $child {
+    // scss-lint:disable VendorPrefix, PseudoElement
+    :placeholder {
+      @content;
+    }
+
+    :-moz-placeholder {
+      @content;
+    }
+
+    ::-moz-placeholder {
+      @content;
+    }
+
+    :-ms-input-placeholder {
+      @content;
+    }
+
+    ::-webkit-input-placeholder {
+      @content;
+    }
+  } @else {
+    // scss-lint:disable VendorPrefix, PseudoElement
+
+    &:placeholder {
+      @content;
+    }
+
+    &:-moz-placeholder {
+      @content;
+    }
+
+    &::-moz-placeholder {
+      @content;
+    }
+
+    &:-ms-input-placeholder {
+      @content;
+    }
+
+    &::-webkit-input-placeholder {
+      @content;
+    }
+  }
+}
 
 
 /// Applies a color to all the browser placeholder psuedo elements.
@@ -1634,22 +1744,10 @@ $md-text-field-line-height: 1.15 !default;
 ///
 /// @param {Color} color - The placeholder color to use
 /// @group text-fields, themes
+/// @deprecated
+/// @see react-md-style-placeholders
 @mixin react-md-theme-placeholders($color) {
-  // scss-lint:disable VendorPrefix, PseudoElement
-
-  :-moz-placeholder {
-    color: $color;
-  }
-
-  ::-moz-placeholder {
-    color: $color;
-  }
-
-  :-ms-input-placeholder {
-    color: $color;
-  }
-
-  ::-webkit-input-placeholder {
+  @include react-md-style-placeholders(true) {
     color: $color;
   }
 }

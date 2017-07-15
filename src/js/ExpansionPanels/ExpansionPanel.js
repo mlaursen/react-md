@@ -121,6 +121,15 @@ export default class ExpansionPanel extends PureComponent {
     columnWidths: PropTypes.arrayOf(PropTypes.number).isRequired,
 
     /**
+     * Boolean if the panel has too much content so that it overflowns. This is injected
+     * and managed by the `ExpansionList` component. Do not set yourself.
+     *
+     * When this is active, it will truncate all columns except for the main label and the
+     * toggle icon.
+     */
+    overflown: PropTypes.bool,
+
+    /**
      * A function to call when the expansion panel's expanded state is toggled.
      * The callback for this function will include the new expanded state.
      *
@@ -349,6 +358,7 @@ export default class ExpansionPanel extends PureComponent {
       contentStyle,
       contentClassName,
       tabIndex,
+      overflown,
       /* eslint-disable no-unused-vars */
       animateContent: propAnimateContent,
       expanded: propExpanded,
@@ -367,7 +377,12 @@ export default class ExpansionPanel extends PureComponent {
     const animateContent = getField(this.props, this.context, 'animateContent');
 
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
-      <div className="md-panel-column md-text" style={{ minWidth: columnWidths[i + 1] }}>
+      <div
+        style={{ [`${overflown ? 'width' : 'minWidth'}`]: columnWidths[i + 1] }}
+        className={cn('md-panel-column md-text', {
+          'md-panel-column--overflown': overflown,
+        })}
+      >
         {panelLabel}
       </div>
     ));
@@ -400,7 +415,11 @@ export default class ExpansionPanel extends PureComponent {
           tabIndex={tabIndex}
         >
           {columns}
-          <Collapser flipped={expanded} iconClassName={expandIconClassName} className="md-cell--right">
+          <Collapser
+            flipped={expanded}
+            iconClassName={expandIconClassName}
+            className="md-cell--right md-expansion-panel__collapser"
+          >
             {expandIconChildren}
           </Collapser>
         </AccessibleFakeButton>

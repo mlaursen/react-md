@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { findDOMNode } from 'react-dom';
 
 import getField from '../utils/getField';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 import findTable from './findTable';
@@ -139,11 +139,9 @@ export default class TablePagination extends PureComponent {
     if (!controlledRowsPerPage) {
       this.state.rowsPerPage = props.defaultRowsPerPage;
     }
-  }
 
-  componentDidMount() {
-    window.addEventListener('resize', this._position);
-    this._position();
+    this._table = null;
+    this._ticking = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -156,27 +154,9 @@ export default class TablePagination extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { rows } = this.props;
-    const { start, rowsPerPage } = this.state;
-    if (rows !== prevProps.rows
-      || start !== prevState.start
-      || rowsPerPage !== prevState.rowsPerPage
-    ) {
-      this._position();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._position);
-    if (this._table) {
-      this._table.removeEventListener('scroll', this._throttledPosition);
-    }
-  }
-
   _setControls = (controls) => {
-    this._controls = findDOMNode(controls);
-    this._table = findTable(this._controls);
+    this._controls = controls;
+    this._table = findTable(controls);
 
     if (this._table && this.context.fixedFooter) {
       this._table.addEventListener('scroll', this._throttledPosition);
@@ -192,6 +172,7 @@ export default class TablePagination extends PureComponent {
       if (fixedFooter) {
         controlsMarginLeft += scrollLeft;
       }
+
       this.setState({
         controlsMarginLeft: Math.max(24, controlsMarginLeft),
       });
@@ -285,6 +266,8 @@ export default class TablePagination extends PureComponent {
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
       <TableFooter {...props} className={cn('md-table-footer--pagination', className)}>
+        <ResizeObserver watchWidth component="tr" onResize={this._throttledPosition} />
+        <ResizeObserver watchWidth component="tr" target={this._table} onResize={this._throttledPosition} />
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
           <TableColumn colSpan="100%">
