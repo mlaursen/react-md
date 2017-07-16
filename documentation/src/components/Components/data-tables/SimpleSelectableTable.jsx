@@ -11,7 +11,7 @@ const SimpleSelectableTable = () => (
   <DataTable baseId="simple-selectable-table" indeterminate>
     <TableHeader>
       <TableRow>
-        <TableColumn>Lorem 1</TableColumn>
+        <TableColumn grow>Lorem 1</TableColumn>
         <TableColumn>Lorem 2</TableColumn>
       </TableRow>
     </TableHeader>

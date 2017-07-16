@@ -1,0 +1,11 @@
+@import '~globals';
+
+.meal-opacity-enter {
+  opacity: 0;
+
+  &.meal-opacity-enter-active {
+    opacity: 1;
+    transition-duration: 1s;
+    transition-property: opacity;
+  }
+}
