@@ -26,13 +26,16 @@ export interface ExpansionPanelProps extends Props {
   saveLabel?: React.ReactNode;
   savePrimary?: boolean;
   saveSecondary?: boolean;
+  saveProps?: Object;
   cancelType?: ButtonTypes;
   cancelLabel?: React.ReactNode;
   cancelPrimary?: boolean;
   cancelSecondary?: boolean;
+  canelProps?: Object;
   tabIndex?: number;
   children?: React.ReactNode;
   animateContent?: boolean;
+  footer?: React.ReactNode;
 }
 
 declare const ExpansionPanel: React.ComponentClass<ExpansionPanelProps>;
