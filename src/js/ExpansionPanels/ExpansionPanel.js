@@ -179,6 +179,12 @@ export default class ExpansionPanel extends PureComponent {
     saveSecondary: PropTypes.bool,
 
     /**
+     * Any additional props to provide/override for the save button in the
+     * footer of the panel.
+     */
+    saveProps: PropTypes.object,
+
+    /**
      * An optional button type to apply to the Cancel button. This will get
      * passed to the `FlatButton`.
      */
@@ -200,6 +206,12 @@ export default class ExpansionPanel extends PureComponent {
     cancelSecondary: PropTypes.bool,
 
     /**
+     * Any additional props to provide/override for the cancel button in the
+     * footer of the panel.
+     */
+    cancelProps: PropTypes.object,
+
+    /**
      * The tab index for the panel's header. This allows keyboard navigation.
      */
     tabIndex: PropTypes.number.isRequired,
@@ -212,6 +224,26 @@ export default class ExpansionPanel extends PureComponent {
      * > The default value is really `true` since it gets passed down to the `Collapse` component.
      */
     animateContent: PropTypes.bool,
+
+    /**
+     * This prop controls the footer for the expansion panel. If this prop is `undefined`, it will
+     * go with the default behavior of generating the save and cancel buttons with the save and cancel
+     * props.
+     *
+     * If this value is `null`, there will be no footer created.
+     *
+     * Finally, if this prop is defined as any renderable item, it will be displayed in place of the
+     * footer.
+     *
+     * @see {@link #footerChildren}
+     */
+    footer: PropTypes.node,
+
+    /**
+     * Any additional children that should be displayed in the footer of the panel. These children
+     * will be placed after the action buttons.
+     */
+    footerChildren: PropTypes.node,
   };
 
   static defaultProps = {
@@ -349,16 +381,20 @@ export default class ExpansionPanel extends PureComponent {
       saveLabel,
       savePrimary,
       saveSecondary,
+      saveProps,
       cancelType,
       cancelLabel,
       cancelPrimary,
       cancelSecondary,
+      cancelProps,
       headerStyle,
       headerClassName,
       contentStyle,
       contentClassName,
       tabIndex,
       overflown,
+      footer,
+      footerChildren,
       /* eslint-disable no-unused-vars */
       animateContent: propAnimateContent,
       expanded: propExpanded,
@@ -433,10 +469,14 @@ export default class ExpansionPanel extends PureComponent {
             saveLabel={saveLabel}
             savePrimary={savePrimary}
             saveSecondary={saveSecondary}
+            saveProps={saveProps}
             cancelType={cancelType}
             cancelLabel={cancelLabel}
             cancelPrimary={cancelPrimary}
             cancelSecondary={cancelSecondary}
+            cancelProps={cancelProps}
+            footer={footer}
+            footerChildren={footerChildren}
           >
             {children}
           </PanelContent>

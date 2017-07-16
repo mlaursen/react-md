@@ -6,6 +6,8 @@ import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
 import TripPlanner from './TripPlanner';
 import TripPlannerRaw from './TripPlanner/code';
+import FooterChanges from './FooterChanges';
+import FooterChangesRaw from '!!raw-loader!./FooterChanges.jsx';
 
 const examples = [{
   title: 'Simple Example',
@@ -15,6 +17,21 @@ components to display content.
   `,
   code: SimpleRaw,
   children: <Simple />,
+}, {
+  title: 'Footer Content',
+  description: `
+By default, an \`ExpansionPanel\` will display a save and cancel button with very simple flat button props in
+a footer component. These buttons can be updated to display icons, or any other Button props by providing the
+\`saveProps\`/\`cancelProps\` which will override the defaults.
+
+Sometimes you might just want to leverage the animation properties and have dynamic content appear. To accomplish
+this, you can set the \`footer\` prop to \`null\` to completely hide the footer.
+
+In other cases, you might want to define your own footer with different actions instead. When the \`footer\`
+prop is set to a valid react element/node, it will render that instead of the default save/cancel buttons.
+  `,
+  code: FooterChangesRaw,
+  children: <FooterChanges />,
 }, {
   title: 'Complex Example',
   description: `

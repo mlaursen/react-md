@@ -17,14 +17,18 @@ export default class PanelContent extends PureComponent {
     children: PropTypes.node,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    saveProps: PropTypes.object,
     saveType: PropTypes.string,
     saveLabel: PropTypes.node.isRequired,
     savePrimary: PropTypes.bool,
     saveSecondary: PropTypes.bool,
+    cancelProps: PropTypes.object,
     cancelType: PropTypes.string,
     cancelLabel: PropTypes.node.isRequired,
     cancelPrimary: PropTypes.bool,
     cancelSecondary: PropTypes.bool,
+    footer: PropTypes.node,
+    footerChildren: PropTypes.node,
   };
 
   render() {
@@ -35,36 +39,53 @@ export default class PanelContent extends PureComponent {
       children,
       onSave,
       onCancel,
+      saveProps,
       saveType,
       saveLabel,
       savePrimary,
       saveSecondary,
+      cancelProps,
       cancelType,
       cancelLabel,
       cancelPrimary,
       cancelSecondary,
+      footer,
+      footerChildren,
     } = this.props;
 
     const actions = [{
       type: cancelType,
       label: cancelLabel,
-      onClick: onCancel,
       primary: cancelPrimary,
       secondary: cancelSecondary,
+      ...cancelProps,
+      onClick: onCancel,
     }, {
       type: saveType,
       label: saveLabel,
-      onClick: onSave,
       primary: savePrimary,
       secondary: saveSecondary,
+      ...saveProps,
+      onClick: onSave,
     }];
+
+    let actionFooter = null;
+    if (typeof footer === 'undefined') {
+      actionFooter = (
+        <DialogFooter actions={actions} className="md-divider-border md-divider-border--top">
+          {footerChildren}
+        </DialogFooter>
+      );
+    } else if (footer !== null) {
+      actionFooter = footer;
+    }
 
     return (
       <div style={style}>
         <div className={cn('md-panel-content', className)} style={contentStyle}>
           {children}
         </div>
-        <DialogFooter actions={actions} className="md-divider-border md-divider-border--top" />
+        {actionFooter}
       </div>
     );
   }
