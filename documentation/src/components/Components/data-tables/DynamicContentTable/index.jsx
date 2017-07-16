@@ -7,7 +7,7 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import guid from 'uuid/v1';
 
-import dessertsData from 'constants/desserts';
+import dessertsData from 'constants/sampleData/desserts';
 import { randomInt } from 'utils/random';
 
 import './_styles.scss';

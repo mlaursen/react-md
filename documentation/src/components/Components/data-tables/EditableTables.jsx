@@ -8,7 +8,7 @@ import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import EditDialogColumn from 'react-md/lib/DataTables/EditDialogColumn';
 import SelectFieldColumn from 'react-md/lib/DataTables/SelectFieldColumn';
 
-import desserts from 'constants/desserts';
+import desserts from 'constants/sampleData/desserts';
 
 const headers = Object.keys(desserts[0]).map((name, i) => ({
   key: name,

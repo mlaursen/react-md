@@ -3,7 +3,7 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 
-import pastries from 'constants/pastries';
+import pastries from 'constants/sampleData/pastries';
 
 const nearby = pastries.slice(2, 30).concat(pastries.slice(35, 40)).concat(pastries.slice(100, 130));
 

@@ -7,7 +7,7 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import Media from 'react-md/lib/Media';
 
 import { randomImage } from 'utils/random';
-import books from 'constants/books';
+import books from 'constants/sampleData/books';
 
 const booksTransformed = books.map(({ title, author }, index) => ({
   title,
