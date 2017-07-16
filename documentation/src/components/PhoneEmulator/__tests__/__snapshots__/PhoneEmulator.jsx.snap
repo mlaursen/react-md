@@ -124,7 +124,7 @@ exports[`PhoneEmulator should render correctly with the base required props 1`] 
 
 exports[`PhoneEmulator should render correctly with the base required props 2`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--0 phone-emulator"
   style={undefined}
 >
   <header

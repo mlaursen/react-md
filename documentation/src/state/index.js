@@ -8,6 +8,7 @@ import theme from './theme';
 import media from './media';
 import drawer from './drawer';
 import github from './github';
+import locale from './locale';
 import quickNav from './quickNav';
 import sassdocs from './sassdocs';
 import sassdocFab from './sassdocFab';
@@ -17,6 +18,7 @@ export default combineReducers({
   airQuality,
   docgens,
   helmet,
+  locale,
   theme,
   search,
   github,

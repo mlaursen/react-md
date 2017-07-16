@@ -5,19 +5,21 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import App from 'components/App';
 import * as Routes from 'routes';
+import { updateLocale } from 'state/locale';
 
 import configureStore from './configureStore';
 
 import './styles.scss';
 
 const store = configureStore(window.__INITIAL_STATE__);
+const locale = window.navigator.userLanguage || window.navigator.language || 'en-US';
+store.dispatch(updateLocale(locale));
 
 function loadIntl() {
   if (!global.Intl) {
-    const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
     return Promise.all([
       import('intl'),
-      import(`intl/locale-data/jsonp/${__DEV__ ? 'en-US' : lang}`),
+      import(`intl/locale-data/jsonp/${__DEV__ ? 'en-US' : locale}`),
     ]);
   }
 
