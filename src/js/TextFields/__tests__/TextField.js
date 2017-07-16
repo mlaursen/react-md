@@ -63,6 +63,7 @@ describe('TextField', () => {
     const onTouchCancel = jest.fn();
     const onTouchEnd = jest.fn();
     const props = {
+      id: 'test',
       onClick,
       onDoubleClick,
       onMouseDown,
@@ -122,6 +123,7 @@ describe('TextField', () => {
     const onCompositionEnd = jest.fn();
 
     const props = {
+      id: 'test',
       onKeyPress,
       onKeyUp,
       onCopy,
@@ -150,7 +152,7 @@ describe('TextField', () => {
   });
 
   it('calls the onFocus prop when the _handleFocus function is called', () => {
-    const props = { onFocus: jest.fn() };
+    const props = { id: 'test', onFocus: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     field._handleFocus();
@@ -158,7 +160,7 @@ describe('TextField', () => {
   });
 
   it('calls the onChange prop when the _handleChange function is called', () => {
-    const props = { onChange: jest.fn() };
+    const props = { id: 'test', onChange: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     field._handleChange({ target: { value: '' } });
@@ -166,7 +168,7 @@ describe('TextField', () => {
   });
 
   it('calls the onChange prop with the new value and change event', () => {
-    const props = { onChange: jest.fn() };
+    const props = { id: 'test', onChange: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     const event = { target: { value: 'wow' } };

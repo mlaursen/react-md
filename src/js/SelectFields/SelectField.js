@@ -20,7 +20,6 @@ import ListItem from '../Lists/ListItem';
 import SelectFieldToggle from './SelectFieldToggle';
 
 const MOBILE_LIST_PADDING = 8;
-const VALID_LIST_ITEM_PROPS = Object.keys(ListItem.propTypes);
 
 export default class SelectField extends PureComponent {
   static HorizontalAnchors = Menu.HorizontalAnchors;
@@ -436,6 +435,20 @@ export default class SelectField extends PureComponent {
     sameWidth: Menu.propTypes.sameWidth,
 
     /**
+     * Since the `menuItems` get mapped into `ListItem`, this prop is used to remove
+     * any unneccessary props from the `ListItem` itself. This is where you
+     * would remove parts of your object such as `description` or `__metadata__`.
+     */
+    deleteKeys: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+      ])),
+    ]),
+
+    /**
      * Boolean if the menu should automatically try to reposition itself to stay within
      * the viewport when the `fixedTo` element scrolls.
      *
@@ -500,11 +513,19 @@ export default class SelectField extends PureComponent {
 
     this._items = [];
     this._activeItem = null;
+    this._deleteKeys = this._getDeleteKeys(props);
   }
 
   componentDidMount() {
     this._container = findDOMNode(this);
     this._field = this._container.querySelector('.md-select-field');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { itemLabel, itemValue, deleteKeys } = this.props;
+    if (deleteKeys !== nextProps.deleteKeys || itemLabel !== nextProps.itemLabel || itemValue !== nextProps.itemValue) {
+      this._deleteKeys = this._getDeleteKeys(nextProps);
+    }
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -550,6 +571,15 @@ export default class SelectField extends PureComponent {
     }
 
     return '';
+  }
+
+  _getDeleteKeys({ itemLabel, itemValue, deleteKeys }) {
+    const keys = [itemLabel, itemValue];
+    if (deleteKeys) {
+      return keys.concat(Array.isArray(deleteKeys) ? deleteKeys : [deleteKeys]);
+    }
+
+    return keys;
   }
 
   _getActiveItemLabel = (item, value, itemLabel, itemValue) => {
@@ -861,7 +891,7 @@ export default class SelectField extends PureComponent {
     const dataValue = this._getItemPart(item, itemLabel, itemValue);
     const primaryText = this._getItemPart(item, itemLabel, itemValue, true);
     if (type === 'object') {
-      props = omit(item, [itemLabel, itemValue, ...VALID_LIST_ITEM_PROPS]);
+      props = omit(item, this._deleteKeys);
     }
 
     const active = dataValue === value || dataValue === parseInt(value, 10);
@@ -924,6 +954,7 @@ export default class SelectField extends PureComponent {
       defaultVisible,
       onClick,
       onKeyDown,
+      deleteKeys,
       stripActiveItem,
       keyboardMatchingTimeout,
 
