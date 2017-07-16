@@ -31,9 +31,12 @@ app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
 app.use(favicon(path.join(dist, 'favicon.ico')));
-app.use(express.static(dist, {
-  maxAge: CACHE_DURATION,
-}));
+
+if (!global.__NGINX__) {
+  app.use(express.static(dist, {
+    maxAge: CACHE_DURATION,
+  }));
+}
 
 if (__DEV__ && !global.__SERVER_ONLY) {
   /* eslint-disable import/no-extraneous-dependencies, global-require */

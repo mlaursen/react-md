@@ -40,10 +40,11 @@ hacker.global_hook('raw-loader', (path, module) => {
 
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
-global.__DEV__ = process.env.NODE_ENV === 'development';
 global.__CLIENT__ = false;
+global.__DEV__ = process.env.NODE_ENV === 'development';
 global.__SSR__ = !global.__DEV__;
-global.__SERVER_ONLY = false; // for debuggin/implementing api routes
+global.__NGINX__ = !global.__DEV__; // if the static assets should be served by nginx or express.statuc
+global.__SERVER_ONLY = false; // for debugging/implementing api routes
 
 const ROOT_DIR = require('path').resolve(process.cwd());
 
