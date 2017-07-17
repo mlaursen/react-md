@@ -10,4 +10,7 @@ export const GITHUB_ENDPOINT = '/github';
 export const AIR_QUALITY_ENDPOINT = '/air-quality';
 export const AIR_QUALITY_COLUMNS_ENDPOINT = '/columns';
 export const AIR_QUALITY_DATA_ENDPOINT = '/data';
+export const FAKE_UPLOAD_ENDPOINT = '/fake-upload';
 export const GITHUB_API_ENDPOINT = 'https://api.github.com';
+
+export const MAX_FILE_SIZE = 50 * 1024 * 1024;

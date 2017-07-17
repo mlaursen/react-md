@@ -52,6 +52,7 @@
     "cross-env": "^5.0.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "express-fileupload": "^0.1.4",
     "fuse.js": "^3.0.4",
     "helmet": "^3.6.1",
     "hpp": "^0.2.2",

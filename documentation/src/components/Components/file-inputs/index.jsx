@@ -8,6 +8,8 @@ import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
 import SimpleFileUpload from './SimpleFileUpload';
 import SimpleFileUploadRaw from './SimpleFileUpload/code';
+import ServerUpload from './ServerUpload';
+import ServerUploadRaw from '!!raw-loader!./ServerUpload.jsx';
 
 const examples = [{
   title: 'Simple FileInput Examples',
@@ -30,6 +32,10 @@ it is pretty fast to upload small files to the browser.
   `,
   code: SimpleFileUploadRaw,
   children: <SimpleFileUpload />,
+}, {
+  title: 'Uploading to a Server',
+  code: ServerUploadRaw,
+  children: <ServerUpload />,
 }];
 
 const FileInputs = () => <ExamplesPage description={README} examples={examples} />;

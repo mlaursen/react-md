@@ -8,12 +8,14 @@ import sassdocs from './sassdocs';
 import search from './search';
 import github from './github';
 import airQuality from './airQuality';
+import fakeUpload from './fakeUpload';
 import {
   DOCGENS_ENDPOINT,
   SASSDOCS_ENDPOINT,
   SEARCH_ENDPOINT,
   GITHUB_ENDPOINT,
   AIR_QUALITY_ENDPOINT,
+  FAKE_UPLOAD_ENDPOINT,
 } from 'constants/application';
 
 const CACHE_DURATION = '10 days';
@@ -21,6 +23,8 @@ const apiRouter = express.Router();
 
 apiRouter.use(cache(CACHE_DURATION));
 apiRouter.use(bodyParser.urlencoded({ extended: true }));
+apiRouter.use(FAKE_UPLOAD_ENDPOINT, fakeUpload);
+
 apiRouter.use(bodyParser.json());
 
 apiRouter.use(DOCGENS_ENDPOINT, docgens);
