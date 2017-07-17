@@ -11,32 +11,32 @@ export default `/* RoutingExample.jsx */
 ${RoutingExample}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* NavItemLink.jsx */
 ${NavItemLink}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Inbox.jsx */
 ${Inbox}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Starred.jsx */
 ${Starred}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* SendMail.jsx */
 ${SendMail}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Drafts.jsx */
 ${Drafts}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* DraftCard.jsx */
 ${DraftCard}
 \`\`\`

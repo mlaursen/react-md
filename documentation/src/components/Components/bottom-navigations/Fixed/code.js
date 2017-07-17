@@ -7,17 +7,17 @@ export default `/* Fixed.jsx */
 ${Fixed}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Recent.jsx */
 ${Recent}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Favorites.jsx */
 ${Favorites}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Nearby.jsx */
 ${Nearby}
 `;

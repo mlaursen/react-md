@@ -7,12 +7,12 @@ export default `/* DrawerWithContent.jsx */
 ${DrawerWithContent}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* PhotoDrawer.jsx */
 ${PhotoDrawer}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* PhotoList.jsx */
 ${PhotoList}
 \`\`\`

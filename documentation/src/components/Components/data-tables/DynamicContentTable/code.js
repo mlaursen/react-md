@@ -10,27 +10,27 @@ export default `/* DynamicContentTable.jsx */
 ${DynamicContentTable}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* TableActions.jsx */
 ${TableActions}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* DessertRow.jsx */
 ${DessertRow}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* FlatOrIconButton.jsx */
 ${FlatOrIconButton}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* AddDessertsDialog.jsx */
 ${AddDessertsDialog}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* FormGroup.jsx */
 ${FormGroup}
 \`\`\`

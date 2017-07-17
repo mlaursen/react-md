@@ -13,42 +13,42 @@ export default `/* ShiftingExample.jsx */
 ${Shifting}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* AppToolbar.jsx */
 ${AppToolbar}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* MoviesAndTV.jsx */
 ${MoviesAndTV}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Music.jsx */
 ${Music}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Books.jsx */
 ${Books}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* NewsStand.jsx */
 ${NewsStand}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* NewsItem.jsx */
 ${NewsItem}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Section.jsx */
 ${Section}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* CloseExample.jsx */
 ${CloseExample}
 \`\`\`

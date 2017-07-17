@@ -11,32 +11,32 @@ export default `/* Notifications.jsx */
 ${Notifications}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Reset.jsx */
 ${Reset}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* ToolbarWithBadge.jsx */
 ${ToolbarWithBadge}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* BadgeWithDialog.jsx */
 ${BadgeWithDialog}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* NotificationDialog.jsx */
 ${NotificationDialog}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* NotificationCard.jsx */
 ${NotificationCard}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* Dismiss.jsx */
 ${Dismiss}
 \`\`\`

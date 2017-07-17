@@ -10,7 +10,7 @@ import Markdown from 'components/Markdown';
 
 const ExampleCard = ({ title, description, code, children: propChildren, tableCard, className, ...props }) => {
   const markdown = `
-\`\`\`js
+\`\`\`jsx
 ${code}
 \`\`\`
 `;

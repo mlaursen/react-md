@@ -6,7 +6,7 @@ export default `/* GithubAjaxExample.jsx */
 ${GithubAjaxExample}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* RepoCard.jsx */
 ${RepoCard}
 \`\`\`

@@ -10,27 +10,27 @@ export default `/* TripPlanner.jsx */
 ${TripPlanner}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* TripNamePanel.jsx */
 ${TripNamePanel}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* DestinationsPanel.jsx */
 ${DestinationsPanel}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* TravelDatesPanel.jsx */
 ${TravelDatesPanel}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* CarrierPanel.jsx */
 ${CarrierPanel}
 \`\`\`
 
-\`\`\`js
+\`\`\`jsx
 /* MealPreferencesPanel.jsx */
 ${MealPreferencesPanel}
 \`\`\`
