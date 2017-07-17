@@ -6,10 +6,6 @@
   white-space: nowrap;
 }
 
-.bottom-navigations {
-  @include react-md-media-aspect-ratio(2, 3);
-}
-
 // This is really a combination of the `.md-toolbar-relative` class name and then adding some
 // additional fixes for emulating on non-mobile devices.
 .bottom-navigations__dynamic__content {

@@ -62,3 +62,5 @@ h3 {
     display: block;
   }
 }
+
+@include react-md-media-aspect-ratio(2, 3);

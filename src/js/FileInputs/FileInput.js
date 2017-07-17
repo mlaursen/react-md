@@ -112,7 +112,7 @@ export default class FileInput extends PureComponent {
      * onChange(files, e);
      * ```
      */
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
 
     /**
      * Boolean if the `FileInput` is currently disabled.
@@ -198,6 +198,10 @@ export default class FileInput extends PureComponent {
 
   _handleChange = (e) => {
     const { multiple, onChange } = this.props;
+    if (!onChange) {
+      return;
+    }
+
     const { files } = e.target;
     if (!multiple) {
       onChange(files[0] || null, e);

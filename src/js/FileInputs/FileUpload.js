@@ -288,13 +288,13 @@ export default class FileUpload extends PureComponent {
 
     if (readAs) {
       if (typeof readAs === 'function') {
-        readAs(file.type, file, fr);
+        readAs(type, file, fr);
       } else {
         fr[`readAs${readAs}`](file);
       }
-    } else if (type.match(/image|video|audio/)) {
+    } else if (type.match(/image|video|audio|application\/pdf/) || name.match(/\.mkv$/)) {
       fr.readAsDataURL(file);
-    } else if (type.match(/json$/)) {
+    } else if (type.match(/application\/json/)) {
       fr.readAsText(file);
     } else if (type.match(/application|model|multipart/) || name.match(/(w|e)ar$/)) {
       fr.readAsArrayBuffer(file);
