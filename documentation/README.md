@@ -28,8 +28,10 @@ $ yarn dev:all          # watch all changes and run dev server
 
 ## Scripts
 * [clean](#clean)
+  * [clean:assets](#cleanassets)
 * [prebuild](#prebuild)
 * [build](#build)
+  * [build:dev](#buildev)
 * [jsdoc](#jsdoc)
   * [jsdoc:build](#jsdocbuild)
   * [jsdoc:create](#jsdoccreate)
@@ -42,6 +44,7 @@ $ yarn dev:all          # watch all changes and run dev server
   * [start:dev](#startdev)
   * [start:prod](#startprod)
 * [dev](#dev)
+  * [dev:minimal](#devminimal)
   * [dev:all](#devall)
 * [watch:all](#watchall)
   * [watch:docgen](#watchdocgen)
@@ -52,10 +55,14 @@ $ yarn dev:all          # watch all changes and run dev server
 
 ### clean
 This will clean up any existing assets, generated themes for the website,
-and any of the "databases" that have been built.
+and any of the "databases" that have been built. This also runs the [clean:assets](#cleanassets)
+script.
 
 > SEE: [jsdoc](#jsdoc), [sassdoc](#sassdoc), or [docgen](#docgen) for more information
 about "databases".
+
+### clean:assets
+This will just remove any existing assets or themes.
 
 ### prebuild
 This script automatically gets run before the [build](#build) script. It will
@@ -73,6 +80,10 @@ with server side rendering.
 
 > SEE: [sassdoc](#sassdoc) or [docgen](#docgen) for more information
 about "databases".
+
+### build:dev
+This will build a development version of the website. This is useful if you are really just
+debugging server side stuff and the client won't be changing that much.
 
 ### jsdoc
 This task just runs the `jsdoc:build` follwed by `jsdoc:create`.
@@ -130,6 +141,11 @@ the production mode quickly without deploying to my main website.
 This is the second most useful development script. It will only run the [prebuild](#prebuild) script
 and concurrently run the [watch:react-md](#watchreact-md) and [start:dev](#startdev). Mostly
 use this script if you only need to see the examples changes without any docgen or SassDoc updates.
+
+### dev:minimal
+This is a script that will remove any existing assets, run the webpack watcher, and start the development
+server. This is assuming that all the databases have been built and the react-md code has been compiled
+already.
 
 ### dev:all
 Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script

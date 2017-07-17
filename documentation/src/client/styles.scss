@@ -19,6 +19,14 @@ h3 {
   white-space: normal;
 }
 
+h1,
+h2,
+h3,
+.md-display-3,
+.md-display-4 {
+  word-break: break-word;
+}
+
 *[tabindex="-1"]:focus {
   outline: none;
 }
