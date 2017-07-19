@@ -245,6 +245,14 @@ export default class Autocomplete extends PureComponent {
      * of previously typed values in the text field. By default, this is disabled.
      */
     autoComplete: PropTypes.oneOf(['on', 'off']),
+
+    /**
+     * Boolean if the `input` should be focused again after a suggestion was clicked.
+     *
+     * This is really only added for keyboard support and the fact that each of suggestions
+     * are focusable.
+     */
+    focusInputOnAutocomplete: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -254,6 +262,7 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
+    focusInputOnAutocomplete: true,
   };
 
   /**
@@ -653,7 +662,7 @@ export default class Autocomplete extends PureComponent {
     if (index === -1) { return; }
 
     const { matches } = this.state;
-    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete } = this.props;
+    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete, focusInputOnAutocomplete } = this.props;
     let value = matches.filter(m => !React.isValidElement(m))[index];
     if (typeof value === 'object') {
       value = value[dataLabel];
@@ -664,14 +673,19 @@ export default class Autocomplete extends PureComponent {
     }
 
     value = clearOnAutocomplete ? '' : value;
+    let callback;
+    if (focusInputOnAutocomplete) {
+      callback = () => {
+        this._field.focus();
+      };
+    }
+
     this.setState({
       isOpen: false,
-      manualFocus: true,
+      manualFocus: focusInputOnAutocomplete,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
-    }, () => {
-      this._field.focus();
-    });
+    }, callback);
   }
 
   _focusSuggestion(negative, e) {
@@ -873,6 +887,7 @@ export default class Autocomplete extends PureComponent {
     delete props.findInlineSuggestion;
     delete props.clearOnAutocomplete;
     delete props.deleteKeys;
+    delete props.focusInputOnAutocomplete;
 
     const value = getField(this.props, this.state, 'value');
 

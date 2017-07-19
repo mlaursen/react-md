@@ -1,3 +1,35 @@
+## July 2017
+### v1.0.17 Released
+This patch was mostly about fixing components that needed to be resized after a container height/width
+update instead of just a window resize event. In additioan, there have been some mobile device performance
+and behavior changes. Components that manually added touch events now use passive events when possible and
+the user can focus a text field and scroll the page without automatically hiding the keyboard like a native
+input element.
+
+##### Changelog
+- Fixed the weird page scroll behavior for dialogs when the user closed the dialog by clicking the overlay.
+[#367](https://github.com/mlaursen/react-md/issues/367)
+- Updated the ListItem so that you can provide props to the surrounding li node. [#439](https://github.com/mlaursen/react-md/issues/439)
+- Fixed a weird mobile safari but about using a virtualization library with any form input from react-md.
+[#442](https://github.com/mlaursen/react-md/issues/442)
+- Added passive event listeners. [#382](https://github.com/mlaursen/react-md/issues/382)
+- Updated the Autocomplete to no longer require an automatic TextField re-focus after a suggestion has been selected.
+[#428](https://github.com/mlaursen/react-md/issues/428)
+- Fixed the TextField placeholder to correctly gain the disabled color. [#447](https://github.com/mlaursen/react-md/issues/447)
+- Fixed the focus behavior of TextFields on mobile devices. [#434](https://github.com/mlaursen/react-md/issues/434)
+- Fixed the unneeded PropType warning when a "controlled" TextField is disabled. [#432](https://github.com/mlaursen/react-md/issues/432)
+- Fixed the PropType warning for Tabs. [#440](https://github.com/mlaursen/react-md/issues/440)
+- Fixed the multiline TextField requiring a flex container to display correctly. It will now display correctly if it is in
+just a `display: block` or whatever. [#365](https://github.com/mlaursen/react-md/issues/365)
+- Fixed the TimePicker changing days when AM/PM was toggled. [#446](https://github.com/mlaursen/react-md/issues/446)
+- Fixed the TimePicker to remember the last selected time better. [#438](https://github.com/mlaursen/react-md/issues/438)
+- Fixed the TimePicker's ability to calculate time. [#359](https://github.com/mlaursen/react-md/issues/359)
+- Fixed multiple components that manually calculate size for container resize events instead of just window resize events.
+  - ExpansionPanels and Tabs [#448](https://github.com/mlaursen/react-md/issues/448)
+  - Multiline TextFields [#365](https://github.com/mlaursen/react-md/issues/365)
+  - TablePagination [#415](https://github.com/mlaursen/react-md/issues/415)
+
+
 ## June 2017
 ### v1.0.16 Released
 

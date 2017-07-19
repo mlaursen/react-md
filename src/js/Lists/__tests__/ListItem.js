@@ -3,6 +3,7 @@ jest.unmock('../ListItem');
 
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -130,5 +131,44 @@ describe('ListItem', () => {
 
     expect(props.onKeyUp.mock.calls.length).toBe(1);
     expect(props.onKeyUp.mock.calls[0][0]).toEqual(keyEvent);
+  });
+
+  it('should correctly apply the itemProps and tileProps props', () => {
+    const console = global.console;
+    global.console = {
+      ...console,
+      error: (e) => {
+        // don't care about unknown props for the newly added one
+        if (!e.match(/Unknown prop/)) {
+          console.error(e);
+        }
+      },
+    };
+    const otherProp = 'other-prop';
+    const itemProps = { onClick: jest.fn() };
+    const tileProps = { onMouseDown: jest.fn() };
+    const item = mount(
+      <ListItem
+        primaryText="Test"
+        itemProps={itemProps}
+        tileProps={tileProps}
+        otherProp={otherProp}
+        passPropsToItem={false}
+      />
+    );
+    let li = item.find('li');
+    let button = item.find(AccessibleFakeInkedButton);
+    expect(li.props().onClick).toBe(itemProps.onClick);
+    expect(button.props().onMouseDown).toBe(tileProps.onMouseDown);
+    expect(button.props().otherProp).toBe('other-prop');
+
+    item.setProps({ passPropsToItem: true });
+    li = item.find('li');
+    button = item.find(AccessibleFakeInkedButton);
+    expect(li.props().onClick).toBe(itemProps.onClick);
+    expect(li.props().otherProp).toBe('other-prop');
+    expect(button.props().onMouseDown).toBe(tileProps.onMouseDown);
+
+    global.console = console;
   });
 });

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import isValidClick from '../utils/EventUtils/isValidClick';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import calcTimeFromPoint from '../utils/NumberUtils/calcTimeFromPoint';
 import calcPageOffset from '../utils/calcPageOffset';
+import ResizeObserver from '../Helpers/ResizeObserver';
 
 import ClockTime from './ClockTime';
 import ClockHand from './ClockHand';
@@ -56,22 +58,32 @@ export default class ClockFace extends PureComponent {
   componentWillUnmount() {
     window.removeEventListener('mousemove', this._handleMouseMove);
     window.removeEventListener('mouseup', this._handleMouseMove);
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
+
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
+    clearInterval(this.interval);
   }
 
   _setFace(face) {
     this._face = face;
+    this._setPositioning();
+  }
 
-    if (face !== null) {
-      const radius = face.offsetWidth / 2;
-      const offset = calcPageOffset(face);
-      this._center = { x: offset.left + radius, y: offset.top + radius };
-      this._left = offset.left;
-      this._top = offset.top;
+  _setPositioning = () => {
+    if (!this._face) {
+      return;
+    }
+
+    const radius = this._face.offsetWidth / 2;
+    const offset = calcPageOffset(this._face);
+    this._center = { x: offset.left + radius, y: offset.top + radius };
+    this._left = offset.left;
+    this._top = offset.top;
+
+    if (this.state.radius !== radius) {
       this.setState({ radius });
     }
-  }
+  };
 
   _handleMouseDown(e) {
     if (!isValidClick(e)) {
@@ -111,8 +123,8 @@ export default class ClockFace extends PureComponent {
   _handleTouchStart() {
     captureNextEvent('mousedown');
 
-    window.addEventListener('touchmove', this._handleTouchMove);
-    window.addEventListener('touchend', this._handleTouchEnd);
+    addTouchEvent(window, 'move', this._handleTouchMove);
+    addTouchEvent(window, 'end', this._handleTouchEnd);
     this.setState({ moving: true });
   }
 
@@ -120,7 +132,6 @@ export default class ClockFace extends PureComponent {
     if (!this.state.moving) {
       return;
     }
-    e.preventDefault();
 
     this._calcNewTime(e);
   }
@@ -131,8 +142,8 @@ export default class ClockFace extends PureComponent {
       captureNextEvent('click');
     }
 
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
 
     this.setState({ moving: false });
   }
@@ -175,6 +186,7 @@ export default class ClockFace extends PureComponent {
         onMouseDown={this._handleMouseDown}
         onTouchStart={this._handleTouchStart}
       >
+        <ResizeObserver watchHeight onResize={this._setPositioning} />
         {times}
         <ClockHand time={time} coords={radius} minutes={minutes} />
       </div>

@@ -1,11 +1,9 @@
 import React, { PureComponent, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { TAB } from '../constants/keyCodes';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -208,14 +206,14 @@ export default class TextField extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * An optional function to call when the text field is blurred.
+     */
+    onBlur: PropTypes.func,
+
+    /**
      * An optional function to call when the text field is focused.
      */
     onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field has the `keydown` event.
-     */
-    onKeyDown: PropTypes.func,
 
     /**
      * An optional boolean if the `active` state of the text field can be externally
@@ -397,37 +395,15 @@ export default class TextField extends PureComponent {
 
     this.focus = this.focus.bind(this);
     this.getField = this.getField.bind(this);
-    this._blur = this._blur.bind(this);
     this._setField = this._setField.bind(this);
-    this._setDivider = this._setDivider.bind(this);
-    this._setMessage = this._setMessage.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._setPasswordBtn = this._setPasswordBtn.bind(this);
-    this._setFloatingLabel = this._setFloatingLabel.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
     this._handleFocus = this._handleFocus.bind(this);
     this._handleChange = this._handleChange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleHeightChange = this._handleHeightChange.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._updateMultilineHeight = this._updateMultilineHeight.bind(this);
     this._togglePasswordField = this._togglePasswordField.bind(this);
     this._handleContainerClick = this._handleContainerClick.bind(this);
   }
 
-  componentDidMount() {
-    if (this._isMultiline(this.props)) {
-      this._updateMultilineHeight();
-      window.addEventListener('resize', this._updateMultilineHeight);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    const multiline = this._isMultiline(nextProps);
-    if (this._isMultiline(this.props) !== multiline) {
-      this._updateMultilineHeight(nextProps);
-      window[`${multiline ? 'add' : 'remove'}EventListener`]('resize', this._updateMultilineHeight);
-    }
-
     if (this.props.value !== nextProps.value) {
       const value = typeof nextProps.value !== 'undefined' ? nextProps.value.toString() : '';
       let error = this.state.error;
@@ -443,35 +419,6 @@ export default class TextField extends PureComponent {
         floating: !!value || (this.state.floating && this.state.active),
         currentLength: value.length,
       });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { block, active } = this.props;
-    if (block !== prevProps.block
-      || active !== prevProps.active
-      || this.state.active !== prevState.active
-    ) {
-      const fn = window[`${(active || this.state.active) ? 'add' : 'remove'}EventListener`];
-      fn('mousedown', this._handleOutsideClick);
-      fn('touchstart', this._handleOutsideClick);
-    }
-
-    if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
-      this._updateMultilineHeight(this.props);
-    }
-  }
-
-  componentWillUnmount() {
-    const { active } = this.props;
-    const rm = window.removeEventListener;
-    if (active || this.state.active) {
-      rm('mousedown', this._handleOutsideClick);
-      rm('touchstart', this._handleOutsideClick);
-    }
-
-    if (this._isMultiline(this.props)) {
-      rm('resize', this._updateMultilineHeight);
     }
   }
 
@@ -522,10 +469,6 @@ export default class TextField extends PureComponent {
     this._field.blur();
   }
 
-  _isMultiline(props) {
-    return typeof props.rows !== 'undefined';
-  }
-
   _cloneIcon(icon, active, error, disabled, stateful, block, dir) {
     if (!icon) {
       return icon;
@@ -553,36 +496,6 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _setMessage(message) {
-    if (message !== null) {
-      this._message = findDOMNode(message);
-    }
-  }
-
-  _setDivider(divider) {
-    if (divider !== null) {
-      this._divider = findDOMNode(divider);
-    }
-  }
-
-  _setContainer(container) {
-    if (container !== null) {
-      this._node = container;
-    }
-  }
-
-  _setPasswordBtn(btn) {
-    if (btn !== null) {
-      this._password = findDOMNode(btn);
-    }
-  }
-
-  _setFloatingLabel(label) {
-    if (label !== null) {
-      this._label = findDOMNode(label);
-    }
-  }
-
   _handleContainerClick(e) {
     if (this.props.onClick) {
       this.props.onClick(e);
@@ -593,41 +506,18 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _updateMultilineHeight(props = this.props) {
-    const { block } = props;
-    const multiline = this._isMultiline(props);
-    if (!multiline) {
-      return;
+  _handleBlur(e) {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
     }
 
-    const cs = window.getComputedStyle(findDOMNode(this._field));
-    this._additionalHeight = parseInt(cs.getPropertyValue('margin-top'), 10);
-
-    if (!block) {
-      const mb = parseInt(window.getComputedStyle(this._divider).getPropertyValue('margin-bottom'), 10);
-      this._additionalHeight += (mb === 4 ? 12 : 16);
-    }
-
-    if (this._message) {
-      this._additionalHeight += this._message.offsetHeight;
-    }
-  }
-
-  _blur() {
-    const value = this._field.getValue();
-
+    const { value } = e.target;
     const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
       state.floating = !!value;
     }
 
-    this.setState(state, this._field.blur);
-  }
-
-  _handleOutsideClick(e) {
-    if (!this._node.contains(e.target)) {
-      this._blur();
-    }
+    this.setState(state);
   }
 
   _handleFocus(e) {
@@ -658,28 +548,12 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _handleKeyDown(e) {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
-    }
-
-    if ((e.which || e.keyCode) === TAB) {
-      this._blur();
-    }
-  }
-
   _togglePasswordField() {
     this.setState({ passwordVisible: !this.state.passwordVisible }, this.focus);
   }
 
-  _handleHeightChange(height) {
-    if (this._additionalHeight) {
-      this.setState({ height: height + this._additionalHeight });
-    }
-  }
-
   render() {
-    const { currentLength, passwordVisible, height } = this.state;
+    const { currentLength, passwordVisible } = this.state;
     const {
       id,
       type,
@@ -726,7 +600,6 @@ export default class TextField extends PureComponent {
     delete props.adjustMinWidth;
     delete props.onClick;
     delete props.onChange;
-    delete props.onKeyDown;
     delete props.onFocus;
     delete props.floatingLabel;
 
@@ -762,7 +635,6 @@ export default class TextField extends PureComponent {
       rightIcon = (
         <PasswordButton
           key="password-btn"
-          ref={this._setPasswordBtn}
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
@@ -789,7 +661,6 @@ export default class TextField extends PureComponent {
     const floatingLabel = (
       <FloatingLabel
         key="label"
-        ref={this._setFloatingLabel}
         label={label}
         htmlFor={id}
         active={active}
@@ -804,7 +675,6 @@ export default class TextField extends PureComponent {
     const message = (
       <TextFieldMessage
         key="message"
-        ref={this._setMessage}
         active={active}
         error={error}
         errorText={errorText}
@@ -835,9 +705,8 @@ export default class TextField extends PureComponent {
         placeholder={placeholder}
         block={block}
         onFocus={this._handleFocus}
-        onKeyDown={this._handleKeyDown}
+        onBlur={this._handleBlur}
         onChange={this._handleChange}
-        onHeightChange={this._handleHeightChange}
         inlineIndicator={!!inlineIndicator}
       />
     );
@@ -847,7 +716,6 @@ export default class TextField extends PureComponent {
       divider = (
         <TextFieldDivider
           key="text-divider"
-          ref={this._setDivider}
           active={active}
           error={error}
           lineDirection={lineDirection}
@@ -878,16 +746,15 @@ export default class TextField extends PureComponent {
 
     children = [floatingLabel, children, message];
 
-    const multiline = this._isMultiline(this.props);
+    const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        ref={this._setContainer}
-        style={Object.assign({}, style, { height })}
+        style={style}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
           'md-text-field-container--disabled': disabled,
-          'md-text-field-container--input': typeof props.rows === 'undefined',
+          'md-text-field-container--input': !multiline,
           'md-text-field-container--input-block': block && !multiline,
           'md-text-field-container--multiline': multiline,
           'md-text-field-container--multiline-block': multiline && block,

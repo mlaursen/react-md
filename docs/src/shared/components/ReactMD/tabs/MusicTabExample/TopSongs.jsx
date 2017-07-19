@@ -11,6 +11,7 @@ import KebabMenu from './KebabMenu';
 
 export default class TopSongs extends PureComponent {
   static propTypes = {
+    active: PropTypes.bool,
     artists: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string.isRequired,
     })).isRequired,

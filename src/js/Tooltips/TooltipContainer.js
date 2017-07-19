@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import Tooltip from './Tooltip';
 
 export default class TooltipContainer extends PureComponent {
@@ -36,10 +36,10 @@ export default class TooltipContainer extends PureComponent {
 
   componentWillUnmount() {
     if (this._container) {
+      removeTouchEvent(this._container, 'start', this._showTooltip);
+      removeTouchEvent(this._container, 'end', this._hideTooltip);
       this._container.removeEventListener('mouseover', this._showTooltip);
       this._container.removeEventListener('mouseleave', this._hideTooltip);
-      this._container.removeEventListener('touchstart', this._showTooltip);
-      this._container.removeEventListener('touchend', this._hideTooltip);
       this._container.removeEventListener('keyup', this._handleKeyUp);
       this._container.removeEventListener('blur', this._hideTooltip);
     }
@@ -49,14 +49,14 @@ export default class TooltipContainer extends PureComponent {
     }
   }
 
-  _setContainers(container) {
-    if (container) {
-      this._container = findDOMNode(container).parentNode;
+  _setContainers(span) {
+    if (span) {
+      this._container = span.parentNode.parentNode;
 
+      addTouchEvent(this._container, 'start', this._showTooltip);
+      addTouchEvent(this._container, 'end', this._hideTooltip);
       this._container.addEventListener('mouseover', this._showTooltip);
       this._container.addEventListener('mouseleave', this._hideTooltip);
-      this._container.addEventListener('touchstart', this._showTooltip);
-      this._container.addEventListener('touchend', this._hideTooltip);
       this._container.addEventListener('keyup', this._handleKeyUp);
       this._container.addEventListener('blur', this._hideTooltip);
     }
@@ -146,9 +146,9 @@ export default class TooltipContainer extends PureComponent {
       <TransitionGroup
         style={style}
         className={cn('md-tooltip-container', className)}
-        ref={this._setContainers}
         component="div"
       >
+        <span ref={this._setContainers} aria-hidden />
         {visible ? tooltip : null}
       </TransitionGroup>
     );

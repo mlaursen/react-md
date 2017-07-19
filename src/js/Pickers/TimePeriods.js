@@ -35,13 +35,13 @@ export default class TimePeriods extends PureComponent {
 
   _setAM() {
     if (this.props.timePeriod !== 'AM') {
-      this.props.setTempTime(addHours(this.props.tempTime, 12));
+      this.props.setTempTime(addHours(this.props.tempTime, -12));
     }
   }
 
   _setPM() {
     if (this.props.timePeriod !== 'PM') {
-      this.props.setTempTime(addHours(this.props.tempTime, -12));
+      this.props.setTempTime(addHours(this.props.tempTime, 12));
     }
   }
 

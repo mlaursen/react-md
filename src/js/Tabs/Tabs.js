@@ -9,6 +9,7 @@ import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import TabIndicator from './TabIndicator';
 import IconSeparator from '../Helpers/IconSeparator';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import FontIcon from '../FontIcons/FontIcon';
 import MenuTab from './MenuTab';
 import TabOverflowButton from './TabOverflowButton';
@@ -201,10 +202,6 @@ export default class Tabs extends PureComponent {
     this._mapToOverflowTabProps = this._mapToOverflowTabProps.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this._positionElements);
-  }
-
   componentWillReceiveProps(nextProps) {
     if (this.props.activeTabIndex !== nextProps.activeTabIndex) {
       this.setState({
@@ -230,10 +227,6 @@ export default class Tabs extends PureComponent {
         }, this._scrollActiveIntoView);
       }
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._positionElements);
   }
 
   _shouldAlign(props) {
@@ -444,6 +437,7 @@ export default class Tabs extends PureComponent {
     delete props.defaultMedia;
     delete props.desktopMinWidth;
     delete props.onTabChange;
+    delete props.alignToKeyline;
 
     const activeTabIndex = getField(this.props, this.state, 'activeTabIndex');
 
@@ -524,6 +518,7 @@ export default class Tabs extends PureComponent {
         }, className)}
         role="tablist"
       >
+        <ResizeObserver watchWidth watchHeight onResize={this._positionElements} />
         {previousControl}
         {children}
         {nextControl}
