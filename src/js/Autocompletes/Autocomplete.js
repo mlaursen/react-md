@@ -319,6 +319,14 @@ export default class Autocomplete extends PureComponent {
     autoComplete: PropTypes.oneOf(['on', 'off']),
 
     /**
+     * Boolean if the `input` should be focused again after a suggestion was clicked.
+     *
+     * This is really only added for keyboard support and the fact that each of suggestions
+     * are focusable.
+     */
+    focusInputOnAutocomplete: PropTypes.bool,
+
+    /**
      * This is how the menu's `List` gets anchored to the `toggle` element.
      *
      * @see {@link Helpers/Layovers#anchor}
@@ -725,6 +733,7 @@ export default class Autocomplete extends PureComponent {
       filter,
       onAutocomplete,
       clearOnAutocomplete,
+      focusInputOnAutocomplete,
       autocompleteWithLabel: label,
     } = this.props;
 
@@ -749,14 +758,19 @@ export default class Autocomplete extends PureComponent {
     }
 
     value = clearOnAutocomplete ? '' : value;
+    let callback;
+    if (focusInputOnAutocomplete) {
+      callback = () => {
+        this._field.focus();
+      };
+    }
+
     this.setState({
       visible: false,
-      manualFocus: true,
+      manualFocus: focusInputOnAutocomplete,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
-    }, () => {
-      this._field.focus();
-    });
+    }, callback);
   };
 
   _focusSuggestion = (negative, e) => {
@@ -974,6 +988,7 @@ export default class Autocomplete extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+    delete props.focusInputOnAutocomplete;
 
     const value = getField(this.props, this.state, 'value');
 

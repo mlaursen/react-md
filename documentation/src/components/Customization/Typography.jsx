@@ -1,6 +1,8 @@
 import React from 'react';
 import Markdown from 'components/Markdown';
 
+import './_typography.scss';
+
 const markdown = `
 # Material Design Typography
 
@@ -56,18 +58,18 @@ the \`$md-typography-max-line-length\` value.
 const Typography = () => (
   <div className="md-grid">
     <div className="md-cell md-cell--12">
-      <section className="md-text-container">
+      <section className="md-text-container typography-container">
         <Markdown markdown={markdown} component="article" />
-        <h1 className="md-display-4">Lorem</h1>
-        <h2 className="md-display-3">Ipsum</h2>
-        <h3 className="md-display-2">Cras sed</h3>
-        <h4 className="md-display-1">Phasellus</h4>
-        <h5 className="md-headline">Ut convallis</h5>
-        <h6 className="md-title">Proin quis cursus purus. Fusce.</h6>
-        <h6 className="md-subheading-2">In in augue tincidunt, rhoncus.</h6>
-        <h6 className="md-subheading-1">Vivamus elementum ligula vel justo.</h6>
+        <h1 className="md-display-4">md-display-4</h1>
+        <h2 className="md-display-3">md-display-3</h2>
+        <h3 className="md-display-2">md-display-2</h3>
+        <h4 className="md-display-1">md-display-1</h4>
+        <h5 className="md-headline">md-headline</h5>
+        <h6 className="md-title">md-title</h6>
+        <h6 className="md-subheading-2">md-subheading-2</h6>
+        <h6 className="md-subheading-1">md-subheading-1</h6>
         <p className="md-body-2">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus sapien nec
+          md-body-2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus sapien nec
           tellus ornare, quis fringilla nibh sodales. Maecenas blandit leo at sem commodo,
           quis mattis augue bibendum. Orci varius natoque penatibus et magnis dis parturient
           montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -78,7 +80,7 @@ const Typography = () => (
           sit amet neque nec, viverra varius nisi.
         </p>
         <p className="md-body-1">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus nisl eget nisl
+          md-body-1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus nisl eget nisl
           blandit ornare. Integer id sodales tellus. Phasellus imperdiet mollis laoreet.
           Etiam accumsan lorem ac elit euismod rhoncus quis vel felis. Etiam ex lorem,
           scelerisque at tellus at, rhoncus egestas nulla. Curabitur elementum quis lectus
@@ -88,7 +90,7 @@ const Typography = () => (
         </p>
         <table style={{ width: '100%' }}>
           <caption className="md-caption md-text-left">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tincidunt
+            md-caption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tincidunt
             ligula, sed suscipit dolor aliquet at. Nunc quis ex a turpis dapibus aliquam ac
             ut ipsum. Maecenas dictum, felis at sagittis semper, turpis dui lobortis sapien,
             ac gravida turpis turpis vel orci. Fusce mollis tortor et mauris facilisis

@@ -33,9 +33,15 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h2 id=\\"contributing\\">Contributing</h2>
       <h2 id=\\"scripts\\">Scripts</h2>
       <ul>
-      <li><a href=\\"#clean\\" class=\\"link\\">clean</a></li>
+      <li><a href=\\"#clean\\" class=\\"link\\">clean</a><ul>
+      <li><a href=\\"#cleanassets\\" class=\\"link\\">clean:assets</a></li>
+      </ul>
+      </li>
       <li><a href=\\"#prebuild\\" class=\\"link\\">prebuild</a></li>
-      <li><a href=\\"#build\\" class=\\"link\\">build</a></li>
+      <li><a href=\\"#build\\" class=\\"link\\">build</a><ul>
+      <li><a href=\\"#buildev\\" class=\\"link\\">build:dev</a></li>
+      </ul>
+      </li>
       <li><a href=\\"#jsdoc\\" class=\\"link\\">jsdoc</a><ul>
       <li><a href=\\"#jsdocbuild\\" class=\\"link\\">jsdoc:build</a></li>
       <li><a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a></li>
@@ -49,12 +55,14 @@ exports[`MarkdownPage should render correctly 1`] = `
       <li><a href=\\"#sassdocsite\\" class=\\"link\\">sassdoc:site</a></li>
       </ul>
       </li>
+      <li><a href=\\"#air-quality\\" class=\\"link\\">air-quality</a></li>
       <li><a href=\\"#start\\" class=\\"link\\">start</a><ul>
       <li><a href=\\"#startdev\\" class=\\"link\\">start:dev</a></li>
       <li><a href=\\"#startprod\\" class=\\"link\\">start:prod</a></li>
       </ul>
       </li>
       <li><a href=\\"#dev\\" class=\\"link\\">dev</a><ul>
+      <li><a href=\\"#devminimal\\" class=\\"link\\">dev:minimal</a></li>
       <li><a href=\\"#devall\\" class=\\"link\\">dev:all</a></li>
       </ul>
       </li>
@@ -71,11 +79,14 @@ exports[`MarkdownPage should render correctly 1`] = `
       </ul>
       <h3 id=\\"clean\\">clean</h3>
       <p>This will clean up any existing assets, generated themes for the website,
-      and any of the &quot;databases&quot; that have been built.</p>
+      and any of the &quot;databases&quot; that have been built. This also runs the <a href=\\"#cleanassets\\" class=\\"link\\">clean:assets</a>
+      script.</p>
       <blockquote>
       <p>SEE: <a href=\\"#jsdoc\\">jsdoc</a>, <a href=\\"#sassdoc\\">sassdoc</a>, or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
+      <h3 id=\\"clean-assets\\">clean:assets</h3>
+      <p>This will just remove any existing assets or themes.</p>
       <h3 id=\\"prebuild\\">prebuild</h3>
       <p>This script automatically gets run before the <a href=\\"#build\\" class=\\"link\\">build</a> script. It will
       run (in order):</p>
@@ -94,6 +105,9 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>SEE: <a href=\\"#sassdoc\\">sassdoc</a> or <a href=\\"#docgen\\" class=\\"link\\">docgen</a> for more information
       about &quot;databases&quot;.</p>
       </blockquote>
+      <h3 id=\\"build-dev\\">build:dev</h3>
+      <p>This will build a development version of the website. This is useful if you are really just
+      debugging server side stuff and the client won&#39;t be changing that much.</p>
       <h3 id=\\"jsdoc\\">jsdoc</h3>
       <p>This task just runs the <code>jsdoc:build</code> follwed by <code>jsdoc:create</code>.</p>
       <blockquote>
@@ -122,6 +136,9 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h3 id=\\"sassdoc-site\\">sassdoc:site</h3>
       <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for sassdoc. This is mostly used
       as a fallback for things that are not directly documentable within the main website.</p>
+      <h3 id=\\"air-quality\\">air-quality</h3>
+      <p>This will remake the airQuality &quot;database&quot; by fetching the data from the <a href=\\"https://data.gov\\" class=\\"link\\">https://data.gov</a> website, parse/format the response,
+      and limit the number of results. This is really only useful if you need to get some fresher data.</p>
       <h3 id=\\"start\\">start</h3>
       <p>This will start the production server. The <a href=\\"#build\\" class=\\"link\\">build</a> <strong>must</strong> have been run before the production server can
       be started.</p>
@@ -140,6 +157,10 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This is the second most useful development script. It will only run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
       and concurrently run the <a href=\\"#watchreact-md\\">watch:react-md</a> and <a href=\\"#startdev\\" class=\\"link\\">start:dev</a>. Mostly
       use this script if you only need to see the examples changes without any docgen or SassDoc updates.</p>
+      <h3 id=\\"dev-minimal\\">dev:minimal</h3>
+      <p>This is a script that will remove any existing assets, run the webpack watcher, and start the development
+      server. This is assuming that all the databases have been built and the react-md code has been compiled
+      already.</p>
       <h3 id=\\"dev-all\\">dev:all</h3>
       <p>Whew. This is the most useful development script to use. It will run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
       and then concurrently run all the watchers and start up the dev server.</p>

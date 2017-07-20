@@ -86,6 +86,58 @@ This mostly means that component prop type descriptions have been updated to lin
 - When using the search functionality on the website, Sass variables will now have their values displayed in the autocomplete
 list.
 
+## July 2017
+### v1.0.17 Released
+This patch was mostly about fixing components that needed to be resized after a container height/width
+update instead of just a window resize event. In additioan, there have been some mobile device performance
+and behavior changes. Components that manually added touch events now use passive events when possible and
+the user can focus a text field and scroll the page without automatically hiding the keyboard like a native
+input element.
+
+##### Changelog
+- Fixed the weird page scroll behavior for dialogs when the user closed the dialog by clicking the overlay. [#367](#issues-367)
+- Updated the ListItem so that you can provide props to the surrounding li node. [#439](#issues-439)
+- Fixed a weird mobile safari but about using a virtualization library with any form input from react-md. [#442](#issues-442)
+- Added passive event listeners. [#382](#issues-382)
+- Updated the Autocomplete to no longer require an automatic TextField re-focus after a suggestion has been selected.
+[#428](#issues-428)
+- Fixed the TextField placeholder to correctly gain the disabled color. [#447](#issues-447)
+- Fixed the focus behavior of TextFields on mobile devices. [#434](#issues-434)
+- Fixed the unneeded PropType warning when a "controlled" TextField is disabled. [#432](#issues-432)
+- Fixed the PropType warning for Tabs. [#440](#issues-440)
+- Fixed the multiline TextField requiring a flex container to display correctly. It will now display correctly if it is in
+just a `display: block` or whatever. [#365](#issues-365)
+- Fixed the TimePicker changing days when AM/PM was toggled. [#446](#issues-446)
+- Fixed the TimePicker to remember the last selected time better. [#438](#issues-438)
+- Fixed the TimePicker's ability to calculate time. [#359](#issues-359)
+- Fixed multiple components that manually calculate size for container resize events instead of just window resize events.
+  - ExpansionPanels and Tabs [#448](#issues-448)
+  - Multiline TextFields [#365](#issues-365)
+  - TablePagination [#415](#issues-415)
+
+
+## June 2017
+### v1.0.16 Released
+
+##### Changelog
+- Updated the slider to no longer call `onChange` or `onDragChange` when dragging and the value
+or distance have not been updated. [d588fb4](#commit-d588fb4e000ecc7d00131c6d29b99908bb715532)
+- Fixed a small bug with my `handleKeyboardAccessibility` so that spacebar didn't work in autocompletes.
+[b13f316](#commit-b13f316d23dd3ba3d25d557a79f5fb32754b2fae)
+- Fixed a keyboard accessibility problem with `SelectionControlGroup`. [eb6629d](#commit-eb6629d8fb5117a565b309422d7225a790f5ffd9)
+- Fixed an error where rendering the `Autocomplete` in a `ListItem` threw an error. [#412](#issues-412)
+- Updated the default `z-index` for the `Snackbar` so that it appears over the mini `Drawer`. [#410](#issues-410)
+- Fixed the `DatePicker` so that it can accept a `value` of `null` and the empty string (`""`).
+  - [#384](#issues-384)
+  - [#396](#issues-396)
+  - [#409](#issues-409)
+- Fixed the cell offset calculations. [#401](#issues-401)
+- Fixed non-contained menus. [#391](#issues-391)
+- Fixed the `onClick` prop for `SelectionControl`. [#390](#issues-390)
+- Fixed the `Snackbar` not working as intended when the action has an `onClick` function. [#385](#issues-385)
+- Fixed the slider displaying the wrong value while sliding with touch or mouse. [#379](#issues-379)
+- Updated `.npmignore` to stop include the `jest-cache` with the published code. [#403](#issues-403)
+- Small typo fix. [#400](#issues-400)
 
 
 ## May 2017

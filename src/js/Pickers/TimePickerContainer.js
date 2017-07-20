@@ -507,19 +507,16 @@ export default class TimePickerContainer extends PureComponent {
       onVisibilityChange(false, e);
     }
 
-    let state;
+    const state = { time: value };
     if (typeof this.props.value === 'undefined') {
-      state = { value };
+      state.value = value;
     }
 
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      state = state || {};
       state.visible = false;
     }
 
-    if (state) {
-      this.setState(state);
-    }
+    this.setState(state);
   };
 
   _handleCancelClick = (e) => {
@@ -527,12 +524,19 @@ export default class TimePickerContainer extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
-    const state = { tempTime: this.state.time };
+    let state;
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      state.visible = false;
+      state = { visible: false };
     }
 
-    this.setState(state);
+    if (getField(this.props, this.state, 'value')) {
+      state = state || {};
+      state.tempTime = this.state.time;
+    }
+
+    if (state) {
+      this.setState(state);
+    }
   };
 
   _getTextFieldValue(props, state) {
