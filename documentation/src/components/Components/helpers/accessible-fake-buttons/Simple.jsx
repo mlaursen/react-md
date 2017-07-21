@@ -2,9 +2,9 @@ import React from 'react';
 import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
 import AccessibleFakeInkedButton from 'react-md/lib/Helpers/AccessibleFakeInkedButton';
 
-import './_fake.scss';
+import './_styles.scss';
 
-const SimpleExamples = () => (
+const Simple = () => (
   <div>
     <AccessibleFakeButton className="fakey-fake md-btn md-btn--flat md-color--secondary" tabbedClassName="fakey-fake--outline">
       Something or Another
@@ -21,4 +21,4 @@ const SimpleExamples = () => (
   </div>
 );
 
-export default SimpleExamples;
+export default Simple;

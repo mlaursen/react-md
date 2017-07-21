@@ -1,0 +1,18 @@
+@import '~globals';
+
+.icon-separators {
+  .md-icon-separator {
+    display: inline-flex;
+    margin: 1em;
+    vertical-align: bottom;
+  }
+
+  .md-icon {
+    // When the icon comes before the text, it sets the width to 200px for some reason.
+    width: $md-font-icon-size;
+
+    @media #{$md-desktop-media} {
+      width: $md-font-icon-dense-size;
+    }
+  }
+}
