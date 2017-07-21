@@ -9,7 +9,7 @@ import SimpleRaw from '!!raw-loader!./Simple.jsx';
 import SimpleFileUpload from './SimpleFileUpload';
 import SimpleFileUploadRaw from './SimpleFileUpload/code';
 import ServerUpload from './ServerUpload';
-import ServerUploadRaw from '!!raw-loader!./ServerUpload.jsx';
+import ServerUploadRaw from './ServerUpload/code';
 
 const examples = [{
   title: 'Simple FileInput Examples',
@@ -34,6 +34,10 @@ it is pretty fast to upload small files to the browser.
   children: <SimpleFileUpload />,
 }, {
   title: 'Uploading to a Server',
+  description: `
+This example shows how you can use the \`FileUpload\` component along with \`FormData\` to "upload"
+a file to my documentation server.
+  `,
   code: ServerUploadRaw,
   children: <ServerUpload />,
 }];

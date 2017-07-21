@@ -13,6 +13,7 @@ import { sassdocSuccess } from 'state/sassdocs';
 import { airQualityColumnsSuccess, airQualityDataSuccess } from 'state/airQuality';
 import { fetchSassdoc, fetchDocgen, fetchAirQualityColumns, fetchAirQualityData } from 'utils/api';
 import { toPageTitle } from 'utils/strings';
+import getServerUrl from 'server/utils/getServerUrl';
 
 function isSassDocRoute(pathname, tab) {
   if (!tab || tab < 0 || tab > 2) {
@@ -33,10 +34,6 @@ function getEndpoint(pathname) {
   return pathname.indexOf('components') !== -1
     ? pathname.replace('/components/', '')
     : pathname.substring(pathname.lastIndexOf('/') + 1);
-}
-
-function getServerUrl(req) {
-  return `${req.protocol}://${req.get('host')}`;
 }
 
 export default async function configureStore(req) {

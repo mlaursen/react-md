@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
-// import FontIcon from 'react-md/lib/FontIcons';
+import FontIcon from 'react-md/lib/FontIcons';
 import Media from 'react-md/lib/Media';
 
 import Markdown from 'components/Markdown';
+
+const THREE_MB = 3 * 1024 * 1024;
 
 class UploadedFileCard extends PureComponent {
   static propTypes = {
@@ -17,7 +19,10 @@ class UploadedFileCard extends PureComponent {
       type: PropTypes.string.isRequired,
       size: PropTypes.number.isRequired,
       lastModified: PropTypes.instanceOf(Date).isRequired,
-      data: PropTypes.string.isRequired,
+      data: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.instanceOf(ArrayBuffer),
+      ]).isRequired,
     }).isRequired,
     onRemoveClick: PropTypes.func.isRequired,
     locale: PropTypes.string,
@@ -96,16 +101,25 @@ class UploadedFileCard extends PureComponent {
     if (image) {
       content = <img src={data} alt={name} onLoad={this.findClosestAspectRatio} />;
     } else if (video) {
+      const large = size >= THREE_MB;
       content = (
-        <video controls autoPlay muted loop>
+        <video
+          muted
+          controls
+          autoPlay={!large}
+          loop={!large}
+          preload={large ? 'none' : 'auto'}
+        >
           <source src={data} type={type || 'video/webm'} />
           Your browser does not support this video type.
         </video>
       );
     } else if (language !== null) {
       content = <Markdown markdown={`\`\`\`${language}\n${data}\n\`\`\``} />;
-    } else {
+    } else if (typeof data === 'string') {
       content = <embed src={data} />;
+    } else {
+      content = <FontIcon className="file-inputs__upload-card__dummy-file" forceSize={48} forceFontSize>file_download</FontIcon>;
     }
 
     if (language === null) {
@@ -117,9 +131,7 @@ class UploadedFileCard extends PureComponent {
     }
 
     return (
-      <Card
-        className={cn('file-inputs__upload-card')}
-      >
+      <Card className={cn('file-inputs__upload-card')}>
         <Button icon onClick={this.removeCard} className="file-inputs__upload-card__remove">close</Button>
         {content}
         <CardTitle

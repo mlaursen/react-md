@@ -9,7 +9,9 @@ const winston = require('winston');
 
 const RAW_LOADER = '!!raw-loader!./';
 const RAW_COMPONENT_LOADER = '!!raw-loader!components';
+const RAW_SERVER_LOADER = '!!raw-loader!server';
 const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
+const SERVER = path.resolve(process.cwd(), 'src', 'server');
 
 /**
  * Need access to the manual code-sourcing with the raw-loader when doing ssr. I don't
@@ -20,13 +22,15 @@ const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
  * When using the raw-loader, you **must** specify the file extension as well to get it to work.
  */
 hacker.global_hook('raw-loader', (path, module) => {
-  if (path.indexOf(RAW_LOADER) === -1 && path.indexOf(RAW_COMPONENT_LOADER) === -1) {
+  if (path.indexOf(RAW_LOADER) === -1 && path.indexOf(RAW_COMPONENT_LOADER) === -1 && path.indexOf(RAW_SERVER_LOADER) === -1) {
     return undefined;
   }
 
   let filePath = '';
   if (path.match(RAW_COMPONENT_LOADER)) {
     filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
+  } else if (path.match(RAW_SERVER_LOADER)) {
+    filePath = path.replace(RAW_SERVER_LOADER, SERVER);
   } else {
     const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
     filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;

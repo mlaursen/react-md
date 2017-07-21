@@ -1,4 +1,5 @@
 import { BAD_REQUEST } from 'constants/responseCodes';
+import { getUrl } from 'server/utils/getServerUrl';
 
 function isInt(x) {
   return !Number.isNaN(x) && x % 1 === 0;
@@ -45,10 +46,11 @@ export default function createPaginatedRoute(getData, queryable = true, maxResul
       return;
     }
 
-    let url = `${`${req.protocol}://${req.get('host')}${req.originalUrl}`.replace(/\?.*/, '')}?`;
+    let url = `${getUrl(req).replace(/\?.*/, '')}?`;
     if (queryable) {
       url = `${url}q=${q}&`;
     }
+
     let next = null;
     let previous = null;
     if (total > start + limit) {

@@ -50,14 +50,14 @@ export default class SimpleFileUpload extends PureComponent {
    *    for an image, or some other content for other file types.
    */
   handleLoad = (uploadedFile, uploadedData) => {
-    const { name, size, type, lastModifiedDate } = uploadedFile;
+    const { name, size, type, lastModified } = uploadedFile;
     const file = {
       id: guid(),
       name,
       size,
       type,
       data: uploadedData,
-      lastModified: new Date(lastModifiedDate),
+      lastModified: new Date(lastModified),
     };
 
     const files = [...this.state.files, file];
