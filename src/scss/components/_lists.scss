@@ -445,6 +445,10 @@ $md-list-three-lines-addon-margin-top: null !default;
 
       .md-selection-control-label {
         width: 100%;
+
+        > span {
+          width: 100%;
+        }
       }
     }
 
