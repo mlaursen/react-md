@@ -110,7 +110,7 @@ $md-chip-contact-font-size: 14px !default;
 
     &:focus {
       @include md-box-shadow(1);
-      outline: none;
+      outline-width: 0;
     }
   }
 

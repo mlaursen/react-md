@@ -44,7 +44,7 @@ $md-content-jump-top-inactive: $md-content-jump-left-inactive !default;
     position: relative;
 
     &--no-outline {
-      outline: none;
+      outline-width: 0;
     }
   }
 

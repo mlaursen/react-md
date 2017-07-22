@@ -570,7 +570,7 @@ $md-clock-padding: 4px !default;
     z-index: 8;
 
     &:focus {
-      outline: none;
+      outline-width: 0;
     }
   }
 
