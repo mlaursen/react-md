@@ -3,6 +3,10 @@
 ////
 
 
+/// Boolean if the ink should pulse by default. This is basically what will happen
+/// while the inked item has focus.
+/// @type Boolean
+$md-ink-include-pulse: false !default;
 
 /// The transition time for an ink to fully appear.
 /// @type Number
@@ -32,7 +36,8 @@ $md-ink-border-radius: 50% !default;
 ///
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the ink should be styled
 ///     for the light theme.
-@mixin react-md-inks($light-theme: $md-light-theme) {
+/// @param {Boolean} $pulse [$md-ink-include-pulse] - Boolean if the pulse effect should be included.
+@mixin react-md-inks($light-theme: $md-light-theme, $pulse: $md-ink-include-pulse) {
   .md-ink-container {
     border-radius: inherit;
     height: 100%;
@@ -72,11 +77,27 @@ $md-ink-border-radius: 50% !default;
     transform: scale($md-ink-expanded-scale);
   }
 
-  .md-ink--pulsing {
-    animation-duration: $md-ink-pulse-time;
-    animation-iteration-count: infinite;
-    animation-name: md-ink-pulse;
-    animation-timing-function: $md-transition-standard;
+  @if $pulse {
+    .md-ink--pulsing {
+      animation-duration: $md-ink-pulse-time;
+      animation-iteration-count: infinite;
+      animation-name: md-ink-pulse;
+      animation-timing-function: $md-transition-standard;
+    }
+
+    @keyframes md-ink-pulse {
+      0% {
+        transform: scale($md-ink-expanded-scale);
+      }
+
+      66% {
+        transform: scale(.85);
+      }
+
+      100% {
+        transform: scale($md-ink-expanded-scale);
+      }
+    }
   }
 
   .md-ink--leaving {
@@ -85,19 +106,6 @@ $md-ink-border-radius: 50% !default;
     transition-timing-function: $md-transition-deceleration;
   }
 
-  @keyframes md-ink-pulse {
-    0% {
-      transform: scale($md-ink-expanded-scale);
-    }
-
-    66% {
-      transform: scale(.85);
-    }
-
-    100% {
-      transform: scale($md-ink-expanded-scale);
-    }
-  }
 }
 
 /// Themes the ink color for the given theme ONLY if the `$light-theme` does not equal the

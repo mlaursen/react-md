@@ -32,6 +32,7 @@ export default class InkContainer extends PureComponent {
     transitionOverlap: PropTypes.number.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
     transitionLeaveTimeout: PropTypes.number.isRequired,
+    pulse: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -390,10 +391,12 @@ export default class InkContainer extends PureComponent {
       transitionOverlap,
       transitionEnterTimeout,
       transitionLeaveTimeout,
+      pulse,
     } = this.props;
     const inks = this.state.inks.map(props => (
       <Ink
         {...props}
+        pulse={pulse}
         style={inkStyle}
         className={inkClassName}
         onRemove={this._handleRemove}

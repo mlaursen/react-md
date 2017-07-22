@@ -16,6 +16,7 @@ export default class Ink extends PureComponent {
     transitionOverlap: PropTypes.number.isRequired,
     transitionEnterTimeout: PropTypes.number.isRequired,
     transitionLeaveTimeout: PropTypes.number.isRequired,
+    pulse: PropTypes.bool,
   };
 
   constructor(props) {
@@ -73,11 +74,13 @@ export default class Ink extends PureComponent {
   }
 
   componentDidEnter() {
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
+    if (this.props.pulse) {
+      this._timeout = setTimeout(() => {
+        this._timeout = null;
 
-      this.setState({ pulsing: true });
-    }, this.props.transitionEnterTimeout);
+        this.setState({ pulsing: true });
+      }, this.props.transitionEnterTimeout);
+    }
   }
 
   componentWillLeave(cb) {

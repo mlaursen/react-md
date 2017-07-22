@@ -92,6 +92,12 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'mouse', 'touch'])),
 
     /**
+     * Boolean if the ink should do a pulse animation while focused. This was enabled by default in
+     * previous versions.
+     */
+    pulse: PropTypes.bool,
+
+    /**
      * When using inked components in a `TransitionGroup`, the ref callback is not actually invoked.
      * This is a little _hack_ to get it to work by not using `ref`, but this name.
      */
@@ -190,6 +196,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkContainerClassName,
       waitForInkTransition,
       disabledInteractions,
+      pulse,
       inkDisabled: propInkDisabled, // eslint-disable-line no-unused-vars
       __SUPER_SECRET_REF__, // eslint-disable-line no-unused-vars
       ...props
@@ -205,6 +212,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
         <InkContainer
           ref={this._setInkRef}
           key="ink-container"
+          pulse={pulse}
           style={inkContainerStyle}
           className={inkContainerClassName}
           inkStyle={inkStyle}
