@@ -1,97 +1,93 @@
 import React from 'react';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import ListItemControl from 'react-md/lib/Lists/ListItemControl';
+import Avatar from 'react-md/lib/Avatars';
+import { List, ListItem, ListItemControl } from 'react-md/lib/Lists';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 import Switch from 'react-md/lib/SelectionControls/Switch';
 import FontIcon from 'react-md/lib/FontIcons';
 
-import randomAvatars from 'utils/RandomUtils/randomAvatars';
-
 const chat = <FontIcon key="chat">chat</FontIcon>;
-const avatars = randomAvatars(3);
 
-const className = 'md-cell md-cell--6 md-paper md-paper--1';
+const CLASS_NAME = 'md-cell md-cell--6 md-paper md-paper--1';
 
-const SimpleControlsExamples = () => (
-  <div className="md-grid list-group">
-    <List className={className}>
+const SimpleListControls = () => (
+  <div className="md-grid">
+    <List className={CLASS_NAME}>
+      <ListItemControl
+        rightIcon={chat}
+        primaryAction={(
+          <Checkbox
+            id="list-control-chat-1"
+            name="list-control-primary"
+            label="Line Item 1"
+            defaultChecked
+          />
+        )}
+      />
       <ListItemControl
         rightIcon={chat}
         primaryAction={
           <Checkbox
-            id="lineItem1"
-            name="lineItems"
-            label="Line Item selected"
+            id="list-control-chat-2"
+            name="list-control-primary"
+            label="Line Item 2"
+          />
+        }
+      />
+      <ListItemControl
+        rightIcon={chat}
+        primaryAction={(
+          <Checkbox
+            id="list-control-chat-3"
+            name="list-control-primary"
+            label="Line Item 3"
+            defaultChecked
+          />
+        )}
+      />
+    </List>
+    <List className={CLASS_NAME}>
+      <ListItemControl
+        leftAvatar={<Avatar suffix="deep-blue">D</Avatar>}
+        secondaryAction={
+          <Checkbox
+            id="list-control-secondary-1"
+            name="list-control-secondary"
+            label="Line Item 1"
+            labelBefore
             defaultChecked
           />
         }
       />
       <ListItemControl
-        rightIcon={chat}
-        primaryAction={
+        leftAvatar={<Avatar suffix="brown">W</Avatar>}
+        secondaryAction={
           <Checkbox
-            id="lineItem2"
-            name="lineItems"
-            label="Line Item unselected"
+            id="list-control-secondary-2"
+            name="list-control-secondary"
+            label="Line Item 2"
+            labelBefore
           />
         }
       />
       <ListItemControl
-        rightIcon={chat}
-        primaryAction={
+        leftAvatar={<Avatar suffix="teal">T</Avatar>}
+        secondaryAction={
           <Checkbox
-            id="lineItem3"
-            name="lineItems"
-            label="Line Item selected"
+            id="list-control-secondary-3"
+            name="list-control-secondary"
+            label="Line Item 3"
+            labelBefore
             defaultChecked
           />
         }
       />
     </List>
-    <List className={className}>
-      <ListItemControl
-        leftAvatar={avatars[0]}
-        secondaryAction={
-          <Checkbox
-            id="rightLineItem1"
-            name="lineItems"
-            label="Line Item selected"
-            labelBefore
-            defaultChecked
-          />
-        }
-      />
-      <ListItemControl
-        leftAvatar={avatars[1]}
-        secondaryAction={
-          <Checkbox
-            id="rightLineItem2"
-            name="lineItems"
-            label="Line Item unselected"
-            labelBefore
-          />
-        }
-      />
-      <ListItemControl
-        leftAvatar={avatars[2]}
-        secondaryAction={
-          <Checkbox
-            id="rightLineItem3"
-            name="lineItems"
-            label="Line Item selected"
-            labelBefore
-            defaultChecked
-          />
-        }
-      />
-    </List>
-    <List className={className}>
+    <List className={CLASS_NAME}>
       <ListItemControl
         leftIcon={<FontIcon key="wifi">wifi</FontIcon>}
         secondaryAction={
           <Switch
-            id="wifiToggle"
+            id="toggle-wifi"
             name="services"
             label="Wi-Fi"
             labelBefore
@@ -103,7 +99,7 @@ const SimpleControlsExamples = () => (
         leftIcon={<FontIcon key="bluetooth">bluetooth</FontIcon>}
         secondaryAction={
           <Switch
-            id="bluetoothToggle"
+            id="toggle-bluetooth"
             name="services"
             label="Bluetooth"
             labelBefore
@@ -118,4 +114,4 @@ const SimpleControlsExamples = () => (
   </div>
 );
 
-export default SimpleControlsExamples;
+export default SimpleListControls;

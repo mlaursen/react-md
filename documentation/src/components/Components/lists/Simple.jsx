@@ -1,18 +1,15 @@
 import React from 'react';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
 import Avatar from 'react-md/lib/Avatars';
-import FontIcon from 'react-md/lib/FontIcons';
 import Divider from 'react-md/lib/Dividers';
+import FontIcon from 'react-md/lib/FontIcons';
+import { List, ListItem } from 'react-md/lib/Lists';
 import Subheader from 'react-md/lib/Subheaders';
 
-import randomAvatars from 'utils/RandomUtils/randomAvatars';
 const InfoIcon = () => <FontIcon>info</FontIcon>;
 const StarIcon = () => <FontIcon>star</FontIcon>;
-const avatars = randomAvatars(3);
 
-const SimpleExample = () => (
-  <div className="md-grid list-group">
+const Simple = () => (
+  <div className="md-grid">
     <List className="md-cell md-paper md-paper--1">
       <ListItem primaryText="Inbox" />
       <ListItem primaryText="Starred" />
@@ -57,21 +54,21 @@ const SimpleExample = () => (
     <List className="md-cell md-paper md-paper--1">
       <Subheader primaryText="Three line example" primary />
       <ListItem
-        leftAvatar={avatars[0]}
+        leftAvatar={<Avatar suffix="deep-purple">B</Avatar>}
         rightIcon={<StarIcon />}
         primaryText="Brunch this weekend?"
         secondaryText={'Ali Connors\nI\'ll be in your neighborhood sometime this week'}
         threeLines
       />
       <ListItem
-        leftAvatar={avatars[1]}
+        leftAvatar={<Avatar suffix="green">Q</Avatar>}
         rightIcon={<StarIcon />}
         primaryText="Summer BBQ"
         secondaryText={'to Alex, Scott, Jennifer\nWish I could come, but I\'m out of town this weekend.'}
         threeLines
       />
       <ListItem
-        leftAvatar={avatars[2]}
+        leftAvatar={<Avatar suffix="orange">A</Avatar>}
         rightIcon={<StarIcon />}
         primaryText="Oui Oui"
         secondaryText="Sandra Adams - Do you have Paris recommendations? Have you ever been?"
@@ -81,4 +78,4 @@ const SimpleExample = () => (
   </div>
 );
 
-export default SimpleExample;
+export default Simple;
