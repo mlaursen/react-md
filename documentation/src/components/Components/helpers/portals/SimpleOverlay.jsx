@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 import cn from 'classnames';
 import Button from 'react-md/lib/Buttons/Button';
+import AccessibleFakeButton from 'react-md/lib/Helpers/AccessibleFakeButton';
 import Portal from 'react-md/lib/Helpers/Portal';
 
 export default class SimpleOverlay extends PureComponent {
@@ -45,24 +46,30 @@ export default class SimpleOverlay extends PureComponent {
     this.setState({ active: false });
   };
 
+  overlayRef = (overlay) => {
+    if (overlay) {
+      this.active = document.activeElement;
+      setTimeout(() => {
+        overlay.focus();
+      }, 0);
+    } else if (this.active) {
+      this.active.focus();
+    }
+  };
+
   render() {
     const { visible, active } = this.state;
     return (
       <div>
-        <Button raised onClick={this.show}>Show Overlay</Button>
+        <Button raised onClick={this.showOverlay}>Show Overlay</Button>
         <Portal visible={visible}>
-          <div
+          <AccessibleFakeButton
             id="temporary-overlay"
-            ref={(overlay) => {
-              if (overlay) {
-                overlay.focus();
-              }
-            }}
-            tabIndex={-1}
+            ref={this.overlayRef}
             className={cn('md-overlay', {
               'md-overlay--active': active,
             }, 'powerlevel-over-9000')}
-            onClick={this.hide}
+            onClick={this.hideOverlay}
           />
         </Portal>
       </div>

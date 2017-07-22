@@ -71,4 +71,8 @@ h3,
   }
 }
 
+.powerlevel-over-9000 {
+  z-index: 9001;
+}
+
 @include react-md-media-aspect-ratio(2, 3);
