@@ -1,0 +1,32 @@
+@import '~globals';
+
+.button {
+  background: transparent;
+  border: 0;
+  padding: 6px 12px;
+  position: relative;
+}
+
+.inks__examples {
+  .button {
+    margin: 1em;
+  }
+}
+
+.inks__disabled-examples {
+  // Add the browser outline back to inked components
+  .md-btn,
+  .md-fake-btn {
+    &:focus {
+      outline-width: 5px;
+    }
+  }
+
+  &__btns .md-btn {
+    display: block;
+
+    &:nth-of-type(n + 2) {
+      margin-top: 1em;
+    }
+  }
+}
