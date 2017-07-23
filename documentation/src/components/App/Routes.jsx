@@ -9,6 +9,7 @@ import {
   GettingStarted,
   BottomNavigationRouting,
   DrawerRouting,
+  NavigationDrawerRouting,
 } from 'routes';
 
 const Routes = () => (
@@ -19,6 +20,7 @@ const Routes = () => (
     <Route path="/customization/:location" component={Customization} />
     <Route path="/discover-more/routing-examples/bottom-navigations" component={BottomNavigationRouting} />
     <Route path="/discover-more/routing-examples/drawers" component={DrawerRouting} />
+    <Route path="/discover-more/routing-examples/navigation-drawers" component={NavigationDrawerRouting} />
     <Route path="/discover-more/upgrade-guides/:version" component={DiscoverMore} />
     <Route path="/discover-more/:location" component={DiscoverMore} />
     <Redirect from="/components/helpers/accessible-fake-button" to="/components/helpers/accessible-fake-buttons" />

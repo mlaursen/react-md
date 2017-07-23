@@ -23,6 +23,7 @@ export const PropTypesPage = syncComponent('PropTypesPage', require('components/
 // routing examples
 export const BottomNavigationRouting = syncComponent('BottomNavigationRouting', require('components/Components/bottom-navigations/RoutingExample'));
 export const DrawerRouting = syncComponent('DrawerRouting', require('components/Components/drawers/RoutingExample'));
+export const NavigationDrawerRouting = syncComponent('NavigationDrawerRouting', require('components/Components/navigation-drawers/RoutingExample'));
 
 // components
 export const Autocompletes = syncComponent('Autocompletes', require('components/Components/autocompletes'));

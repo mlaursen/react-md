@@ -1,0 +1,21 @@
+@import '~globals';
+
+.md-drawer--mini {
+  // When you use a React component for a nav item, it won't update the styles automatically
+  // yet.. So hide the content and add padding to center the icon.
+  .md-tile-content {
+    display: none;
+  }
+
+  .md-list-tile--icon {
+    @media #{$md-mobile-media} {
+      padding-left: $md-drawer-mobile-mini-item-padding;
+      padding-right: $md-drawer-mobile-mini-item-padding;
+    }
+
+    @media #{$md-desktop-media} {
+      padding-left: $md-drawer-desktop-mini-item-padding;
+      padding-right: $md-drawer-desktop-mini-item-padding;
+    }
+  }
+}

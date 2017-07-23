@@ -46,6 +46,16 @@ $md-drawer-desktop-left-max-width: 400px !default;
 /// @type Number
 $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
 
+/// This is the amount of padding to apply to the left and right of a mini nav item on mobile devices.
+/// This is mostly used to center the item in the mini drawer.
+/// @type Number
+$md-drawer-mobile-mini-item-padding: ($md-drawer-mobile-mini-width - $md-font-icon-size) / 2 !default;
+
+/// This is the amount of padding to apply to the left and right of a mini nav item on desktop screens.
+/// This is mostly used to center the item in the mini drawer.
+/// @type Number
+$md-drawer-desktop-mini-item-padding: ($md-drawer-desktop-mini-width - if($md-font-icon-include-dense, $md-font-icon-dense-size, $md-font-icon-size)) / 2 !default;
+
 
 /// Includes the styles for drawers.
 ///
@@ -132,8 +142,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-list-tile--mini.md-list-tile--mini {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: $md-drawer-mobile-mini-item-padding;
+    padding-right: $md-drawer-mobile-mini-item-padding;
   }
 
   .md-drawer-relative--mini.md-drawer-relative--mini {
@@ -188,8 +198,8 @@ $md-drawer-desktop-mini-width: $md-font-icon-size + (24px * 2) !default;
   }
 
   .md-list-tile--mini.md-list-tile--mini {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: $md-drawer-desktop-mini-item-padding;
+    padding-right: $md-drawer-desktop-mini-item-padding;
   }
 
   .md-drawer-relative {
