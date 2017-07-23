@@ -12,6 +12,8 @@ import DisabledFields from './DisabledFields';
 import DisabledFieldsRaw from '!!raw-loader!./DisabledFields.jsx';
 import CountersAndText from './CountersAndText';
 import CountersAndTextRaw from '!!raw-loader!./CountersAndText.jsx';
+import AutoResizing from './AutoResizing';
+import AutoResizingRaw from '!!raw-loader!./AutoResizing.jsx';
 import BlockedFields from './BlockedFields';
 import BlockedFieldsRaw from '!!raw-loader!./BlockedFields.jsx';
 import FormExample from './FormExample';
@@ -87,6 +89,18 @@ The text field can display help/error text along with a counter.
   `,
   code: CountersAndTextRaw,
   children: <CountersAndText />,
+}, {
+  title: 'Auto Resizing Examples',
+  description: `
+The \`TextField\` can be updated to automatically resize its width to be the size of its text content. It will
+be a tiny bit off for some browsers (2-3 pixels) because of how they calculate text width, but it should be fairly
+accurate.
+
+When the user types, the text field should automatically expand to match the text and when the user removes text,
+the width will shrink.
+  `,
+  code: AutoResizingRaw,
+  children: <AutoResizing />,
 }, {
   title: 'Blocked Fields',
   description: `

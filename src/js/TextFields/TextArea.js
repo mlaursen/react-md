@@ -78,6 +78,11 @@ export default class TextArea extends PureComponent {
   };
 
   _syncHeightWithMask = (value) => {
+    // The mask is always null in snapshot teseting
+    if (!this._mask) {
+      return;
+    }
+
     if (value !== undefined) {
       this._mask.value = value;
     }

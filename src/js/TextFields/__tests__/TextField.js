@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
@@ -241,5 +242,73 @@ describe('TextField', () => {
 
     field.setProps({ value: 0, onChange: jest.fn() });
     expect(field.state('floating')).toBe(true);
+  });
+
+  it('should be able to be snapshottable', () => {
+    const tree1 = renderer.create(<TextField id="test" />).toJSON();
+    const tree2 = renderer.create(<TextField id="test" label="Label" placeholder="placeholder" />).toJSON();
+    const tree3 = renderer.create(<TextField id="test" label="Label" placeholder="placeholder" rows={2} />).toJSON();
+    const tree4 = renderer.create(<TextField id="test" placeholder="Block" block paddedBlock />).toJSON();
+    const tree5 = renderer.create(<TextField id="test" placeholder="Block" block paddedBlock rows={2} />).toJSON();
+    const tree6 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        resize={{ min: 100, max: 300 }}
+      />
+    ).toJSON();
+    const tree7 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpText="Look at me!"
+        errorText="Some error"
+      />
+    ).toJSON();
+    const tree8 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpText="Look at me!"
+        error
+        errorText="Some error"
+      />
+    ).toJSON();
+    const tree9 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpOnFocus
+        helpText="Look at me!"
+      />
+    ).toJSON();
+    const tree10 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        maxLength={20}
+      />
+    ).toJSON();
+
+    expect(tree1).toMatchSnapshot();
+    expect(tree2).toMatchSnapshot();
+    expect(tree3).toMatchSnapshot();
+    expect(tree4).toMatchSnapshot();
+    expect(tree5).toMatchSnapshot();
+    expect(tree6).toMatchSnapshot();
+    expect(tree7).toMatchSnapshot();
+    expect(tree8).toMatchSnapshot();
+    expect(tree9).toMatchSnapshot();
+    expect(tree10).toMatchSnapshot();
   });
 });

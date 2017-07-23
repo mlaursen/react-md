@@ -4,6 +4,7 @@ import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -13,6 +14,8 @@ import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
 import InputField from './InputField';
 import TextFieldDivider from './TextFieldDivider';
+
+const DEFAULT_TEXT_FIELD_SIZE = 180;
 
 /**
  * The `TextField` component can either be a single line `input` field or a multiline
@@ -341,6 +344,20 @@ export default class TextField extends PureComponent {
      */
     inlineIndicator: PropTypes.element,
 
+    /**
+     * This prop allows the text field to resize its width to stay between the min and max sizes provided. By
+     * default, the field will expand and collapse based on the amount of text provided. The collapsing can
+     * be disabled by providing `disableShrink` to the configuration object.
+     *
+     * If the `min` prop is not provided, it will default to `180` which is about the same size as a default
+     * text field.
+     */
+    resize: PropTypes.shape({
+      min: PropTypes.number,
+      max: PropTypes.number.isRequired,
+      disableShrink: PropTypes.bool,
+    }),
+
     icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
@@ -363,19 +380,44 @@ export default class TextField extends PureComponent {
 
     const currentLength = this._getLength(typeof props.value !== 'undefined' ? props.value : props.defaultValue);
 
+    this._canvas = null;
+    let width = null;
+    if (typeof props.resize !== 'undefined') {
+      width = typeof props.resize.min === 'number' ? props.resize.min : DEFAULT_TEXT_FIELD_SIZE;
+    }
+
     this.state = {
       active: false,
       error: props.maxLength ? props.maxLength < currentLength : false,
       floating: this._isValued(props.defaultValue) || this._isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
       currentLength,
+      width,
     };
   }
 
+  componentWillMount() {
+    const { value, defaultValue, resize } = this.props;
+    const v = typeof value !== 'undefined' ? value : defaultValue;
+    if (!resize || typeof document === 'undefined' || !v) {
+      return;
+    }
+
+    this.setState({ width: this._calcWidth(v) });
+  }
+
+  componentDidMount() {
+    const { value, defaultValue, resize } = this.props;
+    const v = typeof value !== 'undefined' ? value : defaultValue;
+    if (resize && v) {
+      this.setState({ width: this._calcWidth(v) }); // eslint-disable-line react/no-did-mount-set-state
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    const { value, maxLength, required } = nextProps;
+    const { value, maxLength, required, resize } = nextProps;
     if (this.props.value !== value) {
-      let error = this.state.error;
+      let { error, width } = this.state;
       const currentLength = this._getLength(value);
       if (required && error) {
         error = !this._isValued(value);
@@ -385,8 +427,16 @@ export default class TextField extends PureComponent {
         error = error || currentLength > maxLength;
       }
 
+      if (resize) {
+        const nextWidth = this._calcWidth(value);
+        if (!resize.disableShrink || nextWidth > width) {
+          width = nextWidth;
+        }
+      }
+
       this.setState({
         error,
+        width,
         currentLength,
         floating: this._isValued(value) || (this.state.floating && this.state.active),
       });
@@ -479,11 +529,42 @@ export default class TextField extends PureComponent {
     return 0;
   };
 
-
   _setField = (field) => {
     if (field !== null) {
       this._field = field;
     }
+  };
+
+  _calcWidth = (value) => {
+    const field = (this._field && this._field.getField()) || null;
+    if (!field) {
+      return null;
+    }
+
+    if (!this._canvas) {
+      this._canvas = document.createElement('canvas');
+    }
+
+    const context = this._canvas.getContext('2d');
+    if (!context) { // Doesn't exist in testing
+      return null;
+    }
+
+    const styles = window.getComputedStyle(field);
+    let font = styles.font;
+    // Some browsers do not actually supply the font style since they are on an older version of CSSProperties,
+    // so the font string needs to be made manually.
+    if (!font) {
+      // font-style font-variant font-weight font-size/line-height font-family
+      const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
+      font = `${styles.fontstyles} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
+    }
+
+    const { max } = this.props.resize;
+    const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
+
+    context.font = font;
+    return Math.min(max, Math.max(min, context.measureText(value).width));
   };
 
   _handleContainerClick = (e) => {
@@ -530,7 +611,7 @@ export default class TextField extends PureComponent {
   };
 
   _handleChange = (e) => {
-    const { onChange, maxLength, required } = this.props;
+    const { onChange, maxLength, required, resize } = this.props;
     const { value } = e.target;
     if (onChange) {
       onChange(e.target.value, e);
@@ -544,6 +625,14 @@ export default class TextField extends PureComponent {
       state = { error: !currentLength };
     }
 
+    if (typeof this.props.value === 'undefined' && resize) {
+      const width = this._calcWidth(value);
+      if (!resize.disableShrink || width > this.state.width) {
+        state = state || {};
+        state.width = this._calcWidth(value);
+      }
+    }
+
     if (state) {
       this.setState(state);
     }
@@ -554,7 +643,7 @@ export default class TextField extends PureComponent {
   };
 
   render() {
-    const { currentLength, passwordVisible } = this.state;
+    const { currentLength, passwordVisible, width } = this.state;
     const {
       id,
       type,
@@ -601,6 +690,7 @@ export default class TextField extends PureComponent {
       onChange,
       onBlur,
       onFocus,
+      resize,
 
       // deprecated
       adjustMinWidth,
@@ -755,7 +845,7 @@ export default class TextField extends PureComponent {
     const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        style={style}
+        style={{ width, ...style }}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,

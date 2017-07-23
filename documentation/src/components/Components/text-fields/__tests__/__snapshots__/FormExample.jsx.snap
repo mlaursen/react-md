@@ -1,0 +1,571 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormExample should render correctly 1`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="phone-emulator__status-bar"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_wifi
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_cell
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      battery_full
+    </i>
+    <span
+      className="phone-emulator__status-bar__time"
+    >
+      12:30
+    </span>
+  </header>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Application
+    </h2>
+  </header>
+  <section
+    className="phone-emulator__content phone-emulator__content--offset"
+    id={undefined}
+    style={undefined}
+  >
+    <form
+      className="md-grid text-fields__application"
+      onSubmit={[Function]}
+    >
+      <div
+        className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--12"
+        onClick={[Function]}
+        onDoubleClick={undefined}
+        onMouseDown={undefined}
+        onMouseLeave={undefined}
+        onMouseOver={undefined}
+        onMouseUp={undefined}
+        onTouchCancel={undefined}
+        onTouchEnd={undefined}
+        onTouchMove={undefined}
+        onTouchStart={undefined}
+        style={
+          Object {
+            "width": null,
+          }
+        }
+      >
+        <label
+          className="md-floating-label md-floating-label--title md-floating-label--floating"
+          htmlFor="application-title"
+        >
+          Title *
+        </label>
+        <input
+          className="md-text-field md-text md-full-width md-text-field--floating-margin md-text-field--title"
+          defaultValue="Vintage 50's Dress"
+          disabled={undefined}
+          id="application-title"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder={undefined}
+          rows={undefined}
+          style={undefined}
+          type="text"
+        />
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+      <div
+        className="md-text-field-container md-full-width md-text-field-container--input text-fields__application__price md-cell md-cell--3 md-cell--1-phone"
+        onClick={[Function]}
+        onDoubleClick={undefined}
+        onMouseDown={undefined}
+        onMouseLeave={undefined}
+        onMouseOver={undefined}
+        onMouseUp={undefined}
+        onTouchCancel={undefined}
+        onTouchEnd={undefined}
+        onTouchMove={undefined}
+        onTouchStart={undefined}
+        style={
+          Object {
+            "width": null,
+          }
+        }
+      >
+        <label
+          className="md-floating-label md-floating-label--floating"
+          htmlFor="application-price"
+        >
+          Price *
+        </label>
+        <input
+          className="md-text-field md-text md-full-width md-text-field--floating-margin"
+          defaultValue={10}
+          disabled={undefined}
+          id="application-price"
+          min={0}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          pattern="^d+(\\\\.|\\\\,)\\\\d{2}"
+          placeholder={undefined}
+          rows={undefined}
+          step={0.01}
+          style={undefined}
+          type="number"
+        />
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+      <div
+        className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--9 md-cell--3-phone md-cell--5-tablet"
+        onClick={[Function]}
+        onDoubleClick={undefined}
+        onMouseDown={undefined}
+        onMouseLeave={undefined}
+        onMouseOver={undefined}
+        onMouseUp={undefined}
+        onTouchCancel={undefined}
+        onTouchEnd={undefined}
+        onTouchMove={undefined}
+        onTouchStart={undefined}
+        style={
+          Object {
+            "width": null,
+          }
+        }
+      >
+        <label
+          className="md-floating-label md-floating-label--floating"
+          htmlFor="application-location"
+        >
+          Location (optional)
+        </label>
+        <input
+          className="md-text-field md-text md-full-width md-text-field--floating-margin"
+          defaultValue="Fremont Bridge"
+          disabled={undefined}
+          id="application-location"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder={undefined}
+          rows={undefined}
+          style={undefined}
+          type="text"
+        />
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+      <div
+        className="md-text-field-container md-full-width md-text-field-container--multiline md-cell md-cell--12"
+        onClick={[Function]}
+        onDoubleClick={undefined}
+        onMouseDown={undefined}
+        onMouseLeave={undefined}
+        onMouseOver={undefined}
+        onMouseUp={undefined}
+        onTouchCancel={undefined}
+        onTouchEnd={undefined}
+        onTouchMove={undefined}
+        onTouchStart={undefined}
+        style={
+          Object {
+            "width": null,
+          }
+        }
+      >
+        <label
+          className="md-floating-label md-floating-label--floating"
+          htmlFor="application-description"
+        >
+          Description
+        </label>
+        <div
+          className="md-text-field-multiline-container md-text-field--floating-margin"
+          style={
+            Object {
+              "height": null,
+            }
+          }
+        >
+          <span
+            aria-hidden={true}
+          />
+          <textarea
+            aria-hidden={true}
+            className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+            defaultValue="Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures."
+            readOnly={true}
+            rows={2}
+            style={undefined}
+            tabIndex={-1}
+            value={undefined}
+          />
+          <textarea
+            className="md-text-field md-text md-text-field--multiline md-full-width"
+            defaultValue="Unique and rare dress from 1952. Made out of cotton with front pockets. Sleeveless with button closures."
+            disabled={undefined}
+            id="application-description"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder={undefined}
+            rows={2}
+            style={
+              Object {
+                "height": null,
+              }
+            }
+            value={undefined}
+          />
+        </div>
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+      <div
+        className="md-selection-control-container md-selection-control-container--inline md-switch-container md-cell md-cell--12"
+        onKeyDown={[Function]}
+        style={undefined}
+      >
+        <input
+          aria-hidden={true}
+          aria-label={undefined}
+          checked={false}
+          className="md-selection-control-input"
+          disabled={undefined}
+          id="application-publish"
+          name="publishing"
+          onChange={[Function]}
+          type="checkbox"
+          value={undefined}
+        />
+        <label
+          className="md-selection-control-label md-text md-pointer--hover"
+          htmlFor="application-publish"
+        >
+          <div
+            className="md-switch-track md-pointer--hover md-switch-track--off"
+          >
+            <div
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-switch-thumb md-switch-thumb--off"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="button"
+              tabIndex={0}
+            />
+          </div>
+          <span>
+            Publish immediately?
+          </span>
+        </label>
+      </div>
+      <fieldset
+        className="md-selection-control-group md-cell md-cell--12 text-fields__application__publishes"
+        onChange={[Function]}
+        onKeyDown={null}
+      >
+        <legend
+          className="md-subheading-1"
+        >
+          Publish to:
+        </legend>
+        <div
+          className="md-selection-control-container"
+          onKeyDown={[Function]}
+          style={undefined}
+        >
+          <input
+            aria-hidden={true}
+            aria-label={undefined}
+            checked={true}
+            className="md-selection-control-input"
+            disabled={undefined}
+            id="publish-to0"
+            name="publish-places[]"
+            onChange={[Function]}
+            type="checkbox"
+            value="MAS"
+          />
+          <label
+            className="md-selection-control-label md-text md-pointer--hover"
+            htmlFor="publish-to0"
+          >
+            <div
+              aria-checked={true}
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="checkbox"
+              tabIndex={0}
+            >
+              <i
+                className="md-icon material-icons"
+                style={undefined}
+              >
+                check_box
+              </i>
+            </div>
+            <span>
+              My amazing store
+            </span>
+          </label>
+        </div>
+        <div
+          className="md-selection-control-container"
+          onKeyDown={[Function]}
+          style={undefined}
+        >
+          <input
+            aria-hidden={true}
+            aria-label={undefined}
+            checked={false}
+            className="md-selection-control-input"
+            disabled={undefined}
+            id="publish-to1"
+            name="publish-places[]"
+            onChange={[Function]}
+            type="checkbox"
+            value="AMZ"
+          />
+          <label
+            className="md-selection-control-label md-text md-pointer--hover"
+            htmlFor="publish-to1"
+          >
+            <div
+              aria-checked={false}
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="checkbox"
+              tabIndex={0}
+            >
+              <i
+                className="md-icon material-icons"
+                style={undefined}
+              >
+                check_box_outline_blank
+              </i>
+            </div>
+            <span>
+              Amazon
+            </span>
+          </label>
+        </div>
+        <div
+          className="md-selection-control-container"
+          onKeyDown={[Function]}
+          style={undefined}
+        >
+          <input
+            aria-hidden={true}
+            aria-label={undefined}
+            checked={false}
+            className="md-selection-control-input"
+            disabled={undefined}
+            id="publish-to2"
+            name="publish-places[]"
+            onChange={[Function]}
+            type="checkbox"
+            value="PTS"
+          />
+          <label
+            className="md-selection-control-label md-text md-pointer--hover"
+            htmlFor="publish-to2"
+          >
+            <div
+              aria-checked={false}
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="checkbox"
+              tabIndex={0}
+            >
+              <i
+                className="md-icon material-icons"
+                style={undefined}
+              >
+                check_box_outline_blank
+              </i>
+            </div>
+            <span>
+              A pretty terrible store
+            </span>
+          </label>
+        </div>
+        <div
+          className="md-selection-control-container"
+          onKeyDown={[Function]}
+          style={undefined}
+        >
+          <input
+            aria-hidden={true}
+            aria-label={undefined}
+            checked={true}
+            className="md-selection-control-input"
+            disabled={undefined}
+            id="publish-to3"
+            name="publish-places[]"
+            onChange={[Function]}
+            type="checkbox"
+            value="EBY"
+          />
+          <label
+            className="md-selection-control-label md-text md-pointer--hover"
+            htmlFor="publish-to3"
+          >
+            <div
+              aria-checked={true}
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--theme-secondary"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="checkbox"
+              tabIndex={0}
+            >
+              <i
+                className="md-icon material-icons"
+                style={undefined}
+              >
+                check_box
+              </i>
+            </div>
+            <span>
+              EBay
+            </span>
+          </label>
+        </div>
+        <div
+          className="md-selection-control-container"
+          onKeyDown={[Function]}
+          style={undefined}
+        >
+          <input
+            aria-hidden={true}
+            aria-label={undefined}
+            checked={false}
+            className="md-selection-control-input"
+            disabled={undefined}
+            id="publish-to4"
+            name="publish-places[]"
+            onChange={[Function]}
+            type="checkbox"
+            value="SOS"
+          />
+          <label
+            className="md-selection-control-label md-text md-pointer--hover"
+            htmlFor="publish-to4"
+          >
+            <div
+              aria-checked={false}
+              aria-pressed={false}
+              className="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-selection-control-toggle md-btn md-btn--icon md-text--secondary"
+              disabled={undefined}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              role="checkbox"
+              tabIndex={0}
+            >
+              <i
+                className="md-icon material-icons"
+                style={undefined}
+              >
+                check_box_outline_blank
+              </i>
+            </div>
+            <span>
+              Some other store
+            </span>
+          </label>
+        </div>
+      </fieldset>
+      <section
+        className="md-dialog-footer--card md-dialog-footer--inline md-cell md-cell--12"
+      >
+        <button
+          className="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text md-cell--right"
+          disabled={undefined}
+          href={undefined}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseOver={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          type="submit"
+        >
+          Submit
+        </button>
+      </section>
+    </form>
+  </section>
+</div>
+`;

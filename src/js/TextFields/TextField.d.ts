@@ -38,7 +38,7 @@ export interface SharedTextFieldProps {
   max?: number;
   step?: number;
   pattern?: string;
-  resize?: { min: number, max: number, noShrink?: boolean };
+  resize?: { min: number, max: number, disableShrink?: boolean };
 }
 
 export interface TextFieldProps extends SharedTextFieldProps, Props {
@@ -63,11 +63,11 @@ export interface TextFieldProps extends SharedTextFieldProps, Props {
   adjustMinWidth?: boolean;
 }
 
-interface TextFieldCcomponent extends React.ComponentClass<TextFieldProps> {
+interface TextFieldComponent extends React.ComponentClass<TextFieldProps> {
   focus(): void;
   getField(): React.ReactHTMLElement<any> | null; // should be input or textarea, but get warning
 }
 
-declare const TextField: TextFieldCcomponent;
+declare const TextField: TextFieldComponent;
 export default TextField;
 
