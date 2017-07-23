@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import { UP, DOWN, LEFT, RIGHT } from '../constants/keyCodes';
@@ -85,12 +84,10 @@ export default class SelectionControlGroup extends PureComponent {
     type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
 
     /**
-     * The component to render the `SelectionControlGroup` in.
+     * The component to render the `SelectionControlGroup` in. This can only be a valid dom element
+     * since it relies on the ref callback to add keyboard accessibility.
      */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]).isRequired,
+    component: PropTypes.string.isRequired,
 
     /**
      * An optional label to display above the group of `SelectionControl`s.
@@ -231,15 +228,15 @@ export default class SelectionControlGroup extends PureComponent {
     });
   }
 
-  componentDidMount() {
-    this._group = findDOMNode(this);
-  }
-
   _isChecked(value, controlValue, type) {
     return type === 'radio'
       ? value === controlValue
       : value.split(',').indexOf(controlValue) !== -1;
   }
+
+  _setGroup = (group) => {
+    this._group = group;
+  };
 
   _handleChange = (e) => {
     let value = e.target.value;
@@ -351,6 +348,7 @@ export default class SelectionControlGroup extends PureComponent {
     return (
       <Component
         {...props}
+        ref={this._setGroup}
         className={cn('md-selection-control-group', className)}
         onChange={this._handleChange}
         onKeyDown={radio ? this._handleKeyDown : null}
