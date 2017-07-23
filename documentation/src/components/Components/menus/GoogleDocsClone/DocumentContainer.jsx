@@ -3,12 +3,12 @@ import Card from 'react-md/lib/Cards/Card';
 
 import EditableDocument from './EditableDocument';
 
-const Playground = () => (
-  <div className="md-background google-docs-playground">
+const DocumentContainer = () => (
+  <div className="md-background menus__google-docs__document-container">
     <Card className="md-text-container">
       <EditableDocument />
     </Card>
   </div>
 );
 
-export default Playground;
+export default DocumentContainer;

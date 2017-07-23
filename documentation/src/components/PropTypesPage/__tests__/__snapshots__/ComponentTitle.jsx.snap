@@ -26,7 +26,11 @@ exports[`ComponentTitle should render correctly 1`] = `
       onTouchEnd={undefined}
       onTouchMove={undefined}
       onTouchStart={undefined}
-      style={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
     >
       <input
         className="md-text-field md-text md-text-field--margin"

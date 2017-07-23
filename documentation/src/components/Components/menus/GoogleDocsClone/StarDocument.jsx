@@ -4,7 +4,7 @@ import SelectionControl from 'react-md/lib/SelectionControls/SelectionControl';
 
 const Checkbox = injectTooltip(SelectionControl);
 
-export default () => (
+const StarDocument = () => (
   <Checkbox
     id="star-document"
     name="document-controls"
@@ -18,3 +18,4 @@ export default () => (
     uncheckedCheckboxIconChildren="star_border"
   />
 );
+export default StarDocument;

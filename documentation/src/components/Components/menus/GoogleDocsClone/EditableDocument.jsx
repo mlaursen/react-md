@@ -1,4 +1,4 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
 import CardText from 'react-md/lib/Cards/CardText';
 import FontIcon from 'react-md/lib/FontIcons';
 import Menu from 'react-md/lib/Menus/Menu';
@@ -11,18 +11,9 @@ const anchor = {
 };
 
 export default class EditableDocument extends PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    children: PropTypes.node,
-  };
+  state = { visible: false };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { visible: false };
-  }
-
-  _open = () => {
+  show = () => {
     // It can already be open if the user right clicks in another location
     // while it is currently open. The context menu callback will still be
     // called.
@@ -31,7 +22,7 @@ export default class EditableDocument extends PureComponent {
     }
   };
 
-  _close = () => {
+  hide = () => {
     this.setState({ visible: false });
   };
 
@@ -51,8 +42,8 @@ export default class EditableDocument extends PureComponent {
         id="document-container"
         listId="highlighted-options"
         visible={visible}
-        onClose={this._close}
-        onContextMenu={this._open}
+        onClose={this.hide}
+        onContextMenu={this.show}
         toggle={textField}
         component={CardText}
         block

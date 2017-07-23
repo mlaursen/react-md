@@ -7,6 +7,8 @@ import MenuButtonExamples from './MenuButtonExamples';
 import MenuButtonExamplesRaw from '!!raw-loader!./MenuButtonExamples.jsx';
 import DropdownMenuExamples from './DropdownMenuExamples';
 import DropdownMenuExamplesRaw from './DropdownMenuExamples/code';
+import GoogleDocsClone from './GoogleDocsClone';
+import GoogleDocsCloneRaw from './GoogleDocsClone/code';
 
 const examples = [{
   title: 'Menu Button Examples',
@@ -33,6 +35,18 @@ some more interesting components than what is only available with the \`MenuButt
   `,
   code: DropdownMenuExamplesRaw,
   children: <DropdownMenuExamples />,
+}, {
+  title: 'Google Docs Clone',
+  description: `
+The following example is a Google docs clone with about 0.01% of the functionality! It is quite amazing
+if I do say so myself. The main purpose of this demo is to show how you can create cascading menus and
+custom context menus.
+
+> NOTE: This is a **very complex** example and there is a lot of code (1500+ lines). This should really only
+be viewed if you have a good understanding of the majority of the components in react-md
+  `,
+  code: GoogleDocsCloneRaw,
+  children: <GoogleDocsClone />,
 }];
 
 const Menus = () => <ExamplesPage description={README} examples={examples} />;
