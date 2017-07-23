@@ -27,7 +27,14 @@ export default class DrawerWithContent extends PureComponent {
     selected: undefined,
   };
 
+  componentWillMount() {
+    this.unmounted = false;
+  }
+
   componentDidMount() {
+    // There isn't a way to cancel requests with fetch at this time,
+    // so just make sure to not call setState if unmounted before
+    // response returns.
     fetch('https://unsplash.it/list')
       .then((response) => {
         if (response.ok) {
@@ -38,10 +45,18 @@ export default class DrawerWithContent extends PureComponent {
         error.response = response;
         throw error;
       }).then((json) => {
-        this.setState({ items: json.slice(5, 15), fetching: false });
+        if (!this.unmounted) {
+          this.setState({ items: json.slice(5, 15), fetching: false });
+        }
       }).catch(() => {
-        this.setState({ error: true, fetching: false });
+        if (!this.unmounted) {
+          this.setState({ error: true, fetching: false });
+        }
       });
+  }
+
+  componentWillUnmount() {
+    this.unmounted = true;
   }
 
   selectPhoto = (photo) => {

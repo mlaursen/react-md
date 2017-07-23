@@ -9,18 +9,18 @@ import DocumentMenus from '!!raw-loader!./DocumentMenus/index.jsx';
 import DocumentMenu from '!!raw-loader!./DocumentMenus/DocumentMenu.jsx';
 import FileMenu from '!!raw-loader!./DocumentMenus/FileMenu.jsx';
 import EditMenu from '!!raw-loader!./DocumentMenus/EditMenu.jsx';
-import ViewMenu from '!!raw-loader!./DocumentMenus/ViewMenu';
-import InsertMenu from '!!raw-loader!./DocumentMenus/InsertMenu';
-import FormatMenu from '!!raw-loader!./DocumentMenus/FormatMenu';
-import ToolsMenu from '!!raw-loader!./DocumentMenus/ToolsMenu';
-import TableMenu from '!!raw-loader!./DocumentMenus/TableMenu';
-import AddOnsMenu from '!!raw-loader!./DocumentMenus/AddOnsMenu';
-import HelpMenu from '!!raw-loader!./DocumentMenus/HelpMenu';
+import ViewMenu from '!!raw-loader!./DocumentMenus/ViewMenu.jsx';
+import InsertMenu from '!!raw-loader!./DocumentMenus/InsertMenu.jsx';
+import FormatMenu from '!!raw-loader!./DocumentMenus/FormatMenu.jsx';
+import ToolsMenu from '!!raw-loader!./DocumentMenus/ToolsMenu.jsx';
+import TableMenu from '!!raw-loader!./DocumentMenus/TableMenu.jsx';
+import AddOnsMenu from '!!raw-loader!./DocumentMenus/AddOnsMenu.jsx';
+import HelpMenu from '!!raw-loader!./DocumentMenus/HelpMenu.jsx';
 import CheckboxListItem from '!!raw-loader!./DocumentMenus/CheckboxListItem.jsx';
 import UnicodeIcon from '!!raw-loader!./DocumentMenus/UnicodeIcon.jsx';
 import constants from '!!raw-loader!./DocumentMenus/constants.js';
-import DocumentContainer from '!!raw-loader!./DocumentContainer';
-import EditableDocument from '!!raw-loader!./EditableDocument';
+import DocumentContainer from '!!raw-loader!./DocumentContainer.jsx';
+import EditableDocument from '!!raw-loader!./EditableDocument.jsx';
 import styles from '!!raw-loader!./_styles.scss';
 
 export default `/* GoogleDocsClone.jsx */

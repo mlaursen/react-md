@@ -77,6 +77,12 @@ export default class App extends PureComponent {
     dispatch: PropTypes.func.isRequired,
   };
 
+  constructor(props) {
+    super();
+
+    this.state = { key: this.getCurrentKey(props) };
+  }
+
   componentDidMount() {
     const { history, dispatch } = this.props;
     dispatch(updateLocation(this.props.location));
@@ -89,15 +95,35 @@ export default class App extends PureComponent {
     scrollRestoration();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location !== nextProps.location) {
+      this.setState({ key: this.getCurrentKey(nextProps) });
+    }
+  }
+
   componentDidUpdate() {
     scrollRestoration();
   }
+
+  getCurrentKey = ({ location: { pathname, search } }) => {
+    // Want to animate content on everything except for routing example pages
+    const routing = pathname.match(/routing-examples/);
+    if (routing && this.state && this.state.key) {
+      return this.state.key;
+    } else if (routing) {
+      return 'routing-example';
+    }
+
+
+    return `${pathname}${search}`;
+  };
 
   updateMedia = (drawerType, media) => {
     this.props.dispatch(updateMedia(drawerType, media));
   };
 
   render() {
+    const { key } = this.state;
     const {
       defaultMedia,
       toolbarTitle,
@@ -142,7 +168,7 @@ export default class App extends PureComponent {
         })}
       >
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
-        <Routes />
+        <Routes key={key} />
         {bottomNav}
         <Footer />
       </NavigationDrawer>

@@ -23,7 +23,7 @@ export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: Pr
 // routing examples
 export const BottomNavigationRouting = asyncComponent(() => import(/* webpackChunkName: BottomNavigationRouting */ 'components/Components/bottom-navigations/RoutingExample'));
 export const DrawerRouting = asyncComponent(() => import(/* webpackChunkName: DrawerRouting */ 'components/Components/drawers/RoutingExample'));
-export const NavigationDrawerDrawerRouting = asyncComponent(() => import(/* webpackChunkName: NavigationDrawerDrawerRouting */ 'components/Components/navigation-drawers/RoutingExample'));
+export const NavigationDrawerRouting = asyncComponent(() => import(/* webpackChunkName: NavigationDrawerRouting */ 'components/Components/navigation-drawers/RoutingExample'));
 
 // components
 export const Autocompletes = asyncComponent(() => import(/* webpackChunkName: Autocompletes */ 'components/Components/autocompletes'));
