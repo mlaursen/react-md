@@ -17,10 +17,18 @@ store.dispatch(updateLocale(locale));
 
 function loadIntl() {
   if (!global.Intl) {
-    return Promise.all([
-      import('intl'),
-      import(`intl/locale-data/jsonp/${__DEV__ ? 'en-US' : locale}`),
-    ]);
+    const imports = [import('intl')];
+    if (__DEV__) {
+      // Only include the minimal polyfills in dev mode to save some time
+      imports.push(
+        import('intl/locale-data/jsonp/en-US'),
+        import('intl/locale-data/jsonp/da-DK'),
+      );
+    } else {
+      imports.push(`intl/locale-data/jsonp/${locale}`);
+    }
+
+    return Promise.all(imports);
   }
 
   return null;

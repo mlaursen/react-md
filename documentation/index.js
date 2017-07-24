@@ -8,10 +8,19 @@ const hacker = require('require-hacker');
 const winston = require('winston');
 
 const RAW_LOADER = '!!raw-loader!./';
+const RAW_CLIENT_LOADER = '!!raw-loader!client';
 const RAW_COMPONENT_LOADER = '!!raw-loader!components';
 const RAW_SERVER_LOADER = '!!raw-loader!server';
+const CLIENT = path.resolve(process.cwd(), 'src', 'client');
 const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
 const SERVER = path.resolve(process.cwd(), 'src', 'server');
+
+function isCustomLoader(path) {
+  return path.indexOf(RAW_LOADER) !== -1
+    || path.indexOf(RAW_CLIENT_LOADER) !== -1
+    || path.indexOf(RAW_COMPONENT_LOADER) !== -1
+    || path.indexOf(RAW_SERVER_LOADER) !== -1;
+}
 
 /**
  * Need access to the manual code-sourcing with the raw-loader when doing ssr. I don't
@@ -22,12 +31,14 @@ const SERVER = path.resolve(process.cwd(), 'src', 'server');
  * When using the raw-loader, you **must** specify the file extension as well to get it to work.
  */
 hacker.global_hook('raw-loader', (path, module) => {
-  if (path.indexOf(RAW_LOADER) === -1 && path.indexOf(RAW_COMPONENT_LOADER) === -1 && path.indexOf(RAW_SERVER_LOADER) === -1) {
+  if (!isCustomLoader(path)) {
     return undefined;
   }
 
   let filePath = '';
-  if (path.match(RAW_COMPONENT_LOADER)) {
+  if (path.match(RAW_CLIENT_LOADER)) {
+    filePath = path.replace(RAW_CLIENT_LOADER, CLIENT);
+  } else if (path.match(RAW_COMPONENT_LOADER)) {
     filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
   } else if (path.match(RAW_SERVER_LOADER)) {
     filePath = path.replace(RAW_SERVER_LOADER, SERVER);
