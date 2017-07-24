@@ -681,8 +681,18 @@ export default class SelectField extends PureComponent {
       this._field.focus();
     }
 
+    let state;
+    if (this.props.required && !getField(this.props, this.state, 'value')) {
+      state = { error: true };
+    }
+
     if (typeof this.props.visible === 'undefined') {
-      this.setState({ visible: false });
+      state = state || {};
+      state.visible = false;
+    }
+
+    if (state) {
+      this.setState(state);
     }
   };
 
@@ -740,11 +750,16 @@ export default class SelectField extends PureComponent {
       this.props.onBlur(e);
     }
 
+    let { error } = this.state;
     const { isOpen, required } = this.props;
     const visible = typeof isOpen !== 'undefined' ? isOpen : getField(this.props, this.state, 'visible');
     const value = getField(this.props, this.state, 'value');
 
-    this.setState({ active: false, error: required && !visible && !value });
+    if (required && !visible) {
+      error = !value;
+    }
+
+    this.setState({ active: false, error });
   };
 
   _handleKeyDown = (e) => {
