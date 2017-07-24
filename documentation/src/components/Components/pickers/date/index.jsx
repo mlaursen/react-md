@@ -52,7 +52,7 @@ The \`DatePicker\` can also be updated with any of the
   code: FormattingRaw,
   children: <Formatting />,
 }, {
-  title: 'Auto OK and Min/MaX Dates',
+  title: 'Auto OK and Min/Max Dates',
   description: `
 The \`DatePicker\` can be updated so that when a user touches/clicks a date, it will automatically do the "OK" action
 of selecting the date and closing the dialog.

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
+import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 
 export default class Controlled extends PureComponent {
   state = {
@@ -43,16 +43,17 @@ export default class Controlled extends PureComponent {
     this.setState({ visible });
   };
 
-
   /**
    * The `onChange` callback provides the current formatted time string followed
-   * by the `Date` value and the event that triggered the change.
+   * by the `Date` value and the event that triggered the change. Since the `TimePicker`
+   * can only accept `value` that is `instanceof Date`, we need to set our internal state
+   * to the `Date` value instead of the `formattedValue`.
    *
-   * @param {String} value - the current value's formatted string
-   * @param {Date} dateValue - the current value
+   * @param {String} formattedValue - the current value's formatted string
+   * @param {Date} value - the current value
    * @param {Event} event - the event that triggered the change.
    */
-  handleChange = (value, dateValue, event) => { // eslint-disable-line no-unused-vars
+  handleChange = (formattedValue, value, event) => { // eslint-disable-line no-unused-vars
     this.setState({ value });
   };
 
@@ -67,9 +68,9 @@ export default class Controlled extends PureComponent {
           Open and close after 3 seconds
         </Button>
         <div className="md-grid">
-          <DatePicker
-            id="date-picker-controlled"
-            label="Select date"
+          <TimePicker
+            id="time-picker-controlled"
+            label="Select time"
             visible={visible}
             value={value}
             className="md-cell"

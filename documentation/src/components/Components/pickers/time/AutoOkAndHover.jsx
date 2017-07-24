@@ -1,14 +1,16 @@
 import React from 'react';
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 
-// or
-// import { TimePicker } from 'react-md/lib/Pickers';
-
-
-const HoverExample = () => (
+const AutoOkAndHover = () => (
   <div className="md-grid">
     <TimePicker
-      id="appointment"
+      id="time-picker-auto-ok"
+      placeholder="Select an appointment time"
+      className="md-cell md-cell--bottom"
+      autoOk
+    />
+    <TimePicker
+      id="time-picker-hover-mode"
       placeholder="Select an appointment time"
       className="md-cell md-cell--bottom"
       hoverMode
@@ -16,4 +18,4 @@ const HoverExample = () => (
   </div>
 );
 
-export default HoverExample;
+export default AutoOkAndHover;
