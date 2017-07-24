@@ -42,7 +42,7 @@ more information about images.
 Since one of the main use cases of the \`Drawer\` is to act as navigation, there is _some_ support for integrating
 with \`react-router\`.
 
-Since my site uses path params to fetch documentation/examples/sassdocs, you will need to navigate to a different
+My site uses path params to fetch documentation/examples/sassdocs, you will need to navigate to a different
 route to actually view the demo. Please click the link below to see this example in action. The code for the example
 is still available here by clicking the code expander button.
   `,
