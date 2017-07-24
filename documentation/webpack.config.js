@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 const client = './src/client/index.jsx';
 const dist = path.resolve(process.cwd(), 'public', 'assets');
@@ -36,12 +35,6 @@ const PROD_PLUGINS = [
   new WebpackMd5Hash(),
   new ManifestPlugin(),
   new webpack.HashedModuleIdsPlugin(),
-  // Inline the webpackManifest variable for SSR
-  new ChunkManifestPlugin({
-    filename: 'chunk-manifest.json',
-    manifestVariable: 'webpackManifest',
-    inlineManifest: false,
-  }),
   new webpack.optimize.CommonsChunkPlugin({
     name: ['chunks', 'manifest'],
     minChunks: Infinity,

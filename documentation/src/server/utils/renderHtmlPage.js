@@ -9,7 +9,7 @@ try {
   }
 
   /* eslint-disable global-require */
-  const manifestJSON = require('../../../public/assets/chunk-manifest.json');
+  const manifestJSON = require('../../../public/assets/manifest.json');
 
   manifest = `<script>
 //<![CDATA[
