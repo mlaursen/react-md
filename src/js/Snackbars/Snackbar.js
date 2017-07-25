@@ -21,7 +21,7 @@ export default class Snackbar extends PureComponent {
         PropTypes.node,
         PropTypes.shape({
           label: PropTypes.node,
-          children: PropTypes.node.isRequired,
+          children: PropTypes.node,
           onClick: PropTypes.func,
         }),
       ]),

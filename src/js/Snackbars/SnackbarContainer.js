@@ -73,7 +73,9 @@ export default class SnackbarContainer extends PureComponent {
         PropTypes.node,
         PropTypes.shape({
           onClick: PropTypes.func,
-          label: PropTypes.node.isRequired,
+          children: PropTypes.node,
+          // Deprecated
+          label: PropTypes.node,
         }),
       ]),
     })).isRequired,
