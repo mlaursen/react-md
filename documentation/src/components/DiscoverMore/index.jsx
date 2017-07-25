@@ -9,6 +9,7 @@ import {
   Showcases,
   Community,
   Contributing,
+  Testing,
   NotFound,
 } from 'routes';
 
@@ -29,6 +30,8 @@ const DiscoverMore = ({ match: { params: { location, version } }, history, stati
     return <Community staticContext={staticContext} />;
   } else if (location === 'routing-examples') {
     return null;
+  } else if (location === 'testing') {
+    return <Testing staticContext={staticContext} />;
   }
 
   return <NotFound history={history} staticContext={staticContext} />;

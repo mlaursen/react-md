@@ -16,6 +16,7 @@ export const UpgradeV110 = asyncComponent(() => import(/* webpackChunkName: Upgr
 export const Showcases = asyncComponent(() => import(/* webpackChunkName: Showcases */ 'components/DiscoverMore/Showcases'));
 export const Community = asyncComponent(() => import(/* webpackChunkName: Community */ 'components/DiscoverMore/Community'));
 export const Contributing = asyncComponent(() => import(/* webpackChunkName: Contributing */ 'components/DiscoverMore/Contributing'));
+export const Testing = asyncComponent(() => import(/* webpackChunkName: Testing */ 'components/DiscoverMore/Testing'));
 
 export const SassDocPage = asyncComponent(() => import(/* webpackChunkName: SassDocPage */ 'components/SassDocPage'));
 export const PropTypesPage = asyncComponent(() => import(/* webpackChunkName: PropTypesPage */ 'components/PropTypesPage'));

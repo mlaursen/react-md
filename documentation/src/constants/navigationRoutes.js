@@ -88,6 +88,7 @@ const navigationRoutes = [{
         'navigation-drawers',
       ],
     },
+    'testing',
   ],
 }, {
   to: 'components',

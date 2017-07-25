@@ -16,6 +16,7 @@ export const UpgradeV110 = syncComponent('UpgradeV110', require('components/Disc
 export const Showcases = syncComponent('Showcases', require('components/DiscoverMore/Showcases'));
 export const Community = syncComponent('Community', require('components/DiscoverMore/Community'));
 export const Contributing = syncComponent('Contributing', require('components/DiscoverMore/Contributing'));
+export const Testing = syncComponent('Testing', require('components/DiscoverMore/Testing'));
 
 export const SassDocPage = syncComponent('SassDocPage', require('components/SassDocPage'));
 export const PropTypesPage = syncComponent('PropTypesPage', require('components/PropTypesPage'));

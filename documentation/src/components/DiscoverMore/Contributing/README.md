@@ -16,18 +16,22 @@ For code issues, please include:
 - Browser and browser version
 - Device type (phone, desktop, tablet, etc)
 
-For visual or layout problems, please include images or animated gifs to help explain the
-issue.
-
-For new features, please link to the Material Design spec or list all specifications
-with images.
+When you can, please provide images, videos, or gifs to help explain the issue. This will save me
+time on figuring out what the issue is. When there is a new feature, please give example use cases
+and a detailed description or point to the Material Design spec.
 
 ### Creating a new Issue
-Please begin with the `ComponentName` where appropriate and use a succinct description. This
-will help other users find similar issues.
+Please create the ticket with the format: `[ComponentName] - Descriptive Title`. This will make
+searching for component related issues easier and help me group related bugs/features together.
 
-Multiple topics should not be grouped together. It is better to create multiple issues with
-a specific target.
+Example:
+
+```text
+[Autocomplete] - The Autocomplete does not do ajax calls for me
+
+The `Autocomplete` is a neat component, but it doesn't actually fetch data from the server for me
+when the user types. This would be a cool feature because of X, Y, and sometimes Z.
+```
 
 ### Pull Requests
 Please keep your pull requests small and focused on a single issue. This will help with
@@ -42,7 +46,7 @@ an `x`. So if the next release is `v1.0.1`, the active development branch will b
 ```bash
 $ git clone git@github.com:<username>/react-md.git
 
-$ cd react-md && npm install
+$ cd react-md && yarn
 ```
 
 If you have an existing local repository, please update it before you start to limit
@@ -58,7 +62,7 @@ $ git checkout release/1.0.x
 $ git fetch upstream release/1.0.x
 $ git rebase
 $ git checkout -b bugfix/My-Topic-Branch
-$ npm update
+$ yarn
 ```
 
 The raw source files will be in the `src` directory.
