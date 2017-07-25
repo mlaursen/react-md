@@ -1,17 +1,17 @@
 import React, { PureComponent } from 'react';
+import Button from 'react-md/lib/Buttons/Button';
+import FontIcon from 'react-md/lib/FontIcons';
 import Dialog from 'react-md/lib/Dialogs';
 import Slider from 'react-md/lib/Sliders';
-import FontIcon from 'react-md/lib/FontIcons';
-import Button from 'react-md/lib/Buttons/Button';
 
-export default class IconExamples extends PureComponent {
+export default class WithIcons extends PureComponent {
   state = { visible: false };
 
-  _openVolumes = () => {
+  show = () => {
     this.setState({ visible: true });
   };
 
-  _closeVolumes = () => {
+  hide = () => {
     this.setState({ visible: false });
   };
 
@@ -20,38 +20,31 @@ export default class IconExamples extends PureComponent {
 
     return (
       <div>
-        <Button
-          raised
-          onClick={this._openVolumes}
-          secondary
-          className="margin-centered"
-        >
-          Change Some Values
+        <Button raised secondary onClick={this.show}>
+          Change volume
         </Button>
         <Dialog
-          id="volumeChanger"
+          id="volume-changer"
           visible={visible}
-          onHide={this._closeVolumes}
-          dialogStyle={{ width: 320 }}
+          onHide={this.hide}
           title="Volumes"
-          contentClassName="padding-top-24"
         >
           <Slider
-            id="mediaVolume"
+            id="volume-changer-media"
             label="Media volume"
             leftIcon={<FontIcon>volume_up</FontIcon>}
             defaultValue={5}
             max={12}
           />
           <Slider
-            id="alarmVolume"
+            id="volumn-changer-alarm"
             label="Alarm volume"
             leftIcon={<FontIcon>alarm</FontIcon>}
             defaultValue={8}
             max={12}
           />
           <Slider
-            id="ringVolume"
+            id="volumn-changer-ring"
             label="Ring volume"
             leftIcon={<FontIcon>vibration</FontIcon>}
             defaultValue={10}
