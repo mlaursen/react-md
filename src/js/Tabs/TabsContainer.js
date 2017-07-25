@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
-import ResizeObserver from 'resize-observer-polyfill';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import between from '../utils/PropTypes/between';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import Paper from '../Papers/Paper';
 import TabPanel from './TabPanel';
 
@@ -201,23 +201,6 @@ export default class TabsContainer extends PureComponent {
   }
 
   componentDidMount() {
-    this._observer = new ResizeObserver((entries) => {
-      if (!this._container || !this._panel) {
-        return;
-      }
-
-      for (const entry of entries) {
-        if (entry !== this._panel) {
-          return;
-        }
-
-        const { offsetHeight } = entry.target;
-        if (offsetHeight && this.state.panelHeight !== offsetHeight) {
-          this.setState({ panelHeight: offsetHeight });
-        }
-      }
-    });
-
     this._resizePanel();
   }
 
@@ -228,10 +211,6 @@ export default class TabsContainer extends PureComponent {
     if (prevIndex !== currIndex) {
       this._resizePanel();
     }
-  }
-
-  componentWillUnmount() {
-    this._observer = null;
   }
 
   _handleTabChange = (index, tabId, tabControlsId, tabChildren, event) => {
@@ -258,13 +237,6 @@ export default class TabsContainer extends PureComponent {
     }
 
     const activePanel = this._container.querySelector('.md-tab-panel[aria-hidden=false]');
-    if (this._panel !== activePanel) {
-      this._panel = activePanel;
-      if (this._panel) {
-        this._observer.observe(this._panel);
-      }
-    }
-
     if (activePanel && this.state.panelHeight !== activePanel.offsetHeight) {
       this.setState({ panelHeight: activePanel.offsetHeight });
     }
@@ -319,6 +291,7 @@ export default class TabsContainer extends PureComponent {
           component={panelComponent}
           controlledById={tab.props.id || `${tabId}-${index}`}
         >
+          <ResizeObserver watchHeight onResize={this._resizePanel} />
           {tab.props.children}
         </TabPanel>
       );
