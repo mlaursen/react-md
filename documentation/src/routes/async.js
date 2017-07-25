@@ -57,10 +57,7 @@ export const TimePickers = asyncComponent(() => import(/* webpackChunkName: Time
 export const CircularProgress = asyncComponent(() => import(/* webpackChunkName: CircularProgress */ 'components/Components/progress/circular'));
 export const LinearProgress = asyncComponent(() => import(/* webpackChunkName: LinearProgress */ 'components/Components/progress/linear'));
 export const SelectFields = asyncComponent(() => import(/* webpackChunkName: SelectFields */ 'components/Components/select-fields'));
-export const SelectionControls = asyncComponent(() => import(/* webpackChunkName: SelectionControls */ 'components/Components/selection-controls/selection-controls'));
-export const Checkboxes = asyncComponent(() => import(/* webpackChunkName: Checkboxes */ 'components/Components/selection-controls/checkboxes'));
-export const Radios = asyncComponent(() => import(/* webpackChunkName: Radios */ 'components/Components/selection-controls/radios'));
-export const Switches = asyncComponent(() => import(/* webpackChunkName: Switches */ 'components/Components/selection-controls/switches'));
+export const SelectionControls = asyncComponent(() => import(/* webpackChunkName: SelectionControls */ 'components/Components/selection-controls'));
 export const Sliders = asyncComponent(() => import(/* webpackChunkName: Sliders */ 'components/Components/sliders'));
 export const Snackbars = asyncComponent(() => import(/* webpackChunkName: Snackbars */ 'components/Components/snackbars'));
 export const Subheaders = asyncComponent(() => import(/* webpackChunkName: Subheaders */ 'components/Components/subheaders'));

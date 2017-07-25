@@ -16,7 +16,7 @@ function getComponentAndPath(section, component) {
   }
 
   let path = toPluralCaterpillar(section);
-  if (path.match(/(helpers|pickers|progress|selection-controls)/)) {
+  if (path.match(/(helpers|pickers|progress)/)) {
     path += `/${toPluralCaterpillar(component)}`;
   }
 

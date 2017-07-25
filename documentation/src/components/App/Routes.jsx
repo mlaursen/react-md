@@ -28,6 +28,10 @@ const Routes = () => (
     <Redirect from="/components/helpers/focus-container" to="/components/helpers/focus-containers" />
     <Redirect from="/components/helpers/icon-separator" to="/components/helpers/icon-separators" />
     <Redirect from="/components/helpers/portal" to="/components/helpers/portals" />
+    <Redirect from="/components/selection-controls/checkboxes" to="/components/selection-controls" />
+    <Redirect from="/components/selection-controls/radios" to="/components/selection-controls" />
+    <Redirect from="/components/selection-controls/selection-control" to="/components/selection-controls" />
+    <Redirect from="/components/selection-controls/switches" to="/components/selection-controls" />
     <Route path="/components/:section/:component" component={Components} />
     <Route path="/components/:component" component={Components} />
     <Redirect from="/discover-more/routing-examples" to="/discover-more/routing-examples/bottom-navigations" />

@@ -33,10 +33,9 @@ export const componentRoutes = [
   }, {
     to: 'progress',
     routes: ['circular', 'linear'],
-  }, 'select-fields', {
-    to: 'selection-controls',
-    routes: ['selection-controls', 'checkboxes', 'radios', 'switches'],
   },
+  'select-fields',
+  'selection-controls',
   'sliders',
   'snackbars',
   'subheaders',

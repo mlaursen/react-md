@@ -23,15 +23,10 @@ describe('sassdocs', () => {
         });
       });
 
-      it('should not add the component to the ids if the section matches progress, selection controls, or pickers', () => {
+      it('should not add the component to the ids if the section matches progress, or pickers', () => {
         expect(sassdocRequest('date', 'pickers')).toEqual({
           type: SASSDOC_REQUEST,
           payload: { ids: ['pickers'] },
-        });
-
-        expect(sassdocRequest('selection-control', 'selection-controls')).toEqual({
-          type: SASSDOC_REQUEST,
-          payload: { ids: ['selection-controls'] },
         });
 
         expect(sassdocRequest('linear', 'progress')).toEqual({

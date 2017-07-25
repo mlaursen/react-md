@@ -11,11 +11,6 @@ const searchRoutes = baseRoutes.map((route) => {
   if (name.match(/pickers|progress/)) {
     const [section, component] = name.split('/');
     name = `${component}-${section}`;
-  } else if (name.match(/selection-controls/)) {
-    name = name.substring(name.indexOf('/') + 1);
-    if (!name.endsWith('s')) {
-      name += 's';
-    }
   } else if (name.match(/upgrade/)) {
     upgrade = true;
     const [, version] = name.split('/');

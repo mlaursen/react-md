@@ -47,9 +47,6 @@ import {
   LinearProgress,
   SelectFields,
   SelectionControls,
-  Checkboxes,
-  Radios,
-  Switches,
   Sliders,
   Snackbars,
   Subheaders,
@@ -178,15 +175,6 @@ const Components = (props) => {
       break;
     case 'selection-controls':
       Component = SelectionControls;
-      break;
-    case 'checkboxes':
-      Component = Checkboxes;
-      break;
-    case 'radios':
-      Component = Radios;
-      break;
-    case 'switches':
-      Component = Switches;
       break;
     case 'sliders':
       Component = Sliders;

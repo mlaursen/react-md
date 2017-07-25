@@ -7,7 +7,7 @@ export const REACT_MD_JS = path.join(REACT_MD_SRC, 'js');
 export const REACT_MD_SCSS = path.join(REACT_MD_SRC, 'scss');
 export const REACT_MD_PROP_TYPES = path.join(REACT_MD_JS, 'utils', 'PropTypes');
 
-export const NESTED_GROUPS = ['helpers', 'selection-controls', 'pickers', 'progress'];
+export const NESTED_GROUPS = ['helpers', 'pickers', 'progress'];
 
 const SERVER_PATH = path.resolve(process.cwd(), 'src', 'server');
 const DBS_PATH = path.join(SERVER_PATH, 'databases');

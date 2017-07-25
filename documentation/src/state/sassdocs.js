@@ -4,7 +4,7 @@ export const SASSDOC_REQUEST = 'SASSDOC_REQUEST';
 
 export function sassdocRequest(component, section) {
   let ids;
-  if (section && section.match(/progress|selection-controls|pickers/)) {
+  if (section && section.match(/progress|pickers/)) {
     ids = [section];
   } else {
     ids = [section, component].filter(s => !!s);

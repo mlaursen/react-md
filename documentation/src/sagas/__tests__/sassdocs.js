@@ -56,38 +56,38 @@ describe('watchSassdocRequests', () => {
 
   it('should correctly handle sassdocs that have a section', async () => {
     const sagaTester = new SagaTester({ initialState: { sassdocs: {} } });
-    const data = { name: 'selection-controls' };
+    const data = { name: 'layovers' };
     fetchSassdoc.mockImplementation(() => data);
     sagaTester.start(watchSassdocRequests);
-    sagaTester.dispatch(sassdocRequest('selection-control', 'selection-controls'));
+    sagaTester.dispatch(sassdocRequest('layovers', 'helpers'));
     sagaTester.dispatch(done());
 
     await sagaTester.waitFor(DONE);
-    expect(fetchSassdoc).toBeCalledWith('selection-controls');
+    expect(fetchSassdoc).toBeCalledWith('helpers/layovers');
     const expected = [
-      sassdocRequest('selection-control', 'selection-controls'),
-      sassdocSuccess(['selection-controls'], data),
+      sassdocRequest('layovers', 'helpers'),
+      sassdocSuccess(['helpers', 'layovers'], data),
       done(),
     ];
     expect(sagaTester.getCalledActions()).toEqual(expected);
   });
 
-  it('should correctly handle sassdocs that have a section', async () => {
+  it('should correctly handle sassdocs that have a section and existing data', async () => {
     const sagaTester = new SagaTester({
       initialState: {
         sassdocs: {
-          'selection-controls': { name: 'selection-controls' },
+          helpers: { layovers: [{ name: 'Layovers' }] },
         },
       },
     });
     sagaTester.start(watchSassdocRequests);
-    sagaTester.dispatch(sassdocRequest('selection-control', 'selection-controls'));
+    sagaTester.dispatch(sassdocRequest('layovers', 'helpers'));
     sagaTester.dispatch(done());
 
     await sagaTester.waitFor(DONE);
     expect(fetchSassdoc).not.toBeCalled();
     const expected = [
-      sassdocRequest('selection-control', 'selection-controls'),
+      sassdocRequest('layovers', 'helpers'),
       done(),
     ];
     expect(sagaTester.getCalledActions()).toEqual(expected);
