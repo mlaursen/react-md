@@ -15,7 +15,7 @@ it might not work as expected.
 
 ```bash
 mlaursen @ ~/code/react-md/documentation
-$ yarn
+$ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
 $ vim .env              # change port to whatever you want
 $ yarn dev              # watch react-md source changes and run dev server
