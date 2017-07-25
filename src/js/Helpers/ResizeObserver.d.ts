@@ -3,6 +3,8 @@ import * as React from 'react';
 interface ResizeParams {
   height: number;
   width: number;
+  scrollHeight: number;
+  scrollWidth: number;
 }
 
 export interface ResizeObserverProps {

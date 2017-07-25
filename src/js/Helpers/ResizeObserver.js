@@ -45,10 +45,10 @@ export default class ResizeObserver extends PureComponent {
 
     /**
      * A function to call when the height or width has been changed and that attribute is being watched.
-     * The callback will include the current height and width of the target.
+     * The callback will include the current height, width, scrollHeight and scrollWidth of the target.
      *
      * ```js
-     * onResize({ height: nextHeight, width: nextWidth });
+     * onResize({ height: nextHeight, width: nextWidth, scrollHeight: nextScrollHeight, scrollWidth: nextScrollWidth });
      * ```
      */
     onResize: PropTypes.func.isRequired,
@@ -79,6 +79,8 @@ export default class ResizeObserver extends PureComponent {
   _observer = null;
   _height = null;
   _width = null;
+  _scrollHeight = null;
+  _scrollWidth = null;
 
   _getTarget(container, target) {
     if (target === null || (target && typeof target !== 'string')) {
@@ -106,7 +108,6 @@ export default class ResizeObserver extends PureComponent {
     if (!this._observer || !this._target) {
       return;
     }
-    const { watchHeight, watchWidth, onResize } = this.props;
 
     for (const entry of entries) {
       if (!entry) {
@@ -114,13 +115,21 @@ export default class ResizeObserver extends PureComponent {
       }
 
       const { height, width } = entry.contentRect;
-      if ((watchHeight && (height !== this._height)) || (watchWidth && width !== this._width)) {
+      const { scrollHeight, scrollWidth } = entry.target;
+      if (this._isHeightChange(height, scrollHeight) || this._isWidthChange(width, scrollWidth)) {
         this._height = height;
         this._width = width;
-        onResize({ height, width });
+        this._scrollHeight = scrollHeight;
+        this._scrollWidth = scrollWidth;
+        this.props.onResize({ height, width, scrollHeight, scrollWidth });
       }
     }
   };
+
+  _isHeightChange = (height, scrollHeight) => this.props.watchHeight
+    && (height !== this._height || scrollHeight !== this._scrollHeight);
+  _isWidthChange = (width, scrollWidth) => this.props.watchWidth
+    && (width !== this._width || scrollWidth !== this._scrollWidth);
 
   _handleRef = (container) => {
     if (container) {
