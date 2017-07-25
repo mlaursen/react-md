@@ -1,7 +1,12 @@
+@import '~globals';
+
 .typography-container {
   .md-display-4,
   .md-display-3 {
-    overflow: auto;
     white-space: nowrap;
+
+    @media (max-width: #{$md-tablet-min-width - 1}) {
+      overflow: auto;
+    }
   }
 }

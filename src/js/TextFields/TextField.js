@@ -557,7 +557,7 @@ export default class TextField extends PureComponent {
     if (!font) {
       // font-style font-variant font-weight font-size/line-height font-family
       const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
-      font = `${styles.fontstyles} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
+      font = `${styles.fontStyle} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
     }
 
     const { max } = this.props.resize;
