@@ -1,20 +1,29 @@
-import { kebabCase } from 'lodash/string';
-import { toCaterpillarCase } from 'utils/strings';
+import { repeat } from 'lodash';
 import updateMarkdownLinks, { MANUAL_DOCGEN_DEFINTIION_REGEX } from './updateMarkdownLinks.js';
 
+function tab(amt) {
+  return repeat(' ', amt * 2);
+}
+
 /* eslint-disable no-use-before-define */
-export function formatOneOf(values) {
-  return `oneOf([${values.map(value => value.value).join(', ')}])`;
+export function formatOneOf(values, depth) {
+  return `${tab(depth)}oneOf([
+${tab(depth + 1)}${values.map(value => value.value).join(`,\n${tab(depth + 1)}`)}
+${tab(depth)}])`;
 }
 
-export function formatOneOfType(values, customPropTypes, manualDefinition) {
-  return `oneOfType([${values.map(value => formatType(value, customPropTypes, manualDefinition)).join(', ')}])`;
+export function formatOneOfType(values, customPropTypes, manualDefinition, depth) {
+  return `${tab(depth)}oneOfType([
+${tab(depth + 1)}${values.map(value => formatType(value, customPropTypes, manualDefinition, depth + 1)).join(`,\n${tab(depth + 1)}`)}
+${tab(depth)}])`;
 }
 
-export function formatShape(shape, customPropTypes, manualDefinition) {
-  return `shape({ ${
-    Object.keys(shape).map(key => `${key}: ${formatType(shape[key], customPropTypes, manualDefinition)}`).join(', ')
-  } })`;
+export function formatShape(shape, customPropTypes, manualDefinition, depth) {
+  const parts = Object.keys(shape)
+    .map(key => `${key}: ${formatType(shape[key], customPropTypes, manualDefinition, depth + 1).replace(/^ +/, '')}`)
+    .join(`,\n${tab(depth + 1)}`);
+
+  return `${tab(depth)}shape({\n${tab(depth + 1)}${parts}\n${tab(depth)}})`;
 }
 
 export function formatCustom(raw, customPropTypes, manualDefinition) {
@@ -34,16 +43,16 @@ export function addRequired(value, required) {
   return `${value}${required ? '.isRequired' : ''}`;
 }
 
-export function formatType({ name, value, raw, required }, customPropTypes, manualDefinition) {
+export function formatType({ name, value, raw, required }, customPropTypes, manualDefinition, depth = 0) {
   switch (name) {
     case 'union':
-      return addRequired(formatOneOfType(value, customPropTypes, manualDefinition), required);
+      return addRequired(formatOneOfType(value, customPropTypes, manualDefinition, depth), required);
     case 'arrayOf':
-      return addRequired(`${name}(${formatType(value, customPropTypes, manualDefinition)})`, required);
+      return addRequired(`${name}(${formatType(value, customPropTypes, manualDefinition, depth)})`, required);
     case 'enum':
-      return addRequired(formatOneOf(value));
+      return addRequired(formatOneOf(value, depth));
     case 'shape':
-      return addRequired(formatShape(value, customPropTypes, manualDefinition));
+      return addRequired(formatShape(value, customPropTypes, manualDefinition, depth));
     case 'instanceOf':
       return addRequired(`${name}(${value})`);
     case 'custom':
@@ -58,7 +67,7 @@ export function formatType({ name, value, raw, required }, customPropTypes, manu
  */
 export default function prettifyProp(prop, propName, customPropTypes, file) {
   let { description, defaultValue } = prop;
-  const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DOCGEN_DEFINTIION_REGEX));
+  const type = formatType(prop.type, customPropTypes, description.match(MANUAL_DOCGEN_DEFINTIION_REGEX), 0);
 
   if (description) {
     description = updateMarkdownLinks(description, file);
