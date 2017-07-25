@@ -119,11 +119,7 @@ $md-switch-ball-fallback-color: null !default;
 
   .md-selection-control-label {
     align-items: center;
-    display: flex;
-  }
-
-  .md-selection-control-toggle {
-    display: inline-block;
+    display: inline-flex;
   }
 
   @if $include-group {
