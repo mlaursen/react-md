@@ -358,6 +358,12 @@ export default class TextField extends PureComponent {
       disableShrink: PropTypes.bool,
     }),
 
+    /**
+     * Boolean if the TextField is in a toolbar and acting as a title. This will apply additional styles to the
+     * text field to make it look like the toolbar's title.
+     */
+    toolbar: PropTypes.bool,
+
     icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
@@ -677,6 +683,7 @@ export default class TextField extends PureComponent {
       onMouseLeave,
       ink,
       inlineIndicator,
+      toolbar,
       icon, // deprecated
       /* eslint-disable no-unused-vars */
       label: propLabel,
@@ -793,7 +800,7 @@ export default class TextField extends PureComponent {
         type={type}
         label={label}
         style={inputStyle}
-        className={inputClassName}
+        className={cn({ 'md-text-field--toolbar': toolbar }, inputClassName)}
         disabled={disabled}
         customSize={customSize}
         fullWidth={fullWidth}

@@ -422,6 +422,11 @@ export default class Autocomplete extends PureComponent {
      * @see {@link Helpers/Layovers#fixedTo}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * @see {@link TextFields#toolbar}
+     */
+    toolbar: PropTypes.bool,
   };
 
   static defaultProps = {
