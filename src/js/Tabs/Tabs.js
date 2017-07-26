@@ -1,10 +1,9 @@
 import React, { PureComponent, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { DESKTOP_MIN_WIDTH } from '../constants/media';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import TabIndicator from './TabIndicator';
@@ -110,18 +109,6 @@ export default class Tabs extends PureComponent {
     defaultTabIndex: PropTypes.number.isRequired,
 
     /**
-     * The default media to render the tabs for. This is really just used for server side rendering.
-     * Once the component has mounted, it will resize automatically.
-     */
-    defaultMedia: PropTypes.oneOf(['mobile', 'tablet', 'desktop']).isRequired,
-
-    /**
-     * The min width to use for rendering the tabs for desktops. mobile and tablet is not used
-     * because they share the same styles.
-     */
-    desktopMinWidth: PropTypes.number.isRequired,
-
-    /**
      * When the `overflowMenu` prop is false, this will be used to render the "next slice of tabs"
      * when there are too many tabs to display at once on desktop screens.
      */
@@ -162,13 +149,19 @@ export default class Tabs extends PureComponent {
      * This will be to render the icon to the right of the label.
      */
     overflowMenuIconClassName: PropTypes.string,
+
+    /**
+     * Boolean if the tabs are currently rendered on a mobile or tablet device. This is used to calculate
+     * overflow/padding on the tabs.
+     */
+    mobile: PropTypes.bool,
+    defaultMedia: deprecated(PropTypes.oneOf(['mobile', 'tablet', 'desktop']), 'Use `mobile` instead'),
+    desktopMinWidth: deprecated(PropTypes.number, 'Use `mobile` instead.'),
   };
 
   static defaultProps = {
     component: 'ul',
     defaultTabIndex: 0,
-    defaultMedia: 'mobile',
-    desktopMinWidth: DESKTOP_MIN_WIDTH,
     nextIconChildren: 'keyboard_arrow_right',
     previousIconChildren: 'keyboard_arrow_left',
     overflowMenuLabel: 'More',
@@ -179,8 +172,7 @@ export default class Tabs extends PureComponent {
     super(props);
 
     const defaultTabIndex = typeof props.activeTabIndex === 'undefined' ? props.defaultTabIndex : props.activeTabIndex;
-    const mobile = typeof window !== 'undefined' ? this._isMobile(props) : props.defaultMedia !== 'desktop';
-    const indicatorWidth = mobile ? MOBILE_TAB_MIN_WIDTH : DESKTOP_TAB_MIN_WIDTH;
+    const indicatorWidth = props.mobile ? MOBILE_TAB_MIN_WIDTH : DESKTOP_TAB_MIN_WIDTH;
     this.state = {
       indicatorWidth,
       indicatorOffset: indicatorWidth * defaultTabIndex,
@@ -224,11 +216,6 @@ export default class Tabs extends PureComponent {
     return typeof props.alignToKeyline === 'boolean'
       ? props.alignToKeyline
       : Children.toArray(props.children).filter(child => !!child).length > 3;
-  }
-
-  _isMobile(props) {
-    const { desktopMinWidth: min } = props;
-    return typeof window !== 'undefined' && !window.matchMedia(`screen and (min-width: ${min}px)`).matches;
   }
 
   _calcPaddingLeft(container, mobile) {
@@ -281,13 +268,8 @@ export default class Tabs extends PureComponent {
   }
 
   _setContainer = (container) => {
-    this._container = findDOMNode(container);
+    this._container = container;
     this._positionElements(this._container !== null);
-    if (this._container !== null) {
-      const { offsetHeight, offsetWidth } = this._container;
-      this._height = offsetHeight;
-      this._width = offsetWidth;
-    }
   };
 
   _positionElements = (initialRender) => {
@@ -297,7 +279,7 @@ export default class Tabs extends PureComponent {
     }
 
     const { centered, overflowMenu } = this.props;
-    const mobile = this._isMobile(this.props);
+    const { mobile } = this.props;
 
     let paddingLeft;
     if (!centered && this._shouldAlign(this.props)) {
@@ -429,10 +411,13 @@ export default class Tabs extends PureComponent {
       /* eslint-disable no-unused-vars */
       activeTabIndex: propActiveIndex,
       defaultTabIndex,
-      defaultMedia,
-      desktopMinWidth,
       onTabChange,
       alignToKeyline,
+      mobile,
+
+      // Depreacted
+      defaultMedia,
+      desktopMinWidth,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -507,7 +492,6 @@ export default class Tabs extends PureComponent {
     return (
       <Component
         {...props}
-        ref={this._setContainer}
         style={{ ...style, paddingLeft }}
         className={cn('md-tabs', {
           'md-tabs--pagination': overflowAtIndex && !overflowMenu,
@@ -516,7 +500,7 @@ export default class Tabs extends PureComponent {
         }, className)}
         role="tablist"
       >
-        <ResizeObserver watchWidth watchHeight onResize={this._positionElements} />
+        <ResizeObserver watchWidth watchHeight onResize={this._positionElements} elRef={this._setContainer} />
         {previousControl}
         {children}
         {nextControl}

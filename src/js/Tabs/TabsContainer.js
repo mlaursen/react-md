@@ -344,11 +344,11 @@ export default class TabsContainer extends PureComponent {
           {...swipeableViewsProps}
           style={swipeableViewsStyle}
           className={cn('md-tabs-content', {
-            'md-tabs-content--offset': fixed,
-            'md-tabs-content--offset-icon': fixed && labelAndIcon,
-            'md-tabs-content--offset-toolbar': fixed && toolbar,
-            'md-tabs-content--offset-toolbar-prominent': fixed && toolbar && prominentToolbar,
-            'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon,
+            'md-tabs-content--offset': !toolbar && !labelAndIcon && fixed,
+            'md-tabs-content--offset-icon': !toolbar && fixed && labelAndIcon,
+            'md-tabs-content--offset-toolbar': toolbar && fixed && !prominentToolbar && !labelAndIcon,
+            'md-tabs-content--offset-toolbar-prominent': toolbar && fixed && prominentToolbar && !labelAndIcon,
+            'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon && !prominentToolbar,
             'md-tabs-content--offset-toolbar-prominent-icon': fixed && toolbar && labelAndIcon && prominentToolbar,
           }, swipeableViewsClassName)}
           slideStyle={{ height: panelHeight, ...slideStyle }}

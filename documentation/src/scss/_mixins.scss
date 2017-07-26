@@ -5,9 +5,9 @@
   .custom-theme {
     @include style-logo-to-theme($primary, $secondary, $force);
     @include style-404-page-to-theme($primary, $secondary, $force);
-    @include style-links-to-theme($primary, $dark-theme, $force);
-    @include style-markdown-to-theme($dark-theme);
-    @include style-phone-emulator-to-theme($primary);
+    @include style-links-to-theme($primary, $dark-theme == false, $force);
+    @include style-markdown-to-theme($dark-theme == false);
+    @include style-phone-emulator-to-theme($primary, $dark-theme == false);
   }
 }
 
@@ -57,7 +57,7 @@
   }
 }
 
-@mixin style-links-to-theme($primary: $md-primary-color, $dark-theme: false, $force: false) {
+@mixin style-links-to-theme($primary: $md-primary-color, $light-theme: $md-light-theme, $force: false) {
   @if $force or $primary != $md-primary-color {
     .link:not(:hover) {
       color: $primary;
@@ -68,42 +68,55 @@
     }
   }
 
-  @if $force or $dark-theme {
+  @if $force or $light-theme != $md-light-theme {
     .link:hover {
       color: get-color('secondary', false);
     }
   }
 }
 
-@mixin style-markdown-to-theme($dark-theme) {
-  @if $dark-theme {
+@mixin style-markdown-to-theme($light-theme) {
+  @if not $light-theme {
     blockquote {
-      border-left-color: get-color('divider', false);
+      border-left-color: get-color('divider', $light-theme);
 
       p {
-        color: get-color('secondary', false);
+        color: get-color('secondary', $light-theme);
       }
     }
 
     ul:not(.md-list) {
-      color: get-color('text', false);
+      color: get-color('text', $light-theme);
     }
 
     .prop-types__prop-type {
       pre,
       code {
         color: $md-white-base;
-        text-shadow: 0 1px get-color('secondary', true);
+        text-shadow: 0 1px get-color('secondary', $light-theme);
       }
     }
   }
 }
 
-@mixin style-phone-emulator-to-theme($primary: $md-primary-color, $force: false) {
-  @if $primary != $md-primary-color or $force {
+@mixin style-phone-emulator-to-theme($primary: $md-primary-color, $light-theme: $md-light-theme, $force: false) {
+  @if $force or $primary != $md-primary-color {
     @media #{$md-tablet-media} {
+      .phone-emulator .md-tabs-fixed-container::before,
       .phone-emulator__toolbar:not(.md-toolbar--inset)::before {
         background: $primary;
+      }
+    }
+  }
+
+  @if $force or $light-theme != $md-light-theme {
+    .tabs__page-layout {
+      .md-tab--inactive {
+        color: get-color('secondary', $light-theme);
+      }
+
+      .md-icon--tab {
+        color: inherit;
       }
     }
   }

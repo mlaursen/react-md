@@ -319,8 +319,8 @@ $md-tab-desktop-padding: 24px !default;
   .md-tabs-fixed-container {
     left: 0;
     position: fixed;
+    right: 0;
     top: 0;
-    width: 100%;
     z-index: $md-toolbar-z-index;
   }
 
@@ -393,7 +393,9 @@ $md-tab-desktop-padding: 24px !default;
         margin-top: $md-tab-height + $toolbar-height;
 
         @if $include-icons {
-          margin-top: $md-tab-icon-height + $toolbar-height;
+          &-icon {
+            margin-top: $md-tab-icon-height + $toolbar-height;
+          }
         }
       }
     }
@@ -403,7 +405,9 @@ $md-tab-desktop-padding: 24px !default;
         margin-top: $md-tab-height + $prominent-toolbar-height;
 
         @if $include-icons {
-          margin-top: $md-tab-icon-height + $prominent-toolbar-height;
+          &-icon {
+            margin-top: $md-tab-icon-height + $prominent-toolbar-height;
+          }
         }
       }
     }

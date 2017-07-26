@@ -52,6 +52,12 @@ export default class ResizeObserver extends PureComponent {
      * ```
      */
     onResize: PropTypes.func.isRequired,
+
+    /**
+     * An optional ref callback that will include the `target` or the parent node of the resize observer. Just like other
+     * refs, this will provide null when it unmounts.
+     */
+    elRef: PropTypes.func,
   };
 
   static defaultProps = {
@@ -121,7 +127,7 @@ export default class ResizeObserver extends PureComponent {
         this._width = width;
         this._scrollHeight = scrollHeight;
         this._scrollWidth = scrollWidth;
-        this.props.onResize({ height, width, scrollHeight, scrollWidth });
+        this.props.onResize({ height, width, scrollHeight, scrollWidth, el: entry.target });
       }
     }
   };
@@ -150,6 +156,12 @@ export default class ResizeObserver extends PureComponent {
       this._observer = null;
       this._height = null;
       this._width = null;
+      this._scrollHeight = null;
+      this._scrollWidth = null;
+    }
+
+    if (this.props.elRef) {
+      this.props.elRef(this._target);
     }
   };
 

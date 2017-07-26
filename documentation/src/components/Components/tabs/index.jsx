@@ -4,20 +4,31 @@ import ExamplesPage from 'components/ExamplesPage';
 import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
-import WithIcons from './WithIcons';
-import WithIconsRaw from '!!raw-loader!./WithIcons.jsx';
+import PageLayoutAndIcons from './PageLayoutAndIcons';
+import PageLayoutAndIconsRaw from './PageLayoutAndIcons/code';
 
 import DocumentationTabsRaw from '!!raw-loader!components/DocumentationTabs/index.jsx';
 import DocumentationTabsStyles from '!!raw-loader!components/DocumentationTabs/_styles.scss';
 
 const examples = [{
   title: 'Simple Example',
+  description: `
+This will be the most simple example of showing how you can use the \`TabsContainer\`, \`Tabs\`, and \`Tab\`
+components together to display some content. When using tabs, you need to provide a unique id to each \`Tab\`
+or provide a \`tabId\` to the \`Tabs\` component. These ids are required for accessibility and help when
+you need additional control of the content (see next example).
+  `,
   code: SimpleRaw,
   children: <Simple />,
 }, {
-  title: 'With Icons',
-  code: WithIconsRaw,
-  children: <WithIcons />,
+  title: 'As a Page Layout (and icons)',
+  description: `
+Since \`Tabs\` _normally_ are a full page layout type of thing, the \`TabsContainer\` can be updated to include
+a toolbar and be fixed to the top of the page. This will apply some additional styles and class names to offset
+the tab panels and fix the toolbar + tabs to the top of the page.
+  `,
+  code: PageLayoutAndIconsRaw,
+  children: <PageLayoutAndIcons />,
 }, {
   title: 'Custom Usage',
   description: `

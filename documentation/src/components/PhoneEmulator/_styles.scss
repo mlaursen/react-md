@@ -8,10 +8,13 @@
 
   &__content {
     height: 100%;
-    padding-top: $md-toolbar-mobile-portrait-height;
 
-    &.md-grid {
-      padding-top: $md-toolbar-mobile-portrait-height + $gutter;
+    &--padded {
+      padding-top: $md-toolbar-mobile-portrait-height;
+
+      &.md-grid {
+        padding-top: $md-toolbar-mobile-portrait-height + $gutter;
+      }
     }
   }
 
@@ -29,6 +32,7 @@
     .md-drawer--fixed,
     .md-snackbar,
     .md-overlay,
+    .md-tabs-fixed-container,
     .md-bottom-navigation {
       position: absolute;
     }
@@ -37,16 +41,28 @@
       width: 100%;
     }
 
+    $tab-margin: $md-toolbar-mobile-portrait-height + $md-tab-icon-height;
+
+    .md-tabs-content--offset-toolbar-icon {
+      margin-top: $tab-margin;
+    }
+
+    .react-swipeable-view-container > div {
+      max-height: $phone-emulator-height - $phone-emulator-status-bar-height - $tab-margin;
+    }
+
     .md-overlay {
       z-index: 1;
     }
 
     .md-drawer--right,
+    .md-tabs-fixed-container,
     .md-toolbar--fixed {
       z-index: $phone-emulator-toolbar-z-index;
     }
 
     .md-drawer--right,
+    .md-tabs-fixed-container,
     &__status-bar ~ .md-toolbar--fixed {
       top: $phone-emulator-status-bar-height;
     }
@@ -86,19 +102,20 @@
       }
     }
 
+    .md-tabs-fixed-container::before,
+    &__toolbar:not(.md-toolbar--inset)::before {
+      background: $md-primary-color;
+      content: '';
+      height: $phone-emulator-status-bar-height;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: -$phone-emulator-status-bar-height;
+    }
+
     &__toolbar {
       &.md-toolbar--fixed {
         top: $phone-emulator-status-bar-height;
-      }
-
-      &:not(.md-toolbar--inset)::before {
-        background: $md-primary-color;
-        content: '';
-        height: $phone-emulator-status-bar-height;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: -$phone-emulator-status-bar-height;
       }
     }
   }
