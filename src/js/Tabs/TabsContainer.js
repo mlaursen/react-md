@@ -150,6 +150,12 @@ export default class TabsContainer extends PureComponent {
     colored: PropTypes.bool,
 
     /**
+     * Boolean if the `toolbar` should be applied with the theme color. This _really_ only
+     * applies when you create a `fixed` tabs container.
+     */
+    themed: PropTypes.bool,
+
+    /**
      * Boolean if the tabs and the optional toolbar should be fixed to the top of the page.
      */
     fixed: PropTypes.bool,
@@ -263,6 +269,7 @@ export default class TabsContainer extends PureComponent {
       fixed,
       labelAndIcon,
       swipeableViewsProps,
+      themed,
       /* eslint-disable no-unused-vars */
       toolbar: propToolbar,
       activeTabIndex: propActiveTabeIndex,
@@ -320,7 +327,9 @@ export default class TabsContainer extends PureComponent {
       header = (
         <Paper
           style={headerStyle}
-          className={cn('md-tabs-fixed-container', headerClassName)}
+          className={cn('md-tabs-fixed-container', {
+            'md-toolbar--themed': themed,
+          }, headerClassName)}
           zDepth={headerZDepth}
           component={headerComponent}
         >
