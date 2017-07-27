@@ -1,22 +1,33 @@
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions", "ie >= 11"]
-      }
-    }],
-    "react",
-    "stage-0"
-  ],
+  "presets": ["es2015", "react", "stage-0"],
   "plugins": [
-    "react-hot-loader/babel",
-    "transform-decorators-legacy",
+    "syntax-dynamic-import",
     "syntax-async-functions",
-    "transform-regenerator"
+    "transform-regenerator",
+    "transform-decorators-legacy",
+    ["inline-import", {
+      "extensions": [".md"]
+    }]
   ],
   "env": {
-    "development": {
-      "sourceMaps": true
+    "scripts": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": "current"
+          }
+        }]
+      ],
+      "plugins": [
+        ["module-resolver", {
+          "alias": {
+            "imgs": "./src/imgs",
+            "constants": "./src/constants",
+            "server": "./src/server",
+            "utils": "./src/utils"
+          }
+        }]
+      ]
     }
   }
 }

@@ -1,6 +1,6 @@
 package:
   - '../package.json'
 dest:
-  'dist/client/sassdoc'
+  'public/sassdoc'
 googleAnalytics:
   'UA-76079335-1'
