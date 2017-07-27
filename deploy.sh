@@ -7,7 +7,6 @@ server_location=/var/www/react-md/v1.1.x
 
 yarn
 yarn prebuild && yarn scripts
-cp lib ./docs
 cd docs
 yarn && yarn build
 
@@ -22,7 +21,7 @@ tar --exclude='docs/src/server/databases/.gitkeep' \
     docs/src/server/databases \
     docs/webpack-assets.json
 
-ssh "$ssh_alias" "cd $server_location && git pull && yarn && yarn prebuild && cd docs && rm -rf public/assets"
-scp "$tar_name" "$sh_alias":"$server_location"
+ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib docs/public/assets docs/public/sassdoc && cd docs && yarn --production"
+scp "$tar_name" "$ssh_alias":"$server_location"
 
 ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name"
