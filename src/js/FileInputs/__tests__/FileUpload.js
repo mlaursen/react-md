@@ -1,15 +1,12 @@
 /* eslint-env jest, jasmine*/
 /* eslint-disable max-len */
-jest.unmock('../FileUpload');
-jest.unmock('../FileInput');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import FileUpload from '../FileUpload';
 
@@ -36,6 +33,14 @@ describe('FileUpload', () => {
 
   it('calls the onChange function still', () => {
     const onChange = jest.fn();
+    const eventListener = jasmine.createSpy();
+
+    const frMock = {
+      readAsDataURL: jest.fn(),
+      addEventListener: eventListener,
+    };
+
+    spyOn(window, 'FileReader').and.returnValue(frMock);
     const fileUpload = renderIntoDocument(<FileUpload id="test" onChange={onChange} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');
@@ -48,6 +53,14 @@ describe('FileUpload', () => {
 
   it('prevents any files with a size greater than the maxSize', () => {
     const onSizeError = jest.fn();
+    const eventListener = jasmine.createSpy();
+
+    const frMock = {
+      readAsDataURL: jest.fn(),
+      addEventListener: eventListener,
+    };
+
+    spyOn(window, 'FileReader').and.returnValue(frMock);
     const fileUpload = renderIntoDocument(<FileUpload id="test" maxSize={1024} onSizeError={onSizeError} />);
 
     const input = findRenderedDOMComponentWithTag(fileUpload, 'input');

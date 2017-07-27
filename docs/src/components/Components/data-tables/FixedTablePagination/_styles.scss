@@ -1,0 +1,6 @@
+@import '~globals';
+
+// Because of the absolute positioning, the number cell ends up having a width of 20px
+.data-tables__fixed-table .md-table-column--data:last-child {
+  min-width: 80px;
+}

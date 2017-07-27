@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, isValidElement, cloneElement } from 'react';
+import React, { PureComponent, Children, isValidElement, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 export default class ToolbarTitle extends PureComponent {
@@ -8,12 +9,6 @@ export default class ToolbarTitle extends PureComponent {
     offset: PropTypes.bool,
     title: PropTypes.node,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
 
   render() {
     const { title, className, prominent, offset, ...props } = this.props;
@@ -29,6 +24,7 @@ export default class ToolbarTitle extends PureComponent {
     if (isValidElement(title)) {
       const titleEl = Children.only(title);
       return cloneElement(title, {
+        ...props,
         className: cn(fullClassName, titleEl.props.className),
       });
     }

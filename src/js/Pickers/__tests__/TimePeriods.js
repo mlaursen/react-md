@@ -1,12 +1,10 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
-jest.unmock('../TimePeriods');
-
 import React from 'react';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TimePeriods from '../TimePeriods';
 import PickerControl from '../PickerControl';

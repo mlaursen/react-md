@@ -1,13 +1,11 @@
 /* eslint-env jest */
-jest.unmock('../Track');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithClass,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Track from '../Track';
 import TrackFill from '../TrackFill';

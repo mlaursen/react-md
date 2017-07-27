@@ -1,68 +1,58 @@
 import React from 'react';
-import { render, unmountComponentAtNode as unmount } from 'react-dom';
-import browserHistory from 'react-router/lib/browserHistory';
-import Router from 'react-router/lib/Router';
-import match from 'react-router/lib/match';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { Provider } from 'react-redux';
+import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import App from 'components/App';
+import * as Routes from 'routes';
+import { updateLocale } from 'state/locale';
 
-import './_styles.scss';
-import configureStore from 'stores/configureStore';
-import onRouteUpdate from 'utils/onRouteUpdate';
+import configureStore from './configureStore';
 
-const store = configureStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
-const history = syncHistoryWithStore(browserHistory, store);
-history.listen(location => {
-  if (typeof window.ga !== 'undefined') {
-    window.ga('send', 'pageview', location.pathname);
-  }
-});
-const root = document.getElementById('app');
-if (__DEV__) {
-  window.Perf = require('react-addons-perf');
-}
+import './styles.scss';
 
-function renderApp() {
-  const routes = require('routes').default;
+const store = configureStore(window.__INITIAL_STATE__);
+const locale = window.navigator.userLanguage || window.navigator.language || 'en-US';
+store.dispatch(updateLocale(locale));
 
-  match(({ history, routes }), (error, redirectLocation, renderProps) => {
-    render(
-      <AppContainer>
-        <Provider store={store}>
-          <Router {...renderProps} onUpdate={onRouteUpdate} />
-        </Provider>
-      </AppContainer>,
-      root
-    );
-  });
-}
-
-if (module.hot) {
-  module.hot.accept('routes', () => {
-    setImmediate(() => {
-      // prevents the warning with react-router dynamic routes
-      unmount(root);
-
-      renderApp();
-    });
-  });
-}
-
-if (!global.Intl) {
-  require.ensure([], require => {
-    const lang = window.navigator.userLanguage || window.navigator.language || 'en-US';
-
-    require('intl');
-    require('intl/locale-data/jsonp/en-US');
-    require('intl/locale-data/jsonp/da-DK');
-
-    if (['en-US', 'da-DK'].indexOf(lang) === -1) {
-      require(`intl/locale-data/jsonp/${lang}`);
+function loadIntl() {
+  if (!global.Intl) {
+    const imports = [import('intl')];
+    if (__DEV__) {
+      // Only include the minimal polyfills in dev mode to save some time
+      imports.push(
+        import('intl/locale-data/jsonp/en-US'),
+        import('intl/locale-data/jsonp/da-DK'),
+      );
+    } else {
+      imports.push(`intl/locale-data/jsonp/${locale}`);
     }
 
-    renderApp();
-  });
-} else {
-  renderApp();
+    return Promise.all(imports);
+  }
+
+  return null;
 }
+
+(async function renderApp() {
+  if (__DEV__) {
+    const { updateCustomTheme } = require('state/helmet'); // eslint-disable-line global-require
+    store.dispatch(updateCustomTheme(store.getState().theme.href));
+  }
+
+  const bundles = window.__WEBPACK_BUNDLES__ || [];
+  await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
+  await loadIntl();
+  const root = document.getElementById('app');
+
+  render(
+    <AppContainer>
+      <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>
+    </AppContainer>,
+    root
+  );
+}());

@@ -6,44 +6,34 @@
     "node": true,
   },
   "globals": {
-      "__DEV__": true,
-      "__CLIENT__": true,
-      "__DEBUG_SSR__": false
+    "__DEV__": true,
+    "__CLIENT__": true,
+    "__SSR__": false
   },
   "rules": {
-    // Don't feel like wrapping every arrow in paren
-    "arrow-parens": 0,
+    "max-len": [2, 140],
+    "no-shadow": 0,
     "no-underscore-dangle": 0,
     "no-param-reassign": 0,
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }],
 
-    "max-len": 0,
-
-    // Console valid
-    "no-console": 0,
-
-    // Disables for express.Router()
-    "new-cap": 0,
-
-    // Don't care too much about shadow
-    "no-shadow": 0,
-
-    // Don't care too much about having a line containing / * = -
-    "no-mixed-operators": 0,
-
-    // Doesn't work in react classes ?
-    "class-methods-use-this": 0,
-    "global-require": 0, // want some requires when dev only
-    "import/extensions": 0, // No extension is always js
-    "import/no-dynamic-require": 0,
-    "import/imports-first": 0, // don't care about doing absolute paths 
+    "import/extensions": 0,
+    "import/first": 0,
+    "import/imports-first": 0,
+    "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
-    "import/no-unresolved": 0, // doesn't work with webpack aliases
-    "import/newline-after-import": 0, // I want to allow import-> export right after each other
+    "import/no-webpack-loader-syntax": 0,
 
-    "react/no-unused-prop-types": 0,
+    "jsx-a11y/anchor-has-content": 0, // getting incorrect flags with vim linter
+
     "react/forbid-prop-types": 0,
-    "react/jsx-filename-extension": 0, // allow jsx in plain .js files
-    "react/prefer-stateless-function": 0,
-    "react/no-find-dom-node": 0
+    "react/require-default-props": 0,
+    "react/no-unused-prop-types": 0
   }
 }

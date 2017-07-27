@@ -1,9 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 
-const disabledInteractions = ['mouse'];
+const DISABLED_INTERACTIONS = ['mouse'];
 
 /**
  * This is the `Thumb` for the switch. The `ink` in the Thumb is only active on touch and keyboard
@@ -16,25 +17,17 @@ export default class SwitchThumb extends PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
-    onClick: PropTypes.func.isRequired,
-  };
-
-  _handleClick = (e) => {
-    // The switch's thumb needs to have an onClick handler to enable keyboard accessibility, however,
-    // this actually triggers two click events since the slider's track needs to be clickable as well.
-    // Stop propagation to prevent the thumb click AND track propagation click.
-    e.stopPropagation();
-    this.props.onClick(e);
+    onClick: PropTypes.func,
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
   };
 
   render() {
-    const { disabled, checked, className, ...props } = this.props;
+    const { disabled, checked, className, disabledInteractions, ...props } = this.props;
     return (
       <AccessibleFakeInkedButton
         {...props}
-        onClick={this._handleClick}
         disabled={disabled}
-        disabledInteractions={disabledInteractions}
+        disabledInteractions={disabledInteractions || DISABLED_INTERACTIONS}
         inkContainerClassName="md-ink-container--2x"
         className={cn('md-switch-thumb', {
           'md-switch-thumb--disabled': disabled,

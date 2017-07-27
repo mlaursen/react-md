@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
@@ -23,8 +24,8 @@ export default class SnackbarContainer extends PureComponent {
   static propTypes = {
     /**
      * An id for the Snackbar once a toast has been added and is visible. This is a recommended
-     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbarAlert'`
-     * when there is no action on the toast, or `'snackbarAlertDialog'` when there is an action
+     * prop for accessibility concerns. If it is ommitted, the id will become `'snackbar-alert'`
+     * when there is no action on the toast, or `'snackbar-alert-dialog'` when there is an action
      * on the toast.
      */
     id: PropTypes.oneOfType([
@@ -61,7 +62,7 @@ export default class SnackbarContainer extends PureComponent {
       /**
        * The text to display in the toast.
        */
-      text: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
 
       /**
        * An optional action to take. If this value is a string, the `label` for the
@@ -69,10 +70,12 @@ export default class SnackbarContainer extends PureComponent {
        * be applied to the `Button`.
        */
       action: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.node,
         PropTypes.shape({
           onClick: PropTypes.func,
-          label: PropTypes.string.isRequired,
+          children: PropTypes.node,
+          // Deprecated
+          label: PropTypes.node,
         }),
       ]),
     })).isRequired,
@@ -140,6 +143,14 @@ export default class SnackbarContainer extends PureComponent {
     },
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the snackbar.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM node to render the Snackbar in. If this is omitted, it will render as the first
      * child in the `body`.
      */
@@ -174,12 +185,6 @@ export default class SnackbarContainer extends PureComponent {
       visible,
       toast: null,
     };
-
-    this._isMultiline = this._isMultiline.bind(this);
-    this._initAndToast = this._initAndToast.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._createSwapTimer = this._createSwapTimer.bind(this);
-    this._createLeaveTimer = this._createLeaveTimer.bind(this);
   }
 
   componentDidMount() {
@@ -191,7 +196,8 @@ export default class SnackbarContainer extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const [toast] = nextProps.toasts;
-    if (toast === this.state.toast) {
+    const [prevToast] = this.props.toasts;
+    if (toast === prevToast || toast === this.state.toast) {
       return;
     }
 
@@ -222,9 +228,9 @@ export default class SnackbarContainer extends PureComponent {
     }
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = findDOMNode(container);
-  }
+  };
 
   /**
    * This function takes in a new toast object and checks if the message will span
@@ -232,7 +238,7 @@ export default class SnackbarContainer extends PureComponent {
    * gets made, checking the height of the message, and then removing the temporary
    * snackbar.
    */
-  _isMultiline(toast) {
+  _isMultiline = (toast) => {
     const container = this._container;
     if (container === null) {
       return false;
@@ -266,9 +272,9 @@ export default class SnackbarContainer extends PureComponent {
     container.removeChild(snackbar);
 
     return multiline;
-  }
+  };
 
-  _initAndToast(toast) {
+  _initAndToast = (toast) => {
     this._initTimeout = setTimeout(() => {
       this._initTimeout = null;
 
@@ -276,9 +282,9 @@ export default class SnackbarContainer extends PureComponent {
     }, TICK);
 
     this.setState({ visible: true });
-  }
+  };
 
-  _createLeaveTimer() {
+  _createLeaveTimer = () => {
     const { transitionLeaveTimeout: time } = this.props;
     this._leaveTimeout = setTimeout(() => {
       this._leaveTimeout = null;
@@ -287,9 +293,9 @@ export default class SnackbarContainer extends PureComponent {
     }, time + TICK);
 
     this.setState({ toast: null });
-  }
+  };
 
-  _createSwapTimer(toast) {
+  _createSwapTimer = (toast) => {
     this._swapTimeout = setTimeout(() => {
       this._swapTimeout = null;
 
@@ -297,7 +303,7 @@ export default class SnackbarContainer extends PureComponent {
     }, this.props.transitionLeaveTimeout + CHAINED_TOAST_DELAY);
 
     this.setState({ toast: null });
-  }
+  };
 
   render() {
     const { visible, toast, multiline } = this.state;
@@ -308,6 +314,7 @@ export default class SnackbarContainer extends PureComponent {
       dismiss,
       onDismiss,
       lastChild,
+      portal,
       renderNode: propRenderNode, // eslint-disable-line no-unused-vars
       toasts, // eslint-disable-line no-unused-vars
       ...props
@@ -328,18 +335,26 @@ export default class SnackbarContainer extends PureComponent {
       );
     }
 
+    const container = (
+      <CSSTransitionGroup
+        ref={this._setContainer}
+        key="container"
+        className="md-snackbar-container"
+        transitionName={transitionName}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
+        {snackbar}
+      </CSSTransitionGroup>
+    );
+
+    if (!portal) {
+      return visible ? container : null;
+    }
+
     return (
       <Portal visible={visible} renderNode={renderNode} lastChild={lastChild}>
-        <CSSTransitionGroup
-          ref={this._setContainer}
-          key="container"
-          className="md-snackbar-container"
-          transitionName={transitionName}
-          transitionEnterTimeout={transitionEnterTimeout}
-          transitionLeaveTimeout={transitionLeaveTimeout}
-        >
-          {snackbar}
-        </CSSTransitionGroup>
+        {container}
       </Portal>
     );
   }

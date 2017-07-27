@@ -1,16 +1,18 @@
 {
   "name": "react-md",
-  "version": "1.0.6",
+  "version": "1.1.0-alpha-7",
   "description": "React material design components",
   "main": "./lib",
   "files": [
+    "index.d.ts",
     "src/",
     "dist/",
     "lib/",
     "LICENSE"
   ],
   "scripts": {
-    "test": "cross-env BABEL_ENV=test jest",
+    "test": "npm run test:tsc && cross-env BABEL_ENV=test jest",
+    "test:tsc": "npm run tsd && tsc index.d.ts",
     "test:watch": "cross-env BABEL_ENV=test jest --watch",
     "scripts": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js -d ./lib",
     "scripts:watch": "cross-env BABEL_ENV=build babel --ignore=__tests__,__mocks__,beforeTest.js ./src/js --watch -s -d ./lib",
@@ -19,9 +21,10 @@
     "lint": "npm run lint:styles && npm run lint:scripts",
     "lint:fix": "eslint -c .eslintrc --fix src",
     "css-bundles": "node ./makeBundles.js",
+    "tsd": "cpx \"./src/js/**/*.d.ts\" ./lib",
     "build:umd": "npm run css-bundles && webpack --progress --colors",
     "prebuild": "rimraf lib && rimraf dist && rimraf src/scss/bundles && npm run lint",
-    "build": "npm run scripts && npm run build:umd"
+    "build": "npm run scripts && npm run tsd && npm run build:umd"
   },
   "repository": {
     "type": "git",
@@ -40,11 +43,12 @@
   },
   "homepage": "https://github.com/mlaursen/react-md#readme",
   "devDependencies": {
+    "@types/react": "^15.0.14",
     "autoprefixer": "^6.5.1",
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
     "babel-eslint": "^7.0.0",
-    "babel-jest": "^18.0.0",
+    "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-modules-umd": "^6.12.0",
@@ -52,8 +56,10 @@
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "cpx": "^1.5.0",
     "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
+    "enzyme": "^2.8.2",
     "eslint": "^3.3.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
@@ -61,49 +67,39 @@
     "eslint-plugin-react": "^6.1.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "intl": "^1.2.5",
-    "jest-cli": "^18.1.0",
+    "jest-cli": "^19.0.2",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.0.0",
-    "react": "^15.3.x",
-    "react-addons-css-transition-group": "^15.3.x",
-    "react-addons-test-utils": "^15.3.x",
-    "react-addons-transition-group": "^15.3.x",
-    "react-dom": "^15.3.x",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-test-renderer": "^15.5.4",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "typescript": "^2.2.1",
     "webpack": "^1.13.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "invariant": "^2.2.1",
-    "react-motion": "^0.4.5",
+    "prop-types": "^15.5.10",
+    "react-motion": "^0.5.0",
     "react-prop-types": "^0.4.0",
-    "react-swipeable-views": "^0.7.10"
+    "react-swipeable-views": "^0.12.2",
+    "react-transition-group": "^1.1.3",
+    "resize-observer-polyfill": "^1.4.2"
   },
   "peerDependencies": {
     "react": ">= 15.3.0",
-    "react-addons-css-transition-group": ">= 15.3.0",
-    "react-addons-transition-group": ">= 15.3.0",
     "react-dom": ">= 15.3.0"
   },
   "jest": {
-    "automock": true,
-    "timers": "fake",
     "cacheDirectory": "./.jest-cache",
     "setupFiles": [
       "<rootDir>/src/beforeTest.js"
     ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/src/js/utils/omit.js",
-      "<rootDir>/src/js/utils/getField.js",
-      "<rootDir>/node_modules/classnames",
-      "<rootDir>/node_modules/intl",
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-pure-render-mixin",
-      "<rootDir>/node_modules/react-addons-transtion-group",
-      "<rootDir>/node_modules/react-addons-css-transition-group"
+    "roots": [
+      "<rootDir>/src"
     ]
   }
 }

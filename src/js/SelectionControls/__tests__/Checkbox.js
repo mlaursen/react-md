@@ -1,8 +1,6 @@
 /* eslint-env jest*/
-jest.unmock('../Checkbox');
-
 import React from 'react';
-import { renderIntoDocument, findRenderedComponentWithType } from 'react-addons-test-utils';
+import { renderIntoDocument, findRenderedComponentWithType } from 'react-dom/test-utils';
 
 import Checkbox from '../Checkbox';
 import SelectionControl from '../SelectionControl';

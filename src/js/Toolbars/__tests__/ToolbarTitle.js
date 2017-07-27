@@ -1,10 +1,9 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types */
-jest.unmock('../ToolbarTitle');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 
 import ToolbarTitle from '../ToolbarTitle';
 
@@ -42,5 +41,16 @@ describe('ToolbarTitle', () => {
     expect(node.className).toContain(props.className);
     expect(node.className).toContain('another-test');
     expect(node.className).toContain('test-thing');
+  });
+
+  it('should apply the provided id', () => {
+    const title = shallow(<ToolbarTitle id="some-title" title="Hello" />);
+    expect(title.is('#some-title')).toBe(true);
+  });
+
+  it('should clone the id into the title if it is a valid element', () => {
+    const titleEl = <h3>Hello!</h3>;
+    const title = shallow(<ToolbarTitle id="some-title" title={titleEl} />);
+    expect(title.matchesElement(<h3 id="some-title">Hello!</h3>)).toBe(true);
   });
 });

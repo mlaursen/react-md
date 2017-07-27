@@ -1,0 +1,41 @@
+@import '~globals';
+
+.prop-types {
+  &__normal-column.md-table-column {
+    white-space: normal;
+  }
+
+  .md-data-table {
+    pre,
+    .token.operator {
+      background: transparent;
+    }
+  }
+
+  &__prop-type {
+
+    pre {
+      margin-left: -1em;
+      margin-top: -1em;
+
+      @media (max-width: #{$md-desktop-min-width - 1}) {
+        max-width: 120px;
+      }
+
+      @media (max-width: 1599px) {
+        max-width: 200px;
+      }
+
+      @media (min-width: 1600px) {
+        max-width: 280px;
+      }
+    }
+
+  }
+
+  &__prop-name {
+    &--deprecated {
+      text-decoration: line-through;
+    }
+  }
+}

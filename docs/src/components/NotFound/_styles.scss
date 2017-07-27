@@ -1,0 +1,42 @@
+@import '~globals';
+
+@include style-404-page-to-theme($md-primary-color, $md-secondary-color, true);
+
+%absolute-center {
+  left: 50%;
+  position: absolute;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.not-found {
+  @media (min-width: #{$md-tablet-min-width - 1}) {
+    min-height: 85vh;
+
+    &__headline {
+      width: 80%;
+    }
+  }
+
+  &__display.md-display-2,
+  &__headline.md-headline {
+    color: $md-white-base;
+    position: absolute;
+  }
+
+  &__display {
+    left: 20%;
+    top: 10%;
+  }
+
+  &__headline {
+    @extend %absolute-center;
+
+    bottom: 5em;
+  }
+
+  &__return-home.md-btn {
+    @extend %absolute-center;
+
+    bottom: 1em;
+  }
+}

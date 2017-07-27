@@ -1,11 +1,14 @@
-import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 import findTable from './findTable';
+import TableFooter from './TableFooter';
+import TableColumn from './TableColumn';
 
 /**
  * The `TablePagination` component is used to generate the table footer that helps
@@ -105,6 +108,7 @@ export default class TablePagination extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
+    fixedFooter: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -119,56 +123,74 @@ export default class TablePagination extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
-    const rpp = typeof props.rowsPerPage !== 'undefined' ? props.rowsPerPage : props.defaultRowsPerPage;
-    const p = typeof props.page !== 'undefined' ? props.page : props.defaultPage;
+    const controlledPage = typeof props.page !== 'undefined';
+    const controlledRowsPerPage = typeof props.rowsPerPage !== 'undefined';
+    const rowsPerPage = controlledRowsPerPage ? props.rowsPerPage : props.defaultRowsPerPage;
+    const page = controlledPage ? props.page : props.defaultPage;
     this.state = {
-      page: props.defaultPage,
-      start: (p - 1) * rpp,
-      rowsPerPage: props.defaultRowsPerPage,
+      start: (page - 1) * rowsPerPage,
       controlsMarginLeft: 0,
     };
 
-    this._setControls = this._setControls.bind(this);
-    this._position = this._position.bind(this);
-    this._increment = this._increment.bind(this);
-    this._decrement = this._decrement.bind(this);
-    this._setRowsPerPage = this._setRowsPerPage.bind(this);
+    if (!controlledPage) {
+      this.state.page = page;
+    }
+
+    if (!controlledRowsPerPage) {
+      this.state.rowsPerPage = props.defaultRowsPerPage;
+    }
+
+    this._table = null;
+    this._ticking = false;
   }
 
-  componentDidMount() {
-    this._position();
-    window.addEventListener('resize', this._position);
-  }
+  componentWillReceiveProps(nextProps) {
+    const { rowsPerPage, page } = this.props;
+    if (page !== nextProps.page || rowsPerPage !== nextProps.rowsPerPage) {
+      const rpp = getField(nextProps, this.state, 'rowsPerPage');
+      const p = getField(nextProps, this.state, 'page');
 
-  componentDidUpdate(prevProps, prevState) {
-    const { rows } = this.props;
-    const { start, rowsPerPage } = this.state;
-    if (rows !== prevProps.rows
-      || start !== prevState.start
-      || rowsPerPage !== prevState.rowsPerPage
-    ) {
-      this._position();
+      this.setState({ start: (p - 1) * rpp });
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._position);
-  }
+  _setControls = (controls) => {
+    this._controls = controls;
+    this._table = findTable(controls);
 
-  _setControls(controls) {
-    this._controls = findDOMNode(controls);
-  }
+    if (this._table && this.context.fixedFooter) {
+      this._table.addEventListener('scroll', this._throttledPosition);
+    }
+  };
 
-  _position() {
-    const table = findTable(findDOMNode(this));
-    if (table) {
+  _position = () => {
+    if (this._table) {
+      const { fixedFooter } = this.context;
+      const { offsetWidth, scrollLeft } = this._table;
+
+      let controlsMarginLeft = offsetWidth - this._controls.offsetWidth;
+      if (fixedFooter) {
+        controlsMarginLeft += scrollLeft;
+      }
+
       this.setState({
-        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
+        controlsMarginLeft: Math.max(24, controlsMarginLeft),
       });
     }
-  }
+  };
 
-  _increment() {
+  _throttledPosition = () => {
+    if (!this._ticking) {
+      requestAnimationFrame(() => {
+        this._ticking = false;
+        this._position();
+      });
+    }
+
+    this._ticking = true;
+  };
+
+  _increment = () => {
     const { rows, onPagination } = this.props;
     const { start } = this.state;
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
@@ -181,10 +203,12 @@ export default class TablePagination extends PureComponent {
     const nextPage = page + 1;
 
     onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
-  }
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
+  };
 
-  _decrement() {
+  _decrement = () => {
     const { start } = this.state;
     const page = getField(this.props, this.state, 'page');
     const rowsPerPage = getField(this.props, this.state, 'rowsPerPage');
@@ -192,15 +216,29 @@ export default class TablePagination extends PureComponent {
     const nextPage = page - 1;
 
     this.props.onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
-  }
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
+  };
 
-  _setRowsPerPage(rowsPerPage) {
-    const page = getField(this.props, this.state, 'page');
-    const newStart = (page - 1) * rowsPerPage;
+  _setRowsPerPage = (rowsPerPage) => {
+    const page = 1;
+    const newStart = 0;
     this.props.onPagination(newStart, rowsPerPage, page);
-    this.setState({ start: newStart, rowsPerPage });
-  }
+    let nextState;
+    if (typeof this.props.rowsPerPage === 'undefined') {
+      nextState = { rowsPerPage };
+    }
+
+    if (typeof this.props.page === 'undefined') {
+      nextState = nextState || {};
+      nextState.start = newStart;
+    }
+
+    if (nextState) {
+      this.setState(nextState);
+    }
+  };
 
   render() {
     const { controlsMarginLeft, start } = this.state;
@@ -227,16 +265,20 @@ export default class TablePagination extends PureComponent {
 
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
-      <tfoot {...props} className={cn('md-table-footer', className)}>
+      <TableFooter {...props} className={cn('md-table-footer--pagination', className)}>
+        <ResizeObserver watchWidth component="tr" onResize={this._throttledPosition} />
+        <ResizeObserver watchWidth component="tr" target={this._table} onResize={this._throttledPosition} />
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
-          <td colSpan="100%">
+          <TableColumn colSpan="100%">
             <div
               ref={this._setControls}
               className="md-table-pagination md-table-pagination--controls md-text"
               style={{ marginLeft: controlsMarginLeft }}
             >
-              {rowsPerPageLabel}
+              <span className="md-table-pagination__label">
+                {rowsPerPageLabel}
+              </span>
               <SelectField
                 id={`${this.context.baseId}-pagination`}
                 menuItems={rowsPerPageItems}
@@ -268,9 +310,9 @@ export default class TablePagination extends PureComponent {
               * we have a mask to correctly set the height of the footer.
               */}
             <div className="md-table-pagination" />
-          </td>
+          </TableColumn>
         </tr>
-      </tfoot>
+      </TableFooter>
     );
   }
 }

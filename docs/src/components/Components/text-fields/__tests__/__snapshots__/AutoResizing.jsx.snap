@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutoResizing should render correctly 1`] = `
+<div
+  className="md-grid"
+>
+  <div
+    className="md-cell md-cell--12"
+  >
+    <div
+      className="md-text-field-container md-full-width md-text-field-container--input"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": 180,
+        }
+      }
+    >
+      <label
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        htmlFor="autoresizing-1"
+      >
+        Floating resize
+      </label>
+      <input
+        className="md-text-field md-text md-full-width md-text-field--floating-margin"
+        disabled={undefined}
+        id="autoresizing-1"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder={null}
+        rows={undefined}
+        style={undefined}
+        type="text"
+      />
+      <hr
+        className="md-divider md-divider--text-field md-divider--expand-from-left"
+      />
+    </div>
+  </div>
+  <div
+    className="md-cell md-cell--12"
+  >
+    <div
+      className="md-text-field-container md-full-width md-text-field-container--multiline"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
+    >
+      <label
+        className="md-floating-label md-floating-label--floating"
+        htmlFor="autoresizing-2"
+      >
+        Multiline text field
+      </label>
+      <div
+        className="md-text-field-multiline-container md-text-field--floating-margin"
+        style={
+          Object {
+            "height": null,
+          }
+        }
+      >
+        <span
+          aria-hidden={true}
+        />
+        <textarea
+          aria-hidden={true}
+          className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+          defaultValue={undefined}
+          readOnly={true}
+          rows={2}
+          style={undefined}
+          tabIndex={-1}
+          value="This is some default text to place"
+        />
+        <textarea
+          className="md-text-field md-text md-text-field--multiline md-full-width"
+          defaultValue={undefined}
+          disabled={undefined}
+          id="autoresizing-2"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Some placeholder"
+          rows={2}
+          style={
+            Object {
+              "height": null,
+            }
+          }
+          value="This is some default text to place"
+        />
+      </div>
+      <hr
+        className="md-divider md-divider--text-field md-divider--expand-from-left"
+      />
+    </div>
+  </div>
+  <div
+    className="md-cell md-cell--12"
+  >
+    <div
+      className="md-text-field-container md-full-width md-text-field-container--input"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": 180,
+        }
+      }
+    >
+      <input
+        className="md-text-field md-text md-full-width md-text-field--margin"
+        disabled={undefined}
+        id="autoresizing-3"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Placeholder only resize"
+        rows={undefined}
+        style={undefined}
+        type="text"
+      />
+      <hr
+        className="md-divider md-divider--text-field md-divider--expand-from-left"
+      />
+      <div
+        className="md-text-field-message-container md-full-width"
+      >
+        <p
+          aria-hidden={false}
+          className="md-text-field-message md-text-field-message--active"
+        >
+          This field will not shrink
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

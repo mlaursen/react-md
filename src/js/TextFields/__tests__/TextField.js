@@ -1,14 +1,14 @@
 /* eslint-env jest */
-jest.unmock('../TextField');
-
 import React from 'react';
+import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TextField from '../TextField';
 import InputField from '../InputField';
@@ -64,6 +64,7 @@ describe('TextField', () => {
     const onTouchCancel = jest.fn();
     const onTouchEnd = jest.fn();
     const props = {
+      id: 'test',
       onClick,
       onDoubleClick,
       onMouseDown,
@@ -116,7 +117,6 @@ describe('TextField', () => {
     const onCopy = jest.fn();
     const onCut = jest.fn();
     const onPaste = jest.fn();
-    const onBlur = jest.fn();
     const onInput = jest.fn();
     const onSelect = jest.fn();
     const onCompositionStart = jest.fn();
@@ -124,12 +124,12 @@ describe('TextField', () => {
     const onCompositionEnd = jest.fn();
 
     const props = {
+      id: 'test',
       onKeyPress,
       onKeyUp,
       onCopy,
       onCut,
       onPaste,
-      onBlur,
       onInput,
       onSelect,
       onCompositionStart,
@@ -145,7 +145,6 @@ describe('TextField', () => {
     expect(input.props.onCopy).toBe(onCopy);
     expect(input.props.onCut).toBe(onCut);
     expect(input.props.onPaste).toBe(onPaste);
-    expect(input.props.onBlur).toBe(onBlur);
     expect(input.props.onInput).toBe(onInput);
     expect(input.props.onSelect).toBe(onSelect);
     expect(input.props.onCompositionStart).toBe(onCompositionStart);
@@ -154,23 +153,15 @@ describe('TextField', () => {
   });
 
   it('calls the onFocus prop when the _handleFocus function is called', () => {
-    const props = { onFocus: jest.fn() };
+    const props = { id: 'test', onFocus: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     field._handleFocus();
     expect(props.onFocus).toBeCalled();
   });
 
-  it('calls the onKeyDown prop when the _handleKeyDown function is called', () => {
-    const props = { onKeyDown: jest.fn() };
-    const field = renderIntoDocument(<TextField {...props} />);
-
-    field._handleKeyDown({ which: 2, keyCode: 2 });
-    expect(props.onKeyDown).toBeCalled();
-  });
-
   it('calls the onChange prop when the _handleChange function is called', () => {
-    const props = { onChange: jest.fn() };
+    const props = { id: 'test', onChange: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     field._handleChange({ target: { value: '' } });
@@ -178,7 +169,7 @@ describe('TextField', () => {
   });
 
   it('calls the onChange prop with the new value and change event', () => {
-    const props = { onChange: jest.fn() };
+    const props = { id: 'test', onChange: jest.fn() };
     const field = renderIntoDocument(<TextField {...props} />);
 
     const event = { target: { value: 'wow' } };
@@ -243,5 +234,81 @@ describe('TextField', () => {
   // Super important test
   it('does some stuff that seems hard to automatically test', () => {
     expect(true).toBe(true);
+  });
+
+  it('should set to floating state to true when the defaultValue or value is 0', () => {
+    const field = shallow(<TextField id="test" defaultValue={0} type="number" />);
+    expect(field.state('floating')).toBe(true);
+
+    field.setProps({ value: 0, onChange: jest.fn() });
+    expect(field.state('floating')).toBe(true);
+  });
+
+  it('should be able to be snapshottable', () => {
+    const tree1 = renderer.create(<TextField id="test" />).toJSON();
+    const tree2 = renderer.create(<TextField id="test" label="Label" placeholder="placeholder" />).toJSON();
+    const tree3 = renderer.create(<TextField id="test" label="Label" placeholder="placeholder" rows={2} />).toJSON();
+    const tree4 = renderer.create(<TextField id="test" placeholder="Block" block paddedBlock />).toJSON();
+    const tree5 = renderer.create(<TextField id="test" placeholder="Block" block paddedBlock rows={2} />).toJSON();
+    const tree6 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        resize={{ min: 100, max: 300 }}
+      />
+    ).toJSON();
+    const tree7 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpText="Look at me!"
+        errorText="Some error"
+      />
+    ).toJSON();
+    const tree8 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpText="Look at me!"
+        error
+        errorText="Some error"
+      />
+    ).toJSON();
+    const tree9 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        helpOnFocus
+        helpText="Look at me!"
+      />
+    ).toJSON();
+    const tree10 = renderer.create(
+      <TextField
+        id="test"
+        name="testing"
+        label="Label"
+        placeholder="Something"
+        maxLength={20}
+      />
+    ).toJSON();
+
+    expect(tree1).toMatchSnapshot();
+    expect(tree2).toMatchSnapshot();
+    expect(tree3).toMatchSnapshot();
+    expect(tree4).toMatchSnapshot();
+    expect(tree5).toMatchSnapshot();
+    expect(tree6).toMatchSnapshot();
+    expect(tree7).toMatchSnapshot();
+    expect(tree8).toMatchSnapshot();
+    expect(tree9).toMatchSnapshot();
+    expect(tree10).toMatchSnapshot();
   });
 });

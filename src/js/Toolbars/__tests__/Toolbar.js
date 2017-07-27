@@ -1,14 +1,12 @@
 /* eslint-env jest */
 /* eslint-disable react/prop-types */
-jest.unmock('../Toolbar');
-
 import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithClass,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Toolbar from '../Toolbar';
 import ToolbarTitle from '../ToolbarTitle';

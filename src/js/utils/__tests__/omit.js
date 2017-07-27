@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../omit');
-
 import omit from '../omit';
 
 const OBJ = {

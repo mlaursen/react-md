@@ -1,0 +1,127 @@
+@import '~globals';
+
+%ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// This is really a combination of the `.md-toolbar-relative` class name and then adding some
+// additional fixes for emulating on non-mobile devices.
+.bottom-navigations__dynamic__content {
+  padding-top: $md-toolbar-mobile-portrait-height;
+
+  @media #{$md-tablet-media} {
+    padding-top: $phone-emulator-status-bar-height + $md-toolbar-mobile-portrait-height;
+  }
+
+  &--inset {
+    $toolbar-offset: $md-toolbar-mobile-portrait-height + ($md-toolbar-inset-margin * 2);
+    padding-top: $toolbar-offset;
+
+    @media #{$md-tablet-media} {
+      padding-top: $toolbar-offset + $phone-emulator-status-bar-height;
+    }
+  }
+}
+
+.bottom-navigations__dynamic {
+  &--movies-and-tv {
+    @include react-md-theme-bottom-navigations-colored($md-blue-grey-500);
+  }
+
+  &--music {
+    @include react-md-theme-bottom-navigations-colored($md-teal-500);
+  }
+
+  &--books {
+    @include react-md-theme-bottom-navigations-colored($md-grey-500);
+  }
+
+  &--news-stand {
+    @include react-md-theme-bottom-navigations-colored($md-brown-500);
+  }
+}
+
+.bottom-navigations__dynamic__section {
+  .md-card-title--title-block {
+    overflow: hidden;
+  }
+
+  .md-card-title--large {
+    font-size: 16px;
+    font-weight: $md-font-bold;
+  }
+
+  .md-card-title--title {
+    @extend %ellipsis;
+    @extend %md-text-capitalize;
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    padding: $md-grid-phone-gutter;
+    padding-bottom: 0;
+
+    h3 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.md-btn.bottom-navigations__dynamic__fab {
+  transition-duration: $md-bottom-navigation-transition-time;
+  transition-property: bottom;
+  will-change: bottom;
+
+  &--offset {
+    bottom: $md-bottom-navigation-height + $md-btn-mobile-floating-margin;
+  }
+}
+
+.md-card.bottom-navigations__dynamic__book-card {
+  align-items: flex-start;
+  display: flex;
+
+  .md-card-title--title-block {
+    @extend %ellipsis;
+  }
+}
+
+.bottom-navigations__dynamic__news-item {
+  display: flex;
+  flex-wrap: nowrap;
+
+  > *:first-child {
+    flex-shrink: 1;
+    padding-right: $md-default-padding;
+  }
+}
+
+.line-clamp,
+.two-line-clamp {
+  // scss-lint:disable PropertySortOrder
+  line-height: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: pre-line;
+
+  // fallback for non webkit browsers
+  display: block;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.line-clamp {
+  height: 20px;
+  -webkit-line-clamp: 1;
+}
+
+.two-line-clamp {
+  height: 40px;
+  -webkit-line-clamp: 2;
+}

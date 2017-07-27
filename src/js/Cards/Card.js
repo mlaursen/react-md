@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children } from 'react';
+import React, { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -55,7 +56,7 @@ export default class Card extends PureComponent {
     /**
      * Any icon children required for the expander icon.
      */
-    expanderIconChildren: PropTypes.string,
+    expanderIconChildren: PropTypes.node,
 
     /**
      * The tooltip position for the expander icon.
@@ -65,7 +66,7 @@ export default class Card extends PureComponent {
     /**
      * The optional tooltip to display for the expander icon.
      */
-    expanderTooltipLabel: PropTypes.string,
+    expanderTooltipLabel: PropTypes.node,
 
     /**
      * An optional delay before the tooltip appears for the expander icon on hover.
@@ -128,10 +129,6 @@ export default class Card extends PureComponent {
       zDepth: 1,
       expanded: typeof props.initiallyExpanded !== 'undefined' ? props.initiallyExpanded : !!props.defaultExpanded,
     };
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._handleExpandClick = this._handleExpandClick.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
   }
 
   getChildContext() {
@@ -160,7 +157,7 @@ export default class Card extends PureComponent {
     };
   }
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -168,9 +165,9 @@ export default class Card extends PureComponent {
     if (this.props.raise && !this._touched) {
       this.setState({ zDepth: 4 });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -180,17 +177,17 @@ export default class Card extends PureComponent {
     if (this.props.raise && this.state.zDepth !== 1) {
       this.setState({ zDepth: 1 });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
 
     this._touched = true;
-  }
+  };
 
-  _handleExpandClick(e) {
+  _handleExpandClick = (e) => {
     const { onExpanderClick } = this.props;
     const expanded = !getField(this.props, this.state, 'expanded');
     if (onExpanderClick) {
@@ -200,7 +197,7 @@ export default class Card extends PureComponent {
     if (typeof this.props.expanded === 'undefined') {
       this.setState({ expanded });
     }
-  }
+  };
 
   render() {
     const { zDepth } = this.state;

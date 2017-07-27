@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../calcTimeFromPoint');
-
 import calcTimeFromPoint from '../calcTimeFromPoint';
 
 const CENTER = { x: 0, y: 0 };

@@ -1,0 +1,40 @@
+@import '~globals';
+
+.theme-configuration {
+  &__message {
+    display: block;
+  }
+}
+
+.theme-preview {
+  @include md-box-shadow(1);
+
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+
+  .md-drawer,
+  .md-overlay,
+  .md-toolbar,
+  .md-btn--floating {
+    position: absolute;
+  }
+
+  .md-toolbar,
+  .md-btn--floating {
+    z-index: 1;
+  }
+
+  .md-overlay {
+    z-index: 2;
+  }
+
+  .md-drawer {
+    z-index: 3;
+  }
+
+  &__btn.md-btn {
+    margin-left: 8px;
+    margin-top: 1em;
+  }
+}

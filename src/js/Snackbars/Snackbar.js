@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Button from '../Buttons/Button';
@@ -15,11 +16,12 @@ export default class Snackbar extends PureComponent {
     children: PropTypes.node,
     onDismiss: PropTypes.func.isRequired,
     toast: PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
       action: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.node,
         PropTypes.shape({
-          label: PropTypes.string.isRequired,
+          label: PropTypes.node,
+          children: PropTypes.node,
           onClick: PropTypes.func,
         }),
       ]),
@@ -31,16 +33,6 @@ export default class Snackbar extends PureComponent {
     fab: PropTypes.object,
     leaveTimeout: PropTypes.number.isRequired,
   };
-
-  constructor(props) {
-    super(props);
-
-    this._clearTimeout = this._clearTimeout.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleAutohide = this._handleAutohide.bind(this);
-    this._handleWindowBlur = this._handleWindowBlur.bind(this);
-    this._handleWindowFocus = this._handleWindowFocus.bind(this);
-  }
 
   componentWillMount() {
     const { fab, multiline, toast: { onAppear } } = this.props;
@@ -70,7 +62,7 @@ export default class Snackbar extends PureComponent {
     }
   }
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     const { onDismiss, toast: { action }, leaveTimeout, multiline } = this.props;
     if (typeof action.onClick === 'function') {
       action.onClick(e);
@@ -81,16 +73,16 @@ export default class Snackbar extends PureComponent {
     }
 
     onDismiss();
-  }
+  };
 
-  _clearTimeout() {
+  _clearTimeout = () => {
     if (this._timeout) {
       clearTimeout(this._timeout);
       this._timeout = null;
     }
-  }
+  };
 
-  _handleAutohide() {
+  _handleAutohide = () => {
     const { autohide, autohideTimeout, onDismiss, multiline, leaveTimeout } = this.props;
     if (!autohide) {
       return;
@@ -110,21 +102,20 @@ export default class Snackbar extends PureComponent {
 
       onDismiss();
     }, autohideTimeout || this.state.toast);
-  }
+  };
 
-  _handleWindowBlur() {
+  _handleWindowBlur = () => {
     this._clearTimeout();
     window.removeEventListener('blur', this._handleWindowBlur);
     window.addEventListener('focus', this._handleWindowFocus);
     this._eventType = 'focus';
-  }
+  };
 
-  _handleWindowFocus() {
+  _handleWindowFocus = () => {
     window.removeEventListener('focus', this._handleWindowFocus);
     this._eventType = null;
     this._handleAutohide();
-  }
-
+  };
 
   render() {
     const {
@@ -152,7 +143,7 @@ export default class Snackbar extends PureComponent {
       let btnProps = {
         flat: true,
         onClick: this._handleClick,
-        label: action,
+        children: action,
         secondary: true,
         className: 'md-btn--snackbar',
       };
@@ -160,14 +151,16 @@ export default class Snackbar extends PureComponent {
       if (typeof action !== 'string') {
         btnProps = Object.assign(btnProps, action, {
           className: cn(btnProps.className, action.className),
+          onClick: this._handleClick,
         });
       }
+
 
       action = <Button {...btnProps} />;
     }
 
     if (!id) {
-      id = `snackbarAlert${action ? 'Dialog' : ''}`;
+      id = `snackbar-alert${action ? '-dialog' : ''}`;
     }
 
     const role = `alert${action ? 'dialog' : ''}`;

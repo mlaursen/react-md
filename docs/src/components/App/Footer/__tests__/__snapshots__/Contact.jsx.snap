@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Contact should render correctly 1`] = `
+<section
+  className="md-cell md-cell--4"
+>
+  <h4
+    className="md-title"
+  >
+    Contact
+  </h4>
+  <a
+    className="md-inline-block md-btn md-btn--flat md-text--theme-primary md-ink--primary md-pointer--hover md-btn--text"
+    disabled={undefined}
+    href="mailto:mlaursen03@gmail.com"
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+  >
+    <div
+      className="md-icon-separator"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        mail
+      </i>
+      <span
+        className="md-icon-text"
+        style={undefined}
+      >
+        Mikkel Laursen
+      </span>
+    </div>
+  </a>
+</section>
+`;

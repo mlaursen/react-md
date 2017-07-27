@@ -1,3 +1,4 @@
+/** @module utils/DateUtils/addDate */
 
 /**
  * Adds a given amount to a date.
@@ -14,6 +15,7 @@ export default function addDate(sourceDate, amt, part) {
     case 'D':
       return new Date(date.setDate(date.getDate() + amt));
     case 'M':
+      date.setDate(1);
       return new Date(date.setMonth(date.getMonth() + amt));
     case 'Y':
       return new Date(date.setFullYear(date.getFullYear() + amt));

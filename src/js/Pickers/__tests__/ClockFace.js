@@ -1,8 +1,6 @@
 /* eslint-env jest*/
-jest.unmock('../ClockFace');
-
 import React from 'react';
-import { renderIntoDocument, scryRenderedComponentsWithType } from 'react-addons-test-utils';
+import { renderIntoDocument, scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 import ClockFace from '../ClockFace';
 import ClockTime from '../ClockTime';

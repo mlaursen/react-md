@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import getDisplayName from '../utils/StringUtils/getDisplayName';
 import TooltipContainer from './TooltipContainer';
@@ -73,14 +74,7 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
     tooltipTransitionLeaveTimeout: 150,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._composed = null;
-
-    this.getComposedComponent = this.getComposedComponent.bind(this);
-    this._setComposedComponent = this._setComposedComponent.bind(this);
-  }
+  _composed = null;
 
   /**
    * Gets the composed component as a ref. This is usefull if you need to access the ref of the
@@ -96,13 +90,11 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
    *
    * > NOTE: This can be `null`, so make sure to do a null check before using..
    */
-  getComposedComponent() {
-    return this._composed;
-  }
+  getComposedComponent = () => this._composed;
 
-  _setComposedComponent(component) {
+  _setComposedComponent = (component) => {
     this._composed = component;
-  }
+  };
 
   render() {
     const {

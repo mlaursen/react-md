@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import TimePeriods from './TimePeriods';
 import PickerControl from './PickerControl';
@@ -49,20 +50,13 @@ export default class TimePickerHeader extends PureComponent {
     timePeriod: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._setHour = this._setHour.bind(this);
-    this._setMinute = this._setMinute.bind(this);
-  }
-
-  _setHour() {
+  _setHour = () => {
     this.props.setTimeMode('hour');
-  }
+  };
 
-  _setMinute() {
+  _setMinute = () => {
     this.props.setTimeMode('minute');
-  }
+  };
 
   render() {
     const { timeMode, hours, minutes, timePeriod, setTempTime, tempTime } = this.props;

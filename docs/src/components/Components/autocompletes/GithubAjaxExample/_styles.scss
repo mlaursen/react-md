@@ -1,0 +1,10 @@
+@import '~globals';
+
+.repo-card {
+  h4,
+  h5 {
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

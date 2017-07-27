@@ -9,14 +9,17 @@ export default function findTable(el) {
   let table;
   let node = el;
   while (node && node.parentNode) {
-    if (node.classList && node.classList.contains('md-data-table')) {
-      // Attempt to check one more element up to see if there is a table-container
-      // for responsive tables.
-      table = node;
-    } else if (node.classList && node.classList.contains('md-data-table--responsive')) {
-      return node;
-    } else if (table) {
-      return table;
+    if (node.classList) {
+      if (node.classList.contains('md-data-table')) {
+        table = node;
+      } else if (node.classList.contains('md-data-table--responsive')) {
+        return node;
+      } else if (node.classList.contains('md-data-table__scroll-wrapper')) {
+        // fixed-wrapper then responsive
+        return node.parentNode.parentNode;
+      } else if (table) {
+        return table;
+      }
     }
 
     node = node.parentNode;

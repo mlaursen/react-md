@@ -1,3 +1,5 @@
+/** @module utils/StringUtils/capitlizeFirst */
+
 /**
  * Capitalizes the first letter of a string. If the string is falsish, it will be
  * returned as is. If the string is only one letter long, it will be capitalized;

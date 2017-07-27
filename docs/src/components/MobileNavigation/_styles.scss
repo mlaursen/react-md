@@ -1,0 +1,5 @@
+@import '~globals';
+
+.md-bottom-nav[disabled] {
+  color: get-color('disabled', false);
+}

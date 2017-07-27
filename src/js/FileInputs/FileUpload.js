@@ -1,12 +1,15 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import FileInput from './FileInput';
 
 import omit from '../utils/omit';
 
 /**
- * The `FileUpload` component is used to upload files locally. If you want
- * to upload files to a server, use [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+ * The `FileUpload` component is used to upload files locally This is a wrapper of the `FileInput` component
+ * with some additional functionality so any props that are undocumented on `FileUpload` but are present
+ * on `FileInput` are correctly provided. If you want to upload files to a server, use
+ * [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
  * by attaching the `File`.
  *
  * Quick example:
@@ -78,7 +81,7 @@ export default class FileUpload extends PureComponent {
     /**
      * A label to display on the `FileInput`.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * The icon children to use for the upload icon.
@@ -201,14 +204,7 @@ export default class FileUpload extends PureComponent {
     onChange: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this.abort = this.abort.bind(this);
-    this._uploadFile = this._uploadFile.bind(this);
-    this._handleUpload = this._handleUpload.bind(this);
-  }
+  state = {};
 
   /**
    * Attempts to abort the upload of a file. This function takes an optional `file` or `fileName`
@@ -218,7 +214,7 @@ export default class FileUpload extends PureComponent {
    * @param {Object|string=} file - The file or the file name to use to find the
    *     correct `FileReader`.
    */
-  abort(file) {
+  abort = (file) => {
     let fileName = file;
     if (!file) {
       // Attempt to remove first file added...
@@ -234,9 +230,9 @@ export default class FileUpload extends PureComponent {
 
       this.setState(omit(this.state, [fileName]));
     }
-  }
+  };
 
-  _uploadFile(file) {
+  _uploadFile = (file) => {
     const {
       onAbort,
       onError,
@@ -292,13 +288,13 @@ export default class FileUpload extends PureComponent {
 
     if (readAs) {
       if (typeof readAs === 'function') {
-        readAs(file.type, file, fr);
+        readAs(type, file, fr);
       } else {
         fr[`readAs${readAs}`](file);
       }
-    } else if (type.match(/image|video|audio/)) {
+    } else if (type.match(/image|video|audio|application\/pdf/) || name.match(/\.mkv$/)) {
       fr.readAsDataURL(file);
-    } else if (type.match(/json$/)) {
+    } else if (type.match(/application\/json/)) {
       fr.readAsText(file);
     } else if (type.match(/application|model|multipart/) || name.match(/(w|e)ar$/)) {
       fr.readAsArrayBuffer(file);
@@ -307,9 +303,9 @@ export default class FileUpload extends PureComponent {
     }
 
     return fr;
-  }
+  };
 
-  _handleUpload(fileList, e) {
+  _handleUpload = (fileList, e) => {
     if (this.props.onChange) {
       this.props.onChange(fileList, e);
     }
@@ -339,7 +335,7 @@ export default class FileUpload extends PureComponent {
     });
 
     this.setState(nextState);
-  }
+  };
 
   render() {
     const {

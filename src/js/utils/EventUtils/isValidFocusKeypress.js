@@ -1,3 +1,4 @@
+/** @module utils/EventUtils/isValidFocusKeypress */
 import { TAB } from '../../constants/keyCodes';
 
 /**

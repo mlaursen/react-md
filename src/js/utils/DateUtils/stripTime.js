@@ -1,3 +1,5 @@
+/** @module utils/DateUtils/stripTime */
+
 /**
  * Removes all time from a date. Only keeps year, month, and date.
  * @param {Date} date the date to strip

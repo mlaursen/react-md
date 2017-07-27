@@ -72,7 +72,7 @@ $md-tooltip-opacity: .9 !default;
     display: inline-flex;
     font-weight: $md-font-medium;
     opacity: $md-tooltip-opacity;
-    outline: none;
+    outline-width: 0;
     position: absolute;
     white-space: nowrap;
 

@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import invariant from 'invariant';
 
@@ -76,26 +77,15 @@ export default class FocusContainer extends PureComponent {
 
   static defaultProps = {
     component: 'div',
+    containFocus: true,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this._containFocus = this._containFocus.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._enableFocusTrap = this._enableFocusTrap.bind(this);
-    this._disableFocusTrap = this._disableFocusTrap.bind(this);
-    this._attemptInitialFocus = this._attemptInitialFocus.bind(this);
-  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.containFocus === nextProps.containFocus) {
       return;
     }
 
-    if (this.props.containFocus) {
+    if (nextProps.containFocus) {
       this._enableFocusTrap();
       this._attemptInitialFocus();
     } else {
@@ -116,17 +106,17 @@ export default class FocusContainer extends PureComponent {
     }
   }
 
-  _enableFocusTrap() {
+  _enableFocusTrap = () => {
     window.addEventListener('focus', this._handleFocus, true);
     window.addEventListener('keydown', this._handleKeyDown, true);
-  }
+  };
 
-  _disableFocusTrap() {
+  _disableFocusTrap = () => {
     window.removeEventListener('focus', this._handleFocus, true);
     window.removeEventListener('keydown', this._handleKeyDown, true);
-  }
+  };
 
-  _attemptInitialFocus() {
+  _attemptInitialFocus = () => {
     if (!this._container) {
       return;
     }
@@ -155,21 +145,21 @@ export default class FocusContainer extends PureComponent {
     if (toFocus) {
       toFocus.focus();
     }
-  }
+  };
 
   /**
    * Manages the event listeners to contain the focus within some container.  When the container
    * ref is not null, the container has mounted and then attempts to focus an element inside
    * if the `focusOnMount` prop is `true`.
    */
-  _containFocus(containerRef) {
+  _containFocus = (containerRef) => {
     if (containerRef === null) {
       this._container = null;
       this._disableFocusTrap();
       return;
     }
 
-    const { focusOnMount } = this.props;
+    const { focusOnMount, containFocus } = this.props;
     this._container = findDOMNode(containerRef);
     this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
       .filter(el => el.tabIndex !== -1);
@@ -178,18 +168,20 @@ export default class FocusContainer extends PureComponent {
       this._attemptInitialFocus();
     }
 
-    this._enableFocusTrap();
-  }
+    if (containFocus) {
+      this._enableFocusTrap();
+    }
+  };
 
-  _handleFocus(e) {
+  _handleFocus = (e) => {
     if (e.target !== window && this._shifted && this._container && !this._container.contains(e.target)) {
       // Prevent the default focus action and focus the last focusable item
       e.stopPropagation();
       this._focusables[this._focusables.length - 1].focus();
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     this._shifted = e.shiftKey;
     if (!isValidFocusKeypress(e, this.props.additionalFocusKeys)) {
       return;
@@ -206,7 +198,7 @@ export default class FocusContainer extends PureComponent {
       e.preventDefault();
       first.focus();
     }
-  }
+  };
 
   render() {
     const {

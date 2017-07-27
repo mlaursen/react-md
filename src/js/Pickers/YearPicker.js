@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import Year from './Year';
 
@@ -19,7 +20,6 @@ export default class YearPicker extends PureComponent {
     super(props);
 
     this.state = this._getYearRange(props);
-    this._setContainer = this._setContainer.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {

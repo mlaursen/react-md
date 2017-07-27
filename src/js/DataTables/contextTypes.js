@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export default {
   checkedIconChildren: PropTypes.node,
@@ -12,6 +12,8 @@ export default {
   selectableRows: PropTypes.bool.isRequired,
   allSelected: PropTypes.bool.isRequired,
   selectedRows: PropTypes.arrayOf(PropTypes.bool).isRequired,
+  createCheckbox: PropTypes.func.isRequired,
+  removeCheckbox: PropTypes.func.isRequired,
   toggleSelectedRow: PropTypes.func.isRequired,
   baseId: PropTypes.oneOfType([
     PropTypes.number,
@@ -20,4 +22,6 @@ export default {
   baseName: PropTypes.string,
   checkboxHeaderLabel: PropTypes.string.isRequired,
   checkboxLabelTemplate: PropTypes.string.isRequired,
+  fixedHeader: PropTypes.bool.isRequired,
+  fixedFooter: PropTypes.bool.isRequired,
 };

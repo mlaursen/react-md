@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
@@ -43,10 +44,6 @@ export default class ClockTime extends PureComponent {
       // default size in scss
       size: 18,
     };
-
-    this._setTime = this._setTime.bind(this);
-    this._setPosition = this._setPosition.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,13 +52,13 @@ export default class ClockTime extends PureComponent {
     }
   }
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if ((e.which || e.keyCode) === TAB) {
       this.props.onKeyboardFocus(this.props.time);
     }
   }
 
-  _setTime(time) {
+  _setTime = (time) => {
     this._time = time;
     if (time !== null) {
       this._setPosition(this.props, time);
@@ -70,9 +67,9 @@ export default class ClockTime extends PureComponent {
         time.focus();
       }
     }
-  }
+  };
 
-  _setPosition({ radius, index }, time) {
+  _setPosition = ({ radius, index }, time) => {
     // 36 is default size for the time
     const size = (time.offsetWidth || 36) / 2;
     const timeRadians = (Math.PI / 2) - index * (Math.PI / 6);
@@ -87,7 +84,7 @@ export default class ClockTime extends PureComponent {
         left: outerRadius + innerRadius * Math.cos(timeRadians),
       },
     });
-  }
+  };
 
   render() {
     const { time, active } = this.props;

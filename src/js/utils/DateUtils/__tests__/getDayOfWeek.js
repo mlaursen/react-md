@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../getDayOfWeek');
-
 import getDayOfWeek from '../getDayOfWeek';
 
 describe('getDayOfWeek', () => {

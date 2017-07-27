@@ -1,0 +1,34 @@
+@import '~globals';
+
+.file-inputs__upload-card {
+  align-self: flex-start;
+  margin: 8px;
+  max-width: 320px;
+  position: relative;
+  width: 100%;
+
+  &--application.md-card {
+    background: get-color('background', false);
+  }
+
+  &__remove.md-btn {
+    background: rgba($md-black-base, .54);
+    color: $md-white-base;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  &__dummy-file.md-icon {
+    left: 50%;
+    position: absolute;
+    top: 25%;
+    transform: translateX(-50%);
+  }
+
+  .markdown-container {
+    max-height: 180px;
+    overflow: auto;
+  }
+}

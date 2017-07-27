@@ -1,5 +1,6 @@
 /* eslint-disable new-cap */
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import PickerControl from './PickerControl';
 
@@ -24,8 +25,6 @@ export default class DatePickerHeader extends PureComponent {
     super(props);
 
     this.state = this._getFormattedDate(props);
-    this._selectYear = this._selectYear.bind(this);
-    this._selectCalendar = this._selectCalendar.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,13 +45,13 @@ export default class DatePickerHeader extends PureComponent {
     };
   }
 
-  _selectYear(e) {
+  _selectYear = (e) => {
     this.props.changeCalendarMode('year', e);
-  }
+  };
 
-  _selectCalendar(e) {
+  _selectCalendar = (e) => {
     this.props.changeCalendarMode('calendar', e);
-  }
+  };
 
   render() {
     const { year, weekday, date } = this.state;

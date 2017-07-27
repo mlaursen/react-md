@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -57,7 +58,7 @@ export default class CardActions extends Component {
         className={cn('md-dialog-footer--card', {
           'md-dialog-footer--inline': !stacked,
           'md-dialog-footer--stacked': stacked,
-          'md-dialog-footer--centered': centered,
+          'md-dialog-footer--card-centered': centered,
         }, className)}
       >
         {children}

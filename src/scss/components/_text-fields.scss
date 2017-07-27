@@ -84,7 +84,7 @@ $md-text-field-mobile-font-size: 16px !default;
 
 /// The padding above a floating label on mobile devices.
 /// @type Number
-$md-text-field-mobile-top-padding: 16px !default;
+$md-text-field-mobile-top-padding: $md-default-padding !default;
 
 /// The padding between a _floating_ floating label and the text field
 /// on mobile devices.
@@ -128,7 +128,7 @@ $md-text-field-desktop-divider-bottom-padding: 4px !default;
 
 // The padding above and below the block text field on desktop screens.
 // @type Number
-$md-text-field-desktop-block-padding: 16px !default;
+$md-text-field-desktop-block-padding: $md-default-padding !default;
 
 /// This is the position from the top of the text field's container that the floating
 /// label should appear.
@@ -139,6 +139,11 @@ $md-text-field-mobile-floating-label-margin: 37px !default;
 /// label should appear for desktop screens.
 /// @type Number
 $md-text-field-desktop-floating-label-margin: 33px !default;
+
+/// The line-height to use for the text field's input. This will not be applied to multiline
+/// text fields. This value should be more than 1 to support firefox clipping letters.
+/// @type Number
+$md-text-field-line-height: 1.15 !default;
 
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,
@@ -161,8 +166,6 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///     should be included.
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the minimal styling for
 ///     using icons should be included.
-/// @param {Boolean} include-message [$md-text-field-include-message] - Boolean if the text field message
-///     styling should be included. This is the css for the counter and/or help/error text.
 /// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the styling for password
 ///     text fields should be included.
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
@@ -225,6 +228,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 /// @group text-fields, media-queries
@@ -232,8 +237,10 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
+  $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @include react-md-text-field-container-desktop($include-block);
@@ -245,7 +252,21 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @if $include-password or $include-icon {
-    @include react-md-text-field-icon-desktop;
+    @include react-md-text-field-icon-desktop($include-password, $include-dense-icons);
+  }
+
+  @if $include-message and ($include-dense-icons and $include-icon) {
+    .md-text-field-message-container {
+      $margin: if($md-font-icon-include-dense, $md-font-icon-dense-size, $md-font-icon-size) + $md-default-padding;
+
+      &--left-icon-offset {
+        padding-left: $margin;
+      }
+
+      &--right-icon-offset {
+        padding-right: $margin;
+      }
+    }
   }
 
   @if $include-password or $include-inline-indicator {
@@ -280,6 +301,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - A map of custom sizes to apply. If you do not
 ///     want any custom sizes, set the global or this param to null.
 /// @group text-fields, media-queries
@@ -287,8 +310,10 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
   $include-icon: $md-text-field-include-icon,
+  $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
   @media #{$md-mobile-media} {
@@ -296,7 +321,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-password, $custom-sizes);
+    @include react-md-text-fields-desktop($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
   }
 }
 
@@ -339,6 +364,8 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-inline-indicator [$md-text-field-include-inline-indicator] - Bolean if the styling
 ///     for inline indicators should be included. If the `$include-password` param is `true`, this will automatically
 ///     be included as well.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @param {Map} custom-sizes [$md-text-field-custom-sizes] - This is a map of size names and font sizes
 ///     to apply as custom sizes for the text field.
 @mixin react-md-text-fields(
@@ -353,12 +380,9 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-message: $md-text-field-include-message,
   $include-password: $md-text-field-include-password,
   $include-inline-indicator: $md-text-field-include-inline-indicator,
+  $include-dense-icons: $md-font-icon-include-dense,
   $custom-sizes: $md-text-field-custom-sizes
 ) {
-  @if $include-media {
-    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-password, $custom-sizes);
-  }
-
   @include react-md-text-field-container($light-theme, $include-multiline, $include-block, $include-message);
   @include react-md-text-field($light-theme, $include-multiline);
   @include react-md-text-field-divider($primary-color, $error-color);
@@ -381,6 +405,10 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
   @if $include-password {
     @include react-md-text-field-password($light-theme);
+  }
+
+  @if $include-media {
+    @include react-md-text-fields-media($include-floating-label, $include-block, $include-icon, $include-message, $include-password, $include-dense-icons, $custom-sizes);
   }
 
   @include react-md-text-field-custom-sizes($md-text-field-custom-sizes, $include-floating-label);
@@ -427,8 +455,16 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $include-password: $md-text-field-include-password
 ) {
   @if $light-theme != $md-light-theme {
-    .md-text-field-container {
-      @include react-md-theme-placeholders(get-color('secondary', $light-theme));
+    .md-text-field {
+      @include react-md-style-placeholders {
+        color: get-color('secondary', $light-theme);
+      };
+
+      &[disabled] {
+        @include react-md-style-placeholders {
+          color: get-color('disabled', $light-theme);
+        };
+      }
     }
   }
 
@@ -558,30 +594,11 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ) {
 
   .md-text-field-container {
-    @include react-md-theme-placeholders(get-color('secondary', $light-theme));
-
     position: relative;
-
-    // scss-lint:disable VendorPrefix, PseudoElement
-    :-moz-placeholder {
-      opacity: 1;
-    }
-
-    ::-moz-placeholder {
-      opacity: 1;
-    }
-
-    :-ms-input-placeholder {
-      opacity: 1;
-    }
-
-    ::-webkit-input-placeholder {
-      opacity: 1;
-    }
   }
 
   .md-text-field-container--input {
-    line-height: 1;
+    line-height: $md-text-field-line-height;
   }
 
   @if $include-block {
@@ -605,6 +622,11 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
     .md-text-field-multiline-container {
       position: relative;
+    }
+
+    .md-text-field-container--multiline {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
@@ -631,8 +653,12 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
     padding: 0;
     width: 100%;
 
+    @include react-md-style-placeholders {
+      color: get-color('secondary', $light-theme);
+    }
+
     &:focus {
-      outline: none;
+      outline-width: 0;
     }
 
     &:-webkit-autofill,
@@ -642,6 +668,12 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
     &--margin {
       margin-top: 13px;
+    }
+
+    &[disabled] {
+      @include react-md-style-placeholders {
+        color: get-color('disabled', $light-theme);
+      }
     }
   }
 
@@ -656,7 +688,6 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
       overflow: hidden;
       position: absolute;
       visibility: hidden;
-      z-index: -1;
     }
   }
 }
@@ -768,7 +799,13 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   .md-floating-label--icon-offset {
-    left: 40px;
+    left: $md-font-icon-size + $md-default-padding;
+
+    @if $md-font-icon-include-dense {
+      @media #{$md-desktop-media} {
+        left: $md-font-icon-dense-size + $md-default-padding;
+      }
+    }
   }
 }
 
@@ -835,7 +872,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   .md-floating-label--floating {
-    transform: translate3d(0, 16px, 0);
+    transform: translate3d(0, $md-default-padding, 0);
   }
 }
 
@@ -1029,24 +1066,30 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   }
 
   @if $include-icon {
-    .md-text-field-message-container--left-icon-offset {
-      margin-left: 40px;
-    }
+    .md-text-field-message-container {
+      $padding: $md-font-icon-size + $md-default-padding;
 
-    .md-text-field-message-container--right-icon-offset {
-      margin-right: 40px;
+      &--left-icon-offset {
+        padding-left: $padding;
+      }
+
+      &--right-icon-offset {
+        padding-right: $padding;
+      }
     }
   }
 
   .md-text-field-message {
+    color: inherit;
     flex-grow: 1;
     transition-duration: $md-transition-time;
     transition-property: opacity;
+    white-space: normal;
   }
 
   .md-text-field-message--counter {
     display: block;
-    flex-grow: initial;
+    flex-grow: 0;
     flex-shrink: 0;
     padding-left: $md-default-padding;
   }
@@ -1117,7 +1160,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
   .md-text-field-icon + .md-text-field-divider-container,
   .md-text-field-divider-container + .md-text-field-icon {
-    margin-left: 16px;
+    margin-left: $md-default-padding;
   }
 
   .md-text-field-icon--disabled {
@@ -1190,7 +1233,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
   $text-field-height: 19px;
 
   .md-text-field-icon--positioned {
-    margin-bottom: 16px - (($md-font-icon-size - $text-field-height) / 2);
+    margin-bottom: $md-default-padding - (($md-font-icon-size - $text-field-height) / 2);
   }
 }
 
@@ -1201,12 +1244,24 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///   @media #{$md-desktop-media} {
 ///     @include react-md-text-field-icon-desktop;
 ///   }
+///
+/// @param {Boolean} include-password [$md-text-field-include-password] - Boolean if the password button
+///     should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-icon-desktop {
+@mixin react-md-text-field-icon-desktop($include-password: $md-text-field-include-password, $include-dense-icons: $md-font-icon-include-dense) {
   $text-field-height: 15px;
 
   .md-text-field-icon--positioned {
-    margin-bottom: 12px - (($md-font-icon-size - $text-field-height) / 2);
+    margin-bottom: 12px - ((if($include-dense-icons, $md-font-icon-dense-size, $md-font-icon-size) - $text-field-height) / 2);
+  }
+
+  @if $include-password and $include-dense-icons {
+    .md-password-btn.md-password-btn {
+      height: $md-font-icon-dense-size;
+      width: $md-font-icon-dense-size;
+    }
   }
 }
 
@@ -1214,14 +1269,17 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///
 /// @example scss - Example Usage SCSS
 ///   @include react-md-text-field-icon-media;
+///
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icon
+///     styles should be included for text fields.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-icon-media {
+@mixin react-md-text-field-icon-media($include-dense-icons: $md-font-icon-include-dense) {
   @media #{$md-mobile-media} {
     @include react-md-text-field-icon-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-text-field-icon-desktop;
+    @include react-md-text-field-icon-desktop($include-dense-icons);
   }
 }
 
@@ -1243,7 +1301,7 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
     width: $md-font-icon-size;
 
     &:not(.md-password-btn--focus):focus {
-      outline: none;
+      outline-width: 0;
     }
 
     .md-icon {
@@ -1373,21 +1431,27 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @param {Boolean} include-floating-labe [$md-text-field-include-floating-label] - Boolean if the
 ///   floating label styles for inline indicators should be included.
 /// @param {Boolean} include-block [$md-text-field-include-block] - Boolean if the block styles should
-///     be included
+///     be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense icons styles
+///     should be included.
 /// @group text-fields, media-queries
-@mixin react-md-text-field-inline-indicator-desktop($include-floating-label: $md-text-field-include-floating-label, $include-block: $md-text-field-include-block) {
+@mixin react-md-text-field-inline-indicator-desktop(
+  $include-floating-label: $md-text-field-include-floating-label,
+  $include-block: $md-text-field-include-block,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   .md-text-field-inline-indicator {
-    top: 7px;
+    top: if($include-dense-icons, 9px, 7px);
 
     @if $include-floating-label {
       &--floating {
-        top: 28px;
+        top: if($include-dense-icons, 30px, 28px);
       }
     }
 
     @if $include-block {
       &--block {
-        top: 10px;
+        top: if($include-dense-icons, 12px, 10px);
       }
     }
   }
@@ -1554,6 +1618,112 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 
 
 
+/// A mixin for adding custom styles to placeholders since the autoprefixer doesn't seem
+/// to be able to pick it up correctly.
+///
+/// @example scss - Example Scss Usage
+///   .md-text-field[disabled] {
+///     @include react-md-style-placeholders {
+///       color: get-color(disabled, true);
+///     }
+///   }
+///
+///   .some-field-contaner {
+///     @include react-md-style-placeholders(true) {
+///       color: red;
+///     }
+///   }
+///
+/// @example scss - Example CSS Output
+///   .md-text-field[disabled]:placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]:-moz-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]::-moz-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]:-ms-input-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///   .md-text-field[disabled]::-webkit-placeholder {
+///     color: rgba(0, 0, 0, .87);
+///   }
+///
+///
+///   .some-field-container :placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container :-moz-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container ::-moz-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container :-ms-input-placeholder {
+///     color: red;
+///   }
+///
+///   .some-field-container ::-webkit-placeholder {
+///     color: red;
+///   }
+///
+/// @param {Boolean} child [true] - Boolean if the placeholder should apply to a child of the class
+///   name instead of applying to the current class name/selector.
+@mixin react-md-style-placeholders($child: false) {
+  @if $child {
+    // scss-lint:disable VendorPrefix, PseudoElement
+    :placeholder {
+      @content;
+    }
+
+    :-moz-placeholder {
+      @content;
+    }
+
+    ::-moz-placeholder {
+      @content;
+    }
+
+    :-ms-input-placeholder {
+      @content;
+    }
+
+    ::-webkit-input-placeholder {
+      @content;
+    }
+  } @else {
+    // scss-lint:disable VendorPrefix, PseudoElement
+
+    &:placeholder {
+      @content;
+    }
+
+    &:-moz-placeholder {
+      @content;
+    }
+
+    &::-moz-placeholder {
+      @content;
+    }
+
+    &:-ms-input-placeholder {
+      @content;
+    }
+
+    &::-webkit-input-placeholder {
+      @content;
+    }
+  }
+}
 
 
 /// Applies a color to all the browser placeholder psuedo elements.
@@ -1584,22 +1754,10 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 ///
 /// @param {Color} color - The placeholder color to use
 /// @group text-fields, themes
+/// @deprecated
+/// @see react-md-style-placeholders
 @mixin react-md-theme-placeholders($color) {
-  // scss-lint:disable VendorPrefix, PseudoElement
-
-  :-moz-placeholder {
-    color: $color;
-  }
-
-  ::-moz-placeholder {
-    color: $color;
-  }
-
-  :-ms-input-placeholder {
-    color: $color;
-  }
-
-  ::-webkit-input-placeholder {
+  @include react-md-style-placeholders(true) {
     color: $color;
   }
 }

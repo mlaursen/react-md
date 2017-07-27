@@ -1,0 +1,17 @@
+@import '~globals';
+
+pre,
+code {
+  word-wrap: break-word;
+}
+
+blockquote {
+  border-left: 4px solid get-color('divider', $md-light-theme);
+  margin-left: 0;
+  padding-left: 1.5em;
+
+  p {
+    color: get-color('secondary', $md-light-theme);
+    margin: 0;
+  }
+}

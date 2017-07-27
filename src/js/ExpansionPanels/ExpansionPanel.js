@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children } from 'react';
+import React, { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
@@ -120,6 +121,15 @@ export default class ExpansionPanel extends PureComponent {
     columnWidths: PropTypes.arrayOf(PropTypes.number).isRequired,
 
     /**
+     * Boolean if the panel has too much content so that it overflowns. This is injected
+     * and managed by the `ExpansionList` component. Do not set yourself.
+     *
+     * When this is active, it will truncate all columns except for the main label and the
+     * toggle icon.
+     */
+    overflown: PropTypes.bool,
+
+    /**
      * A function to call when the expansion panel's expanded state is toggled.
      * The callback for this function will include the new expanded state.
      *
@@ -156,7 +166,7 @@ export default class ExpansionPanel extends PureComponent {
     /**
      * The label for the Save button.
      */
-    saveLabel: PropTypes.string.isRequired,
+    saveLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the Save button should be styled with the primary color.
@@ -169,6 +179,12 @@ export default class ExpansionPanel extends PureComponent {
     saveSecondary: PropTypes.bool,
 
     /**
+     * Any additional props to provide/override for the save button in the
+     * footer of the panel.
+     */
+    saveProps: PropTypes.object,
+
+    /**
      * An optional button type to apply to the Cancel button. This will get
      * passed to the `FlatButton`.
      */
@@ -177,7 +193,7 @@ export default class ExpansionPanel extends PureComponent {
     /**
      * The label for the Cancel button.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the Cancel button should be styled with the primary color,
@@ -188,6 +204,12 @@ export default class ExpansionPanel extends PureComponent {
      * Boolean if the Cancel button should be styled with the secondary color,
      */
     cancelSecondary: PropTypes.bool,
+
+    /**
+     * Any additional props to provide/override for the cancel button in the
+     * footer of the panel.
+     */
+    cancelProps: PropTypes.object,
 
     /**
      * The tab index for the panel's header. This allows keyboard navigation.
@@ -202,6 +224,26 @@ export default class ExpansionPanel extends PureComponent {
      * > The default value is really `true` since it gets passed down to the `Collapse` component.
      */
     animateContent: PropTypes.bool,
+
+    /**
+     * This prop controls the footer for the expansion panel. If this prop is `undefined`, it will
+     * go with the default behavior of generating the save and cancel buttons with the save and cancel
+     * props.
+     *
+     * If this value is `null`, there will be no footer created.
+     *
+     * Finally, if this prop is defined as any renderable item, it will be displayed in place of the
+     * footer.
+     *
+     * @see {@link #footerChildren}
+     */
+    footer: PropTypes.node,
+
+    /**
+     * Any additional children that should be displayed in the footer of the panel. These children
+     * will be placed after the action buttons.
+     */
+    footerChildren: PropTypes.node,
   };
 
   static defaultProps = {
@@ -233,11 +275,6 @@ export default class ExpansionPanel extends PureComponent {
     if (typeof props.expanded === 'undefined') {
       this.state.expanded = props.defaultExpanded;
     }
-
-    this._handleSave = this._handleSave.bind(this);
-    this._handleCancel = this._handleCancel.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._determineIfTwoLine = this._determineIfTwoLine.bind(this);
   }
 
   componentDidMount() {
@@ -275,15 +312,15 @@ export default class ExpansionPanel extends PureComponent {
     return typeof props.expanded === 'undefined' ? state.expanded : props.expanded;
   }
 
-  _determineIfTwoLine() {
+  _determineIfTwoLine = () => {
     let twoLine = false;
     Array.prototype.slice.call(findDOMNode(this).querySelectorAll('.md-panel-column'))
       .some(el => (twoLine = el.offsetHeight > SINGLE_LINE_HEIGHT));
 
     this.setState({ twoLine });
-  }
+  };
 
-  _handleClick() {
+  _handleClick = () => {
     const expanded = !this._isExpanded(this.props, this.state);
     if (this.props.onExpandToggle) {
       this.props.onExpandToggle(expanded);
@@ -293,9 +330,9 @@ export default class ExpansionPanel extends PureComponent {
     if (typeof this.props.expanded === 'undefined') {
       this.setState({ expanded });
     }
-  }
+  };
 
-  _handleSave(e) {
+  _handleSave = (e) => {
     const { onSave, onExpandToggle, closeOnSave } = this.props;
     if (onSave) {
       onSave(e);
@@ -310,9 +347,9 @@ export default class ExpansionPanel extends PureComponent {
         this.setState({ expanded: false });
       }
     }
-  }
+  };
 
-  _handleCancel(e) {
+  _handleCancel = (e) => {
     const { onCancel, onExpandToggle, closeOnCancel } = this.props;
     if (onCancel) {
       onCancel(e);
@@ -327,7 +364,7 @@ export default class ExpansionPanel extends PureComponent {
         this.setState({ expanded: false });
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -344,15 +381,20 @@ export default class ExpansionPanel extends PureComponent {
       saveLabel,
       savePrimary,
       saveSecondary,
+      saveProps,
       cancelType,
       cancelLabel,
       cancelPrimary,
       cancelSecondary,
+      cancelProps,
       headerStyle,
       headerClassName,
       contentStyle,
       contentClassName,
       tabIndex,
+      overflown,
+      footer,
+      footerChildren,
       /* eslint-disable no-unused-vars */
       animateContent: propAnimateContent,
       expanded: propExpanded,
@@ -371,7 +413,12 @@ export default class ExpansionPanel extends PureComponent {
     const animateContent = getField(this.props, this.context, 'animateContent');
 
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
-      <div className="md-panel-column md-text" style={{ minWidth: columnWidths[i + 1] }}>
+      <div
+        style={{ [`${overflown ? 'width' : 'minWidth'}`]: columnWidths[i + 1] }}
+        className={cn('md-panel-column md-text', {
+          'md-panel-column--overflown': overflown,
+        })}
+      >
         {panelLabel}
       </div>
     ));
@@ -404,7 +451,11 @@ export default class ExpansionPanel extends PureComponent {
           tabIndex={tabIndex}
         >
           {columns}
-          <Collapser flipped={expanded} iconClassName={expandIconClassName} className="md-cell--right">
+          <Collapser
+            flipped={expanded}
+            iconClassName={expandIconClassName}
+            className="md-cell--right md-expansion-panel__collapser"
+          >
             {expandIconChildren}
           </Collapser>
         </AccessibleFakeButton>
@@ -418,10 +469,14 @@ export default class ExpansionPanel extends PureComponent {
             saveLabel={saveLabel}
             savePrimary={savePrimary}
             saveSecondary={saveSecondary}
+            saveProps={saveProps}
             cancelType={cancelType}
             cancelLabel={cancelLabel}
             cancelPrimary={cancelPrimary}
             cancelSecondary={cancelSecondary}
+            cancelProps={cancelProps}
+            footer={footer}
+            footerChildren={footerChildren}
           >
             {children}
           </PanelContent>

@@ -1,11 +1,9 @@
 /* eslint-env jest*/
-jest.unmock('../YearPicker');
-
 import React from 'react';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import YearPicker from '../YearPicker';
 import Year from '../Year';

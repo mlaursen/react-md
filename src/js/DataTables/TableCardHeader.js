@@ -1,5 +1,6 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import TICK from '../constants/CSSTransitionGroupTick';
@@ -53,10 +54,26 @@ export default class TableCardHeader extends PureComponent {
     title: oneRequired(PropTypes.node, 'leftChildren', 'children'),
 
     /**
+     * An optional id to provide to the title.
+     */
+    titleId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
      * An optional title to display in the contextual header. This will get wrapped in an `h2`
      * tag and additional styles applied.
      */
     contextualTitle: PropTypes.node,
+
+    /**
+     * An optional id to provide to the contextual title.
+     */
+    contextualTitleId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * Any additional children to display in the contextual header. This will be displayed after
@@ -179,7 +196,9 @@ export default class TableCardHeader extends PureComponent {
       style,
       className,
       title,
+      titleId,
       actions,
+      contextualTitleId,
       contextualChildren,
       noActionsAdjust,
       noChildrenAdjust,
@@ -200,7 +219,7 @@ export default class TableCardHeader extends PureComponent {
     if (title) {
       children = (
         <div className="md-card-title" key="main-title">
-          <CardTitleBlock title={title} />
+          <CardTitleBlock id={titleId} title={title} />
           {children}
         </div>
       );
@@ -216,7 +235,7 @@ export default class TableCardHeader extends PureComponent {
 
     if (contextualTitle) {
       contextualTitle = (
-        <h2 className="md-card-title--title md-card-title--title-contextual">
+        <h2 id={contextualTitleId} className="md-card-title--title md-card-title--title-contextual">
           {contextualTitle}
         </h2>
       );

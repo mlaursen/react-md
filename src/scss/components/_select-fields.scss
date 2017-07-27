@@ -37,10 +37,10 @@ $md-select-field-right-padding: 16px !default;
     .md-divider {
       width: 100%;
     }
-  }
 
-  .md-select-field-menu--stretch .md-list {
-    min-width: 100%;
+    &__toggle {
+      position: relative;
+    }
   }
 
   // To override text field padding
@@ -49,6 +49,12 @@ $md-select-field-right-padding: 16px !default;
     padding-left: $md-select-field-left-padding;
     padding-right: $md-select-field-right-padding;
     padding-top: $md-default-padding;
+  }
+
+  .md-select-field--text-field {
+    // without this, mobile safari will not bubble the click event up to the toggle element so the
+    // options never appear.
+    pointer-events: none;
   }
 
   @include react-md-select-fields-drop-transition;

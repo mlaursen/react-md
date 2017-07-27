@@ -1,9 +1,11 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import Portal from '../Helpers/Portal';
 import Paper from '../Papers/Paper';
 import BottomNav from './BottomNav';
@@ -120,6 +122,14 @@ export default class BottomNavigation extends PureComponent {
     ]).isRequired,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the bottom navigation.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * Since the `BottomNavigation` component uses the `Portal` component, you can pass an optional
      * HTML Node to render in.
      */
@@ -169,7 +179,8 @@ export default class BottomNavigation extends PureComponent {
     component: 'footer',
     defaultVisible: true,
     transitionDuration: 300,
-    dynamicThreshold: 20,
+    portal: false,
+    dynamicThreshold: 5,
   };
 
   static contextTypes = {
@@ -184,16 +195,10 @@ export default class BottomNavigation extends PureComponent {
       visible,
       portalVisible: visible,
     };
+
     if (typeof props.activeIndex === 'undefined') {
       this.state.activeIndex = props.defaultActiveIndex;
     }
-
-    this._handleNavChange = this._handleNavChange.bind(this);
-    this._addTouchEvents = this._addTouchEvents.bind(this);
-    this._removeTouchEvents = this._removeTouchEvents.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleTouchMove = this._handleTouchMove.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
   }
 
   componentDidMount() {
@@ -231,66 +236,74 @@ export default class BottomNavigation extends PureComponent {
     }
   }
 
-  _addTouchEvents() {
-    window.addEventListener('touchstart', this._handleTouchStart);
-    window.addEventListener('touchmove', this._handleTouchMove);
-    window.addEventListener('touchend', this._handleTouchEnd);
-  }
+  _addTouchEvents = () => {
+    addTouchEvent(window, 'start', this._handleTouchStart);
+    addTouchEvent(window, 'move', this._handleTouchMove);
+    addTouchEvent(window, 'end', this._handleTouchEnd);
+  };
 
-  _removeTouchEvents() {
-    window.removeEventListener('touchstart', this._handleTouchStart);
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
-  }
+  _removeTouchEvents = () => {
+    removeTouchEvent(window, 'start', this._handleTouchStart);
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
+  };
 
-  _handleTouchStart(e) {
+  _animateIn = () => {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ visible: true });
+    }, 17);
+
+    this.setState({ portalVisible: true });
+  };
+
+  _animateOut = () => {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
+
+    this._timeout = setTimeout(() => {
+      this._timeout = null;
+      this.setState({ portalVisible: false });
+    }, this.props.transitionDuration);
+
+    this.setState({ visible: false });
+  };
+
+  _handleTouchStart = (e) => {
     const { pageY } = e.changedTouches[0];
 
     this._pageY = pageY;
     this._scrolling = true;
-  }
+  };
 
-  _handleTouchMove(e) {
+  _handleTouchMove = (e) => {
     const { visible } = this.state;
     if (!this._scrolling) {
       return;
     }
 
     const touchY = e.changedTouches[0].pageY;
-    const { transitionDuration, dynamicThreshold } = this.props;
+    const { dynamicThreshold } = this.props;
     const passedThreshold = Math.abs(this._pageY - touchY) >= dynamicThreshold;
     if (this._pageY > touchY && visible && passedThreshold) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
-      }
-
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-        this.setState({ portalVisible: false });
-      }, transitionDuration);
-
       this._pageY = touchY;
-      this.setState({ visible: false });
+      this._animateOut();
     } else if (this._pageY < touchY && !visible && passedThreshold) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
-      }
-
-      this._timeout = setTimeout(() => {
-        this._timeout = null;
-        this.setState({ visible: true });
-      }, 17);
-
       this._pageY = touchY;
-      this.setState({ portalVisible: true });
+      this._animateIn();
     }
-  }
+  };
 
-  _handleTouchEnd() {
+  _handleTouchEnd = () => {
     this._scrolling = false;
-  }
+  };
 
-  _handleNavChange(index, e) {
+  _handleNavChange = (index, e) => {
     if (this.props.onNavChange || this.props.onChange) {
       (this.props.onNavChange || this.props.onChange)(index, e);
     }
@@ -298,7 +311,7 @@ export default class BottomNavigation extends PureComponent {
     if (typeof this.props.activeIndex === 'undefined') {
       this.setState({ activeIndex: index });
     }
-  }
+  };
 
   render() {
     const { visible, portalVisible } = this.state;
@@ -309,6 +322,7 @@ export default class BottomNavigation extends PureComponent {
       dynamic,
       lastChild,
       animate,
+      portal,
       /* eslint-disable no-unused-vars */
       links: propLinks,
       activeIndex: propActiveIndex,
@@ -340,32 +354,40 @@ export default class BottomNavigation extends PureComponent {
     const fixed = links.length === 3;
     const activeIndex = getField(this.props, this.state, 'activeIndex');
     const renderNode = getField(this.props, this.context, 'renderNode');
+    const navigation = (
+      <Paper
+        {...props}
+        key="navigation"
+        className={cn('md-bottom-navigation', {
+          'md-background--card': !colored,
+          'md-background--primary': colored,
+          'md-bottom-navigation--dynamic': dynamic,
+          'md-bottom-navigation--dynamic-inactive': dynamic && !visible,
+        }, className)}
+        role="navigation"
+      >
+        {links.map((action, index) => (
+          <BottomNav
+            {...action}
+            animate={animate}
+            key={action.key || index}
+            index={index}
+            onNavChange={this._handleNavChange}
+            active={activeIndex === index}
+            colored={colored}
+            fixed={fixed}
+          />
+        ))}
+      </Paper>
+    );
+
+    if (!portal) {
+      return portalVisible ? navigation : null;
+    }
 
     return (
       <Portal renderNode={renderNode} visible={portalVisible} lastChild={lastChild}>
-        <Paper
-          {...props}
-          className={cn('md-bottom-navigation', {
-            'md-background--card': !colored,
-            'md-background--primary': colored,
-            'md-bottom-navigation--dynamic': dynamic,
-            'md-bottom-navigation--dynamic-inactive': dynamic && !visible,
-          }, className)}
-          role="navigation"
-        >
-          {links.map((action, index) => (
-            <BottomNav
-              {...action}
-              animate={animate}
-              key={action.key || index}
-              index={index}
-              onNavChange={this._handleNavChange}
-              active={activeIndex === index}
-              colored={colored}
-              fixed={fixed}
-            />
-          ))}
-        </Paper>
+        {navigation}
       </Portal>
     );
   }

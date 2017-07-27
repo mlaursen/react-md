@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
+import React, { PureComponent, Children, cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import oneRequired from '../utils/PropTypes/oneRequired';
@@ -93,17 +94,11 @@ export default class Tab extends PureComponent {
     component: 'li',
   };
 
-  constructor(props) {
-    super(props);
-
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(this.props.index, this.props.id, this.props.controlsId, this.props.children, e);
     }
-  }
+  };
 
   render() {
     const {

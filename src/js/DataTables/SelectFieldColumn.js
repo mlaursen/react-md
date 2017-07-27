@@ -1,24 +1,33 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { findDOMNode } from 'react-dom';
+import deprecated from 'react-prop-types/lib/deprecated';
 
+import getField from '../utils/getField';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import SelectField from '../SelectFields/SelectField';
-import TableColumn from './TableColumn';
 import findTable from './findTable';
+import findFixedTo from './findFixedTo';
+import TableColumn from './TableColumn';
 
 /**
- * The `SelectFieldColumn` component is used to render select fields in `DataTable`s.
- * The only reason this component is required is to that the select field will not
- * take the overflow of the `DataTable` into consideration when rendering itself. Without
- * this component, the menu items would be hidden by the data table's overflow.
+ * The `SelectFieldColumn` component is just a simple wrapper between a `SelectField` and
+ * the `TableColumn` components.
  *
  * All props that are on the `SelectField` are also available here (except the naming of style or className).
  * See the [SelectField](/components/select-fields?tab=1#select-field-proptypes) for remaining prop descriptions.
  */
 export default class SelectFieldColumn extends PureComponent {
+  static VerticalAnchors = SelectField.VerticalAnchors;
+  static HorizontalAnchors = SelectField.HorizontalAnchors;
+  static Positions = SelectField.Positions;
+
   static propTypes = {
     /**
-     * An optional id to use for the select field in the column. If this is omitted,
-     * the id will be generated from the `baseId` from the `DataTable`.
+     * An optional id to use for the select field in the column. If this is omitted, it's value will be
+     * `${rowId}-${cellIndex}-select`
      */
     id: PropTypes.oneOfType([
       PropTypes.number,
@@ -26,78 +35,106 @@ export default class SelectFieldColumn extends PureComponent {
     ]),
 
     /**
-     * An optional style to apply to the `TableColumn`.
+     * This is the optional style to apply to the `TableColumn`.
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the `TableColumn`.
+     * This is the optional className to apply to the `TableColumn`.
      */
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the select field's wrapper in the column.
-     */
-    wrapperStyle: PropTypes.object,
-
-    /**
-     * An optional className to apply to the select field's wrapper in the column.
-     */
-    wrapperClassName: PropTypes.string,
-
-    /**
-     * An optional style to apply to the select field's menu component.
+     * The is the optional style to apply to the select field's menu container.
+     *
+     * @see {@link SelectFields/SelectField#style}
      */
     menuStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the select field's menu component.
+     * The is the optional class name to apply to the select field's menu container.
+     *
+     * @see {@link SelectFields/SelectField#className}
      */
     menuClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to the select field's input.
+     * This is how the select field should be fixed within the table. When this is omitted,
+     * it will automatically use the responsive table as the fixture so that the select field
+     * will close/adjust itself to the scrolling of the table.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
      */
-    inputStyle: PropTypes.object,
+    fixedTo: fixedToShape,
 
     /**
-     * An optional className to apply to the select field's input.
+     * Boolean if the select field should span the entire width of the column.
      */
-    inputClassName: PropTypes.string,
+    fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the `SelectFieldColumn` is in the `TableHeader` component. This is
-     * injected from the `TableRow` component. Should not be used.
+     * The position for the select field.
+     *
+     * @see {@link SelectFields/SelectField#position}
+     */
+    position: positionShape,
+
+    /**
+     * This is injected by the `TableRow` component.
+     * @access private
      */
     header: PropTypes.bool,
 
     /**
-     * An optional function to call when the select field's menu is toggled open.
-     * See the select field component for the callback information.
+     * This is injected by the `TableRow` component and used to help generate the unique id for the text
+     * field.
+     *
+     * @access private
      */
-    onMenuToggle: PropTypes.func,
+    cellIndex: PropTypes.number,
 
     /**
-     * The position of the select field. It is ideal to keep this as the default.
+     * @access private
      */
-    position: SelectField.propTypes.position,
+    adjusted: PropTypes.bool,
 
     /**
-     * Boolean if the select field is open by default.
+     * The optional tooltip to render on hover.
+     *
+     * @see {@link DataTables/TableColumn#tooltipLabel}
      */
-    defaultOpen: PropTypes.bool,
+    tooltipLabel: PropTypes.string,
 
     /**
-     * When the dialog is open and a user scrolls the dialog offscreen, this is the amount
-     * of the dialog that should be offscreen before hiding the dialog (inverse). The default
-     * is to have 25% of the dialog offscreen.
+     * An optional delay to apply to the tooltip before it appears.
+     *
+     * @see {@link DataTables/TableColumn#tooltipDelay}
      */
-    scrollThreshold: PropTypes.number.isRequired,
+    tooltipDelay: PropTypes.number,
+
+    /**
+     * The position of the tooltip.
+     *
+     * @see {@link DataTables/TableColumn#tooltipPosition}
+     */
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
+    wrapperStyle: deprecated(PropTypes.object, 'There is no longer a wrapper'),
+    wrapperClassName: deprecated(PropTypes.string, 'There is no longer a wrapper'),
   };
 
   static defaultProps = {
-    position: SelectField.Positions.BELOW,
-    scrollThreshold: 0.75,
+    position: SelectFieldColumn.Positions.BELOW,
+    fullWidth: true,
+    repositionOnScroll: true,
   };
 
   static contextTypes = {
@@ -107,135 +144,71 @@ export default class SelectFieldColumn extends PureComponent {
     ]),
   }
 
-  constructor(props, context) {
-    super(props, context);
+  state = { cellIndex: undefined };
 
-    this.state = {
-      active: !!props.defaultOpen,
-      left: null,
-      width: null,
-    };
+  componentDidMount() {
+    const { cellIndex } = this.props;
+    const column = findDOMNode(this);
+    const table = findTable(column);
+    this._fixedTo = findFixedTo(table);
 
-    this._wrapper = null;
-    this._table = null;
-    this._left = null;
-    this._scrollLeft = null;
-
-    this._setWrapper = this._setWrapper.bind(this);
-    this._repositionCell = this._repositionCell.bind(this);
-    this._handleMenuToggle = this._handleMenuToggle.bind(this);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { active } = this.state;
-    if (active === prevState.active) {
-      return;
-    } else if (this._table) {
-      this._table[`${active ? 'add' : 'remove'}EventListener`]('scroll', this._repositionCell);
-      this._left = active ? this.state.left : null;
-      this._scrollLeft = active ? this._table.scrollLeft : null;
+    // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
+    // might not be defined if they don't pass ...props
+    if (!cellIndex && cellIndex !== 0) {
+      const columns = [].slice.call(column.parentNode.querySelectorAll('th,td'));
+      this.setState({ cellIndex: columns.indexOf(column) }); // eslint-disable-line react/no-did-mount-set-state
+    } else {
+      // need to apply the _fixedTo for the select field
+      this.forceUpdate();
     }
-  }
-
-  componentWillUnmount() {
-    if (this.table && this.state.active) {
-      this._table.removeEventListener('scroll', this._repositionCell);
-    }
-  }
-
-  _setWrapper(wrapper) {
-    this._wrapper = wrapper;
-    this._table = findTable(this._wrapper);
-  }
-
-  /**
-   * When the dialog is open and the user scrolls the data table (for some reason), this will
-   * keep the cell positioned correctly.
-   */
-  _repositionCell() {
-    if (!this._ticking) {
-      requestAnimationFrame(() => {
-        this._ticking = false;
-
-        let left = this._left;
-        let scrolledOut = false;
-        if (this._table) {
-          const { scrollLeft, offsetWidth } = this._table;
-          left -= (scrollLeft - this._scrollLeft);
-          scrolledOut = left < 16 || offsetWidth - left < this.state.width * this.props.scrollThreshold;
-        }
-
-        let { active } = this.state;
-        if (!this._timeout && scrolledOut) {
-          active = false;
-        }
-
-        this.setState({ left, active });
-      });
-    }
-
-    this._ticking = true;
-  }
-
-  _handleMenuToggle(active, e) {
-    if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(active, e);
-    }
-
-    let width = null;
-    let left = null;
-    if (this._wrapper && active) {
-      left = this._wrapper.getBoundingClientRect().left - 1; // 1px for box shadow
-      width = this._wrapper.offsetWidth;
-    }
-
-    this.setState({ active, width, left });
   }
 
   render() {
     const { rowId } = this.context;
-    const { active, width, left } = this.state;
     const {
       style,
       className,
       menuStyle,
       menuClassName,
+      header,
+      fixedTo,
+      tooltipLabel,
+      tooltipDelay,
+      tooltipPosition,
+      /* eslint-disable no-unused-vars */
+      id: propId,
+      cellIndex: propCellIndex,
       wrapperStyle,
       wrapperClassName,
-      header,
-      id: propId, // eslint-disable-line no-unused-vars
-      scrollThreshold, // eslint-disable-line no-unused-vars
+      adjusted,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
+    const cellIndex = getField(this.props, this.state, 'cellIndex');
+
     let { id } = this.props;
     if (!id) {
-      id = `${rowId}-select`;
+      id = `${rowId}-${cellIndex}-select-field`;
     }
 
     return (
       <TableColumn
-        style={{ left, ...style }}
-        className={cn('md-select-field-column', {
-          'md-table-column--fixed md-table-column--fixed-active': active,
-        }, className)}
         header={header}
-        __fixedColumn
+        style={style}
+        className={cn('md-select-field-column', className)}
+        adjusted={false}
+        tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
+        tooltipPosition={tooltipPosition}
       >
-        <div
-          ref={this._setWrapper}
-          style={{ ...wrapperStyle, width }}
-          className={wrapperClassName}
-        >
-          <SelectField
-            id={id}
-            {...props}
-            style={menuStyle}
-            className={menuClassName}
-            onMenuToggle={this._handleMenuToggle}
-            fullWidth
-          />
-        </div>
+        <SelectField
+          {...props}
+          id={id}
+          fixedTo={fixedTo || this._fixedTo}
+          style={menuStyle}
+          className={menuClassName}
+        />
       </TableColumn>
     );
   }

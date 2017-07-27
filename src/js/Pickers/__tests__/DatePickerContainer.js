@@ -1,16 +1,15 @@
 /* eslint-env jest*/
-/* eslint-disable global-require,max-len */
-jest.unmock('../DatePickerContainer');
-jest.unmock('../DatePicker');
-
+/* eslint-disable max-len */
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DatePickerContainer from '../DatePickerContainer';
+import Portal from '../../Helpers/Portal';
 
 describe('DatePickerContainer', () => {
   it('merges className and style', () => {
@@ -40,7 +39,7 @@ describe('DatePickerContainer', () => {
     const DateTimeFormat = require('intl').DateTimeFormat;
     const stringValue = '3/17/2017';
     let container = renderIntoDocument(
-      <DatePickerContainer id="test" value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={stringValue} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     let textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -48,14 +47,14 @@ describe('DatePickerContainer', () => {
 
     const dateValue = new Date(2017, 2, 17);
     container = renderIntoDocument(
-      <DatePickerContainer id="test" value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={dateValue} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
     expect(textField.value).toBe(stringValue);
 
     container = renderIntoDocument(
-      <DatePickerContainer id="test" value={null} locales="en-US" DateTimeFormat={DateTimeFormat} />
+      <DatePickerContainer id="test" value={null} locales="en-US" DateTimeFormat={DateTimeFormat} onChange={jest.fn()} />
     );
 
     textField = findRenderedDOMComponentWithTag(container, 'input');
@@ -150,28 +149,28 @@ describe('DatePickerContainer', () => {
   });
 
   it('allows for an initial calendar date as a string', () => {
-    const initialCalendarDateStr = '3/17/2016';
-    const initialCalendarDate = new Date(initialCalendarDateStr);
+    const defaultCalendarDateStr = '3/17/2016';
+    const defaultCalendarDate = new Date(defaultCalendarDateStr);
     const props = {
       locales: 'en-US',
-      initialCalendarDate: initialCalendarDateStr,
+      defaultCalendarDate: defaultCalendarDateStr,
       id: 'test',
     };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
-    expect(container.state.calendarDate).toEqual(initialCalendarDate);
-    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarDate).toEqual(defaultCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(defaultCalendarDate);
   });
 
   it('allows for an initial calendar date as a Date object', () => {
-    const initialCalendarDate = new Date(2016, 2, 18);
-    const props = { locales: 'en-US', initialCalendarDate, id: 'test' };
+    const defaultCalendarDate = new Date(2016, 2, 18);
+    const props = { locales: 'en-US', defaultCalendarDate, id: 'test' };
 
     const container = renderIntoDocument(<DatePickerContainer {...props} />);
 
-    expect(container.state.calendarDate).toEqual(initialCalendarDate);
-    expect(container.state.calendarTempDate).toEqual(initialCalendarDate);
+    expect(container.state.calendarDate).toEqual(defaultCalendarDate);
+    expect(container.state.calendarTempDate).toEqual(defaultCalendarDate);
   });
 
   it('modifies the initial state\'s calendarDate if the min date is greater than the calendarDate', () => {
@@ -194,6 +193,56 @@ describe('DatePickerContainer', () => {
 
     expect(container.state.calendarDate).toEqual(maxDate);
     expect(container.state.calendarTempDate).toEqual(maxDate);
+  });
+
+  it('should not render in the Portal component by default', () => {
+    const dialog = mount(<DatePickerContainer id="test" defaultVisible />);
+    expect(dialog.find(Portal).length).toBe(0);
+  });
+
+  it('should render in the Portal component when the portal prop is enabled', () => {
+    const dialog = mount(<DatePickerContainer id="test" defaultVisible portal />);
+    expect(dialog.find(Portal).length).toBe(1);
+  });
+
+  it('should not open the DatePicker if it is disabled and the text field is clicked', () => {
+    const props = { id: 'test', disabled: true };
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    container._toggleOpen({ target: { tagName: 'input' } });
+    expect(container.state.visible).toBe(false);
+  });
+
+  describe('value prop', () => {
+    const console = global.console;
+    beforeEach(() => {
+      global.console = {
+        warn: message => {
+          throw new Error(message);
+        },
+        error: message => {
+          throw new Error(message);
+        },
+      };
+    });
+
+    afterAll(() => {
+      global.console = console;
+    });
+
+    it('should not throw prop type warnings when the value prop is set to the empty string or null', () => {
+      let error = false;
+
+      try {
+        mount(<DatePickerContainer id="test" value={null} onChange={jest.fn()} />);
+        const picker = mount(<DatePickerContainer id="test" value="" onChange={jest.fn()} />);
+        picker.setProps({ value: null });
+        picker.setProps({ value: '' });
+      } catch (e) {
+        error = true;
+      }
+      expect(error).toBe(false);
+    });
   });
 
   describe('validateDateRange', () => {

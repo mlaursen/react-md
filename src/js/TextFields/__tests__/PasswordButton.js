@@ -1,13 +1,11 @@
 /* eslint-env jest */
-jest.unmock('../PasswordButton');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import PasswordButton from '../PasswordButton';
 import FontIcon from '../../FontIcons/FontIcon';

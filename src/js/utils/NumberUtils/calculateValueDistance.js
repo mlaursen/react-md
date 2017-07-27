@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/calculateValueDistance */
+
 /**
  * This calculates the distance from a screen x location to a position in some element
  * by comparing the width of the element and the element's page position to the screen
@@ -65,7 +67,7 @@ export default function calculateValueDistance(x, width, left, scale, step, min,
     distance = value / scale * 100;
     value += min;
   } else {
-    value = Math.round(distance / 100 * scale);
+    value = min + Math.round(distance / 100 * scale);
   }
 
   if (step > 1) {

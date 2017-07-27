@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown should render correctly with simple markdown 1`] = `
+<section
+  className="markdown-container"
+  dangerouslySetInnerHTML={
+    Object {
+      "__html": "<pre><code># Title
+    
+    - list
+    - of
+    - items
+    
+    ### Subheader
+    This is stuff.
+    
+    * another
+    * list
+    * of
+    * stuff
+    
+    
+    &gt; NOTE!
+    </code></pre>",
+    }
+  }
+/>
+`;

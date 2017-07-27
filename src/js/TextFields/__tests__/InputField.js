@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../InputField');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -9,7 +7,7 @@ import {
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import InputField from '../InputField';
 import TextArea from '../TextArea';

@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
@@ -24,14 +25,88 @@ export default class DataTable extends PureComponent {
     ]), 'plain'),
 
     /**
-     * Optional style to apply to the table.
+     * Optional style to apply to the table. If the table is `responsive`, this will be applied to the surrounding `div`
+     * instead of the table itself. Use the `tableStyle` in this case.
+     *
+     * @see {@link #tableStyle}
+     * @see {@link #responsive}
      */
     style: PropTypes.object,
 
     /**
-     * An optional className to apply to the table.
+     * An optional className to apply to the table. If the table is `responsive`, this will be applied to the
+     * surrounding `div` instead of the table itself. Use the `tableClassName` in this case.
+     *
+     * @see {@link #tableClassName}
+     * @see {@link #responsive}
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
+     * `responsive`, use the `style` prop.
+     *
+     * @see {@link #style}
+     * @see {@link #responsive}
+     */
+    tableStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `table` itself when the `responsive` prop is enabled. If the table is not
+     * `responsive`, use the `className` prop.
+     *
+     * @see {@link #className}
+     * @see {@link #responsive}
+     */
+    tableClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the fixed table wrapper that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     * @see {@link #fixedScrollWrapperClassName}
+     */
+    fixedWrapperStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the fixed table wrapper that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedScrollWrapperStyle}
+     * @see {@link #fixedScrollWrapperClassName}
+     */
+    fixedWrapperClassName: PropTypes.string,
+
+    /**
+     * An optional sty;e to apply to the fixed table wrapper's scroll container that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     */
+    fixedScrollWrapperStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the fixed table wrapper's scroll container that appears when there is a fixed
+     * header or a fixed footer.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     * @see {@link #fixedWrapperStyle}
+     * @see {@link #fixedWrapperClassName}
+     * @see {@link #fixedScrollWrapperStyle}
+     */
+    fixedScrollWrapperClassName: PropTypes.string,
 
     /**
      * The table contents to display. This *should* be a list of `TableHeader` and `TableBody`
@@ -136,6 +211,77 @@ export default class DataTable extends PureComponent {
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+
+    /**
+     * Boolean if the table should include a fixed header. This will allow the `TableHeader` component
+     * to stay fixed to the top of the table while the `TableBody` scrolls horizontally.
+     *
+     * @see {@link #fixedFooter}
+     * @see [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+     */
+    fixedHeader: PropTypes.bool,
+
+    /**
+     * Boolean if the table should include a fixed footer. This will allow the `TableFooter` component
+     * to stay fixed to the bottom of the table while the `TableBody` scrolls horizontally.
+     *
+     * @see {@link #fixedHeader}
+     * @see [react-md-make-fixed-table](/components/data-tables?tab=2#mixin-react-md-make-fixed-table)
+     */
+    fixedFooter: PropTypes.bool,
+
+    /**
+     * Either a boolean or a shape of booleans for if a divider should appear at the top or bottom of the table
+     * when there is a fixed header/footer. By default, this will automatically create dividers.
+     *
+     * @see {@link #fixedHeader}
+     * @see {@link #fixedFooter}
+     */
+    fixedDividers: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        header: PropTypes.bool,
+        footer: PropTypes.bool,
+      }),
+    ]),
+
+    /**
+     * An optional height to set for a table with a fixed header and/or a fixed footer. It is recommended to use
+     * the related `react-md-make-fixed-table` mixin instead.
+     *
+     * @see {@link #headerHeight}
+     * @see {@link #footerHeight}
+     */
+    fixedHeight: PropTypes.number,
+
+    /**
+     * An optional width to set for a table with a fixed header and/or a fixed footer. It is recommended to use
+     * the related `react-md-make-fixed-table` mixin instead.
+     */
+    fixedWidth: PropTypes.number,
+
+    /**
+     * This is the height of the table's header columns. This should be equal to the `md-data-table-header-height`
+     * variable.
+     *
+     * @see [md-data-table-header-height](/components/data-tables?tab=2#variable-md-data-table-header-height)
+     * @see {@link fixedHeight}
+     */
+    headerHeight: PropTypes.number.isRequired,
+
+    /**
+     * This is the height of the table's header columns. This should be equal to the `md-data-table-header-height`
+     * variable.
+     *
+     * @see [md-data-table-column-height](/components/data-tables?tab=2#variable-md-data-table-column-height)
+     * @see {@link fixedHeight}
+     */
+    footerHeight: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the `<table>` element should always span the entire width of its container.
+     */
+    fullWidth: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -147,6 +293,12 @@ export default class DataTable extends PureComponent {
     selectableRows: true,
     checkboxHeaderLabel: 'Toggle All Rows',
     checkboxLabelTemplate: 'Toggle row {{row}}',
+    fixedHeader: false,
+    fixedFooter: false,
+    fixedDividers: true,
+    headerHeight: 56,
+    footerHeight: 48,
+    fullWidth: true,
   };
 
   static childContextTypes = contextTypes;
@@ -154,15 +306,16 @@ export default class DataTable extends PureComponent {
   constructor(props) {
     super(props);
 
+    const rows = props.defaultSelectedRows;
     this.state = {
-      header: true,
-      allSelected: false,
-      selectedRows: props.defaultSelectedRows,
+      header: false,
       indeterminate: props.indeterminate ? false : undefined,
+      allSelected: this._allSelected(rows),
+      selectedRows: rows,
     };
 
-    this._initializeRows = this._initializeRows.bind(this);
-    this._toggleSelectedRow = this._toggleSelectedRow.bind(this);
+    this._removed = 0;
+    this._initial = true;
   }
 
   getChildContext() {
@@ -178,6 +331,8 @@ export default class DataTable extends PureComponent {
       selectableRows,
       checkboxHeaderLabel,
       checkboxLabelTemplate,
+      fixedHeader,
+      fixedFooter,
     } = this.props;
 
     return {
@@ -192,19 +347,68 @@ export default class DataTable extends PureComponent {
       allSelected: this.state.allSelected,
       selectedRows: this.state.selectedRows,
       toggleSelectedRow: this._toggleSelectedRow,
+      createCheckbox: this._createCheckbox,
+      removeCheckbox: this._removeCheckbox,
       baseId,
       baseName: `${baseId}-control`,
       selectableRows,
       checkboxHeaderLabel,
       checkboxLabelTemplate,
+      fixedHeader,
+      fixedFooter,
     };
   }
 
-  _toggleSelectedRow(row, header, e) {
+  componentDidUpdate() {
+    this._removed = 0;
+    this._initial = false;
+  }
+
+  _allSelected(rows) {
+    let all = rows.length !== 0;
+    rows.some(checked => {
+      if (!checked) {
+        all = false;
+      }
+
+      return !all;
+    });
+
+    return all;
+  }
+
+  _setTable = (table) => {
+    this._table = table;
+  };
+
+  _createCheckbox = (index) => {
+    this.setState((state, props) => {
+      const selectedRows = state.selectedRows.slice();
+      // Only use the default selected rows prop on first mount. If other changes occur after,
+      // default to false.
+      const selected = this._initial && props.defaultSelectedRows[index] || false;
+      selectedRows.splice(index, 0, selected);
+      return { selectedRows, allSelected: this._allSelected(selectedRows) };
+    });
+  };
+
+  _removeCheckbox = (index) => {
+    this.setState((state) => {
+      // When multiple checkboxes are removed in a render cycle, they are removed in list order.
+      // So to keep the index correct while removing, need to keep subract the provided index by
+      // the current number of removed elements. This value gets reset to 0 after a finished cycle.
+      const selectedRows = state.selectedRows.slice();
+      selectedRows.splice(index - this._removed, 1);
+      this._removed += 1;
+      return { selectedRows, allSelected: this._allSelected(selectedRows) };
+    });
+  };
+
+  _toggleSelectedRow = (row, header, e) => {
     let selectedRows;
     let allSelected = this.state.allSelected;
     let selectedCount = 0;
-    const i = this.state.header ? row - 1 : row;
+    const i = this._table && this._table.querySelector('.md-table-header') ? row - 1 : row;
     const { checked } = e.target;
     if (header) {
       selectedRows = this.state.selectedRows.map(() => checked);
@@ -224,46 +428,29 @@ export default class DataTable extends PureComponent {
     const indeterminate = this.props.indeterminate && !allSelected && selectedCount > 0;
 
     this.setState({ selectedRows, allSelected, indeterminate });
-  }
-
-  _initializeRows(table) {
-    if (!table) {
-      return;
-    }
-
-    const header = !!table.querySelector('thead');
-    const rows = table.querySelectorAll('tbody tr').length;
-    let nextState;
-    if (rows !== this.state.selectedRows.length) {
-      const selectedRows = [];
-      for (let i = 0; i < rows; i++) {
-        selectedRows[i] = this.state.selectedRows[i] || false;
-      }
-
-      const selectedLength = selectedRows.filter(b => b).length;
-      nextState = {
-        selectedRows,
-        allSelected: selectedLength === rows,
-        indeterminate: selectedLength > 0 && selectedLength !== rows,
-      };
-    }
-
-    if (header !== this.state.header) {
-      nextState = nextState || {};
-      nextState.header = header;
-    }
-
-    if (nextState) {
-      this.setState(nextState);
-    }
-  }
+  };
 
   render() {
     const {
+      style,
       className,
+      tableStyle,
+      tableClassName,
+      fixedWrapperStyle,
+      fixedWrapperClassName,
+      fixedScrollWrapperStyle,
+      fixedScrollWrapperClassName,
       children,
       plain,
       responsive,
+      fixedHeader,
+      fixedFooter,
+      fixedDividers,
+      fixedHeight,
+      fixedWidth,
+      headerHeight,
+      footerHeight,
+      fullWidth,
       /* eslint-disable no-unused-vars */
       checkedIconChildren,
       checkedIconClassName,
@@ -285,15 +472,77 @@ export default class DataTable extends PureComponent {
     const table = (
       <table
         {...props}
-        ref={tableEl => this._initializeRows(tableEl)}
+        ref={this._setTable}
+        style={responsive ? tableStyle : style}
         className={cn('md-data-table', {
           'md-data-table--plain': plain,
-        }, className)}
+          'md-data-table--full-width': fullWidth,
+          [className]: !responsive && className,
+          [tableClassName]: responsive && tableClassName,
+        })}
       >
         {children}
       </table>
     );
 
-    return responsive ? <div className="md-data-table--responsive">{table}</div> : table;
+    if (!responsive) {
+      return table;
+    }
+
+    let content = table;
+    if (fixedHeader || fixedFooter) {
+      let height = fixedHeight;
+      if (fixedHeight) {
+        if (fixedHeader) {
+          height -= headerHeight;
+        }
+
+        if (fixedFooter) {
+          height -= footerHeight;
+        }
+      }
+
+      let borderTop = fixedHeader;
+      let borderBot = fixedFooter;
+      if (typeof fixedDividers === 'boolean') {
+        borderTop = borderTop && fixedDividers;
+        borderBot = borderBot && fixedDividers;
+      } else {
+        borderTop = borderTop && (typeof fixedDividers.header === 'undefined' || fixedDividers.header);
+        borderBot = borderBot && (typeof fixedDividers.footer === 'undefined' || fixedDividers.footer);
+      }
+
+      content = (
+        <div
+          style={fixedWrapperStyle}
+          className={cn('md-data-table__fixed-wrapper', {
+            'md-data-table__fixed-wrapper--header': fixedHeader,
+            'md-data-table__fixed-wrapper--footer': fixedFooter,
+          }, fixedWrapperClassName)}
+        >
+          <div
+            style={{ height, ...fixedScrollWrapperStyle }}
+            className={cn('md-data-table__scroll-wrapper', {
+              'md-divider-border': fixedDividers,
+              'md-divider-border--top': borderTop,
+              'md-divider-border--bottom': borderBot,
+            }, fixedScrollWrapperClassName)}
+          >
+            {table}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div
+        style={{ width: fixedWidth, ...style }}
+        className={cn('md-data-table--responsive', {
+          'md-data-table--fixed': fixedHeader || fixedFooter,
+        }, className)}
+      >
+        {content}
+      </div>
+    );
   }
 }

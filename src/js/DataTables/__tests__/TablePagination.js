@@ -1,20 +1,20 @@
 /* eslint-env jest */
-/* eslint-disable react/prop-types,max-len */
-jest.unmock('../TablePagination');
-
+/* eslint-disable react/prop-types,max-len,react/no-multi-comp */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 import TablePagination from '../TablePagination';
 
 class Table extends React.Component {
   static childContextTypes = {
-    baseId: React.PropTypes.oneOfType([
-      React.PropTypes.number,
-      React.PropTypes.string,
+    baseId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
     ]).isRequired,
   }
 
@@ -28,6 +28,34 @@ class Table extends React.Component {
 }
 
 describe('TablePagination', () => {
+  it('should not define a page state if the page prop is defined', () => {
+    const props = { onPagination: jest.fn(), page: 1, rows: 30 };
+    const table = mount(<Table><TablePagination {...props} /></Table>);
+    const pagination = table.find(TablePagination).get(0);
+    expect(pagination.state.page).toBeUndefined();
+  });
+
+  it('should set the page state to the defaultPage prop', () => {
+    const props = { onPagination: jest.fn(), defaultPage: 1, rows: 30 };
+    const table = mount(<Table><TablePagination {...props} /></Table>);
+    const pagination = table.find(TablePagination).get(0);
+    expect(pagination.state.page).toBe(props.defaultPage);
+  });
+
+  it('should not define a rowsPerPage state if the rowsPerPage prop is defined', () => {
+    const props = { onPagination: jest.fn(), rowsPerPage: 10, rows: 30 };
+    const table = mount(<Table><TablePagination {...props} /></Table>);
+    const pagination = table.find(TablePagination).get(0);
+    expect(pagination.state.rowsPerPage).toBeUndefined();
+  });
+
+  it('should set the rowsPerPage state to the defaultRowsPerPage prop', () => {
+    const props = { onPagination: jest.fn(), defaultRowsPerPage: 10, rows: 30 };
+    const table = mount(<Table><TablePagination {...props} /></Table>);
+    const pagination = table.find(TablePagination).get(0);
+    expect(pagination.state.rowsPerPage).toBe(props.defaultRowsPerPage);
+  });
+
   describe('setRowsPerPage', () => {
     it('should call the onPagination prop with the correct values when uncontrolled', () => {
       const onPagination = jest.fn();
@@ -49,9 +77,9 @@ describe('TablePagination', () => {
       const pagination = findRenderedComponentWithType(table, TablePagination);
 
       pagination._setRowsPerPage(30);
-      expect(onPagination.mock.calls[0][0]).toBe(120);
+      expect(onPagination.mock.calls[0][0]).toBe(0);
       expect(onPagination.mock.calls[0][1]).toBe(30);
-      expect(onPagination.mock.calls[0][2]).toBe(props.defaultPage);
+      expect(onPagination.mock.calls[0][2]).toBe(1);
     });
 
     it('should call the onPagination prop with the correct values when controlled', () => {
@@ -61,9 +89,24 @@ describe('TablePagination', () => {
       const pagination = findRenderedComponentWithType(table, TablePagination);
 
       pagination._setRowsPerPage(50);
-      expect(onPagination.mock.calls[0][0]).toBe(950);
+      expect(onPagination.mock.calls[0][0]).toBe(0);
       expect(onPagination.mock.calls[0][1]).toBe(50);
-      expect(onPagination.mock.calls[0][2]).toBe(20);
+      expect(onPagination.mock.calls[0][2]).toBe(1);
+    });
+
+    it('should not update the start state if the page prop is defined', () => {
+      const props = {
+        rows: 1000,
+        onPagination: jest.fn(),
+        page: 2,
+      };
+
+      const table = mount(<Table><TablePagination {...props} /></Table>);
+      const pagination = table.find(TablePagination).get(0);
+      expect(pagination.state.start).toBe(10);
+
+      pagination._setRowsPerPage(30);
+      expect(pagination.state.start).toBe(10);
     });
   });
 
@@ -106,6 +149,21 @@ describe('TablePagination', () => {
       expect(onPagination.mock.calls[0][1]).toBe(props.rowsPerPage);
       expect(onPagination.mock.calls[0][2]).toBe(6);
     });
+
+    it('should not update the start state if the page prop is defined', () => {
+      const props = {
+        rows: 1000,
+        onPagination: jest.fn(),
+        page: 2,
+      };
+
+      const table = mount(<Table><TablePagination {...props} /></Table>);
+      const pagination = table.find(TablePagination).get(0);
+      expect(pagination.state.start).toBe(10);
+
+      pagination._increment();
+      expect(pagination.state.start).toBe(10);
+    });
   });
 
   describe('decrement', () => {
@@ -147,5 +205,54 @@ describe('TablePagination', () => {
       expect(onPagination.mock.calls[0][1]).toBe(props.rowsPerPage);
       expect(onPagination.mock.calls[0][2]).toBe(4);
     });
+
+    it('should not update the start state if the page prop is defined', () => {
+      const props = {
+        rows: 1000,
+        onPagination: jest.fn(),
+        page: 2,
+      };
+
+      const table = mount(<Table><TablePagination {...props} /></Table>);
+      const pagination = table.find(TablePagination).get(0);
+      expect(pagination.state.start).toBe(10);
+
+      pagination._decrement();
+      expect(pagination.state.start).toBe(10);
+    });
+  });
+
+  it('should update the start state if the page or rowsPerPage prop changes', () => {
+    const onPagination = jest.fn();
+    const rowsPerPageItems = [1, 2, 3];
+
+    class TestTable extends React.Component {
+      state = {
+        page: 3,
+        rowsPerPage: 1,
+      };
+
+      render() {
+        return (
+          <Table>
+            <TablePagination
+              onPagination={onPagination}
+              page={this.state.page}
+              rows={1000}
+              rowsPerPage={this.state.rowsPerPage}
+              rowsPerPageItems={rowsPerPageItems}
+            />
+          </Table>
+        );
+      }
+    }
+
+    const test = mount(<TestTable />);
+    let pagination = test.find(TablePagination).get(0);
+    expect(pagination.state.start).toBe(2);
+
+    test.setState({ page: 1 });
+    pagination = test.find(TablePagination).get(0);
+    expect(pagination.state.start).toBe(0);
   });
 });

@@ -15,6 +15,11 @@ $md-navigation-drawer-enforce-height: false !default;
 /// @type Boolean
 $md-navigation-drawer-include-cross-fade: true !default;
 
+/// A margin-left that should also get applied to the navigation drawer's title when being
+/// positioned next to a permanent or persistent open drawer.
+/// @type Number
+$md-navigation-drawer-title-offset: 20px !default;
+
 /// The transition time for the cross-fade transition.
 /// @type Number
 $md-cross-fade-transition-time: $md-transition-time * 2 !default;
@@ -50,11 +55,17 @@ $md-cross-fade-distance: 16px !default;
   }
 
   .md-navigation-drawer-content {
+    @if $md-toolbar-height != null {
+      @include react-md-navigation-drawer-height($md-toolbar-height);
+    }
+
     &:focus {
-      outline: none;
+      outline-width: 0;
     }
 
     @if $md-navigation-drawer-enforce-height {
+      @include md-ios-scroll-momentum;
+
       overflow-y: auto;
     }
 
@@ -67,23 +78,15 @@ $md-cross-fade-distance: 16px !default;
       transition-property: margin-left;
     }
 
-    &--prominent-offset {
-      $height: calc(100vh - #{$md-toolbar-mobile-prominent-height});
-
-      @if $md-navigation-drawer-enforce-height {
-        height: $height;
-      } @else {
-        min-height: $height;
+    @if $md-toolbar-prominent-height != null {
+      &--prominent-offset {
+        @include react-md-navigation-drawer-height($md-toolbar-prominent-height)
       }
     }
   }
 
   .md-title.md-title--permanent-offset {
-    margin-left: $md-drawer-tablet-width + 20px;
-  }
-
-  .md-drawer .md-title--toolbar-offset {
-    margin-left: $md-default-padding;
+    margin-left: $md-drawer-tablet-width + $md-navigation-drawer-title-offset;
   }
 
   @if $include-cross-fade {
@@ -114,13 +117,7 @@ $md-cross-fade-distance: 16px !default;
 /// @group navigation-drawers, media-queries
 @mixin react-md-navigation-drawers-mobile($enforce-height: $md-navigation-drawer-enforce-height) {
   .md-navigation-drawer-content {
-    $height: calc(100vh - #{$md-toolbar-mobile-portrait-height});
-
-    @if $md-navigation-drawer-enforce-height {
-      height: $height;
-    } @else {
-      min-height: $height;
-    }
+    @include react-md-navigation-drawer-height($md-toolbar-mobile-portrait-height, $enforce-height);
   }
 }
 
@@ -137,13 +134,15 @@ $md-cross-fade-distance: 16px !default;
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
 /// @group navigation-drawers, media-queries
 @mixin react-md-navigation-drawers-mobile-landscape($enforce-height: $md-navigation-drawer-enforce-height) {
-  .md-navigation-drawer-content {
-    $height: calc(100vh - #{$md-toolbar-mobile-landscape-height});
+  @if $md-toolbar-height == null {
+    .md-navigation-drawer-content {
+      @include react-md-navigation-drawer-height($md-toolbar-mobile-landscape-height, $enforce-height);
+    }
+  }
 
-    @if $md-navigation-drawer-enforce-height {
-      height: $height;
-    } @else {
-      min-height: $height;
+  @if $md-toolbar-prominent-height == null and $md-toolbar-mobile-prominent-height != null {
+    .md-navigation-drawer-content--prominent-offset {
+      @include react-md-navigation-drawer-height($md-toolbar-mobile-prominent-height, $enforce-height);
     }
   }
 }
@@ -161,18 +160,20 @@ $md-cross-fade-distance: 16px !default;
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
 /// @group navigation-drawers, media-queries
 @mixin react-md-navigation-drawers-tablet($enforce-height: $md-navigation-drawer-enforce-height) {
-  .md-navigation-drawer-content {
-    $height: calc(100vh - #{$md-toolbar-tablet-height});
+  @if $md-toolbar-height == null {
+    .md-navigation-drawer-content {
+      @include react-md-navigation-drawer-height($md-toolbar-tablet-height, $enforce-height);
+    }
+  }
 
-    @if $md-navigation-drawer-enforce-height {
-      height: $height;
-    } @else {
-      min-height: $height;
+  @if $md-toolbar-prominent-height == null and $md-toolbar-tablet-prominent-height != null {
+    .md-navigation-drawer-content {
+      @include react-md-navigation-drawer-height($md-toolbar-tablet-prominent-height, $enforce-height);
     }
   }
 
   .md-title.md-title--persistent-offset {
-    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - 12px + 20px;
+    margin-left: $md-drawer-tablet-width - $md-btn-icon-size - $md-btn-icon-padding + $md-navigation-drawer-title-offset;
   }
 }
 
@@ -187,10 +188,26 @@ $md-cross-fade-distance: 16px !default;
 ///
 /// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icons
+///     should be included.
 /// @group navigation-drawers, media-queries
-@mixin react-md-navigation-drawers-desktop {
-  .md-title.md-title--persistent-offset {
-    margin-left: $md-drawer-desktop-width - $md-btn-icon-size - 12px + 20px;
+@mixin react-md-navigation-drawers-desktop($enforce-height: $md-navigation-drawer-enforce-height, $include-dense-icons: $md-font-icon-include-dense) {
+  @if $md-toolbar-height == null and $md-toolbar-desktop-height != null {
+    .md-navigation-drawer-content {
+      @include react-md-navigation-drawer-height($md-toolbar-desktop-height, $enforce-height);
+    }
+  }
+
+  @if $md-toolbar-prominent-height == null and $md-toolbar-desktop-prominent-height != null {
+    .md-navigation-drawer-content {
+      @include react-md-navigation-drawer-height($md-toolbar-desktop-prominent-height, $enforce-height);
+    }
+  }
+
+  @if $include-dense-icons or $md-drawer-tablet-width != $md-drawer-desktop-width {
+    .md-title.md-title--persistent-offset {
+      margin-left: $md-drawer-desktop-width - if($include-dense-icons, $md-btn-icon-dense-size, $md-btn-icon-size) - if($include-dense-icons, $md-btn-icon-dense-padding, $md-btn-icon-padding) + $md-navigation-drawer-title-offset;
+    }
   }
 }
 
@@ -201,23 +218,43 @@ $md-cross-fade-distance: 16px !default;
 ///
 /// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the drawer's content
 ///     height should be strictly enforced. This will use the `height` attribute instead of the `max-height`.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense font icons
+///     should be included.
 /// @group navigation-drawers, media-queries
-@mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height) {
-  @media #{$md-mobile-media} {
-    @include react-md-navigation-drawers-mobile($enforce-height);
-  }
-
-  @media #{$md-mobile-landscape-media} {
-    @include react-md-navigation-drawers-mobile-landscape($enforce-height);
-  }
-
-  @media #{$md-tablet-media} {
-    @include react-md-navigation-drawers-tablet($enforce-height);
-  }
-
-  @if $md-drawer-tablet-width != $md-drawer-desktop-width {
-    @media #{$md-desktop-media} {
-      @include react-md-navigation-drawers-desktop;
+@mixin react-md-navigation-drawers-media($enforce-height: $md-navigation-drawer-enforce-height, $include-dense-icons: $md-font-icon-include-dense) {
+  $defaults-not-set: $md-toolbar-height == null or $md-toolbar-prominent-height == null;
+  @if $defaults-not-set {
+    @media #{$md-mobile-media} {
+      @include react-md-navigation-drawers-mobile($enforce-height);
     }
+
+    @media #{$md-mobile-landscape-media} {
+      @include react-md-navigation-drawers-mobile-landscape($enforce-height);
+    }
+
+    @media #{$md-tablet-media} {
+      @include react-md-navigation-drawers-tablet($enforce-height);
+    }
+  }
+
+  @if $defaults-not-set or $include-dense-icons or $md-drawer-tablet-width != $md-drawer-desktop-width {
+    @media #{$md-desktop-media} {
+      @include react-md-navigation-drawers-desktop($enforce-height, $include-dense-icons);
+    }
+  }
+}
+
+/// This is mostly an internal mixin for either setting the height or min-height for the navigation drawer's content.
+///
+/// @param {Number} toolbar-height - The current toolbar height.
+/// @param {Boolean} enforce-height [$md-navigation-drawer-enforce-height] - Boolean if the height should be enforced
+///     instead of setting the min-height.
+@mixin react-md-navigation-drawer-height($toolbar-height, $enforce-height: $md-navigation-drawer-enforce-height) {
+  $height: calc(100vh - #{$toolbar-height});
+
+  @if $enforce-height {
+    height: $height;
+  } @else {
+    min-height: $height;
   }
 }

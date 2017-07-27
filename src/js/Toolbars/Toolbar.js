@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -9,6 +10,17 @@ import ToolbarTitle from './ToolbarTitle';
 
 export default class Toolbar extends PureComponent {
   static propTypes = {
+    /**
+     * An optional id to provide to the toolbar. If this is specified and the `titleId` is not, the title
+     * will gain an id of `${id}-title`. This will not be applied to the `titleMenu`.
+     *
+     * @see {@link #titleId}
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the toolbar.
      */
@@ -45,6 +57,15 @@ export default class Toolbar extends PureComponent {
      * `title` and a `titleMenu`. Only one should be given.
      */
     title: invalidIf(PropTypes.node, 'titleMenu'),
+
+    /**
+     * An optional id to give the main title in the toolbar. This will not be applied to the
+     * `titleMenu`.
+     */
+    titleId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
 
     /**
      * An optional title menu to display instead of the title. This should be a `SelectField` component.
@@ -158,6 +179,7 @@ export default class Toolbar extends PureComponent {
       fixed,
       children,
       inset,
+      titleId,
       /* eslint-disable no-unused-vars */
       nav: propNav,
       title: propTitle,
@@ -197,6 +219,7 @@ export default class Toolbar extends PureComponent {
         className={titleClassName}
         prominent={prominentTitle}
         offset={prominentTitle}
+        id={typeof titleId === 'undefined' && props.id ? `${props.id}-title` : titleId}
         title={title}
       />
     );
@@ -247,7 +270,6 @@ export default class Toolbar extends PureComponent {
           'md-background--primary': colored,
           'md-toolbar--themed': themed,
           'md-toolbar--text-white': singleColor && colored,
-          'md-toolbar--discrete': !prominent,
           'md-toolbar--prominent': prominent,
           'md-toolbar--fixed': fixed,
           'md-toolbar--inset': inset,

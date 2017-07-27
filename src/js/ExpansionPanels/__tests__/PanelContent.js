@@ -1,14 +1,12 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../PanelContent');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import PanelContent from '../PanelContent';
 import DialogFooter from '../../Dialogs/DialogFooter';

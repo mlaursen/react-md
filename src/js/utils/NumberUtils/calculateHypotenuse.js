@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/calculateHypotenuse */
+
 /**
  * Calculates the hypotenuse using the x and y coordinates given.
  *

@@ -134,6 +134,11 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px !default;
 /// @param {Boolean} include-shifting [$md-bottom-navigation-include-shifting] - Boolean if the styles
 ///     for a shifting bottom navigation should be included.
 @mixin react-md-bottom-navigations-nav($include-shifting: $md-bottom-navigation-include-shifting) {
+  // scss-lint:disable QualifyingElement
+  a.md-bottom-nav {
+    color: inherit;
+  }
+
   .md-bottom-nav {
     display: block;
     flex-grow: 1;
@@ -158,7 +163,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px !default;
     @if $include-shifting {
       &--shifting {
         min-width: $md-bottom-navigation-shifting-active-min-width;
-        position: initial;
+        position: static;
         transition-duration: $md-transition-time;
         transition-property: max-width;
 
@@ -193,14 +198,6 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px !default;
 
     .md-icon {
       @extend %md-block-centered;
-    }
-
-    // scss-lint:disable QualifyingElement
-    // don't know why links render incorrectly
-    a.md-bottom-nav {
-      .md-icon {
-        margin-top: ($md-bottom-navigation-height - $md-font-icon-size - 16px) / 2;
-      }
     }
   }
 }

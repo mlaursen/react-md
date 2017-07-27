@@ -1,13 +1,11 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../Badge');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Badge from '../Badge';
 

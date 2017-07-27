@@ -1,5 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
+import ResizeObserver from '../Helpers/ResizeObserver';
 
 /**
  * The `TextArea` component is used to allow a dynamic height for the
@@ -17,32 +19,20 @@ export default class TextArea extends PureComponent {
     defaultValue: PropTypes.string,
     floatingLabel: PropTypes.bool,
     value: PropTypes.string,
-    onHeightChange: PropTypes.func,
     block: PropTypes.bool,
-    label: PropTypes.string,
+    label: PropTypes.node,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { height: null };
-    this.focus = this.focus.bind(this);
-    this.getField = this.getField.bind(this);
-    this.getValue = this.getValue.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleResize = this._handleResize.bind(this);
-    this._syncHeightWithMask = this._syncHeightWithMask.bind(this);
-  }
+  state = { height: null };
 
   componentDidMount() {
-    this._rowHeight = this._calcRowHeight(this._field, this.props);
+    this._rowHeight = this._calcRowHeight();
     this._syncHeightWithMask();
-    window.addEventListener('resize', this._handleResize);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.rows !== nextProps.rows) {
-      this._rowHeight = this._calcRowHeight(this._field, this.props);
+      this._rowHeight = this._calcRowHeight(nextProps);
     }
 
     if (this.props.value !== nextProps.value || this.props.maxRows !== nextProps.maxRows) {
@@ -50,40 +40,49 @@ export default class TextArea extends PureComponent {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._handleResize);
-  }
+  getField = () => this._field;
 
-  getField() {
-    return this._field;
-  }
+  getValue = () => this._field.value;
 
-  getValue() {
-    return this._field.value;
-  }
-
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
+  };
 
-  _setMask(mask) {
+  blur = () => {
+    this._field.blur();
+  };
+
+  _calcRowHeight = ({ rows } = this.props) => {
+    if (!this._field) {
+      return 19;
+    }
+
+    const height = this._field.style.height;
+    this._field.style.height = 'auto';
+    const rowHeight = this._field.offsetHeight / rows;
+    this._field.style.height = height;
+    return rowHeight;
+  };
+
+  _setMask = (mask) => {
     this._mask = mask;
-  }
+  };
 
-  _setField(field) {
+  _setField = (field) => {
     this._field = field;
-  }
+  };
 
-  _calcRowHeight(field, props) {
-    return field.offsetHeight / props.rows;
-  }
-
-  _handleResize() {
-    this._rowHeight = this._calcRowHeight(this._field, this.props);
+  _handleResize = () => {
+    this._rowHeight = this._calcRowHeight();
     this._syncHeightWithMask();
-  }
+  };
 
-  _syncHeightWithMask(value) {
+  _syncHeightWithMask = (value) => {
+    // The mask is always null in snapshot teseting
+    if (!this._mask) {
+      return;
+    }
+
     if (value !== undefined) {
       this._mask.value = value;
     }
@@ -99,23 +98,16 @@ export default class TextArea extends PureComponent {
     }
 
     height = Math.max(this._rowHeight * rows, height);
-
-    if (this.props.onHeightChange) {
-      // For some reason the md-text-field-multiline-container is 5px
-      // larger than the textareas.. So just add 5 here and on the inline style
-      this.props.onHeightChange(height + 5);
-    }
-
     this.setState({ height });
-  }
+  };
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     this._syncHeightWithMask(e.target.value, e);
 
     if (this.props.onChange) {
       this.props.onChange(e);
     }
-  }
+  };
 
   render() {
     const { height } = this.state;
@@ -130,7 +122,6 @@ export default class TextArea extends PureComponent {
       /* eslint-disable no-unused-vars */
       maxRows,
       onChange,
-      onHeightChange,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -143,8 +134,9 @@ export default class TextArea extends PureComponent {
           'md-text-field--floating-margin': label && !block,
         })}
       >
+        <ResizeObserver watchWidth onResize={this._handleResize} />
         <textarea
-          ref={mask => { this._mask = mask; }}
+          ref={this._setMask}
           className={cn(className, 'md-text-field--multiline-mask')}
           readOnly
           rows={props.rows}
@@ -156,7 +148,7 @@ export default class TextArea extends PureComponent {
         />
         <textarea
           {...props}
-          ref={field => { this._field = field; }}
+          ref={this._setField}
           style={Object.assign({}, style, { height })}
           className={className}
           defaultValue={defaultValue}

@@ -1,0 +1,7 @@
+@import '~globals';
+
+.tabs__page-layout {
+  .md-tab--inactive {
+    color: get-color('secondary', $md-light-theme);
+  }
+}

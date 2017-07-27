@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../ExpansionPanel');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -8,11 +6,14 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import ExpansionPanel from '../ExpansionPanel';
 import AccessibleFakeButton from '../../Helpers/AccessibleFakeButton';
 import Collapse from '../../Helpers/Collapse';
+
+jest.useFakeTimers();
+jest.mock('react-motion');
 
 describe('ExpansionPanel', () => {
   it('merges className and style', () => {

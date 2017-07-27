@@ -1,11 +1,12 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 export default class FloatingLabel extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    label: PropTypes.string,
+    label: PropTypes.node,
     floating: PropTypes.bool,
     error: PropTypes.bool,
     active: PropTypes.bool,

@@ -1,13 +1,11 @@
 /* eslint-env jest */
-jest.unmock('../ExpansionList');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import ExpansionList from '../ExpansionList';
 import ExpansionPanel from '../ExpansionPanel';

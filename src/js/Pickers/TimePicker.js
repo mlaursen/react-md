@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import ClockFace from './ClockFace';
@@ -13,10 +14,10 @@ export default class TimePicker extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
     cancelPrimary: PropTypes.bool.isRequired,
     onCancelClick: PropTypes.func.isRequired,
     DateTimeFormat: PropTypes.func.isRequired,
@@ -78,18 +79,11 @@ export default class TimePicker extends PureComponent {
     hoverMode: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._updateTime = this._updateTime.bind(this);
-    this._handleTimeChosen = this._handleTimeChosen.bind(this);
-  }
-
   /**
    * Takes in the new time (number o'clock or minutes), updates the temp time
    * with that new time, and then calls the setTempTime prop.
    */
-  _updateTime(newTime) {
+  _updateTime = (newTime) => {
     let timePart = newTime;
     const { tempTime, setTempTime, timeMode, timePeriod } = this.props;
     const time = new Date(tempTime);
@@ -108,9 +102,9 @@ export default class TimePicker extends PureComponent {
     }
 
     setTempTime(time);
-  }
+  };
 
-  _handleTimeChosen() {
+  _handleTimeChosen = () => {
     const { hoverMode, setTimeMode, onOkClick, timeMode } = this.props;
 
     if (hoverMode) {
@@ -120,7 +114,7 @@ export default class TimePicker extends PureComponent {
         onOkClick();
       }
     }
-  }
+  };
 
   render() {
     const {
@@ -148,13 +142,13 @@ export default class TimePicker extends PureComponent {
     const hoursInt = parseInt(hours, 10);
     const minutesInt = parseInt(minutes.replace(/[^0-9]/g, ''), 10);
     const actions = [{
-      key: cancelLabel,
+      key: 'cancel',
       onClick: onCancelClick,
       primary: cancelPrimary,
       secondary: !cancelPrimary,
       label: cancelLabel,
     }, {
-      key: okLabel,
+      key: 'ok',
       onClick: onOkClick,
       primary: okPrimary,
       secondary: !okPrimary,

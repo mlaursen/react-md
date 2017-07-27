@@ -1,0 +1,10 @@
+@import '~react-md/src/scss/react-md';
+
+.fakey-fake {
+  display: inline-block;
+  padding: 6px 12px;
+
+  &--outline.md-btn {
+    border: 1px solid $md-black-base;
+  }
+}

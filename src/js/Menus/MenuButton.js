@@ -1,43 +1,49 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
-
-import Menu from './Menu';
+import controlled from '../utils/PropTypes/controlled';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 import Button from '../Buttons/Button';
-import Positions from './Positions';
+import DropdownMenu from './DropdownMenu';
 
 /**
- * A simple wrapper for creating Menus wrapped with Button. The props used are a
- * combination of the `Menu` and `Button` components. Menu props will be extracted
- * and any props that are not `Menu` related will be passed to the `Button`.
- *
- * The only main difference is that the `children` for the button are now defined with
- * `buttonChildren`.
+ * The `MenuButton` is a simple wrapper / combination of the `Button` and the `Menu`
+ * components that can be uncontrolled.
  */
 export default class MenuButton extends PureComponent {
-  static Positions = Positions;
+  static Positions = DropdownMenu.Positions;
+  static HorizontalAnchors = DropdownMenu.HorizontalAnchors;
+  static VerticalAnchors = DropdownMenu.VerticalAnchors;
 
   static propTypes = {
     /**
-     * An id to use for the menu button. This is required for a11y
+     * An id to use for the menu button. This is required for accessibility.
+     *
+     * @see {@link Menus/Menu#id}
      */
-    id: isRequiredForA11y(PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ])),
-
-    /**
-     * An optional id to give the button instead of the menu.
-     */
-    buttonId: PropTypes.oneOfType([
+    id: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
 
     /**
-     * An optional id to give the list that appears in the menu.
+     * An optional id to provide to the menu's list.
+     *
+     * @see {@link Menus/Menu#listId}
      */
     listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the button. If this is omitted, the button will automatically
+     * gain an id of `${id}-toggle`.
+     */
+    buttonId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -53,29 +59,64 @@ export default class MenuButton extends PureComponent {
     className: PropTypes.string,
 
     /**
-     * An optional style to apply to the menu.
+     * An optional style to apply to the surrounding menu.
      */
     menuStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the menu.
+     * An optional className to apply to the surrounding menu.
      */
     menuClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to the menu's list when it is open.
+     * An optional style to apply to the list.
      */
     listStyle: PropTypes.object,
 
     /**
-     * An optional className to apply to the menu's list when it is open.
+     * An optional class name to apply to the list.
      */
     listClassName: PropTypes.string,
 
     /**
-     * Any children used to render icons or anything else for the button.
+     * Any additional props to provide to the list.
+     *
+     * @see {@link Menus/Menu#listProps}
      */
-    buttonChildren: PropTypes.node,
+    listProps: PropTypes.object,
+
+    /**
+     * The z-depth to use for the list.
+     *
+     * @see {@link Menus/Menu/listZDepth}
+     */
+    listZDepth: PropTypes.number,
+
+    /**
+     * Boolean if the list should be displayed inline.
+     *
+     * @see {@link Lists/List#inline}
+     */
+    listInline: PropTypes.bool,
+
+    /**
+     * Boolean if the list's height should be restricted.
+     *
+     * @see {@link Menus/Menu#listHeightRestricted}
+     */
+    listHeightRestricted: PropTypes.bool,
+
+    /**
+     * Bolean if the menu's list is currently visible. If this is defined, it will
+     * require the `onVisibilityChange` function to be defined since it will become
+     * a controlled component.
+     */
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
+
+    /**
+     * Boolean if the menu's list should be visible by default.
+     */
+    defaultVisible: PropTypes.bool.isRequired,
 
     /**
      * An optional function to call when the button is clicked.
@@ -83,139 +124,272 @@ export default class MenuButton extends PureComponent {
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when the menu's visiblity is toggled. The callback
-     * will include the next `open` state and the click event.
+     * An optional function to call when the visibility changes for the menu. The callback will
+     * include the next visibility state and the event that triggered the change.
+     *
+     * ```js
+     * onVisibilityChange(visible, event);
+     * ```
      */
-    onMenuToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
-     * Boolean if the MenuButton is open by default.
+     * This is a 0 to many relationship of `ListItem` to display in the menu's `List`. If the type
+     * of the item is a number or string, it will be passed to the `ListItem` as the `primaryText`.
+     * If it is an object, it should be the shape of the `ListItem` props. If it is a node, it will
+     * just be rendered in the `List`.
+     *
+     * @see {@link Lists/ListItem}
+     * @see {@link Menus/Menu#children}
      */
-    defaultOpen: PropTypes.bool,
-
-    /**
-     * The position for the menu.
-     */
-    position: PropTypes.oneOf([
-      Positions.TOP_LEFT,
-      Positions.TOP_RIGHT,
-      Positions.BOTTOM_LEFT,
-      Positions.BOTTOM_RIGHT,
-      Positions.BELOW,
+    menuItems: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.node,
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.object,
+        PropTypes.node,
+      ])),
     ]),
 
     /**
-     * A list of `ListItem`s to render when the Menu is toggled open.
+     * This should be the children to use in the `Button` that gets created as the menu's toggle.
+     *
+     * @see {@link Buttons/Button}
+     * @see {@link Menus/Menu#toggle}
      */
     children: PropTypes.node,
 
     /**
-     * Boolean if the `Menu` is displayed as full width.
+     * The anchor position of the menu's list.
+     *
+     * @see {@link Helpers/Layovers#anchor}
+     */
+    anchor: anchorShape,
+
+    /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
+     * This is how the menu's list is fixed to the toggle.
+     *
+     * @see {@link Menus/Menu#fixedTo}
+     */
+    fixedTo: fixedToShape,
+
+    /**
+     * This is the animation position for the menu's list.
+     *
+     * @see {@link Menus/Menu#position}
+     */
+    position: positionShape,
+
+    /**
+     * Boolean if the menu's list should gan the cascading styles.
+     *
+     * @see {@link Menus/Menu#cascading}
+     */
+    cascading: PropTypes.bool,
+
+    /**
+     * The zDepth to use for the lists that appear in cascading menus.
+     *
+     * @see {@link Menus/Menu#cascadingZDepth}
+     */
+    cascadingZDepth: PropTypes.number,
+
+    /**
+     * The anchor position for the cascanding lists.
+     *
+     * @see {@link Menus/Menu#cascadingAnchor}
+     */
+    cascadingAnchor: anchorShape,
+
+    /**
+     * Boolean if the menu should display as a full width container. This will *not* update the button
+     * to be full width as well.
+     *
+     * @see {@link Menus/Menu#fullWidth}
      */
     fullWidth: PropTypes.bool,
 
     /**
-     * Boolean if the max width of the menu's list should be equal to the `Button`.
+     * Boolean if the menu's container should display as `block` instead of `inline-block`.
+     *
+     * @see {@link Menus/Menu#block}
      */
-    contained: PropTypes.bool,
+    block: PropTypes.bool,
 
     /**
-     * An optional transition name to use for the menu transitions.
+     * Boolean if the list should appear centered related to the button.
+     *
+     * @see {@link Menus/Menu#centered}
+     */
+    centered: PropTypes.bool,
+
+    /**
+     * Boolean if the menu's list should be the same width as the button.
+     *
+     * @see {@link Menus/Menu#sameWidth}
+     */
+    sameWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Menus/Menu#xThreshold}
+     */
+    xThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Menus/Menu#yThreshold}
+     */
+    yThreshold: PropTypes.number,
+
+    /**
+     * Boolean if the menu's list should be closed when an element outside of the menu has been clicked.
+     *
+     * @see {@link Menus/Menu#closeOnOutsideClick}
+     */
+    closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * The transition name to use for the menu's list visibility changes.
+     *
+     * @see {@link Menus/Menu#transitionName}
      */
     transitionName: PropTypes.string,
 
     /**
-     * An optional transition leave timeout to use for the menu transitions.
+     * The transition name to use when the menu's list gains visibility.
+     *
+     * @see {@link Menus/Menu#transitionEnterTimeout}
      */
     transitionEnterTimeout: PropTypes.number,
 
     /**
-     * An optional transition leave timeout to use for the menu transitions.
+     * The transition timeout to use when the menu's list loses visibility.
+     *
+     * @see {@link Menus/Menu#transitionLeaveTimeout}
      */
     transitionLeaveTimeout: PropTypes.number,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
+    buttonChildren: deprecated(
+      PropTypes.node,
+      'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `menuItems` prop'
+    ),
+    onMenuToggle: deprecated(PropTypes.bool, 'Use `onVisibilityChange` instead'),
+    isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
+    defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: props.defaultOpen || false,
-    };
-    this._toggleMenu = this._toggleMenu.bind(this);
-    this._closeMenu = this._closeMenu.bind(this);
-  }
-
-  _toggleMenu(e) {
-    const isOpen = !this.state.isOpen;
-    if (this.props.onClick) {
-      this.props.onClick(e);
-    }
-
-    if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(isOpen, e);
-    }
-
-    this.setState({ isOpen });
-  }
-
-  _closeMenu(e) {
-    if (this.props.onMenuToggle) {
-      this.props.onMenuToggle(false, e);
-    }
-
-    this.setState({ isOpen: false });
-  }
+  static defaultProps = {
+    defaultVisible: false,
+    repositionOnScroll: true,
+  };
 
   render() {
-    const { isOpen } = this.state;
     const {
       id,
       listId,
       buttonId,
       menuStyle,
       menuClassName,
+      listStyle,
+      listClassName,
+      listProps,
+      listZDepth,
+      listInline,
+      listHeightRestricted,
+      menuItems,
       buttonChildren,
       children,
-      fullWidth,
+      anchor,
+      belowAnchor,
+      fixedTo,
       position,
-      contained,
+      cascading,
+      cascadingAnchor,
+      cascadingZDepth,
+      fullWidth,
+      block,
+      centered,
+      sameWidth,
+      repositionOnScroll,
+      xThreshold,
+      yThreshold,
+      closeOnOutsideClick,
       transitionName,
       transitionEnterTimeout,
       transitionLeaveTimeout,
-      onClick, // eslint-disable-line no-unused-vars
-      defaultOpen, // eslint-disable-line no-unused-vars
+      visible,
+      defaultVisible,
+      onVisibilityChange,
+      isOpen, // deprecated
+      defaultOpen, // deprecated
+      onMenuToggle, // deprecated
       ...props
     } = this.props;
 
-    const toggle = (
-      <Button
-        key="menu-button"
-        {...props}
-        id={buttonId}
-        onClick={this._toggleMenu}
-      >
-        {buttonChildren}
-      </Button>
-    );
+    let items = children;
+    let toggleChildren = buttonChildren;
+    if (typeof menuItems !== 'undefined') {
+      toggleChildren = children;
+      items = menuItems;
+    }
 
     return (
-      <Menu
+      <DropdownMenu
         id={id}
         listId={listId}
         style={menuStyle}
         className={menuClassName}
-        toggle={toggle}
-        isOpen={isOpen}
-        onClose={this._closeMenu}
-        contained={contained}
+        listStyle={listStyle}
+        listClassName={listClassName}
+        listProps={listProps}
+        listInline={listInline}
+        listZDepth={listZDepth}
+        listHeightRestricted={listHeightRestricted}
+        visible={typeof isOpen !== 'undefined' ? isOpen : visible}
+        defaultVisible={typeof defaultOpen !== 'undefined' ? defaultOpen : defaultVisible}
+        menuItems={items}
+        anchor={anchor}
+        belowAnchor={belowAnchor}
+        fixedTo={fixedTo}
         position={position}
+        cascading={cascading}
+        cascadingAnchor={cascadingAnchor}
+        cascadingZDepth={cascadingZDepth}
         fullWidth={fullWidth}
+        block={block}
+        centered={centered}
+        sameWidth={sameWidth}
+        repositionOnScroll={repositionOnScroll}
+        xThreshold={xThreshold}
+        yThreshold={yThreshold}
+        closeOnOutsideClick={closeOnOutsideClick}
         transitionName={transitionName}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
+        onVisibilityChange={onMenuToggle || onVisibilityChange}
       >
-        {children}
-      </Menu>
+        <Button {...props} id={buttonId}>
+          {toggleChildren}
+        </Button>
+      </DropdownMenu>
     );
   }
 }

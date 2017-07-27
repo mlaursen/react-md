@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 /**
@@ -27,22 +28,16 @@ export default class JumpToContentLink extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-
-    this._handleClick = this._handleClick.bind(this);
-  }
-
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
 
     document.getElementById(this.context.id).focus();
-  }
+  };
 
   render() {
     const { className, ...props } = this.props;
@@ -50,7 +45,7 @@ export default class JumpToContentLink extends PureComponent {
     return (
       <a
         {...props}
-        id={`skipTo${id}`}
+        id={`jump-to-${id}`}
         href={`#${id}`}
         onClick={this._handleClick}
         className={cn('md-content-jump', className)}

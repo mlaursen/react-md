@@ -1,30 +1,53 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ENTER, TAB, ESC } from '../constants/keyCodes';
-import TICK from '../constants/CSSTransitionGroupTick';
+import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
-import invalidIf from '../utils/PropTypes/invalidIf';
-import DialogFooter from '../Dialogs/DialogFooter';
-import TableColumn from './TableColumn';
-import TextField from '../TextFields/TextField';
+import viewport from '../utils/viewport';
+import controlled from '../utils/PropTypes/controlled';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
+import Layover from '../Helpers/Layover';
 import FontIcon from '../FontIcons/FontIcon';
-
+import TextField from '../TextFields/TextField';
+import TableColumn from './TableColumn';
+import EditDialog from './EditDialog';
 import findTable from './findTable';
+import findFixedTo from './findFixedTo';
 
 /**
- * A Text Edit dialog for tables. This can either be a small
- * version which only has the text field or a large version
- * that includes a title with a save and cancel action buttons.
+ * The `EditDialogColumn` is used when there should be used when a table column's value
+ * can be changed. It can either be displayed as a dialog or inline.
+ *
+ * All props that are not documented but provided will be passed on to the `TextField`
+ * component.
  */
 export default class EditDialogColumn extends PureComponent {
+  static VerticalAnchors = Layover.VerticalAnchors;
+  static HorizontalAnchors = Layover.HorizontalAnchors;
+  static Positions = Layover.Positions;
+
   static propTypes = {
     /**
-     * An optional id to provide to the text field in the column. If this is omitted,
-     * the id will be the current row id and `-edit-dialog`.
+     * An optional id to use for the text field in the column. If this is omitted,
+     * the id will be `${dialogId}-field`.
+     *
+     * @see {@link #dialogId}
      */
     id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to use for the dialog that appears in the column. If this is omitted,
+     * the id will be `${rowId}-${cellIndex}-edit-dialog-field`.
+     */
+    dialogId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -40,6 +63,16 @@ export default class EditDialogColumn extends PureComponent {
     className: PropTypes.string,
 
     /**
+     * An optional style to apply to the dialog's surrounding `Layover` component.
+     */
+    layoverStyle: PropTypes.object,
+
+    /**
+     * An optional className to the dialog's surrounding `Layover` component.
+     */
+    layoverClassName: PropTypes.string,
+
+    /**
      * The optional style to apply to the edit dialog.
      */
     dialogStyle: PropTypes.object,
@@ -48,6 +81,25 @@ export default class EditDialogColumn extends PureComponent {
      * The optional className to apply to the edit dialog.
      */
     dialogClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the dialog's content area. This is the area
+     * that holds the text field.
+     */
+    dialogContentStyle: PropTypes.object,
+
+    /**
+     * An optional class name to apply to the dialog's content area. This is the area
+     * that holds the text field.
+     */
+    dialogContentClassName: PropTypes.string,
+
+    /**
+     * The zDepth to apply to the dialog when not inline.
+     *
+     * @see {@link Papers/Paper#zDepth}
+     */
+    dialogZDepth: PropTypes.number.isRequired,
 
     /**
      * An optional style to apply to the text field.
@@ -70,138 +122,62 @@ export default class EditDialogColumn extends PureComponent {
     inputClassName: PropTypes.string,
 
     /**
-     * The transition duration when the dialog is moving from
-     * active to inactive.
-     */
-    transitionDuration: PropTypes.number.isRequired,
-
-    /**
-     * Boolean if the edit dialog is disabled.
+     * Boolean if the edit dialog is currently disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * The optional max length for the edit dialog.
+     * Boolean if the text field should be editable inline instead of in a dialog.
+     *
+     * @see {@link #noIcon}
+     * @see {@link #inlineIconChildren}
+     * @see {@link #inlineIconClassName}
      */
-    maxLength: PropTypes.number,
+    inline: PropTypes.bool,
 
     /**
-     * A value to use for the edit dialog text field. This
-     * will make the component controlled so you will need
-     * to provide an `onChange` function.
-     */
-    value: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-
-    /**
-     * An optional function to call when the text field's value
-     * is changed. It is called with `(newValue, changeEvent)`.
-     */
-    onChange: PropTypes.func,
-
-    /**
-     * The default value for the column.
+     * The default value to use for the text field.
      */
     defaultValue: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ]),
+    ]).isRequired,
 
     /**
-     * An optional function to call when the input is clicked.
+     * A value to use for the edit dialog text field. This will make the component controlled
+     * so you will need to provide an `onChange` function.
      */
-    onClick: PropTypes.func,
+    value: controlled(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
 
     /**
-     * An optional function to call when the keyup event is triggered.
+     * An optional function to call when the text field's value has changed. This is required
+     * if the `value` prop has been defined.
+     *
+     * @see {@link TextFields/TextField#onChange}
      */
-    onKeyUp: PropTypes.func,
+    onChange: PropTypes.func,
 
     /**
-     * An optional function to call when the keydown event is triggered.
+     * An optional function to call when the text field gains focus.
+     */
+    onFocus: PropTypes.func,
+
+    /**
+     * An optional function to call when the keydown event is triggered on the text field.
      */
     onKeyDown: PropTypes.func,
 
     /**
-     * An optional function to call when the mouseover event is triggered.
-     */
-    onMouseOver: PropTypes.func,
-
-    /**
-     * An optional function to call when the mouseleave event is triggered.
-     */
-    onMouseLeave: PropTypes.func,
-
-    /**
-     * An optional function to call when the touchstart event is triggered.
-     */
-    onTouchStart: PropTypes.func,
-
-    /**
-     * An optional function to call when the touchend event is triggered.
-     */
-    onTouchEnd: PropTypes.func,
-
-    /**
-     * Boolean if the edit dialog should be large.
-     */
-    large: PropTypes.bool,
-
-    /**
-     * The title for the large edit dialog. The custom validation changes to required
-     * when the `large` prop is set to true.
-     */
-    title: (props, propName, component, ...others) => {
-      if (props.large) {
-        return PropTypes.string.isRequired(props, propName, component, ...others);
-      } else {
-        return PropTypes.string(props, propName, component, ...others);
-      }
-    },
-
-    /**
-     * An optional function to call when the OK button is clicked.
-     * It is called with `(textFieldValue, clickEvent)`. This function
-     * will also be called when a user pressed the enter key.
-     */
-    onOkClick: PropTypes.func,
-
-    /**
-     * The label to use for the OK button.
-     */
-    okLabel: PropTypes.string.isRequired,
-
-    /**
-     * An optional function to call when the Cancel button is clicked.
-     * It is called with `(textFieldValueBeforeEdit, clickEvent)`. This
-     * function will also be called when the user presses the escape key.
-     */
-    onCancelClick: PropTypes.func,
-
-    /**
-     * The label to use for the Cancel button.
-     */
-    cancelLabel: PropTypes.string.isRequired,
-
-    /**
-     * An optional function to call when the edit dialog is open and the user clicks
-     * somewhere else on the page.
-     */
-    onOutsideClick: PropTypes.func,
-
-    /**
-     * A boolean if the action when the edit dialog is open and the user clicks somewhere
-     * else on the page should be to confirm the current changes.
+     * An optional label for the text field. When displaying an `inline` edit dialog column,
+     * the `placeholder` prop should be used instead. This is because the text field changes
+     * to the `block` type when `inline`.
      *
-     * If this is set to `true`, `onOkClick` will be called. Otherwise `onCancelClick` will
-     * be called.
-     */
-    okOnOutsideClick: PropTypes.bool.isRequired,
-
-    /**
-     * An optional label for the text field.
+     * @see {@link #inline}
+     * @see {@link #placeholder}
+     * @see {@link TextFields/TextField#block}
      */
     label: PropTypes.node,
 
@@ -211,376 +187,397 @@ export default class EditDialogColumn extends PureComponent {
     placeholder: PropTypes.string,
 
     /**
-     * Boolean if the text field should not appear in a dialog.
+     * Boolean if the edit dialog should become a large dialog. When the dialog is large,
+     * the `title` prop is required.
+     *
+     * A large dialog has a Title followed by the text field, and then a cancel and ok action
+     * buttons below.
      */
-    inline: invalidIf(PropTypes.bool, 'title', 'large'),
+    large: PropTypes.bool,
 
     /**
-     * Any children used to display an inline edit dialog's edit icon.
+     * The title to use for the large edit dialog. This prop is required if the `large` prop
+     * is enabled.
+     */
+    title: PropTypes.node,
+
+    /**
+     * An optional `maxLength` to apply to the text field.
+     *
+     * @see {@link TextFields/TextField#maxLength}
+     */
+    maxLength: PropTypes.number,
+
+    /**
+     * Any children required to render the inline edit icon.
      */
     inlineIconChildren: PropTypes.node,
 
     /**
-     * The icon className used to display the inline edit dialog's edit icon.
+     * The icon class name used to render the inline edit icon.
      */
     inlineIconClassName: PropTypes.string,
 
     /**
-     * Boolean if an inline edit text field should not include an icon.
+     * Boolean if no inline edit icon should be used.
      */
-    noIcon: invalidIf(PropTypes.bool, 'title', 'large'),
+    noIcon: PropTypes.bool,
+
+    /**
+     * An optional function to call when the "Ok" button has been clicked. This
+     * is only valid if the edit dialog is `large`.
+     *
+     * The callback will include the current value and the click or keypress event.
+     * ```js
+     * onOkClick(value, event)
+     * ```
+     *
+     * @see {@link #large}
+     */
+    onOkClick: PropTypes.func,
+
+    /**
+     * The label to use for the "Ok" button in large dialogs.
+     *
+     * @see {@link #large}
+     */
+    okLabel: PropTypes.node.isRequired,
+
+    /**
+     * Boolean if the "Ok" button in large dialogs should be styled with the primary color.
+     * To get a `default` styled button, set both `okPrimary` and `okSecondary` (or omit `okSecondary`)
+     * to `false`.
+     *
+     * @see {@link #large}
+     * @see {@link #okSecondary}
+     */
+    okPrimary: PropTypes.bool,
+
+    /**
+     * Boolean if the "Ok" button in large dialogs should be styled with the secondary color.
+     *
+     * @see {@link #large}
+     * @see {@link #okPrimary}
+     */
+    okSecondary: PropTypes.bool,
+
+    /**
+     * An optional function to call when the "Cancel" button has been clicked in large edit dialogs.
+     * The callback will include the text field's value before any edits occured and the click event.
+     *
+     * ```js
+     * onCancelClick(previousValue, event)
+     * ```
+     *
+     * @see {@link #large}
+     */
+    onCancelClick: PropTypes.func,
+
+    /**
+     * The label to give to the "Cancel" button in large edit dialogs.
+     *
+     * @see {@link #large}
+     */
+    cancelLabel: PropTypes.node.isRequired,
+
+    /**
+     * Boolean if the "Cancel" button in large dialogs should be styled with the primary color.
+     * To get a `default` styled button, set both `cancelPrimary` and `cancelSecondary` (or
+     * omit `cancelSecondary`) to `false`.
+     *
+     * @see {@link #large}
+     * @see {@link #cancelSecondary}
+     */
+    cancelPrimary: PropTypes.bool,
+
+    /**
+     * Boolean if the "Cancel" button in large dialogs should be styled with the secondary color.
+     *
+     * @see {@link #large}
+     * @see {@link #cancelPrimary}
+     */
+    cancelSecondary: PropTypes.bool,
+
+    /**
+     * Boolean if the action for clicking somewhere on on the page while the dialog is open
+     * saves the changes or cancels to the previous value before opening the dialog.
+     *
+     * @see {@link #onOkClick}
+     * @see {@link #onCancelClick}
+     */
+    okOnOutsideClick: PropTypes.bool,
+
+    /**
+     * An optional function to call when a user clicks out of the text field.
+     */
+    onOutsideClick: PropTypes.func,
+
+    /**
+     * Boolean if the edit dialog should be closed if the user clicks somewhere else on the page
+     * while the dialog is open.
+     */
+    closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * The type for the text field in the edit dialog.
+     *
+     * @see {@link TextFields/TextField#type}
+     */
+    type: PropTypes.string,
+
+    /**
+     * This is how the dialog gets "anchored" to the table column.
+     *
+     * @see {@link Helpers/Layovers#anchor}
+     */
+    anchor: anchorShape,
+
+    /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
+     * This is the animation position to use for the dialog.
+     *
+     * @see {@link Helpers/Layovers#animationPosition}
+     */
+    animationPosition: positionShape,
+
+    /**
+     * This is how the dialog should be fixed within the table. When this is omitted, it will
+     * automatically use the responsive table as the fixture so that the dialog will close/adjust itself
+     * to the scrolling of the table.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    fixedTo: fixedToShape,
+
+    /**
+     * @see {@link Helpers/Layovers#xThreshold}
+     */
+    xThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#yThreshold}
+     */
+    yThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#centered}
+     */
+    centered: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#sameWidth}
+     */
+    sameWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#transitionName}
+     */
+    transitionName: PropTypes.string,
+
+    /**
+     * @see {@link Helpers/Layovers#transitionEnterTimeout}
+     */
+    transitionEnterTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#transitionLeaveTimeout}
+     */
+    transitionLeaveTimeout: PropTypes.number,
+
+    /**
+     * The optional tooltip to render on hover.
+     */
+    tooltipLabel: PropTypes.node,
+
+    /**
+     * An optional delay to apply to the tooltip before it appears.
+     */
+    tooltipDelay: PropTypes.number,
+
+    /**
+     * The position of the tooltip.
+     */
+    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the edit dialog should attempt to scroll into view if the full
+     * dialog can not be displayed in the viewport when it was toggled open.
+     *
+     * @see {@link #scrollIntoViewPadding}
+     */
+    scrollIntoView: PropTypes.bool,
+
+    /**
+     * The amount of padding that should be applied when the cell is scrolled into view.
+     * This will be applied to the left of the cell.
+     */
+    scrollIntoViewPadding: PropTypes.number,
 
     /**
      * This is injected by the `TableRow` component.
+     * @access private
      */
     header: PropTypes.bool,
 
     /**
-     * The type for the text field.
+     * This is injected by the `TableRow` component and used to help generate the unique id for the text
+     * field.
+     *
+     * @access private
      */
-    type: TextField.propTypes.type,
+    cellIndex: PropTypes.number,
 
     /**
-     * Boolean if the min width of the dialog should be set to the `$md-edit-dialog-column-min-width` variable.
-     * If this is undefined, the min width will be enforced when the `type` prop is `text`.
+     * @access private
      */
-    enforceMinWidth: PropTypes.bool,
+    adjusted: PropTypes.bool,
 
-    /**
-     * When the dialog is open and a user scrolls the dialog offscreen, this is the amount
-     * of the dialog that should be offscreen before hiding the dialog (inverse). The default
-     * is to have 25% of the dialog offscreen.
-     */
-    scrollThreshold: PropTypes.number.isRequired,
+    enforceMinWidth: deprecated(
+      PropTypes.bool,
+      'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable.'
+    ),
+    scrollThreshold: deprecated(
+      PropTypes.number,
+      'Use `xThreshold` and `yThreshold` instead'
+    ),
+    transitionDuration: deprecated(
+      PropTypes.number,
+      'use `transitionEnterTimeout` and `transitionLeaveTimeout` instead'
+    ),
+  };
+
+  static defaultProps = {
+    type: 'text',
+    defaultValue: '',
+    okOnOutsideClick: true,
+    inlineIconChildren: 'edit',
+    okLabel: 'Save',
+    okPrimary: true,
+    cancelLabel: 'Cancel',
+    cancelPrimary: true,
+    animationPosition: EditDialogColumn.Positions.BELOW,
+    dialogZDepth: 1,
+    repositionOnScroll: true,
+    scrollIntoView: true,
+    scrollIntoViewPadding: 16,
   };
 
   static contextTypes = {
     rowId: PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
-    ]).isRequired,
+    ]),
   };
 
-  static defaultProps = {
-    type: 'text',
-    defaultValue: '',
-    transitionDuration: 300,
-    okOnOutsideClick: true,
-    okLabel: 'Save',
-    cancelLabel: 'Cancel',
-    inlineIconChildren: 'edit',
-    scrollThreshold: 0.75,
-  };
-
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
+      visible: false,
       value: props.defaultValue,
-      active: false,
-      absolute: false,
-      animating: false,
+      cancelValue: props.defaultValue,
+      actions: this._makeActions(props),
+      cellIndex: undefined,
     };
-
-    this._table = null;
-    this._column = null;
-    this._field = null;
-
-    this._setColumn = this._setColumn.bind(this);
-    this._setDialog = this._setDialog.bind(this);
-    this._setField = this._setField.bind(this);
-    this._setOkButton = this._setOkButton.bind(this);
-    this._save = this._save.bind(this);
-    this._overrideTab = this._overrideTab.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleCancelClick = this._handleCancelClick.bind(this);
-    this._handleClickOutside = this._handleClickOutside.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-    this._positionCell = this._positionCell.bind(this);
-    this._repositionCell = this._repositionCell.bind(this);
-    this._activateDialog = this._activateDialog.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { active } = this.state;
-    if (active === prevState.active) {
-      return;
-    } else if (this._table) {
-      this._table[`${active ? 'add' : 'remove'}EventListener`]('scroll', this._repositionCell);
-      this._left = active ? this.state.left : null;
-      this._scrollLeft = active ? this._table.scrollLeft : null;
-    }
-
-    window[`${active ? 'add' : 'remove'}EventListener`]('click', this._handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this._handleClickOutside);
-
-    if (this._timeout) {
-      clearTimeout(this._timeout);
-    }
-  }
-
-  _getDialogPosition(dialog) {
-    let left = null;
-    let width = null;
-    if (dialog) {
-      left = dialog.getBoundingClientRect().left - 1;
-      width = dialog.offsetWidth;
-    }
-
-    return { width, left };
-  }
-
-  _setColumn(column) {
-    this._column = findDOMNode(column);
+  componentDidMount() {
+    this._column = findDOMNode(this);
     this._table = findTable(this._column);
-  }
+    this._fixedTo = findFixedTo(this._table);
 
-  _setDialog(dialog) {
-    this._dialog = dialog;
-  }
-
-  _setField(field) {
-    if (field) {
-      this._field = field.getField();
+    // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
+    // might not be defined if they don't pass ...props
+    const { cellIndex } = this.props;
+    if (!cellIndex && cellIndex !== 0) {
+      const columns = [].slice.call(this._column.parentNode.querySelectorAll('th,td'));
+      this.setState({ cellIndex: columns.indexOf(this._column) }); // eslint-disable-line react/no-did-mount-set-state
     }
   }
 
-  _setOkButton(okButton) {
-    this._okButton = findDOMNode(okButton);
+  componentWillReceiveProps(nextProps) {
+    const { okLabel, okPrimary, okSecondary, cancelLabel, cancelPrimary, cancelSecondary } = this.props;
+    if (okLabel !== nextProps.okLabel || okPrimary !== nextProps.okPrimary
+      || okSecondary !== nextProps.okSecondary || cancelLabel !== nextProps.cancelLabel
+      || cancelPrimary !== nextProps.cancelPrimary || cancelSecondary !== nextProps.cancelSecondary
+    ) {
+      this.setState({ actions: this._makeActions(nextProps) });
+    }
   }
 
-  /**
-   * This function will absolutely position a cell either on mouse over, keyboard tab focus,
-   * or touch start. This allows the table cell to expand outside of the table's scroll view.
-   */
-  _positionCell() {
-    if (this.props.inline) {
-      return;
-    }
+  _setField = (field) => {
+    this._field = field;
+  };
 
-    let position;
-    if (!this.state.absolute) {
-      position = this._getDialogPosition(this._dialog, this._table);
-    }
+  _makeActions = (props) => {
+    const {
+      okLabel,
+      okPrimary,
+      okSecondary,
+      cancelLabel,
+      cancelPrimary,
+      cancelSecondary,
+    } = props;
 
-    this.setState({ absolute: true, ...position });
-  }
+    return [{
+      key: 'cancel',
+      children: cancelLabel,
+      onClick: this._handleCancel,
+      primary: cancelPrimary && !cancelSecondary,
+      secondary: cancelSecondary,
+    }, {
+      key: 'ok',
+      children: okLabel,
+      onClick: this._handleOk,
+      primary: okPrimary && !okSecondary,
+      secondary: okSecondary,
+    }];
+  };
 
-  /**
-   * When the dialog is open and the user scrolls the data table (for some reason), this will
-   * keep the cell positioned correctly.
-   */
-  _repositionCell() {
-    if (!this._ticking) {
-      requestAnimationFrame(() => {
-        this._ticking = false;
-
-        let left = this._left;
-        let scrolledOut = false;
-        if (this._table) {
-          const { scrollLeft, offsetWidth } = this._table;
-          left -= (scrollLeft - this._scrollLeft);
-          scrolledOut = left < 16 || offsetWidth - left < this.state.width * this.props.scrollThreshold;
+  _handleOpen = () => {
+    if (this._skipNextOpen) {
+      this._skipNextOpen = false;
+    } else {
+      const { scrollIntoView, scrollIntoViewPadding } = this.props;
+      if (scrollIntoView) {
+        const vp = viewport(this._column);
+        if (vp !== true && this._table && this._column && !this.props.inline) {
+          this._table.scrollLeft = this._column.offsetLeft - scrollIntoViewPadding;
         }
-
-        let { absolute, active } = this.state;
-        if (!this._timeout && scrolledOut) {
-          this._timeout = setTimeout(() => {
-            this._timeout = null;
-            this.setState({ absolute: false, left: null, width: null });
-          }, this.props.transitionDuration);
-          active = false;
-          absolute = true;
-        }
-
-        this.setState({ left, absolute, active });
-      });
-    }
-
-    this._ticking = true;
-  }
-
-  /**
-   * Activates the dialog after it has already been positioned absolutely. This
-   * is triggered froma  click event, a touchend event, or the callback of the `this.setState`
-   * when coming from a keyboard focus event.
-   *
-   * @param {Object=} e - The click or touchend event.
-   */
-  _activateDialog(e) {
-    if (e) {
-      let callback;
-      if (e.type === 'click') {
-        callback = 'onClick';
-      } else if (e.type === 'touchend') {
-        callback = 'onTouchEnd';
       }
 
-      if (callback && this.props[callback]) {
-        this.props[callback](e);
-      }
+      this.setState({ visible: true, cancelValue: getField(this.props, this.state, 'value') });
+    }
+  };
+
+  _handleClose = (e) => {
+    const { onOutsideClick, okOnOutsideClick } = this.props;
+    if (onOutsideClick) {
+      onOutsideClick(e);
     }
 
-    if (this.props.inline || this.state.active) {
-      return;
+    if (okOnOutsideClick) {
+      this._handleOk(e);
+    } else {
+      this._handleCancel(e);
     }
+  };
 
-    this.setState({ active: true, cancelValue: getField(this.props, this.state, 'value') });
-  }
-
-  _handleClickOutside(e) {
-    if (this._column && !this._column.contains(e.target)) {
-      if (this.props.onOutsideClick) {
-        this.props.onOutsideClick(e);
-      }
-
-      if (this.props.okOnOutsideClick) {
-        this._save(e);
-      } else {
-        this._handleCancelClick(e);
-      }
-    }
-  }
-
-  _handleMouseOver(e) {
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
-    }
-
-    this._positionCell();
-  }
-
-  _handleMouseLeave(e) {
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e);
-    }
-
-    if (this.props.inline) {
-      return;
-    }
-
-    let position;
-    if (!this.state.active) {
-      position = { width: null, left: null };
-    }
-
-    this.setState({ absolute: false, ...position });
-  }
-
-  _handleKeyUp(e) {
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(e);
-    }
-
-    // Make sure this is really a _focus_ event from keyboard
-    if ((e.which || e.keyCode) !== TAB || this.state.active || this.props.inline) {
-      return;
-    }
-
-    // To get a smooth transition with keybaord, need to _emulate_ how the mouse interaction works.
-    // Basically position the edit field absolutely, wait for a re-render, then activate the dialog.
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
-      this._activateDialog();
-    }, TICK);
-    this._positionCell();
-  }
-
-  _handleTouchStart(e) {
-    if (this.props.onTouchStart) {
-      this.props.onTouchStart(e);
-    }
-
-    this._positionCell();
-  }
-
-  _handleKeyDown(e) {
-    const { onKeyDown } = this.props;
-    if (onKeyDown) {
-      onKeyDown(e);
-    }
-
-    const key = e.which || e.keyCode;
-    if (key === ENTER) {
-      this._save(e);
-    } else if (key === TAB) {
-      this._overrideTab(e);
-    } else if (key === ESC) {
-      this._handleCancelClick(e);
-    }
-  }
-
-  _overrideTab(e) {
-    const { large, inline, okOnOutsideClick } = this.props;
-    const key = e.which || e.keyCode;
-    if (key !== TAB) {
-      return;
-    } else if (inline) {
-      this._save(e);
-      return;
-    } else if (!large) {
-      if (okOnOutsideClick) {
-        this._save(e);
-      } else {
-        this._handleCancelClick(e);
-      }
-      return;
-    }
-
-    const { shiftKey } = e;
-    const { classList } = e.target;
-
-    let nextFocus;
-    if (classList.contains('md-text-field') && shiftKey) {
-      nextFocus = this._okButton;
-    } else if (classList.contains('md-btn') && !shiftKey) {
-      nextFocus = this._field;
-    }
-
-    if (nextFocus) {
-      e.preventDefault();
-      nextFocus.focus();
-    }
-  }
-
-  _save(e) {
-    if (this.props.onOkClick) {
-      this.props.onOkClick(getField(this.props, this.state, 'value'), e);
-    }
-
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
-      this.setState({ absolute: false, left: null, width: null });
-    }, this.props.transitionDuration);
-    this.setState({ active: false, absolute: true });
-  }
-
-  _handleCancelClick(e) {
-    if (this.props.onCancelClick) {
-      this.props.onCancelClick(this.state.cancelValue, e);
-    }
-
-    const state = { absolute: true, active: false };
-    if (typeof this.props.value === 'undefined') {
-      state.value = this.state.cancelValue;
-    }
-
-    this._timeout = setTimeout(() => {
-      this._timeout = null;
-      this.setState({ absolute: false, left: null, width: null });
-    }, this.props.transitionDuration);
-
-    this.setState(state);
-  }
-
-  _handleChange(value, e) {
+  _handleChange = (value, e) => {
     if (this.props.onChange) {
       this.props.onChange(value, e);
     }
@@ -588,79 +585,141 @@ export default class EditDialogColumn extends PureComponent {
     if (typeof this.props.value === 'undefined') {
       this.setState({ value });
     }
-  }
+  };
+
+  _handleFocus = (e) => {
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
+
+    if (this.props.inline) {
+      this.setState({ cancelValue: e.target.value });
+    }
+  };
+
+  _handleKeyDown = (e) => {
+    const { onKeyDown, okOnOutsideClick, large } = this.props;
+    if (onKeyDown) {
+      onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+    if (key === ENTER) {
+      this._handleOk(e);
+    } else if (key === ESC) {
+      this._handleCancel(e);
+    } else if (key === TAB && !large) {
+      // infinitely opens otherwise...
+      this._skipNextOpen = e.shiftKey;
+
+      if (okOnOutsideClick) {
+        this._handleOk(e);
+      } else {
+        this._handleCancel(e);
+      }
+    }
+  };
+
+  _handleOk = (e) => {
+    if (this.props.onOkClick) {
+      this.props.onOkClick(getField(this.props, this.state, 'value'), e);
+    }
+
+    this.setState({ visible: false });
+  };
+
+  _handleCancel = (e) => {
+    const value = this.state.cancelValue;
+    if (this.props.onCancelClick) {
+      this.props.onCancelClick(value, e);
+    }
+
+    const state = { visible: false };
+    if (typeof this.props.value === 'undefined') {
+      state.value = value;
+    }
+
+    this.setState(state);
+  };
 
   render() {
     const { rowId } = this.context;
-    const { active, absolute, animating, left, width } = this.state;
     const {
       style,
       className,
+      layoverStyle,
+      layoverClassName,
       dialogStyle,
       dialogClassName,
+      dialogContentStyle,
+      dialogContentClassName,
+      dialogZDepth,
       textFieldStyle,
       textFieldClassName,
-      inputStyle,
       inputClassName,
-      maxLength,
-      title,
-      okLabel,
-      cancelLabel,
       large,
-      label,
-      placeholder,
+      title,
       inline,
       inlineIconChildren,
       inlineIconClassName,
+      maxLength,
       noIcon,
+      label,
+      placeholder,
       header,
-      enforceMinWidth,
+      anchor,
+      belowAnchor,
+      fixedTo,
+      animationPosition,
+      xThreshold,
+      yThreshold,
+      centered,
+      sameWidth,
+      repositionOnScroll,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      tooltipLabel,
+      tooltipDelay,
+      tooltipPosition,
       /* eslint-disable no-unused-vars */
       id: propId,
-      value: propValue,
-      defaultValue,
-      scrollThreshold,
-      transitionDuration,
-      okOnOutsideClick,
-      onMouseOver,
-      onMouseLeave,
-      onTouchStart,
-      onTouchEnd,
+      dialogId: propDialogId,
+      cellIndex: propCellIndex,
       onOkClick,
+      okLabel,
+      okPrimary,
+      okSecondary,
       onCancelClick,
+      cancelLabel,
+      cancelPrimary,
+      cancelSecondary,
+      okOnOutsideClick,
+      defaultValue,
+      adjusted,
+      scrollIntoView,
+      scrollIntoViewPadding,
+
+      // deprecated
+      scrollThreshold,
+      enforceMinWidth,
+      transitionDuration,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
+    const { visible, actions } = this.state;
     const value = getField(this.props, this.state, 'value');
-    let { id } = this.props;
+    const cellIndex = getField(this.props, this.state, 'cellIndex');
+
+    let { id, dialogId } = this.props;
+    if (!dialogId) {
+      dialogId = `${rowId}-${cellIndex}-edit-dialog`;
+    }
+
     if (!id) {
-      id = `${rowId}-edit-dialog`;
+      id = `${dialogId}-field`;
     }
 
-    let actions;
-    let largeTitle;
-    if (!inline && large && active) {
-      actions = [{
-        label: cancelLabel,
-        onClick: this._handleCancelClick,
-        primary: true,
-      }, {
-        label: okLabel,
-        onClick: this._save,
-        primary: true,
-        ref: this._setOkButton,
-        onKeyDown: this._overrideTab,
-      }];
-
-      actions = <DialogFooter actions={actions} />;
-
-      largeTitle = (
-        <h3 className="md-title">{title}</h3>
-      );
-    }
-
-    const pointer = cn({ 'md-pointer--hover': !active });
     let inlineEditIcon;
     if (inline && !noIcon) {
       inlineEditIcon = (
@@ -670,69 +729,85 @@ export default class EditDialogColumn extends PureComponent {
       );
     }
 
-    const ariaProps = {};
-    if (!inline) {
-      ariaProps.id = `${id}-container`;
-      ariaProps['aria-haspopup'] = true;
-      ariaProps['aria-expanded'] = active;
-      ariaProps['aria-owns'] = id;
+    const numeric = props.type === 'number';
+    const field = (
+      <TextField
+        {...props}
+        ref={this._setField}
+        style={textFieldStyle}
+        className={cn({ 'md-edit-dialog__blocked-field': inline }, textFieldClassName)}
+        inputClassName={cn({
+          'md-text--secondary md-edit-dialog__header': header && inline,
+          'md-text-right': numeric,
+        }, inputClassName)}
+        id={id}
+        label={label}
+        placeholder={placeholder}
+        value={value}
+        onFocus={this._handleFocus}
+        onChange={this._handleChange}
+        onKeyDown={this._handleKeyDown}
+        block={inline}
+        maxLength={visible ? maxLength : null}
+        rightIcon={inlineEditIcon}
+      />
+    );
+
+    let children;
+    if (inline) {
+      children = field;
+    } else {
+      const dialogLabel = value || value === 0 ? value : placeholder || label;
+      children = (
+        <EditDialog
+          style={layoverStyle}
+          className={layoverClassName}
+          dialogStyle={dialogStyle}
+          dialogClassName={dialogClassName}
+          dialogContentStyle={dialogContentStyle}
+          dialogContentClassName={dialogContentClassName}
+          id={dialogId}
+          textFieldId={id}
+          visible={visible}
+          onOpen={this._handleOpen}
+          onClose={this._handleClose}
+          label={dialogLabel}
+          actions={actions}
+          large={large}
+          title={title}
+          header={header}
+          placeholder={dialogLabel === placeholder || dialogLabel === label}
+          anchor={anchor}
+          belowAnchor={belowAnchor}
+          animationPosition={animationPosition}
+          xThreshold={xThreshold}
+          yThreshold={yThreshold}
+          centered={centered}
+          sameWidth={sameWidth}
+          fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
+          dialogZDepth={dialogZDepth}
+          repositionOnScroll={repositionOnScroll}
+          transitionName={transitionName}
+          transitionEnterTimeout={transitionEnterTimeout}
+          transitionLeaveTimeout={transitionLeaveTimeout}
+        >
+          {field}
+        </EditDialog>
+      );
     }
 
     return (
       <TableColumn
-        style={{ left, ...style }}
-        className={cn('prevent-grow md-edit-dialog-column', {
-          'md-table-column--fixed': !inline && (absolute || active || animating),
-          'md-table-column--fixed-active': active,
-        }, className)}
+        style={style}
+        numeric={numeric}
+        className={cn('md-edit-dialog-column', className)}
         header={header}
-        ref={this._setColumn}
-        onMouseOver={this._handleMouseOver}
-        onMouseLeave={this._handleMouseLeave}
-        onClick={this._activateDialog}
-        onTouchStart={this._handleTouchStart}
-        onTouchEnd={this._activateDialog}
-        __fixedColumn
+        adjusted={false}
+        tooltipLabel={tooltipLabel}
+        tooltipDelay={tooltipDelay}
+        tooltipPosition={tooltipPosition}
       >
-        <div
-          {...ariaProps}
-          ref={this._setDialog}
-          style={{ width, ...dialogStyle }}
-          className={cn('md-edit-dialog', {
-            'md-edit-dialog--active': active,
-            'md-edit-dialog--inline': inline,
-            'md-edit-dialog--min-width': typeof enforceMinWidth === 'undefined'
-              ? props.type === 'text'
-              : enforceMinWidth,
-            'md-background': active,
-          }, dialogClassName)}
-        >
-          {largeTitle}
-          <TextField
-            {...props}
-            id={id}
-            ref={this._setField}
-            label={active ? label : null}
-            active={active}
-            floating={active}
-            placeholder={active ? placeholder : placeholder || label}
-            block={!active}
-            paddedBlock={false}
-            style={textFieldStyle}
-            className={cn(pointer, textFieldClassName)}
-            inputStyle={inputStyle}
-            inputClassName={cn(pointer, {
-              'md-text-right': props.type === 'number',
-            }, inputClassName)}
-            onKeyUp={this._handleKeyUp}
-            onKeyDown={this._handleKeyDown}
-            value={value}
-            onChange={this._handleChange}
-            maxLength={active ? maxLength : null}
-            rightIcon={inlineEditIcon}
-          />
-          {actions}
-        </div>
+        {children}
       </TableColumn>
     );
   }

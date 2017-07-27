@@ -1,3 +1,4 @@
+/** @module utils/DateUtils/extractTimeParts */
 import formatTime from './formatTime';
 
 /**

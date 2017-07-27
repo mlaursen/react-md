@@ -1,7 +1,9 @@
-import React, { PureComponent, PropTypes, Children } from 'react';
+import React, { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
-import { TAB, ENTER } from '../constants/keyCodes';
+import { TAB } from '../constants/keyCodes';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 
 /**
  * The `AccessibleFakeButton` is a generic component that can be used to render
@@ -69,6 +71,13 @@ export default class AccessibleFakeButton extends PureComponent {
     ]).isRequired,
 
     /**
+     * Boolean if the default outline should be removed the when the fake button has been focused.
+     *
+     * @see {@link #tabbedClassName}
+     */
+    noFocusOutline: PropTypes.bool,
+
+    /**
      * The tab index to use for the Fake button so it is keyboard focusable.
      */
     tabIndex: PropTypes.number,
@@ -89,50 +98,58 @@ export default class AccessibleFakeButton extends PureComponent {
      * @access private
      */
     ink: PropTypes.node,
+
+    /**
+     * Boolean if the spacebar should be used to trigger the click event. This _should_ be `true`
+     * is almost all cases.
+     */
+    listenToSpace: PropTypes.bool,
+
+    /**
+     * Boolean if the enter key should be used to trigger the click event. This _should_ be `true`
+     * in most cases. By default, the param will be ignored if the `role` attribute is for a `checkbox`
+     * or `radio`. When it is a checkbox or radio, it will attempt to submit the form on the enter
+     * keypress instead like the native elements.
+     */
+    listenToEnter: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'div',
     tabIndex: 0,
     role: 'button',
+    noFocusOutline: true,
+    listenToEnter: true,
+    listenToSpace: true,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { pressed: false, tabFocused: false };
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._setNode = this._setNode.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-  }
+  state = { pressed: false, tabFocused: false };
 
   /**
    * Focuses the button.
    */
-  focus() {
+  focus = () => {
     if (this._node) {
       this._node.focus();
     }
-  }
+  };
 
   /**
    * Blurs the button.
    */
-  blur() {
+  blur = () => {
     if (this._node) {
       this._node.blur();
     }
-  }
+  };
 
-  _setNode(node) {
+  _setNode = (node) => {
     if (node) {
       this._node = findDOMNode(node);
     }
-  }
+  };
 
-  _handleClick(e) {
+  _handleClick = (e) => {
     if (this.props.disabled) {
       return;
     }
@@ -143,23 +160,22 @@ export default class AccessibleFakeButton extends PureComponent {
 
     this._node.focus();
     this.setState({ pressed: !this.state.pressed });
-  }
+  };
 
-  _handleKeyDown(e) {
-    if (this.props.disabled) {
+  _handleKeyDown = (e) => {
+    const { disabled, onKeyDown, listenToEnter, listenToSpace } = this.props;
+    if (disabled) {
       return;
     }
 
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
+    if (onKeyDown) {
+      onKeyDown(e);
     }
 
-    if ((e.which || e.keyCode) === ENTER) {
-      this._handleClick(e);
-    }
-  }
+    handleKeyboardAccessibility(e, this._handleClick, listenToEnter, listenToSpace);
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     const { onKeyUp, onTabFocus } = this.props;
     if (onKeyUp) {
       onKeyUp(e);
@@ -172,9 +188,9 @@ export default class AccessibleFakeButton extends PureComponent {
 
       this.setState({ tabFocused: true });
     }
-  }
+  };
 
-  _handleBlur(e) {
+  _handleBlur = (e) => {
     if (this.props.onBlur) {
       this.props.onBlur(e);
     }
@@ -182,7 +198,7 @@ export default class AccessibleFakeButton extends PureComponent {
     if (this.state.tabFocused) {
       this.setState({ tabFocused: false });
     }
-  }
+  };
 
   render() {
     const {
@@ -193,12 +209,15 @@ export default class AccessibleFakeButton extends PureComponent {
       disabled,
       tabIndex,
       ink,
+      noFocusOutline,
       /* eslint-disable no-unused-vars */
       onBlur,
       onClick,
       onKeyUp,
       onKeyDown,
       onTabFocus,
+      listenToEnter,
+      listenToSpace,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -215,6 +234,7 @@ export default class AccessibleFakeButton extends PureComponent {
         ref={this._setNode}
         className={cn('md-fake-btn', {
           'md-pointer--hover': !disabled,
+          'md-fake-btn--no-outline': noFocusOutline,
           [tabbedClassName]: tabbedClassName && this.state.tabFocused,
         }, className)}
         disabled={disabled}

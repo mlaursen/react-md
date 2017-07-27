@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
@@ -14,12 +15,7 @@ const CELL_SCOPE = {
 };
 
 /**
- * A column in a table. This is either the `th` or `td` component. This column
- * can be automatically configured to be adjusted with additional padding
- * or auto expand to fill the remaining table space if the `TableRow` component
- * has `autoAdjust` set to `true`. If you would like to prevent this column
- * for being a candidate for auto expanding to remaining space, add the className
- * `.prevent-grow`.
+ * A column in a table. This is either the `th` or `td` component.
  */
 class TableColumn extends PureComponent {
   static propTypes = {
@@ -32,6 +28,18 @@ class TableColumn extends PureComponent {
      * The optional className for the table column
      */
     className: PropTypes.string,
+
+    /**
+     * An optional style to apply to the surroudning div when the DataTable has been
+     * set to include a fixed header or a fixed footer.
+     */
+    fixedStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the surroudning div when the DataTable has been
+     * set to include a fixed header or a fixed footer.
+     */
+    fixedClassName: PropTypes.string,
 
     /**
      * The children to display in the column.
@@ -56,7 +64,7 @@ class TableColumn extends PureComponent {
     /**
      * The icon className for the sort icon.
      */
-    sortIconClassName: PropTypes.string.isRequired,
+    sortIconClassName: PropTypes.string,
 
     /**
      * A boolean if the column has numeric data. It will right-align the data.
@@ -64,10 +72,18 @@ class TableColumn extends PureComponent {
     numeric: PropTypes.bool,
 
     /**
-     * Boolean if this column should be adjusted with additional padding. This *should*
-     * be handled automatically by the `TableRow` component but can be set manually as well.
+     * Boolean if the table column should gain the `.md-data-table--adjusted` class name. By default,
+     * every column will gain this class name unless it is an `EditDialogColumn`, a `SelectFieldColumn`,
+     * or the `grow` prop is enabled.
      */
     adjusted: PropTypes.bool,
+
+    /**
+     * Boolean if the column should expand to fill any remaining width in the container. There should
+     * really only be one column with the `grow` prop enabled. In addition, it should really only be
+     * applied to one of the columns in the TableHeader.
+     */
+    grow: PropTypes.bool,
 
     /**
      * Boolean if this column is the `th` for a column of `SelectFieldColumn`. This will apply
@@ -84,7 +100,7 @@ class TableColumn extends PureComponent {
     /**
      * The optional tooltip to render on hover.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay to apply to the tooltip before it appears.
@@ -109,35 +125,38 @@ class TableColumn extends PureComponent {
     plain: PropTypes.bool,
 
     /**
-     * Boolean if the TableColumn is coming from the EditDialogColumn or SelectFieldColumn
-     * components. When this is false, it will update the column to have `position: relative`
-     * so that tooltips can be displayed.
-     */
-    __fixedColumn: PropTypes.bool,
-
-    /**
      * An optional scope to apply to the table column. If omitted, the scope will be set to
      * `'col'` if inside of the `TableHeader` component. This is really only needed for
      * header columns.
      */
     scope: PropTypes.oneOf(['row', 'col']),
+
+    /**
+     * This is injected by the `TableRow` component to help with generating ids
+     * @access private
+     */
+    cellIndex: PropTypes.number,
   };
 
   static defaultProps = {
     header: false,
-    sortIconClassName: 'material-icons',
+    adjusted: true,
     sortIconChildren: 'arrow_upward',
   };
 
   static contextTypes = {
     plain: PropTypes.bool,
+    footer: PropTypes.bool,
+    fixedHeader: PropTypes.bool,
+    fixedFooter: PropTypes.bool,
   };
 
   render() {
     const {
       className,
+      fixedStyle,
+      fixedClassName,
       numeric,
-      adjusted,
       header,
       children,
       sorted,
@@ -145,9 +164,13 @@ class TableColumn extends PureComponent {
       sortIconClassName,
       tooltip,
       selectColumnHeader,
-      __fixedColumn,
-      plain: propPlain, // eslint-disable-line no-unused-vars
-      scope: propScope, // eslint-disable-line no-unused-vars
+      adjusted,
+      grow,
+      /* eslint-disable no-unused-vars */
+      plain: propPlain,
+      scope: propScope,
+      cellIndex,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
@@ -169,26 +192,59 @@ class TableColumn extends PureComponent {
       );
     }
 
+    const fixedHeader = header && this.context.fixedHeader;
+    const fixedFooter = this.context.footer && this.context.fixedFooter;
+    const fixed = fixedHeader || fixedFooter;
+    const baseClassNames = cn({
+      'md-text': !header,
+      'md-text--secondary': header,
+      'md-table-column--relative': tooltip,
+      'md-table-column--select-field': selectColumnHeader,
+    });
+
+    const mergedClassNames = cn({
+      'md-table-column--header': header,
+      'md-table-column--data': !header && !plain,
+      'md-table-column--plain': !header && plain,
+      'md-table-column--adjusted': adjusted && !grow && !selectColumnHeader,
+      'md-table-column--grow': grow,
+      'md-table-column--sortable md-pointer--hover': sortable,
+      [baseClassNames]: !fixed,
+    }, className);
+
+    if (fixed) {
+      displayedChildren = (
+        <div
+          className={cn('md-table-column__fixed', {
+            'md-table-column__fixed--header': fixedHeader,
+            'md-table-column__fixed--footer': fixedFooter,
+          })}
+        >
+          <div
+            style={fixedStyle}
+            className={cn(baseClassNames, mergedClassNames, 'md-table-column__fixed--flex', {
+              'md-table-column__fixed--flex-right': numeric,
+            }, fixedClassName)}
+          >
+            {tooltip}
+            {displayedChildren}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <Component
         aria-sort={ariaSort}
         {...props}
         scope={scope}
         className={cn('md-table-column', {
-          'md-table-column--header': header,
-          'md-table-column--data': !header && !plain,
-          'md-table-column--plain': !header && plain,
-          'md-table-column--adjusted': adjusted,
-          'md-table-column--sortable md-pointer--hover': sortable,
-          'md-table-column--relative': !__fixedColumn && tooltip,
-          'md-table-column--select-field': selectColumnHeader,
-          'md-text': !header,
-          'md-text--secondary': header,
-          'md-text-left': !numeric,
-          'md-text-right': numeric,
-        }, className)}
+          'md-table-column--fixed': fixed,
+          'md-text-left': !numeric && !fixed,
+          'md-text-right': numeric && !fixed,
+        }, mergedClassNames)}
       >
-        {tooltip}
+        {!fixedHeader && !fixedFooter && tooltip}
         {displayedChildren}
       </Component>
     );

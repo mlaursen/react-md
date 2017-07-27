@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div
+  className={undefined}
+  style={undefined}
+>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--discrete md-toolbar--fixed"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={false}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      style={undefined}
+    >
+      Welcome to react-md
+    </h2>
+  </header>
+  <main
+    className="md-navigation-drawer-content md-navigation-drawer-content--inactive md-transition--acceleration md-toolbar-relative"
+    id="main-content"
+    style={undefined}
+    tabIndex={-1}
+  >
+    <div
+      className="md-paper md-paper--1 md-card md-background--card greeting"
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchStart={[Function]}
+    >
+      <div
+        className="md-card-title md-card-title--primary"
+        style={undefined}
+      >
+        <h2
+          className="md-card-title--title md-text md-card-title--large"
+          id={undefined}
+        >
+          Hello from react-md
+        </h2>
+      </div>
+      <section
+        className="md-card-text"
+      >
+        <p>
+          This is a simple app that is using the 
+          <code>
+            NavigationDrawer
+          </code>
+           component for the layout and 
+          <code>
+            Card
+          </code>
+          , 
+          <code>
+            CardTitle
+          </code>
+          , and 
+          <code>
+            CardText
+          </code>
+           for this message.
+        </p>
+      </section>
+      <section
+        className="md-card-text"
+      >
+        <p>
+          You can edit 
+          <code>
+            src/components/App.jsx
+          </code>
+           to start making an app. Edit 
+          <code>
+            src/_globals.scss
+          </code>
+           for any Sass variable changes.
+        </p>
+      </section>
+    </div>
+  </main>
+</div>
+`;

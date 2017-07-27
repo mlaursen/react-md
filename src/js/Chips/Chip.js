@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -35,7 +36,7 @@ export default class Chip extends PureComponent {
     /**
      * The label to display on the chip.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the chip is removable.
@@ -71,29 +72,23 @@ export default class Chip extends PureComponent {
     children: 'add_circle',
   };
 
-  constructor(props) {
-    super(props);
+  state = { hover: false };
 
-    this.state = { hover: false };
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
-
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
 
     this.setState({ hover: true });
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
 
     this.setState({ hover: false });
-  }
+  };
 
   render() {
     const { hover } = this.state;

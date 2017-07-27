@@ -1,12 +1,10 @@
 /* eslint-env jest */
-jest.unmock('../Card');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Card from '../Card';
 

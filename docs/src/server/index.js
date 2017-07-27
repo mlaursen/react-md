@@ -1,75 +1,115 @@
+/* eslint-disable react/jsx-filename-extension */
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
-import logger from 'morgan';
+import morgan from 'morgan';
 import helmet from 'helmet';
 import hpp from 'hpp';
-import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
+import cookieParser from 'cookie-parser';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router';
+import { Provider } from 'react-redux';
+import winston from 'winston';
 
-import { port } from '../../serverConfig.json';
-import theme from './theme';
-import proxy from './proxy';
-
-const app = express();
+import { API_ENDPOINT } from 'constants/application';
+import { CUSTOM_THEME_ROUTE } from 'constants/colors';
+import configureStore from './configureStore';
+import api from './api';
+import themes from './themes';
+import renderHtmlPage from './utils/renderHtmlPage';
 
 const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // days * hours * minutes * seconds * milliseconds
+const dist = path.resolve(process.cwd(), 'public');
+const app = express();
 
-const clientRoot = path.resolve(process.cwd(), 'dist', 'client');
-const client = express.static(clientRoot, {
-  maxAge: CACHE_DURATION,
-});
-
-app.set('view engine', 'ejs');
-app.set('views', clientRoot);
 app.use(helmet({
   noCache: false,
 }));
-app.use(compression());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(hpp());
-app.use(logger(__DEV__ ? 'dev' : 'combined'));
+app.use(morgan(__DEV__ ? 'dev' : 'combined'));
+app.use(compression());
+app.use(favicon(path.join(dist, 'favicon.ico')));
 
+if (!global.__NGINX__) {
+  app.use(express.static(dist, {
+    maxAge: CACHE_DURATION,
+  }));
+}
 
-app.get('/themes/*.css', theme);
-app.get('/proxy', proxy);
-
-if (!__DEV__ || __DEBUG_SSR__) {
-  app.use(client);
-  app.use(require('./reactMD').default);
-} else {
+if (__DEV__ && !global.__SERVER_ONLY) {
+  /* eslint-disable import/no-extraneous-dependencies, global-require */
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../../webpack-client.config');
+  const config = require('../../webpack.config')({ development: true });
 
   const compiler = webpack(config);
-
   app.use(webpackDevMiddleware(compiler, {
-    stats: 'errors-only',
     publicPath: config.output.publicPath,
+    stats: 'errors-only',
   }));
+
+
   app.use(webpackHotMiddleware(compiler));
-
-  app.use(client);
-  app.use('*', (req, res, next) => {
-    const filename = path.join(compiler.outputPath, 'index.html');
-    compiler.outputFileSystem.readFile(filename, (err, file) => {
-      if (err) {
-        next(err);
-        return;
-      }
-
-      res.set('content-type', 'text/html');
-      res.send(file);
-      res.end();
-    });
-  });
 }
 
-app.listen(port, err => {
+app.use(API_ENDPOINT, api);
+app.get(`/${CUSTOM_THEME_ROUTE}/*.css`, themes);
+
+app.get('*', cookieParser(), async (req, res) => {
+  if (__DEV__) {
+    global.webpackIsomorphicTools.refresh();
+  }
+
+  let store;
+  const context = { bundles: [] };
+  try {
+    if (!__SSR__) {
+      res.send(renderHtmlPage(store));
+      return;
+    }
+
+    store = await configureStore(req);
+    const App = require('components/App').default;
+
+    const html = renderToString(
+      <StaticRouter context={context} location={req.url}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </StaticRouter>
+    );
+
+    if (context.url) {
+      res.writeHead(301, {
+        Location: context.url,
+      });
+
+      res.end();
+    } else {
+      res.send(renderHtmlPage(store, context.bundles, html));
+    }
+  } catch (e) {
+    winston.error(e);
+    if (__DEV__) {
+      throw e;
+    }
+
+    res.send(renderHtmlPage(store, context.bundles));
+  }
+});
+
+const port = process.env.NODE_PORT;
+app.listen(port, (err) => {
   if (err) {
     throw err;
   }
 
-  console.log(`Started server on port ${port}`);
+  winston.info(`Started documentation server on port: '${port}'`);
+  if (__DEV__ && !global.__SERVER_ONLY) {
+    winston.info('Starting webpack compilation...');
+    winston.info(`Please wait until webpack spams your console, then you can navigate to http://localhost:${port}`);
+  }
 });

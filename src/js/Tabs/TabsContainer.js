@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
@@ -6,6 +7,7 @@ import SwipeableViews from 'react-swipeable-views';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import between from '../utils/PropTypes/between';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import Paper from '../Papers/Paper';
 import TabPanel from './TabPanel';
 
@@ -148,6 +150,12 @@ export default class TabsContainer extends PureComponent {
     colored: PropTypes.bool,
 
     /**
+     * Boolean if the `toolbar` should be applied with the theme color. This _really_ only
+     * applies when you create a `fixed` tabs container.
+     */
+    themed: PropTypes.bool,
+
+    /**
      * Boolean if the tabs and the optional toolbar should be fixed to the top of the page.
      */
     fixed: PropTypes.bool,
@@ -196,12 +204,22 @@ export default class TabsContainer extends PureComponent {
     if (typeof props.activeTabIndex === 'undefined') {
       this.state.activeTabIndex = props.defaultTabIndex;
     }
-
-    this._handleTabChange = this._handleTabChange.bind(this);
-    this._handleSwipeChange = this._handleSwipeChange.bind(this);
   }
 
-  _handleTabChange(index, tabId, tabControlsId, tabChildren, event) {
+  componentDidMount() {
+    this._resizePanel();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevIndex = getField(prevProps, prevState, 'activeTabIndex');
+    const currIndex = getField(this.props, this.state, 'activeTabIndex');
+
+    if (prevIndex !== currIndex) {
+      this._resizePanel();
+    }
+  }
+
+  _handleTabChange = (index, tabId, tabControlsId, tabChildren, event) => {
     if (this.props.onTabChange) {
       this.props.onTabChange(index, tabId, tabControlsId, tabChildren, event);
     }
@@ -209,11 +227,26 @@ export default class TabsContainer extends PureComponent {
     if (typeof this.props.activeTabIndex === 'undefined') {
       this.setState({ activeTabIndex: index });
     }
-  }
+  };
 
-  _handleSwipeChange(activeTabIndex) {
+  _handleSwipeChange = (activeTabIndex) => {
     this._handleTabChange(activeTabIndex);
-  }
+  };
+
+  _setContainer = (container) => {
+    this._container = findDOMNode(container);
+  };
+
+  _resizePanel = () => {
+    if (!this._container) {
+      return;
+    }
+
+    const activePanel = this._container.querySelector('.md-tab-panel[aria-hidden=false]');
+    if (activePanel && this.state.panelHeight !== activePanel.offsetHeight) {
+      this.setState({ panelHeight: activePanel.offsetHeight });
+    }
+  };
 
   render() {
     const { panelHeight } = this.state;
@@ -236,6 +269,7 @@ export default class TabsContainer extends PureComponent {
       fixed,
       labelAndIcon,
       swipeableViewsProps,
+      themed,
       /* eslint-disable no-unused-vars */
       toolbar: propToolbar,
       activeTabIndex: propActiveTabeIndex,
@@ -264,6 +298,7 @@ export default class TabsContainer extends PureComponent {
           component={panelComponent}
           controlledById={tab.props.id || `${tabId}-${index}`}
         >
+          <ResizeObserver watchHeight onResize={this._resizePanel} />
           {tab.props.children}
         </TabPanel>
       );
@@ -292,7 +327,9 @@ export default class TabsContainer extends PureComponent {
       header = (
         <Paper
           style={headerStyle}
-          className={cn('md-tabs-fixed-container', headerClassName)}
+          className={cn('md-tabs-fixed-container', {
+            'md-toolbar--themed': themed,
+          }, headerClassName)}
           zDepth={headerZDepth}
           component={headerComponent}
         >
@@ -307,14 +344,7 @@ export default class TabsContainer extends PureComponent {
         style={style}
         className={cn('md-tabs-container', className)}
         {...props}
-        ref={container => {
-          if (container) {
-            const activePanel = findDOMNode(container).querySelector('.md-tab-panel[aria-hidden=false]');
-            if (activePanel && this.state.panelHeight !== activePanel.offsetHeight) {
-              this.setState({ panelHeight: activePanel.offsetHeight });
-            }
-          }
-        }}
+        ref={this._setContainer}
       >
         {header}
         {header ? null : toolbar}
@@ -323,11 +353,11 @@ export default class TabsContainer extends PureComponent {
           {...swipeableViewsProps}
           style={swipeableViewsStyle}
           className={cn('md-tabs-content', {
-            'md-tabs-content--offset': fixed,
-            'md-tabs-content--offset-icon': fixed && labelAndIcon,
-            'md-tabs-content--offset-toolbar': fixed && toolbar,
-            'md-tabs-content--offset-toolbar-prominent': fixed && toolbar && prominentToolbar,
-            'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon,
+            'md-tabs-content--offset': !toolbar && !labelAndIcon && fixed,
+            'md-tabs-content--offset-icon': !toolbar && fixed && labelAndIcon,
+            'md-tabs-content--offset-toolbar': toolbar && fixed && !prominentToolbar && !labelAndIcon,
+            'md-tabs-content--offset-toolbar-prominent': toolbar && fixed && prominentToolbar && !labelAndIcon,
+            'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon && !prominentToolbar,
             'md-tabs-content--offset-toolbar-prominent-icon': fixed && toolbar && labelAndIcon && prominentToolbar,
           }, swipeableViewsClassName)}
           slideStyle={{ height: panelHeight, ...slideStyle }}

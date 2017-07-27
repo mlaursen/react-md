@@ -1,13 +1,21 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
 import omit from '../utils/omit';
+import findIgnoreCase from '../utils/findIgnoreCase';
+import fuzzyFilter from '../utils/fuzzyFilter';
+import caseInsensitiveFilter from '../utils/caseInsensitiveFilter';
+import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
+import anchorShape from '../Helpers/anchorShape';
+import fixedToShape from '../Helpers/fixedToShape';
+import positionShape from '../Helpers/positionShape';
 
 import ListItem from '../Lists/ListItem';
 import Menu from '../Menus/Menu';
@@ -18,7 +26,42 @@ import TextField from '../TextFields/TextField';
  * or filtering.
  */
 export default class Autocomplete extends PureComponent {
+  static HorizontalAnchors = Menu.HorizontalAnchors;
+  static VerticalAnchors = Menu.VerticalAnchors;
+  static Positions = Menu.Positions;
+  static fuzzyFilter = fuzzyFilter;
+  static caseInsensitiveFilter = caseInsensitiveFilter;
+  static findIgnoreCase = findIgnoreCase;
   static propTypes = {
+    /**
+     * An id to give the autocomplete. Either this or the `menuId` is required for accessibility.
+     *
+     * @see {@link #menuId}
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * The menu id to provide to the autocomplete. Either this prop or the `id` prop is required. If
+     * this props is omitted, the menuId will become: `${id}-menu`
+     */
+    menuId: oneRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]), 'id'),
+
+    /**
+     * An optional id to provide to the menu's list.
+     *
+     * @see {@link Menus#listId}
+     */
+    listId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply to the menu that contains the autocomplete.
      */
@@ -69,10 +112,10 @@ export default class Autocomplete extends PureComponent {
     /**
      * A label to display with the autocomplete.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
-     * An optional value to use for the text field. This will force this component
+     * An optional value to use for the text field. This will forse this component
      * to be controlled and require the `onChange` function.
      */
     value: controlled(PropTypes.oneOfType([
@@ -238,9 +281,19 @@ export default class Autocomplete extends PureComponent {
      * by using the mouse, the enter/space key, or touch. The match index and current
      * `dataLabel` will be given back.
      *
-     * `onAutocomplete(suggestion[dataLabel] || suggestion, suggestionIndex, matches);`
+     * `onAutocomplete(suggestion, suggestionIndex, matches);`
+     *
+     * @see {@link #autocompleteWithLabel}
      */
     onAutocomplete: PropTypes.func,
+
+    /**
+     * Boolean if the `onAutocomplete` should attempt send the `suggestion[dataLabel]` instead
+     * of `suggestion[dataValue]` when the data is an object.
+     *
+     * @see {@link #onAutocomplete}
+     */
+    autocompleteWithLabel: PropTypes.bool,
 
     /**
      * A boolean if the text field's value should be reset to the empty string when
@@ -264,9 +317,122 @@ export default class Autocomplete extends PureComponent {
      * of previously typed values in the text field. By default, this is disabled.
      */
     autoComplete: PropTypes.oneOf(['on', 'off']),
+
+    /**
+     * Boolean if the `input` should be focused again after a suggestion was clicked.
+     *
+     * This is really only added for keyboard support and the fact that each of suggestions
+     * are focusable.
+     */
+    focusInputOnAutocomplete: PropTypes.bool,
+
+    /**
+     * This is how the menu's `List` gets anchored to the `toggle` element.
+     *
+     * @see {@link Helpers/Layovers#anchor}
+     */
+    anchor: anchorShape,
+
+    /**
+     * This is the anchor to use when the `position` is set to `Autocomplete.Positions.BELOW`.
+     *
+     * @see {@link Helpers/Layovers#belowAnchor}
+     */
+    belowAnchor: anchorShape,
+
+    /**
+     * This is the animation position for the list that appears.
+     *
+     * @see {@link Helpers/Layovers#animationPosition}
+     */
+    position: positionShape,
+
+    /**
+     * This is how the menu's list will be "fixed" to the `toggle` component.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    fixedTo: fixedToShape,
+
+    /**
+     * Boolean if the menu's list should appear horizontally instead of vertically.
+     */
+    listInline: PropTypes.bool,
+
+    /**
+     * The list's z-depth for applying box shadow. This should be a number from 0 to 5.
+     */
+    listZDepth: PropTypes.number,
+
+    /**
+     * Boolean if the list should have its height restricted to the `$md-menu-mobile-max-height`/
+     * `$md-menu-desktop-max-height` values.
+     *
+     * @see [md-menu-mobile-max-height](/components/menus?tab=1#variable-md-menu-mobile-max-height)
+     * @see [md-menu-desktop-max-height](/components/menus?tab=1#variable-md-menu-desktop-max-height)
+     */
+    listHeightRestricted: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#xThreshold}
+     */
+    xThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#yThreshold}
+     */
+    yThreshold: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#closeOnOutsideClick}
+     */
+    closeOnOutsideClick: PropTypes.bool,
+
+    /**
+     * An optional transition name to use for the list appearing/disappearing.
+     *
+     * @see {@link Helpers/Layoers#transitionName}
+     */
+    transitionName: PropTypes.string,
+
+    /**
+     * @see {@link Helpers/Layoers#transitionEnterTimeout}
+     */
+    transitionEnterTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layoers#transitionLeaveTimeout}
+     */
+    transitionLeaveTimeout: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#centered}
+     */
+    centered: Menu.propTypes.centered,
+
+    /**
+     * @see {@link Helpers/Layovers#sameWidth}
+     */
+    sameWidth: Menu.propTypes.sameWidth,
+
+    /**
+     * Boolean if the menu should automatically try to reposition itself to stay within
+     * the viewport when the `fixedTo` element scrolls.
+     *
+     * @see {@link Helpers/Layovers#fixedTo}
+     */
+    repositionOnScroll: PropTypes.bool,
+
+    /**
+     * @see {@link TextFields#toolbar}
+     */
+    toolbar: PropTypes.bool,
   };
 
   static defaultProps = {
+    autocompleteWithLabel: false,
+    position: Menu.Positions.BELOW,
+    sameWidth: true,
     offset: 0,
     fullWidth: true,
     defaultValue: '',
@@ -274,142 +440,8 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
+    repositionOnScroll: true,
   };
-
-  /**
-   * This function does a simple ignore case search of some `filterText` for every
-   * item in a `haystack`. It will only include items that are:
-   *  - not null or undefined
-   *  - valid React Components
-   *  - a number or string that contains each letter/number in exact order ignoring case
-   *  - an object's `dataLabel` value that contains each letter/number in exact order ignoring case.
-   *
-   * Example:
-   * ```js
-   * const haystack = ['Apple', 'Banana', 'Orange'];
-   * caseInsensitiveFilter(haystack, 'An') // ['Banana', 'Orange'];
-   * caseInsensitiveFilter(haystack, 'ae') // []
-   * ```
-   *
-   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
-   * @param {string} filterText - the filter text to use.
-   * @param {string=} dataLabel - the data label to use if the element is an object.
-   *
-   * @return {Array.<string|number|Object|function>} a filtered list.
-   */
-  static caseInsensitiveFilter(haystack, filterText, dataLabel) {
-    const needle = filterText.toLowerCase();
-
-    return haystack.filter(hay => {
-      if (hay === null || typeof hay === 'undefined') {
-        return false;
-      } else if (React.isValidElement(hay)) {
-        return true;
-      }
-
-      let value;
-      switch (typeof hay) {
-        case 'string':
-        case 'number':
-          value = hay.toString();
-          break;
-        default:
-          value = hay[dataLabel];
-      }
-
-      return value && value.toLowerCase().indexOf(needle) !== -1;
-    });
-  }
-
-
-  /**
-   * This function does a simple fuzzy search of some `needle` for every
-   * item in a `haystack`. It will only include items that are:
-   *  - not null or undefined
-   *  - valid React Components
-   *  - a number or string that contains each letter/number in order ignoring case
-   *  - an object's `dataLabel` value that contains each letter/number in order ignoring case.
-   *
-   * Example:
-   * ```js
-   * const haystack = ['Apple', 'Banana', 'Orange'];
-   * fuzzyFilter(haystack, 'An') // ['Banana', 'Orange'];
-   * fuzzyFilter(haystack, 'ae') // ['Apple']
-   * ```
-   *
-   * @param {Array.<string|number|Object|function>} haystack - the haystack to search
-   * @param {string} needle - the filter text to use.
-   * @param {string=} dataLabel - the data label to use if the element is an object.
-   *
-   * @return {Array.<string|number|Object|function>} a filtered list.
-   */
-  static fuzzyFilter(haystack, needle, dataLabel) {
-    // Create an amazing regex that matches the letters in order
-    // and escapes any strings that could be part of a regex.
-    const reg = new RegExp(
-      `${needle}`.split('')
-        .join('\\w*')
-        .replace(/(\(|\||\)|\\(?!w\*)|\[|\|-|\.|\^|\+|\$|\?|^(?!w)\*)/g, '\\$1')
-        // Couldn't get the matching of two '*' working, so replace them here..
-        .replace(/\*\*/g, '*\\*'),
-      'i'
-    );
-
-    return haystack.filter(hay => {
-      if (hay === null || typeof hay === 'undefined') {
-        return false;
-      } else if (React.isValidElement(hay)) {
-        return true;
-      }
-
-      let value;
-      switch (typeof hay) {
-        case 'string':
-        case 'number':
-          value = hay.toString();
-          break;
-        default:
-          value = hay[dataLabel];
-      }
-
-      return value && value.match(reg);
-    });
-  }
-
-  /**
-   * This function finds the first item in a `haystack` that starts with every
-   * letter of the `value` in order. It will ignore:
-   *  - null or undefined
-   *  - valid React components
-   *
-   * @param {Array.<string|number|Object|function>} haystack - the haystack to search.
-   * @param {string} value - the current value to use.
-   * @param {string=} dataLabel - the object key to use to extract the comparing value.
-   *
-   * @return {string} the found element or the empty string.
-   */
-  static findIgnoreCase(haystack, value, dataLabel) {
-    const needle = value ? value.toLowerCase() : '';
-
-    if (!needle) { return needle; }
-
-    let suggestion = '';
-    haystack.some(hay => {
-      if (hay === null || typeof hay === 'undefined' || React.isValidElement(hay)) {
-        return false;
-      }
-
-      const hayStr = typeof hay === 'object' ? hay[dataLabel] : hay.toString();
-
-      if (hayStr.toLowerCase().indexOf(needle) === 0) {
-        suggestion = hayStr;
-      }
-
-      return suggestion;
-    });
-
-    return suggestion;
-  }
 
   constructor(props) {
     super(props);
@@ -421,33 +453,22 @@ export default class Autocomplete extends PureComponent {
       filter,
     } = props;
 
+    let matches = [];
+    if (defaultValue && filter) {
+      matches = filter(data, defaultValue, dataLabel);
+    } else if (!filter) {
+      matches = data;
+    }
+
     this.state = {
       value: defaultValue,
-      matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : [],
-      isOpen: false,
+      matches,
+      visible: false,
       matchIndex: -1,
       manualFocus: false,
+      suggestion: '',
       suggestionIndex: -1,
     };
-
-    this._setField = this._setField.bind(this);
-    this._setMenu = this._setMenu.bind(this);
-    this._setSuggestion = this._setSuggestion.bind(this);
-    this._close = this._close.bind(this);
-    this._updateFont = this._updateFont.bind(this);
-    this._handleBlur = this._handleBlur.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleItemClick = this._handleItemClick.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleMenuKeyDown = this._handleMenuKeyDown.bind(this);
-    this._handleTextFieldKeyDown = this._handleTextFieldKeyDown.bind(this);
-    this._focusSuggestion = this._focusSuggestion.bind(this);
-    this._findInlineSuggestions = this._findInlineSuggestions.bind(this);
-    this._mapToListItem = this._mapToListItem.bind(this);
-    this._toggleMenu = this._toggleMenu.bind(this);
-    this._updateSuggestionStyle = this._updateSuggestionStyle.bind(this);
   }
 
 
@@ -457,16 +478,10 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (this.state.isOpen !== nextState.isOpen) {
-      const menuFn = nextProps[`onMenu${nextState.isOpen ? 'Open' : 'Close'}`];
-      if (menuFn) {
-        menuFn();
-      }
-    }
-
-    if (this.props.inline !== nextProps.inline) {
-      if (nextProps.inline) {
+  componentWillReceiveProps(nextProps) {
+    const { inline, value: nextValue, data, filter, dataLabel } = nextProps;
+    if (inline !== this.props.inline) {
+      if (inline) {
         this._updateFont();
         window.addEventListener('resize', this._updateFont);
       } else {
@@ -474,17 +489,31 @@ export default class Autocomplete extends PureComponent {
       }
     }
 
-    if (nextProps.data !== this.props.data || nextProps.value !== this.props.value) {
-      const { data, filter, dataLabel } = nextProps;
-      const value = getField(nextProps, nextState, 'value');
+    const dataDiff = data !== this.props.data;
+    if (nextValue !== this.props.value || dataDiff) {
+      let { visible, matches } = this.state;
+      const value = getField(nextProps, this.state, 'value');
 
-      const matches = filter ? filter(data, value, dataLabel) : data;
-      const next = { matches };
-      if (value && nextState.focus && matches.length) {
-        next.isOpen = true;
+      if (filter) {
+        matches = filter(data, value, dataLabel);
+      } else if (dataDiff) {
+        matches = data;
       }
 
-      this.setState(next);
+      if (this.state.focus) {
+        visible = !!matches.length;
+      }
+
+      this.setState({ matches, visible });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (this.state.visible !== nextState.visible) {
+      const menuFn = nextProps[`onMenu${nextState.visible ? 'Open' : 'Close'}`];
+      if (menuFn) {
+        menuFn();
+      }
     }
   }
 
@@ -502,45 +531,49 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
+  /**
+   * Gets the current value from the text field. This is used when you have an uncontrolled
+   * text field and simply need the value from a ref callback.
+   *
+   * @return {String} the text field's value
+   */
   get value() {
     return getField(this.props, this.state, 'value');
   }
 
-  _updateSuggestionStyle(isNew, isDeleted) {
+  _updateSuggestionStyle = (isNew, isDeleted) => {
     const { suggestionStyle } = this.state;
     if (isNew) {
       const msg = findDOMNode(this).querySelector('.md-text-field-message');
 
       if (msg) {
         const cs = window.getComputedStyle(this._suggestion);
-        const bottom = parseInt(cs.getPropertyValue('bottom'), 10) + msg.offsetHeight;
+        const bottom = parseInt(cs.bottom, 10) + msg.offsetHeight;
 
         this.setState({ suggestionStyle: { ...suggestionStyle, bottom } });
       }
     } else if (isDeleted && suggestionStyle) {
       this.setState({ suggestionStyle: { left: suggestionStyle.left } });
     }
-  }
+  };
 
-  _updateFont() {
+  _updateFont = () => {
     if (this._field) {
       const cs = window.getComputedStyle(this._field);
-      this.setState({
-        fontSize: parseInt(cs.getPropertyValue('font-size'), 10),
-        font: cs.getPropertyValue('font'),
-      });
+      this._fontSize = parseInt(cs.fontSize, 10);
+      this._font = cs.font;
     }
-  }
+  };
 
-  _close() {
+  _close = (e) => {
     if (this.props.onBlur) {
-      this.props.onBlur();
+      this.props.onBlur(e);
     }
 
-    this.setState({ focus: false, isOpen: false });
-  }
+    this.setState({ visible: false });
+  };
 
-  _handleChange(value, event) {
+  _handleChange = (value, event) => {
     const { onChange, filter, findInlineSuggestion, data, dataLabel, inline } = this.props;
 
     if (onChange) {
@@ -552,39 +585,95 @@ export default class Autocomplete extends PureComponent {
       return findInlineSuggestion ? this._findInlineSuggestions(value) : null;
     }
 
-    let matches = value ? this.state.matches : [];
+    let { visible } = this.state;
+    let matches = value || !filter ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, isOpen: !!matches.length, value });
+    if (filter) {
+      visible = !!matches.length;
+    }
+
+    return this.setState({ matches, visible, value });
   }
 
-  _handleFocus(e) {
+  _handleFocus = (e) => {
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
 
+    const { value } = e.target;
+    if (this.props.inline && value) {
+      if (this.props.findInlineSuggestion) {
+        this._findInlineSuggestions(value);
+      }
+
+      return;
+    }
+
     this.setState({
       matchIndex: -1,
-      isOpen: !this.state.manualFocus && !!getField(this.props, this.state, 'value') && !!this.state.matches.length,
+      visible: !this.state.manualFocus && !!value && !!this.state.matches.length,
       manualFocus: false,
       focus: true,
     });
-  }
+  };
 
-  _handleBlur(e) {
-    if (this.props.inline) {
+  _handleBlur = (e) => {
+    if (this.props.inline || !this.state.matches.length) {
       if (this.props.onBlur) {
         this.props.onBlur(e);
       }
 
       this.setState({ focus: false });
     }
-  }
+  };
 
-  _handleTextFieldKeyDown(e) {
-    const { inline, data, dataLabel, onKeyDown, onAutocomplete } = this.props;
+  _handleInlineAutocomplete = () => {
+    const { suggestionIndex, matches } = this.state;
+    if (suggestionIndex === -1) {
+      return;
+    }
+
+    const {
+      data,
+      dataLabel,
+      dataValue,
+      autocompleteWithLabel: label,
+      onAutocomplete,
+    } = this.props;
+
+    let value = data[suggestionIndex];
+    if (onAutocomplete) {
+      let v = value;
+      if (typeof value === 'object') {
+        if (!label) {
+          v = value[dataValue];
+        }
+
+        if (typeof v === 'undefined') {
+          v = value[dataLabel];
+        }
+      }
+
+      onAutocomplete(v, suggestionIndex, matches);
+    }
+
+    if (typeof value === 'object') {
+      value = value[dataLabel];
+    }
+
+    this.setState({
+      value,
+      suggestion: '',
+      suggestionIndex: -1,
+      tabbed: true,
+    });
+  };
+
+  _handleTextFieldKeyDown = (e) => {
+    const { inline, onKeyDown } = this.props;
     const { suggestionIndex } = this.state;
 
     const key = e.which || e.keyCode;
@@ -594,33 +683,18 @@ export default class Autocomplete extends PureComponent {
 
     if (inline && key === TAB && suggestionIndex !== -1) { // Autocomplete the text field
       e.preventDefault();
-
-      let value = data[suggestionIndex];
-      if (typeof value === 'object') {
-        value = value[dataLabel];
-      }
-
-      if (onAutocomplete) {
-        onAutocomplete(value, suggestionIndex, this.state.matches);
-      }
-
-      this.setState({
-        value,
-        suggestion: '',
-        suggestionIndex: -1,
-        tabbed: true,
-      });
+      this._handleInlineAutocomplete();
     }
-  }
+  };
 
-  _handleMenuKeyDown(e) {
+  _handleMenuKeyDown = (e) => {
     const key = e.which || e.keyCode;
     if (key === TAB) {
       if (this.props.onBlur) {
-        this.props.onBlur();
+        this.props.onBlur(e);
       }
 
-      this.setState({ isOpen: false });
+      this.setState({ visible: false });
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
@@ -631,15 +705,15 @@ export default class Autocomplete extends PureComponent {
       e.target.click();
       this._handleItemClick(this.state.matchIndex);
     }
-  }
+  };
 
   /**
    * Just check if the click target is in a list item.. if it is, autocomplete the text field
    * with that item.
    */
-  _handleClick(e) {
+  _handleClick = (e) => {
     let target = e.target;
-    while (target && target.parentNode) {
+    while (this._menu && this._menu.contains(target)) {
       if (target.classList.contains('md-list-item')) {
         let items = target.parentNode.querySelectorAll('.md-list-item');
         items = Array.prototype.slice.call(items);
@@ -651,34 +725,60 @@ export default class Autocomplete extends PureComponent {
     }
 
     return null;
-  }
+  };
 
-  _handleItemClick(index) {
+  _handleItemClick = (index) => {
     if (index === -1) { return; }
 
     const { matches } = this.state;
-    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete } = this.props;
+    const {
+      data,
+      dataLabel,
+      dataValue,
+      filter,
+      onAutocomplete,
+      clearOnAutocomplete,
+      focusInputOnAutocomplete,
+      autocompleteWithLabel: label,
+    } = this.props;
+
     let value = matches.filter(m => !React.isValidElement(m))[index];
+    if (onAutocomplete) {
+      let v = value;
+      if (typeof v === 'object') {
+        if (!label) {
+          v = value[dataValue];
+        }
+
+        if (typeof v === 'undefined') {
+          v = value[dataLabel];
+        }
+      }
+
+      onAutocomplete(v, index, matches);
+    }
+
     if (typeof value === 'object') {
       value = value[dataLabel];
     }
 
-    if (onAutocomplete) {
-      onAutocomplete(value, index, matches);
+    value = clearOnAutocomplete ? '' : value;
+    let callback;
+    if (focusInputOnAutocomplete) {
+      callback = () => {
+        this._field.focus();
+      };
     }
 
-    value = clearOnAutocomplete ? '' : value;
     this.setState({
-      isOpen: false,
-      manualFocus: true,
+      visible: false,
+      manualFocus: focusInputOnAutocomplete,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
-    }, () => {
-      this._field.focus();
-    });
-  }
+    }, callback);
+  };
 
-  _focusSuggestion(negative, e) {
+  _focusSuggestion = (negative, e) => {
     e.preventDefault();
     const { matchIndex, matches } = this.state;
     const l = matches.length;
@@ -703,11 +803,12 @@ export default class Autocomplete extends PureComponent {
     }
 
     this.setState({ matchIndex: index });
-  }
+  };
 
-  _findInlineSuggestions(value) {
+  _findInlineSuggestions = (value) => {
     const { data, dataLabel, findInlineSuggestion } = this.props;
-    const { font, fontSize } = this.state;
+    const font = this._font;
+    const fontSize = this._fontSize;
     let { suggestionStyle } = this.state;
 
     let suggestion = findInlineSuggestion(data, value, dataLabel);
@@ -719,8 +820,6 @@ export default class Autocomplete extends PureComponent {
     }
 
     let suggestionIndex = -1;
-
-
     if (suggestion) {
       // Find index of suggestion
       data.some((datum, i) => {
@@ -749,10 +848,17 @@ export default class Autocomplete extends PureComponent {
       }
     }
 
-    this.setState({ value, suggestion, suggestionIndex, suggestionStyle, tabbed: false });
-  }
+    this.setState({
+      value,
+      suggestion,
+      suggestionIndex,
+      suggestionStyle,
+      tabbed: false,
+      focus: true,
+    });
+  };
 
-  _mapToListItem(match, i) {
+  _mapToListItem = (match, i) => {
     if (React.isValidElement(match)) { return match; }
 
     const { dataLabel, dataValue, deleteKeys, total, offset, data } = this.props;
@@ -786,51 +892,36 @@ export default class Autocomplete extends PureComponent {
 
     // Allows focus, but does not let tab focus. This is so up and down keys work.
     return <ListItem tabIndex={-1} {...props} />;
-  }
+  };
 
   /**
    * The `mousedown` event is used instead of `click` because of the order
    * of the `mousedown`, `focus`, and `click` events.
    */
-  _toggleMenu(e) {
+  _toggleMenu = (e) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
 
     if (!this.props.inline && this.state.matches.length && getField(this.props, this.state, 'value')) {
-      this.setState({ isOpen: !this.state.isOpen });
+      this.setState({ visible: !this.state.visible });
     }
-  }
+  };
 
   /**
    * Allows touch devices to autocomplete the inline view by tapping:
    * - the suggestion text
    * - the text field IF there is a suggestion visible
    */
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     const { target } = e;
-    const { data, dataLabel, onAutocomplete } = this.props;
-    const { suggestionIndex, suggestion } = this.state;
+    const { suggestion } = this.state;
     if (target.classList.contains('md-autocomplete-suggestion') && suggestion) {
-      let value = data[suggestionIndex];
-      if (typeof value === 'object') {
-        value = value[dataLabel];
-      }
-
-      if (onAutocomplete) {
-        onAutocomplete(value, suggestionIndex, data);
-      }
-
-      this.setState({
-        value,
-        suggestion: '',
-        suggestionIndex: -1,
-        tabbed: true,
-      });
+      this._handleInlineAutocomplete();
     }
-  }
+  };
 
-  _setField(field) {
+  _setField = (field) => {
     if (field) {
       this._field = field.getField();
 
@@ -838,18 +929,18 @@ export default class Autocomplete extends PureComponent {
         this._updateFont();
       }
     }
-  }
+  };
 
-  _setMenu(menu) {
+  _setMenu = (menu) => {
     this._menu = findDOMNode(menu);
-  }
+  };
 
-  _setSuggestion(suggestion) {
+  _setSuggestion = (suggestion) => {
     this._suggestion = suggestion;
-  }
+  };
 
   render() {
-    const { isOpen, matches, tabbed, focus, suggestionStyle } = this.state;
+    const { visible, matches, tabbed, focus, suggestionStyle } = this.state;
     const {
       fullWidth,
       block,
@@ -859,7 +950,25 @@ export default class Autocomplete extends PureComponent {
       listClassName,
       textFieldStyle,
       textFieldClassName,
+      menuId,
       inline,
+      anchor,
+      belowAnchor,
+      position,
+      fixedTo,
+      listId,
+      listInline,
+      listZDepth,
+      listHeightRestricted,
+      xThreshold,
+      yThreshold,
+      closeOnOutsideClick,
+      transitionName,
+      transitionEnterTimeout,
+      transitionLeaveTimeout,
+      centered,
+      sameWidth,
+      repositionOnScroll,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -871,6 +980,7 @@ export default class Autocomplete extends PureComponent {
       deleteKeys,
       defaultValue,
       clearOnAutocomplete,
+      autocompleteWithLabel,
       findInlineSuggestion,
       onAutocomplete,
       onMenuOpen,
@@ -883,6 +993,7 @@ export default class Autocomplete extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+    delete props.focusInputOnAutocomplete;
 
     const value = getField(this.props, this.state, 'value');
 
@@ -944,18 +1055,35 @@ export default class Autocomplete extends PureComponent {
 
     return (
       <Menu
+        id={menuId || `${props.id}-menu`}
+        listId={listId}
         ref={this._setMenu}
         toggle={autocomplete}
-        isOpen={isOpen}
+        visible={visible}
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
-        position={Menu.Positions.BELOW}
+        sameWidth={sameWidth}
+        centered={centered}
+        anchor={anchor}
+        belowAnchor={belowAnchor}
+        position={position}
+        fixedTo={fixedTo}
+        listInline={listInline}
+        listZDepth={listZDepth}
+        listHeightRestricted={listHeightRestricted}
+        xThreshold={xThreshold}
+        yThreshold={yThreshold}
+        closeOnOutsideClick={closeOnOutsideClick}
+        transitionName={transitionName}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
         fullWidth={fullWidth || block}
         style={style}
         className={cn('md-autocomplete-container', className)}
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
+        repositionOnScroll={repositionOnScroll}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

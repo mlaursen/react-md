@@ -3,6 +3,10 @@
 ////
 
 
+/// Boolean if the ink should pulse by default. This is basically what will happen
+/// while the inked item has focus.
+/// @type Boolean
+$md-ink-include-pulse: false !default;
 
 /// The transition time for an ink to fully appear.
 /// @type Number
@@ -16,6 +20,15 @@ $md-ink-leave-transition-time: .3s !default;
 /// @type Number
 $md-ink-pulse-time: 1.5s !default;
 
+/// This is the scale that an ink should take once it has been fully
+/// created. It gets applied into `scale`.
+/// @type Number
+$md-ink-expanded-scale: 1 !default;
+
+/// The border radius for ink.
+/// @type Number
+$md-ink-border-radius: 50% !default;
+
 /// Creates the styles for material design ink.
 ///
 /// @example scss - Example Usage SCSS
@@ -23,7 +36,8 @@ $md-ink-pulse-time: 1.5s !default;
 ///
 /// @param {Boolean} $light-theme [$md-light-theme] - Boolean if the ink should be styled
 ///     for the light theme.
-@mixin react-md-inks($light-theme: $md-light-theme) {
+/// @param {Boolean} $pulse [$md-ink-include-pulse] - Boolean if the pulse effect should be included.
+@mixin react-md-inks($light-theme: $md-light-theme, $pulse: $md-ink-include-pulse) {
   .md-ink-container {
     border-radius: inherit;
     height: 100%;
@@ -45,7 +59,7 @@ $md-ink-pulse-time: 1.5s !default;
 
   .md-ink {
     background: get-color('divider', $light-theme);
-    border-radius: 50%;
+    border-radius: $md-ink-border-radius;
     display: block;
     opacity: 1;
     position: absolute;
@@ -60,14 +74,30 @@ $md-ink-pulse-time: 1.5s !default;
   }
 
   .md-ink--expanded {
-    transform: scale(.9);
+    transform: scale($md-ink-expanded-scale);
   }
 
-  .md-ink--pulsing {
-    animation-duration: $md-ink-pulse-time;
-    animation-iteration-count: infinite;
-    animation-name: md-ink-pulse;
-    animation-timing-function: $md-transition-standard;
+  @if $pulse {
+    .md-ink--pulsing {
+      animation-duration: $md-ink-pulse-time;
+      animation-iteration-count: infinite;
+      animation-name: md-ink-pulse;
+      animation-timing-function: $md-transition-standard;
+    }
+
+    @keyframes md-ink-pulse {
+      0% {
+        transform: scale($md-ink-expanded-scale);
+      }
+
+      66% {
+        transform: scale(.85);
+      }
+
+      100% {
+        transform: scale($md-ink-expanded-scale);
+      }
+    }
   }
 
   .md-ink--leaving {
@@ -76,19 +106,6 @@ $md-ink-pulse-time: 1.5s !default;
     transition-timing-function: $md-transition-deceleration;
   }
 
-  @keyframes md-ink-pulse {
-    0% {
-      transform: scale(.9);
-    }
-
-    66% {
-      transform: scale(.85);
-    }
-
-    100% {
-      transform: scale(.9);
-    }
-  }
 }
 
 /// Themes the ink color for the given theme ONLY if the `$light-theme` does not equal the

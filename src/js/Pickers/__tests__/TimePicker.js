@@ -1,12 +1,10 @@
 /* eslint-env jest */
-jest.unmock('../TimePicker');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import TimePicker from '../TimePicker';
 import TimePickerHeader from '../TimePickerHeader';

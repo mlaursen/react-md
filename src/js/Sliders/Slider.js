@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
@@ -7,6 +8,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import { LEFT, RIGHT, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import isValidClick from '../utils/EventUtils/isValidClick';
+import { setTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import calculateValueDistance from '../utils/NumberUtils/calculateValueDistance';
 import isWithinStep from '../utils/NumberUtils/isWithinStep';
 import controlled from '../utils/PropTypes/controlled';
@@ -89,9 +91,10 @@ export default class Slider extends PureComponent {
     discreteValueClassName: PropTypes.string,
 
     /**
-     * The default value for the slider.
+     * The default value for the slider. This number must be between the min and max values if
+     * defined. If this is undefined, it's value will be set to the min value.
      */
-    defaultValue: PropTypes.number.isRequired,
+    defaultValue: PropTypes.number,
 
     /**
      * The min value for the slider. The min and max values must be on the same
@@ -104,7 +107,7 @@ export default class Slider extends PureComponent {
         let name;
         if (min > props.value) {
           name = 'value';
-        } else if (min > props.defaultValue) {
+        } else if (typeof props.defaultValue !== 'undefined' && min > props.defaultValue) {
           name = 'defaultValue';
         }
 
@@ -255,9 +258,21 @@ export default class Slider extends PureComponent {
           );
         } else {
           const valueDefined = typeof props.value !== 'undefined';
+          const defaultDefined = typeof props.defaultValue !== 'undefined';
+          let value = props.value;
+          if (!valueDefined) {
+            value = defaultDefined ? props.defaultValue : props.min;
+          }
+
           let name;
-          if (!isWithinStep(valueDefined ? props.value : props.defaultValue, step)) {
-            name = valueDefined ? 'value' : 'defaultValue';
+          if (!isWithinStep(value, step)) {
+            if (valueDefined) {
+              name = 'value';
+            } else if (defaultDefined) {
+              name = 'defaultValue';
+            } else {
+              name = 'min';
+            }
           }
 
           if (name) {
@@ -395,7 +410,6 @@ export default class Slider extends PureComponent {
   };
 
   static defaultProps = {
-    defaultValue: 0,
     min: 0,
     max: 100,
     step: 1,
@@ -408,21 +422,18 @@ export default class Slider extends PureComponent {
   constructor(props) {
     super(props);
 
-    const scale = Math.abs(props.max - props.min) / props.step;
+    const { min, max, step } = props;
+    const scale = Math.abs(max - min) / step;
 
     let value = typeof props.value !== 'undefined'
       ? props.value
       : props.defaultValue;
 
-    let distance = value;
-    if (distance === props.min) {
-      distance = 0;
-    } else if (distance === props.max) {
-      distance = 100;
-    } else {
-      distance = value / props.max * 100;
+    if (typeof value === 'undefined') {
+      value = min;
     }
 
+    const distance = this._calcDistance(value, min, max);
     const thumbLeft = this._calcLeft(distance);
     const trackFillWidth = `${distance}%`;
 
@@ -447,23 +458,6 @@ export default class Slider extends PureComponent {
       maskInked: false,
     };
     this._dragAdded = false;
-
-    this._focusThumb = this._focusThumb.bind(this);
-    this._updatePosition = this._updatePosition.bind(this);
-    this._handleDragStart = this._handleDragStart.bind(this);
-    this._handleDragMove = this._handleDragMove.bind(this);
-    this._handleDragEnd = this._handleDragEnd.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleIncrement = this._handleIncrement.bind(this);
-    this._handleTextFieldChange = this._handleTextFieldChange.bind(this);
-    this._blurOnOutsideClick = this._blurOnOutsideClick.bind(this);
-    this._calcTrackWidth = this._calcTrackWidth.bind(this);
-    this._animateDiscreteInk = this._animateDiscreteInk.bind(this);
-    this._setTrack = this._setTrack.bind(this);
-    this._setField = this._setField.bind(this);
-    this._setNode = this._setNode.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -496,22 +490,20 @@ export default class Slider extends PureComponent {
     if (this._dragAdded !== addDrag) {
       fn('mousemove', this._handleDragMove);
       fn('mouseup', this._handleDragEnd);
-      fn('touchmove', this._handleDragMove);
-      fn('touchend', this._handleDragEnd);
+      setTouchEvent(addDrag, window, 'move', this._handleDragMove);
+      setTouchEvent(addDrag, window, 'end', this._handleDragEnd);
 
       this._dragAdded = addDrag;
     }
   }
 
   componentWillUnmount() {
-    if (this._dragAdded) {
-      const rm = window.removeEventListener;
-      rm('mousemove', this._handleMouseMove);
-      rm('mouseup', this._handleMouseUp);
-      rm('touchmove', this._handleDragMove);
-      rm('touchend', this._handleDragEnd);
-      rm('click', this._blurOnOutsideClick);
-    }
+    const rm = window.removeEventListener;
+    rm('click', this._blurOnOutsideClick);
+    rm('mousemove', this._handleMouseMove);
+    rm('mouseup', this._handleMouseUp);
+    removeTouchEvent(window, 'move', this._handleDragMove);
+    removeTouchEvent(window, 'end', this._handleDragEnd);
 
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
@@ -532,14 +524,8 @@ export default class Slider extends PureComponent {
     return `calc(${value}% - 6px)`;
   }
 
-  /**
-   * Checks if the target is within the text field container.
-   *
-   * @param {Object} target - The event target.
-   * @return {Boolean} true if the target is in the text field.
-   */
-  _isTextField(target) {
-    return this._textField && this._textField.contains(target);
+  _calcDistance(value, min, max) {
+    return Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
   }
 
   /**
@@ -559,6 +545,14 @@ export default class Slider extends PureComponent {
   }
 
   /**
+   * Checks if the target is within the text field container.
+   *
+   * @param {Object} target - The event target.
+   * @return {Boolean} true if the target is in the text field.
+   */
+  _isTextField = (target) => this._textField && this._textField.contains(target);
+
+  /**
    * Updates the slider's thumb position and the slider's track fill width based
    * on the thumb's current x position on the screen.
    *
@@ -576,7 +570,7 @@ export default class Slider extends PureComponent {
    * @param {bool} normalize - Boolean if the distance should be normalized
    *    to the current scale of the slider.
    */
-  _updatePosition(e, normalize) {
+  _updatePosition = (e, normalize) => {
     const x = (e.changedTouches ? e.changedTouches[0] : e).clientX;
     const { scale } = this.state;
     const { onChange, onDragChange, min, max, step } = this.props;
@@ -592,11 +586,12 @@ export default class Slider extends PureComponent {
       normalize
     );
 
-    if (onChange) {
+    const isNewValue = getField(this.props, this.state, 'value') !== value;
+    if (onChange && isNewValue) {
       onChange(value, e);
     }
 
-    if (!normalize && onDragChange) {
+    if (!normalize && onDragChange && (isNewValue || this.state.distance !== distance)) {
       onDragChange(distance, value, e);
     }
 
@@ -618,7 +613,7 @@ export default class Slider extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
   /**
    * This will either allow a user to start dragging the slider or quickly
@@ -628,7 +623,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - The touchstart or mousedown event.
    */
-  _handleDragStart(e) {
+  _handleDragStart = (e) => {
     if (e.type === 'mousedown' && this.props.onMouseDown) {
       this.props.onMouseDown(e);
     } else if (e.type === 'touchstart' && this.props.onTouchStart) {
@@ -644,45 +639,48 @@ export default class Slider extends PureComponent {
     const isDiscreteValue = classList.contains('md-slider-discrete-value');
     if (classList.contains('md-slider-thumb') || isDiscreteValue) {
       // Prevents text highlighting while dragging.
-      e.preventDefault();
+      if (e.type.match(/mouse/)) {
+        e.preventDefault();
+      }
       this.setState({ dragging: true, active: true, manualIncrement: false, maskInked: false });
     } else if (!this._isTextField(e.target) && this._isValidClassList(classList)) {
       this._updatePosition(e, true);
     }
-  }
+  };
 
-  _setNode(node) {
+  _setNode = (node) => {
     this._node = findDOMNode(node);
-  }
+  };
 
-  _setTrack(track) {
+  _setTrack = (track) => {
     this._track = findDOMNode(track);
-  }
+  };
 
-  _setField(field) {
+  _setField = (field) => {
     this._field = findDOMNode(field);
     this._calcTrackWidth(this.props);
-  }
+  };
 
-  _handleDragMove(e) {
+  _handleDragMove = (e) => {
     if (this.props.disabled || !this.state.dragging) {
       return;
     }
 
     // Stops the text highlighting while dragging
-    e.preventDefault();
+    if (e.type.match(/mouse/)) {
+      e.preventDefault();
+    }
 
     this._updatePosition(e, false);
-  }
+  };
 
-  _handleDragEnd(e) {
+  _handleDragEnd = (e) => {
     if (!this.state.dragging || this.props.disabled || (e.type === 'mouseup' && !isValidClick(e))) {
       return;
     }
 
     this._updatePosition(e, true);
-  }
-
+  };
 
   /**
    * This will set the active state of the slider to false if the user
@@ -690,7 +688,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - The window's click event.
    */
-  _blurOnOutsideClick(e) {
+  _blurOnOutsideClick = (e) => {
     if ((this.state.dragging && !this.state.manualIncrement) || this.props.disabled) {
       return;
     }
@@ -698,7 +696,7 @@ export default class Slider extends PureComponent {
     if (!this._node.contains(e.target)) {
       this.setState({ active: false, maskInked: false });
     }
-  }
+  };
 
     /**
      * Updates the slider with the `step` prop and calls the `onChange`
@@ -709,11 +707,11 @@ export default class Slider extends PureComponent {
      *    touch start event.
      * @param {bool} disableTransition - Boolean if the jump's transition should be disabled.
      */
-  _handleIncrement(incrementedValue, e, disableTransition) {
+  _handleIncrement = (incrementedValue, e, disableTransition) => {
     const { onChange, min, max, discrete } = this.props;
 
-    const distance = Math.max(0, Math.min(100, ((incrementedValue - min) / (max - min)) * 100));
     const value = Math.max(min, Math.min(max, incrementedValue));
+    const distance = this._calcDistance(value, min, max);
 
     if (onChange) {
       onChange(value, e);
@@ -736,11 +734,11 @@ export default class Slider extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleTextFieldChange(newValue, e) {
+  _handleTextFieldChange = (newValue, e) => {
     this._handleIncrement(newValue, e, false);
-  }
+  };
 
   /**
    * This will increment the Slider's value by the `step` prop. if the left or
@@ -748,7 +746,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - the keydown event.
    */
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     const key = e.which || e.keyCode;
     const { min, max, step, disabled } = this.props;
     if (disabled) {
@@ -762,14 +760,14 @@ export default class Slider extends PureComponent {
       return;
     }
 
-    let nextValue = getField(this.props, this.state);
+    let nextValue = getField(this.props, this.state, 'value');
     nextValue = Math.max(
       min,
       Math.min((key === LEFT ? -step : step) + nextValue, max)
     );
 
     this._handleIncrement(nextValue, e, true);
-  }
+  };
 
   /**
    * This function will animate the discrete Slider's ink if it gains focus
@@ -777,7 +775,7 @@ export default class Slider extends PureComponent {
    *
    * @param {Object} e - the key up event.
    */
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if ((e.which || e.keyCode) !== TAB) {
       return;
     }
@@ -787,11 +785,11 @@ export default class Slider extends PureComponent {
     }
 
     this.setState({ maskInked: true });
-  }
+  };
 
-  _handleFocus() {
+  _handleFocus = () => {
     this.setState({ active: true });
-  }
+  };
 
   /**
    * For some reason the width of the track gets set to 0 if the `Slider` has a label and
@@ -801,7 +799,7 @@ export default class Slider extends PureComponent {
    *
    * This function just checks these things, and sets the width accordingly.
    */
-  _calcTrackWidth(props) {
+  _calcTrackWidth = (props) => {
     const { editable, leftIcon, rightIcon, inputWidth, label } = props;
 
     if (!label) {
@@ -823,13 +821,13 @@ export default class Slider extends PureComponent {
     if (trackWidth) {
       this.setState({ trackWidth });
     }
-  }
+  };
 
   /**
    * The ink for a Discrete slider is only visible for a short time on initial
    * focus. This function will handle the in/out transitions.
    */
-  _animateDiscreteInk() {
+  _animateDiscreteInk = () => {
     const wait = this.props.discreteInkTransitionTime;
     if (this._inkTimeout) {
       clearTimeout(this._inkTimeout);
@@ -843,14 +841,14 @@ export default class Slider extends PureComponent {
         this.setState({ leaving: false });
       }, wait);
     }, wait);
-  }
+  };
 
   /**
    * This is a helper function for focusing the Slider's thumb comopnent. There
    * is a short delay because the body sometimes gets focused immediately after
    * if there is no timeout..
    */
-  _focusThumb() {
+  _focusThumb = () => {
     if (this._focusTimeout) {
       clearTimeout(this._focusTimeout);
     }
@@ -863,7 +861,7 @@ export default class Slider extends PureComponent {
 
       this._thumb.focus();
     }, 100);
-  }
+  };
 
   render() {
     const {
@@ -916,7 +914,7 @@ export default class Slider extends PureComponent {
     if (editable) {
       rightChildren = (
         <TextField
-          id={`${id}Editor`}
+          id={`${id}-editor`}
           ref={this._setField}
           type="number"
           value={value}
@@ -966,7 +964,7 @@ export default class Slider extends PureComponent {
           disabled={disabled}
           thumbLeft={thumbLeft}
           trackFillWidth={trackFillWidth}
-          on={!disabled && distance > min}
+          on={!disabled && distance > 0}
           off={distance === 0}
           maskInked={maskInked}
           onThumbKeyUp={this._handleKeyUp}

@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
@@ -36,6 +37,26 @@ const oneOfDrawerTypes = PropTypes.oneOf([
 export default class Drawer extends PureComponent {
   static DrawerTypes = DrawerTypes;
   static propTypes = {
+    /**
+     * An optional id to provide to the drawer. This is generally a good idea to provide if
+     * there are any `navItems` defined.
+     *
+     * @see {@link #navItemsId}
+     */
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * An optional id to provide to the navItems list. If this is omitted and the `id` prop is
+     * defined, it will be defaulted to `${id}-nav-items`.
+     */
+    navItemsId: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
     /**
      * An optional style to apply.
      */
@@ -81,7 +102,7 @@ export default class Drawer extends PureComponent {
       PropTypes.shape({
         divider: PropTypes.bool,
         subheader: PropTypes.bool,
-        primaryText: PropTypes.string,
+        primaryText: PropTypes.node,
       }),
     ])),
 
@@ -191,6 +212,15 @@ export default class Drawer extends PureComponent {
     overlay: PropTypes.bool,
 
     /**
+     * Boolean if the Portal's functionality of rendering in a separate react tree should be applied
+     * to the drawer. The overlay that appears for temporary type drawers will still appear in the
+     * separate subtree.
+     *
+     * @see {@link Helpers/Portal}
+     */
+    portal: PropTypes.bool,
+
+    /**
      * An optional DOM Node to render the drawer into. The default is to render as
      * the first child in the `body`.
      *
@@ -218,20 +248,20 @@ export default class Drawer extends PureComponent {
     defaultVisible: PropTypes.bool,
 
     /**
-     * Boolean if the drawer is visible. This will force the component to define the `onVisibilityToggle`
+     * Boolean if the drawer is visible. This will force the component to define the `onVisibilityChange`
      * prop as well as manually updating the drawer's visibility.
      */
-    visible: controlled(PropTypes.bool, 'onVisibilityToggle', 'defaultVisible'),
+    visible: controlled(PropTypes.bool, 'onVisibilityChange', 'defaultVisible'),
 
     /**
      * An optional function to call when the visibility of the drawer is changed. The function will
-     * be called with the new visibility state and an event that triggered the visibility change.
+     * be called with the new visibility state.
      *
      * ```js
-     * onVisibilityToggle(!currentlyVisible, event);
+     * onVisibilityChange(!currentlyVisible);
      * ```
      */
-    onVisibilityToggle: PropTypes.func,
+    onVisibilityChange: PropTypes.func,
 
     /**
      * The drawer's position on the page when it is not `inline`. When the drawer's position is `left`,
@@ -267,7 +297,17 @@ export default class Drawer extends PureComponent {
      */
     autocloseAfterInk: PropTypes.bool,
 
+    /**
+     * Boolean if the `type` prop should be constant across all media sizes. This is only valid if the `type` is
+     * one of the temporary types.
+     *
+     * This will basically mean that when attempting to do a media adjustment, it will use the `type` prop instead of
+     * `mobileType`, `tabletType`, and `desktopType` to determine the next drawer type.
+     */
+    constantType: PropTypes.bool.isRequired,
+
     closeOnNavItemClick: deprecated(PropTypes.bool, 'Use `autoclose` instead'),
+    onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
   };
 
   static defaultProps = {
@@ -282,6 +322,7 @@ export default class Drawer extends PureComponent {
     transitionDuration: 300,
     autoclose: true,
     clickableDesktopOverlay: true,
+    constantType: true,
   };
 
   /**
@@ -290,14 +331,23 @@ export default class Drawer extends PureComponent {
    *
    * If this is used server side, it will default to only matching mobile.
    *
-   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet, and desktop type/min
-   *    widths. This defaults to the drawer's default props.
+   * @param {Object=} props - The current drawer's prop shape to extract the mobile, tablet,
+   *    and desktop type/min widths. This defaults to the drawer's default props.
    * @return {Object} an object containing the media matches and the current type to use for the drawer.
    */
   static getCurrentMedia(props = Drawer.defaultProps) {
-    const { mobileMinWidth, tabletMinWidth, desktopMinWidth, mobileType, tabletType, desktopType } = props;
+    const {
+      mobileMinWidth,
+      tabletMinWidth,
+      desktopMinWidth,
+      mobileType,
+      tabletType,
+      desktopType,
+      constantType,
+    } = props;
     if (typeof window === 'undefined') {
-      return { mobile: true, tablet: false, desktop: false, type: mobileType };
+      const type = constantType && props.type ? props.type : mobileType;
+      return { mobile: true, tablet: false, desktop: false, type };
     }
 
     const mobile = Drawer.matchesMedia(mobileMinWidth, tabletMinWidth - 1);
@@ -305,7 +355,9 @@ export default class Drawer extends PureComponent {
     const desktop = Drawer.matchesMedia(desktopMinWidth);
 
     let type;
-    if (desktop) {
+    if (constantType && props.type && isTemporary(props.type)) {
+      type = props.type;
+    } else if (desktop) {
       type = desktopType;
     } else if (tablet) {
       type = tabletType;
@@ -320,9 +372,9 @@ export default class Drawer extends PureComponent {
    * Simply does a `window.matchMedia(query)` where the query gets defined as a min width
    * and optional max width.
    *
-   * @param {Number} min - The min width for the media query.
-   * @param {Number=} max - An optional max width to include for the media query.
-   * @return true if the media matches.
+   * @param {number} min - The min width for the media query.
+   * @param {number=} max - An optional max width to include for the media query.
+   * @return {boolean} true if the media matches.
    */
   static matchesMedia(min, max) {
     let media = `screen and (min-width: ${min}px)`;
@@ -340,7 +392,7 @@ export default class Drawer extends PureComponent {
   constructor(props) {
     super(props);
 
-    const { defaultVisible, defaultMedia } = props;
+    const { defaultVisible, defaultMedia, overlay } = props;
 
     this.state = {
       mobile: defaultMedia === 'mobile',
@@ -356,6 +408,7 @@ export default class Drawer extends PureComponent {
     }
 
     const type = getField(props, this.state, 'type');
+    this._initialFix = true;
 
     if (typeof props.visible === 'undefined') {
       this.state.visible = typeof defaultVisible !== 'undefined'
@@ -365,20 +418,19 @@ export default class Drawer extends PureComponent {
 
     const visible = getField(props, this.state, 'visible');
 
-    this.state.overlayActive = isTemporary(type) && visible && !this.state.desktop;
+    this.state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(type) && !this.state.desktop)
+      && visible;
     this.state.drawerActive = visible;
+  }
 
-    this._animate = this._animate.bind(this);
-    this._closeDrawer = this._closeDrawer.bind(this);
-    this._setNavigation = this._setNavigation.bind(this);
-    this._handleNavClick = this._handleNavClick.bind(this);
-    this._updateType = this._updateType.bind(this);
-    this._updateMedia = this._updateMedia.bind(this);
+  componentWillMount() {
+    if (typeof window !== 'undefined') {
+      this._updateType(this.props);
+    }
   }
 
   componentDidMount() {
     window.addEventListener('resize', this._updateMedia);
-    this._updateType(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -427,19 +479,45 @@ export default class Drawer extends PureComponent {
     window.removeEventListener('resize', this._updateMedia);
   }
 
-  _updateType(props) {
+  _updateType = (props) => {
     const {
       onMediaTypeChange,
-      onVisibilityToggle,
+      overlay,
     } = props;
+
+    const onVisibilityChange = props.onVisibilityToggle || props.onVisibilityChange;
 
     let state = Drawer.getCurrentMedia(props);
     const diffType = getField(props, this.state, 'type') !== state.type;
+    const diffMedia = state.mobile !== this.state.mobile
+      || state.tablet !== this.state.tablet
+      || state.desktop !== this.state.desktop;
 
-    if (onMediaTypeChange && (diffType ||
-      ['mobile', 'tablet', 'desktop'].filter(key => state[key] !== this.state[key]).length)
-    ) {
+    if (onMediaTypeChange && (diffType || diffMedia)) {
       onMediaTypeChange(state.type, { mobile: state.mobile, tablet: state.tablet, desktop: state.desktop });
+    }
+
+    if (diffType) {
+      let visible = isPermanent(state.type);
+      if (this._initialFix) {
+        if (props.defaultVisible) {
+          visible = props.defaultVisible;
+        } else if (props.visible) {
+          visible = props.visible;
+        }
+      }
+
+      const prevVisible = getField(props, this.state, 'visible');
+      if (onVisibilityChange && (visible !== prevVisible)) {
+        onVisibilityChange(visible);
+      }
+
+      if (typeof props.visible === 'undefined') {
+        state.visible = visible;
+      }
+    } else if (this._initialFix && diffMedia) {
+      state.overlayActive = (typeof overlay !== 'undefined' ? overlay : isTemporary(state.type) && !state.desktop)
+        && getField(props, this.state, 'visible');
     }
 
     if (typeof props.type !== 'undefined') {
@@ -447,24 +525,15 @@ export default class Drawer extends PureComponent {
       state = realState;
     }
 
-    const type = getField(props, state, 'type');
-    const visible = isPermanent(type);
-    if (onVisibilityToggle && getField(props, this.state, 'visible') !== visible) {
-      onVisibilityToggle(visible);
-    }
-
-    if (typeof props.visible === 'undefined' && diffType) {
-      state.visible = visible;
-    }
-
+    this._initialFix = false;
     this.setState(state);
-  }
+  };
 
-  _updateMedia() {
+  _updateMedia = () => {
     this._updateType(this.props);
-  }
+  };
 
-  _animate(visible, type, timeout, overlay, desktop) {
+  _animate = (visible, type, timeout, overlay, desktop) => {
     if (visible) {
       this.timeout = setTimeout(() => {
         this.timeout = null;
@@ -483,13 +552,13 @@ export default class Drawer extends PureComponent {
       }, timeout);
       this.setState({ animating: true, overlayActive: false, drawerActive: false });
     }
-  }
+  };
 
-  _setNavigation(navigation) {
+  _setNavigation = (navigation) => {
     this._navigation = findDOMNode(navigation);
-  }
+  };
 
-  _handleNavClick(e) {
+  _handleNavClick = (e) => {
     const { closeOnNavItemClick, autoclose, autocloseAfterInk } = this.props;
     const enabled = typeof closeOnNavItemClick !== 'undefined' ? closeOnNavItemClick : autoclose;
     if (!enabled || !isTemporary(getField(this.props, this.state, 'type'))) {
@@ -514,21 +583,24 @@ export default class Drawer extends PureComponent {
 
       target = target.parentNode;
     }
-  }
+  };
 
-  _closeDrawer(e) {
-    if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(false, e);
+  _closeDrawer = () => {
+    const { onVisibilityChange, onVisibilityToggle } = this.props;
+    const callback = onVisibilityToggle || onVisibilityChange;
+    if (callback) {
+      callback(false);
     }
 
     if (typeof this.props.visible === 'undefined') {
       this.setState({ visible: false });
     }
-  }
+  };
 
   render() {
     const { overlayActive, drawerActive, animating } = this.state;
     const {
+      id,
       style,
       className,
       navStyle,
@@ -542,10 +614,13 @@ export default class Drawer extends PureComponent {
       overlay,
       clickableDesktopOverlay,
       lastChild,
+      portal,
       /* eslint-disable no-unused-vars */
       type: propType,
       visible: propVisible,
       renderNode: propRenderNode,
+      navItemsId: propNavItemsId,
+      constantType,
       defaultVisible,
       defaultMedia,
       mobileType,
@@ -555,14 +630,21 @@ export default class Drawer extends PureComponent {
       desktopType,
       desktopMinWidth,
       transitionDuration,
-      onVisibilityToggle,
       onMediaTypeChange,
+      onVisibilityChange,
       autoclose,
       autocloseAfterInk,
+      // deprecated
+      onVisibilityToggle,
       closeOnNavItemClick,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
+
+    let { navItemsId } = this.props;
+    if (!navItemsId && id) {
+      navItemsId = `${id}-nav-items`;
+    }
 
     const { desktop } = this.state;
     const renderNode = getField(this.props, this.context, 'renderNode');
@@ -588,6 +670,7 @@ export default class Drawer extends PureComponent {
         <List
           ref={this._setNavigation}
           key="navigation"
+          id={navItemsId}
           style={navStyle}
           className={cn('md-list--drawer', {
             'md-toolbar-relative': mini && !visible,
@@ -613,6 +696,7 @@ export default class Drawer extends PureComponent {
     const drawer = (
       <Paper
         {...props}
+        id={id}
         key="drawer"
         component={Component}
         zDepth={zDepth}
@@ -635,6 +719,7 @@ export default class Drawer extends PureComponent {
         {children}
         <Portal visible={overlayVisible} renderNode={renderNode}>
           <div
+            key="overlay"
             className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
               'md-overlay--active': overlayActive,
             })}
@@ -646,6 +731,8 @@ export default class Drawer extends PureComponent {
 
     if (inline || permanent) {
       return drawer;
+    } else if (!portal) {
+      return mini || animating || visible ? drawer : null;
     }
 
     return (

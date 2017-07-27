@@ -31,6 +31,14 @@ $md-font-family: '#{$md-font-name}', sans-serif !default;
 /// @type Number
 $md-typography-max-line-length: 640px !default;
 
+/// The min width to apply to the `html` tag. This is set mostly if you are using
+/// components that rely on hiding the main window's toolbar to prevent scrolling.
+///
+/// Setting this value to `null` will not update the `html` with the min-width.
+///
+/// @type Number
+$md-html-min-width: 100% !default;
+
 
 
 /// The light text weight.
@@ -157,6 +165,11 @@ $md-caption-font-size: 12px !default;
 /// @type Number
 /// @group icons
 $md-font-icon-size: 24px !default;
+
+/// The dense font icon size
+/// @type Number
+/// @group icons
+$md-font-icon-dense-size: 20px !default;
 
 /// The line height to use on almost all elements.
 /// @type Number
@@ -440,19 +453,17 @@ $md-line-height: 20 / $md-font-size-base !default;
     transition-timing-function: $md-transition-standard;
   }
 
-  * {
-    font-family: $md-font-family;
-    font-weight: $md-font-regular;
-  }
-
   html {
     background: if($light-theme, $md-light-theme-background-color, $md-dark-theme-background-color);
     font-size: #{$md-font-size-base}px;
+    min-width: $md-html-min-width;
   }
 
   body {
+    font-family: $md-font-family;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    font-weight: $md-font-regular;
     line-height: $md-line-height;
     text-rendering: optimizeLegibility;
   }

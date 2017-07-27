@@ -1,14 +1,13 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
-jest.unmock('../FileInput');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import { shallow } from 'enzyme';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import FileInput from '../FileInput';
 
@@ -89,5 +88,23 @@ describe('FileInput', () => {
     expect(onChange.mock.calls.length).toBe(1);
     expect(onChange.mock.calls[0][0].length).toBe(0);
     expect(onChange.mock.calls[0][0]).toEqual(files);
+  });
+
+  it('should correctly pass the form control props to the input element', () => {
+    const props = { id: 'file-input', name: 'images', accept: 'images/*', onChange: jest.fn() };
+    const fileInput = shallow(<FileInput {...props} />);
+    let input = fileInput.find('input').get(0);
+    expect(input.props.id).toBe(props.id);
+    expect(input.props.name).toBe(props.name);
+    expect(input.props.accept).toBe(props.accept);
+    expect(input.props.type).toBe('file');
+
+    fileInput.setProps({ multiple: true });
+    input = fileInput.find('input').get(0);
+    expect(input.props.multiple).toBe(true);
+
+    fileInput.setProps({ disabled: true });
+    input = fileInput.find('input').get(0);
+    expect(input.props.disabled).toBe(true);
   });
 });

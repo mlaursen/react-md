@@ -1,3 +1,5 @@
+/** @module utils/NumberUtils/calcTimeFromPoint */
+
 function isPointInCircle(cx, cy, r, x, y) {
   const distance = Math.pow(cx - x, 2) + Math.pow(cy - y, 2);
   return distance <= Math.pow(r, 2);

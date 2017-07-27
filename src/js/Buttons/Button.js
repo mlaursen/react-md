@@ -1,4 +1,6 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import deprecated from 'react-prop-types/lib/deprecated';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
@@ -39,45 +41,20 @@ class Button extends PureComponent {
     className: PropTypes.string,
 
     /**
-     * A label to display on a `FlatButton` or a `RaisedButton`. This text can either
-     * be placed before or after an optional `FontIcon` using the `iconBefore` prop.
-     * This is required for `Flat` or `Raised` buttons. It is not allowed for `Icon`
-     * or `Floating` buttons. Use the `tooltipLabel` prop for `Icon` or `Floating` buttons.
-     */
-    label: invalidIf(PropTypes.node, 'icon', 'floating'),
-
-    /**
      * A boolean if the icon should appear before or after the text for a `FlatButton` or
      * a `RaisedButton`.
      */
     iconBefore: PropTypes.bool,
 
     /**
-     * Any children used to display a `FontIcon` in any version of the button. This will
-     * be used with the `iconClassName` prop. If the `iconClassName` and the `children` prop
-     * are omitted, no icon will be added to the `RaisedButton` or `FlatButton`. An error
-     * will be displayed for the `IconButton` or `FloatingButton`.
+     * Any children used to display the button. When the button type is `icon` or `floating`,
+     * this can be used to render the `FontIcon` instead of the `iconChildren` prop.
      *
-     * When `noIcon` prop is set to `true`, the passed children are not used to display a `FontIcon`
-     * but rendered as is.
+     * When the button type is `raised` or `flat`, this will be the label or any other elements
+     * you'd like to display in the button. This can work hand-in-hand with the `iconClassName`
+     * and `iconChildren` to make a button with an icon and text.
      */
-    children: (props, propName, componentName, ...args) => {
-      const componentNameSafe = componentName || '<<anonymous>>';
-      let err = PropTypes.node(props, propName, componentName, ...args);
-
-      const icon = props.icon || props.floating;
-      const missing = !props.children && !props.iconClassName;
-      if (!err && icon && missing) {
-        err = new Error(
-          `You created an \`${props.icon ? 'Icon' : 'Floating'}\` ${componentNameSafe} without ` +
-          'having the correct props to generate an icon. Expected either the `children` prop or the ' +
-          `\`iconClassName\` prop but received children: \`${props.children}\` and iconClassName: ` +
-          `\`${props.iconClassName}\`.`
-        );
-      }
-
-      return err;
-    },
+    children: PropTypes.node,
 
     /**
      * An icon className to use in an optional `FontIcon` in any version of the button. This will
@@ -85,6 +62,11 @@ class Button extends PureComponent {
      * the children are required.
      */
     iconClassName: PropTypes.string,
+
+    /**
+     * Any children to use to display an icon in the button.
+     */
+    iconChildren: PropTypes.node,
 
     /**
      * The type for the button. This is required when the `component` prop is not
@@ -215,13 +197,26 @@ class Button extends PureComponent {
     floating: PropTypes.bool,
 
     /**
+     * Boolean if the theming of `primary` or `secondary` should be swapped. By default,
+     * only flat and icon buttons can gain the theme colors as text color while the raised
+     * and floating buttons can gain the theme colors as background color.
+     *
+     * If this prop is enabled, the flat and icon buttons will gain the theme background colors
+     * while the raised and icon will gain the theme text colors instead.
+     *
+     * @see {@link #primary}
+     * @see {@link #secondary}
+     */
+    swapTheming: PropTypes.bool,
+
+    /**
      * An optional label to use for the tooltip. This is normally only used for
      * `IconButton`s or `FloatingButton`s, but can be used on `FlatButton`s and
      * `RaisedButton`s if you wish. Knock yourself out!
      *
      * If this prop is omitted, no tooltip will be included.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay before the tooltip appears on mouse over.
@@ -281,40 +276,25 @@ class Button extends PureComponent {
      */
     forceIconFontSize: PropTypes.bool,
 
-    /**
-     * When set to `true` the `Button`'s children will not be wrapped in a `FontIcon` component.
-     * As a result the children can be rendered as is.
-     */
-    noIcon: PropTypes.bool,
+    label: deprecated(PropTypes.node, 'Use the `children` prop instead'),
+    noIcon: deprecated(
+      PropTypes.bool,
+      'This has been removed during the alpha release. Children will always attempt to be rendered outside of an ' +
+      'icon by default for flat and raised buttons.'
+    ),
   };
 
   static defaultProps = {
     type: 'button',
     iconBefore: true,
     fixedPosition: 'br',
-    noIcon: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pressed: false,
-      snackbar: false,
-      snackbarType: null,
-    };
-
-    this._blur = this._blur.bind(this);
-    this._animateForSnackbar = this._animateForSnackbar.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
+  state = {
+    pressed: false,
+    snackbar: false,
+    snackbarType: null,
+  };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
@@ -361,7 +341,7 @@ class Button extends PureComponent {
     return 'flat';
   }
 
-  _blur() {
+  _blur = () => {
     if (this.props.disabled) {
       return;
     }
@@ -371,17 +351,17 @@ class Button extends PureComponent {
     } else {
       this.setState({ pressed: false });
     }
-  }
+  };
 
-  _handleMouseUp(e) {
+  _handleMouseUp = (e) => {
     if (this.props.onMouseUp) {
       this.props.onMouseUp(e);
     }
 
     this._blur();
-  }
+  };
 
-  _handleMouseDown(e) {
+  _handleMouseDown = (e) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
@@ -389,9 +369,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
@@ -399,18 +379,18 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(e);
     }
 
     this._blur();
     captureNextEvent('mouseover');
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -420,9 +400,9 @@ class Button extends PureComponent {
       window.addEventListener('click', this._blur);
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -431,9 +411,9 @@ class Button extends PureComponent {
       window.removeEventListener('click', this._blur);
       this.setState({ pressed: false });
     }
-  }
+  };
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -441,9 +421,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: true });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -451,9 +431,9 @@ class Button extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: false });
     }
-  }
+  };
 
-  _animateForSnackbar(multiline, leaveTimeout) {
+  _animateForSnackbar = (multiline, leaveTimeout) => {
     if (typeof leaveTimeout === 'number') {
       this._snackbarTimeout = setTimeout(() => {
         this._snackbarTimeout = setTimeout(() => {
@@ -471,13 +451,13 @@ class Button extends PureComponent {
         this.setState({ snackbar: true, snackbarType: multiline ? 'multiline-' : '' });
       }, TICK);
     }
-  }
+  };
 
   render() {
     const {
       className,
       iconClassName,
-      label,
+      iconChildren,
       iconBefore,
       href,
       primary,
@@ -495,9 +475,10 @@ class Button extends PureComponent {
       icon,
       forceIconSize,
       forceIconFontSize,
-      noIcon,
       type,
-      children: propChildren, // eslint-disable-line no-unused-vars
+      children,
+      swapTheming,
+      label, // deprecated
       ...props
     } = this.props;
 
@@ -505,35 +486,48 @@ class Button extends PureComponent {
       props.type = type;
     }
 
-    let { children } = this.props;
     const { pressed, hover, snackbar, snackbarType } = this.state;
     const mdBtnType = this._getType(this.props);
+    const iconBtnType = icon || floating;
 
-    const Component = component || (href ? 'a' : 'button');
-    if (!noIcon && (children || iconClassName)) {
-      children = (
+    let fontIcon;
+    let visibleChildren;
+    if (iconClassName || iconChildren || iconBtnType || (label && children)) {
+      let resolvedIconChildren = iconChildren;
+      if (typeof iconChildren === 'undefined') {
+        resolvedIconChildren = iconBtnType || label ? children : null;
+      }
+
+      fontIcon = (
         <FontIcon iconClassName={iconClassName} forceSize={forceIconSize} forceFontSize={forceIconFontSize}>
-          {children}
+          {resolvedIconChildren}
         </FontIcon>
       );
     }
 
-    if (children && label) {
-      children = <IconSeparator label={label} iconBefore={iconBefore}>{children}</IconSeparator>;
-    } else if (label) {
-      children = label;
+    if (!iconBtnType) {
+      visibleChildren = label || children;
+      if (fontIcon) {
+        visibleChildren = <IconSeparator label={visibleChildren} iconBefore={iconBefore}>{fontIcon}</IconSeparator>;
+      }
+    } else {
+      visibleChildren = fontIcon;
     }
 
+    const flatStyles = flat || icon;
     const raisedStyles = raised || floating;
-
+    const textTheming = (flatStyles && !swapTheming) || (raisedStyles && swapTheming);
+    const backgroundTheming = (raisedStyles && !swapTheming) || (flatStyles && swapTheming);
     const themeClassNames = !disabled && cn({
-      'md-text--theme-primary md-ink--primary': !raisedStyles && primary,
-      'md-text--theme-secondary md-ink--secondary': !raisedStyles && secondary,
-      'md-background--primary md-background--primary-hover': raisedStyles && primary,
-      'md-background--secondary md-background--secondary-hover': raisedStyles && secondary,
-      'md-btn--color-primary-active': !raisedStyles && hover && primary,
-      'md-btn--color-secondary-active': !raisedStyles && hover && secondary,
+      'md-text--theme-primary md-ink--primary': primary && textTheming,
+      'md-text--theme-secondary md-ink--secondary': secondary && textTheming,
+      'md-background--primary md-background--primary-hover': primary && backgroundTheming,
+      'md-background--secondary md-background--secondary-hover': secondary && backgroundTheming,
+      'md-btn--color-primary-active': primary && hover && textTheming,
+      'md-btn--color-secondary-active': secondary && hover && textTheming,
     });
+
+    const Component = component || (href ? 'a' : 'button');
     return (
       <Component
         {...props}
@@ -565,7 +559,7 @@ class Button extends PureComponent {
       >
         {ink}
         {tooltip}
-        {children}
+        {visibleChildren}
       </Component>
     );
   }

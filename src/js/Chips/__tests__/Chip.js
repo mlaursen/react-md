@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../Chip');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
@@ -8,7 +6,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Chip from '../Chip';
 import FontIcon from '../../FontIcons/FontIcon';

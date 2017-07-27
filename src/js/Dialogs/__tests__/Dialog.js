@@ -1,13 +1,11 @@
 /* eslint-env jest */
-jest.unmock('../Dialog');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Dialog from '../Dialog';
 import FocusContainer from '../../Helpers/FocusContainer';
@@ -15,7 +13,7 @@ import Paper from '../../Papers/Paper';
 
 describe('Dialog', () => {
   it('renders as a Paper component', () => {
-    const dialog = renderIntoDocument(<Dialog id="woop" />);
+    const dialog = renderIntoDocument(<Dialog id="woop" aria-label="Test" />);
     const papers = scryRenderedComponentsWithType(dialog, Paper);
     expect(papers.length).toBe(1);
   });
@@ -25,6 +23,7 @@ describe('Dialog', () => {
       id: 'woop',
       style: { display: 'none' },
       className: 'womba-juice',
+      'aria-label': 'Test',
     };
 
     const dialog = renderIntoDocument(<Dialog {...props} />);
@@ -34,13 +33,13 @@ describe('Dialog', () => {
   });
 
   it('renders the Paper component as the FocusContainer component', () => {
-    const dialog = renderIntoDocument(<Dialog id="woop" />);
+    const dialog = renderIntoDocument(<Dialog id="woop" aria-label="Test" />);
     const paper = findRenderedComponentWithType(dialog, Paper);
     expect(paper.props.component).toBe(FocusContainer);
   });
 
   it('should set the renderNode in the context once it has been mounted', () => {
-    const dialog = renderIntoDocument(<Dialog id="test" />);
+    const dialog = renderIntoDocument(<Dialog id="test" aria-label="Test" />);
     const node = findDOMNode(dialog);
     expect(dialog.getChildContext()).toEqual({ renderNode: node });
   });

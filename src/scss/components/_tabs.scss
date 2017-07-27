@@ -64,6 +64,10 @@ $md-tab-single-line-padding-bottom: 20px !default;
 /// @type Number
 $md-tab-icon-padding-bottom: 16px !default;
 
+/// The margin bottom for an icon in a tab.
+/// @type Number
+$md-tab-icon-margin-bottom: 10px !default;
+
 /// The min width for a tab on mobile devices.
 /// @type Number
 $md-tab-mobile-min-width: 72px !default;
@@ -107,6 +111,8 @@ $md-tab-desktop-padding: 24px !default;
 ///   tab overflow on desktop screens should be included.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the styles for swiping the tab
 ///   content on mobile devices should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons should
+///   be included for tabs.
 @mixin react-md-tabs(
   $secondary-color: $md-secondary-color,
   $include-media: $md-media-included,
@@ -115,7 +121,8 @@ $md-tab-desktop-padding: 24px !default;
   $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
   $include-pagination-overflow: $md-tab-include-pagination-overflow,
   $include-menu-overflow: $md-tab-include-menu-overflow,
-  $include-swipeable: $md-tab-include-swipeable
+  $include-swipeable: $md-tab-include-swipeable,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
   .md-tabs {
     @extend %md-list-unstyled;
@@ -133,7 +140,7 @@ $md-tab-desktop-padding: 24px !default;
       justify-content: center;
 
       .md-tab {
-        flex-grow: initial;
+        flex-grow: 0;
       }
     }
 
@@ -162,9 +169,16 @@ $md-tab-desktop-padding: 24px !default;
     @include react-md-tabs-swipeable;
   }
 
+  @include react-md-tabs-content(
+    $md-toolbar-height,
+    if($include-prominent-toolbars, $md-toolbar-prominent-height, null),
+    $include-icons,
+    $include-toolbars,
+    $include-swipeable
+  );
 
   @if $include-media {
-    @include react-md-tabs-media($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable);
+    @include react-md-tabs-media($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable, $include-dense-icons);
   }
 }
 
@@ -305,8 +319,8 @@ $md-tab-desktop-padding: 24px !default;
   .md-tabs-fixed-container {
     left: 0;
     position: fixed;
+    right: 0;
     top: 0;
-    width: 100%;
     z-index: $md-toolbar-z-index;
   }
 
@@ -325,7 +339,7 @@ $md-tab-desktop-padding: 24px !default;
 @mixin react-md-tabs-icon {
   .md-icon--tab {
     color: inherit;
-    margin-bottom: 10px;
+    margin-bottom: $md-tab-icon-margin-bottom;
   }
 }
 
@@ -338,6 +352,8 @@ $md-tab-desktop-padding: 24px !default;
   }
 
   .md-tabs {
+    @include md-ios-scroll-momentum;
+
     overflow-x: auto;
   }
 
@@ -350,6 +366,51 @@ $md-tab-desktop-padding: 24px !default;
     font-size: $md-tab-mobile-font-size;
     font-weight: $md-font-medium;
     line-height: $md-tab-mobile-font-size;
+  }
+}
+
+/// This is mostly an interal mixin for tabs. It will create the tabs content offset class names
+/// related to the current parameters.
+///
+/// @param {Number} toolbar-height - The current toolbar height.
+/// @param {Number} prominent-toolbar-height - The current prominent toolbar height.
+/// @param {Boolean} include-icons [$md-tab-include-icons] - Boolean if the icon styles for tabs should
+///     also be included.
+/// @param {Boolean} include-toolbars [$md-tab-include-toolbars] - Boolean if the toolbar styles should
+///     be included.
+/// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the swipeable styles should
+///     be included.
+@mixin react-md-tabs-content(
+  $toolbar-height,
+  $prominent-toolbar-height,
+  $include-icons: $md-tab-include-icons,
+  $include-toolbars: $md-tab-include-toolbars,
+  $include-swipeable: $md-tab-include-swipeable
+) {
+  @if $include-toolbars and $include-swipeable {
+    @if $toolbar-height != null {
+      .md-tabs-content--offset-toolbar {
+        margin-top: $md-tab-height + $toolbar-height;
+
+        @if $include-icons {
+          &-icon {
+            margin-top: $md-tab-icon-height + $toolbar-height;
+          }
+        }
+      }
+    }
+
+    @if $prominent-toolbar-height != null {
+      .md-tabs-content--offset-toolbar-prominent {
+        margin-top: $md-tab-height + $prominent-toolbar-height;
+
+        @if $include-icons {
+          &-icon {
+            margin-top: $md-tab-icon-height + $prominent-toolbar-height;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -378,23 +439,10 @@ $md-tab-desktop-padding: 24px !default;
   $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
   $include-swipeable: $md-tab-include-swipeable
 ) {
-  @if $include-toolbars and $include-swipeable {
-    .md-tabs-content--offset-toolbar {
-      margin-top: $md-tab-height + $md-toolbar-mobile-portrait-height;
+  $toolbar-height: if($md-toolbar-height == null, $md-toolbar-mobile-portrait-height, null);
+  $prominent-toolbar-height: if($include-prominent-toolbars, if($md-toolbar-prominent-height == null, $md-toolbar-mobile-prominent-height, null), null);
 
-      @if $include-icons {
-        &-icon {
-          margin-top: $md-tab-icon-height + $md-toolbar-mobile-portrait-height;
-        }
-      }
-
-      @if $include-prominent-toolbars {
-        &-prominent {
-          margin-top: $md-tab-height + $md-toolbar-mobile-prominent-height;
-        }
-      }
-    }
-  }
+  @include react-md-tabs-content($toolbar-height, $prominent-toolbar-height, $include-icons, $include-toolbars, $include-swipeable);
 }
 
 /// Includes the styles for tabs on mobile devices that are landscape.
@@ -417,17 +465,9 @@ $md-tab-desktop-padding: 24px !default;
   $include-toolbars: $md-tab-include-toolbars,
   $include-swipeable: $md-tab-include-swipeable
 ) {
-  @if $include-toolbars and $include-swipeable {
-    .md-tabs-content--offset-toolbar {
-      margin-top: $md-tab-height + $md-toolbar-mobile-landscape-height;
+  $toolbar-height: if($md-toolbar-height == null, $md-toolbar-mobile-landscape-height, null);
 
-      @if $include-icons {
-        &-icon {
-          margin-top: $md-tab-icon-height + $md-toolbar-mobile-landscape-height;
-        }
-      }
-    }
-  }
+  @include react-md-tabs-content($toolbar-height, null, $include-icons, $include-toolbars, $include-swipeable);
 }
 
 /// Includes the styles for tabs on tablet devices. This really only adds styles for offsetting
@@ -442,29 +482,43 @@ $md-tab-desktop-padding: 24px !default;
 ///     tabs content when there is a tab with both a label and an icon.
 /// @param {Boolean} include-toolbars [$md-tab-include-toolbars] - Boolean if the styles for offsetting
 ///     the tabs content when there is a `.md-tabs-container` containing both a toolbar and tabs.
+/// @param {Boolean} include-prominent-toolbars [$md-tabinclude-prominent-toolbars] - Boolean if the styles
+///   for offsetting the tabs content when there is a `.md-tabs-container` containing both a prominent toolbar
+///   and tabs.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the tab's content is swipeable.
 /// @group tabs, media-queries
 @mixin react-md-tabs-tablet(
   $include-icons: $md-tab-include-icons,
   $include-toolbars: $md-tab-include-toolbars,
+  $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
   $include-swipeable: $md-tab-include-swipeable
 ) {
-  @if $include-toolbars and $include-swipeable {
-    .md-tabs-content--offset-toolbar {
-      margin-top: $md-tab-height + $md-toolbar-tablet-height;
+  $toolbar-height: if($md-toolbar-height == null, $md-toolbar-tablet-height, null);
+  $prominent-toolbar-height: if($include-prominent-toolbars, if($md-toolbar-prominent-height == null, $md-toolbar-tablet-prominent-height, null), null);
 
-      @if $include-icons {
-        &-icon {
-          margin-top: $md-tab-icon-height + $md-toolbar-tablet-height;
-        }
-      }
-    }
-  }
+  @include react-md-tabs-content($toolbar-height, $prominent-toolbar-height, $include-icons, $include-toolbars, $include-swipeable);
 }
 
 /// Includes the styles for tabs on desktop screens.
+///
+/// @param {Boolean} include-icons [$md-tab-include-icons] - Boolean if the styles for a tab with a label
+///   and an icon should be included.
+/// @param {Boolean} include-toolbars [$md-tab-include-toolbars] - Boolean if the styles for a simple container
+///   holding a toolbar and tabs should be included.
+/// @param {Boolean} include-prominent-toolbars [$md-tab-include-prominent-toolbars] - Boolean if the styles
+///   for the simple container holding a toolbar and tabs should include the prominent toolbar styles.
+/// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the styles for swiping the tab
+///   content on mobile devices should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///   should be used for the tabs.
 /// @group tabs, media-queries
-@mixin react-md-tabs-desktop {
+@mixin react-md-tabs-desktop(
+  $include-icons: $md-tab-include-icons,
+  $include-toolbars: $md-tab-include-toolbars,
+  $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
+  $include-swipeable: $md-tab-include-swipeable,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   .md-toolbar ~ .md-tabs {
     margin-top: 0;
   }
@@ -484,6 +538,25 @@ $md-tab-desktop-padding: 24px !default;
     font-size: $md-tab-desktop-font-size;
     line-height: $md-tab-desktop-font-size;
   }
+
+  @if $include-icons and $include-dense-icons {
+    $margin: ($md-font-icon-size - $md-font-icon-dense-size) / 2;
+
+    .md-icon--tab {
+      margin-bottom: $md-tab-icon-margin-bottom + $margin;
+      margin-top: $margin;
+    }
+  }
+
+  @if ($md-toolbar-height == null and $md-toolbar-desktop-height != null) or ($include-prominent-toolbars and $md-toolbar-prominent-height == null and $md-toolbar-desktop-prominent-height != null) {
+    @include react-md-tabs-content(
+      $md-desktop-toolbar-height,
+      if($include-prominent-toolbars, $md-toolbar-desktop-prominent-height),
+      $include-icons,
+      $include-toolbars,
+      $include-swipeable
+    );
+  }
 }
 
 /// Creates all the styles for tabs at different media sizes.
@@ -496,13 +569,21 @@ $md-tab-desktop-padding: 24px !default;
 ///   for the simple container holding a toolbar and tabs should include the prominent toolbar styles.
 /// @param {Boolean} include-swipeable [$md-tab-include-swipeable] - Boolean if the styles for swiping the tab
 ///   content on mobile devices should be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///   should be used for the tabs.
 /// @group tabs, media-queries
-@mixin react-md-tabs-media($include-icons: $md-tab-include-icons, $include-toolbars: $md-tab-include-toolbars, $include-prominent-toolbars: $md-tab-include-prominent-toolbars, $include-swipeable: $md-tab-include-swipeable) {
+@mixin react-md-tabs-media(
+  $include-icons: $md-tab-include-icons,
+  $include-toolbars: $md-tab-include-toolbars,
+  $include-prominent-toolbars: $md-tab-include-prominent-toolbars,
+  $include-swipeable: $md-tab-include-swipeable,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   @media #{$md-mobile-media} {
     @include react-md-tabs-mobile;
   }
 
-  @if $include-toolbars and $include-swipeable {
+  @if $include-toolbars and $include-swipeable and ($md-toolbar-height == null or $md-toolbar-prominent-height == null) {
     @media #{$md-mobile-portrait-media} {
       @include react-md-tabs-mobile-portrait($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable);
     }
@@ -517,6 +598,6 @@ $md-tab-desktop-padding: 24px !default;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-tabs-desktop;
+    @include react-md-tabs-desktop($include-icons, $include-toolbars, $include-prominent-toolbars, $include-swipeable, $include-dense-icons);
   }
 }

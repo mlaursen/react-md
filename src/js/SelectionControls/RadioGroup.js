@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars, no-shadow */
-import React, { PureComponent, PropTypes, Children } from 'react';
+import React, { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import SelectionControlGroup from './SelectionControlGroup';
@@ -37,7 +38,7 @@ export default class RadioGroup extends PureComponent {
 
     let { id, defaultValue } = this.props;
     if (!id) {
-      id = `${props.name}RadiosUniquePlease`;
+      id = `${props.name}-radios-unique-please`;
     }
 
     if (typeof props.value === 'undefined') {

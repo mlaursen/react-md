@@ -1,3 +1,4 @@
+/** @module utils/DateUtils/isMonthBefore */
 import stripTime from './stripTime';
 
 /**

@@ -1,0 +1,123 @@
+/// A mixin for creating a custom theme for the documentation website.
+/// It will choose the least amount of styles required to update to the
+/// new theme.
+@mixin custom-theme($primary, $secondary, $dark-theme, $force: false) {
+  .custom-theme {
+    @include style-logo-to-theme($primary, $secondary, $force);
+    @include style-404-page-to-theme($primary, $secondary, $force);
+    @include style-links-to-theme($primary, $dark-theme == false, $force);
+    @include style-markdown-to-theme($dark-theme == false);
+    @include style-phone-emulator-to-theme($primary, $dark-theme == false);
+  }
+}
+
+@mixin style-logo-to-theme($primary, $secondary, $force: false) {
+  @if $primary != $md-primary-color or $force {
+    .home__banner {
+      background: $primary;
+    }
+
+    .home__logo--primary {
+      fill: $primary;
+    }
+  }
+
+  @if $secondary != $md-secondary-color or $force {
+    .home__logo--secondary {
+      fill: $secondary;
+    }
+  }
+}
+
+@mixin style-404-page-to-theme($primary, $secondary, $force: false) {
+  @if $force or $primary != $md-primary-color {
+    .not-found {
+      background: get-swatch($primary, 800);
+
+      &__svg--circle {
+        &-1 {
+          fill: get-swatch($primary, 700);
+        }
+
+        &-2 {
+          fill: get-swatch($primary, 600);
+        }
+
+        &-3 {
+          fill: $primary;
+        }
+      }
+    }
+  }
+
+  @if $force or $secondary != $md-secondary-color {
+    .not-found__svg-oval {
+      fill: $secondary;
+    }
+  }
+}
+
+@mixin style-links-to-theme($primary: $md-primary-color, $light-theme: $md-light-theme, $force: false) {
+  @if $force or $primary != $md-primary-color {
+    .link:not(:hover) {
+      color: $primary;
+
+      &:visited {
+        color: get-swatch($primary, 700);
+      }
+    }
+  }
+
+  @if $force or $light-theme != $md-light-theme {
+    .link:hover {
+      color: get-color('secondary', false);
+    }
+  }
+}
+
+@mixin style-markdown-to-theme($light-theme) {
+  @if not $light-theme {
+    blockquote {
+      border-left-color: get-color('divider', $light-theme);
+
+      p {
+        color: get-color('secondary', $light-theme);
+      }
+    }
+
+    ul:not(.md-list) {
+      color: get-color('text', $light-theme);
+    }
+
+    .prop-types__prop-type {
+      pre,
+      code {
+        color: $md-white-base;
+        text-shadow: 0 1px get-color('secondary', $light-theme);
+      }
+    }
+  }
+}
+
+@mixin style-phone-emulator-to-theme($primary: $md-primary-color, $light-theme: $md-light-theme, $force: false) {
+  @if $force or $primary != $md-primary-color {
+    @media #{$md-tablet-media} {
+      .phone-emulator .md-tabs-fixed-container::before,
+      .phone-emulator__toolbar:not(.md-toolbar--inset)::before {
+        background: $primary;
+      }
+    }
+  }
+
+  @if $force or $light-theme != $md-light-theme {
+    .tabs__page-layout {
+      .md-tab--inactive {
+        color: get-color('secondary', $light-theme);
+      }
+
+      .md-icon--tab {
+        color: inherit;
+      }
+    }
+  }
+}

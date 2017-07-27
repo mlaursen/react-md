@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Message from './Message';
@@ -7,8 +8,8 @@ export default class TextFieldMessage extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
     error: PropTypes.bool,
-    helpText: PropTypes.string,
-    errorText: PropTypes.string,
+    helpText: PropTypes.node,
+    errorText: PropTypes.node,
     active: PropTypes.bool,
     helpOnFocus: PropTypes.bool,
     maxLength: PropTypes.number,

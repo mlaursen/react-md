@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import { Motion, spring } from 'react-motion';
 
@@ -39,6 +40,11 @@ export default class Collapse extends PureComponent {
      * Boolean if the the single child entering or leaving should be animated.
      */
     animate: PropTypes.bool,
+
+    /**
+     * The min height to apply for the collapse div.
+     */
+    minHeight: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
@@ -46,6 +52,7 @@ export default class Collapse extends PureComponent {
     springConfig: {
       precision: 0.5,
     },
+    minHeight: 0,
   };
 
   constructor(props) {
@@ -54,10 +61,12 @@ export default class Collapse extends PureComponent {
     if (!props.collapsed) {
       this.state = { initialOpen: true };
     } else {
-      this.state = { height: 0, paddingTop: 0, paddingBottom: 0 };
+      this.state = {
+        height: props.minHeight,
+        paddingTop: 0,
+        paddingBottom: 0,
+      };
     }
-
-    this._setHeight = this._setHeight.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -66,8 +75,8 @@ export default class Collapse extends PureComponent {
     }
   }
 
-  _spring(collapsed, initialOpen, value, config) {
-    const nextValue = !collapsed ? Math.max(0, value) : 0;
+  _spring(collapsed, initialOpen, value, config, min = 0) {
+    const nextValue = !collapsed ? Math.max(min, value) : min;
     if (initialOpen && !collapsed) {
       return nextValue;
     }
@@ -75,7 +84,11 @@ export default class Collapse extends PureComponent {
     return spring(nextValue, config);
   }
 
-  _setHeight(child) {
+  _setHeight = (child) => {
+    if (this._child && typeof this._child.ref === 'function') {
+      this._child.ref(child);
+    }
+
     let height = 0;
     let paddingTop = 0;
     let paddingBottom = 0;
@@ -87,8 +100,10 @@ export default class Collapse extends PureComponent {
       paddingBottom = parseInt(cs.getPropertyValue('padding-bottom'), 10);
     }
 
+    height = Math.max(this.props.minHeight, height);
+
     this.setState({ height, paddingTop, paddingBottom });
-  }
+  };
 
   render() {
     const { height, paddingTop, paddingBottom, initialOpen } = this.state;
@@ -99,6 +114,7 @@ export default class Collapse extends PureComponent {
       style: motionStyle,
       springConfig,
       animate,
+      minHeight,
     } = this.props;
 
     if (!animate) {
@@ -109,7 +125,7 @@ export default class Collapse extends PureComponent {
       <Motion
         style={{
           ...motionStyle,
-          height: this._spring(collapsed, initialOpen, height, springConfig),
+          height: this._spring(collapsed, initialOpen, height, springConfig, minHeight),
           paddingTop: this._spring(collapsed, initialOpen, paddingTop, springConfig),
           paddingBottom: this._spring(collapsed, initialOpen, paddingBottom, springConfig),
         }}
@@ -126,15 +142,17 @@ export default class Collapse extends PureComponent {
           }
 
           const child = Children.only(children);
+          this._child = child;
           let nextStyle = child.props.style;
-          if (collapsed || style.height !== height) {
-            nextStyle = Object.assign({}, child.props.style, {
+          if ((collapsed && (!minHeight || style.height !== minHeight)) || style.height !== height) {
+            nextStyle = {
+              ...child.props.style,
               ...style,
               overflow: 'hidden',
-            });
+            };
           }
           return cloneElement(child, {
-            ref: this._setHeight,
+            ref: !collapsed && this._setHeight,
             style: nextStyle,
           });
         }}

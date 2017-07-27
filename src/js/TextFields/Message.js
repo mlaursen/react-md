@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 export default class Message extends PureComponent {
@@ -16,7 +17,7 @@ export default class Message extends PureComponent {
     }
 
     return (
-      <span
+      <p
         aria-hidden={!active}
         className={cn(
           'md-text-field-message',
@@ -25,7 +26,7 @@ export default class Message extends PureComponent {
         )}
       >
         {children}
-      </span>
+      </p>
     );
   }
 }

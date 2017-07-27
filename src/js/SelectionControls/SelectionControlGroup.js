@@ -1,7 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import { UP, DOWN, LEFT, RIGHT } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import minMaxLoop from '../utils/NumberUtils/minMaxLoop';
 import controlled from '../utils/PropTypes/controlled';
 import SelectionControl from './SelectionControl';
 
@@ -81,12 +84,10 @@ export default class SelectionControlGroup extends PureComponent {
     type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
 
     /**
-     * The component to render the `SelectionControlGroup` in.
+     * The component to render the `SelectionControlGroup` in. This can only be a valid dom element
+     * since it relies on the ref callback to add keyboard accessibility.
      */
-    component: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.func,
-    ]).isRequired,
+    component: PropTypes.string.isRequired,
 
     /**
      * An optional label to display above the group of `SelectionControl`s.
@@ -143,6 +144,7 @@ export default class SelectionControlGroup extends PureComponent {
      * value of the `controls` prop will be used as the defalt value.
      */
     defaultValue: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -153,8 +155,9 @@ export default class SelectionControlGroup extends PureComponent {
      * can either be a single value or a comma-delimited list of checkbox values.
      */
     value: controlled(PropTypes.oneOfType([
-      PropTypes.string,
+      PropTypes.bool,
       PropTypes.number,
+      PropTypes.string,
     ]), 'onChange'),
 
     /**
@@ -171,8 +174,9 @@ export default class SelectionControlGroup extends PureComponent {
       ]),
       label: PropTypes.node.isRequired,
       value: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.bool,
         PropTypes.number,
+        PropTypes.string,
       ]).isRequired,
     })).isRequired,
 
@@ -180,6 +184,16 @@ export default class SelectionControlGroup extends PureComponent {
      * Boolean if the `SelectionControl` should be displayed inline.
      */
     inline: PropTypes.bool,
+
+    /**
+     * Boolean if all the selection controls in the group are disabled.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * An optional function to call when the keydown event is triggered.
+     */
+    onKeyDown: PropTypes.func,
   };
 
   static defaultProps = {
@@ -191,15 +205,27 @@ export default class SelectionControlGroup extends PureComponent {
   constructor(props) {
     super(props);
 
+    const radio = props.type === 'radio';
     this.state = {};
-    if (typeof props.value === 'undefined') {
-      this.state.value = props.defaultValue;
 
-      if (typeof props.defaultValue === 'undefined') {
-        this.state.value = props.type === 'radio' ? props.controls[0].value : '';
+    if (typeof props.value === 'undefined') {
+      let value = props.defaultValue;
+
+      if (typeof value === 'undefined') {
+        value = radio ? props.controls[0].value : '';
       }
+
+      this.state.value = value;
     }
-    this._handleChange = this._handleChange.bind(this);
+
+    const groupValue = getField(props, this.state, 'value');
+    props.controls.some(({ value }, i) => {
+      if (value === groupValue) {
+        this._activeIndex = i;
+      }
+
+      return typeof this._activeIndex !== 'undefined';
+    });
   }
 
   _isChecked(value, controlValue, type) {
@@ -208,7 +234,11 @@ export default class SelectionControlGroup extends PureComponent {
       : value.split(',').indexOf(controlValue) !== -1;
   }
 
-  _handleChange(e) {
+  _setGroup = (group) => {
+    this._group = group;
+  };
+
+  _handleChange = (e) => {
     let value = e.target.value;
     if (this.props.type === 'checkbox') {
       const { checked } = e.target;
@@ -231,7 +261,35 @@ export default class SelectionControlGroup extends PureComponent {
     if (typeof this.props.value === 'undefined') {
       this.setState({ value });
     }
-  }
+  };
+
+  _handleKeyDown = (e) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+    const dec = key === UP || key === LEFT;
+    const inc = key === DOWN || key === RIGHT;
+    if (!this._group || (!dec && !inc)) {
+      return;
+    }
+
+    e.preventDefault();
+    const radios = this._group.querySelectorAll('*[role="radio"]');
+    this._activeIndex = minMaxLoop(this._activeIndex, 0, radios.length - 1, inc);
+    radios[this._activeIndex].focus();
+    const { value } = this.props.controls[this._activeIndex];
+    if (getField(this.props, this.state, 'value') !== value) {
+      if (this.props.onChange) {
+        this.props.onChange(value, e);
+      }
+
+      if (typeof this.props.value === 'undefined') {
+        this.setState({ value });
+      }
+    }
+  };
 
   render() {
     const {
@@ -246,6 +304,7 @@ export default class SelectionControlGroup extends PureComponent {
       component: Component,
       labelComponent: LabelComponent,
       inline,
+      disabled,
       /* eslint-disable no-unused-vars */
       value: propValue,
       controls: propControls,
@@ -255,19 +314,28 @@ export default class SelectionControlGroup extends PureComponent {
     } = this.props;
 
     const value = getField(this.props, this.state, 'value');
+    const radio = type === 'radio';
 
     const controls = this.props.controls.map((control, i) => {
-      const controlProps = Object.assign({
+      let style = control.style;
+      if (controlStyle) {
+        style = style ? { ...controlStyle, ...style } : controlStyle;
+      }
+
+      const checked = this._isChecked(value, control.value, type);
+      const controlProps = {
         id: `${id}${i}`,
         key: `control${i}`,
         name: `${name}${type === 'checkbox' ? '[]' : ''}`,
         type,
         inline,
-        checked: this._isChecked(value, control.value, type),
-      }, control, {
-        style: Object.assign({}, control.style, controlStyle),
+        disabled,
+        checked,
+        tabIndex: !radio || checked ? undefined : -1,
+        ...control,
+        style,
         className: cn(controlClassName, control.className),
-      });
+      };
 
       return <SelectionControl {...controlProps} />;
     });
@@ -280,13 +348,14 @@ export default class SelectionControlGroup extends PureComponent {
     return (
       <Component
         {...props}
+        ref={this._setGroup}
         className={cn('md-selection-control-group', className)}
         onChange={this._handleChange}
+        onKeyDown={radio ? this._handleKeyDown : null}
       >
         {ariaLabel}
         {controls}
       </Component>
-
     );
   }
 }

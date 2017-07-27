@@ -2,6 +2,7 @@
 /// @group selection-controls
 ////
 
+@import 'buttons';
 @import 'text-fields';
 
 
@@ -94,21 +95,19 @@ $md-switch-ball-fallback-color: null !default;
 ///     styles for the `.md-selection-controls-group` should be included.
 /// @param {Boolean} include-switches [$md-selection-controls-include-switches] - Boolean if the
 ///     styles for switches should be included.
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 @mixin react-md-selection-controls(
   $secondary-color: $md-secondary-color,
   $light-theme: $md-light-theme,
   $include-media: $md-media-included,
   $include-group: $md-selection-controls-include-group,
-  $include-switches: $md-selection-controls-include-switches
+  $include-switches: $md-selection-controls-include-switches,
+  $include-dense-icons: $md-font-icon-include-dense
 ) {
-  .md-selection-control-container {
-    align-items: center;
-    display: flex;
-    height: $md-height;
-  }
 
   .md-selection-control-container--inline {
-    display: inline-flex;
+    display: inline-block;
   }
 
   .md-selection-control-input {
@@ -116,12 +115,11 @@ $md-switch-ball-fallback-color: null !default;
     position: absolute;
     visibility: hidden;
     width: 0;
-    z-index: -1;
   }
 
   .md-selection-control-label {
-    cursor: inherit;
-    display: inline-block;
+    align-items: center;
+    display: inline-flex;
   }
 
   @if $include-group {
@@ -135,7 +133,7 @@ $md-switch-ball-fallback-color: null !default;
   }
 
   @if $include-media {
-    @include react-md-selection-controls-media;
+    @include react-md-selection-controls-media($include-dense-icons);
   }
 }
 
@@ -156,7 +154,13 @@ $md-switch-ball-fallback-color: null !default;
   $swatch: get-swatch($secondary-color, if($light-theme, 500, 200), false, $fallback-color, md-switch-ball-fallback-color);
 
   .md-switch-container {
+    align-items: center;
+    display: flex;
     height: $md-switch-height;
+
+    &.md-selection-control-container--inline {
+      display: inline-flex;
+    }
   }
 
   .md-switch-track {
@@ -284,21 +288,33 @@ $md-switch-ball-fallback-color: null !default;
 }
 
 /// Creates the styles for selection controls on desktop displays.
+///
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 /// @group selection-controls, media-queries
-@mixin react-md-selection-controls-desktop {
+@mixin react-md-selection-controls-desktop($include-dense-icons: $md-font-icon-include-dense) {
   .md-selection-control-label {
     font-size: $md-text-field-desktop-font-size;
+  }
+
+  @if $include-dense-icons {
+    .md-selection-control-container {
+      height: $md-btn-icon-dense-size;
+    }
   }
 }
 
 /// Creates the media queries for selection controls for moble and desktop.
+///
+/// @param {boolean} include-dense-icons [$md-font-icon-include-dense] - boolean if the checkbox and radio
+///     controls should be updated for the dense icon spec.
 /// @group selection-controls, media-queries
-@mixin react-md-selection-controls-media {
+@mixin react-md-selection-controls-media($include-dense-icons: $md-font-icon-include-dense) {
   @media #{$md-mobile-media} {
     @include react-md-selection-controls-mobile;
   }
 
   @media #{$md-desktop-media} {
-    @include react-md-selection-controls-desktop;
+    @include react-md-selection-controls-desktop($include-dense-icons);
   }
 }

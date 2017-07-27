@@ -1,0 +1,24 @@
+@import '~globals';
+
+.file-inputs__upload-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 2em;
+  position: relative;
+
+  &__progress {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__file-upload {
+    flex-shrink: 0;
+  }
+
+  &__file-field {
+    flex-grow: 1;
+    margin-left: $md-default-padding / 2;
+  }
+}

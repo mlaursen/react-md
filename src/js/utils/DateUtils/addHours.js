@@ -1,3 +1,5 @@
+/** @module utils/DateUtils/addHours */
+
 /**
  * Adds hours to a date.
  *

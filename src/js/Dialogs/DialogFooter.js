@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes, Children, cloneElement, isValidElement } from 'react';
+import React, { PureComponent, Children, cloneElement, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Button from '../Buttons/Button';
@@ -20,17 +21,33 @@ export default class DialogFooter extends PureComponent {
     ]),
   };
 
-  constructor(props) {
-    super(props);
+  state = { stacked: false };
 
-    this.state = { stacked: false };
+  _toElement(action, index) {
+    if (isValidElement(action)) {
+      const button = Children.only(action);
 
-    this._toElement = this._toElement.bind(this);
-    this._generateActions = this._generateActions.bind(this);
-    this._setContainer = this._setContainer.bind(this);
+      return cloneElement(action, {
+        key: button.props.key || index,
+        className: cn('md-btn--dialog', button.props.className),
+      });
+    }
+
+    // Both label and children are valid for dialog actions
+    const { label, children, ...remaining } = action;
+    return (
+      <Button
+        key={index}
+        flat
+        {...remaining}
+        className={cn('md-btn--dialog', action.className)}
+      >
+        {label || children}
+      </Button>
+    );
   }
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     if (container !== null) {
       this._container = container;
       const maxWidth = (this._container.offsetWidth - (FOOTER_PADDING * 3)) / 2;
@@ -44,36 +61,18 @@ export default class DialogFooter extends PureComponent {
 
       this.setState({ stacked });
     }
-  }
+  };
 
-  _toElement(action, index) {
-    if (isValidElement(action)) {
-      const button = Children.only(action);
-
-      return cloneElement(action, {
-        key: button.props.key || index,
-        className: cn('md-btn--dialog', button.props.className),
-      });
-    }
-
-    return (
-      <Button
-        key={index}
-        flat
-        {...action}
-        className={cn('md-btn--dialog', action.className)}
-      />
-    );
-  }
-
-  _generateActions() {
+  _generateActions = () => {
     const { actions } = this.props;
-    if (Array.isArray(actions)) {
+    if (!actions) {
+      return null;
+    } else if (Array.isArray(actions)) {
       return actions.map(this._toElement);
     }
 
     return this._toElement(actions);
-  }
+  };
 
   render() {
     const { stacked } = this.state;
@@ -84,7 +83,7 @@ export default class DialogFooter extends PureComponent {
       ...props
     } = this.props;
 
-    if (!actions || (Array.isArray(actions) && !actions.length)) {
+    if (!children && (!actions || (Array.isArray(actions) && !actions.length))) {
       return null;
     }
 

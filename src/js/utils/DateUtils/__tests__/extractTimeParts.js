@@ -1,7 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../formatTime');
-jest.unmock('../extractTimeParts');
-
 import extractTimeParts from '../extractTimeParts';
 import { DateTimeFormat } from 'intl';
 

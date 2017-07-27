@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExamplesPage should render correctly 1`] = `
+<section
+  className="md-grid md-grid--40-16 examples-page"
+  style={undefined}
+>
+  <header
+    className="markdown-container md-text-container md-cell md-cell--12"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<pre><code>  ## Some Example page
+        That has content
+      
+        And some amazing **markdown**!
+      
+        - one
+        - two
+        - three
+      </code></pre>",
+      }
+    }
+  />
+  <div
+    className="md-paper md-paper--1 md-card md-background--card md-cell md-cell--12"
+    id="first-example"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={-1}
+  >
+    <div
+      className="md-card-title md-card-title--primary"
+      style={undefined}
+    >
+      <h2
+        className="md-card-title--title md-text md-card-title--large"
+        id={undefined}
+      >
+        First Example
+      </h2>
+      <button
+        className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+        disabled={undefined}
+        href={undefined}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        type="button"
+      >
+        <i
+          className="md-icon material-icons"
+          style={undefined}
+        >
+          code
+        </i>
+      </button>
+    </div>
+    <section
+      className="md-card-text"
+    >
+      <div
+        className="markdown-container md-text-container examples-page__card__description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Something that has some <strong>markdown</strong> and <strong>other stuff</strong>.</p>
+          ",
+          }
+        }
+      />
+      <h1>
+        Wowwwwwwwwwwwwww
+      </h1>
+    </section>
+  </div>
+</section>
+`;

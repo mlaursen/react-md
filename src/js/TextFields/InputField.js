@@ -1,4 +1,5 @@
-import { PureComponent, PropTypes, createElement } from 'react';
+import { PureComponent, createElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TextArea from './TextArea';
@@ -20,44 +21,38 @@ export default class InputField extends PureComponent {
     disabled: PropTypes.bool,
     rows: PropTypes.number,
     maxRows: PropTypes.number,
-    label: PropTypes.string,
+    label: PropTypes.node,
     fullWidth: PropTypes.bool,
     customSize: PropTypes.string,
     passwordVisible: PropTypes.bool,
     inlineIndicator: PropTypes.bool,
-    onHeightChange: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.getValue = this.getValue.bind(this);
-    this.getField = this.getField.bind(this);
-    this.focus = this.focus.bind(this);
-    this._setField = this._setField.bind(this);
-  }
-
-  getField() {
+  getField = () => { // eslint-disable-line arrow-body-style
     return typeof this.props.rows === 'undefined'
       ? this._field
       : this._field.getField();
-  }
+  };
 
-  getValue() {
+  getValue = () => {
     if (typeof this.props.rows === 'undefined') {
       return this._field.value;
     }
 
     return this._field.getValue();
-  }
+  };
 
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
+  };
 
-  _setField(field) {
+  blur = () => {
+    this._field.blur();
+  };
+
+  _setField = (field) => {
     this._field = field;
-  }
+  };
 
   render() {
     const {
@@ -71,7 +66,6 @@ export default class InputField extends PureComponent {
       block,
       inlineIndicator,
       maxRows,
-      onHeightChange,
       ...props
     } = this.props;
 
@@ -83,7 +77,6 @@ export default class InputField extends PureComponent {
       props.label = label;
       props.block = block;
       props.maxRows = maxRows;
-      props.onHeightChange = onHeightChange;
     }
 
     return createElement(Component, {

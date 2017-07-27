@@ -1,9 +1,7 @@
 /* eslint-env jest */
-jest.unmock('../ListItemText');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
-import { renderIntoDocument } from 'react-addons-test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 
 import ListItemText from '../ListItemText';
 

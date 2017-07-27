@@ -1,12 +1,10 @@
 /* eslint-env jest */
-jest.unmock('../SwitchThumb');
-
 import React from 'react';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SwitchThumb from '../SwitchThumb';
 import AccessibleFakeInkedButton from '../../Helpers/AccessibleFakeInkedButton';

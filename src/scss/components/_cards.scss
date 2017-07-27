@@ -29,6 +29,18 @@ $md-card-include-tables: true !default;
 /// @see md-default-padding
 $md-card-padding-extra: 24px !default;
 
+/// The font size for the CardText component.
+/// @type Number
+$md-card-text-font-size: 14px !default;
+
+/// The card title's font size.
+/// @type Number
+$md-card-title-font-size: 14px !default;
+
+/// The card title's larger font size.
+/// @type Number
+$md-card-title-large-font-size: 24px !default;
+
 /// Includes the styles for cards. The different sections can be excluded by setting the parameter
 /// to false. If the `react-md-everything` mixin is being used, set the corresponding variables to
 /// false before including the mixin.
@@ -105,7 +117,7 @@ $md-card-padding-extra: 24px !default;
 /// Includes the styles for the `CardText` component only.
 @mixin react-md-cards-text {
   .md-card-text {
-    font-size: 14px;
+    font-size: $md-card-text-font-size;
     padding: $md-default-padding;
 
     p {
@@ -138,14 +150,14 @@ $md-card-padding-extra: 24px !default;
     }
 
     &--title {
-      font-size: 14px;
+      font-size: $md-card-title-font-size;
       line-height: $md-line-height;
       margin: 0;
       white-space: normal;
     }
 
     &--large {
-      font-size: 24px;
+      font-size: $md-card-title-large-font-size;
     }
 
     &--one-line {

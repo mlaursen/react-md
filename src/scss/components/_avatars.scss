@@ -1,11 +1,21 @@
 ////
 /// @group avatars
 ////
+@import 'icons';
 
 
 /// The default size for an avatar
 /// @type Number
 $md-avatar-size: 40px !default;
+
+/// The border radius for an avatar.
+/// @type Number
+$md-avatar-border-radius: 50% !default;
+
+/// The border color to use for an avatar. If this value is null, the border color
+/// will be the current theme's divider color.
+/// @type Color
+$md-avatar-border-color: null !default;
 
 /// The default background color for an avatar.
 /// @type Color
@@ -14,6 +24,15 @@ $md-avatar-default-background: $md-grey-700 !default;
 /// The default text color for an avatar.
 /// @type Color
 $md-avatar-default-color: $md-grey-100 !default;
+
+/// Boolean if the avatar color suffixes should be included by default.
+/// @type Boolean
+$md-avatar-include-suffixes: true !default;
+
+/// Boolean if the `md-avatar--icon-sized` class name should also be included.
+/// This will force an avatar to be the same size as an icon.
+/// @type Boolean
+$md-avatar-include-icon-sized: true !default;
 
 /// A map of avatar color suffixes to use. Each key will be used
 /// as an avatar suffix name, and the value will be a list of two
@@ -47,13 +66,31 @@ $md-avatar-colors: (
 
 /// Includes the styles for the Avatars.
 ///
-/// @param {Boolean} $light-theme [$md-light-theme] - Boolean if using the light theme.
-/// @param {Boolean} $include-suffixes [true] - Boolean if the avatar color suffixes
+/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
+/// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries for
+///     avatars should also be included. This will really only create additional styles if
+///     `$include-dense` is `true` as well.
+/// @param {Boolean} include-suffixes [$md-avatar-include-suffixes] - Boolean if the avatar color suffixes
 ///     should be included.
-@mixin react-md-avatars($light-theme: $md-light-theme, $include-suffixes: true) {
+/// @param {Boolean} include-icon-sized [$md-avatar-include-icon-sized] - Boolean if icon sized avatars
+///     should be included.
+/// @param {Boolean} include-dense [$md-font-icon-include-dense] - Boolean if the dense spec of icons should
+///     be included.
+@mixin react-md-avatars(
+  $light-theme: $md-light-theme,
+  $include-media: $md-media-included,
+  $include-suffixes: $md-avatar-include-suffixes,
+  $include-icon-sized: $md-avatar-include-icon-sized,
+  $include-dense-icons: $md-font-icon-include-dense
+) {
   .md-avatar {
-    border: 1px solid if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
-    border-radius: 50%;
+    $border-color: $md-avatar-border-color;
+    @if $border-color == null {
+      $border-color: if($md-light-theme, $md-light-theme-divider-color, $md-dark-theme-divider-color);
+    }
+
+    border: 1px solid $border-color;
+    border-radius: $md-avatar-border-radius;
     height: $md-avatar-size;
     overflow: hidden;
     text-align: center;
@@ -63,9 +100,11 @@ $md-avatar-colors: (
       color: inherit;
     }
 
-    &--icon-sized {
-      height: $md-font-icon-size;
-      width: $md-font-icon-size;
+    @if $include-icon-sized {
+      &--icon-sized {
+        height: $md-font-icon-size;
+        width: $md-font-icon-size;
+      }
     }
   }
 
@@ -84,6 +123,9 @@ $md-avatar-colors: (
   }
 
   @include react-md-theme-avatar($md-avatar-default-background, $md-avatar-default-color, default);
+  @if $include-media {
+    @include react-md-avatar-media($include-icon-sized, $include-dense-icons);
+  }
 
   @if $include-suffixes {
     @each $suffix, $colors in $md-avatar-colors {
@@ -100,7 +142,7 @@ $md-avatar-colors: (
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @group avatars, themes
 @mixin react-md-theme-avatars($light-theme: $md-light-theme) {
-  @if $light-theme != $md-light-theme {
+  @if $light-theme != $md-light-theme and $md-avatar-border-color != null {
     .md-avatar {
       border-color: get-color('divider', $light-theme);
     }
@@ -128,5 +170,29 @@ $md-avatar-colors: (
   .md-avatar--#{$suffix} {
     background: $bg-color;
     color: $text-color;
+  }
+}
+
+/// Creates the media queries with styles for avatars. This really only generates any new styles
+/// if icon sized avatars are included, the dense spec for icons are included, and the font-icon size
+/// is different for default and the dense spec.
+///
+/// @param {Boolean} include-icon-sized [$md-avatar-include-icon-sized] - Boolean if icon sized avatars should
+///     be included.
+/// @param {Boolean} include-dense-icons [$md-font-icon-include-dense] - Boolean if the dense spec for icons
+///     should be included.
+/// @group avatars, media-queries
+@mixin react-md-avatar-media($include-icon-sized: $md-avatar-include-icon-sized, $include-dense-icons: $md-font-icon-include-dense) {
+  @if $include-icon-sized and $include-dense-icons and $md-font-icon-size != $md-font-icon-dense-size {
+    @media #{$md-desktop-media} {
+      .md-avatar-content {
+        font-size: $md-font-icon-dense-size;
+      }
+
+      .md-avatar--icon-sized {
+        height: $md-font-icon-dense-size;
+        width: $md-font-icon-dense-size;
+      }
+    }
   }
 }

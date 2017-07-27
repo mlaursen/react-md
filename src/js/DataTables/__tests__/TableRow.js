@@ -1,11 +1,6 @@
 /* eslint-env jest*/
-jest.unmock('../DataTable');
-jest.unmock('../TableHeader');
-jest.unmock('../TableBody');
-jest.unmock('../TableRow');
-jest.unmock('../TableColumn');
-
 import React from 'react';
+import { mount } from 'enzyme';
 import {
   Simulate,
   renderIntoDocument,
@@ -13,7 +8,7 @@ import {
   scryRenderedComponentsWithType,
   findRenderedDOMComponentWithTag,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import DataTable from '../DataTable';
 import TableHeader from '../TableHeader';
@@ -27,7 +22,7 @@ describe('TableRow', () => {
     const style = { display: 'block' };
     const className = 'test';
     const table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow style={style} className={className}>
             <TableColumn>c</TableColumn>
@@ -53,7 +48,7 @@ describe('TableRow', () => {
     const onTouchCancel = jest.fn();
 
     const table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow
             onClick={onClick}
@@ -114,7 +109,7 @@ describe('TableRow', () => {
     expect(checkboxes.length).toBe(0);
 
     table = renderIntoDocument(
-      <DataTable>
+      <DataTable baseId="test">
         <TableBody>
           <TableRow>
             <TableColumn>A</TableColumn>
@@ -126,6 +121,25 @@ describe('TableRow', () => {
 
     checkboxes = scryRenderedComponentsWithType(table, TableCheckbox);
     expect(checkboxes.length).toBe(1);
+  });
+
+  it('should update the last TableColumn to set the adjusted prop to false automatically', () => {
+    const table = mount(
+      <DataTable baseId="wowza">
+        <TableBody>
+          <TableRow>
+            <TableColumn>1</TableColumn>
+            <TableColumn>2</TableColumn>
+            <TableColumn>3</TableColumn>
+          </TableRow>
+        </TableBody>
+      </DataTable>
+    );
+
+    const columns = table.find(TableColumn);
+    expect(columns.get(0).props.adjusted).toBeUndefined();
+    expect(columns.get(1).props.adjusted).toBeUndefined();
+    expect(columns.get(2).props.adjusted).toBe(false);
   });
 
   describe('_handleCheckboxClick', () => {
@@ -183,7 +197,7 @@ describe('TableRow', () => {
 
     it('should update the table\'s state correctly', () => {
       const table = renderIntoDocument(
-        <DataTable plain>
+        <DataTable baseId="test">
           <TableHeader>
             <TableRow>
               <TableColumn>H1</TableColumn>

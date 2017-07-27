@@ -1,3 +1,4 @@
+/** @module utils/toggleScroll */
 import getPagePosition from './getPagePosition';
 
 /**
@@ -12,19 +13,30 @@ import getPagePosition from './getPagePosition';
  * > This depends on the `classList` attribute on elements.
  *
  * @param {bool=} visible - An optional boolean to determine how the `className` will be applied.
- * @param {string=} selector - An optional query selector string to use to select an element.
+ * @param {string|Object=} selector - An optional query selector string to use to select an element.
  * @param {string=} className - The className to apply. Defaults to 'md-overflow-hidden'
  */
 export default function toggleScroll(scrollable, selector, className = 'md-no-scroll') {
-  const el = selector ? document.querySelector(selector) : document.querySelector('html');
+  const queryable = !selector || typeof selector === 'string';
+  let el;
+  if (queryable) {
+    el = selector ? document.querySelector(selector) : document.querySelector('html');
+  } else {
+    el = selector;
+  }
+
+  if (!el) {
+    return;
+  }
+
   if (typeof scrollable === 'undefined') {
     scrollable = !el.classList.contains(className);
   }
 
-  if (scrollable) {
-    el.style.top = `-${getPagePosition('y')}px`;
+  if (scrollable && !el.classList.contains(className)) {
+    el.style.top = `-${queryable ? getPagePosition('y') : el.scrollTop}px`;
     el.classList.add(className);
-  } else {
+  } else if (!scrollable && el.classList.contains(className)) {
     const scrollTop = Math.abs(parseInt(el.style.top, 10));
     el.classList.remove(className);
     el.style.top = null;

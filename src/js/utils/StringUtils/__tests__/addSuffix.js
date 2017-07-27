@@ -1,7 +1,5 @@
 /* eslint-env jest */
-
-jest.unmock('../addSuffix');
-
+import React from 'react';
 import addSuffix from '../addSuffix';
 
 describe('addSuffix', () => {
@@ -23,5 +21,10 @@ describe('addSuffix', () => {
   it('does not add the suffix if it already exists in the string', () => {
     expect(addSuffix('hello world', ' ')).toBe('hello world');
     expect(addSuffix('Required *', '*')).toBe('Required *');
+  });
+
+  it('should return a react component if the "string" is a component', () => {
+    const label = <span>Hello!</span>;
+    expect(addSuffix(label, ' *')).toBe(label);
   });
 });

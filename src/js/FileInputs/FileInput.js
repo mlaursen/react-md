@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -22,6 +23,11 @@ export default class FileInput extends PureComponent {
       PropTypes.string,
       PropTypes.number,
     ])),
+
+    /**
+     * An optional name to provide to the input.
+     */
+    name: PropTypes.string,
 
     /**
      * An optional style to apply.
@@ -106,7 +112,7 @@ export default class FileInput extends PureComponent {
      * onChange(files, e);
      * ```
      */
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
 
     /**
      * Boolean if the `FileInput` is currently disabled.
@@ -159,22 +165,7 @@ export default class FileInput extends PureComponent {
     iconChildren: 'file_upload',
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { hover: false, pressed: false };
-
-    this._blur = this._blur.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleKeyUp = this._handleKeyUp.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleMouseUp = this._handleMouseUp.bind(this);
-    this._handleMouseDown = this._handleMouseDown.bind(this);
-    this._handleTouchEnd = this._handleTouchEnd.bind(this);
-    this._handleTouchStart = this._handleTouchStart.bind(this);
-    this._handleMouseOver = this._handleMouseOver.bind(this);
-    this._handleMouseLeave = this._handleMouseLeave.bind(this);
-  }
+  state = { hover: false, pressed: false };
 
   componentWillReceiveProps(nextProps) {
     if (this.props.disabled && !nextProps.disabled && this.state.hover) {
@@ -205,17 +196,21 @@ export default class FileInput extends PureComponent {
     window.removeEventListener('click', this._blur);
   }
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     const { multiple, onChange } = this.props;
+    if (!onChange) {
+      return;
+    }
+
     const { files } = e.target;
     if (!multiple) {
       onChange(files[0] || null, e);
     } else {
       onChange(Array.prototype.slice.call(files), e);
     }
-  }
+  };
 
-  _blur() {
+  _blur = () => {
     if (this.props.disabled) {
       return;
     }
@@ -225,17 +220,17 @@ export default class FileInput extends PureComponent {
     } else {
       this.setState({ pressed: false });
     }
-  }
+  };
 
-  _handleMouseUp(e) {
+  _handleMouseUp = (e) => {
     if (this.props.onMouseUp) {
       this.props.onMouseUp(e);
     }
 
     this._blur();
-  }
+  };
 
-  _handleMouseDown(e) {
+  _handleMouseDown = (e) => {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(e);
     }
@@ -243,9 +238,9 @@ export default class FileInput extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchStart(e) {
+  _handleTouchStart = (e) => {
     if (this.props.onTouchStart) {
       this.props.onTouchStart(e);
     }
@@ -253,18 +248,18 @@ export default class FileInput extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleTouchEnd(e) {
+  _handleTouchEnd = (e) => {
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(e);
     }
 
     this._blur();
     captureNextEvent('mouseover');
-  }
+  };
 
-  _handleKeyUp(e) {
+  _handleKeyUp = (e) => {
     if (this.props.onKeyUp) {
       this.props.onKeyUp(e);
     }
@@ -274,9 +269,9 @@ export default class FileInput extends PureComponent {
       window.addEventListener('click', this._blur);
       this.setState({ pressed: true });
     }
-  }
+  };
 
-  _handleKeyDown(e) {
+  _handleKeyDown = (e) => {
     if (this.props.onKeyDown) {
       this.props.onKeyDown(e);
     }
@@ -290,9 +285,9 @@ export default class FileInput extends PureComponent {
       e.preventDefault();
       e.target.click();
     }
-  }
+  };
 
-  _handleMouseOver(e) {
+  _handleMouseOver = (e) => {
     if (this.props.onMouseOver) {
       this.props.onMouseOver(e);
     }
@@ -300,9 +295,9 @@ export default class FileInput extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: true });
     }
-  }
+  };
 
-  _handleMouseLeave(e) {
+  _handleMouseLeave = (e) => {
     if (this.props.onMouseLeave) {
       this.props.onMouseLeave(e);
     }
@@ -310,7 +305,7 @@ export default class FileInput extends PureComponent {
     if (!this.props.disabled) {
       this.setState({ hover: false });
     }
-  }
+  };
 
   render() {
     const { hover, pressed } = this.state;
@@ -324,6 +319,7 @@ export default class FileInput extends PureComponent {
       secondary,
       flat,
       id,
+      name,
       iconBefore,
       disabled,
       accept,
@@ -388,11 +384,12 @@ export default class FileInput extends PureComponent {
           {labelChildren}
         </AccessibleFakeInkedButton>
         <input
-          multiple={multiple}
-          disabled={disabled}
           id={id}
+          name={name}
           accept={accept}
           type="file"
+          multiple={multiple}
+          disabled={disabled}
           aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}

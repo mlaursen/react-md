@@ -1,1 +1,10 @@
-src/server/themes
+webpack-assets.json
+webpack-stats.json
+.env
+
+public/assets
+public/sassdoc
+public/themes
+src/server/databases/*
+!src/server/databases/airQuality.json
+jsdoc.json

@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import oneRequiredForA11yIf from '../utils/PropTypes/oneRequiredForA11yIf';
@@ -20,7 +21,7 @@ export default class Avatar extends PureComponent {
     /**
      * An optional image source to use for the avatar.
      */
-    src: PropTypes.string,
+    src: oneRequiredForA11yIf(PropTypes.string, 'role', 'alt'),
 
     /**
      * An optional image alt to use for the avatar if it is
@@ -66,7 +67,7 @@ export default class Avatar extends PureComponent {
      * A role for the avatar's image. When the `src` prop is set, either a `role` of `presentation`
      * or the `alt` prop must be defined for a11y.
      */
-    role: oneRequiredForA11yIf(PropTypes.oneOf(['presentation']), 'src', 'alt'),
+    role: PropTypes.oneOf(['presentation']),
   };
 
   static defaultProps = {
@@ -93,13 +94,7 @@ export default class Avatar extends PureComponent {
     ],
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { color: null };
-
-    this._setRandomColor = this._setRandomColor.bind(this);
-  }
+  state = { color: null };
 
   componentWillMount() {
     if (this.props.random) {
@@ -115,12 +110,12 @@ export default class Avatar extends PureComponent {
     }
   }
 
-  _setRandomColor() {
+  _setRandomColor = () => {
     const { suffixes } = this.props;
 
     const i = (Math.floor(Math.random() * (suffixes.length - 1)) + 1);
     this.setState({ color: suffixes[i] });
-  }
+  };
 
   _getColor(suffix, suffixes, color) {
     if (suffix) {

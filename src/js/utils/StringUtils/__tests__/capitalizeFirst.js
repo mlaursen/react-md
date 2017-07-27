@@ -1,6 +1,4 @@
 /* eslint-env jest */
-jest.unmock('../capitalizeFirst');
-
 import capitalizeFirst from '../capitalizeFirst';
 
 describe('capitalizeFirst', () => {

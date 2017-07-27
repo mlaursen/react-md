@@ -1,8 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import { SPACE } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
@@ -106,20 +108,16 @@ export default class SelectionControl extends PureComponent {
     onChange: PropTypes.func,
 
     /**
-     * An optional function to call when the `SelectionControl` triggers the `blur` event.
+     * An optional function to call when the `keydown` event is triggered.
      */
-    onBlur: PropTypes.func,
-
-    /**
-     * An optional function to call when the `SelectionControl` triggers the `focus` event.
-     */
-    onFocus: PropTypes.func,
+    onKeyDown: PropTypes.func,
 
     /**
      * The value for the `SelectionControl`. It is not required for `Checkbox` and `Switch`,
      * but it is recommended.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]),
@@ -183,6 +181,33 @@ export default class SelectionControl extends PureComponent {
      */
     uncheckedRadioIconClassName: PropTypes.string,
 
+    /**
+     * An optional tooltip to render with the control. This is only used if you inject the
+     * tooltip manually yourself.
+     *
+     * `const TooltippedSelectionControl = injectTooltip(SelectionControl);`
+     */
+    tooltip: PropTypes.node,
+
+    /**
+     * Boolean if the ink should be disabled for radios or checkboxes.
+     *
+     * @see {@link Inks#inkDisabled}
+     */
+    inkDisabled: PropTypes.bool,
+
+    /**
+     * An optional list of ink interactions that should be disabled.
+     *
+     * @see {@link Inks#disabledInteractions}
+     */
+    disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'touch', 'mouse'])),
+
+    /**
+     * An optional tab index to apply to the selection control.
+     */
+    tabIndex: PropTypes.number,
+
     checkedIcon: preventDouble(deprecated(
       PropTypes.node,
       'Use the `checkedCheckboxIconChildren` and `checkedCheckboxIconClassName`  or the ' +
@@ -212,32 +237,31 @@ export default class SelectionControl extends PureComponent {
     if (typeof props.checked === 'undefined') {
       this.state.checked = !!props.defaultChecked;
     }
-
-    this._setInput = this._setInput.bind(this);
-    this._setControl = this._setControl.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleControlClick = this._handleControlClick.bind(this);
-    this._getIcon = this._getIcon.bind(this);
   }
 
+  /**
+   * Gets the current checked value from the selection control. This is used when you have
+   * an uncontrolled selection control and simply need the checked state from a ref callback.
+   *
+   * @return {boolean} the checked state for the selection control.\
+   */
   get checked() {
     return getField(this.props, this.state, 'checked');
   }
 
-  _setInput(input) {
+  _setInput = (input) => {
     this._input = input;
-  }
+  };
 
-  _setControl(control) {
+  _setControl = (control) => {
     this._control = control;
-  }
+  };
 
-  _setContainer(container) {
+  _setContainer = (container) => {
     this._container = container;
-  }
+  };
 
-  _getIcon() {
+  _getIcon = () => {
     const { checkedIcon, uncheckedIcon, type } = this.props;
     const checked = getField(this.props, this.state, 'checked');
     if (checkedIcon || uncheckedIcon) {
@@ -250,31 +274,30 @@ export default class SelectionControl extends PureComponent {
         {this.props[`${prefix}Children`]}
       </FontIcon>
     );
+  };
+
+  _handleKeyDown = (e) => {
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
+
+    const key = e.which || e.keyCode;
+    if (key === SPACE) {
+      this._input.click();
+    }
   }
 
-  _handleChange(e) {
+  _handleChange = (e) => {
     const { type, onChange } = this.props;
     const checked = !getField(this.props, this.state, 'checked');
     if (onChange) {
       onChange(type === 'radio' ? e.target.value : checked, e);
     }
 
-    if (!this._fromFakeButton && type !== 'switch' && typeof this._control.createInk === 'function') {
-      // create ink doesn't exist when testing atm
-      this._control.createInk();
-    }
-    this._fromFakeButton = false;
-
     if (typeof this.props.checked === 'undefined') {
       this.setState({ checked });
     }
-  }
-
-  _handleControlClick() {
-    this._fromFakeButton = true;
-    // Trigger the change
-    this._input.click();
-  }
+  };
 
   render() {
     const {
@@ -287,8 +310,9 @@ export default class SelectionControl extends PureComponent {
       value,
       disabled,
       labelBefore,
-      onBlur,
-      onFocus,
+      tabIndex,
+      inkDisabled,
+      disabledInteractions,
       'aria-label': ariaLabel,
       /* eslint-disable no-unused-vars */
       label: propLabel,
@@ -304,6 +328,7 @@ export default class SelectionControl extends PureComponent {
       checkedCheckboxIconClassName,
       uncheckedCheckboxIconChildren,
       uncheckedCheckboxIconClassName,
+      tooltip,
       __superSecreteProp,
       /* eslint-enable no-unused-vars */
       ...props
@@ -311,47 +336,27 @@ export default class SelectionControl extends PureComponent {
 
     const checked = getField(this.props, this.state, 'checked');
     const isSwitch = type === 'switch';
-    const label = this.props.label && (
-      <label
-        key="label"
-        htmlFor={id}
-        className={cn('md-selection-control-label', {
-          'md-pointer--hover': !disabled,
-          'md-text--disabled': disabled,
-          'md-text': !disabled,
-        })}
-      >
-        {this.props.label}
-      </label>
-    );
+    const label = this.props.label && <span>{this.props.label}</span>;
 
     let control;
     if (isSwitch) {
-      control = (
-        <SwitchTrack
-          disabled={disabled}
-          checked={checked}
-          onClick={this._handleControlClick}
-          onBlur={onBlur}
-          onFocus={onFocus}
-        />
-      );
+      control = <SwitchTrack disabled={disabled} checked={checked} />;
     } else {
       control = (
         <AccessibleFakeInkedButton
-          ref={this._setControl}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          disabled={disabled}
-          onClick={this._handleControlClick}
-          className={cn('md-btn md-btn--icon', {
-            'md-text--disabled': disabled,
-            'md-text--theme-secondary': !disabled && checked,
-            'md-text--secondary': !disabled && !checked,
-          })}
+          inkDisabled={inkDisabled}
+          disabledInteractions={disabledInteractions}
           role={type}
+          className={cn('md-selection-control-toggle md-btn md-btn--icon', {
+            'md-text--disabled': disabled,
+            'md-text--secondary': !disabled && !checked,
+            'md-text--theme-secondary': checked && !disabled,
+          })}
           aria-checked={checked}
+          tabIndex={tabIndex}
+          disabled={disabled}
         >
+          {tooltip}
           {this._getIcon()}
         </AccessibleFakeInkedButton>
       );
@@ -361,14 +366,13 @@ export default class SelectionControl extends PureComponent {
     return (
       <div
         {...props}
-        ref={this._setContainer}
         style={style}
         className={cn('md-selection-control-container', {
           'md-selection-control-container--inline': inline,
           'md-switch-container': isSwitch,
         }, className)}
+        onKeyDown={this._handleKeyDown}
       >
-        {labelBefore && label}
         <input
           ref={this._setInput}
           id={id}
@@ -382,8 +386,17 @@ export default class SelectionControl extends PureComponent {
           aria-hidden
           aria-label={ariaLabel}
         />
-        {control}
-        {!labelBefore && label}
+        <label
+          htmlFor={id}
+          className={cn('md-selection-control-label', {
+            'md-text md-pointer--hover': !disabled,
+            'md-text--disabled': disabled,
+          })}
+        >
+          {labelBefore && label}
+          {control}
+          {!labelBefore && label}
+        </label>
       </div>
     );
   }

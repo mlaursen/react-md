@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
   unmountComponentAtNode as unmount,
   unstable_renderSubtreeIntoContainer as render,
@@ -60,17 +61,6 @@ export default class Portal extends PureComponent {
     component: 'span',
   };
 
-  constructor(props) {
-    super(props);
-
-    this._portal = null;
-    this._container = null;
-
-    this._applyStyles = this._applyStyles.bind(this);
-    this._renderPortal = this._renderPortal.bind(this);
-    this._removePortal = this._removePortal.bind(this);
-  }
-
   componentDidMount() {
     if (this.props.visible) {
       this._renderPortal(this.props);
@@ -99,13 +89,16 @@ export default class Portal extends PureComponent {
     this._removePortal();
   }
 
-  _applyStyles(props) {
+  _container = null;
+  _portal = null;
+
+  _applyStyles = (props) => {
     if (props.className) {
       this._container.className = props.className;
     }
-  }
+  };
 
-  _renderPortal(props) {
+  _renderPortal = (props) => {
     if (!this._container) {
       this._container = document.createElement(props.component);
 
@@ -121,9 +114,9 @@ export default class Portal extends PureComponent {
     }
 
     this._portal = render(this, props.children, this._container);
-  }
+  };
 
-  _removePortal() {
+  _removePortal = () => {
     if (this.props.onClose) {
       this.props.onClose();
     }
@@ -135,7 +128,7 @@ export default class Portal extends PureComponent {
 
     this._portal = null;
     this._container = null;
-  }
+  };
 
   render() {
     // When doing server side rendering, actualy render the component as a direct child of its parent.

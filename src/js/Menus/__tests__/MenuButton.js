@@ -1,27 +1,42 @@
 /* eslint-env jest */
-jest.unmock('../MenuButton');
-
 import React from 'react';
-import {
-  renderIntoDocument,
-  findRenderedComponentWithType,
-  scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+import { mount } from 'enzyme';
 
 import MenuButton from '../MenuButton';
-import Menu from '../Menu';
+import DropdownMenu from '../DropdownMenu';
+import Button from '../../Buttons/Button';
 
 describe('MenuButton', () => {
-  it('renders a Menu', () => {
-    const container = renderIntoDocument(<MenuButton id="test" />);
-    const menus = scryRenderedComponentsWithType(container, Menu);
-
-    expect(menus.length).toBe(1);
+  it('should render a DropdownMenu and a Button component', () => {
+    const menuButton = mount(<MenuButton id="test" raised menuItems={['Hello']}>Woop</MenuButton>);
+    expect(menuButton.find(DropdownMenu).length).toBe(1);
+    expect(menuButton.find(Button).length).toBe(1);
   });
 
-  it('renders a Button as the Menu\'s toggle prop', () => {
-    const container = renderIntoDocument(<MenuButton id="test" />);
-    const menu = findRenderedComponentWithType(container, Menu);
-    expect(menu.props.toggle).toBeDefined();
+  it('should call the onClick and onVisibilityChange props when the button is clicked', () => {
+    const onClick = jest.fn();
+    const onVisibilityChange = jest.fn();
+    const props = {
+      id: 'test',
+      raised: true,
+      menuItems: ['Hello'],
+      onClick,
+      onVisibilityChange,
+    };
+
+    const menu = mount(<MenuButton {...props}>Woop</MenuButton>);
+    menu.find('button').simulate('click');
+    expect(onClick.mock.calls.length).toBe(1);
+    expect(onVisibilityChange.mock.calls.length).toBe(1);
+    expect(onVisibilityChange.mock.calls[0][0]).toBe(true);
+  });
+
+  it('should make the button\'s id to be `id-toggle` if the buttonId prop is not defined', () => {
+    const props = { id: 'test', raised: true, menuItems: ['Woop'] };
+    const menu = mount(<MenuButton {...props}>Woop</MenuButton>);
+    expect(menu.find(Button).get(0).props.id).toBe('test-toggle');
+
+    menu.setProps({ buttonId: 'some-amazing-button' });
+    expect(menu.find(Button).get(0).props.id).toBe('some-amazing-button');
   });
 });

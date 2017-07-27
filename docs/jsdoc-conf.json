@@ -1,0 +1,8 @@
+{
+  "source": {
+    "includePattern": "(HorizontalAnchors|VerticalAnchors|Positions|findIgnoreCase|fuzzyFilter|caseInsensitiveFilter|DrawerTypes)\\.js$"
+  },
+  "opts": {
+    "recurse": true
+  }
+}

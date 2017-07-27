@@ -1,6 +1,4 @@
 /* eslint-env jest */
-
-jest.unmock('../formatTime');
 import formatTime from '../formatTime';
 import { DateTimeFormat } from 'intl';
 

@@ -1,3 +1,5 @@
+/** @module utils/PropTypes/requiredForA11yIfNot */
+
 /**
  * This validator checkes that the current prop is valid and defined ONLY if
  * any of the `otherPropNames` are not true or defined.

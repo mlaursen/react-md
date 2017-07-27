@@ -1,11 +1,9 @@
 /* eslint-env jest */
-jest.unmock('../SwitchTrack');
-
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import SwitchTrack from '../SwitchTrack';
 
@@ -14,6 +12,7 @@ describe('SwitchTrack', () => {
     const props = {
       style: { background: 'black' },
       className: 'test',
+      onClick: jest.fn(),
     };
 
     const track = renderIntoDocument(<SwitchTrack {...props} />);
@@ -24,7 +23,7 @@ describe('SwitchTrack', () => {
   });
 
   it('adds the correct stateful classnames', () => {
-    const props = { disabled: false, checked: false };
+    const props = { disabled: false, checked: false, onClick: jest.fn() };
     let track = renderIntoDocument(<SwitchTrack {...props} />);
     let className = findDOMNode(track).className;
 

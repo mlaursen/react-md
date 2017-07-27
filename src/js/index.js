@@ -37,13 +37,14 @@ import {
   AccessibleFakeInkedButton,
   Collapse,
   FocusContainer,
+  Layover,
   IconSeparator,
   Portal,
 } from './Helpers';
 import injectInk from './Inks';
 import { List, ListItem, ListItemControl } from './Lists';
 import Media, { MediaOverlay } from './Media';
-import Menu from './Menus';
+import Menu, { DropdownMenu, MenuButton } from './Menus';
 import NavigationDrawer, { CloseButton, JumpToContentLink } from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
@@ -106,6 +107,7 @@ export { AccessibleFakeInkedButton };
 export { Collapse };
 export { IconSeparator };
 export { FocusContainer };
+export { Layover };
 export { Portal };
 export { injectInk };
 export { List };
@@ -114,6 +116,8 @@ export { ListItemControl };
 export { Media };
 export { MediaOverlay };
 export { Menu };
+export { DropdownMenu };
+export { MenuButton };
 export { NavigationDrawer };
 export { CloseButton };
 export { JumpToContentLink };
@@ -191,6 +195,7 @@ export default {
   AccessibleFakeInkedButton,
   Collapse,
   IconSeparator,
+  Layover,
   FocusContainer,
   Portal,
 
@@ -204,6 +209,8 @@ export default {
   MediaOverlay,
 
   Menu,
+  DropdownMenu,
+  MenuButton,
 
   NavigationDrawer,
   CloseButton,

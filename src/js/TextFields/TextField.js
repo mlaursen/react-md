@@ -1,10 +1,10 @@
-import React, { PureComponent, PropTypes, Children, cloneElement } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { PureComponent, Children, cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { TAB } from '../constants/keyCodes';
+import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -14,6 +14,8 @@ import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
 import InputField from './InputField';
 import TextFieldDivider from './TextFieldDivider';
+
+const DEFAULT_TEXT_FIELD_SIZE = 180;
 
 /**
  * The `TextField` component can either be a single line `input` field or a multiline
@@ -25,6 +27,15 @@ import TextFieldDivider from './TextFieldDivider';
  */
 export default class TextField extends PureComponent {
   static propTypes = {
+    /**
+     * The id for a text field. This is required when using the `label` prop for accessibility,
+     * but normally a good idea to include one anyways.
+     */
+    id: isRequiredForA11y(PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ])),
+
     /**
      * An optional style to apply to the text field's container.
      */
@@ -67,17 +78,7 @@ export default class TextField extends PureComponent {
      * the `full width` text field in the Material Design specs. This view will disable
      * floating labels and remove the text divider from the component.
      */
-    block: (props, propName, component, ...others) => {
-      let err = PropTypes.bool(props, propName, component, ...others);
-      if (!err && props[propName] && props.label) {
-        err = new Error(
-          `The \`${component}\` is unable to have a \`label\` and be displayed as \`block\`. ` +
-          `If you would like a \`label\` for the block \`${component}\`, please use the \`placeholder\` prop.`
-        );
-      }
-
-      return err;
-    },
+    block: PropTypes.bool,
 
     /**
      * Boolean if the `block` text field should include padding to the left and right of
@@ -95,7 +96,7 @@ export default class TextField extends PureComponent {
      * into a floating label text field. You can make it single line by only using the
      * `placeholder` prop.
      */
-    label: PropTypes.string,
+    label: invalidIf(PropTypes.node, 'block'),
 
     /**
      * An optional placeholder text to display in the text field. If there is no `label` prop,
@@ -103,21 +104,6 @@ export default class TextField extends PureComponent {
      * this will only be visible when there is no value and the user focused the text field.
      */
     placeholder: PropTypes.string,
-
-    /**
-     * The id for the text field.  This is required for a11y if the `label` prop is defined.
-     */
-    id: (props, propName, component, ...others) => {
-      const validator = PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]);
-      if (typeof props.label !== 'undefined') {
-        return isRequiredForA11y(validator)(props, propName, component, ...others);
-      }
-
-      return validator(props, propName, component, ...others);
-    },
 
     /**
      * The type for the text field. This is one of the most import props for mobile accessibility
@@ -207,14 +193,14 @@ export default class TextField extends PureComponent {
     onChange: PropTypes.func,
 
     /**
+     * An optional function to call when the text field is blurred.
+     */
+    onBlur: PropTypes.func,
+
+    /**
      * An optional function to call when the text field is focused.
      */
     onFocus: PropTypes.func,
-
-    /**
-     * An optional function to call when the text field has the `keydown` event.
-     */
-    onKeyDown: PropTypes.func,
 
     /**
      * An optional boolean if the `active` state of the text field can be externally
@@ -301,10 +287,10 @@ export default class TextField extends PureComponent {
 
     /**
      * The number of rows for the `multiline` text field. This value must be greater than
-     * or equal to 2. When this value is set, the text field will be converted to a multiline
+     * or equal to 1. When this value is set, the text field will be converted to a multiline
      * field.
      */
-    rows: minNumber(2, false),
+    rows: minNumber(1, false),
 
     /**
      * The maximum number of rows for a `multiline` text field. If this value is
@@ -326,13 +312,13 @@ export default class TextField extends PureComponent {
      * of the text field's value is greater than the `maxLength` prop, or the field is
      * required and the user blurs the text field with no value.
      */
-    errorText: invalidIf(PropTypes.string, 'block'),
+    errorText: PropTypes.node,
 
     /**
      * An optional help text to display below the text field. This will always be visible
      * unless the `helpOnFocus` prop is set to true. Otherwise it will appear on focus.
      */
-    helpText: invalidIf(PropTypes.string, 'block'),
+    helpText: PropTypes.node,
 
     /**
      * Boolean if the help text should display on focus only.
@@ -358,6 +344,26 @@ export default class TextField extends PureComponent {
      */
     inlineIndicator: PropTypes.element,
 
+    /**
+     * This prop allows the text field to resize its width to stay between the min and max sizes provided. By
+     * default, the field will expand and collapse based on the amount of text provided. The collapsing can
+     * be disabled by providing `disableShrink` to the configuration object.
+     *
+     * If the `min` prop is not provided, it will default to `180` which is about the same size as a default
+     * text field.
+     */
+    resize: PropTypes.shape({
+      min: PropTypes.number,
+      max: PropTypes.number.isRequired,
+      disableShrink: PropTypes.bool,
+    }),
+
+    /**
+     * Boolean if the TextField is in a toolbar and acting as a title. This will apply additional styles to the
+     * text field to make it look like the toolbar's title.
+     */
+    toolbar: PropTypes.bool,
+
     icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
@@ -378,99 +384,68 @@ export default class TextField extends PureComponent {
   constructor(props) {
     super(props);
 
-    let currentLength = 0;
-    if (typeof props.value !== 'undefined') {
-      currentLength = props.value.length;
-    } else if (typeof props.defaultValue !== 'undefined') {
-      currentLength = props.defaultValue.length;
+    const currentLength = this._getLength(typeof props.value !== 'undefined' ? props.value : props.defaultValue);
+
+    this._canvas = null;
+    let width = null;
+    if (typeof props.resize !== 'undefined') {
+      width = typeof props.resize.min === 'number' ? props.resize.min : DEFAULT_TEXT_FIELD_SIZE;
     }
 
     this.state = {
       active: false,
-      error: false,
-      floating: !!props.defaultValue || !!props.value,
+      error: props.maxLength ? props.maxLength < currentLength : false,
+      floating: this._isValued(props.defaultValue) || this._isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
-      height: null,
       currentLength,
+      width,
     };
+  }
 
-    this.focus = this.focus.bind(this);
-    this.getField = this.getField.bind(this);
-    this._blur = this._blur.bind(this);
-    this._setField = this._setField.bind(this);
-    this._setDivider = this._setDivider.bind(this);
-    this._setMessage = this._setMessage.bind(this);
-    this._setContainer = this._setContainer.bind(this);
-    this._setPasswordBtn = this._setPasswordBtn.bind(this);
-    this._setFloatingLabel = this._setFloatingLabel.bind(this);
-    this._handleFocus = this._handleFocus.bind(this);
-    this._handleChange = this._handleChange.bind(this);
-    this._handleKeyDown = this._handleKeyDown.bind(this);
-    this._handleHeightChange = this._handleHeightChange.bind(this);
-    this._handleOutsideClick = this._handleOutsideClick.bind(this);
-    this._updateMultilineHeight = this._updateMultilineHeight.bind(this);
-    this._togglePasswordField = this._togglePasswordField.bind(this);
-    this._handleContainerClick = this._handleContainerClick.bind(this);
+  componentWillMount() {
+    const { value, defaultValue, resize } = this.props;
+    const v = typeof value !== 'undefined' ? value : defaultValue;
+    if (!resize || typeof document === 'undefined' || !v) {
+      return;
+    }
+
+    this.setState({ width: this._calcWidth(v) });
   }
 
   componentDidMount() {
-    if (this._isMultiline(this.props)) {
-      this._updateMultilineHeight();
-      window.addEventListener('resize', this._updateMultilineHeight);
+    const { value, defaultValue, resize } = this.props;
+    const v = typeof value !== 'undefined' ? value : defaultValue;
+    if (resize && v) {
+      this.setState({ width: this._calcWidth(v) }); // eslint-disable-line react/no-did-mount-set-state
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const multiline = this._isMultiline(nextProps);
-    if (this._isMultiline(this.props) !== multiline) {
-      this._updateMultilineHeight(nextProps);
-      window[`${multiline ? 'add' : 'remove'}EventListener`]('resize', this._updateMultilineHeight);
-    }
+    const { value, maxLength, required, resize } = nextProps;
+    if (this.props.value !== value) {
+      let { error, width } = this.state;
+      const currentLength = this._getLength(value);
+      if (required && error) {
+        error = !this._isValued(value);
+      }
 
-    if (this.props.value !== nextProps.value) {
-      const value = typeof nextProps.value !== 'undefined' ? nextProps.value.toString() : '';
-      let error = this.state.error;
+      if (maxLength) {
+        error = error || currentLength > maxLength;
+      }
 
-      if (nextProps.maxLength) {
-        error = value.length > nextProps.maxLength;
-      } else if (nextProps.required && error) {
-        error = !value;
+      if (resize) {
+        const nextWidth = this._calcWidth(value);
+        if (!resize.disableShrink || nextWidth > width) {
+          width = nextWidth;
+        }
       }
 
       this.setState({
         error,
-        floating: !!value || (this.state.floating && this.state.active),
-        currentLength: value.length,
+        width,
+        currentLength,
+        floating: this._isValued(value) || (this.state.floating && this.state.active),
       });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { block, active } = this.props;
-    if (block !== prevProps.block
-      || active !== prevProps.active
-      || this.state.active !== prevState.active
-    ) {
-      const fn = window[`${(active || this.state.active) ? 'add' : 'remove'}EventListener`];
-      fn('mousedown', this._handleOutsideClick);
-      fn('touchstart', this._handleOutsideClick);
-    }
-
-    if (this._isMultiline(this.props) && !this._isMultiline(prevProps)) {
-      this._updateMultilineHeight(this.props);
-    }
-  }
-
-  componentWillUnmount() {
-    const { active } = this.props;
-    const rm = window.removeEventListener;
-    if (active || this.state.active) {
-      rm('mousedown', this._handleOutsideClick);
-      rm('touchstart', this._handleOutsideClick);
-    }
-
-    if (this._isMultiline(this.props)) {
-      rm('resize', this._updateMultilineHeight);
     }
   }
 
@@ -486,9 +461,7 @@ export default class TextField extends PureComponent {
    * this._field.getField(); // `input` node
    * ```
    */
-  getField() {
-    return this._field.getField();
-  }
+  getField = () => this._field.getField();
 
   /**
    * A helper function for focusing the `input` field or the `textarea` in the `TextField`.
@@ -498,19 +471,37 @@ export default class TextField extends PureComponent {
    * ```js
    * <TextField ref={field => this._field = field;} label="Hello" />;
    *
-   * this._field.focus(); // `input` node
+   * this._field.focus();
    * ```
    */
-  focus() {
+  focus = () => {
     this._field.focus();
-  }
+  };
 
+  /**
+   * Gets the current value from the text field. This is used when you have an uncontrolled
+   * text field and simply need the value from a ref callback.
+   *
+   * @return {String} the text field's value
+   */
   get value() {
     return this.getField().value;
   }
 
-  _isMultiline(props) {
-    return typeof props.rows !== 'undefined';
+
+  /**
+   * A helper function for blurring the `input` field or the `textarea` in the `TextField`.
+   * This is accessibile if you use `refs`.
+   * Example:
+   *
+   * ```js
+   * <TextField ref={field => this._field = field;} label="Hello" />;
+   *
+   * this._field.blur();
+   * ```
+   */
+  blur() {
+    this._field.blur();
   }
 
   _cloneIcon(icon, active, error, disabled, stateful, block, dir) {
@@ -534,43 +525,55 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _setField(field) {
+  _isValued = (v) => v === 0 || !!v;
+
+  _getLength = (v) => {
+    if (this._isValued(v)) {
+      return String(v).length;
+    }
+
+    return 0;
+  };
+
+  _setField = (field) => {
     if (field !== null) {
       this._field = field;
     }
-  }
+  };
 
-  _setMessage(message) {
-    if (message !== null) {
-      this._message = findDOMNode(message);
+  _calcWidth = (value) => {
+    const field = (this._field && this._field.getField()) || null;
+    if (!field) {
+      return null;
     }
-  }
 
-  _setDivider(divider) {
-    if (divider !== null) {
-      this._divider = findDOMNode(divider);
+    if (!this._canvas) {
+      this._canvas = document.createElement('canvas');
     }
-  }
 
-  _setContainer(container) {
-    if (container !== null) {
-      this._node = container;
+    const context = this._canvas.getContext('2d');
+    if (!context) { // Doesn't exist in testing
+      return null;
     }
-  }
 
-  _setPasswordBtn(btn) {
-    if (btn !== null) {
-      this._password = findDOMNode(btn);
+    const styles = window.getComputedStyle(field);
+    let font = styles.font;
+    // Some browsers do not actually supply the font style since they are on an older version of CSSProperties,
+    // so the font string needs to be made manually.
+    if (!font) {
+      // font-style font-variant font-weight font-size/line-height font-family
+      const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
+      font = `${styles.fontStyle} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
     }
-  }
 
-  _setFloatingLabel(label) {
-    if (label !== null) {
-      this._label = findDOMNode(label);
-    }
-  }
+    const { max } = this.props.resize;
+    const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
-  _handleContainerClick(e) {
+    context.font = font;
+    return Math.min(max, Math.max(min, context.measureText(value).width));
+  };
+
+  _handleContainerClick = (e) => {
     if (this.props.onClick) {
       this.props.onClick(e);
     }
@@ -578,46 +581,28 @@ export default class TextField extends PureComponent {
     if (!this.props.disabled) {
       this.focus();
     }
-  }
+  };
 
-  _updateMultilineHeight(props = this.props) {
-    const { block } = props;
-    const multiline = this._isMultiline(props);
-    if (!multiline) {
-      return;
+  _handleBlur = (e) => {
+    const { required, maxLength, onBlur } = this.props;
+    if (onBlur) {
+      onBlur(e);
     }
 
-    const cs = window.getComputedStyle(findDOMNode(this._field));
-    this._additionalHeight = parseInt(cs.getPropertyValue('margin-top'), 10);
+    const { value } = e.target;
+    const state = {
+      active: false,
+      error: (required && !this._isValued(value)) || (maxLength && String(value).length > maxLength),
+    };
 
-    if (!block) {
-      const mb = parseInt(window.getComputedStyle(this._divider).getPropertyValue('margin-bottom'), 10);
-      this._additionalHeight += (mb === 4 ? 12 : 16);
-    }
-
-    if (this._message) {
-      this._additionalHeight += this._message.offsetHeight;
-    }
-  }
-
-  _blur() {
-    const value = this._field.getValue();
-
-    const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
-      state.floating = !!value;
+      state.floating = this._isValued(value);
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleOutsideClick(e) {
-    if (!this._node.contains(e.target)) {
-      this._blur();
-    }
-  }
-
-  _handleFocus(e) {
+  _handleFocus = (e) => {
     const { onFocus, block } = this.props;
     if (onFocus) {
       onFocus(e);
@@ -629,44 +614,42 @@ export default class TextField extends PureComponent {
     }
 
     this.setState(state);
-  }
+  };
 
-  _handleChange(e) {
-    const { onChange, maxLength, required } = this.props;
+  _handleChange = (e) => {
+    const { onChange, maxLength, required, resize } = this.props;
+    const { value } = e.target;
     if (onChange) {
       onChange(e.target.value, e);
     }
 
-    const currentLength = e.target.value.length;
+    const currentLength = value.length;
+    let state;
     if (typeof maxLength !== 'undefined') {
-      this.setState({ currentLength, error: currentLength > maxLength });
+      state = { currentLength, error: currentLength > maxLength };
     } else if (required && this.state.error) {
-      this.setState({ error: !currentLength });
-    }
-  }
-
-  _handleKeyDown(e) {
-    if (this.props.onKeyDown) {
-      this.props.onKeyDown(e);
+      state = { error: !currentLength };
     }
 
-    if ((e.which || e.keyCode) === TAB) {
-      this._blur();
+    if (typeof this.props.value === 'undefined' && resize) {
+      const width = this._calcWidth(value);
+      if (!resize.disableShrink || width > this.state.width) {
+        state = state || {};
+        state.width = this._calcWidth(value);
+      }
     }
-  }
 
-  _togglePasswordField() {
+    if (state) {
+      this.setState(state);
+    }
+  };
+
+  _togglePasswordField = () => {
     this.setState({ passwordVisible: !this.state.passwordVisible }, this.focus);
-  }
-
-  _handleHeightChange(height) {
-    if (this._additionalHeight) {
-      this.setState({ height: height + this._additionalHeight });
-    }
-  }
+  };
 
   render() {
-    const { currentLength, passwordVisible, height } = this.state;
+    const { currentLength, passwordVisible, width } = this.state;
     const {
       id,
       type,
@@ -700,6 +683,7 @@ export default class TextField extends PureComponent {
       onMouseLeave,
       ink,
       inlineIndicator,
+      toolbar,
       icon, // deprecated
       /* eslint-disable no-unused-vars */
       label: propLabel,
@@ -711,8 +695,9 @@ export default class TextField extends PureComponent {
       rightIcon: propRightIcon,
       onClick,
       onChange,
-      onKeyDown,
+      onBlur,
       onFocus,
+      resize,
 
       // deprecated
       adjustMinWidth,
@@ -753,7 +738,6 @@ export default class TextField extends PureComponent {
       rightIcon = (
         <PasswordButton
           key="password-btn"
-          ref={this._setPasswordBtn}
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
@@ -780,7 +764,6 @@ export default class TextField extends PureComponent {
     const floatingLabel = (
       <FloatingLabel
         key="label"
-        ref={this._setFloatingLabel}
         label={label}
         htmlFor={id}
         active={active}
@@ -795,7 +778,6 @@ export default class TextField extends PureComponent {
     const message = (
       <TextFieldMessage
         key="message"
-        ref={this._setMessage}
         active={active}
         error={error}
         errorText={errorText}
@@ -818,7 +800,7 @@ export default class TextField extends PureComponent {
         type={type}
         label={label}
         style={inputStyle}
-        className={inputClassName}
+        className={cn({ 'md-text-field--toolbar': toolbar }, inputClassName)}
         disabled={disabled}
         customSize={customSize}
         fullWidth={fullWidth}
@@ -826,9 +808,8 @@ export default class TextField extends PureComponent {
         placeholder={placeholder}
         block={block}
         onFocus={this._handleFocus}
-        onKeyDown={this._handleKeyDown}
+        onBlur={this._handleBlur}
         onChange={this._handleChange}
-        onHeightChange={this._handleHeightChange}
         inlineIndicator={!!inlineIndicator}
       />
     );
@@ -838,7 +819,6 @@ export default class TextField extends PureComponent {
       divider = (
         <TextFieldDivider
           key="text-divider"
-          ref={this._setDivider}
           active={active}
           error={error}
           lineDirection={lineDirection}
@@ -869,16 +849,15 @@ export default class TextField extends PureComponent {
 
     children = [floatingLabel, children, message];
 
-    const multiline = this._isMultiline(this.props);
+    const multiline = typeof props.rows !== 'undefined';
     return (
       <div
-        ref={this._setContainer}
-        style={Object.assign({}, style, { height })}
+        style={{ width, ...style }}
         className={cn('md-text-field-container', {
           'md-inline-block': !fullWidth && !block,
           'md-full-width': block || fullWidth,
           'md-text-field-container--disabled': disabled,
-          'md-text-field-container--input': typeof props.rows === 'undefined',
+          'md-text-field-container--input': !multiline,
           'md-text-field-container--input-block': block && !multiline,
           'md-text-field-container--multiline': multiline,
           'md-text-field-container--multiline-block': multiline && block,

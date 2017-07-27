@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 import headerContextTypes from './headerContextTypes';
 import omit from '../utils/omit';
 

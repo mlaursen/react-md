@@ -5,6 +5,7 @@
 @import '../grids';
 @import 'dialogs';
 @import 'select-fields';
+@import 'text-fields';
 
 /// Boolean if the plain table styles should be included.
 /// @type Boolean
@@ -22,9 +23,44 @@ $md-data-table-include-edit-dialog: true !default;
 /// @type Boolean
 $md-data-table-include-select-fields: true !default;
 
+/// Boolean if the styles for fixed table headers/footers should be included.
+/// @type Boolean
+$md-data-table-include-fixed-headers-footers: true !default;
+
+/// Boolean if the `react-md-make-fixed-table` mixin should include headers by default in the
+/// created styles.
+///
+/// @see react-md-make-fixed-table
+$md-data-table-fixed-include-headers: true !default;
+
+/// Boolean if the `react-md-make-fixed-table` mixin should include footers by default in the
+/// created styles.
+///
+/// @see react-md-make-fixed-table
+$md-data-table-fixed-include-footers: true !default;
+
+/// Boolean if the `react-md-make-fixed-table` mixin should make the table fixed relative to the
+/// view height instead of just using height.
+/// @type Boolean
+$md-data-table-fixed-use-view-height: false !default;
+
 /// Boolean if the table pagination styles should be included.
 /// @type Boolean
 $md-data-table-include-pagination: true !default;
+
+/// Boolean if the `TablePagination`'s styles should be updated for mobiles deviecs
+/// so that the select field shrinks its font size to 13px;
+///
+/// This should normally be used along with the `md-data-table-pagination-mobile-label-hidden`
+/// variable if you want to support mobile devices.
+///
+/// @type Boolean
+/// @see md-data-table-pagination-mobile-label-hidden
+$md-data-table-pagination-mobile-shrinking: true !default;
+
+/// This will hide the `TablePagination`s label on mobile devices.
+/// @type Boolean
+$md-data-table-pagination-mobile-label-hidden: true !default;
 
 /// Boolean if the the table card header styles should be included.
 /// @type Boolean
@@ -32,7 +68,31 @@ $md-data-table-include-table-card-headers: true !default;
 
 /// The min width for an edit dialog's column.
 /// @type Number
+/// @deprecated Use the `$md-edit-dialog-width` variable instead.
 $md-edit-dialog-min-width: 300px !default;
+
+/// The width for the edit dialog.
+/// @type Number
+$md-edit-dialog-width: 250px !default;
+
+/// The width for the label for the edit dialog column. When this width
+/// is reached, the text will be ellipsed.
+/// @type Number
+$md-edit-dialog-label-width: 250px !default;
+
+/// The amount of padding to apply to the `AccessibleFakeButton` that gets used in the
+/// edit dialog column to trigger the dialog to appear.
+/// @type Number
+$md-edit-dialog-label-padding: 16px 0 !default;
+
+/// The amount of padding to provide to the edit dialog.
+/// @type Number
+$md-edit-dialog-padding: $md-dialog-padding !default;
+
+/// The amount of padding-bottom to provide to the edit dialog. If you set this value to
+/// null, only the `$md-edit-dialog-padding` variable will be used.
+/// @type Number
+$md-edit-dialog-padding-bottom: 8px !default;
 
 /// For some reason, the edit dialogs on mobile devices don't position themselves like tablets
 /// and desktop screens so this value is required for positioning the dialog from the right edge
@@ -41,23 +101,23 @@ $md-edit-dialog-min-width: 300px !default;
 $md-data-table-edit-dialog-mobile-right: $md-grid-phone-margin !default;
 
 /// The default left/right padding for a `TableColumn`.
-/// @type String
+/// @type Number
 $md-data-table-padding: 24px !default;
 
 /// The minimum distance between a cell's content and the next cell.
-/// @type String
+/// @type Number
 $md-data-table-min-padding: 56px !default;
 
 /// The font size for content inside of the `TableBody` component.
-/// @type String
+/// @type Number
 $md-data-table-content-font-size: 13px !default;
 
 /// The font size for the content inside of the `TableHeader` component.
-/// @type String
+/// @type Number
 $md-data-table-header-font-size: 12px !default;
 
 /// The height for the `TableHeader`'s row.
-/// @type String
+/// @type Number
 $md-data-table-header-height: 56px !default;
 
 /// The font size for a font-icon in the `md-table-column--header`.
@@ -67,6 +127,10 @@ $md-data-table-header-icon-font-size: 16px !default;
 /// The height for a column in a data table.
 /// @type Number
 $md-data-table-column-height: 48px !default;
+
+/// The border size to use for each row.
+/// @type Number
+$md-data-table-border-size: 1px !default;
 
 /// The hover color for a row when using the light theme.
 /// @type Color
@@ -96,6 +160,14 @@ $md-data-table-card-header-z-index: 1 !default;
 /// @type Number
 $md-data-table-card-header-font-size: 16px !default;
 
+/// The height for the table card header.
+/// @type Number
+$md-data-table-card-header-height: 80px !default;
+
+/// The min-width to apply to the fixed tables wrapper.
+/// @type Number
+$md-data-table-fixed-wrapper-min-width: 100% !default;
+
 /// A fallback color to use for the contextual table card header. This is only required
 /// when the `$md-primary-color` is not a valid material design color.
 /// @type Color
@@ -108,7 +180,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// `md-table-column--plain` class. The `white-space` will still need to manually
 /// be changed from `nowrap` to `initial` if you want line wrapping.
 %md-table-column--plain {
-  height: initial;
+  height: auto;
   min-height: $md-data-table-column-height;
   padding-bottom: $md-default-padding;
   padding-top: $md-default-padding;
@@ -144,19 +216,12 @@ $md-data-table-contextual-fallback-color: null !default;
   $include-edit-dialog: $md-data-table-include-edit-dialog,
   $include-select-fields: $md-data-table-include-select-fields,
   $include-pagination: $md-data-table-include-pagination,
-  $include-table-card-headers: $md-data-table-include-table-card-headers
+  $include-table-card-headers: $md-data-table-include-table-card-headers,
+  $include-fixed-headers-footers: $md-data-table-include-fixed-headers-footers
 ) {
-  @if $include-media {
-    @include react-md-data-tables-media($include-edit-dialog);
-  }
-
   @include react-md-data-table($include-plain);
   @include react-md-data-table-rows($light-theme);
   @include react-md-data-table-column;
-
-  @if $include-select-fields or $include-edit-dialog {
-    @include react-md-data-table-fixed-columns;
-  }
 
   @if $include-checkboxes {
     @include react-md-data-table-checkboxes;
@@ -172,10 +237,20 @@ $md-data-table-contextual-fallback-color: null !default;
 
   @if $include-pagination {
     @include react-md-data-table-paginations;
+
+    @if $include-media {
+      @media (max-width: $md-tablet-min-width - 1) {
+        @include react-md-data-table-paginations-shrink;
+      }
+    }
   }
 
   @if $include-table-card-headers {
     @include react-md-data-table-card-headers;
+  }
+
+  @if $include-fixed-headers-footers {
+    @include react-md-data-table-fixed-headers-footers;
   }
 }
 
@@ -241,12 +316,14 @@ $md-data-table-contextual-fallback-color: null !default;
     border-collapse: collapse;
     max-width: 100%;
 
-    &--responsive {
-      overflow-x: auto;
+    &--full-width {
+      width: 100%;
+    }
 
-      .md-data-table {
-        width: 100%;
-      }
+    &--responsive {
+      @include md-ios-scroll-momentum;
+
+      overflow-x: auto;
     }
 
     @if $include-plain {
@@ -269,7 +346,7 @@ $md-data-table-contextual-fallback-color: null !default;
 @mixin react-md-data-table-rows($light-theme: $md-light-theme) {
   thead .md-table-row,
   tbody .md-table-row:not(:last-child) {
-    border-bottom: 1px solid get-color('divider', $light-theme);
+    border-bottom: $md-data-table-border-size solid get-color('divider', $light-theme);
   }
 
   tbody .md-table-row {
@@ -289,7 +366,7 @@ $md-data-table-contextual-fallback-color: null !default;
 /// Creates the styles for a column in a data table.
 @mixin react-md-data-table-column {
   .md-table-column {
-    line-height: initial;
+    line-height: normal;
     padding-right: $md-data-table-padding;
     white-space: nowrap;
 
@@ -346,52 +423,53 @@ $md-data-table-contextual-fallback-color: null !default;
 
 /// Creates the styles for edit dialogs in a data table.
 @mixin react-md-data-table-edit-dialogs {
-  .md-edit-dialog-column {
-    padding-right: 0;
-  }
-
   .md-edit-dialog {
-    left: 0;
-    min-height: $md-data-table-column-height;
-    padding-right: $md-data-table-padding;
-    top: 0;
-    transition-duration: .3s;
-    transition-property: background, box-shadow, padding;
-
-    &--min-width {
-      min-width: $md-edit-dialog-min-width;
+    &.md-dialog {
+      width: $md-edit-dialog-width;
     }
 
-    &--active {
-      @include md-box-shadow(1);
+    &__label {
+      overflow: hidden;
+      padding: $md-edit-dialog-label-padding;
+      text-overflow: ellipsis;
+      width: $md-edit-dialog-label-width;
 
-      padding: $md-data-table-padding;
-      padding-bottom: 0;
-      z-index: 2;
-    }
-
-    &--inline {
-      .md-text-field-container--input-block {
-        padding-bottom: 12px;
-        padding-top: 12px;
+      @media screen and (max-width: #{$md-desktop-min-width - 1}) {
+        font-size: $md-text-field-mobile-font-size;
       }
     }
 
-    .md-title {
-      margin: 0;
+    &__content {
+      // For the multiline text fields
+      display: flex;
+      padding: $md-edit-dialog-padding;
+      padding-bottom: $md-edit-dialog-padding-bottom;
+
+      &:not(:first-child) {
+        padding-top: 0;
+      }
     }
 
-    .md-dialog-footer {
-      margin-right: -$md-data-table-padding;
+    &__header {
+      font-weight: $md-font-medium;
+
+      &.md-text-field {
+        font-size: $md-data-table-header-font-size;
+      }
     }
 
+    &__blocked-field {
+      height: $md-data-table-column-height - $md-data-table-border-size;
+      width: $md-edit-dialog-width;
 
-    .md-text-field-icon-container {
-      align-items: center;
-    }
+      &.md-edit-dialog__blocked-field {
+        padding-bottom: 0;
+        padding-top: 0;
+      }
 
-    .md-text-field-icon {
-      margin-bottom: 0;
+      .md-text-field-icon-container {
+        align-items: center;
+      }
     }
   }
 }
@@ -404,13 +482,19 @@ $md-data-table-contextual-fallback-color: null !default;
 
   .md-select-field-column {
     .md-select-field--btn {
-      height: $md-data-table-column-height;
+      height: $md-data-table-column-height - $md-data-table-border-size;
     }
   }
 }
 
 /// Creates the styles for table pagination.
 @mixin react-md-data-table-paginations {
+  .md-table-footer--pagination {
+    .md-table-column {
+      padding-left: 0;
+    }
+  }
+
   .md-table-pagination {
     height: $md-data-table-header-height;
 
@@ -422,6 +506,165 @@ $md-data-table-contextual-fallback-color: null !default;
       white-space: nowrap;
     }
   }
+}
+
+/// Creates the styles for fixed headers and footers in a data table.
+@mixin react-md-data-table-fixed-headers-footers {
+  .md-data-table {
+    &--fixed {
+      overflow-y: hidden;
+    }
+
+    &__fixed-wrapper {
+      display: table;
+      min-width: $md-data-table-fixed-wrapper-min-width;
+      position: relative;
+
+      &--header {
+        padding-top: $md-data-table-header-height;
+      }
+
+      &--footer {
+        padding-bottom: $md-data-table-column-height;
+      }
+    }
+
+    &__scroll-wrapper {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  .md-table-column--fixed {
+    height: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    visibility: hidden;
+    white-space: nowrap;
+
+    > * {
+      display: none;
+    }
+
+    .md-table-column__fixed {
+      display: block;
+    }
+  }
+
+  .md-table-column__fixed {
+    position: absolute;
+    visibility: visible;
+
+    &--header {
+      top: 0;
+    }
+
+    &--footer {
+      bottom: 0;
+    }
+
+    &--flex {
+      align-items: center;
+      display: flex;
+
+      &-right {
+        justify-content: flex-end;
+      }
+    }
+
+    .md-table-checkbox {
+      &--header {
+        display: flex;
+        height: $md-data-table-header-height;
+      }
+
+      &--footer {
+        display: flex;
+        height: $md-data-table-column-height;
+      }
+    }
+  }
+}
+
+/// This is a utility function for making a fixed table via css instead of inline styles. This one is a bit more
+/// reliable since you can provide the cell heights correctly.
+///
+/// @example scss - Example Usage
+/// .fixed-table--200-300 {
+///   @include react-md-make-fixed-table(300px);
+///
+///   width: 200px;
+/// }
+///
+/// .fixed-table__footless--200-300 {
+///   @include react-md-make-fixed-table(300px, $md-data-table-header-height, null);
+/// }
+///
+/// .fixed-table--viewport {
+///   @include react-md-make-fixed-table(true);
+/// }
+///
+/// @example scss - Example Usage CSS Output
+/// .fixed-table--200-300 {
+///   width: 200px;
+/// }
+///
+/// .fixed-table--200-300 .md-data-table__scroll-wrapper {
+///   max-height: 196px;
+/// }
+///
+/// .fixed-table__footless--200-300 .md-data-table__scroll-wrapper {
+///   max-height: 244px;
+/// }
+///
+/// .fixed-table--viewport .md-data-table__scroll-wrapper {
+///   max-height: calc(100vh - 104px);
+/// }
+///
+///
+/// @param {Number | Boolean} height - The height to use for the fixed table. If this value is a boolean, the height
+///     will be calculated from the view height.
+/// @param {Number} header-height [$md-data-table-header-height] - The height for the table's header. If this is `null`,
+///     this table should *not* have a fixed header.
+/// @param {Number} footer-height [$md-data-table-column-height] - The height for the table's footer. If this is `null`,
+///     the table should *not* have a fixed footer.
+/// @param {Number} toolbar-height [null] - An optinal height of the toolbar to exclude when making the max-height of the
+///     table.
+@mixin react-md-make-fixed-table($height, $header-height: $md-data-table-header-height, $footer-height: $md-data-table-column-height, $toolbar-height: null) {
+  @if $height == true {
+    .md-data-table__scroll-wrapper {
+      $wrapper-height: 0;
+      @if $md-data-table-fixed-include-headers and $header-height != null {
+        $wrapper-height: $wrapper-height + $header-height;
+      }
+
+      @if $md-data-table-fixed-include-footers and $footer-height != null {
+        $wrapper-height: $wrapper-height + $footer-height;
+      }
+
+      @if $toolbar-height != null {
+        $wrapper-height: $wrapper-height + $toolbar-height;
+      }
+
+      max-height: calc(100vh - #{$wrapper-height});
+    }
+  } @else {
+    $wrapper-height: $height;
+    @if $md-data-table-fixed-include-headers and $header-height != null {
+      $wrapper-height: $wrapper-height - $header-height;
+    }
+
+    @if $md-data-table-fixed-include-footers and $footer-height != null {
+      $wrapper-height: $wrapper-height - $footer-height;
+    }
+
+    @if ($wrapper-height != $height) {
+      .md-data-table__scroll-wrapper {
+        max-height: $wrapper-height;
+      }
+    }
+  }
+
 }
 
 /// Creates the styles for the `TableCardHeader` component only. The contextual
@@ -436,7 +679,7 @@ $md-data-table-contextual-fallback-color: null !default;
     &--no-title {
       align-items: center;
       display: flex;
-      height: 80px;
+      height: $md-data-table-card-header-height;
       padding-right: 2px;
     }
 
@@ -457,7 +700,6 @@ $md-data-table-contextual-fallback-color: null !default;
     background: get-swatch($secondary-color, 50, false, $fallback-color, md-data-table-contextual-fallback-color);
     height: 100%;
     left: 0;
-    line-height: 80px;
     position: absolute;
     top: 0;
     width: 100%;
@@ -468,6 +710,7 @@ $md-data-table-contextual-fallback-color: null !default;
     color: $secondary-color;
     font-size: $md-data-table-card-header-font-size;
     font-weight: $md-font-medium;
+    line-height: $md-data-table-card-header-height;
   }
 
   .md-drop-down-enter {
@@ -495,30 +738,34 @@ $md-data-table-contextual-fallback-color: null !default;
   }
 }
 
-@mixin react-md-data-table-fixed-columns {
-  .md-table-column--fixed {
-    position: absolute;
-  }
-
-  .md-table-column--fixed-active {
-    z-index: 1;
-  }
-}
-
-/// Creates the media queries and styles for data tables. If the edit dialog column is not included, nothing
-/// will be created.
+/// A mixin that can shrink the select field in the TablePagination component as well as hide the label
+/// so it displays better on mobile devices. This mixin should usually be used in a media query that uses
+/// the max-width.
 ///
-/// @param {Boolean} include-edit-dialog [$md-data-table-include-edit-dialog] - Boolean if the edit dialog
-///     should be included.
-/// @group data-tables, media
-@mixin react-md-data-tables-media($include-edit-dialog: $md-data-table-include-edit-dialog) {
-  @if $include-edit-dialog {
-    @media #{$md-mobile-media} and (max-width: #{$md-desktop-min-width - 1}) {
-      // Remove the default padding of 20px and make it the same height as a normal row
-      .md-edit-dialog-column .md-text-field-container--input-block {
-        padding-bottom: 14.5px;
-        padding-top: 14.5px;
-      }
+///
+/// @example scss - Example Usage SCSS
+///   @media (max-width: #{$md-tablet-min-width - 1}) {
+///     @include react-md-data-table-paginations-shrink(true, true);
+///   }
+///
+/// @param {Boolean} shrink [$md-data-table-pagination-mobile-shrinking] - Boolena if the select field should shrink by
+///     reducing the font size to 13px and reducing the padding by 75%.
+/// @param {Boolean} hide-label [$md-data-table-pagination-mobile-label-hidden] - Boolean if the pagination label (Rows per page)
+///     should be hidden.
+@mixin react-md-data-table-paginations-shrink($shrink: $md-data-table-pagination-mobile-shrinking, $hide-label: $md-data-table-pagination-mobile-label-hidden) {
+  @if $shrink {
+    .md-table-pagination .md-text-field {
+      font-size: 13px;
+    }
+
+    .md-table-pagination .md-icon-text:first-child {
+      padding-right: $md-default-padding / 4;
+    }
+  }
+
+  @if $hide-label {
+    .md-table-pagination__label {
+      display: none;
     }
   }
 }

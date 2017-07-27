@@ -1,5 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
 import SelectionControl from '../SelectionControls/SelectionControl';
+
+import findTable from './findTable';
 
 export default class TableCheckbox extends Component {
   static propTypes = {
@@ -13,7 +17,6 @@ export default class TableCheckbox extends Component {
       PropTypes.string,
     ]).isRequired,
     baseName: PropTypes.string.isRequired,
-    header: PropTypes.bool,
     indeterminate: PropTypes.bool,
     checkedIconChildren: PropTypes.node,
     checkedIconClassName: PropTypes.string,
@@ -26,6 +29,33 @@ export default class TableCheckbox extends Component {
       PropTypes.func,
       PropTypes.string,
     ]).isRequired,
+    createCheckbox: PropTypes.func.isRequired,
+    removeCheckbox: PropTypes.func.isRequired,
+    header: PropTypes.bool,
+    footer: PropTypes.bool,
+    fixedHeader: PropTypes.bool.isRequired,
+    fixedFooter: PropTypes.bool.isRequired,
+  };
+
+  _td = null;
+  _header = false;
+
+  _handleMount = (td) => {
+    if (td) {
+      const header = findTable(td).querySelector('thead');
+      const index = td.parentNode.rowIndex - (header ? 1 : 0);
+
+      if (td.parentNode.parentNode.tagName === 'TBODY') {
+        this.context.createCheckbox(index);
+      }
+      this._td = td;
+      this._header = header;
+    } else if (this._td) {
+      const index = this._td.parentNode.rowIndex;
+      this.context.removeCheckbox(index - (this._header ? 1 : 0));
+      this._td = null;
+      this._header = false;
+    }
   };
 
   render() {
@@ -39,6 +69,7 @@ export default class TableCheckbox extends Component {
       indeterminateIconClassName,
       indeterminate,
       header,
+      footer,
       rowId,
       baseName,
       checkboxHeaderLabel,
@@ -55,20 +86,51 @@ export default class TableCheckbox extends Component {
       label = checkboxLabelTemplate.replace(/{{row}}/g, index);
     }
 
+    let content = (
+      <SelectionControl
+        {...props}
+        id={rowId}
+        name={`${baseName}-checkbox`}
+        type="checkbox"
+        checked={checked}
+        uncheckedCheckboxIconChildren={header && indeterminate ? indeterminateIconChildren : uncheckedIconChildren}
+        uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
+        checkedCheckboxIconChildren={checkedIconChildren}
+        checkedCheckboxIconClassName={checkedIconClassName}
+        aria-label={label}
+      />
+    );
+    const fixedHeader = header && this.context.fixedHeader;
+    const fixedFooter = footer && this.context.fixedFooter;
+
+    if (fixedHeader) {
+      content = (
+        <div
+          className={cn('md-table-column__fixed', {
+            'md-table-column__fixed--header': fixedHeader,
+            'md-table-column__fixed--footer': fixedFooter,
+          })}
+        >
+          {React.cloneElement(content, {
+            className: cn({
+              'md-table-checkbox--header': header,
+              'md-table-checkbox--footer': footer,
+            }),
+          })}
+        </div>
+      );
+    }
+
+
     return (
-      <Cell className="md-table-checkbox" scope={header ? 'col' : undefined}>
-        <SelectionControl
-          {...props}
-          id={rowId}
-          name={`${baseName}-checkbox`}
-          type="checkbox"
-          checked={checked}
-          uncheckedCheckboxIconChildren={header && indeterminate ? indeterminateIconChildren : uncheckedIconChildren}
-          uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
-          checkedCheckboxIconChildren={checkedIconChildren}
-          checkedCheckboxIconClassName={checkedIconClassName}
-          aria-label={label}
-        />
+      <Cell
+        className={cn('md-table-checkbox', {
+          'md-table-column--fixed': fixedHeader,
+        })}
+        scope={header ? 'col' : undefined}
+        ref={this._handleMount}
+      >
+        {content}
       </Cell>
     );
   }

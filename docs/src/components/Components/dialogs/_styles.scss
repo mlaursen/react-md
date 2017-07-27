@@ -1,0 +1,10 @@
+@import '~globals';
+
+.dialogs__static {
+  margin: 2em auto;
+  position: relative;
+
+  .md-dialog {
+    position: absolute;
+  }
+}

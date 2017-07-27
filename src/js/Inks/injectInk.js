@@ -1,7 +1,11 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+
+import getField from '../utils/getField';
+import getDisplayName from '../utils/StringUtils/getDisplayName';
 
 import InkContainer from './InkContainer';
-import getDisplayName from '../utils/StringUtils/getDisplayName';
+import inkContextTypes from './inkContextTypes';
 
 /**
  * Takes any component and injects an ink container for having the Material Design Ink effect.
@@ -88,6 +92,12 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     disabledInteractions: PropTypes.arrayOf(PropTypes.oneOf(['keyboard', 'mouse', 'touch'])),
 
     /**
+     * Boolean if the ink should do a pulse animation while focused. This was enabled by default in
+     * previous versions.
+     */
+    pulse: PropTypes.bool,
+
+    /**
      * When using inked components in a `TransitionGroup`, the ref callback is not actually invoked.
      * This is a little _hack_ to get it to work by not using `ref`, but this name.
      */
@@ -100,15 +110,7 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
     inkTransitionLeaveTimeout: 300,
   };
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.focus = this.focus.bind(this);
-    this.createInk = this.createInk.bind(this);
-    this.getComposedComponent = this.getComposedComponent.bind(this);
-    this._setInkRef = this._setInkRef.bind(this);
-    this._setComposedComponent = this._setComposedComponent.bind(this);
-  }
+  static contextTypes = inkContextTypes;
 
   componentDidMount() {
     const { __SUPER_SECRET_REF__: ref } = this.props;
@@ -138,11 +140,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * @param {number=} pageX - An optional pageX of the click or touch event.
    * @param {number=} pageY - An optional pageY of the click or touch event.
    */
-  createInk(pageX, pageY) {
+  createInk = (pageX, pageY) => {
     if (this._inkContainer && !this.props.disabled && !this.props.inkDisabled) {
       this._inkContainer.createInk(pageX, pageY);
     }
-  }
+  };
 
   /**
    * This will attempt to focus the composed component. If the component is disabled, nothing
@@ -153,11 +155,11 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * <SomeInkedComponent ref={inkHOC => inkHOC.focus()} />
    * ```
    */
-  focus() {
+  focus = () => {
     if (this._inkContainer) {
       this._inkContainer.focus();
     }
-  }
+  };
 
   /**
    * Gets the composed component as a ref. This is usefull if you need to access the ref of the
@@ -171,23 +173,20 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
    * />
    * ```
    */
-  getComposedComponent() {
-    return this._composed;
-  }
+  getComposedComponent = () => this._composed;
 
-  _setInkRef(inkContainer) {
+  _setInkRef= (inkContainer) => {
     if (inkContainer) {
       this._inkContainer = inkContainer;
     }
-  }
+  };
 
-  _setComposedComponent(component) {
+  _setComposedComponent = (component) => {
     this._composed = component;
-  }
+  };
 
   render() {
     const {
-      inkDisabled,
       inkTransitionOverlap: transitionOverlap,
       inkTransitionEnterTimeout: transitionEnterTimeout,
       inkTransitionLeaveTimeout: transitionLeaveTimeout,
@@ -195,22 +194,30 @@ export default ComposedComponent => class InkedComponent extends PureComponent {
       inkClassName,
       inkContainerStyle,
       inkContainerClassName,
-      disabledInteractions,
       waitForInkTransition,
+      disabledInteractions,
+      pulse,
+      inkDisabled: propInkDisabled, // eslint-disable-line no-unused-vars
       __SUPER_SECRET_REF__, // eslint-disable-line no-unused-vars
       ...props
     } = this.props;
+
+    const inkDisabled = getField(this.props, this.context, 'inkDisabled');
+    const inkDisabledInteractions = typeof disabledInteractions !== 'undefined'
+      ? disabledInteractions
+      : this.context.inkDisabledInteractions;
 
     if (!(props.disabled || inkDisabled)) {
       props.ink = (
         <InkContainer
           ref={this._setInkRef}
           key="ink-container"
+          pulse={pulse}
           style={inkContainerStyle}
           className={inkContainerClassName}
           inkStyle={inkStyle}
           inkClassName={inkClassName}
-          disabledInteractions={disabledInteractions}
+          disabledInteractions={inkDisabledInteractions}
           transitionOverlap={transitionOverlap}
           transitionEnterTimeout={transitionEnterTimeout}
           transitionLeaveTimeout={transitionLeaveTimeout}
