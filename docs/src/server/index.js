@@ -5,7 +5,6 @@ import compression from 'compression';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import hpp from 'hpp';
-import favicon from 'serve-favicon';
 import cookieParser from 'cookie-parser';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -30,7 +29,6 @@ app.use(helmet({
 app.use(hpp());
 app.use(morgan(__DEV__ ? 'dev' : 'combined'));
 app.use(compression());
-app.use(favicon(path.join(dist, 'favicon.ico')));
 
 if (!global.__NGINX__) {
   app.use(express.static(dist, {
