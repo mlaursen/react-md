@@ -428,6 +428,51 @@ export default class EditDialogColumn extends PureComponent {
     scrollIntoViewPadding: PropTypes.number,
 
     /**
+     * An optional function to call when the `click` event is triggered inthe column.
+     */
+    onClick: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mousedown` event is triggered inthe column.
+     */
+    onMouseDown: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseup` event is triggered inthe column.
+     */
+    onMouseUp: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchstart` event is triggered inthe column.
+     */
+    onTouchStart: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchend` event is triggered in the column.
+     */
+    onTouchEnd: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseenter` event is triggered inthe column.
+     */
+    onMouseEnter: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseover` event is triggered inthe column.
+     */
+    onMouseOver: PropTypes.func,
+
+    /**
+     * An optional function to call when the `mouseleave` event is triggered inthe column.
+     */
+    onMouseLeave: PropTypes.func,
+
+    /**
+     * An optional function to call when the `touchmove` event is triggered inthe column.
+     */
+    onTouchMove: PropTypes.func,
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -682,6 +727,15 @@ export default class EditDialogColumn extends PureComponent {
       tooltipLabel,
       tooltipDelay,
       tooltipPosition,
+      onClick,
+      onMouseDown,
+      onMouseUp,
+      onTouchStart,
+      onTouchEnd,
+      onMouseEnter,
+      onMouseOver,
+      onMouseLeave,
+      onTouchMove,
       /* eslint-disable no-unused-vars */
       id: propId,
       dialogId: propDialogId,
@@ -806,6 +860,15 @@ export default class EditDialogColumn extends PureComponent {
         tooltipLabel={tooltipLabel}
         tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onMouseEnter={onMouseEnter}
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
+        onTouchEnd={onTouchEnd}
       >
         {children}
       </TableColumn>
