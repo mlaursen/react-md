@@ -22,6 +22,30 @@ export default class DatePickerCalendar extends PureComponent {
     ]).isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
+
+    /**
+     * An optional className to apply to the title in calendar header.
+     */
+    titleClassName: PropTypes.string,
+
+    /**
+     * The DateTimeFormat options to apply to format the title in calendar header.
+     */
+    titleFormat: PropTypes.shape({
+      era: PropTypes.oneOf(['narrow', 'short', 'long']),
+      year: PropTypes.oneOf(['numeric', '2-digit']),
+      month: PropTypes.oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
+    }),
+
+    /**
+     * An optional className to apply to a weekday in calendar header.
+     */
+    weekdayClassName: PropTypes.string,
+
+    /**
+     * The DateTimeFormat option to apply to format a weekday in calendar header.
+     */
+    weekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
   };
 
   render() {
@@ -39,6 +63,10 @@ export default class DatePickerCalendar extends PureComponent {
       locales,
       minDate,
       maxDate,
+      titleClassName,
+      titleFormat,
+      weekdayClassName,
+      weekdayFormat,
     } = this.props;
 
     return (
@@ -55,6 +83,10 @@ export default class DatePickerCalendar extends PureComponent {
           onNextClick={onNextClick}
           nextIconChildren={nextIconChildren}
           nextIconClassName={nextIconClassName}
+          titleClassName={titleClassName}
+          titleFormat={titleFormat}
+          weekdayClassName={weekdayClassName}
+          weekdayFormat={weekdayFormat}
         />
         <CalendarMonth
           key={new DateTimeFormat(locales).format(calendarDate)}

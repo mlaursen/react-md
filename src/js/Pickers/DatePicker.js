@@ -29,6 +29,30 @@ export default class DatePicker extends PureComponent {
     icon: PropTypes.bool,
     inline: PropTypes.bool,
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
+
+    /**
+     * An optional className to apply to the title in calendar header.
+     */
+    calendarTitleClassName: PropTypes.string,
+
+    /**
+     * The DateTimeFormat options to apply to format the title in calendar header.
+     */
+    calendarTitleFormat: PropTypes.shape({
+      era: PropTypes.oneOf(['narrow', 'short', 'long']),
+      year: PropTypes.oneOf(['numeric', '2-digit']),
+      month: PropTypes.oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
+    }),
+
+    /**
+     * An optional className to apply to a weekday in calendar header.
+     */
+    calendarWeekdayClassName: PropTypes.string,
+
+    /**
+     * The DateTimeFormat option to apply to format a weekday in calendar header.
+     */
+    calendarWeekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
   };
 
   render() {
@@ -49,6 +73,10 @@ export default class DatePicker extends PureComponent {
       inline,
       icon,
       displayMode,
+      calendarTitleClassName,
+      calendarTitleFormat,
+      calendarWeekdayClassName,
+      calendarWeekdayFormat,
       ...props
     } = this.props;
 
@@ -61,6 +89,10 @@ export default class DatePicker extends PureComponent {
           calendarTempDate={calendarTempDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
+          titleClassName={calendarTitleClassName}
+          titleFormat={calendarTitleFormat}
+          weekdayClassName={calendarWeekdayClassName}
+          weekdayFormat={calendarWeekdayFormat}
         />
       );
     } else {

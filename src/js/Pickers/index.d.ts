@@ -20,6 +20,12 @@ export interface IntlFormat extends IntlTimeFormat {
   day?: N2D;
 }
 
+export interface CalendarTitleFormat {
+  era?: NSL;
+  year?: N2D;
+  month?: NSL | N2D;
+}
+
 export type Locales = string | Array<string>;
 
 export interface BasePickerProps extends SharedTextFieldProps, Props {
@@ -48,6 +54,10 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
+  calendarTitleClassName?: string;
+  calendarTitleFormat: CalendarTitleFormat;
+  calendarWeekdayClassName?: string;
+  calendarWeekdayFormat?: NSL;
 }
 
 export { default as DatePicker, default as DatePickerContainer, DatePickerProps } from './DatePickerContainer';
