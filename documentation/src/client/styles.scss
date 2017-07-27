@@ -75,4 +75,9 @@ h3,
   z-index: 9001;
 }
 
+.md-title--toolbar .md-list-item {
+  font-weight: normal;
+  line-height: auto;
+}
+
 @include react-md-media-aspect-ratio(2, 3);

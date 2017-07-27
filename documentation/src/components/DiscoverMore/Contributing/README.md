@@ -42,9 +42,11 @@ I am currently using a branching model where `master` only gets updated when a n
 occurs. The active branch will be whatever version number that is currently being developed with
 an `x`. So if the next release is `v1.0.1`, the active development branch will be `release/1.0.x`.
 
+Before you can do any work, make sure to fork the `react-md` repository via github and then you can
+follow these steps.
 
 ```bash
-$ git clone git@github.com:<username>/react-md.git
+$ git clone https://github.com/<YOUR_USERNAME>/react-md
 
 $ cd react-md && yarn
 ```
@@ -54,7 +56,7 @@ merge conflicts.
 
 ```bash
 $ cd react-md
-$ git remote add upstream git@github.com:mlaursen/react-md.git
+$ git remote add upstream https://github.com/mlaursen/react-md
 
 # checkout the current release branch
 # so if you want to work on v1.0.1

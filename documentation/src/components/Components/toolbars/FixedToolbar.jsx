@@ -12,12 +12,12 @@ import PhoneEmulator from 'components/PhoneEmulator';
 import CloseEmulator from 'components/PhoneEmulator/CloseEmulator';
 
 const pastryData = pastries.map((pastry, i) => ({
-  id: `pastry-${i}`,
+  key: `pastry-${i}`,
   name: pastry,
 }));
 
 @connect(({ media: { mobile } }) => ({ mobile }))
-export default class SimpleSearch extends PureComponent {
+export default class FixedToolbar extends PureComponent {
   static propTypes = {
     mobile: PropTypes.bool,
   };
@@ -40,12 +40,24 @@ export default class SimpleSearch extends PureComponent {
     this.setState({ value });
   };
 
-  handleAutocomplete = (id) => {
+  handleAutocomplete = (id, index, matches) => {
+    const toolbar = document.getElementById('fixed-toolbar-example');
     const item = document.getElementById(id);
-    if (item) {
-      console.log(item.parentNode.parentNode);
+    if (!item || !toolbar) {
+      return;
     }
-    this.setState({ value: '' });
+
+    let scrollTop = item.offsetTop - toolbar.offsetHeight;
+    let scrollContainer = null;
+    if (this.props.mobile) {
+      scrollContainer = document.getElementById('phone-emulator-demo');
+    } else {
+      scrollContainer = toolbar.parentNode;
+      scrollTop -= scrollContainer.parentNode.querySelector('header').offsetHeight;
+    }
+
+    scrollContainer.scrollTop = scrollTop;
+    this.setState({ value: matches[index].name });
   };
 
   render() {
@@ -59,7 +71,7 @@ export default class SimpleSearch extends PureComponent {
           block
           data={pastryData}
           dataLabel="name"
-          dataValue="id"
+          dataValue="key"
           value={value}
           onChange={this.handleChange}
           placeholder="Search pastries"
@@ -73,6 +85,7 @@ export default class SimpleSearch extends PureComponent {
     return (
       <PhoneEmulator toolbar={false}>
         <Toolbar
+          id="fixed-toolbar-example"
           fixed
           colored
           nav={(
@@ -98,7 +111,7 @@ export default class SimpleSearch extends PureComponent {
           className="phone-emulator__toolbar"
         />
         <List className="md-toolbar-relative">
-          {pastryData.map(({ name, id }) => <ListItem key={id} primaryText={name} id={id} />)}
+          {pastryData.map(({ name, key }) => <ListItem key={key} id={key} primaryText={name} />)}
         </List>
         {this.props.mobile && <CloseEmulator floating fixed>close</CloseEmulator>}
       </PhoneEmulator>
