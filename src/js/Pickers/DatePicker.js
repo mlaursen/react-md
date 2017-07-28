@@ -31,6 +31,11 @@ export default class DatePicker extends PureComponent {
     displayMode: PropTypes.oneOf(['landscape', 'portrait']),
 
     /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     calendarTitleClassName: PropTypes.string,
@@ -73,6 +78,7 @@ export default class DatePicker extends PureComponent {
       inline,
       icon,
       displayMode,
+      firstDayOfWeek,
       calendarTitleClassName,
       calendarTitleFormat,
       calendarWeekdayClassName,
@@ -89,6 +95,7 @@ export default class DatePicker extends PureComponent {
           calendarTempDate={calendarTempDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
+          firstDayOfWeek={firstDayOfWeek}
           titleClassName={calendarTitleClassName}
           titleFormat={calendarTitleFormat}
           weekdayClassName={calendarWeekdayClassName}

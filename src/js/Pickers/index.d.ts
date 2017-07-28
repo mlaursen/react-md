@@ -54,6 +54,7 @@ export interface BasePickerProps extends SharedTextFieldProps, Props {
   portal?: boolean;
   renderNode?: Object;
   lastChild?: boolean;
+  firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   calendarTitleClassName?: string;
   calendarTitleFormat: CalendarTitleFormat;
   calendarWeekdayClassName?: string;

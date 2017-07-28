@@ -24,6 +24,11 @@ export default class DatePickerCalendar extends PureComponent {
     maxDate: PropTypes.instanceOf(Date),
 
     /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     titleClassName: PropTypes.string,
@@ -63,6 +68,7 @@ export default class DatePickerCalendar extends PureComponent {
       locales,
       minDate,
       maxDate,
+      firstDayOfWeek,
       titleClassName,
       titleFormat,
       weekdayClassName,
@@ -83,6 +89,7 @@ export default class DatePickerCalendar extends PureComponent {
           onNextClick={onNextClick}
           nextIconChildren={nextIconChildren}
           nextIconClassName={nextIconClassName}
+          firstDayOfWeek={firstDayOfWeek}
           titleClassName={titleClassName}
           titleFormat={titleFormat}
           weekdayClassName={weekdayClassName}
@@ -97,6 +104,7 @@ export default class DatePickerCalendar extends PureComponent {
           maxDate={maxDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
+          firstDayOfWeek={firstDayOfWeek}
         />
       </section>
     );

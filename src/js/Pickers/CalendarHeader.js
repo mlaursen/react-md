@@ -32,6 +32,10 @@ export default class CalendarHeader extends PureComponent {
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
     /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+    /**
      * An optional className to apply to the title.
      */
     titleClassName: PropTypes.string,
@@ -54,6 +58,7 @@ export default class CalendarHeader extends PureComponent {
   };
 
   static defaultProps = {
+    firstDayOfWeek: 0,
     titleFormat: { month: 'long', year: 'numeric' },
     weekdayFormat: 'narrow',
   };
@@ -71,12 +76,13 @@ export default class CalendarHeader extends PureComponent {
     }
   }
 
-  _createState({ DateTimeFormat, locales, date, titleFormat, weekdayClassName, weekdayFormat } = this.props) {
-    const sunday = getDayOfWeek(date, 0);
+  _createState({ DateTimeFormat, locales, date, firstDayOfWeek,
+                  titleFormat, weekdayClassName, weekdayFormat } = this.props) {
+    const firstDay = getDayOfWeek(date, firstDayOfWeek);
     const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat });
     const dows = [];
     for (let i = 0; i < 7; i++) {
-      const dow = formatter.format(addDate(sunday, i, 'D'));
+      const dow = formatter.format(addDate(firstDay, i, 'D'));
       dows.push(
         <h4 className={cn('md-calendar-date md-text--disabled md-calendar-dow', weekdayClassName)} key={i}>
           {dow}

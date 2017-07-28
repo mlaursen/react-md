@@ -412,6 +412,11 @@ export default class DatePickerContainer extends PureComponent {
     readOnly: PropTypes.bool,
 
     /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     calendarTitleClassName: PropTypes.string,
