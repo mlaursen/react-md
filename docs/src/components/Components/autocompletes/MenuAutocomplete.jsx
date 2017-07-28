@@ -17,17 +17,11 @@ const controls = [{
 }];
 
 export default class MenuAutocomplete extends PureComponent {
-  constructor(props) {
-    super(props);
+  state = { filterType: Autocomplete.caseInsensitiveFilter };
 
-    this.state = {
-      filterType: Autocomplete.caseInsensitiveFilter,
-    };
-
-    this.indexer = new Fuse(sampleData.map(lang => ({ primaryText: lang })), {
-      keys: [{ name: 'primaryText', weight: 1 }],
-    });
-  }
+  indexer = new Fuse(sampleData.map(lang => ({ primaryText: lang })), {
+    keys: [{ name: 'primaryText', weight: 1 }],
+  });
 
   /**
    * A custom filter function to use if the default `caseInsensitiveFilter`

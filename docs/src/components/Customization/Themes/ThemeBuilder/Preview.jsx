@@ -10,11 +10,7 @@ const NAV_ITEMS = [
 ];
 
 export default class Preview extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = { visible: false };
-  }
+  state = { visible: false };
 
   toggleDrawer = () => {
     this.setState({ visible: !this.state.visible });

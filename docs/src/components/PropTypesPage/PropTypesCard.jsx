@@ -31,7 +31,7 @@ export default class PropTypesCard extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.indexer = new Fuse(props.props, {
       keys: [{ name: 'propName', weight: 0.75 }, { name: 'description', weight: 0.25 }],

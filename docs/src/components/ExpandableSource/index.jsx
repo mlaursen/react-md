@@ -16,7 +16,7 @@ export default class ExpandableSource extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       multiline: props.code !== props.oneLineCode,

@@ -50,7 +50,7 @@ export default class FindInPage extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     const navItems = buildSubList(props.placeholders, props)
       .concat(buildSubList(props.variables, props))

@@ -63,7 +63,7 @@ export class PureSearch extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       value: '',

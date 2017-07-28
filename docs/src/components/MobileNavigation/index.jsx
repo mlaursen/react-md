@@ -21,7 +21,7 @@ export default class DocumentationTabs extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       links: this.makeLinks(props),
