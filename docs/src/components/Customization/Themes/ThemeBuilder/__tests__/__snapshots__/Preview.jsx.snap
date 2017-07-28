@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Preivew should render correctly 1`] = `
+exports[`Preview should render correctly 1`] = `
 <section
   className="md-background--card theme-preview"
 >
@@ -91,7 +91,7 @@ exports[`Preivew should render correctly 1`] = `
 </section>
 `;
 
-exports[`Preivew should render correctly after the drawer has become visible 1`] = `
+exports[`Preview should render correctly after the drawer has become visible 1`] = `
 <section
   class="md-background--card theme-preview"
 >

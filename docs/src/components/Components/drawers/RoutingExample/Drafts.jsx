@@ -32,7 +32,7 @@ pulvinar. Nam vehicula est nec nibh vulputate, vel
 }];
 
 const Drafts = () => (
-  <div className="md-grid">
+  <div className="md-grid md-grid--stacked">
     {messages.map(message => <DraftCard {...message} key={message.title} />)}
   </div>
 );

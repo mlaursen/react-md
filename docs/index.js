@@ -11,15 +11,18 @@ const RAW_LOADER = '!!raw-loader!./';
 const RAW_CLIENT_LOADER = '!!raw-loader!client';
 const RAW_COMPONENT_LOADER = '!!raw-loader!components';
 const RAW_SERVER_LOADER = '!!raw-loader!server';
+const RAW_UTILS_LOADER = '!!raw-loader!utils';
 const CLIENT = path.resolve(process.cwd(), 'src', 'client');
 const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
 const SERVER = path.resolve(process.cwd(), 'src', 'server');
+const UTILS = path.resolve(process.cwd(), 'src', 'utils');
 
 function isCustomLoader(path) {
   return path.indexOf(RAW_LOADER) !== -1
     || path.indexOf(RAW_CLIENT_LOADER) !== -1
     || path.indexOf(RAW_COMPONENT_LOADER) !== -1
-    || path.indexOf(RAW_SERVER_LOADER) !== -1;
+    || path.indexOf(RAW_SERVER_LOADER) !== -1
+    || path.indexOf(RAW_UTILS_LOADER) !== -1;
 }
 
 /**
@@ -42,6 +45,8 @@ hacker.global_hook('raw-loader', (path, module) => {
     filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
   } else if (path.match(RAW_SERVER_LOADER)) {
     filePath = path.replace(RAW_SERVER_LOADER, SERVER);
+  } else if (path.match(RAW_UTILS_LOADER)) {
+    filePath = path.replace(RAW_UTILS_LOADER, UTILS);
   } else {
     const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
     filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;

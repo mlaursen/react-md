@@ -1,4 +1,5 @@
-/* eslint-disable import/prefer-default-export, react/jsx-filename-extension */
+/* eslint-env jest */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { StaticRouter } from 'react-router';
 import { Provider } from 'react-redux';
@@ -9,6 +10,8 @@ import rootReducer from 'state';
 
 /**
  * I'm lazy.
+ *
+ * Could be lazier and do `expectSnapshot` though..
  */
 export function createSnapshot(children) {
   return renderer.create(children).toJSON();
@@ -29,6 +32,9 @@ export function createRouterSnapshot(children, location = '/', context = {}) {
 /**
  * A simple test wrapper to create a snapshot with react-test-renderer and a component that
  * requires the redux provider.
+ *
+ * > It is better to test "pure" components instead of these, so this probably shouldn't
+ * > get used much.
  */
 export function createReduxSnapshot(children, state) {
   const store = createStore(rootReducer, state);
@@ -42,6 +48,9 @@ export function createReduxSnapshot(children, state) {
 /**
  * A simple test wrapper to create a snapshot with react-test-renderer and a component that
  * requires both the redux Provider and something from react-router.
+ *
+ * > It is better to test "pure" components instead of these, so this probably shouldn't
+ * > get used much.
  */
 export function createReduxRouterSnapshot(children, state, location = '/', context = {}) {
   const store = createStore(rootReducer, state);
@@ -123,4 +132,28 @@ export function mountWithRouter(children, location = '/', context = {}) {
       {children}
     </StaticRouter>
   );
+}
+
+/**
+ * A simple wrapper to use enzyme's shallow rendering when the component or a child
+ * requires something from react-redux.
+ *
+ * > It is better to test "pure" components instead of these, so this probably shouldn't
+ * > get used much.
+ */
+export function shallowWithProvider(children, state) {
+  const store = createStore(rootReducer, state);
+  return shallow(<Provider store={store}>{children}</Provider>);
+}
+
+/**
+ * A simple wrapper to use enzyme's mount rendering when the component or a child
+ * requires something from react-redux.
+ *
+ * > It is better to test "pure" components instead of these, so this probably shouldn't
+ * > get used much.
+ */
+export function mountWithProvider(children, state) {
+  const store = createStore(rootReducer, state);
+  return mount(<Provider store={store}>{children}</Provider>);
 }

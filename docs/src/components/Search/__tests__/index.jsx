@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 
-import { renderReduxRouterSnapshot } from 'utils/testing';
+import { renderRouterSnapshot } from 'utils/testing';
 import { PureSearch as Search } from '../';
 
 const PROPS = {
@@ -13,12 +13,12 @@ const PROPS = {
 
 describe('Search', () => {
   it('should render correctly while not searching', () => {
-    const tree = renderReduxRouterSnapshot(<Search {...PROPS} searching={false} />);
+    const tree = renderRouterSnapshot(<Search {...PROPS} searching={false} />);
     expect(tree).toMatchSnapshot();
   });
 
   it('should render correctly while searching', () => {
-    const tree = renderReduxRouterSnapshot(<Search {...PROPS} searching />);
+    const tree = renderRouterSnapshot(<Search {...PROPS} searching />);
     expect(tree).toMatchSnapshot();
   });
 
