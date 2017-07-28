@@ -1,5 +1,6 @@
 /* eslint-env jest*/
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
@@ -13,6 +14,21 @@ import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
 jest.mock('../../utils/DateUtils/DateTimeFormat');
 
 describe('DatePickerHeader', () => {
+  it('merges className', () => {
+    const props = {
+      className: 'test-header-class',
+      calendarTempDate: new Date(2016, 1, 1),
+      locales: 'en-US',
+      changeCalendarMode: jest.fn(),
+      calendarMode: 'year',
+      DateTimeFormat,
+    };
+
+    const header = renderIntoDocument(<DatePickerHeader {...props} />);
+    const node = findDOMNode(header);
+    expect(node.classList.contains(props.className)).toBe(true);
+  });
+
   it('displays a picker control for selecting the year and a picker control for selecting the calendar', () => {
     const props = {
       changeCalendarMode: jest.fn(),

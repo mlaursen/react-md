@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import isMonthBefore from '../utils/DateUtils/isMonthBefore';
 import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
@@ -30,6 +31,36 @@ export default class CalendarHeader extends PureComponent {
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+    /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+    /**
+     * An optional className to apply to the title.
+     */
+    titleClassName: PropTypes.string,
+    /**
+     * The DateTimeFormat options to apply to format the title.
+     */
+    titleFormat: PropTypes.shape({
+      era: PropTypes.oneOf(['narrow', 'short', 'long']),
+      year: PropTypes.oneOf(['numeric', '2-digit']),
+      month: PropTypes.oneOf(['numeric', '2-digit', 'narrow', 'short', 'long']),
+    }),
+    /**
+     * An optional className to apply to a weekday.
+     */
+    weekdayClassName: PropTypes.string,
+    /**
+     * The DateTimeFormat option to apply to format a weekday.
+     */
+    weekdayFormat: PropTypes.oneOf(['narrow', 'short', 'long']),
+  };
+
+  static defaultProps = {
+    firstDayOfWeek: 0,
+    titleFormat: { month: 'long', year: 'numeric' },
+    weekdayFormat: 'narrow',
   };
 
   constructor(props) {
@@ -45,14 +76,15 @@ export default class CalendarHeader extends PureComponent {
     }
   }
 
-  _createState({ DateTimeFormat, locales, date } = this.props) {
-    const sunday = getDayOfWeek(date, 0);
-    const formatter = new DateTimeFormat(locales, { weekday: 'narrow' });
+  _createState({ DateTimeFormat, locales, date, firstDayOfWeek,
+                  titleFormat, weekdayClassName, weekdayFormat } = this.props) {
+    const firstDay = getDayOfWeek(date, firstDayOfWeek);
+    const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat });
     const dows = [];
     for (let i = 0; i < 7; i++) {
-      const dow = formatter.format(addDate(sunday, i, 'D'));
+      const dow = formatter.format(addDate(firstDay, i, 'D'));
       dows.push(
-        <h4 className="md-calendar-date md-text--disabled md-calendar-dow" key={i}>
+        <h4 className={cn('md-calendar-date md-text--disabled md-calendar-dow', weekdayClassName)} key={i}>
           {dow}
         </h4>
       );
@@ -60,7 +92,7 @@ export default class CalendarHeader extends PureComponent {
 
     return {
       dows,
-      title: new DateTimeFormat(locales, { month: 'long', year: 'numeric' }).format(date),
+      title: new DateTimeFormat(locales, titleFormat).format(date),
     };
   }
 
@@ -76,6 +108,7 @@ export default class CalendarHeader extends PureComponent {
       onNextClick,
       nextIconChildren,
       nextIconClassName,
+      titleClassName,
     } = this.props;
 
     const isPreviousDisabled = isMonthBefore(minDate, date);
@@ -92,7 +125,7 @@ export default class CalendarHeader extends PureComponent {
           >
             {previousIconChildren}
           </Button>
-          <h4 className="md-title">{title}</h4>
+          <h4 className={cn('md-title', titleClassName)}>{title}</h4>
           <Button
             icon
             onClick={onNextClick}

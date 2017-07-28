@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import Year from './Year';
 
@@ -9,6 +10,7 @@ import Year from './Year';
  */
 export default class YearPicker extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     calendarTempDate: PropTypes.instanceOf(Date).isRequired,
     onCalendarYearClick: PropTypes.func.isRequired,
     yearsDisplayed: PropTypes.number.isRequired,
@@ -95,7 +97,10 @@ export default class YearPicker extends PureComponent {
     }
 
     return (
-      <section className="md-picker-content md-picker-content--year" ref={this._setContainer}>
+      <section
+        className={cn('md-picker-content md-picker-content--year', this.props.className)}
+        ref={this._setContainer}
+      >
         <ol className="md-years">
           {years}
         </ol>

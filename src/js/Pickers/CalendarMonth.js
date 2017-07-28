@@ -47,11 +47,25 @@ export default class CalendarMonth extends PureComponent {
      * A function to call that will select a new date.
      */
     onCalendarDateClick: PropTypes.func.isRequired,
+
+    /**
+     * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
+     */
+    firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
+     * An optional className to apply to a date.
+     */
+    dateClassName: PropTypes.string,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]).isRequired,
+  };
+
+  static defaultProps = {
+    firstDayOfWeek: 0,
   };
 
   render() {
@@ -64,15 +78,24 @@ export default class CalendarMonth extends PureComponent {
       DateTimeFormat,
       locales,
       className,
+      firstDayOfWeek,
+      dateClassName,
       ...props
     } = this.props;
 
     const days = [];
-    let currentDate = stripTime(getDayOfWeek(new Date(calendarDate).setDate(1), 0));
-    const endDate = stripTime(getDayOfWeek(getLastDay(calendarDate), 6));
+    const firstDay = new Date(calendarDate);
+    firstDay.setDate(1);
+    const lastDay = getLastDay(calendarDate);
+    let currentDate = stripTime(getDayOfWeek(firstDay, 0));
+    let endDate = stripTime(getDayOfWeek(lastDay, 6));
     const activeDate = stripTime(new Date(calendarTempDate));
     const today = stripTime(new Date());
 
+    if (firstDayOfWeek) {
+      currentDate = addDate(currentDate, firstDayOfWeek > firstDay.getDay() ? firstDayOfWeek - 7 : firstDayOfWeek, 'D');
+      endDate = addDate(endDate, firstDayOfWeek > lastDay.getDay() ? firstDayOfWeek - 7 : firstDayOfWeek, 'D');
+    }
     while (currentDate <= endDate) {
       const key = `${currentDate.getMonth()}-${currentDate.getDate()}`;
 
@@ -84,6 +107,7 @@ export default class CalendarMonth extends PureComponent {
         date = (
           <CalendarDate
             key={key}
+            className={dateClassName}
             today={time === today.getTime()}
             active={time === activeDate.getTime()}
             disabled={isMinDateDisabled || isMaxDateDisbaled}

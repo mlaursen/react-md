@@ -1,6 +1,7 @@
 /* eslint-disable new-cap */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import PickerControl from './PickerControl';
 
@@ -11,6 +12,7 @@ import PickerControl from './PickerControl';
  */
 export default class DatePickerHeader extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
       PropTypes.string,
@@ -55,9 +57,9 @@ export default class DatePickerHeader extends PureComponent {
 
   render() {
     const { year, weekday, date } = this.state;
-    const { calendarMode } = this.props;
+    const { calendarMode, className } = this.props;
     return (
-      <header className="md-picker-header">
+      <header className={cn('md-picker-header', className)}>
         <PickerControl onClick={this._selectYear} active={calendarMode === 'year'}>
           <h6 className="md-subheading-1">{year}</h6>
         </PickerControl>
