@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 
 import InlineIcons from '../InlineIcons';
 
 describe('InlineIcons', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<InlineIcons />).toJSON();
+    const tree = createSnapshot(<InlineIcons />);
     expect(tree).toMatchSnapshot();
   });
 });

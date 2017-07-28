@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 
 import DisabledFields from '../DisabledFields';
 
 describe('DisabledFields', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<DisabledFields />).toJSON();
+    const tree = createSnapshot(<DisabledFields />);
     expect(tree).toMatchSnapshot();
   });
 });

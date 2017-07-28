@@ -1,32 +1,32 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 
 import DocumentationPage from '../';
 
 describe('DocumentationPage', () => {
   it('should render correctly based on the loading prop', () => {
-    let tree = renderer.create(<DocumentationPage loading title="Hello" />).toJSON();
+    let tree = createSnapshot(<DocumentationPage loading title="Hello" />);
     expect(tree).toMatchSnapshot();
 
-    tree = renderer.create(
+    tree = createSnapshot(
       <DocumentationPage
         title="Hello"
         loading={false}
       >
         <h1>Hello, World!</h1>
       </DocumentationPage>
-    ).toJSON();
+    );
     expect(tree).toMatchSnapshot();
 
-    tree = renderer.create(
+    tree = createSnapshot(
       <DocumentationPage
         title="Hello"
         loading
       >
         <h1>Hello, World!</h1>
       </DocumentationPage>
-    ).toJSON();
+    );
     expect(tree).toMatchSnapshot();
   });
 });

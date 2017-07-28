@@ -6,17 +6,32 @@ import renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import rootReducer from 'state';
 
+/**
+ * I'm lazy.
+ */
+export function createSnapshot(children) {
+  return renderer.create(children).toJSON();
+}
+
+/**
+ * A simple test wrapper to create a snapshot with react-test-renderer and a component that
+ * uses something from react-router.
+ */
 export function createRouterSnapshot(children, location = '/', context = {}) {
-  return renderer.create(
+  return createSnapshot(
     <StaticRouter location={location} context={context}>
       {children}
     </StaticRouter>
-  ).toJSON();
+  );
 }
 
+/**
+ * A simple test wrapper to create a snapshot with react-test-renderer and a component that
+ * requires the redux provider.
+ */
 export function createReduxSnapshot(children, state) {
   const store = createStore(rootReducer, state);
-  return renderer.create(
+  return createSnapshot(
     <Provider store={store}>
       {children}
     </Provider>

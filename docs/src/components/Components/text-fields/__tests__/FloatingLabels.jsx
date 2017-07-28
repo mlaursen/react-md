@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 
 import FloatingLabels from '../FloatingLabels';
 
 describe('FloatingLabels', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<FloatingLabels />).toJSON();
+    const tree = createSnapshot(<FloatingLabels />);
     expect(tree).toMatchSnapshot();
   });
 });

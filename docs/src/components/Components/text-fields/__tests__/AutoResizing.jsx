@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 
 import AutoResizing from '../AutoResizing';
 
 describe('AutoResizing', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<AutoResizing />).toJSON();
+    const tree = createSnapshot(<AutoResizing />);
     expect(tree).toMatchSnapshot();
   });
 });
