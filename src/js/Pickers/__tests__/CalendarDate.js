@@ -12,6 +12,22 @@ import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
 jest.mock('../../utils/DateUtils/DateTimeFormat');
 
 describe('CalendarDate', () => {
+  it('merges className', () => {
+    const props = {
+      className: 'test-calendar-date-class',
+      DateTimeFormat,
+      locales: 'en-US',
+      date: new Date(2016, 1, 1),
+      disabled: false,
+      onClick: jest.fn(),
+      index: 0,
+    };
+
+    const date = renderIntoDocument(<CalendarDate {...props} />);
+    const node = findDOMNode(date);
+    expect(node.classList.contains(props.className)).toBe(true);
+  });
+
   it('calls the onClick prop with the date prop when not disabled', () => {
     const props = {
       DateTimeFormat,

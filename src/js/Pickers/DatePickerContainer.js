@@ -69,6 +69,31 @@ export default class DatePickerContainer extends PureComponent {
     pickerClassName: PropTypes.string,
 
     /**
+     * An optional className to apply to the header of date picker.
+     */
+    pickerHeaderClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the content container of date picker.
+     */
+    pickerContentClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the footer of date picker.
+     */
+    pickerFooterClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the calendar container of date picker.
+     */
+    calendarClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the year picker of date picker.
+     */
+    yearPickerClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the input tag.
      */
     inputStyle: PropTypes.object,
@@ -415,6 +440,11 @@ export default class DatePickerContainer extends PureComponent {
      * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
      */
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
+     * An optional className to apply to a date in calendar.
+     */
+    calendarDateClassName: PropTypes.string,
 
     /**
      * An optional className to apply to the title in calendar header.
@@ -797,6 +827,9 @@ export default class DatePickerContainer extends PureComponent {
       className,
       pickerStyle,
       pickerClassName,
+      pickerHeaderClassName,
+      pickerContentClassName,
+      pickerFooterClassName,
       inputStyle,
       inputClassName,
       textFieldStyle,
@@ -863,6 +896,9 @@ export default class DatePickerContainer extends PureComponent {
         inline={inline}
         style={pickerStyle}
         className={pickerClassName}
+        headerClassName={pickerHeaderClassName}
+        contentClassName={pickerContentClassName}
+        footerClassName={pickerFooterClassName}
         displayMode={displayMode}
         onCancelClick={this._handleCancelClick}
         onOkClick={this._handleOkClick}

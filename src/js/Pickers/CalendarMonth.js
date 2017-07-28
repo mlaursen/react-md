@@ -47,10 +47,16 @@ export default class CalendarMonth extends PureComponent {
      * A function to call that will select a new date.
      */
     onCalendarDateClick: PropTypes.func.isRequired,
+
     /**
      * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
      */
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
+     * An optional className to apply to a date.
+     */
+    dateClassName: PropTypes.string,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
       PropTypes.string,
@@ -73,6 +79,7 @@ export default class CalendarMonth extends PureComponent {
       locales,
       className,
       firstDayOfWeek,
+      dateClassName,
       ...props
     } = this.props;
 
@@ -100,6 +107,7 @@ export default class CalendarMonth extends PureComponent {
         date = (
           <CalendarDate
             key={key}
+            className={dateClassName}
             today={time === today.getTime()}
             active={time === activeDate.getTime()}
             disabled={isMinDateDisabled || isMaxDateDisbaled}

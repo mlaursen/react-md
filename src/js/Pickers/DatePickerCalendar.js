@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 
 import CalendarMonth from './CalendarMonth';
 import CalendarHeader from './CalendarHeader';
 
 export default class DatePickerCalendar extends PureComponent {
   static propTypes = {
+    className: PropTypes.string,
     previousIconChildren: PropTypes.node,
     previousIconClassName: PropTypes.string,
     onPreviousClick: PropTypes.func.isRequired,
@@ -27,6 +29,11 @@ export default class DatePickerCalendar extends PureComponent {
      * The first day of week: 0 for Sunday, 1 for Monday, 2 for Tuesday, and so on.
      */
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
+
+    /**
+     * An optional className to apply to a date in calendar.
+     */
+    dateClassName: PropTypes.string,
 
     /**
      * An optional className to apply to the title in calendar header.
@@ -55,6 +62,7 @@ export default class DatePickerCalendar extends PureComponent {
 
   render() {
     const {
+      className,
       previousIconChildren,
       previousIconClassName,
       onPreviousClick,
@@ -69,6 +77,7 @@ export default class DatePickerCalendar extends PureComponent {
       minDate,
       maxDate,
       firstDayOfWeek,
+      dateClassName,
       titleClassName,
       titleFormat,
       weekdayClassName,
@@ -76,7 +85,7 @@ export default class DatePickerCalendar extends PureComponent {
     } = this.props;
 
     return (
-      <section className="md-picker-content md-picker-content--calendar">
+      <section className={cn('md-picker-content md-picker-content--calendar', className)}>
         <CalendarHeader
           date={calendarDate}
           minDate={minDate}
@@ -105,6 +114,7 @@ export default class DatePickerCalendar extends PureComponent {
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           firstDayOfWeek={firstDayOfWeek}
+          dateClassName={dateClassName}
         />
       </section>
     );

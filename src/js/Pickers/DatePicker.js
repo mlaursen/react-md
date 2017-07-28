@@ -36,6 +36,36 @@ export default class DatePicker extends PureComponent {
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
 
     /**
+     * An optional className to apply to the header of date picker.
+     */
+    headerClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the content container of date picker.
+     */
+    contentClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the footer of date picker.
+     */
+    footerClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the calendar container of date picker.
+     */
+    calendarClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to the year picker of date picker.
+     */
+    yearPickerClassName: PropTypes.string,
+
+    /**
+     * An optional className to apply to a date in calendar.
+     */
+    calendarDateClassName: PropTypes.string,
+
+    /**
      * An optional className to apply to the title in calendar header.
      */
     calendarTitleClassName: PropTypes.string,
@@ -79,6 +109,12 @@ export default class DatePicker extends PureComponent {
       icon,
       displayMode,
       firstDayOfWeek,
+      headerClassName,
+      contentClassName,
+      footerClassName,
+      calendarClassName,
+      yearPickerClassName,
+      calendarDateClassName,
       calendarTitleClassName,
       calendarTitleFormat,
       calendarWeekdayClassName,
@@ -92,10 +128,12 @@ export default class DatePicker extends PureComponent {
         <DatePickerCalendar
           {...props}
           key="calendar"
+          className={calendarClassName}
           calendarTempDate={calendarTempDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           firstDayOfWeek={firstDayOfWeek}
+          dateClassName={calendarDateClassName}
           titleClassName={calendarTitleClassName}
           titleFormat={calendarTitleFormat}
           weekdayClassName={calendarWeekdayClassName}
@@ -107,6 +145,7 @@ export default class DatePicker extends PureComponent {
         <YearPicker
           {...props}
           key="year"
+          className={yearPickerClassName}
           calendarTempDate={calendarTempDate}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
@@ -138,15 +177,19 @@ export default class DatePicker extends PureComponent {
         }, className)}
       >
         <DatePickerHeader
+          className={headerClassName}
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           calendarTempDate={calendarTempDate}
           calendarMode={calendarMode}
           changeCalendarMode={changeCalendarMode}
         />
-        <div className="md-picker-content-container">
+        <div className={cn('md-picker-content-container', contentClassName)}>
           {picker}
-          <DialogFooter actions={actions} />
+          <DialogFooter
+            className={footerClassName}
+            actions={actions}
+          />
         </div>
       </div>
     );

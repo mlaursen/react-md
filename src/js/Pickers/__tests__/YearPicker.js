@@ -1,5 +1,6 @@
 /* eslint-env jest*/
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedComponentsWithType,
@@ -12,6 +13,19 @@ import Year from '../Year';
 YearPicker.prototype._setContainer = jest.fn();
 
 describe('YearPicker', () => {
+  it('merges className', () => {
+    const props = {
+      className: 'test-year-picker-class',
+      calendarTempDate: new Date(2016, 1, 1),
+      onCalendarYearClick: jest.fn(),
+      yearsDisplayed: 100,
+    };
+
+    const yearPicker = renderIntoDocument(<YearPicker {...props} />);
+    const node = findDOMNode(yearPicker);
+    expect(node.classList.contains(props.className)).toBe(true);
+  });
+
   it('renders the number of years from yearsDisplayed', () => {
     const props = {
       calendarTempDate: new Date(2016, 1, 1),
