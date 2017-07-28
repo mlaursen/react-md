@@ -87,6 +87,7 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 /// The following classes will be created:
 /// - `.md-grid` - The main flex container. You should use this along with the `.md-cell` to get
 /// the correct gutter and margins for a material desing page.
+/// - `md-grid--stacked` - This will allow the grid to be column based instead of row based.
 /// - `.md-grid--no-spacing` - An optional class name to use with the `.md-grid`. When they are used
 /// together, all the margins and spacings will be removed from the grid.
 /// - `.md-cell` - The main container for a column or cell in the grid. If this is used alone, the default
@@ -95,7 +96,8 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
 /// - `.md-cell--right` - This simply applies `margin-left: auto` to a cell. This is basically the same as applying
 /// `float: right` in a row.
 /// - `.md-cell--top` - This aligns the cell to the top of a row.
-/// - `.md-cell--middle` - This aligns the cell to the middle of a row.
+/// - `.md-cell--middle` - This aligns the cell to the middle of a row vertically.
+/// - `.md-cell--center` - This aligns the cell to the center of a row horizontally.
 /// - `.md-cell--bottom` - This aligns the cell to the bottom of a row.
 /// - `.md-cell--stretch` - This aligns the cell to stretch the entire height of a row. This is the default behavior.
 /// - `.md-cell--NUMBER` - This is will allow a cell to span this many columns on all media sizes. When the `NUMBER`
@@ -144,27 +146,39 @@ $md-grid-max-columns: $md-grid-desktop-columns !default;
         }
       }
     }
+
+    &--stacked {
+      flex-direction: column;
+    }
   }
 
-  .md-cell--top {
-    align-self: flex-start;
+  .md-cell {
+    &--top {
+      align-self: flex-start;
+    }
+
+    &--middle {
+      align-self: center;
+    }
+
+    &--center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &--bottom {
+      align-self: flex-end;
+    }
+
+    &--stretch {
+      align-self: stretch;
+    }
+
+    &--right {
+      @extend %md-cell--right;
+    }
   }
 
-  .md-cell--middle {
-    align-self: center;
-  }
-
-  .md-cell--bottom {
-    align-self: flex-end;
-  }
-
-  .md-cell--stretch {
-    align-self: stretch;
-  }
-
-  .md-cell--right {
-    @extend %md-cell--right;
-  }
 
   @if $include-media {
     @include react-md-grid-media;
