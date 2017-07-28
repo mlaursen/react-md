@@ -13,6 +13,11 @@ export default class ExpandableSource extends PureComponent {
   static propTypes = {
     code: PropTypes.string.isRequired,
     oneLineCode: PropTypes.string.isRequired,
+    defaultCollapsed: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    defaultCollapsed: true,
   };
 
   constructor(props) {
@@ -21,7 +26,7 @@ export default class ExpandableSource extends PureComponent {
     this.state = {
       multiline: props.code !== props.oneLineCode,
       height: BUTTON_HEIGHT,
-      collapsed: true,
+      collapsed: props.defaultCollapsed,
     };
   }
 

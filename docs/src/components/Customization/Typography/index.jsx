@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'components/Markdown';
 
-import './_typography.scss';
+import './_styles.scss';
 
 const markdown = `
 # Material Design Typography

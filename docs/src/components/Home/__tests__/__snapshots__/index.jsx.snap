@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render correctly 1`] = `
+<section
+  className="home"
+>
+  <header
+    className="home__banner"
+  >
+    <h1
+      className="md-display-2"
+    >
+      react-md
+    </h1>
+    <div
+      className="home__logo"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "some static content",
+        }
+      }
+    />
+    <a
+      className="md-inline-block md-btn md-btn--raised md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--text"
+      disabled={undefined}
+      href="/components"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type={null}
+    >
+      View Demo
+    </a>
+  </header>
+  <h3
+    className="md-text-container home__about"
+  >
+    This project's goal is to be able to create a fully accessible material design styled website using React Components and Sass. With the separation of styles in Sass instead of inline styles, it should hopefully be easy to create custom components with the existing styles.
+  </h3>
+  <footer
+    className="md-grid home__footer"
+  >
+    <a
+      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      href="/getting-started"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchStart={[Function]}
+    >
+      <div
+        className="md-card-title md-card-title--primary"
+        style={undefined}
+      >
+        <h2
+          className="md-card-title--title md-text md-card-title--large"
+          id={undefined}
+        >
+          Getting Started
+        </h2>
+      </div>
+      <section
+        className="md-media md-media--1-1"
+      >
+        <img
+          alt="A Mac and a Macbook with design mock ups."
+          src="some static content"
+        />
+      </section>
+    </a>
+    <a
+      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      href="/customization"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchStart={[Function]}
+    >
+      <div
+        className="md-card-title md-card-title--primary"
+        style={undefined}
+      >
+        <h2
+          className="md-card-title--title md-text md-card-title--large"
+          id={undefined}
+        >
+          Customization
+        </h2>
+      </div>
+      <section
+        className="md-media md-media--1-1"
+      >
+        <img
+          alt="A chemistry set with material design colors flowing into a text editor."
+          src="some static content"
+        />
+      </section>
+    </a>
+    <a
+      className="md-paper md-paper--1 md-card md-background--card md-cell home__svg-card"
+      href="/components"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onTouchStart={[Function]}
+    >
+      <div
+        className="md-card-title md-card-title--primary"
+        style={undefined}
+      >
+        <h2
+          className="md-card-title--title md-text md-card-title--large"
+          id={undefined}
+        >
+          Customization
+        </h2>
+      </div>
+      <section
+        className="md-media md-media--1-1"
+      >
+        <img
+          alt="A chemistry set with material design colors flowing into a text editor."
+          src="some static content"
+        />
+      </section>
+    </a>
+  </footer>
+</section>
+`;

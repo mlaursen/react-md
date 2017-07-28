@@ -102,6 +102,7 @@
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
+    "enzyme-to-json": "^1.5.1",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-loader": "^1.7.0",
@@ -149,6 +150,7 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js",
       "react-md/(.*)": "<rootDir>/../$1"
-    }
+    },
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }

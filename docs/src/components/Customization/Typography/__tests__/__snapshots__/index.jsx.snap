@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography should render correctly 1`] = `
+<div
+  className="md-grid"
+>
+  <div
+    className="md-cell md-cell--12"
+  >
+    <section
+      className="md-text-container typography-container"
+    >
+      <article
+        className="markdown-container"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<h1 id=\\"material-design-typography\\">Material Design Typography</h1>
+          <p>The typography has been built off of the <a href=\\"https://www.google.com/design/spec/style/typography.html\\" class=\\"link\\">typography specs</a>.
+          The default font used in react-md is <code>&#39;Roboto&#39;</code>. This can be changed by overriding
+          <a href=\\"/customization/typography?tab=1#variable-md-font-name\\" class=\\"link\\">$md-font-name</a> and/or
+          <a href=\\"/customization/typography?tab=1#variable-md-font-family\\" class=\\"link\\">$md-font-family</a> before <code>@include react-md-everything</code>
+          or <code>@include react-md-typography</code>.</p>
+          <p>The base html tags will be modified by default unless you set the sass variable <code>$md-typography-extended</code>
+          to <code>false</code>. The tags will be implemented as:</p>
+          <ul>
+          <li><code>h1</code> - <code>.md-display-1</code></li>
+          <li><code>h2</code> - <code>.md-headline</code></li>
+          <li><code>h3</code> - <code>.md-title</code></li>
+          <li><code>h4</code> - <code>.md-subheading-2</code></li>
+          <li><code>h5</code> - <code>.md-subheading-1</code></li>
+          <li><code>h6</code> - <code>.md-body-2</code></li>
+          <li><code>p</code> - <code>.md-body-1</code></li>
+          <li><code>caption</code> - <code>.md-caption</code></li>
+          </ul>
+          <p>All the class names in order of largest to smallest are:
+          <code>.md-display-4</code>, <code>.md-display-3</code>, <code>.md-display-2</code>, <code>.md-display-1</code>, <code>.md-headline</code>,
+          <code>.md-title</code>, <code>.md-subheading-2</code>, <code>.md-subheading-1</code>, <code>.md-body-2</code>, <code>.md-body-1</code>,
+          and <code>.md-caption</code>.</p>
+          <h4 id=\\"examples\\">Examples</h4>
+          ",
+          }
+        }
+      />
+      <h1
+        className="md-display-4"
+      >
+        md-display-4
+      </h1>
+      <h2
+        className="md-display-3"
+      >
+        md-display-3
+      </h2>
+      <h3
+        className="md-display-2"
+      >
+        md-display-2
+      </h3>
+      <h4
+        className="md-display-1"
+      >
+        md-display-1
+      </h4>
+      <h5
+        className="md-headline"
+      >
+        md-headline
+      </h5>
+      <h6
+        className="md-title"
+      >
+        md-title
+      </h6>
+      <h6
+        className="md-subheading-2"
+      >
+        md-subheading-2
+      </h6>
+      <h6
+        className="md-subheading-1"
+      >
+        md-subheading-1
+      </h6>
+      <p
+        className="md-body-2"
+      >
+        md-body-2: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis finibus sapien nec tellus ornare, quis fringilla nibh sodales. Maecenas blandit leo at sem commodo, quis mattis augue bibendum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis efficitur viverra. Quisque nec ipsum ut ex feugiat congue. Nam vehicula risus in ex viverra, quis condimentum nulla tincidunt. Fusce sed lectus gravida, mattis metus non, dignissim massa. Donec placerat nulla metus. Praesent fringilla lectus vel velit congue consequat. Phasellus augue nisi, iaculis sit amet neque nec, viverra varius nisi.
+      </p>
+      <p
+        className="md-body-1"
+      >
+        md-body-1: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus nisl eget nisl blandit ornare. Integer id sodales tellus. Phasellus imperdiet mollis laoreet. Etiam accumsan lorem ac elit euismod rhoncus quis vel felis. Etiam ex lorem, scelerisque at tellus at, rhoncus egestas nulla. Curabitur elementum quis lectus vitae porta. Pellentesque dignissim velit ac arcu volutpat euismod. Donec tempus a dui in blandit. Curabitur commodo eget risus at fringilla. Aliquam in vestibulum mauris. Morbi ultricies purus vitae fringilla iaculis.
+      </p>
+      <table
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+        <caption
+          className="md-caption md-text-left"
+        >
+          md-caption: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tincidunt ligula, sed suscipit dolor aliquet at. Nunc quis ex a turpis dapibus aliquam ac ut ipsum. Maecenas dictum, felis at sagittis semper, turpis dui lobortis sapien, ac gravida turpis turpis vel orci. Fusce mollis tortor et mauris facilisis pharetra. Nunc gravida odio non metus pharetra, ac tempus nisl eleifend. Praesent odio ex, lobortis sed egestas vel, gravida in justo. Mauris suscipit sodales vehicula. Duis non enim scelerisque, venenatis eros eu, scelerisque nulla. Duis elementum turpis ipsum, ut imperdiet magna pulvinar sed. Ut luctus lorem non eros ullamcorper, ut posuere nulla varius. Nunc lacus leo, euismod at augue aliquet, scelerisque facilisis turpis. Nunc diam lacus, accumsan eget blandit id, faucibus nec velit. Aliquam sollicitudin hendrerit augue, id facilisis ex dapibus vitae. Vestibulum vehicula erat eu eros viverra, eget pretium nisi porttitor. Donec ornare, nibh laoreet facilisis viverra, augue elit tincidunt diam, vel aliquam magna quam vel nunc. Vivamus mauris justo, elementum non rutrum quis, interdum vitae justo.
+        </caption>
+      </table>
+      <h2>
+        Helper Classes
+      </h2>
+      <article
+        className="markdown-container"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>If the <code>$md-typography-include-utilities</code> variable is <code>true !default</code>, the following utility
+          class names will be created:</p>
+          <ul>
+          <li><code>.md-text-left</code> - aligns text left</li>
+          <li><code>.md-text-center</code> - aligns text center</li>
+          <li><code>.md-text-right</code> - aligns text right</li>
+          <li><code>.md-text-justify</code>, - aligns text by justify</li>
+          <li><code>.md-text-capitalize</code> - capitlizes the text</li>
+          <li><code>.md-text-uppercase</code> - uppercases the text</li>
+          <li><code>.md-text-lowercase</code> - lowercases the text</li>
+          <li><code>.md-text-nowrap</code> - does not allow line breaks</li>
+          <li><code>.md-text-no-select</code> - Does not allow use-select</li>
+          <li><code>.md-font-light</code> - the material design light font weight.</li>
+          <li><code>.md-font-regular</code> - the material design regular font weight.</li>
+          <li><code>.md-font-medium</code> - the material design medium font weight.</li>
+          <li><code>.md-font-bold</code> - the material design bold font weight.</li>
+          </ul>
+          <p>If the <code>$md-typography-include-text-container</code> variable is <code>true !default</code>, a <code>md-text-container</code>
+          class name will be created to position text in the center of the page and keep the line length within
+          the <code>$md-typography-max-line-length</code> value.</p>
+          ",
+          }
+        }
+      />
+    </section>
+  </div>
+</div>
+`;

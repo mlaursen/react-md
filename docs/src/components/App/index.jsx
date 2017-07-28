@@ -136,11 +136,8 @@ export default class App extends PureComponent {
       location: { pathname },
     } = this.props;
 
-    let tabs;
     let bottomNav;
-    if (!mobile && toolbarProminent) {
-      tabs = <DocumentationTabs key="tabs" />;
-    } else if (mobile && pathname.startsWith('/components')) {
+    if (mobile && pathname.startsWith('/components')) {
       bottomNav = <MobileNavigation key="bottom-navigation" />;
     }
 
@@ -157,7 +154,7 @@ export default class App extends PureComponent {
         })}
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
         toolbarProminent={!mobile && toolbarProminent}
-        toolbarChildren={tabs}
+        toolbarChildren={<DocumentationTabs visible={!mobile && toolbarProminent} />}
         toolbarActions={<Search key="search" />}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {

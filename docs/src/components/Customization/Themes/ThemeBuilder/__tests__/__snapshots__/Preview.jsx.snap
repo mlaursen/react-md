@@ -6,12 +6,14 @@ exports[`Preivew should render correctly 1`] = `
 >
   <header
     className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed"
+    id="theme-builder-preview-toolbar"
     style={undefined}
   >
     <button
       className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
       disabled={undefined}
       href={undefined}
+      id="theme-builder-preview-drawer-toggle"
       onClick={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
@@ -32,7 +34,7 @@ exports[`Preivew should render correctly 1`] = `
     </button>
     <h2
       className="md-title md-title--toolbar"
-      id={undefined}
+      id="theme-builder-preview-toolbar-title"
       style={undefined}
     >
       Theme Preview
@@ -50,6 +52,7 @@ exports[`Preivew should render correctly 1`] = `
       className="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text theme-preview__btn"
       disabled={undefined}
       href={undefined}
+      id="theme-builder-preview-btn"
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}
@@ -67,6 +70,7 @@ exports[`Preivew should render correctly 1`] = `
     className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
     disabled={undefined}
     href={undefined}
+    id="theme-builder-preview-floating-btn"
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
@@ -80,6 +84,148 @@ exports[`Preivew should render correctly 1`] = `
     <i
       className="md-icon material-icons"
       style={undefined}
+    >
+      email
+    </i>
+  </button>
+</section>
+`;
+
+exports[`Preivew should render correctly after the drawer has become visible 1`] = `
+<section
+  class="md-background--card theme-preview"
+>
+  <span>
+    <div
+      class="md-overlay md-overlay--drawer md-pointer--hover md-overlay--active"
+    />
+  </span>
+  <header
+    class="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed"
+    id="theme-builder-preview-toolbar"
+  >
+    <button
+      class="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      id="theme-builder-preview-drawer-toggle"
+      type="button"
+    >
+      <i
+        class="md-icon material-icons"
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      class="md-title md-title--toolbar"
+      id="theme-builder-preview-toolbar-title"
+    >
+      Theme Preview
+    </h2>
+  </header>
+  <div
+    class="md-grid md-toolbar-relative"
+  >
+    <h2
+      class="md-display-1 md-cell md-cell--12"
+    >
+      Look at this
+    </h2>
+    <button
+      class="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text theme-preview__btn"
+      id="theme-builder-preview-btn"
+      type="button"
+    >
+      Button
+    </button>
+  </div>
+  <nav
+    class="md-paper md-paper--5 md-drawer md-drawer--left md-drawer--fixed md-drawer--active md-transition--decceleration md-background--card"
+    id="theme-builder-preview-drawer"
+  >
+    <header
+      class="md-paper md-paper--0 md-toolbar"
+      id="theme-builder-preview-drawer-toolbar"
+    >
+      <h2
+        class="md-title md-title--toolbar"
+        id="theme-builder-preview-drawer-toolbar-title"
+      >
+        Theme Preview
+      </h2>
+    </header>
+    <ul
+      class="md-list md-list--drawer md-toolbar-relative"
+      id="theme-builder-preview-drawer-nav-items"
+    >
+      <li
+        class="md-list-item"
+      >
+        <div
+          aria-pressed="false"
+          class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-text"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="md-tile-content"
+          >
+            <div
+              class="md-tile-text--primary md-text"
+            >
+              Woop woop
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        class="md-list-item"
+      >
+        <div
+          aria-pressed="false"
+          class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-text"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="md-tile-content"
+          >
+            <div
+              class="md-tile-text--primary md-text"
+            >
+              That's the sound
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        class="md-list-item"
+      >
+        <div
+          aria-pressed="false"
+          class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-list-tile md-text"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="md-tile-content"
+          >
+            <div
+              class="md-tile-text--primary md-text"
+            >
+              Of the Police
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <button
+    class="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+    id="theme-builder-preview-floating-btn"
+    type="button"
+  >
+    <i
+      class="md-icon material-icons"
     >
       email
     </i>
