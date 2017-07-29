@@ -91,6 +91,7 @@ exports[`Search should render correctly while searching 1`] = `
   </div>
   <button
     class="md-inline-block md-btn md-btn--icon md-pointer--hover"
+    id="documentation-search-hide"
     type="button"
   >
     <i

@@ -157,3 +157,27 @@ export function mountWithProvider(children, state) {
   const store = createStore(rootReducer, state);
   return mount(<Provider store={store}>{children}</Provider>);
 }
+
+/**
+ * A utility function that will override the console's behavior and throw errors
+ * if console.error occurs. This is useful when you want to consider React warnings
+ * as failures.
+ */
+export function captureConsole(match = null) {
+  const console = global.console;
+
+  beforeAll(() => {
+    global.console = {
+      ...console,
+      error: (error) => {
+        if (match === null || error.match(match)) {
+          throw new Error(error);
+        }
+      },
+    };
+  });
+
+  afterAll(() => {
+    global.console = console;
+  });
+}

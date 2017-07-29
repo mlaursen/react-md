@@ -1,9 +1,20 @@
 import React from 'react';
-import { MarkdownPage } from 'components/Markdown';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
+import Tabs from 'react-md/lib/Tabs/Tabs';
+import Tab from 'react-md/lib/Tabs/Tab';
+
+import Markdown from 'components/Markdown';
 
 import testing from '!!raw-loader!utils/testing.js';
-import preview from '!!raw-loader!components/Customization/Themes/ThemeBuilder/__tests__/Preview.jsx';
-import search from '!!raw-loader!components/Search/__tests__/index.jsx';
+
+import Preview from '!!raw-loader!components/Customization/Themes/ThemeBuilder/Preview.jsx';
+import PreviewTest from '!!raw-loader!components/Customization/Themes/ThemeBuilder/__tests__/Preview.jsx';
+import Search from '!!raw-loader!components/Search/index.jsx';
+import SearchTest from '!!raw-loader!components/Search/__tests__/index.jsx';
+
+import './_styles.scss';
 
 const markdown = `
 # Testing with react-md
@@ -58,17 +69,32 @@ ${testing}
 
 ### In Action
 Here are a couple of tests that use the utility functions.
-
-\`\`\`jsx
-/* src/components/Customization/Customization/Themes/ThemeBuilder/__tests__/Preview.jsx */
-${preview}
-\`\`\`
-
-\`\`\`jsx
-/* src/components/Search/__tests__/index.jsx */
-${search}
-\`\`\`
 `;
 
-const Testing = () => <MarkdownPage markdown={markdown} />;
-export default Testing;
+const Testing = ({ mobile }) => (
+  <section className="md-grid md-grid--stacked testing">
+    <Markdown markdown={markdown} component="div" className="md-cell md-cell--12 md-text-container" />
+    <TabsContainer colored className="md-text-container source-code">
+      <Tabs tabId="source-code" mobile={mobile} overflowMenu>
+        <Tab label="Preview.jsx">
+          <Markdown markdown={`\`\`\`jsx\n${Preview}\n\`\`\``} />
+        </Tab>
+        <Tab label="Preview.test.jsx">
+          <Markdown markdown={`\`\`\`jsx\n${PreviewTest}\n\`\`\``} />
+        </Tab>
+        <Tab label="Search.jsx">
+          <Markdown markdown={`\`\`\`jsx\n${Search}\n\`\`\``} />
+        </Tab>
+        <Tab label="Search.test.jsx">
+          <Markdown markdown={`\`\`\`jsx\n${SearchTest}\n\`\`\``} />
+        </Tab>
+      </Tabs>
+    </TabsContainer>
+  </section>
+);
+
+Testing.propTypes = {
+  mobile: PropTypes.bool,
+};
+
+export default connect(({ media: { mobile, tablet } }) => ({ mobile: mobile || tablet }))(Testing);
