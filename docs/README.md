@@ -5,8 +5,13 @@ and examples.
 Table of Contents
 =====
 * [Getting Started](#getting-started)
-* [About](#about)
 * [Contributing](#contributing)
+* [About](#about)
+  * [Development startup time](#development-startup-time)
+  * [Testing SSR](#testing-ssr)
+  * [Making a better server](#making-a-better-server)
+  * [Long term caching](#long-term-caching)
+  * [Quick Response Times](#quick-response-times)
 * [Scripts](#scripts)
 * [Production Stack](#production-stack)
   * [SSL Certs](#ssl-certs)
@@ -124,21 +129,31 @@ it in action.
 Sadly, there is another step that is needed for all of this. When your page is rendered from the server, you will need to inline the webpack
 manifest to help with these chunk loads. Checkout the [renderHtmlPage.js](src/server/utils/renderHtmlPage.js) for some more info on that.
 
-#### Screen flashing part 2 (styles)
+#### Screen flashing (Part Two: Styles)
 The next step was to fix the weird delay when a user uses a custom style from the Theme Builder page. I ended up holding the custom styles
 in the `localStorage` of the client. This basically meant that the page had to render, then do logic client side to figure out if they had
 a custom theme. If they did, I would have to update create a new `<link>` with the custom `href` and inject into the head after the initial
 load. This would cause the base styles to be loaded and then flash with the new colors afterwards. I managed to fix this issue by using
 [react-helmet](https://github.com/nfl/react-helmet) and switching to cookies instead of `localStorage`. Now that the server has access to the
-theme before rendering, I can get `react-helment` to create the custom `<link>` tag at initial render. Pretty neat stuff!
+theme before rendering, I can get `react-helmet` to create the custom `<link>` tag at initial render. Pretty neat stuff!
 
 > See more about `react-helmet` in next section
+
+Some other problems that happened are related to the `ExtractTextPlugin` for webpack. Something that I didn't understand for awhile is that
+if the `allChunks` option was not enabled, all the styles would be dynamically loaded and injected after the javascript loads. This was pretty
+terrible when most of my additional styles were small and had no reason to be dynamically loaded. This "feature" is probably super nice when
+you create all your styles from the ground up, but when you are using an already existing framework/library for styles, it causes a lot of
+page repaints and flashing while these styles are loaded.
 
 #### Better SEO
 Part of the problem with the first server is that the page's title was always the same for each page you were on. It wasn't very helpful
 when glancing at your tabs to tell what you were looking at. With this server, I used `react-helmet` to dynamically update the page's title
 based on the route to give some more context. It is now possible to tell if you are on the home page of react-md, looking at a component's
 example/prop type/sassdoc page.
+
+Some other things I changed are that I now attempt to support some of the [Open Graph Protocol](http://ogp.me/) so that react-md can
+be linked in other sites with some nice content. This wasn't too big and I haven't fully tested it to see if it did anything since
+I don't really use Facebook or Twiiter. Oh well.
 
 ### Long term caching
 Webpack is hard. (Again)
@@ -170,7 +185,53 @@ Now how do you handle production builds? How can I make sure that my latest chan
 show up on the client since the browser caches data? How do I add css/sass/less? How do I hot reload?
 How do I hot reload styles?
 
-## Contributing
+Well, now that some more time has passed, [create-react-app](https://github.com/facebookincubator/create-react-app) _is_
+probably the way to go for most of these things since it has gotten a lot better since the first few releases. There
+is still no native Sass/SCSS support, so you need to create additional tasks to watch with `node-sass` so it gets added to
+your app. This is _ok_, but you lose the benefits of having webpack do resolutions for you.
+
+One of the weird problems I've been running into lately is that my styles are being imported in reverse order by the
+`ExtractTextWebpackPlugin`, so the `react-md` style overrides require an extra layer of selector precedence to override.
+No idea what caused it :/
+
+Anyways, back to long term caching. There is the great feature in `webpack` to automatically create hashes on your chunks
+and entry points so that after you do a build, your file names have changed and your changes will be guaranteed to show up
+when a user visits your page. However, this ruins your long term caching since this is not based on content in those files
+for the hash and each build will generate new hashes even if the content didn't change.
+
+I ended up following a [couple](https://survivejs.com/webpack/optimizing/separating-manifest/)
+[of](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31)
+[articles](https://webpack.js.org/guides/caching/) about this and endup going with:
+- using the `WebpackMd5Hash` plugin
+- using the `ManifestPlugin`
+- using the `HashedModuleIdsPlugin`
+- extracting the `manifest` code
+- inline the `webpack manifest` when being server rendered.
+
+The webpack config was updated to include [these lines](webpack.config.js#L40-L48) for longer hashing and my server rendered
+page [inlined the manifiest](src/server/utils/renderHtmlPage.js#L5-L21) in the [head](src/server/utils/renderHtmlPage.js#L99).
+This actually allowed for some better bundle loading support and extracting some of the common code out again for smaller bundles.
+
+### Quick Response Times
+One of the other goals of this was to get some better response time. This hasn't fully been updated, but I ended up adding service workers
+to do additional caching of assets throughout the website. The whole Service Worker thing was a pain though since most of the examples
+and tutorials are not about handling server rendered pages (who needs em now anyways?). `create-react-app` has been updated somewhat recently
+to include service workers by default using the [sw-precache-webpack-plugin](https://github.com/goldhand/sw-precache-webpack-plugin) which
+uses [sw-precache](https://github.com/GoogleChrome/sw-precache) that was created by Google. This plugin is pretty cool since it does most of
+the work for you by analyzing your webpack output files and bundles and automatically runs the `sw-precache` script with these assets to cache.
+
+This is really neat until you need to support server rendered pages. There is a `navigateFallback: PUBLIC_PATH + 'index.html'` option which
+_seems_ amazing until you want to deal with subsequent visits. If the page is server rendered, you no longer get those benefits and your
+`index.html` file is served instead. Once again, this is fine if you are doing client only stuff. Now I started wondered "how in the world can
+I get offline access to my website now?".
+
+There is another feature in the `sw-precache-webpack-plugin` that allows you to import other scripts to be used by the Service Worker. I was
+**really** hoping this would be the fix, but alas it did not work quite as expected. The `importScripts` can contain a `chunkName` or a `fileName`
+to be imported by the Service Worker so you get all the compilation minification through webpack and then it is loaded via the loader. Unfortunately
+this doesn't work since the manifest was extracted and the service worker fails. **sigh**
+
+I ended up "fixing" this by creating a small [SWOfflinePlugin](src/utils/SWOfflinePlugin.js) that transpiles the code, minifies it, and then writes
+it to the output directory. It isn't super ideal since I don't know how to trigger events correctly yet for displaying offline or normal modes.
 
 ## Scripts
 * [clean](#clean)
