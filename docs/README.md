@@ -8,13 +8,17 @@ Table of Contents
 * [About](#about)
 * [Contributing](#contributing)
 * [Scripts](#scripts)
+* [Production Stack](#production-stack)
+  * [SSL Certs](#ssl-certs)
+  * [nginx](#nginx)
+  * [pm2](#pm2)
 
 ## Getting Started
 This repo uses `yarn` instead of `npm` as the package manager. If you use npm,
 it might not work as expected.
 
 ```bash
-mlaursen @ ~/code/react-md/documentation
+mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
 $ vim .env              # change port to whatever you want
@@ -22,7 +26,149 @@ $ yarn dev              # watch react-md source changes and run dev server
 $ yarn dev:all          # watch all changes and run dev server
 ```
 
+> See the [scripts](#scripts) section for all of the other available commands
+
+## Contributing
+
 ## About
+This documentation server is probably over-engineered for the amount of traffic I'll get, but it was a neat learning
+experience. Some of the things I wanted to solve with this server compared to my previous ones were:
+- easier dev startup
+- not needing to create additional webpack watchers to run the server
+- easier way to test server side rendering
+- prevent the screen "flashing" after coming from server side rendering
+- load page with custom styles initially
+- better SEO
+- quicker response time
+- long-term caching of static assets
+
+### Development startup time
+Before this version, I thought I was "smart" by having a separate server for the api calls to get the documentation
+and another server for handling the server side rendering and pre-fetching data. This actually ended up causing a
+lot of problems since I also had to transpile all the server code so it could be run on older versions of node. A
+typical "dev" setup while adding new features for react-md was opening 5 terminals/tabs and running:
+
+```bash
+mlaursen @ ~/code/react-md
+$ yarn scripts:watch
+
+# Next tab
+mlaursen @ ~/code/react-md/api
+$ yarn build:watch
+
+# Next tab
+mlaursen @ ~/code/react-md/api
+$ yarn dev
+
+# Next tab
+mlaursen @ ~/code/react-md/docs
+$ yarn build:watch
+
+# Next tab
+$ yarn start:dev
+```
+
+Whew. And if I ever wanted to run automated tests, I would need another terminal or tab to run the test watcher command!
+Now I have a single script that can do everything needed for watching updates, restarted the server on changes, etc. I do
+normally go with a 3 tab approach still by doing:
+
+```bash
+mlaursen @ ~/code/react-md
+$ yarn scripts:watch
+
+# Next tab
+mlaursen @ ~/code/react-md/docs
+$ yarn start:dev
+
+# Final tab switches between base and docs directories to run tests
+```
+
+This could technically be done with the `yarn dev` script, but one of the problems is that I can't send the `rs` (restart) signal
+to nodemon to restart the server with this because it uses `concurrently` behind the scenes. If I can figure out a way to use that
+and still send keyboard commands to one of the scripts, all would be set.
+
+This was mostly fixed by using [webpack-isomorphic-tools](https://github.com/catamphetamine/webpack-isomorphic-tools) with my server.
+There are probably better wasy of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
+at the time so I never bothered learning. (_I'm so sorry_)
+
+### Testing SSR
+One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
+with the production build is that it doesn't warn you when the markdup is different between client and server, so this wasn't ideal.
+I ended up making some additional changes to the webpack configs to allow a "development" version of the production build, and it was
+pretty hacky.
+
+Just like above, switching to `webpack-isomorphic-tools` was part of the solution as well as adding a variable to the `.env` file
+to switch between the two. The server will now automatically restart with no additional watchers when the value is changed.
+
+### Making a better server
+Webpack is hard. (See more in [Long term caching](#long-term-caching))
+
+#### Screen flashing
+Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
+that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
+you split up your code and you already have `React` rendering your page! While the browser is loading your additional chunks required
+for your page, react will have erased the DOM with what it has avaialbe and then render it again once they have loaded. Ugh. You now
+get an amazing screen "flash" because of this. Before webpack 2, this was pretty hard to fix. Luckily webpack 2 introduced a way to
+name dynamic imports with the "magic comment" `/* webpackChunkName: MyDynamicModule */`. This is super helpful because you can use
+this along with the `manifest.json` that can be created by webpack so that you can load all the bundles for a page before calling
+the first `ReactDOM.render()` in your app. This works great with `react-router@4` since you can use the `StaticRouter` to figure out
+which bundles need to be loaded, and pass it to the client.
+
+To help with this, I ended up making a [syncComponent](src/utils/syncComponent.js) and [asyncComponent](src/utils/asyncComponent.js)
+HOC. The syncronous component (which should be used by the server) will update the `staticContext` provided by the `StaticRouter` and
+push the `chunkName` to a list of bundles that need to be loaded before the page can render. This can be seen in the [routes/sync](src.routes/sync.js)
+and [routes/async](src/routes/async.js) files. With all this set up, the final things are just to provide the list of bundles to the client
+in a "hidden" window variable, load all the bundles, and then render `React`. Here is the updated [client/index.jsx](src/client/index.jsx) file to show
+it in action.
+
+Sadly, there is another step that is needed for all of this. When your page is rendered from the server, you will need to inline the webpack
+manifest to help with these chunk loads. Checkout the [renderHtmlPage.js](src/server/utils/renderHtmlPage.js) for some more info on that.
+
+#### Screen flashing part 2 (styles)
+The next step was to fix the weird delay when a user uses a custom style from the Theme Builder page. I ended up holding the custom styles
+in the `localStorage` of the client. This basically meant that the page had to render, then do logic client side to figure out if they had
+a custom theme. If they did, I would have to update create a new `<link>` with the custom `href` and inject into the head after the initial
+load. This would cause the base styles to be loaded and then flash with the new colors afterwards. I managed to fix this issue by using
+[react-helmet](https://github.com/nfl/react-helmet) and switching to cookies instead of `localStorage`. Now that the server has access to the
+theme before rendering, I can get `react-helment` to create the custom `<link>` tag at initial render. Pretty neat stuff!
+
+> See more about `react-helmet` in next section
+
+#### Better SEO
+Part of the problem with the first server is that the page's title was always the same for each page you were on. It wasn't very helpful
+when glancing at your tabs to tell what you were looking at. With this server, I used `react-helmet` to dynamically update the page's title
+based on the route to give some more context. It is now possible to tell if you are on the home page of react-md, looking at a component's
+example/prop type/sassdoc page.
+
+### Long term caching
+Webpack is hard. (Again)
+
+Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correctl loader for
+your filetype and you're set!
+
+```js
+import path from 'path';
+
+export default {
+  entry: 'src/index.jsx',
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js',
+  },
+};
+```
+
+and you're all set!
+
+...
+...
+...
+
+sorta.
+
+Now how do you handle production builds? How can I make sure that my latest changes will actually
+show up on the client since the browser caches data? How do I add css/sass/less? How do I hot reload?
+How do I hot reload styles?
 
 ## Contributing
 
@@ -176,3 +322,66 @@ This will run tests only for the documentation server.
 
 ### test:watch
 This will run the tests in jest watch mode.
+
+## Production Stack
+When running the react-md.mlaursen.com website for production, my setup is as follows:
+- Amazon Linux Micro EC2 Instance
+- [letsencrypt](https://letsencrypt.org/) [certbot](https://certbot.eff.org/) for auto SSL cert renewal
+- nginx for reverse proxying, SSL, and serving static assets
+- express for server side rendering
+- [pm2](https://github.com/Unitech/pm2) for running the servers as background processes
+
+### SSL Certs
+One of the problems of using the Amazon Linux instance is that certbot has **very** limited support
+with it, so it constantly breaks. If the certbot decides to update itself or any security updates
+from Amazon, certbot will most likely stop working.
+
+Here are the initial steps of getting cerbot setup:
+```bash
+$ wget https://dl.eff.org/certbot-auto
+$ chmod a+x certbot-auto
+$ sudo su -
+$ mv certbot-auto /usr/local/bin/
+```
+
+Once it has been moved to your bin, you can set up new certs with:
+
+```bash
+$ sudo su -
+$ certbot-auto certonly \
+    --debug \
+    --standalone \
+    -d HOSTNAME.com \
+    --pre-hook="service nginx stop" \
+    --post-hook="service nginx start"
+```
+
+or renew all certs:
+```bash
+$ sudo su -
+$ certbot-only renew \
+    --no-self-upgrade
+    --debug \
+    --pre-hook="service nginx stop" \
+    --post-hook="service nginx start"
+```
+
+> --debug is the important part. It won't work otherwise.
+
+I end up creating the renewal script to be run twice daily via a cron job.
+
+When certbot breaks, [this thread](https://github.com/certbot/certbot/issues/2872#issuecomment-297845668) and comment
+is a good resource. The linked comment has worked the last 2 times it has broken.
+
+### nginx
+Right now, I am using nginx to handle the majority of the heavy networking. It has been set up
+to handle the gzipping of static content, caching and serving static assets as well as handling
+the virtual hosts + SSL certs. All of this _could_ be done via express and additional modules,
+but nginx is quite more performant than the node counterparts.
+
+The nginx config files I use can be found in the [nginx folder](src/nginx) if this is interesting.
+
+### pm2
+I end up running the current and next versions of the react-md documentation websites with pm2.
+There are probably other ways to run node web servers as processes, but this is the easiest way
+so far.

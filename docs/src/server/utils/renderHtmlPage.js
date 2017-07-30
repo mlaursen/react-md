@@ -51,7 +51,7 @@ const META = [{
   name: 'twitter:title',
   content: 'react-md - Accessible React Material Design Components',
 }, {
-  name: 'twitter.image',
+  name: 'twitter:image',
   content: '/react-md.png',
 }].reduce((allMeta, meta) => `${allMeta}<meta${Object.keys(meta).reduce((s, key) => `${s} ${key}="${meta[key]}"`, '')}>`, '');
 
