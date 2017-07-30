@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -6,14 +7,15 @@ import { Provider } from 'react-redux';
 import App from 'components/App';
 import * as Routes from 'routes';
 import { updateLocale } from 'state/locale';
+import { updateCustomTheme } from 'state/helmet';
 
+import registerServiceWorker from './registerServiceWorker';
 import configureStore from './configureStore';
 
 import './styles.scss';
 
 const store = configureStore(window.__INITIAL_STATE__);
 const locale = window.navigator.userLanguage || window.navigator.language || 'en-US';
-store.dispatch(updateLocale(locale));
 
 function loadIntl() {
   if (!global.Intl) {
@@ -35,10 +37,10 @@ function loadIntl() {
 }
 
 (async function renderApp() {
-  if (__DEV__) {
-    const { updateCustomTheme } = require('state/helmet'); // eslint-disable-line global-require
+  if (!navigator.onLine || __DEV__) {
     store.dispatch(updateCustomTheme(store.getState().theme.href));
   }
+  store.dispatch(updateLocale(locale));
 
   const bundles = window.__WEBPACK_BUNDLES__ || [];
   await Promise.all(bundles.map(chunk => Routes[chunk].loadComponent()));
@@ -55,4 +57,6 @@ function loadIntl() {
     </AppContainer>,
     root
   );
+
+  registerServiceWorker();
 }());

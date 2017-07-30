@@ -21,6 +21,8 @@ window.webpackManifest = ${JSON.stringify(manifestJSON)}
 }
 
 const META = [{
+  charset: 'utf-8',
+}, {
   name: 'viewport',
   content: 'width=device-width, initial-scale=1, shrink-to-fit=no',
 }, {
@@ -66,9 +68,10 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += head.meta.toString();
   page += META;
   page += head.link.toString();
+  page += '<link rel="manifest" href="/manifest.json">';
   page += '<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">';
 
-  const styleKeys = Object.keys(assets.styles);
+  const styleKeys = Object.keys(assets.styles).reverse();
   if (__DEV__ && !styleKeys.length) {
     // this should really be every scss file, but I just need the base styles
     // const styles = require('../../client/styles.scss')._style;
@@ -107,12 +110,13 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   ).join('');
   page += head.script.toString();
   if (!__DEV__) {
+    // google analytics
     page += '<script>';
     page += '(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){';
     page += '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),';
     page += 'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)';
     page += '})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');';
-    page += `ga('create', '${process.env.ANALYTICS_CODE || 'UA-76079335-1'}', 'auto');`;
+    page += `ga('create', '${process.env.GOOGLE_ANALYTICS_CODE || 'UA-76079335-1'}', 'auto');`;
     page += 'ga(\'send\', \'pageview\');';
     page += '</script>';
   }

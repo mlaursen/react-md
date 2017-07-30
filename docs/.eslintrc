@@ -8,7 +8,9 @@
   "globals": {
     "__DEV__": true,
     "__CLIENT__": true,
-    "__SSR__": false
+    "__SSR__": false,
+    "PUBLIC_URL": "",
+    "SERVICE_WORKER": "service-worker.js"
   },
   "rules": {
     "max-len": [2, 140],
