@@ -34,8 +34,169 @@ $ yarn dev:all          # watch all changes and run dev server
 > See the [scripts](#scripts) section for all of the other available commands
 
 ## Contributing
+The most common use case when contributing is to update an example page with some more documentation or a new
+feature. This can be done by modifying the logic for how the `ExamplesPage` is rendered for that component.
+
+### Example
+Let's take the `Autocomplete` component for an example. Let's say that you want to add a new feature that allows
+the `Autocomplete` to automatically cache results into a Service Worker when calling external APIS (I probably wouldn't
+merge this feature in...). Here are the following steps:
+1. Create a new file to showcase your example
+  ```bash
+  $ touch src/components/Components/Autocompletes/<DESCRIPTIVE_NAME_HERE>.jsx
+
+# so for this example...
+  $ touch src/components/Components/Autocompletes/ServiceWorkerAPICache.jsx
+  ```
+2. Update the component `ExamplePage` examples list to include your new example.
+  ```jsx
+  /* src/components/Components/Autocompletes/index.jsx */
+  ...
+
+  import ServiceWorkerAPICache from './ServiceWorkerAPICache';
+  import ServiceWorkerAPICacheRaw from '!!raw-loader!./ServiceWorkerAPICache.jsx';
+
+  ...
+  const examples = [
+    ... existing ...
+    {
+       title: 'Autocomplete with API Service Worker Caching'
+       description: `
+    This example will show some stuff about yada yada.
+       `,
+       code: ServiceWorkerAPICacheRaw,
+       children: <ServiceWorkerAPICache />,
+    },
+  ];
+  ```
+3. Test and view your example
+
+Every component uses the [ExamplesPage](src/components/ExamplesPage) component to be able to add a title, an
+optional description, some source code to be viewed, and the renderable example.
+
+### Checking documentation description
+This server relies on the [react-docgen](https://github.com/reactjs/react-docgen) to be able to document
+prop types. It is pretty simple since it is just another version of jsdoc. The Sass uses [SassDoc](http://sassdoc.com/)
+to be documented.
+
+Once a new prop or sass doc has been added, your server might automatically reload based on the [script](#scripts) you
+are running. If it has not restarted, you can check your changes and how it gets formatted by running either
+- [yarn sassdoc](#sassdoc)
+- [yarn docgen](#docgen)
+
+The reason this is needed is because my documentation server takes in "databases" of json data from these scripts, loads
+them into memory, and then serves them as needed when the api is called. There probably is some better way to handle this,
+but I needed this functionality so that the site's search could also work.
+
+### Digging deeper
+This server is separated into a few main parts:
+
+```
+src
+├── client
+├── components
+├── constants
+├── routes
+├── sagas
+├── server
+├── state
+└── utils
+```
+
+I ended up going with this structure since I don't like the whole `actions`, `constants`, `actionTypes`, `components`,
+`containers`, etc model. Everything related to redux will be in a single file (so the action type constants, action creators,
+and reducers). When a component needs to be connected to state, I export a "pure" version and the connected version as the default.
+I don't find it helpful to create additional files just to connect to state and with the two exports, it is easy to test either one.
+You can most likely ignore all directories except for the `components` directory, but I'll explain the rest if curious.
+
+#### client
+This directly will be client only code -- so stuff that runs in the browser. The basics of this folder is to defined
+the base styles, configure the redux store, and render the page.
+
+#### components
+Will come back to later. This is the "meat" of the repo.
+
+#### constants
+This will just be some reusable constants across internal components as well as some `sampleData` that can be reused.
+
+#### routes
+This might be badly named, but this folder is more about holding the async or sync route components that should be rendered
+from `react-router`. When in development mode, everything will be synchronous. In production, everything in the server will
+be synchronous while the client will be asynchronous. If a new component needs to be added, both the [async.js](src/routes/async.js)
+and the [sync.js](src/routes/sync.js) will need to be updated.
+
+There are two higher order components that can be used for these routes and you can just look at the source files on how to use them.
+
+#### sagas
+I ended up going with `redux-saga` instead of `redux-thunk` to handle most of my action creator logic. My first version of this server
+used `redux-thunk`, but I wanted to learn about sagas so I used them here. There probably isn't anything too exciting to talk about
+here if you have used sagas before, but this is how I handle my API calls.
+
+#### server
+This is the main express server that runs both development and production mode. The server is equipped to handle api calls and server
+side rendering when needed. The API server was really only added because I wanted to pre-fetch some data before server rendering. It
+might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
+a full server call... but I wanted to learn how to do some node work.
+
+The only "exciting" thing about this server if you are familiar with node is the [github](src/server/api/github.js) proxy settings. I end
+up proxying requests to the Github API through my server so I can track some of the rate limiting aspects.
+
+#### state
+This is where I combine all the logic for the redux state.
+
+```
+src/state/
+├── __tests__
+│   ├── airQuality.js
+│   ├── docgens.js
+│   ├── locale.js
+│   ├── media.js
+│   ├── quickNav.js
+│   ├── routing.js
+│   ├── sassdocFab.js
+│   ├── sassdocs.js
+│   └── theme.js
+├── airQuality.js
+├── docgens.js
+├── drawer.js
+├── github
+│   ├── __tests__
+│   ├── cache
+│   ├── index.js
+│   └── rateLimits.js
+├── helmet
+│   ├── __tests__
+│   ├── index.js
+│   ├── link.js
+│   └── meta.js
+├── index.js
+├── locale.js
+├── media.js
+├── quickNav.js
+├── routing.js
+├── sassdocFab.js
+├── sassdocs.js
+├── search
+│   ├── __tests__
+│   ├── index.js
+│   ├── meta.js
+│   ├── results.js
+│   └── searching.js
+└── theme.js
+
+8 directories, 29 files
+```
+
+The basic idea is that simple state is in a top-level file while more complex and combined states are put
+into folders and then separate files.
+
+#### utils
+Just your basic utils for generating random data and other stuff for formatting. Not super exciting.
+
 
 ## About
+This section will mostly be rants about me making terrible design decisions and being a terrible developer. Enjoy!
+
 This documentation server is probably over-engineered for the amount of traffic I'll get, but it was a neat learning
 experience. Some of the things I wanted to solve with this server compared to my previous ones were:
 - easier dev startup
