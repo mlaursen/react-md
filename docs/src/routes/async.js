@@ -41,7 +41,7 @@ export const Drawers = asyncComponent(() => import(/* webpackChunkName: Drawers 
 export const ExpansionPanels = asyncComponent(() => import(/* webpackChunkName: ExpansionPanels */ 'components/Components/ExpansionPanels'));
 export const FileInputs = asyncComponent(() => import(/* webpackChunkName: FileInputs */ 'components/Components/FileInputs'));
 export const FontIcons = asyncComponent(() => import(/* webpackChunkName: FontIcons */ 'components/Components/FontIcons'));
-export const AccessibleFakeButtons = asyncComponent(() => import(/* webpackChunkName: AccessibleFakeButtons */ 'components/Components/Helpers/accessible-fake-buttons'));
+export const AccessibleFakeButtons = asyncComponent(() => import(/* webpackChunkName: AccessibleFakeButtons */ 'components/Components/Helpers/AccessibleFakeButtons'));
 export const Collapses = asyncComponent(() => import(/* webpackChunkName: Collapses */ 'components/Components/Helpers/Collapses'));
 export const FocusContainers = asyncComponent(() => import(/* webpackChunkName: FocusContainers */ 'components/Components/Helpers/FocusContainers'));
 export const IconSeparators = asyncComponent(() => import(/* webpackChunkName: IconSeparators */ 'components/Components/Helpers/IconSeparators'));
