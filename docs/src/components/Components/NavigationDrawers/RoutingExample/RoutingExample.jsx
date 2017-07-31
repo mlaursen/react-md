@@ -6,11 +6,11 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import { toTitle } from 'utils/strings';
 
 import './_styles.scss';
-import NavItemLink from 'components/Components/drawers/RoutingExample/NavItemLink';
-import Inbox from 'components/Components/drawers/RoutingExample/Inbox';
-import Starred from 'components/Components/drawers/RoutingExample/Starred';
-import SendMail from 'components/Components/drawers/RoutingExample/SendMail';
-import Drafts from 'components/Components/drawers/RoutingExample/Drafts';
+import NavItemLink from 'components/Components/Drawers/RoutingExample/NavItemLink';
+import Inbox from 'components/Components/Drawers/RoutingExample/Inbox';
+import Starred from 'components/Components/Drawers/RoutingExample/Starred';
+import SendMail from 'components/Components/Drawers/RoutingExample/SendMail';
+import Drafts from 'components/Components/Drawers/RoutingExample/Drafts';
 
 const TO_PREFIX = '/discover-more/routing-examples/navigation-drawers';
 
