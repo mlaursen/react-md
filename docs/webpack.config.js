@@ -212,7 +212,7 @@ module.exports = ({ production }) => {
           },
         }],
       }, {
-        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        test: webpackIsomorphicToolsPlugin.regularExpression('images'),
         exclude: /node_modules/,
         use: [{
           loader: 'url-loader',
