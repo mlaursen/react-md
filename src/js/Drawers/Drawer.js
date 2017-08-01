@@ -403,7 +403,9 @@ export default class Drawer extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this._updateMedia);
+    if (!isMini(getField(this.props, this.state, 'type'))) {
+      window.addEventListener('resize', this._updateMedia);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -602,9 +604,9 @@ export default class Drawer extends PureComponent {
 
     const { desktop } = this.state;
     const renderNode = getField(this.props, this.context, 'renderNode');
-    const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
     const mini = isMini(type);
+    const visible = mini || getField(this.props, this.state, 'visible');
     const temporary = isTemporary(type);
     const floating = DrawerTypes.FLOATING === type;
     const permanent = isPermanent(type);
@@ -660,8 +662,8 @@ export default class Drawer extends PureComponent {
           'md-drawer--inline': inline,
           'md-drawer--active': mini || drawerActive,
           'md-drawer--mini': mini,
-          'md-transition--decceleration': visible,
-          'md-transition--acceleration': !visible,
+          'md-transition--decceleration': !mini && !permanent && visible,
+          'md-transition--acceleration': !mini && !permanent && !visible,
           'md-background': inline || floating,
           'md-background--card': !floating && !inline,
         }, className)}
@@ -683,7 +685,7 @@ export default class Drawer extends PureComponent {
     }
 
     return (
-      <Portal visible={mini || animating || visible} renderNode={renderNode} lastChild={lastChild}>
+      <Portal visible={animating || visible} renderNode={renderNode} lastChild={lastChild}>
         {drawer}
       </Portal>
     );
