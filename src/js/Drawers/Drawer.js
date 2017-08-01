@@ -377,9 +377,12 @@ export default class Drawer extends PureComponent {
     this._initialFix = true;
 
     if (typeof props.visible === 'undefined') {
-      this.state.visible = typeof defaultVisible !== 'undefined'
-        ? defaultVisible
-        : isPermanent(type);
+      let visible = isPermanent(type) || isMini(type);
+      if (!visible && typeof defaultVisible !== 'undefined') {
+        visible = defaultVisible;
+      }
+
+      this.state.visible = visible;
     }
 
     const visible = getField(props, this.state, 'visible');
@@ -605,8 +608,8 @@ export default class Drawer extends PureComponent {
     const { desktop } = this.state;
     const renderNode = getField(this.props, this.context, 'renderNode');
     const type = getField(this.props, this.state, 'type');
+    const visible = getField(this.props, this.state, 'visible');
     const mini = isMini(type);
-    const visible = mini || getField(this.props, this.state, 'visible');
     const temporary = isTemporary(type);
     const floating = DrawerTypes.FLOATING === type;
     const permanent = isPermanent(type);
@@ -640,11 +643,11 @@ export default class Drawer extends PureComponent {
     let zDepth = 1;
     if (floating || inline) {
       zDepth = 0;
-    } else if (temporary && visible) {
+    } else if (!mini && temporary && visible) {
       zDepth = 5;
     }
 
-    const overlayVisible = (!desktop || clickableDesktopOverlay)
+    const overlayVisible = !mini && (!desktop || clickableDesktopOverlay)
       && (overlay || temporary)
       && (animating || visible);
 

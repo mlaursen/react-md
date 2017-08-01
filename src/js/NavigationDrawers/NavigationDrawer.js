@@ -686,9 +686,11 @@ export default class NavigationDrawer extends PureComponent {
     const type = getField(props, this.state, 'drawerType');
 
     if (typeof props.visible === 'undefined') {
-      this.state.visible = typeof defaultVisible !== 'undefined'
-        ? defaultVisible
-        : isPermanent(type);
+      // The logic for determining the visibility is handled by the created mini drawer
+      this.state.visible = isPermanent(type);
+      if (!this.state.visible && typeof defaultVisible !== 'undefined') {
+        this.state.visible = defaultVisible;
+      }
     }
 
     this._handleTypeChange = this._handleTypeChange.bind(this);
