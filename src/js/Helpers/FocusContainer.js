@@ -94,25 +94,23 @@ export default class FocusContainer extends PureComponent {
   }
 
   componentDidUpdate() {
-    if (this._container) {
+    if (this.props.containFocus && this._container) {
       this._focusables = Array.prototype.slice.call(this._container.querySelectorAll(FOCUSABLE_QUERY))
         .filter(el => el.tabIndex !== -1);
     }
   }
 
   componentWillUnmount() {
-    if (this._container) {
+    if (this.props.containFocus) {
       this._disableFocusTrap();
     }
   }
 
   _enableFocusTrap = () => {
-    window.addEventListener('focus', this._handleFocus, true);
     window.addEventListener('keydown', this._handleKeyDown, true);
   };
 
   _disableFocusTrap = () => {
-    window.removeEventListener('focus', this._handleFocus, true);
     window.removeEventListener('keydown', this._handleKeyDown, true);
   };
 
@@ -170,14 +168,6 @@ export default class FocusContainer extends PureComponent {
 
     if (containFocus) {
       this._enableFocusTrap();
-    }
-  };
-
-  _handleFocus = (e) => {
-    if (e.target !== window && this._shifted && this._container && !this._container.contains(e.target)) {
-      // Prevent the default focus action and focus the last focusable item
-      e.stopPropagation();
-      this._focusables[this._focusables.length - 1].focus();
     }
   };
 

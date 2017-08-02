@@ -525,7 +525,7 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _isValued = (v) => v === 0 || !!v;
+  _isValued = v => v === 0 || !!v;
 
   _getLength = (v) => {
     if (this._isValued(v)) {

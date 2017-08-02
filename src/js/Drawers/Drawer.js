@@ -12,6 +12,7 @@ import controlled from '../utils/PropTypes/controlled';
 import Paper from '../Papers/Paper';
 import Portal from '../Helpers/Portal';
 import List from '../Lists/List';
+import Overlay from './Overlay';
 
 import { isTemporary, isPermanent, isMini } from './isType';
 import DrawerTypes from './DrawerTypes';
@@ -76,6 +77,16 @@ export default class Drawer extends PureComponent {
      * An optional className to apply to the `List` surrounding the `navItems`.
      */
     navClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the overlay.
+     */
+    overlayStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the overlay.
+     */
+    overlayClassName: PropTypes.string,
 
     /**
      * An optional component to render the drawer in. When this prop is undefined, the drawer
@@ -411,9 +422,12 @@ export default class Drawer extends PureComponent {
     this._initialFix = true;
 
     if (typeof props.visible === 'undefined') {
-      this.state.visible = typeof defaultVisible !== 'undefined'
-        ? defaultVisible
-        : isPermanent(type);
+      let visible = isPermanent(type) || isMini(type);
+      if (!visible && typeof defaultVisible !== 'undefined') {
+        visible = defaultVisible;
+      }
+
+      this.state.visible = visible;
     }
 
     const visible = getField(props, this.state, 'visible');
@@ -430,7 +444,9 @@ export default class Drawer extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this._updateMedia);
+    if (!isMini(getField(this.props, this.state, 'type'))) {
+      window.addEventListener('resize', this._updateMedia);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -615,6 +631,8 @@ export default class Drawer extends PureComponent {
       clickableDesktopOverlay,
       lastChild,
       portal,
+      overlayStyle,
+      overlayClassName,
       /* eslint-disable no-unused-vars */
       type: propType,
       visible: propVisible,
@@ -648,8 +666,8 @@ export default class Drawer extends PureComponent {
 
     const { desktop } = this.state;
     const renderNode = getField(this.props, this.context, 'renderNode');
-    const visible = getField(this.props, this.state, 'visible');
     const type = getField(this.props, this.state, 'type');
+    const visible = getField(this.props, this.state, 'visible');
     const mini = isMini(type);
     const temporary = isTemporary(type);
     const floating = DrawerTypes.FLOATING === type;
@@ -685,11 +703,11 @@ export default class Drawer extends PureComponent {
     let zDepth = 1;
     if (floating || inline) {
       zDepth = 0;
-    } else if (temporary && visible) {
+    } else if (!mini && temporary && visible) {
       zDepth = 5;
     }
 
-    const overlayVisible = (!desktop || clickableDesktopOverlay)
+    const overlayVisible = !mini && (!desktop || clickableDesktopOverlay)
       && (overlay || temporary)
       && (animating || visible);
 
@@ -708,8 +726,8 @@ export default class Drawer extends PureComponent {
           'md-drawer--inline': inline,
           'md-drawer--active': mini || drawerActive,
           'md-drawer--mini': mini,
-          'md-transition--decceleration': visible,
-          'md-transition--acceleration': !visible,
+          'md-transition--decceleration': !mini && !permanent && visible,
+          'md-transition--acceleration': !mini && !permanent && !visible,
           'md-background': inline || floating,
           'md-background--card': !floating && !inline,
         }, className)}
@@ -717,15 +735,14 @@ export default class Drawer extends PureComponent {
         {header}
         {navigation}
         {children}
-        <Portal visible={overlayVisible} renderNode={renderNode}>
-          <div
-            key="overlay"
-            className={cn('md-overlay md-overlay--drawer md-pointer--hover', {
-              'md-overlay--active': overlayActive,
-            })}
-            onClick={this._closeDrawer}
-          />
-        </Portal>
+        <Overlay
+          style={overlayStyle}
+          className={overlayClassName}
+          active={overlayActive}
+          onClick={this._closeDrawer}
+          visible={overlayVisible}
+          renderNode={renderNode}
+        />
       </Paper>
     );
 
@@ -736,7 +753,7 @@ export default class Drawer extends PureComponent {
     }
 
     return (
-      <Portal visible={mini || animating || visible} renderNode={renderNode} lastChild={lastChild}>
+      <Portal visible={animating || visible} renderNode={renderNode} lastChild={lastChild}>
         {drawer}
       </Portal>
     );
