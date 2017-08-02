@@ -99,6 +99,11 @@ const DEV_PLUGINS = [
 ];
 
 module.exports = ({ production }) => {
+  let publicUrl = PUBLIC_URL;
+  if (!production && PUBLIC_URL === homepage) {
+    publicUrl = '';
+  }
+
   const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(WITConfig)
     .development(!production);
 
@@ -115,7 +120,7 @@ module.exports = ({ production }) => {
     entry: production ? PROD_ENTRY : DEV_ENTRY,
     output: {
       path: dist,
-      publicPath: `${PUBLIC_URL}/`,
+      publicPath: `${publicUrl}/`,
       filename: `[name]${!production ? '' : '.[chunkhash:8].min'}.js`,
       chunkFilename: `[name]${!production ? '' : '.[chunkhash:8].min'}.js`,
     },
@@ -247,7 +252,7 @@ module.exports = ({ production }) => {
         },
       }),
       new webpack.DefinePlugin({
-        PUBLIC_URL: JSON.stringify(PUBLIC_URL),
+        PUBLIC_URL: JSON.stringify(publicUrl),
         SERVICE_WORKER: JSON.stringify(SERVICE_WORKER),
         __DEV__: !production,
         __CLIENT__: true,
