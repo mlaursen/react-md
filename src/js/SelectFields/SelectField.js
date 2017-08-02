@@ -372,7 +372,7 @@ export default class SelectField extends PureComponent {
     const value = getField(nextProps, nextState, 'value');
     const error = getField(nextProps, nextState, 'error');
     const isOpen = getField(nextProps, nextState, 'isOpen');
-    const valued = !getField(nextProps, nextState, 'value');
+    const errored = !this._isValued(value);
 
     let state;
     if (prevValue !== value || this.props.menuItems !== nextProps.menuItems) {
@@ -381,9 +381,9 @@ export default class SelectField extends PureComponent {
       };
     }
 
-    if (this._focusedAtLeastOnce && nextProps.required && !isOpen && error !== valued) {
+    if (this._focusedAtLeastOnce && !isOpen && nextProps.required && error !== errored) {
       state = state || {};
-      state.error = valued;
+      state.error = errored;
     }
 
     if (state) {
@@ -412,7 +412,7 @@ export default class SelectField extends PureComponent {
     let activeLabel = '';
     menuItems.some(item => {
       activeLabel = this._getActiveLabelFromItem(item, value, itemLabel, itemValue);
-      return activeLabel;
+      return this._isValued(activeLabel);
     });
 
     return activeLabel;
@@ -458,6 +458,8 @@ export default class SelectField extends PureComponent {
 
     return index;
   }
+
+  _isValued = v => v === 0 || !!v;
 
   _setMenu(menu) {
     this._menu = findDOMNode(menu);
@@ -919,7 +921,7 @@ export default class SelectField extends PureComponent {
         htmlFor={id}
         active={active || isOpen}
         error={error}
-        floating={!!activeLabel || active || isOpen}
+        floating={this._isValued(activeLabel) || active || isOpen}
         disabled={disabled}
       />,
       <Field
