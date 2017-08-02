@@ -52,7 +52,7 @@ export default class DialogFooter extends PureComponent {
       const button = Children.only(action);
 
       return cloneElement(action, {
-        key: button.props.key || index,
+        key: button.key || index,
         className: cn('md-btn--dialog', button.props.className),
       });
     }

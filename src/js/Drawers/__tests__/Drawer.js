@@ -1,19 +1,17 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../Drawer');
-jest.unmock('../DrawerTypes');
-jest.unmock('../isType');
-jest.unmock('../../constants/media');
-jest.unmock('../../Dialogs/Dialog');
-jest.unmock('../../Papers/Paper');
+jest.disableAutomock();
 
 import React from 'react';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
 } from 'react-dom/test-utils';
 
 import Drawer from '../Drawer';
+import Overlay from '../Overlay';
+import Paper from '../../Papers/Paper';
 import Dialog from '../../Dialogs/Dialog';
 
 describe('Drawer', () => {
@@ -22,6 +20,42 @@ describe('Drawer', () => {
     const drawer = findRenderedComponentWithType(dialog, Drawer);
     const { renderNode } = dialog.getChildContext();
     expect(drawer.context.renderNode).toBe(renderNode);
+  });
+
+  it('should not apply the transition class names while mini or permanent', () => {
+    // Have to do inline since this version of react-md still uses portals by default
+    const drawer1 = mount(<Drawer type={Drawer.DrawerTypes.PERSISTENT} onMediaTypeChange={() => {}} inline />);
+    const drawer2 = mount(<Drawer type={Drawer.DrawerTypes.TEMPORARY_MINI} inline />);
+    const drawer3 = mount(<Drawer type={Drawer.DrawerTypes.FULL_HEIGHT} onMediaTypeChange={() => {}} />);
+
+    const paper1 = drawer1.find(Paper);
+    const paper2 = drawer2.find(Paper);
+    const paper3 = drawer3.find(Paper);
+    expect(paper1.length).toBe(1);
+    expect(paper2.length).toBe(1);
+    expect(paper3.length).toBe(1);
+
+    expect(paper1.hasClass('md-transition--decceleration')).toBe(true);
+    expect(paper1.hasClass('md-transition--acceleration')).toBe(false);
+    expect(paper2.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper2.hasClass('md-transition--acceleration')).toBe(false);
+    expect(paper3.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper3.hasClass('md-transition--acceleration')).toBe(false);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: Drawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<Drawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
   });
 
   describe('updateType', () => {

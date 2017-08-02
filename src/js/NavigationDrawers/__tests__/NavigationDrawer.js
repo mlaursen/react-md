@@ -1,12 +1,9 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.unmock('../NavigationDrawer');
-jest.unmock('../../Dialogs/Dialog');
-jest.unmock('../../Drawers/Drawer');
-jest.unmock('../../Drawers/DrawerTypes');
-jest.unmock('../../Drawers/isType');
+jest.disableAutomock();
 
 import React from 'react';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
@@ -14,27 +11,63 @@ import {
 
 import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../../Drawers/Drawer';
+import Overlay from '../../Drawers/Overlay';
 import Dialog from '../../Dialogs/Dialog';
 
 describe('NavigationDrawer', () => {
+  const MATCH_MEDIA = window.matchMedia;
+  const matchesMobile = jest.fn(query => ({
+    matches: query.indexOf(Drawer.defaultProps.mobileMinWidth) !== -1,
+  }));
+  const matchesTablet = jest.fn(query => ({
+    matches: query.indexOf(Drawer.defaultProps.tabletMinWidth) !== -1,
+  }));
+  const matchesDesktop = jest.fn(query => ({
+    matches: query.indexOf('max') === -1
+      && query.indexOf(Drawer.defaultProps.desktopMinWidth) !== -1,
+  }));
+
   it('should inherit the dialog\'s renderNode context', () => {
     const dialog = renderIntoDocument(<Dialog><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
   });
 
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: NavigationDrawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<NavigationDrawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
+  });
+
+  it('should always render the permanent drawers as visible even if defaultVisible is false', () => {
+    window.matchMedia = matchesDesktop;
+    const drawer = mount(
+      <NavigationDrawer
+        defaultVisible={false}
+        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
+      />
+    );
+
+    expect(drawer.state('visible')).toBe(true);
+    drawer.unmount();
+    window.matchMedia = matchesMobile;
+    drawer.mount();
+    expect(drawer.state('visible')).toBe(false);
+    window.matchMedia = MATCH_MEDIA;
+  });
+
   describe('Drawer', () => {
-    const MATCH_MEDIA = window.matchMedia;
-    const matchesMobile = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.mobileMinWidth) !== -1,
-    }));
-    const matchesTablet = jest.fn(query => ({
-      matches: query.indexOf(Drawer.defaultProps.tabletMinWidth) !== -1,
-    }));
-    const matchesDesktop = jest.fn(query => ({
-      matches: query.indexOf('max') === -1
-        && query.indexOf(Drawer.defaultProps.desktopMinWidth) !== -1,
-    }));
     afterAll(() => {
       window.matchMedia = MATCH_MEDIA;
     });
