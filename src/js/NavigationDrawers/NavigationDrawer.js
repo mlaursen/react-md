@@ -200,6 +200,16 @@ export default class NavigationDrawer extends PureComponent {
     contentClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the overlay.
+     */
+    overlayStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the overlay.
+     */
+    overlayClassName: PropTypes.string,
+
+    /**
      * The children to display in the main content.
      */
     children: PropTypes.node,

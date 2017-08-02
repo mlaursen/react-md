@@ -10,6 +10,7 @@ import {
 } from 'react-dom/test-utils';
 
 import Drawer from '../Drawer';
+import Overlay from '../Overlay';
 import Paper from '../../Papers/Paper';
 import Dialog from '../../Dialogs/Dialog';
 
@@ -40,6 +41,21 @@ describe('Drawer', () => {
     expect(paper2.hasClass('md-transition--acceleration')).toBe(false);
     expect(paper3.hasClass('md-transition--decceleration')).toBe(false);
     expect(paper3.hasClass('md-transition--acceleration')).toBe(false);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: Drawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<Drawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
   });
 
   describe('updateType', () => {

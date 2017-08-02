@@ -11,6 +11,7 @@ import {
 
 import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../../Drawers/Drawer';
+import Overlay from '../../Drawers/Overlay';
 import Dialog from '../../Dialogs/Dialog';
 
 describe('NavigationDrawer', () => {
@@ -30,6 +31,21 @@ describe('NavigationDrawer', () => {
     const dialog = renderIntoDocument(<Dialog><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: NavigationDrawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<NavigationDrawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
   });
 
   it('should always render the permanent drawers as visible even if defaultVisible is false', () => {

@@ -58,6 +58,16 @@ export default class Drawer extends PureComponent {
     navClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the overlay.
+     */
+    overlayStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the overlay.
+     */
+    overlayClassName: PropTypes.string,
+
+    /**
      * An optional component to render the drawer in. When this prop is undefined, the drawer
      * will be rendered as a `nav` if the `navItems` prop is defined, otherwise an `aside`.
      */
@@ -586,6 +596,8 @@ export default class Drawer extends PureComponent {
       autoclose,
       clickableDesktopOverlay,
       lastChild,
+      overlayStyle,
+      overlayClassName,
       ...props
     } = this.props;
     delete props.constantType;
@@ -675,6 +687,8 @@ export default class Drawer extends PureComponent {
         {navigation}
         {children}
         <Overlay
+          style={overlayStyle}
+          className={overlayClassName}
           active={overlayActive}
           visible={overlayVisible}
           onClick={this._closeDrawer}
