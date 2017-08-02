@@ -1,3 +1,21 @@
+## August 2017
+### v1.0.18 Released
+##### Changelog
+- Fixed the `Autocomplete` firing the `onAutocomplete` callback twice when using the keyboard to select
+an item. [#466](https://github.com/mlaursen/react-md/issues/466)
+- Fixed a `PropType` warning when using the `Dialog` and one of the actions already had a key.
+[#465](https://github.com/mlaursen/react-md/issues/465)
+- Fixed the `SelectField` and `TextField` from not floating the label when a `value` (or `label`) had
+a value of `0`. [#461](https://github.com/mlaursen/react-md/issues/461) and [#460](https://github.com/mlaursen/react-md/issues/460)
+- Fixed a weird infinite loop in the `FocusContainer` when some of the children are the `AccessibleFakeButton` and the user
+pressed `shift+tab`. [#458](https://github.com/mlaursen/react-md/issues/458)
+- Updated the multiline `TextField` so that it can be correctly snapshotted. [#457](https://github.com/mlaursen/react-md/issues/457)
+- Fixed the `NavigationDrawer` incorrectly hiding a "permanent" drawer type when `defaultVisible={false}`. [#426](https://github.com/mlaursen/react-md/issues/426)
+- Fixed some invalid checksum when Server Side Rendering the `NavigationDrawer`. [#420](https://github.com/mlaursen/react-md/issues/420)
+> this also removed some unneeded transition class names from the `Drawer` when the drawer was "mini" or "permanent".
+- Updated the `Drawer` and `NavigationDrawer` components to proide props to style the overlay that gets
+created. [#389](https://github.com/mlaursen/react-md/issues/389)
+
 ## July 2017
 ### v1.0.17 Released
 This patch was mostly about fixing components that needed to be resized after a container height/width
