@@ -387,7 +387,7 @@ export default class TextField extends PureComponent {
     this.state = {
       active: false,
       error: false,
-      floating: !!props.defaultValue || !!props.value,
+      floating: this._isValued(props.defaultValue) || this._isValued(props.value),
       passwordVisible: props.passwordInitiallyVisible,
       height: null,
       currentLength,
@@ -416,7 +416,7 @@ export default class TextField extends PureComponent {
 
       this.setState({
         error,
-        floating: !!value || (this.state.floating && this.state.active),
+        floating: this._isValued(value) || (this.state.floating && this.state.active),
         currentLength: value.length,
       });
     }
@@ -490,6 +490,8 @@ export default class TextField extends PureComponent {
     }
   }
 
+  _isValued = v => v === 0 || !!v;
+
   _setField(field) {
     if (field !== null) {
       this._field = field;
@@ -514,7 +516,7 @@ export default class TextField extends PureComponent {
     const { value } = e.target;
     const state = { active: false, error: this.props.required && !value };
     if (!this.props.block) {
-      state.floating = !!value;
+      state.floating = this._isValued(value);
     }
 
     this.setState(state);
