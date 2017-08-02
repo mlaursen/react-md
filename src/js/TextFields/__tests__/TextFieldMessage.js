@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
@@ -81,5 +82,16 @@ describe('TextFieldMessage', () => {
     const message = renderIntoDocument(<TextFieldMessage {...props} />);
     const counter = scryRenderedComponentsWithType(message, Message)[1];
     expect(counter.props.className).toBe('md-text-field-message--counter');
+  });
+
+  it('should set the isMessageVisible state appropriately', () => {
+    const message = shallow(<TextFieldMessage errorText="Error" helpText="Help" />);
+    expect(message.state('isMessageVisible')).toBe(true);
+
+    message.setProps({ helpOnFocus: true });
+    expect(message.state('isMessageVisible')).toBe(false);
+
+    message.setProps({ error: true });
+    expect(message.state('isMessageVisible')).toBe(true);
   });
 });

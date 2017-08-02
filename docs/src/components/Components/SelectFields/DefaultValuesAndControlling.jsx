@@ -48,6 +48,7 @@ export default class DefaultValuesAndControlling extends PureComponent {
           itemLabel="name"
           itemValue="abbreviation"
           className="md-cell md-cell--4-tablet md-cell--6"
+          helpOnFocus
           helpText="Try selecting a value and then selecting the first item in the list."
           errorText={<span>A <em>real</em> value is required for this field</span>}
         />

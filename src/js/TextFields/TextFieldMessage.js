@@ -54,7 +54,11 @@ export default class TextFieldMessage extends PureComponent {
 
   _isMessageVisible(props) {
     const { error, errorText, helpText, helpOnFocus, active } = props;
-    return ((error && errorText) || !!helpText) && (!helpOnFocus || active);
+    if (error && errorText) {
+      return true;
+    }
+
+    return !!(helpText && (!helpOnFocus || active));
   }
 
   render() {
