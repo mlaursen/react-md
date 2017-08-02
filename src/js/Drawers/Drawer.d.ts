@@ -27,7 +27,7 @@ export type DrawerPositions = 'left' | 'right';
 export interface DrawerProps extends Props {
   navStyle?: React.CSSProperties;
   navClassName?: string;
-  overlayStyle? React.CSSProperties;
+  overlayStyle?: React.CSSProperties;
   overlayClassName?: string;
   component?: Function | string;
   navItems?: Array<React.ReactElement<any> | { divider?: boolean, subheader?: boolean, primaryText?: string }>;

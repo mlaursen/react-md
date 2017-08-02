@@ -18,7 +18,7 @@ export interface NavigationDrawerProps extends Props {
   drawerClassName?: string;
   contentStyle?: React.CSSProperties;
   contentClassName?: string;
-  overlayStyle? React.CSSProperties;
+  overlayStyle?: React.CSSProperties;
   overlayClassName?: string;
   children?: React.ReactNode;
   includeDrawerHeader?: boolean;
