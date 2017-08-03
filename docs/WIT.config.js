@@ -3,6 +3,8 @@ const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
 const src = path.resolve(process.cwd(), 'src');
 
+const REGEX = /export default __webpack_public_path__ \+ "(.*)";/;
+
 module.exports = {
   // debug: true,
   // webpack_assets_file_path: 'webpack-assets.json',
@@ -22,15 +24,20 @@ module.exports = {
   },
   assets: {
     images: {
-      extensions: ['png', 'jpg', 'jpeg', 'gif'],
-      parser: WebpackIsomorphicToolsPlugin.urlLoaderParser,
+      extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
+      filter(module, regex) {
+        return regex.test(module.name) && !module.name.match(/raw-loader/);
+      },
+      parser(module, options, log) {
+        if (REGEX.test(module.source)) {
+          return module.source.replace(REGEX, `${options.webpack_stats.publicPath}$1`);
+        }
+
+        return WebpackIsomorphicToolsPlugin.urlLoaderParser(module, options, log);
+      },
     },
     fonts: {
       extensions: ['eot', 'ttf', 'woff', 'woff2'],
-      parser: WebpackIsomorphicToolsPlugin.urlLoaderParser,
-    },
-    svg: {
-      extension: 'svg',
       parser: WebpackIsomorphicToolsPlugin.urlLoaderParser,
     },
     styles: {

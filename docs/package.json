@@ -10,7 +10,7 @@
     "clean:assets": "rimraf 'public/!(robots.txt|react-md.png|favicon.ico)'",
     "prebuild": "npm run clean && npm run sassdoc:site && npm run docgen && npm run sassdoc",
     "build": "webpack --progress --colors --env.production",
-    "build:dev": "webpack --colors --env.development",
+    "build:dev": "webpack --progress --colors --env.development",
     "air-quality": "cross-env BABEL_ENV=scripts babel-node src/scripts/createAirQualityDB.js",
     "jsdoc": "npm run jsdoc:build && npm run jsdoc:create",
     "jsdoc:build": "jsdoc -c jsdoc-conf.json ../src/js -X > jsdoc.json",

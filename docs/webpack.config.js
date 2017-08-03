@@ -200,7 +200,7 @@ module.exports = ({ production }) => {
           fallback: 'style-loader',
         }),
       }, {
-        test: /(\.md|(logo|404)\.svg)$/,
+        test: /\.md$/,
         exclude: /node_modules/,
         loader: 'raw-loader',
       }, {
@@ -208,12 +208,12 @@ module.exports = ({ production }) => {
         exclude: /node_modules/,
         loader: 'json-loader',
       }, {
-        test: /\.(woff2?|ttf|eot|svg)$/,
-        exclude: /node_modules|(logo|404)\.svg/,
+        test: /\.(woff2?|ttf|eot)$/,
+        exclude: /node_modules/,
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 10000,
+            limit: 10240,
           },
         }],
       }, {
@@ -247,7 +247,6 @@ module.exports = ({ production }) => {
           eslint: {
             failOnError: true,
           },
-          context: '/',
           debug: !production,
         },
       }),

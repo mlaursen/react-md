@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-md/lib/Buttons/Button';
 
 import InlineSVG from 'components/InlineSVG';
-import logo from './logo.svg';
+import logo from '!!raw-loader!./logo.svg';
 
 const Banner = () => (
   <header className="home__banner">
