@@ -30,6 +30,7 @@ export default function asyncComponent(getComponent, loadingChildren = null) {
     componentWillUnmount() {
       this.mounted = false;
     }
+
     render() {
       const { Component } = this.state;
       if (!Component) {

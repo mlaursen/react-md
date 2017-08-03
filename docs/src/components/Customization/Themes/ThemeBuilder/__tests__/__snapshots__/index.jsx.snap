@@ -314,7 +314,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         </button>
       </div>
       <button
-        class="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--fixed md-btn--fixed-br"
+        class="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-paper md-paper--2 md-btn--fixed md-btn--fixed-br"
         id="theme-builder-preview-floating-btn"
         type="button"
       >

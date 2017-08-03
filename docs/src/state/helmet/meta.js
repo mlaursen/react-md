@@ -26,7 +26,7 @@ export const INITIAL_STATE = [{
   content: DEFAULT_KEYWORDS,
 }, {
   name: 'theme-color',
-  content: '#e0e0e0',
+  content: '#0277bd',
 }];
 
 function handleDescriptionChange(state, { description }) {

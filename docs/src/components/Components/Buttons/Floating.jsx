@@ -7,6 +7,10 @@ const Floating = () => (
     <Button floating>home</Button>
     <Button floating primary>share</Button>
     <Button floating secondary iconClassName="fa fa-star-o" />
+    <h5>Mini Examples</h5>
+    <Button floating mini>home</Button>
+    <Button floating primary mini>share</Button>
+    <Button floating secondary iconClassName="fa fa-star-o" mini />
     <h5>Disabled Examples</h5>
     <Button floating primary disabled>favorite</Button>
     <Button floating secondary disabled>close</Button>
