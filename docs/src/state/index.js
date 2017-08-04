@@ -7,6 +7,7 @@ import search from './search';
 import theme from './theme';
 import media from './media';
 import drawer from './drawer';
+import messages from './messages';
 import github from './github';
 import locale from './locale';
 import quickNav from './quickNav';
@@ -23,6 +24,7 @@ export default combineReducers({
   search,
   github,
   media,
+  messages,
   drawer,
   quickNav,
   sassdocs,

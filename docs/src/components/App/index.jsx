@@ -13,6 +13,7 @@ import navItems from 'constants/navItems';
 import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
+import Messages from 'components/Messages';
 import Search from 'components/Search';
 import MobileNavigation from 'components/MobileNavigation';
 
@@ -167,6 +168,7 @@ export default class App extends PureComponent {
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
         <Routes key={key} />
         {bottomNav}
+        <Messages />
         <Footer />
       </NavigationDrawer>
     );
