@@ -31,6 +31,8 @@ exports[`ExamplesPage should render correctly 1`] = `
   >
     <div
       className="md-card-title md-card-title--primary"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
       style={undefined}
     >
       <h2
@@ -39,6 +41,37 @@ exports[`ExamplesPage should render correctly 1`] = `
       >
         First Example
       </h2>
+      <textarea
+        aria-hidden={true}
+        className="examples-page__example-link"
+        id="first-example-copy-area"
+        readOnly={true}
+        tabIndex={-1}
+        value="about:blank#first-example"
+      />
+      <button
+        className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+        disabled={undefined}
+        href={undefined}
+        id="first-example-copy-btn"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        type="button"
+      >
+        <i
+          className="md-icon material-icons"
+          style={undefined}
+        >
+          link
+        </i>
+      </button>
       <button
         className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
         disabled={undefined}
