@@ -44,6 +44,9 @@ const META = [{
   property: 'og:image',
   content: '/react-md.png',
 }, {
+  property: 'og:image:alt',
+  content: 'The landing page for react-md. It describes the purpose of the library and what it tries to accomplish.',
+}, {
   name: 'twitter:site',
   content: 'react-md',
 }, {
