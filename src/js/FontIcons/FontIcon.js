@@ -2,10 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-const styles = {
-  sized: { width: 24, height: 24 },
-  fullySized: { width: 24, height: 24, fontSize: 24 },
-};
+const ICON_SIZE = 24;
 
 /**
  * The \`FontIcon\` component is used for rendering a font-icon library's
@@ -42,14 +39,25 @@ export default class FontIcon extends PureComponent {
     iconClassName: PropTypes.string.isRequired,
 
     /**
-     * Any children required to display the icon with the font library.
+     * Boolean if the primary theme color should be applied.
      */
-    children: PropTypes.node,
+    primary: PropTypes.bool,
 
     /**
-     * Boolean if the `FontIcon` should gain the disabled colors.
+     * Boolean if the secondary theme color should be applied.
+     */
+    secondary: PropTypes.bool,
+
+    /**
+     * Boolean if the icon is considered disabled and should inherit the
+     * disabled color.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * Boolean if the error color should be applied to the icon.
+     */
+    error: PropTypes.bool,
 
     /**
      * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
@@ -75,44 +83,78 @@ export default class FontIcon extends PureComponent {
 
       return error;
     },
+
+    /**
+     * Any children required to display the icon with the font library.
+     */
+    children: PropTypes.node,
   };
 
   static defaultProps = {
     iconClassName: 'material-icons',
   };
 
+  constructor(props) {
+    super();
+
+    this.state = { styles: this._mergeStyles(props) };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { style, forceSize, forceFontSize } = this.props;
+    if (style !== nextProps.style || forceSize !== nextProps.forceSize || forceFontSize !== nextProps.forceFontSize) {
+      this.setState({ styles: this._mergeStyles(nextProps) });
+    }
+  }
+
+  _mergeStyles = ({ style, forceSize, forceFontSize }) => {
+    let styles = style;
+    if (typeof forceSize === 'boolean') {
+      styles = {
+        height: ICON_SIZE,
+        width: ICON_SIZE,
+        fontSize: forceFontSize ? ICON_SIZE : undefined,
+        ...style,
+      };
+    } else if (typeof forceSize === 'number') {
+      styles = {
+        height: forceSize,
+        width: forceSize,
+        fontSize: forceFontSize ? forceSize : undefined,
+        ...style,
+      };
+    }
+
+    return styles;
+  };
+
   render() {
+    const { styles } = this.state;
     const {
       iconClassName,
       className,
       children,
       disabled,
+      primary,
+      secondary,
+      error,
+      /* eslint-disable no-unused-vars */
       style,
       forceSize,
       forceFontSize,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
-    let mergedStyles = style;
-    if (typeof forceSize === 'boolean') {
-      const merge = forceFontSize ? styles.fullySized : styles.sized;
-      mergedStyles = style ? { ...merge, ...style } : merge;
-    } else if (typeof forceSize === 'number') {
-      const merge = {
-        fontSize: forceFontSize ? forceSize : undefined,
-        height: forceSize,
-        width: forceSize,
-      };
-
-      mergedStyles = style ? { ...merge, ...style } : merge;
-    }
 
     return (
       <i
         {...props}
-        style={mergedStyles}
+        style={styles}
         className={cn('md-icon', iconClassName, {
-          'md-icon--disabled': disabled,
+          'md-text--disabled': disabled,
+          'md-text--error': !disabled && error,
+          'md-text--theme-primary': !disabled && !error && primary,
+          'md-text--theme-secondary': !disabled && !error && secondary,
         }, className)}
       >
         {children}

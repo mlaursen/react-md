@@ -4,7 +4,10 @@ import { Props } from '../index';
 export interface FontIconProps extends Props {
   children?: React.ReactNode;
   iconClassName?: string;
+  primary?: boolean;
+  secondary?: boolean;
   disabled?: boolean;
+  error?: boolean;
   forceSize?: boolean | number;
   forceFontSize?: boolean;
 }

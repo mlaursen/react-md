@@ -49,10 +49,6 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
     transition-property: color;
     user-select: none;
 
-    &--disabled {
-      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
-    }
-
     &--inherit {
       color: inherit;
     }
@@ -101,10 +97,6 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
   @if $light-theme != $md-light-theme {
     .md-icon {
       color: $md-icon-color;
-    }
-
-    .md-icon--disabled {
-      color: if($light-theme, $md-font-icon-light-theme-disabled-color, $md-font-icon-dark-theme-disabled-color);
     }
   }
 }

@@ -39,14 +39,15 @@ export default class FloatingLabel extends PureComponent {
         {...props}
         htmlFor={htmlFor}
         className={cn('md-floating-label', {
-          'md-floating-label--active': !error && active,
-          'md-floating-label--error': !disabled && error,
+          'md-text--secondary': !active && !error,
+          'md-text--disabled': disabled,
+          'md-text--error': !disabled && error,
+          'md-text--theme-primary': !error && active,
           'md-floating-label--inactive': !floating,
           'md-floating-label--inactive-sized': !floating && !customSize,
           [`md-floating-label--${customSize}`]: customSize,
           [`md-floating-label--inactive-${customSize}`]: customSize && !floating,
           'md-floating-label--floating': floating,
-          'md-floating-label--disabled': disabled,
           'md-floating-label--icon-offset': iconOffset,
         }, className)}
       >

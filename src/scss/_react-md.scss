@@ -135,7 +135,7 @@
 ///     $md-secondary-color,
 ///     false,
 ///     dark-theme,
-///     $md-text-field-error-color,
+///     $md-error-color,
 ///     $md-linear-progress-swatch
 ///   );
 ///
@@ -144,7 +144,7 @@
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
 /// @param {String} html-class-name [null] - The html className to nest every component
 ///     in. This should really be used if switching from the light or dark theme.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
+/// @param {Color} error-color [$md-error-color] - The error color to use.
 /// @param {Number} progress-swatch [$md-linear-progress-swatch] - The color for the linear progress
 ///     swatch color.
 /// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color.
@@ -165,7 +165,7 @@
   $secondary-color,
   $light-theme: $md-light-theme,
   $html-class-name: null,
-  $error-color: $md-text-field-error-color,
+  $error-color: $md-error-color,
   $progress-swatch: $md-linear-progress-swatch,
   $primary-opacity: $md-primary-hover-opacity,
   $primary-background-text-color: $md-primary-background-text-color,

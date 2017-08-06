@@ -57,7 +57,7 @@ exports[`TextField should be able to be snapshottable 2`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -100,7 +100,7 @@ exports[`TextField should be able to be snapshottable 3`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -265,7 +265,7 @@ exports[`TextField should be able to be snapshottable 6`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -309,7 +309,7 @@ exports[`TextField should be able to be snapshottable 7`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -331,7 +331,7 @@ exports[`TextField should be able to be snapshottable 7`] = `
     className="md-divider md-divider--text-field md-divider--expand-from-left"
   />
   <div
-    className="md-text-field-message-container md-full-width"
+    className="md-text-field-message-container md-text--disabled md-full-width"
   >
     <p
       aria-hidden={false}
@@ -363,7 +363,7 @@ exports[`TextField should be able to be snapshottable 8`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--error md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--error md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -385,7 +385,7 @@ exports[`TextField should be able to be snapshottable 8`] = `
     className="md-divider md-divider--text-field md-divider--expand-from-left md-divider--text-field-error"
   />
   <div
-    className="md-text-field-message-container md-text-field-message-container--error md-full-width"
+    className="md-text-field-message-container md-text--error md-full-width"
   >
     <p
       aria-hidden={false}
@@ -417,7 +417,7 @@ exports[`TextField should be able to be snapshottable 9`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -439,7 +439,7 @@ exports[`TextField should be able to be snapshottable 9`] = `
     className="md-divider md-divider--text-field md-divider--expand-from-left"
   />
   <div
-    className="md-text-field-message-container md-text-field-message-container--count-only md-full-width"
+    className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
   >
     <p
       aria-hidden={true}
@@ -471,7 +471,7 @@ exports[`TextField should be able to be snapshottable 10`] = `
   }
 >
   <label
-    className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+    className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
     htmlFor="test"
   >
     Label
@@ -493,7 +493,7 @@ exports[`TextField should be able to be snapshottable 10`] = `
     className="md-divider md-divider--text-field md-divider--expand-from-left"
   />
   <div
-    className="md-text-field-message-container md-text-field-message-container--count-only md-full-width"
+    className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
   >
     <p
       aria-hidden={true}

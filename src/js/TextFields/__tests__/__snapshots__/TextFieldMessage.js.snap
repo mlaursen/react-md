@@ -1,0 +1,200 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextFieldMessage should render correctly based on the props 1`] = `null`;
+
+exports[`TextFieldMessage should render correctly based on the props 2`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    0 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 3`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 4`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 5`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 6`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 7`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 8`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 9`] = `
+<div
+  class="md-text-field-message-container md-text--error md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some error text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 10`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 11`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-text-field-message-container--right-icon-offset md-full-width"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;
+
+exports[`TextFieldMessage should render correctly based on the props 12`] = `
+<div
+  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset"
+>
+  <p
+    aria-hidden="false"
+    class="md-text-field-message md-text-field-message--active"
+  >
+    Some help text
+  </p>
+  <p
+    aria-hidden="true"
+    class="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+  >
+    2 / 20
+  </p>
+</div>
+`;

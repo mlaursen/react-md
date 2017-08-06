@@ -34,6 +34,11 @@ $md-secondary-hover-opacity: .9 !default;
 /// @group themes
 $md-secondary-background-text-color: $md-white-base !default;
 
+/// The error color to apply to icons, text fields, select fields, etc.
+/// @type Color
+/// @group themes
+$md-error-color: $md-red-500 !default;
+
 /// Boolean if the application is to be themed with the light theme.
 /// @type Boolean
 /// @group themes
