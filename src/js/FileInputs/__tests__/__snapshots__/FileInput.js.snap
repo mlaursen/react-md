@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileInput should apply styles correctly 1`] = `
+<div
+  class="md-inline-block md-file-input-container test-class"
+  style="height: 200px;"
+>
+  <label
+    aria-pressed="false"
+    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover"
+    for="test-input"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="md-ink-container"
+    >
+      <span
+        aria-hidden="true"
+      />
+    </div>
+    <div
+      class="md-icon-separator"
+    >
+      <span
+        class="md-icon-text"
+      >
+        Select a file
+      </span>
+      <i
+        class="md-icon material-icons"
+      >
+        file_upload
+      </i>
+    </div>
+  </label>
+  <input
+    aria-hidden="true"
+    class="md-file-input"
+    id="test-input"
+    type="file"
+  />
+</div>
+`;
+
+exports[`FileInput should render the form control props correctly 1`] = `
+<div
+  class="md-inline-block md-file-input-container"
+>
+  <label
+    aria-pressed="false"
+    class="md-fake-btn md-pointer--hover md-fake-btn--no-outline md-btn md-btn--raised md-btn--text md-pointer--hover"
+    for="file-input-1"
+    role="button"
+    tabindex="0"
+  >
+    <div
+      class="md-ink-container"
+    >
+      <span
+        aria-hidden="true"
+      />
+    </div>
+    <div
+      class="md-icon-separator"
+    >
+      <span
+        class="md-icon-text"
+      >
+        Select a file
+      </span>
+      <i
+        class="md-icon material-icons"
+      >
+        file_upload
+      </i>
+    </div>
+  </label>
+  <input
+    accept="images/*,videos/*"
+    aria-hidden="true"
+    class="md-file-input"
+    id="file-input-1"
+    name="images"
+    type="file"
+  />
+</div>
+`;

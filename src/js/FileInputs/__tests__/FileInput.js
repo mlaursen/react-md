@@ -1,6 +1,7 @@
 /* eslint-env jest*/
 /* eslint-disable max-len */
 import React from 'react';
+import { mount } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import { shallow } from 'enzyme';
 import {
@@ -20,91 +21,69 @@ const File = jest.fn(name => ({
 }));
 
 describe('FileInput', () => {
-  it('merges className and style', () => {
-    const style = { display: 'block' };
-    const className = 'test';
-    const fileInput = renderIntoDocument(
-      <FileInput id="test" style={style} className={className} onChange={jest.fn()} />
-    );
-
-    const fileInputNode = findDOMNode(fileInput);
-    expect(fileInputNode.style.display).toBe(style.display);
-    expect(fileInputNode.className).toContain(className);
+  it('should apply styles correctly', () => {
+    global.expectRenderSnapshot(<FileInput id="test-input" style={{ height: 200 }} className="test-class" onChange={() => {}} />);
   });
 
-  it('returns a single file when multiple is false onChange', () => {
+  it('should call the onChange prop with a single file when the multiple prop is not enabled', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} />);
-
-    const input = findRenderedDOMComponentWithTag(fileInput, 'input');
+    const fileInput = mount(<FileInput id="test-input" multiple={false} onChange={onChange} />);
 
     // can't instantiate fully, so we can make an almost exact reference
-    const files = [new File()];
-
-    Simulate.change(input, { target: { files } });
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toEqual(files[0]);
+    const file = new File();
+    const files = [file];
+    const event = { target: { files } };
+    fileInput.find('input').simulate('change', event);
+    expect(onChange).toBeCalled();
+    expect(onChange.mock.calls[0][0]).toEqual(file);
   });
 
-  it('returns null when the user cancel\'s a file selection when multiple is false onChange', () => {
+  it('should call the onChange prop with a list of files when the multiple prop is enabled', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} />);
+    const fileInput = mount(<FileInput id="test-input" multiple onChange={onChange} />);
 
-    const input = findRenderedDOMComponentWithTag(fileInput, 'input');
-    // Cancel returns empty list
-    const files = [];
+    const files = [new File()];
+    const event = { target: { files } };
+    fileInput.find('input').simulate('change', event);
+    expect(onChange).toBeCalled();
+    expect(onChange.mock.calls[0][0]).toEqual(files);
+    onChange.mockClear();
 
-    Simulate.change(input, { target: { files } });
+    const files2 = [new File(), new File(), new File(), new File()];
+    const event2 = { target: { files: files2 } };
+    fileInput.find('input').simulate('change', event2);
+    expect(onChange).toBeCalled();
+    expect(onChange.mock.calls[0][0]).toEqual(files2);
+  });
 
-    expect(onChange.mock.calls.length).toBe(1);
+  it('should provide null if the user cancels a file input when multiple is not enabled', () => {
+    const onChange = jest.fn();
+    const fileInput = mount(<FileInput id="test-input" onChange={onChange} />);
+
+    // Cancel returns an empty list
+    const event = { target: { files: [] } };
+    fileInput.find('input').simulate('change', event);
+    expect(onChange).toBeCalled();
     expect(onChange.mock.calls[0][0]).toBe(null);
   });
 
-  it('returns a list of files when multiple is true onChange', () => {
+  it('should return an empty list when a user cancels the file input and multiple is enabled', () => {
     const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} multiple />);
-
-    const input = findRenderedDOMComponentWithTag(fileInput, 'input');
-
-    // can't instantiate fully, so we can make an almost exact reference
-    const files = [new File(), new File('Test2.jpg')];
-
-    Simulate.change(input, { target: { files } });
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0]).toEqual(files);
+    const fileInput = mount(<FileInput id="test-input" onChange={onChange} multiple />);
+    const event = { target: { files: [] } };
+    fileInput.find('input').simulate('change', event);
+    expect(onChange).toBeCalled();
+    expect(onChange.mock.calls[0][0]).toEqual([]);
   });
 
-  it('returns an empty list of files when the user cancels an upload and multiple is true onChange', () => {
-    const onChange = jest.fn();
-    const fileInput = renderIntoDocument(<FileInput id="test" onChange={onChange} multiple />);
-
-    const input = findRenderedDOMComponentWithTag(fileInput, 'input');
-    const files = [];
-
-    Simulate.change(input, { target: { files } });
-
-    expect(onChange.mock.calls.length).toBe(1);
-    expect(onChange.mock.calls[0][0].length).toBe(0);
-    expect(onChange.mock.calls[0][0]).toEqual(files);
-  });
-
-  it('should correctly pass the form control props to the input element', () => {
-    const props = { id: 'file-input', name: 'images', accept: 'images/*', onChange: jest.fn() };
-    const fileInput = shallow(<FileInput {...props} />);
-    let input = fileInput.find('input').get(0);
-    expect(input.props.id).toBe(props.id);
-    expect(input.props.name).toBe(props.name);
-    expect(input.props.accept).toBe(props.accept);
-    expect(input.props.type).toBe('file');
-
-    fileInput.setProps({ multiple: true });
-    input = fileInput.find('input').get(0);
-    expect(input.props.multiple).toBe(true);
-
-    fileInput.setProps({ disabled: true });
-    input = fileInput.find('input').get(0);
-    expect(input.props.disabled).toBe(true);
+  it('should render the form control props correctly', () => {
+    global.expectRenderSnapshot(
+      <FileInput
+        id="file-input-1"
+        name="images"
+        accept="images/*,videos/*"
+        onChange={() => {}}
+      />
+    );
   });
 });

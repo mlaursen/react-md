@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import { TAB, SPACE, ENTER } from '../constants/keyCodes';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
@@ -95,14 +96,9 @@ export default class FileInput extends PureComponent {
     iconBefore: PropTypes.bool,
 
     /**
-     * The icon children to use for the upload icon.
+     * An optional icon to display with the file download. This can be a `FontIcon` or an `SVGIcon`.
      */
-    iconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use for the upload icon.
-     */
-    iconClassName: PropTypes.string,
+    icon: PropTypes.element,
 
     /**
      * A function to call when the value of the input changes. This will
@@ -166,11 +162,14 @@ export default class FileInput extends PureComponent {
      * An optional function to call when they touchstart event is triggerred on the file input's label.
      */
     onTouchStart: PropTypes.func,
+
+    iconChildren: deprecated(PropTypes.node, 'Use `icon` instead'),
+    iconClassName: deprecated(PropTypes.string, 'Use `icon` instead'),
   };
 
   static defaultProps = {
     label: 'Select a file',
-    iconChildren: 'file_upload',
+    icon: <FontIcon>file_upload</FontIcon>,
   };
 
   state = { hover: false, pressed: false };
@@ -321,8 +320,6 @@ export default class FileInput extends PureComponent {
       style,
       className,
       label,
-      iconChildren,
-      iconClassName,
       primary,
       secondary,
       flat,
@@ -333,7 +330,12 @@ export default class FileInput extends PureComponent {
       accept,
       multiple,
       swapTheming,
+
+      // Deprecated
+      iconChildren,
+      iconClassName,
       /* eslint-disable no-unused-vars */
+      icon: propIcon,
       onChange,
       onKeyUp,
       onKeyDown,
@@ -346,10 +348,10 @@ export default class FileInput extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
-    const icon = !iconClassName && !iconChildren
-      ? null
-      : <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    let { icon } = this.props;
+    if (iconClassName || iconChildren) {
+      icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    }
 
     let labelChildren = label;
     if (icon) {
