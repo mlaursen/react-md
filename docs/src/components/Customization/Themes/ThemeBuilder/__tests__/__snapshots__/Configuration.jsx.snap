@@ -113,7 +113,7 @@ exports[`Configuration should render correctly 1`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -160,7 +160,7 @@ exports[`Configuration should render correctly 1`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -209,7 +209,7 @@ exports[`Configuration should render correctly 1`] = `
             200
           </span>
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -341,7 +341,7 @@ exports[`Configuration should render correctly 2`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -388,7 +388,7 @@ exports[`Configuration should render correctly 2`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -437,7 +437,7 @@ exports[`Configuration should render correctly 2`] = `
             200
           </span>
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -568,7 +568,7 @@ exports[`Configuration should render correctly 3`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -615,7 +615,7 @@ exports[`Configuration should render correctly 3`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -664,7 +664,7 @@ exports[`Configuration should render correctly 3`] = `
             200
           </span>
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -794,7 +794,7 @@ exports[`Configuration should render correctly 4`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -841,7 +841,7 @@ exports[`Configuration should render correctly 4`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
@@ -890,7 +890,7 @@ exports[`Configuration should render correctly 4`] = `
             200
           </span>
           <i
-            class="md-icon material-icons md-text--inherit"
+            class="md-icon material-icons"
           >
             arrow_drop_down
           </i>
