@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import renderer from 'react-test-renderer';
+import { shallow, mount } from 'enzyme';
 
 window.matchMedia = jest.fn(query => ({
   matches: !!query.match(/min-width: 1025/),
@@ -7,6 +8,11 @@ window.matchMedia = jest.fn(query => ({
 
 global.expectSnapshot = function expectSnapshot(children) {
   expect(renderer.create(children).toJSON()).toMatchSnapshot();
+};
+
+global.expectRenderSnapshot = function expectRenderSnapshot(children, fullDOM = true) {
+  const component = (fullDOM ? mount : shallow)(children);
+  expect(component.render()).toMatchSnapshot();
 };
 
 /**

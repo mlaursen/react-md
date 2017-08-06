@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
+import FontIcon from 'react-md/lib/FontIcons';
 
 import Recent from './Recent';
 import Favorites from './Favorites';
@@ -8,13 +9,13 @@ import PhoneEmulator from 'components/PhoneEmulator';
 
 const links = [{
   label: 'Recent',
-  iconChildren: 'access_time',
+  icon: <FontIcon>access_time</FontIcon>,
 }, {
   label: 'Favorites',
-  iconChildren: 'favorite',
+  icon: <FontIcon>favorite</FontIcon>,
 }, {
   label: 'Nearby',
-  iconChildren: 'place',
+  icon: <FontIcon>place</FontIcon>,
 }];
 
 export default class Fixed extends PureComponent {

@@ -33,5 +33,12 @@ describe('BottomNavigation', () => {
     const nav = shallow(<BottomNavigation links={links} portal />);
     expect(nav.find(Portal).length).toBe(1);
   });
+
+  it('should be able to render correctly', () => {
+    const links = [{ label: 'One' }, { label: 'Two' }, { label: 'Three' }];
+    global.expectRenderSnapshot(<BottomNavigation links={links} />);
+    global.expectRenderSnapshot(<BottomNavigation links={links} colored />);
+    global.expectRenderSnapshot(<BottomNavigation links={links} dynamic colored />);
+  });
 });
 

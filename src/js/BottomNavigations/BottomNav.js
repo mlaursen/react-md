@@ -31,6 +31,7 @@ export default class BottomNav extends PureComponent {
     onNavChange: PropTypes.func,
     role: PropTypes.string,
     animate: PropTypes.bool,
+    icon: PropTypes.element,
   };
 
   static defaultProps = {
@@ -54,12 +55,15 @@ export default class BottomNav extends PureComponent {
       active,
       fixed,
       className,
-      iconClassName,
-      iconChildren,
       colored,
       animate,
+
+      // deprecated
+      iconClassName,
+      iconChildren,
       /* eslint-disable no-unused-vars */
       index,
+      icon: propIcon,
       label: propLabel,
       onClick,
       onNavChange,
@@ -67,7 +71,7 @@ export default class BottomNav extends PureComponent {
       ...props
     } = this.props;
 
-    let { label } = this.props;
+    let { label, icon } = this.props;
     const labelClassName = cn('md-bottom-nav-label', { 'md-bottom-nav-label--shifting-inactive': !active && !fixed });
     if (Children.count(label) === 1 && isValidElement(label)) {
       const labelEl = Children.only(label);
@@ -76,6 +80,13 @@ export default class BottomNav extends PureComponent {
       });
     } else {
       label = <div className={labelClassName}>{label}</div>;
+    }
+
+    if (!icon && (iconClassName || iconChildren)) {
+      // Deprecated
+      icon = <FontIcon iconClassName={iconClassName} inherit>{iconChildren}</FontIcon>;
+    } else if (icon) {
+      icon = React.cloneElement(icon, { inherit: true });
     }
 
     return (
@@ -90,7 +101,7 @@ export default class BottomNav extends PureComponent {
           'md-bottom-nav--shifting-inactive': !fixed && !active,
         }, themeColors({ primary: !colored && active, text: !active && !colored }, className))}
       >
-        <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>
+        {icon}
         <Collapse collapsed={!fixed && !active} animate={animate}>
           {label}
         </Collapse>
