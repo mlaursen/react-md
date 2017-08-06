@@ -102,8 +102,8 @@ exports[`BlockedFields should render correctly 1`] = `
       <button
         className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
         onClick={[Function]}
+        onMouseEnter={[Function]}
         onMouseLeave={[Function]}
-        onMouseOver={[Function]}
         type="button"
       >
         <div
@@ -131,8 +131,8 @@ exports[`BlockedFields should render correctly 1`] = `
       <button
         className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
         onClick={[Function]}
+        onMouseEnter={[Function]}
         onMouseLeave={[Function]}
-        onMouseOver={[Function]}
         type="button"
       >
         <div
