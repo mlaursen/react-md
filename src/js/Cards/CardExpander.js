@@ -22,6 +22,7 @@ export default class CardExpander extends Component {
     const {
       expanded,
       onExpandClick,
+      icon,
       iconClassName,
       iconChildren,
       tooltipPosition,
@@ -40,6 +41,7 @@ export default class CardExpander extends Component {
         tooltipLabel={tooltipLabel}
         tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
+        iconEl={!iconChildren ? icon : null}
       >
         {iconChildren}
       </Button>

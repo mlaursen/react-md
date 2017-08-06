@@ -7,6 +7,7 @@ export interface CardProps extends Props {
   raise?: boolean;
   expanded?: boolean;
   onExpanderClick?: Function;
+  expanderIcon?: React.ReactElement<any>;
   expanderIconClassName?: string;
   expanderIconChildren?: React.ReactNode;
   expanderTooltipLabel?: React.ReactNode;

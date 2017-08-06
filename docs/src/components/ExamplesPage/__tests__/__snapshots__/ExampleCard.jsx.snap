@@ -67,12 +67,12 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       onTouchStart={[Function]}
       type="button"
     >
-      <i
-        className="md-icon material-icons md-text--inherit"
+      <svg
+        className="md-icon md-text--inherit"
         style={undefined}
-      >
-        code
-      </i>
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
     </button>
   </div>
   <table
@@ -175,12 +175,12 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       onTouchStart={[Function]}
       type="button"
     >
-      <i
-        className="md-icon material-icons md-text--inherit"
+      <svg
+        className="md-icon md-text--inherit"
         style={undefined}
-      >
-        code
-      </i>
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
     </button>
   </div>
   <section
@@ -296,12 +296,12 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       onTouchStart={[Function]}
       type="button"
     >
-      <i
-        className="md-icon material-icons md-text--inherit"
+      <svg
+        className="md-icon md-text--inherit"
         style={undefined}
-      >
-        code
-      </i>
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
     </button>
   </div>
   <section
@@ -400,12 +400,12 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       onTouchStart={[Function]}
       type="button"
     >
-      <i
-        className="md-icon material-icons md-text--inherit"
+      <svg
+        className="md-icon md-text--inherit"
         style={undefined}
-      >
-        code
-      </i>
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
     </button>
   </div>
   <section

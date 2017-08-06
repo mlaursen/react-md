@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Card from 'react-md/lib/Cards/Card';
 import CardText from 'react-md/lib/Cards/CardText';
+import SVGIcon from 'react-md/lib/SVGIcons';
 import { toCaterpillarCase } from 'utils/strings';
 
+import codeIcon from 'icons/code.svg';
 import Markdown from 'components/Markdown';
 import Title from './Title';
 
@@ -46,7 +48,7 @@ ${code}
       tabIndex={-1}
       tableCard={tableCard}
       className={cn('md-cell md-cell--12', className)}
-      expanderIconChildren="code"
+      expanderIcon={<SVGIcon use={codeIcon.url} />}
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
     >
