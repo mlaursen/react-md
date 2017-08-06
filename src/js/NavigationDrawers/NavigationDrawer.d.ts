@@ -57,10 +57,6 @@ export interface NavigationDrawerProps extends Props {
   toolbarChildren?: React.ReactNode;
   contentComponent?: Function | string;
   footer?: React.ReactNode;
-  temporaryIconChildren?: React.ReactNode;
-  temporaryIconClassName?: string;
-  persistentIconChildren?: React.ReactNode;
-  persistentIconClassName?: string;
   transitionName?: string;
   transitionEnterTimeout?: number;
   transitionLeaveTimeout?: number;
@@ -68,11 +64,33 @@ export interface NavigationDrawerProps extends Props {
   contentProps?: Object;
   contentId?: number | string;
   jumpLabel?: string;
+  temporaryIcon?: React.ReactElement<any>;
+  persistentIcon?: React.ReactElement<any>;
 
   /**
    * @deprecated
    */
   onVisibilityToggle?: (visible: boolean, event: Event) => void;
+
+  /**
+   * @deprecated
+   */
+  temporaryIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  temporaryIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  persistentIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  persistentIconClassName?: string;
 }
 
 interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawerProps> {
@@ -80,7 +98,7 @@ interface NavigationDrawerComponent extends React.ComponentClass<NavigationDrawe
     mobileMinWidth: number,
     tabletMinWidth: number,
     desktopMinWidth: number,
-    mobileDrawerType: MobileDrawerTypes, MobileDrawerTypesType,
+    mobileDrawerType: MobileDrawerTypes | MobileDrawerTypesType,
     tabletDrawerType: DrawerTypes | DrawerTypesType,
     desktopDrawerType: DrawerTypes | DrawerTypesType,
   }): { type: DrawerTypesType | DrawerTypes, mobile: boolean, tablet: boolean, desktop: boolean };

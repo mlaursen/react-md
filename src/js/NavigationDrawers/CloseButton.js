@@ -52,6 +52,7 @@ export default class CloseButton extends PureComponent {
         key="close"
         iconClassName={iconClassName}
         onClick={this._handleClick}
+        svg={!iconClassName && React.isValidElement(children)}
       >
         {children}
       </Button>

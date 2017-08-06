@@ -12,6 +12,7 @@ import Button from '../Buttons/Button';
 import Drawer from '../Drawers/Drawer';
 import List from '../Lists/List';
 import Toolbar from '../Toolbars/Toolbar';
+import FontIcon from '../FontIcons/FontIcon';
 
 const { DrawerTypes } = Drawer;
 import { isTemporary, isPersistent, isPermanent, isMini } from '../Drawers/isType';
@@ -540,40 +541,21 @@ export default class NavigationDrawer extends PureComponent {
     footer: PropTypes.node,
 
     /**
-     * Any children used to render a button that will toggle the visibility of the
+     * The icon to use to render the button that will toggle the visibility of the
      * navigation drawer for `temporary` and `persistent` drawers. This is normally a
      * hamburger menu.
      */
-    temporaryIconChildren: PropTypes.node,
+    temporaryIcon: PropTypes.element,
 
     /**
-     * The icon className used to render a button that will toggle the visibility of the
-     * navigation drawer for `temporary` and `persistent` drawers. This is normally a
-     * hamburger menu.
-     */
-    temporaryIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render a button that appears on a persistent drawer's open
+     * The icon to use to render the button that appears on a persistent drawer's open
      * header. This is used to create the `CloseButton` for drawers. When a persistent
-     * drawer is closed, the `temporaryIconChildren` and `temporaryIconClassName` props
-     * will be used to create a button to open the drawer.
+     * drawer is closed, the `temporaryIcon` will be used to create a button to open the drawer.
      *
      * If the `drawerHeader` prop is defined, you will have to either include the `CloseButton`
      * in your header manually, or create your own controlled button to close the drawer.
      */
-    persistentIconChildren: PropTypes.node,
-
-    /**
-     * The icon classNameused to render a button that appears on a persistent drawer's open
-     * header. This is used to create the `CloseButton` for drawers. When a persistent
-     * drawer is closed, the `temporaryIconChildren` and `temporaryIconClassName` props
-     * will be used to create a button to open the drawer.
-     *
-     * If the `drawerHeader` prop is defined, you will have to either include the `CloseButton`
-     * in your header manually, or create your own controlled button to close the drawer.
-     */
-    persistentIconClassName: PropTypes.string,
+    persistentIcon: PropTypes.element,
 
     /**
      * The transition name to use when the page's content changes. If you want to disable
@@ -648,6 +630,10 @@ export default class NavigationDrawer extends PureComponent {
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
     closeIconChildren: deprecated(PropTypes.node, 'Use `persistentIconChildren` instead'),
     closeIconClassName: deprecated(PropTypes.string, 'Use `persistentIconClassName` instead'),
+    temporaryIconChildren: deprecated(PropTypes.node, 'Use the `temporaryIcon` prop instead'),
+    temporaryIconClassName: deprecated(PropTypes.string, 'Use the `temporaryIcon` prop instead.'),
+    persistentIconChildren: deprecated(PropTypes.node, 'Use the `persistentIcon` prop instead'),
+    persistentIconClassName: deprecated(PropTypes.string, 'Use the `persistentIcon` prop instead'),
     onDrawerChange: deprecated(PropTypes.func, 'Use `onVisibilityChange` or `onMediaTypeChange` instead'),
     onVisibilityToggle: deprecated(PropTypes.func, 'Use `onVisibilityChange` instead'),
     contentTransitionName: deprecated(PropTypes.string, 'Use `transitionName` instead'),
@@ -694,9 +680,9 @@ export default class NavigationDrawer extends PureComponent {
     desktopMinWidth: Drawer.defaultProps.desktopMinWidth,
     includeDrawerHeader: true,
     contentComponent: 'main',
-    temporaryIconChildren: 'menu',
+    temporaryIcon: <FontIcon>menu</FontIcon>,
     toolbarThemeType: 'colored',
-    persistentIconChildren: 'arrow_back',
+    persistentIcon: <FontIcon>arrow_back</FontIcon>,
     transitionName: 'md-cross-fade',
     transitionEnterTimeout: 300,
     drawerTransitionDuration: Drawer.defaultProps.transitionDuration,
@@ -752,6 +738,7 @@ export default class NavigationDrawer extends PureComponent {
 
   getChildContext() {
     const {
+      persistentIcon,
       persistentIconChildren,
       persistentIconClassName,
       closeIconChildren,
@@ -763,7 +750,7 @@ export default class NavigationDrawer extends PureComponent {
     return {
       id,
       label,
-      closeChildren: closeIconChildren || persistentIconChildren,
+      closeChildren: closeIconChildren || persistentIconChildren || persistentIcon,
       closeIconClassName: closeIconClassName || persistentIconClassName,
       onCloseClick: this._toggleVisibility,
       renderNode: this.context.renderNode,
@@ -873,27 +860,31 @@ export default class NavigationDrawer extends PureComponent {
       extractMini,
       miniDrawerHeader,
       miniDrawerChildren,
-      temporaryIconChildren,
-      temporaryIconClassName,
-      menuIconChildren,
-      menuIconClassName,
       footer,
       includeDrawerHeader,
       contentId,
       contentProps,
       constantDrawerType,
+      temporaryIcon,
+
+      // deprecated
+      temporaryIconChildren,
+      temporaryIconClassName,
+      menuIconChildren,
+      menuIconClassName,
       /* eslint-disable no-unused-vars */
       drawerType: propDrawerType,
       drawerHeader: propDrawerHeader,
       renderNode: propRenderNode,
       jumpLabel,
-      persistentIconChildren,
-      persistentIconClassName,
+      persistentIcon,
 
       // deprecated
       onDrawerChange,
       closeIconChildren,
       closeIconClassName,
+      persistentIconChildren,
+      persistentIconClassName,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -925,8 +916,9 @@ export default class NavigationDrawer extends PureComponent {
           disabled={persistent && visible}
           icon
           iconClassName={menuIconClassName || temporaryIconClassName}
+          svg={!!temporaryIcon}
         >
-          {menuIconChildren || temporaryIconChildren}
+          {menuIconChildren || temporaryIconChildren || temporaryIcon}
         </Button>
       );
     }
