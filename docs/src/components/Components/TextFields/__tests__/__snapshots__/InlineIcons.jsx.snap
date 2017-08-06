@@ -119,6 +119,120 @@ exports[`InlineIcons should render correctly 1`] = `
     </div>
   </div>
   <div
+    className="md-cell text-fields__blocked-phones"
+  >
+    <div
+      className="md-text-field-container md-inline-block md-text-field-container--input"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
+    >
+      <label
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
+        htmlFor="phone-number-with-svg-icon-left"
+      >
+        Phone
+      </label>
+      <div
+        className="md-text-field-icon-container"
+      >
+        <svg
+          className="md-icon md-text-field-icon md-text-field-icon--positioned"
+          style={undefined}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+        <div
+          className="md-text-field-divider-container"
+        >
+          <input
+            className="md-text-field md-text-field--floating-margin md-text"
+            disabled={undefined}
+            id="phone-number-with-svg-icon-left"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder={null}
+            rows={undefined}
+            size={10}
+            style={undefined}
+            type="tel"
+          />
+          <hr
+            className="md-divider md-divider--text-field md-divider--expand-from-left"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="md-text-field-container md-inline-block md-text-field-container--input"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
+    >
+      <label
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+        htmlFor="phone-number-with-svg-icon-right"
+      >
+        Phone
+      </label>
+      <div
+        className="md-text-field-icon-container"
+      >
+        <div
+          className="md-text-field-divider-container"
+        >
+          <input
+            className="md-text-field md-text-field--floating-margin md-text"
+            disabled={undefined}
+            id="phone-number-with-svg-icon-right"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder={null}
+            rows={undefined}
+            size={10}
+            style={undefined}
+            type="tel"
+          />
+          <hr
+            className="md-divider md-divider--text-field md-divider--expand-from-left"
+          />
+        </div>
+        <svg
+          className="md-icon md-text-field-icon md-text-field-icon--positioned"
+          style={undefined}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      </div>
+    </div>
+  </div>
+  <div
     className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
     onClick={[Function]}
     onDoubleClick={undefined}
@@ -177,6 +291,60 @@ exports[`InlineIcons should render correctly 1`] = `
       >
         clear
       </i>
+    </button>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
+      htmlFor="text-field-with-svg-password"
+    >
+      Password with svg
+    </label>
+    <input
+      className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
+      disabled={undefined}
+      id="text-field-with-svg-password"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="password"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <button
+      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onKeyUp={[Function]}
+      type="button"
+    >
+      <svg
+        className="md-icon"
+        style={undefined}
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      />
     </button>
   </div>
 </div>

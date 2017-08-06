@@ -9,6 +9,7 @@ import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
 import addSuffix from '../utils/StringUtils/addSuffix';
+import FontIcon from '../FontIcons/FontIcon';
 import FloatingLabel from './FloatingLabel';
 import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
@@ -266,14 +267,9 @@ export default class TextField extends PureComponent {
     rightIconStateful: PropTypes.bool,
 
     /**
-     * Any children used to display the password icon.
+     * The icon to use for a password text field.
      */
-    passwordIconChildren: PropTypes.node,
-
-    /**
-     * The icon className for the password icon.
-     */
-    passwordIconClassName: PropTypes.string,
+    passwordIcon: PropTypes.element,
 
     /**
      * Boolean if the password is initially visible.
@@ -364,6 +360,8 @@ export default class TextField extends PureComponent {
      */
     toolbar: PropTypes.bool,
 
+    passwordIconChildren: deprecated(PropTypes.node, 'Use the `passwordIcon` prop instead'),
+    passwordIconClassName: deprecated(PropTypes.string, 'Use the `passwordIcon` prop instead'),
     icon: deprecated(PropTypes.node, 'Use the `leftIcon` or `rightIcon` prop instead'),
     floatingLabel: deprecated(
       PropTypes.bool,
@@ -375,7 +373,7 @@ export default class TextField extends PureComponent {
   static defaultProps = {
     type: 'text',
     lineDirection: 'left',
-    passwordIconChildren: 'remove_red_eye',
+    passwordIcon: <FontIcon>remove_red_eye</FontIcon>,
     leftIconStateful: true,
     rightIconStateful: true,
     fullWidth: true,
@@ -668,8 +666,7 @@ export default class TextField extends PureComponent {
       disabled,
       leftIconStateful,
       rightIconStateful,
-      passwordIconChildren,
-      passwordIconClassName,
+      passwordIcon,
       lineDirection,
       paddedBlock,
       onDoubleClick,
@@ -684,7 +681,11 @@ export default class TextField extends PureComponent {
       ink,
       inlineIndicator,
       toolbar,
-      icon, // deprecated
+
+      // deprecated
+      icon,
+      passwordIconChildren,
+      passwordIconClassName,
       /* eslint-disable no-unused-vars */
       label: propLabel,
       placeholder: propPlaceholder,
@@ -741,6 +742,7 @@ export default class TextField extends PureComponent {
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
+          icon={passwordIcon}
           iconChildren={passwordIconChildren}
           iconClassName={passwordIconClassName}
           block={block}

@@ -10,6 +10,7 @@ export default class PasswordButton extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
     passwordVisible: PropTypes.bool,
+    icon: PropTypes.element,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.node,
     block: PropTypes.bool,
@@ -43,12 +44,19 @@ export default class PasswordButton extends PureComponent {
     const {
       active,
       passwordVisible,
-      iconClassName,
-      iconChildren,
       block,
       floating,
+      icon: propIcon, // eslint-disable-line no-unused-vars
+
+      // deprecated
+      iconClassName,
+      iconChildren,
       ...props
     } = this.props;
+    let { icon } = this.props;
+    if (iconClassName || iconChildren) {
+      icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    }
 
     return (
       <button
@@ -63,7 +71,7 @@ export default class PasswordButton extends PureComponent {
           'md-text-field-inline-indicator--block': block,
         }, themeColors({ disabled: !active, hint: active }))}
       >
-        <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
+        {icon}
       </button>
     );
   }
