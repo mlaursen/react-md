@@ -3,8 +3,10 @@ import React from 'react';
 import Avatar from 'react-md/lib/Avatars';
 import IconSeparator from 'react-md/lib/Helpers/IconSeparator';
 import FontIcon from 'react-md/lib/FontIcons';
+import SVGIcon from 'react-md/lib/SVGIcons';
 
 import { randomImage } from 'utils/random';
+import done from 'icons/done.svg';
 
 const Item = ({ label, children }) => (
   <IconSeparator label={label} iconBefore component="li" className="md-cell md-cell--12">
@@ -19,6 +21,9 @@ const Simple = () => (
     </Item>
     <Item label="An Avatar with a FontAwesome icon.">
       <Avatar icon={<FontIcon iconClassName="fa fa-rocket" />} />
+    </Item>
+    <Item label="An Avatar using an SVG Icon">
+      <Avatar icon={<SVGIcon use={done.url} />} suffix="light-green" />
     </Item>
     <Item label="An Avatar using a letter and the default color.">
       <Avatar>M</Avatar>
