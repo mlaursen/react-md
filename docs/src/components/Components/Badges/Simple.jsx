@@ -1,9 +1,10 @@
 import React from 'react';
 import Badge from 'react-md/lib/Badges';
 import Button from 'react-md/lib/Buttons/Button';
-import FontIcon from 'react-md/lib/FontIcons';
+import SVGIcon from 'react-md/lib/SVGIcons';
 import { COPYRIGHT } from 'constants/unicode';
 
+import notifications from 'icons/notifications.svg';
 import './_simple.scss';
 
 const Simple = () => (
@@ -25,7 +26,7 @@ const Simple = () => (
       className="md-btn--icon"
       badgeId="notifications-3"
     >
-      <FontIcon>notifications</FontIcon>
+      <SVGIcon use={notifications.url} />
     </Badge>
     <Badge
       badgeContent={COPYRIGHT}
