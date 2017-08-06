@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 
 import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import themeColors from '../utils/themeColors';
 import viewport from '../utils/viewport';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
@@ -791,9 +792,9 @@ export default class EditDialogColumn extends PureComponent {
         style={textFieldStyle}
         className={cn({ 'md-edit-dialog__blocked-field': inline }, textFieldClassName)}
         inputClassName={cn({
-          'md-text--secondary md-edit-dialog__header': header && inline,
+          'md-edit-dialog__header': header && inline,
           'md-text-right': numeric,
-        }, inputClassName)}
+        }, themeColors({ hint: header && inline }), inputClassName)}
         id={id}
         label={label}
         placeholder={placeholder}

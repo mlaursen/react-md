@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * This is a component for rendering a year in the Date Picker's Year picker
  * list.
@@ -41,11 +43,10 @@ export default class Year extends PureComponent {
       <button
         type="button"
         ref={this._setActiveFocus}
-        className={cn('md-btn md-pointer--hover md-full-width md-year', {
-          'md-text': !active && !desktopActive,
-          'md-text--theme-primary': active || desktopActive,
-          'md-year--active': active,
-        }, className)}
+        className={cn('md-year', { 'md-year--active': active }, themeColors({
+          text: !active && !desktopActive,
+          primary: active || desktopActive,
+        }), 'md-btn md-pointer--hover md-full-width', className)}
         onClick={this._handleClick}
       >
         {year}

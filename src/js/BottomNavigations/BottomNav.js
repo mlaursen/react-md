@@ -2,6 +2,7 @@ import React, { PureComponent, Children, isValidElement, cloneElement } from 're
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons';
@@ -87,9 +88,7 @@ export default class BottomNav extends PureComponent {
           'md-bottom-nav--shifting': !fixed,
           'md-bottom-nav--shifting-active': !fixed && active,
           'md-bottom-nav--shifting-inactive': !fixed && !active,
-          'md-text': !active && !colored,
-          'md-text--theme-primary': active && !colored,
-        }, className)}
+        }, themeColors({ primary: !colored && active, text: !active && !colored }, className))}
       >
         <FontIcon iconClassName={iconClassName} className="md-icon--inherit">{iconChildren}</FontIcon>
         <Collapse collapsed={!fixed && !active} animate={animate}>

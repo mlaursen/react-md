@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * This is just the label component for the slider. It will
  * return null if there are no children to display.
@@ -29,7 +31,7 @@ export default class SliderLabel extends PureComponent {
       <label
         {...props}
         htmlFor={htmlFor}
-        className={cn('md-slider-label md-text', className)}
+        className={cn('md-slider-label', themeColors({ text: true }), className)}
       >
         {children}
       </label>

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import getField from '../utils/getField';
 import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
@@ -195,9 +196,7 @@ class TableColumn extends PureComponent {
     const fixedHeader = header && this.context.fixedHeader;
     const fixedFooter = this.context.footer && this.context.fixedFooter;
     const fixed = fixedHeader || fixedFooter;
-    const baseClassNames = cn({
-      'md-text': !header,
-      'md-text--secondary': header,
+    const baseClassNames = themeColors({ text: !header, hint: header }, {
       'md-table-column--relative': tooltip,
       'md-table-column--select-field': selectColumnHeader,
     });

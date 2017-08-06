@@ -4,6 +4,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import themeColors from '../utils/themeColors';
 import controlled from '../utils/PropTypes/controlled';
 import Paper from '../Papers/Paper';
 import Collapser from '../FontIcons/Collapser';
@@ -415,9 +416,9 @@ export default class ExpansionPanel extends PureComponent {
     let columns = Children.map(expanded && expandedSecondaryLabel || secondaryLabel, (panelLabel, i) => (
       <div
         style={{ [`${overflown ? 'width' : 'minWidth'}`]: columnWidths[i + 1] }}
-        className={cn('md-panel-column md-text', {
+        className={cn('md-panel-column', {
           'md-panel-column--overflown': overflown,
-        })}
+        }, themeColors({ text: true }))}
       >
         {panelLabel}
       </div>
@@ -428,7 +429,11 @@ export default class ExpansionPanel extends PureComponent {
     }
 
     columns.unshift((
-      <div className="md-panel-column md-text" style={{ minWidth: columnWidths[0] }} key="main-label">
+      <div
+        key="main-label"
+        style={{ minWidth: columnWidths[0] }}
+        className={cn('md-panel-column', themeColors({ text: true }))}
+      >
         {label}
       </div>
     ));

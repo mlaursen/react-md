@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * The `Subheader` component is generally used inside of lists or menus.
  */
@@ -67,10 +69,8 @@ export default class Subheader extends PureComponent {
       <Component
         {...props}
         className={cn('md-subheader', {
-          'md-text--secondary': !primary,
-          'md-text--theme-primary': primary,
           'md-list-item--inset': inset,
-        }, className)}
+        }, themeColors({ primary }), className)}
       >
         {primaryText}
         {children}

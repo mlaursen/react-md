@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * The `ListItemText` component is used to render the `primaryText` and an optional
  * `secondaryText` for a `ListItem`.
@@ -34,10 +36,8 @@ export default class ListItemText extends PureComponent {
       secondaryTextNode = (
         <div
           className={cn('md-tile-text--secondary', {
-            'md-text--disabled': disabled,
-            'md-text--secondary': !disabled,
             'md-tile-text--three-lines': threeLines,
-          })}
+          }, themeColors({ disabled, hint: !disabled }))}
         >
           {secondaryText}
         </div>
@@ -48,10 +48,8 @@ export default class ListItemText extends PureComponent {
       <div {...props} className={cn('md-tile-content', className)}>
         <div
           className={cn('md-tile-text--primary', {
-            'md-text--disabled': disabled,
-            'md-text': !disabled && !active,
             [activeClassName]: !disabled && active,
-          })}
+          }, themeColors({ disabled, text: !active }))}
         >
           {primaryText}
         </div>

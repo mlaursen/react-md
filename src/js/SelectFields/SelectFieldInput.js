@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TICK from '../constants/CSSTransitionGroupTick';
+import themeColors from '../utils/themeColors';
 import FontIcon from '../FontIcons/FontIcon';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import IconSeparator from '../Helpers/IconSeparator';
@@ -131,11 +132,11 @@ export default class SelectFieldInput extends PureComponent {
         component={Paper}
         zDepth={below && active ? 1 : 0}
         inkDisabled={!below}
-        className={cn('md-select-field', {
-          'md-text': !disabled && labelActive,
-          'md-text--secondary': !disabled && !labelActive && placeholder,
-          'md-text--disabled': disabled,
-        }, className)}
+        className={cn('md-select-field', themeColors({
+          disabled,
+          hint: !labelActive && placeholder,
+          text: labelActive,
+        }), className)}
       >
         <IconSeparator
           label={visibleLabel}
@@ -148,7 +149,7 @@ export default class SelectFieldInput extends PureComponent {
             'md-select-field--btn': below,
           })}
         >
-          <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
+          <FontIcon iconClassName={iconClassName} inherit>{iconChildren}</FontIcon>
         </IconSeparator>
         {divider}
         <input

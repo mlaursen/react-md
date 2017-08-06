@@ -6,6 +6,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { SPACE } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import themeColors from '../utils/themeColors';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
@@ -347,11 +348,11 @@ export default class SelectionControl extends PureComponent {
           inkDisabled={inkDisabled}
           disabledInteractions={disabledInteractions}
           role={type}
-          className={cn('md-selection-control-toggle md-btn md-btn--icon', {
-            'md-text--disabled': disabled,
-            'md-text--secondary': !disabled && !checked,
-            'md-text--theme-secondary': checked && !disabled,
-          })}
+          className={cn('md-selection-control-toggle md-btn md-btn--icon', themeColors({
+            disabled,
+            hint: !checked,
+            secondary: checked,
+          }))}
           aria-checked={checked}
           tabIndex={tabIndex}
           disabled={disabled}
@@ -389,9 +390,8 @@ export default class SelectionControl extends PureComponent {
         <label
           htmlFor={id}
           className={cn('md-selection-control-label', {
-            'md-text md-pointer--hover': !disabled,
-            'md-text--disabled': disabled,
-          })}
+            'md-pointer--hover': !disabled,
+          }, themeColors({ disabled, text: !disabled }))}
         >
           {labelBefore && label}
           {control}

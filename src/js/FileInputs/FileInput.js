@@ -5,6 +5,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { TAB, SPACE, ENTER } from '../constants/keyCodes';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
+import getBtnStyles from '../Buttons/getBtnStyles';
 import FontIcon from '../FontIcons/FontIcon';
 import IconSeparator from '../Helpers/IconSeparator';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
@@ -54,6 +55,13 @@ export default class FileInput extends PureComponent {
      * raised button.
      */
     flat: PropTypes.bool,
+
+    /**
+     * Boolean if the themeing should be swapped from text to background or vice-versa.
+     *
+     * @see {@link Buttons/Button#swapTheming}
+     */
+    swapTheming: PropTypes.bool,
 
     /**
      * This should be a comma separated list of Media Types that the `FileInput` can
@@ -324,6 +332,7 @@ export default class FileInput extends PureComponent {
       disabled,
       accept,
       multiple,
+      swapTheming,
       /* eslint-disable no-unused-vars */
       onChange,
       onKeyUp,
@@ -341,15 +350,6 @@ export default class FileInput extends PureComponent {
     const icon = !iconClassName && !iconChildren
       ? null
       : <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
-
-    const themeClassNames = !disabled && cn({
-      'md-text--theme-primary md-ink--primary': flat && primary,
-      'md-text--theme-secondary md-ink--secondary': flat && secondary,
-      'md-background--primary md-background--primary-hover': !flat && primary,
-      'md-background--secondary md-background--secondary-hover': !flat && secondary,
-      'md-btn--color-primary-active': flat && hover && primary,
-      'md-btn--color-secondary-active': flat && hover && secondary,
-    });
 
     let labelChildren = label;
     if (icon) {
@@ -374,11 +374,15 @@ export default class FileInput extends PureComponent {
           onKeyUp={this._handleKeyUp}
           onMouseOver={this._handleMouseOver}
           onMouseLeave={this._handleMouseLeave}
-          className={cn(`md-btn md-btn--${flat || disabled ? 'flat' : 'raised'} md-btn--text`, themeClassNames, {
-            'md-text': !disabled,
-            'md-text--disabled': disabled,
-            'md-btn--raised-disabled': disabled && !flat,
-            'md-btn--raised-pressed': !disabled && !flat && pressed,
+          className={getBtnStyles({
+            flat,
+            raised: !flat,
+            disabled,
+            primary,
+            secondary,
+            hover,
+            swapTheming,
+            pressed,
           })}
         >
           {labelChildren}

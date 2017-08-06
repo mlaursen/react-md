@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * The main use case of the `Badge` component is for notifications. It can
  * however also place any content floating to whatever children are supplied.
@@ -195,10 +197,12 @@ export default class Badge extends PureComponent {
         className={cn('md-badge', {
           'md-badge--circular': useCircular,
           'md-badge--default': defaultTheme,
-          'md-text': !primary && !secondary && useCircular,
-          'md-background--primary': primary,
-          'md-background--secondary': secondary,
-        }, badgeClassName)}
+        }, themeColors({
+          primary,
+          secondary,
+          text: useCircular,
+          themeText: !primary && !secondary,
+        }, badgeClassName))}
       >
         {count || badgeContent}
       </span>

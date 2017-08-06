@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
-import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
+import getBtnStyles from './getBtnStyles';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import FontIcon from '../FontIcons/FontIcon';
@@ -327,20 +327,6 @@ class Button extends PureComponent {
     window.removeEventListener('click', this._blur);
   }
 
-  _getType(props) {
-    if (props.flat || (props.disabled && props.raised)) {
-      return 'flat';
-    } else if (props.icon) {
-      return 'icon';
-    } else if (props.raised) {
-      return 'raised';
-    } else if (props.floating) {
-      return 'icon md-btn--floating';
-    }
-
-    return 'flat';
-  }
-
   _blur = () => {
     if (this.props.disabled) {
       return;
@@ -487,7 +473,6 @@ class Button extends PureComponent {
     }
 
     const { pressed, hover, snackbar, snackbarType } = this.state;
-    const mdBtnType = this._getType(this.props);
     const iconBtnType = icon || floating;
 
     let fontIcon;
@@ -514,19 +499,6 @@ class Button extends PureComponent {
       visibleChildren = fontIcon;
     }
 
-    const flatStyles = flat || icon;
-    const raisedStyles = raised || floating;
-    const textTheming = (flatStyles && !swapTheming) || (raisedStyles && swapTheming);
-    const backgroundTheming = (raisedStyles && !swapTheming) || (flatStyles && swapTheming);
-    const themeClassNames = !disabled && cn({
-      'md-text--theme-primary md-ink--primary': primary && textTheming,
-      'md-text--theme-secondary md-ink--secondary': secondary && textTheming,
-      'md-background--primary md-background--primary-hover': primary && backgroundTheming,
-      'md-background--secondary md-background--secondary-hover': secondary && backgroundTheming,
-      'md-btn--color-primary-active': primary && hover && textTheming,
-      'md-btn--color-secondary-active': secondary && hover && textTheming,
-    });
-
     const Component = component || (href ? 'a' : 'button');
     return (
       <Component
@@ -541,22 +513,24 @@ class Button extends PureComponent {
         onMouseOver={this._handleMouseOver}
         onMouseLeave={this._handleMouseLeave}
         href={href}
-        className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, themeClassNames, {
-          'md-text': !disabled && !primary && !secondary && !icon && !floating,
-          'md-text--disabled': disabled,
-          'md-pointer--hover': !disabled,
-          'md-paper md-paper--2': !disabled && floating,
-          'md-paper--4': !disabled && floating && pressed,
-          'md-btn--text': flat || raised,
-          'md-btn--hover': hover && !disabled,
-          'md-btn--raised-disabled': raised && disabled,
-          'md-btn--raised-pressed': !disabled && raisedStyles && pressed,
-          'md-btn--fixed': fixed,
-          [`md-btn--fixed-${fixedPosition}`]: floating && fixed,
-          'md-btn--floating-mini': floating && mini,
+        className={getBtnStyles({
+          flat,
+          raised,
+          icon,
+          floating,
+          disabled,
+          primary,
+          secondary,
+          hover,
+          swapTheming,
+          pressed,
+          mini,
+          fixed,
+          fixedPosition,
+        }, {
           'md-btn--snackbar-floating': snackbar,
           [`md-btn--snackbar-floating-${snackbarType}adjust`]: snackbar && snackbarType !== null,
-        }, className)}
+        }, 'md-inline-block', className)}
       >
         {ink}
         {tooltip}

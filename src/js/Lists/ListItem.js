@@ -4,6 +4,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import themeColors from '../utils/themeColors';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import { TAB } from '../constants/keyCodes';
@@ -588,15 +589,13 @@ export default class ListItem extends PureComponent {
         disabled={disabled}
         style={tileStyle}
         className={cn('md-list-tile', {
-          'md-text': !disabled,
-          'md-text--disabled': disabled,
           'md-list-tile--active': this.state.active && !this._touched,
           'md-list-tile--icon': !secondaryText && icond && !avatard,
           'md-list-tile--avatar': !secondaryText && avatard,
           'md-list-tile--two-lines': secondaryText && !threeLines,
           'md-list-tile--three-lines': secondaryText && threeLines,
           'md-list-item--inset': inset && !leftIcon && !leftAvatar,
-        }, tileClassName)}
+        }, themeColors({ disabled, text: true }), tileClassName)}
         aria-expanded={nestedList && !cascadingMenu ? visible : null}
       >
         {leftNode}
