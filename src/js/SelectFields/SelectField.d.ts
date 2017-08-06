@@ -28,8 +28,7 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   value?: number | string;
   onChange?: (value: number | string, selectedIndex: number, event: React.MouseEvent<HTMLElement>) => void;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  iconChildren?: React.ReactNode;
-  iconClassName?: string;
+  dropdownIcon?: React.ReactElement<any>;
   toolbar?: boolean;
   stripActiveItem?: boolean;
   transitionName?: string;
@@ -88,6 +87,16 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
    * @deprecated
    */
   adjustMinWidth?: boolean;
+
+  /**
+   * @deprecated
+   */
+  iconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  iconClassName?: string;
 }
 
 declare const SelectField: React.ComponentClass<SelectFieldProps>;

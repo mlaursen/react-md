@@ -32,6 +32,7 @@ export default class SelectFieldInput extends PureComponent {
     below: PropTypes.bool,
     error: PropTypes.bool,
     toolbar: PropTypes.bool,
+    dropdownIcon: PropTypes.element,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.node,
     transitionName: PropTypes.string.isRequired,
@@ -93,6 +94,9 @@ export default class SelectFieldInput extends PureComponent {
       toolbar,
       below,
       lineDirection,
+      dropdownIcon,
+
+      // deprecated
       iconChildren,
       iconClassName,
       /* eslint-disable no-unused-vars */
@@ -124,6 +128,12 @@ export default class SelectFieldInput extends PureComponent {
 
     const labelActive = !!activeLabel || activeLabel === 0;
 
+    let icon = dropdownIcon;
+    if (iconClassName || iconChildren) {
+      icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    }
+    icon = React.cloneElement(icon, { disabled });
+
     return (
       <AccessibleFakeInkedButton
         {...props}
@@ -149,7 +159,7 @@ export default class SelectFieldInput extends PureComponent {
             'md-select-field--btn': below,
           })}
         >
-          <FontIcon iconClassName={iconClassName} inherit>{iconChildren}</FontIcon>
+          {icon}
         </IconSeparator>
         {divider}
         <input
