@@ -18,11 +18,6 @@ export default class Chip extends PureComponent {
     className: PropTypes.string,
 
     /**
-     * An optional icon className to use for the remove icon when `removable`.
-     */
-    iconClassName: PropTypes.string,
-
-    /**
      * Boolean if the `.md-chip-icon--rotate` style should be applied to the remove icon.
      * The `.md-chip-icon--rotate` just rotates the icon 45 degrees.
      */
@@ -54,29 +49,31 @@ export default class Chip extends PureComponent {
     onClick: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseover` event is triggered.
+     * An optional function to call when the `mouseenter` event is triggered.
      */
-    onMouseOver: PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * An optional function to call when the `mouseleave` event is triggered.
      */
     onMouseLeave: PropTypes.func,
+
+    iconClassName: deprecated(PropTypes.string, 'Use the `children` prop as a single FontIcon or SVGIcon instead'),
     remove: deprecated(PropTypes.func, 'Use `removable` and `onClick` instead'),
-    removeIconChildren: deprecated(PropTypes.node, 'Use `iconChildren` instead'),
+    removeIconChildren: deprecated(PropTypes.node, 'Use `children` instead'),
     removeIconClassName: deprecated(PropTypes.string, 'Use `iconClassName` instead'),
   };
 
   static defaultProps = {
     rotateIcon: true,
-    children: 'add_circle',
+    children: <FontIcon>add_circle</FontIcon>,
   };
 
   state = { hover: false };
 
-  _handleMouseOver = (e) => {
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+  _handleMouseEnter = (e) => {
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
     }
 
     this.setState({ hover: true });
@@ -109,17 +106,21 @@ export default class Chip extends PureComponent {
 
     let icon;
     if (removable || remove) {
-      icon = (
-        <FontIcon
-          className={cn('md-chip-icon', {
-            'md-chip-icon--rotate': rotateIcon,
-            'md-chip-text--hover': hover,
-          })}
-          iconClassName={iconClassName}
-        >
-          {children}
-        </FontIcon>
-      );
+      const chipIconCN = cn('md-chip-icon', {
+        'md-chip-icon--rotate': rotateIcon,
+        'md-chip-text--hover': hover,
+      });
+
+      if (React.isValidElement(children)) {
+        icon = React.Children.only(children);
+        icon = React.cloneElement(icon, { className: cn(chipIconCN, icon.props.className) });
+      } else {
+        icon = (
+          <FontIcon className={chipIconCN} iconClassName={iconClassName}>
+            {children}
+          </FontIcon>
+        );
+      }
     }
 
     return (
@@ -132,7 +133,7 @@ export default class Chip extends PureComponent {
           'md-chip--hover': hover,
         }, className)}
         onClick={remove || onClick}
-        onMouseOver={this._handleMouseOver}
+        onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
       >
         {avatar}
