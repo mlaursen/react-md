@@ -23,13 +23,13 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
       htmlFor="floating-center-title"
     >
       Title
     </label>
     <input
-      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      className="md-text-field md-text-field--floating-margin md-full-width md-text"
       disabled={undefined}
       id="floating-center-title"
       onBlur={[Function]}
@@ -63,7 +63,7 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
       htmlFor="floating-multiline"
     >
       Type many letters
@@ -81,7 +81,7 @@ exports[`FloatingLabels should render correctly 1`] = `
       />
       <textarea
         aria-hidden={true}
-        className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+        className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
         defaultValue={undefined}
         readOnly={true}
         rows={2}
@@ -90,7 +90,7 @@ exports[`FloatingLabels should render correctly 1`] = `
         value={undefined}
       />
       <textarea
-        className="md-text-field md-text md-text-field--multiline md-full-width"
+        className="md-text-field md-text-field--multiline md-full-width md-text"
         defaultValue={undefined}
         disabled={undefined}
         id="floating-multiline"
@@ -130,13 +130,13 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
       htmlFor="floating-password"
     >
       Enter your password
     </label>
     <input
-      className="md-text-field md-text md-text-field--inline-indicator md-full-width md-text-field--floating-margin"
+      className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
       disabled={undefined}
       id="floating-password"
       onBlur={[Function]}
@@ -151,7 +151,7 @@ exports[`FloatingLabels should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text--disabled md-text-field-inline-indicator--floating"
+      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating md-text--disabled"
       onBlur={[Function]}
       onClick={[Function]}
       onKeyUp={[Function]}

@@ -16,7 +16,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
     style={undefined}
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
       Table Example
@@ -30,7 +30,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       value="about:blank#table-example"
     />
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
       disabled={undefined}
       href={undefined}
       id="table-example-copy-btn"
@@ -46,14 +46,14 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         link
       </i>
     </button>
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -68,7 +68,7 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         code
@@ -124,7 +124,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
     style={undefined}
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
       Table Example
@@ -138,7 +138,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       value="about:blank#table-example"
     />
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
       disabled={undefined}
       href={undefined}
       id="table-example-copy-btn"
@@ -154,14 +154,14 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         link
       </i>
     </button>
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -176,7 +176,7 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         code
@@ -245,7 +245,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
     style={undefined}
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
       Second Example
@@ -259,7 +259,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       value="about:blank#second-example"
     />
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
       disabled={undefined}
       href={undefined}
       id="second-example-copy-btn"
@@ -275,14 +275,14 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         link
       </i>
     </button>
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -297,7 +297,7 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         code
@@ -349,7 +349,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
     style={undefined}
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id={undefined}
     >
       First Example
@@ -363,7 +363,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       value="about:blank#first-example"
     />
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
       disabled={undefined}
       href={undefined}
       id="first-example-copy-btn"
@@ -379,14 +379,14 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         link
       </i>
     </button>
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -401,7 +401,7 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         code

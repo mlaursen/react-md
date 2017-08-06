@@ -23,7 +23,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
     }
   >
     <input
-      className="md-text-field md-text md-full-width md-text-field--margin"
+      className="md-text-field md-text-field--margin md-full-width md-text"
       disabled={undefined}
       id="placeholder-only-title"
       onBlur={[Function]}
@@ -69,7 +69,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
       />
       <textarea
         aria-hidden={true}
-        className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+        className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
         defaultValue={undefined}
         readOnly={true}
         rows={2}
@@ -78,7 +78,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
         value={undefined}
       />
       <textarea
-        className="md-text-field md-text md-text-field--multiline md-full-width"
+        className="md-text-field md-text-field--multiline md-full-width md-text"
         defaultValue={undefined}
         disabled={undefined}
         id="placeholder-only-multiline"
@@ -118,7 +118,7 @@ exports[`PlaceholderOnly should render correctly 1`] = `
     }
   >
     <input
-      className="md-text-field md-text md-text-field--inline-indicator md-full-width md-text-field--margin"
+      className="md-text-field md-text-field--inline-indicator md-text-field--margin md-full-width md-text"
       disabled={undefined}
       id="placeholder-only-password"
       onBlur={[Function]}

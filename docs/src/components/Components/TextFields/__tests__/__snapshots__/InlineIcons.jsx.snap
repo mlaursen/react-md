@@ -26,7 +26,7 @@ exports[`InlineIcons should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset md-text--secondary"
         htmlFor="phone-number-with-icon-left"
       >
         Phone
@@ -44,7 +44,7 @@ exports[`InlineIcons should render correctly 1`] = `
           className="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text md-text-field--floating-margin"
+            className="md-text-field md-text-field--floating-margin md-text"
             disabled={undefined}
             id="phone-number-with-icon-left"
             onBlur={[Function]}
@@ -81,7 +81,7 @@ exports[`InlineIcons should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         htmlFor="phone-number-with-icon-right"
       >
         Phone
@@ -93,7 +93,7 @@ exports[`InlineIcons should render correctly 1`] = `
           className="md-text-field-divider-container"
         >
           <input
-            className="md-text-field md-text md-text-field--floating-margin"
+            className="md-text-field md-text-field--floating-margin md-text"
             disabled={undefined}
             id="phone-number-with-icon-right"
             onBlur={[Function]}
@@ -137,13 +137,13 @@ exports[`InlineIcons should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
       htmlFor="text-with-close-button"
     >
       Some text
     </label>
     <input
-      className="md-text-field md-text md-text-field--inline-indicator md-full-width md-text-field--floating-margin"
+      className="md-text-field md-text-field--inline-indicator md-text-field--floating-margin md-full-width md-text"
       disabled={undefined}
       id="text-with-close-button"
       onBlur={[Function]}
@@ -158,7 +158,7 @@ exports[`InlineIcons should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-text-field-inline-indicator md-text-field-inline-indicator--floating text-fields__inline-btn"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-text-field-inline-indicator md-text-field-inline-indicator--floating text-fields__inline-btn"
       disabled={undefined}
       href={undefined}
       onKeyDown={[Function]}
@@ -172,7 +172,7 @@ exports[`InlineIcons should render correctly 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         clear

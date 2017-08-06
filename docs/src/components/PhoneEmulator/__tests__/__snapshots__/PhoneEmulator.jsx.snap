@@ -81,7 +81,7 @@ exports[`PhoneEmulator should render correctly with the base required props 1`] 
     style={undefined}
   >
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -96,7 +96,7 @@ exports[`PhoneEmulator should render correctly with the base required props 1`] 
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         menu
@@ -132,7 +132,7 @@ exports[`PhoneEmulator should render correctly with the base required props 2`] 
     style={undefined}
   >
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -147,7 +147,7 @@ exports[`PhoneEmulator should render correctly with the base required props 2`] 
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         menu

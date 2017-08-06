@@ -37,7 +37,7 @@ exports[`EmulatorController should render correctly with the base required props
     style={undefined}
   >
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -52,7 +52,7 @@ exports[`EmulatorController should render correctly with the base required props
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         menu
@@ -91,7 +91,7 @@ exports[`EmulatorController should render correctly with the base required props
     }
   />
   <button
-    className="md-inline-block md-btn md-btn--raised md-text md-pointer--hover md-btn--text"
+    className="md-btn md-btn--raised md-btn--text md-pointer--hover md-inline-block"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}

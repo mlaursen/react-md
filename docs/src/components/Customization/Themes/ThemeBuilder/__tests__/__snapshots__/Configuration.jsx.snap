@@ -23,7 +23,7 @@ exports[`Configuration should render correctly 1`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="light"
     >
       <div
@@ -56,7 +56,7 @@ exports[`Configuration should render correctly 1`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="save-theme"
     >
       <div
@@ -95,7 +95,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="primary"
       >
         Primary color
@@ -113,7 +113,7 @@ exports[`Configuration should render correctly 1`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -142,7 +142,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="secondary"
       >
         Secondary color
@@ -160,7 +160,7 @@ exports[`Configuration should render correctly 1`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -189,7 +189,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--floating"
+        class="md-floating-label md-floating-label--floating md-text--secondary"
         for="hue"
       >
         Secondary hue
@@ -209,7 +209,7 @@ exports[`Configuration should render correctly 1`] = `
             200
           </span>
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -251,7 +251,7 @@ exports[`Configuration should render correctly 2`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="light"
     >
       <div
@@ -323,7 +323,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="primary"
       >
         Primary color
@@ -341,7 +341,7 @@ exports[`Configuration should render correctly 2`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -370,7 +370,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="secondary"
       >
         Secondary color
@@ -388,7 +388,7 @@ exports[`Configuration should render correctly 2`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -417,7 +417,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--floating"
+        class="md-floating-label md-floating-label--floating md-text--secondary"
         for="hue"
       >
         Secondary hue
@@ -437,7 +437,7 @@ exports[`Configuration should render correctly 2`] = `
             200
           </span>
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -478,7 +478,7 @@ exports[`Configuration should render correctly 3`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="light"
     >
       <div
@@ -511,7 +511,7 @@ exports[`Configuration should render correctly 3`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="save-theme"
     >
       <div
@@ -550,7 +550,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="primary"
       >
         Primary color
@@ -568,7 +568,7 @@ exports[`Configuration should render correctly 3`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -597,7 +597,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="secondary"
       >
         Secondary color
@@ -615,7 +615,7 @@ exports[`Configuration should render correctly 3`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -644,7 +644,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--floating"
+        class="md-floating-label md-floating-label--floating md-text--secondary"
         for="hue"
       >
         Secondary hue
@@ -664,7 +664,7 @@ exports[`Configuration should render correctly 3`] = `
             200
           </span>
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -705,7 +705,7 @@ exports[`Configuration should render correctly 4`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="light"
     >
       <div
@@ -737,7 +737,7 @@ exports[`Configuration should render correctly 4`] = `
       type="checkbox"
     />
     <label
-      class="md-selection-control-label md-text md-pointer--hover"
+      class="md-selection-control-label md-pointer--hover md-text"
       for="save-theme"
     >
       <div
@@ -776,7 +776,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="primary"
       >
         Primary color
@@ -794,7 +794,7 @@ exports[`Configuration should render correctly 4`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -823,7 +823,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         for="secondary"
       >
         Secondary color
@@ -841,7 +841,7 @@ exports[`Configuration should render correctly 4`] = `
             class="md-icon-text"
           />
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>
@@ -870,7 +870,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-text--secondary md-floating-label--floating"
+        class="md-floating-label md-floating-label--floating md-text--secondary"
         for="hue"
       >
         Secondary hue
@@ -890,7 +890,7 @@ exports[`Configuration should render correctly 4`] = `
             200
           </span>
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             arrow_drop_down
           </i>

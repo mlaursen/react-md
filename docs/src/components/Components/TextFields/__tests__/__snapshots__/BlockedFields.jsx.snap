@@ -37,7 +37,7 @@ exports[`BlockedFields should render correctly 1`] = `
     style={undefined}
   >
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
@@ -52,7 +52,7 @@ exports[`BlockedFields should render correctly 1`] = `
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         menu
@@ -69,7 +69,7 @@ exports[`BlockedFields should render correctly 1`] = `
       className="md-cell--right md-toolbar--action-right"
     >
       <button
-        className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar"
+        className="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar"
         disabled={undefined}
         href={undefined}
         onKeyDown={[Function]}
@@ -83,7 +83,7 @@ exports[`BlockedFields should render correctly 1`] = `
         type="button"
       >
         <i
-          className="md-icon material-icons"
+          className="md-icon material-icons md-text--inherit"
           style={undefined}
         >
           send
@@ -180,7 +180,7 @@ exports[`BlockedFields should render correctly 1`] = `
       }
     >
       <input
-        className="md-text-field md-text md-full-width"
+        className="md-text-field md-full-width md-text"
         defaultValue="Plans for the weekend"
         disabled={undefined}
         id="email-subject"
@@ -193,7 +193,7 @@ exports[`BlockedFields should render correctly 1`] = `
         type="text"
       />
       <div
-        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
+        className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
         <p
           aria-hidden={true}
@@ -237,7 +237,7 @@ exports[`BlockedFields should render correctly 1`] = `
         />
         <textarea
           aria-hidden={true}
-          className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+          className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
           defaultValue="Hi,
         I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
           readOnly={true}
@@ -247,7 +247,7 @@ exports[`BlockedFields should render correctly 1`] = `
           value={undefined}
         />
         <textarea
-          className="md-text-field md-text md-text-field--multiline md-full-width"
+          className="md-text-field md-text-field--multiline md-full-width md-text"
           defaultValue="Hi,
         I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
           disabled={undefined}
@@ -266,7 +266,7 @@ exports[`BlockedFields should render correctly 1`] = `
         />
       </div>
       <div
-        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
+        className="md-text-field-message-container md-text-field-message-container--count-only md-text--disabled"
       >
         <p
           aria-hidden={true}

@@ -809,7 +809,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     </div>
   </section>
   <button
-    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-paper md-paper--2 md-btn--fixed md-btn--fixed-br sassdoc__fab"
+    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}
@@ -824,7 +824,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 1`] = `
     type="button"
   >
     <i
-      className="md-icon material-icons"
+      className="md-icon material-icons md-text--inherit"
       style={undefined}
     >
       find_in_page
@@ -1642,7 +1642,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     </div>
   </section>
   <button
-    className="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-paper md-paper--2 md-btn--fixed md-btn--fixed-br sassdoc__fab"
+    className="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block sassdoc__fab"
     disabled={undefined}
     href={undefined}
     onClick={[Function]}
@@ -1657,7 +1657,7 @@ exports[`PureSassDocPage should render correctly when there is a sassdoc 2`] = `
     type="button"
   >
     <i
-      className="md-icon material-icons"
+      className="md-icon material-icons md-text--inherit"
       style={undefined}
     >
       find_in_page
