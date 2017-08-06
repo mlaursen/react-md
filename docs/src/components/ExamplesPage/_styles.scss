@@ -16,6 +16,7 @@
     opacity: 0;
     transform: rotate3d(0, 0, 1, 90deg);
 
+    &:focus,
     &--active {
       opacity: 1;
     }
