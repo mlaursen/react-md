@@ -1,142 +1,125 @@
 /* eslint-env jest */
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import { mount } from 'enzyme';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedComponentWithType,
-  findRenderedDOMComponentWithTag,
-  scryRenderedDOMComponentsWithTag,
-} from 'react-dom/test-utils';
+import { mount, shallow } from 'enzyme';
 
 import Button from '../Button';
 import FontIcon from '../../FontIcons/FontIcon';
+import SVGIcon from '../../SVGIcons/SVGIcon';
 
 function getButton(wrapper) {
   return wrapper.instance().getComposedComponent().getComposedComponent();
 }
 
 describe('Button', () => {
-  it('merges className and style', () => {
-    const props = {
-      flat: true,
-      children: 'Test',
-      style: { background: 'black' },
-      className: 'test',
-    };
+  it('should apply styles correctly', () => {
+    const button = shallow(<Button flat className="custom-btn" style={{ fontSize: 200 }}>Hello</Button>);
+    expect(button.render()).toMatchSnapshot();
 
-    const button = renderIntoDocument(<Button {...props} />);
-    const btn = findDOMNode(button);
-    expect(btn.style.background).toBe(props.style.background);
-    expect(btn.className).toContain(props.className);
+    button.setProps({ primary: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ primary: false, secondary: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ flat: false, raised: true, secondary: false });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ primary: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ primary: false, secondary: true });
+    expect(button.render()).toMatchSnapshot();
   });
 
-  it('allows for the event listeners to be triggered correctly', () => {
-    const onFocus = jest.fn();
-    const onBlur = jest.fn();
+  it('should render as either a <button> or an <a> based on the href prop', () => {
+    global.expectRenderSnapshot(<Button flat>Woop</Button>);
+    global.expectRenderSnapshot(<Button flat href="#woop">Woop</Button>);
+  });
+
+  it('should correctly call the overidden event listeners', () => {
     const onTouchStart = jest.fn();
-    const onTouchMove = jest.fn();
     const onTouchEnd = jest.fn();
-    const onTouchCancel = jest.fn();
     const onMouseDown = jest.fn();
     const onMouseUp = jest.fn();
-    const onMouseOver = jest.fn();
-    const onMouseLeave = jest.fn();
     const onKeyDown = jest.fn();
     const onKeyUp = jest.fn();
-    const onClick = jest.fn();
+    const onMouseEnter = jest.fn();
+    const onMouseLeave = jest.fn();
 
-    const props = {
-      onFocus,
-      onBlur,
-      onTouchStart,
-      onTouchMove,
-      onTouchEnd,
-      onTouchCancel,
-      onMouseDown,
-      onMouseUp,
-      onMouseOver,
-      onMouseLeave,
-      onKeyDown,
-      onKeyUp,
-      onClick,
-      flat: true,
-      children: 'Hello',
-    };
-    const button = renderIntoDocument(<Button {...props} />);
-    const btn = findDOMNode(button);
+    const button = shallow(
+      <Button
+        flat
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        Button
+      </Button>
+    );
 
-    Simulate.focus(btn);
-    expect(onFocus).toBeCalled();
-
-    Simulate.blur(btn);
-    expect(onBlur).toBeCalled();
-
-    Simulate.touchStart(btn);
+    button.simulate('touchStart');
     expect(onTouchStart).toBeCalled();
 
-    Simulate.touchMove(btn);
-    expect(onTouchMove).toBeCalled();
-
-    Simulate.touchEnd(btn);
+    button.simulate('touchEnd');
     expect(onTouchEnd).toBeCalled();
 
-    Simulate.touchCancel(btn);
-    expect(onTouchCancel).toBeCalled();
-
-    Simulate.mouseDown(btn);
+    button.simulate('mouseDown');
     expect(onMouseDown).toBeCalled();
 
-    Simulate.mouseUp(btn);
+    button.simulate('mouseUp');
     expect(onMouseUp).toBeCalled();
 
-    Simulate.mouseOver(btn);
-    expect(onMouseOver).toBeCalled();
-
-    Simulate.mouseLeave(btn);
-    expect(onMouseLeave).toBeCalled();
-
-    Simulate.keyDown(btn);
+    button.simulate('keyDown');
     expect(onKeyDown).toBeCalled();
 
-    Simulate.keyUp(btn);
+    button.simulate('keyUp');
     expect(onKeyUp).toBeCalled();
 
-    Simulate.click(btn);
-    expect(onClick).toBeCalled();
+    button.simulate('mouseEnter');
+    expect(onMouseEnter).toBeCalled();
+
+    button.simulate('mouseLeave');
+    expect(onMouseLeave).toBeCalled();
   });
 
-  it('renders a button component if there is no href prop', () => {
-    const props = { children: 'test', flat: true };
-    const button = renderIntoDocument(<Button {...props} />);
-    const btns = scryRenderedDOMComponentsWithTag(button, 'button');
-    const links = scryRenderedDOMComponentsWithTag(button, 'a');
-    expect(btns.length).toBe(1);
-    expect(links.length).toBe(0);
+  it('should be able to render FontIcons or SVGIcons using the iconEl prop', () => {
+    const fi = <FontIcon>close</FontIcon>;
+    const svg1 = <SVGIcon><path d="2i90rdsjf" /></SVGIcon>;
+    const svg2 = <SVGIcon use="#some-href" />;
+
+    // Buttons with text
+    global.expectRenderSnapshot(<Button flat iconEl={fi}>Close</Button>);
+    global.expectRenderSnapshot(<Button flat iconEl={svg1}>Close</Button>);
+    global.expectRenderSnapshot(<Button flat iconEl={svg2}>Close</Button>);
+    global.expectRenderSnapshot(<Button raised iconEl={fi}>Close</Button>);
+    global.expectRenderSnapshot(<Button raised iconEl={svg1}>Close</Button>);
+    global.expectRenderSnapshot(<Button raised iconEl={svg2}>Close</Button>);
+
+    // Icon Button types
+    global.expectRenderSnapshot(<Button icon iconEl={fi} />);
+    global.expectRenderSnapshot(<Button icon iconEl={svg1} />);
+    global.expectRenderSnapshot(<Button icon iconEl={svg2} />);
+    global.expectRenderSnapshot(<Button floating iconEl={fi} />);
+    global.expectRenderSnapshot(<Button floating iconEl={svg1} />);
+    global.expectRenderSnapshot(<Button floating iconEl={svg2} />);
   });
 
-  it('renders a link component if there is a href prop', () => {
-    const props = { children: 'test', flat: true, href: '#' };
-    const button = renderIntoDocument(<Button {...props} />);
-    const btns = scryRenderedDOMComponentsWithTag(button, 'button');
-    const links = scryRenderedDOMComponentsWithTag(button, 'a');
-    expect(btns.length).toBe(0);
-    expect(links.length).toBe(1);
-  });
+  it('should be able to render FontIcons or SVGIcons as children when using the icon or floating types', () => {
+    const fi = <FontIcon>close</FontIcon>;
+    const svg1 = <SVGIcon><path d="2i90rdsjf" /></SVGIcon>;
+    const svg2 = <SVGIcon use="#some-href" />;
 
-  it('removes the button type if there is a href prop', () => {
-    const props = { children: 'test', flat: true, href: '#' };
-    const button = renderIntoDocument(<Button {...props} />);
-    const link = findRenderedDOMComponentWithTag(button, 'a');
-    expect(link.getAttribute('type')).toBe(null);
-  });
-
-  it('renders a FontIcon for the icon button', () => {
-    const props = { children: 'menu', icon: true };
-    const button = renderIntoDocument(<Button {...props} />);
-    const icon = findRenderedComponentWithType(button, FontIcon);
-    expect(icon.props.children).toBe(props.children);
+    global.expectRenderSnapshot(<Button icon svg>{fi}</Button>);
+    global.expectRenderSnapshot(<Button icon svg>{svg1}</Button>);
+    global.expectRenderSnapshot(<Button icon svg>{svg2}</Button>);
+    global.expectRenderSnapshot(<Button floating svg>{fi}</Button>);
+    global.expectRenderSnapshot(<Button floating svg>{svg1}</Button>);
+    global.expectRenderSnapshot(<Button floating svg>{svg2}</Button>);
   });
 
   describe('theming', () => {

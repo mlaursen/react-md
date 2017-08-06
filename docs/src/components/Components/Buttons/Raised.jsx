@@ -1,5 +1,8 @@
 import React from 'react';
 import Button from 'react-md/lib/Buttons/Button';
+import SVGIcon from 'react-md/lib/SVGIcons';
+
+import copyright from 'icons/copyright.svg';
 
 const Raised = () => (
   <div className="buttons__group">
@@ -8,6 +11,10 @@ const Raised = () => (
     <Button raised primary iconClassName="fa fa-hand-spock-o">Spock</Button>
     <Button raised secondary iconBefore={false} iconClassName="fa fa-hand-paper-o">
       Paper
+    </Button>
+    <Button raised primary iconEl={<SVGIcon use={copyright.url} />}>react-md</Button>
+    <Button raised secondary iconBefore={false} iconEl={<SVGIcon use={copyright.url} />}>
+      react-md
     </Button>
     <h5>Disabled Examples</h5>
     <Button raised disabled>Disabled Button</Button>

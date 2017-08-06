@@ -21,6 +21,8 @@ export interface SharedButtonProps {
   floating?: boolean;
   iconClassName?: string;
   iconChildren?: React.ReactNode;
+  iconEl?: React.ReactElement<any>;
+  svg?: boolean;
   forceIconSize?: boolean | number;
   forceIconFontSize?: boolean;
   swapTheming?: boolean;
