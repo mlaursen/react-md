@@ -2,14 +2,16 @@ import React, { PureComponent, Children } from 'react';
 import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import themeColors from '../utils/themeColors';
+import getCollapserStyles from '../utils/getCollapserStyles';
 import controlled from '../utils/PropTypes/controlled';
 import Paper from '../Papers/Paper';
-import Collapser from '../FontIcons/Collapser';
 import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 import Collapse from '../Helpers/Collapse';
+import FontIcon from '../FontIcons/FontIcon';
 import PanelContent from './PanelContent';
 
 const LABEL_FONT_SIZE = 15;
@@ -100,14 +102,9 @@ export default class ExpansionPanel extends PureComponent {
     defaultExpanded: PropTypes.bool.isRequired,
 
     /**
-     * Any children required to render the expand icon.
+     * The icon to display for expanding the expansion panel.
      */
-    expandIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use to render the expand icon.
-     */
-    expandIconClassName: PropTypes.string,
+    expanderIcon: PropTypes.element,
 
     /**
      * Boolean if the `ExpansionPanel` is currently tab focused. This is injected
@@ -245,11 +242,13 @@ export default class ExpansionPanel extends PureComponent {
      * will be placed after the action buttons.
      */
     footerChildren: PropTypes.node,
+    expandIconChildren: deprecated(PropTypes.node, 'Use the `expanderIcon` instead'),
+    expandIconClassName: deprecated(PropTypes.string, 'Use the `expanderIcon` instead'),
   };
 
   static defaultProps = {
     defaultExpanded: false,
-    expandIconChildren: 'keyboard_arrow_down',
+    expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
     component: 'li',
     saveLabel: 'Save',
     cancelLabel: 'Cancel',
@@ -374,8 +373,6 @@ export default class ExpansionPanel extends PureComponent {
       secondaryLabel,
       expandedSecondaryLabel,
       children,
-      expandIconChildren,
-      expandIconClassName,
       focused,
       columnWidths,
       saveType,
@@ -396,9 +393,14 @@ export default class ExpansionPanel extends PureComponent {
       overflown,
       footer,
       footerChildren,
+
+      // deprecated
+      expandIconChildren,
+      expandIconClassName,
       /* eslint-disable no-unused-vars */
       animateContent: propAnimateContent,
       expanded: propExpanded,
+      expanderIcon: propExpanderIcon,
       defaultExpanded,
       closeOnSave,
       closeOnCancel,
@@ -408,7 +410,7 @@ export default class ExpansionPanel extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
+    let { expanderIcon } = this.props;
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);
     const animateContent = getField(this.props, this.context, 'animateContent');
@@ -438,6 +440,17 @@ export default class ExpansionPanel extends PureComponent {
       </div>
     ));
 
+    if (expandIconChildren || expandIconClassName) {
+      expanderIcon = <FontIcon iconClassName={expandIconClassName}>{expandIconChildren}</FontIcon>;
+    }
+
+    expanderIcon = React.Children.only(expanderIcon);
+    expanderIcon = React.cloneElement(expanderIcon, {
+      className: getCollapserStyles({
+        flipped: expanded,
+      }, 'md-expansion-panel__collapser md-cell--right', expanderIcon.props.className),
+    });
+
     return (
       <Paper
         {...props}
@@ -456,13 +469,7 @@ export default class ExpansionPanel extends PureComponent {
           tabIndex={tabIndex}
         >
           {columns}
-          <Collapser
-            flipped={expanded}
-            iconClassName={expandIconClassName}
-            className="md-cell--right md-expansion-panel__collapser"
-          >
-            {expandIconChildren}
-          </Collapser>
+          {expanderIcon}
         </AccessibleFakeButton>
         <Collapse collapsed={!expanded} animate={animateContent}>
           <PanelContent
