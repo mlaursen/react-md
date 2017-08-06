@@ -94,7 +94,7 @@ exports[`FormExample should render correctly 1`] = `
         }
       >
         <label
-          className="md-floating-label md-floating-label--title md-floating-label--floating"
+          className="md-floating-label md-text--secondary md-floating-label--title md-floating-label--floating"
           htmlFor="application-title"
         >
           Title *
@@ -135,7 +135,7 @@ exports[`FormExample should render correctly 1`] = `
         }
       >
         <label
-          className="md-floating-label md-floating-label--floating"
+          className="md-floating-label md-text--secondary md-floating-label--floating"
           htmlFor="application-price"
         >
           Price *
@@ -179,7 +179,7 @@ exports[`FormExample should render correctly 1`] = `
         }
       >
         <label
-          className="md-floating-label md-floating-label--floating"
+          className="md-floating-label md-text--secondary md-floating-label--floating"
           htmlFor="application-location"
         >
           Location (optional)
@@ -220,7 +220,7 @@ exports[`FormExample should render correctly 1`] = `
         }
       >
         <label
-          className="md-floating-label md-floating-label--floating"
+          className="md-floating-label md-text--secondary md-floating-label--floating"
           htmlFor="application-description"
         >
           Description

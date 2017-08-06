@@ -193,7 +193,7 @@ exports[`BlockedFields should render correctly 1`] = `
         type="text"
       />
       <div
-        className="md-text-field-message-container md-text-field-message-container--count-only"
+        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
       >
         <p
           aria-hidden={true}
@@ -266,7 +266,7 @@ exports[`BlockedFields should render correctly 1`] = `
         />
       </div>
       <div
-        className="md-text-field-message-container md-text-field-message-container--count-only"
+        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
       >
         <p
           aria-hidden={true}

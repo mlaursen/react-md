@@ -50,7 +50,7 @@ ${code}
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
     >
-      <Title id={id} title={title} />
+      <Title id={id} title={title} expander />
       <CardText expandable>
         <Markdown markdown={markdown} />
       </CardText>

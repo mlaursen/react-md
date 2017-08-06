@@ -26,7 +26,7 @@ exports[`InlineIcons should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
+        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
         htmlFor="phone-number-with-icon-left"
       >
         Phone
@@ -81,7 +81,7 @@ exports[`InlineIcons should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         htmlFor="phone-number-with-icon-right"
       >
         Phone
@@ -137,7 +137,7 @@ exports[`InlineIcons should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="text-with-close-button"
     >
       Some text

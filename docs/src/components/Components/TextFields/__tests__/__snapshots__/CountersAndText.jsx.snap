@@ -28,7 +28,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-label-counter-field"
     >
       Type words
@@ -49,7 +49,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-text-field-message-container--count-only md-full-width"
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
     >
       <p
         aria-hidden={true}
@@ -78,7 +78,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="multiline-counter-field"
     >
       Type many words
@@ -126,7 +126,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-text-field-message-container--count-only md-full-width"
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
     >
       <p
         aria-hidden={true}
@@ -160,7 +160,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-label-help-text-field"
     >
       Type words
@@ -181,7 +181,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-full-width"
+      className="md-text-field-message-container md-text--disabled md-full-width"
     >
       <p
         aria-hidden={false}
@@ -210,7 +210,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-label-focus-help-text-field"
     >
       Type words
@@ -231,7 +231,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-text-field-message-container--count-only md-full-width"
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
     >
       <p
         aria-hidden={true}
@@ -260,7 +260,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="placeholder-help-text-counter-field"
     >
       Counter and text
@@ -281,7 +281,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-full-width"
+      className="md-text-field-message-container md-text--disabled md-full-width"
     >
       <p
         aria-hidden={false}
@@ -321,7 +321,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--error md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--error md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-label-error-text-field"
     >
       Constant error
@@ -342,7 +342,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left md-divider--text-field-error"
     />
     <div
-      className="md-text-field-message-container md-text-field-message-container--error md-full-width"
+      className="md-text-field-message-container md-text--error md-full-width"
     >
       <p
         aria-hidden={false}
@@ -371,7 +371,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-label-required-error-text-field"
     >
       Required field *
@@ -392,7 +392,7 @@ exports[`CountersAndText should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <div
-      className="md-text-field-message-container md-full-width"
+      className="md-text-field-message-container md-text--disabled md-full-width"
     >
       <p
         aria-hidden={false}
@@ -421,7 +421,7 @@ exports[`CountersAndText should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
       htmlFor="floating-label-icon-counter-error-text-field"
     >
       Icon and counter
@@ -456,7 +456,7 @@ exports[`CountersAndText should render correctly 1`] = `
       </div>
     </div>
     <div
-      className="md-text-field-message-container md-text-field-message-container--left-icon-offset md-full-width"
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-full-width"
     >
       <p
         aria-hidden={false}

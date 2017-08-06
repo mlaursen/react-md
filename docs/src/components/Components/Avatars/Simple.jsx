@@ -13,7 +13,7 @@ const Item = ({ label, children }) => (
 );
 
 const Simple = () => (
-  <ul className="md-list-unstyled md-grid">
+  <ul className="md-list-unstyled md-grid avatars__examples">
     <Item label="An Avatar with a random image from http://unsplash.it">
       <Avatar src={randomImage()} role="presentation" />
     </Item>

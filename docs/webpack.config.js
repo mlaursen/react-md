@@ -14,8 +14,9 @@ const { homepage, name } = require('./package.json');
 const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
 
 dotenv.config();
-const client = './src/client/index.jsx';
+const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'public');
+const client = path.join(src, 'client', 'index.jsx');
 const modules = path.resolve(__dirname, 'node_modules');
 
 const SERVICE_WORKER = 'service-worker.js';
@@ -50,7 +51,7 @@ const PROD_PLUGINS = [
   new HtmlWebpackPlugin({
     filename: 'offline.html',
     inject: true,
-    template: path.resolve(__dirname, 'src', 'utils', 'serviceWorkerTemplate.ejs'),
+    template: path.join(src, 'utils', 'serviceWorkerTemplate.ejs'),
     minify: {
       removeComments: true,
       collapseWhitespace: true,
@@ -89,7 +90,7 @@ const PROD_PLUGINS = [
   // use when there is no connection.
   new SWOfflinePlugin({
     cacheId: name,
-    entry: './src/offline.js',
+    entry: path.join(src, 'offline.js'),
     filename: `offline-${SERVICE_WORKER}`,
   }),
 ];
@@ -128,11 +129,11 @@ module.exports = ({ production }) => {
       rules: [{
         enforce: 'pre',
         test: /\.jsx?$/,
-        exclude: /node_modules|react-md\/lib/,
+        include: src,
         loader: 'eslint-loader',
       }, {
         test: /\.jsx?$/,
-        exclude: /node_modules|react-md\/lib/,
+        include: src,
         loader: 'babel-loader',
         options: {
           babelrc: false,
@@ -176,7 +177,7 @@ module.exports = ({ production }) => {
         }),
       }, {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        include: src,
         loader: extractStyles.extract({
           use: [{
             loader: 'css-loader',
@@ -201,15 +202,15 @@ module.exports = ({ production }) => {
         }),
       }, {
         test: /\.md$/,
-        exclude: /node_modules/,
+        include: src,
         loader: 'raw-loader',
       }, {
         test: /\.json$/,
-        exclude: /node_modules/,
+        include: src,
         loader: 'json-loader',
       }, {
         test: /\.(woff2?|ttf|eot)$/,
-        exclude: /node_modules/,
+        include: src,
         use: [{
           loader: 'url-loader',
           options: {
@@ -218,7 +219,7 @@ module.exports = ({ production }) => {
         }],
       }, {
         test: webpackIsomorphicToolsPlugin.regularExpression('images'),
-        exclude: /node_modules/,
+        include: src,
         use: [{
           loader: 'url-loader',
           options: {
@@ -265,7 +266,7 @@ module.exports = ({ production }) => {
       alias: {
         // I think it's prettier here
         /* eslint-disable quote-props */
-        'globals': path.resolve(__dirname, 'src', '_globals.scss'),
+        'globals': path.join(src, '_globals.scss'),
         'react-md': path.resolve(__dirname, '..'),
         'react': path.join(modules, 'react'),
         'react-dom': path.join(modules, 'react-dom'),

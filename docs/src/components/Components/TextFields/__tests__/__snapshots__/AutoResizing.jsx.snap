@@ -26,7 +26,7 @@ exports[`AutoResizing should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         htmlFor="autoresizing-1"
       >
         Floating resize
@@ -70,7 +70,7 @@ exports[`AutoResizing should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-floating-label--floating"
+        className="md-floating-label md-text--secondary md-floating-label--floating"
         htmlFor="autoresizing-2"
       >
         Multiline text field
@@ -156,7 +156,7 @@ exports[`AutoResizing should render correctly 1`] = `
         className="md-divider md-divider--text-field md-divider--expand-from-left"
       />
       <div
-        className="md-text-field-message-container md-full-width"
+        className="md-text-field-message-container md-text--disabled md-full-width"
       >
         <p
           aria-hidden={false}

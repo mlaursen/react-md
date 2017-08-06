@@ -23,7 +23,7 @@ exports[`DisabledFields should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--disabled"
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="disabled-floating-label-field"
     >
       Disabled label
@@ -97,7 +97,7 @@ exports[`DisabledFields should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--disabled"
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="disabled-floating-label-multiline-field"
     >
       Disabled multiline
@@ -225,7 +225,7 @@ exports[`DisabledFields should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--disabled md-floating-label--icon-offset"
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
       htmlFor="disabled-floating-label-with-icon"
     >
       Disabled label with icon
@@ -234,7 +234,7 @@ exports[`DisabledFields should render correctly 1`] = `
       className="md-text-field-icon-container"
     >
       <i
-        className="md-icon material-icons md-text-field-icon md-text-field-icon--positioned md-text-field-icon--disabled"
+        className="md-icon material-icons md-text--disabled md-text-field-icon md-text-field-icon--positioned"
         style={undefined}
       >
         date_range

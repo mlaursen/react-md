@@ -23,7 +23,7 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-center-title"
     >
       Title
@@ -63,7 +63,7 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-multiline"
     >
       Type many letters
@@ -130,7 +130,7 @@ exports[`FloatingLabels should render correctly 1`] = `
     }
   >
     <label
-      className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
       htmlFor="floating-password"
     >
       Enter your password
@@ -151,9 +151,9 @@ exports[`FloatingLabels should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text-field-inline-indicator--floating"
+      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text--disabled md-text-field-inline-indicator--floating"
+      onBlur={[Function]}
       onClick={[Function]}
-      onKeyDown={[Function]}
       onKeyUp={[Function]}
       type="button"
     >

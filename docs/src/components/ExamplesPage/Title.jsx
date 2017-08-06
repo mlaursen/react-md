@@ -13,6 +13,13 @@ export default class Title extends PureComponent {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     createMessage: PropTypes.func.isRequired,
+
+    // This is only required because of how the Card reads the prop types for this to work.
+    expander: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    expander: true,
   };
 
   state = { visible: false };
@@ -48,10 +55,10 @@ export default class Title extends PureComponent {
 
   render() {
     const { visible } = this.state;
-    const { id, title } = this.props;
+    const { id, title, expander } = this.props;
 
     return (
-      <CardTitle title={title} expander onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <CardTitle title={title} expander={expander} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <textarea
           id={`${id}-copy-area`}
           ref={this.setArea}

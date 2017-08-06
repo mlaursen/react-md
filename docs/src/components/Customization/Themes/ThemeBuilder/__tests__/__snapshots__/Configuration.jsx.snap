@@ -95,7 +95,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="primary"
       >
         Primary color
@@ -142,7 +142,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="secondary"
       >
         Secondary color
@@ -189,7 +189,7 @@ exports[`Configuration should render correctly 1`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--floating"
+        class="md-floating-label md-text--secondary md-floating-label--floating"
         for="hue"
       >
         Secondary hue
@@ -323,7 +323,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="primary"
       >
         Primary color
@@ -370,7 +370,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="secondary"
       >
         Secondary color
@@ -417,7 +417,7 @@ exports[`Configuration should render correctly 2`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--floating"
+        class="md-floating-label md-text--secondary md-floating-label--floating"
         for="hue"
       >
         Secondary hue
@@ -550,7 +550,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="primary"
       >
         Primary color
@@ -597,7 +597,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="secondary"
       >
         Secondary color
@@ -644,7 +644,7 @@ exports[`Configuration should render correctly 3`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--floating"
+        class="md-floating-label md-text--secondary md-floating-label--floating"
         for="hue"
       >
         Secondary hue
@@ -776,7 +776,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="primary"
       >
         Primary color
@@ -823,7 +823,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized"
+        class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
         for="secondary"
       >
         Secondary color
@@ -870,7 +870,7 @@ exports[`Configuration should render correctly 4`] = `
       class="md-select-field__toggle"
     >
       <label
-        class="md-floating-label md-floating-label--floating"
+        class="md-floating-label md-text--secondary md-floating-label--floating"
         for="hue"
       >
         Secondary hue

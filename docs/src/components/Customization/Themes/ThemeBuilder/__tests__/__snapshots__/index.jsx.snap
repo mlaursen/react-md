@@ -98,7 +98,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-floating-label--floating"
+          class="md-floating-label md-text--secondary md-floating-label--floating"
           for="primary"
         >
           Primary color
@@ -147,7 +147,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-floating-label--floating"
+          class="md-floating-label md-text--secondary md-floating-label--floating"
           for="secondary"
         >
           Secondary color
@@ -196,7 +196,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-floating-label--floating"
+          class="md-floating-label md-text--secondary md-floating-label--floating"
           for="hue"
         >
           Secondary hue

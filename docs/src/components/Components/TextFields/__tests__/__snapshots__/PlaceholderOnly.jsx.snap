@@ -133,9 +133,9 @@ exports[`PlaceholderOnly should render correctly 1`] = `
       className="md-divider md-divider--text-field md-divider--expand-from-left"
     />
     <button
-      className="md-text-field-inline-indicator md-password-btn md-pointer--hover"
+      className="md-text-field-inline-indicator md-password-btn md-pointer--hover md-text--disabled"
+      onBlur={[Function]}
       onClick={[Function]}
-      onKeyDown={[Function]}
       onKeyUp={[Function]}
       type="button"
     >
