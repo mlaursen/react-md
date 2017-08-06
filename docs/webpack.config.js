@@ -12,6 +12,7 @@ const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const WITConfig = require('./WIT.config');
 const { homepage, name } = require('./package.json');
 const SWOfflinePlugin = require('./src/utils/SWOfflinePlugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 dotenv.config();
 const src = path.resolve(__dirname, 'src');
@@ -218,8 +219,21 @@ module.exports = ({ production }) => {
           },
         }],
       }, {
+        test: /\.svg$/,
+        include: path.join(src, 'icons'),
+        use: [{
+          loader: 'svg-sprite-loader',
+          options: {
+            extract: true,
+            spriteFilename: 'icon-sprites.svg',
+          },
+        }, {
+          loader: 'svgo-loader',
+        }],
+      }, {
         test: webpackIsomorphicToolsPlugin.regularExpression('images'),
         include: src,
+        exclude: /icons/,
         use: [{
           loader: 'url-loader',
           options: {
@@ -258,6 +272,7 @@ module.exports = ({ production }) => {
         __CLIENT__: true,
         'process.env.NODE_ENV': JSON.stringify(production ? 'production' : 'development'),
       }),
+      new SpriteLoaderPlugin(),
       extractStyles,
       webpackIsomorphicToolsPlugin,
       ...(production ? PROD_PLUGINS : DEV_PLUGINS),

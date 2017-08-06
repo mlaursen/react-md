@@ -36,7 +36,7 @@ export default class DocumentationTabs extends PureComponent {
     }
   }
 
-  isSassDocDisabled = pathname => !!(pathname.match(/helpers/) && !pathname.match(/layovers/));
+  isSassDocDisabled = pathname => !!(pathname.match(/helpers|svg/) && !pathname.match(/layovers/));
 
   makeLinks = ({ location: { pathname } }) => {
     const disabled = this.isSassDocDisabled(pathname);

@@ -39,6 +39,7 @@ export const componentRoutes = [
   'sliders',
   'snackbars',
   'subheaders',
+  'svg-icons',
   'tabs',
   'text-fields',
   'toolbars',

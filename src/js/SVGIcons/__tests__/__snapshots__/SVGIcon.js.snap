@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SVGIcon should render correctly based on props 1`] = `
+<svg
+  class="md-icon"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+/>
+`;
+
+exports[`SVGIcon should render correctly based on props 2`] = `
+<svg
+  class="md-icon"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 3`] = `
+<svg
+  class="md-icon md-text--disabled"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 4`] = `
+<svg
+  class="md-icon md-text--disabled"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 5`] = `
+<svg
+  class="md-icon md-text--theme-primary"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 6`] = `
+<svg
+  class="md-icon md-text--theme-secondary"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 7`] = `
+<svg
+  class="md-icon md-text--inherit"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 8`] = `
+<svg
+  class="md-icon md-text--error"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="9fdsf jjjfasodjfads"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 9`] = `
+<svg
+  class="md-icon"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-hash-tag"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 10`] = `
+<svg
+  class="md-icon"
+  style="height:100px;width:100px;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-hash-tag"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 11`] = `
+<svg
+  class="md-icon"
+  style="height:100px;width:30px;background:red;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-hash-tag"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should render correctly based on props 12`] = `
+<svg
+  class="md-icon"
+  style="height:100px;width:100px;background:red;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-hash-tag"
+  />
+</svg>
+`;
