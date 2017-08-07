@@ -55,6 +55,9 @@ $md-cross-fade-distance: 16px !default;
   }
 
   .md-navigation-drawer-content {
+    // main does not display block in IE11. Would normally rely on normalize.css for this
+    display: block;
+
     @if $md-toolbar-height != null {
       @include react-md-navigation-drawer-height($md-toolbar-height);
     }
