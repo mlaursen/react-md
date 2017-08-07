@@ -142,45 +142,10 @@ export default class SelectionControl extends PureComponent {
      */
     inline: PropTypes.bool,
 
-    /**
-     * Any children used to render the checkbox checked `FontIcon`.
-     */
-    checkedCheckboxIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the checkbox checked `FontIcon`.
-     */
-    checkedCheckboxIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the checkbox unchecked `FontIcon`.
-     */
-    uncheckedCheckboxIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the checkbox unchecked `FontIcon`.
-     */
-    uncheckedCheckboxIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the radio checked `FontIcon`.
-     */
-    checkedRadioIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the radio checked `FontIcon`.
-     */
-    checkedRadioIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the radio unchecked `FontIcon`.
-     */
-    uncheckedRadioIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the radio unchecked `FontIcon`.
-     */
-    uncheckedRadioIconClassName: PropTypes.string,
+    checkedCheckboxIcon: PropTypes.element,
+    uncheckedCheckboxIcon: PropTypes.element,
+    checkedRadioIcon: PropTypes.element,
+    uncheckedRadioIcon: PropTypes.element,
 
     /**
      * An optional tooltip to render with the control. This is only used if you inject the
@@ -219,16 +184,24 @@ export default class SelectionControl extends PureComponent {
       'Use the `uncheckedCheckboxIconChildren` and `uncheckedCheckboxIconClassName`  or the ' +
       '`uncheckedRadioIconChildren` and `uncheckedRadioIconClassName` props instead'
     )),
+    checkedCheckboxIconChildren: deprecated(PropTypes.node, 'Use the `checkedCheckboxIcon` prop instead'),
+    checkedCheckboxIconClassName: deprecated(PropTypes.string, 'Use the `checkedCheckboxIcon` prop instead'),
+    uncheckedCheckboxIconChildren: deprecated(PropTypes.node, 'Use the `uncheckedCheckboxIcon` prop instead'),
+    uncheckedCheckboxIconClassName: deprecated(PropTypes.string, 'Use the `uncheckedCheckboxIcon` prop instead'),
+    checkedRadioIconChildren: deprecated(PropTypes.node, 'Use the `checkedRadioIcon` prop instead'),
+    checkedRadioIconClassName: deprecated(PropTypes.string, 'Use the `checkedRadioIcon` prop instead'),
+    uncheckedRadioIconChildren: deprecated(PropTypes.node, 'Use the `uncheckedRadioIcon` prop instead'),
+    uncheckedRadioIconClassName: deprecated(PropTypes.string, 'Use the `uncheckedRadioIcon` prop instead'),
 
     /* maybe removed once upgrade again? */
     __superSecreteProp: PropTypes.bool,
   };
 
   static defaultProps = {
-    checkedCheckboxIconChildren: 'check_box',
-    uncheckedCheckboxIconChildren: 'check_box_outline_blank',
-    checkedRadioIconChildren: 'radio_button_checked',
-    uncheckedRadioIconChildren: 'radio_button_unchecked',
+    checkedCheckboxIcon: <FontIcon>check_box</FontIcon>,
+    uncheckedCheckboxIcon: <FontIcon>check_box_outline_blank</FontIcon>,
+    checkedRadioIcon: <FontIcon>radio_button_checked</FontIcon>,
+    uncheckedRadioIcon: <FontIcon>radio_button_unchecked</FontIcon>,
   };
 
   constructor(props) {
