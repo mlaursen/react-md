@@ -45,6 +45,10 @@ $md-font-regular: 400 !default;
 /// @type Number
 $md-font-medium: 500 !default;
 
+/// The semibold text weight.
+/// @type Number
+$md-font-semibold: 600 !default;
+
 /// The bold text weight.
 /// @type Number
 $md-font-bold: 700 !default;
@@ -53,7 +57,7 @@ $md-font-bold: 700 !default;
 /// loop over the weights and include locally hosted fonts.
 /// @type List
 /// @access private
-$md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-bold);
+$md-font-weights: ($md-font-light $md-font-regular $md-font-medium $md-font-semibold $md-font-bold);
 
 
 /// The `.md-display-4` font size.
@@ -389,6 +393,11 @@ $md-line-height: 20 / $md-font-size-base !default;
   font-weight: $md-font-medium;
 }
 
+/// A simple placeholder for setting the font weight to the material design's semibold weight.
+%md-font-semibold {
+  font-weight: $md-font-semibold;
+}
+
 /// A simple placeholder for setting the font weight to the material design's bold weight.
 %md-font-bold {
   font-weight: $md-font-bold;
@@ -637,6 +646,10 @@ $md-line-height: 20 / $md-font-size-base !default;
     @extend %md-font-medium;
   }
 
+  .md-font-semibold {
+    @extend %md-font-semibold;
+  }
+
   .md-font-bold {
     @extend %md-font-bold;
   }
@@ -824,6 +837,7 @@ $md-line-height: 20 / $md-font-size-base !default;
     $md-font-light: '-Light',
     $md-font-regular: '-Regular',
     $md-font-medium: '-Medium',
+    $md-font-semibold: '-SemiBold',
     $md-font-bold: '-Bold',
   );
 
