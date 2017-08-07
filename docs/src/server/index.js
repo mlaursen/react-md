@@ -119,9 +119,10 @@ app.listen(port, (err) => {
     throw err;
   }
 
-  winston.info(`Started documentation server on port: '${port}'`);
+  global.PUBLIC_URL = process.env.PUBLIC_URL || `http://0.0.0.0:${port}`;
+  winston.info(`Started documentation server at: '${global.PUBLIC_URL}'`);
   if (__DEV__ && !global.__SERVER_ONLY) {
     winston.info('Starting webpack compilation...');
-    winston.info(`Please wait until webpack spams your console, then you can navigate to http://localhost:${port}`);
+    winston.info(`Please wait until webpack spams your console, then you can navigate to ${global.PUBLIC_URL}`);
   }
 });

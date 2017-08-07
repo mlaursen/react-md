@@ -3,8 +3,6 @@ const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 
 const src = path.resolve(process.cwd(), 'src');
 
-const REGEX = /export default __webpack_public_path__ \+ "(.*)";/;
-
 module.exports = {
   // debug: true,
   // webpack_assets_file_path: 'webpack-assets.json',
@@ -29,8 +27,8 @@ module.exports = {
         return regex.test(module.name) && !module.name.match(/raw-loader/);
       },
       parser(module, options, log) {
-        if (REGEX.test(module.source)) {
-          return module.source.replace(REGEX, `${options.webpack_stats.publicPath}$1`);
+        if (module.source.match(/export default/)) {
+          return module.source.replace('export default', 'module.exports = ');
         }
 
         return WebpackIsomorphicToolsPlugin.urlLoaderParser(module, options, log);

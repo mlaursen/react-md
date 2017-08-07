@@ -71,7 +71,11 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += head.meta.toString();
   page += META;
   page += head.link.toString();
-  page += '<link rel="manifest" href="/manifest.json">';
+  if (!__DEV__) {
+    // manifest is only prod
+    page += '<link rel="manifest" href="/manifest.json">';
+  }
+
   page += '<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">';
 
   const styleKeys = Object.keys(assets.styles).reverse();

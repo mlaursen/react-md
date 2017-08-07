@@ -73,7 +73,7 @@ global.__CLIENT__ = false;
 global.__DEV__ = process.env.NODE_ENV === 'development';
 global.__SSR__ = getValue('USE_SSR', !global.__DEV__);
 global.__NGINX__ = getValue('USE_NGINX', !global.__DEV__);
-global.__SERVER_ONLY = getValue('SERVER_ONLY', false);
+global.__SERVER_ONLY__ = getValue('SERVER_ONLY', false);
 
 const ROOT_DIR = require('path').resolve(process.cwd());
 

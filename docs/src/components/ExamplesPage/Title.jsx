@@ -2,11 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Button from 'react-md/lib/Buttons/Button';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 
 import { createMessage } from 'state/messages';
 
+@withRouter
 @connect(null, { createMessage })
 export default class Title extends PureComponent {
   static propTypes = {
@@ -16,13 +18,14 @@ export default class Title extends PureComponent {
 
     // This is only required because of how the Card reads the prop types for this to work.
     expander: PropTypes.bool,
+    location: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     expander: true,
   };
 
-  state = { visible: false };
+  state = { visible: false, url: '' };
 
   setArea = (area) => {
     this.area = area;
@@ -55,7 +58,14 @@ export default class Title extends PureComponent {
 
   render() {
     const { visible } = this.state;
-    const { id, title, expander } = this.props;
+    const { id, title, expander, location } = this.props;
+
+    let url = '';
+    if (__CLIENT__) {
+      url = `${window.location.href}#${id}`;
+    } else {
+      url = `${PUBLIC_URL}${location.pathname}#${id}`;
+    }
 
     return (
       <CardTitle title={title} expander={expander} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -66,7 +76,7 @@ export default class Title extends PureComponent {
           tabIndex={-1}
           aria-hidden
           className="examples-page__example-link"
-          value={`${location.href}#${id}`}
+          value={url}
         />
         <Button
           id={`${id}-copy-btn`}
