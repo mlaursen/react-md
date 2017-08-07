@@ -2,13 +2,6 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { mount } from 'enzyme';
-import { findDOMNode } from 'react-dom';
-import { shallow } from 'enzyme';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedDOMComponentWithTag,
-} from 'react-dom/test-utils';
 
 import FileInput from '../FileInput';
 
