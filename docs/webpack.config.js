@@ -225,7 +225,7 @@ module.exports = ({ production }) => {
           loader: 'svg-sprite-loader',
           options: {
             extract: true,
-            spriteFilename: 'icon-sprites.svg',
+            spriteFilename: 'icon-sprites.[hash:8].svg',
           },
         }, {
           loader: 'svgo-loader',

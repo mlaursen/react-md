@@ -48,6 +48,66 @@ export default class SVGIcon extends PureComponent {
     inherit: PropTypes.bool,
 
     /**
+     * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
+     * `img` so that it is insured as a graphic.
+     */
+    role: PropTypes.string,
+
+    /**
+     * An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the `title`
+     * and `desc` props as this is used to create ids for those two props. This is super benficial to screen readers.
+     *
+     * When this is defined, it is a space-delimited string of ids to provide to the title and desc (in order). If
+     * this is omitted and the `use` prop is defined, it will take everything after the `#` sign and append `-title` and
+     * `-desc` as a fallback. Check out the examples for more information about this.
+     *
+     * @see {@link #title}
+     * @see {@link #desc}
+     */
+    'aria-labelledby': PropTypes.string,
+
+    /**
+     * An optional title to give to your SVG icon. This is generally recommended for accessibility when not using
+     * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
+     *
+     * @see {@link #aria-labelledby}
+     */
+    title: PropTypes.string,
+
+    /**
+     * An optional description to give to your SVG icon. This is generally recommended for accessibility when not using
+     * the `use` prop, or your spritemap does not contain `<title>` and `<desc>.
+     *
+     * @see {@link #aria-labelledby}
+     */
+    desc: PropTypes.string,
+
+    /**
+     * This should be a link to a part of an svg spritemap. So normally one of te following:
+     * - `'#some-custom-svg'`
+     * - `'/images/spritemap.svg#some-custom-svg'`
+     *
+     * This prop **should not** be used with the `children` prop as only one will be rendered.
+     *
+     * > NOTE: IE **does not support** external svgs. Please see the demo for more details.
+     */
+    use: PropTypes.string,
+
+    /**
+     * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
+     */
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element),
+    ]),
+
+    /**
+     * Boolean if the SVG should gain the `focusable` attribute. This is disabled by default since IE11
+     * and Edge actually default this to true and keyboard's will tab focus all SVGs.
+     */
+    focusable: PropTypes.bool,
+
+    /**
      * An optional size to apply to the svg. This can be used to set both the
      * `height` and `width` simultaniously. This will be provided as inline styles
      * since the `height` and `width` are normally controlled by CSS, and CSS has
@@ -72,25 +132,6 @@ export default class SVGIcon extends PureComponent {
      * @see {@link #size}
      */
     width: deprecated(PropTypes.number, 'Use the `size` prop instead.'),
-
-    /**
-     * This should be a link to a part of an svg spritemap. So normally one of te following:
-     * - `'#some-custom-svg'`
-     * - `'/images/spritemap.svg#some-custom-svg'`
-     *
-     * This prop **should not** be used with the `children` prop as only one will be rendered.
-     *
-     * > NOTE: IE **does not support** external svgs. Please see the demo for more details.
-     */
-    use: PropTypes.string,
-
-    /**
-     * Any `<svg>` children to render to create your icon. This can not be used with the `use` prop.
-     */
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element),
-    ]),
 
     /**
      * The viewBox attribute allows you to specify that a given set of graphics stretch to
@@ -118,6 +159,8 @@ export default class SVGIcon extends PureComponent {
   };
 
   static defaultProps = {
+    role: 'img',
+    focusable: false,
     xmlns: 'http://www.w3.org/2000/svg',
     viewBox: '0 0 24 24',
   };
@@ -125,14 +168,46 @@ export default class SVGIcon extends PureComponent {
   constructor(props) {
     super();
 
-    this.state = { styles: this._mergeStyles(props) };
+    this.state = {
+      styles: this._mergeStyles(props),
+      ...this._getIds(props),
+    };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.style !== nextProps.style || this.props.size !== nextProps.size) {
-      this.setState({ styles: this._mergeStyles(nextProps) });
+    const { style, size, use, title, desc, 'aria-labelledby': labels } = this.props;
+    let nextState;
+    if (style !== nextProps.style || size !== nextProps.size) {
+      nextState = { styles: this._mergeStyles(nextProps) };
+    }
+
+
+    if (title !== nextProps.title || desc !== nextProps.desc ||
+      ((nextProps.title || nextProps.desc) && (use !== nextProps.use || labels !== nextProps['aria-labelledby']))
+    ) {
+      nextState = { ...nextState, ...this._getIds(nextProps) };
+    }
+
+    if (nextState) {
+      this.setState(nextState);
     }
   }
+
+  _getIds = ({ use, 'aria-labelledby': labels, title, desc }) => {
+    let titleId = null;
+    let descId = null;
+    if (title || desc) {
+      if (use) {
+        const baseId = use.replace(/.*#/, '');
+        titleId = `${baseId}-title`;
+        descId = `${baseId}-desc`;
+      } else {
+        [titleId, descId] = labels.split(' ');
+      }
+    }
+
+    return { titleId, descId };
+  };
 
   _mergeStyles = ({ style, size }) => {
     if (style && size) {
@@ -147,7 +222,7 @@ export default class SVGIcon extends PureComponent {
   };
 
   render() {
-    const { styles } = this.state;
+    const { styles, titleId, descId } = this.state;
     const {
       className,
       disabled,
@@ -158,15 +233,25 @@ export default class SVGIcon extends PureComponent {
       inherit,
       /* eslint-disable no-unused-vars */
       size,
+      title: propTitle,
+      desc: propDesc,
       style: propStyle,
       children: propChildren,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
-    let { children } = this.props;
+    let { children, title, desc } = this.props;
     if (!children && use) {
       children = <use xlinkHref={use} />;
+    }
+
+    if (title) {
+      title = <title id={titleId}>{title}</title>;
+    }
+
+    if (desc) {
+      desc = <desc id={descId}>{desc}</desc>;
     }
 
     return (
@@ -181,6 +266,8 @@ export default class SVGIcon extends PureComponent {
           secondary,
         }, className))}
       >
+        {title}
+        {desc}
         {children}
       </svg>
     );
