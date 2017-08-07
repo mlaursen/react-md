@@ -14,6 +14,7 @@ import winston from 'winston';
 
 import { API_ENDPOINT } from 'constants/application';
 import { CUSTOM_THEME_ROUTE } from 'constants/colors';
+import App from 'components/App';
 import configureStore from './configureStore';
 import api from './api';
 import themes from './themes';
@@ -36,7 +37,7 @@ if (!global.__NGINX__) {
   }));
 }
 
-if (__DEV__ && !global.__SERVER_ONLY) {
+if (__DEV__ && !global.__SERVER_ONLY__) {
   /* eslint-disable import/no-extraneous-dependencies, global-require */
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -70,8 +71,6 @@ app.get('*', cookieParser(), async (req, res) => {
     }
 
     store = await configureStore(req);
-    const App = require('components/App').default;
-
     const html = renderToString(
       <StaticRouter context={context} location={req.url}>
         <Provider store={store}>
@@ -119,10 +118,13 @@ app.listen(port, (err) => {
     throw err;
   }
 
+  // This gets set during the webpack config, but it is completely possible to have no PUBLIC_URL
+  // in dev mode, so set it to any address on server side by default
   global.PUBLIC_URL = process.env.PUBLIC_URL || `http://0.0.0.0:${port}`;
-  winston.info(`Started documentation server at: '${global.PUBLIC_URL}'`);
   if (__DEV__ && !global.__SERVER_ONLY) {
     winston.info('Starting webpack compilation...');
     winston.info(`Please wait until webpack spams your console, then you can navigate to ${global.PUBLIC_URL}`);
+  } else {
+    winston.info(`Started documentation server at: '${global.PUBLIC_URL}'`);
   }
 });
