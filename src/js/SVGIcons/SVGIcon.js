@@ -51,7 +51,13 @@ export default class SVGIcon extends PureComponent {
      * The role to apply to the SVG. When using icons, it is generally recommended to leave it as the default
      * `img` so that it is insured as a graphic.
      */
-    role: PropTypes.string,
+    role: PropTypes.oneOf(['img', 'presentation']),
+
+    /**
+     * This prop is the title attribute to provide to the `<svg>` element itself. This should be used when you
+     * are using a spritesheet that has defined `<title>` with each svg symbol.
+     */
+    titleAttr: PropTypes.string,
 
     /**
      * An optional list of ids to use to label the SVG icon with. This is helpful to add when you use the `title`
@@ -99,6 +105,7 @@ export default class SVGIcon extends PureComponent {
     children: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.arrayOf(PropTypes.element),
+      PropTypes.node,
     ]),
 
     /**
@@ -196,17 +203,26 @@ export default class SVGIcon extends PureComponent {
   _getIds = ({ use, 'aria-labelledby': labels, title, desc }) => {
     let titleId = null;
     let descId = null;
+    let labelledBy = null;
     if (title || desc) {
       if (use) {
         const baseId = use.replace(/.*#/, '');
         titleId = `${baseId}-title`;
         descId = `${baseId}-desc`;
-      } else {
+
+        if (title) {
+          labelledBy = `${baseId}-title`;
+        }
+
+        if (desc) {
+          labelledBy = `${labelledBy ? `${labelledBy} ` : ''}${descId}`;
+        }
+      } else if (labels) {
         [titleId, descId] = labels.split(' ');
       }
     }
 
-    return { titleId, descId };
+    return { titleId, descId, labelledBy };
   };
 
   _mergeStyles = ({ style, size }) => {
@@ -222,7 +238,7 @@ export default class SVGIcon extends PureComponent {
   };
 
   render() {
-    const { styles, titleId, descId } = this.state;
+    const { styles, titleId, descId, labelledBy } = this.state;
     const {
       className,
       disabled,
@@ -231,6 +247,8 @@ export default class SVGIcon extends PureComponent {
       secondary,
       error,
       inherit,
+      titleAttr,
+      'aria-labelledby': ariaLabelledBy,
       /* eslint-disable no-unused-vars */
       size,
       title: propTitle,
@@ -257,6 +275,8 @@ export default class SVGIcon extends PureComponent {
     return (
       <svg
         {...props}
+        title={titleAttr}
+        aria-labelledby={ariaLabelledBy || labelledBy}
         style={styles}
         className={cn('md-icon', themeColors({
           disabled,

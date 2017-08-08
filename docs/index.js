@@ -10,10 +10,12 @@ const winston = require('winston');
 const RAW_LOADER = '!!raw-loader!./';
 const RAW_CLIENT_LOADER = '!!raw-loader!client';
 const RAW_COMPONENT_LOADER = '!!raw-loader!components';
+const RAW_ICONS_LOADER = '!!raw-loader!icons';
 const RAW_SERVER_LOADER = '!!raw-loader!server';
 const RAW_UTILS_LOADER = '!!raw-loader!utils';
 const CLIENT = path.resolve(process.cwd(), 'src', 'client');
 const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
+const ICONS = path.resolve(process.cwd(), 'src', 'icons');
 const SERVER = path.resolve(process.cwd(), 'src', 'server');
 const UTILS = path.resolve(process.cwd(), 'src', 'utils');
 
@@ -21,6 +23,7 @@ function isCustomLoader(path) {
   return path.indexOf(RAW_LOADER) !== -1
     || path.indexOf(RAW_CLIENT_LOADER) !== -1
     || path.indexOf(RAW_COMPONENT_LOADER) !== -1
+    || path.indexOf(RAW_ICONS_LOADER) !== -1
     || path.indexOf(RAW_SERVER_LOADER) !== -1
     || path.indexOf(RAW_UTILS_LOADER) !== -1;
 }
@@ -43,6 +46,8 @@ hacker.global_hook('raw-loader', (path, module) => {
     filePath = path.replace(RAW_CLIENT_LOADER, CLIENT);
   } else if (path.match(RAW_COMPONENT_LOADER)) {
     filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
+  } else if (path.match(RAW_ICONS_LOADER)) {
+    filePath = path.replace(RAW_ICONS_LOADER, ICONS);
   } else if (path.match(RAW_SERVER_LOADER)) {
     filePath = path.replace(RAW_SERVER_LOADER, SERVER);
   } else if (path.match(RAW_UTILS_LOADER)) {

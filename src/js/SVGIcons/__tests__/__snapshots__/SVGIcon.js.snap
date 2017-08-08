@@ -1,8 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SVGIcon should correctly apply style since it is cached 1`] = `
+<svg
+  class="md-icon"
+  focusable="false"
+  role="img"
+  style="background:red;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-img"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should correctly apply style since it is cached 2`] = `
+<svg
+  class="md-icon"
+  focusable="false"
+  role="img"
+  style="background:orange;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-img"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should correctly apply style since it is cached 3`] = `
+<svg
+  class="md-icon"
+  focusable="false"
+  role="img"
+  style="height:32px;width:32px;background:orange;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-img"
+  />
+</svg>
+`;
+
+exports[`SVGIcon should correctly apply style since it is cached 4`] = `
+<svg
+  class="md-icon"
+  focusable="false"
+  role="img"
+  style="height:32px;width:20px;background:red;"
+  viewbox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <use
+    xlink:href="#some-img"
+  />
+</svg>
+`;
+
 exports[`SVGIcon should render correctly based on props 1`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 />
@@ -11,6 +73,8 @@ exports[`SVGIcon should render correctly based on props 1`] = `
 exports[`SVGIcon should render correctly based on props 2`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -23,6 +87,8 @@ exports[`SVGIcon should render correctly based on props 2`] = `
 exports[`SVGIcon should render correctly based on props 3`] = `
 <svg
   class="md-icon md-text--disabled"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -35,6 +101,8 @@ exports[`SVGIcon should render correctly based on props 3`] = `
 exports[`SVGIcon should render correctly based on props 4`] = `
 <svg
   class="md-icon md-text--disabled"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -47,6 +115,8 @@ exports[`SVGIcon should render correctly based on props 4`] = `
 exports[`SVGIcon should render correctly based on props 5`] = `
 <svg
   class="md-icon md-text--theme-primary"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -59,6 +129,8 @@ exports[`SVGIcon should render correctly based on props 5`] = `
 exports[`SVGIcon should render correctly based on props 6`] = `
 <svg
   class="md-icon md-text--theme-secondary"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -71,6 +143,8 @@ exports[`SVGIcon should render correctly based on props 6`] = `
 exports[`SVGIcon should render correctly based on props 7`] = `
 <svg
   class="md-icon md-text--inherit"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -83,6 +157,8 @@ exports[`SVGIcon should render correctly based on props 7`] = `
 exports[`SVGIcon should render correctly based on props 8`] = `
 <svg
   class="md-icon md-text--error"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -95,6 +171,8 @@ exports[`SVGIcon should render correctly based on props 8`] = `
 exports[`SVGIcon should render correctly based on props 9`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -107,6 +185,8 @@ exports[`SVGIcon should render correctly based on props 9`] = `
 exports[`SVGIcon should render correctly based on props 10`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   style="height:100px;width:100px;"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
@@ -120,6 +200,8 @@ exports[`SVGIcon should render correctly based on props 10`] = `
 exports[`SVGIcon should render correctly based on props 11`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   style="height:100px;width:30px;background:red;"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"
@@ -133,6 +215,8 @@ exports[`SVGIcon should render correctly based on props 11`] = `
 exports[`SVGIcon should render correctly based on props 12`] = `
 <svg
   class="md-icon"
+  focusable="false"
+  role="img"
   style="height:100px;width:100px;background:red;"
   viewbox="0 0 24 24"
   xmlns="http://www.w3.org/2000/svg"

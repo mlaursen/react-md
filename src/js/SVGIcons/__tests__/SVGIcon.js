@@ -41,4 +41,18 @@ describe('SVGIcon', () => {
     icon.setProps({ style: { background: 'red' } });
     expect(icon.render()).toMatchSnapshot();
   });
+
+  it('should correctly apply style since it is cached', () => {
+    const icon = shallow(<SVGIcon style={{ background: 'red' }} use="#some-img" />);
+    expect(icon.render()).toMatchSnapshot();
+
+    icon.setProps({ style: { background: 'orange' } });
+    expect(icon.render()).toMatchSnapshot();
+
+    icon.setProps({ size: 32 });
+    expect(icon.render()).toMatchSnapshot();
+
+    icon.setProps({ style: { background: 'red', width: 20 } });
+    expect(icon.render()).toMatchSnapshot();
+  });
 });

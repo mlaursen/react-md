@@ -136,6 +136,8 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -160,6 +162,8 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -204,6 +208,8 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -228,6 +234,8 @@ exports[`Button should be able to render FontIcons or SVGIcons as children when 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -284,6 +292,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   >
     <svg
       class="md-icon md-text--inherit"
+      focusable="false"
+      role="img"
       viewbox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -317,6 +327,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   >
     <svg
       class="md-icon md-text--inherit"
+      focusable="false"
+      role="img"
       viewbox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -379,6 +391,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   >
     <svg
       class="md-icon md-text--inherit"
+      focusable="false"
+      role="img"
       viewbox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -412,6 +426,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   >
     <svg
       class="md-icon md-text--inherit"
+      focusable="false"
+      role="img"
       viewbox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -462,6 +478,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -486,6 +504,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -530,6 +550,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -554,6 +576,8 @@ exports[`Button should be able to render FontIcons or SVGIcons using the iconEl 
   </div>
   <svg
     class="md-icon md-text--inherit"
+    focusable="false"
+    role="img"
     viewbox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
   >
