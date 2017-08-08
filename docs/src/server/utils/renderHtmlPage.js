@@ -96,7 +96,7 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
   page += manifest;
 
   page += `</head><body ${head.bodyAttributes.toString()}><div id="app">${html}</div>`;
-  page += `<script type="text/javascript">window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
+  page += `<script>window.__WEBPACK_BUNDLES__=${serialize(bundles)};`;
   if (store) {
     page += `window.__INITIAL_STATE__=${serialize(store.getState())};`;
   }
@@ -106,6 +106,16 @@ export default function renderHtmlPage(store, bundles = [], html = '') {
     `<script src="${assets.javascript[script]}"></script>`
   ).join('');
   page += head.script.toString();
+  if (!__DEV__) {
+    page += '<script>';
+    page += '(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){';
+    page += '(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),';
+    page += 'm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)';
+    page += '})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\');';
+    page += `ga('create', '${process.env.ANALYTICS_CODE || 'UA-76079335-1'}', 'auto');`;
+    page += 'ga(\'send\', \'pageview\');';
+    page += '</script>';
+  }
   page += '</body></html>';
 
   return page;

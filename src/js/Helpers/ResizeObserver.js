@@ -54,8 +54,8 @@ export default class ResizeObserver extends PureComponent {
     onResize: PropTypes.func.isRequired,
 
     /**
-     * An optional ref callback that will include the `target` or the parent node of the resize observer. Just like other
-     * refs, this will provide null when it unmounts.
+     * An optional ref callback that will include the `target` or the parent node of the resize observer. Just
+     * like other refs, this will provide null when it unmounts.
      */
     elRef: PropTypes.func,
   };

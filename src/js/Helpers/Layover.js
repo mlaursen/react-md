@@ -265,8 +265,6 @@ export default class Layover extends PureComponent {
     this._initialY = null;
     this._initialTop = null;
     this._initialLeft = null;
-    this._childLeft = null;
-    this._childRight = null;
     this._child = null;
     this._toggle = null;
   }
@@ -298,6 +296,16 @@ export default class Layover extends PureComponent {
     const anchor = this._getAnchor(nextProps);
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
+
+    if (visibileDiff && !visible) {
+      // Reset all the bookkeeping variables for a fresh start on re-visible
+      this._lastXFix = null;
+      this._lastYFix = null;
+      this._initialX = null;
+      this._initialY = null;
+      this._initialTop = null;
+      this._initialLeft = null;
+    }
 
     if (!visibileDiff && fixedTo !== this.props.fixedTo && visible) {
       this._manageFixedToListener(this.props.fixedTo, false);
@@ -432,6 +440,12 @@ export default class Layover extends PureComponent {
    * variables to update while it is open.
    */
   _init = (fixedTo, anchor, sameWidth, centered, rect) => {
+    if (this._child) {
+      // The init function can be called again if the user quickly toggles the layover. If that
+      // is the case, we want the styles that were set after the _positionChild _attemptFix.
+      return;
+    }
+
     const centeredDialog = this._dialog && this._dialog.classList.contains('md-dialog--centered');
     const { height, width } = rect;
     let { top, left, right } = rect;
@@ -790,9 +804,16 @@ export default class Layover extends PureComponent {
       return false;
     }
 
-    const { top } = this._child.getBoundingClientRect();
-    const { offsetHeight: childHeight } = this._child;
+    const toggleTop = this._toggle.getBoundingClientRect().top;
     const { offsetHeight: toggleHeight } = this._toggle;
+    const { offsetHeight: childHeight } = this._child;
+
+    // Can;t fix if the child can't fit on the page based on the toggle's position
+    if (toggleTop + toggleHeight + childHeight > window.innerHeight) {
+      return false;
+    }
+
+    const { top } = this._child.getBoundingClientRect();
     let newTop = this._initialTop;
     let addToTop = childHeight * (vp.top ? -1 : 1);
     if (y === VerticalAnchors.OVERLAP) {

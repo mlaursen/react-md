@@ -134,11 +134,6 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px !default;
 /// @param {Boolean} include-shifting [$md-bottom-navigation-include-shifting] - Boolean if the styles
 ///     for a shifting bottom navigation should be included.
 @mixin react-md-bottom-navigations-nav($include-shifting: $md-bottom-navigation-include-shifting) {
-  // scss-lint:disable QualifyingElement
-  a.md-bottom-nav {
-    color: inherit;
-  }
-
   .md-bottom-nav {
     display: block;
     flex-grow: 1;
