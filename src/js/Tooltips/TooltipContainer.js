@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
@@ -7,6 +8,11 @@ import { TAB } from '../constants/keyCodes';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import Tooltip from './Tooltip';
+
+
+function getContainer(tooltip) {
+  return tooltip.parentNode;
+}
 
 export default class TooltipContainer extends PureComponent {
   static propTypes = {
@@ -19,23 +25,44 @@ export default class TooltipContainer extends PureComponent {
     delay: PropTypes.number,
     enterTimeout: Tooltip.propTypes.enterTimeout,
     leaveTimeout: Tooltip.propTypes.leaveTimeout,
+    /**
+     * A function that returns a DOM element that will be used as the tooltip's container.
+     * A ref to the tooltip's DOM element will be passed into the function.
+     */
+    container: PropTypes.func,
+    /**
+     * A component/element the tooltip should be linked to,
+     * or a function that returns such a component/element.
+     * A ref to the tooltip's container will be passed into the function.
+     *
+     * By default the tooltip's container will be used as the target.
+     */
+    target: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.func,
+    ]),
   };
 
   static defaultProps = {
+    container: getContainer,
     delay: 0,
   };
 
   state = { visible: false };
 
-  componentWillUnmount() {
-    if (this._container) {
-      removeTouchEvent(this._container, 'start', this._showTooltip);
-      removeTouchEvent(this._container, 'end', this._hideTooltip);
-      this._container.removeEventListener('mouseover', this._showTooltip);
-      this._container.removeEventListener('mouseleave', this._hideTooltip);
-      this._container.removeEventListener('keyup', this._handleKeyUp);
-      this._container.removeEventListener('blur', this._hideTooltip);
+  componentDidMount() {
+    this._setTarget();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.target !== prevProps.target) {
+      this._setTarget();
     }
+  }
+
+  componentWillUnmount() {
+    this._unlinkTarget();
+    this._target = null;
 
     if (this._delayedTimeout) {
       clearTimeout(this._delayedTimeout);
@@ -44,16 +71,43 @@ export default class TooltipContainer extends PureComponent {
 
   _delayedTimeout = null;
 
+  _unlinkTarget() {
+    const target = this._target;
+    if (target) {
+      removeTouchEvent(target, 'start', this._showTooltip);
+      removeTouchEvent(target, 'end', this._hideTooltip);
+      target.removeEventListener('mouseover', this._showTooltip);
+      target.removeEventListener('mouseleave', this._hideTooltip);
+      target.removeEventListener('keyup', this._handleKeyUp);
+      target.removeEventListener('blur', this._hideTooltip);
+    }
+  }
+
+  _setTarget() {
+    const container = this._container;
+    let { target } = this.props;
+
+    this._unlinkTarget();
+
+    if (typeof target === 'function') {
+      target = target(container, this);
+    }
+    target = target ? findDOMNode(target) : container;
+    this._target = target || null;
+
+    if (target) {
+      addTouchEvent(target, 'start', this._showTooltip);
+      addTouchEvent(target, 'end', this._hideTooltip);
+      target.addEventListener('mouseover', this._showTooltip);
+      target.addEventListener('mouseleave', this._hideTooltip);
+      target.addEventListener('keyup', this._handleKeyUp);
+      target.addEventListener('blur', this._hideTooltip);
+    }
+  }
+
   _setContainers = (span) => {
     if (span) {
-      this._container = span.parentNode.parentNode;
-
-      addTouchEvent(this._container, 'start', this._showTooltip);
-      addTouchEvent(this._container, 'end', this._hideTooltip);
-      this._container.addEventListener('mouseover', this._showTooltip);
-      this._container.addEventListener('mouseleave', this._hideTooltip);
-      this._container.addEventListener('keyup', this._handleKeyUp);
-      this._container.addEventListener('blur', this._hideTooltip);
+      this._container = this.props.container(span.parentNode, this);
     }
   };
 
