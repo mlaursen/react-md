@@ -353,7 +353,7 @@ exports[`FormExample should render correctly 1`] = `
               tabIndex={0}
             >
               <i
-                className="md-icon material-icons"
+                className="md-icon material-icons md-text--inherit"
                 style={undefined}
               >
                 check_box
@@ -398,7 +398,7 @@ exports[`FormExample should render correctly 1`] = `
               tabIndex={0}
             >
               <i
-                className="md-icon material-icons"
+                className="md-icon material-icons md-text--inherit"
                 style={undefined}
               >
                 check_box_outline_blank
@@ -443,7 +443,7 @@ exports[`FormExample should render correctly 1`] = `
               tabIndex={0}
             >
               <i
-                className="md-icon material-icons"
+                className="md-icon material-icons md-text--inherit"
                 style={undefined}
               >
                 check_box_outline_blank
@@ -488,7 +488,7 @@ exports[`FormExample should render correctly 1`] = `
               tabIndex={0}
             >
               <i
-                className="md-icon material-icons"
+                className="md-icon material-icons md-text--inherit"
                 style={undefined}
               >
                 check_box
@@ -533,7 +533,7 @@ exports[`FormExample should render correctly 1`] = `
               tabIndex={0}
             >
               <i
-                className="md-icon material-icons"
+                className="md-icon material-icons md-text--inherit"
                 style={undefined}
               >
                 check_box_outline_blank

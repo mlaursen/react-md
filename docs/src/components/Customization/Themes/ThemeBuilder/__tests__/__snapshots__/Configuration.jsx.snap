@@ -34,7 +34,7 @@ exports[`Configuration should render correctly 1`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box
         </i>
@@ -67,7 +67,7 @@ exports[`Configuration should render correctly 1`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box
         </i>
@@ -262,7 +262,7 @@ exports[`Configuration should render correctly 2`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box
         </i>
@@ -295,7 +295,7 @@ exports[`Configuration should render correctly 2`] = `
         role="checkbox"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box_outline_blank
         </i>
@@ -489,7 +489,7 @@ exports[`Configuration should render correctly 3`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box_outline_blank
         </i>
@@ -522,7 +522,7 @@ exports[`Configuration should render correctly 3`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box
         </i>
@@ -716,7 +716,7 @@ exports[`Configuration should render correctly 4`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box_outline_blank
         </i>
@@ -748,7 +748,7 @@ exports[`Configuration should render correctly 4`] = `
         tabindex="0"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           check_box_outline_blank
         </i>

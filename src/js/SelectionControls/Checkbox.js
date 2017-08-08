@@ -4,6 +4,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import controlled from '../utils/PropTypes/controlled';
+import FontIcon from '../FontIcons/FontIcon';
 import SelectionControl from './SelectionControl';
 
 /**
@@ -138,10 +139,8 @@ export default class Checkbox extends PureComponent {
     return (
       <SelectionControl
         type="checkbox"
-        checkedCheckboxIconChildren={checkedIconChildren}
-        checkedCheckboxIconClassName={checkedIconClassName}
-        uncheckedCheckboxIconChildren={uncheckedIconChildren}
-        uncheckedCheckboxIconClassName={uncheckedIconClassName}
+        checkedCheckboxIcon={<FontIcon iconClassName={checkedIconClassName}>{checkedIconChildren}</FontIcon>}
+        uncheckedCheckboxIcon={<FontIcon iconClassName={uncheckedIconClassName}>{uncheckedIconChildren}</FontIcon>}
         __superSecreteProp
         {...props}
       />

@@ -14,8 +14,6 @@ import TableBody from '../TableBody';
 import TableFooter from '../TableFooter';
 import TableRow from '../TableRow';
 import TableColumn from '../TableColumn';
-import Collapser from '../../FontIcons/Collapser';
-import IconSeparator from '../../Helpers/IconSeparator';
 
 // need valid table nesting
 class Table extends React.Component {
@@ -196,32 +194,6 @@ describe('TableColumn', () => {
     );
     column = table.find(TableColumn);
     expect(column.hasClass('md-table-column--sortable')).toBe(true);
-  });
-
-  it('should render an IconSeparator and the Collapser component when sortable', () => {
-    let table = mount(
-      <table>
-        <tbody>
-          <tr>
-            <TableColumn>Hello, World</TableColumn>
-          </tr>
-        </tbody>
-      </table>
-    );
-    expect(table.find(IconSeparator).length).toBe(0);
-    expect(table.find(Collapser).length).toBe(0);
-
-    table = mount(
-      <table>
-        <tbody>
-          <tr>
-            <TableColumn sorted>Hello, World</TableColumn>
-          </tr>
-        </tbody>
-      </table>
-    );
-    expect(table.find(IconSeparator).length).toBe(1);
-    expect(table.find(Collapser).length).toBe(1);
   });
 
   it('should apply the correct aria-sort when sortable', () => {

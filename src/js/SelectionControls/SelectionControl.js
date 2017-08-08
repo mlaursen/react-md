@@ -243,11 +243,14 @@ export default class SelectionControl extends PureComponent {
     }
 
     const prefix = `${checked ? '' : 'un'}checked${capitalizeFirst(type)}Icon`;
-    return (
-      <FontIcon iconClassName={this.props[`${prefix}ClassName`]}>
-        {this.props[`${prefix}Children`]}
-      </FontIcon>
-    );
+    const iconClassName = this.props[`${prefix}ClassName`];
+    const children = this.props[`${prefix}Children`];
+
+    if (iconClassName || children) {
+      return <FontIcon iconClassName={iconClassName} inherit>{children}</FontIcon>;
+    }
+
+    return React.cloneElement(this.props[prefix], { inherit: true });
   };
 
   _handleKeyDown = (e) => {
@@ -292,6 +295,14 @@ export default class SelectionControl extends PureComponent {
       label: propLabel,
       checked: propChildren,
       onChange,
+      tooltip,
+      checkedCheckboxIcon,
+      uncheckedCheckboxIcon,
+      checkedRadioIcon,
+      uncheckedRadioIcon,
+      __superSecreteProp,
+
+      // deprecated
       checkedIcon,
       uncheckedIcon,
       checkedRadioIconChildren,
@@ -302,8 +313,6 @@ export default class SelectionControl extends PureComponent {
       checkedCheckboxIconClassName,
       uncheckedCheckboxIconChildren,
       uncheckedCheckboxIconClassName,
-      tooltip,
-      __superSecreteProp,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;

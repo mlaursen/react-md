@@ -68,8 +68,12 @@ exports[`ExampleCard should display correctly as a table card 1`] = `
       type="button"
     >
       <svg
+        aria-labelledby={null}
         className="md-icon md-text--inherit"
+        focusable={false}
+        role="img"
         style={undefined}
+        title={undefined}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
@@ -176,8 +180,12 @@ exports[`ExampleCard should display correctly as a table card 2`] = `
       type="button"
     >
       <svg
+        aria-labelledby={null}
         className="md-icon md-text--inherit"
+        focusable={false}
+        role="img"
         style={undefined}
+        title={undefined}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
@@ -297,8 +305,12 @@ exports[`ExampleCard should display correctly with a description 1`] = `
       type="button"
     >
       <svg
+        aria-labelledby={null}
         className="md-icon md-text--inherit"
+        focusable={false}
+        role="img"
         style={undefined}
+        title={undefined}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />
@@ -401,8 +413,12 @@ exports[`ExampleCard should display correctly without a description 1`] = `
       type="button"
     >
       <svg
+        aria-labelledby={null}
         className="md-icon md-text--inherit"
+        focusable={false}
+        role="img"
         style={undefined}
+        title={undefined}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       />

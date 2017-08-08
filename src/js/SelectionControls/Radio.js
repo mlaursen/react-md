@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
+import FontIcon from '../FontIcons/FontIcon';
 import SelectionControl from './SelectionControl';
 
 /**
@@ -132,10 +133,8 @@ export default class Radio extends PureComponent {
     return (
       <SelectionControl
         type="radio"
-        checkedRadioIconChildren={checkedIconChildren}
-        checkedRadioIconClassName={checkedIconClassName}
-        uncheckedRadioIconChildren={uncheckedIconChildren}
-        uncheckedRadioIconClassName={uncheckedIconClassName}
+        checkedCheckboxIcon={<FontIcon iconClassName={checkedIconClassName}>{checkedIconChildren}</FontIcon>}
+        uncheckedCheckboxIcon={<FontIcon iconClassName={uncheckedIconClassName}>{uncheckedIconChildren}</FontIcon>}
         __superSecreteProp
         {...props}
       />

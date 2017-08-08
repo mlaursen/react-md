@@ -1,10 +1,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
 import invalidIf from '../utils/PropTypes/invalidIf';
+import FontIcon from '../FontIcons/FontIcon';
 import contextTypes from './contextTypes';
+
+function getDeprecatedIcon(className, children, icon) {
+  if (className || children) {
+    return <FontIcon iconClassName={className}>{children}</FontIcon>;
+  }
+
+  return icon;
+}
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -135,28 +145,20 @@ export default class DataTable extends PureComponent {
     plain: PropTypes.bool,
 
     /**
-     * The icon className to use for the unchecked row icon. This value
-     * will be passed down as `context`.
+     * The checked checkbox icon to display when a row is selected. This really defaults
+     * to the `checkedCheckboxIcon` prop from the `SelectionControl`.
+     *
+     * @see {@link SelectionControls/SelectionControl#checkedCheckboxIcon}
      */
-    uncheckedIconClassName: PropTypes.string,
+    checkedIcon: PropTypes.element,
 
     /**
-     * The icon children to use for the unchecked row icon. This value
-     * will be passed down as `context`.
+     * The unchecked checkbox icon to display when a row is selected. This really defaults
+     * to the `uncheckedCheckboxIcon` prop from the `SelectionControl`.
+     *
+     * @see {@link SelectionControls/SelectionControl#uncheckedCheckboxIcon}
      */
-    uncheckedIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use for the checked row icon. This value
-     * will be passed down as `context`.
-     */
-    checkedIconClassName: PropTypes.string,
-
-    /**
-     * The icon children to use for the checked row icon. This value
-     * will be passed down as `context`.
-     */
-    checkedIconChildren: PropTypes.node,
+    uncheckedIcon: PropTypes.element,
 
     /**
      * An optional function to call when a non-plain data table has a row toggled. The callback
@@ -183,14 +185,11 @@ export default class DataTable extends PureComponent {
     indeterminate: PropTypes.bool,
 
     /**
-     * Any children required to display the indeterminate checkbox.
+     * An optional icon to display when the selected state is indeterminate.
+     *
+     * @see {@link #indeterminate}
      */
-    indeterminateIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use for the indeterminate checkbox.
-     */
-    indeterminateIconClassName: PropTypes.string,
+    indeterminateIcon: PropTypes.element,
 
     /**
      * This is the aria-label to apply to the checkbox in the table's header. This
@@ -282,12 +281,17 @@ export default class DataTable extends PureComponent {
      * Boolean if the `<table>` element should always span the entire width of its container.
      */
     fullWidth: PropTypes.bool,
+
+    indeterminateIconChildren: deprecated(PropTypes.node, 'Use the `indeterminateIcon` prop instead'),
+    indeterminateIconClassName: deprecated(PropTypes.string, 'Use the `indeterminateIcon` prop instead'),
+    checkedIconClassName: deprecated(PropTypes.string, 'Use the `checkedIcon` prop instead'),
+    checkedIconChildren: deprecated(PropTypes.node, 'Use the `checkedIcon` prop instead'),
+    uncheckedIconClassName: deprecated(PropTypes.string, 'Use the `uncheckedIcon` prop instead'),
+    uncheckedIconChildren: deprecated(PropTypes.node, 'Use the `uncheckedIcon` prop instead'),
   };
 
   static defaultProps = {
-    checkedIconChildren: 'check_box',
-    uncheckedIconChildren: 'check_box_outline_blank',
-    indeterminateIconChildren: 'indeterminate_check_box',
+    indeterminateIcon: <FontIcon>indeterminate_check_box</FontIcon>,
     defaultSelectedRows: [],
     responsive: true,
     selectableRows: true,
@@ -304,7 +308,7 @@ export default class DataTable extends PureComponent {
   static childContextTypes = contextTypes;
 
   constructor(props) {
-    super(props);
+    super();
 
     const rows = props.defaultSelectedRows;
     this.state = {
@@ -320,6 +324,9 @@ export default class DataTable extends PureComponent {
 
   getChildContext() {
     const {
+      checkedIcon,
+      uncheckedIcon,
+      indeterminateIcon,
       checkedIconChildren,
       checkedIconClassName,
       uncheckedIconChildren,
@@ -336,12 +343,9 @@ export default class DataTable extends PureComponent {
     } = this.props;
 
     return {
-      checkedIconChildren,
-      checkedIconClassName,
-      uncheckedIconChildren,
-      uncheckedIconClassName,
-      indeterminateIconChildren,
-      indeterminateIconClassName,
+      checkedIcon: getDeprecatedIcon(checkedIconClassName, checkedIconChildren, checkedIcon),
+      uncheckedIcon: getDeprecatedIcon(uncheckedIconClassName, uncheckedIconChildren, uncheckedIcon),
+      indeterminateIcon: getDeprecatedIcon(indeterminateIconClassName, indeterminateIconChildren, indeterminateIcon),
       indeterminate: this.state.indeterminate,
       plain,
       allSelected: this.state.allSelected,
@@ -452,19 +456,24 @@ export default class DataTable extends PureComponent {
       footerHeight,
       fullWidth,
       /* eslint-disable no-unused-vars */
-      checkedIconChildren,
-      checkedIconClassName,
-      uncheckedIconChildren,
-      uncheckedIconClassName,
-      indeterminateIconChildren,
-      indeterminateIconClassName,
       indeterminate,
+      indeterminateIcon,
+      checkedIcon,
+      uncheckedIcon,
       defaultSelectedRows,
       baseId,
       onRowToggle,
       selectableRows,
       checkboxHeaderLabel,
       checkboxLabelTemplate,
+
+      // deprecated
+      checkedIconChildren,
+      checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      indeterminateIconChildren,
+      indeterminateIconClassName,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
