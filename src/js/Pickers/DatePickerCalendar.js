@@ -8,11 +8,9 @@ import CalendarHeader from './CalendarHeader';
 export default class DatePickerCalendar extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    previousIconChildren: PropTypes.node,
-    previousIconClassName: PropTypes.string,
+    previousIcon: PropTypes.element,
     onPreviousClick: PropTypes.func.isRequired,
-    nextIconChildren: PropTypes.node,
-    nextIconClassName: PropTypes.string,
+    nextIcon: PropTypes.element,
     onNextClick: PropTypes.func.isRequired,
     onCalendarDateClick: PropTypes.func.isRequired,
     calendarDate: PropTypes.instanceOf(Date).isRequired,
@@ -63,11 +61,9 @@ export default class DatePickerCalendar extends PureComponent {
   render() {
     const {
       className,
-      previousIconChildren,
-      previousIconClassName,
+      previousIcon,
       onPreviousClick,
-      nextIconChildren,
-      nextIconClassName,
+      nextIcon,
       onNextClick,
       calendarDate,
       calendarTempDate,
@@ -93,11 +89,9 @@ export default class DatePickerCalendar extends PureComponent {
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           onPreviousClick={onPreviousClick}
-          previousIconChildren={previousIconChildren}
-          previousIconClassName={previousIconClassName}
+          previousIcon={previousIcon}
           onNextClick={onNextClick}
-          nextIconChildren={nextIconChildren}
-          nextIconClassName={nextIconClassName}
+          nextIcon={nextIcon}
           firstDayOfWeek={firstDayOfWeek}
           titleClassName={titleClassName}
           titleFormat={titleFormat}
