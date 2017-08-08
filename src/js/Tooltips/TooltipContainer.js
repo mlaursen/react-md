@@ -71,7 +71,7 @@ export default class TooltipContainer extends PureComponent {
 
   _delayedTimeout = null;
 
-  _unlinkTarget() {
+  _unlinkTarget = () => {
     const target = this._target;
     if (target) {
       removeTouchEvent(target, 'start', this._showTooltip);
@@ -81,9 +81,9 @@ export default class TooltipContainer extends PureComponent {
       target.removeEventListener('keyup', this._handleKeyUp);
       target.removeEventListener('blur', this._hideTooltip);
     }
-  }
+  };
 
-  _setTarget() {
+  _setTarget = () => {
     const container = this._container;
     let { target } = this.props;
 
@@ -103,7 +103,7 @@ export default class TooltipContainer extends PureComponent {
       target.addEventListener('keyup', this._handleKeyUp);
       target.addEventListener('blur', this._hideTooltip);
     }
-  }
+  };
 
   _setContainers = (span) => {
     if (span) {
