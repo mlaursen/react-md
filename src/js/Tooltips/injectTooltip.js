@@ -49,29 +49,22 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
     /**
      * The amount of delay before the tooltip will appear on hover, touch, or keyboard focus.
      */
-    tooltipDelay: PropTypes.number.isRequired,
+    tooltipDelay: TooltipContainer.propTypes.delay,
 
     /**
-     * The position that the tooltip should appear related to the composed compoennt.
+     * The position that the tooltip should appear related to the composed component.
      */
-    tooltipPosition: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+    tooltipPosition: TooltipContainer.propTypes.position,
 
     /**
      * The transition time for the tooltip appearing.
      */
-    tooltipTransitionEnterTimeout: PropTypes.number.isRequired,
+    tooltipTransitionEnterTimeout: TooltipContainer.propTypes.enterTimeout,
 
     /**
      * The transition time for the tooltip disappearing.
      */
-    tooltipTransitionLeaveTimeout: PropTypes.number.isRequired,
-  };
-
-  static defaultProps = {
-    tooltipDelay: 0,
-    tooltipPosition: 'bottom',
-    tooltipTransitionEnterTimeout: 150,
-    tooltipTransitionLeaveTimeout: 150,
+    tooltipTransitionLeaveTimeout: TooltipContainer.propTypes.leaveTimeout,
   };
 
   _composed = null;
@@ -81,14 +74,14 @@ export default ComposedComponent => class TooltipedComponent extends PureCompone
    * composed component instead of the `injectTooltip` HOC to use some publically accessible methods.
    *
    * ```js
-   * <SomeInkedComponent
+   * <SomeTooltippedComponent
    *   ref={tooltipHOC => {
    *     tooltipHOC.getComposedComponent().focus();
    *   }}
    * />
    * ```
    *
-   * > NOTE: This can be `null`, so make sure to do a null check before using..
+   * > NOTE: This can be `null`, so make sure to do a null check before using.
    */
   getComposedComponent = () => this._composed;
 

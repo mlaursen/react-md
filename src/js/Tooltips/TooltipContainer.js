@@ -16,9 +16,13 @@ export default class TooltipContainer extends PureComponent {
     tooltipClassName: PropTypes.string,
     label: PropTypes.node.isRequired,
     position: Tooltip.propTypes.position,
-    delay: PropTypes.number.isRequired,
-    enterTimeout: PropTypes.number.isRequired,
-    leaveTimeout: PropTypes.number.isRequired,
+    delay: PropTypes.number,
+    enterTimeout: Tooltip.propTypes.enterTimeout,
+    leaveTimeout: Tooltip.propTypes.leaveTimeout,
+  };
+
+  static defaultProps = {
+    delay: 0,
   };
 
   state = { visible: false };

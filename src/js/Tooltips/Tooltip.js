@@ -8,10 +8,16 @@ export default class Tooltip extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
     className: PropTypes.string,
-    position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
+    position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     children: PropTypes.node.isRequired,
-    enterTimeout: PropTypes.number.isRequired,
-    leaveTimeout: PropTypes.number.isRequired,
+    enterTimeout: PropTypes.number,
+    leaveTimeout: PropTypes.number,
+  };
+
+  static defaultProps = {
+    position: 'bottom',
+    enterTimeout: 150,
+    leaveTimeout: 150,
   };
 
   constructor(props) {
