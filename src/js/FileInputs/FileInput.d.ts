@@ -16,6 +16,7 @@ export interface FileInputProps extends Props {
   iconBefore?: boolean;
   onChange: (files: File | Array<File> | null) => void;
   disabled?: boolean;
+  swapTheming?: boolean;
 
   /**
    * @deprecated
