@@ -4,9 +4,18 @@ import { Props } from '../index';
 export interface BottomNavigationProps extends Props {
   links: Array<{
     label: React.ReactNode,
+    icon?: React.ReactElement<any>,
+    component?: React.ReactType,
+
+    /**
+     * @deprecated
+     */
     iconChildren?: React.ReactNode,
-    iconClassName?: string,
-    component?: React.ReactType
+
+    /**
+     * @deprecated
+     */
+    iconClassName?: string
   }>;
   colored?: boolean;
   dynamic?: boolean;

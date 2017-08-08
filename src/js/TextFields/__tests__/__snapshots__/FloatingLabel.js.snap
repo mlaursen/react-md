@@ -4,7 +4,7 @@ exports[`FloatingLabel should render correctly based on the props 1`] = `null`;
 
 exports[`FloatingLabel should render correctly based on the props 2`] = `
 <label
-  class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+  class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
   for="test-field"
 >
   Some label
@@ -13,7 +13,7 @@ exports[`FloatingLabel should render correctly based on the props 2`] = `
 
 exports[`FloatingLabel should render correctly based on the props 3`] = `
 <label
-  class="md-floating-label md-text--secondary md-floating-label--floating"
+  class="md-floating-label md-floating-label--floating md-text--secondary"
   for="test-field"
 >
   Some label
@@ -22,7 +22,7 @@ exports[`FloatingLabel should render correctly based on the props 3`] = `
 
 exports[`FloatingLabel should render correctly based on the props 4`] = `
 <label
-  class="md-floating-label md-text--theme-primary md-floating-label--floating"
+  class="md-floating-label md-floating-label--floating md-text--theme-primary"
   for="test-field"
 >
   Some label
@@ -31,7 +31,7 @@ exports[`FloatingLabel should render correctly based on the props 4`] = `
 
 exports[`FloatingLabel should render correctly based on the props 5`] = `
 <label
-  class="md-floating-label md-text--error md-floating-label--floating"
+  class="md-floating-label md-floating-label--floating md-text--error"
   for="test-field"
 >
   Some label
@@ -40,7 +40,7 @@ exports[`FloatingLabel should render correctly based on the props 5`] = `
 
 exports[`FloatingLabel should render correctly based on the props 6`] = `
 <label
-  class="md-floating-label md-text--error md-floating-label--inactive md-floating-label--inactive-sized"
+  class="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--error"
   for="test-field"
 >
   Some label
@@ -49,7 +49,7 @@ exports[`FloatingLabel should render correctly based on the props 6`] = `
 
 exports[`FloatingLabel should render correctly based on the props 7`] = `
 <label
-  class="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--custom-size md-floating-label--inactive-custom-size"
+  class="md-floating-label md-floating-label--inactive md-floating-label--custom-size md-floating-label--inactive-custom-size md-text--secondary"
   for="test-field"
 >
   Some label
@@ -58,7 +58,7 @@ exports[`FloatingLabel should render correctly based on the props 7`] = `
 
 exports[`FloatingLabel should render correctly based on the props 8`] = `
 <label
-  class="md-floating-label md-text--secondary md-floating-label--custom-size md-floating-label--floating"
+  class="md-floating-label md-floating-label--custom-size md-floating-label--floating md-text--secondary"
   for="test-field"
 >
   Some label
@@ -67,7 +67,7 @@ exports[`FloatingLabel should render correctly based on the props 8`] = `
 
 exports[`FloatingLabel should render correctly based on the props 9`] = `
 <label
-  class="md-floating-label md-text--theme-primary md-floating-label--custom-size md-floating-label--floating"
+  class="md-floating-label md-floating-label--custom-size md-floating-label--floating md-text--theme-primary"
   for="test-field"
 >
   Some label
@@ -76,7 +76,7 @@ exports[`FloatingLabel should render correctly based on the props 9`] = `
 
 exports[`FloatingLabel should render correctly based on the props 10`] = `
 <label
-  class="md-floating-label md-text--error md-floating-label--custom-size md-floating-label--floating"
+  class="md-floating-label md-floating-label--custom-size md-floating-label--floating md-text--error"
   for="test-field"
 >
   Some label
@@ -85,7 +85,7 @@ exports[`FloatingLabel should render correctly based on the props 10`] = `
 
 exports[`FloatingLabel should render correctly based on the props 11`] = `
 <label
-  class="md-floating-label md-text--error md-floating-label--floating md-floating-label--icon-offset"
+  class="md-floating-label md-floating-label--floating md-floating-label--icon-offset md-text--error"
   for="test-field"
 >
   Some label

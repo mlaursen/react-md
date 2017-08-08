@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 export default class FloatingLabel extends PureComponent {
   static propTypes = {
     style: PropTypes.object,
@@ -39,17 +41,18 @@ export default class FloatingLabel extends PureComponent {
         {...props}
         htmlFor={htmlFor}
         className={cn('md-floating-label', {
-          'md-text--secondary': !active && !error,
-          'md-text--disabled': disabled,
-          'md-text--error': !disabled && error,
-          'md-text--theme-primary': !error && active,
           'md-floating-label--inactive': !floating,
           'md-floating-label--inactive-sized': !floating && !customSize,
           [`md-floating-label--${customSize}`]: customSize,
           [`md-floating-label--inactive-${customSize}`]: customSize && !floating,
           'md-floating-label--floating': floating,
           'md-floating-label--icon-offset': iconOffset,
-        }, className)}
+        }, themeColors({
+          disabled,
+          error,
+          hint: !active,
+          primary: active,
+        }, className))}
       >
         {label}
       </label>

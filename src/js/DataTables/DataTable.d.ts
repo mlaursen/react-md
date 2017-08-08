@@ -13,16 +13,13 @@ export interface DataTableProps extends Props {
   defaultSelectedRows?: Array<boolean>;
   responsive?: boolean;
   plain?: boolean;
-  uncheckedIconClassName?: string;
-  uncheckedIconChildren?: React.ReactNode;
-  checkedIconClassName?: string;
-  checkedIconChildren?: React.ReactNode;
   onRowToggle?: (rowId: number, checked: boolean, event: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
   selectableRows?: boolean;
   indeterminate?: boolean;
-  indeterminateIconChildren?: React.ReactNode;
-  indeterminateIconClassName?: string;
+  indeterminateIcon?: React.ReactElement<any>;
+  checkedIcon?: React.ReactElement<any>;
+  uncheckedIcon?: React.ReactElement<any>;
   checkboxHeaderLabel?: string;
   checkboxLabelTemplate?: string | template;
   fixedHeader?: boolean;
@@ -32,6 +29,36 @@ export interface DataTableProps extends Props {
   fixedWidth?: number;
   headerHeight?: number;
   footerHeight?: number;
+
+  /**
+   * @deprecated
+   */
+  uncheckedIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  uncheckedIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  checkedIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  checkedIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  indeterminateIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  indeterminateIconClassName?: string;
 }
 
 declare const DataTable: React.ComponentClass<DataTableProps>;

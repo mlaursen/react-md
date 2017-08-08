@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import cn from 'classnames';
 
 import contextTypes from './contextTypes';
 import Button from '../Buttons/Button';
+import getCollapserStyles from '../utils/getCollapserStyles';
 
 /**
  * The CardExpander component is just a simple `IconButton` that
@@ -22,8 +22,7 @@ export default class CardExpander extends Component {
     const {
       expanded,
       onExpandClick,
-      iconClassName,
-      iconChildren,
+      icon,
       tooltipPosition,
       tooltipLabel,
       tooltipDelay,
@@ -32,17 +31,13 @@ export default class CardExpander extends Component {
     return (
       <Button
         icon
-        className={cn('md-collapser md-collapser--card', {
-          'md-collapser--flipped': expanded,
-        })}
+        className={getCollapserStyles({ flipped: expanded }, 'md-collapser--card')}
         onClick={onExpandClick}
-        iconClassName={iconClassName}
         tooltipLabel={tooltipLabel}
         tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
-      >
-        {iconChildren}
-      </Button>
+        iconEl={icon}
+      />
     );
   }
 }

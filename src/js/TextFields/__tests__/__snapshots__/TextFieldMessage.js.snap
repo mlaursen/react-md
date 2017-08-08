@@ -4,7 +4,7 @@ exports[`TextFieldMessage should render correctly based on the props 1`] = `null
 
 exports[`TextFieldMessage should render correctly based on the props 2`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+  class="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
 >
   <p
     aria-hidden="true"
@@ -17,7 +17,7 @@ exports[`TextFieldMessage should render correctly based on the props 2`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 3`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+  class="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
 >
   <p
     aria-hidden="true"
@@ -30,7 +30,7 @@ exports[`TextFieldMessage should render correctly based on the props 3`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 4`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-full-width"
+  class="md-text-field-message-container md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -49,7 +49,7 @@ exports[`TextFieldMessage should render correctly based on the props 4`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 5`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+  class="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
 >
   <p
     aria-hidden="true"
@@ -68,7 +68,7 @@ exports[`TextFieldMessage should render correctly based on the props 5`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 6`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-full-width"
+  class="md-text-field-message-container md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -87,7 +87,7 @@ exports[`TextFieldMessage should render correctly based on the props 6`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 7`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-full-width"
+  class="md-text-field-message-container md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -106,7 +106,7 @@ exports[`TextFieldMessage should render correctly based on the props 7`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 8`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-full-width"
+  class="md-text-field-message-container md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -125,7 +125,7 @@ exports[`TextFieldMessage should render correctly based on the props 8`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 9`] = `
 <div
-  class="md-text-field-message-container md-text--error md-full-width"
+  class="md-text-field-message-container md-full-width md-text--error"
 >
   <p
     aria-hidden="false"
@@ -144,7 +144,7 @@ exports[`TextFieldMessage should render correctly based on the props 9`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 10`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-full-width"
+  class="md-text-field-message-container md-text-field-message-container--left-icon-offset md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -163,7 +163,7 @@ exports[`TextFieldMessage should render correctly based on the props 10`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 11`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-text-field-message-container--right-icon-offset md-full-width"
+  class="md-text-field-message-container md-text-field-message-container--left-icon-offset md-text-field-message-container--right-icon-offset md-full-width md-text--disabled"
 >
   <p
     aria-hidden="false"
@@ -182,7 +182,7 @@ exports[`TextFieldMessage should render correctly based on the props 11`] = `
 
 exports[`TextFieldMessage should render correctly based on the props 12`] = `
 <div
-  class="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset"
+  class="md-text-field-message-container md-text-field-message-container--left-icon-offset md-text--disabled"
 >
   <p
     aria-hidden="false"

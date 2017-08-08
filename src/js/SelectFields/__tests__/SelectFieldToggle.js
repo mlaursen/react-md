@@ -8,8 +8,18 @@ import SelectFieldInput from '../SelectFieldInput';
 import FloatingLabel from '../../TextFields/FloatingLabel';
 import TextFieldMessage from '../../TextFields/TextFieldMessage';
 import addSuffix from '../../utils/StringUtils/addSuffix';
+import FontIcon from '../../FontIcons/FontIcon';
 
 jest.mock('../../utils/StringUtils/addSuffix');
+
+const PROPS = {
+  id: 'test-select',
+  name: 'test-select-field',
+  value: 'test',
+  label: 'Label',
+  placeholder: 'Placeholder',
+  dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
+};
 
 describe('SelectFieldToggle', () => {
   beforeEach(() => {
@@ -17,7 +27,7 @@ describe('SelectFieldToggle', () => {
   });
 
   it('should call the addSuffix function when required', () => {
-    const toggle = shallow(<SelectFieldToggle value="test" label="Label" required />);
+    const toggle = shallow(<SelectFieldToggle {...PROPS} placeholder={null} required />);
     expect(addSuffix.mock.calls.length).toBe(1);
     expect(addSuffix).toBeCalledWith('Label', '*');
 
@@ -26,12 +36,11 @@ describe('SelectFieldToggle', () => {
   });
 
   it('should call the addSuffix function when required on the placeholder only if the label does not exist', () => {
-    const props = { value: 'a', label: 'Label', placeholder: 'Placeholder', required: true };
-    const toggle = shallow(<SelectFieldToggle {...props} />);
-    expect(addSuffix).toBeCalledWith(props.label, '*');
+    const toggle = shallow(<SelectFieldToggle {...PROPS} required />);
+    expect(addSuffix).toBeCalledWith(PROPS.label, '*');
 
     toggle.setProps({ label: undefined });
-    expect(addSuffix).toBeCalledWith(props.placeholder, '*');
+    expect(addSuffix).toBeCalledWith(PROPS.placeholder, '*');
   });
 
   it('should render the FloatingLabel component', () => {
@@ -54,7 +63,7 @@ describe('SelectFieldToggle', () => {
   });
 
   it('should set the floating prop on the floating label to true if the active label exists, equals 0, or the active or visible props are true', () => {
-    const toggle = mount(<SelectFieldToggle value="a" activeLabel="Apple" visible={false} active={false} />);
+    const toggle = mount(<SelectFieldToggle {...PROPS} activeLabel="Apple" visible={false} active={false} />);
     let label = toggle.find(FloatingLabel).get(0);
     expect(label.props.floating).toBe(true);
 
@@ -90,7 +99,7 @@ describe('SelectFieldToggle', () => {
   });
 
   it('should set the active state for the TextFieldMessage when visible or active', () => {
-    const toggle = mount(<SelectFieldToggle value="a" visible active />);
+    const toggle = mount(<SelectFieldToggle {...PROPS} visible active />);
     let message = toggle.find(TextFieldMessage).get(0);
     expect(message.props.active).toBe(true);
 

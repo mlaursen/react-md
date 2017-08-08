@@ -1,6 +1,10 @@
 @import '~globals';
 
-.font-icons__examples {
+.icons__examples {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
   .md-icon {
     margin: 1em;
   }

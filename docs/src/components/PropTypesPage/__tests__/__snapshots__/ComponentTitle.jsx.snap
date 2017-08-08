@@ -9,7 +9,7 @@ exports[`ComponentTitle should render correctly 1`] = `
     className="md-card-title"
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
     >
       Autocomplete
@@ -33,7 +33,7 @@ exports[`ComponentTitle should render correctly 1`] = `
       }
     >
       <input
-        className="md-text-field md-text md-text-field--margin"
+        className="md-text-field md-text-field--margin md-text"
         disabled={undefined}
         id="autocompletes-proptypes-filter"
         onBlur={[Function]}
@@ -50,20 +50,20 @@ exports[`ComponentTitle should render correctly 1`] = `
       />
     </div>
     <a
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block"
       disabled={undefined}
       href="https://github.com/malursen/react-md/master/tree/src/js/Autocompletes/Autocomplete.js"
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}
+      onMouseEnter={[Function]}
       onMouseLeave={[Function]}
-      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
     >
       <i
-        className="md-icon fa fa-github"
+        className="md-icon fa fa-github md-text--inherit"
         style={undefined}
       />
     </a>
@@ -80,28 +80,28 @@ exports[`ComponentTitle should render correctly 2`] = `
     className="md-card-title"
   >
     <h2
-      className="md-card-title--title md-text md-card-title--large"
+      className="md-card-title--title md-card-title--large md-text"
       id="autocompletes-proptypes"
     >
       Autocomplete
     </h2>
     <button
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-cell--right"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block md-cell--right"
       disabled={undefined}
       href={undefined}
       onClick={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}
+      onMouseEnter={[Function]}
       onMouseLeave={[Function]}
-      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       type="button"
     >
       <i
-        className="md-icon material-icons"
+        className="md-icon material-icons md-text--inherit"
         style={undefined}
       >
         filter_list

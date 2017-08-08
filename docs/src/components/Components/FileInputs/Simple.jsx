@@ -1,5 +1,8 @@
 import React from 'react';
 import FileInput from 'react-md/lib/FileInputs';
+import SVGIcon from 'react-md/lib/SVGIcons';
+
+import fileDownload from 'icons/file_download.svg';
 
 const Simple = () => (
   <div className="file-inputs">
@@ -9,6 +12,8 @@ const Simple = () => (
     <FileInput id="image-input-3" accept="image/*" name="images" flat secondary />
     <FileInput id="image-input-4" accept="image/*" name="images" disabled />
     <FileInput id="image-input-5" accept="image/*" name="images" flat disabled iconBefore />
+    <FileInput id="image-input-6" accept="image/*" name="images" icon={<SVGIcon use={fileDownload.url} />} />
+    <FileInput id="image-input-7" accept="image/*" name="images" icon={null} />
   </div>
 );
 

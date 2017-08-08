@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
-import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
+import getBtnStyles from './getBtnStyles';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import FontIcon from '../FontIcons/FontIcon';
@@ -60,13 +60,24 @@ class Button extends PureComponent {
      * An icon className to use in an optional `FontIcon` in any version of the button. This will
      * be used with the `children` prop. If the `floating` or `icon` props are set to true, this or
      * the children are required.
+     *
+     * @see {@link #iconEl}
      */
     iconClassName: PropTypes.string,
 
     /**
      * Any children to use to display an icon in the button.
+     *
+     * @see {@link #iconEl}
      */
     iconChildren: PropTypes.node,
+
+    /**
+     * An optional icon to display. This prop is recommended over the `iconClassName` and `iconChildren`
+     * props since it allows more control for you. There is also better SVG support since it won't wrap
+     * the SVG with the `FontIcon` element.
+     */
+    iconEl: PropTypes.element,
 
     /**
      * The type for the button. This is required when the `component` prop is not
@@ -147,9 +158,9 @@ class Button extends PureComponent {
     onKeyDown: PropTypes.func,
 
     /**
-     * An optional function to call when the `mouseover` event is triggered.
+     * An optional function to call when the `mouseenter` event is triggered.
      */
-    onMouseOver: PropTypes.func,
+    onMouseEnter: PropTypes.func,
 
     /**
      * An optional function to call when the `mouseleave` event is triggered.
@@ -188,11 +199,15 @@ class Button extends PureComponent {
 
     /**
      * Boolean if the `Button` should be styled as a `IconButton`.
+     *
+     * @see {@link #svg}
      */
     icon: PropTypes.bool,
 
     /**
      * Boolean if the `Button` should be styled as a `FloatingButton`.
+     *
+     * @see {@link #svg}
      */
     floating: PropTypes.bool,
 
@@ -276,6 +291,12 @@ class Button extends PureComponent {
      */
     forceIconFontSize: PropTypes.bool,
 
+    /**
+     * Boolean if the child is an SVGIcon or FontIcon when using the `icon` or `floating` props. This is only needed
+     * until the next release when the `label` migration can be removed.
+     */
+    svg: PropTypes.bool,
+
     label: deprecated(PropTypes.node, 'Use the `children` prop instead'),
     noIcon: deprecated(
       PropTypes.bool,
@@ -325,20 +346,6 @@ class Button extends PureComponent {
     }
 
     window.removeEventListener('click', this._blur);
-  }
-
-  _getType(props) {
-    if (props.flat || (props.disabled && props.raised)) {
-      return 'flat';
-    } else if (props.icon) {
-      return 'icon';
-    } else if (props.raised) {
-      return 'raised';
-    } else if (props.floating) {
-      return 'icon md-btn--floating';
-    }
-
-    return 'flat';
   }
 
   _blur = () => {
@@ -413,9 +420,9 @@ class Button extends PureComponent {
     }
   };
 
-  _handleMouseOver = (e) => {
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+  _handleMouseEnter = (e) => {
+    if (this.props.onMouseEnter) {
+      this.props.onMouseEnter(e);
     }
 
     if (!this.props.disabled) {
@@ -478,54 +485,45 @@ class Button extends PureComponent {
       type,
       children,
       swapTheming,
+      svg,
+      iconEl: propIconEl, // eslint-disable-line no-unused-vars
       label, // deprecated
       ...props
     } = this.props;
+    let { iconEl } = this.props;
 
     if (!href) {
       props.type = type;
     }
 
     const { pressed, hover, snackbar, snackbarType } = this.state;
-    const mdBtnType = this._getType(this.props);
     const iconBtnType = icon || floating;
 
-    let fontIcon;
     let visibleChildren;
-    if (iconClassName || iconChildren || iconBtnType || (label && children)) {
+    if (!iconEl && !svg && (iconClassName || iconChildren || iconBtnType || (label && children))) {
       let resolvedIconChildren = iconChildren;
       if (typeof iconChildren === 'undefined') {
         resolvedIconChildren = iconBtnType || label ? children : null;
       }
 
-      fontIcon = (
-        <FontIcon iconClassName={iconClassName} forceSize={forceIconSize} forceFontSize={forceIconFontSize}>
+      iconEl = (
+        <FontIcon iconClassName={iconClassName} forceSize={forceIconSize} forceFontSize={forceIconFontSize} inherit>
           {resolvedIconChildren}
         </FontIcon>
       );
+    } else if (iconEl || svg) {
+      const el = React.Children.only(iconEl || children);
+      iconEl = React.cloneElement(el, { inherit: !el.props.error });
     }
 
     if (!iconBtnType) {
       visibleChildren = label || children;
-      if (fontIcon) {
-        visibleChildren = <IconSeparator label={visibleChildren} iconBefore={iconBefore}>{fontIcon}</IconSeparator>;
+      if (iconEl) {
+        visibleChildren = <IconSeparator label={visibleChildren} iconBefore={iconBefore}>{iconEl}</IconSeparator>;
       }
     } else {
-      visibleChildren = fontIcon;
+      visibleChildren = iconEl;
     }
-
-    const flatStyles = flat || icon;
-    const raisedStyles = raised || floating;
-    const textTheming = (flatStyles && !swapTheming) || (raisedStyles && swapTheming);
-    const backgroundTheming = (raisedStyles && !swapTheming) || (flatStyles && swapTheming);
-    const themeClassNames = !disabled && cn({
-      'md-text--theme-primary md-ink--primary': primary && textTheming,
-      'md-text--theme-secondary md-ink--secondary': secondary && textTheming,
-      'md-background--primary md-background--primary-hover': primary && backgroundTheming,
-      'md-background--secondary md-background--secondary-hover': secondary && backgroundTheming,
-      'md-btn--color-primary-active': primary && hover && textTheming,
-      'md-btn--color-secondary-active': secondary && hover && textTheming,
-    });
 
     const Component = component || (href ? 'a' : 'button');
     return (
@@ -538,25 +536,27 @@ class Button extends PureComponent {
         onMouseUp={this._handleMouseUp}
         onKeyDown={this._handleKeyDown}
         onKeyUp={this._handleKeyUp}
-        onMouseOver={this._handleMouseOver}
+        onMouseEnter={this._handleMouseEnter}
         onMouseLeave={this._handleMouseLeave}
         href={href}
-        className={cn(`md-inline-block md-btn md-btn--${mdBtnType}`, themeClassNames, {
-          'md-text': !disabled && !primary && !secondary && !icon && !floating,
-          'md-text--disabled': disabled,
-          'md-pointer--hover': !disabled,
-          'md-paper md-paper--2': !disabled && floating,
-          'md-paper--4': !disabled && floating && pressed,
-          'md-btn--text': flat || raised,
-          'md-btn--hover': hover && !disabled,
-          'md-btn--raised-disabled': raised && disabled,
-          'md-btn--raised-pressed': !disabled && raisedStyles && pressed,
-          'md-btn--fixed': fixed,
-          [`md-btn--fixed-${fixedPosition}`]: floating && fixed,
-          'md-btn--floating-mini': floating && mini,
+        className={getBtnStyles({
+          flat,
+          raised,
+          icon,
+          floating,
+          disabled,
+          primary,
+          secondary,
+          hover,
+          swapTheming,
+          pressed,
+          mini,
+          fixed,
+          fixedPosition,
+        }, {
           'md-btn--snackbar-floating': snackbar,
           [`md-btn--snackbar-floating-${snackbarType}adjust`]: snackbar && snackbarType !== null,
-        }, className)}
+        }, 'md-inline-block', className)}
       >
         {ink}
         {tooltip}

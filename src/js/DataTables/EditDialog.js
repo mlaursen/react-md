@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+
+import themeColors from '../utils/themeColors';
 import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 import Layover from '../Helpers/Layover';
 import Dialog from '../Dialogs/Dialog';
@@ -62,8 +64,7 @@ export default class EditDialog extends PureComponent {
       <AccessibleFakeButton
         className={cn('md-edit-dialog__label', {
           'md-edit-dialog__header': header,
-          'md-text--secondary': placeholder || header,
-        })}
+        }, themeColors({ hint: placeholder || header }))}
         noFocusOutline={visible}
         onClick={onOpen}
         onFocus={onOpen}
@@ -85,7 +86,7 @@ export default class EditDialog extends PureComponent {
           id={id}
           aria-labelledby={!large ? textFieldId : undefined}
           style={dialogStyle}
-          className={cn('md-background md-edit-dialog', dialogClassName)}
+          className={cn('md-edit-dialog', themeColors({ background: true, themeText: false }), dialogClassName)}
           contentStyle={dialogContentStyle}
           contentClassName={cn('md-edit-dialog__content', dialogContentClassName)}
           title={large ? title : null}

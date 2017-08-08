@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 /**
  * This component renders a selectable date in the `CalendarMonth` component.
  */
@@ -74,12 +76,10 @@ export default class CalendarDate extends PureComponent {
         onBlur={this._setInactive}
         onMouseOver={this._setActive}
         onMouseLeave={this._setInactive}
-        className={cn('md-btn md-calendar-date md-calendar-date--btn', {
-          'md-text--disabled': disabled,
-          'md-pointer--hover': !disabled,
-          'md-text--theme-primary': fullyActive,
+        className={cn('md-calendar-date md-calendar-date--btn', {
           'md-calendar-date--btn-active': active || desktopActive,
-        }, className)}
+          'md-pointer--hover': !disabled,
+        }, themeColors({ disabled, primary: fullyActive }), 'md-btn', className)}
         onClick={this._handleClick}
         disabled={disabled}
       >

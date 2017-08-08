@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 export default class CardTitleBlock extends PureComponent {
   static propTypes = {
     id: PropTypes.oneOfType([
@@ -19,9 +21,9 @@ export default class CardTitleBlock extends PureComponent {
     title = (
       <h2
         id={id}
-        className={cn('md-card-title--title md-text', {
+        className={cn('md-card-title--title', {
           'md-card-title--large': !avatar,
-        })}
+        }, themeColors({ text: true }))}
       >
         {title}
       </h2>
@@ -38,7 +40,7 @@ export default class CardTitleBlock extends PureComponent {
         })}
       >
         {title}
-        <h3 className="md-card-title--title md-text--secondary">{subtitle}</h3>
+        <h3 className={`md-card-title--title ${themeColors({ hint: true })}`}>{subtitle}</h3>
       </div>
     );
   }

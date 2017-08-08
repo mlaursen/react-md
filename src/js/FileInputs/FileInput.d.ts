@@ -5,17 +5,28 @@ export type FileReaderTypes = 'DataURL' | 'ArrayBuffer' | 'Text';
 
 export interface FileInputProps extends Props {
   id: IdPropType;
+  name?: IdPropType;
   primary?: boolean;
   secondary?: boolean;
   flat?: boolean;
   accept?: string;
   multiple?: boolean;
   label?: React.ReactNode;
+  icon?: React.ReactElement<any>;
   iconBefore?: boolean;
-  iconChildren?: React.ReactNode;
-  iconClassName?: string;
   onChange: (files: File | Array<File> | null) => void;
   disabled?: boolean;
+  swapTheming?: boolean;
+
+  /**
+   * @deprecated
+   */
+  iconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  iconClassName?: string;
 }
 
 declare const FileInput: React.ComponentClass<FileInputProps>;

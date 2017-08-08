@@ -3,6 +3,10 @@ import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 import Dialog from 'react-md/lib/Dialogs';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
+import SVGIcon from 'react-md/lib/SVGIcons';
+
+import menu from 'icons/menu.svg';
+import arrowBack from 'icons/arrow_back.svg';
 import inboxListItems from 'constants/inboxListItems';
 import loremIpsum from 'lorem-ipsum';
 
@@ -23,6 +27,7 @@ export default class Simple extends PureComponent {
     });
 
     this.state = {
+      renderNode: null,
       visible: false,
       key: inboxListItems[0].key,
       page: inboxListItems[0].primaryText,
@@ -46,11 +51,15 @@ export default class Simple extends PureComponent {
   };
 
   hide = () => {
-    this.setState({ visible: false });
+    this.setState({ visible: false, renderNode: null });
+  };
+
+  handleShow = () => {
+    this.setState({ renderNode: document.getElementById('navigation-drawer-demo') });
   };
 
   render() {
-    const { visible, page } = this.state;
+    const { visible, page, renderNode } = this.state;
     return (
       <div>
         <Button raised onClick={this.show}>Open the Demo</Button>
@@ -60,9 +69,11 @@ export default class Simple extends PureComponent {
           visible={visible}
           fullPage
           focusOnMount={false}
+          onShow={this.handleShow}
           onHide={this.hide}
         >
           <NavigationDrawer
+            renderNode={renderNode}
             navItems={this.navItems}
             mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
             tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
@@ -70,6 +81,8 @@ export default class Simple extends PureComponent {
             toolbarTitle="Hello, World!"
             toolbarActions={<Button icon onClick={this.hide}>close</Button>}
             contentId="main-demo-content"
+            temporaryIcon={<SVGIcon use={menu.url} />}
+            persistentIcon={<SVGIcon use={arrowBack.url} />}
           >
             <h2>Currently on page: {page}</h2>
             <section className="md-text-container">

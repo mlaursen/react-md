@@ -1,6 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len */
-jest.disableAutomock();
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { renderIntoDocument } from 'react-dom/test-utils';

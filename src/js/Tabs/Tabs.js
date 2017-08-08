@@ -10,6 +10,7 @@ import TabIndicator from './TabIndicator';
 import IconSeparator from '../Helpers/IconSeparator';
 import ResizeObserver from '../Helpers/ResizeObserver';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import MenuTab from './MenuTab';
 import TabOverflowButton from './TabOverflowButton';
 
@@ -112,25 +113,19 @@ export default class Tabs extends PureComponent {
      * When the `overflowMenu` prop is false, this will be used to render the "next slice of tabs"
      * when there are too many tabs to display at once on desktop screens.
      */
-    nextIconChildren: PropTypes.node,
-
-    /**
-     * When the `overflowMenu` prop is false, this will be used to render the "next slice of tabs"
-     * when there are too many tabs to display at once on desktop screens.
-     */
-    nextIconClassName: PropTypes.string,
+    nextIcon: PropTypes.element,
 
     /**
      * When the `overflowMenu` prop is false, this will be used to render the "previous slice of tabs"
      * when there are too many tabs to display at once on desktop screens.
      */
-    previousIconChildren: PropTypes.node,
+    previousIcon: PropTypes.element,
 
     /**
-     * When the `overflowMenu` prop is false, this will be used to render the "previous slice of tabs"
-     * when there are too many tabs to display at once on desktop screens.
+     * When the `overflowMenu` prop is true, this will be used to render the `MenuTab` overflow menu.
+     * This will be to render the icon to the right of the label.
      */
-    previousIconClassName: PropTypes.string,
+    overflowMenuIcon: PropTypes.element,
 
     /**
      * When the `overflowMenu` prop is true, this will be used to render the `MenuTab` overflow menu.
@@ -139,33 +134,27 @@ export default class Tabs extends PureComponent {
     overflowMenuLabel: PropTypes.node.isRequired,
 
     /**
-     * When the `overflowMenu` prop is true, this will be used to render the `MenuTab` overflow menu.
-     * This will be to render the icon to the right of the label.
-     */
-    overflowMenuIconChildren: PropTypes.node,
-
-    /**
-     * When the `overflowMenu` prop is true, this will be used to render the `MenuTab` overflow menu.
-     * This will be to render the icon to the right of the label.
-     */
-    overflowMenuIconClassName: PropTypes.string,
-
-    /**
      * Boolean if the tabs are currently rendered on a mobile or tablet device. This is used to calculate
      * overflow/padding on the tabs.
      */
     mobile: PropTypes.bool,
     defaultMedia: deprecated(PropTypes.oneOf(['mobile', 'tablet', 'desktop']), 'Use `mobile` instead'),
     desktopMinWidth: deprecated(PropTypes.number, 'Use `mobile` instead.'),
+    nextIconChildren: deprecated(PropTypes.node, 'Use the `nextIcon` prop instead'),
+    nextIconClassName: deprecated(PropTypes.string, 'Use the `nextIcon` prop instead'),
+    previousIconChildren: deprecated(PropTypes.node, 'Use the `previousIcon` prop instead'),
+    previousIconClassName: deprecated(PropTypes.string, 'Use the `previousIcon` prop instead'),
+    overflowMenuIconChildren: deprecated(PropTypes.node, 'Use the `overflowMenuIcon` prop instead'),
+    overflowMenuIconClassName: deprecated(PropTypes.string, 'Use the `overflowMenuIcon` prop instead'),
   };
 
   static defaultProps = {
     component: 'ul',
     defaultTabIndex: 0,
-    nextIconChildren: 'keyboard_arrow_right',
-    previousIconChildren: 'keyboard_arrow_left',
+    nextIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
+    previousIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
     overflowMenuLabel: 'More',
-    overflowMenuIconChildren: 'arrow_drop_down',
+    overflowMenuIcon: <FontIcon>arrow_drop_down</FontIcon>,
   };
 
   constructor(props) {
@@ -402,6 +391,11 @@ export default class Tabs extends PureComponent {
       tabId,
       overflowMenu,
       overflowMenuLabel,
+      nextIcon,
+      previousIcon,
+      overflowMenuIcon,
+
+      // deprecated
       overflowMenuIconChildren,
       overflowMenuIconClassName,
       nextIconChildren,
@@ -460,9 +454,7 @@ export default class Tabs extends PureComponent {
             overflowAtIndex={overflowAtIndex}
             label={(
               <IconSeparator label={overflowMenuLabel}>
-                <FontIcon iconClassName={overflowMenuIconClassName}>
-                  {overflowMenuIconChildren}
-                </FontIcon>
+                {getDeprecatedIcon(overflowMenuIconClassName, overflowMenuIconChildren, overflowMenuIcon)}
               </IconSeparator>
             )}
             tabs={children.slice(overflowAtIndex, children.length).map(this._mapToOverflowTabProps)}
@@ -474,17 +466,22 @@ export default class Tabs extends PureComponent {
 
       if (!overflowMenu && overflowIndex > 0) {
         previousControl = (
-          <TabOverflowButton iconClassName={previousIconClassName} onClick={this._showPreviousTabs} left icon={icon}>
-            {previousIconChildren}
-          </TabOverflowButton>
+          <TabOverflowButton
+            left
+            icon={icon}
+            iconEl={getDeprecatedIcon(previousIconClassName, previousIconChildren, previousIcon)}
+            onClick={this._showPreviousTabs}
+          />
         );
       }
 
       if (!overflowMenu && length > 3 && overflowAtIndex + overflowIndex <= length) {
         nextControl = (
-          <TabOverflowButton iconClassName={nextIconClassName} onClick={this._showNextTabs} icon={icon}>
-            {nextIconChildren}
-          </TabOverflowButton>
+          <TabOverflowButton
+            icon={icon}
+            onClick={this._showNextTabs}
+            iconEl={getDeprecatedIcon(nextIconClassName, nextIconChildren, nextIcon)}
+          />
         );
       }
     }

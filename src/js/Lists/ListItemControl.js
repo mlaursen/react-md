@@ -2,6 +2,7 @@ import React, { PureComponent, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import ListItemText from './ListItemText';
 import TileAddon from './TileAddon';
 
@@ -166,14 +167,14 @@ export default class ListItemControl extends PureComponent {
       <li {...props} className={cn('md-list-item', className)}>
         <div
           style={tileStyle}
-          className={cn('md-list-tile md-text', {
+          className={cn('md-list-tile', {
             'md-list-tile--icon': !secondaryText && icond && !avatard,
             'md-list-tile--avatar': !secondaryText && avatard,
             'md-list-tile--two-lines': secondaryText && !threeLines,
             'md-list-tile--three-lines': secondaryText && threeLines,
             'md-list-tile--control-left': primaryAction,
             'md-list-tile--control-right': secondaryAction,
-          }, tileClassName)}
+          }, themeColors({ text: true }), tileClassName)}
         >
           {leftNode}
           {control}

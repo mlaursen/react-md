@@ -62,6 +62,7 @@ export const SelectionControls = asyncComponent(() => import(/* webpackChunkName
 export const Sliders = asyncComponent(() => import(/* webpackChunkName: Sliders */ 'components/Components/Sliders'));
 export const Snackbars = asyncComponent(() => import(/* webpackChunkName: Snackbars */ 'components/Components/Snackbars'));
 export const Subheaders = asyncComponent(() => import(/* webpackChunkName: Subheaders */ 'components/Components/Subheaders'));
+export const SVGIcons = asyncComponent(() => import(/* webpackChunkName: SVGIcons */ 'components/Components/SVGIcons'));
 export const Tabs = asyncComponent(() => import(/* webpackChunkName: Tabs */ 'components/Components/Tabs'));
 export const TextFields = asyncComponent(() => import(/* webpackChunkName: TextFields */ 'components/Components/TextFields'));
 export const Toolbars = asyncComponent(() => import(/* webpackChunkName: Toolbars */ 'components/Components/Toolbars'));

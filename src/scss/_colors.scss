@@ -1290,6 +1290,10 @@ $md-dark-theme-colors: (
     &--error {
       color: $error-color;
     }
+
+    &--inherit.md-text--inherit {
+      color: inherit;
+    }
   }
 
   .md-ink--primary .md-ink {

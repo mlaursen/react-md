@@ -16,6 +16,7 @@ import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 
 import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TextField from '../TextFields/TextField';
 import Dialog from '../Dialogs/DialogContainer';
 import DatePicker from './DatePicker';
@@ -218,24 +219,14 @@ export default class DatePickerContainer extends PureComponent {
     defaultCalendarMode: PropTypes.oneOf(['calendar', 'year']),
 
     /**
-     * Any children used to render the previous icon button in the calendar.
+     * The icon to use to display the previous month icon in the calendar.
      */
-    previousIconChildren: PropTypes.node,
+    previousIcon: PropTypes.node,
 
     /**
-     * The icon className to use to render the previous icon button in the calendar.
+     * The icon to use to display the next month icon in the calendar.
      */
-    previousIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the next icon button in the calendar.
-     */
-    nextIconChildren: PropTypes.node,
-
-    /**
-     * The icon className to use to render the next icon button in the calendar.
-     */
-    nextIconClassName: PropTypes.string,
+    nextIcon: PropTypes.node,
 
     /**
      * An optional min date to use for the date picker. This will prevent
@@ -475,8 +466,11 @@ export default class DatePickerContainer extends PureComponent {
      * of the first.
      */
     lastChild: PropTypes.bool,
-    previousIcon: deprecated(PropTypes.node, 'Use `previousIconChildren` and `previousIconClassName` instead'),
-    nextIcon: deprecated(PropTypes.node, 'Use `nextIconChildren` and `nextIconClassName` instead'),
+
+    previousIconChildren: deprecated(PropTypes.node, 'Use the `previousIcon` prop instead'),
+    previousIconClassName: deprecated(PropTypes.string, 'Use the `previousIcon` prop instead'),
+    nextIconChildren: deprecated(PropTypes.node, 'use the `nextIcon` prop instead'),
+    nextIconClassName: deprecated(PropTypes.string, 'Use the `nextIcon` prop instead'),
     adjustMinWidth: deprecated(PropTypes.bool, 'No longer valid for a text field'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
@@ -493,8 +487,8 @@ export default class DatePickerContainer extends PureComponent {
 
   static defaultProps = {
     animateInline: true,
-    previousIconChildren: 'chevron_left',
-    nextIconChildren: 'chevron_right',
+    previousIcon: <FontIcon>chevron_left</FontIcon>,
+    nextIcon: <FontIcon>chevron_right</FontIcon>,
     autoOk: false,
     icon: <FontIcon>date_range</FontIcon>,
     yearsDisplayed: 100,
@@ -863,7 +857,15 @@ export default class DatePickerContainer extends PureComponent {
       helpOnFocus,
       inlineIndicator,
       'aria-label': ariaLabel,
-      isOpen, // deprecated
+      nextIcon: propNextIcon,
+      previousIcon: propPreviousIcon,
+
+      // deprecated
+      isOpen,
+      previousIconChildren,
+      previousIconClassName,
+      nextIconChildren,
+      nextIconClassName,
       /* eslint-disable no-unused-vars */
       value: propValue,
       visible: propVisible,
@@ -878,12 +880,12 @@ export default class DatePickerContainer extends PureComponent {
       initialCalendarDate,
       initiallyOpen,
       adjustMinWidth,
-      nextIcon,
-      previousIcon,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 
+    const nextIcon = getDeprecatedIcon(nextIconClassName, nextIconChildren, propNextIcon);
+    const previousIcon = getDeprecatedIcon(previousIconClassName, previousIconChildren, propPreviousIcon);
     const visible = typeof isOpen !== 'undefined'
       ? isOpen
       : getField(this.props, this.state, 'visible');
@@ -892,6 +894,8 @@ export default class DatePickerContainer extends PureComponent {
       <DatePicker
         {...this.state}
         {...props}
+        nextIcon={nextIcon}
+        previousIcon={previousIcon}
         icon={!!icon}
         inline={inline}
         style={pickerStyle}

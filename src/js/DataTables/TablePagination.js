@@ -1,11 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import ResizeObserver from '../Helpers/ResizeObserver';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
+import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import findTable from './findTable';
 import TableFooter from './TableFooter';
 import TableColumn from './TableColumn';
@@ -83,24 +86,19 @@ export default class TablePagination extends PureComponent {
     rows: PropTypes.number.isRequired,
 
     /**
-     * Any children used to display the increment icon button.
+     * The icon to use for the increment icon button.
      */
-    incrementIconChildren: PropTypes.node,
+    incrementIcon: PropTypes.element,
 
     /**
-     * An icon className used to display the increment icon button.
+     * The icon to use for the decrement icon button.
      */
-    incrementIconClassName: PropTypes.string,
+    decrementIcon: PropTypes.element,
 
-    /**
-     * Any children used to display the decrement icon button.
-     */
-    decrementIconChildren: PropTypes.node,
-
-    /**
-     * An icon className used to display the decrement icon button.
-     */
-    decrementIconClassName: PropTypes.string,
+    incrementIconChildren: deprecated(PropTypes.node, 'Use the `incrementIcon` prop instead'),
+    incrementIconClassName: deprecated(PropTypes.string, 'Use the `incrementIcon` prop instead'),
+    decrementIconChildren: deprecated(PropTypes.node, 'Use the `decrementIcon` prop instead'),
+    decrementIconClassName: deprecated(PropTypes.string, 'Use the `decrementIcon` prop instead'),
   };
 
   static contextTypes = {
@@ -116,8 +114,8 @@ export default class TablePagination extends PureComponent {
     defaultRowsPerPage: 10,
     rowsPerPageLabel: 'Rows per page:',
     rowsPerPageItems: [10, 20, 30, 40, 50, 100],
-    incrementIconChildren: 'keyboard_arrow_right',
-    decrementIconChildren: 'keyboard_arrow_left',
+    incrementIcon: <FontIcon>keyboard_arrow_right</FontIcon>,
+    decrementIcon: <FontIcon>keyboard_arrow_left</FontIcon>,
   };
 
   constructor(props, context) {
@@ -247,6 +245,10 @@ export default class TablePagination extends PureComponent {
       rows,
       rowsPerPageLabel,
       rowsPerPageItems,
+      incrementIcon,
+      decrementIcon,
+
+      // deprecated
       incrementIconChildren,
       incrementIconClassName,
       decrementIconChildren,
@@ -292,18 +294,14 @@ export default class TablePagination extends PureComponent {
                 icon
                 onClick={this._decrement}
                 disabled={start === 0}
-                iconClassName={decrementIconClassName}
-              >
-                {decrementIconChildren}
-              </Button>
+                iconEl={getDeprecatedIcon(decrementIconClassName, decrementIconChildren, decrementIcon)}
+              />
               <Button
                 icon
                 onClick={this._increment}
                 disabled={start + rowsPerPage >= rows}
-                iconClassName={incrementIconClassName}
-              >
-                {incrementIconChildren}
-              </Button>
+                iconEl={getDeprecatedIcon(incrementIconClassName, incrementIconChildren, incrementIcon)}
+              />
             </div>
             {/*
               * Since the footer controls is positioned absolutely for a persistent footer,

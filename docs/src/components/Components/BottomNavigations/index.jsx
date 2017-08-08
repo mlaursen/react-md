@@ -21,6 +21,9 @@ When a tab is clicked, the ink effect will only stay within the tab itself.
 
 When using the \`BottomNavigation\`, you can apply the \`.md-bottom-navigation-offset\` class name to an element
 to add \`padding-bottom\` to offset the content for the \`BottomNavigation\`.
+
+**When using an icon, the \`inherit\` prop will be cloned into it to get correct styling. If you do not use the base
+\`FontIcon\` or \`SVGIcon\`, make sure to pass props to your icon, or provide the \`inherit\` prop yourself.**
   `,
   code: FixedRaw,
   children: <Fixed />,

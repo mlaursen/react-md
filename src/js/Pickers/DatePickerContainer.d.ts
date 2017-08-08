@@ -6,20 +6,38 @@ export interface DatePickerProps extends BasePickerProps {
   defaultValue?: string | Date;
   onChange?: (formattedDate: string, date: Date, event: Event) => void;
   defaultCalendarMode?: 'calendar' | 'year';
-  previousIconChildren?: React.ReactNode;
-  previousIconClassName?: string;
-  nextIconChildren?: React.ReactNode;
-  nextIconClassName?: string;
   minDate?: Date,
   maxDate?: Date,
   yearsDisplayed?: number;
   formatOptions?: IntlFormat;
   defaultCalendarDate?: string | Date;
+  nextIcon?: React.ReactElement<any>;
+  previousIcon?: React.ReactElement<any>;
 
   /**
    * @deprecated
    */
   initialCalendarDate?: string | Date;
+
+  /**
+   * @deprecated
+   */
+  previousIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  previousIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  nextIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  nextIconClassName?: string;
 }
 
 declare const DatePicker: React.ComponentClass<DatePickerProps>;

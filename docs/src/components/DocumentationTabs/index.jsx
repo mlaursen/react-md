@@ -47,7 +47,7 @@ export default class DocumentationTabs extends PureComponent {
       propTypesTab = <Tab label="Prop Types" id="documentation-prop-types" key="prop-types" />;
     }
 
-    if (colors || pathname.match(/layovers/) || !pathname.match(/helpers/)) {
+    if (colors || pathname.match(/layovers/) || !pathname.match(/helpers|svg/)) {
       sassdocTab = <Tab label="SassDoc" id="documentation-sassdoc" key="sassdoc" />;
     }
 

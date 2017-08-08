@@ -6,6 +6,8 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
 import contextTypes from './contextTypes';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
+import FontIcon from '../FontIcons/FontIcon';
 import Paper from '../Papers/Paper';
 import Collapse from '../Helpers/Collapse';
 
@@ -49,14 +51,10 @@ export default class Card extends PureComponent {
     onExpanderClick: PropTypes.func,
 
     /**
-     * The icon className to use for the expander icon.
+     * The icon to use for the expander button. It is recommended to use this prop over
+     * the `expaderIconChildren` and `expanderIconClassName` since it provides more control.
      */
-    expanderIconClassName: PropTypes.string,
-
-    /**
-     * Any icon children required for the expander icon.
-     */
-    expanderIconChildren: PropTypes.node,
+    expanderIcon: PropTypes.element,
 
     /**
      * The tooltip position for the expander icon.
@@ -107,6 +105,9 @@ export default class Card extends PureComponent {
      * Boolean if the card expansion should be animated.
      */
     animate: PropTypes.bool,
+
+    expanderIconClassName: deprecated(PropTypes.string, 'Use `expanderIcon` instead'),
+    expanderIconChildren: deprecated(PropTypes.node, 'Use `expanderIcon` instead'),
     initiallyExpanded: deprecated(PropTypes.bool, 'Use `defaultExpanded` instead'),
     isExpanded: deprecated(PropTypes.bool, 'Use `expanded` instead'),
     iconChildren: deprecated(PropTypes.node, 'Use the `expanderIconChildren` prop instead'),
@@ -115,8 +116,7 @@ export default class Card extends PureComponent {
 
   static defaultProps = {
     animate: true,
-    expanderIconChildren: 'keyboard_arrow_down',
-    expanderIconClassName: 'material-icons',
+    expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
     expanderTooltipPosition: 'left',
   };
 
@@ -133,11 +133,14 @@ export default class Card extends PureComponent {
 
   getChildContext() {
     const {
-      iconClassName,
-      iconChildren,
       expanderTooltipLabel,
       expanderTooltipDelay,
       expanderTooltipPosition,
+      expanderIcon,
+
+      // deprecated
+      iconClassName,
+      iconChildren,
       expanderIconClassName,
       expanderIconChildren,
     } = this.props;
@@ -149,8 +152,11 @@ export default class Card extends PureComponent {
     return {
       expanded,
       onExpandClick: this._handleExpandClick,
-      iconClassName: typeof iconClassName !== 'undefined' ? iconClassName : expanderIconClassName,
-      iconChildren: typeof iconChildren !== 'undefined' ? iconChildren : expanderIconChildren,
+      icon: getDeprecatedIcon(
+        iconChildren || expanderIconChildren,
+        iconClassName || expanderIconClassName,
+        expanderIcon
+      ),
       tooltipLabel: expanderTooltipLabel,
       tooltipDelay: expanderTooltipDelay,
       tooltipPosition: expanderTooltipPosition,
@@ -211,6 +217,7 @@ export default class Card extends PureComponent {
       expanded: propExpanded,
       onExpanderClick,
       defaultExpanded,
+      expanderIcon,
       expanderIconChildren,
       expanderIconClassName,
       expanderTooltipLabel,

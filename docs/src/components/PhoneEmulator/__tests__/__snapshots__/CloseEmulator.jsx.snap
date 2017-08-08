@@ -2,22 +2,22 @@
 
 exports[`CloseEmulator should render correctly 1`] = `
 <button
-  className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+  className="md-btn md-btn--icon md-pointer--hover md-inline-block"
   disabled={undefined}
   href={undefined}
   onClick={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
+  onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  onMouseOver={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   type="button"
 >
   <i
-    className="md-icon material-icons"
+    className="md-icon material-icons md-text--inherit"
     style={undefined}
   >
     close
@@ -27,15 +27,15 @@ exports[`CloseEmulator should render correctly 1`] = `
 
 exports[`CloseEmulator should render correctly 2`] = `
 <button
-  className="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text"
+  className="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--primary md-background--primary-hover md-inline-block"
   disabled={undefined}
   href={undefined}
   onClick={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   onMouseDown={[Function]}
+  onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  onMouseOver={[Function]}
   onMouseUp={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}

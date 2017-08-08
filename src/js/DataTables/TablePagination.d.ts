@@ -10,9 +10,27 @@ export interface TablePaginationProps extends Props {
   rowsPerPageLabel?: React.ReactNode;
   rowsPerPageItems?: Array<number>;
   rows: number;
+  incrementIcon?: React.ReactElement<any>;
+  decrementIcon?: React.ReactElement<any>;
+
+  /**
+   * @deprecated
+   */
   incrementIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
   incrementIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
   decrementIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
   decrementIconClassName?: string;
 }
 

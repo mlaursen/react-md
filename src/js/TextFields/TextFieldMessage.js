@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import Message from './Message';
 
 export default class TextFieldMessage extends PureComponent {
@@ -83,13 +84,11 @@ export default class TextFieldMessage extends PureComponent {
     return (
       <div
         className={cn('md-text-field-message-container', {
-          'md-text--disabled': !error,
-          'md-text--error': error,
           'md-text-field-message-container--count-only': !message || !isMessageVisible,
           'md-text-field-message-container--left-icon-offset': leftIcon,
           'md-text-field-message-container--right-icon-offset': rightIcon,
           'md-full-width': !block,
-        }, className)}
+        }, themeColors({ error, disabled: !error }), className)}
       >
         <Message key="message" active={isMessageVisible}>{message}</Message>
         <Message key="counter" className="md-text-field-message--counter" active={active}>

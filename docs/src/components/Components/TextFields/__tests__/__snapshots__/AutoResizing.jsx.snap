@@ -26,13 +26,13 @@ exports[`AutoResizing should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+        className="md-floating-label md-floating-label--inactive md-floating-label--inactive-sized md-text--secondary"
         htmlFor="autoresizing-1"
       >
         Floating resize
       </label>
       <input
-        className="md-text-field md-text md-full-width md-text-field--floating-margin"
+        className="md-text-field md-text-field--floating-margin md-full-width md-text"
         disabled={undefined}
         id="autoresizing-1"
         onBlur={[Function]}
@@ -70,7 +70,7 @@ exports[`AutoResizing should render correctly 1`] = `
       }
     >
       <label
-        className="md-floating-label md-text--secondary md-floating-label--floating"
+        className="md-floating-label md-floating-label--floating md-text--secondary"
         htmlFor="autoresizing-2"
       >
         Multiline text field
@@ -88,7 +88,7 @@ exports[`AutoResizing should render correctly 1`] = `
         />
         <textarea
           aria-hidden={true}
-          className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+          className="md-text-field md-text-field--multiline md-full-width md-text md-text-field--multiline-mask"
           defaultValue={undefined}
           readOnly={true}
           rows={2}
@@ -97,7 +97,7 @@ exports[`AutoResizing should render correctly 1`] = `
           value="This is some default text to place"
         />
         <textarea
-          className="md-text-field md-text md-text-field--multiline md-full-width"
+          className="md-text-field md-text-field--multiline md-full-width md-text"
           defaultValue={undefined}
           disabled={undefined}
           id="autoresizing-2"
@@ -141,7 +141,7 @@ exports[`AutoResizing should render correctly 1`] = `
       }
     >
       <input
-        className="md-text-field md-text md-full-width md-text-field--margin"
+        className="md-text-field md-text-field--margin md-full-width md-text"
         disabled={undefined}
         id="autoresizing-3"
         onBlur={[Function]}
@@ -156,7 +156,7 @@ exports[`AutoResizing should render correctly 1`] = `
         className="md-divider md-divider--text-field md-divider--expand-from-left"
       />
       <div
-        className="md-text-field-message-container md-text--disabled md-full-width"
+        className="md-text-field-message-container md-full-width md-text--disabled"
       >
         <p
           aria-hidden={false}

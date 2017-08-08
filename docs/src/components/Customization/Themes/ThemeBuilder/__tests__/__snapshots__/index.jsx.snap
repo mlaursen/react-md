@@ -26,7 +26,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         type="checkbox"
       />
       <label
-        class="md-selection-control-label md-text md-pointer--hover"
+        class="md-selection-control-label md-pointer--hover md-text"
         for="light"
       >
         <div
@@ -37,7 +37,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
           tabindex="0"
         >
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             check_box
           </i>
@@ -70,7 +70,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
           role="checkbox"
         >
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             check_box_outline_blank
           </i>
@@ -98,7 +98,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-text--secondary md-floating-label--floating"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
           for="primary"
         >
           Primary color
@@ -147,7 +147,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-text--secondary md-floating-label--floating"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
           for="secondary"
         >
           Secondary color
@@ -196,7 +196,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         class="md-select-field__toggle"
       >
         <label
-          class="md-floating-label md-text--secondary md-floating-label--floating"
+          class="md-floating-label md-floating-label--floating md-text--secondary"
           for="hue"
         >
           Secondary hue
@@ -280,12 +280,12 @@ exports[`ThemeBuilder should render correctly 1`] = `
         id="theme-builder-preview-toolbar"
       >
         <button
-          class="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+          class="md-btn md-btn--icon md-pointer--hover md-inline-block md-btn--toolbar md-toolbar--action-left"
           id="theme-builder-preview-drawer-toggle"
           type="button"
         >
           <i
-            class="md-icon material-icons"
+            class="md-icon material-icons md-text--inherit"
           >
             menu
           </i>
@@ -306,7 +306,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
           Look at this
         </h2>
         <button
-          class="md-inline-block md-btn md-btn--raised md-background--primary md-background--primary-hover md-pointer--hover md-btn--text theme-preview__btn"
+          class="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--primary md-background--primary-hover md-inline-block theme-preview__btn"
           id="theme-builder-preview-btn"
           type="button"
         >
@@ -314,12 +314,12 @@ exports[`ThemeBuilder should render correctly 1`] = `
         </button>
       </div>
       <button
-        class="md-inline-block md-btn md-btn--icon md-btn--floating md-background--secondary md-background--secondary-hover md-pointer--hover md-paper md-paper--2 md-btn--fixed md-btn--fixed-br"
+        class="md-btn md-btn--icon md-btn--floating md-btn--fixed md-btn--fixed-br md-pointer--hover md-paper md-paper--2 md-background--secondary md-background--secondary-hover md-inline-block"
         id="theme-builder-preview-floating-btn"
         type="button"
       >
         <i
-          class="md-icon material-icons"
+          class="md-icon material-icons md-text--inherit"
         >
           email
         </i>

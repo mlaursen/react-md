@@ -1,8 +1,11 @@
 import React, { PureComponent } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
+import SVGIcon from 'react-md/lib/SVGIcons';
 import Dialog from 'react-md/lib/Dialogs';
 import Slider from 'react-md/lib/Sliders';
+
+import alarm from 'icons/alarm.svg';
 
 export default class WithIcons extends PureComponent {
   state = { visible: false };
@@ -39,7 +42,7 @@ export default class WithIcons extends PureComponent {
           <Slider
             id="volumn-changer-alarm"
             label="Alarm volume"
-            leftIcon={<FontIcon>alarm</FontIcon>}
+            leftIcon={<SVGIcon use={alarm.url} />}
             defaultValue={8}
             max={12}
           />

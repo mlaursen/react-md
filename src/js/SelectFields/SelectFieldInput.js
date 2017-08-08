@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TICK from '../constants/CSSTransitionGroupTick';
+import themeColors from '../utils/themeColors';
 import FontIcon from '../FontIcons/FontIcon';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import IconSeparator from '../Helpers/IconSeparator';
@@ -31,6 +32,7 @@ export default class SelectFieldInput extends PureComponent {
     below: PropTypes.bool,
     error: PropTypes.bool,
     toolbar: PropTypes.bool,
+    dropdownIcon: PropTypes.element,
     iconClassName: PropTypes.string,
     iconChildren: PropTypes.node,
     transitionName: PropTypes.string.isRequired,
@@ -92,6 +94,9 @@ export default class SelectFieldInput extends PureComponent {
       toolbar,
       below,
       lineDirection,
+      dropdownIcon,
+
+      // deprecated
       iconChildren,
       iconClassName,
       /* eslint-disable no-unused-vars */
@@ -123,6 +128,12 @@ export default class SelectFieldInput extends PureComponent {
 
     const labelActive = !!activeLabel || activeLabel === 0;
 
+    let icon = dropdownIcon;
+    if (iconClassName || iconChildren) {
+      icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
+    }
+    icon = React.cloneElement(icon, { disabled });
+
     return (
       <AccessibleFakeInkedButton
         {...props}
@@ -131,11 +142,11 @@ export default class SelectFieldInput extends PureComponent {
         component={Paper}
         zDepth={below && active ? 1 : 0}
         inkDisabled={!below}
-        className={cn('md-select-field', {
-          'md-text': !disabled && labelActive,
-          'md-text--secondary': !disabled && !labelActive && placeholder,
-          'md-text--disabled': disabled,
-        }, className)}
+        className={cn('md-select-field', themeColors({
+          disabled,
+          hint: !labelActive && placeholder,
+          text: labelActive,
+        }), className)}
       >
         <IconSeparator
           label={visibleLabel}
@@ -148,7 +159,7 @@ export default class SelectFieldInput extends PureComponent {
             'md-select-field--btn': below,
           })}
         >
-          <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
+          {icon}
         </IconSeparator>
         {divider}
         <input

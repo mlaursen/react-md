@@ -1,5 +1,8 @@
 import React from 'react';
 import Button from 'react-md/lib/Buttons/Button';
+import SVGIcon from 'react-md/lib/SVGIcons';
+
+import done from 'icons/done.svg';
 
 const Flat = () => (
   <div className="buttons__group">
@@ -7,6 +10,8 @@ const Flat = () => (
     <Button flat>Hello, World!</Button>
     <Button flat primary iconChildren="chat_bubble_outline">Chat</Button>
     <Button flat secondary iconBefore={false} iconChildren="chat_bubble_outline">Chat</Button>
+    <Button flat primary iconEl={<SVGIcon use={done.url} />}>Done</Button>
+    <Button flat secondary iconBefore={false} iconEl={<SVGIcon use={done.url} />}>Done</Button>
     <h5>Disabled Examples</h5>
     <Button flat disabled>Disabled Button</Button>
     <Button flat disabled iconChildren="close">Disabled Button</Button>
