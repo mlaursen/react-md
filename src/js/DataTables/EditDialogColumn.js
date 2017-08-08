@@ -14,6 +14,7 @@ import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
 import Layover from '../Helpers/Layover';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TextField from '../TextFields/TextField';
 import TableColumn from './TableColumn';
 import EditDialog from './EditDialog';
@@ -130,11 +131,15 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * Boolean if the text field should be editable inline instead of in a dialog.
      *
-     * @see {@link #noIcon}
-     * @see {@link #inlineIconChildren}
-     * @see {@link #inlineIconClassName}
+     * @see {@link #inlineIcon}
      */
     inline: PropTypes.bool,
+
+    /**
+     * An optional icon to set for the inline edit dialog column. Setting this prop to null
+     * will not render an icon.
+     */
+    inlineIcon: PropTypes.element,
 
     /**
      * The default value to use for the text field.
@@ -208,21 +213,6 @@ export default class EditDialogColumn extends PureComponent {
      * @see {@link TextFields/TextField#maxLength}
      */
     maxLength: PropTypes.number,
-
-    /**
-     * Any children required to render the inline edit icon.
-     */
-    inlineIconChildren: PropTypes.node,
-
-    /**
-     * The icon class name used to render the inline edit icon.
-     */
-    inlineIconClassName: PropTypes.string,
-
-    /**
-     * Boolean if no inline edit icon should be used.
-     */
-    noIcon: PropTypes.bool,
 
     /**
      * An optional function to call when the "Ok" button has been clicked. This
@@ -492,6 +482,9 @@ export default class EditDialogColumn extends PureComponent {
      */
     adjusted: PropTypes.bool,
 
+    inlineIconChildren: deprecated(PropTypes.node, 'Use the `inlineIcon` prop instead'),
+    inlineIconClassName: deprecated(PropTypes.string, 'Use the `inlineIcon` prop instead'),
+    noIcon: deprecated(PropTypes.bool, 'Set the `inlineIcon` prop to `null` instead'),
     enforceMinWidth: deprecated(
       PropTypes.bool,
       'The min width will always be enforced based on the `$md-edit-dialog-min-width` Sass variable.'
@@ -510,7 +503,7 @@ export default class EditDialogColumn extends PureComponent {
     type: 'text',
     defaultValue: '',
     okOnOutsideClick: true,
-    inlineIconChildren: 'edit',
+    inlineIcon: <FontIcon>edit</FontIcon>,
     okLabel: 'Save',
     okPrimary: true,
     cancelLabel: 'Cancel',
@@ -706,10 +699,8 @@ export default class EditDialogColumn extends PureComponent {
       large,
       title,
       inline,
-      inlineIconChildren,
-      inlineIconClassName,
+      inlineIcon,
       maxLength,
-      noIcon,
       label,
       placeholder,
       header,
@@ -737,6 +728,11 @@ export default class EditDialogColumn extends PureComponent {
       onMouseOver,
       onMouseLeave,
       onTouchMove,
+
+      // deprecated
+      noIcon,
+      inlineIconChildren,
+      inlineIconClassName,
       /* eslint-disable no-unused-vars */
       id: propId,
       dialogId: propDialogId,
@@ -777,11 +773,9 @@ export default class EditDialogColumn extends PureComponent {
 
     let inlineEditIcon;
     if (inline && !noIcon) {
-      inlineEditIcon = (
-        <FontIcon key="edit-icon" iconClassName={inlineIconClassName}>
-          {inlineIconChildren}
-        </FontIcon>
-      );
+      inlineEditIcon = React.cloneElement(getDeprecatedIcon(inlineIconClassName, inlineIconChildren, inlineIcon), {
+        key: 'edit-icon',
+      });
     }
 
     const numeric = props.type === 'number';

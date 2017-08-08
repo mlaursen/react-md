@@ -4,15 +4,12 @@ import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
 import themeColors from '../utils/themeColors';
-import FontIcon from '../FontIcons/FontIcon';
 
 export default class PasswordButton extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
     passwordVisible: PropTypes.bool,
     icon: PropTypes.element,
-    iconClassName: PropTypes.string,
-    iconChildren: PropTypes.node,
     block: PropTypes.bool,
     floating: PropTypes.bool,
   };
@@ -46,17 +43,9 @@ export default class PasswordButton extends PureComponent {
       passwordVisible,
       block,
       floating,
-      icon: propIcon, // eslint-disable-line no-unused-vars
-
-      // deprecated
-      iconClassName,
-      iconChildren,
+      icon,
       ...props
     } = this.props;
-    let { icon } = this.props;
-    if (iconClassName || iconChildren) {
-      icon = <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>;
-    }
 
     return (
       <button

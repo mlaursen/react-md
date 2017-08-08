@@ -22,12 +22,39 @@ export interface TabsProps extends Props {
   defaultTabIndex?: number;
   defaultMedia?: MediaTypes;
   desktopMinWidth?: number;
-  nextIconChildren?: React.ReactNode;
-  nextIconClassName?: string;
-  previousIconChildren?: React.ReactNode;
-  previousIconClassName?: string;
+  nextIcon?: React.ReactElement<any>;
+  previousIcon?: React.ReactElement<any>;
+  overflowMenuIcon?: React.ReactElement<any>;
   overflowMenuLabel?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  nextIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  nextIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  previousIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  previousIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
   overflowMenuIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
   overflowMenuIconClassName?: string;
 }
 

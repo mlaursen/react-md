@@ -8,6 +8,7 @@ import getCollapserStyles from '../utils/getCollapserStyles';
 import getField from '../utils/getField';
 import injectTooltip from '../Tooltips/injectTooltip';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import IconSeparator from '../Helpers/IconSeparator';
 
 const CELL_SCOPE = {
@@ -185,13 +186,8 @@ class TableColumn extends PureComponent {
     let displayedChildren = children;
     let ariaSort;
     if (sortable) {
-      let icon = sortIcon;
-      if (sortIconChildren || sortIconClassName) {
-        icon = <FontIcon iconClassName={sortIconClassName}>{sortIconChildren}</FontIcon>;
-      }
-      icon = React.Children.only(icon);
-
       ariaSort = sorted ? 'ascending' : 'descending';
+      const icon = React.Children.only(getDeprecatedIcon(sortIconClassName, sortIconChildren, sortIcon));
       displayedChildren = (
         <IconSeparator label={children} iconBefore>
           {React.cloneElement(icon, { className: getCollapserStyles({ flipped: !sorted }, icon.props.className) })}

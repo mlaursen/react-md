@@ -46,6 +46,10 @@ export default class ExamplesPage extends PureComponent {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+
+    if (__DEV__) {
+      window.removeEventListener('load', () => this.updateMinHeight(this.props));
+    }
   }
 
   updateMinHeight = (props) => {

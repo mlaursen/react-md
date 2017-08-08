@@ -14,6 +14,7 @@ import fixedToShape from '../Helpers/fixedToShape';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
@@ -549,12 +550,7 @@ export default class ListItem extends PureComponent {
         );
       }
 
-      let icon = expanderIcon;
-      if (!icon || (expanderIconClassName || expanderIconChildren)) {
-        icon = <FontIcon iconClassName={expanderIconClassName}>{expanderIconChildren}</FontIcon>;
-      }
-      icon = React.Children.only(icon);
-
+      const icon = React.Children.only(getDeprecatedIcon(expanderIconClassName, expanderIconChildren, expanderIcon));
       const collapser = (
         <TileAddon
           key="expander-addon"

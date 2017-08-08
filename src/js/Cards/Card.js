@@ -6,6 +6,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import controlled from '../utils/PropTypes/controlled';
 import getField from '../utils/getField';
 import contextTypes from './contextTypes';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import FontIcon from '../FontIcons/FontIcon';
 import Paper from '../Papers/Paper';
 import Collapse from '../Helpers/Collapse';
@@ -132,12 +133,14 @@ export default class Card extends PureComponent {
 
   getChildContext() {
     const {
-      iconClassName,
-      iconChildren,
       expanderTooltipLabel,
       expanderTooltipDelay,
       expanderTooltipPosition,
       expanderIcon,
+
+      // deprecated
+      iconClassName,
+      iconChildren,
       expanderIconClassName,
       expanderIconChildren,
     } = this.props;
@@ -149,9 +152,11 @@ export default class Card extends PureComponent {
     return {
       expanded,
       onExpandClick: this._handleExpandClick,
-      iconClassName: typeof iconClassName !== 'undefined' ? iconClassName : expanderIconClassName,
-      icon: expanderIcon,
-      iconChildren: typeof iconChildren !== 'undefined' ? iconChildren : expanderIconChildren,
+      icon: getDeprecatedIcon(
+        iconChildren || expanderIconChildren,
+        iconClassName || expanderIconClassName,
+        expanderIcon
+      ),
       tooltipLabel: expanderTooltipLabel,
       tooltipDelay: expanderTooltipDelay,
       tooltipPosition: expanderTooltipPosition,

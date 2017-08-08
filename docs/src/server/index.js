@@ -120,7 +120,7 @@ app.listen(port, (err) => {
 
   // This gets set during the webpack config, but it is completely possible to have no PUBLIC_URL
   // in dev mode, so set it to any address on server side by default
-  global.PUBLIC_URL = process.env.PUBLIC_URL || `http://0.0.0.0:${port}`;
+  global.PUBLIC_URL = process.env.PUBLIC_URL || `http://localhost:${port}`;
   if (__DEV__ && !global.__SERVER_ONLY) {
     winston.info('Starting webpack compilation...');
     winston.info(`Please wait until webpack spams your console, then you can navigate to ${global.PUBLIC_URL}`);

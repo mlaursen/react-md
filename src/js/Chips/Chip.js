@@ -61,7 +61,7 @@ export default class Chip extends PureComponent {
     iconClassName: deprecated(PropTypes.string, 'Use the `children` prop as a single FontIcon or SVGIcon instead'),
     remove: deprecated(PropTypes.func, 'Use `removable` and `onClick` instead'),
     removeIconChildren: deprecated(PropTypes.node, 'Use `children` instead'),
-    removeIconClassName: deprecated(PropTypes.string, 'Use `iconClassName` instead'),
+    removeIconClassName: deprecated(PropTypes.string, 'Use `children` prop as a single FontIcon or SVGIcon instead'),
   };
 
   static defaultProps = {
@@ -92,15 +92,19 @@ export default class Chip extends PureComponent {
     const {
       label,
       className,
-      iconClassName,
       avatar,
       children,
       removable,
       remove,
       onClick,
       rotateIcon,
-      removeIconChildren, // eslint-disable-line no-unused-vars
-      removeIconClassName, // eslint-disable-line no-unused-vars
+
+      /* eslint-disable no-unused-vars */
+      // deprecated
+      iconClassName,
+      removeIconChildren,
+      removeIconClassName,
+      /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
 

@@ -24,8 +24,7 @@ export default class CloseButton extends PureComponent {
   };
 
   static contextTypes = {
-    closeIconClassName: PropTypes.string,
-    closeChildren: PropTypes.node,
+    closeIcon: PropTypes.element,
     onCloseClick: PropTypes.func,
   };
 
@@ -40,22 +39,16 @@ export default class CloseButton extends PureComponent {
   };
 
   render() {
-    const {
-      closeIconClassName: iconClassName,
-      closeChildren: children,
-    } = this.context;
+    const { closeIcon } = this.context;
 
     return (
       <Button
         {...this.props}
         icon
         key="close"
-        iconClassName={iconClassName}
         onClick={this._handleClick}
-        svg={!iconClassName && React.isValidElement(children)}
-      >
-        {children}
-      </Button>
+        iconEl={closeIcon}
+      />
     );
   }
 }

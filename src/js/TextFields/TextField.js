@@ -10,6 +10,7 @@ import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
 import addSuffix from '../utils/StringUtils/addSuffix';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import FloatingLabel from './FloatingLabel';
 import TextFieldMessage from './TextFieldMessage';
 import PasswordButton from './PasswordButton';
@@ -742,9 +743,7 @@ export default class TextField extends PureComponent {
           onClick={this._togglePasswordField}
           active={active}
           passwordVisible={passwordVisible}
-          icon={passwordIcon}
-          iconChildren={passwordIconChildren}
-          iconClassName={passwordIconClassName}
+          icon={getDeprecatedIcon(passwordIconClassName, passwordIconChildren, passwordIcon)}
           block={block}
           floating={!!label}
         />

@@ -6,15 +6,8 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import requiredForA11yIfNot from '../utils/PropTypes/requiredForA11yIfNot';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import contextTypes from './contextTypes';
-
-function getDeprecatedIcon(className, children, icon) {
-  if (className || children) {
-    return <FontIcon iconClassName={className}>{children}</FontIcon>;
-  }
-
-  return icon;
-}
 
 /**
  * The `DataTable` component is used to manage the state of all rows.
@@ -327,12 +320,6 @@ export default class DataTable extends PureComponent {
       checkedIcon,
       uncheckedIcon,
       indeterminateIcon,
-      checkedIconChildren,
-      checkedIconClassName,
-      uncheckedIconChildren,
-      uncheckedIconClassName,
-      indeterminateIconChildren,
-      indeterminateIconClassName,
       plain,
       baseId,
       selectableRows,
@@ -340,6 +327,14 @@ export default class DataTable extends PureComponent {
       checkboxLabelTemplate,
       fixedHeader,
       fixedFooter,
+
+      // deprecated
+      checkedIconChildren,
+      checkedIconClassName,
+      uncheckedIconChildren,
+      uncheckedIconClassName,
+      indeterminateIconChildren,
+      indeterminateIconClassName,
     } = this.props;
 
     return {

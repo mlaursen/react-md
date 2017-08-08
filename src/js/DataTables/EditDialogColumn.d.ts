@@ -15,13 +15,11 @@ export interface EditDialogColumnProps extends SharedLayoverProps, InjectedToolt
   textFieldStyle?: React.CSSProperties;
   textFieldClassName?: string;
   inline?: boolean;
+  inlineIcon?: React.ReactElement<any>;
   defaultValue?: number | string;
   onChange?: (value: number | string, event: React.FormEvent<HTMLElement>) => void;
   large?: boolean;
   title?: React.ReactNode;
-  inlineIconChildren?: React.ReactNode;
-  inlineIconClassName?: string;
-  noIcon?: boolean;
   onOkClick?: (value: number | string, event: React.MouseEvent<HTMLElement>) => void;
   okLabel?: React.ReactNode;
   okPrimary?: boolean;
@@ -51,6 +49,21 @@ export interface EditDialogColumnProps extends SharedLayoverProps, InjectedToolt
    * @deprecated
    */
   transitionDuration?: number;
+
+  /**
+   * @deprecated
+   */
+  inlineIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  inlineIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  noIcon?: boolean;
 }
 
 declare const EditDialogColumn: React.ComponentClass<EditDialogColumnProps>;

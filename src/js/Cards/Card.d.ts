@@ -8,14 +8,22 @@ export interface CardProps extends Props {
   expanded?: boolean;
   onExpanderClick?: Function;
   expanderIcon?: React.ReactElement<any>;
-  expanderIconClassName?: string;
-  expanderIconChildren?: React.ReactNode;
   expanderTooltipLabel?: React.ReactNode;
   expanderTooltipDelay?: number;
   expanderTooltipPosition?: Positions;
   tableCard?: boolean;
   children?: React.ReactNode;
   animate?: boolean;
+
+  /**
+   * @deprecated
+   */
+  expanderIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  expanderIconChildren?: React.ReactNode;
 }
 
 declare const Card: React.ComponentClass<CardProps>;

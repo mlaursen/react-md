@@ -12,6 +12,7 @@ import Paper from '../Papers/Paper';
 import AccessibleFakeButton from '../Helpers/AccessibleFakeButton';
 import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import PanelContent from './PanelContent';
 
 const LABEL_FONT_SIZE = 15;
@@ -410,7 +411,6 @@ export default class ExpansionPanel extends PureComponent {
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-    let { expanderIcon } = this.props;
     const { twoLine } = this.state;
     const expanded = this._isExpanded(this.props, this.state);
     const animateContent = getField(this.props, this.context, 'animateContent');
@@ -440,10 +440,7 @@ export default class ExpansionPanel extends PureComponent {
       </div>
     ));
 
-    if (expandIconChildren || expandIconClassName) {
-      expanderIcon = <FontIcon iconClassName={expandIconClassName}>{expandIconChildren}</FontIcon>;
-    }
-
+    let expanderIcon = getDeprecatedIcon(expandIconClassName, expandIconChildren, this.props.expanderIcon);
     expanderIcon = React.Children.only(expanderIcon);
     expanderIcon = React.cloneElement(expanderIcon, {
       className: getCollapserStyles({

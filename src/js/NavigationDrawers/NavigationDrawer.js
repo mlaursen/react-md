@@ -13,6 +13,7 @@ import Drawer from '../Drawers/Drawer';
 import List from '../Lists/List';
 import Toolbar from '../Toolbars/Toolbar';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 
 const { DrawerTypes } = Drawer;
 import { isTemporary, isPersistent, isPermanent, isMini } from '../Drawers/isType';
@@ -650,8 +651,7 @@ export default class NavigationDrawer extends PureComponent {
   };
 
   static childContextTypes = {
-    closeIconClassName: PropTypes.string,
-    closeChildren: PropTypes.node,
+    closeIcon: PropTypes.element,
     onCloseClick: PropTypes.func,
     id: PropTypes.oneOfType([
       PropTypes.number,
@@ -739,19 +739,24 @@ export default class NavigationDrawer extends PureComponent {
   getChildContext() {
     const {
       persistentIcon,
+      contentId: id,
+      jumpLabel: label,
+
+      // deprecated
       persistentIconChildren,
       persistentIconClassName,
       closeIconChildren,
       closeIconClassName,
-      contentId: id,
-      jumpLabel: label,
     } = this.props;
 
     return {
       id,
       label,
-      closeChildren: closeIconChildren || persistentIconChildren || persistentIcon,
-      closeIconClassName: closeIconClassName || persistentIconClassName,
+      closeIcon: getDeprecatedIcon(
+        closeIconClassName || persistentIconClassName,
+        closeIconChildren || persistentIconChildren,
+        persistentIcon,
+      ),
       onCloseClick: this._toggleVisibility,
       renderNode: this.context.renderNode,
     };
@@ -915,11 +920,12 @@ export default class NavigationDrawer extends PureComponent {
           onClick={this._toggleVisibility}
           disabled={persistent && visible}
           icon
-          iconClassName={menuIconClassName || temporaryIconClassName}
-          svg={!!temporaryIcon}
-        >
-          {menuIconChildren || temporaryIconChildren || temporaryIcon}
-        </Button>
+          iconEl={getDeprecatedIcon(
+            menuIconClassName || temporaryIconClassName,
+            menuIconChildren || temporaryIconChildren,
+            temporaryIcon
+          )}
+        />
       );
     }
 

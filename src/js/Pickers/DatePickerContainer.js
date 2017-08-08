@@ -16,6 +16,7 @@ import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 
 import Collapse from '../Helpers/Collapse';
 import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TextField from '../TextFields/TextField';
 import Dialog from '../Dialogs/DialogContainer';
 import DatePicker from './DatePicker';
@@ -856,6 +857,8 @@ export default class DatePickerContainer extends PureComponent {
       helpOnFocus,
       inlineIndicator,
       'aria-label': ariaLabel,
+      nextIcon: propNextIcon,
+      previousIcon: propPreviousIcon,
 
       // deprecated
       isOpen,
@@ -866,8 +869,6 @@ export default class DatePickerContainer extends PureComponent {
       /* eslint-disable no-unused-vars */
       value: propValue,
       visible: propVisible,
-      nextIcon: propNextIcon,
-      previousIcon: propPreviousIcon,
       defaultValue,
       defaultVisible,
       onChange,
@@ -883,15 +884,8 @@ export default class DatePickerContainer extends PureComponent {
       ...props
     } = this.props;
 
-    let { nextIcon, previousIcon } = this.props;
-    if (nextIconChildren || nextIconClassName) {
-      nextIcon = <FontIcon iconClassName={nextIconClassName}>{nextIconChildren}</FontIcon>;
-    }
-
-    if (previousIconChildren || previousIconClassName) {
-      previousIcon = <FontIcon iconClassName={previousIconClassName}>{previousIconChildren}</FontIcon>;
-    }
-
+    const nextIcon = getDeprecatedIcon(nextIconClassName, nextIconChildren, propNextIcon);
+    const previousIcon = getDeprecatedIcon(previousIconClassName, previousIconChildren, propPreviousIcon);
     const visible = typeof isOpen !== 'undefined'
       ? isOpen
       : getField(this.props, this.state, 'visible');
