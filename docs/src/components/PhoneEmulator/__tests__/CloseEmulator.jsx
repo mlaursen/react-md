@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
+import { createSnapshot } from 'utils/testing';
 
 import CloseEmulator from '../CloseEmulator';
 
@@ -31,16 +31,16 @@ class ContextProvider extends React.Component {
 
 describe('CloseEmulator', () => {
   it('should render correctly', () => {
-    const tree1 = renderer.create(
+    const tree1 = createSnapshot(
       <ContextProvider>
         <CloseEmulator icon>close</CloseEmulator>
       </ContextProvider>
-    ).toJSON();
-    const tree2 = renderer.create(
+    );
+    const tree2 = createSnapshot(
       <ContextProvider>
         <CloseEmulator raised primary>Hello, World!</CloseEmulator>
       </ContextProvider>
-    ).toJSON();
+    );
     expect(tree1).toMatchSnapshot();
     expect(tree2).toMatchSnapshot();
   });

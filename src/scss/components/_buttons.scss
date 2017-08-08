@@ -309,16 +309,10 @@ $md-btn-floating-margin: null !default;
 
   @if $include-floating {
     .md-btn--floating {
-      @include md-box-shadow(2);
-
       height: $md-btn-floating-size;
       padding: ($md-btn-floating-size - $md-font-icon-size) / 2;
       transition-property: background, box-shadow, color;
       width: $md-btn-floating-size;
-    }
-
-    .md-btn--floating-pressed {
-      @include md-box-shadow(4);
     }
 
     .md-btn--floating-mini {

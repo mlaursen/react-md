@@ -11,15 +11,18 @@ const RAW_LOADER = '!!raw-loader!./';
 const RAW_CLIENT_LOADER = '!!raw-loader!client';
 const RAW_COMPONENT_LOADER = '!!raw-loader!components';
 const RAW_SERVER_LOADER = '!!raw-loader!server';
+const RAW_UTILS_LOADER = '!!raw-loader!utils';
 const CLIENT = path.resolve(process.cwd(), 'src', 'client');
 const COMPONENTS = path.resolve(process.cwd(), 'src', 'components');
 const SERVER = path.resolve(process.cwd(), 'src', 'server');
+const UTILS = path.resolve(process.cwd(), 'src', 'utils');
 
 function isCustomLoader(path) {
   return path.indexOf(RAW_LOADER) !== -1
     || path.indexOf(RAW_CLIENT_LOADER) !== -1
     || path.indexOf(RAW_COMPONENT_LOADER) !== -1
-    || path.indexOf(RAW_SERVER_LOADER) !== -1;
+    || path.indexOf(RAW_SERVER_LOADER) !== -1
+    || path.indexOf(RAW_UTILS_LOADER) !== -1;
 }
 
 /**
@@ -42,6 +45,8 @@ hacker.global_hook('raw-loader', (path, module) => {
     filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
   } else if (path.match(RAW_SERVER_LOADER)) {
     filePath = path.replace(RAW_SERVER_LOADER, SERVER);
+  } else if (path.match(RAW_UTILS_LOADER)) {
+    filePath = path.replace(RAW_UTILS_LOADER, UTILS);
   } else {
     const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
     filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;
@@ -55,11 +60,20 @@ hacker.global_hook('raw-loader', (path, module) => {
 
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
+function getValue(key, fallback) {
+  const value = process.env[key];
+  if (typeof value !== 'undefined' && value !== '') {
+    return value !== 'false' && parseInt(value, 10) !== 0;
+  }
+
+  return fallback;
+}
+
 global.__CLIENT__ = false;
 global.__DEV__ = process.env.NODE_ENV === 'development';
-global.__SSR__ = !global.__DEV__;
-global.__NGINX__ = !global.__DEV__; // if the static assets should be served by nginx or express.statuc
-global.__SERVER_ONLY = false; // for debugging/implementing api routes
+global.__SSR__ = getValue('USE_SSR', !global.__DEV__);
+global.__NGINX__ = getValue('USE_NGINX', !global.__DEV__);
+global.__SERVER_ONLY__ = getValue('SERVER_ONLY', false);
 
 const ROOT_DIR = require('path').resolve(process.cwd());
 

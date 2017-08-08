@@ -1,12 +1,12 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { createReduxRouterSnapshot } from 'utils/testing';
 
 import ExampleCard from '../ExampleCard';
 
 describe('ExampleCard', () => {
   it('should display correctly without a description', () => {
-    const tree = createRouterSnapshot(
+    const tree = createReduxRouterSnapshot(
       <ExampleCard
         title="First Example"
         description=""
@@ -33,7 +33,7 @@ describe('ExampleCard', () => {
 
     > some note
     `;
-    const tree = createRouterSnapshot(
+    const tree = createReduxRouterSnapshot(
       <ExampleCard
         title="Second Example"
         description={description}
@@ -91,10 +91,10 @@ describe('ExampleCard', () => {
       ),
     };
 
-    let tree = createRouterSnapshot(<ExampleCard {...props} />);
+    let tree = createReduxRouterSnapshot(<ExampleCard {...props} />);
     expect(tree).toMatchSnapshot();
 
-    tree = createRouterSnapshot(<ExampleCard {...props} description="Some **description** _markdown_" />);
+    tree = createReduxRouterSnapshot(<ExampleCard {...props} description="Some **description** _markdown_" />);
     expect(tree).toMatchSnapshot();
   });
 });

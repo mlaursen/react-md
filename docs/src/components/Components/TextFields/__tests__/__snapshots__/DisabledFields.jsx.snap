@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisabledFields should render correctly 1`] = `
+<div
+  className="md-grid"
+>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--disabled md-text-field-container--input md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="disabled-floating-label-field"
+    >
+      Disabled label
+    </label>
+    <input
+      className="md-text-field md-text--disabled md-full-width md-text-field--floating-margin"
+      disabled={true}
+      id="disabled-floating-label-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--disabled md-text-field-container--input md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <input
+      className="md-text-field md-text--disabled md-full-width md-text-field--margin"
+      disabled={true}
+      id="disabled-placeholder-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Disabled placeholder"
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--disabled md-text-field-container--multiline md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="disabled-floating-label-multiline-field"
+    >
+      Disabled multiline
+    </label>
+    <div
+      className="md-text-field-multiline-container md-text-field--floating-margin"
+      style={
+        Object {
+          "height": null,
+        }
+      }
+    >
+      <span
+        aria-hidden={true}
+      />
+      <textarea
+        aria-hidden={true}
+        className="md-text-field md-text--disabled md-text-field--multiline md-full-width md-text-field--multiline-mask"
+        defaultValue={undefined}
+        readOnly={true}
+        rows={2}
+        style={undefined}
+        tabIndex={-1}
+        value={undefined}
+      />
+      <textarea
+        className="md-text-field md-text--disabled md-text-field--multiline md-full-width"
+        defaultValue={undefined}
+        disabled={true}
+        id="disabled-floating-label-multiline-field"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder={null}
+        rows={2}
+        style={
+          Object {
+            "height": null,
+          }
+        }
+        value={undefined}
+      />
+    </div>
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--disabled md-text-field-container--multiline md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <div
+      className="md-text-field-multiline-container md-text-field--margin"
+      style={
+        Object {
+          "height": null,
+        }
+      }
+    >
+      <span
+        aria-hidden={true}
+      />
+      <textarea
+        aria-hidden={true}
+        className="md-text-field md-text--disabled md-text-field--multiline md-full-width md-text-field--multiline-mask"
+        defaultValue={undefined}
+        readOnly={true}
+        rows={2}
+        style={undefined}
+        tabIndex={-1}
+        value={undefined}
+      />
+      <textarea
+        className="md-text-field md-text--disabled md-text-field--multiline md-full-width"
+        defaultValue={undefined}
+        disabled={true}
+        id="disabled-placeholder-multiline-field"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Disabled multiline placeholder"
+        rows={2}
+        style={
+          Object {
+            "height": null,
+          }
+        }
+        value={undefined}
+      />
+    </div>
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--disabled md-text-field-container--input md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-text--disabled md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
+      htmlFor="disabled-floating-label-with-icon"
+    >
+      Disabled label with icon
+    </label>
+    <div
+      className="md-text-field-icon-container"
+    >
+      <i
+        className="md-icon material-icons md-text--disabled md-text-field-icon md-text-field-icon--positioned"
+        style={undefined}
+      >
+        date_range
+      </i>
+      <div
+        className="md-text-field-divider-container md-text-field-divider-container--grow"
+      >
+        <input
+          className="md-text-field md-text--disabled md-full-width md-text-field--floating-margin"
+          disabled={true}
+          id="disabled-floating-label-with-icon"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder={null}
+          rows={undefined}
+          style={undefined}
+          type="text"
+        />
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

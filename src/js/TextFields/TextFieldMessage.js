@@ -54,7 +54,11 @@ export default class TextFieldMessage extends PureComponent {
 
   _isMessageVisible(props) {
     const { error, errorText, helpText, helpOnFocus, active } = props;
-    return ((error && errorText) || !!helpText) && (!helpOnFocus || active);
+    if (error && errorText) {
+      return true;
+    }
+
+    return !!(helpText && (!helpOnFocus || active));
   }
 
   render() {
@@ -79,7 +83,8 @@ export default class TextFieldMessage extends PureComponent {
     return (
       <div
         className={cn('md-text-field-message-container', {
-          'md-text-field-message-container--error': error,
+          'md-text--disabled': !error,
+          'md-text--error': error,
           'md-text-field-message-container--count-only': !message || !isMessageVisible,
           'md-text-field-message-container--left-icon-offset': leftIcon,
           'md-text-field-message-container--right-icon-offset': rightIcon,

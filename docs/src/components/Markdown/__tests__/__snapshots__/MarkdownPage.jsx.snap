@@ -2,7 +2,7 @@
 
 exports[`MarkdownPage should render correctly 1`] = `
 <section
-  className="md-grid"
+  className="md-grid md-grid--stacked"
   style={undefined}
 >
   <div
@@ -15,22 +15,342 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h1 id=\\"table-of-contents\\">Table of Contents</h1>
       <ul>
       <li><a href=\\"#getting-started\\" class=\\"link\\">Getting Started</a></li>
-      <li><a href=\\"#about\\" class=\\"link\\">About</a></li>
       <li><a href=\\"#contributing\\" class=\\"link\\">Contributing</a></li>
+      <li><a href=\\"#about\\" class=\\"link\\">About</a><ul>
+      <li><a href=\\"#development-startup-time\\" class=\\"link\\">Development startup time</a></li>
+      <li><a href=\\"#testing-ssr\\" class=\\"link\\">Testing SSR</a></li>
+      <li><a href=\\"#making-a-better-server\\" class=\\"link\\">Making a better server</a></li>
+      <li><a href=\\"#long-term-caching\\" class=\\"link\\">Long term caching</a></li>
+      <li><a href=\\"#quick-response-times\\" class=\\"link\\">Quick Response Times</a></li>
+      </ul>
+      </li>
       <li><a href=\\"#scripts\\" class=\\"link\\">Scripts</a></li>
+      <li><a href=\\"#production-stack\\" class=\\"link\\">Production Stack</a><ul>
+      <li><a href=\\"#ssl-certs\\" class=\\"link\\">SSL Certs</a></li>
+      <li><a href=\\"#nginx\\" class=\\"link\\">nginx</a></li>
+      <li><a href=\\"#pm2\\" class=\\"link\\">pm2</a></li>
+      </ul>
+      </li>
       </ul>
       <h2 id=\\"getting-started\\">Getting Started</h2>
       <p>This repo uses <code>yarn</code> instead of <code>npm</code> as the package manager. If you use npm,
       it might not work as expected.</p>
-      <pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md/documentation
+      <pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md/docs
       $ yarn                  # you should also install dependencies in the parent directory if not done already
       $ cp .env.example .env
       $ vim .env              # change port to whatever you want
       $ yarn dev              # watch react-md source changes and run dev server
       $ yarn dev:all          # watch all changes and run dev server
       </code></pre>
-      <h2 id=\\"about\\">About</h2>
+      <blockquote>
+      <p>See the <a href=\\"#scripts\\" class=\\"link\\">scripts</a> section for all of the other available commands</p>
+      </blockquote>
       <h2 id=\\"contributing\\">Contributing</h2>
+      <p>The most common use case when contributing is to update an example page with some more documentation or a new
+      feature. This can be done by modifying the logic for how the <code>ExamplesPage</code> is rendered for that component.</p>
+      <h3 id=\\"example\\">Example</h3>
+      <p>Let&#39;s take the <code>Autocomplete</code> component for an example. Let&#39;s say that you want to add a new feature that allows
+      the <code>Autocomplete</code> to automatically cache results into a Service Worker when calling external APIS (I probably wouldn&#39;t
+      merge this feature in...). Here are the following steps:</p>
+      <ol>
+      <li>Create a new file to showcase your example
+      \`\`\`bash
+      $ touch src/components/Components/Autocompletes/<DESCRIPTIVE_NAME_HERE>.jsx</li>
+      </ol>
+      <h1 id=\\"so-for-this-example-\\">so for this example...</h1>
+      <p>  $ touch src/components/Components/Autocompletes/ServiceWorkerAPICache.jsx</p>
+      <pre><code>2. Update the component \`ExamplePage\` examples list to include your new example.
+        \`\`\`jsx
+        /* src/components/Components/Autocompletes/index.jsx */
+        ...
+      
+        import ServiceWorkerAPICache from &#39;./ServiceWorkerAPICache&#39;;
+        import ServiceWorkerAPICacheRaw from &#39;!!raw-loader!./ServiceWorkerAPICache.jsx&#39;;
+      
+        ...
+        const examples = [
+          ... existing ...
+          {
+             title: &#39;Autocomplete with API Service Worker Caching&#39;
+             description: \`
+          This example will show some stuff about yada yada.
+             \`,
+             code: ServiceWorkerAPICacheRaw,
+             children: &lt;ServiceWorkerAPICache /&gt;,
+          },
+        ];
+      </code></pre><ol>
+      <li>Test and view your example</li>
+      </ol>
+      <p>Every component uses the <a href=\\"src/components/ExamplesPage\\" class=\\"link\\">ExamplesPage</a> component to be able to add a title, an
+      optional description, some source code to be viewed, and the renderable example.</p>
+      <h3 id=\\"checking-documentation-description\\">Checking documentation description</h3>
+      <p>This server relies on the <a href=\\"https://github.com/reactjs/react-docgen\\" class=\\"link\\">react-docgen</a> to be able to document
+      prop types. It is pretty simple since it is just another version of jsdoc. The Sass uses <a href=\\"http://sassdoc.com/\\" class=\\"link\\">SassDoc</a>
+      to be documented.</p>
+      <p>Once a new prop or sass doc has been added, your server might automatically reload based on the <a href=\\"#scripts\\" class=\\"link\\">script</a> you
+      are running. If it has not restarted, you can check your changes and how it gets formatted by running either</p>
+      <ul>
+      <li><a href=\\"#sassdoc\\" class=\\"link\\">yarn sassdoc</a></li>
+      <li><a href=\\"#docgen\\" class=\\"link\\">yarn docgen</a></li>
+      </ul>
+      <p>The reason this is needed is because my documentation server takes in &quot;databases&quot; of json data from these scripts, loads
+      them into memory, and then serves them as needed when the api is called. There probably is some better way to handle this,
+      but I needed this functionality so that the site&#39;s search could also work.</p>
+      <h3 id=\\"digging-deeper\\">Digging deeper</h3>
+      <p>This server is separated into a few main parts:</p>
+      <pre><code>src
+      ├── client
+      ├── components
+      ├── constants
+      ├── routes
+      ├── sagas
+      ├── server
+      ├── state
+      └── utils
+      </code></pre><p>I ended up going with this structure since I don&#39;t like the whole <code>actions</code>, <code>constants</code>, <code>actionTypes</code>, <code>components</code>,
+      <code>containers</code>, etc model. Everything related to redux will be in a single file (so the action type constants, action creators,
+      and reducers). When a component needs to be connected to state, I export a &quot;pure&quot; version and the connected version as the default.
+      I don&#39;t find it helpful to create additional files just to connect to state and with the two exports, it is easy to test either one.
+      You can most likely ignore all directories except for the <code>components</code> directory, but I&#39;ll explain the rest if curious.</p>
+      <h4 id=\\"client\\">client</h4>
+      <p>This directly will be client only code -- so stuff that runs in the browser. The basics of this folder is to defined
+      the base styles, configure the redux store, and render the page.</p>
+      <h4 id=\\"components\\">components</h4>
+      <p>Will come back to later. This is the &quot;meat&quot; of the repo.</p>
+      <h4 id=\\"constants\\">constants</h4>
+      <p>This will just be some reusable constants across internal components as well as some <code>sampleData</code> that can be reused.</p>
+      <h4 id=\\"routes\\">routes</h4>
+      <p>This might be badly named, but this folder is more about holding the async or sync route components that should be rendered
+      from <code>react-router</code>. When in development mode, everything will be synchronous. In production, everything in the server will
+      be synchronous while the client will be asynchronous. If a new component needs to be added, both the <a href=\\"src/routes/async.js\\" class=\\"link\\">async.js</a>
+      and the <a href=\\"src/routes/sync.js\\" class=\\"link\\">sync.js</a> will need to be updated.</p>
+      <p>There are two higher order components that can be used for these routes and you can just look at the source files on how to use them.</p>
+      <h4 id=\\"sagas\\">sagas</h4>
+      <p>I ended up going with <code>redux-saga</code> instead of <code>redux-thunk</code> to handle most of my action creator logic. My first version of this server
+      used <code>redux-thunk</code>, but I wanted to learn about sagas so I used them here. There probably isn&#39;t anything too exciting to talk about
+      here if you have used sagas before, but this is how I handle my API calls.</p>
+      <h4 id=\\"server\\">server</h4>
+      <p>This is the main express server that runs both development and production mode. The server is equipped to handle api calls and server
+      side rendering when needed. The API server was really only added because I wanted to pre-fetch some data before server rendering. It
+      might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
+      a full server call... but I wanted to learn how to do some node work.</p>
+      <p>The only &quot;exciting&quot; thing about this server if you are familiar with node is the <a href=\\"src/server/api/github.js\\" class=\\"link\\">github</a> proxy settings. I end
+      up proxying requests to the Github API through my server so I can track some of the rate limiting aspects.</p>
+      <h4 id=\\"state\\">state</h4>
+      <p>This is where I combine all the logic for the redux state.</p>
+      <pre><code>src/state/
+      ├── __tests__
+      │   ├── airQuality.js
+      │   ├── docgens.js
+      │   ├── locale.js
+      │   ├── media.js
+      │   ├── quickNav.js
+      │   ├── routing.js
+      │   ├── sassdocFab.js
+      │   ├── sassdocs.js
+      │   └── theme.js
+      ├── airQuality.js
+      ├── docgens.js
+      ├── drawer.js
+      ├── github
+      │   ├── __tests__
+      │   ├── cache
+      │   ├── index.js
+      │   └── rateLimits.js
+      ├── helmet
+      │   ├── __tests__
+      │   ├── index.js
+      │   ├── link.js
+      │   └── meta.js
+      ├── index.js
+      ├── locale.js
+      ├── media.js
+      ├── quickNav.js
+      ├── routing.js
+      ├── sassdocFab.js
+      ├── sassdocs.js
+      ├── search
+      │   ├── __tests__
+      │   ├── index.js
+      │   ├── meta.js
+      │   ├── results.js
+      │   └── searching.js
+      └── theme.js
+      
+      8 directories, 29 files
+      </code></pre><p>The basic idea is that simple state is in a top-level file while more complex and combined states are put
+      into folders and then separate files.</p>
+      <h4 id=\\"utils\\">utils</h4>
+      <p>Just your basic utils for generating random data and other stuff for formatting. Not super exciting.</p>
+      <h2 id=\\"about\\">About</h2>
+      <p>This section will mostly be rants about me making terrible design decisions and being a terrible developer. Enjoy!</p>
+      <p>This documentation server is probably over-engineered for the amount of traffic I&#39;ll get, but it was a neat learning
+      experience. Some of the things I wanted to solve with this server compared to my previous ones were:</p>
+      <ul>
+      <li>easier dev startup</li>
+      <li>not needing to create additional webpack watchers to run the server</li>
+      <li>easier way to test server side rendering</li>
+      <li>prevent the screen &quot;flashing&quot; after coming from server side rendering</li>
+      <li>load page with custom styles initially</li>
+      <li>better SEO</li>
+      <li>quicker response time</li>
+      <li>long-term caching of static assets</li>
+      </ul>
+      <h3 id=\\"development-startup-time\\">Development startup time</h3>
+      <p>Before this version, I thought I was &quot;smart&quot; by having a separate server for the api calls to get the documentation
+      and another server for handling the server side rendering and pre-fetching data. This actually ended up causing a
+      lot of problems since I also had to transpile all the server code so it could be run on older versions of node. A
+      typical &quot;dev&quot; setup while adding new features for react-md was opening 5 terminals/tabs and running:</p>
+      <pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md
+      $ yarn scripts:watch
+      
+      # Next tab
+      mlaursen @ ~/code/react-md/api
+      $ yarn build:watch
+      
+      # Next tab
+      mlaursen @ ~/code/react-md/api
+      $ yarn dev
+      
+      # Next tab
+      mlaursen @ ~/code/react-md/docs
+      $ yarn build:watch
+      
+      # Next tab
+      $ yarn start:dev
+      </code></pre>
+      <p>Whew. And if I ever wanted to run automated tests, I would need another terminal or tab to run the test watcher command!
+      Now I have a single script that can do everything needed for watching updates, restarted the server on changes, etc. I do
+      normally go with a 3 tab approach still by doing:</p>
+      <pre><code class=\\"lang-bash\\">mlaursen @ ~/code/react-md
+      $ yarn scripts:watch
+      
+      # Next tab
+      mlaursen @ ~/code/react-md/docs
+      $ yarn start:dev
+      
+      # Final tab switches between base and docs directories to run tests
+      </code></pre>
+      <p>This could technically be done with the <code>yarn dev</code> script, but one of the problems is that I can&#39;t send the <code>rs</code> (restart) signal
+      to nodemon to restart the server with this because it uses <code>concurrently</code> behind the scenes. If I can figure out a way to use that
+      and still send keyboard commands to one of the scripts, all would be set.</p>
+      <p>This was mostly fixed by using <a href=\\"https://github.com/catamphetamine/webpack-isomorphic-tools\\" class=\\"link\\">webpack-isomorphic-tools</a> with my server.
+      There are probably better wasy of doing this now like <a href=\\"https://github.com/zeit/next.js/\\" class=\\"link\\">next.js</a>, but I am not a fan of their documentation
+      at the time so I never bothered learning. (<em>I&#39;m so sorry</em>)</p>
+      <h3 id=\\"testing-ssr\\">Testing SSR</h3>
+      <p>One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
+      with the production build is that it doesn&#39;t warn you when the markdup is different between client and server, so this wasn&#39;t ideal.
+      I ended up making some additional changes to the webpack configs to allow a &quot;development&quot; version of the production build, and it was
+      pretty hacky.</p>
+      <p>Just like above, switching to <code>webpack-isomorphic-tools</code> was part of the solution as well as adding a variable to the <code>.env</code> file
+      to switch between the two. The server will now automatically restart with no additional watchers when the value is changed.</p>
+      <h3 id=\\"making-a-better-server\\">Making a better server</h3>
+      <p>Webpack is hard. (See more in <a href=\\"#long-term-caching\\" class=\\"link\\">Long term caching</a>)</p>
+      <h4 id=\\"screen-flashing\\">Screen flashing</h4>
+      <p>Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
+      that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
+      you split up your code and you already have <code>React</code> rendering your page! While the browser is loading your additional chunks required
+      for your page, react will have erased the DOM with what it has avaialbe and then render it again once they have loaded. Ugh. You now
+      get an amazing screen &quot;flash&quot; because of this. Before webpack 2, this was pretty hard to fix. Luckily webpack 2 introduced a way to
+      name dynamic imports with the &quot;magic comment&quot; <code>/* webpackChunkName: MyDynamicModule */</code>. This is super helpful because you can use
+      this along with the <code>manifest.json</code> that can be created by webpack so that you can load all the bundles for a page before calling
+      the first <code>ReactDOM.render()</code> in your app. This works great with <code>react-router@4</code> since you can use the <code>StaticRouter</code> to figure out
+      which bundles need to be loaded, and pass it to the client.</p>
+      <p>To help with this, I ended up making a <a href=\\"src/utils/syncComponent.js\\">syncComponent</a> and <a href=\\"src/utils/asyncComponent.js\\" class=\\"link\\">asyncComponent</a>
+      HOC. The syncronous component (which should be used by the server) will update the <code>staticContext</code> provided by the <code>StaticRouter</code> and
+      push the <code>chunkName</code> to a list of bundles that need to be loaded before the page can render. This can be seen in the <a href=\\"src.routes/sync.js\\" class=\\"link\\">routes/sync</a>
+      and <a href=\\"src/routes/async.js\\" class=\\"link\\">routes/async</a> files. With all this set up, the final things are just to provide the list of bundles to the client
+      in a &quot;hidden&quot; window variable, load all the bundles, and then render <code>React</code>. Here is the updated <a href=\\"src/client/index.jsx\\" class=\\"link\\">client/index.jsx</a> file to show
+      it in action.</p>
+      <p>Sadly, there is another step that is needed for all of this. When your page is rendered from the server, you will need to inline the webpack
+      manifest to help with these chunk loads. Checkout the <a href=\\"src/server/utils/renderHtmlPage.js\\" class=\\"link\\">renderHtmlPage.js</a> for some more info on that.</p>
+      <h4 id=\\"screen-flashing-part-two-styles-\\">Screen flashing (Part Two: Styles)</h4>
+      <p>The next step was to fix the weird delay when a user uses a custom style from the Theme Builder page. I ended up holding the custom styles
+      in the <code>localStorage</code> of the client. This basically meant that the page had to render, then do logic client side to figure out if they had
+      a custom theme. If they did, I would have to update create a new <code>&lt;link&gt;</code> with the custom <code>href</code> and inject into the head after the initial
+      load. This would cause the base styles to be loaded and then flash with the new colors afterwards. I managed to fix this issue by using
+      <a href=\\"https://github.com/nfl/react-helmet\\" class=\\"link\\">react-helmet</a> and switching to cookies instead of <code>localStorage</code>. Now that the server has access to the
+      theme before rendering, I can get <code>react-helmet</code> to create the custom <code>&lt;link&gt;</code> tag at initial render. Pretty neat stuff!</p>
+      <blockquote>
+      <p>See more about <code>react-helmet</code> in next section</p>
+      </blockquote>
+      <p>Some other problems that happened are related to the <code>ExtractTextPlugin</code> for webpack. Something that I didn&#39;t understand for awhile is that
+      if the <code>allChunks</code> option was not enabled, all the styles would be dynamically loaded and injected after the javascript loads. This was pretty
+      terrible when most of my additional styles were small and had no reason to be dynamically loaded. This &quot;feature&quot; is probably super nice when
+      you create all your styles from the ground up, but when you are using an already existing framework/library for styles, it causes a lot of
+      page repaints and flashing while these styles are loaded.</p>
+      <h4 id=\\"better-seo\\">Better SEO</h4>
+      <p>Part of the problem with the first server is that the page&#39;s title was always the same for each page you were on. It wasn&#39;t very helpful
+      when glancing at your tabs to tell what you were looking at. With this server, I used <code>react-helmet</code> to dynamically update the page&#39;s title
+      based on the route to give some more context. It is now possible to tell if you are on the home page of react-md, looking at a component&#39;s
+      example/prop type/sassdoc page.</p>
+      <p>Some other things I changed are that I now attempt to support some of the <a href=\\"http://ogp.me/\\" class=\\"link\\">Open Graph Protocol</a> so that react-md can
+      be linked in other sites with some nice content. This wasn&#39;t too big and I haven&#39;t fully tested it to see if it did anything since
+      I don&#39;t really use Facebook or Twiiter. Oh well.</p>
+      <h3 id=\\"long-term-caching\\">Long term caching</h3>
+      <p>Webpack is hard. (Again)</p>
+      <p>Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correctl loader for
+      your filetype and you&#39;re set!</p>
+      <pre><code class=\\"lang-js\\">import path from &#39;path&#39;;
+      
+      export default {
+        entry: &#39;src/index.jsx&#39;,
+        output: {
+          path: path.resolve(__dirname, &#39;public&#39;),
+          filename: &#39;bundle.js&#39;,
+        },
+      };
+      </code></pre>
+      <p>and you&#39;re all set!</p>
+      <p>...
+      ...
+      ...</p>
+      <p>sorta.</p>
+      <p>Now how do you handle production builds? How can I make sure that my latest changes will actually
+      show up on the client since the browser caches data? How do I add css/sass/less? How do I hot reload?
+      How do I hot reload styles?</p>
+      <p>Well, now that some more time has passed, <a href=\\"https://github.com/facebookincubator/create-react-app\\" class=\\"link\\">create-react-app</a> <em>is</em>
+      probably the way to go for most of these things since it has gotten a lot better since the first few releases. There
+      is still no native Sass/SCSS support, so you need to create additional tasks to watch with <code>node-sass</code> so it gets added to
+      your app. This is <em>ok</em>, but you lose the benefits of having webpack do resolutions for you.</p>
+      <p>One of the weird problems I&#39;ve been running into lately is that my styles are being imported in reverse order by the
+      <code>ExtractTextWebpackPlugin</code>, so the <code>react-md</code> style overrides require an extra layer of selector precedence to override.
+      No idea what caused it :/</p>
+      <p>Anyways, back to long term caching. There is the great feature in <code>webpack</code> to automatically create hashes on your chunks
+      and entry points so that after you do a build, your file names have changed and your changes will be guaranteed to show up
+      when a user visits your page. However, this ruins your long term caching since this is not based on content in those files
+      for the hash and each build will generate new hashes even if the content didn&#39;t change.</p>
+      <p>I ended up following a <a href=\\"https://survivejs.com/webpack/optimizing/separating-manifest/\\" class=\\"link\\">couple</a>
+      <a href=\\"https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31\\" class=\\"link\\">of</a>
+      <a href=\\"https://webpack.js.org/guides/caching/\\" class=\\"link\\">articles</a> about this and endup going with:</p>
+      <ul>
+      <li>using the <code>WebpackMd5Hash</code> plugin</li>
+      <li>using the <code>ManifestPlugin</code></li>
+      <li>using the <code>HashedModuleIdsPlugin</code></li>
+      <li>extracting the <code>manifest</code> code</li>
+      <li>inline the <code>webpack manifest</code> when being server rendered.</li>
+      </ul>
+      <p>The webpack config was updated to include <a href=\\"webpack.config.js#L40-L48\\" class=\\"link\\">these lines</a> for longer hashing and my server rendered
+      page <a href=\\"src/server/utils/renderHtmlPage.js#L5-L21\\">inlined the manifiest</a> in the <a href=\\"src/server/utils/renderHtmlPage.js#L99\\" class=\\"link\\">head</a>.
+      This actually allowed for some better bundle loading support and extracting some of the common code out again for smaller bundles.</p>
+      <h3 id=\\"quick-response-times\\">Quick Response Times</h3>
+      <p>One of the other goals of this was to get some better response time. This hasn&#39;t fully been updated, but I ended up adding service workers
+      to do additional caching of assets throughout the website. The whole Service Worker thing was a pain though since most of the examples
+      and tutorials are not about handling server rendered pages (who needs em now anyways?). <code>create-react-app</code> has been updated somewhat recently
+      to include service workers by default using the <a href=\\"https://github.com/goldhand/sw-precache-webpack-plugin\\" class=\\"link\\">sw-precache-webpack-plugin</a> which
+      uses <a href=\\"https://github.com/GoogleChrome/sw-precache\\" class=\\"link\\">sw-precache</a> that was created by Google. This plugin is pretty cool since it does most of
+      the work for you by analyzing your webpack output files and bundles and automatically runs the <code>sw-precache</code> script with these assets to cache.</p>
+      <p>This is really neat until you need to support server rendered pages. There is a <code>navigateFallback: PUBLIC_PATH + &#39;index.html&#39;</code> option which
+      <em>seems</em> amazing until you want to deal with subsequent visits. If the page is server rendered, you no longer get those benefits and your
+      <code>index.html</code> file is served instead. Once again, this is fine if you are doing client only stuff. Now I started wondered &quot;how in the world can
+      I get offline access to my website now?&quot;.</p>
+      <p>There is another feature in the <code>sw-precache-webpack-plugin</code> that allows you to import other scripts to be used by the Service Worker. I was
+      <strong>really</strong> hoping this would be the fix, but alas it did not work quite as expected. The <code>importScripts</code> can contain a <code>chunkName</code> or a <code>fileName</code>
+      to be imported by the Service Worker so you get all the compilation minification through webpack and then it is loaded via the loader. Unfortunately
+      this doesn&#39;t work since the manifest was extracted and the service worker fails. <strong>sigh</strong></p>
+      <p>I ended up &quot;fixing&quot; this by creating a small <a href=\\"src/utils/SWOfflinePlugin.js\\" class=\\"link\\">SWOfflinePlugin</a> that transpiles the code, minifies it, and then writes
+      it to the output directory. It isn&#39;t super ideal since I don&#39;t know how to trigger events correctly yet for displaying offline or normal modes.</p>
       <h2 id=\\"scripts\\">Scripts</h2>
       <ul>
       <li><a href=\\"#clean\\" class=\\"link\\">clean</a><ul>
@@ -185,6 +505,58 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This will run tests only for the documentation server.</p>
       <h3 id=\\"test-watch\\">test:watch</h3>
       <p>This will run the tests in jest watch mode.</p>
+      <h2 id=\\"production-stack\\">Production Stack</h2>
+      <p>When running the react-md.mlaursen.com website for production, my setup is as follows:</p>
+      <ul>
+      <li>Amazon Linux Micro EC2 Instance</li>
+      <li><a href=\\"https://letsencrypt.org/\\">letsencrypt</a> <a href=\\"https://certbot.eff.org/\\" class=\\"link\\">certbot</a> for auto SSL cert renewal</li>
+      <li>nginx for reverse proxying, SSL, and serving static assets</li>
+      <li>express for server side rendering</li>
+      <li><a href=\\"https://github.com/Unitech/pm2\\" class=\\"link\\">pm2</a> for running the servers as background processes</li>
+      </ul>
+      <h3 id=\\"ssl-certs\\">SSL Certs</h3>
+      <p>One of the problems of using the Amazon Linux instance is that certbot has <strong>very</strong> limited support
+      with it, so it constantly breaks. If the certbot decides to update itself or any security updates
+      from Amazon, certbot will most likely stop working.</p>
+      <p>Here are the initial steps of getting cerbot setup:</p>
+      <pre><code class=\\"lang-bash\\">$ wget https://dl.eff.org/certbot-auto
+      $ chmod a+x certbot-auto
+      $ sudo su -
+      $ mv certbot-auto /usr/local/bin/
+      </code></pre>
+      <p>Once it has been moved to your bin, you can set up new certs with:</p>
+      <pre><code class=\\"lang-bash\\">$ sudo su -
+      $ certbot-auto certonly \\\\
+          --debug \\\\
+          --standalone \\\\
+          -d HOSTNAME.com \\\\
+          --pre-hook=&quot;service nginx stop&quot; \\\\
+          --post-hook=&quot;service nginx start&quot;
+      </code></pre>
+      <p>or renew all certs:</p>
+      <pre><code class=\\"lang-bash\\">$ sudo su -
+      $ certbot-only renew \\\\
+          --no-self-upgrade
+          --debug \\\\
+          --pre-hook=&quot;service nginx stop&quot; \\\\
+          --post-hook=&quot;service nginx start&quot;
+      </code></pre>
+      <blockquote>
+      <p>--debug is the important part. It won&#39;t work otherwise.</p>
+      </blockquote>
+      <p>I end up creating the renewal script to be run twice daily via a cron job.</p>
+      <p>When certbot breaks, <a href=\\"https://github.com/certbot/certbot/issues/2872#issuecomment-297845668\\" class=\\"link\\">this thread</a> and comment
+      is a good resource. The linked comment has worked the last 2 times it has broken.</p>
+      <h3 id=\\"nginx\\">nginx</h3>
+      <p>Right now, I am using nginx to handle the majority of the heavy networking. It has been set up
+      to handle the gzipping of static content, caching and serving static assets as well as handling
+      the virtual hosts + SSL certs. All of this <em>could</em> be done via express and additional modules,
+      but nginx is quite more performant than the node counterparts.</p>
+      <p>The nginx config files I use can be found in the <a href=\\"src/nginx\\" class=\\"link\\">nginx folder</a> if this is interesting.</p>
+      <h3 id=\\"pm2\\">pm2</h3>
+      <p>I end up running the current and next versions of the react-md documentation websites with pm2.
+      There are probably other ways to run node web servers as processes, but this is the easiest way
+      so far.</p>
       ",
       }
     }

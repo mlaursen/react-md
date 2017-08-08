@@ -6,24 +6,7 @@ tar_name=react-md.tar.bz2
 ssh_alias=react-md
 server_location=/var/www/react-md/v1.1.x
 
-while [[ $# -gt 1 ]]; do
-  case "$1" in
-    -s|--skip-build)
-      # skip the react-md base build but still run the docs build
-      NO_BUILD=1
-      ;;
-    *)
-      # Nothing else supported
-      ;;
-  esac
-
-  shift
-done
-
-if [ -z "$NO_BUILD" ]; then
-  yarn
-  yarn prebuild && yarn scripts
-fi
+yarn && yarn prebuild && yarn scripts
 
 cd docs
 yarn && yarn build
@@ -42,4 +25,4 @@ tar --exclude='docs/src/server/databases/.gitkeep' \
 ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib docs/public/assets docs/public/sassdoc && cd docs && yarn --production"
 scp "$tar_name" "$ssh_alias":"$server_location"
 
-ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name"
+ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name && git clean -f && cd .. && pm2 start processes.yml"

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
@@ -10,10 +9,9 @@ import { getTab } from 'utils/routing';
 import './_styles.scss';
 
 @withRouter
-@connect(({ media: { mobile, tablet } }) => ({ mobile: mobile || tablet }))
 export default class DocumentationTabs extends PureComponent {
   static propTypes = {
-    mobile: PropTypes.bool.isRequired,
+    visible: PropTypes.bool,
     location: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -30,10 +28,10 @@ export default class DocumentationTabs extends PureComponent {
   };
 
   render() {
-    const {
-      mobile,
-      location: { pathname, search },
-    } = this.props;
+    const { location: { pathname, search }, visible } = this.props;
+    if (!visible) {
+      return null;
+    }
 
     const activeTabIndex = getTab(search) || 0;
     const colors = pathname.indexOf('colors') !== -1;
@@ -59,11 +57,11 @@ export default class DocumentationTabs extends PureComponent {
 
     return (
       <Tabs
+        mobile={false}
         tabId="documentation"
         className="documentation-tabs"
         activeTabIndex={activeTabIndex}
         onTabChange={this.handleTabChange}
-        mobile={mobile}
       >
         <Tab label={firstTabLabel} id={`documentation-${firstTabLabel.toLowerCase()}`} key="first-tab" />
         {propTypesTab}

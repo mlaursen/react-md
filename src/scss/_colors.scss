@@ -1226,6 +1226,7 @@ $md-dark-theme-colors: (
 /// - md-text - Styles the `color` to be the text color.
 /// - md-text--secondary - Styles the `color` to be the secondary text color.
 /// - md-text--disabled - Styles the `color` to be the disabled text color.
+/// - md-text--error - Styles the `color` to be the error text color.
 /// - md-text--theme-primary - Styles the `color` to be the `primary` color.
 /// - md-text--theme-secondary - Styles the `color` to be the `secondary` color.
 /// - md-background - Styles the `background` to be the base background color.
@@ -1253,6 +1254,7 @@ $md-dark-theme-colors: (
 ///     class name.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
+/// @param {Color} error-color [$md-error-color] - The text folor for any text that appears in the `md-text--error` class name.
 /// @group colors, themes
 @mixin react-md-colors(
   $primary-color: $md-primary-color,
@@ -1263,7 +1265,8 @@ $md-dark-theme-colors: (
   $primary-opacity: $md-primary-hover-opacity,
   $primary-background-text-color: $md-primary-background-text-color,
   $secondary-opacity: $md-secondary-hover-opacity,
-  $secondary-background-text-color: $md-secondary-background-text-color
+  $secondary-background-text-color: $md-secondary-background-text-color,
+  $error-color: $md-error-color
 ) {
   .md-text {
     color: get-color('text', $light-theme);
@@ -1282,6 +1285,10 @@ $md-dark-theme-colors: (
 
     &--theme-secondary {
       color: $secondary-color;
+    }
+
+    &--error {
+      color: $error-color;
     }
   }
 
@@ -1337,6 +1344,7 @@ $md-dark-theme-colors: (
 /// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
+/// @param {Color} error-color [$md-error-color] - The text folor for any text that appears in the `md-text--error` class name.
 /// @group colors, themes
 @mixin react-md-theme-colors(
   $primary-color: $md-primary-color,
@@ -1346,7 +1354,8 @@ $md-dark-theme-colors: (
   $primary-opacity: $md-primary-hover-opacity,
   $primary-background-text-color: $md-primary-background-text-color,
   $secondary-opacity: $md-secondary-hover-opacity,
-  $secondary-background-text-color: $md-secondary-background-text-color
+  $secondary-background-text-color: $md-secondary-background-text-color,
+  $error-color: $md-error-color
 ) {
   @if $primary-color != $md-primary-color {
     .md-text--theme-primary {
@@ -1389,6 +1398,12 @@ $md-dark-theme-colors: (
   } @else if $secondary-background-text-color != $md-secondary-background-text-color {
     .md-background--secondary {
       color: $secondary-background-text-color;
+    }
+  }
+
+  @if $error-color != $md-error-color {
+    .md-text--error {
+      color: $error-color;
     }
   }
 

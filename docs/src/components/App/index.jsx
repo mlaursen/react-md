@@ -13,6 +13,7 @@ import navItems from 'constants/navItems';
 import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
+import Messages from 'components/Messages';
 import Search from 'components/Search';
 import MobileNavigation from 'components/MobileNavigation';
 
@@ -136,11 +137,8 @@ export default class App extends PureComponent {
       location: { pathname },
     } = this.props;
 
-    let tabs;
     let bottomNav;
-    if (!mobile && toolbarProminent) {
-      tabs = <DocumentationTabs key="tabs" />;
-    } else if (mobile && pathname.startsWith('/components')) {
+    if (mobile && pathname.startsWith('/components')) {
       bottomNav = <MobileNavigation key="bottom-navigation" />;
     }
 
@@ -157,7 +155,7 @@ export default class App extends PureComponent {
         })}
         toolbarZDepth={visibleBoxShadow ? undefined : 0}
         toolbarProminent={!mobile && toolbarProminent}
-        toolbarChildren={tabs}
+        toolbarChildren={<DocumentationTabs visible={!mobile && toolbarProminent} />}
         toolbarActions={<Search key="search" />}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {
@@ -170,6 +168,7 @@ export default class App extends PureComponent {
         <Helmet {...helmetConfig} title={toolbarTitle} meta={meta} link={link} />
         <Routes key={key} />
         {bottomNav}
+        <Messages />
         <Footer />
       </NavigationDrawer>
     );

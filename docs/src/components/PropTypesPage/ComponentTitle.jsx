@@ -14,11 +14,7 @@ export default class ComponentTitle extends PureComponent {
     onFilter: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = { visible: false };
-  }
+  state = { visible: false };
 
   open = () => {
     this.setState({ visible: true });

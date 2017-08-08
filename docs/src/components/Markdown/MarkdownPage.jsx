@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Markdown from './Markdown';
 
 const MarkdownPage = ({ style, className, markdownStyle, markdownClassName, markdown }) => (
-  <section style={style} className={cn('md-grid', className)}>
+  <section style={style} className={cn('md-grid md-grid--stacked', className)}>
     <Markdown
       style={markdownStyle}
       className={cn('md-cell md-cell--12 md-text-container', markdownClassName)}

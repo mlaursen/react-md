@@ -701,8 +701,6 @@ export default class Autocomplete extends PureComponent {
       // Prevent any form submissions
       e.preventDefault();
 
-      // Need to emulate the click event since the default enter/space don't work for some reason
-      e.target.click();
       this._handleItemClick(this.state.matchIndex);
     }
   };

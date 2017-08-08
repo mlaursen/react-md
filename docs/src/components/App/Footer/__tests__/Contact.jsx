@@ -1,11 +1,11 @@
 /* eslint-env jest */
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { createSnapshot } from 'utils/testing';
 import Contact from '../Contact';
 
 describe('Contact', () => {
   it('should render correctly', () => {
-    const tree = renderer.create(<Contact />).toJSON();
+    const tree = createSnapshot(<Contact />);
     expect(tree).toMatchSnapshot();
   });
 });

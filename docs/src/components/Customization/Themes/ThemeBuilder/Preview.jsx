@@ -9,12 +9,10 @@ const NAV_ITEMS = [
   { primaryText: 'Of the Police' },
 ];
 
-export default class Preview extends PureComponent {
-  constructor(props) {
-    super(props);
+const idPrefix = 'theme-builder-preview';
 
-    this.state = { visible: false };
-  }
+export default class Preview extends PureComponent {
+  state = { visible: false };
 
   toggleDrawer = () => {
     this.setState({ visible: !this.state.visible });
@@ -28,20 +26,22 @@ export default class Preview extends PureComponent {
     return (
       <section className="md-background--card theme-preview" ref={(container) => { this._container = container; }}>
         <Toolbar
-          nav={<Button icon onClick={this.toggleDrawer}>menu</Button>}
+          id={`${idPrefix}-toolbar`}
+          nav={<Button id={`${idPrefix}-drawer-toggle`} icon onClick={this.toggleDrawer}>menu</Button>}
           title="Theme Preview"
           colored
           fixed
         />
         <div className="md-grid md-toolbar-relative">
           <h2 className="md-display-1 md-cell md-cell--12">Look at this</h2>
-          <Button primary raised className="theme-preview__btn">
+          <Button id={`${idPrefix}-btn`} primary raised className="theme-preview__btn">
             Button
           </Button>
         </div>
         <Drawer
+          id={`${idPrefix}-drawer`}
           renderNode={this._container}
-          header={<Toolbar title="Theme Preview" />}
+          header={<Toolbar title="Theme Preview" id={`${idPrefix}-drawer-toolbar`} />}
           navClassName="md-toolbar-relative"
           navItems={NAV_ITEMS}
           visible={this.state.visible}
@@ -49,7 +49,7 @@ export default class Preview extends PureComponent {
           overlay
           type={Drawer.DrawerTypes.TEMPORARY}
         />
-        <Button floating secondary fixed>email</Button>
+        <Button id={`${idPrefix}-floating-btn`} floating secondary fixed>email</Button>
       </section>
     );
   }

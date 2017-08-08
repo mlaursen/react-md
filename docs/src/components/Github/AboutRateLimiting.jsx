@@ -36,7 +36,7 @@ export class AboutRateLimiting extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = this.getResetTimes(props.rateLimits);
     this.timer = null;

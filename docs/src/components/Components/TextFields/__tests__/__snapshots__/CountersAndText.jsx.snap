@@ -1,0 +1,476 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountersAndText should render correctly 1`] = `
+<div
+  className="md-grid"
+>
+  <h4
+    className="md-cell md-cell--12"
+  >
+    Counters
+  </h4>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="floating-label-counter-field"
+    >
+      Type words
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="floating-label-counter-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+    >
+      <p
+        aria-hidden={true}
+        className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+      >
+        0 / 20
+      </p>
+    </div>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--multiline md-cell md-cell--bottom"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="multiline-counter-field"
+    >
+      Type many words
+    </label>
+    <div
+      className="md-text-field-multiline-container md-text-field--floating-margin"
+      style={
+        Object {
+          "height": null,
+        }
+      }
+    >
+      <span
+        aria-hidden={true}
+      />
+      <textarea
+        aria-hidden={true}
+        className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+        defaultValue={undefined}
+        readOnly={true}
+        rows={2}
+        style={undefined}
+        tabIndex={-1}
+        value={undefined}
+      />
+      <textarea
+        className="md-text-field md-text md-text-field--multiline md-full-width"
+        defaultValue={undefined}
+        disabled={undefined}
+        id="multiline-counter-field"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder={null}
+        rows={2}
+        style={
+          Object {
+            "height": null,
+          }
+        }
+        value={undefined}
+      />
+    </div>
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+    >
+      <p
+        aria-hidden={true}
+        className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+      >
+        0 / 200
+      </p>
+    </div>
+  </div>
+  <h4
+    className="md-cell md-cell--12"
+  >
+    Help Text
+  </h4>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="floating-label-help-text-field"
+    >
+      Type words
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="floating-label-help-text-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-full-width"
+    >
+      <p
+        aria-hidden={false}
+        className="md-text-field-message md-text-field-message--active"
+      >
+        Look at me. I am always here!
+      </p>
+    </div>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="floating-label-focus-help-text-field"
+    >
+      Type words
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="floating-label-focus-help-text-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only md-full-width"
+    >
+      <p
+        aria-hidden={true}
+        className="md-text-field-message md-text-field-message--inactive"
+      >
+        I magically appear when the user focuses the text field.
+      </p>
+    </div>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="placeholder-help-text-counter-field"
+    >
+      Counter and text
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="placeholder-help-text-counter-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-full-width"
+    >
+      <p
+        aria-hidden={false}
+        className="md-text-field-message md-text-field-message--active"
+      >
+        I have help text and a counter. It is quite amazing.
+      </p>
+      <p
+        aria-hidden={true}
+        className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+      >
+        0 / 40
+      </p>
+    </div>
+  </div>
+  <h4
+    className="md-cell md-cell--12"
+  >
+    Errors and Error Text
+  </h4>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--error md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="floating-label-error-text-field"
+    >
+      Constant error
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="floating-label-error-text-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left md-divider--text-field-error"
+    />
+    <div
+      className="md-text-field-message-container md-text--error md-full-width"
+    >
+      <p
+        aria-hidden={false}
+        className="md-text-field-message md-text-field-message--active"
+      >
+        Uh oh! It looks like there is a constant error on this field. It should somehow be fixed.
+      </p>
+    </div>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized"
+      htmlFor="floating-label-required-error-text-field"
+    >
+      Required field *
+    </label>
+    <input
+      className="md-text-field md-text md-full-width md-text-field--floating-margin"
+      disabled={undefined}
+      id="floating-label-required-error-text-field"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder={null}
+      rows={undefined}
+      style={undefined}
+      type="text"
+    />
+    <hr
+      className="md-divider md-divider--text-field md-divider--expand-from-left"
+    />
+    <div
+      className="md-text-field-message-container md-text--disabled md-full-width"
+    >
+      <p
+        aria-hidden={false}
+        className="md-text-field-message md-text-field-message--active"
+      >
+        Try to focus and blur this field without adding any input. Then add some content.
+      </p>
+    </div>
+  </div>
+  <div
+    className="md-text-field-container md-full-width md-text-field-container--input md-cell md-cell--top"
+    onClick={[Function]}
+    onDoubleClick={undefined}
+    onMouseDown={undefined}
+    onMouseLeave={undefined}
+    onMouseOver={undefined}
+    onMouseUp={undefined}
+    onTouchCancel={undefined}
+    onTouchEnd={undefined}
+    onTouchMove={undefined}
+    onTouchStart={undefined}
+    style={
+      Object {
+        "width": null,
+      }
+    }
+  >
+    <label
+      className="md-floating-label md-text--secondary md-floating-label--inactive md-floating-label--inactive-sized md-floating-label--icon-offset"
+      htmlFor="floating-label-icon-counter-error-text-field"
+    >
+      Icon and counter
+    </label>
+    <div
+      className="md-text-field-icon-container"
+    >
+      <i
+        className="md-icon material-icons md-text-field-icon md-text-field-icon--positioned"
+        style={undefined}
+      >
+        feedback
+      </i>
+      <div
+        className="md-text-field-divider-container md-text-field-divider-container--grow"
+      >
+        <input
+          className="md-text-field md-text md-full-width md-text-field--floating-margin"
+          disabled={undefined}
+          id="floating-label-icon-counter-error-text-field"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder={null}
+          rows={undefined}
+          style={undefined}
+          type="text"
+        />
+        <hr
+          className="md-divider md-divider--text-field md-divider--expand-from-left"
+        />
+      </div>
+    </div>
+    <div
+      className="md-text-field-message-container md-text--disabled md-text-field-message-container--left-icon-offset md-full-width"
+    >
+      <p
+        aria-hidden={false}
+        className="md-text-field-message md-text-field-message--active"
+      >
+        The icons also gain the error state.
+      </p>
+      <p
+        aria-hidden={true}
+        className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+      >
+        0 / 40
+      </p>
+    </div>
+  </div>
+</div>
+`;

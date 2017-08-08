@@ -63,7 +63,7 @@ export class PureSearch extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       value: '',
@@ -197,7 +197,7 @@ export class PureSearch extends PureComponent {
     let hideBtn;
     if (searching || animating) {
       hideBtn = (
-        <Button key="hide" icon onClick={hideSearch}>
+        <Button key="hide" id="documentation-search-hide" icon onClick={hideSearch}>
           close
         </Button>
       );

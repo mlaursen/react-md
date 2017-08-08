@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlockedFields should render correctly 1`] = `
+<div
+  className="md-paper md-paper--1 phone-emulator"
+  style={undefined}
+>
+  <header
+    className="phone-emulator__status-bar"
+  >
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_wifi
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      network_cell
+    </i>
+    <i
+      className="md-icon material-icons"
+      style={undefined}
+    >
+      battery_full
+    </i>
+    <span
+      className="phone-emulator__status-bar__time"
+    >
+      12:30
+    </span>
+  </header>
+  <header
+    className="md-paper md-paper--2 md-toolbar md-background--primary md-toolbar--text-white md-toolbar--fixed phone-emulator__toolbar"
+    style={undefined}
+  >
+    <button
+      className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar md-toolbar--action-left"
+      disabled={undefined}
+      href={undefined}
+      onClick={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      type="button"
+    >
+      <i
+        className="md-icon material-icons"
+        style={undefined}
+      >
+        menu
+      </i>
+    </button>
+    <h2
+      className="md-title md-title--toolbar"
+      id={undefined}
+      style={undefined}
+    >
+      Title
+    </h2>
+    <div
+      className="md-cell--right md-toolbar--action-right"
+    >
+      <button
+        className="md-inline-block md-btn md-btn--icon md-pointer--hover md-btn--toolbar"
+        disabled={undefined}
+        href={undefined}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        type="button"
+      >
+        <i
+          className="md-icon material-icons"
+          style={undefined}
+        >
+          send
+        </i>
+      </button>
+    </div>
+  </header>
+  <section
+    className="phone-emulator__content phone-emulator__content--padded phone-emulator__content--offset"
+    id={undefined}
+    style={undefined}
+  >
+    <div
+      className="text-fields__contacts"
+    >
+      <button
+        className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
+        onClick={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+        type="button"
+      >
+        <div
+          className="md-inline-block md-avatar md-avatar--default"
+        >
+          <img
+            alt="Freddy Kruger's avatar"
+            className="md-avatar-img"
+            role={undefined}
+            src="https://unplash.it/300?random&time=3"
+          />
+        </div>
+        <span
+          className="md-chip-text"
+        >
+          Freddy Kruger
+        </span>
+        <i
+          className="md-icon material-icons md-chip-icon md-chip-icon--rotate"
+          style={undefined}
+        >
+          add_circle
+        </i>
+      </button>
+      <button
+        className="md-chip md-chip--avatar md-chip--remove text-fields__contact-chip"
+        onClick={[Function]}
+        onMouseLeave={[Function]}
+        onMouseOver={[Function]}
+        type="button"
+      >
+        <div
+          className="md-inline-block md-avatar md-avatar--default"
+        >
+          <img
+            alt="Bob Belcher's avatar"
+            className="md-avatar-img"
+            role={undefined}
+            src="https://unplash.it/300?random&time=3"
+          />
+        </div>
+        <span
+          className="md-chip-text"
+        >
+          Bob Belcher
+        </span>
+        <i
+          className="md-icon material-icons md-chip-icon md-chip-icon--rotate"
+          style={undefined}
+        >
+          add_circle
+        </i>
+      </button>
+    </div>
+    <hr
+      className="md-divider"
+    />
+    <div
+      className="md-text-field-container md-full-width md-text-field-container--input md-text-field-container--input-block md-text-field-container--padded-block"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
+    >
+      <input
+        className="md-text-field md-text md-full-width"
+        defaultValue="Plans for the weekend"
+        disabled={undefined}
+        id="email-subject"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Subject"
+        rows={undefined}
+        style={undefined}
+        type="text"
+      />
+      <div
+        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
+      >
+        <p
+          aria-hidden={true}
+          className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+        >
+          21 / 80
+        </p>
+      </div>
+    </div>
+    <hr
+      className="md-divider"
+    />
+    <div
+      className="md-text-field-container md-full-width md-text-field-container--multiline md-text-field-container--multiline-block md-text-field-container--padded-block"
+      onClick={[Function]}
+      onDoubleClick={undefined}
+      onMouseDown={undefined}
+      onMouseLeave={undefined}
+      onMouseOver={undefined}
+      onMouseUp={undefined}
+      onTouchCancel={undefined}
+      onTouchEnd={undefined}
+      onTouchMove={undefined}
+      onTouchStart={undefined}
+      style={
+        Object {
+          "width": null,
+        }
+      }
+    >
+      <div
+        className="md-text-field-multiline-container"
+        style={
+          Object {
+            "height": null,
+          }
+        }
+      >
+        <span
+          aria-hidden={true}
+        />
+        <textarea
+          aria-hidden={true}
+          className="md-text-field md-text md-text-field--multiline md-full-width md-text-field--multiline-mask"
+          defaultValue="Hi,
+        I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
+          readOnly={true}
+          rows={4}
+          style={undefined}
+          tabIndex={-1}
+          value={undefined}
+        />
+        <textarea
+          className="md-text-field md-text md-text-field--multiline md-full-width"
+          defaultValue="Hi,
+        I just wanted to check in and see if you had any plans this upcoming weekend. We are thinking of heading up to Napa. Let us know if you'd like to go and we'll make reservations."
+          disabled={undefined}
+          id="email-body"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Body"
+          rows={4}
+          style={
+            Object {
+              "height": null,
+            }
+          }
+          value={undefined}
+        />
+      </div>
+      <div
+        className="md-text-field-message-container md-text--disabled md-text-field-message-container--count-only"
+      >
+        <p
+          aria-hidden={true}
+          className="md-text-field-message md-text-field-message--inactive"
+        >
+          Max 1000 characters.
+        </p>
+        <p
+          aria-hidden={true}
+          className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
+        >
+          181 / 1000
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+`;

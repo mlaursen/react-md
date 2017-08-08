@@ -330,7 +330,7 @@ class Button extends PureComponent {
   _getType(props) {
     if (props.flat || (props.disabled && props.raised)) {
       return 'flat';
-    } else if (props.icon || (props.disabled && props.floating)) {
+    } else if (props.icon) {
       return 'icon';
     } else if (props.raised) {
       return 'raised';
@@ -545,6 +545,8 @@ class Button extends PureComponent {
           'md-text': !disabled && !primary && !secondary && !icon && !floating,
           'md-text--disabled': disabled,
           'md-pointer--hover': !disabled,
+          'md-paper md-paper--2': !disabled && floating,
+          'md-paper--4': !disabled && floating && pressed,
           'md-btn--text': flat || raised,
           'md-btn--hover': hover && !disabled,
           'md-btn--raised-disabled': raised && disabled,
@@ -552,7 +554,6 @@ class Button extends PureComponent {
           'md-btn--fixed': fixed,
           [`md-btn--fixed-${fixedPosition}`]: floating && fixed,
           'md-btn--floating-mini': floating && mini,
-          'md-btn--floating-pressed': floating && pressed,
           'md-btn--snackbar-floating': snackbar,
           [`md-btn--snackbar-floating-${snackbarType}adjust`]: snackbar && snackbarType !== null,
         }, className)}

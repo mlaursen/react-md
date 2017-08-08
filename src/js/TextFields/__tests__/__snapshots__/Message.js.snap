@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message should render correctly 1`] = `null`;
+
+exports[`Message should render correctly 2`] = `
+<p
+  aria-hidden="true"
+  class="md-text-field-message md-text-field-message--inactive"
+>
+  <span>
+    Hello, World!
+  </span>
+</p>
+`;
+
+exports[`Message should render correctly 3`] = `
+<p
+  aria-hidden="false"
+  class="md-text-field-message md-text-field-message--active"
+>
+  <span>
+    Hello, World!
+  </span>
+</p>
+`;

@@ -5,8 +5,10 @@
 /// The error color to use on text fields. This will be applied to the
 /// any icons, text field error message, floating label, and the text
 /// field divider when there is an error.
+///
 /// @type Color
-$md-text-field-error-color: $md-red-500 !default;
+/// @deprecated
+$md-text-field-error-color: $md-error-color !default;
 
 /// The text field divider's active height. This is the bar that
 /// gets colored with the primary color or the error color.
@@ -371,7 +373,7 @@ $md-text-field-line-height: 1.15 !default;
 @mixin react-md-text-fields(
   $primary-color: $md-primary-color,
   $light-theme: $md-light-theme,
-  $error-color: $md-text-field-error-color,
+  $error-color: $md-error-color,
   $include-media: $md-media-included,
   $include-multiline: $md-text-field-include-multiline,
   $include-floating-label: $md-text-field-include-floating-label,
@@ -422,10 +424,7 @@ $md-text-field-line-height: 1.15 !default;
 ///     @include react-md-theme-text-fields($md-blue-500);
 ///   }
 ///
-/// @see {mixin} react-md-theme-text-field-icon
 /// @see {mixin} react-md-theme-text-field-divider
-/// @see {mixin} react-md-theme-text-field-message
-/// @see {mixin} react-md-theme-text-field-floating-label
 /// @param {Color} primary-color - The primary color to theme text fields with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
@@ -446,7 +445,7 @@ $md-text-field-line-height: 1.15 !default;
 @mixin react-md-theme-text-fields(
   $primary-color,
   $light-theme: $md-light-theme,
-  $error-color: $md-text-field-error-color,
+  $error-color: $md-error-color,
   $include-multiline: $md-text-field-include-multiline,
   $include-floating-label: $md-text-field-include-floating-label,
   $include-block: $md-text-field-include-block,
@@ -469,18 +468,6 @@ $md-text-field-line-height: 1.15 !default;
   }
 
   @include react-md-theme-text-field-divider($primary-color, $error-color);
-
-  @if $include-floating-label {
-    @include react-md-theme-text-field-floating-label($primary-color, $light-theme, $error-color);
-  }
-
-  @if $include-icon or $include-password {
-    @include react-md-theme-text-field-icon($primary-color, $light-theme, $error-color);
-  }
-
-  @if $include-message {
-    @include react-md-theme-text-field-message($light-theme, $error-color);
-  }
 }
 
 
@@ -769,9 +756,8 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-@mixin react-md-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
+@mixin react-md-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-error-color) {
   .md-floating-label {
-    color: get-color('secondary', $light-theme);
     cursor: text;
     line-height: 1;
     pointer-events: none;
@@ -782,20 +768,8 @@ $md-text-field-line-height: 1.15 !default;
     white-space: nowrap;
   }
 
-  .md-floating-label--disabled {
-    color: get-color('disabled', $light-theme);
-  }
-
   .md-floating-label--floating {
     font-size: $md-text-field-active-font-size;
-  }
-
-  .md-floating-label--active {
-    color: $primary-color;
-  }
-
-  .md-floating-label--error {
-    color: $error-color;
   }
 
   .md-floating-label--icon-offset {
@@ -810,45 +784,8 @@ $md-text-field-line-height: 1.15 !default;
 }
 
 
-/// Modifies the styles of the text-field-floating-label ONLY if:
-/// - the `$primary-color` is different than `$md-primary-color`
-/// - the `$light-theme` is different than `$md-light-theme`
-/// - the `$error-color` is different than `$md-error-color`.
-///
-/// In most cases, you should use the `react-md-theme-text-fields` mixin instead.
-///
-/// @example scss - Example Usage SCSS
-///   .my-subsection-styling {
-///     @include react-md-theme-text-field-floating-label($md-light-blue-400, true, $md-orange-500);
-///   }
-///
-/// @see {mixin} react-md-theme-text-fields
-/// @param {Color} primary-color [$md-primary-color] - The primary color to use.
-/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
-/// @group text-fields, themes
-@mixin react-md-theme-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
-  @if $primary-color != $md-primary-color {
-    .md-floating-label--active {
-      color: $primary-color;
-    }
-  }
-
-  @if $light-theme != $md-light-theme {
-    .md-floating-label {
-      color: get-color('secondary', $light-theme);
-    }
-
-    .md-floating-label--disabled {
-      color: get-color('disabled', $light-theme);
-    }
-  }
-
-  @if $error-color != $md-text-field-error-color {
-    .md-floating-label--error {
-      color: $error-color;
-    }
-  }
+/// @deprecated This is no longer neaded since the colors come from the `.md-text--{color-type}`.
+@mixin react-md-theme-text-field-floating-label($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-error-color) {
 }
 
 /// Creates the styles for the text field floating labels for mobile devices.
@@ -926,8 +863,8 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Color} primary-color [$md-primary-color] - The primary color to theme text fields with.
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
-/// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-@mixin react-md-text-field-divider($primary-color: $md-primary-color, $error-color: $md-text-field-error-color) {
+/// @param {Color} error-color [$md-error-color] - The error color to use with text fields.
+@mixin react-md-text-field-divider($primary-color: $md-primary-color, $error-color: $md-error-color) {
   .md-divider--text-field {
     margin-top: $md-text-field-divider-top-padding;
 
@@ -979,16 +916,16 @@ $md-text-field-line-height: 1.15 !default;
 ///
 /// @see {mixin} react-md-theme-text-fields
 /// @param {Color} primary-color [$md-primary-color] - The primary color to use.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
+/// @param {Color} error-color [$md-error-color] - The error color to use.
 /// @group text-fields, themes
-@mixin react-md-theme-text-field-divider($primary-color: $md-primary-color, $error-color: $md-text-field-error-color) {
+@mixin react-md-theme-text-field-divider($primary-color: $md-primary-color, $error-color: $md-error-color) {
   @if $primary-color != $md-primary-color {
     .md-divider--text-field:not(.md-divider--text-field-error)::after {
       background: $primary-color;
     }
   }
 
-  @if $error-color != $md-text-field-error-color {
+  @if $error-color != $md-error-color {
     .md-divider--text-field-error,
     .md-divider--text-field-error::after {
       background: $error-color;
@@ -1049,16 +986,11 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
 /// @param {Boolean} include-icon [$md-text-field-include-icon] - Boolean if the styles for text fields
 ///     with icons and messages shuld be included.
-@mixin react-md-text-field-message($light-theme: $md-light-theme, $error-color: $md-text-field-error-color, $include-icon: $md-text-field-include-icon) {
+@mixin react-md-text-field-message($light-theme: $md-light-theme, $error-color: $md-error-color, $include-icon: $md-text-field-include-icon) {
   .md-text-field-message-container {
-    color: get-color('hint', $light-theme);
     display: flex;
     font-size: $md-text-field-message-font-size;
     justify-content: space-between;
-  }
-
-  .md-text-field-message-container--error {
-    color: $error-color;
   }
 
   .md-text-field-message-container--count-only {
@@ -1103,37 +1035,9 @@ $md-text-field-line-height: 1.15 !default;
   }
 }
 
-/// Modifies the styles of the text-field-message ONLY if:
-/// - the `$light-theme` is different than `$md-light-theme`
-/// - the `$error-color` is different than `$md-text-field-error-color`
-///
-/// In most cases, you should use the `react-md-theme-text-fields` mixin instead.
-///
-/// @example scss - Example Usage SCSS
-///   .my-subsection-styling {
-///     @include react-md-theme-text-field-message(true);
-///   }
-///
-/// @see {mixin} react-md-theme-text-fields
-/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
-/// @group text-fields, themes
-@mixin react-md-theme-text-field-message($light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
-  @if $light-theme != $md-light-theme {
-    .md-text-field-message-container {
-      color: get-color('hint', $light-theme);
-    }
-  }
-
-  @if $error-color != $md-text-field-error-color {
-    .md-text-field-message-container--error {
-      color: $error-color;
-    }
-  }
+/// @deprecated The theme colors now come from the `.md-text--{color-type}` class names.
+@mixin react-md-theme-text-field-message($light-theme: $md-light-theme, $error-color: $md-error-color) {
 }
-
-
-
 
 
 
@@ -1148,7 +1052,7 @@ $md-text-field-line-height: 1.15 !default;
 /// @param {Boolean} light-theme [$md-light-theme] - Boolean if the text fields should be styled for
 ///     the light or dark theme.
 /// @param {Color} error-color [$md-red-500] - The error color to use with text fields.
-@mixin react-md-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
+@mixin react-md-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-error-color) {
   .md-text-field-divider-container {
     display: inline-block;
   }
@@ -1163,18 +1067,6 @@ $md-text-field-line-height: 1.15 !default;
     margin-left: $md-default-padding;
   }
 
-  .md-text-field-icon--disabled {
-    color: get-color('disabled', $light-theme);
-  }
-
-  .md-text-field-icon--active {
-    color: $primary-color;
-  }
-
-  .md-text-field-icon--error {
-    color: $error-color;
-  }
-
   .md-text-field-icon-container {
     align-items: flex-end;
     display: flex;
@@ -1184,41 +1076,8 @@ $md-text-field-line-height: 1.15 !default;
 
 
 
-/// Modifies the styles of the text-field-icon ONLY if:
-/// - the `$primary-color` is different than `$md-primary-color`
-/// - the `$light-theme` is different than `$md-light-theme`
-/// - the `$error-color` is different than `$md-error-color`.
-///
-/// In most cases, you should use the `react-md-theme-text-fields` mixin instead.
-///
-/// @example scss - Example Usage SCSS
-///   .my-subsection-styling {
-///     @include react-md-theme-text-field-icon($md-light-blue-400, true, $md-orange-500);
-///   }
-///
-/// @see {mixin} react-md-theme-text-fields
-/// @param {Color} primary-color [$md-primary-color] - The primary color to use.
-/// @param {Boolean} light-theme [$md-light-theme] - Boolean if using the light theme.
-/// @param {Color} error-color [$md-text-field-error-color] - The error color to use.
-/// @group text-fields, themes
-@mixin react-md-theme-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-text-field-error-color) {
-  @if $primary-color != $md-primary-color {
-    .md-text-field-icon--active {
-      color: $primary-color;
-    }
-  }
-
-  @if $light-theme != $md-light-theme {
-    .md-text-field-icon--disabled {
-      color: get-color('disabled', $light-theme);
-    }
-  }
-
-  @if $error-color != $md-text-field-error-color {
-    .md-text-field-icon--error {
-      color: $error-color;
-    }
-  }
+/// @deprecated
+@mixin react-md-theme-text-field-icon($primary-color: $md-primary-color, $light-theme: $md-light-theme, $error-color: $md-error-color) {
 }
 
 /// Creates the styles for text field icons on mobile devices. This should be included within
@@ -1295,7 +1154,6 @@ $md-text-field-line-height: 1.15 !default;
   .md-password-btn {
     background: transparent;
     border: 0;
-    color: get-color('hint', $light-theme);
     height: $md-font-icon-size;
     padding: 0;
     width: $md-font-icon-size;
@@ -1310,7 +1168,6 @@ $md-text-field-line-height: 1.15 !default;
   }
 
   .md-password-btn--active {
-    color: get-color('secondary', $light-theme);
 
     &::before {
       background: get-color('secondary', $light-theme);
@@ -1355,13 +1212,7 @@ $md-text-field-line-height: 1.15 !default;
 /// @group text-fields, themes
 @mixin react-md-theme-text-field-password($light-theme: $md-light-theme) {
   @if $light-theme != $md-light-theme {
-    .md-password-btn {
-      color: get-color('hint', $light-theme);
-    }
-
     .md-password-btn--active {
-      color: get-color('secondary', $light-theme);
-
       &::before {
         background: get-color('secondary', $light-theme);
       }

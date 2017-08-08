@@ -58,6 +58,7 @@ describe('meta', () => {
       const expected = [
         { name: 'description', content: description },
         INITIAL_STATE[1],
+        INITIAL_STATE[2],
       ];
 
       expect(reducer(INITIAL_STATE, updateDescription(description))).toEqual(expected);
@@ -68,6 +69,7 @@ describe('meta', () => {
       const expected = [
         INITIAL_STATE[0],
         { name: 'keywords', content: `${DEFAULT_KEYWORDS},${keywords}` },
+        INITIAL_STATE[2],
       ];
 
       expect(reducer(INITIAL_STATE, updateKeywords(keywords))).toEqual(expected);
@@ -78,6 +80,7 @@ describe('meta', () => {
       const expected = [
         INITIAL_STATE[0],
         { name: 'keywords', content: keywords },
+        INITIAL_STATE[2],
       ];
 
       expect(reducer(INITIAL_STATE, updateKeywords(keywords, false))).toEqual(expected);
@@ -87,6 +90,7 @@ describe('meta', () => {
       const state = [
         INITIAL_STATE[0],
         { name: 'keywords', content: `${DEFAULT_KEYWORDS},some other keywords` },
+        INITIAL_STATE[2],
       ];
 
       expect(reducer(state, updateKeywords(null))).toEqual(INITIAL_STATE);

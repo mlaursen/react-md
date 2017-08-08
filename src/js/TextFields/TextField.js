@@ -512,12 +512,12 @@ export default class TextField extends PureComponent {
     try {
       const iconEl = Children.only(icon);
       return cloneElement(iconEl, {
-        key: `icon-${dir}`,
+        key: iconEl.key || `icon-${dir}`,
+        disabled,
+        primary: stateful && !error && active,
+        error: stateful && error,
         className: cn('md-text-field-icon', {
           'md-text-field-icon--positioned': !block,
-          'md-text-field-icon--disabled': disabled,
-          'md-text-field-icon--active': stateful && (!error && active),
-          'md-text-field-icon--error': stateful && error,
         }, iconEl.props.className),
       });
     } catch (e) {
@@ -525,7 +525,7 @@ export default class TextField extends PureComponent {
     }
   }
 
-  _isValued = (v) => v === 0 || !!v;
+  _isValued = v => v === 0 || !!v;
 
   _getLength = (v) => {
     if (this._isValued(v)) {

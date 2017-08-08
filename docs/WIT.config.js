@@ -22,36 +22,41 @@ module.exports = {
   },
   assets: {
     images: {
-      extensions: ['png', 'jpg', 'jpeg', 'gif'],
-      parser: WebpackIsomorphicToolsPlugin.url_loader_parser,
+      extensions: ['png', 'jpg', 'jpeg', 'gif', 'svg'],
+      filter(module, regex) {
+        return regex.test(module.name) && !module.name.match(/raw-loader/);
+      },
+      parser(module, options, log) {
+        if (module.source.match(/export default/)) {
+          return module.source.replace('export default', 'module.exports = ');
+        }
+
+        return WebpackIsomorphicToolsPlugin.urlLoaderParser(module, options, log);
+      },
     },
     fonts: {
       extensions: ['eot', 'ttf', 'woff', 'woff2'],
-      parser: WebpackIsomorphicToolsPlugin.url_loader_parser,
+      parser: WebpackIsomorphicToolsPlugin.urlLoaderParser,
     },
-    svg: {
-      extension: 'svg',
-      parser: WebpackIsomorphicToolsPlugin.url_loader_parser,
-    },
-    style_modules: {
+    styles: {
       extensions: ['css', 'scss'],
-      filter: (module, regex, options, log) => {
+      filter(module, regex, options, log) {
         if (options.development) {
-          return WebpackIsomorphicToolsPlugin.style_loader_filter(module, regex, options, log);
+          return WebpackIsomorphicToolsPlugin.styleLoaderFilter(module, regex, options, log);
         }
 
         return regex.test(module.name);
       },
-      path: (module, options, log) => {
+      path(module, options, log) {
         if (options.development) {
-          return WebpackIsomorphicToolsPlugin.style_loader_path_extractor(module, options, log);
+          return WebpackIsomorphicToolsPlugin.styleLoaderPathExtractor(module, options, log);
         }
 
         return module.name;
       },
-      parser: (module, options, log) => {
+      parser(module, options, log) {
         if (options.development) {
-          return WebpackIsomorphicToolsPlugin.css_modules_loader_parser(module, options, log);
+          return WebpackIsomorphicToolsPlugin.cssModulesLoaderParser(module, options, log);
         }
 
         return module.source;

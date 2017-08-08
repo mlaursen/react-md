@@ -9,6 +9,8 @@ import {
 
 import matchMedia, { matchesMobile, matchesTablet, matchesDesktop } from '../../../../__mocks__/matchMedia';
 import Drawer from '../Drawer';
+import Overlay from '../Overlay';
+import Paper from '../../Papers/Paper';
 import Dialog from '../../Dialogs/Dialog';
 import Portal from '../../Helpers/Portal';
 
@@ -41,6 +43,43 @@ describe('Drawer', () => {
     const drawer = mount(<Drawer portal />);
     // One for the drawer itself
     expect(drawer.find(Portal).length).toBe(1);
+  });
+
+  it('should not apply the transition class names while mini or permanent', () => {
+    window.matchMedia = matchesDesktop;
+    // Have to do inline since this version of react-md still uses portals by default
+    const drawer1 = mount(<Drawer type={Drawer.DrawerTypes.PERSISTENT} onMediaTypeChange={() => {}} inline />);
+    const drawer2 = mount(<Drawer type={Drawer.DrawerTypes.TEMPORARY_MINI} inline />);
+    const drawer3 = mount(<Drawer type={Drawer.DrawerTypes.FULL_HEIGHT} onMediaTypeChange={() => {}} />);
+
+    const paper1 = drawer1.find(Paper);
+    const paper2 = drawer2.find(Paper);
+    const paper3 = drawer3.find(Paper);
+    expect(paper1.length).toBe(1);
+    expect(paper2.length).toBe(1);
+    expect(paper3.length).toBe(1);
+
+    expect(paper1.hasClass('md-transition--decceleration')).toBe(true);
+    expect(paper1.hasClass('md-transition--acceleration')).toBe(false);
+    expect(paper2.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper2.hasClass('md-transition--acceleration')).toBe(false);
+    expect(paper3.hasClass('md-transition--decceleration')).toBe(false);
+    expect(paper3.hasClass('md-transition--acceleration')).toBe(false);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: Drawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<Drawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
   });
 
   describe('updateType', () => {

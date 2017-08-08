@@ -1,7 +1,5 @@
 /* eslint-env jest */
 /* eslint-disable max-len, react/no-multi-comp */
-jest.unmock('../SelectField');
-
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import {
@@ -10,6 +8,7 @@ import {
 } from 'react-dom/test-utils';
 
 import SelectField from '../SelectField';
+import FloatingLabel from '../../TextFields/FloatingLabel';
 import Menu from '../../Menus/Menu';
 
 const PROPS = { id: 'test' };
@@ -207,5 +206,23 @@ describe('SelectField', () => {
 
     input.simulate('blur');
     expect(field.state.error).toBe(true);
+  });
+
+  it('should correctly set the floating prop on the FloatingLabel', () => {
+    const field = mount(<SelectField id="test" menuItems={['', '0', 0, '1', '2', 'Three']} value="" onChange={() => {}} />);
+    let label = field.find(FloatingLabel);
+    expect(label.props().floating).toBe(false);
+
+    field.setProps({ value: 0 });
+    label = field.find(FloatingLabel);
+    expect(label.props().floating).toBe(true);
+
+    field.setProps({ value: '' });
+    label = field.find(FloatingLabel);
+    expect(label.props().floating).toBe(false);
+
+    field.setProps({ value: '0' });
+    label = field.find(FloatingLabel);
+    expect(label.props().floating).toBe(true);
   });
 });

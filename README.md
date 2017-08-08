@@ -3,7 +3,7 @@
 React Material Design - React components built with sass
 
 [![Build Status](https://travis-ci.org/mlaursen/react-md.svg?branch=master)](https://travis-ci.org/mlaursen/react-md)
-[![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Join the chat at https://gitter.im/mlaursen/react-md](https://badges.gitter.im/mlaursen/react-md.svg)](https://gitter.im/mlaursen/react-md?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
+[![Join the chat at Slack](https://react-md.herokuapp.com/badge.svg)](https://react-md.herokuapp.com) [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/mlaursen03)
 
 react-md is a set of React components and sass files for implementing [Google's Material Design](https://material.google.com). The
 [Documentation Website](http://react-md.mlaursen.com) can be used for viewing live examples, code samples, and general prop documentation.
@@ -50,14 +50,14 @@ Please see the list of [examples](examples/) for how you can get a project start
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.15/dist/react-md.deep_purple-pink.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/react-md@1.0.18/dist/react-md.deep_purple-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Roboto:400,500,700">
   </head>
   <body>
     <div id="app"></div>
     <script src="https://unpkg.com/react/dist/react-with-addons.min.js"></script>
     <script src="https://unpkg.com/react-dom/dist/react-dom.min.js"></script>
-    <script src="https://unpkg.com/react-md@1.0.15/dist/react-md.min.js"></script>
+    <script src="https://unpkg.com/react-md@1.0.18/dist/react-md.min.js"></script>
     <script>
     var MyAwesomeComponent = React.createClass({
       render: function()  {

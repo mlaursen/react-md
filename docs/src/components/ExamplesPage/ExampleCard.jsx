@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
 import { toCaterpillarCase } from 'utils/strings';
 
 import Markdown from 'components/Markdown';
+import Title from './Title';
 
 const ExampleCard = ({ title, description, code, children: propChildren, tableCard, className, ...props }) => {
   const markdown = `
@@ -37,9 +37,11 @@ ${code}
     children = <CardText key="example-card-text">{descriptionMarkdown}{children}</CardText>;
   }
 
+  const id = toCaterpillarCase(title);
+
   return (
     <Card
-      id={toCaterpillarCase(title)}
+      id={id}
       {...props}
       tabIndex={-1}
       tableCard={tableCard}
@@ -48,7 +50,7 @@ ${code}
       expanderTooltipLabel="View the source for this example."
       expanderTooltipDelay={300}
     >
-      <CardTitle expander title={title} />
+      <Title id={id} title={title} expander />
       <CardText expandable>
         <Markdown markdown={markdown} />
       </CardText>

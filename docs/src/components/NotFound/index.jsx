@@ -6,7 +6,7 @@ import Media from 'react-md/lib/Media/Media';
 
 import { pageNotFound } from 'state/routing';
 import InlineSVG from 'components/InlineSVG';
-import notFound from './404.svg';
+import notFound from '!!raw-loader!./404.svg';
 
 import './_styles.scss';
 

@@ -10,6 +10,7 @@ import {
 import matchMedia, { matchesMobile, matchesTablet, matchesDesktop } from '../../../../__mocks__/matchMedia';
 import NavigationDrawer from '../NavigationDrawer';
 import Drawer from '../../Drawers/Drawer';
+import Overlay from '../../Drawers/Overlay';
 import Dialog from '../../Dialogs/Dialog';
 import Portal from '../../Helpers/Portal';
 
@@ -40,6 +41,39 @@ describe('NavigationDrawer', () => {
     window.matchMedia = matchesMobile;
     const drawer = mount(<NavigationDrawer portal />);
     expect(drawer.find(Portal).length).toBe(1);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: NavigationDrawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<NavigationDrawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
+  });
+
+  it('should always render the permanent drawers as visible even if defaultVisible is false', () => {
+    window.matchMedia = matchesDesktop;
+    const drawer = mount(
+      <NavigationDrawer
+        defaultVisible={false}
+        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
+      />
+    );
+
+    expect(drawer.state('visible')).toBe(true);
+    drawer.unmount();
+    window.matchMedia = matchesMobile;
+    drawer.mount();
+    expect(drawer.state('visible')).toBe(false);
   });
 
   describe('Drawer', () => {

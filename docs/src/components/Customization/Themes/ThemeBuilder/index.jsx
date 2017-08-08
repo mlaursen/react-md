@@ -36,7 +36,7 @@ export class PureThemeBuilder extends PureComponent {
   };
 
   constructor(props) {
-    super(props);
+    super();
 
     this.state = this.getNextState(props);
   }

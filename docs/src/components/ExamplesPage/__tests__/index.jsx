@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import { createRouterSnapshot } from 'utils/testing';
+import { createReduxRouterSnapshot } from 'utils/testing';
 
 import ExamplesPage from '../';
 
@@ -26,7 +26,7 @@ describe('ExamplesPage', () => {
       - three
       `,
     };
-    const tree = createRouterSnapshot(<ExamplesPage {...props} />);
+    const tree = createReduxRouterSnapshot(<ExamplesPage {...props} />);
     expect(tree).toMatchSnapshot();
   });
 });

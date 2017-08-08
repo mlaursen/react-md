@@ -1,60 +1,45 @@
 /* eslint-env jest */
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedComponentWithType,
-} from 'react-dom/test-utils';
+import { shallow, mount } from 'enzyme';
 
 import PasswordButton from '../PasswordButton';
-import FontIcon from '../../FontIcons/FontIcon';
+import { TAB, SPACE } from '../../constants/keyCodes';
 
 describe('PasswordButton', () => {
-  it('uses the onClick prop', () => {
-    const onClick = jest.fn();
-    const props = { active: false, passwordVisible: false, onClick };
-    const btn = renderIntoDocument(<PasswordButton {...props} />);
-    const btnNode = findDOMNode(btn);
+  it('should render correctly', () => {
+    const button = mount(<PasswordButton iconChildren="remove_red_eye" />);
+    expect(button.render()).toMatchSnapshot();
 
-    Simulate.click(btnNode);
-    expect(onClick).toBeCalled();
+    button.setProps({ active: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ passwordVisible: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ passwordVisible: false, floating: true });
+    expect(button.render()).toMatchSnapshot();
+
+    button.setProps({ floating: false, block: true });
+    expect(button.render()).toMatchSnapshot();
   });
 
-  it('addes the active state when the active prop is true', () => {
-    const props = { active: false };
-    let btn = renderIntoDocument(<PasswordButton {...props} />);
-    let btnNode = findDOMNode(btn);
-    expect(btnNode.className).not.toContain('--active');
+  it('should update the keyboardFocus state when the TAB key is pressed', () => {
+    const button = shallow(<PasswordButton />);
+    expect(button.state('keyboardFocus')).toBe(false);
 
-    props.active = true;
-    btn = renderIntoDocument(<PasswordButton {...props} />);
-    btnNode = findDOMNode(btn);
-    expect(btnNode.className).toContain('--active');
+    button.simulate('keyUp', { which: SPACE, keyCode: SPACE });
+    expect(button.state('keyboardFocus')).toBe(false);
+
+    button.simulate('keyUp', { which: TAB, keyCode: TAB });
+    expect(button.state('keyboardFocus')).toBe(true);
   });
 
-  it('adds the invisible state wen the assword is not visible and active', () => {
-    const props = { active: false, passwordVisible: false };
-    let btn = renderIntoDocument(<PasswordButton {...props} />);
-    let btnNode = findDOMNode(btn);
-    expect(btnNode.className).not.toContain('--invisible');
+  it('should remove the keyboardFocus state when the button is blurred', () => {
+    const button = shallow(<PasswordButton />);
+    button.simulate('keyUp', { which: TAB, keyCode: TAB });
+    expect(button.state('keyboardFocus')).toBe(true);
 
-    props.active = true;
-    btn = renderIntoDocument(<PasswordButton {...props} />);
-    btnNode = findDOMNode(btn);
-    expect(btnNode.className).toContain('--invisible');
-
-    props.passwordVisible = true;
-    btn = renderIntoDocument(<PasswordButton {...props} />);
-    btnNode = findDOMNode(btn);
-    expect(btnNode.className).not.toContain('--invisible');
-  });
-
-  it('renders a FontIcon component with the iconClassName and iconChildren props', () => {
-    const props = { iconClassName: 'material-icons', iconChildren: 'red_eye' };
-    const btn = renderIntoDocument(<PasswordButton {...props} />);
-    const icon = findRenderedComponentWithType(btn, FontIcon);
-    expect(icon.props.iconClassName).toBe(props.iconClassName);
-    expect(icon.props.children).toBe(props.iconChildren);
+    button.simulate('blur');
+    expect(button.state('keyboardFocus')).toBe(false);
   });
 });
