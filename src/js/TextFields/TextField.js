@@ -193,7 +193,7 @@ export default class TextField extends PureComponent {
     onMouseLeave: PropTypes.func,
 
     /**
-     * An optional onChange function to call. If the `value` prop is true, this is
+     * An optional onChange function to call. If the `value` prop is defined, this is
      * required.
      *
      * When the value changes in the text field, this will be called with the new text
