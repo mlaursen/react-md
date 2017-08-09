@@ -46,10 +46,11 @@ class names will be created:
 - \`.md-text-lowercase\` - lowercases the text
 - \`.md-text-nowrap\` - does not allow line breaks
 - \`.md-text-no-select\` - Does not allow use-select
-- \`.md-font-light\` - the material design light font weight.
-- \`.md-font-regular\` - the material design regular font weight.
-- \`.md-font-medium\` - the material design medium font weight.
-- \`.md-font-bold\` - the material design bold font weight.
+- \`.md-font-light\` - the material design light font weight (300).
+- \`.md-font-regular\` - the material design regular font weight (400).
+- \`.md-font-medium\` - the material design medium font weight (500).
+- \`.md-font-semibold\` - the semibold font weight used by some Google fonts (600).
+- \`.md-font-bold\` - the material design bold font weight (700).
 
 If the \`$md-typography-include-text-container\` variable is \`true !default\`, a \`md-text-container\`
 class name will be created to position text in the center of the page and keep the line length within
