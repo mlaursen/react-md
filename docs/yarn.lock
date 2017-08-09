@@ -8046,6 +8046,10 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
+svgxuse@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/svgxuse/-/svgxuse-1.2.4.tgz#bb5eb73ae23c18c32288f47e6a7136e3818c548b"
+
 sw-precache-webpack-plugin@^0.11.4:
   version "0.11.4"
   resolved "https://registry.yarnpkg.com/sw-precache-webpack-plugin/-/sw-precache-webpack-plugin-0.11.4.tgz#a695017e54eed575551493a519dc1da8da2dc5e0"

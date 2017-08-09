@@ -89,6 +89,7 @@
     "serialize-javascript": "^1.4.0",
     "shallowequal": "^1.0.2",
     "smooth-scroll": "cferdinandi/smooth-scroll",
+    "svgxuse": "^1.2.4",
     "uuid": "^3.1.0",
     "webpack-isomorphic-tools": "^3.0.3",
     "winston": "^2.3.1"
