@@ -69,6 +69,11 @@ h3,
   &--block {
     display: block;
   }
+
+  &--centered {
+    align-items: center;
+    display: inline-flex;
+  }
 }
 
 .powerlevel-over-9000 {

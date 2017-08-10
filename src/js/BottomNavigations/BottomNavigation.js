@@ -34,8 +34,7 @@ export default class BottomNavigation extends PureComponent {
      * ```docgen
      * PropTypes.arrayOf(PropTypes.shape({
      *   label: PropTypes.node.isRequired,
-     *   iconChildren: PropTypes.node,
-     *   iconClassName: PropTypes.string,
+     *   icon: PropTypes.element,
      *   component: PropTypes.oneOfType([
      *      PropTypes.func,
      *      PropTypes.string,
@@ -59,8 +58,9 @@ export default class BottomNavigation extends PureComponent {
 
       return PropTypes.arrayOf(PropTypes.shape({
         label: PropTypes.node.isRequired,
-        iconChildren: PropTypes.node,
-        iconClassName: PropTypes.string,
+        icon: PropTypes.element,
+        iconChildren: deprecated(PropTypes.node, 'Use `icon` instead'),
+        iconClassName: deprecated(PropTypes.string, 'Use `icon` instead'),
         component: PropTypes.oneOfType([
           PropTypes.func,
           PropTypes.string,

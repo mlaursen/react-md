@@ -15,17 +15,53 @@ export interface BaseSelectionControlProps extends Props {
 }
 
 export interface SelectionControlProps extends BaseSelectionControlProps {
-  checkedCheckboxIconChildren?: React.ReactNode;
-  checkedCheckboxIconClassName?: string;
-  uncheckedCheckboxIconChildren?: React.ReactNode;
-  uncheckedCheckboxIconClassName?: string;
-  checkedRadioIconChildren?: React.ReactNode;
-  checkedRadioIconClassName?: string;
-  uncheckedRadioIconChildren?: React.ReactNode;
-  uncheckedRadioIconClassName?: string;
   onChange?: (result: boolean | number | string, event: Event) => void;
   type: Types;
   'aria-label'?: string;
+  checkedCheckboxIcon?: React.ReactElement<any>;
+  uncheckedCheckboxIcon?: React.ReactElement<any>;
+  checkedRadioIcon?: React.ReactElement<any>;
+  uncheckedRadioIcon?: React.ReactElement<any>;
+
+  /**
+   * @deprecated
+   */
+  checkedCheckboxIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  checkedCheckboxIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  uncheckedCheckboxIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  uncheckedCheckboxIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  checkedRadioIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  checkedRadioIconClassName?: string;
+
+  /**
+   * @deprecated
+   */
+  uncheckedRadioIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  uncheckedRadioIconClassName?: string;
 }
 
 declare const SelectionControl: React.ComponentClass<SelectionControlProps>;

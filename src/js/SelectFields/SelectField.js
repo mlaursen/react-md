@@ -11,6 +11,7 @@ import getField from '../utils/getField';
 import isBetween from '../utils/NumberUtils/isBetween';
 import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
+import FontIcon from '../FontIcons/FontIcon';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
@@ -298,14 +299,9 @@ export default class SelectField extends PureComponent {
     onBlur: PropTypes.func,
 
     /**
-     * Any children used to render the select field's drop down icon.
+     * The icon to use to display the dropdown arrow.
      */
-    iconChildren: PropTypes.node,
-
-    /**
-     * The icon class name to use to render the select field's drop down icon.
-     */
-    iconClassName: PropTypes.string,
+    dropdownIcon: PropTypes.element,
 
     /**
      * Boolean if the select field is in a toolbar. This should automatically be injected by the `Toolbar`
@@ -456,6 +452,8 @@ export default class SelectField extends PureComponent {
      */
     repositionOnScroll: PropTypes.bool,
 
+    iconChildren: deprecated(PropTypes.node, 'Use `dropdownIcon` instead'),
+    iconClassName: deprecated(PropTypes.string, 'Use `dropdownIcon` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
@@ -483,7 +481,7 @@ export default class SelectField extends PureComponent {
     position: SelectField.Positions.TOP_LEFT,
     itemLabel: 'label',
     itemValue: 'value',
-    iconChildren: 'arrow_drop_down',
+    dropdownIcon: <FontIcon>arrow_drop_down</FontIcon>,
     menuItems: [],
     defaultValue: '',
     defaultVisible: false,

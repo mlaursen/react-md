@@ -13,6 +13,7 @@ module.exports = {
     'constants': path.join(src, 'constants'),
     'components': path.join(src, 'components'),
     'imgs': path.join(src, 'imgs'),
+    'icons': path.join(src, 'icons'),
     'routes': path.join(src, 'routes', 'sync.js'),
     'sagas': path.join(src, 'sagas'),
     'server': path.join(src, 'server'),

@@ -1,5 +1,8 @@
 import React from 'react';
+import SVGIcon from 'react-md/lib/SVGIcons';
 import SelectField from 'react-md/lib/SelectFields';
+
+import arrowDropDown from 'icons/arrow_drop_down.svg';
 
 const NUMBER_ITEMS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const STRING_ITEMS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
@@ -19,6 +22,8 @@ const OBJECT_ITEMS = [{
   label: 'Elderberry',
   value: 'E',
 }];
+
+const icon = <SVGIcon use={arrowDropDown.url} />;
 
 const Simple = () => (
   <div className="md-grid">
@@ -65,6 +70,31 @@ const Simple = () => (
       className="md-cell"
       menuItems={OBJECT_ITEMS}
       position={SelectField.Positions.BELOW}
+    />
+    <h4 className="md-cell md-cell--12">Using SVGIcons</h4>
+    <SelectField
+      id="select-field-7"
+      label="Numbers"
+      placeholder="Placeholder"
+      className="md-cell md-cell--bottom"
+      menuItems={NUMBER_ITEMS}
+      dropdownIcon={icon}
+    />
+    <SelectField
+      id="select-field-8"
+      placeholder="Strings button"
+      className="md-cell md-cell--bottom"
+      menuItems={STRING_ITEMS}
+      position={SelectField.Positions.BELOW}
+      dropdownIcon={icon}
+    />
+    <SelectField
+      id="select-field-9"
+      placeholder="Strings disabled"
+      className="md-cell md-cell--bottom"
+      menuItems={STRING_ITEMS}
+      disabled
+      dropdownIcon={icon}
     />
   </div>
 );

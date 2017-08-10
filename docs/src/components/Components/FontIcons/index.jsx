@@ -4,6 +4,8 @@ import ExamplesPage from 'components/ExamplesPage';
 import README from './README.md';
 import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
+import WithColors from './WithColors';
+import WithColorsRaw from '!!raw-loader!./WithColors.jsx';
 
 const examples = [{
   title: 'Simple Examples',
@@ -17,6 +19,14 @@ with a \`<link>\` or anything else for it to be displayed.
   `,
   code: SimpleRaw,
   children: <Simple />,
+}, {
+  title: 'With Colors',
+  description: `
+The \`FontIcon\` also has support to gain theme, disabled, or error colors as well as inheriting
+colors from its parents.
+  `,
+  code: WithColorsRaw,
+  children: <WithColors />,
 }];
 
 const FontIcons = () => <ExamplesPage description={README} examples={examples} />;

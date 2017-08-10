@@ -36,7 +36,7 @@ exports[`ExamplesPage should render correctly 1`] = `
       style={undefined}
     >
       <h2
-        className="md-card-title--title md-text md-card-title--large"
+        className="md-card-title--title md-card-title--large md-text"
         id={undefined}
       >
         First Example
@@ -50,7 +50,7 @@ exports[`ExamplesPage should render correctly 1`] = `
         value="about:blank#first-example"
       />
       <button
-        className="md-inline-block md-btn md-btn--icon md-pointer--hover examples-page__example-link-btn"
+        className="md-btn md-btn--icon md-pointer--hover md-inline-block examples-page__example-link-btn"
         disabled={undefined}
         href={undefined}
         id="first-example-copy-btn"
@@ -58,41 +58,45 @@ exports[`ExamplesPage should render correctly 1`] = `
         onKeyDown={[Function]}
         onKeyUp={[Function]}
         onMouseDown={[Function]}
+        onMouseEnter={[Function]}
         onMouseLeave={[Function]}
-        onMouseOver={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         type="button"
       >
         <i
-          className="md-icon material-icons"
+          className="md-icon material-icons md-text--inherit"
           style={undefined}
         >
           link
         </i>
       </button>
       <button
-        className="md-inline-block md-btn md-btn--icon md-pointer--hover md-collapser md-collapser--card"
+        className="md-btn md-btn--icon md-pointer--hover md-inline-block md-collapser md-collapser--card"
         disabled={undefined}
         href={undefined}
         onClick={[Function]}
         onKeyDown={[Function]}
         onKeyUp={[Function]}
         onMouseDown={[Function]}
+        onMouseEnter={[Function]}
         onMouseLeave={[Function]}
-        onMouseOver={[Function]}
         onMouseUp={[Function]}
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         type="button"
       >
-        <i
-          className="md-icon material-icons"
+        <svg
+          aria-labelledby={null}
+          className="md-icon md-text--inherit"
+          focusable={false}
+          role="img"
           style={undefined}
-        >
-          code
-        </i>
+          title={undefined}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        />
       </button>
     </div>
     <section

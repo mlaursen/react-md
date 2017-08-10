@@ -50,6 +50,7 @@ import {
   Sliders,
   Snackbars,
   Subheaders,
+  SVGIcons,
   Tabs,
   TextFields,
   Toolbars,
@@ -184,6 +185,9 @@ const Components = (props) => {
       break;
     case 'subheaders':
       Component = Subheaders;
+      break;
+    case 'svg-icons':
+      Component = SVGIcons;
       break;
     case 'tabs':
       Component = Tabs;

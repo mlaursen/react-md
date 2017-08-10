@@ -30,7 +30,7 @@ exports[`Search should render correctly while not searching 1`] = `
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="md-text-field md-text md-full-width md-text-field--margin search__input"
+            class="md-text-field md-text-field--margin md-full-width md-text search__input"
             id="documentation-search"
             placeholder="Search"
             type="text"
@@ -76,7 +76,7 @@ exports[`Search should render correctly while searching 1`] = `
           <input
             aria-autocomplete="list"
             autocomplete="off"
-            class="md-text-field md-text md-full-width md-text-field--margin search__input search__input--visible search__input--active"
+            class="md-text-field md-text-field--margin md-full-width md-text search__input search__input--visible search__input--active"
             id="documentation-search"
             placeholder="Search"
             type="text"
@@ -90,12 +90,12 @@ exports[`Search should render correctly while searching 1`] = `
     </div>
   </div>
   <button
-    class="md-inline-block md-btn md-btn--icon md-pointer--hover"
+    class="md-btn md-btn--icon md-pointer--hover md-inline-block"
     id="documentation-search-hide"
     type="button"
   >
     <i
-      class="md-icon material-icons"
+      class="md-icon material-icons md-text--inherit"
     >
       close
     </i>

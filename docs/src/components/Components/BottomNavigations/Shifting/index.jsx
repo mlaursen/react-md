@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
+import FontIcon from 'react-md/lib/FontIcons';
 
 import PhoneEmulator from 'components/PhoneEmulator';
 
@@ -25,16 +26,16 @@ const CONTENTS = [
 
 const links = [{
   label: 'Movies & TV',
-  iconChildren: 'ondemand_video',
+  icon: <FontIcon>ondemand_video</FontIcon>,
 }, {
   label: 'Music',
-  iconChildren: 'music_note',
+  icon: <FontIcon>music_note</FontIcon>,
 }, {
   label: 'Books',
-  iconChildren: 'book',
+  icon: <FontIcon>book</FontIcon>,
 }, {
   label: 'Newsstand',
-  iconClassName: 'fa fa-newspaper-o',
+  icon: <FontIcon iconClassName="fa fa-newspaper-o" />,
 }];
 
 const contentId = 'shifting-bottom-navigation-example';

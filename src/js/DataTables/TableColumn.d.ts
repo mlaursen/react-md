@@ -6,8 +6,7 @@ export interface TableColumnProps extends Props, InjectedTooltipProps {
   fixedStyle?: React.CSSProperties;
   fixedClassName?: string;
   sorted?: boolean;
-  sortIconChildren?: React.ReactNode;
-  sortIconClassName?: string;
+  sortIcon?: React.ReactElement<any>;
   numeric?: boolean;
   adjusted?: boolean;
   grow?: boolean;
@@ -17,6 +16,16 @@ export interface TableColumnProps extends Props, InjectedTooltipProps {
   plain?: boolean;
   scope?: 'row' | 'col';
   cellIndex?: boolean;
+
+  /**
+   * @deprecated
+   */
+  sortIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  sortIconClassName?: string;
 }
 
 declare const TableColumn: React.ComponentClass<TableColumnProps>;

@@ -83,6 +83,7 @@ export {
 } from './lib/SelectionControls';
 export { default as Slider, SliderProps } from './lib/Sliders';
 export { default as Snackbar, SnackbarProps } from './lib/Snackbars';
+export { default as SVGIcon, SVGIconProps } from './lib/SVGIcons';
 export { default as Subheader, SubheaderProps } from './lib/Subheaders';
 export {
   TabsContainer, TabsContainerProps,

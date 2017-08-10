@@ -30,8 +30,7 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
   nestedItems?: Array<React.ReactNode>;
   defaultVisible?: boolean;
   visible?: boolean;
-  expanderIconChildren?: React.ReactNode;
-  expanderIconClassName?: string;
+  expanderIcon?: React.ReactElement<any>;
   expanderLeft?: boolean;
   active?: boolean;
   activeClassName?: string;
@@ -46,6 +45,16 @@ export interface ListItemProps extends BaseListItemProps, InjectedInkProps {
    * @deprecated
    */
   defaultOpen?: boolean;
+
+  /**
+   * @deprecated
+   */
+  expanderIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  expanderIconClassName?: string;
 }
 
 interface ListItemComponent extends React.ComponentClass<ListItemProps> {

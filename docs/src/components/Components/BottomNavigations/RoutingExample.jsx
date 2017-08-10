@@ -5,8 +5,13 @@ import { withRouter } from 'react-router';
 import { Route, Link, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BottomNavigation from 'react-md/lib/BottomNavigations';
+import FontIcon from 'react-md/lib/FontIcons';
+import SVGIcon from 'react-md/lib/SVGIcons';
 
 import PhoneEmulator from 'components/PhoneEmulator';
+import video from 'icons/ondemand_video.svg';
+import music from 'icons/music_note.svg';
+import book from 'icons/book.svg';
 
 import AppToolbar from './Shifting/AppToolbar';
 import MoviesAndTV from './Shifting/MoviesAndTV';
@@ -19,22 +24,22 @@ const THEMES = ['movies-and-tv', 'music', 'book', 'news-stand'].map(theme => `bo
 const TO_PREFIX = '/discover-more/routing-examples/bottom-navigations';
 const links = [{
   label: 'Movies & TV',
-  iconChildren: 'ondemand_video',
+  icon: <SVGIcon use={video.url} />,
   to: TO_PREFIX,
   component: Link,
 }, {
   label: 'Music',
-  iconChildren: 'music_note',
+  icon: <SVGIcon use={music.url} />,
   to: `${TO_PREFIX}/music`,
   component: Link,
 }, {
   label: 'Books',
-  iconChildren: 'book',
+  icon: <SVGIcon use={book.url} />,
   to: `${TO_PREFIX}/books`,
   component: Link,
 }, {
   label: 'Newsstand',
-  iconClassName: 'fa fa-newspaper-o',
+  icon: <FontIcon iconClassName="fa fa-newspaper-o" />,
   to: `${TO_PREFIX}/news-stand`,
   component: Link,
 }];

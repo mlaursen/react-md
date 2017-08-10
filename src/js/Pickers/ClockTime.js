@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
+import themeColors from '../utils/themeColors';
 
 const CLOCK_PADDING = 4;
 
@@ -93,9 +94,8 @@ export default class ClockTime extends PureComponent {
         ref={this._setTime}
         tabIndex={0}
         className={cn('md-clock-time md-text-no-select md-pointer--none', {
-          'md-text': !active,
           'md-picker-text--active': active,
-        })}
+        }, themeColors({ text: !active }))}
         style={this.state.style}
         onKeyUp={this._handleKeyUp}
       >

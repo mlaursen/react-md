@@ -105,14 +105,17 @@ export default class MiniListItem extends PureComponent {
       rightIcon,
       rightAvatar,
       threeLines,
-      expanderIconChildren,
-      expanderIconClassName,
       children,
       defaultOpen,
       isOpen,
       inset,
       nestedItems,
       animateNestedItems,
+      expanderIcon,
+
+      // deprecated
+      expanderIconChildren,
+      expanderIconClassName,
       /* eslint-enable no-unused-vars,react/prop-types */
       ...props
     } = this.props;

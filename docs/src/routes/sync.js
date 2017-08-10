@@ -62,6 +62,7 @@ export const SelectionControls = syncComponent('SelectionControls', require('com
 export const Sliders = syncComponent('Sliders', require('components/Components/Sliders'));
 export const Snackbars = syncComponent('Snackbars', require('components/Components/Snackbars'));
 export const Subheaders = syncComponent('Subheaders', require('components/Components/Subheaders'));
+export const SVGIcons = syncComponent('SVGIcons', require('components/Components/SVGIcons'));
 export const Tabs = syncComponent('Tabs', require('components/Components/Tabs'));
 export const TextFields = syncComponent('TextFields', require('components/Components/TextFields'));
 export const Toolbars = syncComponent('Toolbars', require('components/Components/Toolbars'));

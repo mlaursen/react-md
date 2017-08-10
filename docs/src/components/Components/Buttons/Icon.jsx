@@ -1,6 +1,9 @@
 import React from 'react';
 import Button from 'react-md/lib/Buttons';
+import SVGIcon from 'react-md/lib/SVGIcons';
 import { GITHUB_URL } from 'constants/application';
+
+import deleteIcon from 'icons/delete.svg';
 
 const IconButtonExamples = () => (
   <div className="buttons__group">
@@ -8,6 +11,7 @@ const IconButtonExamples = () => (
     <Button icon primary>favorite</Button>
     <Button icon secondary iconClassName="fa fa-star-o" />
     <Button icon>aspect_ratio</Button>
+    <Button icon><SVGIcon use={deleteIcon.url} /></Button>
     <h5>Disabled Examples</h5>
     <Button icon disabled>favorite</Button>
     <Button icon disabled primary>close</Button>

@@ -22,8 +22,7 @@ export interface SharedTextFieldProps {
   leftIconStateful?: boolean;
   rightIcon?: React.ReactElement<any>;
   rightIconStateful?: boolean;
-  passwordIconChildren?: React.ReactNode;
-  passwordIconClassName?: string;
+  passwordIcon?: React.ReactElement<any>;
   passwordInitiallyVisible?: boolean;
   fullWidth?: boolean;
   rows?: number;
@@ -39,6 +38,16 @@ export interface SharedTextFieldProps {
   step?: number;
   pattern?: string;
   resize?: { min: number, max: number, disableShrink?: boolean };
+
+  /**
+   * @deprecated
+   */
+  passwordIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  passwordIconClassName?: string;
 }
 
 export interface TextFieldProps extends SharedTextFieldProps, Props {

@@ -18,12 +18,9 @@ export default class TableCheckbox extends Component {
     ]).isRequired,
     baseName: PropTypes.string.isRequired,
     indeterminate: PropTypes.bool,
-    checkedIconChildren: PropTypes.node,
-    checkedIconClassName: PropTypes.string,
-    uncheckedIconChildren: PropTypes.node,
-    uncheckedIconClassName: PropTypes.string,
-    indeterminateIconChildren: PropTypes.node,
-    indeterminateIconClassName: PropTypes.string,
+    checkedIcon: PropTypes.element,
+    uncheckedIcon: PropTypes.element,
+    indeterminateIcon: PropTypes.element,
     checkboxHeaderLabel: PropTypes.string.isRequired,
     checkboxLabelTemplate: PropTypes.oneOfType([
       PropTypes.func,
@@ -61,12 +58,9 @@ export default class TableCheckbox extends Component {
   render() {
     const { checked, index, ...props } = this.props;
     const {
-      checkedIconChildren,
-      checkedIconClassName,
-      uncheckedIconChildren,
-      uncheckedIconClassName,
-      indeterminateIconChildren,
-      indeterminateIconClassName,
+      checkedIcon,
+      uncheckedIcon,
+      indeterminateIcon,
       indeterminate,
       header,
       footer,
@@ -93,10 +87,8 @@ export default class TableCheckbox extends Component {
         name={`${baseName}-checkbox`}
         type="checkbox"
         checked={checked}
-        uncheckedCheckboxIconChildren={header && indeterminate ? indeterminateIconChildren : uncheckedIconChildren}
-        uncheckedCheckboxIconClassName={header && indeterminate ? indeterminateIconClassName : uncheckedIconClassName}
-        checkedCheckboxIconChildren={checkedIconChildren}
-        checkedCheckboxIconClassName={checkedIconClassName}
+        checkedCheckboxIcon={checkedIcon}
+        uncheckedCheckboxIcon={header && indeterminate ? indeterminateIcon : uncheckedIcon}
         aria-label={label}
       />
     );

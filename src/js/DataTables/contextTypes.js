@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
 
 export default {
-  checkedIconChildren: PropTypes.node,
-  checkedIconClassName: PropTypes.string,
-  uncheckedIconChildren: PropTypes.node,
-  uncheckedIconClassName: PropTypes.string,
-  indeterminateIconChildren: PropTypes.node,
-  indeterminateIconClassName: PropTypes.string,
+  checkedIcon: PropTypes.element,
+  uncheckedIcon: PropTypes.element,
+  indeterminateIcon: PropTypes.element,
   indeterminate: PropTypes.bool,
   plain: PropTypes.bool,
   selectableRows: PropTypes.bool.isRequired,

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import isMonthBefore from '../utils/DateUtils/isMonthBefore';
 import getDayOfWeek from '../utils/DateUtils/getDayOfWeek';
 import addDate from '../utils/DateUtils/addDate';
@@ -20,11 +21,9 @@ export default class CalendarHeader extends PureComponent {
     date: PropTypes.instanceOf(Date).isRequired,
     minDate: PropTypes.instanceOf(Date),
     maxDate: PropTypes.instanceOf(Date),
-    previousIconChildren: PropTypes.node,
-    previousIconClassName: PropTypes.string,
+    previousIcon: PropTypes.element,
     onPreviousClick: PropTypes.func.isRequired,
-    nextIconChildren: PropTypes.node,
-    nextIconClassName: PropTypes.string,
+    nextIcon: PropTypes.node,
     onNextClick: PropTypes.func.isRequired,
     DateTimeFormat: PropTypes.func.isRequired,
     locales: PropTypes.oneOfType([
@@ -76,15 +75,25 @@ export default class CalendarHeader extends PureComponent {
     }
   }
 
-  _createState({ DateTimeFormat, locales, date, firstDayOfWeek,
-                  titleFormat, weekdayClassName, weekdayFormat } = this.props) {
+  _createState({
+    DateTimeFormat,
+    locales,
+    date,
+    firstDayOfWeek,
+    titleFormat,
+    weekdayClassName,
+    weekdayFormat,
+  } = this.props) {
     const firstDay = getDayOfWeek(date, firstDayOfWeek);
     const formatter = new DateTimeFormat(locales, { weekday: weekdayFormat });
     const dows = [];
     for (let i = 0; i < 7; i++) {
       const dow = formatter.format(addDate(firstDay, i, 'D'));
       dows.push(
-        <h4 className={cn('md-calendar-date md-text--disabled md-calendar-dow', weekdayClassName)} key={i}>
+        <h4
+          key={i}
+          className={cn('md-calendar-date md-calendar-dow', themeColors({ disabled: true }), weekdayClassName)}
+        >
           {dow}
         </h4>
       );
@@ -103,11 +112,9 @@ export default class CalendarHeader extends PureComponent {
       minDate,
       maxDate,
       onPreviousClick,
-      previousIconChildren,
-      previousIconClassName,
+      previousIcon,
       onNextClick,
-      nextIconChildren,
-      nextIconClassName,
+      nextIcon,
       titleClassName,
     } = this.props;
 
@@ -121,20 +128,16 @@ export default class CalendarHeader extends PureComponent {
             onClick={onPreviousClick}
             disabled={isPreviousDisabled}
             className="md-calendar-control"
-            iconClassName={previousIconClassName}
-          >
-            {previousIconChildren}
-          </Button>
+            iconEl={previousIcon}
+          />
           <h4 className={cn('md-title', titleClassName)}>{title}</h4>
           <Button
             icon
             onClick={onNextClick}
             disabled={isNextDisabled}
             className="md-calendar-control"
-            iconClassName={nextIconClassName}
-          >
-            {nextIconChildren}
-          </Button>
+            iconEl={nextIcon}
+          />
         </div>
         <div className="md-calendar-dows">
           {dows}

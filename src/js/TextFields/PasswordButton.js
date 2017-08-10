@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import { TAB } from '../constants/keyCodes';
-import FontIcon from '../FontIcons/FontIcon';
+import themeColors from '../utils/themeColors';
 
 export default class PasswordButton extends PureComponent {
   static propTypes = {
     active: PropTypes.bool,
     passwordVisible: PropTypes.bool,
-    iconClassName: PropTypes.string,
-    iconChildren: PropTypes.node,
+    icon: PropTypes.element,
     block: PropTypes.bool,
     floating: PropTypes.bool,
   };
@@ -42,10 +41,9 @@ export default class PasswordButton extends PureComponent {
     const {
       active,
       passwordVisible,
-      iconClassName,
-      iconChildren,
       block,
       floating,
+      icon,
       ...props
     } = this.props;
 
@@ -56,15 +54,13 @@ export default class PasswordButton extends PureComponent {
         onKeyUp={this._handleKeyUp}
         type="button"
         className={cn('md-text-field-inline-indicator md-password-btn md-pointer--hover', {
-          'md-text--disabled': !active,
-          'md-text--secondary': active,
           'md-password-btn--focus': keyboardFocus,
           'md-password-btn--invisible': active && !passwordVisible,
           'md-text-field-inline-indicator--floating': floating,
           'md-text-field-inline-indicator--block': block,
-        })}
+        }, themeColors({ disabled: !active, hint: active }))}
       >
-        <FontIcon iconClassName={iconClassName}>{iconChildren}</FontIcon>
+        {icon}
       </button>
     );
   }

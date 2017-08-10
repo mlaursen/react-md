@@ -544,6 +544,13 @@ export default class Slider extends PureComponent {
     return !invalid;
   }
 
+  _isInTextField(e) {
+    const { className } = e.target;
+
+    // SVG's className is an object instead of a string
+    return typeof className.match === 'function' && className.match(/text-field/);
+  }
+
   /**
    * Checks if the target is within the text field container.
    *
@@ -630,8 +637,7 @@ export default class Slider extends PureComponent {
       this.props.onTouchStart(e);
     }
 
-    if (this.props.disabled || (e.type === 'mousedown' && !isValidClick(e, 'mousedown'))
-      || e.target.className.match(/text-field/)) {
+    if (this.props.disabled || (e.type === 'mousedown' && !isValidClick(e, 'mousedown')) || this._isInTextField(e)) {
       return;
     }
 

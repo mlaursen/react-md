@@ -6,6 +6,7 @@ import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import { SPACE } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import themeColors from '../utils/themeColors';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import capitalizeFirst from '../utils/StringUtils/capitalizeFirst';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
@@ -141,45 +142,10 @@ export default class SelectionControl extends PureComponent {
      */
     inline: PropTypes.bool,
 
-    /**
-     * Any children used to render the checkbox checked `FontIcon`.
-     */
-    checkedCheckboxIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the checkbox checked `FontIcon`.
-     */
-    checkedCheckboxIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the checkbox unchecked `FontIcon`.
-     */
-    uncheckedCheckboxIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the checkbox unchecked `FontIcon`.
-     */
-    uncheckedCheckboxIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the radio checked `FontIcon`.
-     */
-    checkedRadioIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the radio checked `FontIcon`.
-     */
-    checkedRadioIconClassName: PropTypes.string,
-
-    /**
-     * Any children used to render the radio unchecked `FontIcon`.
-     */
-    uncheckedRadioIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the radio unchecked `FontIcon`.
-     */
-    uncheckedRadioIconClassName: PropTypes.string,
+    checkedCheckboxIcon: PropTypes.element,
+    uncheckedCheckboxIcon: PropTypes.element,
+    checkedRadioIcon: PropTypes.element,
+    uncheckedRadioIcon: PropTypes.element,
 
     /**
      * An optional tooltip to render with the control. This is only used if you inject the
@@ -218,16 +184,24 @@ export default class SelectionControl extends PureComponent {
       'Use the `uncheckedCheckboxIconChildren` and `uncheckedCheckboxIconClassName`  or the ' +
       '`uncheckedRadioIconChildren` and `uncheckedRadioIconClassName` props instead'
     )),
+    checkedCheckboxIconChildren: deprecated(PropTypes.node, 'Use the `checkedCheckboxIcon` prop instead'),
+    checkedCheckboxIconClassName: deprecated(PropTypes.string, 'Use the `checkedCheckboxIcon` prop instead'),
+    uncheckedCheckboxIconChildren: deprecated(PropTypes.node, 'Use the `uncheckedCheckboxIcon` prop instead'),
+    uncheckedCheckboxIconClassName: deprecated(PropTypes.string, 'Use the `uncheckedCheckboxIcon` prop instead'),
+    checkedRadioIconChildren: deprecated(PropTypes.node, 'Use the `checkedRadioIcon` prop instead'),
+    checkedRadioIconClassName: deprecated(PropTypes.string, 'Use the `checkedRadioIcon` prop instead'),
+    uncheckedRadioIconChildren: deprecated(PropTypes.node, 'Use the `uncheckedRadioIcon` prop instead'),
+    uncheckedRadioIconClassName: deprecated(PropTypes.string, 'Use the `uncheckedRadioIcon` prop instead'),
 
     /* maybe removed once upgrade again? */
     __superSecreteProp: PropTypes.bool,
   };
 
   static defaultProps = {
-    checkedCheckboxIconChildren: 'check_box',
-    uncheckedCheckboxIconChildren: 'check_box_outline_blank',
-    checkedRadioIconChildren: 'radio_button_checked',
-    uncheckedRadioIconChildren: 'radio_button_unchecked',
+    checkedCheckboxIcon: <FontIcon>check_box</FontIcon>,
+    uncheckedCheckboxIcon: <FontIcon>check_box_outline_blank</FontIcon>,
+    checkedRadioIcon: <FontIcon>radio_button_checked</FontIcon>,
+    uncheckedRadioIcon: <FontIcon>radio_button_unchecked</FontIcon>,
   };
 
   constructor(props) {
@@ -269,11 +243,14 @@ export default class SelectionControl extends PureComponent {
     }
 
     const prefix = `${checked ? '' : 'un'}checked${capitalizeFirst(type)}Icon`;
-    return (
-      <FontIcon iconClassName={this.props[`${prefix}ClassName`]}>
-        {this.props[`${prefix}Children`]}
-      </FontIcon>
-    );
+    const iconClassName = this.props[`${prefix}ClassName`];
+    const children = this.props[`${prefix}Children`];
+
+    if (iconClassName || children) {
+      return <FontIcon iconClassName={iconClassName} inherit>{children}</FontIcon>;
+    }
+
+    return React.cloneElement(this.props[prefix], { inherit: true });
   };
 
   _handleKeyDown = (e) => {
@@ -318,6 +295,14 @@ export default class SelectionControl extends PureComponent {
       label: propLabel,
       checked: propChildren,
       onChange,
+      tooltip,
+      checkedCheckboxIcon,
+      uncheckedCheckboxIcon,
+      checkedRadioIcon,
+      uncheckedRadioIcon,
+      __superSecreteProp,
+
+      // deprecated
       checkedIcon,
       uncheckedIcon,
       checkedRadioIconChildren,
@@ -328,8 +313,6 @@ export default class SelectionControl extends PureComponent {
       checkedCheckboxIconClassName,
       uncheckedCheckboxIconChildren,
       uncheckedCheckboxIconClassName,
-      tooltip,
-      __superSecreteProp,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -347,11 +330,11 @@ export default class SelectionControl extends PureComponent {
           inkDisabled={inkDisabled}
           disabledInteractions={disabledInteractions}
           role={type}
-          className={cn('md-selection-control-toggle md-btn md-btn--icon', {
-            'md-text--disabled': disabled,
-            'md-text--secondary': !disabled && !checked,
-            'md-text--theme-secondary': checked && !disabled,
-          })}
+          className={cn('md-selection-control-toggle md-btn md-btn--icon', themeColors({
+            disabled,
+            hint: !checked,
+            secondary: checked,
+          }))}
           aria-checked={checked}
           tabIndex={tabIndex}
           disabled={disabled}
@@ -389,9 +372,8 @@ export default class SelectionControl extends PureComponent {
         <label
           htmlFor={id}
           className={cn('md-selection-control-label', {
-            'md-text md-pointer--hover': !disabled,
-            'md-text--disabled': disabled,
-          })}
+            'md-pointer--hover': !disabled,
+          }, themeColors({ disabled, text: !disabled }))}
         >
           {labelBefore && label}
           {control}

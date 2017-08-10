@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
+
 const ICON_SIZE = 24;
 
 /**
@@ -58,6 +60,11 @@ export default class FontIcon extends PureComponent {
      * Boolean if the error color should be applied to the icon.
      */
     error: PropTypes.bool,
+
+    /**
+     * Boolean if the color of the icon should be inherited by parent elements.
+     */
+    inherit: PropTypes.bool,
 
     /**
      * Either a boolean that will enforce the 24x24 size of the font icon or a number of the size
@@ -138,6 +145,7 @@ export default class FontIcon extends PureComponent {
       primary,
       secondary,
       error,
+      inherit,
       /* eslint-disable no-unused-vars */
       style,
       forceSize,
@@ -146,17 +154,16 @@ export default class FontIcon extends PureComponent {
       ...props
     } = this.props;
 
+    const classes = cn('md-icon', iconClassName, themeColors({
+      disabled,
+      error,
+      inherit,
+      primary,
+      secondary,
+    }), className);
+
     return (
-      <i
-        {...props}
-        style={styles}
-        className={cn('md-icon', iconClassName, {
-          'md-text--disabled': disabled,
-          'md-text--error': !disabled && error,
-          'md-text--theme-primary': !disabled && !error && primary,
-          'md-text--theme-secondary': !disabled && !error && secondary,
-        }, className)}
-      >
+      <i {...props} style={styles} className={classes}>
         {children}
       </i>
     );

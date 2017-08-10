@@ -25,7 +25,7 @@ exports[`ShowcaseCard should render correctly 1`] = `
       className="md-card-title--title-block"
     >
       <h2
-        className="md-card-title--title md-text md-card-title--large"
+        className="md-card-title--title md-card-title--large md-text"
         id={undefined}
       >
         react-md Documentation website
@@ -70,7 +70,7 @@ exports[`ShowcaseCard should render correctly 2`] = `
       className="md-card-title--title-block"
     >
       <h2
-        className="md-card-title--title md-text md-card-title--large"
+        className="md-card-title--title md-card-title--large md-text"
         id={undefined}
       >
         react-md Documentation website
@@ -82,20 +82,20 @@ exports[`ShowcaseCard should render correctly 2`] = `
       </h3>
     </div>
     <a
-      className="md-inline-block md-btn md-btn--icon md-pointer--hover"
+      className="md-btn md-btn--icon md-pointer--hover md-inline-block"
       disabled={undefined}
       href="https://github.com/mlaursen/react-md"
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}
+      onMouseEnter={[Function]}
       onMouseLeave={[Function]}
-      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
     >
       <i
-        className="md-icon fa fa-github"
+        className="md-icon fa fa-github md-text--inherit"
         style={undefined}
       />
     </a>

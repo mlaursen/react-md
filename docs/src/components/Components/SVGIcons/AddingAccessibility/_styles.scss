@@ -1,0 +1,13 @@
+@import '~globals';
+
+.twitter-link {
+  margin: 1em;
+  vertical-align: top;
+}
+
+.twitter-logo {
+  // scss-lint:disable ImportantRule, ColorVariable
+
+  // twitter branding blue
+  color: #1da1f2 !important;
+}

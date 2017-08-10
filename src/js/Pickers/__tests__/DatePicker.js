@@ -11,33 +11,40 @@ import DatePickerHeader from '../DatePickerHeader';
 import DatePickerCalendar from '../DatePickerCalendar';
 import YearPicker from '../YearPicker';
 import DialogFooter from '../../Dialogs/DialogFooter';
+import FontIcon from '../../FontIcons/FontIcon';
 
 import DateTimeFormat from '../../utils/DateUtils/DateTimeFormat';
 
 jest.mock('../../utils/DateUtils/DateTimeFormat');
 
+const PROPS = {
+  okLabel: 'ok',
+  okPrimary: false,
+  onOkClick: jest.fn(),
+  cancelLabel: 'cancel',
+  cancelPrimary: false,
+  onCancelClick: jest.fn(),
+  DateTimeFormat,
+  locales: 'en-US',
+  calendarDate: new Date(),
+  calendarTempDate: new Date(),
+  calendarMode: 'calendar',
+  changeCalendarMode: jest.fn(),
+  onSwipeChange: jest.fn(),
+  onPreviousClick: jest.fn(),
+  onNextClick: jest.fn(),
+  onCalendarDateClick: jest.fn(),
+  onCalendarYearClick: jest.fn(),
+  nextIcon: <FontIcon>a</FontIcon>,
+  previousIcon: <FontIcon>a</FontIcon>,
+  yearsDisplayed: 30,
+};
+
 describe('DatePicker', () => {
   it('renders a DatePickerHeader and a DialogFooter', () => {
     const props = {
+      ...PROPS,
       className: 'a',
-      okLabel: 'ok',
-      okPrimary: false,
-      onOkClick: jest.fn(),
-      cancelLabel: 'cancel',
-      cancelPrimary: false,
-      onCancelClick: jest.fn(),
-      DateTimeFormat,
-      locales: 'en-US',
-      calendarDate: new Date(),
-      calendarTempDate: new Date(),
-      calendarMode: 'calendar',
-      changeCalendarMode: jest.fn(),
-      onSwipeChange: jest.fn(),
-      onPreviousClick: jest.fn(),
-      onNextClick: jest.fn(),
-      onCalendarDateClick: jest.fn(),
-      nextIconChildren: 'a',
-      previousIconChildren: 'a',
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -50,26 +57,8 @@ describe('DatePicker', () => {
 
   it('renders a calendar when the calendarMode is calendar', () => {
     const props = {
-      className: 'a',
-      okLabel: 'ok',
-      okPrimary: false,
-      onOkClick: jest.fn(),
-      cancelLabel: 'cancel',
-      cancelPrimary: false,
-      onCancelClick: jest.fn(),
-      DateTimeFormat,
-      locales: 'en-US',
-      calendarDate: new Date(),
-      calendarTempDate: new Date(),
+      ...PROPS,
       calendarMode: 'calendar',
-      changeCalendarMode: jest.fn(),
-      onSwipeChange: jest.fn(),
-      onPreviousClick: jest.fn(),
-      onNextClick: jest.fn(),
-      onCalendarDateClick: jest.fn(),
-      onCalendarYearClick: jest.fn(),
-      nextIconChildren: 'a',
-      previousIconChildren: 'a',
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -81,27 +70,8 @@ describe('DatePicker', () => {
 
   it('renders a year picker when the calendarMode is year', () => {
     const props = {
-      className: 'a',
-      okLabel: 'ok',
-      okPrimary: false,
-      onOkClick: jest.fn(),
-      cancelLabel: 'cancel',
-      cancelPrimary: false,
-      onCancelClick: jest.fn(),
-      DateTimeFormat,
-      locales: 'en-US',
-      calendarDate: new Date(),
-      calendarTempDate: new Date(),
+      ...PROPS,
       calendarMode: 'year',
-      changeCalendarMode: jest.fn(),
-      onSwipeChange: jest.fn(),
-      onPreviousClick: jest.fn(),
-      onNextClick: jest.fn(),
-      onCalendarDateClick: jest.fn(),
-      onCalendarYearClick: jest.fn(),
-      nextIconChildren: 'a',
-      previousIconChildren: 'a',
-      yearsDisplayed: 30,
     };
 
     const picker = renderIntoDocument(<DatePicker {...props} />);
@@ -113,26 +83,7 @@ describe('DatePicker', () => {
 
   it('should use "contentClassName" property', () => {
     const props = {
-      className: 'a',
-      okLabel: 'ok',
-      okPrimary: false,
-      onOkClick: jest.fn(),
-      cancelLabel: 'cancel',
-      cancelPrimary: false,
-      onCancelClick: jest.fn(),
-      DateTimeFormat,
-      locales: 'en-US',
-      calendarDate: new Date(),
-      calendarTempDate: new Date(),
-      calendarMode: 'calendar',
-      changeCalendarMode: jest.fn(),
-      onSwipeChange: jest.fn(),
-      onPreviousClick: jest.fn(),
-      onNextClick: jest.fn(),
-      onCalendarDateClick: jest.fn(),
-      onCalendarYearClick: jest.fn(),
-      nextIconChildren: 'a',
-      previousIconChildren: 'a',
+      ...PROPS,
       contentClassName: 'additional-content-class',
     };
 

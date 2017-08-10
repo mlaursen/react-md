@@ -2,6 +2,7 @@ import { PureComponent, createElement } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 
+import themeColors from '../utils/themeColors';
 import TextArea from './TextArea';
 
 /**
@@ -84,15 +85,13 @@ export default class InputField extends PureComponent {
       rows,
       ref: this._setField,
       className: cn('md-text-field', {
-        'md-text': !props.disabled,
-        'md-text--disabled': props.disabled,
         'md-text-field--inline-indicator': inlineIndicator || (!multiline && type === 'password'),
         'md-text-field--multiline': multiline,
-        'md-full-width': fullWidth,
         'md-text-field--margin': !block && !multiline && !label,
         'md-text-field--floating-margin': !block && !multiline && label,
         [`md-text-field--${customSize}`]: customSize,
-      }, className),
+        'md-full-width': fullWidth,
+      }, themeColors({ disabled: props.disabled, text: !props.disabled }, className)),
     });
   }
 }

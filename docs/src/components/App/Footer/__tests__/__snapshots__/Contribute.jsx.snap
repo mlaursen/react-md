@@ -15,14 +15,14 @@ exports[`Contribute should render correctly 1`] = `
     This project is currently developed by a single person. Feel free to contribute!
   </p>
   <a
-    className="md-inline-block md-btn md-btn--flat md-text--theme-secondary md-ink--secondary md-pointer--hover md-btn--text"
+    className="md-btn md-btn--flat md-btn--text md-pointer--hover md-text--theme-secondary md-ink--secondary md-inline-block"
     disabled={undefined}
     href="https://github.com/mlaursen/react-md"
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     onMouseDown={[Function]}
+    onMouseEnter={[Function]}
     onMouseLeave={[Function]}
-    onMouseOver={[Function]}
     onMouseUp={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
@@ -31,7 +31,7 @@ exports[`Contribute should render correctly 1`] = `
       className="md-icon-separator"
     >
       <i
-        className="md-icon fa fa-github"
+        className="md-icon fa fa-github md-text--inherit"
         style={undefined}
       />
       <span

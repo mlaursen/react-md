@@ -1,92 +1,57 @@
 /* eslint-env jest */
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import {
-  Simulate,
-  renderIntoDocument,
-  findRenderedComponentWithType,
-  scryRenderedComponentsWithType,
-} from 'react-dom/test-utils';
+import { shallow } from 'enzyme';
 
 import Chip from '../Chip';
-import FontIcon from '../../FontIcons/FontIcon';
 import Avatar from '../../Avatars/Avatar';
+import FontIcon from '../../FontIcons/FontIcon';
+import SVGIcon from '../../SVGIcons/SVGIcon';
 
 describe('Chip', () => {
-  it('merges style and className', () => {
-    const props = {
-      label: 'a',
-      style: { background: 'black' },
-      className: 'test',
-    };
-
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const chipNode = findDOMNode(chip);
-    expect(chipNode.style.background).toBe(props.style.background);
-    expect(chipNode.className).toContain(props.className);
+  it('should apply the correct styles', () => {
+    const chip = shallow(<Chip label="Chip" style={{ width: 200 }} className="custom-chip" />);
+    expect(chip.render()).toMatchSnapshot();
   });
 
-  it('allows the onClick, onMouseOver, and onMouseLeave props to still be called', () => {
-    const onClick = jest.fn();
-    const onMouseOver = jest.fn();
+  it('should render correctly based on the props', () => {
+    const chip = shallow(<Chip label="Chip" />);
+    expect(chip.render()).toMatchSnapshot();
+
+    chip.setProps({ removable: true });
+    expect(chip.render()).toMatchSnapshot();
+
+    chip.setProps({ avatar: <Avatar>D</Avatar> });
+    expect(chip.render()).toMatchSnapshot();
+
+    chip.setProps({ children: <FontIcon>close</FontIcon> });
+    expect(chip.render()).toMatchSnapshot();
+
+    chip.setProps({ children: <SVGIcon><path d="i932jfds" /></SVGIcon> });
+    expect(chip.render()).toMatchSnapshot();
+  });
+
+  it('should update the class name based on hoer state', () => {
+    const chip = shallow(<Chip label="Chip" />);
+    expect(chip.state('hover')).toBe(false);
+
+    chip.simulate('mouseEnter');
+    expect(chip.state('hover')).toBe(true);
+    expect(chip.render()).toMatchSnapshot();
+
+    chip.simulate('mouseLeave');
+    expect(chip.state('hover')).toBe(false);
+    expect(chip.render()).toMatchSnapshot();
+  });
+
+  it('should still call the onMouseEnter and onMouseLeave props', () => {
+    const onMouseEnter = jest.fn();
     const onMouseLeave = jest.fn();
 
-    const props = {
-      label: 'a',
-      onClick,
-      onMouseOver,
-      onMouseLeave,
-    };
+    const chip = shallow(<Chip label="Chip" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />);
+    chip.simulate('mouseEnter');
+    expect(onMouseEnter).toBeCalled();
 
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const chipNode = findDOMNode(chip);
-
-    Simulate.click(chipNode);
-    expect(onClick).toBeCalled();
-
-    Simulate.mouseOver(chipNode);
-    expect(onMouseOver).toBeCalled();
-
-    Simulate.mouseLeave(chipNode);
+    chip.simulate('mouseLeave');
     expect(onMouseLeave).toBeCalled();
-  });
-
-  it('does not render a FontIcon if the removable prop is not true', () => {
-    const props = { label: 'a' };
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const icons = scryRenderedComponentsWithType(chip, FontIcon);
-    expect(icons.length).toBe(0);
-  });
-
-  it('renders a FontIcon if the removable prop is true', () => {
-    const props = { label: 'a', removable: true };
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const icons = scryRenderedComponentsWithType(chip, FontIcon);
-    expect(icons.length).toBe(1);
-  });
-
-  it('renders a FontIcon with the correct props', () => {
-    const props = {
-      label: 'a',
-      children: 'menu',
-      iconClassName: 'test',
-      removable: true,
-    };
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const icon = findRenderedComponentWithType(chip, FontIcon);
-
-    expect(icon.props.iconClassName).toBe(props.iconClassName);
-    expect(icon.props.children).toBe(props.children);
-  });
-
-  it('renders the avatar prop', () => {
-    const props = {
-      label: 'a',
-      avatar: <Avatar>A</Avatar>,
-    };
-
-    const chip = renderIntoDocument(<Chip {...props} />);
-    const avatars = scryRenderedComponentsWithType(chip, Avatar);
-    expect(avatars.length).toBe(1);
   });
 });

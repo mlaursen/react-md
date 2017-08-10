@@ -8,6 +8,7 @@ export interface FontIconProps extends Props {
   secondary?: boolean;
   disabled?: boolean;
   error?: boolean;
+  inherit?: boolean;
   forceSize?: boolean | number;
   forceFontSize?: boolean;
 }

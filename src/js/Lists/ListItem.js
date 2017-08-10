@@ -4,6 +4,8 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
+import themeColors from '../utils/themeColors';
+import getCollapserStyles from '../utils/getCollapserStyles';
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
 import { TAB } from '../constants/keyCodes';
@@ -11,7 +13,8 @@ import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import AccessibleFakeInkedButton from '../Helpers/AccessibleFakeInkedButton';
 import Collapse from '../Helpers/Collapse';
-import Collapser from '../FontIcons/Collapser';
+import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import TileAddon from './TileAddon';
 import ListItemText from './ListItemText';
 import List from './List';
@@ -188,14 +191,9 @@ export default class ListItem extends PureComponent {
     visible: controlled(PropTypes.bool, 'onClick', 'defaultVisible'),
 
     /**
-     * Any children used to render the expander icon.
+     * An icon to use for the exapnder icon when there are nested items.
      */
-    expanderIconChildren: PropTypes.node,
-
-    /**
-     * An icon className to use to render the expander icon.
-     */
-    expanderIconClassName: PropTypes.string,
+    expanderIcon: PropTypes.element,
 
     /**
      * Boolean if the expander icon should appear as the left icon instead of the right.
@@ -302,6 +300,8 @@ export default class ListItem extends PureComponent {
      * if that is the case.
      */
     passPropsToItem: PropTypes.bool,
+    expanderIconChildren: deprecated(PropTypes.node, 'Use `expanderIcon` instead'),
+    expanderIconClassName: deprecated(PropTypes.string, 'Use `exapnderIcon` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     defaultOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -312,7 +312,7 @@ export default class ListItem extends PureComponent {
     activeClassName: 'md-text--theme-primary',
     component: 'div',
     itemComponent: 'li',
-    expanderIconChildren: 'keyboard_arrow_down',
+    expanderIcon: <FontIcon>keyboard_arrow_down</FontIcon>,
   };
 
   static contextTypes = {
@@ -489,9 +489,8 @@ export default class ListItem extends PureComponent {
       active,
       activeClassName,
       animateNestedItems,
+      expanderIcon,
       expanderLeft,
-      expanderIconChildren,
-      expanderIconClassName,
       component,
       itemComponent: ItemComponent,
       itemProps,
@@ -499,7 +498,11 @@ export default class ListItem extends PureComponent {
       passPropsToItem,
       'aria-setsize': ariaSize,
       'aria-posinset': ariaPos,
-      isOpen, // deprecated
+
+      // deprecated
+      isOpen,
+      expanderIconChildren,
+      expanderIconClassName,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       defaultVisible,
@@ -547,14 +550,13 @@ export default class ListItem extends PureComponent {
         );
       }
 
+      const icon = React.Children.only(getDeprecatedIcon(expanderIconClassName, expanderIconChildren, expanderIcon));
       const collapser = (
         <TileAddon
           key="expander-addon"
-          icon={
-            <Collapser flipped={visible} iconClassName={expanderIconClassName}>
-              {expanderIconChildren}
-            </Collapser>
-          }
+          icon={React.cloneElement(icon, {
+            className: getCollapserStyles({ flipped: visible }, icon.props.className),
+          })}
           avatar={null}
         />
       );
@@ -588,15 +590,13 @@ export default class ListItem extends PureComponent {
         disabled={disabled}
         style={tileStyle}
         className={cn('md-list-tile', {
-          'md-text': !disabled,
-          'md-text--disabled': disabled,
           'md-list-tile--active': this.state.active && !this._touched,
           'md-list-tile--icon': !secondaryText && icond && !avatard,
           'md-list-tile--avatar': !secondaryText && avatard,
           'md-list-tile--two-lines': secondaryText && !threeLines,
           'md-list-tile--three-lines': secondaryText && threeLines,
           'md-list-item--inset': inset && !leftIcon && !leftAvatar,
-        }, tileClassName)}
+        }, themeColors({ disabled, text: true }), tileClassName)}
         aria-expanded={nestedList && !cascadingMenu ? visible : null}
       >
         {leftNode}

@@ -21,15 +21,15 @@ exports[`Home should render correctly 1`] = `
       }
     />
     <a
-      className="md-inline-block md-btn md-btn--raised md-background--secondary md-background--secondary-hover md-pointer--hover md-btn--text"
+      className="md-btn md-btn--raised md-btn--text md-pointer--hover md-background--secondary md-background--secondary-hover md-inline-block"
       disabled={undefined}
       href="/components"
       onClick={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       onMouseDown={[Function]}
+      onMouseEnter={[Function]}
       onMouseLeave={[Function]}
-      onMouseOver={[Function]}
       onMouseUp={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
@@ -59,7 +59,7 @@ exports[`Home should render correctly 1`] = `
         style={undefined}
       >
         <h2
-          className="md-card-title--title md-text md-card-title--large"
+          className="md-card-title--title md-card-title--large md-text"
           id={undefined}
         >
           Getting Started
@@ -87,7 +87,7 @@ exports[`Home should render correctly 1`] = `
         style={undefined}
       >
         <h2
-          className="md-card-title--title md-text md-card-title--large"
+          className="md-card-title--title md-card-title--large md-text"
           id={undefined}
         >
           Customization
@@ -115,7 +115,7 @@ exports[`Home should render correctly 1`] = `
         style={undefined}
       >
         <h2
-          className="md-card-title--title md-text md-card-title--large"
+          className="md-card-title--title md-card-title--large md-text"
           id={undefined}
         >
           Customization

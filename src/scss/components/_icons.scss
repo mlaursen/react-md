@@ -48,11 +48,22 @@ $md-font-icon-dark-theme-disabled-color: rgba($md-white-base, .3) !default;
     transition-duration: $md-transition-time;
     transition-property: color;
     user-select: none;
+  }
 
-    &--inherit {
-      color: inherit;
+  // scss-lint:disable QualifyingElement
+  svg.md-icon {
+    fill: currentColor;
+    height: $md-font-icon-size;
+    width: $md-font-icon-size;
+
+    @if $include-dense {
+      @media #{$md-desktop-media} {
+        height: $md-font-icon-dense-size;
+        width: $md-font-icon-dense-size;
+      }
     }
   }
+  // scss-lint:enable QualifyingElement
 
   @if $include-separators {
     @include react-md-icon-separators;

@@ -13,8 +13,7 @@ export interface ExpansionPanelProps extends Props {
   component?: React.ReactType;
   expanded?: boolean;
   defaultExpanded?: boolean;
-  expandIconChildren?: React.ReactNode;
-  expandIconClassName?: string;
+  expanderIcon?: React.ReactElement<any>;
   focused?: boolean;
   columnWidths?: Array<number>;
   onExpandToggle?: (expanded: boolean) => void;
@@ -36,6 +35,16 @@ export interface ExpansionPanelProps extends Props {
   children?: React.ReactNode;
   animateContent?: boolean;
   footer?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  expandIconChildren?: React.ReactNode;
+
+  /**
+   * @deprecated
+   */
+  expandIconClassName?: string;
 }
 
 declare const ExpansionPanel: React.ComponentClass<ExpansionPanelProps>;

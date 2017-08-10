@@ -135,6 +135,7 @@ $md-bottom-navigation-shifting-inactive-max-width: 96px !default;
 ///     for a shifting bottom navigation should be included.
 @mixin react-md-bottom-navigations-nav($include-shifting: $md-bottom-navigation-include-shifting) {
   .md-bottom-nav {
+    color: inherit;
     display: block;
     flex-grow: 1;
     font-size: $md-bottom-navigation-inactive-font-size;

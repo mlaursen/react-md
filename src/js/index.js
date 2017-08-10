@@ -61,6 +61,7 @@ import SelectField from './SelectFields';
 import Slider from './Sliders';
 import Sidebar from './Sidebars';
 import Snackbar from './Snackbars';
+import SVGIcon from './SVGIcons';
 import Subheader from './Subheaders';
 import { TabsContainer, Tabs, Tab, MenuTab, TabPanel } from './Tabs';
 import TextField from './TextFields';
@@ -133,10 +134,11 @@ export { Checkbox };
 export { RadioGroup };
 export { Radio };
 export { Switch };
-export { Subheader };
 export { Slider };
 export { Sidebar };
 export { Snackbar };
+export { SVGIcon };
+export { Subheader };
 export { TabsContainer };
 export { Tabs };
 export { Tab };
@@ -233,11 +235,12 @@ export default {
   Radio,
   Switch,
 
-  Subheader,
-
   Slider,
   Sidebar,
   Snackbar,
+
+  SVGIcon,
+  Subheader,
 
   TabsContainer,
   Tabs,

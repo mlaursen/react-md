@@ -1,10 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import deprecated from 'react-prop-types/lib/deprecated';
 
+import themeColors from '../utils/themeColors';
+import getCollapserStyles from '../utils/getCollapserStyles';
 import getField from '../utils/getField';
 import injectTooltip from '../Tooltips/injectTooltip';
-import Collapser from '../FontIcons/Collapser';
+import FontIcon from '../FontIcons/FontIcon';
+import getDeprecatedIcon from '../FontIcons/getDeprecatedIcon';
 import IconSeparator from '../Helpers/IconSeparator';
 
 const CELL_SCOPE = {
@@ -57,14 +61,9 @@ class TableColumn extends PureComponent {
     sorted: PropTypes.bool,
 
     /**
-     * The optional icon children to display in the sort icon.
+     * The icon to show when a column is sortable.
      */
-    sortIconChildren: PropTypes.node,
-
-    /**
-     * The icon className for the sort icon.
-     */
-    sortIconClassName: PropTypes.string,
+    sortIcon: PropTypes.element,
 
     /**
      * A boolean if the column has numeric data. It will right-align the data.
@@ -136,12 +135,14 @@ class TableColumn extends PureComponent {
      * @access private
      */
     cellIndex: PropTypes.number,
+    sortIconChildren: deprecated(PropTypes.node, 'Use the `sortIcon` prop instead'),
+    sortIconClassName: deprecated(PropTypes.string, 'Use the `sortIcon` prop instead'),
   };
 
   static defaultProps = {
     header: false,
     adjusted: true,
-    sortIconChildren: 'arrow_upward',
+    sortIcon: <FontIcon>arrow_upward</FontIcon>,
   };
 
   static contextTypes = {
@@ -160,8 +161,7 @@ class TableColumn extends PureComponent {
       header,
       children,
       sorted,
-      sortIconChildren,
-      sortIconClassName,
+      sortIcon,
       tooltip,
       selectColumnHeader,
       adjusted,
@@ -170,6 +170,10 @@ class TableColumn extends PureComponent {
       plain: propPlain,
       scope: propScope,
       cellIndex,
+
+      // deprecated
+      sortIconChildren,
+      sortIconClassName,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -183,11 +187,10 @@ class TableColumn extends PureComponent {
     let ariaSort;
     if (sortable) {
       ariaSort = sorted ? 'ascending' : 'descending';
+      const icon = React.Children.only(getDeprecatedIcon(sortIconClassName, sortIconChildren, sortIcon));
       displayedChildren = (
         <IconSeparator label={children} iconBefore>
-          <Collapser flipped={!sorted} iconClassName={sortIconClassName}>
-            {sortIconChildren}
-          </Collapser>
+          {React.cloneElement(icon, { className: getCollapserStyles({ flipped: !sorted }, icon.props.className) })}
         </IconSeparator>
       );
     }
@@ -195,9 +198,7 @@ class TableColumn extends PureComponent {
     const fixedHeader = header && this.context.fixedHeader;
     const fixedFooter = this.context.footer && this.context.fixedFooter;
     const fixed = fixedHeader || fixedFooter;
-    const baseClassNames = cn({
-      'md-text': !header,
-      'md-text--secondary': header,
+    const baseClassNames = themeColors({ text: !header, hint: header }, {
       'md-table-column--relative': tooltip,
       'md-table-column--select-field': selectColumnHeader,
     });
