@@ -1246,11 +1246,11 @@ $md-dark-theme-colors: (
 /// @param {Boolean} include-media [$md-media-included] - Boolean if the media queries should also be included.
 /// @param {Boolean} include-color-class-names [$md-colors-include-class-names] - Boolean if a class name
 ///     should be created for every color as well.
-/// @param {Number} primary-opacity [$md-primary-opacity] - The opacity to apply to the primary color with the `md-background--primary`
+/// @param {Number} primary-opacity [$md-primary-hover-opacity] - The opacity to apply to the primary color with the `md-background--primary`
 ///     class name.
 /// @param {Color} primary-background-text-color [$md-primary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--primary` class name.
-/// @param {Number} secondary-opacity [$md-secondary-opacity] - The opacity to apply to the secondary color with the `md-background--secondary`
+/// @param {Number} secondary-opacity [$md-secondary-hover-opacity] - The opacity to apply to the secondary color with the `md-background--secondary`
 ///     class name.
 /// @param {Color} secondary-background-text-color [$md-secondary-background-text-color] - The text color for any text
 ///     that appears inside the `md-background--secondary` class name.
