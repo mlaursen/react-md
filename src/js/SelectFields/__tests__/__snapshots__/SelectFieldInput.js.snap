@@ -4,6 +4,7 @@ exports[`SelectFieldInput should render correctly 1`] = `
 <div
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field"
+  id="test-field-toggle"
   role="listbox"
   tabindex="0"
 >
@@ -35,6 +36,7 @@ exports[`SelectFieldInput should render correctly 2`] = `
 <div
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field test-name"
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
   tabindex="0"
@@ -67,6 +69,7 @@ exports[`SelectFieldInput should render correctly 3`] = `
 <div
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
   tabindex="0"
@@ -101,6 +104,7 @@ exports[`SelectFieldInput should render correctly 4`] = `
 <div
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
   tabindex="0"
@@ -136,6 +140,7 @@ exports[`SelectFieldInput should render correctly 5`] = `
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-fake-btn--no-outline md-select-field md-text--disabled test-name"
   disabled=""
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
 >
@@ -171,6 +176,7 @@ exports[`SelectFieldInput should render correctly 6`] = `
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-fake-btn--no-outline md-select-field md-text--disabled test-name"
   disabled=""
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
 >
@@ -202,6 +208,7 @@ exports[`SelectFieldInput should render correctly 7`] = `
 <div
   aria-pressed="false"
   class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text test-name"
+  id="test-field-toggle"
   role="listbox"
   style="height:150px;"
   tabindex="0"
