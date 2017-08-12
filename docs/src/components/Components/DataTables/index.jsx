@@ -7,6 +7,8 @@ import SimplePlainTable from './SimplePlainTable';
 import SimplePlainTableRaw from '!!raw-loader!./SimplePlainTable.jsx';
 import SimpleSelectableTable from './SimpleSelectableTable';
 import SimpleSelectableTableRaw from '!!raw-loader!./SimpleSelectableTable.jsx';
+import WithMenus from './WithMenus';
+import WithMenusRaw from './WithMenus/code';
 import EditableTables from './EditableTables';
 import EditableTablesRaw from '!!raw-loader!./EditableTables.jsx';
 import EditDialogExample from './EditDialogExample';
@@ -36,6 +38,10 @@ checkbox to be in an "indeterminate" state when not all the rows have been check
   `,
   code: SimpleSelectableTableRaw,
   children: <SimpleSelectableTable />,
+}, {
+  title: 'Tables With Menus',
+  code: WithMenusRaw,
+  children: <WithMenus />,
 }, {
   tableCard: true,
   title: 'Simple Pagination',

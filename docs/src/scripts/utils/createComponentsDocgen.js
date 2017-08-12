@@ -75,12 +75,19 @@ function getFunctions(componentFunctions, file) {
   }, []);
 }
 
+function parseDocgen(source) {
+  return parse(
+    source.replace(/ComposedComponent =>/, '')
+      .replace(/withTableFixes\((\w+), .*/, 'withTableFixes($1);')
+  );
+}
+
 export async function createComponentDocgen(folder, fullPath, file, customPropTypes) {
   const fileName = `${file}${CONTAINERS.indexOf(file) !== -1 ? 'Container' : ''}.js`;
 
   try {
     const source = await readFile(path.join(fullPath, fileName), 'UTF-8');
-    const { description, methods: allFunctions, props } = await parse(source.replace(/ComposedComponent => /, ''));
+    const { description, methods: allFunctions, props } = await parseDocgen(source);
     const { functions, getters, enums } = getEnums(source).concat(getFunctions(allFunctions, file)).reduce((types, type) => {
       switch (type.type) {
         case 'function':
