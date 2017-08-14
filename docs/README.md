@@ -319,7 +319,7 @@ I don't really use Facebook or Twiiter. Oh well.
 ### Long term caching
 Webpack is hard. (Again)
 
-Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correctl loader for
+Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correct loader for
 your filetype and you're set!
 
 ```js
