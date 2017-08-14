@@ -16,28 +16,30 @@ import TooltipContainer from './TooltipContainer';
  * Besides of `children` and `setPosition` all props set for `Tooltipped` component are passed through
  * to `TooltipContainer` that is added as a child of the wrapped component and controls the tooltip.
  *
- * @example
-    <Tooltipped
-        label="Tooltip for text"
-        position="left"
-        delay={1000}
-    >
-        <span style={{position: 'absolute', top: '10px', left: '70%'}}>
-            Some text
-            <div>Another line of text</div>
-        </span>
-    </Tooltipped>
+ * ```js
+ * <Tooltipped
+ *   label="Tooltip for text"
+ *   position="left"
+ *   delay={1000}
+ * >
+ *   <span style={{position: 'absolute', top: '10px', left: '70%'}}>
+ *     Some text
+ *     <div>Another line of text</div>
+ *   </span>
+ * </Tooltipped>
+ * ```
  *
- * @example
-    <Tooltipped
-        setPosition={true}
-        label="Avatar's tooltip"
-        position="top"
-    >
-        <span style={{marginLeft: '30px'}}>
-            <Avatar random>T</Avatar>
-        </span>
-    </Tooltipped>
+ * ```js
+ * <Tooltipped
+ *   setPosition={true}
+ *   label="Avatar's tooltip"
+ *   position="top"
+ * >
+ *   <span style={{marginLeft: '30px'}}>
+ *       <Avatar random>T</Avatar>
+ *   </span>
+ * </Tooltipped>
+ * ```
  */
 export default function Tooltipped({ children, setPosition, ...props }) {
   let target = React.Children.only(children);

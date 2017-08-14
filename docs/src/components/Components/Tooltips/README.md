@@ -12,3 +12,6 @@ guide.
 
 > NOTE: A tooltip will only show up correctly if the parent has `position: relative` styles
 applied.
+
+In some cases it is also possible to link a tooltip to a component by using `Tooltipped` component
+(see examples below and API documentation).
