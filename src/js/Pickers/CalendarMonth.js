@@ -110,7 +110,7 @@ export default class CalendarMonth extends PureComponent {
         const time = currentDate.getTime();
         const isMinDateDisabled = minDate && minDate.getTime() > time;
         const isMaxDateDisabled = maxDate && maxDate.getTime() < time;
-        const isWeekendDisabled = disableWeekEnds && (currentDate.getDay === 0 || currentDate.getDay === 6);
+        const isWeekendDisabled = disableWeekEnds && (currentDate.getDay() === 0 || currentDate.getDay() === 6);
         date = (
           <CalendarDate
             key={key}
