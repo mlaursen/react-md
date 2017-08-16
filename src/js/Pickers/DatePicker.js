@@ -36,6 +36,11 @@ export default class DatePicker extends PureComponent {
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
 
     /**
+     * True if weekends are to be greyed out.
+     */
+    disableWeekEnds: PropTypes.bool,
+
+    /**
      * An optional className to apply to the header of date picker.
      */
     headerClassName: PropTypes.string,
@@ -109,6 +114,7 @@ export default class DatePicker extends PureComponent {
       icon,
       displayMode,
       firstDayOfWeek,
+      disableWeekEnds,
       headerClassName,
       contentClassName,
       footerClassName,
@@ -133,6 +139,7 @@ export default class DatePicker extends PureComponent {
           DateTimeFormat={DateTimeFormat}
           locales={locales}
           firstDayOfWeek={firstDayOfWeek}
+          disableWeekEnds={disableWeekEnds}
           dateClassName={calendarDateClassName}
           titleClassName={calendarTitleClassName}
           titleFormat={calendarTitleFormat}

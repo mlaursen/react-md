@@ -54,6 +54,11 @@ export default class CalendarMonth extends PureComponent {
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
 
     /**
+     * True if weekends are to be greyed out.
+     */
+    disableWeekEnds: PropTypes.bool,
+
+    /**
      * An optional className to apply to a date.
      */
     dateClassName: PropTypes.string,
@@ -79,6 +84,7 @@ export default class CalendarMonth extends PureComponent {
       locales,
       className,
       firstDayOfWeek,
+      disableWeekEnds,
       dateClassName,
       ...props
     } = this.props;
@@ -103,14 +109,15 @@ export default class CalendarMonth extends PureComponent {
       if (currentDate.getMonth() === calendarDate.getMonth()) {
         const time = currentDate.getTime();
         const isMinDateDisabled = minDate && minDate.getTime() > time;
-        const isMaxDateDisbaled = maxDate && maxDate.getTime() < time;
+        const isMaxDateDisabled = maxDate && maxDate.getTime() < time;
+        const isWeekendDisabled = disableWeekEnds && (currentDate.getDay === 0 || currentDate.getDay === 6);
         date = (
           <CalendarDate
             key={key}
             className={dateClassName}
             today={time === today.getTime()}
             active={time === activeDate.getTime()}
-            disabled={isMinDateDisabled || isMaxDateDisbaled}
+            disabled={isMinDateDisabled || isMaxDateDisabled || isWeekendDisabled}
             onClick={onCalendarDateClick}
             date={currentDate}
             DateTimeFormat={DateTimeFormat}
