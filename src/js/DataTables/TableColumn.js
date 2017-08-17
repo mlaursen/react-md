@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import injectTooltip from '../Tooltips/injectTooltip';
 import Collapser from '../FontIcons/Collapser';
@@ -75,7 +76,7 @@ class TableColumn extends PureComponent {
     /**
      * The optional tooltip to render on hover.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * An optional delay to apply to the tooltip before it appears.

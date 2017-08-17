@@ -1,10 +1,12 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 
 import { ENTER, TAB, ESC } from '../constants/keyCodes';
 import TICK from '../constants/CSSTransitionGroupTick';
 import getField from '../utils/getField';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import DialogFooter from '../Dialogs/DialogFooter';
 import TableColumn from './TableColumn';
@@ -155,9 +157,9 @@ export default class EditDialogColumn extends PureComponent {
      */
     title: (props, propName, component, ...others) => {
       if (props.large) {
-        return PropTypes.string.isRequired(props, propName, component, ...others);
+        return PropTypes.node.isRequired(props, propName, component, ...others);
       } else {
-        return PropTypes.string(props, propName, component, ...others);
+        return PropTypes.node(props, propName, component, ...others);
       }
     },
 
@@ -171,7 +173,7 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The label to use for the OK button.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * An optional function to call when the Cancel button is clicked.
@@ -183,7 +185,7 @@ export default class EditDialogColumn extends PureComponent {
     /**
      * The label to use for the Cancel button.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * An optional function to call when the edit dialog is open and the user clicks
@@ -315,11 +317,11 @@ export default class EditDialogColumn extends PureComponent {
       this._scrollLeft = active ? this._table.scrollLeft : null;
     }
 
-    window[`${active ? 'add' : 'remove'}EventListener`]('click', this._handleClickOutside);
+    handleWindowClickListeners(this._handleClickOutside, active);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this._handleClickOutside);
+    handleWindowClickListeners(this._handleClickOutside, false);
 
     if (this._timeout) {
       clearTimeout(this._timeout);

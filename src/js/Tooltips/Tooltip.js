@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TICK from '../constants/CSSTransitionGroupTick';
@@ -24,6 +25,12 @@ export default class Tooltip extends PureComponent {
     };
 
     this._timeout = null;
+  }
+
+  componentWillUnmount() {
+    if (this._timeout) {
+      clearTimeout(this._timeout);
+    }
   }
 
   componentWillEnter(cb) {

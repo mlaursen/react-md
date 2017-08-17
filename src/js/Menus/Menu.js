@@ -1,11 +1,15 @@
-import React, { PureComponent, PropTypes, cloneElement, Children } from 'react';
+import React, { PureComponent, cloneElement, Children } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import contextTypes from './contextTypes';
 import Positions from './Positions';
+import TICK from '../constants/CSSTransitionGroupTick';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import List from '../Lists/List';
 
 /**
@@ -163,6 +167,7 @@ export default class Menu extends PureComponent {
 
     this._setList = this._setList.bind(this);
     this._setContainer = this._setContainer.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
     this._handleListClick = this._handleListClick.bind(this);
     this._handleOutsideClick = this._handleOutsideClick.bind(this);
   }
@@ -179,7 +184,7 @@ export default class Menu extends PureComponent {
   componentDidMount() {
     const { isOpen } = this.props;
     if (isOpen) {
-      window.addEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, true);
     }
   }
 
@@ -189,13 +194,17 @@ export default class Menu extends PureComponent {
       return;
     }
 
-    window[`${isOpen ? 'add' : 'remove'}EventListener`]('click', this._handleOutsideClick);
+    handleWindowClickListeners(this._handleOutsideClick, isOpen);
   }
 
   componentWillUnmount() {
     const { isOpen } = this.props;
     if (isOpen) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
+    }
+
+    if (this._timeout) {
+      clearTimeout(this._timeout);
     }
   }
 
@@ -234,6 +243,10 @@ export default class Menu extends PureComponent {
     }
   }
 
+  _handleKeyDown(e) {
+    handleKeyboardAccessibility(e, this._handleListClick, true, true);
+  }
+
   _handleListClick(e) {
     const { onClose, close } = this.props;
 
@@ -248,7 +261,7 @@ export default class Menu extends PureComponent {
           } else if (onClose) {
             onClose(e);
           }
-        }, 300);
+        }, TICK);
 
         return;
       }
@@ -291,6 +304,7 @@ export default class Menu extends PureComponent {
         key: 'menu-list',
         className: cn(menuClassName, list.props.className),
         onClick: this._handleListClick,
+        onKeyDown: this._handleKeyDown,
         ref: this._setList,
       });
     } catch (e) {
@@ -300,6 +314,7 @@ export default class Menu extends PureComponent {
           key="menu-list"
           style={listStyle}
           className={menuClassName}
+          onKeyDown={this._handleKeyDown}
           onClick={this._handleListClick}
           ref={this._setList}
         >

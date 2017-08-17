@@ -1,4 +1,5 @@
-import { PureComponent, PropTypes, createElement } from 'react';
+import { PureComponent, createElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import TextArea from './TextArea';
@@ -20,7 +21,7 @@ export default class InputField extends PureComponent {
     disabled: PropTypes.bool,
     rows: PropTypes.number,
     maxRows: PropTypes.number,
-    label: PropTypes.string,
+    label: PropTypes.node,
     fullWidth: PropTypes.bool,
     customSize: PropTypes.string,
     passwordVisible: PropTypes.bool,
@@ -52,6 +53,10 @@ export default class InputField extends PureComponent {
 
   focus() {
     this._field.focus();
+  }
+
+  blur() {
+    this._field.blur();
   }
 
   _setField(field) {

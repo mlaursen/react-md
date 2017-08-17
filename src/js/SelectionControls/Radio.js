@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -35,7 +36,7 @@ export default class Radio extends PureComponent {
      * A label to display with the radio. This is required for accessibility and triggering
      * the toggle.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the label should appear before the radio icon.
@@ -69,6 +70,7 @@ export default class Radio extends PureComponent {
      * The value for the `Radio` component.
      */
     value: PropTypes.oneOfType([
+      PropTypes.bool,
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,

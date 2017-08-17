@@ -1,5 +1,6 @@
 /* eslint-env jest*/
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /* eslint-disable react/prop-types */
 
@@ -17,9 +18,9 @@ export default class TextField extends React.Component {
     error: PropTypes.bool,
     floating: PropTypes.bool,
     customSize: PropTypes.string,
-    helpText: PropTypes.string,
+    helpText: PropTypes.node,
     helpOnFocus: PropTypes.bool,
-    errorText: PropTypes.string,
+    errorText: PropTypes.node,
   };
   getField() {
     return this._field;

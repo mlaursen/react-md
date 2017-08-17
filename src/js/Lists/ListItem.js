@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
@@ -135,6 +136,11 @@ export default class ListItem extends PureComponent {
     nestedItems: PropTypes.arrayOf(PropTypes.node),
 
     /**
+     * An optional parameter determining whether `nestedItems` should be placed before or after `ListItemText`
+     */
+    prependNested: PropTypes.bool,
+
+    /**
      * Boolean if the `nestedItems` are visible by default.
      */
     defaultOpen: PropTypes.bool,
@@ -202,6 +208,30 @@ export default class ListItem extends PureComponent {
      * prop is `true`.
      */
     activeClassName: PropTypes.string,
+
+    /**
+     * Any additional props you would like to supply to the surrounding `<li>` tag for the `ListItem`.
+     * By default, all props will be provided to the inner `AccessibleFakeButton`. If the `passPropsToItem`
+     * prop is enabled, the remaining props will be provided to the `<lI>` tag instead and this prop
+     * is probably useless.
+     */
+    itemProps: PropTypes.object,
+
+    /**
+     * Any additional props you would like to add to the inner `AccessibleFakeButton`. By default, all the
+     * remaining props will be provided to the `AccessibleFakeButton`, so this prop is probably useless.
+     * Enabling the `passPropsToItem` prop will change the default behavior so that the remaining props
+     * are provided to the surrounding `<li>` node instead and this prop becomes usefull.
+     */
+    tileProps: PropTypes.object,
+
+    /**
+     * All the remaining props should be passed to the surrounding `<li>` node instead of the `AccessibleFakeButton`.
+     *
+     * > NOTE: This will most likely become the default in the next *major* release. Migration warnings will be added
+     * if that is the case.
+     */
+    passPropsToItem: PropTypes.bool,
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultOpen` instead'),
   };
 
@@ -373,10 +403,15 @@ export default class ListItem extends PureComponent {
       threeLines,
       children,
       nestedItems,
+      prependNested,
       active,
       activeClassName,
       expanderIconChildren,
       expanderIconClassName,
+      itemProps,
+      tileProps,
+      passPropsToItem,
+      component,
       ...props
     } = this.props;
     delete props.isOpen;
@@ -413,7 +448,7 @@ export default class ListItem extends PureComponent {
           <TileAddon
             key="expander-addon"
             icon={(
-              <Collapser flipped={isOpen} iconClassName={expanderIconClassName}>
+              <Collapser flipped={prependNested ? !isOpen : isOpen} iconClassName={expanderIconClassName}>
                 {expanderIconChildren}
               </Collapser>
             )}
@@ -427,14 +462,19 @@ export default class ListItem extends PureComponent {
 
     return (
       <li
+        {...itemProps}
+        {...(passPropsToItem ? props : undefined)}
         style={style}
         className={cn('md-list-item', {
           'md-list-item--nested-container': nestedItems,
         }, className)}
         ref={this._setContainer}
       >
+        {prependNested ? nestedList : null}
         <AccessibleFakeInkedButton
-          {...props}
+          {...tileProps}
+          {...(passPropsToItem ? undefined : props)}
+          component={component}
           __SUPER_SECRET_REF__={this._setTile}
           key="tile"
           onClick={this._handleClick}
@@ -475,7 +515,7 @@ export default class ListItem extends PureComponent {
           {rightNode}
           {children}
         </AccessibleFakeInkedButton>
-        {nestedList}
+        {prependNested ? null : nestedList}
       </li>
     );
   }

@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import Drawer from '../Drawers/Drawer';
 import componentDeprecated from '../utils/PropTypes/componentDeprecated';
@@ -91,7 +92,7 @@ export default class Sidebar extends PureComponent {
       /**
        * The primary text to display in a `ListItem` or a `Subheader`.
        */
-      primaryText: PropTypes.string,
+      primaryText: PropTypes.node,
     })),
   };
 

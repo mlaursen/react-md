@@ -1,11 +1,14 @@
 /* eslint-disable new-cap,no-shadow */
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC, ENTER } from '../constants/keyCodes';
+import { ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import isDateEqual from '../utils/DateUtils/isDateEqual';
 import addDate from '../utils/DateUtils/addDate';
@@ -99,7 +102,7 @@ export default class DatePickerContainer extends PureComponent {
      * An optional label to be displayed in the date picker's text
      * field.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to be displayed in the date picker's text field.
@@ -165,7 +168,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The label to use for the ok button on the date picker.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the ok button should be styled with the primary color.
@@ -175,7 +178,7 @@ export default class DatePickerContainer extends PureComponent {
     /**
      * The label to use for the cancel button on the date picker.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the cancel button should be styled with the primary color.
@@ -219,7 +222,7 @@ export default class DatePickerContainer extends PureComponent {
      */
     maxDate: (props, propName, component, ...others) => {
       const err = PropTypes.instanceOf(Date)(props, propName, component, ...others);
-      if (err || typeof props.minDate === 'undefined' || typeof props[propName] === 'undefined') {
+      if (err || !props.minDate || !props[propName]) {
         return err;
       }
 
@@ -388,6 +391,12 @@ export default class DatePickerContainer extends PureComponent {
     renderNode: PropTypes.object,
 
     /**
+     * Boolean if the DatePicker should be read only. This will prevent the user from opening the picker
+     * and only display the current date in the text field.
+     */
+    readOnly: PropTypes.bool,
+
+    /**
      * Boolean if the dialog should be rendered as the last child of the `renderNode` or `body` instead
      * of the first.
      */
@@ -437,24 +446,24 @@ export default class DatePickerContainer extends PureComponent {
       minDate,
       maxDate,
     } = props;
-    if (typeof props.value !== 'undefined' && props.value !== null) {
-      date = typeof props.value === 'string' ? new Date(props.value) : props.value;
+
+    if (typeof props.value !== 'undefined') {
+      date = this._getDate(props.value);
     } else if (defaultValue) {
-      date = typeof defaultValue === 'string' ? new Date(defaultValue) : defaultValue;
+      date = this._getDate(defaultValue);
       value = typeof defaultValue === 'string'
         ? defaultValue
         : DateTimeFormat(locales, formatOptions).format(defaultValue);
     } else {
       date = new Date();
+      value = '';
     }
 
     date = this._validateDateRange(date, minDate, maxDate);
 
     let calendarTempDate = date;
     if (typeof initialCalendarDate !== 'undefined' && !props.value && !props.defaultValue) {
-      calendarTempDate = typeof initialCalendarDate === 'string'
-        ? new Date(initialCalendarDate)
-        : initialCalendarDate;
+      calendarTempDate = this._getDate(initialCalendarDate);
       date = calendarTempDate;
     } else if (calendarTempDate === null) {
       calendarTempDate = new Date();
@@ -495,7 +504,7 @@ export default class DatePickerContainer extends PureComponent {
     if (this.props.value !== value || !minEqual || !maxEqual) {
       let { calendarDate } = this.state;
       if (typeof value !== 'undefined') {
-        calendarDate = typeof value === 'string' ? new Date(value) : value;
+        calendarDate = this._getDate(value);
       }
 
       calendarDate = this._validateDateRange(calendarDate, minDate, maxDate);
@@ -521,11 +530,11 @@ export default class DatePickerContainer extends PureComponent {
 
     if (visible) {
       if (inline) {
-        window.addEventListener('click', this._handleOutsideClick);
+        handleWindowClickListeners(this._handleOutsideClick, true);
         window.addEventListener('keydown', this._closeOnEsc);
       }
     } else if (inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
@@ -536,9 +545,19 @@ export default class DatePickerContainer extends PureComponent {
       : getField(this.props, this.state, 'visible');
 
     if (visible && this.props.inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
+  }
+
+  _getDate(value) {
+    if (value === '' || value === null) {
+      return new Date();
+    } else if (typeof value === 'string') {
+      return new Date(value);
+    }
+
+    return value;
   }
 
   _setContainer(container) {
@@ -558,6 +577,10 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   _toggleOpen(e) {
+    if (this.props.disabled || this.props.readOnly) {
+      return;
+    }
+
     const visible = !(typeof this.props.isOpen !== 'undefined'
       ? this.props.isOpen
       : getField(this.props, this.state, 'visible'));
@@ -572,8 +595,10 @@ export default class DatePickerContainer extends PureComponent {
   }
 
   _handleKeyDown(e) {
-    if ((e.which || e.keyCode) === ENTER) {
-      this._toggleOpen(e);
+    handleKeyboardAccessibility(e, this._toggleOpen, true, true);
+
+    if ((e.which || e.keyCode) === TAB && this.state.active) {
+      this.setState({ active: false });
     }
   }
 
@@ -772,6 +797,7 @@ export default class DatePickerContainer extends PureComponent {
     delete props.value;
     delete props.onChange;
     delete props.visible;
+    delete props.readOnly;
     delete props.onVisibilityToggle;
     delete props.defaultValue;
     delete props.defaultVisible;

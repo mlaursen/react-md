@@ -6,7 +6,7 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   scryRenderedDOMComponentsWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import CardTitleBlock from '../CardTitleBlock';
 

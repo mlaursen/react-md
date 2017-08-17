@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
@@ -35,7 +36,7 @@ export default class Chip extends PureComponent {
     /**
      * The label to display on the chip.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * Boolean if the chip is removable.

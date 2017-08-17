@@ -1,56 +1,219 @@
 /* eslint-env jest */
-jest.unmock('../NavigationDrawer');
-jest.unmock('../../Dialogs/Dialog');
+/* eslint-disable max-len */
+jest.disableAutomock();
 
 import React from 'react';
-import { findDOMNode } from 'react-dom';
+import { mount } from 'enzyme';
 import {
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import NavigationDrawer from '../NavigationDrawer';
-import Toolbar from '../../Toolbars/Toolbar';
 import Drawer from '../../Drawers/Drawer';
+import Overlay from '../../Drawers/Overlay';
 import Dialog from '../../Dialogs/Dialog';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-// Not sure what to _really_ test here.
 describe('NavigationDrawer', () => {
-  it('passes styles and classnames correctly', () => {
-    const props = {
-      style: { background: 'black' },
-      className: 'woop-woop',
-      toolbarStyle: { background: 'red' },
-      toolbarClassName: 'thats-the-sound',
-      drawerStyle: { background: 'blue' },
-      drawerClassName: 'of-the-police',
-      contentStyle: { background: 'orange' },
-      contentClassName: 'testing',
-    };
-
-    const navigation = renderIntoDocument(<NavigationDrawer {...props} />);
-    const navigationNode = findDOMNode(navigation);
-    const toolbar = findRenderedComponentWithType(navigation, Toolbar);
-    const drawer = findRenderedComponentWithType(navigation, Drawer);
-    const content = findRenderedComponentWithType(navigation, CSSTransitionGroup);
-
-    expect(navigationNode.style.background).toBe(props.style.background);
-    expect(navigationNode.className).toContain(props.className);
-
-    expect(toolbar.props.style).toEqual(props.toolbarStyle);
-    expect(toolbar.props.className).toContain(props.toolbarClassName);
-
-    expect(drawer.props.style).toEqual(props.drawerStyle);
-    expect(drawer.props.className).toContain(props.drawerClassName);
-
-    expect(content.props.style).toEqual(props.contentStyle);
-    expect(content.props.className).toContain(props.contentClassName);
-  });
+  const MATCH_MEDIA = window.matchMedia;
+  const matchesMobile = jest.fn(query => ({
+    matches: query.indexOf(Drawer.defaultProps.mobileMinWidth) !== -1,
+  }));
+  const matchesTablet = jest.fn(query => ({
+    matches: query.indexOf(Drawer.defaultProps.tabletMinWidth) !== -1,
+  }));
+  const matchesDesktop = jest.fn(query => ({
+    matches: query.indexOf('max') === -1
+      && query.indexOf(Drawer.defaultProps.desktopMinWidth) !== -1,
+  }));
 
   it('should inherit the dialog\'s renderNode context', () => {
     const dialog = renderIntoDocument(<Dialog><NavigationDrawer /></Dialog>);
     const drawer = findRenderedComponentWithType(dialog, NavigationDrawer);
     expect(drawer.context.renderNode).toBe(dialog.getChildContext().renderNode);
+  });
+
+  it('should provide the overlayStyle and overlayClassName to the Overlay', () => {
+    const props = {
+      type: NavigationDrawer.DrawerTypes.TEMPORARY,
+      onMediaTypeChange: () => {},
+      inline: true,
+      overlayStyle: { background: 'red' },
+      overlayClassName: 'overlay-class-name',
+    };
+    const drawer = mount(<NavigationDrawer {...props} />);
+    const overlay = drawer.find(Overlay);
+    expect(overlay.length).toBe(1);
+    expect(overlay.hasClass(props.overlayClassName));
+    expect(overlay.props().style).toBe(props.overlayStyle);
+  });
+
+  it('should always render the permanent drawers as visible even if defaultVisible is false', () => {
+    window.matchMedia = matchesDesktop;
+    const drawer = mount(
+      <NavigationDrawer
+        defaultVisible={false}
+        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        tabletDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+        desktopDrawerType={NavigationDrawer.DrawerTypes.CLIPPED}
+      />
+    );
+
+    expect(drawer.state('visible')).toBe(true);
+    drawer.unmount();
+    window.matchMedia = matchesMobile;
+    drawer.mount();
+    expect(drawer.state('visible')).toBe(false);
+    window.matchMedia = MATCH_MEDIA;
+  });
+
+  describe('Drawer', () => {
+    afterAll(() => {
+      window.matchMedia = MATCH_MEDIA;
+    });
+
+    it('should correctly set the default visibility on mobile devices', () => {
+      const props = {
+        navItems: [],
+        mobileDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        tabletDrawerType: Drawer.DrawerTypes.PERSISTENT,
+        desktopDrawerType: Drawer.DrawerTypes.FULL_HEIGHT,
+        onMediaTypeChange: jest.fn(),
+        onVisibilityToggle: jest.fn(),
+      };
+
+      window.matchMedia = matchesMobile;
+      const drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(false);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.TEMPORARY);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(0);
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+    });
+
+    it('should correctly set the default visibility on tablets', () => {
+      const props = {
+        navItems: [],
+        mobileDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        tabletDrawerType: Drawer.DrawerTypes.PERSISTENT,
+        desktopDrawerType: Drawer.DrawerTypes.FULL_HEIGHT,
+        onMediaTypeChange: jest.fn(),
+        onVisibilityToggle: jest.fn(),
+      };
+
+      window.matchMedia = matchesTablet;
+      const drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(false);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.PERSISTENT);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
+      expect(props.onMediaTypeChange).toBeCalledWith(NavigationDrawer.DrawerTypes.PERSISTENT, { mobile: false, tablet: true, desktop: false });
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+    });
+
+    it('should correctly set the default visibility on desktop', () => {
+      const props = {
+        navItems: [],
+        mobileDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        tabletDrawerType: Drawer.DrawerTypes.PERSISTENT,
+        desktopDrawerType: Drawer.DrawerTypes.FULL_HEIGHT,
+        onMediaTypeChange: jest.fn(),
+        onVisibilityToggle: jest.fn(),
+      };
+
+      window.matchMedia = matchesDesktop;
+      const drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(true);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.FULL_HEIGHT);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
+      expect(props.onMediaTypeChange).toBeCalledWith(NavigationDrawer.DrawerTypes.FULL_HEIGHT, { mobile: false, tablet: false, desktop: true });
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(1);
+      expect(props.onVisibilityToggle).toBeCalledWith(true);
+    });
+
+    it('should not update the visibility to false when the defaultVisible prop is enabled and the drawer type is temporary for any screen size', () => {
+      const props = {
+        defaultVisible: true,
+        navItems: [],
+        mobileDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        tabletDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        desktopDrawerType: Drawer.DrawerTypes.TEMPORARY,
+        onMediaTypeChange: jest.fn(),
+        onVisibilityToggle: jest.fn(),
+      };
+
+      window.matchMedia = matchesMobile;
+      let drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(true);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.TEMPORARY);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(0);
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+
+      window.matchMedia = matchesTablet;
+      drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(true);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.TEMPORARY);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(1);
+      expect(props.onMediaTypeChange).toBeCalledWith(props.tabletDrawerType, { mobile: false, tablet: true, desktop: false });
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+
+      window.matchMedia = matchesDesktop;
+      drawer = renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(drawer.state.visible).toBe(true);
+      expect(drawer.state.drawerType).toBe(NavigationDrawer.DrawerTypes.TEMPORARY);
+      expect(props.onMediaTypeChange.mock.calls.length).toBe(2);
+      expect(props.onMediaTypeChange).toBeCalledWith(props.desktopDrawerType, { mobile: false, tablet: false, desktop: true });
+      expect(props.onVisibilityToggle.mock.calls.length).toBe(0);
+    });
+
+    it('should correctly update the visibility when the visible prop was defined and there was a media type change with visibility', () => {
+      const props = {
+        visible: false,
+        defaultMedia: 'mobile',
+        onMediaTypeChange: jest.fn(),
+        onVisibilityToggle: jest.fn(),
+      };
+
+      window.matchMedia = matchesDesktop;
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(props.onMediaTypeChange).toBeCalledWith(NavigationDrawer.defaultProps.desktopDrawerType, { mobile: false, tablet: false, desktop: true });
+      expect(props.onVisibilityToggle).toBeCalledWith(true);
+
+      window.matchMedia = matchesMobile;
+      renderIntoDocument(<NavigationDrawer {...props} visible defaultMedia="desktop" />);
+      expect(props.onMediaTypeChange).toBeCalledWith(NavigationDrawer.defaultProps.mobileDrawerType, { mobile: true, tablet: false, desktop: false });
+      expect(props.onVisibilityToggle).toBeCalledWith(true);
+    });
+
+    it('should not attempt to update the drawer type be the media drawer type if constantDrawerType is enabled', () => {
+      const { TEMPORARY } = NavigationDrawer.DrawerTypes;
+      const onMediaTypeChange = jest.fn();
+      renderIntoDocument(<NavigationDrawer constantDrawerType drawerType={TEMPORARY} onMediaTypeChange={onMediaTypeChange} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(0);
+    });
+
+    it('should attempt to update the drawer type to be the media drawer type if the constantDrawerType is not enabled', () => {
+      window.matchMedia = matchesMobile;
+      const { TEMPORARY, PERSISTENT, FULL_HEIGHT } = NavigationDrawer.DrawerTypes;
+      const onMediaTypeChange = jest.fn();
+      const props = {
+        drawerType: TEMPORARY,
+        mobileDrawerType: TEMPORARY,
+        tabletDrawerType: PERSISTENT,
+        desktopDrawerType: FULL_HEIGHT,
+        onMediaTypeChange,
+        constantDrawerType: false,
+      };
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(0);
+
+      window.matchMedia = matchesTablet;
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(1);
+      expect(onMediaTypeChange).toBeCalledWith(PERSISTENT, { mobile: false, tablet: true, desktop: false });
+
+      window.matchMedia = matchesDesktop;
+      renderIntoDocument(<NavigationDrawer {...props} />);
+      expect(onMediaTypeChange.mock.calls.length).toBe(2);
+      expect(onMediaTypeChange).toBeCalledWith(FULL_HEIGHT, { mobile: false, tablet: false, desktop: true });
+    });
   });
 });

@@ -391,8 +391,8 @@ $md-btn-dark-theme-pressed-color: rgba($md-btn-dark-theme-base-color, .25);
     .md-btn--text {
       font-size: $md-btn-desktop-font-size;
       height: $md-btn-desktop-height;
-      margin-bottom: initial;
-      margin-top: initial;
+      margin-bottom: 0;
+      margin-top: 0;
 
       &::before,
       &::after {

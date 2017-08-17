@@ -8,9 +8,11 @@ import { findDOMNode } from 'react-dom';
 import {
   renderIntoDocument,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 import DatePickerContainer from '../DatePickerContainer';
+import { ENTER } from '../../constants/keyCodes';
 
 describe('DatePickerContainer', () => {
   it('merges className and style', () => {
@@ -194,6 +196,54 @@ describe('DatePickerContainer', () => {
 
     expect(container.state.calendarDate).toEqual(maxDate);
     expect(container.state.calendarTempDate).toEqual(maxDate);
+  });
+
+  it('should not open the DatePicker if it is disabled and the text field is clicked', () => {
+    const props = { id: 'test', disabled: true };
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    container._toggleOpen({ target: { tagName: 'input' } });
+    expect(container.state.visible).toBe(false);
+  });
+
+  it('should not open the DatePicker if it is disabled and the users pressed the enter key while focused on the keyboard', () => {
+    const props = { id: 'test', disabled: true };
+    const container = renderIntoDocument(<DatePickerContainer {...props} />);
+
+    container._handleKeyDown({ keyCode: ENTER, target: { tagName: 'input' } });
+    expect(container.state.visible).toBe(false);
+  });
+
+  describe('value prop', () => {
+    const console = global.console;
+    beforeEach(() => {
+      global.console = {
+        warn: message => {
+          throw new Error(message);
+        },
+        error: message => {
+          throw new Error(message);
+        },
+      };
+    });
+
+    afterAll(() => {
+      global.console = console;
+    });
+
+    it('should not throw prop type warnings when the value prop is set to the empty string or null', () => {
+      let error = false;
+
+      try {
+        mount(<DatePickerContainer id="test" value={null} />);
+        const picker = mount(<DatePickerContainer id="test" value="" />);
+        picker.setProps({ value: null });
+        picker.setProps({ value: '' });
+      } catch (e) {
+        error = true;
+      }
+      expect(error).toBe(false);
+    });
   });
 
   describe('validateDateRange', () => {

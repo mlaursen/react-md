@@ -73,7 +73,7 @@
 .line-clamp,
 .two-line-clamp {
   // scss-lint:disable PropertySortOrder
-  line-height: initial;
+  line-height: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 

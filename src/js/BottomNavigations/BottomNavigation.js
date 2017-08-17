@@ -1,9 +1,11 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
 import controlled from '../utils/PropTypes/controlled';
+import { addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import Portal from '../Helpers/Portal';
 import Paper from '../Papers/Paper';
 import BottomNav from './BottomNav';
@@ -226,15 +228,15 @@ export default class BottomNavigation extends PureComponent {
   }
 
   _addTouchEvents() {
-    window.addEventListener('touchstart', this._handleTouchStart);
-    window.addEventListener('touchmove', this._handleTouchMove);
-    window.addEventListener('touchend', this._handleTouchEnd);
+    addTouchEvent(window, 'start', this._handleTouchStart);
+    addTouchEvent(window, 'move', this._handleTouchMove);
+    addTouchEvent(window, 'end', this._handleTouchEnd);
   }
 
   _removeTouchEvents() {
-    window.removeEventListener('touchstart', this._handleTouchStart);
-    window.removeEventListener('touchmove', this._handleTouchMove);
-    window.removeEventListener('touchend', this._handleTouchEnd);
+    removeTouchEvent(window, 'start', this._handleTouchStart);
+    removeTouchEvent(window, 'move', this._handleTouchMove);
+    removeTouchEvent(window, 'end', this._handleTouchEnd);
   }
 
   _handleTouchStart(e) {

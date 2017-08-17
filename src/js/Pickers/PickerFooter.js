@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Button from '../Buttons/Button';
@@ -10,10 +11,10 @@ import Button from '../Buttons/Button';
 export default class PickerFooter extends PureComponent {
   static propTypes = {
     className: PropTypes.string,
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
     okPrimary: PropTypes.bool.isRequired,
     onOkClick: PropTypes.func.isRequired,
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
     cancelPrimary: PropTypes.bool.isRequired,
     onCancelClick: PropTypes.func.isRequired,
   };

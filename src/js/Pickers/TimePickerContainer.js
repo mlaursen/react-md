@@ -1,11 +1,14 @@
 /* eslint-disable no-shadow */
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import { ESC, ENTER } from '../constants/keyCodes';
+import { ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import DateTimeFormat from '../utils/DateUtils/DateTimeFormat';
 import formatTime from '../utils/DateUtils/formatTime';
@@ -100,7 +103,7 @@ export default class TimePickerContainer extends PureComponent {
      * An optional label to be displayed in the time picker's text
      * field.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to be displayed in the time picker's text field.
@@ -148,7 +151,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * The label to use for the ok button on the year picker.
      */
-    okLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the ok button should be styled with the primary color.
@@ -158,7 +161,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * The label to use for the cancel button on the year picker.
      */
-    cancelLabel: PropTypes.string.isRequired,
+    cancelLabel: PropTypes.node.isRequired,
 
     /**
      * Boolean if the cancel button should be styled with the primary color.
@@ -309,6 +312,13 @@ export default class TimePickerContainer extends PureComponent {
      * of the first.
      */
     lastChild: PropTypes.bool,
+
+    /**
+     * Boolean if the TimePicker should be read only. This will prevent the user from opening the picker
+     * and only display the current date in the text field.
+     */
+    readOnly: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     initiallyOpen: deprecated(PropTypes.bool, 'Use `defaultVisible` instead'),
     initialTimeMode: deprecated(PropTypes.oneOf(['hour', 'minute']), 'Use `defaultTimeMode` instead'),
@@ -389,11 +399,11 @@ export default class TimePickerContainer extends PureComponent {
 
     if (visible) {
       if (inline) {
-        window.addEventListener('click', this._handleOutsideClick);
+        handleWindowClickListeners(this._handleOutsideClick, true);
         window.addEventListener('keydown', this._closeOnEsc);
       }
     } else if (inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
@@ -403,7 +413,7 @@ export default class TimePickerContainer extends PureComponent {
       ? this.props.isOpen
       : getField(this.props, this.state, 'visible');
     if (visible && this.props.inline) {
-      window.removeEventListener('click', this._handleOutsideClick);
+      handleWindowClickListeners(this._handleOutsideClick, false);
       window.removeEventListener('keydown', this._closeOnEsc);
     }
   }
@@ -429,6 +439,10 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   _toggleOpen(e) {
+    if (this.props.disabled || this.props.readOnly) {
+      return;
+    }
+
     const visible = !(typeof this.props.isOpen !== 'undefined'
       ? this.props.isOpen
       : getField(this.props, this.state, 'visible'));
@@ -455,8 +469,10 @@ export default class TimePickerContainer extends PureComponent {
   }
 
   _handleKeyDown(e) {
-    if ((e.which || e.keyCode) === ENTER) {
-      this._toggleOpen(e);
+    handleKeyboardAccessibility(e, this._toggleOpen, true, true);
+
+    if ((e.which || e.keyCode) === TAB && this.state.active) {
+      this.setState({ active: false });
     }
   }
 
@@ -471,19 +487,16 @@ export default class TimePickerContainer extends PureComponent {
       onVisibilityChange(false, e);
     }
 
-    let state;
+    const state = { time: value };
     if (typeof this.props.value === 'undefined') {
-      state = { value };
+      state.value = value;
     }
 
     if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
-      state = state || {};
       state.visible = false;
     }
 
-    if (state) {
-      this.setState(state);
-    }
+    this.setState(state);
   }
 
   _handleCancelClick(e) {
@@ -491,12 +504,19 @@ export default class TimePickerContainer extends PureComponent {
       this.props.onVisibilityChange(false, e);
     }
 
-    const state = { visible: false, tempTime: this.state.time };
-    if (typeof this.props.isOpen !== 'undefined' || typeof this.props.visible !== 'undefined') {
-      delete state.visible;
+    let state;
+    if (typeof this.props.isOpen === 'undefined' && typeof this.props.visible === 'undefined') {
+      state = { visible: false };
     }
 
-    this.setState(state);
+    if (getField(this.props, this.state, 'value')) {
+      state = state || {};
+      state.tempTime = this.state.time;
+    }
+
+    if (state) {
+      this.setState(state);
+    }
   }
 
   _getTextFieldValue(props, state) {
@@ -562,6 +582,7 @@ export default class TimePickerContainer extends PureComponent {
     delete props.value;
     delete props.onVisibilityChange;
     delete props.onChange;
+    delete props.readOnly;
     delete props.defaultValue;
     delete props.defaultVisible;
     delete props.defaultTimeMode;

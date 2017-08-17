@@ -1,7 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SelectionControl from '../SelectionControls/SelectionControl';
 
 import checkboxContextTypes from './checkboxContextTypes';
+import findTable from './findTable';
 
 export default class TableCheckbox extends Component {
   static propTypes = {
@@ -9,6 +11,32 @@ export default class TableCheckbox extends Component {
   };
 
   static contextTypes = checkboxContextTypes;
+
+  constructor(props, context) {
+    super(props, context);
+
+    this._td = null;
+    this._header = false;
+    this._handleMount = this._handleMount.bind(this);
+  }
+
+  _handleMount(td) {
+    if (td) {
+      const header = findTable(td).querySelector('thead');
+      const index = td.parentNode.rowIndex - (header ? 1 : 0);
+
+      if (td.parentNode.parentNode.tagName === 'TBODY') {
+        this.context.createCheckbox(index);
+      }
+      this._td = td;
+      this._header = header;
+    } else if (this._td) {
+      const index = this._td.parentNode.rowIndex;
+      this.context.removeCheckbox(index - (this._header ? 1 : 0));
+      this._td = null;
+      this._header = false;
+    }
+  }
 
   render() {
     const { checked, ...props } = this.props;
@@ -19,10 +47,13 @@ export default class TableCheckbox extends Component {
       checkedIconClassName,
       rowId,
       baseName,
+      header,
     } = this.context;
 
+    const Cell = header ? 'th' : 'td';
+
     return (
-      <td className="md-table-checkbox">
+      <Cell className="md-table-checkbox" ref={this._handleMount}>
         <SelectionControl
           {...props}
           id={rowId}
@@ -34,7 +65,7 @@ export default class TableCheckbox extends Component {
           checkedCheckboxIconChildren={checkedIconChildren}
           checkedCheckboxIconClassName={checkedIconClassName}
         />
-      </td>
+      </Cell>
     );
   }
 }

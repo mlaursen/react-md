@@ -1,8 +1,9 @@
-import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import ResizeObserver from '../Helpers/ResizeObserver';
 import SelectField from '../SelectFields/SelectField';
 import Button from '../Buttons/Button';
 import findTable from './findTable';
@@ -119,54 +120,66 @@ export default class TablePagination extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
-    const rpp = typeof props.rowsPerPage !== 'undefined' ? props.rowsPerPage : props.defaultRowsPerPage;
-    const p = typeof props.page !== 'undefined' ? props.page : props.defaultPage;
+    const controlledPage = typeof props.page !== 'undefined';
+    const controlledRowsPerPage = typeof props.rowsPerPage !== 'undefined';
+    const rowsPerPage = controlledRowsPerPage ? props.rowsPerPage : props.defaultRowsPerPage;
+    const page = controlledPage ? props.page : props.defaultPage;
     this.state = {
-      page: props.defaultPage,
-      start: (p - 1) * rpp,
-      rowsPerPage: props.defaultRowsPerPage,
+      start: (page - 1) * rowsPerPage,
       controlsMarginLeft: 0,
     };
+
+    if (!controlledPage) {
+      this.state.page = page;
+    }
+
+    if (!controlledRowsPerPage) {
+      this.state.rowsPerPage = props.defaultRowsPerPage;
+    }
 
     this._setControls = this._setControls.bind(this);
     this._position = this._position.bind(this);
     this._increment = this._increment.bind(this);
     this._decrement = this._decrement.bind(this);
     this._setRowsPerPage = this._setRowsPerPage.bind(this);
+
+    this._table = null;
+    this._ticking = false;
   }
 
-  componentDidMount() {
-    this._position();
-    window.addEventListener('resize', this._position);
-  }
+  componentWillReceiveProps(nextProps) {
+    const { rowsPerPage, page } = this.props;
+    if (page !== nextProps.page || rowsPerPage !== nextProps.rowsPerPage) {
+      const rpp = getField(nextProps, this.state, 'rowsPerPage');
+      const p = getField(nextProps, this.state, 'page');
 
-  componentDidUpdate(prevProps, prevState) {
-    const { rows } = this.props;
-    const { start, rowsPerPage } = this.state;
-    if (rows !== prevProps.rows
-      || start !== prevState.start
-      || rowsPerPage !== prevState.rowsPerPage
-    ) {
-      this._position();
+      this.setState({ start: (p - 1) * rpp });
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this._position);
   }
 
   _setControls(controls) {
-    this._controls = findDOMNode(controls);
+    this._controls = controls;
+    this._table = findTable(controls);
   }
 
   _position() {
-    const table = findTable(findDOMNode(this));
-    if (table) {
+    if (this._table) {
       this.setState({
-        controlsMarginLeft: Math.max(0, table.offsetWidth - this._controls.offsetWidth),
+        controlsMarginLeft: Math.max(0, this._table.offsetWidth - this._controls.offsetWidth),
       });
     }
   }
+
+  _throttledPosition = () => {
+    if (!this._ticking) {
+      requestAnimationFrame(() => {
+        this._ticking = false;
+        this._position();
+      });
+    }
+
+    this._ticking = true;
+  };
 
   _increment() {
     const { rows, onPagination } = this.props;
@@ -181,7 +194,9 @@ export default class TablePagination extends PureComponent {
     const nextPage = page + 1;
 
     onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
   }
 
   _decrement() {
@@ -192,14 +207,28 @@ export default class TablePagination extends PureComponent {
     const nextPage = page - 1;
 
     this.props.onPagination(newStart, rowsPerPage, nextPage);
-    this.setState({ start: newStart, page: nextPage });
+    if (typeof this.props.page === 'undefined') {
+      this.setState({ start: newStart, page: nextPage });
+    }
   }
 
   _setRowsPerPage(rowsPerPage) {
-    const page = getField(this.props, this.state, 'page');
-    const newStart = (page - 1) * rowsPerPage;
+    const page = 1;
+    const newStart = 0;
     this.props.onPagination(newStart, rowsPerPage, page);
-    this.setState({ start: newStart, rowsPerPage });
+    let nextState;
+    if (typeof this.props.rowsPerPage === 'undefined') {
+      nextState = { rowsPerPage };
+    }
+
+    if (typeof this.props.page === 'undefined') {
+      nextState = nextState || {};
+      nextState.start = newStart;
+    }
+
+    if (nextState) {
+      this.setState(nextState);
+    }
   }
 
   render() {
@@ -226,6 +255,8 @@ export default class TablePagination extends PureComponent {
     const pagination = `${start + 1}-${Math.min(rows, start + rowsPerPage)} of ${rows}`;
     return (
       <tfoot {...props} className={cn('md-table-footer', className)}>
+        <ResizeObserver watchWidth component="tr" onResize={this._throttledPosition} />
+        <ResizeObserver watchWidth component="tr" target={this._table} onResize={this._throttledPosition} />
         <tr>
           {/* colspan 100% so footer columns do not align with body and header */}
           <td colSpan="100%">

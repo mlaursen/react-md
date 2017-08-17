@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import CardTitle from './CardTitle';
 import CardActions from './CardActions';
@@ -15,18 +16,18 @@ export default class CardActionOverlay extends PureComponent {
     /**
      * The title to use.
      */
-    title: PropTypes.string,
+    title: PropTypes.node,
 
     /**
      * The optional subtitle to use.
      */
-    subtitle: PropTypes.string,
+    subtitle: PropTypes.node,
 
     /**
      * An array of flat button props.
      */
     actions: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
+      label: PropTypes.node.isRequired,
     })),
 
     /**

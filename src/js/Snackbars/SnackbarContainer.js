@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import deprecated from 'react-prop-types/lib/deprecated';
 
 import getField from '../utils/getField';
@@ -61,7 +62,7 @@ export default class SnackbarContainer extends PureComponent {
       /**
        * The text to display in the toast.
        */
-      text: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
 
       /**
        * An optional action to take. If this value is a string, the `label` for the
@@ -69,10 +70,10 @@ export default class SnackbarContainer extends PureComponent {
        * be applied to the `Button`.
        */
       action: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.node,
         PropTypes.shape({
           onClick: PropTypes.func,
-          label: PropTypes.string.isRequired,
+          label: PropTypes.node.isRequired,
         }),
       ]),
     })).isRequired,
@@ -191,7 +192,8 @@ export default class SnackbarContainer extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const [toast] = nextProps.toasts;
-    if (toast === this.state.toast) {
+    const [prevToast] = this.props.toasts;
+    if (toast === prevToast || toast === this.state.toast) {
       return;
     }
 

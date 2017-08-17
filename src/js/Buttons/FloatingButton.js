@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import deprecated from '../utils/PropTypes/componentDeprecated';
@@ -55,7 +56,7 @@ export default class FloatingButton extends PureComponent {
      * An optional label to use if you would like a tooltip to display
      * on hover or touch hold.
      */
-    tooltipLabel: PropTypes.string,
+    tooltipLabel: PropTypes.node,
 
     /**
      * The position that the tooltip should be displayed relative to

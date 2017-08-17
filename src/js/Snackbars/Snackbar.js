@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import Button from '../Buttons/Button';
@@ -15,11 +16,11 @@ export default class Snackbar extends PureComponent {
     children: PropTypes.node,
     onDismiss: PropTypes.func.isRequired,
     toast: PropTypes.shape({
-      text: PropTypes.string.isRequired,
+      text: PropTypes.node.isRequired,
       action: PropTypes.oneOfType([
-        PropTypes.string,
+        PropTypes.node,
         PropTypes.shape({
-          label: PropTypes.string.isRequired,
+          label: PropTypes.node.isRequired,
           onClick: PropTypes.func,
         }),
       ]),
@@ -149,7 +150,6 @@ export default class Snackbar extends PureComponent {
 
       let btnProps = {
         flat: true,
-        waitForInkTransition: true,
         onClick: this._handleClick,
         label: action,
         secondary: true,
@@ -159,8 +159,10 @@ export default class Snackbar extends PureComponent {
       if (typeof action !== 'string') {
         btnProps = Object.assign(btnProps, action, {
           className: cn(btnProps.className, action.className),
+          onClick: this._handleClick,
         });
       }
+
 
       action = <Button {...btnProps} />;
     }

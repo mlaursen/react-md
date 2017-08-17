@@ -1,0 +1,25 @@
+@import '~react-md-scss';
+
+.table-row {
+  background: $md-white-base;
+  transition-duration: 2s;
+
+  &--highlight {
+    background: $md-yellow-200;
+  }
+}
+
+.nutrition-table__number-column {
+  min-width: 120px;
+
+  &:not(:last-child) {
+    padding-right: 24px;
+  }
+}
+
+.nutrition-table__percentage-field::after {
+  bottom: 17px;
+  content: '%';
+  position: absolute;
+  right: -8px;
+}

@@ -1,3 +1,201 @@
+## August 2017
+### v1.0.18 Released
+##### Changelog
+- Fixed the `Autocomplete` firing the `onAutocomplete` callback twice when using the keyboard to select
+an item. [#466](https://github.com/mlaursen/react-md/issues/466)
+- Fixed a `PropType` warning when using the `Dialog` and one of the actions already had a key.
+[#465](https://github.com/mlaursen/react-md/issues/465)
+- Fixed the `SelectField` and `TextField` from not floating the label when a `value` (or `label`) had
+a value of `0`. [#461](https://github.com/mlaursen/react-md/issues/461) and [#460](https://github.com/mlaursen/react-md/issues/460)
+- Fixed a weird infinite loop in the `FocusContainer` when some of the children are the `AccessibleFakeButton` and the user
+pressed `shift+tab`. [#458](https://github.com/mlaursen/react-md/issues/458)
+- Updated the multiline `TextField` so that it can be correctly snapshotted. [#457](https://github.com/mlaursen/react-md/issues/457)
+- Fixed the `NavigationDrawer` incorrectly hiding a "permanent" drawer type when `defaultVisible={false}`. [#426](https://github.com/mlaursen/react-md/issues/426)
+- Fixed some invalid checksum when Server Side Rendering the `NavigationDrawer`. [#420](https://github.com/mlaursen/react-md/issues/420)
+> this also removed some unneeded transition class names from the `Drawer` when the drawer was "mini" or "permanent".
+- Updated the `Drawer` and `NavigationDrawer` components to proide props to style the overlay that gets
+created. [#389](https://github.com/mlaursen/react-md/issues/389)
+
+## July 2017
+### v1.0.17 Released
+This patch was mostly about fixing components that needed to be resized after a container height/width
+update instead of just a window resize event. In additioan, there have been some mobile device performance
+and behavior changes. Components that manually added touch events now use passive events when possible and
+the user can focus a text field and scroll the page without automatically hiding the keyboard like a native
+input element.
+
+##### Changelog
+- Fixed the weird page scroll behavior for dialogs when the user closed the dialog by clicking the overlay.
+[#367](https://github.com/mlaursen/react-md/issues/367)
+- Updated the ListItem so that you can provide props to the surrounding li node. [#439](https://github.com/mlaursen/react-md/issues/439)
+- Fixed a weird mobile safari but about using a virtualization library with any form input from react-md.
+[#442](https://github.com/mlaursen/react-md/issues/442)
+- Added passive event listeners. [#382](https://github.com/mlaursen/react-md/issues/382)
+- Updated the Autocomplete to no longer require an automatic TextField re-focus after a suggestion has been selected.
+[#428](https://github.com/mlaursen/react-md/issues/428)
+- Fixed the TextField placeholder to correctly gain the disabled color. [#447](https://github.com/mlaursen/react-md/issues/447)
+- Fixed the focus behavior of TextFields on mobile devices. [#434](https://github.com/mlaursen/react-md/issues/434)
+- Fixed the unneeded PropType warning when a "controlled" TextField is disabled. [#432](https://github.com/mlaursen/react-md/issues/432)
+- Fixed the PropType warning for Tabs. [#440](https://github.com/mlaursen/react-md/issues/440)
+- Fixed the multiline TextField requiring a flex container to display correctly. It will now display correctly if it is in
+just a `display: block` or whatever. [#365](https://github.com/mlaursen/react-md/issues/365)
+- Fixed the TimePicker changing days when AM/PM was toggled. [#446](https://github.com/mlaursen/react-md/issues/446)
+- Fixed the TimePicker to remember the last selected time better. [#438](https://github.com/mlaursen/react-md/issues/438)
+- Fixed the TimePicker's ability to calculate time. [#359](https://github.com/mlaursen/react-md/issues/359)
+- Fixed multiple components that manually calculate size for container resize events instead of just window resize events.
+  - ExpansionPanels and Tabs [#448](https://github.com/mlaursen/react-md/issues/448)
+  - Multiline TextFields [#365](https://github.com/mlaursen/react-md/issues/365)
+  - TablePagination [#415](https://github.com/mlaursen/react-md/issues/415)
+
+
+## June 2017
+### v1.0.16 Released
+
+##### Changelog
+- Updated the slider to no longer call `onChange` or `onDragChange` when dragging and the value
+or distance have not been updated. [d588fb4](https://github.com/mlaursen/react-md/commit/d588fb4e000ecc7d00131c6d29b99908bb715532)
+- Fixed a small bug with my `handleKeyboardAccessibility` so that spacebar didn't work in autocompletes.
+[b13f316](https://github.com/mlaursen/react-md/commit/b13f316d23dd3ba3d25d557a79f5fb32754b2fae)
+- Fixed a keyboard accessibility problem with `SelectionControlGroup`. [eb6629d](https://github.com/mlaursen/react-md/commit/eb6629d8fb5117a565b309422d7225a790f5ffd9)
+- Fixed an error where rendering the `Autocomplete` in a `ListItem` threw an error. [#412](https://github.com/mlaursen/react-md/issues/412)
+- Updated the default `z-index` for the `Snackbar` so that it appears over the mini `Drawer`.
+[#410](https://github.com/mlaursen/react-md/issues/410)
+- Fixed the `DatePicker` so that it can accept a `value` of `null` and the empty string (`""`).
+  - [#384](https://github.com/mlaursen/react-md/issues/384)
+  - [#396](https://github.com/mlaursen/react-md/issues/396)
+  - [#409](https://github.com/mlaursen/react-md/issues/409)
+- Fixed the cell offset calculations. [#401](https://github.com/mlaursen/react-md/issues/401)
+- Fixed non-contained menus. [#391](https://github.com/mlaursen/react-md/issues/391)
+- Fixed the `onClick` prop for `SelectionControl`. [#390](https://github.com/mlaursen/react-md/issues/390)
+- Fixed the `Snackbar` not working as intended when the action has an `onClick` function.
+[#385](https://github.com/mlaursen/react-md/issues/385)
+- Fixed the slider displaying the wrong value while sliding with touch or mouse. [#379](https://github.com/mlaursen/react-md/issues/379)
+- Updated `.npmignore` to stop include the `jest-cache` with the published code. [#403](https://github.com/mlaursen/react-md/issues/403)
+- Small typo fix. [#400](https://github.com/mlaursen/react-md/issues/400)
+
+## May 2017
+### v1.0.15 Released
+General mobile Safari bugfixes and other small changes.
+
+##### Changelog
+- Fixed the "stiffness" of scrolling in mobile Safari. [#383](https://github.com/mlaursen/react-md/issues/383)
+- Fixed the weird bug of requiring two taps in mobile Safari to open a `SelectField`. [#381](https://github.com/mlaursen/react-md/issues/381)
+- Updated the `Slider` to automatically set the `defaultValue` to the provided `min` value and fixed the discrete slider's
+visibility issue. [#379](https://github.com/mlaursen/react-md/issues/379)
+- Correctly added the `name` attribute to the `FileInput` and `FileUpload` components. [#378](https://github.com/mlaursen/react-md/issues/378)
+- Fixed the autocomplete not showing suggestions after being autocompleted and getting data via ajax.
+[#374](https://github.com/mlaursen/react-md/issues/378)
+- Fixed the `TablePagination`'s start value to only update when the `page` prop updates (if defined).
+[#372](https://github.com/mlaursen/react-md/issues/372)
+- Fixed the `TextField`s not blurring correctly when a touch device scrolls the page after focusing
+the text field. [#366](https://github.com/mlaursen/react-md/issues/366)
+- Updated the `ListItem` to allow the `nestedItems` to appear above the text instead of only below.
+[#380](https://github.com/mlaursen/react-md/pull/380)
+
+
+### v1.0.14 Released
+This patch is mostly for keyboard accessibility updates so that the custom components interact the same way
+as native form inputs.
+
+##### Changelog
+- Updated the menu component so that it correctly closes when a list item is "clicked" with spacebar or enter.
+[#360](https://github.com/mlaursen/react-md/issues/360)
+- Fixed the keyboard accessibility for selection controls, pickers, and select field. [#371](https://github.com/mlaursen/react-md/issues/371)
+  - switch, radio, and checkbox will no longer be toggle-able with the enter key to emulate the native checkbox and radio
+  - select fields, date pickers, and time pickers can only be opened by spacebar. The enter key will attempt to submit a form instead.
+  - only the currently checked radio button will be tabbable in the `SelectionControlGroup`. Other options can be be selected by pressing
+  the up, down, right, or left arrow keys like the native radio.
+  - correctly updated the role for the `SelectField` to be a `"listbox"`
+- Fixed the `readOnly` state for the date and time pickers [#371](https://github.com/mlaursen/react-md/issues/371)
+- Fixed the text field display error in Firefox. [#368](https://github.com/mlaursen/react-md/issues/368)
+- Fixed the `TablePagination` labels when fully controlled. [#369](https://github.com/mlaursen/react-md/issues/369)
+- Added a final fallback for nested dialogs to render inline if rendered inside of pure components.
+[#229](https://github.com/mlaursen/react-md/issues/229)
+- Fixed the scroll locking of dialogs. [#361](https://github.com/mlaursen/react-md/issues/361)
+
+### v1.0.13 Released
+This patch was about removing the prop type warnings from the new React version and other small bugs.
+
+##### Changelog
+- Migrate React.PropTypes to prop-types. [#325](https://github.com/mlaursen/react-md/issues/325)
+- Allow boolean values in selection controls [#350](https://github.com/mlaursen/react-md/issues/350)
+- Fixed the picker diplay bug. [#354](https://github.com/mlaursen/react-md/issues/354)
+- Fixed the SelectField error state bug. [#354](https://github.com/mlaursen/react-md/issues/353)
+- Fixed the dialog mounting animation bug. [#348](https://github.com/mlaursen/react-md/issues/348)
+- Allow a multiline textfield to grow from 1 row to multiple. [#347](https://github.com/mlaursen/react-md/issues/347)
+- Fixed the AccessibleFakeButton to click when spacebar is pressed. [#346](https://github.com/mlaursen/react-md/issues/346)
+
+
+
+## April 2017
+### Added Showcases
+Added a new place to showcase apps that are using react-md. You can view them [here](/discover-more/showcases).
+
+### v1.0.12 Released
+This release is mostly about fixing some of the cross-browser support and weird issues in mobile safari.
+In addition, an [examples folder](https://github.com/mlaursen/react-md/tree/master/examples) has been added
+to hopefully help newer people get a react-md project started up.
+
+In addition, I decided to move the ticket from `v1.1.0` to `v1.0.12` about the annoying delay when a menu/drawer/toast
+is closed by a click action.
+
+##### Changelog
+- Fixed the annoying delay on multiple components. [#210](https://github.com/mlaursen/react-md/issues/210)
+- Fixed the `DatePicker`'s next/previous month logic. [#315](https://github.com/mlaursen/react-md/issues/315)
+- Fixed the `CardActions` not centering correctly. [#316](https://github.com/mlaursen/react-md/issues/316)
+- Halfly fixed the hidden content in full page dialogs. [#320](https://github.com/mlaursen/react-md/issues/320)
+- Updated the `TablePagination`'s `rowsPerPage` logic to reset `page` and `start` when it has been chaged. [#322](https://github.com/mlaursen/react-md/issues/322)
+- Fixed the `Slider`'s bullet position when in a `text-align: center` container. [#323](https://github.com/mlaursen/react-md/issues/323)
+- Updated props from `string` to `node` for `react-intl` support. [#327](https://github.com/mlaursen/react-md/issues/327)
+- Fixed the Ajax Autocomplete flashing bug. [#330](https://github.com/mlaursen/react-md/issues/330)
+- Fixed the `Dialog`'s page layout breaking when it appears. [#333](https://github.com/mlaursen/react-md/issues/333)
+- Updated the `TableCheckbox` to appear in a `th` component when in the table header. [#334](https://github.com/mlaursen/react-md/issues/334)
+- Fixed some of the styles for better IE 11 support. [#339](https://github.com/mlaursen/react-md/issues/339)
+- Fixed the mobile safari click event delegation bug that prevented Menus and other components to be closed when an area outside was clicked.
+[#340](https://github.com/mlaursen/react-md/issues/340)
+
+
+## March 2017
+### v1.0.11 Released
+
+##### Changelog
+- Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
+re-renders (... take 2 :( ). [#300](https://github.com/mlaursen/react-md/issues/300)
+- Fixed the tooltip's [unmounting errors](https://github.com/mlaursen/react-md/commit/ba8e734c663d87cc098d569258489c66590feb8b).
+- Fixed the SelectionControlGroup disabling persisting the disabled color to the checkboxes/radios. [#308](https://github.com/mlaursen/react-md/issues/308)
+- Fixed the checkboxes for DataTables when the rows are dynamic. [#297](https://github.com/mlaursen/react-md/issues/297)
+- Fixed the snackbar's transition bug. [#311](https://github.com/mlaursen/react-md/issues/311)
+
+### v1.0.10 Released
+The `v1.0.9` tarball was published incorrectly through `yarn`, and was invalid. Republished correctly with `npm`.
+
+### v1.0.9 Released
+
+This was really another patch for drawers. 
+
+##### Changelog
+- Fixed the `Drawer` automatically opening when the `type` is set to `TEMPORARY`. [#291](https://github.com/mlaursen/react-md/issues/291)
+- Fixed the DatePicker's min/max date validation error. [#293](https://github.com/mlaursen/react-md/issues/293)
+- Fixed the `Drawer`'s `overlay` prop not working on mobile and tablet devices. [#298](https://github.com/mlaursen/react-md/issues/298)
+- Fixed the `Drawer`'s `overlay` being visible on initial page load when the type is `TEMPORARY` on desktop screens. [#299](https://github.com/mlaursen/react-md/issues/299)
+- Fixed the `SelectField`'s label disappearing when when the `menuItems` are defined in the `render` and one of its parents
+re-renders. [#300](https://github.com/mlaursen/react-md/issues/300)
+
+### v1.0.8 Released
+
+##### Changelog
+- My initial attempt at the defaultVisible prop not working correctly was incorrect. Updated the behavior as mentioned in
+the new ticket. [#288](https://github.com/mlaursen/react-md/issues/288)
+
+### v1.0.7 Released
+
+##### Changelog
+- Fixed the Drawer's defaultVisible prop not working entirely corrrectly. [#286](https://github.com/mlaursen/react-md/issues/286)
+- Fixed the DateTimeFormat fake mock. [#285](https://github.com/mlaursen/react-md/issues/285)
+- Fixed the Date/Time pickers to not open when disabled. [#281](https://github.com/mlaursen/react-md/issues/281)
+- Fixed the prop warning for MenuButton and passed correct props to Menu. [#278](https://github.com/mlaursen/react-md/issues/278)
+- Fixed the Menu attempting to setState after it had unmounted. [#268](https://github.com/mlaursen/react-md/issues/268)
+
 ## February 2017
 ### v1.0.6 Released
 

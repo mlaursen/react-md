@@ -1,12 +1,14 @@
-import React, { PureComponent, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
-import TransitionGroup from 'react-addons-transition-group';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
 import { ENTER, SPACE } from '../constants/keyCodes';
-import isValidClick from '../utils/EventUtils/isValidClick';
-import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calcPageOffset from '../utils/calcPageOffset';
+import isFormPartRole from '../utils/isFormPartRole';
+import isValidClick from '../utils/EventUtils/isValidClick';
+import { setTouchEvent, addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
+import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import calculateHypotenuse from '../utils/NumberUtils/calculateHypotenuse';
 
 import Ink from './Ink';
@@ -185,12 +187,10 @@ export default class InkContainer extends PureComponent {
   /**
    * Sets the ink container and the main container from the ref callback. When the component
    * is mounting, the keyboard, mouse, and keyboard events will be initialized.
-   *
-   * @param {Object} inkContainer - The ink container.
    */
-  _setContainers(inkContainer) {
-    if (inkContainer !== null) {
-      this._inkContainer = findDOMNode(inkContainer);
+  _setContainers(span) {
+    if (span !== null) {
+      this._inkContainer = span.parentNode;
       this._container = this._inkContainer.parentNode;
 
       if (this._container) {
@@ -226,11 +226,11 @@ export default class InkContainer extends PureComponent {
       }
 
       if (mouseDiff) {
-        this._container[`${mouseDisabled ? 'add' : 'remove'}EventListener`]('mousedown', this._stopPropagationToFocus);
+        this._container[`${!mouseDisabled ? 'add' : 'remove'}EventListener`]('mousedown', this._stopPropagationToFocus);
       }
 
       if (touchDiff) {
-        this._container[`${touchDisabled ? 'add' : 'remove'}EventListener`]('touchstart', this._stopPropagationToFocus);
+        setTouchEvent(!touchDisabled, this._container, 'start', this._stopPropagationToFocus);
       }
     }
 
@@ -241,9 +241,8 @@ export default class InkContainer extends PureComponent {
     }
 
     if (touchDiff) {
-      const fn = `${touchDisabled ? 'remove' : 'add'}EventListener`;
-      this._container[fn]('touchstart', this._handleTouchStart);
-      this._container[fn]('touchend', this._handleTouchEnd);
+      setTouchEvent(!touchDisabled, this._container, 'start', this._handleTouchStart);
+      setTouchEvent(!touchDisabled, this._container, 'end', this._handleTouchEnd);
     }
   }
 
@@ -281,7 +280,10 @@ export default class InkContainer extends PureComponent {
 
   _handleKeyDown(e) {
     const key = e.which || e.keyCode;
-    if (key === ENTER || key === SPACE) {
+    const enter = key === ENTER;
+    const space = key === SPACE;
+    // Don't trigger ink when enter key is pressed and the target has an input inside of it (SelectField)
+    if (space || (enter && !isFormPartRole(e.target) && !e.target.querySelector('input'))) {
       this._clicked = true;
       this.createInk();
       this._maybeDelayClick();
@@ -334,14 +336,14 @@ export default class InkContainer extends PureComponent {
     this._aborted = false;
     this._clicked = true;
     this._skipNextMouse = true;
-    window.addEventListener('touchmove', this._handleTouchMove);
+    addTouchEvent(window, 'move', this._handleTouchMove);
 
     const { pageX, pageY } = e.changedTouches[0];
     this._createInk(pageX, pageY);
   }
 
   _handleTouchMove() {
-    window.removeEventListener('touchmove', this._handleTouchMove);
+    removeTouchEvent(window, 'move', this._handleTouchMove);
     const lastInk = this.state.inks[this.state.inks.length - 1];
     if (!lastInk || Date.now() > (lastInk.key + 200)) {
       this._aborted = false;
@@ -364,7 +366,7 @@ export default class InkContainer extends PureComponent {
     if (this._aborted) {
       return;
     } else {
-      window.removeEventListener('touchmove', this._handleTouchMove);
+      removeTouchEvent(window, 'move', this._handleTouchMove);
     }
 
     this._removeInk();
@@ -386,14 +388,20 @@ export default class InkContainer extends PureComponent {
   }
 
   _stopPropagationToFocus(e) {
-    const { type } = e;
-    const mousedown = type === 'mousedown';
-    this._clicked = mousedown || type === 'touchstart';
-
-    if (this._clicked) {
-      window.addEventListener(mousedown ? 'mouseup' : 'touchend', this._stopPropagationToFocus, true);
-    } else {
-      window.removeEventListener(e.type, this._stopPropagationToFocus, true);
+    switch (e.type) {
+      case 'touchstart':
+        addTouchEvent(window, 'end', this._stopPropagationToFocus, { capture: true });
+        break;
+      case 'touchend':
+        removeTouchEvent(window, 'end', this._stopPropagationToFocus, { capture: true });
+        break;
+      case 'mousedown':
+        window.addEventListener('mouseup', this._stopPropagationToFocus, true);
+        break;
+      case 'mouseup':
+        window.removeEventListener('mouseup', this._stopPropagationToFocus, true);
+        break;
+      default:
     }
   }
 
@@ -421,11 +429,11 @@ export default class InkContainer extends PureComponent {
 
     return (
       <TransitionGroup
-        ref={this._setContainers}
         component="div"
         style={style}
         className={cn('md-ink-container', className)}
       >
+        <span ref={this._setContainers} aria-hidden />
         {inks}
       </TransitionGroup>
     );

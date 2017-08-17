@@ -8,7 +8,7 @@
  * @return {String} the string with a suffix
  */
 export default function addSuffix(str, suffix) {
-  if (!str) {
+  if (!str || typeof str !== 'string') {
     return str;
   }
 

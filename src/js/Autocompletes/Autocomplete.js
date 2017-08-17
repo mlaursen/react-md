@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { findDOMNode } from 'react-dom';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import controlled from '../utils/PropTypes/controlled';
@@ -67,7 +68,7 @@ export default class Autocomplete extends PureComponent {
     /**
      * A label to display with the autocomplete.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional value to use for the text field. This will force this component
@@ -244,6 +245,14 @@ export default class Autocomplete extends PureComponent {
      * of previously typed values in the text field. By default, this is disabled.
      */
     autoComplete: PropTypes.oneOf(['on', 'off']),
+
+    /**
+     * Boolean if the `input` should be focused again after a suggestion was clicked.
+     *
+     * This is really only added for keyboard support and the fact that each of suggestions
+     * are focusable.
+     */
+    focusInputOnAutocomplete: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -253,6 +262,7 @@ export default class Autocomplete extends PureComponent {
     filter: Autocomplete.fuzzyFilter,
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
+    focusInputOnAutocomplete: true,
   };
 
   /**
@@ -400,9 +410,16 @@ export default class Autocomplete extends PureComponent {
       filter,
     } = props;
 
+    let matches = [];
+    if (defaultValue && filter) {
+      matches = filter(data, defaultValue, dataLabel);
+    } else if (!filter) {
+      matches = data;
+    }
+
     this.state = {
       value: defaultValue,
-      matches: defaultValue && filter ? filter(data, defaultValue, dataLabel) : [],
+      matches,
       isOpen: false,
       matchIndex: -1,
       manualFocus: false,
@@ -457,10 +474,14 @@ export default class Autocomplete extends PureComponent {
       const { data, filter, dataLabel } = nextProps;
       const value = getField(nextProps, nextState, 'value');
 
-      const matches = filter ? filter(data, value, dataLabel) : data;
+      let { matches } = nextState;
+      if (nextProps.data !== this.props.data) {
+        matches = filter ? filter(data, value, dataLabel) : data;
+      }
+
       const next = { matches };
-      if (value && nextState.focus && matches.length) {
-        next.isOpen = true;
+      if (nextState.focus) {
+        next.isOpen = !!matches.length;
       }
 
       this.setState(next);
@@ -516,7 +537,7 @@ export default class Autocomplete extends PureComponent {
       this.props.onBlur();
     }
 
-    this.setState({ focus: false, isOpen: false });
+    this.setState({ isOpen: false });
   }
 
   _handleChange(value, event) {
@@ -531,12 +552,17 @@ export default class Autocomplete extends PureComponent {
       return findInlineSuggestion ? this._findInlineSuggestions(value) : null;
     }
 
-    let matches = value ? this.state.matches : [];
+    let { isOpen } = this.state;
+    let matches = value || !filter ? this.state.matches : [];
     if (value && filter) {
       matches = filter(data, value, dataLabel);
     }
 
-    return this.setState({ matches, isOpen: !!matches.length, value });
+    if (filter) {
+      isOpen = !!matches.length;
+    }
+
+    return this.setState({ matches, isOpen, value });
   }
 
   _handleFocus(e) {
@@ -606,8 +632,6 @@ export default class Autocomplete extends PureComponent {
       // Prevent any form submissions
       e.preventDefault();
 
-      // Need to emulate the click event since the default enter/space don't work for some reason
-      e.target.click();
       this._handleItemClick(this.state.matchIndex);
     }
   }
@@ -618,7 +642,7 @@ export default class Autocomplete extends PureComponent {
    */
   _handleClick(e) {
     let target = e.target;
-    while (target && target.parentNode) {
+    while (this._menu && this._menu.contains(target)) {
       if (target.classList.contains('md-list-item')) {
         let items = target.parentNode.querySelectorAll('.md-list-item');
         items = Array.prototype.slice.call(items);
@@ -636,7 +660,7 @@ export default class Autocomplete extends PureComponent {
     if (index === -1) { return; }
 
     const { matches } = this.state;
-    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete } = this.props;
+    const { data, dataLabel, filter, onAutocomplete, clearOnAutocomplete, focusInputOnAutocomplete } = this.props;
     let value = matches.filter(m => !React.isValidElement(m))[index];
     if (typeof value === 'object') {
       value = value[dataLabel];
@@ -647,14 +671,19 @@ export default class Autocomplete extends PureComponent {
     }
 
     value = clearOnAutocomplete ? '' : value;
+    let callback;
+    if (focusInputOnAutocomplete) {
+      callback = () => {
+        this._field.focus();
+      };
+    }
+
     this.setState({
       isOpen: false,
-      manualFocus: true,
+      manualFocus: focusInputOnAutocomplete,
       matches: filter ? filter(data, value, dataLabel) : matches,
       value,
-    }, () => {
-      this._field.focus();
-    });
+    }, callback);
   }
 
   _focusSuggestion(negative, e) {
@@ -856,6 +885,7 @@ export default class Autocomplete extends PureComponent {
     delete props.findInlineSuggestion;
     delete props.clearOnAutocomplete;
     delete props.deleteKeys;
+    delete props.focusInputOnAutocomplete;
 
     const value = getField(this.props, this.state, 'value');
 

@@ -78,14 +78,14 @@ $md-dialog-horizontal-keyline: 40px;
   .md-dialog {
     @include react-md-dialog-width;
 
-    cursor: initial;
-    position: absolute;
+    cursor: auto;
+    position: fixed;
   }
 
   .md-dialog--centered {
     left: 50%;
-    max-height: calc(100vh - #{$md-dialog-vertical-keyline * 2});
-    max-width: calc(100vw - #{$md-dialog-horizontal-keyline * 2});
+    max-height: calc(100% - #{$md-dialog-vertical-keyline * 2});
+    max-width: calc(100% - #{$md-dialog-horizontal-keyline * 2});
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
 
@@ -95,7 +95,7 @@ $md-dialog-horizontal-keyline: 40px;
     }
 
     .md-list-tile {
-      height: initial;
+      height: auto;
       padding: $md-default-padding $md-dialog-padding;
     }
 
@@ -125,10 +125,10 @@ $md-dialog-horizontal-keyline: 40px;
   }
 
   .md-dialog--full-page {
-    height: 100vh;
+    // Don't add scroll momentum here since it'll make fixed toolbars buggy.
+    bottom: 0;
     left: 0;
-    overflow-y: auto;
-    position: fixed;
+    overflow: auto;
     top: 0;
     width: 100vw;
     z-index: $md-dialog-full-page-z-index;
@@ -165,7 +165,7 @@ $md-dialog-horizontal-keyline: 40px;
     margin-bottom: 0;
     padding: $md-dialog-padding;
     padding-bottom: $md-dialog-title-padding-bottom;
-    white-space: initial;
+    white-space: normal;
   }
 }
 
@@ -173,6 +173,8 @@ $md-dialog-horizontal-keyline: 40px;
 /// Includes the styles for the content in dialogs only.
 @mixin react-md-dialogs-content {
   .md-dialog-content {
+    @include md-ios-scroll-momentum;
+
     overflow: auto;
   }
 

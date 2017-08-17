@@ -72,6 +72,8 @@ $md-menu-cascading-list-padding: 16px;
   }
 
   .md-list--menu-scrollable {
+    @include md-ios-scroll-momentum;
+
     overflow-y: auto;
   }
 
@@ -108,7 +110,6 @@ $md-menu-cascading-list-padding: 16px;
     left: 0;
     top: 100%;
     transform-origin: 50% 0;
-    width: 100%;
   }
 
   .md-menu-enter {
@@ -170,12 +171,12 @@ $md-menu-cascading-list-padding: 16px;
       .md-list--menu-tr,
       .md-list--menu-br {
         left: 100%;
-        right: initial;
+        right: auto;
       }
 
       .md-list--menu-tl,
       .md-list--menu-bl {
-        left: initial;
+        left: auto;
         right: 100%;
       }
 

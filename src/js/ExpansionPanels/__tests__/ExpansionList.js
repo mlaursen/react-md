@@ -7,7 +7,7 @@ import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import ExpansionList from '../ExpansionList';
 import ExpansionPanel from '../ExpansionPanel';

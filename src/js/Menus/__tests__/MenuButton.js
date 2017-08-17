@@ -6,7 +6,7 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import MenuButton from '../MenuButton';
 import Menu from '../Menu';

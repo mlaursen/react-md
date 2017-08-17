@@ -1,5 +1,5 @@
 /* eslint-env jest */
-jest.unmock('../Autocomplete');
+jest.disableAutomock();
 
 import React from 'react';
 import {
@@ -7,12 +7,17 @@ import {
   renderIntoDocument,
   findRenderedComponentWithType,
   findRenderedDOMComponentWithTag,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
+import { mount } from 'enzyme';
 import { TAB } from '../../constants/keyCodes';
 import Autocomplete from '../Autocomplete';
 import TextField from '../../TextFields/TextField';
 import Menu from '../../Menus/Menu';
+import List from '../../Lists/List';
+import ListItem from '../../Lists/ListItem';
+
+jest.mock('../../Inks/InkContainer'); // can't read left of undefined
 
 class Test extends React.Component {
   render() {
@@ -142,6 +147,112 @@ describe('Autocomplete', () => {
 
     autocomplete.setState({ isOpen: false });
     expect(props.onMenuClose.mock.calls.length).toBe(1);
+  });
+
+  it('should update the isOpen state when a filter function has been provided and the value has changed', () => {
+    const props = { data: ['Hello', 'World'], defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'he' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: '' } });
+    expect(autocomplete.state('isOpen')).toBe(false);
+
+    input.simulate('change', { target: { value: 'h' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('isOpen')).toBe(false);
+  });
+
+  it('should not change the isOpen state when a filter function has not been provided', () => {
+    const data = ['Hello', 'World'];
+    const props = { data, filter: null, defaultValue: 'h' };
+    const autocomplete = mount(<Autocomplete {...props} />);
+
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(false);
+    const input = autocomplete.find('input');
+    expect(input.length).toBe(1);
+
+    input.simulate('focus');
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    input.simulate('change', { target: { value: 'b' } });
+    expect(autocomplete.state('isOpen')).toBe(true);
+  });
+
+  it('should allow for ajax autocompletion flows', () => {
+    let data = [];
+    const onAutocomplete = jest.fn();
+    const autocomplete = mount(
+      <Autocomplete
+        id="ajax-example"
+        data={data}
+        label="Ajax"
+        filter={null}
+        onChange={jest.fn()}
+        clearOnAutocomplete
+        onAutocomplete={onAutocomplete}
+      />
+    );
+
+    autocomplete.find('input').simulate('focus');
+    expect(autocomplete.state('focus')).toBe(true);
+
+    autocomplete.find('input').simulate('change', { value: 'a' });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(false);
+
+    data = ['Apples', 'Bananas', 'Oranges', 'Avacados'];
+    autocomplete.setProps({ data }); // return from ajax call
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(true);
+
+    autocomplete.find(ListItem).at(1).simulate('click');
+    expect(onAutocomplete).toBeCalled();
+    expect(autocomplete.state('focus')).toBe(true);
+    expect(autocomplete.state('isOpen')).toBe(false);
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('value')).toBe('');
+
+    data = [];
+    autocomplete.setProps({ data });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('focus')).toBe(true);
+
+    autocomplete.find('input').simulate('change', { value: 'b' });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(false);
+
+    data = ['Bapples', 'Bananas', 'Boranges', 'Bavacados'];
+    autocomplete.setProps({ data });
+    expect(autocomplete.state('matches')).toBe(data);
+    expect(autocomplete.state('isOpen')).toBe(true);
+  });
+
+  it('should be renderable inside of a ListItem', () => {
+    const autocomplete = <Autocomplete id="inside-list" data={[]} />;
+
+    let error = false;
+    try {
+      const list = mount(
+        <List>
+          <ListItem primaryText={autocomplete} />
+        </List>
+      );
+      list.find(Autocomplete).simulate('click');
+    } catch (e) {
+      error = true;
+    }
+
+    expect(error).toBe(false);
   });
 
   describe('caseInsensitiveFilter', () => {

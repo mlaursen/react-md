@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 import deprecated from '../utils/PropTypes/componentDeprecated';
 import Button from './Button';
@@ -8,7 +9,7 @@ export default class FlatButton extends PureComponent {
     /**
      * The label to display in the button.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
 
     /**
      * An optional className to apply to the button.

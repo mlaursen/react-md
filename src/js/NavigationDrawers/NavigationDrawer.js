@@ -1,6 +1,7 @@
-import React, { PureComponent, PropTypes, isValidElement } from 'react';
+import React, { PureComponent, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -52,7 +53,9 @@ function toMiniListItem(item, index) {
 
 /**
  * The `NavigationDrawer` is used when you want a full layout configuration. It is a combination
- * of the `Toolbar` component and the `Drawer` component.
+ * of the `Toolbar` component and the `Drawer` component. Any props that are not specifically
+ * listed below will be provided to the `Drawer` component. So if there are props on the `Drawer`
+ * that are not listed here, they will be passed along.
  *
  * The main benfit of using this component is that it will manage adding respective offset
  * classes automatically for you to the content and the drawer. It will also manage using
@@ -175,6 +178,16 @@ export default class NavigationDrawer extends PureComponent {
     drawerClassName: PropTypes.string,
 
     /**
+     * An optional style to apply to the `List` surrounding the `navItems`.
+     */
+    navStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the `List` surrounding the `navItems`.
+     */
+    navClassName: PropTypes.string,
+
+    /**
      * An optional style to apply to the content. This is the container surrounding whatever
      * `children` are passed in.
      */
@@ -185,6 +198,16 @@ export default class NavigationDrawer extends PureComponent {
      * `children` are passed in.
      */
     contentClassName: PropTypes.string,
+
+    /**
+     * An optional style to apply to the overlay.
+     */
+    overlayStyle: PropTypes.object,
+
+    /**
+     * An optional className to apply to the overlay.
+     */
+    overlayClassName: PropTypes.string,
 
     /**
      * The children to display in the main content.
@@ -238,7 +261,7 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.shape({
         divider: PropTypes.bool,
         subheader: PropTypes.bool,
-        primaryText: PropTypes.string,
+        primaryText: PropTypes.node,
       }),
     ])),
 
@@ -368,10 +391,10 @@ export default class NavigationDrawer extends PureComponent {
 
     /**
      * An optional function to call when the visibility of the drawer changes. The callback
-     * will include the new visibility and the event that triggered the change.
+     * will include the new visibility.
      *
      * ```js
-     * this.props.onVisibilityToggle(false, event);
+     * this.props.onVisibilityToggle(false);
      * ```
      */
     onVisibilityToggle: PropTypes.func,
@@ -550,7 +573,7 @@ export default class NavigationDrawer extends PureComponent {
      * The label to use for a keyboard accessibility link that jumps all the navigation and allows a user to focus
      * the main content. This is created in the drawer's header.
      */
-    jumpLabel: PropTypes.string.isRequired,
+    jumpLabel: PropTypes.node.isRequired,
 
     /**
      * An optional DOM Node to render the drawer into. The default is to render as
@@ -569,6 +592,12 @@ export default class NavigationDrawer extends PureComponent {
      * since the `Portal` component will not be used.
      */
     lastChild: PropTypes.bool,
+
+    /**
+     * Boolean if the `drawerType` should remain constant across all media. This is really only valid
+     * if the `drawerType` is one of the temporary types.
+     */
+    constantDrawerType: PropTypes.bool,
 
     menuIconChildren: deprecated(PropTypes.node, 'Use `temporaryIconChildren` instead'),
     menuIconClassName: deprecated(PropTypes.string, 'Use `temporaryIconClassName` instead'),
@@ -596,13 +625,17 @@ export default class NavigationDrawer extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
     renderNode: PropTypes.object,
   }
 
   static defaultProps = {
     autoclose: Drawer.defaultProps.autoclose,
     contentId: 'main-content',
+    // Defaults to false since it keeps the state of the drawerType in sync and makes the Drawer
+    // controlled. On initial mount without any defaultMedia updates, it would always be considered
+    // temporary
+    constantDrawerType: false,
     jumpLabel: 'Jump to content',
     extractMini: true,
     position: Drawer.defaultProps.position,
@@ -638,10 +671,11 @@ export default class NavigationDrawer extends PureComponent {
       mobileDrawerType: mobileType,
       tabletDrawerType: tabletType,
       desktopDrawerType: desktopType,
+      constantDrawerType: constantType,
       ...others
     } = props;
 
-    return Drawer.getCurrentMedia({ mobileType, tabletType, desktopType, ...others });
+    return Drawer.getCurrentMedia({ mobileType, tabletType, desktopType, constantType, ...others });
   }
 
   constructor(props) {
@@ -662,9 +696,11 @@ export default class NavigationDrawer extends PureComponent {
     const type = getField(props, this.state, 'drawerType');
 
     if (typeof props.visible === 'undefined') {
-      this.state.visible = typeof defaultVisible !== 'undefined'
-        ? defaultVisible
-        : isPermanent(type);
+      // The logic for determining the visibility is handled by the created mini drawer
+      this.state.visible = isPermanent(type);
+      if (!this.state.visible && typeof defaultVisible !== 'undefined') {
+        this.state.visible = defaultVisible;
+      }
     }
 
     this._handleTypeChange = this._handleTypeChange.bind(this);
@@ -728,9 +764,9 @@ export default class NavigationDrawer extends PureComponent {
     }
   }
 
-  _handleVisibility(visible, e) {
+  _handleVisibility(visible) {
     if (this.props.onVisibilityToggle) {
-      this.props.onVisibilityToggle(visible, e);
+      this.props.onVisibilityToggle(visible);
     }
 
     if (typeof this.props.visible === 'undefined') {
@@ -740,24 +776,16 @@ export default class NavigationDrawer extends PureComponent {
 
   _handleTypeChange(drawerType, mediaState) {
     const { onMediaTypeChange } = this.props;
+    let state = mediaState;
     if (onMediaTypeChange) {
       onMediaTypeChange(drawerType, mediaState);
     }
 
     if (typeof this.props.drawerType === 'undefined') {
-      mediaState.drawerType = drawerType;
+      state = { ...mediaState, drawerType };
     }
 
-    const { mobile, tablet, desktop } = this.state;
-    if (typeof this.props.visible === 'undefined'
-      && (mediaState.mobile !== mobile
-        || mediaState.tablet !== tablet
-        || mediaState.desktop !== desktop)
-    ) {
-      mediaState.visible = isPermanent(drawerType);
-    }
-
-    this.setState(mediaState);
+    this.setState(state);
   }
 
   render() {
@@ -804,6 +832,7 @@ export default class NavigationDrawer extends PureComponent {
       includeDrawerHeader,
       contentId,
       contentProps,
+      constantDrawerType,
       ...props
     } = this.props;
     delete props.drawerType;
@@ -921,6 +950,7 @@ export default class NavigationDrawer extends PureComponent {
         {miniDrawer}
         <Drawer
           {...props}
+          constantType={constantDrawerType}
           transitionDuration={drawerTransitionDuration}
           header={drawerHeader}
           style={drawerStyle}

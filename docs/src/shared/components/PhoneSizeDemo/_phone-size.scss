@@ -34,6 +34,8 @@ $phone-status-bar-height: 24px;
   }
 
   .md-drawer--right {
+    @include md-ios-scroll-momentum;
+
     overflow-y: auto;
     width: 100%;
   }
@@ -44,6 +46,8 @@ $phone-status-bar-height: 24px;
 }
 
 .phone-size-content {
+  @include md-ios-scroll-momentum;
+
   height: 100%;
   overflow-y: auto;
 }
@@ -81,6 +85,8 @@ $phone-status-bar-height: 24px;
 }
 
 .phone-tab-content {
+  @include md-ios-scroll-momentum;
+
   overflow-y: auto;
 }
 

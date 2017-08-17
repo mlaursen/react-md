@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import Markdown from 'components/Markdown';
 import loremIpsum from 'lorem-ipsum';
 
+import './_typography.scss';
+
 const markdown = `
 # Material Design Typography
 
@@ -44,10 +46,11 @@ class names will be created:
 - \`.md-text-lowercase\` - lowercases the text
 - \`.md-text-nowrap\` - does not allow line breaks
 - \`.md-text-no-select\` - Does not allow use-select
-- \`.md-font-light\` - the material design light font weight.
-- \`.md-font-regular\` - the material design regular font weight.
-- \`.md-font-medium\` - the material design medium font weight.
-- \`.md-font-bold\` - the material design bold font weight.
+- \`.md-font-light\` - the material design light font weight (300).
+- \`.md-font-regular\` - the material design regular font weight (400).
+- \`.md-font-medium\` - the material design medium font weight (500).
+- \`.md-font-semibold\` - the semibold font weight used by some Google fonts (600).
+- \`.md-font-bold\` - the material design bold font weight (700).
 
 If the \`$md-typography-include-text-container\` variable is \`true !default\`, a \`md-text-container\`
 class name will be created to position text in the center of the page and keep the line length within
@@ -59,20 +62,20 @@ export default class Typography extends PureComponent {
     return (
       <main className="md-grid">
         <div className="md-cell md-cell--12">
-          <section className="md-text-container">
+          <section className="md-text-container typography-container">
             <Markdown markdown={markdown} component="article" />
-            <h1 className="md-display-4">Lorem</h1>
-            <h2 className="md-display-3">Ipsum</h2>
-            <h3 className="md-display-2">Cras sed</h3>
-            <h4 className="md-display-1">Phasellus</h4>
-            <h5 className="md-headline">Ut convallis</h5>
-            <h6 className="md-title">Proin quis cursus purus. Fusce.</h6>
-            <h6 className="md-subheading-2">In in augue tincidunt, rhoncus.</h6>
-            <h6 className="md-subheading-1">Vivamus elementum ligula vel justo.</h6>
-            <p className="md-body-2">{loremIpsum({ count: 1, units: 'paragraphs' })}</p>
-            <p className="md-body-1">{loremIpsum({ count: 1, units: 'paragraphs' })}</p>
+            <h1 className="md-display-4">md-display-4</h1>
+            <h2 className="md-display-3">md-display-3</h2>
+            <h3 className="md-display-2">md-display-2</h3>
+            <h4 className="md-display-1">md-display-1</h4>
+            <h5 className="md-headline">md-headline</h5>
+            <h6 className="md-title">md-title</h6>
+            <h6 className="md-subheading-2">md-subheading-2</h6>
+            <h6 className="md-subheading-1">md-subheading-1</h6>
+            <p className="md-body-2">md-body-2: {loremIpsum({ count: 1, units: 'paragraphs' })}</p>
+            <p className="md-body-1">md-body-1: {loremIpsum({ count: 1, units: 'paragraphs' })}</p>
             <table style={{ width: '100%' }}>
-              <caption className="md-caption md-text-left">{loremIpsum({ count: 1, units: 'paragraphs' })}</caption>
+              <caption className="md-caption md-text-left">md-caption: {loremIpsum({ count: 1, units: 'paragraphs' })}</caption>
             </table>
             <h2>Helper Classes</h2>
             <Markdown markdown={helperMarkdown} component="article" />

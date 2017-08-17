@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export default {
   uncheckedIconClassName: PropTypes.string.isRequired,
@@ -9,5 +9,8 @@ export default {
     PropTypes.number,
     PropTypes.string,
   ]).isRequired,
+  header: PropTypes.bool,
   baseName: PropTypes.string.isRequired,
+  createCheckbox: PropTypes.func.isRequired,
+  removeCheckbox: PropTypes.func.isRequired,
 };

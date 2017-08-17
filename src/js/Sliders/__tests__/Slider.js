@@ -2,13 +2,14 @@
 jest.unmock('../Slider');
 
 import React from 'react';
+import { shallow } from 'enzyme';
 import { findDOMNode } from 'react-dom';
 import {
   Simulate,
   renderIntoDocument,
   findRenderedComponentWithType,
   scryRenderedComponentsWithType,
-} from 'react-addons-test-utils';
+} from 'react-dom/test-utils';
 
 import Slider from '../Slider';
 import Track from '../Track';
@@ -145,5 +146,73 @@ describe('Slider', () => {
     slider = renderIntoDocument(<Slider disabled />);
     props = findRenderedComponentWithType(slider, Track).props;
     expect(props.disabled).toBe(true);
+  });
+
+  it('renders the balloon on correct tick when min value is greater than 0 & defaultValue is not 0', () => {
+    const renderSliderWithProps = (defaultValue, min, max) => {
+      const props = { defaultValue, min, max };
+      return renderIntoDocument(<Slider {...props} />);
+    };
+
+    let slider = renderSliderWithProps(5, 3, 12);
+    expect(slider.state.distance).toEqual(22.22222222222222);
+
+    slider = renderSliderWithProps(55, 40, 77);
+    expect(slider.state.distance).toEqual(40.54054054054054);
+
+    slider = renderSliderWithProps(1076, 200, 20000);
+    expect(slider.state.distance).toEqual(4.424242424242424);
+  });
+
+  it('renders the slider correctly without a defaultValue', () => {
+    const renderSliderWithProps = (defaultValue, max) => {
+      const props = { defaultValue, max };
+      return renderIntoDocument(<Slider {...props} />);
+    };
+
+    let slider = renderSliderWithProps(5, 12);
+    expect(slider.state.distance).toEqual(41.66666666666667);
+
+    slider = renderSliderWithProps(55, 77);
+    expect(slider.state.distance).toEqual(71.42857142857143);
+
+    slider = renderSliderWithProps(1076, 20000);
+    expect(slider.state.distance).toEqual(5.38);
+  });
+
+  it('should set the initial value to the defaultValue if defined', () => {
+    const slider = shallow(<Slider id="some-slider" min={10} defaultValue={15} />);
+    expect(slider.state('value')).toBe(15);
+  });
+
+  it('should set the initial value to be the min value if undefined', () => {
+    const slider = shallow(<Slider id="some-slider" min={10} />);
+    expect(slider.state('value')).toBe(10);
+  });
+
+  it('should consider the track to be "on" correctly', () => {
+    let slider = shallow(<Slider id="some-slider" />);
+    let track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(false);
+
+    slider.instance()._handleIncrement(1, {});
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" defaultValue={50} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" discrete min={50} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(false);
+
+    slider.instance()._handleIncrement(51, {});
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
+
+    slider = shallow(<Slider id="some-slider" discrete min={50} defaultValue={75} />);
+    track = slider.find(Track).get(0);
+    expect(track.props.on).toBe(true);
   });
 });

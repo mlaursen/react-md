@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 /**
@@ -27,7 +28,7 @@ export default class JumpToContentLink extends PureComponent {
       PropTypes.number,
       PropTypes.string,
     ]).isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.node.isRequired,
   }
 
   constructor(props) {

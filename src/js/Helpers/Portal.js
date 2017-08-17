@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
   unmountComponentAtNode as unmount,
   unstable_renderSubtreeIntoContainer as render,
@@ -60,6 +61,14 @@ export default class Portal extends PureComponent {
     component: 'span',
   };
 
+  static contextTypes = {
+    isInPortal: PropTypes.bool,
+  };
+
+  static childContextTypes = {
+    isInPortal: PropTypes.bool,
+  };
+
   constructor(props) {
     super(props);
 
@@ -71,27 +80,32 @@ export default class Portal extends PureComponent {
     this._removePortal = this._removePortal.bind(this);
   }
 
+  getChildContext() {
+    return { isInPortal: true };
+  }
+
   componentDidMount() {
-    if (this.props.visible) {
+    const { renderNode, visible } = this.props;
+    if (visible && (!this.context.isInPortal || renderNode)) {
       this._renderPortal(this.props);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { visible, onOpen } = nextProps;
-    if (this.props.visible === visible && this._container) {
-      // Need to just re-render the subtree
-      this._renderPortal(nextProps);
+    const { visible, onOpen, renderNode } = nextProps;
+    const changed = visible !== this.props.visible;
+    if (changed && visible && onOpen) {
+      onOpen();
+    }
+
+    if (this.context.isInPortal && !renderNode) {
       return;
     }
 
-    if (visible) {
-      if (onOpen) {
-        onOpen();
-      }
-      this._renderPortal(nextProps);
-    } else {
+    if (!visible) {
       this._removePortal();
+    } else {
+      this._renderPortal(nextProps);
     }
   }
 
@@ -138,10 +152,12 @@ export default class Portal extends PureComponent {
   }
 
   render() {
+    const { isInPortal } = this.context;
+    const { component: Component, className, children, renderNode, visible } = this.props;
+
     // When doing server side rendering, actualy render the component as a direct child of its parent.
     // Once it has been rendered and working client side, it will be removed correctly.
-    if (typeof window === 'undefined' && this.props.visible) {
-      const { component: Component, className, children } = this.props;
+    if (visible && (typeof window === 'undefined' || (isInPortal && !renderNode))) {
       return <Component className={className}>{children}</Component>;
     }
 

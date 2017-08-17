@@ -301,14 +301,15 @@ $md-clock-padding: 4px;
   }
 
   .md-dialog--picker {
-    max-height: calc(100vh - #{$md-picker-mobile-margin});
-    max-width: calc(100vw - #{$md-picker-mobile-margin});
+    @include md-ios-scroll-momentum;
+
+    max-height: calc(100% - #{$md-picker-mobile-margin});
+    max-width: calc(100% - #{$md-picker-mobile-margin});
+    overflow: auto;
     width: auto;
   }
 
   .md-dialog-content--picker {
-    max-height: inherit;
-    max-width: inherit;
     padding: 0;
   }
 
@@ -369,7 +370,7 @@ $md-clock-padding: 4px;
     @include react-md-pickers-make-landscape;
 
     .md-picker-header {
-      height: initial;
+      height: auto;
     }
   }
 }
@@ -422,6 +423,8 @@ $md-clock-padding: 4px;
   }
 
   .md-picker-content--year {
+    @include md-ios-scroll-momentum;
+
     overflow-y: auto;
   }
 

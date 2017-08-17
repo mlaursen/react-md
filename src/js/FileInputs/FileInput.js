@@ -1,4 +1,5 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
@@ -22,6 +23,11 @@ export default class FileInput extends PureComponent {
       PropTypes.string,
       PropTypes.number,
     ])),
+
+    /**
+     * An optional name to provide to the input.
+     */
+    name: PropTypes.string,
 
     /**
      * An optional style to apply.
@@ -324,6 +330,7 @@ export default class FileInput extends PureComponent {
       secondary,
       flat,
       id,
+      name,
       iconBefore,
       disabled,
       accept,
@@ -386,11 +393,12 @@ export default class FileInput extends PureComponent {
           {labelChildren}
         </AccessibleFakeInkedButton>
         <input
-          multiple={multiple}
-          disabled={disabled}
           id={id}
+          name={name}
           accept={accept}
           type="file"
+          multiple={multiple}
+          disabled={disabled}
           aria-hidden="true"
           className="md-file-input"
           onChange={this._handleChange}

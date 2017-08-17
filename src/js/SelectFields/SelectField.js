@@ -1,11 +1,13 @@
-import React, { PureComponent, PropTypes } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { findDOMNode } from 'react-dom';
 import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
-import { UP, DOWN, ESC, ENTER, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
+import { UP, DOWN, ESC, ENTER, SPACE, TAB, ZERO, NINE, KEYPAD_ZERO, KEYPAD_NINE } from '../constants/keyCodes';
 import getField from '../utils/getField';
+import handleKeyboardAccessibility from '../utils/EventUtils/handleKeyboardAccessibility';
 import controlled from '../utils/PropTypes/controlled';
 import isBetween from '../utils/NumberUtils/isBetween';
 import addSuffix from '../utils/StringUtils/addSuffix';
@@ -153,7 +155,7 @@ export default class SelectField extends PureComponent {
      * An optional floating label to display with the text field. This is invalid
      * if the `position` is set to `SelectField.Positions.BELOW`.
      */
-    label: PropTypes.string,
+    label: PropTypes.node,
 
     /**
      * An optional placeholder to display in the select field.
@@ -362,20 +364,30 @@ export default class SelectField extends PureComponent {
 
     this._items = [];
     this._activeItem = null;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value || this.props.menuItems !== nextProps.menuItems) {
-      this.setState({ activeLabel: this._getActiveLabel(nextProps, nextProps.value) });
-    }
+    this._focusedAtLeastOnce = false;
   }
 
   componentWillUpdate(nextProps, nextState) {
+    const prevValue = getField(this.props, this.state, 'value');
+    const value = getField(nextProps, nextState, 'value');
     const error = getField(nextProps, nextState, 'error');
     const isOpen = getField(nextProps, nextState, 'isOpen');
-    const valued = !getField(nextProps, nextState, 'value');
-    if (nextProps.required && !isOpen && error !== valued) {
-      this.setState({ error: valued });
+    const errored = !this._isValued(value);
+
+    let state;
+    if (prevValue !== value || this.props.menuItems !== nextProps.menuItems) {
+      state = {
+        activeLabel: this._getActiveLabel(nextProps, value),
+      };
+    }
+
+    if (this._focusedAtLeastOnce && !isOpen && nextProps.required && error !== errored) {
+      state = state || {};
+      state.error = errored;
+    }
+
+    if (state) {
+      this.setState(state);
     }
   }
 
@@ -400,7 +412,7 @@ export default class SelectField extends PureComponent {
     let activeLabel = '';
     menuItems.some(item => {
       activeLabel = this._getActiveLabelFromItem(item, value, itemLabel, itemValue);
-      return activeLabel;
+      return this._isValued(activeLabel);
     });
 
     return activeLabel;
@@ -446,6 +458,8 @@ export default class SelectField extends PureComponent {
 
     return index;
   }
+
+  _isValued = v => v === 0 || !!v;
 
   _setMenu(menu) {
     this._menu = findDOMNode(menu);
@@ -502,6 +516,7 @@ export default class SelectField extends PureComponent {
   }
 
   _handleFocus(e) {
+    this._focusedAtLeastOnce = true;
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
@@ -699,10 +714,14 @@ export default class SelectField extends PureComponent {
 
     if (key === UP || key === DOWN) {
       e.preventDefault();
+
+      if (!isOpen) {
+        this._handleOpen(e);
+        return;
+      }
     }
 
-    if (!isOpen && (key === DOWN || key === UP || key === ENTER)) {
-      this._handleOpen(e);
+    if (!isOpen && handleKeyboardAccessibility(e, this._handleOpen, true, true)) {
       return;
     } else if (isOpen && (key === ESC || key === TAB)) {
       if (this._field && key === ESC) {
@@ -719,6 +738,7 @@ export default class SelectField extends PureComponent {
         this._advanceFocus(key === UP, e);
         break;
       case ENTER:
+      case SPACE:
         if (this._field) {
           this._field.focus();
         }
@@ -901,7 +921,7 @@ export default class SelectField extends PureComponent {
         htmlFor={id}
         active={active || isOpen}
         error={error}
-        floating={!!activeLabel || active || isOpen}
+        floating={this._isValued(activeLabel) || active || isOpen}
         disabled={disabled}
       />,
       <Field
