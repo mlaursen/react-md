@@ -86,11 +86,22 @@ export default class TabsContainer extends PureComponent {
     swipeableViewsClassName: PropTypes.string,
 
     /**
-     * An optional style to apply to each slide component.
+     * An optional style to apply to each slide component or a function that returns such style.
+     *
+     * Default style and height of slide component will be passed in the function.
+     * The function should return a style that will be merged with default style, or `null`.
      *
      * @see https://github.com/oliviertassinari/react-swipeable-views#user-content-swipeableviews-
      */
-    slideStyle: PropTypes.object,
+    slideStyle: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.func,
+    ]),
+
+    /**
+     * The property that should be used to set height of a slide component.
+     */
+    slideHeightProp: PropTypes.oneOf(['height', 'minHeight', 'maxHeight']),
 
     /**
      * This should be a `Tabs` component with children of `Tab`. This is used to figure out which
@@ -176,6 +187,7 @@ export default class TabsContainer extends PureComponent {
     component: 'section',
     defaultTabIndex: 0,
     headerZDepth: 1,
+    slideHeightProp: 'height',
   };
 
   constructor(props) {
@@ -216,6 +228,7 @@ export default class TabsContainer extends PureComponent {
       headerStyle,
       headerClassName,
       slideStyle,
+      slideHeightProp,
       swipeableViewsStyle,
       swipeableViewsClassName,
       headerComponent,
@@ -285,6 +298,8 @@ export default class TabsContainer extends PureComponent {
       );
     }
 
+    const baseSlideStyle = { [slideHeightProp]: panelHeight };
+
     return (
       <Component
         style={style}
@@ -311,7 +326,10 @@ export default class TabsContainer extends PureComponent {
             'md-tabs-content--offset-toolbar-icon': fixed && toolbar && labelAndIcon,
             'md-tabs-content--offset-toolbar-prominent-icon': fixed && toolbar && labelAndIcon && prominentToolbar,
           }, swipeableViewsClassName)}
-          slideStyle={{ height: panelHeight, ...slideStyle }}
+          slideStyle={{
+            ...baseSlideStyle,
+            ...(typeof slideStyle === 'function' ? slideStyle(baseSlideStyle, panelHeight) : slideStyle),
+          }}
           index={activeTabIndex}
           onChangeIndex={this._handleSwipeChange}
         >
