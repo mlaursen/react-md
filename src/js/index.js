@@ -43,7 +43,7 @@ import {
 import injectInk from './Inks';
 import { List, ListItem, ListItemControl } from './Lists';
 import Media, { MediaOverlay } from './Media';
-import Menu from './Menus';
+import Menu, { MenuButton } from './Menus';
 import NavigationDrawer, { CloseButton, JumpToContentLink } from './NavigationDrawers';
 import Paper from './Papers';
 import { DatePicker, TimePicker } from './Pickers';
@@ -113,6 +113,7 @@ export { ListItemControl };
 export { Media };
 export { MediaOverlay };
 export { Menu };
+export { MenuButton };
 export { NavigationDrawer };
 export { CloseButton };
 export { JumpToContentLink };
@@ -202,6 +203,7 @@ export default {
   MediaOverlay,
 
   Menu,
+  MenuButton,
 
   NavigationDrawer,
   CloseButton,
