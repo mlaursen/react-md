@@ -259,7 +259,7 @@ at the time so I never bothered learning. (_I'm so sorry_)
 
 ### Testing SSR
 One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
-with the production build is that it doesn't warn you when the markdup is different between client and server, so this wasn't ideal.
+with the production build is that it doesn't warn you when the markup is different between client and server, so this wasn't ideal.
 I ended up making some additional changes to the webpack configs to allow a "development" version of the production build, and it was
 pretty hacky.
 
@@ -319,7 +319,7 @@ I don't really use Facebook or Twiiter. Oh well.
 ### Long term caching
 Webpack is hard. (Again)
 
-Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correctl loader for
+Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correct loader for
 your filetype and you're set!
 
 ```js
