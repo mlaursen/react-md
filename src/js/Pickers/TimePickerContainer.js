@@ -299,7 +299,7 @@ export default class TimePickerContainer extends PureComponent {
     /**
      * @see [TextField](/components/text-fields?tab=1)
      */
-    inlineIndicator: TextField.propTypes.helpOnFocus,
+    inlineIndicator: TextField.propTypes.inlineIndicator,
 
     /**
      * An optional DOM Node to render the dialog into. The default is to render as the first child
