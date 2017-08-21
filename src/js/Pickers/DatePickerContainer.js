@@ -433,6 +433,11 @@ export default class DatePickerContainer extends PureComponent {
     firstDayOfWeek: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6]),
 
     /**
+     * True if weekends are to be greyed out.
+     */
+    disableWeekEnds: PropTypes.bool,
+
+    /**
      * An optional className to apply to a date in calendar.
      */
     calendarDateClassName: PropTypes.string,
