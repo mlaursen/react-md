@@ -19,13 +19,13 @@ const ICONS = path.resolve(process.cwd(), 'src', 'icons');
 const SERVER = path.resolve(process.cwd(), 'src', 'server');
 const UTILS = path.resolve(process.cwd(), 'src', 'utils');
 
-function isCustomLoader(path) {
-  return path.indexOf(RAW_LOADER) !== -1
-    || path.indexOf(RAW_CLIENT_LOADER) !== -1
-    || path.indexOf(RAW_COMPONENT_LOADER) !== -1
-    || path.indexOf(RAW_ICONS_LOADER) !== -1
-    || path.indexOf(RAW_SERVER_LOADER) !== -1
-    || path.indexOf(RAW_UTILS_LOADER) !== -1;
+function isCustomLoader(resourcePath) {
+  return resourcePath.indexOf(RAW_LOADER) !== -1
+    || resourcePath.indexOf(RAW_CLIENT_LOADER) !== -1
+    || resourcePath.indexOf(RAW_COMPONENT_LOADER) !== -1
+    || resourcePath.indexOf(RAW_ICONS_LOADER) !== -1
+    || resourcePath.indexOf(RAW_SERVER_LOADER) !== -1
+    || resourcePath.indexOf(RAW_UTILS_LOADER) !== -1;
 }
 
 /**
@@ -36,30 +36,30 @@ function isCustomLoader(path) {
  *
  * When using the raw-loader, you **must** specify the file extension as well to get it to work.
  */
-hacker.global_hook('raw-loader', (path, module) => {
-  if (!isCustomLoader(path)) {
+hacker.global_hook('raw-loader', (resourcePath, module) => {
+  if (!isCustomLoader(resourcePath)) {
     return undefined;
   }
 
   let filePath = '';
-  if (path.match(RAW_CLIENT_LOADER)) {
-    filePath = path.replace(RAW_CLIENT_LOADER, CLIENT);
-  } else if (path.match(RAW_COMPONENT_LOADER)) {
-    filePath = path.replace(RAW_COMPONENT_LOADER, COMPONENTS);
-  } else if (path.match(RAW_ICONS_LOADER)) {
-    filePath = path.replace(RAW_ICONS_LOADER, ICONS);
-  } else if (path.match(RAW_SERVER_LOADER)) {
-    filePath = path.replace(RAW_SERVER_LOADER, SERVER);
-  } else if (path.match(RAW_UTILS_LOADER)) {
-    filePath = path.replace(RAW_UTILS_LOADER, UTILS);
+  if (resourcePath.match(RAW_CLIENT_LOADER)) {
+    filePath = resourcePath.replace(RAW_CLIENT_LOADER, CLIENT);
+  } else if (resourcePath.match(RAW_COMPONENT_LOADER)) {
+    filePath = resourcePath.replace(RAW_COMPONENT_LOADER, COMPONENTS);
+  } else if (resourcePath.match(RAW_ICONS_LOADER)) {
+    filePath = resourcePath.replace(RAW_ICONS_LOADER, ICONS);
+  } else if (resourcePath.match(RAW_SERVER_LOADER)) {
+    filePath = resourcePath.replace(RAW_SERVER_LOADER, SERVER);
+  } else if (resourcePath.match(RAW_UTILS_LOADER)) {
+    filePath = resourcePath.replace(RAW_UTILS_LOADER, UTILS);
   } else {
-    const folder = module.filename.substring(0, module.filename.lastIndexOf('/'));
-    filePath = `${folder}/${path.replace(RAW_LOADER, '')}`;
+    const folder = module.filename.substring(0, module.filename.lastIndexOf(path.sep));
+    filePath = `${folder}/${resourcePath.replace(RAW_LOADER, '')}`;
   }
 
   return {
     source: `module.exports = ${JSON.stringify(fs.readFileSync(filePath, 'UTF-8'))};`,
-    path,
+    resourcePath,
   };
 });
 
@@ -80,17 +80,33 @@ global.__SSR__ = getValue('USE_SSR', !global.__DEV__);
 global.__NGINX__ = getValue('USE_NGINX', !global.__DEV__);
 global.__SERVER_ONLY__ = getValue('SERVER_ONLY', false);
 
-const ROOT_DIR = require('path').resolve(process.cwd());
+const ROOT_DIR = path.resolve(process.cwd());
 
 let timeout = setTimeout(() => {
+  const icons = [
+    'alarm', 'arrow_back', 'arrow_drop_down', 'book', 'code', 'copyright', 'delete',
+    'done', 'file_download', 'menu', 'music_note', 'notifications', 'ondemand_video',
+    'phone', 'redo', 'remove_red_eye', 'twitter',
+  ];
+
   if (__DEV__) {
     winston.error('It looks like the `webpack-assets.json` file has not been created.');
-    winston.info('Creating a dummy file to get the compliation started...');
+    winston.info('Creating a dummy file to get the compilation started...');
     timeout = null;
     const dummyFile = {
       javascript: { main: '/assets/main.js' },
       styles: {},
-      assets: {},
+      assets: icons.reduce((assets, icon) => {
+        // Only the SVGs prevent compilation since the different parts are extracted out.
+        // So just do a really simple mock until first compilataion
+        const id = `${icon}-usage`;
+        assets[`./src/icons/${icon}.svg`] = {
+          id,
+          viewBox: '0 0 24 24',
+          url: `/icon-sprites#${id}`,
+        };
+        return assets;
+      }, {}),
     };
     fs.writeFileSync(path.resolve(process.cwd(), 'webpack-assets.json'), JSON.stringify(dummyFile), 'UTF-8');
     winston.info('Created a dummy `webpack-assets.json`. Server should start normally now.');
