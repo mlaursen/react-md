@@ -20,7 +20,6 @@ class SelectFieldColumn extends PureComponent {
   static VerticalAnchors = SelectField.VerticalAnchors;
   static HorizontalAnchors = SelectField.HorizontalAnchors;
   static Positions = SelectField.Positions;
-
   static propTypes = {
     /**
      * An optional id to use for the select field in the column. If this is omitted, it's value will be

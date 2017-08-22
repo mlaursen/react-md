@@ -7,6 +7,9 @@ import DropdownMenu from '../Menus/DropdownMenu';
 import TableColumn from './TableColumn';
 
 class DropdownMenuColumn extends PureComponent {
+  static Positions = DropdownMenu.Positions;
+  static HorizontalAnchors = DropdownMenu.HorizontalAnchors;
+  static VerticalAnchors = DropdownMenu.VerticalAnchors;
   static propTypes = {
     /**
      * An optional id to use for the menu button in the column. If this is omitted, it's value will be

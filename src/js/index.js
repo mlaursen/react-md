@@ -24,6 +24,8 @@ import DataTable, {
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
+  MenuButtonColumn,
+  DropdownMenuColumn,
 } from './DataTables';
 import DialogContainer, { Dialog } from './Dialogs';
 import Divider from './Dividers';
@@ -93,6 +95,8 @@ export { TableCardHeader };
 export { EditDialogColumn };
 export { TablePagination };
 export { SelectFieldColumn };
+export { MenuButtonColumn };
+export { DropdownMenuColumn };
 export { DialogContainer };
 export { Dialog };
 export { Divider };
@@ -178,6 +182,8 @@ export default {
   EditDialogColumn,
   TablePagination,
   SelectFieldColumn,
+  MenuButtonColumn,
+  DropdownMenuColumn,
 
   DialogContainer,
   Dialog,

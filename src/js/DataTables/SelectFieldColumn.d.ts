@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { InjectedTooltipProps } from '../Tooltips';
 import { SelectFieldProps } from '../SelectFields';
+import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers/Layover';
 
 export interface SelectFieldColumnProps extends SelectFieldProps, InjectedTooltipProps {
   menuStyle?: React.CSSProperties;
@@ -24,5 +25,11 @@ export interface SelectFieldColumnProps extends SelectFieldProps, InjectedToolti
   wrapperClassName?: string;
 }
 
-declare const SelectFieldColumn: React.ComponentClass<SelectFieldColumnProps>;
+interface SelectFieldColumnComponent extends React.ComponentClass<SelectFieldColumnProps> {
+  Positions: LayoverPositions;
+  HorizontalAnchors: HorizontalAnchors;
+  VerticalAnchors: VerticalAnchors;
+}
+
+declare const SelectFieldColumn: SelectFieldColumnComponent
 export default SelectFieldColumn;

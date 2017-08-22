@@ -25,6 +25,9 @@ import getDisplayName from '../utils/StringUtils/getDisplayName';
  */
 export default function withTableFixes(ComposedComponent, suffix) {
   return class TableFixesComponent extends PureComponent {
+    static Positions = ComposedComponent.Positions;
+    static HorizontalAnchors = ComposedComponent.HorizontalAnchors;
+    static VerticalAnchors = ComposedComponent.VerticalAnchors;
     static displayName = getDisplayName(ComposedComponent, 'TableFixes');
     static propTypes = {
       id: PropTypes.oneOfType([
