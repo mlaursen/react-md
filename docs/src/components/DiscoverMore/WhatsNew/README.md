@@ -87,6 +87,13 @@ This mostly means that component prop type descriptions have been updated to lin
 list.
 
 ## August 2017
+### v1.0.19 Released
+- Fixed the `Autocomplete` no longer firing click events on the list items. [#475](#issues-475)
+- Updated the UMD build to correctly include the `MenuButton`. [#482](#issues-482)
+- Fixed an invalid PropType warning for Date and Time pickers. [#490](#issues-490)
+- Added a little bit more support for tabs with dynamic height changes. [#487](#pull-487)
+- Added support for semi-bold fonts. [#468](#pull-468)
+
 ### v1.0.18 Released
 ##### Changelog
 - Fixed the `Autocomplete` firing the `onAutocomplete` callback twice when using the keyboard to select
