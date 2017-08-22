@@ -106,6 +106,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         <div
           aria-pressed="false"
           class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text"
+          id="primary-toggle"
           role="listbox"
           tabindex="0"
         >
@@ -155,6 +156,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         <div
           aria-pressed="false"
           class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text"
+          id="secondary-toggle"
           role="listbox"
           tabindex="0"
         >
@@ -204,6 +206,7 @@ exports[`ThemeBuilder should render correctly 1`] = `
         <div
           aria-pressed="false"
           class="md-paper md-paper--0 md-fake-btn md-pointer--hover md-fake-btn--no-outline md-select-field md-text"
+          id="hue-toggle"
           role="listbox"
           tabindex="0"
         >

@@ -83,6 +83,12 @@ global.__SERVER_ONLY__ = getValue('SERVER_ONLY', false);
 const ROOT_DIR = path.resolve(process.cwd());
 
 let timeout = setTimeout(() => {
+  const icons = [
+    'alarm', 'arrow_back', 'arrow_drop_down', 'book', 'code', 'copyright', 'delete',
+    'done', 'file_download', 'menu', 'music_note', 'notifications', 'ondemand_video',
+    'phone', 'redo', 'remove_red_eye', 'twitter',
+  ];
+
   if (__DEV__) {
     winston.error('It looks like the `webpack-assets.json` file has not been created.');
     winston.info('Creating a dummy file to get the compilation started...');
@@ -90,7 +96,17 @@ let timeout = setTimeout(() => {
     const dummyFile = {
       javascript: { main: '/assets/main.js' },
       styles: {},
-      assets: {},
+      assets: icons.reduce((assets, icon) => {
+        // Only the SVGs prevent compilation since the different parts are extracted out.
+        // So just do a really simple mock until first compilataion
+        const id = `${icon}-usage`;
+        assets[`./src/icons/${icon}.svg`] = {
+          id,
+          viewBox: '0 0 24 24',
+          url: `/icon-sprites#${id}`,
+        };
+        return assets;
+      }, {}),
     };
     fs.writeFileSync(path.resolve(process.cwd(), 'webpack-assets.json'), JSON.stringify(dummyFile), 'UTF-8');
     winston.info('Created a dummy `webpack-assets.json`. Server should start normally now.');

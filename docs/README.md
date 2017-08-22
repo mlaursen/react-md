@@ -27,8 +27,15 @@ mlaursen @ ~/code/react-md/docs
 $ yarn                  # you should also install dependencies in the parent directory if not done already
 $ cp .env.example .env
 $ vim .env              # change port to whatever you want
+
+# This one is optional. A webpack-assets.json file must be created before the server will work correctly
+# and the dev server will _mock_ one out for you. If the mocking fails, you can fallback to this one. After
+# a successful build, you will _almost never_ need to run this command again.
+$ yarn build:dev        # Run the dev webpack build to get initial webpack-assets.json to be created
+
+# Start the server with one of the two options
 $ yarn dev              # watch react-md source changes and run dev server
-$ yarn dev:all          # watch all changes and run dev server
+$ yarn dev:full          # watch all changes and run dev server
 ```
 
 > See the [scripts](#scripts) section for all of the other available commands
@@ -138,8 +145,8 @@ side rendering when needed. The API server was really only added because I wante
 might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
 a full server call... but I wanted to learn how to do some node work.
 
-The only "exciting" thing about this server if you are familiar with node is the [github](src/server/api/github.js) proxy settings. I end
-up proxying requests to the Github API through my server so I can track some of the rate limiting aspects.
+The only "exciting" thing about this server if you are familiar with node is the [GitHub](src/server/api/github.js) proxy settings. I end
+up proxying requests to the GitHub API through my server so I can track some of the rate limiting aspects.
 
 #### state
 This is where I combine all the logic for the redux state.
@@ -254,7 +261,7 @@ to nodemon to restart the server with this because it uses `concurrently` behind
 and still send keyboard commands to one of the scripts, all would be set.
 
 This was mostly fixed by using [webpack-isomorphic-tools](https://github.com/catamphetamine/webpack-isomorphic-tools) with my server.
-There are probably better wasy of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
+There are probably better ways of doing this now like [next.js](https://github.com/zeit/next.js/), but I am not a fan of their documentation
 at the time so I never bothered learning. (_I'm so sorry_)
 
 ### Testing SSR
@@ -273,7 +280,7 @@ Webpack is hard. (See more in [Long term caching](#long-term-caching))
 Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
 that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
 you split up your code and you already have `React` rendering your page! While the browser is loading your additional chunks required
-for your page, react will have erased the DOM with what it has avaialbe and then render it again once they have loaded. Ugh. You now
+for your page, react will have erased the DOM with what it has available and then render it again once they have loaded. Ugh. You now
 get an amazing screen "flash" because of this. Before webpack 2, this was pretty hard to fix. Luckily webpack 2 introduced a way to
 name dynamic imports with the "magic comment" `/* webpackChunkName: MyDynamicModule */`. This is super helpful because you can use
 this along with the `manifest.json` that can be created by webpack so that you can load all the bundles for a page before calling
@@ -281,7 +288,7 @@ the first `ReactDOM.render()` in your app. This works great with `react-router@4
 which bundles need to be loaded, and pass it to the client.
 
 To help with this, I ended up making a [syncComponent](src/utils/syncComponent.js) and [asyncComponent](src/utils/asyncComponent.js)
-HOC. The syncronous component (which should be used by the server) will update the `staticContext` provided by the `StaticRouter` and
+HOC. The synchronous component (which should be used by the server) will update the `staticContext` provided by the `StaticRouter` and
 push the `chunkName` to a list of bundles that need to be loaded before the page can render. This can be seen in the [routes/sync](src.routes/sync.js)
 and [routes/async](src/routes/async.js) files. With all this set up, the final things are just to provide the list of bundles to the client
 in a "hidden" window variable, load all the bundles, and then render `React`. Here is the updated [client/index.jsx](src/client/index.jsx) file to show
@@ -362,7 +369,7 @@ for the hash and each build will generate new hashes even if the content didn't 
 
 I ended up following a [couple](https://survivejs.com/webpack/optimizing/separating-manifest/)
 [of](https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31)
-[articles](https://webpack.js.org/guides/caching/) about this and endup going with:
+[articles](https://webpack.js.org/guides/caching/) about this and end up going with:
 - using the `WebpackMd5Hash` plugin
 - using the `ManifestPlugin`
 - using the `HashedModuleIdsPlugin`
@@ -412,8 +419,8 @@ it to the output directory. It isn't super ideal since I don't know how to trigg
   * [start:dev](#startdev)
   * [start:prod](#startprod)
 * [dev](#dev)
+  * [dev:full](#devfull)
   * [dev:minimal](#devminimal)
-  * [dev:all](#devall)
 * [watch:all](#watchall)
   * [watch:docgen](#watchdocgen)
   * [watch:sassdoc](#watchsassdoc)
@@ -454,11 +461,11 @@ This will build a development version of the website. This is useful if you are 
 debugging server side stuff and the client won't be changing that much.
 
 ### jsdoc
-This task just runs the `jsdoc:build` follwed by `jsdoc:create`.
+This task just runs the `jsdoc:build` followed by `jsdoc:create`.
 > SEE: [jsdoc:build](#jsdocbuild) and [jsdoc:create](#jsdoccreate) for more information.
 
 ### jsdoc:build
-This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
+This will run jsdoc on the `react-md/src/js` folder and extract jsdoc for some specific files to get additional
 documentation on static component class attributes that are not picked up with `react-docgen`. Examples are the
 `Layover.HorizontalAnchors` and `Autocomplete.fuzzyFilter`.This will create a `jsdoc.json` file in the home directory
 to be parsed by [jsdoc:create](#jsdoccreate).
@@ -481,7 +488,7 @@ it is a simple mapping of the component group to related documentation. This com
 "database" so that functions, mixins, selectors, and variables can be found in the main search.
 
 ### sassdoc:site
-This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for sassdoc. This is mostly used
+This will create the https://react-md.mlaursen.com/sassdoc page with the default settings for SassDoc. This is mostly used
 as a fallback for things that are not directly documentable within the main website.
 
 ### air-quality
@@ -497,7 +504,7 @@ be started.
 ### start:dev
 This will start up the server in development mode. This is helpful if you don't need every watcher running and have already
 built the databases or you need to test server code independently so you have access to the `nodemon` `restart` ability. Both
-[dev](#dev) and [dev:all](#devall) end up using this behind the scenes.
+[dev](#dev) and [dev:full](#devfull) end up using this behind the scenes.
 
 The development server will be restarted each time any config file changes, or server related files.
 
@@ -515,7 +522,7 @@ This is a script that will remove any existing assets, run the webpack watcher, 
 server. This is assuming that all the databases have been built and the react-md code has been compiled
 already.
 
-### dev:all
+### dev:full
 Whew. This is the most useful development script to use. It will run the [prebuild](#prebuild) script
 and then concurrently run all the watchers and start up the dev server.
 
