@@ -1,15 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { findDOMNode } from 'react-dom';
 import deprecated from 'react-prop-types/lib/deprecated';
 
-import getField from '../utils/getField';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
 import SelectField from '../SelectFields/SelectField';
-import findTable from './findTable';
-import findFixedTo from './findFixedTo';
+import withTableFixes from './withTableFixes';
 import TableColumn from './TableColumn';
 
 /**
@@ -19,15 +16,14 @@ import TableColumn from './TableColumn';
  * All props that are on the `SelectField` are also available here (except the naming of style or className).
  * See the [SelectField](/components/select-fields?tab=1#select-field-proptypes) for remaining prop descriptions.
  */
-export default class SelectFieldColumn extends PureComponent {
+class SelectFieldColumn extends PureComponent {
   static VerticalAnchors = SelectField.VerticalAnchors;
   static HorizontalAnchors = SelectField.HorizontalAnchors;
   static Positions = SelectField.Positions;
-
   static propTypes = {
     /**
      * An optional id to use for the select field in the column. If this is omitted, it's value will be
-     * `${rowId}-${cellIndex}-select`
+     * `${rowId}-${cellIndex}-select-field`
      */
     id: PropTypes.oneOfType([
       PropTypes.number,
@@ -86,14 +82,6 @@ export default class SelectFieldColumn extends PureComponent {
     header: PropTypes.bool,
 
     /**
-     * This is injected by the `TableRow` component and used to help generate the unique id for the text
-     * field.
-     *
-     * @access private
-     */
-    cellIndex: PropTypes.number,
-
-    /**
      * @access private
      */
     adjusted: PropTypes.bool,
@@ -137,60 +125,25 @@ export default class SelectFieldColumn extends PureComponent {
     repositionOnScroll: true,
   };
 
-  static contextTypes = {
-    rowId: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]),
-  }
-
-  state = { cellIndex: undefined };
-
-  componentDidMount() {
-    const { cellIndex } = this.props;
-    const column = findDOMNode(this);
-    const table = findTable(column);
-    this._fixedTo = findFixedTo(table);
-
-    // If a developer creates their own component to wrap the EditDialogColumn, the cellIndex prop
-    // might not be defined if they don't pass ...props
-    if (!cellIndex && cellIndex !== 0) {
-      const columns = [].slice.call(column.parentNode.querySelectorAll('th,td'));
-      this.setState({ cellIndex: columns.indexOf(column) }); // eslint-disable-line react/no-did-mount-set-state
-    } else {
-      // need to apply the _fixedTo for the select field
-      this.forceUpdate();
-    }
-  }
-
   render() {
-    const { rowId } = this.context;
     const {
       style,
       className,
       menuStyle,
       menuClassName,
       header,
-      fixedTo,
       tooltipLabel,
       tooltipDelay,
       tooltipPosition,
       /* eslint-disable no-unused-vars */
-      id: propId,
-      cellIndex: propCellIndex,
+      adjusted,
+
+      // deprecated
       wrapperStyle,
       wrapperClassName,
-      adjusted,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
-
-    const cellIndex = getField(this.props, this.state, 'cellIndex');
-
-    let { id } = this.props;
-    if (!id) {
-      id = `${rowId}-${cellIndex}-select-field`;
-    }
 
     return (
       <TableColumn
@@ -202,14 +155,10 @@ export default class SelectFieldColumn extends PureComponent {
         tooltipDelay={tooltipDelay}
         tooltipPosition={tooltipPosition}
       >
-        <SelectField
-          {...props}
-          id={id}
-          fixedTo={fixedTo || this._fixedTo}
-          style={menuStyle}
-          className={menuClassName}
-        />
+        <SelectField {...props} style={menuStyle} className={menuClassName} />
       </TableColumn>
     );
   }
 }
+
+export default withTableFixes(SelectFieldColumn, 'select-field');
