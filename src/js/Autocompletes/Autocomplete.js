@@ -632,7 +632,8 @@ export default class Autocomplete extends PureComponent {
       // Prevent any form submissions
       e.preventDefault();
 
-      this._handleItemClick(this.state.matchIndex);
+      // Trigger a click event on the item to actually select it. This should be removed in 1.1.0
+      e.target.click();
     }
   }
 
