@@ -8,9 +8,10 @@ import SVGIcon from 'react-md/lib/SVGIcons';
 
 import arrow from 'icons/arrow_drop_down.svg';
 
-const SomeCustomMenu = ({ id, suffix, letter }) => (
+// Other props are automatically cloned in. Make sure to pass them onward.
+const SomeCustomMenu = ({ suffix, letter, ...props }) => (
   <DropdownMenuColumn
-    id={`purcahse-type-menu-${id}`}
+    {...props}
     menuItems={['Preferences', 'About', { divider: true }, 'Log out']}
     anchor={{
       x: DropdownMenuColumn.HorizontalAnchors.CENTER,
@@ -35,7 +36,6 @@ const SomeCustomMenu = ({ id, suffix, letter }) => (
 );
 
 SomeCustomMenu.propTypes = {
-  id: PropTypes.number.isRequired,
   suffix: PropTypes.string.isRequired,
   letter: PropTypes.string.isRequired,
 };

@@ -29,7 +29,7 @@ const WithMenus = () => (
         <TableRow key={`${title}-${author}`.replace(/\s+/g, '-')}>
           <TableColumn>{title}</TableColumn>
           <TableColumn>{author}</TableColumn>
-          <SomeCustomMenu id={i} suffix={suffixes[i]} letter={title.charAt(0)} />
+          <SomeCustomMenu suffix={suffixes[i]} letter={title.charAt(0)} />
           <KebabMenu />
         </TableRow>
       ))}

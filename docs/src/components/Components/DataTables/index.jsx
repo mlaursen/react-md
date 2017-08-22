@@ -39,10 +39,6 @@ checkbox to be in an "indeterminate" state when not all the rows have been check
   code: SimpleSelectableTableRaw,
   children: <SimpleSelectableTable />,
 }, {
-  title: 'Tables With Menus',
-  code: WithMenusRaw,
-  children: <WithMenus />,
-}, {
   tableCard: true,
   title: 'Simple Pagination',
   description: `
@@ -125,6 +121,19 @@ multiline fields, etc for the this component as well.
   `,
   code: EditDialogExampleRaw,
   children: <EditDialogExample />,
+}, {
+  tableCard: true,
+  title: 'Tables With Menus',
+  description: `
+If you want to use menus within the \`DataTable\`, it is recommended to use the provided helper components
+to help out. Since the \`DataTable\` is responsive by default and allows for scroll bars, there can be some
+weird behavior without them since they use the [Layover](/components/helpers/layovers). The helper components
+automatically attempt to position themselves related to the \`DataTable\` as well as injecting unique ids
+like the other form inputs for the table. Check out the example below to see how to use the \`MenuButtonColumn\`
+and \`DropdownMenuColumn\` components.
+  `,
+  code: WithMenusRaw,
+  children: <WithMenus />,
 }, {
   title: 'Fixed Headers/Footers and Pagination',
   description: `

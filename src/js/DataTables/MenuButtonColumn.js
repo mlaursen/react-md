@@ -7,6 +7,9 @@ import MenuButton from '../Menus/MenuButton';
 import TableColumn from './TableColumn';
 
 class MenuButtonColumn extends PureComponent {
+  static Positions = MenuButton.Positions;
+  static HorizontalAnchors = MenuButton.HorizontalAnchors;
+  static VerticalAnchors = MenuButton.VerticalAnchors;
   static propTypes = {
     /**
      * An optional id to use for the menu button in the column. If this is omitted, it's value will be
