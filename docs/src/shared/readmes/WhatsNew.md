@@ -1,4 +1,11 @@
 ## August 2017
+### v1.0.19 Released
+- Fixed the `Autocomplete` no longer firing click events on the list items. [#475](https://github.com/mlaursen/react-md/issues/475)
+- Updated the UMD build to correctly include the `MenuButton`. [#482](https://github.com/mlaursen/react-md/issues/482)
+- Fixed an invalid PropType warning for Date and Time pickers. [#490](https://github.com/mlaursen/react-md/issues/490)
+- Added a little bit more support for tabs with dynamic height changes. [#487](https://github.com/mlaursen/react-md/pull/487)
+- Added support for semi-bold fonts. [#486](https://github.com/mlaursen/react-md/pull/468)
+
 ### v1.0.18 Released
 ##### Changelog
 - Fixed the `Autocomplete` firing the `onAutocomplete` callback twice when using the keyboard to select
