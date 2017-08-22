@@ -15,8 +15,8 @@ export interface TooltippedProps extends Props {
   tooltipClassName?: string;
   enterTimeout?: number;
   leaveTimeout?: number;
-  container?: (HTMLElement) => HTMLElement;
-  target?: React.ReactElement<any> | ((HTMLElement) => React.ReactElement<any>);
+  container?: (HTMLElement: HTMLElement) => HTMLElement;
+  target?: React.ReactElement<any> | ((HTMLElement: HTMLElement) => React.ReactElement<any>);
 }
 
 declare const Tooltipped: React.ComponentClass<TooltippedProps>;

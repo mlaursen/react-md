@@ -55,6 +55,7 @@ export interface TextFieldProps extends SharedTextFieldProps, Props {
   value?: number | string;
   defaultValue?: number | string;
   onChange?: (value: number | string, event: Event) => void;
+  onDoubleClick?: (event: React.MouseEvent<HTMLElement>) => void;
 
   /**
    * @deprecated
