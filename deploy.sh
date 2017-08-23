@@ -15,10 +15,12 @@ cd ..
 rm -f "$tar_name"
 tar --exclude='docs/src/server/databases/.gitkeep' \
   --exclude='docs/src/server/databases/airQuality.json' \
+  --exclude='docs/public/robots.txt' \
+  --exclude='docs/public/favicon.ico' \
+  --exclude='docs/public/react-md.png' \
   -jcvf "$tar_name" \
     lib \
-    docs/public/assets \
-    docs/public/sassdoc \
+    docs/public \
     docs/src/server/databases \
     docs/webpack-assets.json
 
