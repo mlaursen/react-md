@@ -4,8 +4,8 @@ import ExamplesPage from 'components/ExamplesPage';
 import description from '../description';
 import Indeterminate from './Indeterminate';
 import IndeterminateRaw from '!!raw-loader!./Indeterminate.jsx';
-import FakeFeedRaw from '!!raw-loader!components/Components/progress/FakeFeed.jsx';
-import styles from '!!raw-loader!components/Components/progress/_fake-feed.scss';
+import FakeFeedRaw from '!!raw-loader!components/Components/Progress/FakeFeed.jsx';
+import styles from '!!raw-loader!components/Components/Progress/_fake-feed.scss';
 
 import Determinate from './Determinate';
 import DeterminateRaw from '!!raw-loader!./Determinate.jsx';
