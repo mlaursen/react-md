@@ -15,7 +15,7 @@ $md-autocomplete-suggestion-top: 12px !default;
 /// The position from the top of the text field with a floating label that the inline autocomplete suggestion
 /// should appear on mobile devices.
 /// @type Number
-$md-autocomplete-suggestion-mobile-floating-top: $md-text-field-mobile-floating-label-margin - 1 !default;
+$md-autocomplete-suggestion-mobile-floating-top: $md-text-field-mobile-floating-label-margin !default;
 
 /// The position from the top of a blocked text field that the inline autocomplete suggestion should appear on
 /// mobile devices.
@@ -25,7 +25,7 @@ $md-autocomplete-suggestion-mobile-block-top: 18px !default;
 /// The position from the top of the text field with a floating label that the inline autocomplete suggestion
 /// should appear.
 /// @type Number
-$md-autocomplete-suggestion-desktop-floating-top: $md-text-field-desktop-floating-label-margin - 1 !default;
+$md-autocomplete-suggestion-desktop-floating-top: $md-text-field-desktop-floating-label-margin !default;
 
 /// The position from the top of a blocked text field that the inline autocomplete suggestion should appear on
 /// desktop screens.
@@ -51,6 +51,7 @@ $md-autocomplete-suggestion-desktop-block-top: 15px !default;
 
     .md-autocomplete-suggestion {
       color: get-color('secondary', $light-theme);
+      line-height: $md-text-field-line-height;
       overflow: hidden;
       position: absolute;
       top: $md-autocomplete-suggestion-top;

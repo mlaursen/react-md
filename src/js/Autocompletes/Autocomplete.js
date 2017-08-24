@@ -5,6 +5,7 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
+import getTextWidth from '../utils/getTextWidth';
 import omit from '../utils/omit';
 import findIgnoreCase from '../utils/findIgnoreCase';
 import fuzzyFilter from '../utils/fuzzyFilter';
@@ -264,6 +265,11 @@ export default class Autocomplete extends PureComponent {
     inline: PropTypes.bool,
 
     /**
+     * The amount of padding to use between the current text and the inline suggestion text.
+     */
+    inlineSuggestionPadding: PropTypes.number.isRequired,
+
+    /**
      * The function to call to find a suggestion for an inline autocomplete. This function
      * expects to return a single result of a number or a string.
      *
@@ -441,6 +447,7 @@ export default class Autocomplete extends PureComponent {
     findInlineSuggestion: Autocomplete.findIgnoreCase,
     autoComplete: 'off',
     repositionOnScroll: true,
+    inlineSuggestionPadding: 6,
   };
 
   constructor(props) {
@@ -471,24 +478,8 @@ export default class Autocomplete extends PureComponent {
     };
   }
 
-
-  componentDidMount() {
-    if (this.props.inline) {
-      window.addEventListener('resize', this._updateFont);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    const { inline, value: nextValue, data, filter, dataLabel } = nextProps;
-    if (inline !== this.props.inline) {
-      if (inline) {
-        this._updateFont();
-        window.addEventListener('resize', this._updateFont);
-      } else {
-        window.removeEventListener('resize', this._updateFont);
-      }
-    }
-
+    const { value: nextValue, data, filter, dataLabel } = nextProps;
     const dataDiff = data !== this.props.data;
     if (nextValue !== this.props.value || dataDiff) {
       let { visible, matches } = this.state;
@@ -517,20 +508,6 @@ export default class Autocomplete extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const { suggestion } = this.state;
-    this._updateSuggestionStyle(
-      suggestion && !prevState.suggestion,
-      !suggestion && prevState.suggestion
-    );
-  }
-
-  componentWillUnmount() {
-    if (this.props.inline) {
-      window.removeEventListener('resize', this._updateFont);
-    }
-  }
-
   /**
    * Gets the current value from the text field. This is used when you have an uncontrolled
    * text field and simply need the value from a ref callback.
@@ -540,30 +517,6 @@ export default class Autocomplete extends PureComponent {
   get value() {
     return getField(this.props, this.state, 'value');
   }
-
-  _updateSuggestionStyle = (isNew, isDeleted) => {
-    const { suggestionStyle } = this.state;
-    if (isNew) {
-      const msg = findDOMNode(this).querySelector('.md-text-field-message');
-
-      if (msg) {
-        const cs = window.getComputedStyle(this._suggestion);
-        const bottom = parseInt(cs.bottom, 10) + msg.offsetHeight;
-
-        this.setState({ suggestionStyle: { ...suggestionStyle, bottom } });
-      }
-    } else if (isDeleted && suggestionStyle) {
-      this.setState({ suggestionStyle: { left: suggestionStyle.left } });
-    }
-  };
-
-  _updateFont = () => {
-    if (this._field) {
-      const cs = window.getComputedStyle(this._field);
-      this._fontSize = parseInt(cs.fontSize, 10);
-      this._font = cs.font;
-    }
-  };
 
   _close = (e) => {
     if (this.props.onBlur) {
@@ -801,10 +754,7 @@ export default class Autocomplete extends PureComponent {
   };
 
   _findInlineSuggestions = (value) => {
-    const { data, dataLabel, findInlineSuggestion } = this.props;
-    const font = this._font;
-    const fontSize = this._fontSize;
-    let { suggestionStyle } = this.state;
+    const { data, dataLabel, findInlineSuggestion, inlineSuggestionPadding } = this.props;
 
     let suggestion = findInlineSuggestion(data, value, dataLabel);
     if (typeof suggestion === 'object') {
@@ -814,6 +764,7 @@ export default class Autocomplete extends PureComponent {
       );
     }
 
+    let { suggestionStyle } = this.state;
     let suggestionIndex = -1;
     if (suggestion) {
       // Find index of suggestion
@@ -829,17 +780,14 @@ export default class Autocomplete extends PureComponent {
       // Strip already used letters
       suggestion = suggestion.toString().substring(value.length, suggestion.length);
 
-      // Calculate distance to move the suggestion to already existing text
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      // Position the inline suggestion next to the text
+      let width = getTextWidth(value, this._field);
+      if (width !== null) {
+        width += inlineSuggestionPadding;
+      }
 
-      if (context) { // context doesn't exist in jsdom with jest
-        context.font = font;
-        const padding = this.props.block ? (fontSize * 1.5) : 8;
-
-        // Update suggestion style to be offset and not expand past text field
-        const left = context.measureText(value).width + padding;
-        suggestionStyle = { ...suggestionStyle, left };
+      if (width !== null && (!suggestionStyle || suggestionStyle.left !== width)) {
+        suggestionStyle = { left: width };
       }
     }
 
@@ -919,19 +867,11 @@ export default class Autocomplete extends PureComponent {
   _setField = (field) => {
     if (field) {
       this._field = field.getField();
-
-      if (this.props.inline) {
-        this._updateFont();
-      }
     }
   };
 
   _setMenu = (menu) => {
     this._menu = findDOMNode(menu);
-  };
-
-  _setSuggestion = (suggestion) => {
-    this._suggestion = suggestion;
   };
 
   render() {
@@ -977,6 +917,7 @@ export default class Autocomplete extends PureComponent {
       clearOnAutocomplete,
       autocompleteWithLabel,
       findInlineSuggestion,
+      inlineSuggestionPadding,
       onAutocomplete,
       onMenuOpen,
       onMenuClose,
@@ -1016,7 +957,6 @@ export default class Autocomplete extends PureComponent {
       if (focus && this.state.suggestion) {
         suggestion = (
           <span
-            ref={this._setSuggestion}
             key="suggestion"
             style={suggestionStyle}
             className={cn('md-autocomplete-suggestion', {

@@ -54,6 +54,7 @@ export default class InlineAutocomplete extends Component {
           errorText="A pastry is required!"
           onBlur={this.handleBlur}
           onChange={this.selectPastry}
+          onAutocomplete={this.selectPastry}
         />
         <TextField
           id="bakery-pastry-amount"
