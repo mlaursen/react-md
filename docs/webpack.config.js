@@ -75,9 +75,15 @@ const PROD_PLUGINS = [
     filename: SERVICE_WORKER,
     minify: true,
     runtimeCaching: [{
-      urlPattern: new RegExp(`^${PUBLIC_URL}/api`),
+      // Cache all the documentation server API calls or the custom themees that get created.
+      urlPattern: new RegExp(`^${PUBLIC_URL}/(api|themes)`),
+      handler: 'networkFirst',
+    }, {
+      // Cache all the external fonts/icons
+      urlPattern: /^https:\/\/((cdnjs\.cloudflare)|(fonts\.(gstatic|googleapis))\.com)/,
       handler: 'networkFirst',
     }],
+    mergeStaticsConfig: true,
     // Include the additional offline service worker hooks to redirect to the
     // offline.html page if the user has no internet connection.
     // Ideally this would use the `chunkName` of `offline` and not require the second plugin,
