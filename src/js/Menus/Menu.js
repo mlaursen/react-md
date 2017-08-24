@@ -288,6 +288,11 @@ export default class Menu extends PureComponent {
      */
     repositionOnScroll: PropTypes.bool,
 
+    /**
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplified: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),

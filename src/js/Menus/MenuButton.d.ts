@@ -5,6 +5,8 @@ import { HorizontalAnchors, VerticalAnchors, LayoverPositions } from '../Helpers
 import { SharedButtonProps } from '../Buttons/Button';
 
 export interface MenuButtonProps extends DropdownMenuProps, SharedButtonProps {
+  simplifiedMenu?: boolean;
+
   /**
    * @deprecated
    * */

@@ -286,6 +286,15 @@ export default class MenuButton extends PureComponent {
      */
     repositionOnScroll: PropTypes.bool,
 
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
     buttonChildren: deprecated(
       PropTypes.node,
       'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `menuItems` prop'
@@ -337,6 +346,7 @@ export default class MenuButton extends PureComponent {
       visible,
       defaultVisible,
       onVisibilityChange,
+      simplifiedMenu,
       isOpen, // deprecated
       defaultOpen, // deprecated
       onMenuToggle, // deprecated
@@ -365,6 +375,7 @@ export default class MenuButton extends PureComponent {
         visible={typeof isOpen !== 'undefined' ? isOpen : visible}
         defaultVisible={typeof defaultOpen !== 'undefined' ? defaultOpen : defaultVisible}
         menuItems={items}
+        simplifiedMenu={simplifiedMenu}
         anchor={anchor}
         belowAnchor={belowAnchor}
         fixedTo={fixedTo}

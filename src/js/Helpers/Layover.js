@@ -224,6 +224,20 @@ export default class Layover extends PureComponent {
      * instead.
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should become "simplified". This basically disables all the logic for
+     * keeping the child within the viewport and allows you to manage all the positioning via CSS.
+     *
+     * When this is enabled, it updates the `Layover` to have `position: relative` while the child will
+     * have `position: absolute` which will allow for simple `top`, `right`, `bottom`, and/or `left` CSS
+     * to position as wanted.
+     *
+     * This is really only helpful in cases where the layover can't calculate things correctly due to
+     * being in fixed containers somewhere in the page or some other weird stuff. Hopefully this won't
+     * really need to be used much.
+     */
+    simplified: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -247,10 +261,11 @@ export default class Layover extends PureComponent {
     xThreshold: 0.38,
     closeOnOutsideClick: true,
     preventContextMenu: true,
+    simplified: false,
   };
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super();
 
     const child = React.Children.only(props.children);
     this.state = {
@@ -276,10 +291,16 @@ export default class Layover extends PureComponent {
       });
     }
 
-    const { visible, fixedTo, sameWidth, centered } = this.props;
+    const { visible, fixedTo, sameWidth, centered, simplified } = this.props;
     const anchor = this._getAnchor(this.props);
     if (visible) {
       handleWindowClickListeners(this._handleOutsideClick, true);
+
+      // Don't worry about any of the other logic for a "simple" layover
+      if (simplified) {
+        return;
+      }
+
       const rect = this._contextRect || this._toggle.getBoundingClientRect();
       if (this._dialog) {
         this._manageFixedToListener(this._dialog, true);
@@ -292,40 +313,39 @@ export default class Layover extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fixedTo, visible, children, sameWidth, centered } = nextProps;
+    const { fixedTo, visible, children, sameWidth, centered, simplified } = nextProps;
+    if (simplified) {
+      if (this.props.simplified !== simplified) {
+        this._reset();
+      }
+      return;
+    }
+
     const anchor = this._getAnchor(nextProps);
     const visibileDiff = visible !== this.props.visible;
     const childStyle = React.Children.only(children).props.style;
 
-    if (visibileDiff && !visible) {
-      // Reset all the bookkeeping variables for a fresh start on re-visible
-      this._lastXFix = null;
-      this._lastYFix = null;
-      this._initialX = null;
-      this._initialY = null;
-      this._initialTop = null;
-      this._initialLeft = null;
-    }
+    if (visibileDiff) {
+      if (!visible) {
+        this._reset();
+      } else {
+        // Initialize the layover logic
+        const rect = this._contextRect || this._toggle.getBoundingClientRect();
+        if (this._dialog) {
+          this._manageFixedToListener(this._dialog, true);
+        } else if (!this._inFixed) {
+          this._manageFixedToListener(fixedTo, true);
+        }
 
-    if (!visibileDiff && fixedTo !== this.props.fixedTo && visible) {
+        this._init(fixedTo, anchor, sameWidth, centered, rect);
+      }
+    } else if (fixedTo !== this.props.fixedTo && visible) {
+      // swap the fixedTo listeners
       this._manageFixedToListener(this.props.fixedTo, false);
       this._manageFixedToListener(fixedTo, true);
-    } else if (visibileDiff && visible) {
-      const rect = this._contextRect || this._toggle.getBoundingClientRect();
-      if (this._dialog) {
-        this._manageFixedToListener(this._dialog, true);
-      } else if (!this._inFixed) {
-        this._manageFixedToListener(fixedTo, true);
-      }
-
-      this._init(fixedTo, anchor, sameWidth, centered, rect);
-    } else if (visibileDiff && !visible && !this._inFixed) {
-      if (this._dialog) {
-        this._manageFixedToListener(this._dialog, false);
-      }
-      this._manageFixedToListener(fixedTo, false);
     } else if (childStyle !== React.Children.only(this.props.children).props.style) {
-      // Re-merge styles...
+      // Re-merge styles... This is only required if all the others fail since all the other
+      // logic always merges styles with the children styles
       this.setState({ styles: { ...this.state.styles, ...childStyle } });
     }
   }
@@ -340,9 +360,12 @@ export default class Layover extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._manageFixedToListener(this.props.fixedTo, false);
     handleWindowClickListeners(this._handleOutsideClick, false);
-    window.removeEventListener('resize', this._handleWindowResize);
+
+    if (!this.props.simplified) {
+      this._manageFixedToListener(this.props.fixedTo, false);
+      window.removeEventListener('resize', this._handleWindowResize);
+    }
   }
 
   _getAnchor({ anchor, belowAnchor, animationPosition }) {
@@ -517,6 +540,24 @@ export default class Layover extends PureComponent {
     this.setState({ styles });
   };
 
+  _reset = ({ fixedTo } = this.props) => {
+    // Reset all the bookkeeping variables for a fresh start on re-visible
+    this._lastXFix = null;
+    this._lastYFix = null;
+    this._initialX = null;
+    this._initialY = null;
+    this._initialTop = null;
+    this._initialLeft = null;
+
+    if (!this._inFixed) {
+      if (this._dialog) {
+        this._manageFixedToListener(this._dialog, false);
+      }
+
+      this._manageFixedToListener(fixedTo, false);
+    }
+  };
+
   _setContainer = (container) => {
     this._container = findDOMNode(container);
     this._toggle = null;
@@ -643,7 +684,6 @@ export default class Layover extends PureComponent {
     this._child = findDOMNode(child);
 
     if (this._child !== null) {
-      window.addEventListener('resize', this._handleWindowResize);
       this._childComponent = React.Children.only(this.props.children);
 
       // If child also has a ref callback, simulate the same thing
@@ -651,7 +691,7 @@ export default class Layover extends PureComponent {
         this._childComponent.ref(child);
       }
 
-      if (!this._child || (!this._toggle && !this._contextRect)) {
+      if (this.props.simplified || !this._child || (!this._toggle && !this._contextRect)) {
         return;
       }
 
@@ -659,6 +699,7 @@ export default class Layover extends PureComponent {
         return;
       }
 
+      window.addEventListener('resize', this._handleWindowResize);
       this._positionChild();
     } else if (this._childComponent && typeof this._childComponent.ref === 'function') {
       this._childComponent.ref(child);
@@ -875,6 +916,7 @@ export default class Layover extends PureComponent {
       children,
       fullWidth,
       animationPosition,
+      simplified,
       /* eslint-disable no-unused-vars */
       anchor,
       belowAnchor,
@@ -907,14 +949,22 @@ export default class Layover extends PureComponent {
         ref: this._fixateChild,
         id: childId,
         style: this.state.styles,
-        className: cn(`md-layover-child md-layover-child--${animationPosition}`, child.props.className),
+        className: cn(`md-layover-child md-layover-child--${animationPosition}`, {
+          'md-layover-child--simplified': simplified,
+        }, child.props.className),
       });
+    }
+
+    let observer = null;
+    if (!simplified) {
+      observer = <ResizeObserver watchWidth watchHeight target={this._child} onResize={this._handleResize} />;
     }
 
     return (
       <CSSTransitionGroup
         {...props}
         className={cn('md-layover', {
+          'md-layover--simplified': simplified,
           'md-inline-block': !block && !fullWidth,
           'md-full-width': fullWidth,
         }, className)}
@@ -926,7 +976,7 @@ export default class Layover extends PureComponent {
         transitionLeave={props.transitionLeaveTimeout !== 0}
         onContextMenu={this._handleContextMenu}
       >
-        <ResizeObserver watchWidth watchHeight target={this._child} onResize={this._handleResize} />
+        {observer}
         {toggle}
         {child}
       </CSSTransitionGroup>

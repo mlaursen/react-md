@@ -61,6 +61,7 @@ export interface LayoverProps extends SharedLayoverProps {
   onContextMenu?: (event: React.MouseEvent<HTMLElement>) => void;
   preventContextMenu?: boolean;
   toggleQuery?: string | {} | toggleQueryFn;
+  simplified?: boolean;
 }
 
 interface LayoverComponent extends React.ComponentClass<LayoverProps> {

@@ -405,6 +405,15 @@ export default class EditDialogColumn extends PureComponent {
     repositionOnScroll: PropTypes.bool,
 
     /**
+     * Boolean if the dialog logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the dialog.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedDialog: PropTypes.bool,
+
+    /**
      * Boolean if the edit dialog should attempt to scroll into view if the full
      * dialog can not be displayed in the viewport when it was toggled open.
      *
@@ -728,6 +737,7 @@ export default class EditDialogColumn extends PureComponent {
       onMouseOver,
       onMouseLeave,
       onTouchMove,
+      simplifiedDialog,
 
       // deprecated
       noIcon,
@@ -826,6 +836,7 @@ export default class EditDialogColumn extends PureComponent {
           title={title}
           header={header}
           placeholder={dialogLabel === placeholder || dialogLabel === label}
+          simplified={simplifiedDialog}
           anchor={anchor}
           belowAnchor={belowAnchor}
           animationPosition={animationPosition}

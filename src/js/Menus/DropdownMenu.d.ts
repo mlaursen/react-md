@@ -13,6 +13,7 @@ export interface DropdownMenuProps extends BaseMenuProps {
   menuItems?: number | string | {} | React.ReactNode | Array<number | string | {} | React.ReactNode>;
   children?: React.ReactElement<any>;
   position?: LayoverPositions;
+  simplifiedMenu?: boolean;
 }
 
 interface DropdownMenuComponent extends React.ComponentClass<DropdownMenuProps> {

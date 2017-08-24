@@ -37,6 +37,7 @@ export interface SelectFieldProps extends BaseMenuProps, SharedTextFieldProps {
   menuTransitionEnterTimeout?: number;
   menuTransitionLeaveTiemout?: number;
   deleteKeys?: number | string | Array<number | string>;
+  simplifiedMenu?: boolean;
 
   /**
    * @deprecated

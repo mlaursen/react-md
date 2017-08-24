@@ -23,7 +23,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   value?: string | number;
   defaultValue?: string | number;
   dataLabel?: string;
-  dataValue?: string
+  dataValue?: string;
   deleteKeys?: string | Array<string>;
   data: DataType;
   total?: number;
@@ -40,6 +40,7 @@ export interface AutocompleteProps extends BaseMenuProps {
   onMenuClose?: Function;
   autoComplete?: OnOffType;
   position?: LayoverPositions;
+  simplifiedMenu?: boolean;
 }
 
 interface AutocompleteComponent extends React.ComponentClass<AutocompleteProps> {

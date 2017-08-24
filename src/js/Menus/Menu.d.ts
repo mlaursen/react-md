@@ -30,6 +30,7 @@ export interface MenuProps extends BaseMenuProps {
   preventContextMenu?: boolean;
   toggleQuery?: string | {} | toggleQueryFn;
   position?: LayoverPositions;
+  simplified?: boolean;
 
   /**
    * @deprecated

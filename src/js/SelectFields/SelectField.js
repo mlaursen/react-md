@@ -452,6 +452,15 @@ export default class SelectField extends PureComponent {
      */
     repositionOnScroll: PropTypes.bool,
 
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
     iconChildren: deprecated(PropTypes.node, 'Use `dropdownIcon` instead'),
     iconClassName: deprecated(PropTypes.string, 'Use `dropdownIcon` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -953,6 +962,7 @@ export default class SelectField extends PureComponent {
       sameWidth,
       fullWidth,
       repositionOnScroll,
+      simplifiedMenu,
       menuTransitionName,
       menuTransitionEnterTimeout,
       menuTransitionLeaveTimeout,
@@ -1033,6 +1043,7 @@ export default class SelectField extends PureComponent {
         onClose={this._close}
         onKeyDown={this._handleKeyDown}
         onClick={this._handleClick}
+        simplified={simplifiedMenu}
         anchor={anchor}
         belowAnchor={belowAnchor}
         fixedTo={fixedTo}

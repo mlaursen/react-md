@@ -430,6 +430,15 @@ export default class Autocomplete extends PureComponent {
     repositionOnScroll: PropTypes.bool,
 
     /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
+    /**
      * @see {@link TextFields#toolbar}
      */
     toolbar: PropTypes.bool,
@@ -904,6 +913,7 @@ export default class Autocomplete extends PureComponent {
       centered,
       sameWidth,
       repositionOnScroll,
+      simplifiedMenu,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -998,6 +1008,7 @@ export default class Autocomplete extends PureComponent {
         onClick={this._handleClick}
         onClose={this._close}
         onKeyDown={this._handleMenuKeyDown}
+        simplified={simplifiedMenu}
         sameWidth={sameWidth}
         centered={centered}
         anchor={anchor}

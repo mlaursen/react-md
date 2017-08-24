@@ -267,6 +267,15 @@ export default class DropdownMenu extends PureComponent {
      * @see {@link Helpers/Layovers#fixedTo}
      */
     repositionOnScroll: PropTypes.bool,
+
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -318,6 +327,7 @@ export default class DropdownMenu extends PureComponent {
       listId,
       menuItems,
       children: propChildren,
+      simplifiedMenu,
       /* eslint-disable no-unused-vars */
       visible: propVisible,
       onVisibilityChange,
@@ -344,6 +354,7 @@ export default class DropdownMenu extends PureComponent {
     return (
       <Menu
         {...props}
+        simplified={simplifiedMenu}
         id={id}
         listId={listId}
         toggle={toggle}
