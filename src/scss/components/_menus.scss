@@ -74,7 +74,7 @@ $md-menu-mobile-min-width: null !default;
 ///
 /// @see md-menu-max-width
 /// @type Number
-$md-menu-mobile-max-width: calc(100vw - 32px) !default;
+$md-menu-mobile-max-width: null !default;
 
 /// The max height for menus on mobile devices.
 /// @type Number
@@ -128,6 +128,8 @@ $md-menu-cascading-list-padding: 16px !default;
     z-index: $md-menu-z-index;
 
     &-restricted {
+      @include md-ios-scroll-momentum;
+
       max-height: $md-menu-max-height;
       overflow-y: auto;
     }
