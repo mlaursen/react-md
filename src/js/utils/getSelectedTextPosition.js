@@ -1,4 +1,5 @@
 /** @module utils/getSelectedTextPosition */
+import getTextWidth from './getTextWidth';
 
 const ZERO_WIDTH_CHARACTER = '\u200b';
 
@@ -26,16 +27,15 @@ export default function getSelectedTextPosition(e) {
         const { target, clientX, clientY } = e;
         if (target.classList.contains('md-text-field')) {
           const { selectionStart, selectionEnd } = target;
-          const context = document.createElement('canvas').getContext('2d');
-          const style = window.getComputedStyle(target);
-          context.font = style.font;
-          const width = Math.round(context.measureText(target.value.substring(selectionStart, selectionEnd)).width);
+          const selectedText = target.value.substring(selectionStart, selectionEnd);
+          const width = Math.round(getTextWidth(selectedText, target)) || 0;
+          const { fontSize } = window.getComputedStyle(target);
 
           return {
             left: clientX - width,
             top: clientY,
             width,
-            height: parseInt(style.fontSize, 10),
+            height: parseInt(fontSize, 10),
           };
         }
 

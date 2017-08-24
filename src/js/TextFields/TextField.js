@@ -5,6 +5,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import isRequiredForA11y from 'react-prop-types/lib/isRequiredForA11y';
 
 import getField from '../utils/getField';
+import getTextWidth from '../utils/getTextWidth';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
 import minNumber from '../utils/PropTypes/minNumber';
@@ -541,35 +542,16 @@ export default class TextField extends PureComponent {
   };
 
   _calcWidth = (value) => {
-    const field = (this._field && this._field.getField()) || null;
-    if (!field) {
-      return null;
-    }
-
-    if (!this._canvas) {
-      this._canvas = document.createElement('canvas');
-    }
-
-    const context = this._canvas.getContext('2d');
-    if (!context) { // Doesn't exist in testing
-      return null;
-    }
-
-    const styles = window.getComputedStyle(field);
-    let font = styles.font;
-    // Some browsers do not actually supply the font style since they are on an older version of CSSProperties,
-    // so the font string needs to be made manually.
-    if (!font) {
-      // font-style font-variant font-weight font-size/line-height font-family
-      const sizing = `${styles.fontSize} / ${styles.lineHeight} ${styles.fontFamily}`;
-      font = `${styles.fontStyle} ${styles.fontVariant} ${styles.fontWeight} ${sizing}`;
+    const width = getTextWidth(value, this._field && this._field.getField());
+    if (width === null) {
+      // some error happened, don't do other logic
+      return width;
     }
 
     const { max } = this.props.resize;
     const min = getField(this.props.resize, { min: DEFAULT_TEXT_FIELD_SIZE }, 'min');
 
-    context.font = font;
-    return Math.min(max, Math.max(min, context.measureText(value).width));
+    return Math.min(max, Math.max(min, width));
   };
 
   _handleContainerClick = (e) => {
