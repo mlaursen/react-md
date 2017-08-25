@@ -1446,13 +1446,14 @@ $md-text-field-line-height: 1.15 !default;
   @if $font-sizes != null {
     @each $name, $list in $font-sizes {
       $font-size: nth($list, 1);
-      $time: nth($list, 2);
 
       .md-text-field--#{$name} {
         font-size: $font-size;
       }
 
       @if $include-floating-label {
+        $time: nth($list, 2);
+
         @if $time != null {
           .md-floating-label--#{$name} {
             transition-duration: $time;

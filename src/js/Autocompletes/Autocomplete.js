@@ -172,6 +172,7 @@ export default class Autocomplete extends PureComponent {
      *     [dataLabel]: PropTypes.oneOfType([
      *       PropTypes.string,
      *       PropTypes.number,
+     *       PropTypes.node,
      *     ]).isRequired,
      *   }),
      * ])).isRequired
@@ -187,6 +188,7 @@ export default class Autocomplete extends PureComponent {
           [dataLabel]: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
+            PropTypes.node,
           ]).isRequired,
         }),
       ])).isRequired(props, propName, component, ...others);

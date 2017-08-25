@@ -1,0 +1,46 @@
+@import '~globals';
+
+$sizes: (
+  search: ($md-title-font-size)
+);
+
+@include react-md-text-field-custom-sizes($sizes, false);
+
+.toolbar-search {
+  $list-height: 200px;
+
+  &__list {
+    $padding: 4px;
+    $margin: $md-toolbar-inset-margin;
+
+    left: $margin;
+    right: $margin;
+
+    @media (max-width: #{$md-tablet-min-width - 1}) {
+      top: $md-toolbar-mobile-portrait-height + $padding + $md-toolbar-inset-margin;
+
+      // The simplified menu adds position absolute back to the menu, and for some reason
+      // my css is reverse added, so it requires an additional override
+      &.toolbar-search__list {
+        position: fixed;
+      }
+    }
+
+    @media #{$md-tablet-media} {
+      left: -$md-toolbar-tablet-title-keyline + $margin;
+      right: -$md-btn-icon-size - 4px;
+      top: calc(100% + #{$padding});
+    }
+  }
+
+  &__fake-result {
+    height: 200px;
+    position: relative;
+
+    &__maps {
+      bottom: 8px;
+      left: 8px;
+      position: absolute;
+    }
+  }
+}
