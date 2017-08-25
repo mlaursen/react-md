@@ -2,6 +2,14 @@
 /// @group text-fields
 ////
 
+/// The box shadow to apply to text fields that have been autocompleted by the browser's
+/// autocomplete ability. The default styles are to remove the yellow color and just display
+/// as a normal text field. This value can be set to `null` to allow normal browser behavior
+/// or any other valid box-shadow style.
+///
+/// @type String
+$md-text-field-autocompleted-shadow: 0 0 0 50px $md-white-base inset !default;
+
 /// The error color to use on text fields. This will be applied to the
 /// any icons, text field error message, floating label, and the text
 /// field divider when there is an error.
@@ -648,9 +656,14 @@ $md-text-field-line-height: 1.15 !default;
       outline-style: none;
     }
 
+    &[type="search"] {
+      // This fixes the weird styling Safari applies to search text fields.
+      -webkit-appearance: textfield;
+    }
+
     &:-webkit-autofill,
     &:-webkit-autofill:focus {
-      box-shadow: 0 0 0 50px $md-white-base inset;
+      box-shadow: $md-text-field-autocompleted-shadow;
     }
 
     &--margin {
