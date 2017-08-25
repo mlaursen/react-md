@@ -211,7 +211,7 @@ export default class FileUpload extends PureComponent {
    * as it's parameter. If the parameter is omitted, it attempts to abort the first file that was
    * added. If the `onAbort` function was given, it will be called as well.
    *
-   * @param {Object|string=} file - The file or the file name to use to find the
+   * @param {Object|string} file - The file or the file name to use to find the
    *     correct `FileReader`.
    */
   abort = (file) => {

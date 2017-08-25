@@ -137,6 +137,7 @@ export default class SelectFieldInput extends PureComponent {
     return (
       <AccessibleFakeInkedButton
         {...props}
+        id={`${id}-toggle`}
         role="listbox"
         disabled={disabled}
         component={Paper}

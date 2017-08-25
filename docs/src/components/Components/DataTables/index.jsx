@@ -7,6 +7,8 @@ import SimplePlainTable from './SimplePlainTable';
 import SimplePlainTableRaw from '!!raw-loader!./SimplePlainTable.jsx';
 import SimpleSelectableTable from './SimpleSelectableTable';
 import SimpleSelectableTableRaw from '!!raw-loader!./SimpleSelectableTable.jsx';
+import WithMenus from './WithMenus';
+import WithMenusRaw from './WithMenus/code';
 import EditableTables from './EditableTables';
 import EditableTablesRaw from '!!raw-loader!./EditableTables.jsx';
 import EditDialogExample from './EditDialogExample';
@@ -119,6 +121,19 @@ multiline fields, etc for the this component as well.
   `,
   code: EditDialogExampleRaw,
   children: <EditDialogExample />,
+}, {
+  tableCard: true,
+  title: 'Tables With Menus',
+  description: `
+If you want to use menus within the \`DataTable\`, it is recommended to use the provided helper components
+to help out. Since the \`DataTable\` is responsive by default and allows for scroll bars, there can be some
+weird behavior without them since they use the [Layover](/components/helpers/layovers). The helper components
+automatically attempt to position themselves related to the \`DataTable\` as well as injecting unique ids
+like the other form inputs for the table. Check out the example below to see how to use the \`MenuButtonColumn\`
+and \`DropdownMenuColumn\` components.
+  `,
+  code: WithMenusRaw,
+  children: <WithMenus />,
 }, {
   title: 'Fixed Headers/Footers and Pagination',
   description: `

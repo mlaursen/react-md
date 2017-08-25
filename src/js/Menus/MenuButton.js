@@ -17,7 +17,6 @@ export default class MenuButton extends PureComponent {
   static Positions = DropdownMenu.Positions;
   static HorizontalAnchors = DropdownMenu.HorizontalAnchors;
   static VerticalAnchors = DropdownMenu.VerticalAnchors;
-
   static propTypes = {
     /**
      * An id to use for the menu button. This is required for accessibility.

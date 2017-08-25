@@ -62,6 +62,7 @@ export default class App extends PureComponent {
     toolbarTitle: PropTypes.string.isRequired,
     toolbarProminent: PropTypes.bool.isRequired,
     visibleBoxShadow: PropTypes.bool.isRequired,
+    contentProps: PropTypes.object,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     children: PropTypes.node,
@@ -130,6 +131,7 @@ export default class App extends PureComponent {
       toolbarTitle,
       visibleBoxShadow,
       toolbarProminent,
+      contentProps,
       searching,
       mobile,
       meta,
@@ -157,6 +159,7 @@ export default class App extends PureComponent {
         toolbarProminent={!mobile && toolbarProminent}
         toolbarChildren={<DocumentationTabs visible={!mobile && toolbarProminent} />}
         toolbarActions={<Search key="search" />}
+        contentProps={contentProps}
         navItems={navItems.map(({ divider, subheader, ...route }) => {
           if (divider || subheader) {
             return { divider, subheader, ...route };

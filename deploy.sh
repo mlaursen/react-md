@@ -15,14 +15,18 @@ cd ..
 rm -f "$tar_name"
 tar --exclude='docs/src/server/databases/.gitkeep' \
   --exclude='docs/src/server/databases/airQuality.json' \
+  --exclude='docs/public/robots.txt' \
+  --exclude='docs/public/favicon.ico' \
+  --exclude='docs/public/react-md.png' \
   -jcvf "$tar_name" \
     lib \
-    docs/public/assets \
-    docs/public/sassdoc \
+    docs/public \
     docs/src/server/databases \
     docs/webpack-assets.json
 
-ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib docs/public/assets docs/public/sassdoc && cd docs && yarn --production"
+rm_assets="rm -rf public/sassdoc && find public ! -name 'robots.txt' ! -name 'react-md.png' ! -name 'favicon.ico' -type f -exec rm -f {} +"
+
+ssh "$ssh_alias" "cd $server_location && git pull && yarn && rm -rf lib && cd docs && $rm_assets && yarn --production"
 scp "$tar_name" "$ssh_alias":"$server_location"
 
 ssh "$ssh_alias" "cd $server_location && tar jxvf $tar_name && git clean -f && cd .. && pm2 start processes.yml"

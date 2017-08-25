@@ -6,6 +6,7 @@ import Simple from './Simple';
 import SimpleRaw from '!!raw-loader!./Simple.jsx';
 import SpriteMaps from './SpriteMaps';
 import SpriteMapsRaw from '!!raw-loader!./SpriteMaps.jsx';
+import SpriteStylesRaw from '!!raw-loader!./_sprites.scss';
 import AddingAccessibility from './AddingAccessibility';
 import AddingAccessibilityRaw from './AddingAccessibility/code';
 
@@ -34,7 +35,7 @@ and this additional webpack config:
       loader: 'svg-sprite-loader',
       options: {
         extract: true,
-        spriteFilename: 'icon-sprites.svg',
+        spriteFilename: 'icon-sprites.[hash:8].svg',
       },
     }, {
       loader: 'svgo-loader',
@@ -48,7 +49,14 @@ If your app needs to support IE11 or Edge < 12, you will need to also polyfill t
 support \`<use xlink:href>\` and external SVG sprite maps. It is most likely simpler to not use the \`extract\` options when using
 the \`extract\` option when IE11 and Edge < 12 need to be supported. Check out the source code below for some more info.
   `,
-  code: SpriteMapsRaw,
+  code: `/* SpriteMaps.jsx */
+${SpriteMapsRaw}
+\`\`\`
+
+\`\`\`scss
+/* _sprites.scss */
+${SpriteStylesRaw}
+`,
   children: <SpriteMaps />,
 }, {
   title: 'Adding Accessibility',

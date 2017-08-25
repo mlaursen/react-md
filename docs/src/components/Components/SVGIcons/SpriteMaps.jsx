@@ -1,6 +1,7 @@
 import React from 'react';
 import SVGIcon from 'react-md/lib/SVGIcons';
 
+import './_sprites.scss';
 import copyright from 'icons/copyright.svg';
 import deleteSVG from 'icons/delete.svg';
 import done from 'icons/done.svg';

@@ -39,8 +39,15 @@ exports[`MarkdownPage should render correctly 1`] = `
       $ yarn                  # you should also install dependencies in the parent directory if not done already
       $ cp .env.example .env
       $ vim .env              # change port to whatever you want
+      
+      # This one is optional. A webpack-assets.json file must be created before the server will work correctly
+      # and the dev server will _mock_ one out for you. If the mocking fails, you can fallback to this one. After
+      # a successful build, you will _almost never_ need to run this command again.
+      $ yarn build:dev        # Run the dev webpack build to get initial webpack-assets.json to be created
+      
+      # Start the server with one of the two options
       $ yarn dev              # watch react-md source changes and run dev server
-      $ yarn dev:all          # watch all changes and run dev server
+      $ yarn dev:full          # watch all changes and run dev server
       </code></pre>
       <blockquote>
       <p>See the <a href=\\"#scripts\\" class=\\"link\\">scripts</a> section for all of the other available commands</p>
@@ -135,8 +142,8 @@ exports[`MarkdownPage should render correctly 1`] = `
       side rendering when needed. The API server was really only added because I wanted to pre-fetch some data before server rendering. It
       might have been better to just split some of the generated documentation into some bundles and load them client side instead of needing
       a full server call... but I wanted to learn how to do some node work.</p>
-      <p>The only &quot;exciting&quot; thing about this server if you are familiar with node is the <a href=\\"src/server/api/github.js\\" class=\\"link\\">github</a> proxy settings. I end
-      up proxying requests to the Github API through my server so I can track some of the rate limiting aspects.</p>
+      <p>The only &quot;exciting&quot; thing about this server if you are familiar with node is the <a href=\\"src/server/api/github.js\\" class=\\"link\\">GitHub</a> proxy settings. I end
+      up proxying requests to the GitHub API through my server so I can track some of the rate limiting aspects.</p>
       <h4 id=\\"state\\">state</h4>
       <p>This is where I combine all the logic for the redux state.</p>
       <pre><code>src/state/
@@ -236,11 +243,11 @@ exports[`MarkdownPage should render correctly 1`] = `
       to nodemon to restart the server with this because it uses <code>concurrently</code> behind the scenes. If I can figure out a way to use that
       and still send keyboard commands to one of the scripts, all would be set.</p>
       <p>This was mostly fixed by using <a href=\\"https://github.com/catamphetamine/webpack-isomorphic-tools\\" class=\\"link\\">webpack-isomorphic-tools</a> with my server.
-      There are probably better wasy of doing this now like <a href=\\"https://github.com/zeit/next.js/\\" class=\\"link\\">next.js</a>, but I am not a fan of their documentation
+      There are probably better ways of doing this now like <a href=\\"https://github.com/zeit/next.js/\\" class=\\"link\\">next.js</a>, but I am not a fan of their documentation
       at the time so I never bothered learning. (<em>I&#39;m so sorry</em>)</p>
       <h3 id=\\"testing-ssr\\">Testing SSR</h3>
       <p>One of the problems with the last setup was that I also had to basically run a production build to be able to test SSR. The problem
-      with the production build is that it doesn&#39;t warn you when the markdup is different between client and server, so this wasn&#39;t ideal.
+      with the production build is that it doesn&#39;t warn you when the markup is different between client and server, so this wasn&#39;t ideal.
       I ended up making some additional changes to the webpack configs to allow a &quot;development&quot; version of the production build, and it was
       pretty hacky.</p>
       <p>Just like above, switching to <code>webpack-isomorphic-tools</code> was part of the solution as well as adding a variable to the <code>.env</code> file
@@ -251,14 +258,14 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>Some of the problems faced with server side rendering happens when you split your bundles (as you should). When you have a page
       that is server side rendered, you will get that amazing first response time with everything rendered on the page. Perfect! But wait,
       you split up your code and you already have <code>React</code> rendering your page! While the browser is loading your additional chunks required
-      for your page, react will have erased the DOM with what it has avaialbe and then render it again once they have loaded. Ugh. You now
+      for your page, react will have erased the DOM with what it has available and then render it again once they have loaded. Ugh. You now
       get an amazing screen &quot;flash&quot; because of this. Before webpack 2, this was pretty hard to fix. Luckily webpack 2 introduced a way to
       name dynamic imports with the &quot;magic comment&quot; <code>/* webpackChunkName: MyDynamicModule */</code>. This is super helpful because you can use
       this along with the <code>manifest.json</code> that can be created by webpack so that you can load all the bundles for a page before calling
       the first <code>ReactDOM.render()</code> in your app. This works great with <code>react-router@4</code> since you can use the <code>StaticRouter</code> to figure out
       which bundles need to be loaded, and pass it to the client.</p>
       <p>To help with this, I ended up making a <a href=\\"src/utils/syncComponent.js\\">syncComponent</a> and <a href=\\"src/utils/asyncComponent.js\\" class=\\"link\\">asyncComponent</a>
-      HOC. The syncronous component (which should be used by the server) will update the <code>staticContext</code> provided by the <code>StaticRouter</code> and
+      HOC. The synchronous component (which should be used by the server) will update the <code>staticContext</code> provided by the <code>StaticRouter</code> and
       push the <code>chunkName</code> to a list of bundles that need to be loaded before the page can render. This can be seen in the <a href=\\"src.routes/sync.js\\" class=\\"link\\">routes/sync</a>
       and <a href=\\"src/routes/async.js\\" class=\\"link\\">routes/async</a> files. With all this set up, the final things are just to provide the list of bundles to the client
       in a &quot;hidden&quot; window variable, load all the bundles, and then render <code>React</code>. Here is the updated <a href=\\"src/client/index.jsx\\" class=\\"link\\">client/index.jsx</a> file to show
@@ -290,7 +297,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       I don&#39;t really use Facebook or Twiiter. Oh well.</p>
       <h3 id=\\"long-term-caching\\">Long term caching</h3>
       <p>Webpack is hard. (Again)</p>
-      <p>Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correctl loader for
+      <p>Getting something to compile and produce a build is actually pretty simple in webpack. All you really need is a correct loader for
       your filetype and you&#39;re set!</p>
       <pre><code class=\\"lang-js\\">import path from &#39;path&#39;;
       
@@ -323,7 +330,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       for the hash and each build will generate new hashes even if the content didn&#39;t change.</p>
       <p>I ended up following a <a href=\\"https://survivejs.com/webpack/optimizing/separating-manifest/\\" class=\\"link\\">couple</a>
       <a href=\\"https://medium.com/webpack/predictable-long-term-caching-with-webpack-d3eee1d3fa31\\" class=\\"link\\">of</a>
-      <a href=\\"https://webpack.js.org/guides/caching/\\" class=\\"link\\">articles</a> about this and endup going with:</p>
+      <a href=\\"https://webpack.js.org/guides/caching/\\" class=\\"link\\">articles</a> about this and end up going with:</p>
       <ul>
       <li>using the <code>WebpackMd5Hash</code> plugin</li>
       <li>using the <code>ManifestPlugin</code></li>
@@ -382,8 +389,8 @@ exports[`MarkdownPage should render correctly 1`] = `
       </ul>
       </li>
       <li><a href=\\"#dev\\" class=\\"link\\">dev</a><ul>
+      <li><a href=\\"#devfull\\" class=\\"link\\">dev:full</a></li>
       <li><a href=\\"#devminimal\\" class=\\"link\\">dev:minimal</a></li>
-      <li><a href=\\"#devall\\" class=\\"link\\">dev:all</a></li>
       </ul>
       </li>
       <li><a href=\\"#watchall\\" class=\\"link\\">watch:all</a><ul>
@@ -429,12 +436,12 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This will build a development version of the website. This is useful if you are really just
       debugging server side stuff and the client won&#39;t be changing that much.</p>
       <h3 id=\\"jsdoc\\">jsdoc</h3>
-      <p>This task just runs the <code>jsdoc:build</code> follwed by <code>jsdoc:create</code>.</p>
+      <p>This task just runs the <code>jsdoc:build</code> followed by <code>jsdoc:create</code>.</p>
       <blockquote>
       <p>SEE: <a href=\\"#jsdocbuild\\">jsdoc:build</a> and <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a> for more information.</p>
       </blockquote>
       <h3 id=\\"jsdoc-build\\">jsdoc:build</h3>
-      <p>This will run jsdoc on the react-md/src/js folder and extract jsdoc for some specific files to get additional
+      <p>This will run jsdoc on the <code>react-md/src/js</code> folder and extract jsdoc for some specific files to get additional
       documentation on static component class attributes that are not picked up with <code>react-docgen</code>. Examples are the
       <code>Layover.HorizontalAnchors</code> and <code>Autocomplete.fuzzyFilter</code>.This will create a <code>jsdoc.json</code> file in the home directory
       to be parsed by <a href=\\"#jsdoccreate\\" class=\\"link\\">jsdoc:create</a>.</p>
@@ -454,7 +461,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       it is a simple mapping of the component group to related documentation. This command will also create a SassDoc search
       &quot;database&quot; so that functions, mixins, selectors, and variables can be found in the main search.</p>
       <h3 id=\\"sassdoc-site\\">sassdoc:site</h3>
-      <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for sassdoc. This is mostly used
+      <p>This will create the <a href=\\"https://react-md.mlaursen.com/sassdoc\\" class=\\"link\\">https://react-md.mlaursen.com/sassdoc</a> page with the default settings for SassDoc. This is mostly used
       as a fallback for things that are not directly documentable within the main website.</p>
       <h3 id=\\"air-quality\\">air-quality</h3>
       <p>This will remake the airQuality &quot;database&quot; by fetching the data from the <a href=\\"https://data.gov\\" class=\\"link\\">https://data.gov</a> website, parse/format the response,
@@ -468,7 +475,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <h3 id=\\"start-dev\\">start:dev</h3>
       <p>This will start up the server in development mode. This is helpful if you don&#39;t need every watcher running and have already
       built the databases or you need to test server code independently so you have access to the <code>nodemon</code> <code>restart</code> ability. Both
-      <a href=\\"#dev\\">dev</a> and <a href=\\"#devall\\" class=\\"link\\">dev:all</a> end up using this behind the scenes.</p>
+      <a href=\\"#dev\\">dev</a> and <a href=\\"#devfull\\" class=\\"link\\">dev:full</a> end up using this behind the scenes.</p>
       <p>The development server will be restarted each time any config file changes, or server related files.</p>
       <h3 id=\\"start-prod\\">start:prod</h3>
       <p>This will run the <a href=\\"#build\\">build</a> command followed by the <a href=\\"#start\\" class=\\"link\\">start</a>. It is really just for testing
@@ -481,7 +488,7 @@ exports[`MarkdownPage should render correctly 1`] = `
       <p>This is a script that will remove any existing assets, run the webpack watcher, and start the development
       server. This is assuming that all the databases have been built and the react-md code has been compiled
       already.</p>
-      <h3 id=\\"dev-all\\">dev:all</h3>
+      <h3 id=\\"dev-full\\">dev:full</h3>
       <p>Whew. This is the most useful development script to use. It will run the <a href=\\"#prebuild\\" class=\\"link\\">prebuild</a> script
       and then concurrently run all the watchers and start up the dev server.</p>
       <blockquote>

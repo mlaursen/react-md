@@ -698,9 +698,6 @@ export default class Autocomplete extends PureComponent {
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
     } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
-      // Prevent any form submissions
-      e.preventDefault();
-
       this._handleItemClick(this.state.matchIndex);
     }
   };

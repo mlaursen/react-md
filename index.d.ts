@@ -10,7 +10,7 @@ export {
   Card, CardProps,
   CardActions, CardActionsProps,
   CardText, CardTextProps,
-  CardTitle, CardTitleProps
+  CardTitle, CardTitleProps,
 } from './lib/Cards';
 export { default as Chip, ChipProps } from './lib/Chips';
 export {
@@ -23,6 +23,8 @@ export {
   TableColumn, TableColumnProps,
   EditDialogColumn, EditDialogColumnProps,
   SelectFieldColumn, SelectFieldColumnProps,
+  MenuButtonColumn, MenuButtonColumnProps,
+  DropdownMenuColumn, DropdownMenuColumnProps,
 } from './lib/DataTables';
 export {
   DialogContainer, DialogContainerProps,
@@ -94,4 +96,4 @@ export {
 } from './lib/Tabs';
 export { default as TextField, TextFieldProps } from './lib/TextFields';
 export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
-export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent } from './lib/Tooltips';
+export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent, TooltippedProps } from './lib/Tooltips';

@@ -54,14 +54,11 @@ export default function register() {
     }
 
     const swUrl = `${PUBLIC_URL}/${SERVICE_WORKER}`;
-    const offlineSWUrl = `${PUBLIC_URL}/offline-${SERVICE_WORKER}`;
     window.addEventListener('load', () => {
       if (isLocalhost) {
         registerLocalServiceWorker(swUrl);
-        registerLocalServiceWorker(offlineSWUrl);
       } else {
         registerServiceWorker(swUrl);
-        registerServiceWorker(offlineSWUrl);
       }
     });
   }

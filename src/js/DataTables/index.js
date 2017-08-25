@@ -10,3 +10,5 @@ export EditDialogColumn from './EditDialogColumn';
 export TablePagination from './TablePagination';
 export TableCardHeader from './TableCardHeader';
 export SelectFieldColumn from './SelectFieldColumn';
+export MenuButtonColumn from './MenuButtonColumn';
+export DropdownMenuColumn from './DropdownMenuColumn';

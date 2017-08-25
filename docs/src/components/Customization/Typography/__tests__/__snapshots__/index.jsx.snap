@@ -123,11 +123,15 @@ exports[`Typography should render correctly 1`] = `
           <li><code>.md-text-lowercase</code> - lowercases the text</li>
           <li><code>.md-text-nowrap</code> - does not allow line breaks</li>
           <li><code>.md-text-no-select</code> - Does not allow use-select</li>
-          <li><code>.md-font-light</code> - the material design light font weight.</li>
-          <li><code>.md-font-regular</code> - the material design regular font weight.</li>
-          <li><code>.md-font-medium</code> - the material design medium font weight.</li>
-          <li><code>.md-font-bold</code> - the material design bold font weight.</li>
+          <li><code>.md-font-light</code> - the material design light font weight (300).</li>
+          <li><code>.md-font-regular</code> - the material design regular font weight (400).</li>
+          <li><code>.md-font-medium</code> - the material design medium font weight (500).</li>
+          <li><code>.md-font-semibold</code> - the semibold font weight used by some Google fonts (600).</li>
+          <li><code>.md-font-bold</code> - the material design bold font weight (700).</li>
           </ul>
+          <blockquote>
+          <p>Font weights can be changed by sass variables</p>
+          </blockquote>
           <p>If the <code>$md-typography-include-text-container</code> variable is <code>true !default</code>, a <code>md-text-container</code>
           class name will be created to position text in the center of the page and keep the line length within
           the <code>$md-typography-max-line-length</code> value.</p>

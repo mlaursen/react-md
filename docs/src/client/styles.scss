@@ -45,12 +45,6 @@ h3,
   background: $md-white-base;
 }
 
-@media #{$md-desktop-media} {
-  .material-icons.md-icon {
-    font-size: $md-font-icon-dense-size;
-  }
-}
-
 .link {
   color: $md-primary-color;
   display: inline-block;
