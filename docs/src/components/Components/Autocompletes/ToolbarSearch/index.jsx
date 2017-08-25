@@ -82,7 +82,7 @@ export default class ToolbarSearch extends PureComponent {
           </CloseEmulator>
         </ShowOnMedia>
         <CSSTransitionGroup
-          className="md-toolbar-relative md-grid"
+          className="md-toolbar-relative md-grid toolbar-search__results"
           component="section"
           transitionName="md-cross-fade"
           transitionEnterTimeout={300}

@@ -33,6 +33,11 @@ $sizes: (
     }
   }
 
+  &__results.md-grid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   &__fake-result {
     height: 200px;
     position: relative;

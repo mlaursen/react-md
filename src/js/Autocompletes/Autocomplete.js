@@ -13,7 +13,7 @@ import caseInsensitiveFilter from '../utils/caseInsensitiveFilter';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';
-import { UP, DOWN, TAB, ENTER, SPACE } from '../constants/keyCodes';
+import { UP, DOWN, TAB } from '../constants/keyCodes';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';
 import positionShape from '../Helpers/positionShape';
@@ -661,8 +661,6 @@ export default class Autocomplete extends PureComponent {
       this.setState({ visible: false });
     } else if (key === UP || key === DOWN) {
       this._focusSuggestion(key === UP, e);
-    } else if ((key === ENTER || key === SPACE) && e.target.classList.contains('md-list-tile')) {
-      this._handleItemClick(this.state.matchIndex);
     }
   };
 

@@ -13,7 +13,7 @@ const FakeResult = ({ index, value }) => {
   }
 
   return (
-    <Paper className="md-cell md-cell--12 toolbar-search__fake-result">
+    <Paper className="md-cell md-cell--12 toolbar-search__fake-result md-background--card">
       {children}
     </Paper>
   );
