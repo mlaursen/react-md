@@ -645,7 +645,7 @@ $md-text-field-line-height: 1.15 !default;
     }
 
     &:focus {
-      outline-width: 0;
+      outline-style: none;
     }
 
     &:-webkit-autofill,
@@ -1159,7 +1159,7 @@ $md-text-field-line-height: 1.15 !default;
     width: $md-font-icon-size;
 
     &:not(.md-password-btn--focus):focus {
-      outline-width: 0;
+      outline-style: none;
     }
 
     .md-icon {

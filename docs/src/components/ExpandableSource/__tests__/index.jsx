@@ -35,7 +35,7 @@ const CODE = `@mixin react-md-buttons(
     }
 
     &:focus {
-      outline-width: 0;
+      outline-style: none;
     }
 
     .md-icon {

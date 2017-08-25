@@ -63,7 +63,7 @@ $md-cross-fade-distance: 16px !default;
     }
 
     &:focus {
-      outline-width: 0;
+      outline-style: none;
     }
 
     @if $md-navigation-drawer-enforce-height {
