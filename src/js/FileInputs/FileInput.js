@@ -355,6 +355,7 @@ export default class FileInput extends PureComponent {
 
     let labelChildren = label;
     if (icon) {
+      icon = React.cloneElement(icon, { inherit: true });
       labelChildren = <IconSeparator label={label} iconBefore={iconBefore}>{icon}</IconSeparator>;
     }
 
