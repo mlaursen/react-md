@@ -2,7 +2,7 @@
 
 exports[`EmulatorController should render correctly with the base required props 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header

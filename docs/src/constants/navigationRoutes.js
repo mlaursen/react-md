@@ -60,6 +60,7 @@ const navigationRoutes = [{
   routes: [
     'colors',
     'themes',
+    'theme-builder',
     'typography',
     'media-queries',
     'minimizing-bundle', {

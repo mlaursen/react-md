@@ -23,11 +23,6 @@ const searchRoutes = baseRoutes.map((route) => {
     ref: route,
   };
 });
-searchRoutes.push({
-  name: 'Theme Builder',
-  ref: '/customization/themes?tab=1',
-  type: 'Info',
-});
 
 const database = searchRoutes.concat(proptypesDatabase).concat(sassdocsDatabase);
 

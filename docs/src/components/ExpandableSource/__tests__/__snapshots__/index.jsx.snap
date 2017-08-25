@@ -36,7 +36,7 @@ exports[`ExpandableSource should render correctly when not collapsed 1`] = `
           }
       
           &amp;:focus {
-            outline-width: 0;
+            outline-style: none;
           }
       
           .md-icon {

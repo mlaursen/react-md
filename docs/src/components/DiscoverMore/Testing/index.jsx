@@ -9,8 +9,8 @@ import Markdown from 'components/Markdown';
 
 import testing from '!!raw-loader!utils/testing.js';
 
-import Preview from '!!raw-loader!components/Customization/Themes/ThemeBuilder/Preview.jsx';
-import PreviewTest from '!!raw-loader!components/Customization/Themes/ThemeBuilder/__tests__/Preview.jsx';
+import Preview from '!!raw-loader!components/Customization/ThemeBuilder/Preview.jsx';
+import PreviewTest from '!!raw-loader!components/Customization/ThemeBuilder/__tests__/Preview.jsx';
 import Search from '!!raw-loader!components/Search/index.jsx';
 import SearchTest from '!!raw-loader!components/Search/__tests__/index.jsx';
 

@@ -5,6 +5,7 @@ import { getTab } from 'utils/routing';
 import {
   Colors,
   Themes,
+  ThemeBuilder,
   Typography,
   MediaQueries,
   MinimizingBundle,
@@ -14,11 +15,12 @@ import {
 
 const COLORS = 'colors';
 const THEMES = 'themes';
+const THEME_BUILDER = 'theme-builder';
 const TYPOGRAPHY = 'typography';
 const MEDIA_QUERIES = 'media-queries';
 const MINIMIZING_BUNDLE = 'minimizing-bundle';
 
-const SASSDOC_ROUTES = [COLORS, TYPOGRAPHY, MEDIA_QUERIES];
+const SASSDOC_ROUTES = [COLORS, THEMES, TYPOGRAPHY, MEDIA_QUERIES];
 
 const Customization = (props) => {
   const {
@@ -29,7 +31,7 @@ const Customization = (props) => {
   } = props;
   const tab = getTab(search);
 
-  if ((tab === 2 && location === THEMES) || (tab === 1 && SASSDOC_ROUTES.indexOf(location) !== -1)) {
+  if (tab === 1 && SASSDOC_ROUTES.indexOf(location) !== -1) {
     return <SassDocPage {...props} key="sassdoc" />;
   }
 
@@ -37,7 +39,9 @@ const Customization = (props) => {
     case COLORS:
       return <Colors tab={tab} staticContext={staticContext} />;
     case THEMES:
-      return <Themes tab={tab} staticContext={staticContext} />;
+      return <Themes staticContext={staticContext} />;
+    case THEME_BUILDER:
+      return <ThemeBuilder staticContext={staticContext} />;
     case TYPOGRAPHY:
       return <Typography tab={tab} staticContext={staticContext} />;
     case MEDIA_QUERIES:

@@ -2,7 +2,7 @@
 
 exports[`FormExample should render correctly 1`] = `
 <div
-  className="md-paper md-paper--1 phone-emulator"
+  className="md-paper md-paper--1 phone-emulator md-background"
   style={undefined}
 >
   <header

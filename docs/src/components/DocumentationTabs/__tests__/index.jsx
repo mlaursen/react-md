@@ -44,16 +44,4 @@ describe('DocumentationTabs', () => {
     expect(tabs3.find('#documentation-sassdoc').length).toBe(1);
     expect(tabs4.find('#documentation-sassdoc').length).toBe(1);
   });
-
-  it('should add the Theme Builder tab correctly', () => {
-    const tabs1 = mountWithRouter(<DocumentationTabs visible />, '/components/autocompletes');
-    const tabs2 = mountWithRouter(<DocumentationTabs visible />, '/components/helpers/portals');
-    const tabs3 = mountWithRouter(<DocumentationTabs visible />, '/customization/colors');
-    const tabs4 = mountWithRouter(<DocumentationTabs visible />, '/customization/themes');
-
-    expect(tabs1.find('#theme-builder').length).toBe(0);
-    expect(tabs2.find('#theme-builder').length).toBe(0);
-    expect(tabs3.find('#theme-builder').length).toBe(0);
-    expect(tabs4.find('#theme-builder').length).toBe(1);
-  });
 });

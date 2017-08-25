@@ -6,6 +6,7 @@ export const NotFound = syncComponent('NotFound', require('components/NotFound')
 export const GettingStarted = syncComponent('GettingStarted', require('components/GettingStarted'));
 export const Colors = syncComponent('Colors', require('components/Customization/Colors'));
 export const Themes = syncComponent('Themes', require('components/Customization/Themes'));
+export const ThemeBuilder = syncComponent('ThemeBuilder', require('components/Customization/ThemeBuilder'));
 export const Typography = syncComponent('Typography', require('components/Customization/Typography'));
 export const MediaQueries = syncComponent('MediaQueries', require('components/Customization/MediaQueries'));
 export const MinimizingBundle = syncComponent('MinimizingBundle', require('components/Customization/MinimizingBundle'));
