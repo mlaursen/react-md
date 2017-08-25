@@ -441,6 +441,31 @@ export default class Autocomplete extends PureComponent {
     simplifiedMenu: PropTypes.bool,
 
     /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: PropTypes.number,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
+
+    /**
      * @see {@link TextFields#toolbar}
      */
     toolbar: PropTypes.bool,
@@ -914,6 +939,11 @@ export default class Autocomplete extends PureComponent {
       sameWidth,
       repositionOnScroll,
       simplifiedMenu,
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
       /* eslint-disable no-unused-vars */
       value: propValue,
       total,
@@ -1030,6 +1060,11 @@ export default class Autocomplete extends PureComponent {
         listStyle={listStyle}
         listClassName={cn('md-autocomplete-list', listClassName)}
         repositionOnScroll={repositionOnScroll}
+        minLeft={minLeft}
+        minRight={minRight}
+        minBottom={minBottom}
+        fillViewportWidth={fillViewportWidth}
+        fillViewportHeight={fillViewportHeight}
       >
         {matches.map(this._mapToListItem)}
       </Menu>

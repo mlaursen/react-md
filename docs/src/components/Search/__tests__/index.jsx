@@ -11,6 +11,7 @@ import { PureSearch as Search } from '../';
 jest.mock('react-router-dom', () => ({ children, className, to }) => <a className={className} href={to}>{children}</a>);
 
 const PROPS = {
+  mobile: false,
   searching: true,
   search: () => {},
   searchNext: () => {},

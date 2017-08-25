@@ -461,6 +461,31 @@ export default class SelectField extends PureComponent {
      */
     simplifiedMenu: PropTypes.bool,
 
+    /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: Menu.propTypes.minBottom,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
+
     iconChildren: deprecated(PropTypes.node, 'Use `dropdownIcon` instead'),
     iconClassName: deprecated(PropTypes.string, 'Use `dropdownIcon` instead'),
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
@@ -963,6 +988,11 @@ export default class SelectField extends PureComponent {
       fullWidth,
       repositionOnScroll,
       simplifiedMenu,
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
       menuTransitionName,
       menuTransitionEnterTimeout,
       menuTransitionLeaveTimeout,
@@ -1057,6 +1087,11 @@ export default class SelectField extends PureComponent {
         block={block}
         centered={centered}
         fullWidth={fullWidth}
+        minLeft={minLeft}
+        minRight={minRight}
+        minBottom={minBottom}
+        fillViewportWidth={fillViewportWidth}
+        fillViewportHeight={fillViewportHeight}
         repositionOnScroll={repositionOnScroll}
         transitionName={menuTransitionName}
         transitionEnterTimeout={menuTransitionEnterTimeout}

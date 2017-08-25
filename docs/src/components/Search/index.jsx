@@ -25,6 +25,8 @@ export class PureSearch extends PureComponent {
     showSearch: PropTypes.func.isRequired,
     hideSearch: PropTypes.func.isRequired,
 
+    mobile: PropTypes.bool.isRequired,
+
     /**
      * A list of matches/results from the current search.
      */
@@ -188,6 +190,7 @@ export class PureSearch extends PureComponent {
   render() {
     const { animating, data, value } = this.state;
     const {
+      mobile,
       searching,
       hideSearch,
       meta: { total },
@@ -221,6 +224,10 @@ export class PureSearch extends PureComponent {
           listClassName="search__results"
           onClick={this.handleClick}
           value={value}
+          sameWidth={false}
+          minBottom={20}
+          fillViewportWidth={mobile}
+          fillViewportHeight={mobile}
         />
         {hideBtn}
       </div>
@@ -238,7 +245,7 @@ export default connectAdvanced((dispatch) => {
   }, dispatch);
 
   return (state, props) => {
-    const nextResult = { ...props, ...actions, ...state.search };
+    const nextResult = { ...props, ...actions, ...state.search, mobile: state.media.mobile };
 
     if (!shallowEqual(result, nextResult)) {
       result = nextResult;

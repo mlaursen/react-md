@@ -293,6 +293,40 @@ export default class Menu extends PureComponent {
      */
     simplified: PropTypes.bool,
 
+    /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]),
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
+
     isOpen: deprecated(PropTypes.bool, 'Use `visible` instead'),
     close: deprecated(PropTypes.func, 'Use `onClose` instead'),
     autoclose: deprecated(PropTypes.bool, 'The menus will always autoclose as according to the specs'),

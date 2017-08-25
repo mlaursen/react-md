@@ -115,6 +115,94 @@ export default class Layover extends PureComponent {
     sameWidth: PropTypes.bool,
 
     /**
+     * The minimum value the `left` style can be for the child component. This is really just used
+     * to make sure it doesn't scroll off the left of the page. It can also be used to make
+     * full screen layovers on devices when when the `fillViewportWidth` prop is enabled.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #minRight}
+     * @see {@link #fillViewportWidth}
+     */
+    minLeft: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The minimum value the `right` style can be for the child component. This is really just used
+     * to make sure it doesn't scroll off the right of the page when the `fillViewportWidth` prop is
+     * enabled.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #minLeft}
+     * @see {@link #fillViewportWidth}
+     */
+    minRight: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+
+    /**
+     * The minimum value that can be used for the `bottom` prop when the `fillViewportHeight` prop is enabled.
+     * It is generally recommended to keep this value at `0` to keep it stretched to the bottom of the viewport
+     * or setting it to a small positive number to add some padding.
+     *
+     * This can either be a number of pixels or a string for percentages. If this value is a string
+     * **it will always be used over the calculated values** so it is preferred to use a number.
+     *
+     * @see {@link #fillViewportHeight}
+     */
+    minBottom: PropTypes.number.isRequired,
+
+    /**
+     * Boolean if the layover should make the child fill the entire viewport's width. This will just
+     * style the child element with:
+     *
+     * ```js
+     * childStyle = {
+     *   left: this.props.minLeft,
+     *   right: this.props.minRight,
+     * };
+     * ```
+     *
+     * If you add any additional contraints such as `width` or `max-width`, it will not span the entire viewport's
+     * width. This prop should generally really only be used on mobile devices. Using this prop along with
+     * `fillViewportHeight` for Autocompletes can create great Android mobile searches. See the `fillViewportHeight`
+     * for more information about why it is *only Android*.
+     *
+     * @see {@link #minLeft}
+     * @see {@link #minRight}
+     * @see {@link #fillViewportHeight}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * Boolean if the layover should fill the height of the viewport from the current calculated `top`. This will just
+     * style the child element with:
+     *
+     * ```js
+     * childStyle = {
+     *   top: currentCalculatedTop,
+     *   bottom: this.props.minBottom,
+     *   maxHeight: 'none',
+     * };
+     * ```
+     *
+     * This is *super* nice on Android devices since it will allow you to create nice toolbar search autocompletes
+     * in your app and the list of items will grow until it reaches the soft keyboard. It isn't as nice on iOS since
+     * iOS does not subtract the soft keyboard from the viewport's size so the list will still extend to the bottom
+     * of the page.
+     *
+     * @see {@link #minBottom}
+     * @see {@link #fillViewportWidth}
+     */
+    fillViewportHeight: PropTypes.bool,
+
+    /**
      * A function used to hide the visibility of the children when the children are no longer
      * visible or an element outside of the layover is clicked.
      */
@@ -262,6 +350,11 @@ export default class Layover extends PureComponent {
     closeOnOutsideClick: true,
     preventContextMenu: true,
     simplified: false,
+    minLeft: 0,
+    minRight: 0,
+    minBottom: 0,
+    fillViewportWidth: false,
+    fillViewportHeight: false,
   };
 
   constructor(props) {
@@ -452,11 +545,43 @@ export default class Layover extends PureComponent {
    * This is just a simple utility function to merge the existing state styles,
    * any new styles, and the children's styles (with most precidence).
    */
-  _mergeStyles = (style) => ({
-    ...this.state.styles,
-    ...style,
-    ...React.Children.only(this.props.children).props.style,
-  });
+  _mergeStyles = (style) => {
+    const {
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
+    } = this.props;
+    if (fillViewportWidth) {
+      style.left = minLeft;
+      style.right = minRight;
+    } else {
+      if (style.left) {
+        style.left = Math.max(minLeft, style.left);
+      }
+
+      if (style.right) {
+        style.right = Math.max(minRight, style.right);
+      }
+    }
+
+    if (fillViewportHeight) {
+      style.bottom = minBottom;
+      style.maxHeight = 'none';
+    } else {
+      // These styles are only created when filling the viewport height, so clear
+      // them out again
+      style.bottom = null;
+      style.maxHeight = null;
+    }
+
+    return {
+      ...this.state.styles,
+      ...style,
+      ...React.Children.only(this.props.children).props.style,
+    };
+  };
 
   /**
    * This initializes the popover with the default styles, and the intitial bookkeeping
@@ -618,6 +743,7 @@ export default class Layover extends PureComponent {
 
     this._child.parentNode.appendChild(clone);
     const vp = viewport(clone);
+    const { offsetHeight: childHeight, offsetWidth: childWidth } = clone;
     this._child.parentNode.removeChild(clone);
 
     if (vp === true || !this._toggle || !this._child) {
@@ -625,7 +751,6 @@ export default class Layover extends PureComponent {
     }
 
     const { x, y } = this._getAnchor(this.props);
-    const { offsetHeight: childHeight, offsetWidth: childWidth } = this._child;
     let toggleHeight;
     let toggleWidth;
     if (this._contextRect) {
@@ -638,7 +763,11 @@ export default class Layover extends PureComponent {
 
     let addToTop = 0;
     let addToLeft = 0;
-    if (!vp.top || !vp.bottom) {
+
+    // Android devices will never get this far because they consider the keyboard as part
+    // of the viewport, iOS will and cause it to be a giant negative number. *sigh*
+    // Prevent any additional vertical positioning for iOS
+    if (!this.props.fillViewportHeight && (!vp.top || !vp.bottom)) {
       const multiplier = vp.top ? -1 : 1;
       if (!vp.bottom && y === VerticalAnchors.OVERLAP) {
         addToTop += toggleHeight;
@@ -651,7 +780,7 @@ export default class Layover extends PureComponent {
       this._lastYFix = vp.top ? 'bottom' : 'top';
     }
 
-    if (x !== HorizontalAnchors.CENTER && (!vp.left || !vp.right)) {
+    if (!this.props.fillViewportWidth && x !== HorizontalAnchors.CENTER && (!vp.left || !vp.right)) {
       if (!vp.left && x === HorizontalAnchors.LEFT) {
         addToLeft += toggleWidth + childWidth;
         this._lastXFix = 'left';
@@ -666,7 +795,6 @@ export default class Layover extends PureComponent {
         this._lastXFix = 'right';
       }
     }
-
 
     if (addToTop !== 0 || addToLeft !== 0) {
       this._initialTop += addToTop;
@@ -917,6 +1045,8 @@ export default class Layover extends PureComponent {
       fullWidth,
       animationPosition,
       simplified,
+      fillViewportWidth,
+      fillViewportHeight,
       /* eslint-disable no-unused-vars */
       anchor,
       belowAnchor,
@@ -931,6 +1061,9 @@ export default class Layover extends PureComponent {
       onContextMenu,
       preventContextMenu,
       closeOnOutsideClick,
+      minLeft,
+      minRight,
+      minBottom,
       /* eslint-enable no-unused-vars */
       ...props
     } = this.props;
@@ -956,8 +1089,15 @@ export default class Layover extends PureComponent {
     }
 
     let observer = null;
-    if (!simplified) {
-      observer = <ResizeObserver watchWidth watchHeight target={this._child} onResize={this._handleResize} />;
+    if (!simplified && (!fillViewportWidth && !fillViewportHeight)) {
+      observer = (
+        <ResizeObserver
+          watchWidth={!fillViewportWidth}
+          watchHeight={!fillViewportHeight}
+          target={this._child}
+          onResize={this._handleResize}
+        />
+      );
     }
 
     return (

@@ -295,6 +295,31 @@ export default class MenuButton extends PureComponent {
      */
     simplifiedMenu: PropTypes.bool,
 
+    /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: DropdownMenu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: DropdownMenu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: DropdownMenu.propTypes.minBottom,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
+
     buttonChildren: deprecated(
       PropTypes.node,
       'To build a button, put any elements in the `children`. The `ListItem` have been moved to the `menuItems` prop'
@@ -347,6 +372,11 @@ export default class MenuButton extends PureComponent {
       defaultVisible,
       onVisibilityChange,
       simplifiedMenu,
+      minLeft,
+      minRight,
+      minBottom,
+      fillViewportWidth,
+      fillViewportHeight,
       isOpen, // deprecated
       defaultOpen, // deprecated
       onMenuToggle, // deprecated
@@ -387,6 +417,11 @@ export default class MenuButton extends PureComponent {
         block={block}
         centered={centered}
         sameWidth={sameWidth}
+        minLeft={minLeft}
+        minRight={minRight}
+        minBottom={minBottom}
+        fillViewportWidth={fillViewportWidth}
+        fillViewportHeight={fillViewportHeight}
         repositionOnScroll={repositionOnScroll}
         xThreshold={xThreshold}
         yThreshold={yThreshold}

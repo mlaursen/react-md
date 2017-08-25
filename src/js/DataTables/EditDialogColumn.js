@@ -414,6 +414,21 @@ export default class EditDialogColumn extends PureComponent {
     simplifiedDialog: PropTypes.bool,
 
     /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: Layover.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: Layover.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: Layover.propTypes.minBottom,
+
+    /**
      * Boolean if the edit dialog should attempt to scroll into view if the full
      * dialog can not be displayed in the viewport when it was toggled open.
      *
@@ -522,6 +537,9 @@ export default class EditDialogColumn extends PureComponent {
     repositionOnScroll: true,
     scrollIntoView: true,
     scrollIntoViewPadding: 16,
+    minLeft: 0,
+    minRight: 0,
+    minBottom: 0,
   };
 
   static contextTypes = {
@@ -738,6 +756,9 @@ export default class EditDialogColumn extends PureComponent {
       onMouseLeave,
       onTouchMove,
       simplifiedDialog,
+      minLeft,
+      minRight,
+      minBottom,
 
       // deprecated
       noIcon,
@@ -844,6 +865,9 @@ export default class EditDialogColumn extends PureComponent {
           yThreshold={yThreshold}
           centered={centered}
           sameWidth={sameWidth}
+          minLeft={minLeft}
+          minRight={minRight}
+          minBottom={minBottom}
           fixedTo={typeof fixedTo !== 'undefined' ? fixedTo : this._fixedTo}
           dialogZDepth={dialogZDepth}
           repositionOnScroll={repositionOnScroll}

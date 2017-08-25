@@ -49,6 +49,11 @@ export interface SharedLayoverProps extends Props {
   anchor?: LayoverAnchor;
   belowAnchor?: LayoverAnchor;
   repositionOnScroll?: boolean;
+  minLeft?: number | string;
+  minRight?: number | string;
+  minBottom?: number | string;
+  fillViewportHeight?: boolean;
+  fillViewportWidth?: boolean;
 }
 
 export interface LayoverProps extends SharedLayoverProps {

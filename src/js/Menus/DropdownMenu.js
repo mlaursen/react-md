@@ -276,6 +276,31 @@ export default class DropdownMenu extends PureComponent {
      * @see {@link Helpers/Layovers#simplified}
      */
     simplifiedMenu: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#minLeft}
+     */
+    minLeft: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minRight}
+     */
+    minRight: Menu.propTypes.minLeft,
+
+    /**
+     * @see {@link Helpers/Layovers#minBottom}
+     */
+    minBottom: Menu.propTypes.minBottom,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportWidth}
+     */
+    fillViewportWidth: PropTypes.bool,
+
+    /**
+     * @see {@link Helpers/Layovers#fillViewportHeight}
+     */
+    fillViewportHeight: PropTypes.bool,
   };
 
   static defaultProps = {
