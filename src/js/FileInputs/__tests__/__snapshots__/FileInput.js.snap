@@ -28,7 +28,7 @@ exports[`FileInput should apply styles correctly 1`] = `
         Select a file
       </span>
       <i
-        class="md-icon material-icons"
+        class="md-icon material-icons md-text--inherit"
       >
         file_upload
       </i>
@@ -70,7 +70,7 @@ exports[`FileInput should render the form control props correctly 1`] = `
         Select a file
       </span>
       <i
-        class="md-icon material-icons"
+        class="md-icon material-icons md-text--inherit"
       >
         file_upload
       </i>
