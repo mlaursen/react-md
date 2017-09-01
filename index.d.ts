@@ -94,6 +94,6 @@ export {
   TabPanel, TabPanelProps,
   MenuTab, MenuTabProps,
 } from './lib/Tabs';
-export { default as TextField, TextFieldProps } from './lib/TextFields';
+export { default as TextField, TextFieldProps, TextFieldTypes, TextFieldLineDirections } from './lib/TextFields';
 export { default as Toolbar, ToolbarProps } from './lib/Toolbars';
 export { default as injectTooltip, InjectedTooltipProps, TooltippedComponent, TooltippedProps } from './lib/Tooltips';

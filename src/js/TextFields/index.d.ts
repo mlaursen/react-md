@@ -1,1 +1,1 @@
-export { default, TextFieldProps, SharedTextFieldProps } from './TextField';
+export { default, TextFieldProps, SharedTextFieldProps, TextFieldLineDirections, TextFieldTypes } from './TextField';
