@@ -4,15 +4,16 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 
 import sagas from 'sagas';
 import rootReducer from 'state';
+import scrolling from 'state/middlewares/scrolling';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState) {
-  const middlewares = [applyMiddleware(sagaMiddleware)];
+  const middleware = applyMiddleware(scrolling, sagaMiddleware);
   const store = createStore(
     rootReducer,
     initialState,
-    composeWithDevTools(...middlewares)
+    composeWithDevTools(middleware)
   );
 
   if (module.hot) {

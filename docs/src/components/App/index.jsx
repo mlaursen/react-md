@@ -10,7 +10,6 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import { updateMedia } from 'state/media';
 import { updateLocation } from 'state/routing';
 import navItems from 'constants/navItems';
-import scrollRestoration from 'utils/scrollRestoration';
 import Link from 'components/Link';
 import DocumentationTabs from 'components/DocumentationTabs';
 import Messages from 'components/Messages';
@@ -94,17 +93,12 @@ export default class App extends PureComponent {
         window.ga('send', 'pageview', location.pathname);
       }
     });
-    scrollRestoration();
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location !== nextProps.location) {
       this.setState({ key: this.getCurrentKey(nextProps) });
     }
-  }
-
-  componentDidUpdate() {
-    scrollRestoration();
   }
 
   getCurrentKey = ({ location: { pathname, search } }) => {

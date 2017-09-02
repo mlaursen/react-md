@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import DocumentationPage from 'components/DocumentationPage';
 import componentFunctions from 'propTypes/componentFunctions';
 import componentProps from 'propTypes/componentProps';
+import scrollRestoration from 'utils/scrollRestoration';
 
 import './_styles.scss';
 import PropTypesCard from './PropTypesCard';
@@ -32,6 +33,12 @@ export default class PropTypesPage extends PureComponent {
     const { component, section, docgenRequest } = nextProps;
     if (this.props.component !== component) {
       docgenRequest(component, section);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.docgens !== prevProps.docgens) {
+      scrollRestoration();
     }
   }
 
