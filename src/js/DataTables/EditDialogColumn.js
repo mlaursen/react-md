@@ -7,7 +7,7 @@ import deprecated from 'react-prop-types/lib/deprecated';
 import { ENTER, ESC, TAB } from '../constants/keyCodes';
 import getField from '../utils/getField';
 import themeColors from '../utils/themeColors';
-import viewport from '../utils/viewport';
+import viewport from '../utils/Positioning/viewport';
 import controlled from '../utils/PropTypes/controlled';
 import anchorShape from '../Helpers/anchorShape';
 import fixedToShape from '../Helpers/fixedToShape';

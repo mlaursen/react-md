@@ -1,4 +1,4 @@
-/** @module utils/getScreenSize */
+/** @module utils/Positioning/getScreenSize */
 
 export default function getScreenSize(position) {
   if (position !== 'Height' && position !== 'Width' && process.env.NODE_ENV !== 'production') {

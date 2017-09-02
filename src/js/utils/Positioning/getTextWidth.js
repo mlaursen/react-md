@@ -1,4 +1,4 @@
-/** @module utils/getTextWidth */
+/** @module utils/Positioning/getTextWidth */
 
 let cachedCanvas;
 

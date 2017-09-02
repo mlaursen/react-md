@@ -1,4 +1,4 @@
-/** @module utils/getSelectedTextPosition */
+/** @module utils/Positoning/getSelectedTextPosition */
 import getTextWidth from './getTextWidth';
 
 const ZERO_WIDTH_CHARACTER = '\u200b';

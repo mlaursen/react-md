@@ -1,4 +1,4 @@
-/** @module utils/isOutOfBounds */
+/** @module utils/Positioning/isOutOfBounds */
 
 import getScreenSize from './getScreenSize';
 

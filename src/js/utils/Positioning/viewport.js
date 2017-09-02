@@ -1,4 +1,4 @@
-/** @module utils/viewport */
+/** @module utils/Positioning/viewport */
 import getScreenSize from './getScreenSize';
 
 /**

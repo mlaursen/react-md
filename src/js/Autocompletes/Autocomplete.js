@@ -5,11 +5,11 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
 import getField from '../utils/getField';
-import getTextWidth from '../utils/getTextWidth';
 import omit from '../utils/omit';
 import findIgnoreCase from '../utils/findIgnoreCase';
 import fuzzyFilter from '../utils/fuzzyFilter';
 import caseInsensitiveFilter from '../utils/caseInsensitiveFilter';
+import getTextWidth from '../utils/Positioning/getTextWidth';
 import oneRequiredForA11y from '../utils/PropTypes/oneRequiredForA11y';
 import controlled from '../utils/PropTypes/controlled';
 import invalidIf from '../utils/PropTypes/invalidIf';

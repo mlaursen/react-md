@@ -4,8 +4,8 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import cn from 'classnames';
 
 import { ENTER, SPACE } from '../constants/keyCodes';
-import calcPageOffset from '../utils/calcPageOffset';
 import isFormPartRole from '../utils/isFormPartRole';
+import calcPageOffset from '../utils/Positioning/calcPageOffset';
 import isValidClick from '../utils/EventUtils/isValidClick';
 import { setTouchEvent, addTouchEvent, removeTouchEvent } from '../utils/EventUtils/touches';
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';

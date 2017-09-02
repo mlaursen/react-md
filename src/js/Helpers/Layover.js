@@ -6,10 +6,10 @@ import cn from 'classnames';
 
 import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
-import getSelectedTextPosition from '../utils/getSelectedTextPosition';
-import getScroll from '../utils/getScroll';
-import viewport from '../utils/viewport';
-import isOutOfBounds from '../utils/isOutOfBounds';
+import getSelectedTextPosition from '../utils/Positioning/getSelectedTextPosition';
+import getScroll from '../utils/Positioning/getScroll';
+import viewport from '../utils/Positioning/viewport';
+import isOutOfBounds from '../utils/Positioning/isOutOfBounds';
 import anchorShape from './anchorShape';
 import fixedToShape from './fixedToShape';
 import positionShape from './positionShape';

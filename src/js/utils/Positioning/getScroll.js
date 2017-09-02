@@ -1,4 +1,4 @@
-/** @module utils/getScroll */
+/** @module utils/Positioning/getScroll */
 
 /**
  * A utility function to just get an element's scroll x and y
