@@ -8,7 +8,7 @@ export default function getPropTypeLinks(documentableComponents) {
     component: c.replace('inject', ''),
   })))).map(({ component: c, folder }) => {
     const pluralized = (c.endsWith('ss') || c === 'Tab' ? c : pluralize(c)).replace(/([A-Z])/g, ' $1').trim();
-    const kebabCased = kebabCase(c).replace('-inked', '');
+    const kebabCased = kebabCase(folder.match(/helpers/i) ? pluralized : c).replace('-inked', '');
     const ref = `#${kebabCased}-proptypes`;
     let link = kebabCase(folder);
     if (link.match(/helpers|pickers|progress/)) {
