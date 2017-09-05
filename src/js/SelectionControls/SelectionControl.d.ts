@@ -6,6 +6,7 @@ type Types = 'checkbox' | 'radio' | 'switch';
 export interface BaseSelectionControlProps extends Props {
   id: IdPropType;
   name: number | string;
+  label: string;
   labelBefore?: boolean;
   disabled?: boolean;
   value?: number | string;
