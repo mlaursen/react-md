@@ -70,6 +70,24 @@ h3,
   }
 }
 
+.markdown-header {
+  position: relative;
+
+  &:hover .markdown-header__link {
+    opacity: 1;
+  }
+
+  &__link {
+    $padding: $md-default-padding / 2;
+
+    left: -($md-font-icon-dense-size + $padding);
+    opacity: 0;
+    position: absolute;
+    transform: rotate3d(0, 0, 1, 90deg);
+    transition: opacity .3s;
+  }
+}
+
 .powerlevel-over-9000 {
   z-index: 9001;
 }
