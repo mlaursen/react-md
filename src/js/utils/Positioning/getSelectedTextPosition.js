@@ -1,4 +1,5 @@
 /** @module utils/Positoning/getSelectedTextPosition */
+import getSelectedText from '../getSelectedText';
 import getTextWidth from './getTextWidth';
 
 const ZERO_WIDTH_CHARACTER = '\u200b';
@@ -11,6 +12,21 @@ const ZERO_WIDTH_CHARACTER = '\u200b';
  * happens and it is unable to get it correctly.
  */
 export default function getSelectedTextPosition(e) {
+  let height;
+  const { target, clientX, clientY } = e;
+  const text = getSelectedText();
+  const width = Math.round(getTextWidth(text, target) || 0);
+  if (!text || target.classList.contains('md-text-field')) {
+    height = parseInt(window.getComputedStyle(target).fontSize, 10);
+    return {
+      width,
+      height,
+      left: clientX - width,
+      top: clientY,
+    };
+  }
+
+  // All browsers I am supporting have window.getSelection, but better safe than sorry
   if (window.getSelection) {
     const selection = window.getSelection();
     if (selection.rangeCount) {
@@ -24,21 +40,6 @@ export default function getSelectedTextPosition(e) {
       }
 
       if (!rect) {
-        const { target, clientX, clientY } = e;
-        if (target.classList.contains('md-text-field')) {
-          const { selectionStart, selectionEnd } = target;
-          const selectedText = target.value.substring(selectionStart, selectionEnd);
-          const width = Math.round(getTextWidth(selectedText, target)) || 0;
-          const { fontSize } = window.getComputedStyle(target);
-
-          return {
-            left: clientX - width,
-            top: clientY,
-            width,
-            height: parseInt(fontSize, 10),
-          };
-        }
-
         const span = document.createElement('span');
         span.appendChild(document.createTextNode(ZERO_WIDTH_CHARACTER));
         range.insertNode(span);

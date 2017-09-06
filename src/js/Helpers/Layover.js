@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import cn from 'classnames';
 
-import captureNextEvent from '../utils/EventUtils/captureNextEvent';
 import handleWindowClickListeners from '../utils/EventUtils/handleWindowClickListeners';
 import getSelectedTextPosition from '../utils/Positioning/getSelectedTextPosition';
 import getScroll from '../utils/Positioning/getScroll';
@@ -445,14 +444,29 @@ export default class Layover extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const { visible, closeOnOutsideClick } = this.props;
-    if (visible !== prevProps.visible && closeOnOutsideClick) {
-      handleWindowClickListeners(this._handleOutsideClick, visible);
-    } else if (closeOnOutsideClick !== prevProps.closeOnOutsideClick && visible) {
-      handleWindowClickListeners(this._handleOutsideClick, closeOnOutsideClick);
+    const enabled = visible && closeOnOutsideClick;
+    const prevEnabled = prevProps.visible && prevProps.closeOnOutsideClick;
+    if (enabled !== prevEnabled) {
+      if (this._clickTimeout) {
+        clearTimeout(this._clickTimeout);
+        this._clickTimeout = null;
+      }
+
+      // This is really an arbitrary timeout time, but firefox needs to have a timeout
+      // so the context menu doesn't close automatically due to an "outside click" being
+      // triggered
+      this._clickTimeout = setTimeout(() => {
+        this._clickTimeout = null;
+        handleWindowClickListeners(this._handleOutsideClick, enabled);
+      }, enabled ? 300 : 0);
     }
   }
 
   componentWillUnmount() {
+    if (this._clickTimeout) {
+      clearTimeout(this._clickTimeout);
+      this._clickTimeout = null;
+    }
     handleWindowClickListeners(this._handleOutsideClick, false);
 
     if (!this.props.simplified) {
@@ -472,8 +486,7 @@ export default class Layover extends PureComponent {
     let left;
     let top;
     if (x === HorizontalAnchors.CENTER) {
-      const { left: childLeft } = child.getBoundingClientRect();
-      left = (childLeft + (rect.width / 2) - (offsetWidth / 2));
+      left = rect.left + (rect.width / 2) - (offsetWidth / 2);
     } else if (x === HorizontalAnchors.INNER_RIGHT) {
       left = rect.right - offsetWidth;
     } else if (x === HorizontalAnchors.LEFT) {
@@ -1027,8 +1040,6 @@ export default class Layover extends PureComponent {
       e.preventDefault();
     }
 
-    // If this isn't done, firefox immediate closes the context menu. :/
-    captureNextEvent('click');
     onContextMenu(e);
     if (visible) {
       this._init(fixedTo, anchor, sameWidth, centered, this._contextRect);

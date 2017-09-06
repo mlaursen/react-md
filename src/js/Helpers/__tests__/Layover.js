@@ -4,6 +4,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import { shallow } from 'enzyme';
 import Layover from '../Layover';
 
+jest.mock('../../utils/Positioning/getSelectedTextPosition');
+
 describe('Layover', () => {
   it('should render the CSSTransitionGroup component', () => {
     const layover = shallow(
