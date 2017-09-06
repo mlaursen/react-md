@@ -61,6 +61,7 @@ const navigationRoutes = [{
     'colors',
     'themes',
     'theme-builder',
+    'grids',
     'typography',
     'media-queries',
     'minimizing-bundle', {
