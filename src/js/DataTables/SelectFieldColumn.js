@@ -115,6 +115,15 @@ class SelectFieldColumn extends PureComponent {
      */
     repositionOnScroll: PropTypes.bool,
 
+    /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
     wrapperStyle: deprecated(PropTypes.object, 'There is no longer a wrapper'),
     wrapperClassName: deprecated(PropTypes.string, 'There is no longer a wrapper'),
   };
@@ -123,6 +132,7 @@ class SelectFieldColumn extends PureComponent {
     position: SelectFieldColumn.Positions.BELOW,
     fullWidth: true,
     repositionOnScroll: true,
+    simplifiedMenu: false,
   };
 
   render() {

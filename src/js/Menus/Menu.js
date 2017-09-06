@@ -359,6 +359,7 @@ export default class Menu extends PureComponent {
     listHeightRestricted: true,
     cascadingZDepth: 3,
     repositionOnScroll: true,
+    simplified: true,
   };
 
   static contextTypes = {
@@ -464,13 +465,14 @@ export default class Menu extends PureComponent {
       listZDepth,
       listInline,
       listHeightRestricted,
+      cascading,
       sameWidth,
+      simplified,
       contained, // deprecated
       isOpen, // deprecated
       /* eslint-disable no-unused-vars */
       fixedTo: propFixedTo,
       listId: propListId,
-      cascading,
       cascadingAnchor,
       cascadingZDepth,
       onClose,
@@ -491,17 +493,23 @@ export default class Menu extends PureComponent {
       listId = `${id}-list`;
     }
 
+    // can't have a simplified menu for cascading and context menus
+    const simple = !cascading && !props.onContextMenu && position !== 'context' && simplified;
     if (position === 'context') {
       position = Menu.Positions.BELOW;
     }
 
+    const below = position === Menu.Positions.BELOW;
     const fixedTo = typeof propFixedTo !== 'undefined' ? propFixedTo : this.context.cascadingFixedTo;
     const listVisible = typeof isOpen !== 'undefined' ? isOpen : visible;
     return (
       <Layover
-        id={id}
-        className={cn('md-menu-container', className)}
         {...props}
+        id={id}
+        className={cn('md-menu-container', {
+          'md-menu-container--menu-below': simplified && below,
+        }, className)}
+        simplified={simple}
         sameWidth={contained || sameWidth}
         fixedTo={fixedTo}
         onClick={this._handleClick}
@@ -520,6 +528,8 @@ export default class Menu extends PureComponent {
           style={listStyle}
           className={cn('md-list--menu', {
             'md-list--menu-restricted': listHeightRestricted,
+            'md-list--menu-contained': simplified && (sameWidth || contained),
+            [`md-list--menu-${position}`]: simplified,
             [`md-paper md-paper--${listZDepth}`]: listZDepth,
           }, listClassName)}
           inline={listInline}

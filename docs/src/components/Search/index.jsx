@@ -225,6 +225,7 @@ export class PureSearch extends PureComponent {
           onClick={this.handleClick}
           value={value}
           sameWidth={false}
+          simplifiedMenu={false}
           minBottom={20}
           fillViewportWidth={mobile}
           fillViewportHeight={mobile}

@@ -133,6 +133,36 @@ $md-menu-cascading-list-padding: 16px !default;
       max-height: $md-menu-max-height;
       overflow-y: auto;
     }
+
+    &-contained {
+      width: 100%;
+    }
+
+    &-below {
+      left: 0;
+      top: 100%;
+      transform-origin: 50% 0;
+    }
+
+    &-tr {
+      right: 0;
+      top: 0;
+      transform-origin: 100% 0;
+    }
+
+    &-tl {
+      top: 0;
+      transform-origin: 0 0;
+    }
+
+    &-br {
+      right: 0;
+      transform-origin: 100% 100%;
+    }
+
+    &-bl {
+      transform-origin: 0 100%;
+    }
   }
 
   @if $include-cascading {

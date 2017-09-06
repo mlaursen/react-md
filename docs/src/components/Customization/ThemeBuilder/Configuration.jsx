@@ -50,6 +50,7 @@ const Configuration = ({
       menuItems={filteredPrimaries}
       className="md-cell"
       onChange={onSelectChange}
+      simplifiedMenu={false}
     />
     <SelectField
       id={SECONDARY}
@@ -58,6 +59,7 @@ const Configuration = ({
       menuItems={filteredSecondaries}
       className="md-cell"
       onChange={onSelectChange}
+      simplifiedMenu={false}
     />
     <SelectField
       id={HUE}
@@ -66,6 +68,7 @@ const Configuration = ({
       menuItems={SECONDARY_HUES}
       className="md-cell"
       onChange={onSelectChange}
+      simplifiedMenu={false}
     />
   </form>
 );

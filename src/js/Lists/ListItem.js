@@ -635,6 +635,7 @@ export default class ListItem extends PureComponent {
           onClose={this._handleClick}
           toggle={tile}
           block
+          simplified={false}
           anchor={cascadingAnchor}
           belowAnchor={null}
           position={Menu.Positions.BELOW}

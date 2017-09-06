@@ -83,6 +83,15 @@ class DropdownMenuColumn extends PureComponent {
     repositionOnScroll: PropTypes.bool,
 
     /**
+     * Boolean if the menu logic should be simplified without any viewport logic and position
+     * based on the relative position of the menu. This will most like require some additional
+     * styles applied to the menu.
+     *
+     * @see {@link Helpers/Layovers#simplified}
+     */
+    simplifiedMenu: PropTypes.bool,
+
+    /**
      * This is injected by the `TableRow` component.
      * @access private
      */
@@ -92,6 +101,10 @@ class DropdownMenuColumn extends PureComponent {
      * @access private
      */
     adjusted: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    simplifiedMenu: false,
   };
 
   render() {
