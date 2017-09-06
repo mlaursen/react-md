@@ -62,10 +62,12 @@ export default class Title extends PureComponent {
 
     let url = '';
     if (__CLIENT__) {
-      url = `${window.location.href}#${id}`;
+      url = `${window.location.href}`;
     } else {
-      url = `${PUBLIC_URL}${location.pathname}#${id}`;
+      url = `${PUBLIC_URL}${location.pathname}`;
     }
+
+    url = `${url.replace(/#.*/, '')}#${id}`;
 
     return (
       <CardTitle title={title} expander={expander} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
