@@ -7,7 +7,13 @@ export default function getPropTypeLinks(documentableComponents) {
     folder,
     component: c.replace('inject', ''),
   })))).map(({ component: c, folder }) => {
-    const pluralized = (c.endsWith('ss') || c === 'Tab' ? c : pluralize(c)).replace(/([A-Z])/g, ' $1').trim();
+    const name = c.endsWith('ss') || c === 'Tab' ? c : pluralize(c);
+    let pluralized = '';
+    if (name.match(/^SVG/)) {
+      pluralized = 'SVG Icons';
+    } else {
+      pluralized = name.replace(/([A-Z])/g, ' $1').trim();
+    }
     const kebabCased = kebabCase(folder.match(/helpers/i) ? pluralized : c).replace('-inked', '');
     const ref = `#${kebabCased}-proptypes`;
     let link = kebabCase(folder);
