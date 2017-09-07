@@ -73,7 +73,6 @@ export default class Search extends PureComponent {
         block
         dataLabel="label"
         dataValue="value"
-        simplifiedMenu
         listClassName="toolbar-search__list"
       />
     );

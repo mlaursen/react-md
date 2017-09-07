@@ -8,6 +8,8 @@ import DefaultValuesAndControlling from './DefaultValuesAndControlling';
 import DefaultValuesAndControllingRaw from '!!raw-loader!./DefaultValuesAndControlling.jsx';
 import TextFieldStyling from './TextFieldStyling';
 import TextFieldStylingRaw from '!!raw-loader!./TextFieldStyling.jsx';
+import UsingSmartMenus from './UsingSmartMenus';
+import UsingSmartMenusRaw from '!!raw-loader!./UsingSmartMenus.jsx';
 
 const examples = [{
   title: 'Simple Examples',
@@ -57,6 +59,16 @@ help text, error text/error states and others.
   `,
   code: TextFieldStylingRaw,
   children: <TextFieldStyling />,
+}, {
+  title: 'Using "Smart" Menus',
+  description: `
+This example shows how you can enable the "smart" menu feature that was introduced in \`react-md@1.1.0\`. This
+will allow the select field list to automatically position itself within the viewport. For more information and
+documentation, see [the Menus examples](/components/menus#smart-positioning-menus).
+The code for this example is exactly the same as the first example except that the \`simplifiedMenu\` prop is disabled.
+  `,
+  code: UsingSmartMenusRaw,
+  children: <UsingSmartMenus />,
 }];
 
 const SelectFields = () => <ExamplesPage description={README} examples={examples} />;

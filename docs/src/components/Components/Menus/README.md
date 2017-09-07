@@ -1,7 +1,9 @@
 The `Menu` component is used to display a list of items in a temporary sheet once
-it has been toggled open by a button or some other input. The `Menu` component uses
-the [Layover](/components/helpers/layovers) component behind the scenes, so it will
-automatically attempt to position the menu in the viewport.
+it has been toggled open by a button or some other input. Starting from 1.1.0, the
+`Menu` component uses the [Layover](/components/helpers/layovers) component behind
+the scenes, so it can automatically attempt to position the menu in the viewport.
+This feature is **disabled by default** to keep backwards compatibility, but can be
+enabled by enabiling the `simplified` prop.
 
 There are 3 types of menus included by default in `react-md`:
 
