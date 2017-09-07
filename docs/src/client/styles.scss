@@ -73,10 +73,6 @@ h3,
 .markdown-header {
   position: relative;
 
-  &:hover .markdown-header__link {
-    opacity: 1;
-  }
-
   &__link {
     $padding: $md-default-padding / 2;
 
@@ -85,6 +81,11 @@ h3,
     position: absolute;
     transform: rotate3d(0, 0, 1, 90deg);
     transition: opacity .3s;
+
+    &:focus,
+    .markdown-header:hover & {
+      opacity: 1;
+    }
   }
 }
 
