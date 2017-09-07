@@ -25,7 +25,7 @@ enforce a strict height. This allows for more dynamic and multiple line content.
   title: 'Dynamic Content Table',
   description: `
 This example will show how you can make a fully interactive data table that allows a user
-to insert/remove rows. This exmaple will use the \`EditDialogColumn\` for the inline cell edits
+to insert/remove rows. This example will use the \`EditDialogColumn\` for the inline cell edits
 and the \`SelectFieldColumn\` for the select fields.
 
 When tables are placed in cards, it can be useful to have additional interactions such as inserting
