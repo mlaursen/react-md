@@ -128,6 +128,10 @@ $md-data-table-header-icon-font-size: 16px !default;
 /// @type Number
 $md-data-table-column-height: 48px !default;
 
+/// The height for a plain data table's column.
+/// @type Number
+$md-data-table-plain-column-height: $md-data-table-column-height !default;
+
 /// The border size to use for each row.
 /// @type Number
 $md-data-table-border-size: 1px !default;
@@ -180,11 +184,8 @@ $md-data-table-contextual-fallback-color: null !default;
 /// `md-table-column--plain` class. The `white-space` will still need to manually
 /// be changed from `nowrap` to `initial` if you want line wrapping.
 %md-table-column--plain {
-  height: auto;
-  min-height: $md-data-table-column-height;
-  padding-bottom: $md-default-padding;
-  padding-top: $md-default-padding;
-  vertical-align: top;
+  height: $md-data-table-plain-column-height;
+  white-space: nowrap;
 }
 
 /// Includes the styles for the data tables.
@@ -219,9 +220,9 @@ $md-data-table-contextual-fallback-color: null !default;
   $include-table-card-headers: $md-data-table-include-table-card-headers,
   $include-fixed-headers-footers: $md-data-table-include-fixed-headers-footers
 ) {
-  @include react-md-data-table($include-plain);
+  @include react-md-data-table;
   @include react-md-data-table-rows($light-theme);
-  @include react-md-data-table-column;
+  @include react-md-data-table-column($include-plain);
 
   @if $include-checkboxes {
     @include react-md-data-table-checkboxes;
@@ -308,10 +309,7 @@ $md-data-table-contextual-fallback-color: null !default;
 
 /// Creates the styles for the data table. It will also create the styles for
 /// plain data tables if the param is true.
-///
-/// @param {Boolean} include-plain [$md-data-table-include-plain] - Boolean if the plain data
-///     table styles should be included.
-@mixin react-md-data-table($include-plain: $md-data-table-include-plain) {
+@mixin react-md-data-table {
   .md-data-table {
     border-collapse: collapse;
     max-width: 100%;
@@ -324,17 +322,6 @@ $md-data-table-contextual-fallback-color: null !default;
       @include md-ios-scroll-momentum;
 
       overflow-x: auto;
-    }
-
-    @if $include-plain {
-      .md-table-column--plain {
-        @extend %md-table-column--plain;
-      }
-    }
-
-    td {
-      padding-bottom: 0;
-      padding-top: 0;
     }
   }
 }
@@ -364,10 +351,15 @@ $md-data-table-contextual-fallback-color: null !default;
 }
 
 /// Creates the styles for a column in a data table.
-@mixin react-md-data-table-column {
+///
+/// @param {Boolean} include-plain [$md-data-table-include-plain] - boolean if the plain columns should be included
+@mixin react-md-data-table-column($include-plain: $md-data-table-include-plain) {
   .md-table-column {
     line-height: normal;
+    padding-bottom: 0;
     padding-right: $md-data-table-padding;
+    padding-top: 0;
+    vertical-align: middle;
     white-space: nowrap;
 
     &:first-child {
@@ -395,6 +387,12 @@ $md-data-table-contextual-fallback-color: null !default;
     &--data {
       font-size: $md-data-table-content-font-size;
       height: $md-data-table-column-height;
+    }
+
+    @if $include-plain {
+      &--plain {
+        @extend %md-table-column--plain;
+      }
     }
 
     &--grow {
