@@ -71,7 +71,7 @@ The \`SelectFieldColumn\` is just a simple wrapper of a \`TableColumn\` and a \`
 it does some work behind the scenes to work with the \`Layover\` component. All of the props are
 basically the same as the \`SelectField\` and can be used the same way.
 
-For more information about the \`EditDialogColumn\` types, please see the following example.
+For more information about the \`EditDialogColumn\` types, please see the next example.
   `,
   code: EditableTablesRaw,
   children: <EditableTables />,
@@ -105,7 +105,9 @@ When the user tab-focuses the edit dialog column, the dialog will automatically 
 text field will be focused for text edits. If the user presses tab in an \`inline\` or non-\`large\`
 dialog, the dialog will be closed and the save interaction will be triggered (unless it is switched to
 do cancel on outside interactions described above). In any case, if the user presses the escape key,
-the dialog will be closed and the cancel action will be called.
+the dialog will be closed and the cancel action will be called. Since it is sometimes better to not automatically
+open the dialog immediately after tab-focus, the auto-open feature can be disabled by disabling \`visibleOnFocus\`
+so the user is required to press space or enter to open the edit dialog.
 
 When the dialog is set to \`large\`, the tab interactions will be "trapped" within the dialog until the
 user selects the ok or cancel button (or presses enter on the text field). The dialog can still be closed
@@ -113,6 +115,7 @@ by pressing the escape key to cancel any cell edits.
 
 When the dialog is set to \`inline\`, tabbing will always save the data and pressing escape will call the
 cancel action.
+
 
 ### TextField
 The \`EditDialogColumn\` uses the [TextField](/components/text-fields) behind the scenese and correctly

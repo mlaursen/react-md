@@ -35,6 +35,7 @@ export interface EditDialogColumnProps extends SharedLayoverProps, InjectedToolt
   header?: boolean;
   cellIndex?: number;
   simplifiedDialog?: boolean;
+  visibleOnFocus?: boolean;
 
   /**
    * @deprecated

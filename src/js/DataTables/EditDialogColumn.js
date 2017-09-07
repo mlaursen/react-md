@@ -310,6 +310,12 @@ export default class EditDialogColumn extends PureComponent {
     closeOnOutsideClick: PropTypes.bool,
 
     /**
+     * Boolean if the edit dialog should automatically open when the text field is focused for non-inline
+     * dialogs. This is enabled by default for backwards compatibility.
+     */
+    visibleOnFocus: PropTypes.bool,
+
+    /**
      * The type for the text field in the edit dialog.
      *
      * @see {@link TextFields/TextField#type}
@@ -540,6 +546,7 @@ export default class EditDialogColumn extends PureComponent {
     minLeft: 0,
     minRight: 0,
     minBottom: 0,
+    visibleOnFocus: true,
   };
 
   static contextTypes = {
@@ -614,10 +621,10 @@ export default class EditDialogColumn extends PureComponent {
     }];
   };
 
-  _handleOpen = () => {
+  _handleOpen = (e) => {
     if (this._skipNextOpen) {
       this._skipNextOpen = false;
-    } else {
+    } else if (this.props.visibleOnFocus || !e || e.type !== 'focus') {
       const { scrollIntoView, scrollIntoViewPadding } = this.props;
       if (scrollIntoView) {
         const vp = viewport(this._column);
@@ -781,6 +788,7 @@ export default class EditDialogColumn extends PureComponent {
       adjusted,
       scrollIntoView,
       scrollIntoViewPadding,
+      visibleOnFocus,
 
       // deprecated
       scrollThreshold,
