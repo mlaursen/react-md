@@ -155,6 +155,11 @@ $md-text-field-desktop-floating-label-margin: 33px !default;
 /// @type Number
 $md-text-field-line-height: 1.15 !default;
 
+/// The line-height to apply to the text field message. This is really only required in case the
+/// text field appears as a title in a toolbar.
+/// @type Number
+$md-text-field-message-line-height: $md-line-height !default;
+
 
 /// Creates the styles for text fields on mobile devices. The floating labels, blocks,
 /// icons, or password styles can be ommitted by disabling the defaults or passing
@@ -1027,6 +1032,7 @@ $md-text-field-line-height: 1.15 !default;
   .md-text-field-message {
     color: inherit;
     flex-grow: 1;
+    line-height: $md-text-field-message-line-height;
     transition-duration: $md-transition-time;
     transition-property: opacity;
     white-space: normal;

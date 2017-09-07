@@ -17,7 +17,7 @@ export default class Message extends PureComponent {
     }
 
     return (
-      <p
+      <div
         aria-hidden={!active}
         className={cn(
           'md-text-field-message',
@@ -26,7 +26,7 @@ export default class Message extends PureComponent {
         )}
       >
         {children}
-      </p>
+      </div>
     );
   }
 }

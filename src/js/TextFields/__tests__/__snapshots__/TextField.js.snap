@@ -333,12 +333,12 @@ exports[`TextField should be able to be snapshottable 7`] = `
   <div
     className="md-text-field-message-container md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={false}
       className="md-text-field-message md-text-field-message--active"
     >
       Look at me!
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -387,12 +387,12 @@ exports[`TextField should be able to be snapshottable 8`] = `
   <div
     className="md-text-field-message-container md-full-width md-text--error"
   >
-    <p
+    <div
       aria-hidden={false}
       className="md-text-field-message md-text-field-message--active"
     >
       Some error
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -441,12 +441,12 @@ exports[`TextField should be able to be snapshottable 9`] = `
   <div
     className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={true}
       className="md-text-field-message md-text-field-message--inactive"
     >
       Look at me!
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -495,12 +495,12 @@ exports[`TextField should be able to be snapshottable 10`] = `
   <div
     className="md-text-field-message-container md-text-field-message-container--count-only md-full-width md-text--disabled"
   >
-    <p
+    <div
       aria-hidden={true}
       className="md-text-field-message md-text-field-message--inactive md-text-field-message--counter"
     >
       0 / 20
-    </p>
+    </div>
   </div>
 </div>
 `;
