@@ -139,7 +139,7 @@ exports[`Preview should render correctly after the drawer has become visible 1`]
     </button>
   </div>
   <nav
-    class="md-paper md-paper--5 md-drawer md-drawer--left md-drawer--fixed md-drawer--active md-transition--decceleration md-background--card"
+    class="md-paper md-paper--5 md-drawer md-drawer--left md-drawer--fixed md-drawer--active md-transition--deceleration md-background--card"
     id="theme-builder-preview-drawer"
   >
     <header
