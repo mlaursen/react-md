@@ -30,7 +30,7 @@ $md-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
   transition-timing-function: $md-transition-sharp;
 }
 
-/// A placeholder for getting the standard (and default) transitin. The transition function
+/// A placeholder for getting the standard (and default) transition. The transition function
 /// for growing and shrinking material, among other property changes.
 %md-transition--standard {
   transition-timing-function: $md-transition-standard;
@@ -42,9 +42,10 @@ $md-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
   transition-timing-function: $md-transition-acceleration;
 }
 
-/// A placeolder for getting the decceleration transition. The transition function for objects that
+/// A placeholder for getting the deceleration transition. The transition function for objects that
 /// leave the screen at full velocity.
-%md-transition--decceleration {
+%md-transition--decceleration, // remove in next major release
+%md-transition--deceleration {
   transition-timing-function: $md-transition-deceleration;
 }
 
@@ -56,7 +57,7 @@ $md-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
 ///
 /// @example markdown - ClassNames Created
 ///   - `md-transition--acceleration`
-///   - `md-transition--decceleration`
+///   - `md-transition--deceleration`
 ///   - `md-transition--sharp`
 ///   - `md-transition--standard`
 ///
@@ -74,8 +75,9 @@ $md-transition-deceleration: cubic-bezier(0, 0, .2, 1) !default;
       @extend %md-transition--acceleration;
     }
 
-    &--decceleration {
-      @extend %md-transition--decceleration;
+    &--decceleration, // remove in next major release
+    &--deceleration {
+      @extend %md-transition--deceleration;
     }
   }
 }

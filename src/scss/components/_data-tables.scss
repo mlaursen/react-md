@@ -715,7 +715,7 @@ $md-data-table-contextual-fallback-color: null !default;
     transform: translate3d(0, -100%, 0);
 
     &.md-drop-down-enter-active {
-      @extend %md-transition--decceleration;
+      @extend %md-transition--deceleration;
 
       transform: translate3d(0, 0, 0);
       transition-duration: $md-transition-time;

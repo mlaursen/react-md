@@ -986,7 +986,7 @@ export default class NavigationDrawer extends PureComponent {
           titleStyle={toolbarTitleStyle}
           titleClassName={cn({
             'md-title--drawer-active': contentActive,
-            'md-transition--decceleration': offset && visible,
+            'md-transition--deceleration': offset && visible,
             'md-transition--acceleration': offset && !visible,
             'md-title--permanent-offset': desktopOffset && isPermanent(drawerType),
             'md-title--persistent-offset': desktopOffset && persistent,
@@ -1034,7 +1034,7 @@ export default class NavigationDrawer extends PureComponent {
             'md-navigation-drawer-content--active': contentActive,
             'md-navigation-drawer-content--inactive': !visible,
             'md-navigation-drawer-content--prominent-offset': toolbarProminent || toolbarProminentTitle,
-            'md-transition--decceleration': visible,
+            'md-transition--deceleration': visible,
             'md-transition--acceleration': !visible,
             'md-drawer-relative': offset,
             'md-drawer-relative--mini': mini && (!visible || temporary),
